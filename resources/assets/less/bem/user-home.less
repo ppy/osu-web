@@ -17,30 +17,61 @@
  */
 
 .user-home {
-  @top: user-home;
+  @title-height: 50px;
 
+  .default-box-shadow();
+  .inner-shadow-top();
   display: flex;
-  background: @gray-3;
+  background: #444;
+  margin: 0 -20px;
+  flex-direction: column;
 
-  @media @mobile {
-    margin-left: -20px;
-    margin-right: -20px;
-    flex-direction: column;
+  @media @desktop {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 20px;
+    flex-direction: row;
+    align-items: flex-start;
   }
 
   &__beatmap-list-title {
-    margin: 20px 0 10px;
+    margin: 0;
+    padding: 20px 0 10px;
     font-size: @font-size--title-small-3;
     color: @pink-light;
     font-weight: 100;
   }
 
+  &__beatmapsets {
+    margin: -10px 0;
+  }
+
+  &__button {
+    margin: 10px 0;
+  }
+
+  &__buttons {
+    margin: -10px 0;
+  }
+
   &__news {
-    padding: 20px 0;
+    padding: 0 0 20px;
+    flex: none;
+    width: 100%;
 
     @media @desktop {
-      flex: 1 0 60%;
-      padding: 20px;
+      margin-left: 10px;
+      margin-right: 10px;
+      width: calc(60% ~'-' 20px);
+    }
+  }
+
+  &__news-posts {
+    .default-box-shadow();
+
+    &--collapsed {
+      padding: 5px 0;
+      background-color: #222;
     }
   }
 
@@ -54,41 +85,37 @@
     }
   }
 
-  &__news-posts {
-    .default-box-shadow();
-
-    &--collapsed {
-      padding: 5px 0;
-      background-color: @gray-2;
-    }
-  }
-
   &__news-title {
+    height: @title-height;
+    margin: 0;
+    padding: 0 0 10px 20px;
     font-size: @font-size--large;
     font-weight: 100;
     color: @pink-light;
 
-    margin: 0;
-    margin-bottom: 10px;
-    margin-left: 20px;
+    display: flex;
+    align-items: flex-end;
 
     @media @desktop {
-      margin-left: 10px;
+      padding-left: 10px;
     }
   }
 
   &__right-sidebar {
+    .inner-shadow-top();
+    background-color: #333;
     width: 100%;
-    overflow: hidden;
-
     margin: 0;
-    padding: 0 20px;
+    padding: 20px;
 
     @media @desktop {
-      padding: 0;
-      margin: 20px;
-      margin-left: 0;
-      margin-top: 50px;
+      .inner-shadow-top();
+      .default-box-shadow();
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: calc(40% ~'-' 20px);
+      padding: @title-height 10px 10px;
     }
   }
 }

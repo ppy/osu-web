@@ -54,11 +54,11 @@
     .center-content();
     padding: 10px;
     opacity: 0;
-    color: @gray-f;
+    color: #fff;
 
     &::before {
       .full-size();
-      background-color: @gray-0;
+      background-color: #000;
       opacity: 0;
       transition: all 120ms;
 
@@ -95,9 +95,9 @@
     flex: 1;
     max-width: @input-width;
     align-self: stretch;
-    background-color: @gray-4;
+    background-color: #444;
     border: 2px solid transparent;
-    color: @gray-f;
+    color: #fff;
     font-weight: normal;
     padding: 5px;
     margin: 0 10px 0 0;
@@ -123,7 +123,7 @@
     text-align: right;
 
     .@{top}.js-parent-focus--focus & {
-      color: @gray-f;
+      color: #fff;
     }
   }
 
@@ -141,7 +141,7 @@
     .full-size();
     .center-content();
 
-    background-color: fade(@gray-0, 75%);
+    background-color: fade(#000, 75%);
     opacity: 0;
     transition: all 120ms;
 

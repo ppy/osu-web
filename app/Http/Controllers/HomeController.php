@@ -21,9 +21,8 @@
 namespace App\Http\Controllers;
 
 use App;
-use App\Models\BanchoStats;
+use App\Libraries\CurrentStats;
 use App\Models\Beatmapset;
-use App\Models\Count;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
@@ -73,18 +72,6 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = BanchoStats::cachedStats();
-        $totalUsers = number_format(Count::cachedTotalUsers());
-        $graphData = array_to_graph_json($stats, 'users_osu');
-
-        $latest = array_last($stats);
-        if ($latest) {
-            $currentOnline = number_format($latest['users_osu']);
-            $currentGames = number_format($latest['multiplayer_games']);
-        } else {
-            $currentOnline = $currentGames = 0;
-        }
-
         if (Auth::check()) {
             $news = News::all();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
@@ -95,22 +82,13 @@ class HomeController extends Controller
                 ->get();
 
             return view('home.user', compact(
-                'currentGames',
-                'currentOnline',
-                'graphData',
                 'newBeatmapsets',
                 'news',
                 'popularBeatmapsets',
-                'popularBeatmapsetsPlaycount',
-                'totalUsers'
+                'popularBeatmapsetsPlaycount'
             ));
         } else {
-            return view('home.landing', compact(
-                'currentGames',
-                'currentOnline',
-                'graphData',
-                'totalUsers'
-            ));
+            return view('home.landing', ['stats' => new CurrentStats()]);
         }
     }
 

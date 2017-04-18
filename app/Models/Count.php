@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use Cache;
-
 class Count extends Model
 {
     protected $table = 'osu_counts';
@@ -37,12 +35,5 @@ class Count extends Model
     public static function totalUsers()
     {
         return static::find('usercount')->count ?? 0;
-    }
-
-    public static function cachedTotalUsers()
-    {
-        return Cache::remember('count_totalUsers', 5, function () {
-            return self::totalUsers();
-        });
     }
 }

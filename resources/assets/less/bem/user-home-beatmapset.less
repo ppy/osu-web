@@ -20,13 +20,23 @@
   .link-plain();
   .own-layer();
   display: flex;
-  margin-bottom: 10px;
-  width: 100%;
 
-  border-radius: @border-radius-large;
-  color: #232323;
+  color: #222;
 
   transition: 0.1s;
+
+  // undo padding from container
+  margin: 10px -20px;
+  padding: 0 20px;
+  width: calc(100% ~'+' 40px);
+
+  @media @desktop {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: calc(100% ~'+' 20px);
+  }
 
   &:hover {
     background-color: lighten(#333, 10%);
@@ -39,12 +49,13 @@
   }
 
   &__chevron {
-    flex-shrink: 0;
     .center-content();
-    padding-right: 10px;
+    flex: none;
+    margin-left: 5px;
   }
 
   &__cover {
+    flex: none;
     width: 70px;
     height: 60px;
     border-radius: @border-radius-large;
@@ -58,15 +69,15 @@
 
   &__meta {
     display: flex;
+    flex: 1;
     flex-direction: column;
     justify-content: center;
     margin-left: 5px;
-    width: 100%;
-    padding: 0px 5px;
-    max-width: calc(100% ~'-' 105px);
+    padding: 0 5px;
     color: #fff;
     font-weight: 400;
     font-style: italic;
+    min-width: 0;
   }
 
   &__playcount {

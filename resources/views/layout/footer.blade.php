@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print flex-none">
+<footer class="footer no-print">
     <div class="footer__row">
         <a class="footer__link" href="{{ osu_url('legal.tos') }}" target="_blank">Terms of Service</a>
         <a class="footer__link" href="{{ osu_url('legal.dmca') }}" target="_blank">Copyright (DMCA)</a>
