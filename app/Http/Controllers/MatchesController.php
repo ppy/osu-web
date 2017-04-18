@@ -101,7 +101,7 @@ class MatchesController extends Controller
         $events = json_collection(
             $events,
             new EventTransformer,
-            ['game.beatmap.beatmapset', 'game.scores']
+            ['game.beatmap.beatmapset', 'game.scores.multiplayer']
         );
 
         return [

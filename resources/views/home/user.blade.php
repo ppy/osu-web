@@ -18,48 +18,14 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page-compact-no-margin osu-layout__row--sm1 osu-layout__row--full">
-        <div class="osu-layout__sub-row osu-layout__sub-row--lg1-compact ">
-            @include('home._user_header_nav')
+    @include('home._user_header_default', [
+        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
+    ])
 
-            <div class="osu-page-header osu-page-header--two-col osu-page-header--home-user js-current-user-cover">
-                <div class="osu-page-header__box osu-page-header__box--two-col">
-                    <h1 class="osu-page-header__title osu-page-header__title--slightly-small osu-page-header__title--thinner u-ellipsis-overflow">
-                        {!! trans('home.user.header.welcome', ['username' => Auth::user()->username]) !!}
-                    </h1>
-                    <p class="osu-page-header__detail">
-                        <a class="osu-page-header__link" href="{{route('notifications.index')}}">
-                            {{trans_choice('home.user.header.messages', Auth::user()->notificationCount())}}
-                        </a>
-                    </p>
-                </div>
-
-                <div class="osu-page-header__box osu-page-header__box--status osu-page-header__box--graph">
-                    <div class="osu-page-header__status osu-page-header__status--fade-in">
-                        <div class="osu-page-header__status-label">
-                            Games
-                        </div>
-                        <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{$currentGames}}
-                        </div>
-                    </div>
-                    <div class="osu-page-header__status osu-page-header__status--selected osu-page-header__status--fade-in osu-page-header__status--animation-delay">
-                        <div class="osu-page-header__status-label">
-                            {{trans('home.user.header.stats.online')}}
-                        </div>
-                        <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{$currentOnline}}
-                        </div>
-                    </div>
-                    <div class="js-fancy-graph osu-page-header__status-chart" data-src="banchostats"></div>
-                    <script id="banchostats" type="application/json">{!! json_encode($graphData) !!}</script>
-                </div>
-            </div>
-        </div>
-
+    <div class="osu-page osu-page--small">
         <div class="user-home">
             <div class="user-home__news">
-                <h2 class="user-home__news-title">{{trans('home.user.news.title')}}</h2>
+                <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>
                 @if (!empty($news))
                     <div class="user-home__news-posts">
                         @foreach ($news as $post)
@@ -90,38 +56,51 @@
             </div>
             <div class="user-home__right-sidebar">
                 <div class="user-home__buttons">
-                    @include('home._user_giant_button', [
-                        'href' => route('download'),
-                        'label' => trans('home.user.buttons.download'),
-                        'icon' => 'download',
-                        'colour' => 'btn-osu-big--pink'
-                    ])
-                    @include('home._user_giant_button', [
-                        'href' => route('support-the-game'),
-                        'label' => trans('home.user.buttons.support'),
-                        'icon' => 'heart',
-                        'colour' => 'btn-osu-big--green'
-                    ])
-                    @include('home._user_giant_button', [
-                        'href' => route('store.products.index'),
-                        'label' => trans('home.user.buttons.store'),
-                        'icon' => 'shopping-cart',
-                        'colour' => ''
-                    ])
+                    <div class="user-home__button">
+                        @include('home._user_giant_button', [
+                            'href' => route('download'),
+                            'label' => trans('home.user.buttons.download'),
+                            'icon' => 'download',
+                        ])
+                    </div>
+
+                    <div class="user-home__button">
+                        @include('home._user_giant_button', [
+                            'href' => route('support-the-game'),
+                            'label' => trans('home.user.buttons.support'),
+                            'icon' => 'heart',
+                            'colour' => 'green'
+                        ])
+                    </div>
+
+                    <div class="user-home__button">
+                        @include('home._user_giant_button', [
+                            'href' => route('store.products.index'),
+                            'label' => trans('home.user.buttons.store'),
+                            'icon' => 'shopping-cart',
+                            'colour' => 'pink-darker'
+                        ])
+                    </div>
                 </div>
-                <div class="user-home__beatmap-lists">
-                    <div class='user-home-beatmap-list'>
-                        <h3 class='user-home-beatmap-list__heading'>{{trans('home.user.beatmaps.new')}}</h3>
-                        @foreach ($newBeatmaps as $beatmap)
-                            @include('home._user_beatmap_list', ['type' => 'new'])
-                        @endforeach
-                    </div>
-                    <div class='user-home-beatmap-list'>
-                        <h3 class='user-home-beatmap-list__heading'>{{trans('home.user.beatmaps.popular')}}</h3>
-                        @foreach ($popularBeatmaps as $beatmap)
-                            @include('home._user_beatmap_list', ['type' => 'popular'])
-                        @endforeach
-                    </div>
+
+                <h3 class='user-home__beatmap-list-title'>
+                    {{ trans('home.user.beatmaps.new') }}
+                </h3>
+
+                <div class="user-home__beatmapsets">
+                    @foreach ($newBeatmapsets as $beatmapset)
+                        @include('home._user_beatmapset', ['type' => 'new'])
+                    @endforeach
+                </div>
+
+                <h3 class='user-home__beatmap-list-title'>
+                    {{ trans('home.user.beatmaps.popular') }}
+                </h3>
+
+                <div class="user-home__beatmapsets">
+                    @foreach ($popularBeatmapsets as $beatmapset)
+                        @include('home._user_beatmapset', ['type' => 'popular'])
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -76,7 +76,7 @@
   }
 
   &--topic-create {
-    background-color: @gray-5;
+    background-color: #555;
   }
 
   &__actions {
@@ -125,7 +125,7 @@
     position: absolute;
     top: 0;
     right: 40px;
-    background-color: @gray-f;
+    background-color: #fff;
     padding: 10px;
     display: flex;
     min-width: 250px;
@@ -165,9 +165,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: @gray-f;
+    color: #fff;
     transition: opacity 120ms, background-color 120ms;
-    background-color: fade(@gray-0, 50%);
+    background-color: fade(#000, 50%);
 
     &[data-state="hidden"] {
       opacity: 0;
@@ -178,12 +178,12 @@
     }
 
     &[data-state="hover"] {
-      background-color: fade(@gray-0, 80%);
+      background-color: fade(#000, 80%);
     }
   }
 
   &__description {
-    color: @gray-f;
+    color: #fff;
     .default-text-shadow;
     font-size: 12px;
   }
@@ -198,7 +198,7 @@
     width: 100%;
     top: 0;
     left: 0;
-    background-color: fade(@gray-0, 50%);
+    background-color: fade(#000, 50%);
     opacity: 0;
     transition: opacity 120ms;
     pointer-events: none;
@@ -213,7 +213,7 @@
   }
 
   &__name {
-    color: @gray-f;
+    color: #fff;
     .default-text-shadow;
     font-size: 24px;
   }
@@ -228,7 +228,7 @@
     font-size: 36px;
     font-style: italic;
     .default-text-shadow;
-    color: @gray-f;
+    color: #fff;
     display: block;
 
     &--forum {

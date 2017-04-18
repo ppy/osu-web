@@ -18,25 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers\API\Chat;
+namespace App\Http\Controllers\API;
 
-use App\Models\Chat\PrivateMessage;
-use League\Fractal;
+use Redis;
 
-class PrivateMessageTransformer extends Fractal\TransformerAbstract
+class RoomsController extends Controller
 {
-    public function transform(PrivateMessage $message)
+    public function show($id)
     {
-        return [
-            'message_id' => $message->message_id,
-            'user_id' => $message->user_id,
-            'target_id' => $message->target_id,
-            'timestamp' => $message->timestamp->toDateTimeString(),
-            'content' => $message->content,
-            'sender' => [
-                'username' => $message->sender->username,
-                'colour' => $message->sender->user_colour,
-            ],
-        ];
+        $roomId = get_int($id);
+
+        if (!is_null($roomId)) {
+            $meta = Redis::get("room:$roomId");
+        }
+
+        if (!isset($meta)) {
+            abort(404);
+        }
+
+        return response($meta)->header('Content-Type', 'application/json');
     }
 }

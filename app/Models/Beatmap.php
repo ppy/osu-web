@@ -20,10 +20,13 @@
 
 namespace App\Models;
 
+use App\Exceptions\ScoreRetrievalException;
+
 class Beatmap extends Model
 {
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
+    protected $guarded = [];
 
     protected $casts = [
         'orphaned' => 'boolean',
@@ -98,7 +101,7 @@ class Beatmap extends Model
         $mode = $mode ?? static::modeStr($this->playmode);
 
         if ($this->mode !== 'osu' && $this->mode !== $mode) {
-            throw new \InvalidArgumentException(trans('errors.beatmaps.standard-converts-only'));
+            throw new ScoreRetrievalException(trans('errors.beatmaps.standard-converts-only'));
         }
 
         $mode = studly_case($mode);

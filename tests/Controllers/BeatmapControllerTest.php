@@ -27,7 +27,7 @@ class BeatmapControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->beatmap = factory(Beatmap::class)->create();
+        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
     }
 
     /**

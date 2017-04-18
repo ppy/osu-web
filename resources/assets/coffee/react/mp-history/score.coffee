@@ -30,7 +30,7 @@ class MPHistory.Score extends React.Component
       div
         className: 'mp-history-player-score__shapes'
         style:
-          backgroundImage: "url(/images/layout/mp-history/shapes-team-#{@props.score.team}.svg)"
+          backgroundImage: "url(/images/layout/mp-history/shapes-team-#{@props.score.multiplayer.team}.svg)"
 
       div className: 'mp-history-player-score__main',
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--user',
@@ -40,7 +40,7 @@ class MPHistory.Score extends React.Component
               href: laroute.route 'users.show', user: user.id
               user.username
 
-            if !@props.score.pass
+            if !@props.score.multiplayer.pass
               span className: 'mp-history-player-score__failed', Lang.get 'multiplayer.match.failed'
 
           el FlagCountry, country: user.country
