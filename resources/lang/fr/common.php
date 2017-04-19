@@ -55,9 +55,9 @@ return [
         'count100' => '100',
         'count300' => '300',
         'count50' => '50',
-        'countgeki' => 'MAX',
-        'countkatu' => '200',
-        'countmiss' => 'Raté',
+        'countGeki' => 'MAX',
+        'countKatu' => '200',
+        'countMiss' => 'Raté',
     ],
 
     'time' => [

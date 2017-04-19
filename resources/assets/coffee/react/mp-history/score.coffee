@@ -21,7 +21,7 @@ el = React.createElement
 
 class MPHistory.Score extends React.Component
   firstRow: ['combo', 'accuracy', 'score']
-  secondRow: ['countgeki', 'count300', 'countkatu', 'count100', 'count50', 'countmiss']
+  secondRow: ['countGeki', 'count300', 'countKatu', 'count100', 'count50', 'countMiss']
 
   render: ->
     user = @props.lookupUser @props.score.user_id
@@ -70,7 +70,7 @@ class MPHistory.Score extends React.Component
 
           div className: 'mp-history-player-score__stat-row',
             @secondRow.map (m) =>
-              if @props.mode != 'mania' and (m == 'countgeki' || m == 'countkatu')
+              if @props.mode != 'mania' and (m == 'countGeki' || m == 'countKatu')
                 return
 
               div
@@ -81,4 +81,4 @@ class MPHistory.Score extends React.Component
                   osu.trans "common.score_count.#{m}"
                 span
                   className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
-                  @props.score[m].toLocaleString()
+                  @props.score.statistics[m].toLocaleString()
