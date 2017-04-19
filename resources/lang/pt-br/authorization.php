@@ -55,6 +55,7 @@ return [
                 'channel' => [
                     'no_access' => 'O acesso ao canal solicitado é obrigatório.',
                     'moderated' => 'O canal está atualmente sob moderação.',
+                    'not_lazer' => 'Você só pode conversar em #lazer no momento.',
                 ],
 
                 'not_allowed' => 'Não é possível enviar mensagens enquanto banido/restrito/silenciado.',

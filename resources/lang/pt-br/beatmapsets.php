@@ -60,8 +60,8 @@ return [
             'rating-spread' => 'Gráfico de avaliações',
         ],
         'info' => [
-		    'no_scores' => 'Beatmap não rankeado',
-			'points-of-failure' => 'Pontos de falha',
+            'no_scores' => 'Beatmap não rankeado',
+            'points-of-failure' => 'Pontos de falha',
             'success-rate' => 'Taxa de sucesso',
 
             'description' => 'Descrição',

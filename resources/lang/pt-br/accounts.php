@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => 'Configurações da conta',
+        'title' => 'Configurações da <strong>conta</strong>',
         'title_compact' => 'configurações',
 
         'avatar' => [
@@ -45,7 +45,7 @@ return [
             'title' => 'Editar perfil',
 
             'user' => [
-                'user_from' => 'local atual',
+                'user_from' => 'localização atual',
                 'user_interests' => 'interesses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupação',
