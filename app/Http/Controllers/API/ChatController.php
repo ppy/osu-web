@@ -58,7 +58,9 @@ class ChatController extends Controller
                 return priv_check('ChatChannelRead', $channel)->can();
             });
 
-        $messages = Message::whereIn('channel_id', $channel_ids)->with('sender');
+        $messages = Message::whereIn('channel_id', $channel_ids)
+            ->with('sender')
+            ->with('sender.country');
 
         if ($since) {
             $messages = $messages->where('message_id', '>', $since);
@@ -69,7 +71,10 @@ class ChatController extends Controller
                 ->limit($limit)
                 ->get(),
             'API/Chat/Message',
-            ['sender', 'sender.country']
+            [
+                'sender',
+                'sender.country',
+            ]
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -82,7 +87,9 @@ class ChatController extends Controller
 
         $messages = PrivateMessage::toOrFrom(Auth::user()->user_id)
             ->with('sender')
-            ->with('receiver');
+            ->with('sender.country')
+            ->with('receiver')
+            ->with('receiver.country');
 
         if ($since) {
             $messages = $messages->where('message_id', '>', $since);
@@ -93,7 +100,12 @@ class ChatController extends Controller
                 ->limit($limit)
                 ->get(),
             'API/Chat/Message',
-            ['sender', 'sender.country']
+            [
+                'sender',
+                'sender.country',
+                'receiver',
+                'receiver.country',
+            ]
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -134,6 +146,13 @@ class ChatController extends Controller
 
         $message = $target->receiveMessage(Auth::user(), Request::input('message'));
 
-        return json_item($message, 'API/Chat/Message', ['sender', 'sender.country']);
+        return json_item(
+            $message,
+            'API/Chat/Message',
+            [
+                'sender',
+                'sender.country',
+            ]
+        );
     }
 }

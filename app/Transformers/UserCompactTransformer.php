@@ -34,7 +34,6 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'country' => $user->country_acronym,
             'profile_colour' => presence($user->user_colour),
             'avatar_url' => $user->user_avatar,
             'cover_url' => $user->profileCustomization()->cover()->url(),
