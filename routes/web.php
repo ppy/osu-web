@@ -243,7 +243,7 @@ Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountControlle
 Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountController@updatePassword']);
 
 // API
-Route::group(['prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
+Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['prefix' => 'chat'], function () {
             //  GET /api/v2/chat/channels
