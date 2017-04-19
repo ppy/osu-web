@@ -37,7 +37,7 @@ BeatmapsetPage.ScoreTop = React.createClass
           div
             className: "avatar avatar--full"
             style:
-              backgroundImage: "url(#{@props.score.user.avatarUrl})"
+              backgroundImage: "url(#{@props.score.user.avatar_url})"
 
         div className: "#{bn}__user-box",
           a

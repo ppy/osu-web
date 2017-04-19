@@ -21,7 +21,7 @@ el = React.createElement
 
 class MPHistory.Score extends React.Component
   firstRow: ['combo', 'accuracy', 'score']
-  secondRow: ['countGeki', 'count300', 'countKatu', 'count100', 'count50', 'countMiss']
+  secondRow: ['count_geki', 'count_300', 'count_katu', 'count_100', 'count_50', 'count_miss']
 
   render: ->
     user = @props.lookupUser @props.score.user_id
@@ -70,7 +70,7 @@ class MPHistory.Score extends React.Component
 
           div className: 'mp-history-player-score__stat-row',
             @secondRow.map (m) =>
-              if @props.mode != 'mania' and (m == 'countGeki' || m == 'countKatu')
+              if @props.mode != 'mania' and (m == 'count_geki' || m == 'count_katu')
                 return
 
               div

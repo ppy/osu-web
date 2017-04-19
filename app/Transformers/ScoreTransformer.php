@@ -43,12 +43,12 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'maxCombo' => $score->maxcombo,
             'perfect' => $score->perfect,
             'statistics' => [
-                'count50' => $score->count50,
-                'count100' => $score->count100,
-                'count300' => $score->count300,
-                'countGeki' => $score->countgeki,
-                'countKatu' => $score->countkatu,
-                'countMiss' => $score->countmiss,
+                'count_50' => $score->count50,
+                'count_100' => $score->count100,
+                'count_300' => $score->count300,
+                'count_geki' => $score->countgeki,
+                'count_katu' => $score->countkatu,
+                'count_miss' => $score->countmiss,
             ],
             'pp' => $score->pp,
             // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now

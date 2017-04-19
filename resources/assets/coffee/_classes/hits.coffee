@@ -19,9 +19,9 @@
 class @Hits
   @generate: ({score, playmode}) ->
     elements = if playmode == 'mania'
-      ['countGeki', 'count300',  'countKatu', 'count100', 'count50']
+      ['count_geki', 'count_300',  'count_katu', 'count_100', 'count_50']
     else
-      ['count300', 'count100', 'count50']
+      ['count_300', 'count_100', 'count_50']
 
     header:
       elements
