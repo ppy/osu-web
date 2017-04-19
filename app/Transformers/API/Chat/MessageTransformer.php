@@ -20,9 +20,9 @@
 
 namespace App\Transformers\API\Chat;
 
-use League\Fractal;
 use App\Models\DeletedUser;
 use App\Transformers\UserCompactTransformer;
+use League\Fractal;
 
 class MessageTransformer extends Fractal\TransformerAbstract
 {
