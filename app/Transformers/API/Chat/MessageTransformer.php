@@ -33,10 +33,10 @@ class MessageTransformer extends Fractal\TransformerAbstract
     public function transform($message)
     {
         return [
-            'message_id' => $message->message_id,
-            'sender_id' => $message->user_id,
-            'target_type' => $message->target_type,
-            'target_id' => $message->target_id,
+            'messageId' => $message->message_id,
+            'senderId' => $message->user_id,
+            'targetType' => $message->target_type,
+            'targetId' => $message->target_id,
             'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
         ];

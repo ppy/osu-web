@@ -28,7 +28,7 @@ class ChannelTransformer extends Fractal\TransformerAbstract
     public function transform(Channel $channel)
     {
         return [
-            'channel_id' => $channel->channel_id,
+            'channelId' => $channel->channel_id,
             'name' => $channel->name,
             'description' => $channel->description,
             'type' => strtolower($channel->type),
