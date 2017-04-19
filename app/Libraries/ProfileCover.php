@@ -105,6 +105,6 @@ class ProfileCover
             return $this->fileUrl();
         }
 
-        return '/images/headers/profile-covers/c'.$this->id().'.jpg';
+        return config('app.url').'/images/headers/profile-covers/c'.$this->id().'.jpg';
     }
 }
