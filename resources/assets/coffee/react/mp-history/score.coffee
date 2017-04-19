@@ -57,7 +57,7 @@ class MPHistory.Score extends React.Component
 
               value = switch m
                 when 'combo'
-                  @props.score.combo.toLocaleString()
+                  @props.score.maxCombo.toLocaleString()
                 when 'accuracy'
                   "#{_.round @props.score.accuracy * 100, 2}%"
                 when 'score'
