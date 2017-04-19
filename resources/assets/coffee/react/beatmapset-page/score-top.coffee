@@ -46,7 +46,7 @@ BeatmapsetPage.ScoreTop = React.createClass
             @props.score.user.username
 
           el FlagCountry,
-            country: @props.countries[@props.score.user.country]
+            country: @props.countries[@props.score.user.country_code]
             classModifiers: ['scoreboard']
 
         div className: "#{bn}__position",
