@@ -18,25 +18,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers\API\Chat;
+namespace App\Http\Middleware;
 
-use App\Models\Chat\PrivateMessage;
-use League\Fractal;
+use Carbon\Carbon;
+use Closure;
 
-class PrivateMessageTransformer extends Fractal\TransformerAbstract
+class LegacyInterOpAuth
 {
-    public function transform(PrivateMessage $message)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
     {
-        return [
-            'message_id' => $message->message_id,
-            'user_id' => $message->user_id,
-            'target_id' => $message->target_id,
-            'timestamp' => $message->timestamp->toDateTimeString(),
-            'content' => $message->content,
-            'sender' => [
-                'username' => $message->sender->username,
-                'colour' => $message->sender->user_colour,
-            ],
-        ];
+        $timestamp = $request->query('timestamp');
+        $diff = Carbon::createFromTimestamp($timestamp)->diffInSeconds();
+        $signature = $request->header('X-LIO-Signature');
+        $expected = hash_hmac('sha1', $request->fullUrl(), config('osu.legacy.shared_interop_secret'));
+
+        if (!present($signature) || !present($timestamp) || $diff > 300 || !hash_equals($expected, $signature)) {
+            abort(403);
+        }
+
+        return $next($request);
     }
 }

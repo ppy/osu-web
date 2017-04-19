@@ -21,7 +21,7 @@
   @top: osu-page-header;
 
   background-size: cover;
-  background-color: @gray-3;
+  background-color: #333;
   background-position: center;
 
   padding: @main-padding;
@@ -43,7 +43,7 @@
   }
 
   &--home-user {
-    color: @gray-f;
+    color: #fff;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-end;
@@ -57,10 +57,10 @@
     &::before {
       .full-size();
       @media @desktop {
-        background-image: linear-gradient(to bottom, fade(@gray-0, 0%), fade(@gray-0, 75%));
+        background-image: linear-gradient(to bottom, fade(#000, 0%), fade(#000, 75%));
       }
       @media @mobile {
-        background-image: linear-gradient(to bottom, fade(@gray-0, 25%), fade(@gray-0, 75%));
+        background-image: linear-gradient(to bottom, fade(#000, 25%), fade(#000, 75%));
       }
     }
 
@@ -139,34 +139,36 @@
   }
 
   &__box {
-    margin: 0 10px;
     flex: 1 0 auto;
+    flex-wrap: wrap;
+    margin: 0 10px;
     padding: 20px 0;
 
-    &--status {
-      display: flex;
-      background-color: fade(@gray-0, 50%);
-    }
-
-    .@{top}--two-col & {
-      flex: 1 1 60%;
+    .@{top}--home-user & {
+      flex: none;
+      width: 100%;
       align-self: flex-end;
       margin: 0;
 
-      @media @mobile {
-        flex: 100%;
+      @media @desktop {
+        margin: 0 10px;
+        width: calc(60% ~'-' 20px);
       }
     }
 
-    .@{top}--two-col &--graph {
+    .@{top}--home-user &--status {
+      flex: none;
+      display: flex;
+      background-color: fade(#000, 50%);
       padding: 0;
-      height: 100px;
       padding-top: 5px;
       justify-content: flex-start;
-      flex: 1 0 40%;
+      margin: 0 -10px;
+      width: calc(100% ~'+' 20px);
 
-      @media @mobile {
-        margin: 0 -10px;
+      @media @desktop {
+        margin: 0 10px;
+        width: calc(40% ~'-' 20px);
       }
     }
   }
@@ -183,15 +185,13 @@
   }
 
   &__status {
-    padding: 0 10px;
+    padding: 0 10px 20px;
   }
 
   &__status-chart {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     height: 70px;
     width: 100%;
+    margin-top: -20px;
   }
 
   &__status-label {
@@ -211,23 +211,14 @@
   }
 
   &__title {
-    font-size: @font-size--header-title;
-    margin: 0 0 10px;
     .default-text-shadow();
+    font-size: @font-size--header-title;
+    // avoid clipping
+    margin: -5px -5px 5px;
+    padding: 5px;
     color: #fff;
 
     font-style: italic;
-
-    &--slightly-small {
-      font-size: @font-size--new-header-title;
-    }
-
-    &--thinner {
-      font-weight: 100;
-      strong {
-        font-weight: 500;
-      }
-    }
 
     &--small {
       font-size: @font-size--header-subtitle;
@@ -235,6 +226,14 @@
 
     &--smaller {
       font-size: @font-size--header-description;
+    }
+
+    .@{top}--home-user & {
+      font-size: @font-size--new-header-title;
+      font-weight: 100;
+      strong {
+        font-weight: 500;
+      }
     }
 
     .@{top}--mp-history & {

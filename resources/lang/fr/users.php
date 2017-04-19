@@ -29,7 +29,7 @@ return [
         'remember' => 'Se souvenir de moi sur cet ordinateur',
         'title' => 'Merci de vous connecter pour continuer',
         'failed' => 'Identifiants incorrects',
-        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maitenant ici",
+        'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
         'forgot' => 'Mot de passe oublié?',
         'beta' => [
             'main' => 'Accès bêta restreint aux utlisateurs privilégiés.',
@@ -42,11 +42,11 @@ return [
         '_' => "S'inscrire",
     ],
     'anonymous' => [
-        'login_link' => 'cliquez pour vous connecter',
+        'login_link' => 'Cliquez pour vous connecter',
         'username' => 'Invité',
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
-    'logout_confirm' => 'Vous êtes sûr de vous déconnecter? :(',
+    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(',
     'show' => [
         '404' => 'Utilisateur non trouvé! ;_;',
         'age' => 'Âgé de :age',
@@ -54,9 +54,9 @@ return [
         'first_members' => 'Ici depuis le début',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Ici depuis le :date',
-        'lastvisit' => 'Vu la dernière fois le :date',
-        'missingtext' => "Vous avez fait une erreur typo je crois! (ou l'utilisateur vous a banni)",
+        'joined_at' => 'Ici depuis :date',
+        'lastvisit' => 'Vu la dernière fois :date',
+        'missingtext' => "Vous avez fait une erreur de typo, je crois! (ou l'utilisateur est banni)",
         'origin_age' => ':age',
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
@@ -68,11 +68,11 @@ return [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => "Plus d'options seront disponibles bientôt",
                 'upload' => [
-                    'broken_file' => "Impossible de traiter l'image. Vérifiez l'image mis en ligne et réesayez.",
+                    'broken_file' => "Impossible de traiter l'image. Vérifiez l'image mise en ligne et réesayez.",
                     'button' => "Mettre en ligne l'image",
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => "Vous pouvez aussi déplacer l'image ici pour la mettre en ligne",
-                    'restriction_info' => "Mise en ligne disponible pour les <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporteurs</a> uniquement",
+                    'restriction_info' => "Mise en ligne disponible pour les <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> uniquement",
                     'size_info' => 'La taille de la bannière devrait être 2000x700',
                     'too_large' => 'Le fichier mis en ligne est trop gros.',
                     'unsupported_format' => 'Format non supporté.',
@@ -90,22 +90,22 @@ return [
             'historical' => [
                 'empty' => 'Aucun enregistrement de performance. :(',
                 'most_played' => [
-                    'count' => 'nombre de fois jouées',
+                    'count' => 'Nombre de fois jouée',
                     'title' => 'Beatmaps les plus jouées',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'précision: :percentage',
+                    'accuracy' => 'Précision: :percentage',
                     'title' => 'Parties récentes',
                 ],
                 'title' => 'Historique',
             ],
             'kudosu' => [
-                'available' => 'Kudosu Disponible',
-                'available_info' => "Le Kudosu peut être échangé pour des étoiles kudosu, qui vous aidera pour que votre beatmap ait plus d'attention. C'est le nombre de Kudosu qui n'avaient pas encore échangés.",
+                'available' => 'Kudosu disponibles',
+                'available_info' => "Les Kudosu peuvent être échangé pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés..",
                 'recent_entries' => 'Hitorique de Kudosu récents',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
-                'total_info' => 'Basé sur combien de fois on a contribué dans la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
+                'total_info' => 'Basé sur notre contribution à la modération de beatmaps. Voir <a href="'.osu_url('user.kudosu').'">cette page</a> pour plus d\'informations.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -113,27 +113,27 @@ return [
 
                     'forum_post' => [
                         'give' => 'A reçu :amount de :giver pour un post sur :post',
-                        'revoke' => 'Kudosu refusé de :giver pour le post :post',
+                        'revoke' => 'Kudosu refusé par :giver pour le post sur :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'moi!',
+                'title' => 'Moi!',
             ],
             'medals' => [
                 'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
                 'title' => 'Médailles',
             ],
             'recent_activities' => [
-                'title' => 'Récent',
+                'title' => 'Activité récente',
             ],
             'top_ranks' => [
                 'best' => [
                     'title' => 'Meilleures performances',
                 ],
-                'empty' => 'Pas de meilleurs performances. :(',
+                'empty' => 'Pas de première place. :(',
                 'first' => [
-                    'title' => 'Classements à la première place',
+                    'title' => 'Première places',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Classements',
@@ -145,28 +145,28 @@ return [
                     'title' => 'Beatmaps favorites (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Beatmaps classés et approuvés (:count)',
+                    'title' => 'Beatmaps classées et approuvées (:count)',
                 ],
-                'none' => 'Aucun... en ce moment.',
+                'none' => 'Aucune... Pour le moment.',
             ],
         ],
         'page' => [
-            'description' => '<strong>moi!</strong> est une zone personnalisable du profil.',
-            'edit_big' => 'éditer le moi!',
+            'description' => '<strong>Moi!</strong> est une zone personnalisable du profil.',
+            'edit_big' => 'Éditer le moi!',
             'placeholder' => 'Tapez le contenu de la page',
             'restriction_info' => "Vous devez être <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
         ],
         'rank' => [
-            'country' => 'Classement national pour :mode',
-            'global' => 'Classement global pour :mode',
+            'country' => 'Classement national en :mode',
+            'global' => 'Classement global en :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Précision du clic',
+            'hit_accuracy' => 'Précision',
             'level' => 'Niveau :level',
             'maximum_combo' => 'Combo maximum',
             'play_count' => 'Nombres de parties',
             'ranked_score' => 'Score classé',
-            'replays_watched_by_others' => 'Replay regardés par les autres',
+            'replays_watched_by_others' => 'Replays regardés par les autres',
             'score_ranks' => 'Classements de Scores',
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',

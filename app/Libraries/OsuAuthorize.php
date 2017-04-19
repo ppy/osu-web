@@ -197,6 +197,11 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetNominatorsView($user, $beatmapset)
+    {
+        // no one but admin (not covered here) =D
+    }
+
     public function checkBeatmapsetNominate($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
@@ -239,12 +244,16 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         if ($target instanceof ChatChannel) {
-            if (!$this->doCheckUser($user, 'ChatChannelRead', $channel)->can()) {
+            if (!$this->doCheckUser($user, 'ChatChannelRead', $target)->can()) {
                 return $prefix.'channel.no_access';
             }
 
             if ($target->moderated) {
                 return $prefix.'channel.moderated';
+            }
+
+            if ($target->name !== '#lazer') {
+                return $prefix.'channel.not_lazer';
             }
         } elseif ($target instanceof User) {
             // TODO: blocklist/ignore, etc

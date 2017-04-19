@@ -88,7 +88,7 @@ class BeatmapsetPage.Main extends React.Component
 
     loadScore = =>
       @setState
-        scores: @scoresCache[cacheKey].scoresList
+        scores: @scoresCache[cacheKey].scores
         userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
         userScorePosition: @scoresCache[cacheKey].userScorePosition
         enabledMods: enabledMods
@@ -105,7 +105,7 @@ class BeatmapsetPage.Main extends React.Component
       dataType: 'JSON'
       data:
         type: scoreboardType
-        enabledMods: enabledMods
+        mods: enabledMods
         mode: @state.currentBeatmap.mode
 
     .done (data) =>
@@ -195,8 +195,8 @@ class BeatmapsetPage.Main extends React.Component
             type: @state.currentScoreboardType
             beatmap: @state.currentBeatmap
             scores: @state.scores
-            userScore: @state.userScore
-            userScorePosition: @state.userScorePosition
+            userScore: @state.userScore?.score
+            userScorePosition: @state.userScore?.position
             enabledMods: @state.enabledMods
             countries: @props.countries
             loading: @state.loading

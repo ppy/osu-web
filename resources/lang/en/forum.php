@@ -102,6 +102,7 @@ return [
         'index' => [
             'title' => 'Topic Subscriptions',
             'title_compact' => 'subscriptions',
+            'title_main' => 'Topic <strong>Subscriptions</strong>',
 
             'box' => [
                 'total' => 'Topics subscribed',

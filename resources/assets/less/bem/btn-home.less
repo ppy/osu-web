@@ -1,0 +1,83 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.btn-home {
+  .link-plain();
+  .link-white();
+
+  @border-size: 3px;
+
+  .color(@color) {
+    background-color: @color;
+
+    box-shadow: 0 @border-size darken(@color, 10%), 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
+
+    &:focus {
+      background-position: calc(50% ~'-' 10px) 50%;
+      background-color: lighten(@color, 5%);
+    }
+
+    &:hover {
+      background-position: calc(50% ~'-' 20px) 50%;
+      background-color: lighten(@color, 10%);
+    }
+
+    &:active {
+      @move: 2px;
+      transform: translate(0, @move);
+      background-position: calc(50% ~'-' 20px) 50%;
+      box-shadow: 0 (@border-size - @move) darken(@color, 10%), 0 (@border-size - @move + @box-shadow-y) @box-shadow-radius @box-shadow-color;
+    }
+  }
+
+  border-radius: @border-radius-large;
+  background-image: url('/images/backgrounds/button.svg');
+  background-size: 175%;
+  background-position: center;
+
+  font-size: @font-size--normal;
+  font-weight: bold;
+
+  margin-bottom: @border-size;
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+
+  transition: all 120ms ease-in-out;
+  .own-layer();
+
+  .color(@blue-darker);
+
+  &--green {
+    .color(@green);
+  }
+
+  &--pink-darker {
+    .color(@pink-darker);
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  &__icon {
+    font-size: 150%;
+    flex: none;
+  }
+}

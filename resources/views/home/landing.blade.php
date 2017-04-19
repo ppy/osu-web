@@ -106,8 +106,11 @@
             </div>
             <div class="js-landing-graph landing-graph">
                 <div class="landing-graph__info">
-                    {!! trans("home.landing.players", ['count' => $totalUsers]) !!},
-                    {!! trans("home.landing.online", ['players' => $currentOnline, 'games' => $currentGames]) !!}
+                    {!! trans("home.landing.players", ['count' => number_format($stats->totalUsers)]) !!},
+                    {!! trans("home.landing.online", [
+                        'players' => number_format($stats->currentOnline),
+                        'games' => number_format($stats->currentGames)]
+                    ) !!}
                 </div>
             </div>
         </div>
@@ -170,6 +173,6 @@
     @parent
 
     <script id="json-stats" type="application/json">
-        {!! json_encode($graphData) !!}
+        {!! json_encode($stats->graphData) !!}
     </script>
 @endsection

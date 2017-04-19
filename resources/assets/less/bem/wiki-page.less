@@ -17,8 +17,8 @@
  */
 
 .wiki-page {
-  background-color: @gray-3;
-  color: @gray-f;
+  background-color: #333;
+  color: #fff;
   display: flex;
   padding: 20px;
 
@@ -31,5 +31,10 @@
     margin-right: 10px;
     width: (200px - 10px);
     flex: none;
+  }
+
+  &__content {
+    min-width: 0;
+    word-wrap: break-word;
   }
 }

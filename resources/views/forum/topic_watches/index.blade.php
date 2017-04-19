@@ -24,15 +24,15 @@
 
             <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
                 <div class="osu-page-header__box">
-                    <h1 class="osu-page-header__title osu-page-header__title--slightly-small">
-                        {{ trans('forum.topic_watches.index.title') }}
+                    <h1 class="osu-page-header__title">
+                        {!! trans('forum.topic_watches.index.title_main') !!}
                     </h1>
 
                     <p class="osu-page-header__detail">
                         {!! trans('forum.topic_watches.index.info.total', [
                             'total' =>
                                 '<span class="js-forum-topic-watch--total">'.
-                                $counts['total'].
+                                number_format($counts['total']).
                                 '</span>',
                         ]) !!}
                     </p>
@@ -41,7 +41,7 @@
                         {!! trans('forum.topic_watches.index.info.unread', [
                             'unread' =>
                                 '<span class="js-forum-topic-watch--unread">'.
-                                $counts['unread'].
+                                number_format($counts['unread']).
                                 '</span>',
                         ]) !!}
                     </p>
@@ -53,7 +53,7 @@
                             {{ trans('forum.topic_watches.index.box.total') }}
                         </div>
                         <div class="js-forum-topic-watch--total osu-page-header__status-text">
-                            {{ $counts['total'] }}
+                            {{ number_format($counts['total']) }}
                         </div>
                     </div>
 
@@ -62,7 +62,7 @@
                             {{ trans('forum.topic_watches.index.box.unread') }}
                         </div>
                         <div class="js-forum-topic-watch--unread osu-page-header__status-text">
-                            {{ $counts['unread'] }}
+                            {{ number_format($counts['unread']) }}
                         </div>
                     </div>
                 </div>

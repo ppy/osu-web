@@ -18,17 +18,7 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-page osu-page--account-edit-header">
-        @include('home._user_header_nav')
-
-        <div class="osu-page-header osu-page-header--home-user js-current-user-cover">
-            <div class="osu-page-header__box">
-                <h1 class="osu-page-header__title osu-page-header__title--slightly-small">
-                    {{ trans('accounts.edit.title') }}
-                </h1>
-            </div>
-        </div>
-    </div>
+    @include('home._user_header_default', ['title' => trans('accounts.edit.title')])
 
     <div class="osu-page osu-page--small">
         <div class="account-edit account-edit--first">

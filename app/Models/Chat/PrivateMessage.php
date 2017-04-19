@@ -30,6 +30,11 @@ class PrivateMessage extends Model
         'timestamp',
     ];
 
+    public function getTargetTypeAttribute()
+    {
+        return 'user';
+    }
+
     public function sender()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -33,8 +33,8 @@ class MPHistory.Content extends React.Component
       return scores if !@props.events[eventIndex].game.end_time?
 
       for score in @props.events[eventIndex].game.scores
-        continue if !score.pass
-        scores[score.team] += score.score
+        continue if !score.multiplayer.pass
+        scores[score.multiplayer.team] += score.score
 
       @scoresCache[eventIndex] = scores
 
