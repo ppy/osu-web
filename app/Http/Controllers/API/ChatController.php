@@ -59,8 +59,7 @@ class ChatController extends Controller
             });
 
         $messages = Message::whereIn('channel_id', $channel_ids)
-            ->with('sender')
-            ->with('sender.country');
+            ->with('sender');
 
         if ($since) {
             $messages = $messages->where('message_id', '>', $since);
@@ -71,10 +70,7 @@ class ChatController extends Controller
                 ->limit($limit)
                 ->get(),
             'API/Chat/Message',
-            [
-                'sender',
-                'sender.country',
-            ]
+            ['sender']
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -87,9 +83,7 @@ class ChatController extends Controller
 
         $messages = PrivateMessage::toOrFrom(Auth::user()->user_id)
             ->with('sender')
-            ->with('sender.country')
-            ->with('receiver')
-            ->with('receiver.country');
+            ->with('receiver');
 
         if ($since) {
             $messages = $messages->where('message_id', '>', $since);
@@ -102,9 +96,7 @@ class ChatController extends Controller
             'API/Chat/Message',
             [
                 'sender',
-                'sender.country',
                 'receiver',
-                'receiver.country',
             ]
         );
 
@@ -149,10 +141,7 @@ class ChatController extends Controller
         return json_item(
             $message,
             'API/Chat/Message',
-            [
-                'sender',
-                'sender.country',
-            ]
+            ['sender']
         );
     }
 }
