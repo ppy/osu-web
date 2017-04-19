@@ -75,7 +75,7 @@ class BeatmapsController extends Controller
         }
 
         $results = [
-            'scores' => json_collection($query->forListing(), 'Score', ['user']),
+            'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
         ];
 
         if ($user !== null) {
@@ -84,7 +84,7 @@ class BeatmapsController extends Controller
             if ($score !== null) {
                 $results['userScore'] = [
                     'position' => $query->userRank($score),
-                    'score' => json_item($score, 'Score', ['user']),
+                    'score' => json_item($score, 'Score', ['user', 'user.country']),
                 ];
             }
         }

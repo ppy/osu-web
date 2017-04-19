@@ -25,7 +25,7 @@ class ProfilePage.HeaderMain extends React.Component
 
     @state =
       editing: false
-      coverUrl: props.user.cover.url
+      coverUrl: props.user.cover_url
       isCoverUpdating: false
 
     @debouncedCoverSet = _.debounce @coverSet, 300
