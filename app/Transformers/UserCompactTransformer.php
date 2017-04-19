@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Transformers\CountryTransformer;
 use League\Fractal;
 
 class UserCompactTransformer extends Fractal\TransformerAbstract
@@ -34,8 +35,10 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'avatarUrl' => $user->user_avatar,
             'country' => $user->country_acronym,
+            'profileColour' => presence($user->user_colour),
+            'avatarUrl' => $user->user_avatar,
+            'coverUrl' => $user->profileCustomization()->cover()->url(),
         ];
     }
 

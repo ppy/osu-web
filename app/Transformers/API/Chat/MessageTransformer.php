@@ -21,9 +21,15 @@
 namespace App\Transformers\API\Chat;
 
 use League\Fractal;
+use App\Models\DeletedUser;
+use App\Transformers\UserCompactTransformer;
 
 class MessageTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'sender',
+    ];
+
     public function transform($message)
     {
         return [
@@ -33,10 +39,14 @@ class MessageTransformer extends Fractal\TransformerAbstract
             'target_id' => $message->target_id,
             'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
-            'sender' => [
-                'username' => $message->sender->username,
-                'colour' => $message->sender->user_colour,
-            ],
         ];
+    }
+
+    public function includeSender($message)
+    {
+        return $this->item(
+            $message->sender ?? (new DeletedUser),
+            new UserCompactTransformer
+        );
     }
 }

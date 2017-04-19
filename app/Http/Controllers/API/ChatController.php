@@ -24,8 +24,6 @@ use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\PrivateMessage;
 use App\Models\User;
-use App\Transformers\API\Chat\ChannelTransformer;
-use App\Transformers\API\Chat\MessageTransformer;
 use Auth;
 use Carbon\Carbon;
 use Request;
@@ -44,7 +42,7 @@ class ChatController extends Controller
 
         return json_collection(
             $channels,
-            new ChannelTransformer()
+            'API/Chat/Channel'
         );
     }
 
@@ -70,7 +68,8 @@ class ChatController extends Controller
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
-            new MessageTransformer()
+            'API/Chat/Message',
+            ['sender', 'sender.country']
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -93,7 +92,8 @@ class ChatController extends Controller
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
-            new MessageTransformer()
+            'API/Chat/Message',
+            ['sender', 'sender.country']
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -134,6 +134,6 @@ class ChatController extends Controller
 
         $message = $target->receiveMessage(Auth::user(), Request::input('message'));
 
-        return json_item($message, 'API\Chat\Message');
+        return json_item($message, 'API/Chat/Message', ['sender', 'sender.country']);
     }
 }
