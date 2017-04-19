@@ -31,7 +31,7 @@ class ChannelTransformer extends Fractal\TransformerAbstract
             'channel_id' => $channel->channel_id,
             'name' => $channel->name,
             'description' => $channel->description,
-            'type' => $channel->type,
+            'type' => strtolower($channel->type),
         ];
     }
 }
