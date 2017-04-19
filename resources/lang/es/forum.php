@@ -55,6 +55,9 @@ return [
                 'title' => 'Clic aquí para definir un título',
             ],
             'preview' => 'Previsualizar',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Write', //TODO request translate by kj415j45
             'submit' => 'Enviar',
         ],
         'go_to_latest' => 'ver el último post',

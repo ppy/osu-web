@@ -19,9 +19,6 @@
  */
 
 return [
-    'news' => [//保持原文可能比较好
-        'slogan' => 'Rhythm is just a *click* away!',
-    ],
     'landing' => [
         'slogans' => [//这两句保持原文可能比较好
             '1' => 'free-to-win<br/>circle simulator',
@@ -35,7 +32,30 @@ return [
         ],
 
         'players' => '<strong>:count</strong> 注册玩家',
-        'online' => '<strong>:players</strong> 在线玩家 in <strong>:games</strong> games',
+        'online' => '<strong>:players</strong> 玩家在 <strong>:games</strong> 场游戏中',
         'peak' => '最高在线人数 :count 人',
+    ],
+    'user' => [
+        'title' => '新闻',
+        'news' => [
+            'title' => '新闻',
+            'error' => '加载新闻失败,试试刷新一下?...',
+        ],
+        'header' => [
+            'welcome' => '欢迎,<strong>:username</strong>!',
+            'messages' => '你有 1 条新消息|你有 :count 条新消息',
+            'stats' => [
+                'online' => '在线玩家',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => '新 Approved 的谱面', //mapping相关,暂时不译
+            'popular' => '最受欢迎的谱面',
+        ],
+        'buttons' => [
+            'download' => '下载 osu!',
+            'support' => '支持 osu!',
+            'store' => 'osu!商店',
+        ],
     ],
 ];
