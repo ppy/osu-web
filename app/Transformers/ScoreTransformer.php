@@ -40,7 +40,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
             'accuracy' => $score->accuracy(),
             'mods' => $score->enabled_mods,
             'score' => $score->score,
-            'maxCombo' => $score->maxcombo,
+            'max_combo' => $score->maxcombo,
             'perfect' => $score->perfect,
             'statistics' => [
                 'count_50' => $score->count50,
