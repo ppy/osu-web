@@ -108,9 +108,10 @@
         <div class="landing-hero">
             <div class="landing-hero__bg-container">
                 <div
-                    class="landing-hero__bg-inner-container embed-responsive-16by9 js-yt-loop"
+                    class="landing-hero__bg-inner-container js-scale js-yt-loop"
                     data-yt-loop-video-id="{{ config('osu.landing.video_id') }}"
                     data-yt-loop-class="landing-hero__bg"
+                    data-scale="ws"
                 ></div>
             </div>
 
