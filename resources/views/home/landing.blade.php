@@ -107,15 +107,11 @@
     <div class="osu-page">
         <div class="landing-hero">
             <div class="landing-hero__bg-container">
-                <div class="landing-hero__bg-inner-container embed-responsive-16by9">
-                    @if (present(config('osu.landing.video_id')))
-                        <iframe
-                            class="landing-hero__bg"
-                            src="https://www.youtube.com/embed/{{ config('osu.landing.video_id') }}?autoplay=1&controls=0&disablekb=1&loop=1&playlist={{ config('osu.landing.video_id') }}&modestbranding=1&enablejsapi=1&origin={{ config('app.url') }}"
-                            frameborder="0"
-                        ></iframe>
-                    @endif
-                </div>
+                <div
+                    class="landing-hero__bg-inner-container embed-responsive-16by9 js-yt-loop"
+                    data-yt-loop-video-id="{{ config('osu.landing.video_id') }}"
+                    data-yt-loop-class="landing-hero__bg"
+                ></div>
             </div>
 
             <div class="landing-hero__pippi">
