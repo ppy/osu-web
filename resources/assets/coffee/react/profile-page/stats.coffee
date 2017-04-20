@@ -27,7 +27,7 @@ simpleEntry = ({key, value}) ->
 
 
 ProfilePage.Stats = ({stats}) ->
-  elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'maxcombo', 'replays-watched']
+  elements = ['ranked-score', 'accuracy', 'playcount', 'total-score', 'hits', 'max_combo', 'replays-watched']
 
   rankCountEntry = (name) ->
     rankCount = stats.scoreRanks[name]

@@ -32,7 +32,7 @@ BeatmapsetPage.ScoreBig = React.createClass
         div
           className: "#{bn}__avatar avatar avatar--beatmapset-scoreboard hidden-xs"
           style:
-            backgroundImage: "url(#{@props.score.user.avatarUrl})"
+            backgroundImage: "url(#{@props.score.user.avatar_url})"
 
         div className: "#{bn}__user-box",
           a
@@ -41,7 +41,7 @@ BeatmapsetPage.ScoreBig = React.createClass
             @props.score.user.username
 
           el FlagCountry,
-            country: @props.countries[@props.score.user.country]
+            country: @props.countries[@props.score.user.country_code]
             classModifiers: ['scoreboard']
 
         div className: "#{bn}__stats-box",

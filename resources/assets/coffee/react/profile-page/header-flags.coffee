@@ -20,8 +20,8 @@ el = React.createElement
 
 class ProfilePage.HeaderFlags extends React.Component
   render: =>
-    if @props.user.profileColour
-      style = backgroundColor: "##{@props.user.profileColour}"
+    if @props.user.profile_colour
+      style = backgroundColor: "##{@props.user.profile_colour}"
 
     el 'div',
       className: 'user-profile-header__basic user-profile-header__basic--flags'

@@ -16,26 +16,35 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = React.DOM
+class @Scale
+  constructor: ->
+    @els = document.getElementsByClassName('js-scale')
 
-bn = 'avatar'
-
-@UserAvatar = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+    $(document).on 'turbolinks:load', @resizeAll
+    $(window).on 'throttled-resize', @resizeAll
 
 
-  render: ->
-    modifiers = @props
-      .modifiers
-      .map (m) => "#{bn}--#{m}"
-      .join ' '
+  readParentSize: (el) =>
+    el.parentSize = el.parentElement.getBoundingClientRect()
 
-    className = "#{bn} #{modifiers}"
 
-    if @props.user.id?
-      div
-        className: className
-        style:
-          backgroundImage: "url('#{@props.user.avatar_url}')"
-    else
-      div className: "#{className} #{bn}--guest"
+  resize: (el) =>
+    parentSize = el.parentSize
+
+    switch el.dataset.scale
+      when 'ws'
+        if parentSize.width / parentSize.height > 16 / 9
+          width = parentSize.width
+          height = 9 / 16 * width
+        else
+          height = parentSize.height
+          width = 16 / 9 * height
+
+    if height? && width?
+      el.style.height = "#{height}px"
+      el.style.width = "#{width}px"
+
+
+  resizeAll: =>
+    @readParentSize(el) for el in @els
+    @resize(el) for el in @els
