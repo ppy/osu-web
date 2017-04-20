@@ -8,6 +8,8 @@ sudo: true
 
 language: php
 
+sudo: false
+
 php:
   - 7.0
 
