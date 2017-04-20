@@ -149,7 +149,7 @@
                                     {{ trans("home.landing.download._") }}
                                 </span>
 
-                                <span class="btn-osu-big__text-bottom js-download-platform"></span>
+                                <span class="btn-osu-big__text-bottom">{{ trans('home.landing.download.for', ['os' => 'Windows'])}}</span>
                             </span>
 
                             <span class="btn-osu-big__icon">
@@ -158,7 +158,7 @@
                         </span>
                     </a>
 
-                    <a href="{{ route('download') }}" class="landing-hero__download-other js-download-other"></a>
+                    <span class="landing-hero__download-other">{{ trans('home.landing.download.soon') }}</span>
                 </div>
             </div>
 
