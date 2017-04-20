@@ -52,14 +52,14 @@
 
   &--home-user {
     color: #fff;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    flex-direction: column;
     padding: 0 10px;
-    min-height: 150px;
 
     @media @desktop {
+      flex-direction: row;
+      align-items: flex-end;
       padding: 0 40px;
+      height: 150px;
     }
 
     &::before {
