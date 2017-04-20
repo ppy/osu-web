@@ -17,38 +17,30 @@
  */
 
 .landing-nav {
+  @top: landing-nav;
+  @link-gutter: 10px;
   display: flex;
+  justify-content: space-between;
   padding: 30px 20px 20px;
+  font-size: @font-size--normal;
 
   &__section {
-    &--center {
-      position: absolute;
-      margin: auto;
-      left: 0;
-      right: 0;
-      top: 20px;
-      width: @logo-size;
-    }
-
-    &--left {
-      align-self: flex-start;
-    }
-
-    &--right {
-      margin-left: auto;
-      text-align: right;
-    }
+    margin: 0 (-@link-gutter);
+    display: flex;
   }
 
   &__link {
+    .link-plain();
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 @link-gutter;
     color: #fff;
-    font-size: 12px;
-    margin-right: 20px;
     text-transform: lowercase;
+    white-space: nowrap;
 
     &:hover,
     &:focus {
-      text-decoration: none;
       color: @pink;
     }
 
@@ -56,8 +48,65 @@
       font-weight: bold;
     }
 
-    &:last-child {
-      margin-right: 0;
+    &--locale {
+      margin: 0;
+      color: @purple;
+      padding: 5px 0;
+
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
     }
+  }
+
+  &__locale-flag {
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 5px;
+    width: 20px;
+    display: inline-block;
+  }
+
+  &__locale-link-pointer {
+    .own-layer();
+    width: 10px;
+    margin-right: 5px;
+    text-align: right;
+    opacity: 0;
+    color: #aaa;
+    font-size: 75%;
+
+    .@{top}__link:hover & {
+      opacity: 1;
+    }
+  }
+
+  &__locale-menu {
+    .default-border-radius();
+    .default-box-shadow();
+    z-index: @z-index--nav-popup;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    margin-left: -(5px + 10px + 5px - @link-gutter);
+    padding: 5px 10px 5px 5px;
+    background-color: #333;
+
+    &::before {
+      content: ' ';
+      width: 100%;
+      height: 10px;
+      bottom: 100%;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      display: block;
+    }
+  }
+
+  &__locale-menu-link {
+    display: flex;
   }
 }

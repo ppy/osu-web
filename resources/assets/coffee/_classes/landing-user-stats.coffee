@@ -35,7 +35,9 @@ class @LandingUserStats
     # Clear out previously set graphs
     @svgContainerOuter.selectAll('svg').remove()
 
-    @svgContainerInner = @svgContainerOuter.append 'svg'
+    @svgContainerInner = @svgContainerOuter
+      .append 'svg'
+      .attr 'class', 'landing-graph'
 
     @svg = @svgContainerInner
       .append 'g'

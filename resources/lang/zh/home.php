@@ -19,14 +19,10 @@
  */
 
 return [
-    'news' => [//保持原文可能比较好
-        'slogan' => 'Rhythm is just a *click* away!',
-    ],
     'landing' => [
-        'slogans' => [//这两句保持原文可能比较好
-            '1' => 'free-to-win<br/>circle simulator',
-            '2' => 'rhythm is just<br/> a click away',
-        ],
+        'online' => '<strong>:players</strong> 在线玩家 in <strong>:games</strong> games',
+        'peak' => '最高在线人数 :count 人',
+        'players' => '<strong>:count</strong> 注册玩家',
 
         'download' => [
             '_' => '下载',
@@ -34,8 +30,9 @@ return [
             'other' => '点击这里下载 :os1 或 :os2 版',
         ],
 
-        'players' => '<strong>:count</strong> 注册玩家',
-        'online' => '<strong>:players</strong> 在线玩家 in <strong>:games</strong> games',
-        'peak' => '最高在线人数 :count 人',
+        'slogan' => [//这两句保持原文可能比较好
+            'main' => 'free-to-play rhythm game',
+            'sub' => 'rhythm is just a click away',
+        ],
     ],
 ];
