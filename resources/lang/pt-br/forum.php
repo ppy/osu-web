@@ -100,7 +100,7 @@ return [
         'index' => [
             'title' => 'Inscrições de tópico',
             'title_compact' => 'inscrições',
-            'title_main' => '<strong>SInscrições</strong> de tópico',
+            'title_main' => '<strong>Inscrições</strong> de tópico',
 
             'box' => [
                 'total' => 'Tópicos inscritos',
