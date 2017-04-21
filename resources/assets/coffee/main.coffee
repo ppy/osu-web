@@ -49,6 +49,8 @@ $(document).on 'submit', 'form', (e) ->
 @userEmail ?= new UserEmail
 @wiki ?= new Wiki
 @osuAudio ?= new OsuAudio
+@ytLoop ?= new YtLoop
+@scale ?= new Scale
 
 @editorZoom ?= new EditorZoom
 @stickyFooter ?= new StickyFooter

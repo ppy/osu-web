@@ -16,19 +16,35 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @LandingHero
+class @Scale
   constructor: ->
-    @el =
-      platformCurrent: document.getElementsByClassName('js-download-platform')
-      platformOther: document.getElementsByClassName('js-download-other')
+    @els = document.getElementsByClassName('js-scale')
 
-    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbolinks:load', @resizeAll
+    $(window).on 'throttled-resize', @resizeAll
 
 
-  initialize: =>
-    return if !@el.platformCurrent[0]?
+  readParentSize: (el) =>
+    el.parentSize = el.parentElement.getBoundingClientRect()
 
-    os = osu.getOS()
-    others = osu.otherOS os
-    @el.platformCurrent[0].innerText = Lang.get('home.landing.download.for', os: os)
-    @el.platformOther[0].innerText = Lang.get('home.landing.download.other', os1: others[0], os2: others[1])
+
+  resize: (el) =>
+    parentSize = el.parentSize
+
+    switch el.dataset.scale
+      when 'ws'
+        if parentSize.width / parentSize.height > 16 / 9
+          width = parentSize.width
+          height = 9 / 16 * width
+        else
+          height = parentSize.height
+          width = 16 / 9 * height
+
+    if height? && width?
+      el.style.height = "#{height}px"
+      el.style.width = "#{width}px"
+
+
+  resizeAll: =>
+    @readParentSize(el) for el in @els
+    @resize(el) for el in @els

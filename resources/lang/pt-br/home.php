@@ -19,14 +19,10 @@
  */
 
 return [
-    'news' => [
-        'slogan' => 'O ritmo está a um *clique* de distância!',
-    ],
     'landing' => [
-        'slogans' => [
-            '1' => 'simulador de círculos<br/>grátis para ganhar',
-            '2' => 'o ritmo está a um<br/>clique de distância',
-        ],
+        'online' => '<strong>:players</strong> jogadores online agora in <strong>:games</strong> games',
+        'peak' => 'Pico, :count usuários online',
+        'players' => '<strong>:count</strong> jogadores registrados',
 
         'download' => [
             '_' => 'Baixe agora',
@@ -34,8 +30,9 @@ return [
             'other' => 'clique aqui para :os1 ou :os2',
         ],
 
-        'players' => '<strong>:count</strong> jogadores registrados',
-        'online' => '<strong>:players</strong> jogadores online agora in <strong>:games</strong> games',
-        'peak' => 'Pico, :count usuários online',
+        'slogan' => [
+            'main' => 'simulador de círculos grátis para ganhar',
+            'sub' => 'o ritmo está a um clique de distância',
+        ],
     ],
 ];
