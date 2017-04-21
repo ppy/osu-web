@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => 'Você precisa iniciar a sessão para editar.',
             'system_generated' => 'Publicações geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Você deve ser o autor da publicação para editá-la.',
+            'wrong_user' => 'Somente o autor da publicação pode editá-la.',
         ],
     ],
 

@@ -20,19 +20,44 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> jogadores online agora in <strong>:games</strong> games',
+        'online' => '<strong>:players</strong> jogadores online em <strong>:games</strong> partidas',
         'peak' => 'Pico, :count usuários online',
         'players' => '<strong>:count</strong> jogadores registrados',
 
         'download' => [
             '_' => 'Baixe agora',
+            'soon' => 'osu! para outros sistemas operacionais virá em breve',
             'for' => 'para :os',
             'other' => 'clique aqui para :os1 ou :os2',
         ],
 
         'slogan' => [
-            'main' => 'simulador de círculos grátis para ganhar',
+            'main' => 'simulador de círculos grátis para jogar',
             'sub' => 'o ritmo está a um clique de distância',
+        ],
+    ],
+
+    'user' => [
+        'title' => 'notícias',
+        'news' => [
+            'title' => 'Notícias',
+            'error' => 'Erro ao carregar notícias, tente recarregar a página?...',
+        ],
+        'header' => [
+            'welcome' => 'Olá, <strong>:username</strong>!',
+            'messages' => 'Você tem 1 nova mensagem|Você tem :count novas mensagens',
+            'stats' => [
+                'online' => 'Usuários online',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => 'Novos beapmaps aprovados',
+            'popular' => 'Beatmaps populares',
+        ],
+        'buttons' => [
+            'download' => 'Baixar osu!',
+            'support' => 'Apoiar osu!',
+            'store' => 'osu!store',
         ],
     ],
 ];

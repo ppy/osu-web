@@ -33,7 +33,7 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Por favor, espere um pouco antes de votar mais vezes',
-            'owner' => 'Não é possível votar na sua própria discussão!',
+            'owner' => 'Não é possível votar na própria discussão!',
         ],
     ],
 
@@ -55,6 +55,7 @@ return [
                 'channel' => [
                     'no_access' => 'O acesso ao canal solicitado é obrigatório.',
                     'moderated' => 'O canal está atualmente sob moderação.',
+                    'not_lazer' => 'Você só pode conversar em #lazer no momento.',
                 ],
 
                 'not_allowed' => 'Não é possível enviar mensagens enquanto banido/restrito/silenciado.',
