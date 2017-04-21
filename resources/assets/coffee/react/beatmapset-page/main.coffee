@@ -201,3 +201,13 @@ class BeatmapsetPage.Main extends React.Component
             countries: @props.countries
             loading: @state.loading
             hasScores: @props.beatmapset.has_scores
+
+        if @props.beatmapset.ranked > 0
+          div className: 'osu-page osu-page--comments',
+            el ReactDisqusThread,
+              shortname: diqusShortName
+              identifier: "beatmapset_#{@props.beatmapset.id}"
+              title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"
+              url: "#{document.location.origin}#{laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)}"
+              remote_auth_s3: currentUser.disqus_auth?.auth_data
+              api_key: currentUser.disqus_auth?.public_key

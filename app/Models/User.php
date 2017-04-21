@@ -835,7 +835,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return json_item(
             $this,
             new UserTransformer(),
-            'userAchievements,defaultStatistics'
+            'userAchievements,defaultStatistics,disqus_auth'
         );
     }
 
