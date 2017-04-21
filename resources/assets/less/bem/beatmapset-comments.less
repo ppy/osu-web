@@ -16,35 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.footer {
-  background-color: fade(#000, 60%);
-
-  .default-text-shadow();
-  background-image: linear-gradient(to bottom, fade(#000, 60%) 0, transparent 4px);
-
-  color: #ccc;
-  font-size: 10px;
-
-  display: flex;
-  flex-direction: column;
-  flex: none;
-
-  padding: 10px 0 5px;
-
-  &__row {
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-  }
-
-  &__link {
-    font-weight: bold;
-    color: #fff;
-    margin: 0 10px;
-
-    &:hover, &:active, &:focus {
-      color: @pink;
-      text-decoration: none;
-    }
-  }
+.beatmapset-comments {
+  .default-box-shadow();
+  background-color: #fff;
+  padding: 10px 20px;
 }
