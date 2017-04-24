@@ -78,7 +78,7 @@ class Beatmaps.Main extends React.Component
     $.extend {'q': query}, @getFilterState(), @getSortState()
 
   search: =>
-    searchText = $('#searchbox').val()?.trim()
+    searchText = $('.js-beatmapsets-search-input').val()?.trim()
 
     # update url
     filterState = @getFilterState()
@@ -148,13 +148,16 @@ class Beatmaps.Main extends React.Component
 
       @setState newState
 
+
   showLoader: =>
     @setState loading: true
     $('#loading-area').show()
 
+
   hideLoader: =>
     @setState loading: false
     $('#loading-area').hide()
+
 
   updateFilters: (_e, payload) =>
     newFilters = $.extend({}, @state.filters) # clone object
@@ -164,16 +167,19 @@ class Beatmaps.Main extends React.Component
       @setState filters: newFilters, ->
         $(document).trigger 'beatmap:search:start'
 
+
   updateSort: (_b, payload) =>
     if @state.sorting != payload
       @setState sorting: payload, ->
         $(document).trigger 'beatmap:search:start'
+
 
   convertFilterKeys: (obj) ->
     newObj = {}
     for key of obj
       newObj[@charToKey(key)] = obj[key]
     return newObj
+
 
   restoreState: ->
     state = {}
@@ -218,6 +224,7 @@ class Beatmaps.Main extends React.Component
         if expand
           $('#search').addClass 'expanded' #such seperation of concerns
 
+
   componentDidMount: ->
     @componentWillUnmount()
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
@@ -230,18 +237,40 @@ class Beatmaps.Main extends React.Component
     $(window).on 'popstate.beatmaps', (e) =>
       @restoreState()
 
+
   componentWillUnmount: ->
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
+
 
   render: ->
     searchBackground = @state.beatmaps[0]?.covers?.cover
 
     div className: 'osu-layout__section',
       el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
+
       div className: 'osu-layout__row osu-layout__row--page-compact',
-        div className: 'beatmapsets',
+        div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
           if currentUser.id?
             el(Beatmaps.SearchSort, sorting: @state.sorting)
-          el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
+
+          div
+            className: 'beatmapsets__content'
+            if @state.beatmaps.length > 0
+              div
+                className: 'beatmapsets__items'
+                for beatmap in @state.beatmaps
+                  div
+                    className: 'beatmapsets__item'
+                    key: beatmap.id
+                    el BeatmapsetPanel, beatmap: beatmap
+
+            else
+              div className: 'beatmapsets__empty',
+                el Img2x,
+                  src: '/images/layout/beatmaps/not-found.png'
+                  alt: osu.trans("beatmaps.listing.search.not-found")
+                  title: osu.trans("beatmaps.listing.search.not-found")
+                osu.trans("beatmaps.listing.search.not-found-quote")
+
           el(Beatmaps.Paginator, paging: @state.paging)

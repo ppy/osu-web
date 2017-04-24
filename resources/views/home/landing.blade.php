@@ -102,7 +102,7 @@
     </nav>
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
-    @include('layout._popup', ['navPopupExtraClasses' => 'osu-layout__row--landing'])
+    @include('layout._popup')
 
     <div class="osu-page">
         <div class="landing-hero">

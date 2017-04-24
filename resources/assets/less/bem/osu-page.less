@@ -40,10 +40,26 @@
     .default-box-shadow();
   }
 
+  &--beatmapsets-search-header {
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
+
   &--comments {
     .default-box-shadow();
     background-color: #fff;
     padding: 10px 20px;
+    margin-bottom: 10px;
+  }
+
+  &--contests {
+    @media @desktop {
+      .width-desktop(20px);
+      margin-bottom: 10px;
+    }
+  }
+
+  &--forum-pippi {
     margin-bottom: 10px;
   }
 
@@ -54,6 +70,12 @@
 
   &--small {
     .width(20px);
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
+  &--small-desktop {
     @media @desktop {
       .width-desktop(20px);
     }
@@ -71,6 +93,6 @@
   &--users-show-header-extra {
     .default-box-shadow();
     .inner-shadow-top();
-    padding-bottom: 10px;
+    margin-bottom: 10px;
   }
 }

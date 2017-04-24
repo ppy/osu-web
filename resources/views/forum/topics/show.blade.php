@@ -34,7 +34,7 @@
             u-forum--bg-link
         "></div>
 
-        <div class="osu-layout__row"><div class="forum-topic-headernav__content">
+        <div class="osu-page"><div class="forum-topic-headernav__content">
             <div class="forum-topic-headernav__logo">
                 @include('objects.logo-menu', ['logoMenuHoverBgClass' => 'u-forum--bg-link'])
             </div>
