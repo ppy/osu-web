@@ -20,17 +20,23 @@
 
 return [
     'landing' => [
-        'slogan' => [
-            'main' => 'darmowa gra rytmiczna',
-            'sub' => 'Rytm jest tylko *kliknięcie* stąd!',
- ],
+          'online' => '<strong>:players</strong> jest online w <strong>:games</strong> grach',
+        'peak' => 'Peak, :count użytkowników online',
+        'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
+
         'download' => [
             '_' => 'Pobierz teraz',
             'soon' => 'osu! na innych urządzeniach pojawi się wkrótce',
             'for' => 'dla :os',
             'other' => 'kliknij tutaj po :os1 lub :os2',
-        
-    ],
+        ],
+                
+        'slogan' => [
+            'main' => 'darmowa gra rytmiczna',
+            'sub' => 'Rytm jest tylko *kliknięcie* stąd!',
+      ],
+        ],
+    
         'user' => [
         'title' => 'news',
         'news' => [
