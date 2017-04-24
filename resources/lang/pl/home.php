@@ -23,13 +23,13 @@ return [
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
             'sub' => 'Rytm jest tylko *kliknięcie* stąd!',
- 
+ ],
         'download' => [
             '_' => 'Pobierz teraz',
             'soon' => 'osu! na innych urządzeniach pojawi się wkrótce',
             'for' => 'dla :os',
             'other' => 'kliknij tutaj po :os1 lub :os2',
-        ],
+        
     ],
         'user' => [
         'title' => 'news',
