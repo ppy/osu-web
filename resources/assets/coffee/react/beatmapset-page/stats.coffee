@@ -154,10 +154,6 @@ class BeatmapsetPage.Stats extends React.Component
   _renderChart: ->
     return if !@props.beatmapset.has_scores
 
-    data = [
-      {values: @props.beatmapset.ratings[1..]}
-    ]
-
     unless @_ratingChart
       options =
         scales:
@@ -168,4 +164,4 @@ class BeatmapsetPage.Stats extends React.Component
       @_ratingChart = new StackedBarChart @refs.chartArea, options
       $(window).on 'throttled-resize.beatmapsetPageStats', @_ratingChart.resize
 
-    @_ratingChart.loadData data
+    @_ratingChart.loadData rating: @props.beatmapset.ratings[1..]

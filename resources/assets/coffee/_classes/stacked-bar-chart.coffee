@@ -41,13 +41,16 @@ class @StackedBarChart
 
   loadData: (data) ->
     @data = []
-    for d, i in data
-      for v, j in d.values
-        @data[j] ?= []
-        @data[j].push
-          type: d.type
-          value: v
-          height: if i == 0 then 0 else @data[j][i - 1].value + @data[j][i - 1].height
+
+    for own type, values of data
+      for own x, y of values
+        @data[x] ?= []
+        previousData = _.last(@data[x])
+
+        @data[x].push
+          type: type
+          value: y
+          height: if previousData? then previousData.value + previousData.height else 0
 
     @max = d3.max _.map @data, (m) -> _.sumBy m, 'value'
 
