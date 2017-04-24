@@ -54,6 +54,5 @@ return [
             'store' => 'sklep osu!',
         ],
     ],
-];
     ],
 ];
