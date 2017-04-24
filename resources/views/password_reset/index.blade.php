@@ -15,40 +15,87 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends('master', ['body_additional_classes' => 'osu-layout--body-dark'])
 
 @section('content')
-    @if ($isStarted)
-        <div class="osu-layout__row osu-layout__row--page">
-            {{ trans('password_reset.title') }}
+    <div class="osu-page">
+        <div class="osu-page-header osu-page-header--password-reset">
+            <h1 class="osu-page-header__title">
+                {{ trans('password_reset.title') }}
+            </h1>
+        </div>
+    </div>
 
-            {!! Form::open([
-                'route' => 'password-reset.set',
-                'method' => 'POST',
-                'data-remote' => true,
-            ]) !!}
-                <a href="{{ route('password-reset') }}" data-method="DELETE">
+    <div class="osu-page osu-page--password-reset">
+        {!! Form::open([
+            'route' => 'password-reset',
+            'class' => 'password-reset js-form-error',
+            'method' => $isStarted ? 'PUT' : 'POST',
+            'data-remote' => true,
+            'data-reload-on-success' => '1',
+            'data-skip-ajax-error-popup' => '1',
+        ]) !!}
+            @if ($isStarted)
+                {!! trans('password_reset.started.title', ['username' => session('password_reset.username')]) !!}
+
+                <a
+                    href="{{ route('password-reset') }}"
+                    data-method="DELETE"
+                    data-remote="1"
+                >
                     {{ trans('password_reset.button.cancel') }}
                 </a>
-                <input name="key" autofocus>
-                <input type="password" name="user_password[password]">
-                <input type="password" name="user_password[password_confirmation]">
-                <button>{{ trans('password_reset.button.set') }}</button>
-            {!! Form::close() !!}
-        </div>
-    @else
-        <div class="osu-layout__row osu-layout__row--page">
-            {{ trans('password_reset.title') }}
 
-            {!! Form::open([
-                'route' => 'password-reset',
-                'method' => 'POST',
-                'data-remote' => 'true',
-                'data-reload-on-success' => '1',
-            ]) !!}
-                <input name="username" autofocus>
-                <button>{{ trans('password_reset.button.start') }}</button>
-            {!! Form::close() !!}
-        </div>
-    @endif
+                <a
+                    href="{{ route('password-reset', ['username' => session('password_reset.username')]) }}"
+                    data-method="POST"
+                    data-remote="1"
+                >
+                    {{ trans('password_reset.button.resend') }}
+                </a>
+
+                <label class="password-reset__input-group">
+                    {{ trans('password_reset.started.verification_key') }}
+
+                    <input name="key" class="password-reset__input" autofocus>
+
+                    <span class="password-reset__error js-form-error--error"></span>
+                </label>
+
+                <label class="password-reset__input-group">
+                    {{ trans('password_reset.started.password') }}
+
+                    <input type="password" class="password-reset__input" name="user_password[password]">
+
+                    <span class="password-reset__error js-form-error--error"></span>
+                </label>
+
+                <label class="password-reset__input-group">
+                    {{ trans('password_reset.started.password_confirmation') }}
+
+                    <input type="password" class="password-reset__input" name="user_password[password_confirmation]">
+
+                    <span class="password-reset__error js-form-error--error"></span>
+                </label>
+
+                <div class="password-reset__input-group">
+                    <button class="btn-osu-big btn-osu-big--password-reset">
+                        {{ trans('password_reset.button.set') }}
+                    </button>
+                </div>
+            @else
+                <label class="password-reset__input-group">
+                    {{ trans('password_reset.starting.username') }}
+
+                    <input name="username" class="password-reset__input" autofocus>
+                </label>
+
+                <div class="password-reset__input-group">
+                    <button class="btn-osu-big btn-osu-big--password-reset">
+                        {{ trans('password_reset.button.start') }}
+                    </button>
+                </div>
+            @endif
+        {!! Form::close() !!}
+    </div>
 @endsection

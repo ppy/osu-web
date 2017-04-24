@@ -51,12 +51,11 @@ class PasswordResetController extends Controller
     public function index()
     {
         $isStarted = Session::exists('password_reset');
-        // show the email or username form
-        // button
+
         return view('password_reset.index', compact('isStarted'));
     }
 
-    public function sendMail()
+    public function create()
     {
         $error = $this->issue(Request::input('username'));
 
@@ -74,37 +73,24 @@ class PasswordResetController extends Controller
         $inputKey = str_replace(' ', '', Request::input('key'));
 
         if ($user === null) {
-            $this->clear();
-            // something is horribly wrong
-            return js_view('layout.ujs-reload');
-        }
-
-        if ($user->user_id !== $session['user_id']) {
-            // something is very wrong
-            $this->issue($username);
-
-            return;
+            return $this->restart('invalid');
         }
 
         if ($session['expire']->isPast()) {
-            $this->issue($session['username']);
-            // too late
-
-            return;
+            return $this->restart('expired');
         }
 
         if ($session['tries'] > config('osu.user.password_reset.tries')) {
-            // too fail
-            $this->issue($session['username']);
-
-            return;
+            return $this->restart('too_many_tries');
         }
 
         if (!hash_equals($session['key'], $inputKey)) {
             // wrong key
             Session::put('password_reset.tries', $session['tries'] + 1);
 
-            return error_popup('');
+            return response(['form_error' => [
+                'key' => [trans('password_reset.error.wrong_key')],
+            ]], 422);
         }
 
         $userPassword = (new UserPassword($user, true))
@@ -115,7 +101,9 @@ class PasswordResetController extends Controller
 
             return ['message' => 'saved!'];
         } else {
-            return error_popup($userPassword->validationErrors()->all());
+            return response(['form_error' => [
+                'user_password' => $userPassword->validationErrors()->all(),
+            ]], 422);
         }
     }
 
@@ -154,5 +142,12 @@ class PasswordResetController extends Controller
             'user' => $user,
             'key' => $session['key'],
         ]));
+    }
+
+    private function restart($reasonKey)
+    {
+        $this->clear();
+
+        return ['message' => trans("password_reset.restart.{$reasonKey}")];
     }
 }

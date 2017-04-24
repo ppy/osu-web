@@ -19,10 +19,11 @@
  */
 
 return [
-    'title' => 'Reset Account Password',
+    'title' => 'Reset Password',
 
     'button' => [
         'cancel' => 'Cancel',
+        'resend' => 'Resend verification email',
         'set' => 'Set password',
         'start' => 'Start',
     ],
@@ -32,12 +33,25 @@ return [
     ],
 
     'error' => [
-        'user_not_found' => 'Requested user does not exist',
-        'contact_support' => 'Please contact support to recover account',
-        'is_privileged' => 'Contact peppy lulz',
+        'contact_support' => 'Please contact support to recover account.',
+        'is_privileged' => 'Contact peppy lulz.',
+        'user_not_found' => 'Requested user does not exist.',
+        'wrong_key' => 'Incorrect code.',
     ],
 
     'notice' => [
-        'sent' => 'Check your email for the verification code',
+        'sent' => 'Check your email for the verification code.',
+        'saved' => 'New password saved!',
+    ],
+
+    'started' => [
+        'password' => 'New password',
+        'password_confirmation' => 'Password confirmation',
+        'title' => 'Resetting password for account <strong>:username</strong>.',
+        'verification_key' => 'Verification code',
+    ],
+
+    'starting' => [
+        'username' => 'Enter email address or username',
     ],
 ];
