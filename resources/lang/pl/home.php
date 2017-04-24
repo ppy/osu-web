@@ -21,7 +21,39 @@
 return [
     'landing' => [
         'slogan' => [
+            'main' => 'darmowa gra rytmiczna',
             'sub' => 'Rytm jest tylko *kliknięcie* stąd!',
+ 
+        'download' => [
+            '_' => 'Pobierz teraz',
+            'soon' => 'osu! na innych urządzeniach pojawi się wkrótce',
+            'for' => 'dla :os',
+            'other' => 'kliknij tutaj po :os1 lub :os2',
         ],
+    ],
+        'user' => [
+        'title' => 'news',
+        'news' => [
+            'title' => 'Wiadomości',
+            'error' => 'Hustonie, mamy problem, spróbuj odświerzyć stronę.',
+        ],
+        'header' => [
+            'welcome' => 'Cześć, <strong>:username</strong>!',
+            'messages' => 'Masz 1 nową wiadomość|Masz :count nowych wiadomości',
+            'stats' => [
+                'online' => 'Użytkownicy online',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => 'Nowe rankingowe mapy',
+            'popular' => 'Popularne mapy',
+        ],
+        'buttons' => [
+            'download' => 'Pobierz osu!',
+            'support' => 'Wesprzyj osu!',
+            'store' => 'sklep osu!',
+        ],
+    ],
+];
     ],
 ];
