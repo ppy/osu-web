@@ -107,12 +107,20 @@
     <div class="osu-page">
         <div class="landing-hero">
             <div class="landing-hero__bg-container">
-                <div
-                    class="landing-hero__bg-inner-container js-scale js-yt-loop"
-                    data-yt-loop-video-id="{{ config('osu.landing.video_id') }}"
-                    data-yt-loop-class="landing-hero__bg"
-                    data-scale="ws"
-                ></div>
+                <div class="landing-hero__bg-inner-container js-scale" data-scale="ws">
+                    {{--
+                        playsinline is for iphone autoplay
+                        reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
+                    --}}
+                    <video
+                        class="landing-hero__bg js-autoplay"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        src="{{ config('osu.landing.video_url') }}"
+                    ></video>
+                </div>
             </div>
 
             <div class="landing-hero__pippi">
