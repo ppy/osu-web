@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,27 +16,23 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
     'landing' => [
-          'online' => '<strong>:players</strong> jest online w <strong>:games</strong> grach',
-        'peak' => 'Peak, :count użytkowników online',
+        'online' => '<strong>:players</strong> jest online w <strong>:games</strong> grach',
+        'peak' => ':count online users',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
-
         'download' => [
             '_' => 'Pobierz teraz',
             'soon' => 'osu! na innych urządzeniach pojawi się wkrótce',
             'for' => 'dla :os',
             'other' => 'kliknij tutaj po :os1 lub :os2',
         ],
-                
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
-            'sub' => 'Rytm jest tylko *kliknięcie* stąd!',
-      ],
+            'sub' => 'rytm jest tylko *kliknięcie* stąd!',
         ],
-    
-        'user' => [
+    ],
+    'user' => [
         'title' => 'news',
         'news' => [
             'title' => 'Wiadomości',
@@ -59,6 +54,5 @@ return [
             'support' => 'Wesprzyj osu!',
             'store' => 'sklep osu!',
         ],
-    ],
     ],
 ];
