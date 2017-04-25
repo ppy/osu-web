@@ -49,7 +49,7 @@ return [
         'event-count' => 500,
     ],
     'landing' => [
-        'video_id' => env('LANDING_VIDEO_ID', 'uVOmSoK_SM4'),
+        'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
     ],
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
