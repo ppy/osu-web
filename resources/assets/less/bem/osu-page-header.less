@@ -42,16 +42,24 @@
     }
   }
 
+  &--forum-index {
+    .at2x-simple("/images/headers/forum-top.png");
+    .default-box-shadow();
+    background-size: cover;
+    background-position: 0 0;
+    height: 200px;
+  }
+
   &--home-user {
     color: #fff;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    flex-direction: column;
     padding: 0 10px;
-    min-height: 150px;
 
     @media @desktop {
+      flex-direction: row;
+      align-items: flex-end;
       padding: 0 40px;
+      height: 150px;
     }
 
     &::before {
@@ -136,6 +144,14 @@
     .@{top}:hover & {
       opacity: 1;
     }
+  }
+
+  &__background {
+    .full-size();
+    .default-header-overlay();
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__box {
@@ -228,6 +244,11 @@
       font-size: @font-size--header-description;
     }
 
+    .@{top}--forum-index & {
+      font-style: normal;
+      margin: 0;
+    }
+
     .@{top}--home-user & {
       font-size: @font-size--new-header-title;
       font-weight: 100;
@@ -251,6 +272,17 @@
   &__title-box {
     position: absolute;
     bottom: 10px;
+
+    .@{top}--forum-index & {
+      width: 100%;
+      // the diameter of circle thing (more or less)
+      max-width: 740px;
+      // thickness of the circle (more or less)
+      padding: 20px 70px;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+    }
 
     .@{top}--mp-history & {
       @media @desktop {

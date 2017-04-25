@@ -18,7 +18,7 @@
 <div class="js-nav-popup--beacon"></div>
 <div class="js-nav-popup--container u-nav-popup no-print">
     <div
-        class="osu-layout__row {{ $navPopupExtraClasses ?? '' }} js-nav-popup js-nav-popup--popup"
+        class="osu-page js-nav-popup js-nav-popup--popup"
     >
         <div
             class="nav-popup-box js-nav-switch--menu"
