@@ -43,11 +43,9 @@
             osu-layout
             osu-layout--body
             t-section-{{ $current_section or "error" }}
-            section
             action-{{ $current_action }}
             {{ $body_additional_classes or "" }}
         "
-        data-section="{{ $current_section }}"
     >
         <div id="overlay" class="blackout blackout--overlay" style="display: none;"></div>
         <div class="blackout js-blackout" data-visibility="hidden"></div>
