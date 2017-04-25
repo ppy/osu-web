@@ -251,51 +251,12 @@ a[disabled] { &:extend(.btn[disabled]); }
 
 .clickable-row { cursor: pointer; }
 
-.hide-overflow {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .visible-xs-flex {
   display: flex !important;
 
   @media @desktop {
     display: none !important;
   }
-}
-
-.flex-none { flex: none; }
-.flex-full { flex: 1 0 auto; }
-
-.flex-fullwidth {
-  width: 100%;
-  align-items: center;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: column;
-  @media @desktop {
-    flex-direction: row;
-  }
-}
-
-.user-icon {
-  .icon-bg;
-  .default-box-shadow();
-
-  color: #fff;
-  font-size: 12px;
-  .center-content;
-
-  .circle(26px);
-  padding: 0;
-  border: 2px solid white;
-}
-
-.compact > * {
-  margin: 0;
 }
 
 [data-visibility] {

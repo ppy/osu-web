@@ -68,7 +68,8 @@ return [
                 'body' => 'Escreva o conteúdo da publicação aqui',
                 'title' => 'Clique aqui para definir o título',
             ],
-            'preview' => 'Pré-visualização',
+            'preview' => 'Pré-visualizar',
+            'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
         ],
         'go_to_latest' => 'ver a última publicação',
@@ -99,6 +100,7 @@ return [
         'index' => [
             'title' => 'Inscrições de tópico',
             'title_compact' => 'inscrições',
+            'title_main' => '<strong>Inscrições</strong> de tópico',
 
             'box' => [
                 'total' => 'Tópicos inscritos',
@@ -155,45 +157,45 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remover tag "adicionado"',
-            'action-1' => 'Adicionar tag "adicionado"',
-            'state-0' => 'Tag "adicionado" removido',
-            'state-1' => 'Tag "adicionado" adicionado',
+            'action-0' => 'Remover marcador "adicionado"',
+            'action-1' => 'Adicionar marcador "adicionado"',
+            'state-0' => 'Marcador "adicionado" removido',
+            'state-1' => 'Marcador "adicionado" adicionado',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remover tag "nomeado"',
-            'action-1' => 'Adicionar tag "nomeado"',
-            'state-0' => 'Tag "nomeado" removido',
-            'state-1' => 'Tag "nomeado" adicionado',
+            'action-0' => 'Remover marcador "nomeado"',
+            'action-1' => 'Adicionar marcador "nomeado"',
+            'state-0' => 'Marcador "nomeado" removido',
+            'state-1' => 'Marcador "nomeado" adicionado',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remover tag "confirmado"',
-            'action-1' => 'Adicionar tag "confirmado"',
-            'state-0' => 'Tag "confirmado" removido',
-            'state-1' => 'Tag "confirmado" adicionado',
+            'action-0' => 'Remover marcador "confirmado"',
+            'action-1' => 'Adicionar marcador "confirmado"',
+            'state-0' => 'Marcador "confirmado" removido',
+            'state-1' => 'Marcador "confirmado" adicionado',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remover tag "duplicado"',
-            'action-1' => 'Adicionar tag "duplicado"',
-            'state-0' => 'Tag "duplicado" removido',
-            'state-1' => 'Tag "duplicado" adicionado',
+            'action-0' => 'Remover marcador "duplicado"',
+            'action-1' => 'Adicionar marcador "duplicado"',
+            'state-0' => 'Marcador "duplicado" removido',
+            'state-1' => 'Marcador "duplicado" adicionado',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remover tag "inválido"',
-            'action-1' => 'Adicionar tag "inválido"',
-            'state-0' => 'Tag "inválido" removido',
-            'state-1' => 'Tag "inválido" adicionado',
+            'action-0' => 'Remover marcador "inválido"',
+            'action-1' => 'Adicionar marcador "inválido"',
+            'state-0' => 'Marcador "inválido" removido',
+            'state-1' => 'Marcador "inválido" adicionado',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remover tag "resolvido"',
-            'action-1' => 'Adicionar tag "resolvido"',
-            'state-0' => 'Tag "resolvido" removido',
-            'state-1' => 'Tag "resolvido" adicionado',
+            'action-0' => 'Remover marcador "resolvido"',
+            'action-1' => 'Adicionar marcador "resolvido"',
+            'state-0' => 'Marcador "resolvido" removido',
+            'state-1' => 'Marcador "resolvido" adicionado',
         ],
 
         'lock' => [

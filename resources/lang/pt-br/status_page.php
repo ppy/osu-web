@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => 'estado',
         'description' => 'o que tá acontecendo?',
     ],
 
@@ -44,7 +44,7 @@ return [
             'state' => [
                 'resolved' => 'Resolvidos',
                 'resolving' => 'Resolvendo',
-                'unknown' => 'Desconhecidos',
+                'unknown' => 'Desconhecido',
             ],
         ],
 

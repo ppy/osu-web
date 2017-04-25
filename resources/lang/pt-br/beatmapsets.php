@@ -60,8 +60,9 @@ return [
             'rating-spread' => 'Gráfico de avaliações',
         ],
         'info' => [
-            'success-rate' => 'Taxa de sucesso',
+            'no_scores' => 'Beatmap não rankeado',
             'points-of-failure' => 'Pontos de falha',
+            'success-rate' => 'Taxa de sucesso',
 
             'description' => 'Descrição',
 
@@ -74,7 +75,7 @@ return [
             'friend' => 'Ranking de amigos',
             'global' => 'Ranking global',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
-            'supporter-only' => 'Você precisa de uma supporter tag para acessar rankings de amigos e de país!',
+            'supporter-only' => 'Você precisa de uma supporter tag para acessar rankings de amigos e de países!',
             'title' => 'Placar',
 
             'list' => [
@@ -88,6 +89,7 @@ return [
                 'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!',
                 'global' => 'Sem pontuações ainda. Não quer tentar marcar algumas?',
                 'loading' => 'Carregando pontuações...',
+                'unranked' => 'Beatmap não rankeado.',
             ],
             'score' => [
                 'first' => 'Na liderança',

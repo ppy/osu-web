@@ -19,9 +19,9 @@
 class @Hits
   @generate: ({score, playmode}) ->
     elements = if playmode == 'mania'
-      ['countgeki', 'count300',  'countkatu', 'count100', 'count50']
+      ['count_geki', 'count_300',  'count_katu', 'count_100', 'count_50']
     else
-      ['count300', 'count100', 'count50']
+      ['count_300', 'count_100', 'count_50']
 
     header:
       elements
@@ -29,5 +29,5 @@ class @Hits
         .join '/'
     values:
       elements
-        .map (elem) -> score[elem].toLocaleString()
+        .map (elem) -> score.statistics[elem].toLocaleString()
         .join '/'

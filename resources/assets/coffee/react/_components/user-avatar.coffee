@@ -36,6 +36,6 @@ bn = 'avatar'
       div
         className: className
         style:
-          backgroundImage: "url('#{@props.user.avatarUrl}')"
+          backgroundImage: "url('#{@props.user.avatar_url}')"
     else
       div className: "#{className} #{bn}--guest"

@@ -19,7 +19,9 @@
  */
 
 return [
-    'news' => [
-        'slogan' => 'Ritme is slechts een *klik* verwijderd!',
+    'landing' => [
+        'slogan' => [
+            'sub' => 'Ritme is slechts een *klik* verwijderd!',
+        ],
     ],
 ];

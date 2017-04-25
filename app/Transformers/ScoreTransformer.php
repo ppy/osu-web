@@ -30,30 +30,42 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'beatmapset',
         'weight',
         'user',
+        'multiplayer',
     ];
 
     public function transform($score)
     {
         return [
-            'id' => $score->score_id,
             'user_id' => $score->user_id,
-            'created_at' => json_time($score->date),
-            'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
-            'rank' => $score->rank,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
-            'combo' => $score->maxcombo,
-            'count50' => $score->count50,
-            'count100' => $score->count100,
-            'count300' => $score->count300,
-            'countgeki' => $score->countgeki,
-            'countkatu' => $score->countkatu,
-            'countmiss' => $score->countmiss,
-            'slot' => $score->slot,
-            'team' => $score->team,
-            'pass' => $score->pass,
+            'max_combo' => $score->maxcombo,
+            'perfect' => $score->perfect,
+            'statistics' => [
+                'count_50' => $score->count50,
+                'count_100' => $score->count100,
+                'count_300' => $score->count300,
+                'count_geki' => $score->countgeki,
+                'count_katu' => $score->countkatu,
+                'count_miss' => $score->countmiss,
+            ],
+            'pp' => $score->pp,
+            // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
+            'rank' => $score->rank === '0' ? null : $score->rank,
+            'created_at' => json_time($score->date),
         ];
+    }
+
+    public function includeMultiplayer($score)
+    {
+        return $this->item($score, function ($score) {
+            return [
+                'slot' => $score->slot,
+                'team' => $score->team,
+                'pass' => $score->pass,
+            ];
+        });
     }
 
     public function includeBeatmap($score)

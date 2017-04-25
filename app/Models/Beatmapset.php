@@ -36,6 +36,7 @@ class Beatmapset extends Model
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
+    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',
@@ -64,10 +65,6 @@ class Beatmapset extends Model
         'difficulty_names',
         'thread_icon_date',
         'thread_id',
-    ];
-
-    protected $fillable = [
-        'cover_updated_at',
     ];
 
     const STATES = [
@@ -465,7 +462,7 @@ class Beatmapset extends Model
             ? static
                 ::with('beatmaps')
                 ->whereIn('beatmapset_id', $beatmap_ids)
-                ->orderByRaw('FIELD(beatmapset_id, '.db_array_bind($beatmap_ids).')', $beatmap_ids)
+                ->orderByField('beatmapset_id', $beatmap_ids)
                 ->get()
             : [];
     }
@@ -690,6 +687,25 @@ class Beatmapset extends Model
         return $imageFilename;
     }
 
+    public function setApproved($state, $user)
+    {
+        $this->approved = static::STATES[$state];
+
+        if ($this->approved > 0) {
+            $this->approved_date = Carbon::now();
+            $this->approvedby_id = $user->user_id;
+        } else {
+            $this->approved_date = null;
+            $this->approvedby_id = null;
+        }
+
+        $this->save();
+
+        $this
+            ->beatmaps()
+            ->update(['approved' => $this->approved]);
+    }
+
     public function disqualify(User $user, $comment)
     {
         if (!$this->isQualified()) {
@@ -697,25 +713,28 @@ class Beatmapset extends Model
         }
 
         DB::transaction(function () use ($user, $comment) {
-            $this->events()->create(['type' => BeatmapsetEvent::DISQUALIFY, 'user_id' => $user->user_id, 'comment' => $comment]);
-            $this->approved = self::STATES['pending'];
-            $this->save();
+            $this->events()->create([
+                'type' => BeatmapsetEvent::DISQUALIFY,
+                'user_id' => $user->user_id,
+                'comment' => $comment,
+            ]);
+
+            $this->setApproved('pending', $user);
         });
 
         return true;
     }
 
-    public function qualify()
+    public function qualify($user)
     {
         if (!$this->isPending()) {
             return false;
         }
 
-        DB::transaction(function () {
+        DB::transaction(function () use ($user) {
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
-            $this->approved = self::STATES['qualified'];
-            $this->approved_date = Carbon::now();
-            $this->save();
+
+            $this->setApproved('qualified', $user);
         });
 
         return true;
@@ -732,7 +751,7 @@ class Beatmapset extends Model
             if (!$nomination->exists()) {
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
-                    $this->qualify();
+                    $this->qualify($user);
                 }
             }
         });

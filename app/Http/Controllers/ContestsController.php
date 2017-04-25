@@ -47,7 +47,7 @@ class ContestsController extends Controller
         if ($contest->isVotingStarted() && isset($contest->extra_options['children'])) {
             $contestIds = $contest->extra_options['children'];
             $contests = Contest::whereIn('id', $contestIds)
-                ->orderByRaw('FIELD(id, '.db_array_bind($contestIds).')', $contestIds)
+                ->orderByField('id', $contestIds)
                 ->get();
         } else {
             $contests = collect([$contest]);

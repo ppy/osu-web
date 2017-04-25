@@ -29,13 +29,23 @@ class Message extends Model
         'timestamp',
     ];
 
+    public function getTargetTypeAttribute()
+    {
+        return 'channel';
+    }
+
+    public function getTargetIdAttribute()
+    {
+        return $this->channel_id;
+    }
+
     public function channel()
     {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
-    public function user()
+    public function sender()
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

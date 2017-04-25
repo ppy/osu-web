@@ -87,7 +87,15 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             ];
         }
 
-        return $this->collection($failtimes, new BeatmapFailtimesTransformer);
+        $result = [];
+
+        foreach ($failtimes as $failtime) {
+            $result[$failtime->type] = $failtime->data;
+        }
+
+        return $this->item($result, function ($result) {
+            return $result;
+        });
     }
 
     public function includeBeatmapset(Beatmap $beatmap)

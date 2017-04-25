@@ -18,18 +18,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace App\Http\Middleware;
 
-use App\Models\BeatmapFailtimes;
-use League\Fractal;
+use Carbon\Carbon;
+use Closure;
 
-class BeatmapFailtimesTransformer extends Fractal\TransformerAbstract
+class LegacyInterOpAuth
 {
-    public function transform(BeatmapFailtimes $failtimes)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
     {
-        return [
-            'type' => $failtimes->type,
-            'data' => $failtimes->data,
-        ];
+        $timestamp = $request->query('timestamp');
+        $diff = Carbon::createFromTimestamp($timestamp)->diffInSeconds();
+        $signature = $request->header('X-LIO-Signature');
+        $expected = hash_hmac('sha1', $request->fullUrl(), config('osu.legacy.shared_interop_secret'));
+
+        if (!present($signature) || !present($timestamp) || $diff > 300 || !hash_equals($expected, $signature)) {
+            abort(403);
+        }
+
+        return $next($request);
     }
 }

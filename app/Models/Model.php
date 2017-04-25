@@ -27,4 +27,26 @@ abstract class Model extends BaseModel
 {
     use MacroableModel;
     protected $connection = 'mysql';
+
+    public function getMacros()
+    {
+        $macros = $this->macros ?? [];
+
+        // default macros
+        $macros[] = 'orderByField';
+
+        return $macros;
+    }
+
+    public function macroOrderByField()
+    {
+        return function ($query, $field, $ids) {
+            $bind = implode(',', array_fill(0, count($ids), '?'));
+            $string = "FIELD({$field}, {$bind})";
+            $values = array_map('strval', $ids);
+
+            return $query
+                ->orderByRaw($string, $values);
+        };
+    }
 }

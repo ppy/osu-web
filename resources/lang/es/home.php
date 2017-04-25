@@ -19,7 +19,9 @@
  */
 
 return [
-    'news' => [
-        'slogan' => '¡El ritmo está a solo un *clic* de distancia!',
+    'landing' => [
+        'slogan' => [
+            'sub' => '¡El ritmo está a solo un *clic* de distancia!',
+        ],
     ],
 ];

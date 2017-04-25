@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! — O ritmo está a um *clique* de distância! Com Ouendan/EBA, Taiko e  modos de jogo originais, além de um editor de níveis totalmente funcional.',
+        'page_description' => 'osu! — O ritmo está a um *clique* de distância! Com Ouendan/EBA, Taiko e modos de jogo originais, além de um editor de níveis totalmente funcional.',
     ],
 
     'menu' => [
@@ -62,7 +62,7 @@ return [
             'index' => 'geral',
         ],
         'community' => [
-            '_' => 'communidade',
+            '_' => 'comunidade',
             'dev' => 'osu!dev',
             'getForum' => 'fórum',
             'getChat' => 'conversa',
@@ -158,7 +158,7 @@ return [
             'report' => 'Relatar um problemar',
         ],
         'support' => [
-            '_' => 'Apoie o osu!',
+            '_' => 'Apoiar osu!',
             'tags' => 'Supporter Tags',
             'merchandise' => 'Mercadorias',
         ],

@@ -41,6 +41,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'recentlyReceivedKudosu',
         'rankedAndApprovedBeatmapsets',
         'favouriteBeatmapsets',
+        'disqus_auth',
     ];
 
     public function transform(User $user)
@@ -56,7 +57,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'name' => $user->countryName(),
             ],
             'age' => $user->age(),
-            'avatarUrl' => $user->user_avatar,
+            'avatar_url' => $user->user_avatar,
             'isAdmin' => $user->isAdmin(),
             'isSupporter' => $user->osu_subscriber,
             'isGMT' => $user->isGMT(),
@@ -71,8 +72,9 @@ class UserTransformer extends Fractal\TransformerAbstract
             'skype' => $user->user_msnm,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
-            'profileColour' => $user->user_colour,
+            'profile_colour' => $user->user_colour,
             'profileOrder' => $profileCustomization->extras_order,
+            'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
                 'customUrl' => $profileCustomization->cover()->fileUrl(),
                 'url' => $profileCustomization->cover()->url(),
@@ -238,5 +240,28 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->favouriteBeatmapsets()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
+    }
+
+    public function includeDisqusAuth(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $data = [
+                'id' => $user->user_id,
+                'username' => $user->username,
+                'email' => $user->user_email,
+                'avatar' => $user->user_avatar,
+                'url' => route('users.show', $user->user_id),
+            ];
+
+            $encodedData = base64_encode(json_encode($data));
+            $timestamp = time();
+            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
+
+            return [
+                'short_name' => config('services.disqus.short_name'),
+                'public_key' => config('services.disqus.public_key'),
+                'auth_data' => "$encodedData $hmac $timestamp",
+            ];
+        });
     }
 }

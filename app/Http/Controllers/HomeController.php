@@ -21,7 +21,7 @@
 namespace App\Http\Controllers;
 
 use App;
-use App\Models\BanchoStats;
+use App\Libraries\CurrentStats;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Changelog;
@@ -117,41 +117,23 @@ class HomeController extends Controller
             return ujs_redirect(route('store.products.index'));
         }
 
-        $stats = BanchoStats::cachedStats();
-        $totalUsers = number_format(Count::cachedTotalUsers());
-        $graphData = array_to_graph_json($stats, 'users_osu');
-
-        $latest = array_last($stats);
-        if ($latest) {
-            $currentOnline = number_format($latest['users_osu']);
-            $currentGames = number_format($latest['multiplayer_games']);
-        } else {
-            $currentOnline = $currentGames = 0;
-        }
-
         if (Auth::check()) {
             $news = News::all();
-            $newBeatmaps = Beatmapset::latestRankedOrApproved();
-            $popularBeatmapsPlaycount = Beatmapset::mostPlayedToday();
-            $popularBeatmaps = Beatmapset::whereIn('beatmapset_id', array_keys($popularBeatmapsPlaycount))->get();
+            $newBeatmapsets = Beatmapset::latestRankedOrApproved();
+            $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
+            $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
+            $popularBeatmapsets = Beatmapset::whereIn('beatmapset_id', $popularBeatmapsetIds)
+                ->orderByField('beatmapset_id', $popularBeatmapsetIds)
+                ->get();
 
             return view('home.user', compact(
-                'currentGames',
-                'currentOnline',
-                'graphData',
-                'newBeatmaps',
+                'newBeatmapsets',
                 'news',
-                'popularBeatmaps',
-                'popularBeatmapsPlaycount',
-                'totalUsers'
+                'popularBeatmapsets',
+                'popularBeatmapsetsPlaycount'
             ));
         } else {
-            return view('home.landing', compact(
-                'currentGames',
-                'currentOnline',
-                'graphData',
-                'totalUsers'
-            ));
+            return view('home.landing', ['stats' => new CurrentStats()]);
         }
     }
 

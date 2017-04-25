@@ -31,17 +31,20 @@ Beatmaps.Paginator = React.createClass
 
 
   render: ->
-    div
-      className: 'beatmapsets-show-more'
-      if @props.paging.loading
-        el Icon, name: 'refresh', modifiers: ['spin']
-      else if @props.paging.more
-        a
-          href: @props.paging.url
-          className: 'beatmapsets-show-more__link'
-          ref: (el) => @autoPagerTarget = el
-          onClick: @showMore
-          osu.trans('common.buttons.show_more')
+    if @props.paging.load || @props.paging.more
+      div
+        className: 'beatmapsets-show-more'
+        if @props.paging.loading
+          el Icon, name: 'refresh', modifiers: ['spin']
+        else if @props.paging.more
+          a
+            href: @props.paging.url
+            className: 'beatmapsets-show-more__link'
+            ref: (el) => @autoPagerTarget = el
+            onClick: @showMore
+            osu.trans('common.buttons.show_more')
+    else
+      div()
 
 
   autoPagerOnScroll: (e) ->

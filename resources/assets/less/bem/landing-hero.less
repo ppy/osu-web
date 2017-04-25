@@ -17,106 +17,130 @@
  */
 
 .landing-hero {
+  @side-padding: 50px;
+  @height: 450px;
+  .default-box-shadow();
   display: flex;
-  height: 450px;
-  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.5);
-  margin: 15px auto 0;
-  width: calc(100% ~'-' 20px);
+  align-items: center;
+  justify-content: flex-end;
+  height: @height;
+  background-color: #333;
+  padding: 0 @side-padding;
 
-  @media @desktop {
-    width: 100%;
-    margin: 0 auto;
+  &__bg {
+    .full-size();
   }
 
-  &__slide {
-    background: @gray-0;
+  /*
+   * bg-container -> bg-inner-container -> bg-content
+   *
+   * bg-container:
+   * - fills up the whole area
+   * - clips out extras
+   *
+   * bg-inner-container:
+   * - overflow to ensure "cover" sizing effect
+   * - defined minimum size to avoid black bars
+   *   because it's not a real "cover" sizing
+   *
+   * bg:
+   * - the content
+   */
+  &__bg-container {
+    .full-size();
+    .center-content();
+    overflow: hidden;
+
+    &::after {
+      .full-size();
+      background-color: fade(#000, 50%);
+    }
   }
 
-  &__slide-bg {
+  &__bg-inner-container {
+    flex: none;
+  }
+
+  &__download {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: .5;
+    top: 100%;
+    right: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
-  &__cta {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    left: 0;
-    text-align: center;
-    padding: 0 60px;
-    display: table;
-  }
-
-  &__content {
-    text-align: center;
-    color: @gray-f;
-    font-size: 24px;
+  &__download-other {
+    .link-white();
+    margin-top: 5px;
+    text-align: right;
+    font-size: @font-size--small;
     font-style: italic;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    line-height: 35px;
-    display: table-cell;
-    vertical-align: middle;
   }
-}
 
-// Slick overrides
-.js-landing-header {
-  .slick-slider {
+  &__graph {
+    position: absolute;
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  &__info {
+    .default-text-shadow();
+    font-size: @font-size--normal;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px @side-padding;
+  }
+
+  &__pippi {
+    .own-layer();
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin-left: @side-padding;
+    height: 466px;
+    width: 328px;
+    background-size: contain;
+    .at2x-simple('/images/landing/pippi.png');
+    transition: all 1000ms;
+
+    @media @mobile {
+      opacity: 0;
+    }
+  }
+
+  &__pippi-logo {
+    .at2x-simple('/images/landing/logo.png');
     width: 100%;
     height: 100%;
+    background-size: contain;
   }
 
-  .slick-list {
-    height: 100%;
+  &__slogan {
+    text-align: right;
   }
 
-  .slick-track {
-    height: 100%;
+  &__slogan-main {
+    .default-text-shadow();
+    margin: 0 0 5px;
+    padding: 0;
+    color: #fff;
+    font-size: @font-size--large;
+    font-style: italic;
   }
 
-  .slick-slide img {
-    display: none;
-  }
-
-  .slick-loading .slick-list {
-    background: @gray-f url('/images/layout/ajax-loader.gif') center center no-repeat;
-  }
-
-  .slick-dots {
-    position: static;
-    padding-top: 10px;
-  }
-
-  .slick-dots li {
-    width: @landing-dot-size;
-    height: @landing-dot-size;
-  }
-
-  .slick-dots li button {
-    width: @landing-dot-size;
-    height: @landing-dot-size;
-  }
-
-  .slick-dots li button::before {
-    content: "";
-    border: 3px solid @gray-f;
-    border-radius: 100%;
-    width: @landing-dot-size;
-    height: @landing-dot-size;
-    opacity: 0.5;
-    transition: all 120ms ease-in-out;
-  }
-
-  .slick-dots li button:hover::before,
-  .slick-dots li button:focus::before {
-    opacity: 1;
-  }
-
-  .slick-dots li.slick-active button::before {
-    border-width: 5px;
-    opacity: 1;
+  &__slogan-sub {
+    .default-text-shadow();
+    margin: 0;
+    padding: 0;
+    color: @pink-light;
+    font-size: @font-size--normal;
+    font-style: italic;
   }
 }

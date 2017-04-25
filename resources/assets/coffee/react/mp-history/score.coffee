@@ -21,7 +21,7 @@ el = React.createElement
 
 class MPHistory.Score extends React.Component
   firstRow: ['combo', 'accuracy', 'score']
-  secondRow: ['countgeki', 'count300', 'countkatu', 'count100', 'count50', 'countmiss']
+  secondRow: ['count_geki', 'count_300', 'count_katu', 'count_100', 'count_50', 'count_miss']
 
   render: ->
     user = @props.lookupUser @props.score.user_id
@@ -30,7 +30,7 @@ class MPHistory.Score extends React.Component
       div
         className: 'mp-history-player-score__shapes'
         style:
-          backgroundImage: "url(/images/layout/mp-history/shapes-team-#{@props.score.team}.svg)"
+          backgroundImage: "url(/images/layout/mp-history/shapes-team-#{@props.score.multiplayer.team}.svg)"
 
       div className: 'mp-history-player-score__main',
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--user',
@@ -40,7 +40,7 @@ class MPHistory.Score extends React.Component
               href: laroute.route 'users.show', user: user.id
               user.username
 
-            if !@props.score.pass
+            if !@props.score.multiplayer.pass
               span className: 'mp-history-player-score__failed', Lang.get 'multiplayer.match.failed'
 
           el FlagCountry, country: user.country
@@ -57,7 +57,7 @@ class MPHistory.Score extends React.Component
 
               value = switch m
                 when 'combo'
-                  @props.score.combo.toLocaleString()
+                  @props.score.max_combo.toLocaleString()
                 when 'accuracy'
                   "#{_.round @props.score.accuracy * 100, 2}%"
                 when 'score'
@@ -70,7 +70,7 @@ class MPHistory.Score extends React.Component
 
           div className: 'mp-history-player-score__stat-row',
             @secondRow.map (m) =>
-              if @props.mode != 'mania' and (m == 'countgeki' || m == 'countkatu')
+              if @props.mode != 'mania' and (m == 'count_geki' || m == 'count_katu')
                 return
 
               div
@@ -81,4 +81,4 @@ class MPHistory.Score extends React.Component
                   osu.trans "common.score_count.#{m}"
                 span
                   className: 'mp-history-player-score__stat-number mp-history-player-score__stat-number--small'
-                  @props.score[m].toLocaleString()
+                  @props.score.statistics[m].toLocaleString()

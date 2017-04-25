@@ -18,25 +18,17 @@
 
 class @LandingHero
   constructor: ->
+    @el =
+      platformCurrent: document.getElementsByClassName('js-download-platform')
+      platformOther: document.getElementsByClassName('js-download-other')
+
     $(document).on 'turbolinks:load', @initialize
-    $(document).on 'turbolinks:before-cache', @remove
 
 
   initialize: =>
-    $('.js-landing-hero-slider')
-      .slick
-        fade: true
-        arrows: false
-        autoplay: true
-        adaptiveHeight: true
-        dots: true
-        appendDots: $('.js-landing-header')
+    return if !@el.platformCurrent[0]?
 
     os = osu.getOS()
     others = osu.otherOS os
-    $('.js-download-platform').text Lang.get('home.landing.download.for', os: os)
-    $('.js-download-other').text Lang.get('home.landing.download.other', os1: others[0], os2: others[1])
-
-
-  remove: =>
-    $('.js-landing-hero-slider').slick('unslick')
+    @el.platformCurrent[0].innerText = Lang.get('home.landing.download.for', os: os)
+    @el.platformOther[0].innerText = Lang.get('home.landing.download.other', os1: others[0], os2: others[1])

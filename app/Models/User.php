@@ -840,7 +840,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return json_item(
             $this,
             new UserTransformer(),
-            'userAchievements,defaultStatistics'
+            'userAchievements,defaultStatistics,disqus_auth'
         );
     }
 
@@ -904,13 +904,15 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function sendMessage(User $sender, $body)
+    public function receiveMessage(User $sender, $body)
     {
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
         $message->target_id = $this->user_id;
         $message->content = $body;
         $message->save();
+
+        return $message->fresh();
     }
 
     public function scopeDefault($query)

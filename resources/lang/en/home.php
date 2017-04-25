@@ -20,21 +20,23 @@
 
 return [
     'landing' => [
-        'slogans' => [
-            '1' => 'free-to-win<br/>circle simulator',
-            '2' => 'rhythm is just<br/> a click away',
-        ],
+        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
+        'peak' => 'Peak, :count online users',
+        'players' => '<strong>:count</strong> registered players',
 
         'download' => [
             '_' => 'Download now',
+            'soon' => 'osu! for other operating systems are coming soon',
             'for' => 'for :os',
             'other' => 'click here for :os1 or :os2',
         ],
 
-        'players' => '<strong>:count</strong> registered players',
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
+        'slogan' => [
+            'main' => 'free-to-play rhythm game',
+            'sub' => 'rhythm is just a click away',
+        ],
     ],
+
     'user' => [
         'title' => 'news',
         'news' => [

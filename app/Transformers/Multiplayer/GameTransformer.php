@@ -22,7 +22,8 @@ namespace App\Transformers\Multiplayer;
 
 use App\Models\Beatmap;
 use App\Models\Multiplayer\Game;
-use App\Transformers;
+use App\Transformers\BeatmapCompactTransformer;
+use App\Transformers\ScoreTransformer;
 use League\Fractal;
 
 class GameTransformer extends Fractal\TransformerAbstract
@@ -35,7 +36,6 @@ class GameTransformer extends Fractal\TransformerAbstract
     public function transform(Game $game)
     {
         return [
-            'id' => $game->game_id,
             'start_time' => json_time($game->start_time),
             'end_time' => json_time($game->end_time),
             'mode' => $game->mode,
@@ -49,14 +49,14 @@ class GameTransformer extends Fractal\TransformerAbstract
     public function includeBeatmap(Game $game)
     {
         if ($game->beatmap) {
-            return $this->item($game->beatmap, new Transformers\BeatmapCompactTransformer);
+            return $this->item($game->beatmap, new BeatmapCompactTransformer);
         }
     }
 
     public function includeScores(Game $game)
     {
         return $this->collection(
-            $game->scores, new Transformers\ScoreTransformer
+            $game->scores, new ScoreTransformer
         );
     }
 }

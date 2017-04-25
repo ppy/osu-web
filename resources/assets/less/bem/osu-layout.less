@@ -19,7 +19,7 @@
 .osu-layout {
   ._page {
     .default-box-shadow();
-    background-color: @gray-f;
+    background-color: #fff;
   }
 
   display: flex;
@@ -118,6 +118,7 @@
     align-self: center;
     margin-left: auto;
     margin-right: auto;
+
     ._width;
     @media @desktop {
       ._width-desktop;
@@ -143,22 +144,25 @@
       height: 100%;
     }
 
-    &--lg2 {
-      ._width(-2.5px);
-      @media @desktop {
-        ._width-desktop(-2.5px);
-      }
-    }
-
     &--page {
       ._page;
       padding: 20px;
       margin-bottom: 10px;
     }
 
+    &--page-artist-index {
+      margin-top: -20px;
+
+      @media @desktop {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
     &--page-artist {
       margin-top: -20px;
-      margin-bottom: 10px;
+
       @media @desktop {
         padding-left: 20px;
         padding-right: 20px;
@@ -226,19 +230,10 @@
     flex-direction: column;
 
     &--extra {
+      .inner-shadow-top();
       flex: 1 0 auto;
-      background-color: fade(@gray-0, 75%);
-
-      // for some reason linear-gradient doesn't work on main div
-      &::before {
-        content: ' ';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 4px;
-        background-image: linear-gradient(to bottom, @gray-3, transparent);
-      }
+      background-color: fade(#000, 75%);
+      padding-bottom: 10px;
     }
 
     &--full {
@@ -276,7 +271,7 @@
     }
 
     &--with-separator {
-      background-image: linear-gradient(to bottom, fade(@gray-0, 20%), transparent 3px);
+      background-image: linear-gradient(to bottom, fade(#000, 20%), transparent 3px);
     }
   }
 }

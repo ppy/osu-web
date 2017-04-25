@@ -16,11 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<a href="{{$href}}" class='btn-osu-big btn-osu-big--user-homepage {{$colour}}'>
-    <div class='btn-osu-big__content'>
-        <div class='btn-osu-big__left'>
-            <span class='btn-osu-big__text-top'>{{$label}}</span>
-            <i class='fa fa-fw fa-{{$icon}}'></i>
-        </div>
-    </div>
+<a href="{{ $href }}" class="btn-home btn-home--{{ $colour ?? '' }}">
+    <span class="btn-home__text">{{ $label }}</span>
+    <span class="btn-home__icon">
+        <i class="fa fa-fw fa-{{$icon}}"></i>
+    </span>
 </a>

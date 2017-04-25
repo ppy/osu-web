@@ -49,6 +49,9 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'api' => [],
         'web' => [],
+        'lio' => [
+            Middleware\LegacyInterOpAuth::class,
+        ],
     ];
 
     /**

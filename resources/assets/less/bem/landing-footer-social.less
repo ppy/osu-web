@@ -20,45 +20,36 @@
   text-align: center;
 
   &__icon {
+    .circle(36px);
+    .link-white();
+    .link-plain();
+    .center-content();
+    border: 2px solid #fff;
     margin: 0 5px;
-    width: 30px;
-    height: 30px;
-    color: @gray-f;
+    font-size: 18px;
 
-    &::before {
-      border: 2px solid @gray-f;
-      border-radius: 100%;
-      padding: 8px;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      font-size: 18px;
-    }
+    // slightly better alignment?
+    padding-top: 3px;
 
-    &.fa-heart {
-      &:hover,
-      &:focus {
-        color: @pink;
-      }
-    }
-
-    &.fa-twitter {
-      &:hover,
-      &:focus {
-        color: @twitter-colour;
-      }
-    }
-
-    &.fa-facebook-official {
+    &--facebook {
       &:hover,
       &:focus {
         color: @facebook-colour;
       }
     }
 
-    &:hover,
-    &:focus {
-      text-decoration: none;
-      color: @pink;
+    &--support {
+      &:hover,
+      &:focus {
+        color: @pink;
+      }
+    }
+
+    &--twitter {
+      &:hover,
+      &:focus {
+        color: @twitter-colour;
+      }
     }
   }
 }

@@ -55,6 +55,7 @@ return [
                 'channel' => [
                     'no_access' => 'Access to target channel is required.',
                     'moderated' => 'Channel is currently moderated.',
+                    'not_lazer' => 'You can only speak in #lazer at this time.',
                 ],
 
                 'not_allowed' => 'Can not send message while banned/restricted/silenced.',

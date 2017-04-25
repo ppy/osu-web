@@ -33,7 +33,7 @@
   transition: background-position 120ms;
 
   padding: 5px;
-  color: @gray-f;
+  color: #fff;
   font-size: @font-size--normal;
   font-weight: 600;
   overflow: hidden;
@@ -43,8 +43,16 @@
   &:hover,
   &:focus,
   &:active {
-    color: @gray-f;
+    color: #fff;
     background-position: calc(50% ~'-' 20px) 50%;
+  }
+
+  &--download {
+    .default-box-shadow();
+    .default-text-shadow();
+    font-style: italic;
+    font-size: @font-size--title-small;
+    padding: 10px 5px;
   }
 
   &--user-homepage {
@@ -98,7 +106,7 @@
     &::before {
       .full-size();
       border-radius: inherit;
-      background-color: fade(@gray-f, 50%);
+      background-color: fade(#fff, 50%);
     }
   }
 
@@ -139,8 +147,18 @@
   }
 
   &__icon {
+    flex: none;
     margin: 0 5px;
     font-size: 150%;
+
+    .@{top}--download & {
+      .circle(40px);
+      .center-content();
+      .thick-box-shadow();
+      margin-left: 20px;
+      font-size: 20px;
+      border: 2px solid #fff;
+    }
   }
 
   &__left {

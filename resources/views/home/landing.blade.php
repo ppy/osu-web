@@ -28,7 +28,7 @@
 
         <!-- Desktop Navigation -->
         <div class="landing-nav hidden-xs">
-            <div class="landing-nav__section landing-nav__section--left">
+            <div class="landing-nav__section">
                 @foreach (nav_links() as $section => $links)
                     <a
                         href="{{ array_values($links)[0] }}"
@@ -37,13 +37,47 @@
                         {{ trans("layout.menu.$section._") }}
                     </a>
                 @endforeach
+
+                <div class="landing-nav__locale-menu-link">
+                    <span class="landing-nav__link js-menu" data-menu-target="landing--locale">
+                        <img
+                            class="landing-nav__locale-flag"
+                            src="{{ flag_path(locale_flag(App::getLocale())) }}"
+                            alt="{{ App::getLocale() }}"
+                        >
+                        {{ App::getLocale() }}
+                    </span>
+
+                    <div
+                        class="js-menu landing-nav__locale-menu"
+                        data-menu-id="landing--locale"
+                        data-visibility="hidden"
+                    >
+                        @foreach (config('app.available_locales') as $locale)
+                            <a
+                                class="landing-nav__link landing-nav__link--locale"
+                                href="{{ route('set-locale', ['locale' => $locale]) }}"
+                                data-remote="1"
+                                data-method="POST"
+                            >
+                                <span class="landing-nav__locale-link-pointer">
+                                    <span class="fa fa-chevron-right"></span>
+                                </span>
+
+                                <img
+                                    class="landing-nav__locale-flag"
+                                    src="{{ flag_path(locale_flag($locale)) }}"
+                                    alt="{{ $locale }}"
+                                >
+
+                                {{ $locale }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
-            <a class="landing-nav__section landing-nav__section--center u-nav-float" href="#">
-                @include('objects._logo')
-            </a>
-
-            <div class="landing-nav__section landing-nav__section--right">
+            <div class="landing-nav__section">
                 <a
                     href="#"
                     class="landing-nav__link js-nav-toggle"
@@ -68,66 +102,97 @@
     </nav>
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
-    @include('layout._popup', ['navPopupExtraClasses' => 'osu-layout__row--landing'])
-    <header class="osu-layout__row osu-layout__row--landing js-landing-header">
+    @include('layout._popup')
+
+    <div class="osu-page">
         <div class="landing-hero">
-            <div class="js-landing-hero-slider--new js-landing-hero-slider landing-hero__slider">
-                @for($i = 1; $i <= 2; $i++)
-                    <span class="landing-hero__slide">
-                        <span
-                            class="landing-hero__slide-bg"
-                            style="background: url('/images/layout/landing-page/home-slider-{{$i}}.jpg') no-repeat center center / cover">
-                        </span>
-
-                        <span class="landing-hero__cta">
-
-                            <span class="landing-hero__content">
-                                {!! trans("home.landing.slogans.$i") !!}
-                            </span>
-                        </span>
-                    </span>
-                @endfor
+            <div class="landing-hero__bg-container">
+                <div class="landing-hero__bg-inner-container js-scale" data-scale="ws">
+                    {{--
+                        playsinline is for iphone autoplay
+                        reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
+                    --}}
+                    <video
+                        class="landing-hero__bg js-autoplay"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        src="{{ config('osu.landing.video_url') }}"
+                    ></video>
+                </div>
             </div>
 
-            <div class="landing-download">
-                <div class="landing-download__inner">
-                    <a href="http://m1.ppy.sh/r/osu!install.exe" class="landing-download__button shadow-hover">
-                        <span class="fa fa-cloud-download landing-download__icon"></span>
-                        <span class="landing-download__content-wrapper">
-                            <span class="landing-download__content landing-download__content--top">
-                                {{ trans("home.landing.download._") }}
+            <div class="landing-hero__pippi">
+                <div class="landing-hero__pippi-logo"></div>
+            </div>
+
+            <div class="landing-hero__info">
+                {!! trans("home.landing.players", ['count' => number_format($stats->totalUsers)]) !!},
+                {!! trans("home.landing.online", [
+                    'players' => number_format($stats->currentOnline),
+                    'games' => number_format($stats->currentGames)]
+                ) !!}
+            </div>
+
+            <div class="landing-hero__messages">
+                <div class="landing-hero__slogan">
+                    <h1 class="landing-hero__slogan-main">
+                        {{ trans('home.landing.slogan.main') }}
+                    </h1>
+
+                    <h2 class="landing-hero__slogan-sub">
+                        {{ trans('home.landing.slogan.sub') }}
+                    </h2>
+                </div>
+
+                <div class="landing-hero__download">
+                    <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download">
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans("home.landing.download._") }}
+                                </span>
+
+                                <span class="btn-osu-big__text-bottom">{{ trans('home.landing.download.for', ['os' => 'Windows'])}}</span>
                             </span>
-                            <span class="landing-download__content landing-download__content--bottom js-download-platform"></span>
+
+                            <span class="btn-osu-big__icon">
+                                <span class="fa fa-cloud-download"></span>
+                            </span>
                         </span>
                     </a>
 
-                    <a href="{{ route('download') }}" class="landing-download__other js-download-other"></a>
+                    <span class="landing-hero__download-other">{{ trans('home.landing.download.soon') }}</span>
                 </div>
             </div>
-            <div class="js-landing-graph landing-graph">
-                <div class="landing-graph__info">
-                    {!! trans("home.landing.players", ['count' => $totalUsers]) !!},
-                    {!! trans("home.landing.online", ['players' => $currentOnline, 'games' => $currentGames]) !!}
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <main class="osu-layout__row osu-layout__row--landing">
-        <div class="landing-middle-buttons">
-            <div class="osu-layout__col-container">
-                <a href="#" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4">
-                    <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-1.jpg" alt="Placeholder text!">
-                </a>
-                <a href="{{ action('StoreController@getListing') }}" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4">
-                    <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-2.jpg" alt="osu!store">
-                </a>
-                <a href="//next.ppy.sh/" class="osu-layout__col osu-layout__col--link osu-layout__col--sm-4">
-                    <img class="landing-middle-buttons__image shadow-hover" src="/images/layout/landing-page/middle-button-3.jpg" alt="osu!next">
-                </a>
-            </div>
+            <div class="landing-hero__graph js-landing-graph"></div>
+
+            <script id="json-stats" type="application/json">
+                {!! json_encode($stats->graphData) !!}
+            </script>
         </div>
-    </main>
+    </div>
+
+    <div class="osu-page">
+        <div class="landing-middle-buttons">
+            <a
+                href="{{ route('support-the-game') }}"
+                class="landing-middle-buttons__button landing-middle-buttons__button--support"
+            ></a>
+
+            <a
+                href="{{ action('StoreController@getListing') }}"
+                class="landing-middle-buttons__button landing-middle-buttons__button--store"
+            ></a>
+
+            <a
+                href="https://blog.ppy.sh/"
+                class="landing-middle-buttons__button landing-middle-buttons__button--blog"
+            ></a>
+        </div>
+    </div>
 
     <footer class="osu-layout__section osu-layout__section--landing-footer">
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
@@ -148,9 +213,15 @@
         </div>
 
         <div class="landing-footer-social">
-            <a href="{{ route('support-the-game') }}" class="fa fa-heart landing-footer-social__icon"></a>
-            <a href="{{ osu_url("social.twitter") }}" class="fa fa-twitter landing-footer-social__icon"></a>
-            <a href="{{ osu_url("social.facebook") }}" class="fa fa-facebook-official landing-footer-social__icon"></a>
+            <a href="{{ route('support-the-game') }}" class="landing-footer-social__icon landing-footer-social__icon--support">
+                <span class="fa fa-heart"></span>
+            </a>
+            <a href="{{ osu_url("social.twitter") }}" class="landing-footer-social__icon landing-footer-social__icon--twitter">
+                <span class="fa fa-twitter"></span>
+            </a>
+            <a href="{{ osu_url("social.facebook") }}" class="landing-footer-social__icon landing-footer-social__icon--facebook">
+                <span class="fa fa-facebook-official"></span>
+            </a>
         </div>
 
         <div class="landing-footer-bottom">
@@ -168,8 +239,4 @@
 
 @section ("script")
     @parent
-
-    <script id="json-stats" type="application/json">
-        {!! json_encode($graphData) !!}
-    </script>
 @endsection

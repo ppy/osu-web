@@ -18,25 +18,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers\API\Chat;
+namespace App\Http\Controllers;
 
-use App\Models\Chat\PrivateMessage;
-use League\Fractal;
+use App\Jobs\RegenerateBeatmapsetCover;
+use App\Models\Beatmapset;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class PrivateMessageTransformer extends Fractal\TransformerAbstract
+class LegacyInterOpController extends Controller
 {
-    public function transform(PrivateMessage $message)
+    use DispatchesJobs;
+
+    public function regenerateBeatmapsetCovers($id)
     {
-        return [
-            'message_id' => $message->message_id,
-            'user_id' => $message->user_id,
-            'target_id' => $message->target_id,
-            'timestamp' => $message->timestamp->toDateTimeString(),
-            'content' => $message->content,
-            'sender' => [
-                'username' => $message->sender->username,
-                'colour' => $message->sender->user_colour,
-            ],
-        ];
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $this->dispatch($job);
+
+        return ['success' => true];
     }
 }
