@@ -30,61 +30,6 @@ body.community {
   }
 }
 
-.pippy {
-  position: absolute;
-
-  .at2x("/images/layout/forum-top-pippy.png", 924px, 210px);
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 210px;
-
-  // 24px is the protruding part
-  background-position: calc(100% ~'-' (@grid-gutter-width - 24px)) 0;
-  background-repeat: no-repeat;
-  z-index: 2;
-}
-
-.forum-header {
-  a { .link-white(); }
-
-  > div {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    width: 100%;
-    padding: 0 10px;
-    @media @desktop {
-      padding: 0 100px;
-    }
-  }
-}
-
-.forums-breadcrumb {
-  background: none;
-  margin: 0;
-  padding: 10px 0;
-
-  li::before {
-    display: none;
-  }
-
-  li::after {
-    content: "»";
-    color: #fff;
-    display: inline-block;
-    margin: 0 5px;
-  }
-}
-
-@topic-header-height: 200px;
-@topic-header-sticky-height: 60px;
-
-.js-forum__sticky-header-marker {
-  position: absolute;
-  top: @topic-header-height - @topic-header-sticky-height;
-}
-
 .forum-category {
   .default-box-shadow();
 
