@@ -28,17 +28,15 @@
         '.osu-page-header-v2--contests' => $contestMeta->header_url,
     ]])
 
-    <div class="osu-layout__row">
+    <div class="osu-page">
         <div class="osu-page-header-v2 osu-page-header-v2--contests">
             <div class="osu-page-header-v2__overlay"></div>
             <div class="osu-page-header-v2__title">{{$contestMeta->name}}</div>
         </div>
     </div>
-    <div class="osu-layout__row osu-layout__row--page-contests">
-        <div class="page-contents__content--contests">
-            <div class='contest'>
-                @yield('contest-content')
-            </div>
+    <div class="osu-page osu-page--contest">
+        <div class='contest'>
+            @yield('contest-content')
         </div>
     </div>
 @endsection

@@ -22,20 +22,25 @@
 ])
 
 @section("content")
-    <div id="forum-index-header" class="osu-layout__row osu-layout__row--page">
-        <div class="text-area">
-            <div class="text">
-                <h2>it's dangerous to play alone.</h2>
-                <h1>{{ trans("forum.title") }}</h1>
+    <div class="osu-page">
+        <div class="osu-page-header osu-page-header--forum-index">
+            <div class="osu-page-header__title-box">
+                <h2 class="osu-page-header__title osu-page-header__title--small">
+                    it's dangerous to play alone.
+                </h2>
+
+                <h1 class="osu-page-header__title">
+                    {{ trans("forum.title") }}
+                </h1>
             </div>
         </div>
     </div>
 
-    <div class="hidden-xs osu-layout__row osu-layout__row--lg2">
-        <div class="pippy"></div>
+    <div class="osu-page osu-page--forum-pippi">
+        <div class="hidden-xs forum-pippi"></div>
     </div>
 
-    <div class="osu-layout__row">
+    <div class="osu-page">
         @foreach($forums as $category)
             <div id="forum-{{ $category->forum_id }}" class="
                 forum-category

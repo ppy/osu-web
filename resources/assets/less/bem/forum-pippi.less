@@ -16,38 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapsets {
-  @item-gutter: 10px;
-  @top: beatmapsets;
+.forum-pippi {
+  @extra-margin: (-@grid-gutter-width + 5px);
 
-  background-color: #eee;
-  padding: 20px;
+  .at2x-simple('/images/layout/forum-top-pippi.png');
+  background-size: 924px 210px;
+  background-position: right bottom;
+  background-repeat: no-repeat;
 
-  &__content {
-    .@{top}--dimmed & {
-      opacity: 0.2;
-    }
-  }
+  pointer-events: none;
 
-  &__empty {
-    text-align: center;
-    width: 100%;
-    margin: 10px 0 -20px;
-  }
+  position: absolute;
 
-  &__item {
-    margin: (@item-gutter / 2);
-    flex: none;
-    width: calc(100% ~'-' @item-gutter);
+  height: 210px;
+  width: calc(100% ~'-' @extra-margin);
 
-    @media @desktop {
-      width: calc(50% ~'-' @item-gutter);
-    }
-  }
+  bottom: 0;
+  right: 0;
 
-  &__items {
-    margin: (-@item-gutter / 2);
-    display: flex;
-    flex-wrap: wrap;
-  }
+  margin-right: @extra-margin;
+  margin-bottom: -10px;
 }

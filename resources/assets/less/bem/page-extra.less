@@ -17,6 +17,8 @@
  */
 
 .page-extra {
+  @top: page-extra;
+
   .default-box-shadow();
   background-color: #fff;
   padding: 20px 10px;
@@ -29,8 +31,8 @@
     padding-right: 30px;
   }
 
-  &:hover &__actions {
-    opacity: 1;
+  &--compact {
+    padding: 0;
   }
 
   &__actions {
@@ -42,11 +44,16 @@
 
     right: 30px;
     top: 20px;
+
     @media @desktop {
       right: 0;
       top: 20px;
       width: 0;
       opacity: 0;
+    }
+
+    .@{top}:hover & {
+      opacity: 1;
     }
   }
 

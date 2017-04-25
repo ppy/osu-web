@@ -37,6 +37,14 @@
     }
   }
 
+  &__artist-left {
+    flex-basis: 100%;
+
+    @media @desktop {
+      margin-right: 10px;
+    }
+  }
+
   &__content {
     padding: 20px 20px 10px;
 
@@ -49,27 +57,6 @@
         border-style: solid;
         border-image: linear-gradient(to top, #ccc, transparent 80%) 1;
       }
-
-      &--contests {
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-    }
-
-    &--artist-left {
-      flex-basis: 100%;
-      @media @desktop {
-        margin-right: 10px;
-      }
-    }
-
-    &--sidebar {
-      margin-top: -30px;
-      @media @desktop {
-        height: 100%;
-        margin-top: 0;
-        .default-box-shadow();
-      }
     }
   }
 
@@ -79,6 +66,16 @@
 
     &--top {
       margin-bottom: 20px;
+    }
+  }
+
+  &__sidebar {
+    margin-top: -30px;
+
+    @media @desktop {
+      height: 100%;
+      margin-top: 0;
+      .default-box-shadow();
     }
   }
 }
