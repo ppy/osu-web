@@ -56,17 +56,20 @@ class HomeController extends Controller
 
         $streamIds = implode(',', config('osu.changelog.update_streams'));
 
-        $builds = Build::orderBy('date', 'desc')
-            ->take($build ? 1 : config('osu.changelog.build_count'));
+        $changelogs = Changelog::default();
 
         if ($streamId) {
-            $builds->where('stream_id', $streamId);
-        } elseif ($build) {
-            $builds->where('version', $build);
+            $builds = Build::orderBy('date', 'desc')
+                ->take($build ? 1 : config('osu.changelog.build_count'))
+                ->where('stream_id', $streamId)
+                ->pluck('version');
+
+            $changelogs->whereIn('build', $builds);
+        } elseif($build) {
+            $changelogs->where('build', $build);
         }
 
-        $changelogs = Changelog::default()->whereIn('build', $builds->pluck('version'))
-            ->with(['gameBuild', 'user'])
+        $changelogs =  $changelogs->with(['gameBuild', 'user'])
             ->orderBy('date', 'desc')
             ->get()
             ->sortByDesc('major')
