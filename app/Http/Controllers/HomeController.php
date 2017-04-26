@@ -75,7 +75,10 @@ class HomeController extends Controller
                 return $item->gameBuild->date;
             });
 
-        $streams = Build::latestByStream()->with('updateStream')->get();
+        $streams = Build::latestByStream()
+            ->whereIn('stream_id', config('osu.changelog.update_streams'))
+            ->with('updateStream')
+            ->get();
         $featuredStream = null;
 
         foreach ($streams as $index => $stream) {
