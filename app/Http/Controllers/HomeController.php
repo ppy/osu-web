@@ -54,8 +54,6 @@ class HomeController extends Controller
             $streamId = config('osu.changelog.featured_stream');
         }
 
-        $streamIds = implode(',', config('osu.changelog.update_streams'));
-
         $changelogs = Changelog::default();
 
         if ($streamId) {
