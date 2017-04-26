@@ -127,7 +127,7 @@ class Post extends Model
             ? static
                 ::with('topic')
                 ->whereIn('post_id', $ids)
-                ->orderByRaw('FIELD(post_id, '.db_array_bind($ids).')', $ids)
+                ->orderByField('post_id', $ids)
                 ->get()
             : [];
     }
