@@ -45,10 +45,6 @@
     color: inherit;
   }
 
-  &--featured {
-    width: 260px;
-  }
-
   &--active {
     &::before {
       .full-size;
@@ -56,6 +52,14 @@
     }
 
     .thicker-box-shadow;
+  }
+
+  &--beta, &--cutting-edge {
+    .box-color(3px, @changelog-stream--beta-ce);
+  }
+
+  &--lazer {
+    .box-color(3px, @changelog-stream--lazer);
   }
 
   &--stable {
@@ -66,12 +70,13 @@
     .box-color(3px, @changelog-stream--stable-fallback);
   }
 
-  &--beta, &--cutting-edge {
-    .box-color(3px, @changelog-stream--beta-ce);
+  &--featured {
+    width: 260px;
   }
 
-  &--lazer {
-    .box-color(3px, @changelog-stream--lazer);
+  &__build {
+    font-size: @font-size--title-small-4;
+    font-weight: 300;
   }
 
   &__content {
@@ -83,24 +88,11 @@
     padding: 7px 0;
   }
 
-  &__indicator-box {
-    padding: 10px 0;
-    margin-left: auto;
-  }
-
   &__indicator {
     height: 28px;
     width: 5px;
 
     .default-border-radius;
-
-    .@{_top}--stable & {
-      background-color: @changelog-stream--stable;
-    }
-
-    .@{_top}--stable-fallback & {
-      background-color: @changelog-stream--stable-fallback;
-    }
 
     .@{_top}--beta &, .@{_top}--cutting-edge & {
       background-color: @changelog-stream--beta-ce;
@@ -109,16 +101,24 @@
     .@{_top}--lazer & {
       background-color: @changelog-stream--lazer;
     }
+
+    .@{_top}--stable & {
+      background-color: @changelog-stream--stable;
+    }
+
+    .@{_top}--stable-fallback & {
+      background-color: @changelog-stream--stable-fallback;
+    }
+  }
+
+  &__indicator-box {
+    padding: 10px 0;
+    margin-left: auto;
   }
 
   &__name {
     font-size: @font-size--small-2;
     font-weight: 700;
-  }
-
-  &__build {
-    font-size: @font-size--title-small-4;
-    font-weight: 300;
   }
 
   &__users {

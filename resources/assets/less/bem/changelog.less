@@ -19,21 +19,9 @@
 .changelog {
   padding: 20px;
 
-  &__text {
-    text-align: center;
-    padding-bottom: 20px;
-    margin: 0;
-
-    &--date {
-      font-size: @font-size--title;
-      font-style: italic;
-      color: @pink-darker;
-    }
-
-    &--build {
-      font-size: @font-size--title-small;
-      font-weight: 700;
-    }
+  &__change {
+    min-height: 40px;
+    padding: 10px 0;
   }
 
   &__list {
@@ -44,8 +32,20 @@
     }
   }
 
-  &__change {
-    min-height: 40px;
-    padding: 10px 0;
+  &__text {
+    text-align: center;
+    padding-bottom: 20px;
+    margin: 0;
+
+    &--build {
+      font-size: @font-size--title-small;
+      font-weight: 700;
+    }
+
+    &--date {
+      font-size: @font-size--title;
+      font-style: italic;
+      color: @pink-darker;
+    }
   }
 }

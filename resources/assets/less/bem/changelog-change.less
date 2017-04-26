@@ -30,6 +30,11 @@
     border-bottom: 1px solid #eee;
   }
 
+  &__icon {
+      font-size: @font-size--changelog-change-icon;
+      width: 30px;
+  }
+
   &__left {
     @media @desktop {
       width: 150px;
@@ -46,17 +51,6 @@
     align-items: center;
   }
 
-  &__icon {
-    font-size: @font-size--changelog-change-icon;
-    width: 30px;
-  }
-
-  &__username {
-    font-size: @font-size--title-small;
-    font-style: italic;
-    font-weight: 700;
-  }
-
   &__right {
     font-size: @font-size--normal-2;
     text-align: justify;
@@ -69,5 +63,11 @@
       font-size: 16px;
       color: @purple-dark;
     }
+  }
+
+  &__username {
+    font-size: @font-size--title-small;
+    font-style: italic;
+    font-weight: 700;
   }
 }
