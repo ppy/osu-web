@@ -25,11 +25,9 @@ use App\Libraries\CurrentStats;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Changelog;
-use App\Models\Count;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
-use DB;
 use Request;
 use View;
 
