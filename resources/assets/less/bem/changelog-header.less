@@ -21,7 +21,7 @@
   flex-direction: column;
   align-content: flex-end;
 
-  height: 250px;
+  min-height: 250px;
 
   background-size: cover;
   background-position: center;
@@ -35,12 +35,15 @@
 
   &__streams-box {
     margin-top: auto;
+    padding-top: 10px;
   }
 
   &__streams {
     display: flex;
     flex-direction: row;
 
-    padding-bottom: 10px;
+    @media @mobile {
+      flex-wrap: wrap;
+    }
   }
 }
