@@ -16,6 +16,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+@changelog-stream--stable: @blue;
+@changelog-stream--stable-fallback: @green-light;
+@changelog-stream--beta-ce: @yellow;
+@changelog-stream--lazer: @red;
+
 .box-color(@radius, @color) {
   &::before {
     box-shadow: 0 0 0 @radius @color;
@@ -52,12 +57,12 @@
   }
 
   &--active {
+    .thicker-box-shadow;
+
     &::before {
       .full-size;
       border-radius: @border-radius-base;
     }
-
-    .thicker-box-shadow;
   }
 
   &--beta, &--cutting-edge {

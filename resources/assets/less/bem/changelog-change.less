@@ -31,11 +31,16 @@
   }
 
   &__icon {
-      font-size: @font-size--changelog-change-icon;
-      width: 30px;
+    font-size: 18px;
+    width: 30px;
+    flex:none;
   }
 
   &__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     @media @desktop {
       width: 150px;
       min-width: 150px;
@@ -45,10 +50,6 @@
     @media @mobile {
       margin-bottom: 5px;
     }
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   }
 
   &__right {
