@@ -64,9 +64,7 @@ class HomeController extends Controller
             ->orderBy('date', 'desc')
             ->get()
             ->sortByDesc('major')
-            ->groupBy(function ($item, $key) {
-                return $item->gameBuild->date;
-            });
+            ->groupBy('build');
 
         $streams = Build::latestByStream()
             ->whereIn('stream_id', config('osu.changelog.update_streams'))
