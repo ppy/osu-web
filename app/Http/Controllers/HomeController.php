@@ -45,29 +45,22 @@ class HomeController extends Controller
     public function getChangelog()
     {
         $streamId = get_int(Request::input('stream_id'));
-        $build = Request::input('build');
+        $build = presence(Request::input('build'));
 
-        if ($streamId && $build) {
-            // in this case ignore the build and show page for the stream id
-            $build = null;
-        } elseif (!$streamId && !$build) {
-            $streamId = config('osu.changelog.featured_stream');
-        }
+        if ($build === null) {
+            $streamId ?? $streamId = config('osu.changelog.featured_stream');
 
-        $changelogs = Changelog::default();
-
-        if ($streamId) {
             $builds = Build::orderBy('date', 'desc')
-                ->take($build ? 1 : config('osu.changelog.build_count'))
+                ->take(config('osu.changelog.build_count'))
                 ->where('stream_id', $streamId)
                 ->pluck('version');
-
-            $changelogs->whereIn('build', $builds);
-        } elseif($build) {
-            $changelogs->where('build', $build);
+        } else {
+            $builds = [$build];
         }
 
-        $changelogs =  $changelogs->with(['gameBuild', 'user'])
+        $changelogs = Changelog::default()
+            ->whereIn('build', $builds)
+            ->with(['gameBuild', 'user'])
             ->orderBy('date', 'desc')
             ->get()
             ->sortByDesc('major')
@@ -79,6 +72,7 @@ class HomeController extends Controller
             ->whereIn('stream_id', config('osu.changelog.update_streams'))
             ->with('updateStream')
             ->get();
+
         $featuredStream = null;
 
         foreach ($streams as $index => $stream) {
