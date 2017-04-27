@@ -123,7 +123,7 @@ class TopicsController extends Controller
 
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
-        $this->logModerate('LOG_MOVE', [$forum->forum_name], $topic);
+        $this->logModerate('LOG_MOVE', [$originForum->forum_name], $topic);
         if ($topic->moveTo($destinationForum)) {
             return js_view('layout.ujs-reload');
         } else {
