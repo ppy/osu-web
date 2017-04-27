@@ -133,7 +133,7 @@
                                 @endif
                             </div>
 
-                            <div class="forum-post__body forum-post__body--reply">
+                            <div class="forum-post__reply-body">
                                 <div class="forum-post__content forum-post__content--edit-bar">
                                     <div class="post-editor__actions post-editor__actions--preview">
                                         <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">{{ trans('forum.topic.create.preview_hide') }}</a>
@@ -142,7 +142,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="js-forum-reply-write">
+                                <div class="js-forum-reply-write forum-post__body forum-post__body--reply-form">
                                     <div class="forum-post__content forum-post__content--edit-body">
                                         @include('forum.posts._form_body', ['postBody' => [
                                             'focus' => false,
@@ -157,8 +157,10 @@
                                         @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
                                     </div>
                                 </div>
-                                <div class="js-forum-reply-preview hidden forum-post__content forum-post__content--main">
-                                    <div class="forum-post-content js-forum-reply-preview--content">
+                                <div class="js-forum-reply-preview hidden forum-post__body">
+                                    <div class="forum-post__content forum-post__content--main">
+                                        <div class="forum-post-content js-forum-reply-preview--content">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
