@@ -17,10 +17,6 @@
 --}}
 @extends("master")
 
-@php
-$lastBuild = null;
-@endphp
-
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--changelog-header">
