@@ -29,8 +29,6 @@ class BaseTables extends Migration
      */
     public function up()
     {
-        $connection = DB::connection('mysql');
-
         Schema::create('osu_achievements', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -215,8 +213,8 @@ class BaseTables extends Migration
             $table->unsignedMediumInteger('users')->default(0);
             $table->unsignedTinyInteger('stream_id')->nullable();
         });
-        $connection->statement('ALTER TABLE osu_builds ADD hash BINARY(16)');
-        $connection->statement('ALTER TABLE osu_builds ADD last_hash BINARY(16)');
+        DB::statement('ALTER TABLE osu_builds ADD hash BINARY(16)');
+        DB::statement('ALTER TABLE osu_builds ADD last_hash BINARY(16)');
 
         Schema::create('osu_countries', function (Blueprint $table) {
             $table->charset = 'utf8';
