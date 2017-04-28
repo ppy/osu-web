@@ -24,7 +24,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
 
   font-weight: 300;
   color: white;
@@ -67,6 +67,10 @@
     font-size: @font-size--new-header-subtitle;
     margin-bottom: 10px;
     margin-top: 5px;
+    
+    @media @mobile {
+      font-size: @font-size--new-header-subtitle-mobile;
+    }
   }
 
   &__title {
@@ -75,7 +79,8 @@
     font-style: italic;
 
     @media @mobile {
-      margin-top: 10px;
+      margin-top: 0;
+      font-size: @font-size--new-header-title-mobile;
     }
 
     &--artist {

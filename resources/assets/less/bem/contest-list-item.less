@@ -30,6 +30,10 @@
 
   border-right: 5px solid #323E41;
 
+  @media @mobile{
+    height: 90px;
+  }
+ 
   &:active, &:focus, &:hover {
     color: white;
     text-decoration: none;
@@ -94,6 +98,9 @@
     white-space: nowrap;
     @media @mobile {
       font-size: 14px;
+      text-overflow: initial;
+      overflow: initial;
+      white-space: initial;
     }
     padding-bottom: 5px;
   }
@@ -124,6 +131,7 @@
     float: left;
     @media @mobile {
       width: 50px;
+      height: 90px;
     }
   }
 }
