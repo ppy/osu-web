@@ -70,7 +70,7 @@
                                     alt="{{ $locale }}"
                                 >
 
-                                {{ $locale }}
+                                {{ locale_name($locale) }}
                             </a>
                         @endforeach
                     </div>
