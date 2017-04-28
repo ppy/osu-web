@@ -45,7 +45,7 @@
                             src="{{ flag_path(locale_flag(App::getLocale())) }}"
                             alt="{{ App::getLocale() }}"
                         >
-                        {{ App::getLocale() }}
+                        {{ locale_name(App::getLocale()) }}
                     </span>
 
                     <div
