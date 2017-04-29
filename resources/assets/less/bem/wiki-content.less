@@ -23,6 +23,10 @@
   font-size: @font-size--wiki;
   word-wrap: break-word;
 
+  & > p {
+    text-indent: 2em;
+  }
+
   &__header {
     font-family: @font-family-sans-serif;
     font-weight: bold;
@@ -35,18 +39,18 @@
 
     &--2 {
       font-size: @font-size--header-wiki-2;
-      margin: 50px -20px 10px;
+      margin: 50px 0 10px;
       color: #fff;
     }
 
     &--3 {
       font-size: @font-size--header-wiki-3;
-      margin: 30px -20px 10px;
+      margin: 30px 0 10px;
     }
 
     &--4 {
       font-size: @font-size--header-wiki-4;
-      margin: 30px -10px 10px;
+      margin: 30px 10px 10px;
       font-style: italic;
     }
 
@@ -54,19 +58,20 @@
       font-size: @font-size--header-wiki-5;
       font-weight: normal;
       font-style: italic;
-      margin-top: 20px;
+      margin: 20px 20px 10px;
     }
 
     &--6 {
       font-size: @font-size--header-wiki-6;
       font-weight: normal;
       font-style: italic;
-      margin-top: 20px;
+      margin: 20px 20px 10px;
     }
   }
 
   &__image {
     max-width: 100%;
+    margin-left: -2em;
   }
 
   &__link {
@@ -74,7 +79,12 @@
   }
 
   &__list {
-    padding-left: 20px;
+    padding-left: 56px;
+    padding-left: ~"calc(20px + 2em)";
+
+    & .wiki-content__list{
+      padding-left: 20px;
+    }
   }
 
   &__list-item {
