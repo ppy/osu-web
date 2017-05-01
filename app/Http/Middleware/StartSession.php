@@ -20,28 +20,16 @@
 
 namespace App\Http\Middleware;
 
-use Auth;
-use Closure;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
-use Illuminate\Session\TokenMismatchException;
+use Illuminate\Session\Middleware\StartSession as BaseStartSession;
 
-class VerifyCsrfToken extends BaseVerifier
+class StartSession extends BaseStartSession
 {
-    protected $except = [
-        'oauth/authorize',
-        'oauth/access_token',
-    ];
-
-    public function handle($request, Closure $next)
+    protected function sessionConfigured()
     {
-        try {
-            return parent::handle($request, $next);
-        } catch (TokenMismatchException $_e) {
-            $request->session()->flush();
-            Auth::logout();
-            session(['_skip' => true]);
-
-            return $next($request);
+        if (session('_skip')) {
+            return false;
         }
+
+        return parent::sessionConfigured();
     }
 }
