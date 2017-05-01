@@ -17,20 +17,33 @@
  */
 
 .landing-middle-buttons {
-  display: flex;
-  max-width: 770px;
-  margin: 15px auto 25px;
-  width: calc(100% ~'-' 20px);
+  padding: 20px;
+  text-align: center;
 
-  @media @desktop {
-    width: 100%;
-  }
+  &__button {
+    .default-box-shadow();
+    border-radius: @border-radius-large;
+    margin: 5px;
+    display: inline-block;
+    width: 250px;
+    height: 75px;
+    transition: all 120ms;
+    background-size: cover;
 
-  &__image {
-    display: block;
-    max-width: 100%;
-    margin: 0 auto;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.75);
+    &:hover {
+      .thicker-box-shadow();
+    }
+
+    &--blog {
+      .at2x-simple('/images/landing/button-blog.png');
+    }
+
+    &--store {
+      .at2x-simple('/images/landing/button-store.png');
+    }
+
+    &--support {
+      .at2x-simple('/images/landing/button-support.png');
+    }
   }
 }

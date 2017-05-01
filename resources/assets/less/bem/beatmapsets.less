@@ -17,6 +17,37 @@
  */
 
 .beatmapsets {
+  @item-gutter: 10px;
+  @top: beatmapsets;
+
   background-color: #eee;
   padding: 20px;
+
+  &__content {
+    .@{top}--dimmed & {
+      opacity: 0.2;
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    width: 100%;
+    margin: 10px 0 -20px;
+  }
+
+  &__item {
+    margin: (@item-gutter / 2);
+    flex: none;
+    width: calc(100% ~'-' @item-gutter);
+
+    @media @desktop {
+      width: calc(50% ~'-' @item-gutter);
+    }
+  }
+
+  &__items {
+    margin: (-@item-gutter / 2);
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

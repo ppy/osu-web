@@ -38,7 +38,7 @@
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">
         <div class="page-contents page-contents--artist">
-            <div class="page-contents__content--artist-left">
+            <div class="page-contents__artist-left">
                 <div class="artist__description">{!! Markdown::convertToHtml($artist->description) !!}</div>
                 @if (count($albums) > 0)
                     <div class="artist__albums">
@@ -71,7 +71,7 @@
                     </div>
                 @endif
             </div>
-            <div class="page-contents__content--sidebar">
+            <div class="page-contents__sidebar">
                 <div class="artist__links-area">
                     <div class="artist__portrait">
                         @if($artist->label !== null)

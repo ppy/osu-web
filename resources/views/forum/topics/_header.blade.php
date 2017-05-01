@@ -19,7 +19,7 @@
     $headerCover = $cover['fileUrl'] ?? $cover['defaultFileUrl'] ?? null;
     $newTopic = !isset($topic);
 ?>
-<div class="osu-layout__row">
+<div class="osu-page">
     @include('forum._header_breadcrumb', [
         'forum' => $forum ?? $topic->forum,
     ])

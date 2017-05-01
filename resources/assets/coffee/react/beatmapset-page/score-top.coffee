@@ -37,7 +37,7 @@ BeatmapsetPage.ScoreTop = React.createClass
           div
             className: "avatar avatar--full"
             style:
-              backgroundImage: "url(#{@props.score.user.avatarUrl})"
+              backgroundImage: "url(#{@props.score.user.avatar_url})"
 
         div className: "#{bn}__user-box",
           a
@@ -46,7 +46,7 @@ BeatmapsetPage.ScoreTop = React.createClass
             @props.score.user.username
 
           el FlagCountry,
-            country: @props.countries[@props.score.user.country]
+            country: @props.countries[@props.score.user.country_code]
             classModifiers: ['scoreboard']
 
         div className: "#{bn}__position",

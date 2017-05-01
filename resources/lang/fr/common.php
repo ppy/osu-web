@@ -52,12 +52,12 @@ return [
     ],
 
     'score_count' => [
-        'count100' => '100',
-        'count300' => '300',
-        'count50' => '50',
-        'countgeki' => 'MAX',
-        'countkatu' => '200',
-        'countmiss' => 'Raté',
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Raté',
     ],
 
     'time' => [

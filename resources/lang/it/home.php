@@ -23,18 +23,20 @@ return [
         'slogan' => 'Il ritmo è solo ad un *click* di distanza!',
     ],
     'landing' => [
-        'slogans' => [
-            '1' => 'simulatore di cerchi dove<br/>vinci gratuitamente', //free to win => vinci gratuitamente, but maybe there's a better way to translate that
-            '2' => 'il ritmo è solo<br/> ad un click di distanza',
-        ],
+        'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
+        'peak' => 'Picco, :count utenti online',
+        'players' => '<strong>:count</strong> utenti registrati',
 
         'download' => [
             '_' => 'Scarica ora',
             'for' => 'per :os',
             'other' => 'clicca qui per :os1 o :os2',
         ],
-        'players' => '<strong>:count</strong> utenti registrati',
-        'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
-        'peak' => 'Picco, :count utenti online',
+
+        'slogan' => [
+            // free to win => vinci gratuitamente, but maybe there's a better way to translate that
+            'main' => 'simulatore di cerchi dove vinci gratuitamente',
+            'sub' => 'il ritmo è solo ad un click di distanza',
+        ],
     ],
 ];

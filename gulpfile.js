@@ -102,12 +102,12 @@ elixir(function(mix) {
     path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
     path.join(node_root, 'd3/build/d3' + min + '.js'),
     path.join(node_root, 'moment/moment.js'),
-    path.join(node_root, 'slick-carousel/slick/slick.js'),
     path.join(node_root, 'js-cookie/src/js.cookie.js'),
 
     path.join(node_root, 'react-height/build/react-height' + min + '.js'),
     path.join(node_root, 'react-motion/build/react-motion.js'),
     path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
+    path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
   ], 'public/js/vendor.js')
   .scripts([
     'ga.js',

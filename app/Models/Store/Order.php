@@ -217,6 +217,11 @@ class Order extends Model
                     continue;
                 }
 
+                if (!$i->product->enabled) {
+                    $deleteItems[] = $i;
+                    continue;
+                }
+
                 if (!$i->product->inStock($i->quantity)) {
                     $cart->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
                     $requireFresh = true;

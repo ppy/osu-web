@@ -174,7 +174,6 @@ return [
             'total_score' => 'Pontuação total',
         ],
     ],
-
     'verify' => [
         'title' => 'Verificação de conta',
     ],

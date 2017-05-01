@@ -35,13 +35,6 @@ class BeatmapsetPage.Info extends React.Component
   renderChart: ->
     return if !@props.beatmapset.has_scores
 
-    failtimes = _.keyBy @props.beatmap.failtimes, 'type'
-
-    data = [
-      { type: 'fail', values: failtimes.fail.data }
-      { type: 'retry', values: failtimes.exit.data }
-    ]
-
     unless @_failurePointsChart?
       options =
         scales:
@@ -52,7 +45,7 @@ class BeatmapsetPage.Info extends React.Component
       @_failurePointsChart = new StackedBarChart @refs.chartArea, options
       $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
 
-    @_failurePointsChart.loadData data
+    @_failurePointsChart.loadData @props.beatmap.failtimes
 
   render: ->
     percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100

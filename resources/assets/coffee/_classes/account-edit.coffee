@@ -29,12 +29,12 @@ class @AccountEdit
   update: (e) =>
     input = e.currentTarget
     value = input.value
-    prevValue = input.lastValue
+    prevValue = input.dataset.lastValue
     $main = $(input).closest('.js-account-edit')
 
     return if value == prevValue
 
-    input.lastValue = value
+    input.dataset.lastValue = value
     Timeout.clear input.savedTimeout
     Timeout.clear input.savingTimeout
 

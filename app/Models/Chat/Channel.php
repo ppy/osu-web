@@ -40,6 +40,11 @@ class Channel extends Model implements Messageable
         return array_map('intval', explode(',', $allowed_groups));
     }
 
+    public function getTypeAttribute($type)
+    {
+        return strtolower($type);
+    }
+
     public function receiveMessage(User $sender, $body)
     {
         $message = new Message();

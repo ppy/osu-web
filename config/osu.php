@@ -48,6 +48,9 @@ return [
     'mp-history' => [
         'event-count' => 500,
     ],
+    'landing' => [
+        'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
+    ],
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
@@ -60,6 +63,7 @@ return [
     'urls' => [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
+        'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 

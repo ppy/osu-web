@@ -34,7 +34,7 @@ class @CurrentUserObserver
   setAvatars: (elements) =>
     elements ?= @avatars
 
-    bgImage = if currentUser.id? then "url('#{currentUser.avatarUrl}')" else ''
+    bgImage = if currentUser.id? then "url('#{currentUser.avatar_url}')" else ''
     for el in elements
       el.style.backgroundImage = bgImage
 
@@ -42,7 +42,7 @@ class @CurrentUserObserver
   setCovers: (elements) =>
     elements ?= @covers
 
-    bgImage = if currentUser.id? then "url('#{currentUser.cover.url}')" else ''
+    bgImage = if currentUser.id? then "url('#{currentUser.cover_url}')" else ''
     for el in elements
       el.style.backgroundImage = bgImage
 

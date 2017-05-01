@@ -20,8 +20,9 @@
 
 return [
     'codes' => [
-        'http-403' => 'Acesso negado.',
         'http-401' => 'Por favor, inicie a sessão para continuar.',
+        'http-403' => 'Acesso negado.',
+        'http-429' => 'Muitas tentativas. Tente novamente mais tarde.',
     ],
     'account' => [
         'profile-order' => [
@@ -32,10 +33,10 @@ return [
         'standard-converts-only' => 'Apenas o modo osu! pode ter pontuações em outros modos.',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'Há beatmaps demais nos seus favoritos! Por favor, remova um antes de continuar.',
+        'too-many-favourites' => 'Há muitos beatmaps nos seus favoritos! Por favor, remova um antes de continuar.',
     ],
     'logged_out' => 'Você foi desconectado. Inicie a sessão e tente novamente.',
     'supporter_only' => 'Você precisa ser um osu!supporter para usar esta função.',
-    'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver em modo restrito.',
+    'no_restricted_access' => 'Você não pode executar esta ação enquanto sua conta estiver restrita.',
     'unknown' => 'Ocorreu um erro desconhecido.',
 ];

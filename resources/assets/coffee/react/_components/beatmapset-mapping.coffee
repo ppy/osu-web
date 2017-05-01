@@ -29,7 +29,7 @@ bn = 'beatmapset-mapping'
     div
       className: 'avatar avatar--beatmapset'
       style:
-        backgroundImage: "url(#{user.avatarUrl})"
+        backgroundImage: "url(#{user.avatar_url})"
 
     div className: "#{bn}__content",
       div className: "#{bn}__mapper",

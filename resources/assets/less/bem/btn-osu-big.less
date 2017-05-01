@@ -47,6 +47,14 @@
     background-position: calc(50% ~'-' 20px) 50%;
   }
 
+  &--download {
+    .default-box-shadow();
+    .default-text-shadow();
+    font-style: italic;
+    font-size: @font-size--title-small;
+    padding: 10px 5px;
+  }
+
   &--user-homepage {
     display: block;
     width: 100%;
@@ -139,8 +147,18 @@
   }
 
   &__icon {
+    flex: none;
     margin: 0 5px;
     font-size: 150%;
+
+    .@{top}--download & {
+      .circle(40px);
+      .center-content();
+      .thick-box-shadow();
+      margin-left: 20px;
+      font-size: 20px;
+      border: 2px solid #fff;
+    }
   }
 
   &__left {
