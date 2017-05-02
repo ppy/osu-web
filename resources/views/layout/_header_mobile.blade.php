@@ -90,7 +90,7 @@
 
                     <a
                         class="navbar-mobile__menu-item navbar-mobile__menu-item--logout js-logout-link"
-                        href="{{ route('users.logout') }}"
+                        href="{{ route('logout') }}"
                         data-method="delete"
                         data-confirm="{{ trans('users.logout_confirm') }}"
                         data-remote="1"

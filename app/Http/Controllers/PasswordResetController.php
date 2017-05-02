@@ -99,7 +99,7 @@ class PasswordResetController extends Controller
         if ($userPassword->save()) {
             $this->clear();
 
-            return ['message' => 'saved!'];
+            return ['message' => trans('password_reset.notice.saved')];
         } else {
             return response(['form_error' => [
                 'user_password' => $userPassword->validationErrors()->all(),
