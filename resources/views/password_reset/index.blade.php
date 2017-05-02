@@ -38,21 +38,27 @@
             @if ($isStarted)
                 {!! trans('password_reset.started.title', ['username' => session('password_reset.username')]) !!}
 
-                <a
-                    href="{{ route('password-reset') }}"
-                    data-method="DELETE"
-                    data-remote="1"
-                >
-                    {{ trans('password_reset.button.cancel') }}
-                </a>
+                <div class="password-reset__input-group">
+                    <a
+                        class="btn-osu-big btn-osu-big--password-reset"
+                        href="{{ route('password-reset') }}"
+                        data-method="DELETE"
+                        data-remote="1"
+                    >
+                        {{ trans('password_reset.button.cancel') }}
+                    </a>
+                </div>
 
-                <a
-                    href="{{ route('password-reset', ['username' => session('password_reset.username')]) }}"
-                    data-method="POST"
-                    data-remote="1"
-                >
-                    {{ trans('password_reset.button.resend') }}
-                </a>
+                <div class="password-reset__input-group">
+                    <a
+                        class="btn-osu-big btn-osu-big--password-reset"
+                        href="{{ route('password-reset', ['username' => session('password_reset.username')]) }}"
+                        data-method="POST"
+                        data-remote="1"
+                    >
+                        {{ trans('password_reset.button.resend') }}
+                    </a>
+                </div>
 
                 <label class="password-reset__input-group">
                     {{ trans('password_reset.started.verification_key') }}

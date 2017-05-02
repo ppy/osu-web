@@ -75,7 +75,7 @@
 
         <div class="nav-popup__row nav-popup__row--actions nav-popup__row--with-gutter">
             <div class="nav-popup__action">
-                <a href="{{ route('password-reset') }}" class="nav-popup__link">
+                <a href="{{ route('password-reset') }}" class="nav-popup__link js-nav--hide">
                     {{ trans('layout.popup_login.login.forgot') }}
                 </a>
             </div>
