@@ -21,7 +21,7 @@
 return [
     'users-online' => '1 user online|:users users online',
     'prefixes' => [
-        'add' => 'adddition',
+        'add' => 'addition',
         'fix' => 'fix',
         'misc' => 'miscellanous',
     ],
