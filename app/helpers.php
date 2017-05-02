@@ -776,3 +776,12 @@ function find_first_image($html)
 
     return $post_images[0];
 }
+
+function build_icon($prefix)
+{
+    switch ($prefix) {
+        case 'add': return 'plus';
+        case 'fix': return 'wrench';
+        case 'misc': return 'question';
+    }
+}

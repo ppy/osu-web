@@ -26,16 +26,10 @@ class Changelog extends Model
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
 
-    const ICONS = [
-        '+' => 'plus',
-        '*' => 'wrench',
-        '?' => 'question',
-    ];
-
-    const TOOLTIPS = [
-        '+' => 'add',
-        '*' => 'fix',
-        '?' => 'misc',
+    const PREFIXES = [
+        'add' => '+',
+        'fix' => '*',
+        'misc' => '?',
     ];
 
     // Changelog::all()->listing($offset)->get();
@@ -76,11 +70,6 @@ class Changelog extends Model
 
     public function getPrefixAttribute($value)
     {
-        return self::ICONS[$value];
-    }
-
-    public function getTooltipAttribute($value)
-    {
-        return self::TOOLTIPS[$this->attributes['prefix']];
+        return array_search_null($value, static::PREFIXES);
     }
 }
