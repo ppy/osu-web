@@ -36,7 +36,7 @@
                 <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
-                        <div class="artist__box">
+                        <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">
                             <div class="artist__portrait-wrapper artist__portrait-wrapper--index">
                                 <a href="{{route('artist.show', ['id' => $artist->id])}}" class="artist__portrait artist__portrait--index" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
                                 @if($artist->label !== null)

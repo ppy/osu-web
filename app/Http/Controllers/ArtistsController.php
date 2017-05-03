@@ -31,15 +31,22 @@ class ArtistsController extends Controller
 
     public function index()
     {
+        $artists = Artist::with('label')->withCount('tracks');
+        $user = Auth::user();
+
+        if ($user === null || !$user->isAdmin()) {
+            $artists->where('visible', true);
+        }
+
         return view('artists.index')
-            ->with('artists', Artist::with('label')->withCount('tracks')->where('visible', true)->get());
+            ->with('artists', $artists->get());
     }
 
     public function show($id)
     {
         $artist = Artist::with('label')->findOrFail($id);
-
         $user = Auth::user();
+
         if (!$artist->visible && ($user === null || !$user->isAdmin())) {
             abort(404);
         }
