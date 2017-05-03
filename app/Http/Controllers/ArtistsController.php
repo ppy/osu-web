@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Artist;
 use App\Transformers\ArtistAlbumTransformer;
 use App\Transformers\ArtistTrackTransformer;
@@ -37,6 +38,11 @@ class ArtistsController extends Controller
     public function show($id)
     {
         $artist = Artist::with('label')->findOrFail($id);
+
+        $user = Auth::user();
+        if (!$artist->visible && ($user === null || !$user->isAdmin())) {
+            abort(404);
+        }
 
         $albums = $artist->albums()
             ->where('visible', true)
