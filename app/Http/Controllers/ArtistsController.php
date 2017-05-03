@@ -20,10 +20,10 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\Artist;
 use App\Transformers\ArtistAlbumTransformer;
 use App\Transformers\ArtistTrackTransformer;
+use Auth;
 
 class ArtistsController extends Controller
 {
