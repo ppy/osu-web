@@ -25,7 +25,7 @@
 <div id="js-store-support-osu-player" class="row js-store-support-osu-player store-support-osu">
     <div class="store-support-osu__player-icon">
         <center>
-            <div style="background-image: url('');" class="avatar"></div>
+            <div style="background-image: url('');" class="avatar js-avatar"></div>
         </center>
     </div>
     <div class="store-column store-column--full-width store-support-osu__textual-info">

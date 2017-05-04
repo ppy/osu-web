@@ -67,9 +67,10 @@ class @StoreSupportOsu
       @debouncedGetUser(event.currentTarget.value)
 
   getUser: (username) =>
-    $.post '/users/get-user', username: username
-    .done (data) ->
+    $.post '/users/check-username-exists', username: username
+    .done (data) =>
       console.debug(data)
+      @updateUserDisplay(data)
     .fail (xhr) ->
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
@@ -99,3 +100,8 @@ class @StoreSupportOsu
     @durationElement.textContent = "#{obj.duration} #{monthText}"
     @pricePerMonthElement.textContent = obj.pricePerMonth()
     @discountElement.textContent = obj.discount()
+
+  updateUserDisplay: (user) =>
+    $(@el.querySelector('.js-avatar')).css(
+      'background-image': "url(#{user.avatar_url})"
+    )
