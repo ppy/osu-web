@@ -22,30 +22,32 @@
     </div>
 </div>
 @else
-<div id="js-store-support-osu-player" class="row js-store-support-osu-player">
-    <div>
+<div id="js-store-support-osu-player" class="row js-store-support-osu-player store-support-osu">
+    <div class="store-support-osu__player-icon">
         <center>
             <div style="background-image: url('');" class="avatar"></div>
         </center>
     </div>
-    <div>
+    <div class="store-column store-column--full-width store-support-osu__textual-info">
+        <div class="store-row">
+            <div>
+                <div>Username</div>
+                <div>Currently have no supporter tag</div>
+                <div>Choose your amount</div>
+            </div>
+            <div class="price-box">
+                <p class="js-price price text-right">MONEHS</p>
+                <div class="js-duration text-right">
+                    1 month
+                </div>
+                <div class="js-price-per-month text-right"></div>
+                <div class="js-discount text-right"></div>
+            </div>
+        </div>
         <div>
-            <div>Username</div>
-            <div>Currently have no supporter tag</div>
-            <div>Choose your amount</div>
-        </div>
-    </div>
-    <div class="price-box">
-        <p class="js-price price text-right">MONEHS</p>
-        <div class="js-duration text-right">
-            1 month
-        </div>
-        <div class="js-price-per-month text-right"></div>
-        <div class="js-discount text-right"></div>
-    </div>
-    <div>
-        <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-            <div class="ui-slider-handle"></div>
+            <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
+                <div class="ui-slider-handle"></div>
+            </div>
         </div>
     </div>
 </div>
