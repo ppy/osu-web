@@ -37,13 +37,17 @@ class @StoreSupportOsu
   initialize: =>
     console.debug('init')
     @el = document.getElementById('js-store-support-osu-player')
+    # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
     @durationElement = @el.querySelector('.js-duration')
     @pricePerMonthElement = @el.querySelector('.js-price-per-month')
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
+    @usernameInput = @el.querySelector('#username.form-control')
 
+    @debouncedGetUser = _.debounce @getUser, 300
     @initializeSlider()
+    @initializeUsernameInput()
 
   initializeSlider: =>
     slider = $(@slider).slider {
@@ -57,6 +61,18 @@ class @StoreSupportOsu
     }
     @updateDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
+
+  initializeUsernameInput: =>
+    $(@usernameInput).on 'input', (event) =>
+      @debouncedGetUser(event.currentTarget.value)
+
+  getUser: (username) =>
+    $.post '/users/get-user', username: username
+    .done (data) ->
+      console.debug(data)
+    .fail (xhr) ->
+      if xhr.status == 401
+        osu.popup osu.trans('errors.logged_out'), 'danger'
 
   calculate: (position) =>
     cost = Math.floor(position / @RESOLUTION)

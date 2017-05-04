@@ -31,7 +31,10 @@
     <div class="store-column store-column--full-width store-support-osu__textual-info">
         <div class="store-row">
             <div>
-                <div>Username</div>
+                <span>
+                    {!! Form::label('username', 'Text goes here maybe?????') !!}
+                    {!! Form::text('item[extra_info]', '', ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Who???', 'autocomplete' => 'off']) !!}
+                <span>
                 <div>Currently have no supporter tag</div>
                 <div>Choose your amount</div>
             </div>
