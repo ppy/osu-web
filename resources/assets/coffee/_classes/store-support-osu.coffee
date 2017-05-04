@@ -46,7 +46,7 @@ class @StoreSupportOsu
     @initializeSlider()
 
   initializeSlider: =>
-    $(@slider).slider {
+    slider = $(@slider).slider {
       range: 'min',
       value: @MIN_VALUE * @RESOLUTION,
       min: @MIN_VALUE * @RESOLUTION,
@@ -55,6 +55,8 @@ class @StoreSupportOsu
         values = @calculate(ui.value)
         @updateDisplay(values)
     }
+    @updateDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
+    slider
 
   calculate: (position) =>
     cost = Math.floor(position / @RESOLUTION)
@@ -76,7 +78,8 @@ class @StoreSupportOsu
     Object.assign(Object.create(StoreSupportOsu.Price), values)
 
   updateDisplay: (obj) =>
-    @priceElement.textContent = obj.price
-    @durationElement.textContent = obj.duration
+    @priceElement.textContent = "USD #{obj.price}"
+    monthText = if (obj.duration == 1) then 'month' else 'months'
+    @durationElement.textContent = "#{obj.duration} #{monthText}"
     @pricePerMonthElement.textContent = obj.pricePerMonth()
     @discountElement.textContent = obj.discount()
