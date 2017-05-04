@@ -147,8 +147,29 @@ class @Wiki
     containerRect = @floatTocContainer[0].getBoundingClientRect()
     rect = @floatToc[0].getBoundingClientRect()
 
+    # when the toc is short
+    if rect.height < window.innerHeight
+
+      # reached bottom
+      if containerRect.bottom < rect.height
+        @floatToc[0].style.position = 'absolute'
+        @floatToc[0].style.top = 'auto'
+        @floatToc[0].style.bottom = 0
+        @floatToc[0].style.left = 0
+        @floatToc[0].style.width = 'auto'
+        return
+
+      # floating
+      @floatToc[0].style.position = 'fixed'
+      @floatToc[0].style.top = 0
+      @floatToc[0].style.bottom = 'auto'
+      @floatToc[0].style.left = "#{containerRect.left}px"
+      @floatToc[0].style.width = "#{containerRect.width}px"
+      return
+
+    # when the toc is long
     # reached bottom
-    if containerRect.bottom < rect.height
+    if containerRect.bottom < window.innerHeight
       @floatToc[0].style.position = 'absolute'
       @floatToc[0].style.top = 'auto'
       @floatToc[0].style.bottom = 0
@@ -156,10 +177,19 @@ class @Wiki
       @floatToc[0].style.width = 'auto'
       return
 
+    # scroll with the content
+    if rect.height + containerRect.top > window.innerHeight
+      @floatToc[0].style.position = 'absolute'
+      @floatToc[0].style.top = 0
+      @floatToc[0].style.bottom = 'auto'
+      @floatToc[0].style.left = 0
+      @floatToc[0].style.width = 'auto'
+      return
+
     # floating
     @floatToc[0].style.position = 'fixed'
-    @floatToc[0].style.top = 0
-    @floatToc[0].style.bottom = 'auto'
+    @floatToc[0].style.top = 'auto'
+    @floatToc[0].style.bottom = 0
     @floatToc[0].style.left = "#{containerRect.left}px"
     @floatToc[0].style.width = "#{containerRect.width}px"
 
