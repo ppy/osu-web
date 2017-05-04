@@ -26,6 +26,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\QueryException;
 
 class Topic extends Model
 {
@@ -465,29 +466,46 @@ class Topic extends Model
             return;
         }
 
-        $status = TopicTrack::where(['user_id' => $user->user_id, 'topic_id' => $this->topic_id]);
+        DB::beginTransaction();
 
-        if ($status->first() === null) {
+        $statusQuery = TopicTrack::where(['user_id' => $user->user_id, 'topic_id' => $this->topic_id]);
+        $status = $statusQuery->first();
+
+        if ($status === null) {
             // first time seeing the topic, create tracking entry
             // and increment views count
-            TopicTrack::create([
-                'user_id' => $user->user_id,
-                'topic_id' => $this->topic_id,
-                'forum_id' => $this->forum_id,
-                'mark_time' => $markTime,
-            ]);
+            try {
+                TopicTrack::create([
+                    'user_id' => $user->user_id,
+                    'topic_id' => $this->topic_id,
+                    'forum_id' => $this->forum_id,
+                    'mark_time' => $markTime,
+                ]);
+            } catch (QueryException $ex) {
+                DB::rollback();
+
+                // Duplicate entry.
+                // Retry, hoping $status now contains something.
+                if (is_sql_unique_exception($ex)) {
+                    return $this->markRead($user, $markTime);
+                }
+
+                throw $ex;
+            }
 
             $this->increment('topic_views');
-        } elseif ($status->first()->mark_time < $markTime) {
+        } elseif ($status->mark_time < $markTime) {
             // laravel doesn't like composite key ;_;
             // and the setMarkTimeAttribute doesn't work here
-            $status->update(['mark_time' => $markTime->getTimeStamp()]);
+            $statusQuery->update(['mark_time' => $markTime->getTimeStamp()]);
         }
 
         if ($this->topic_last_view_time < $markTime) {
             $this->topic_last_view_time = $markTime;
             $this->save();
         }
+
+        DB::commit();
     }
 
     public function isIssue()
