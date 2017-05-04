@@ -30,7 +30,7 @@ return [
         'remember' => 'Запомнить этот браузер',
         'title' => 'Пожалуйста войдите для продолжения',
         'failed' => 'Неверный никнейм',
-        'register' => "У Вас нет аккаунта в osu!? Создайте один",
+        'register' => 'У Вас нет аккаунта в osu!? Создайте один',
         'forgot' => 'Забыли свой пароль?',
         'beta' => [
             'main' => 'Доступ к бета-версии доступен привилегированными пользователями.',
@@ -63,7 +63,7 @@ return [
         'origin_country_age' => ':age из :country',
         'page_description' => 'osu! - Всё, что вы хотели знать про :username!',
         'plays_with' => 'Играет с :devices',
-        'title' => "Профиль :username",
+        'title' => 'Профиль :username',
 
         'edit' => [
             'cover' => [
