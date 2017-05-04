@@ -38,17 +38,16 @@
     background-color: @pink-dark;
     border-radius: 50%;
   }
+  &.ui-slider {
+    background-color: lightgray;
+    .ui-slider-range-min {
+      background-color: @pink-dark;
+    }
+  }
 
   &.ui-slider-horizontal {
     height: 8px;
     .ui-slider-handle { top: -5px; margin-left: -9px; }
-    .ui-slider-range-min {
-      background-color: @pink-dark;
-    }
-
-    .ui-slider-range-max {
-      background-color: gray;
-    }
   }
 }
 
