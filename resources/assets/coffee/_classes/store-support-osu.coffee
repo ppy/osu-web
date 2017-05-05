@@ -57,9 +57,9 @@ class @StoreSupportOsu
       max: @MAX_VALUE * @RESOLUTION,
       slide: (event, ui) =>
         values = @calculate(ui.value)
-        @updateDisplay(values)
+        @updatePriceDisplay(values)
     }
-    @updateDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
+    @updatePriceDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
 
   initializeUsernameInput: =>
@@ -94,7 +94,7 @@ class @StoreSupportOsu
 
     Object.assign(Object.create(StoreSupportOsu.Price), values)
 
-  updateDisplay: (obj) =>
+  updatePriceDisplay: (obj) =>
     @priceElement.textContent = "USD #{obj.price}"
     monthText = if (obj.duration == 1) then 'month' else 'months'
     @durationElement.textContent = "#{obj.duration} #{monthText}"
