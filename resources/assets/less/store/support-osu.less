@@ -32,11 +32,17 @@
   }
 }
 
-.store-support-osu--searching {
-  .store-support-osu__user {
-    display: none;
-    &.store-support-osu__user--searching {
-      display: flex;
+.store-support-osu--invalid-user {
+  .js-slider {
+    .ui-slider-handle {
+      background-color: gray;
+      border-radius: 50%;
+    }
+    &.ui-slider {
+      background-color: lightgray;
+      .ui-slider-range-min {
+        background-color: gray;
+      }
     }
   }
 }

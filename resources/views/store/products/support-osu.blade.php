@@ -34,8 +34,9 @@
             <div class="store-row">
                 <div>
                     <span>
-                        {!! Form::label('username', Auth::user()->username) !!}
-                        <button class="js-gift-someone" type="button">Gift someone else!</button>
+                        {!! Form::label('username', 'Gift a player') !!}
+                        {!! Form::text('item[extra_info]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
+                        <span class="js-error error"></span>
                     </span>
                     <div>Currently have no supporter tag</div>
                     <div>Choose your amount</div>
@@ -52,23 +53,6 @@
             <div>
                 <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
                     <div class="ui-slider-handle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="store-support-osu__user store-support-osu__user--searching">
-        <div class="store-support-osu__user-icon">
-            <center>
-                <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
-            </center>
-        </div>
-        <div class="store-column store-column--full-width store-support-osu__textual-info">
-            <div class="store-row">
-                <div>
-                    <span>
-                        {!! Form::text('item[extra_info]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Who???', 'autocomplete' => 'off']) !!}
-                        <button class="js-gift-someone" type="button">Gift this user!</button>
-                    <span>
                 </div>
             </div>
         </div>

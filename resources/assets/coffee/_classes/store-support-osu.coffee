@@ -83,8 +83,9 @@ class @StoreSupportOsu
     $.post '/users/check-username-exists', username: username
     .done (data) =>
       @searchData = data
-      @updateButtonDisplay()
-      @updateUserDisplay(data) if data
+      @updateValidity()
+      @updateUserDisplay(data)
+      @updateSlider(data)
 
     .fail (xhr) ->
       if xhr.status == 401
@@ -109,6 +110,13 @@ class @StoreSupportOsu
 
     Object.assign(Object.create(StoreSupportOsu.Price), values)
 
+  updateValidity: =>
+    $(@el).toggleClass('store-support-osu--invalid-user', !@searchData)
+    if @searchData
+      $('.js-error').text('')
+    else
+      $('.js-error').text("This user doesn't exist!")
+
   updatePriceDisplay: (obj) =>
     @priceElement.textContent = "USD #{obj.price}"
     monthText = if (obj.duration == 1) then 'month' else 'months'
@@ -121,10 +129,5 @@ class @StoreSupportOsu
       'background-image': "url(#{user.avatar_url})"
     )
 
-  updateButtonDisplay: =>
-    console.log(!@searchData && @searching)
-    $(@el.querySelectorAll('.js-gift-someone')).prop('disabled', !@searchData && @searching)
-
-  updateMode: (mode) =>
-    $(@el).toggleClass('store-support-osu--searching', mode)
-    @updateButtonDisplay()
+  updateSlider: (data) ->
+    $('.js-slider').slider({ 'disabled': !data })
