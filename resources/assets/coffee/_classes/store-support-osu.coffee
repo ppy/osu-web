@@ -36,7 +36,13 @@ class @StoreSupportOsu
 
   initialize: =>
     console.debug('init')
-    @el = document.getElementById('js-store-support-osu-player')
+    @searching = false
+    @searchData = null
+    @el = document.getElementById('js-store-support-osu')
+    @currentUser = {
+      username: @el.dataset.username
+      avatar_url: @el.dataset.avatarUrl
+    }
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
     @durationElement = @el.querySelector('.js-duration')
@@ -48,6 +54,9 @@ class @StoreSupportOsu
     @debouncedGetUser = _.debounce @getUser, 300
     @initializeSlider()
     @initializeUsernameInput()
+    $(@el.querySelectorAll('.js-gift-someone')).on 'click', =>
+      @toggleMode()
+    @
 
   initializeSlider: =>
     slider = $(@slider).slider {
@@ -66,11 +75,17 @@ class @StoreSupportOsu
     $(@usernameInput).on 'input', (event) =>
       @debouncedGetUser(event.currentTarget.value)
 
+  toggleMode: =>
+    @searching = !@searching
+    @updateMode(@searching)
+
   getUser: (username) =>
     $.post '/users/check-username-exists', username: username
     .done (data) =>
-      console.debug(data)
-      @updateUserDisplay(data)
+      @searchData = data
+      @updateButtonDisplay()
+      @updateUserDisplay(data) if data
+
     .fail (xhr) ->
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
@@ -102,6 +117,14 @@ class @StoreSupportOsu
     @discountElement.textContent = obj.discount()
 
   updateUserDisplay: (user) =>
-    $(@el.querySelector('.js-avatar')).css(
+    $(@el.querySelectorAll('.js-avatar')).css(
       'background-image': "url(#{user.avatar_url})"
     )
+
+  updateButtonDisplay: =>
+    console.log(!@searchData && @searching)
+    $(@el.querySelectorAll('.js-gift-someone')).prop('disabled', !@searchData && @searching)
+
+  updateMode: (mode) =>
+    $(@el).toggleClass('store-support-osu--searching', mode)
+    @updateButtonDisplay()

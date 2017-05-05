@@ -69,7 +69,7 @@ class UsersController extends Controller
     {
         $username = Request::input('username');
         $user = User::where('username', $username)->first();
-        $response = [];
+        $response = null;
         if (!is_null($user)) {
             $response = [
                 'username' => $user->username,

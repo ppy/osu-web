@@ -24,3 +24,19 @@
   margin: 8px 20px;  // TODO: placeholder
 }
 
+.store-support-osu__user {
+  display: flex;
+  width: 100%;
+  &.store-support-osu__user--searching {
+    display: none;
+  }
+}
+
+.store-support-osu--searching {
+  .store-support-osu__user {
+    display: none;
+    &.store-support-osu__user--searching {
+      display: flex;
+    }
+  }
+}
