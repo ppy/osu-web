@@ -17,10 +17,6 @@
 --}}
 @extends("master")
 
-@php
-$lastDate = null
-@endphp
-
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--changelog-header">
@@ -39,31 +35,11 @@ $lastDate = null
         </div>
 
         <div class="osu-layout__row osu-layout__row--page-compact">
-            <div class="changelog">
-                @foreach($changelogs as $build => $logs)
-                    @if($lastDate !== $logs[0]->gameBuild->date)
-                        <p class="changelog__text changelog__text--date">{{ Carbon\Carbon::parse($logs[0]->gameBuild->date)->format('F j, Y') }}</p>
-                    @endif
-                    @php
-                        $lastDate = $logs[0]->gameBuild->date
-                    @endphp
-                    <p class="changelog__text changelog__text--build">{{$build}}</p>
-
-                    <div class="changelog__list">
-                        @foreach($logs as $log)
-                            <div class="changelog__change changelog-change">
-                                <div class="changelog-change__left">
-                                    <span class="changelog-change__icon fa fa-{{ build_icon($log->prefix) }}" title={{ trans('changelog.prefixes.'.$log->prefix) }}></span>
-                                    <a href="{{route('users.show', ['user' => $log->user_id])}}" class="changelog-change__username">{{ $log->user->username }}</a>
-                                </div>
-                                <div class="changelog-change__right {{ $log->major === 1 ? 'changelog-change__right--major' : '' }}">
-                                    {{ $log->category }}: {{ $log->message }}
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @endforeach
-            </div>
+            @if($build == null)
+                @include('home._changelog_recent')
+            @else
+                @include('home._changelog_single')
+            @endif
         </div>
     </div>
 @endsection
