@@ -20,6 +20,7 @@
 
 namespace App\Providers;
 
+use App\Http\Middleware\StartSession;
 use App\Libraries\OsuAuthorize;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
@@ -84,5 +85,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
         });
+
+        // The middleware breaks without this. Not sure why.
+        // Originally defined in Laravel's SessionServiceProvider.
+        $this->app->singleton(StartSession::class);
     }
 }
