@@ -44,22 +44,10 @@ class HomeController extends Controller
 
     public function getChangelog()
     {
-        $streamId = get_int(Request::input('stream_id'));
         $build = presence(Request::input('build'));
 
-        if ($build === null) {
-            $streamId ?? $streamId = config('osu.changelog.featured_stream');
-
-            $builds = Build::orderBy('date', 'desc')
-                ->take(config('osu.changelog.build_count'))
-                ->where('stream_id', $streamId)
-                ->pluck('version');
-        } else {
-            $builds = [$build];
-        }
-
         $changelogs = Changelog::default()
-            ->whereIn('build', $builds)
+            ->where('build', $build)
             ->with(['gameBuild', 'user'])
             ->orderBy('date', 'desc')
             ->get()
@@ -81,7 +69,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'streamId'));
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build'));
     }
 
     public function getDownload()
