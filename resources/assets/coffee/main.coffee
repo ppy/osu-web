@@ -50,7 +50,6 @@ $(document).on 'submit', 'form', (e) ->
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus
-@password ?= new Password
 @postPreview ?= new PostPreview
 @reactTurbolinks ||= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
@@ -62,7 +61,6 @@ $(document).on 'submit', 'form', (e) ->
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
 @twitchPlayer ?= new TwitchPlayer
-@userEmail ?= new UserEmail
 @wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
