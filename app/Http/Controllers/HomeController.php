@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         $changelogs = Changelog::default();
 
-        if ($build != null) {
+        if ($build !== null) {
             $changelogs->where('build', $build);
         } else {
             $from = Changelog::default()->first();
@@ -61,7 +61,7 @@ class HomeController extends Controller
             ->orderBy('major', 'desc')
             ->get();
 
-        if ($build == null) {
+        if ($build === null) {
             $changelogs = $changelogs->groupBy(function ($item) {
                 return Carbon::parse($item->date)->format('Y-m-d');
             });
