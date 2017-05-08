@@ -26,7 +26,6 @@ class @Wiki
     $(document).on 'turbolinks:load', @initialize
 
     $.subscribe 'stickyHeader', @stickyToc
-    $(document).on 'turbolinks:load', @stickyToc
 
 
   initialize: =>
@@ -41,6 +40,7 @@ class @Wiki
     @setTitle()
     @parseToc()
     @updateLocaleLinks()
+    osu.pageChange()
 
 
   addClasses: =>
