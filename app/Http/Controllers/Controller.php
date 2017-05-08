@@ -58,7 +58,7 @@ abstract class Controller extends BaseController
         Log::log($params);
     }
 
-    protected function login($user, $remember)
+    protected function login($user, $remember = false)
     {
         Request::session()->flush();
         Request::session()->regenerateToken();

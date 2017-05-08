@@ -64,6 +64,7 @@ $(document).on 'submit', 'form', (e) ->
 @userEmail ?= new UserEmail
 @wiki ?= new Wiki
 
+@formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)

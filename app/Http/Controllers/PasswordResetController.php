@@ -80,13 +80,21 @@ class PasswordResetController extends Controller
             return $this->restart('expired');
         }
 
-        if ($session['tries'] > config('osu.user.password_reset.tries')) {
-            return $this->restart('too_many_tries');
+        if (!present($inputKey)) {
+            return response(['form_error' => [
+                'key' => [trans('password_reset.error.missing_key')],
+            ]], 422);
         }
 
         if (!hash_equals($session['key'], $inputKey)) {
             // wrong key
-            Session::put('password_reset.tries', $session['tries'] + 1);
+            $tries = $session['tries'] + 1;
+
+            if ($tries >= config('osu.user.password_reset.tries')) {
+                return $this->restart('too_many_tries');
+            }
+
+            Session::put('password_reset.tries', $tries);
 
             return response(['form_error' => [
                 'key' => [trans('password_reset.error.wrong_key')],
@@ -98,6 +106,7 @@ class PasswordResetController extends Controller
 
         if ($userPassword->save()) {
             $this->clear();
+            $this->login($user);
 
             return ['message' => trans('password_reset.notice.saved')];
         } else {

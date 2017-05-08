@@ -65,12 +65,14 @@ class @FormError
     $(form)
       .find '[name]'
       .each (_i, el) =>
-        $el = $(el)
-        errors = data[$el.attr('name')] ? []
-        state = 'error' if errors.length > 0
+        @setOneError el, data[el.name]
 
-        $el
-          .closest 'label'
-          .attr 'data-form-error-state', state
-          .find '.js-form-error--error'
-          .text errors.join(' ')
+
+  setOneError: (el, errors = []) =>
+    state = if errors.length > 0 then 'error' else ''
+
+    $(el)
+      .closest 'label'
+      .attr 'data-form-error-state', state
+      .find '.js-form-error--error'
+      .text errors.join(' ')
