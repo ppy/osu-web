@@ -35,11 +35,13 @@
         </div>
 
         <div class="osu-layout__row osu-layout__row--page-compact">
-            @if($build == null)
-                @include('home._changelog_recent')
-            @else
-                @include('home._changelog_single')
-            @endif
+            <div class="changelog">
+                @if($build == null)
+                    @include('home._changelog_recent')
+                @else
+                    @include('home._changelog_single')
+                @endif
+            </div>
         </div>
     </div>
 @endsection

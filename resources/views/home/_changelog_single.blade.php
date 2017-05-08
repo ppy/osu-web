@@ -16,13 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<div class="changelog">
-    @foreach($changelogs as $build => $logs)
-        <p class="changelog__text changelog__text--date">{{ Carbon\Carbon::parse($logs[0]->gameBuild->date)->format('F j, Y') }}</p>
-        <p class="changelog__text changelog__text--build">{{$build}}</p>
+<p class="changelog__text changelog__text--date">{{ Carbon\Carbon::parse($changelogs[0]->gameBuild->date)->format('F j, Y') }}</p>
+<p class="changelog__text changelog__text--build">{{$build}}</p>
 
-        <div class="changelog__list">
-            @each('home._changelog_change', $logs, 'log')
-        </div>
-    @endforeach
+<div class="changelog__list">
+    @each('home._changelog_change', $changelogs, 'log')
 </div>

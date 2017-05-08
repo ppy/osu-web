@@ -15,3 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+
+@foreach($changelogs as $date => $logs)
+    <p class="changelog__text changelog__text--date">{{ Carbon\Carbon::parse($date)->format('F j, Y') }}</p>
+
+    <div class="changelog__list">
+        @each('home._changelog_change', $logs, 'log')
+    </div>
+@endforeach

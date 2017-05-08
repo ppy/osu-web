@@ -28,6 +28,7 @@ use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
+use Carbon\Carbon;
 use Request;
 use View;
 
@@ -46,13 +47,25 @@ class HomeController extends Controller
     {
         $build = presence(Request::input('build'));
 
-        $changelogs = Changelog::default()
-            ->where('build', $build)
+        $changelogs = Changelog::default();
+
+        if ($build != null) {
+            $changelogs->where('build', $build);
+        } else {
+            $from = Changelog::default()->first();
+            $changelogs->where('date', '>', Carbon::parse($from->date)->subWeeks(config('osu.changelog.recent_weeks')));
+        }
+
+        $changelogs = $changelogs
             ->with(['gameBuild', 'user'])
-            ->orderBy('date', 'desc')
-            ->get()
-            ->sortByDesc('major')
-            ->groupBy('build');
+            ->orderBy('major', 'desc')
+            ->get();
+
+        if ($build == null) {
+            $changelogs = $changelogs->groupBy(function ($item) {
+                return Carbon::parse($item->date)->format('Y-m-d');
+            });
+        }
 
         $streams = Build::latestByStream()
             ->whereIn('stream_id', config('osu.changelog.update_streams'))
