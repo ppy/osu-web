@@ -112,6 +112,45 @@ class @Wiki
     $('.js-wiki-toc').append $mainToc
 
 
+  positionTocBottom: =>
+    el = @floatToc[0]
+
+    return if el._position == 'bottom'
+
+    el._position = 'bottom'
+    el.style.position = 'absolute'
+    el.style.top = 'auto'
+    el.style.bottom = 0
+    el.style.left = 0
+    el.style.width = 'auto'
+
+
+  positionTocDefault: =>
+    el = @floatToc[0]
+
+    return if el._position == 'default'
+
+    el._position = 'default'
+    el.style.position = 'absolute'
+    el.style.top = 0
+    el.style.bottom = 'auto'
+    el.style.left = 0
+    el.style.width = 'auto'
+
+
+  positionTocFloating: (containerRect) =>
+    el = @floatToc[0]
+
+    return if el._position == 'floating'
+
+    el._position = 'floating'
+    el.style.position = 'fixed'
+    el.style.top = 0
+    el.style.bottom = 'auto'
+    el.style.left = "#{containerRect.left}px"
+    el.style.width = "#{containerRect.width}px"
+
+
   setTitle: =>
     $title = @$content.find('h1').first()
 
@@ -136,32 +175,21 @@ class @Wiki
     return if !@floatToc[0]?
 
     # not floating
-    if target != 'wiki-toc'
-      @floatToc[0].style.position = 'absolute'
-      @floatToc[0].style.top = 0
-      @floatToc[0].style.bottom = 'auto'
-      @floatToc[0].style.left = 0
-      @floatToc[0].style.width = 'auto'
-      return
+    return @positionTocDefault() if target != 'wiki-toc'
 
     containerRect = @floatTocContainer[0].getBoundingClientRect()
     rect = @floatToc[0].getBoundingClientRect()
 
-    # reached bottom
-    if containerRect.bottom < rect.height
-      @floatToc[0].style.position = 'absolute'
-      @floatToc[0].style.top = 'auto'
-      @floatToc[0].style.bottom = 0
-      @floatToc[0].style.left = 0
-      @floatToc[0].style.width = 'auto'
-      return
-
-    # floating
-    @floatToc[0].style.position = 'fixed'
-    @floatToc[0].style.top = 0
-    @floatToc[0].style.bottom = 'auto'
-    @floatToc[0].style.left = "#{containerRect.left}px"
-    @floatToc[0].style.width = "#{containerRect.width}px"
+    if rect.height > window.innerHeight
+      # Toc longer than window, enforce default position
+      @positionTocDefault()
+    else
+      if containerRect.bottom < rect.height
+        # reached bottom
+        @positionTocBottom()
+      else
+        # floating
+        @positionTocFloating(containerRect)
 
 
   updateLocaleLinks: =>
