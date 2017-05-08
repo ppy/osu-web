@@ -17,8 +17,8 @@
 --}}
 <footer class="footer no-print">
     <div class="footer__row">
-        <a class="footer__link" href="{{ osu_url('legal.tos') }}" target="_blank">Terms of Service</a>
-        <a class="footer__link" href="{{ osu_url('legal.dmca') }}" target="_blank">Copyright (DMCA)</a>
+        <a class="footer__link" href="{{ route('wiki.show', ['page' => 'Legal/TOS']) }}" target="_blank">Terms of Service</a>
+        <a class="footer__link" href="{{ route('wiki.show', ['page' => 'Legal/Copyright']) }}" target="_blank">Copyright (DMCA)</a>
         <a class="footer__link" href="{{ osu_url('status.server') }}" target="_blank">Server Status</a>
         <a class="footer__link" href="{{ osu_url('status.osustatus') }}" target="_blank">@osustatus</a>
     </div>

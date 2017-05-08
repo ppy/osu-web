@@ -18,33 +18,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Http\Middleware;
 
-use App\Traits\MacroableModel;
-use Illuminate\Database\Eloquent\Model as BaseModel;
+use Illuminate\Session\Middleware\StartSession as BaseStartSession;
 
-abstract class Model extends BaseModel
+class StartSession extends BaseStartSession
 {
-    use MacroableModel;
-    protected $connection = 'mysql';
-
-    public function getMacros()
+    protected function sessionConfigured()
     {
-        return $this->macros ?? [];
-    }
-
-    public function scopeOrderByField($query, $field, $ids)
-    {
-        $size = count($ids);
-
-        if ($size === 0) {
-            return;
+        if (session('_skip')) {
+            return false;
         }
 
-        $bind = implode(',', array_fill(0, $size, '?'));
-        $string = "FIELD({$field}, {$bind})";
-        $values = array_map('strval', $ids);
-
-        $query->orderByRaw($string, $values);
+        return parent::sessionConfigured();
     }
 }
