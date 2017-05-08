@@ -18,9 +18,7 @@
 
 class @FormConfirmation
   constructor: (@formError) ->
-    @debouncedOnInput = _.debounce @onInput, 500
-    $(document).on 'input', '.js-form-confirmation', @debouncedOnInput
-    $(document).on 'turbolinks:before-cache', @debouncedOnInput.cancel
+    $(document).on 'input', '.js-form-confirmation', @onInput
 
 
   boot: (el) =>

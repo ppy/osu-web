@@ -34,6 +34,7 @@ $(document).on 'submit', 'form', (e) ->
 @currentUserObserver ?= new CurrentUserObserver
 @editorZoom ?= new EditorZoom
 @fancyGraph ?= new FancyGraph
+@formClear ?= new FormClear
 @formError ?= new FormError
 @formPlaceholderHide ?= new FormPlaceholderHide
 @formToggle ?= new FormToggle
