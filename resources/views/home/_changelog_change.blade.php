@@ -27,7 +27,7 @@
         </a>
     </div>
     <div class="changelog-change__right {{ $log->major === 1 ? 'changelog-change__right--major' : '' }}">
-        @if(presence($log->category) === true)
+        @if(present($log->category) === true)
             {{ $log->category }}:
         @endif
         {{ $log->message }}
