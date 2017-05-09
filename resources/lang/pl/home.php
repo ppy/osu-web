@@ -18,12 +18,12 @@
  */
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> jest online w <strong>:games</strong> grach',
-        'peak' => ':count online users',
+        'online' => '<strong>:players</strong> jest obecnie online w <strong>:games</strong> grach',
+        'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
         'download' => [
             '_' => 'Pobierz teraz',
-            'soon' => 'osu! na innych urządzeniach pojawi się wkrótce',
+            'soon' => 'osu! na inne systemy operacyjne pojawi się wkrótce',
             'for' => 'dla :os',
             'other' => 'kliknij tutaj po :os1 lub :os2',
         ],
@@ -36,10 +36,10 @@ return [
         'title' => 'news',
         'news' => [
             'title' => 'Wiadomości',
-            'error' => 'Hustonie, mamy problem, spróbuj odświerzyć stronę.',
+            'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
-            'welcome' => 'Cześć, <strong>:username</strong>!',
+            'welcome' => 'Witaj, <strong>:username!</strong>',
             'messages' => 'Masz 1 nową wiadomość|Masz :count nowych wiadomości',
             'stats' => [
                 'online' => 'Użytkownicy online',
@@ -50,8 +50,8 @@ return [
             'popular' => 'Popularne mapy',
         ],
         'buttons' => [
-            'download' => 'Pobierz osu!',
-            'support' => 'Wesprzyj osu!',
+            'download' => 'pobierz osu!',
+            'support' => 'wesprzyj osu!',
             'store' => 'sklep osu!',
         ],
     ],
