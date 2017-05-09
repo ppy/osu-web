@@ -22,6 +22,9 @@
         <a href="{{route('users.show', ['user' => $log->user_id])}}" class="changelog-change__username">{{ $log->user->username }}</a>
     </div>
     <div class="changelog-change__right {{ $log->major === 1 ? 'changelog-change__right--major' : '' }}">
-        {{ $log->category }}: {{ $log->message }}
+        @if(presence($log->category) === true)
+            {{ $log->category }}:
+        @endif
+        {{ $log->message }}
     </div>
 </div>
