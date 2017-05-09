@@ -39,11 +39,15 @@
                 @foreach($changelogs as $date => $logs)
                     <p class="changelog__text changelog__text--date">{{ $date }}</p>
                     @if ($build !== null)
-                        <p class="changelog__text changelog__text--build">{{ $build }}</p>
+                        <p class="changelog__text changelog__text--build">{{ $build->version }}</p>
                     @endif
 
                     <div class="changelog__list">
-                        @each('home._changelog_change', $logs, 'log')
+                        @if (count($logs) === 0)
+                            @include('home._changelog_change', ['log' => placeholder_change()])
+                        @else
+                            @each('home._changelog_change', $logs, 'log')
+                        @endif
                     </div>
                 @endforeach
             </div>

@@ -25,4 +25,5 @@ return [
         'fix' => 'fix',
         'misc' => 'miscellanous',
     ],
+    'generic' => 'Bug fixes and minor improvements.',
 ];

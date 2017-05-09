@@ -50,9 +50,9 @@ class HomeController extends Controller
         $changelogs = Changelog::default();
 
         if ($build !== null) {
-            Build::where('version', $build)->firstOrFail();
+            $build = Build::where('version', $build)->firstOrFail();
 
-            $changelogs->where('build', $build);
+            $changelogs->where('build', $build->version);
         } else {
             $from = Changelog::default()->first();
             $changelogs->where('date', '>', Carbon::parse($from->date)->subWeeks(config('osu.changelog.recent_weeks')));
@@ -66,7 +66,7 @@ class HomeController extends Controller
         if ($build === null) {
             $changelogs = $changelogs->groupBy('date_formatted');
         } else {
-            $changelogs = [$changelogs[0]->gameBuild->date_formatted => $changelogs];
+            $changelogs = [$build->date_formatted => $changelogs];
         }
 
         $streams = Build::latestByStream()
