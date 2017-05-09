@@ -15,8 +15,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-  class="changelog-stream {{ $featured ? 'changelog-stream--featured' : '' }} {{ $build->version === $stream->version ? 'changelog-stream--active' : '' }} changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}"
-  href={{ route('changelog', ['build' => $stream->version]) }}
+    class="
+        changelog-stream
+        {{ $featured ? 'changelog-stream--featured' : '' }}
+        {{ $build->version === $stream->version ? 'changelog-stream--active' : '' }}
+        changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}
+    "
+    href={{ route('changelog', ['build' => $stream->version]) }}
   >
     <div class="changelog-stream__content">
         <span class="changelog-stream__name">{{ $stream->updateStream->pretty_name }}</span>
