@@ -33,6 +33,7 @@ return [
             'getNews' => 'news',
             'index' => 'osu!',
             'supportTheGame' => 'support the game',
+            'password-reset-index' => 'reset password',
         ],
         'help' => [
             '_' => 'help',

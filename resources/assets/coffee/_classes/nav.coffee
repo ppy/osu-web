@@ -21,6 +21,7 @@ class @Nav
     $(document).on 'mouseenter', '.js-nav-popup', @showPopup
     $(document).on 'mouseleave', '.js-nav-popup', @gracefulHidePopup
     $(document).on 'click', @hidePopup
+    $(document).on 'click', '.js-nav--hide', @hidePopup
 
     $(document).on 'click', '.js-nav-toggle', @toggleMenu
     $(document).on 'click', '.js-nav-switch', @switchMode
@@ -85,7 +86,10 @@ class @Nav
     return if !@data().visible
 
     if e?
-      return if $(e.target).closest('.js-nav-popup').length != 0
+      $target = $(e.target)
+
+      if !$target.hasClass('js-nav--hide') && $target.closest('.js-nav-popup').length != 0
+        return
 
     Timeout.clear @hideTimeout
     @hideTimeout = Timeout.set 10, =>

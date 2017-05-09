@@ -74,6 +74,17 @@
     background-color: #333;
   }
 
+  &--password-reset {
+    .default-box-shadow();
+    .inner-shadow-top();
+    margin-bottom: 10px;
+    background-color: #333;
+
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
   &--small {
     .width(20px);
     @media @desktop {

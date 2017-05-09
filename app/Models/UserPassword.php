@@ -28,11 +28,13 @@ class UserPassword
     use Validatable;
 
     private $user;
+    private $skipCurrentCheck;
     private $validated = false;
 
-    public function __construct($user)
+    public function __construct($user, $skipCurrentCheck = false)
     {
         $this->user = $user;
+        $this->skipCurrentCheck = $skipCurrentCheck;
     }
 
     public function fill($params)
@@ -49,13 +51,18 @@ class UserPassword
             $this->validated = true;
             $this->validationErrors()->reset();
 
-            foreach (['current_password', 'password', 'password_confirmation'] as $param) {
+            $requiredParams = ['password', 'password_confirmation'];
+            if (!$this->skipCurrentCheck) {
+                $requiredParams[] = 'current_password';
+            }
+
+            foreach ($requiredParams as $param) {
                 if (!present($this->params[$param] ?? null)) {
                     $this->validationErrors()->add($param, 'required');
                 }
             }
 
-            if (!Hash::check($this->params['current_password'], $this->user->user_password)) {
+            if (!$this->skipCurrentCheck && !Hash::check($this->params['current_password'], $this->user->user_password)) {
                 $this->validationErrors()->add('current_password', '.wrong_current_password');
             }
 

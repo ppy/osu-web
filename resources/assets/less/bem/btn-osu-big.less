@@ -47,29 +47,18 @@
     background-position: calc(50% ~'-' 20px) 50%;
   }
 
-  &--download {
-    .default-box-shadow();
-    .default-text-shadow();
-    font-style: italic;
-    font-size: @font-size--title-small;
-    padding: 10px 5px;
-  }
+  &[disabled] {
+    &:hover,
+    &:focus,
+    &:active {
+      background-position: 50% 50%;
+    }
 
-  &--user-homepage {
-    display: block;
-    width: 100%;
-    background-image: url('/images/backgrounds/button.svg');
-    background-size: 175%;
-    background-color: @blue;
-    margin-bottom: 5px;
-  }
-
-  &--green {
-    background-color: @green;
-  }
-
-  &--pink {
-    background-color: @pink;
+    &::before {
+      .full-size();
+      border-radius: inherit;
+      background-color: fade(#fff, 50%);
+    }
   }
 
   &--account-edit {
@@ -96,20 +85,6 @@
     background-image: url('/images/backgrounds/buttonpink@2x.png');
   }
 
-  &[disabled] {
-    &:hover,
-    &:focus,
-    &:active {
-      background-position: 50% 50%;
-    }
-
-    &::before {
-      .full-size();
-      border-radius: inherit;
-      background-color: fade(#fff, 50%);
-    }
-  }
-
   &--contest-download {
     width: 300px;
     height: 45px;
@@ -119,8 +94,38 @@
     }
   }
 
+  &--download {
+    .default-box-shadow();
+    .default-text-shadow();
+    font-style: italic;
+    font-size: @font-size--title-small;
+    padding: 10px 5px;
+  }
+
   &--full {
     width: 100%;
+  }
+
+  &--green {
+    background-color: @green;
+  }
+
+  &--password-reset {
+    padding: 10px;
+    text-align: center;
+  }
+
+  &--pink {
+    background-color: @pink;
+  }
+
+  &--user-homepage {
+    display: block;
+    width: 100%;
+    background-image: url('/images/backgrounds/button.svg');
+    background-size: 175%;
+    background-color: @blue;
+    margin-bottom: 5px;
   }
 
   &__content {

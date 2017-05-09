@@ -44,7 +44,7 @@
     </div>
 
     {!! Form::open([
-        'url' => route('users.login'),
+        'url' => route('login'),
         'class' => '
             nav-popup__section
             nav-popup__section--login
@@ -75,7 +75,9 @@
 
         <div class="nav-popup__row nav-popup__row--actions nav-popup__row--with-gutter">
             <div class="nav-popup__action">
-                <a href="#" class="nav-popup__link">{{ trans('layout.popup_login.login.forgot') }}</a>
+                <a href="{{ route('password-reset') }}" class="nav-popup__link js-nav--hide">
+                    {{ trans('layout.popup_login.login.forgot') }}
+                </a>
             </div>
 
             <div class="nav-popup__action">

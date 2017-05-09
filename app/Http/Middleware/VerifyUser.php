@@ -38,7 +38,7 @@ class VerifyUser
     {
         if (!$request->is('account/verify')
             && !$request->is('account/reissue-code')
-            && !$request->is('users/logout')
+            && !$request->is('session')
             && $this->requiresVerification($request)) {
             $verification = new UserVerification($this->auth->user(), $request);
 

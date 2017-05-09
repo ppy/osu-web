@@ -120,9 +120,10 @@ Route::get('/mp/{match}', function ($match) {
 });
 
 Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
-Route::post('users/login', ['as' => 'users.login', 'uses' => 'UsersController@login']);
-Route::delete('users/logout', ['as' => 'users.logout', 'uses' => 'UsersController@logout']);
 Route::get('users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
+
+Route::post('session', 'SessionsController@store')->name('login');
+Route::delete('session', 'SessionsController@destroy')->name('logout');
 
 // Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
 Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () {
@@ -241,6 +242,11 @@ Route::post('/account/verify', ['as' => 'account.verify', 'uses' => 'AccountCont
 Route::put('/account/email', ['as' => 'account.email', 'uses' => 'AccountController@updateEmail']);
 Route::put('/account/page', ['as' => 'account.page', 'uses' => 'AccountController@updatePage']);
 Route::put('/account/password', ['as' => 'account.password', 'uses' => 'AccountController@updatePassword']);
+
+Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
+Route::post('password-reset', 'PasswordResetController@create');
+Route::delete('password-reset', 'PasswordResetController@destroy');
+Route::put('password-reset', 'PasswordResetController@update');
 
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
