@@ -50,6 +50,8 @@ class HomeController extends Controller
         $changelogs = Changelog::default();
 
         if ($build !== null) {
+            Build::where('version', $build)->firstOrFail();
+
             $changelogs->where('build', $build);
         } else {
             $from = Changelog::default()->first();
