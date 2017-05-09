@@ -19,7 +19,12 @@
 <div class="changelog-change">
     <div class="changelog-change__left">
         <span class="changelog-change__icon fa fa-{{ build_icon($log->prefix) }}" title={{ trans('changelog.prefixes.'.$log->prefix) }}></span>
-        <a href="{{route('users.show', ['user' => $log->user_id])}}" class="changelog-change__username">{{ $log->user->username }}</a>
+        <a
+            href="{{route('users.show', ['user' => $log->user_id])}}"
+            class="changelog-change__username"
+        >
+            {{ $log->user->username }}
+        </a>
     </div>
     <div class="changelog-change__right {{ $log->major === 1 ? 'changelog-change__right--major' : '' }}">
         @if(presence($log->category) === true)
