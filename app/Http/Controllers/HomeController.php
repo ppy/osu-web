@@ -62,9 +62,9 @@ class HomeController extends Controller
             ->get();
 
         if ($build === null) {
-            $changelogs = $changelogs->groupBy(function ($item) {
-                return Carbon::parse($item->date)->format('Y-m-d');
-            });
+            $changelogs = $changelogs->groupBy('date_formatted');
+        } else {
+            $changelogs = [$changelogs[0]->gameBuild->date_formatted => $changelogs];
         }
 
         $streams = Build::latestByStream()

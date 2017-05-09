@@ -36,11 +36,16 @@
 
         <div class="osu-layout__row osu-layout__row--page-compact">
             <div class="changelog">
-                @if($build == null)
-                    @include('home._changelog_recent')
-                @else
-                    @include('home._changelog_single')
-                @endif
+                @foreach($changelogs as $date => $logs)
+                    <p class="changelog__text changelog__text--date">{{ $date }}</p>
+                    @if ($build !== null)
+                        <p class="changelog__text changelog__text--build">{{ $build }}</p>
+                    @endif
+
+                    <div class="changelog__list">
+                        @each('home._changelog_change', $logs, 'log')
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

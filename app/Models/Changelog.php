@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class Changelog extends Model
 {
     public $timestamps = false;
@@ -71,5 +73,10 @@ class Changelog extends Model
     public function getPrefixAttribute($value)
     {
         return array_search_null($value, static::PREFIXES);
+    }
+
+    public function getDateFormattedAttribute($value)
+    {
+        return Carbon::parse($this->date)->format('F j, Y');
     }
 }

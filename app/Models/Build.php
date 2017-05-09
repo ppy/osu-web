@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use DB;
 
 class Build extends Model
@@ -50,5 +51,10 @@ class Build extends Model
                     ->whereRaw("b2.stream_id = {$table}.stream_id")
                     ->whereRaw("b2.date > {$table}.date");
             });
+    }
+
+    public function getDateFormattedAttribute($value)
+    {
+        return Carbon::parse($this->date)->format('F j, Y');
     }
 }
