@@ -28,7 +28,6 @@ use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
-use Carbon\Carbon;
 use Request;
 use View;
 
@@ -54,14 +53,15 @@ class HomeController extends Controller
         if ($build !== null) {
             $build = Build::where('version', $build)->firstOrFail();
 
-            $changelogs = [$build->date_formatted => $changelogs->where('build', $build->version)->get()];
+            $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
         } else {
             $from = Changelog::default()->first();
-            
             $changelogs = $changelogs
-                ->where('date', '>', Carbon::parse($from->date)->subWeeks(config('osu.changelog.recent_weeks')))
+                ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
                 ->get()
-                ->groupBy('date_formatted');
+                ->groupBy(function ($item) {
+                    return $item->date->format('F j, Y');
+                });
         }
 
         $streams = Build::latestByStream()

@@ -20,13 +20,15 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-
 class Changelog extends Model
 {
     public $timestamps = false;
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
+
+    protected $dates = [
+        'date',
+    ];
 
     const PREFIXES = [
         'add' => '+',
@@ -75,14 +77,9 @@ class Changelog extends Model
         return array_search_null($value, static::PREFIXES);
     }
 
-    public function getDateFormattedAttribute($value)
-    {
-        return Carbon::parse($this->date)->format('F j, Y');
-    }
-
     public static function placeholder()
     {
-        $b = new Changelog;
+        $b = new self;
         $u = new User;
 
         // not sure if those should be put in config
