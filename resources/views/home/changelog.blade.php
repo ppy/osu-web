@@ -43,11 +43,13 @@
                     @endif
 
                     <div class="changelog__list">
-                        @if (count($logs) === 0)
-                            @include('home._changelog_change', ['log' => placeholder_change()])
-                        @else
-                            @each('home._changelog_change', $logs, 'log')
-                        @endif
+                        @php
+                            if (count($logs) === 0) {
+                                $logs = [App\Models\Changelog::placeholder()];
+                            }
+                        @endphp
+
+                        @each('home._changelog_change', $logs, 'log')
                     </div>
                 @endforeach
             </div>

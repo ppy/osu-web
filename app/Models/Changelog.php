@@ -79,4 +79,24 @@ class Changelog extends Model
     {
         return Carbon::parse($this->date)->format('F j, Y');
     }
+
+    public static function placeholder()
+    {
+        $b = new Changelog;
+        $u = new User;
+
+        // not sure if those should be put in config
+        $u->user_id = 2;
+        $u->username = 'peppy';
+
+        $b->user = $u;
+        $b->user_id = 2;
+        $b->prefix = '*';
+
+        // probably shouldn't be translated for to be consistent
+        // with the rest of the changelogs
+        $b->message = trans('changelog.generic');
+
+        return $b;
+    }
 }

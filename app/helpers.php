@@ -785,23 +785,3 @@ function build_icon($prefix)
         case 'misc': return 'question';
     }
 }
-
-function placeholder_change()
-{
-    $b = new App\Models\Changelog;
-    $u = new App\Models\User;
-
-    // not sure if those should be put in config
-    $u->user_id = 2;
-    $u->username = 'peppy';
-
-    $b->user = $u;
-    $b->user_id = 2;
-    $b->prefix = '*';
-
-    // probably shouldn't be translated for to be consistent
-    // with the rest of the changelogs
-    $b->message = trans('changelog.generic');
-
-    return $b;
-}
