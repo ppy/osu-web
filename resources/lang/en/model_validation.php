@@ -20,6 +20,7 @@
 
 return [
     'required' => ':attribute is required.',
+    'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmap_discussion_post' => [
         'first_post' => 'Can not delete starting post.',

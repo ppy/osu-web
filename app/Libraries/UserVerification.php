@@ -153,6 +153,7 @@ class UserVerification
         $expireDate = $this->request->session()->get('verification_expire_date');
         $tries = $this->request->session()->get('verification_tries');
         $key = $this->request->session()->get('verification_key');
+        $inputKey = str_replace(' ', '', $this->request->input('verification_key'));
 
         if (!present($expireDate) || !present($tries) || !present($key)) {
             $this->issue();
@@ -172,7 +173,7 @@ class UserVerification
             return error_popup(trans('user_verification.errors.retries_exceeded'));
         }
 
-        if (str_replace(' ', '', $this->request->input('verification_key')) !== $key) {
+        if (!hash_equals($key, $inputKey)) {
             $this->request->session()->put('verification_tries', $tries + 1);
 
             return error_popup(trans('user_verification.errors.incorrect_key'));

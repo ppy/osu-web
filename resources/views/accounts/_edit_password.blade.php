@@ -20,7 +20,7 @@
     'method' => 'PUT',
     'data-remote' => true,
     'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-password--form account-edit'
+    'class' => 'js-form-clear js-form-error account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
@@ -30,40 +30,40 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus js-password" data-password-field="current_password">
+            <label class="account-edit-entry js-parent-focus" data-password-field="current_password">
                 <div class="account-edit-entry__label">
                     {{ trans('accounts.edit.password.current') }}
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-password-done-reset--input js-password--input"
+                    class="account-edit-entry__input js-form-clear--target"
                     name="user_password[current_password]"
                     type="password"
                     required
                 >
 
-                <div class="account-edit-entry__error js-password--error"></div>
+                <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
         </div>
 
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus js-password" data-password-field="password">
+            <label class="account-edit-entry js-parent-focus" data-password-field="password">
                 <div class="account-edit-entry__label">
                     {{ trans('accounts.edit.password.new') }}
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-password-done-reset--input js-password--input"
+                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
                     name="user_password[password]"
                     type="password"
                     required
                 >
 
-                <div class="account-edit-entry__error js-password--error"></div>
+                <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
 
             <label
-                class="account-edit-entry js-parent-focus js-password-validation js-password"
+                class="account-edit-entry js-parent-focus"
                 data-password-field="password_confirmation"
             >
                 <div class="account-edit-entry__label">
@@ -71,13 +71,13 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-password-done-reset--input js-password--input"
+                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
                     name="user_password[password_confirmation]"
                     type="password"
                     required
                 >
 
-                <div class="account-edit-entry__error js-password--error"></div>
+                <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
         </div>
 

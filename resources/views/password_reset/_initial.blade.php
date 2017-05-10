@@ -15,13 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<script data-turbolinks-eval="always">
-    var csrf = "{{ csrf_token() }}";
-    var section = "{{ $current_section }}";
-    var page = "{{ $current_action }}";
-    var canonicalUrl = "{{ $canonicalUrl or '' }}";
-    var reloadUrl = "{{ $reloadUrl or '' }}";
-    var diqusShortName = "{{ config('services.disqus.short_name') }}";
-</script>
+{!! Form::open([
+    'route' => 'password-reset',
+    'class' => 'password-reset js-form-error',
+    'method' => 'POST',
+    'data-remote' => true,
+    'data-reload-on-success' => '1',
+    'data-skip-ajax-error-popup' => '1',
+]) !!}
+    <label class="password-reset__input-group">
+        {{ trans('password_reset.starting.username') }}
 
-@include ('layout._current_user')
+        <input name="username" class="password-reset__input" autofocus>
+    </label>
+
+    <div class="password-reset__input-group">
+        <button class="btn-osu-big btn-osu-big--password-reset">
+            {{ trans('password_reset.button.start') }}
+        </button>
+    </div>
+{!! Form::close() !!}

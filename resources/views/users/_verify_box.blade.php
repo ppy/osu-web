@@ -62,7 +62,7 @@
                 ['class' => 'js-user-verification--reissue user-verification__link']
             ),
             'logout_link' => link_to_route(
-                'users.logout',
+                'logout',
                 trans('user_verification.box.info.logout_link'),
                 [],
                 [

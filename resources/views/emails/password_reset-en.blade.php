@@ -15,13 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<script data-turbolinks-eval="always">
-    var csrf = "{{ csrf_token() }}";
-    var section = "{{ $current_section }}";
-    var page = "{{ $current_action }}";
-    var canonicalUrl = "{{ $canonicalUrl or '' }}";
-    var reloadUrl = "{{ $reloadUrl or '' }}";
-    var diqusShortName = "{{ config('services.disqus.short_name') }}";
-</script>
+Hi {{ $user->username }},
 
-@include ('layout._current_user')
+Either you or someone pretending to be you has requested a password reset on your osu! account.
+
+Your verification code is: {{ $key }}
+
+Please reply to this email IMMEDIATELY if you did not request this change.
+
+@include('emails._signature')

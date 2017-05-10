@@ -15,13 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<script data-turbolinks-eval="always">
-    var csrf = "{{ csrf_token() }}";
-    var section = "{{ $current_section }}";
-    var page = "{{ $current_action }}";
-    var canonicalUrl = "{{ $canonicalUrl or '' }}";
-    var reloadUrl = "{{ $reloadUrl or '' }}";
-    var diqusShortName = "{{ config('services.disqus.short_name') }}";
-</script>
+@extends('master', ['body_additional_classes' => 'osu-layout--body-dark'])
 
-@include ('layout._current_user')
+@section('content')
+    <div class="osu-page">
+        <div class="osu-page-header osu-page-header--password-reset">
+            <h1 class="osu-page-header__title">
+                {{ trans('password_reset.title') }}
+            </h1>
+        </div>
+    </div>
+
+    <div class="osu-page osu-page--password-reset">
+        @if ($isStarted)
+            @include('password_reset._reset')
+        @else
+            @include('password_reset._initial')
+        @endif
+    </div>
+@endsection

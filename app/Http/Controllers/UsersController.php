@@ -33,10 +33,6 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['only' => [
-            'login',
-        ]]);
-
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
         ]]);
@@ -66,48 +62,6 @@ class UsersController extends Controller
             'cost' => $cost,
             'costString' => currency($cost),
         ];
-    }
-
-    public function login()
-    {
-        $ip = Request::getClientIp();
-        $username = Request::input('username');
-        $password = Request::input('password');
-        $remember = Request::input('remember') === 'yes';
-
-        $user = User::findForLogin($username);
-        $authError = User::attemptLogin($user, $password, $ip);
-
-        if ($authError === null) {
-            Request::session()->flush();
-            Request::session()->regenerateToken();
-            Auth::login($user, $remember);
-
-            return [
-                'header' => render_to_string('layout._header_user'),
-                'header_popup' => render_to_string('layout._popup_user'),
-                'user' => Auth::user()->defaultJson(),
-            ];
-        } else {
-            return error_popup($authError);
-        }
-    }
-
-    public function logout()
-    {
-        if (Auth::check()) {
-            Auth::logout();
-
-            // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-            unset($_COOKIE['phpbb3_2cjk5_sid']);
-            unset($_COOKIE['phpbb3_2cjk5_sid_check']);
-            setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
-            setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
-        }
-
-        Request::session()->flush();
-
-        return [];
     }
 
     public function show($id)
