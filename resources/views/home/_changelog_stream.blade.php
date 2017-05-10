@@ -18,7 +18,7 @@
     class="
         changelog-stream
         {{ $featured ? 'changelog-stream--featured' : '' }}
-        {{ $build->version === $stream->version ? 'changelog-stream--active' : '' }}
+        {{ $build !== null && $build->version === $stream->version ? 'changelog-stream--active' : '' }}
         changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}
     "
     href={{ route('changelog', ['build' => $stream->version]) }}
