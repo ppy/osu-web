@@ -29,8 +29,7 @@ class Image extends Base
     public $url;
     public $referrer;
 
-    // cache variable, filled in value is either null or an array
-    private $data = false;
+    private $cache = [];
 
     public function __construct($path, $url = null, $referrer = null)
     {
@@ -46,8 +45,8 @@ class Image extends Base
 
     public function data()
     {
-        if ($this->data === false) {
-            $this->data = Cache::remember($this->cacheKeyData(), static::CACHE_DURATION, function () {
+        if (!array_key_exists('data', $this->cache)) {
+            $this->cache['data'] = Cache::remember($this->cacheKeyData(), static::CACHE_DURATION, function () {
                 try {
                     $data = static::fetchContent($this->path);
                     $type = image_type_to_mime_type(
@@ -67,6 +66,6 @@ class Image extends Base
             });
         }
 
-        return $this->data;
+        return $this->cache['data'];
     }
 }
