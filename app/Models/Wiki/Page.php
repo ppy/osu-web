@@ -22,6 +22,7 @@ namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
+use App\Libraries\WikiProcessor;
 use Cache;
 use Es;
 
@@ -74,7 +75,7 @@ class Page extends Base
 
     public function cacheKeyPage()
     {
-        return 'wiki:page:page:'.$this->pagePath;
+        return 'wiki:page:page:'.WikiProcessor::VERSION.':'.$this->pagePath;
     }
 
     public function editUrl()
@@ -159,7 +160,11 @@ class Page extends Base
                     }
                     $this->indexAdd($page);
 
-                    return $page;
+                    if (present($page)) {
+                        return WikiProcessor::process($page, [
+                            'path' => '/wiki/'.$this->path,
+                        ]);
+                    }
                 }
             );
         }

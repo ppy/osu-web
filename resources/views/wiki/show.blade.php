@@ -30,7 +30,13 @@
                     <h2 class="osu-page-header__title osu-page-header__title--small">{{ $subtitle }}</h2>
                 @endif
 
-                <h1 class="js-wiki-title osu-page-header__title osu-page-header__title--main">{{ $title }}</h1>
+                <h1 class="osu-page-header__title osu-page-header__title--main">
+                    @if (isset($page->page()['title']))
+                        {{ $page->page()['title'] }}
+                    @else
+                        {{ $title }}
+                    @endif
+                </h1>
             </div>
 
             @if (!empty($page->locales()))
@@ -102,13 +108,15 @@
                     <h2 class="wiki-toc__title">
                         {{ trans('wiki.show.toc') }}
                     </h2>
+
+                    @include('wiki._toc')
                 </div>
             </div>
 
             <div class="wiki-page__content">
                 <div class="js-wiki-content">
-                    @if (present($page->page()))
-                        {!! Markdown::convertToHtml($page->page()) !!}
+                    @if ($page->page() !== null)
+                        {!! $page->page()['output'] !!}
                     @else
                         @if (empty($page->locales()))
                             {{ trans('wiki.show.missing') }}

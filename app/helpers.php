@@ -279,7 +279,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($page, $locale = null)
 {
-    $url = route('wiki.show', ['page' => $page]).'/';
+    $url = route('wiki.show', ['page' => $page]);
 
     if (present($locale) && $locale !== App::getLocale()) {
         $url .= '?locale='.$locale;

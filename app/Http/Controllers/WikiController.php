@@ -40,11 +40,6 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        // ensure correct relative paths
-        if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
-            return $this->redirectWithTrailingSlash();
-        }
-
         $page = new Wiki\Page($path, $this->locale());
         $titles = explode('/', str_replace('_', ' ', trim($path, '/')), 2);
         $title = array_pop($titles);
@@ -75,15 +70,6 @@ class WikiController extends Controller
     private function locale()
     {
         return Request::input('locale', App::getLocale());
-    }
-
-    private function redirectWithTrailingSlash()
-    {
-        $queryString = present(Request::getQueryString())
-            ? '?'.Request::getQueryString()
-            : '';
-
-        return ujs_redirect(Request::url().'/'.$queryString);
     }
 
     private function showImage($path)
