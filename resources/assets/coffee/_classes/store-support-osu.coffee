@@ -35,7 +35,6 @@ class @StoreSupportOsu
     $(document).on 'turbolinks:load', @initialize
 
   initialize: =>
-    console.debug('init')
     @searching = false
     @searchData = null
     @el = document.getElementById('js-store-support-osu')
@@ -86,7 +85,6 @@ class @StoreSupportOsu
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
     .always =>
-      console.log(@searching)
       @searching = false
 
   calculate: (position) =>
@@ -110,7 +108,6 @@ class @StoreSupportOsu
 
   onInput: (event) =>
     if !@searching
-      console.log(@searching)
       @searching = true
       # need to trigger immediately.
       # without setTimeout, some browsers might not trigger the class update
