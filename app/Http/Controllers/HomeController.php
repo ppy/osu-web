@@ -47,8 +47,7 @@ class HomeController extends Controller
         $build = presence(Request::input('build'));
 
         $changelogs = Changelog::default()
-            ->with('user')
-            ->orderBy('major', 'desc');
+            ->with('user');
 
         if ($build !== null) {
             $build = Build::where('version', $build)->firstOrFail();

@@ -55,7 +55,10 @@ class Changelog extends Model
 
     public function scopeDefault($query)
     {
-        return $query->where('private', 0)->orderBy('date', 'desc');
+        return $query
+            ->where('private', 0)
+            ->orderBy('date', 'desc')
+            ->orderBy('major', 'desc');
     }
 
     public function user()
