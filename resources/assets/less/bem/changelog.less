@@ -19,17 +19,18 @@
 .changelog {
   padding: 20px;
 
-  &__list {
-    padding-bottom: 10px;
+  @media @desktop {
+    padding-left: @padding-big;
+    padding-right: @padding-big;
+  }
 
-    @media @desktop {
-      padding: 0 120px;
-    }
+  &__list {
+    margin-bottom: 50px;
   }
 
   &__text {
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     margin: 0;
 
     &--build {
