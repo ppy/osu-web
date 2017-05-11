@@ -145,5 +145,5 @@ class @StoreSupportOsu
     )
 
   updateSlider: (enabled) =>
-    $(@el).toggleClass('store-support-osu--invalid-user', !enabled)
+    $(@el).toggleClass('store-support-osu--disabled', !enabled)
     $('.js-slider').slider({ 'disabled': !enabled })
