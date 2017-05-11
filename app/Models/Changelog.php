@@ -25,6 +25,7 @@ class Changelog extends Model
     public $timestamps = false;
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
+    protected $guarded = [];
 
     protected $dates = [
         'date',
@@ -79,21 +80,19 @@ class Changelog extends Model
 
     public static function placeholder()
     {
-        $b = new self;
-        $u = new User;
+        $user = new User([
+            // not sure if those should be put in config
+            'user_id' => 2,
+            'username' => 'peppy',
+        ]);
 
-        // not sure if those should be put in config
-        $u->user_id = 2;
-        $u->username = 'peppy';
+        $change = new static([
+            'user' => $user,
+            'user_id' => $user->user_id,
+            'prefix' => '*',
+            'message' => trans('changelog.generic'),
+        ]);
 
-        $b->user = $u;
-        $b->user_id = 2;
-        $b->prefix = '*';
-
-        // probably shouldn't be translated for to be consistent
-        // with the rest of the changelogs
-        $b->message = trans('changelog.generic');
-
-        return $b;
+        return $change;
     }
 }
