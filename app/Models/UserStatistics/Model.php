@@ -20,6 +20,7 @@
 
 namespace App\Models\UserStatistics;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -31,6 +32,11 @@ abstract class Model extends BaseModel
     protected $guarded = [];
 
     const UPDATED_AT = 'last_update';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function setCreatedAt($value)
     {
