@@ -47,7 +47,7 @@ class HomeController extends Controller
         $build = presence(Request::input('build'));
 
         $changelogs = Changelog::default()
-            ->with(['gameBuild', 'user'])
+            ->with('user')
             ->orderBy('major', 'desc');
 
         if ($build !== null) {
