@@ -22,15 +22,14 @@
   flex-grow: 1;
   align-items: center;
 
-  min-height: 40px;
-  padding: 10px 0;
+  padding: 5px 0;
 
   @media @mobile {
     flex-direction: column;
   }
 
-  &:not(:last-of-type) {
-    border-bottom: 1px solid #eee;
+  & + & {
+    border-top: 1px solid #eee;
   }
 
   &__icon {
