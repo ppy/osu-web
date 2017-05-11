@@ -73,23 +73,19 @@ class @StoreSupportOsu
 
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', (event) =>
-      @debouncedGetUser(event.currentTarget.value)
-
-  toggleMode: =>
-    @searching = !@searching
-    @updateMode(@searching)
+      @onInput(event)
 
   getUser: (username) =>
     $.post '/users/check-username-exists', username: username
     .done (data) =>
-      @searchData = data
-      @updateValidity()
+      @updateSlider(data?)
       @updateUserDisplay(data)
-      @updateSlider(data)
-
     .fail (xhr) ->
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
+    .always =>
+      console.log(@searching)
+      @searching = false
 
   calculate: (position) =>
     cost = Math.floor(position / @RESOLUTION)
@@ -110,12 +106,22 @@ class @StoreSupportOsu
 
     Object.assign(Object.create(StoreSupportOsu.Price), values)
 
-  updateValidity: =>
-    $(@el).toggleClass('store-support-osu--invalid-user', !@searchData)
-    if @searchData
-      $('.js-error').text('')
-    else
-      $('.js-error').text("This user doesn't exist!")
+  onInput: (event) =>
+    if !@searching
+      console.log(@searching)
+      @searching = true
+      # need to trigger immediately.
+      # without setTimeout, some browsers might not trigger the class update
+      # until after the debounce?
+      setTimeout(() =>
+        @updateSearchResult(true)
+        @updateSlider(false)
+      , 0)
+
+    @debouncedGetUser(event.currentTarget.value)
+
+  updateSearchResult: (searching) ->
+    $('.js-error').text('searching') if searching
 
   updatePriceDisplay: (obj) =>
     @priceElement.textContent = "USD #{obj.price}"
@@ -125,9 +131,15 @@ class @StoreSupportOsu
     @discountElement.textContent = obj.discount()
 
   updateUserDisplay: (user) =>
+    if user
+      $('.js-error').text('')
+    else
+      $('.js-error').text("This user doesn't exist!")
+
     $(@el.querySelectorAll('.js-avatar')).css(
       'background-image': "url(#{user.avatar_url})"
     )
 
-  updateSlider: (data) ->
-    $('.js-slider').slider({ 'disabled': !data })
+  updateSlider: (enabled) =>
+    $(@el).toggleClass('store-support-osu--invalid-user', !enabled)
+    $('.js-slider').slider({ 'disabled': !enabled })
