@@ -80,7 +80,9 @@ class @StoreSupportOsu
     .done (data) =>
       @updateSlider(data?)
       @updateUserDisplay(data)
-    .fail (xhr) ->
+    .fail (xhr) =>
+      @updateSlider(false)
+      @updateUserDisplay(null)
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
     .always =>
@@ -131,13 +133,15 @@ class @StoreSupportOsu
     @discountElement.textContent = obj.discount()
 
   updateUserDisplay: (user) =>
-    if user
-      $('.js-error').text('')
-    else
-      $('.js-error').text("This user doesn't exist!")
+    avatarUrl = if user
+                   $('.js-error').text('')
+                   user.avatar_url
+                 else
+                   $('.js-error').text("This user doesn't exist!")
+                   ''
 
     $(@el.querySelectorAll('.js-avatar')).css(
-      'background-image': "url(#{user.avatar_url})"
+      'background-image': "url(#{avatarUrl})"
     )
 
   updateSlider: (enabled) =>

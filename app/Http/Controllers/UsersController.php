@@ -75,6 +75,8 @@ class UsersController extends Controller
                 'username' => $user->username,
                 'avatar_url' => $user->user_avatar,
             ];
+        } else {
+            abort(404);
         }
         return $response;
     }
