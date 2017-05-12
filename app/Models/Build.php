@@ -52,4 +52,9 @@ class Build extends Model
 
         $query->whereIn('build_id', $latestBuildIds);
     }
+
+    public function getVersionAttribute($value)
+    {
+        return preg_replace('#[^0-9.]#', '', $value);
+    }
 }
