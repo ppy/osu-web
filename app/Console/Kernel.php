@@ -55,6 +55,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('store:tracking')
             ->cron('0 0,8,16 * * *');
+
+        $schedule->command('builds:update-propagation-history')
+            ->everyThirtyMinutes();
     }
 
     protected function commands()
