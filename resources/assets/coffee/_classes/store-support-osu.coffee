@@ -64,14 +64,15 @@ class @StoreSupportOsu
       value: @MIN_VALUE * @RESOLUTION,
       min: @MIN_VALUE * @RESOLUTION,
       max: @MAX_VALUE * @RESOLUTION,
-      step: 32,
+      step: 1,
+      animate: 'fast',
       slide: (event, ui) =>
         @onSliderValueChanged event, ui
       change: (event, ui) =>
         @onSliderValueChanged event, ui
     }
     .slider('pips', {
-      step: 1,
+      step: 32,
       rest: "label",
       labels: ['1', '2', '4', '6', '8', '10', '12', '', '16', '', '20', '', '24']
     })
@@ -109,13 +110,13 @@ class @StoreSupportOsu
     cost = Math.floor(position / @RESOLUTION)
     values = switch
       when cost < @MIN_VALUE then { price: @MIN_VALUE, duration: 0 }
-      when cost < 8 then { price: 4, duration: 1 }
-      when cost < 12 then { price: 8, duration: 2 }
-      when cost < 16 then { price: 12, duration: 4 }
-      when cost < 20 then { price: 16, duration: 6 }
-      when cost < 22 then { price: 20, duration: 8 }
-      when cost < 24 then { price: 22, duration: 9 }
-      when cost < 26 then { price: 24, duration: 10 }
+      when cost < 8 then { price: cost, duration: 1 }
+      when cost < 12 then { price: cost, duration: 2 }
+      when cost < 16 then { price: cost, duration: 4 }
+      when cost < 20 then { price: cost, duration: 6 }
+      when cost < 22 then { price: cost, duration: 8 }
+      when cost < 24 then { price: cost, duration: 9 }
+      when cost < 26 then { price: cost, duration: 10 }
       else
         months = 0
         while ((months + 1) / 12 * 26 <= cost)
