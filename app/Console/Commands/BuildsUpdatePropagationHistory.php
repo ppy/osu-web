@@ -39,7 +39,7 @@ class BuildsUpdatePropagationHistory extends Command
      */
     public function handle()
     {
-        foreach(config('osu.changelog.tracked_streams') as $stream_id) {
+        foreach (config('osu.changelog.tracked_streams') as $stream_id) {
             $count = Build::propagationHistory()
                 ->where('stream_id', $stream_id)
                 ->sum('users');
