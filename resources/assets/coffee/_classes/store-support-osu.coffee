@@ -74,7 +74,10 @@ class @StoreSupportOsu
     .slider('pips', {
       step: 32,
       rest: "label",
-      labels: ['1', '2', '4', '6', '8', '10', '12', '', '16', '', '20', '', '24']
+      labels: (value) ->
+        console.debug(value)
+        return value
+      # labels: ['1', '2', '4', '6', '8', '10', '12', '', '16', '', '20', '', '24']
     })
     @updatePriceDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
