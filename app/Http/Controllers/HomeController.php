@@ -64,6 +64,7 @@ class HomeController extends Controller
         }
 
         $streams = Build::latestByStream(config('osu.changelog.update_streams'))
+            ->orderByField('stream_id', config('osu.changelog.update_streams'))
             ->with('updateStream')
             ->get();
 
