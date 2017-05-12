@@ -25,7 +25,7 @@
   >
     <div class="changelog-stream__content">
         <span class="changelog-stream__name">{{ $stream->updateStream->pretty_name }}</span>
-        <span class="changelog-stream__build">{{ $stream->version }}</span>
+        <span class="changelog-stream__build">{{ $stream->displayVersion() }}</span>
         <span class="changelog-stream__users">{{ trans_choice('changelog.users-online', $stream->users, ['users' => $stream->users]) }}</span>
     </div>
     <div class="changelog-stream__indicator"></div>

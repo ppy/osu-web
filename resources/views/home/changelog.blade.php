@@ -39,7 +39,9 @@
                 @foreach($changelogs as $date => $logs)
                     <p class="changelog__text changelog__text--date">{{ $date }}</p>
                     @if ($build !== null)
-                        <p class="changelog__text changelog__text--build">{{ $build->version }}</p>
+                        <p class="changelog__text changelog__text--build">
+                            {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+                        </p>
                     @endif
 
                     <div class="changelog__list">

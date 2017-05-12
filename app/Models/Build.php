@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use DB;
-
 class Build extends Model
 {
     public $timestamps = false;
@@ -43,16 +41,18 @@ class Build extends Model
         return $this->hasMany(Changelog::class, 'build', 'version');
     }
 
-    public function scopeLatestByStream($query)
+    public function scopeLatestByStream($query, $streamIds)
     {
-        $query
-            ->whereNotNull('stream_id')
-            ->whereNotExists(function ($q) {
-                $table = $this->getTable();
-                $q->selectRaw(1)
-                    ->from(DB::raw("{$table} b2"))
-                    ->whereRaw("b2.stream_id = {$table}.stream_id")
-                    ->whereRaw("b2.date > {$table}.date");
-            });
+        $latestBuildIds = static::selectRaw('MAX(build_id) latest_build_id')
+            ->whereIn('stream_id', $streamIds)
+            ->groupBy('stream_id')
+            ->pluck('latest_build_id');
+
+        $query->whereIn('build_id', $latestBuildIds);
+    }
+
+    public function displayVersion()
+    {
+        return preg_replace('#[^0-9.]#', '', $this->version);
     }
 }

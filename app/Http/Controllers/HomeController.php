@@ -50,7 +50,7 @@ class HomeController extends Controller
             ->with('user');
 
         if ($build !== null) {
-            $build = Build::where('version', $build)->firstOrFail();
+            $build = Build::with('updateStream')->where('version', $build)->firstOrFail();
 
             $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
         } else {
@@ -63,8 +63,8 @@ class HomeController extends Controller
                 });
         }
 
-        $streams = Build::latestByStream()
-            ->whereIn('stream_id', config('osu.changelog.update_streams'))
+        $streams = Build::latestByStream(config('osu.changelog.update_streams'))
+            ->orderByField('stream_id', config('osu.changelog.update_streams'))
             ->with('updateStream')
             ->get();
 
