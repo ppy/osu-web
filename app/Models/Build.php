@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use DB;
-
 class Build extends Model
 {
     public $timestamps = false;
