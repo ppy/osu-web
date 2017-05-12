@@ -92,7 +92,6 @@ return [
             'mapper' => '/p/kudosu',
         ],
         'home' => [
-            'changelog' => '/p/changelog',
             'download' => '/p/download',
             'news' => '/p/news',
         ],
@@ -112,5 +111,10 @@ return [
             'key_length' => 8,
             'tries' => 8,
         ],
+    ],
+    'changelog' => [
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
     ],
 ];

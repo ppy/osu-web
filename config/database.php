@@ -101,6 +101,21 @@ return [
             ],
         ],
 
+        'mysql-updates' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'localhost'),
+            'database' => env('DB_DATABASE_UPDATES', 'osu_updates'),
+            'username' => env('DB_USERNAME', 'osuweb'),
+            'password' => env('DB_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_general_ci',
+            'prefix' => '',
+            'strict' => false,
+            'options' => [
+                PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
+            ],
+        ],
+
     ],
 
     /*

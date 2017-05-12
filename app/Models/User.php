@@ -758,6 +758,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return Beatmap::modeStr($this->osu_playmode);
     }
 
+    public function changelogs()
+    {
+        return $this->hasMany(Changelog::class, 'user_id');
+    }
+
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($attribute);

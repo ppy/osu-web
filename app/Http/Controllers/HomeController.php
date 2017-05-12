@@ -23,6 +23,8 @@ namespace App\Http\Controllers;
 use App;
 use App\Libraries\CurrentStats;
 use App\Models\Beatmapset;
+use App\Models\Build;
+use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
 use Auth;
@@ -42,7 +44,41 @@ class HomeController extends Controller
 
     public function getChangelog()
     {
-        return view('home.changelog');
+        $build = presence(Request::input('build'));
+
+        $changelogs = Changelog::default()
+            ->with('user');
+
+        if ($build !== null) {
+            $build = Build::where('version', $build)->firstOrFail();
+
+            $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
+        } else {
+            $from = Changelog::default()->first();
+            $changelogs = $changelogs
+                ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
+                ->get()
+                ->groupBy(function ($item) {
+                    return $item->date->format('F j, Y');
+                });
+        }
+
+        $streams = Build::latestByStream()
+            ->whereIn('stream_id', config('osu.changelog.update_streams'))
+            ->with('updateStream')
+            ->get();
+
+        $featuredStream = null;
+
+        foreach ($streams as $index => $stream) {
+            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
+                $featuredStream = $stream;
+                unset($streams[$index]);
+                break;
+            }
+        }
+
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build'));
     }
 
     public function getDownload()

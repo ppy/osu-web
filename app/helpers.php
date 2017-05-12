@@ -306,7 +306,7 @@ function nav_links()
 
     $links['home'] = [
         'getNews' => osu_url('home.news'),
-        'getChangelog' => osu_url('home.changelog'),
+        'getChangelog' => route('changelog'),
         'getDownload' => osu_url('home.download'),
     ];
     $links['help'] = [
@@ -344,7 +344,7 @@ function footer_links()
     $links = [];
     $links['general'] = [
         'home' => route('home'),
-        'changelog' => osu_url('home.changelog'),
+        'changelog' => route('changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
         'wiki' => route('wiki.show', ['page' => 'Welcome']),
@@ -775,4 +775,13 @@ function find_first_image($html)
     }
 
     return $post_images[0];
+}
+
+function build_icon($prefix)
+{
+    switch ($prefix) {
+        case 'add': return 'plus';
+        case 'fix': return 'wrench';
+        case 'misc': return 'question';
+    }
 }
