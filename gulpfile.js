@@ -112,6 +112,7 @@ elixir(function(mix) {
   ], 'public/js/vendor.js')
   .scripts([
     'ga.js',
+    'jquery-ui-slider-pips.js',
     'messages.js',
     'laroute.js',
     'build/app-main.js',
