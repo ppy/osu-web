@@ -54,6 +54,14 @@
                 <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
                     <div class="ui-slider-handle"></div>
                 </div>
+                <button type="button" class="js-slider-preset" data-preset-value="8">2 months</button>
+                <button type="button" class="js-slider-preset" data-preset-value="12"></button>
+                <button type="button" class="js-slider-preset" data-preset-value="16"></button>
+                <button type="button" class="js-slider-preset" data-preset-value="20"></button>
+                <button type="button" class="js-slider-preset" data-preset-value="22"></button>
+                <button type="button" class="js-slider-preset" data-preset-value="24"></button>
+                <button type="button" class="js-slider-preset" data-preset-value="26"></button>
+                <button type="button" class="js-slider-preset" data-preset-value="52"></button>
             </div>
         </div>
     </div>

@@ -52,6 +52,7 @@ class @StoreSupportOsu
 
     @debouncedGetUser = _.debounce @getUser, 300
     @initializeSlider()
+    @initializeSliderPresets()
     @initializeUsernameInput()
     $(@el.querySelectorAll('.js-gift-someone')).on 'click', =>
       @toggleMode()
@@ -69,6 +70,16 @@ class @StoreSupportOsu
     }
     @updatePriceDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
+
+  initializeSliderPresets: =>
+    $(@el.querySelectorAll('.js-slider-preset')).on 'click', (event) =>
+      target = event.currentTarget
+      console.log(target.dataset)
+      $(@slider).slider('option', 'value', target.dataset.presetValue * @RESOLUTION)
+
+    # # add presets
+    # for key, value of StoreSupportOsu.Presets
+    #   console.log("#{key}, #{value}")
 
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', (event) =>
