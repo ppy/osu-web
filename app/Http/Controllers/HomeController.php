@@ -63,8 +63,7 @@ class HomeController extends Controller
                 });
         }
 
-        $streams = Build::latestByStream()
-            ->whereIn('stream_id', config('osu.changelog.update_streams'))
+        $streams = Build::latestByStream(config('osu.changelog.update_streams'))
             ->with('updateStream')
             ->get();
 
