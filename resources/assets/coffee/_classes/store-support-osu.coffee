@@ -65,8 +65,9 @@ class @StoreSupportOsu
       min: @MIN_VALUE * @RESOLUTION,
       max: @MAX_VALUE * @RESOLUTION,
       slide: (event, ui) =>
-        values = @calculate(ui.value)
-        @updatePriceDisplay(values)
+        @onSliderValueChanged event, ui
+      change: (event, ui) =>
+        @onSliderValueChanged event, ui
     }
     @updatePriceDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
@@ -116,6 +117,10 @@ class @StoreSupportOsu
         { price: cost, duration: months }
 
     Object.assign(Object.create(StoreSupportOsu.Price), values)
+
+  onSliderValueChanged: (event, ui) =>
+    values = @calculate(ui.value)
+    @updatePriceDisplay(values)
 
   onInput: (event) =>
     if !@searching
