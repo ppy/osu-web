@@ -40,6 +40,8 @@ class Kernel extends ConsoleKernel
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
+
+        Commands\BuildsUpdatePropagationHistory::class,
     ];
 
     /**

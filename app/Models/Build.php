@@ -51,6 +51,12 @@ class Build extends Model
         $query->whereIn('build_id', $latestBuildIds);
     }
 
+    public function scopePropagationHistory($query)
+    {
+        return $query->where('allow_bancho', '>', 0)
+            ->where('test_build', 0);
+    }
+
     public function displayVersion()
     {
         return preg_replace('#[^0-9.]#', '', $this->version);
