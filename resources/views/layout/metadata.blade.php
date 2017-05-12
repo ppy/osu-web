@@ -46,6 +46,7 @@
 <script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ elixir("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
+<script src="/vendor/js/jquery-ui-slider-pips.js" data-turbolinks-track="reload"></script>
 
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">

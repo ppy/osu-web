@@ -64,11 +64,17 @@ class @StoreSupportOsu
       value: @MIN_VALUE * @RESOLUTION,
       min: @MIN_VALUE * @RESOLUTION,
       max: @MAX_VALUE * @RESOLUTION,
+      step: 32,
       slide: (event, ui) =>
         @onSliderValueChanged event, ui
       change: (event, ui) =>
         @onSliderValueChanged event, ui
     }
+    .slider('pips', {
+      step: 1,
+      rest: "label",
+      labels: ['1', '2', '4', '6', '8', '10', '12', '', '16', '', '20', '', '24']
+    })
     @updatePriceDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
 
