@@ -39,7 +39,7 @@
                             </span>
                         </a>
                     @else
-                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build', $build->version]) }}">
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build' => $build->version]) }}">
                             {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
 
                             <span class="page-mode-link__stripe">
