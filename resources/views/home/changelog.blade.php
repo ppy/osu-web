@@ -20,6 +20,35 @@
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--changelog-header">
+            <ol class="page-mode page-mode--breadcrumb">
+                <li class="page-mode__item">
+                    <a class="page-mode-link" href="{{ route('changelog') }}">
+                        {{ trans("layout.menu.{$current_section}.{$current_action}") }}
+
+                        <span class="page-mode-link__stripe">
+                        </span>
+                    </a>
+                </li>
+
+                <li class="page-mode__item">
+                    @if ($build === null)
+                        <a class="page-mode-link" href="{{ route('changelog') }}">
+                            {{ trans('changelog.feed_title') }}
+
+                            <span class="page-mode-link__stripe">
+                            </span>
+                        </a>
+                    @else
+                        <a class="page-mode-link" href="{{ route('changelog', ['build', $build->version]) }}">
+                            {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+
+                            <span class="page-mode-link__stripe">
+                            </span>
+                        </a>
+                    @endif
+                </li>
+            </ol>
+
             <div class="changelog-header">
                 <div class="changelog-header__streams-box">
                     <div class="changelog-header__streams">

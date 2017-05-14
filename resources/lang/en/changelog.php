@@ -19,8 +19,10 @@
  */
 
 return [
+    'feed_title' => 'feed',
     'generic' => 'Bug fixes and minor improvements.',
     'users-online' => '1 user online|:users users online',
+
     'prefixes' => [
         'add' => 'addition',
         'fix' => 'fix',
