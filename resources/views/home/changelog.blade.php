@@ -32,14 +32,14 @@
 
                 <li class="page-mode__item">
                     @if ($build === null)
-                        <a class="page-mode-link" href="{{ route('changelog') }}">
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog') }}">
                             {{ trans('changelog.feed_title') }}
 
                             <span class="page-mode-link__stripe">
                             </span>
                         </a>
                     @else
-                        <a class="page-mode-link" href="{{ route('changelog', ['build', $build->version]) }}">
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build', $build->version]) }}">
                             {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
 
                             <span class="page-mode-link__stripe">
