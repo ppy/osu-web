@@ -22,22 +22,24 @@
     </div>
 </div>
 @else
-<div id="js-store-support-osu" class="row js-store-support-osu store-support-osu"
+<div id="js-store-support-osu" class="js-store-support-osu store-support-osu"
     data-username="{{ Auth::user()->username }}" data-avatar-url="{{ Auth::user()->user_avatar }}">
-    <div class="store-support-osu__user">
-        <div class="store-support-osu__user-icon">
+    <div class="grid grid-cell store-support-osu__user">
+        <div class="grid-cell grid-cell--squash store-support-osu__user-icon">
             <center>
                 <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
             </center>
         </div>
-        <div class="store-column store-column--full-width store-support-osu__textual-info">
-            <div class="store-row">
-                <div>
-                    <span>
-                        {!! Form::label('username', 'Gift a player') !!}
-                        {!! Form::text('item[extra_info]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
-                        <span class="js-error error"></span>
-                    </span>
+        <div class="grid-cell store-support-osu__textual-info">
+            <div class="grid">
+                <div class="grid grid--stack grid-cell">
+                    <div class="grid">
+                        <div class="grid-cell">
+                            {!! Form::label('username', 'Gift a player') !!}
+                            {!! Form::text('item[extra_info]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
+                        </div>
+                        <div class="grid-cell js-error error"></div>
+                    </div>
                     <div>Currently have no supporter tag</div>
                     <div>Choose your amount</div>
                 </div>

@@ -1,0 +1,16 @@
+.grid {
+  display: flex;
+  &.grid--stack {
+    flex-direction: column;
+  }
+}
+
+.grid-cell {
+  flex: 1;
+}
+
+// squashes the flex content down to the smallest possible
+// size to let other cells expand and fill the gap.
+.grid-cell--squash {
+  flex: 0 1 0%;
+}
