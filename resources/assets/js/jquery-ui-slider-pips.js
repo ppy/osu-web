@@ -316,6 +316,10 @@
 
                     label = options.labels[ labelIndex ] || "";
 
+                } else if ( $.type( options.labels ) === "function" ) {
+
+                    label = options.labels( which );
+
                 } else if ( $.type( options.labels ) === "object" ) {
 
                     if ( which === "first" ) {
