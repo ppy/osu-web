@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class BuildPropagationHistory extends Model
 {
     protected $table = 'osu_build_propagation_histories';
-    const UPDATED_AT = null;
 
     protected $guarded = [];
+
+    protected $dates = [
+        'created_at',
+    ];
 }
