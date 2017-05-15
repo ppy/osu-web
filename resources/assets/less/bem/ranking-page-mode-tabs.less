@@ -16,48 +16,46 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-mode-link {
-  @_top: page-mode-link;
-  .link-plain();
-  .link-gray-light();
-  font-weight: 300;
-  padding: 5px 0 10px;
+.ranking-page-mode-tabs {
+  @_top: ranking-page-mode-selector;
 
-  &--is-active {
-    font-weight: 600;
-    color: #fff;
+  color: #ccc;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 10px 10px 0;
+  list-style: none;
+  flex-wrap: wrap;
+  margin: 0;
+  font-size: 15px;
+  overflow: hidden;
+
+  &__line {
+    margin-top: 0;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #222222, rgba(0, 0, 0, 0));
   }
 
-  &--white {
-    .link-white();
-  }
+  &__item {
+    display: flex;
+    line-height: 1;
 
-  &--is-disabled {
-    .link-gray-light-disabled();
-    cursor: default;
-  }
+    margin: 0 10px;
 
-  &__stripe {
-    position: absolute;
-    width: 100%;
-    display: block;
-    bottom: 0;
-    height: 5px;
-    transform: translateY(5px) scaleY(0);
-    transition: transform 120ms ease-in-out;
-    background-color: @yellow;
-
-    &--black {
-      background-color: #000;
+    .@{_top}--breadcrumb & {
+      margin-left: 5px;
+      margin-right: 5px;
     }
 
-    .@{_top}--is-active &,
-    .@{_top}:hover & {
-      transform: translateY(0) scaleY(1);
-    }
-
-    .@{_top}--is-disabled & {
-      opacity: 0;
+    // nanaya pls
+    .@{_top}--breadcrumb & + &::before {
+      content: '»';
+      margin-right: 10px;
+      margin-top: 5px;
+      vertical-align: middle;
     }
   }
 }

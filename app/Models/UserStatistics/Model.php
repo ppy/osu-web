@@ -20,6 +20,7 @@
 
 namespace App\Models\UserStatistics;
 
+use App\Models\LoginRecord;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -36,6 +37,11 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function loginRecords()
+    {
+        return $this->hasManyThrough(LoginRecord::class, User::class, 'user_id', 'user_id');
     }
 
     public function setCreatedAt($value)
@@ -89,6 +95,17 @@ abstract class Model extends BaseModel
                 $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
             })
             ->count() + 1;
+    }
+
+    public static function getClass($modeStr)
+    {
+        if ($modeStr == null) {
+            return null;
+        }
+
+        $klass = get_class_namespace(static::class).'\\'.studly_case($modeStr);
+
+        return new $klass;
     }
 
     public function __construct($attributes = [], $zeroInsteadOfNull = true)

@@ -16,48 +16,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-mode-link {
-  @_top: page-mode-link;
-  .link-plain();
-  .link-gray-light();
-  font-weight: 300;
-  padding: 5px 0 10px;
+.ReactTable {
+  width: 100%;
+  border: none;
+}
 
-  &--is-active {
-    font-weight: 600;
-    color: #fff;
-  }
+.ReactTable .-loading {
+  background: rgba(51, 51, 51, 0.8);
+}
 
-  &--white {
-    .link-white();
-  }
+.ReactTable .-loading > div {
+  color: white;
+}
 
-  &--is-disabled {
-    .link-gray-light-disabled();
-    cursor: default;
-  }
+.ReactTable .rt-th {
+  color: #999;
+  border-right: none;
+  box-shadow: none;
+  text-align: left;
+}
 
-  &__stripe {
-    position: absolute;
-    width: 100%;
-    display: block;
-    bottom: 0;
-    height: 5px;
-    transform: translateY(5px) scaleY(0);
-    transition: transform 120ms ease-in-out;
-    background-color: @yellow;
+.ReactTable .rt-tbody .rt-tr {
+  background-color: #444;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
 
-    &--black {
-      background-color: #000;
-    }
+.ReactTable .-loading > div {
+    -webkit-transform: translateY(50%);
+    transform: translateY(50%)
+}
 
-    .@{_top}--is-active &,
-    .@{_top}:hover & {
-      transform: translateY(0) scaleY(1);
-    }
-
-    .@{_top}--is-disabled & {
-      opacity: 0;
-    }
-  }
+.ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
+  background: #555;
 }

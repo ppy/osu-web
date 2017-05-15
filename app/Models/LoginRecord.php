@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,48 +18,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-mode-link {
-  @_top: page-mode-link;
-  .link-plain();
-  .link-gray-light();
-  font-weight: 300;
-  padding: 5px 0 10px;
+namespace App\Models;
 
-  &--is-active {
-    font-weight: 600;
-    color: #fff;
-  }
+use App\Models\User;
 
-  &--white {
-    .link-white();
-  }
+class LoginRecord extends Model
+{
+    protected $table = 'osu_logins';
+    protected $primaryKey = 'user_id';
+    protected $guarded = [];
 
-  &--is-disabled {
-    .link-gray-light-disabled();
-    cursor: default;
-  }
+    public $timestamps = false;
 
-  &__stripe {
-    position: absolute;
-    width: 100%;
-    display: block;
-    bottom: 0;
-    height: 5px;
-    transform: translateY(5px) scaleY(0);
-    transition: transform 120ms ease-in-out;
-    background-color: @yellow;
-
-    &--black {
-      background-color: #000;
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
-
-    .@{_top}--is-active &,
-    .@{_top}:hover & {
-      transform: translateY(0) scaleY(1);
-    }
-
-    .@{_top}--is-disabled & {
-      opacity: 0;
-    }
-  }
 }

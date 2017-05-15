@@ -16,48 +16,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-mode-link {
-  @_top: page-mode-link;
-  .link-plain();
-  .link-gray-light();
-  font-weight: 300;
-  padding: 5px 0 10px;
+.ranking-paginator {
+  display: flex;
+  width: 100%;
+  margin: 5px 0px;
+  .center-content();
 
-  &--is-active {
-    font-weight: 600;
-    color: #fff;
-  }
+  &__page {
+    width: 20px;
+    height: 20px;
+    margin: 0px 10px;
+    font-size: @font-size--paginator;
+    .center-content();
 
-  &--white {
+    .link-plain();
     .link-white();
-  }
 
-  &--is-disabled {
-    .link-gray-light-disabled();
-    cursor: default;
-  }
-
-  &__stripe {
-    position: absolute;
-    width: 100%;
-    display: block;
-    bottom: 0;
-    height: 5px;
-    transform: translateY(5px) scaleY(0);
-    transition: transform 120ms ease-in-out;
-    background-color: @yellow;
-
-    &--black {
-      background-color: #000;
+    &--current {
+      .link-yellow();
+      font-weight: bold;
     }
 
-    .@{_top}--is-active &,
-    .@{_top}:hover & {
-      transform: translateY(0) scaleY(1);
-    }
-
-    .@{_top}--is-disabled & {
-      opacity: 0;
+    &--disabled {
+      color: #666;
+      .link-hover({
+        color: #666;
+      });
     }
   }
 }

@@ -85,11 +85,10 @@ return [
             'rules' => '/wiki/Osu!:Rules',
             'signup' => '/p/register',
         ],
-        'ranking' => [
-            'overall' => '/p/pp',
-             'charts' => '/p/chart',
+        'rankings' => [
+            'charts' => '/p/chart',
             'country' => '/p/countryranking',
-            'mapper' => '/p/kudosu',
+            'kudosu' => '/p/kudosu',
         ],
         'home' => [
             'download' => '/p/download',

@@ -20,27 +20,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beatmap;
+use App\Models\Country;
+use App\Models\UserStatistics;
+use App\Transformers\CountryTransformer;
+use App\Transformers\UserStatisticsTransformer;
+use Request;
+
 class RankingController extends Controller
 {
-    protected $section = 'ranking';
+    protected $section = 'rankings';
 
-    public function getOverall()
-    {
-        return view('ranking.overall');
-    }
+    const PAGE_SIZE = 20;
+    const MAX_RESULTS = 10000;
 
-    public function getCountry()
+    public function index($mode = 'osu', $type, $page = 1)
     {
-        return view('ranking.country');
-    }
+        $max_pages = ceil($this::MAX_RESULTS / $this::PAGE_SIZE);
 
-    public function getCharts()
-    {
-        return view('ranking.charts');
-    }
+        if (!array_key_exists($mode, Beatmap::MODES)) {
+            abort(404);
+        }
 
-    public function getMapper()
-    {
-        return view('ranking.mapper');
+        $stats = UserStatistics\Model::getClass($mode)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->withCount('loginRecords')
+            ->orderBy('rank_score', 'desc')
+            ->limit($this::PAGE_SIZE);
+
+        $page = min($max_pages, max(1, get_int($page))) - 1; // clamp page between 1-[max_pages]
+
+        $stats->offset($this::PAGE_SIZE * $page);
+
+        $scores = json_collection($stats->get(), new UserStatisticsTransformer, ['user']);
+
+        $scores = [
+            'mode' => $mode,
+            'scores' => $scores,
+            'paging' => [
+                'page' => $page,
+                'pages' => $max_pages,
+            ]
+        ];
+
+        if (Request::ajax()) {
+            return $scores;
+        } else {
+            $countries = json_collection(Country::all(), new CountryTransformer);
+
+            return view('ranking.overall', compact('scores', 'countries'));
+        }
     }
 }

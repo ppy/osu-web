@@ -18,4 +18,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [];
+return [
+    'type' => [
+        'performance' => 'Performance',
+        'chart' => 'Chart',
+        'score' => 'Score',
+        'country' => 'Country',
+        'kudosu' => 'Kudosu',
+    ],
+    'stat' => [
+        'accuracy' => 'Accuracy',
+        'play_count' => 'Play Count',
+        'performance' => 'Performance',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
+    ],
+];

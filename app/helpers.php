@@ -314,11 +314,11 @@ function nav_links()
         'getFaq' => route('wiki.show', ['page' => 'FAQ']),
         'getSupport' => osu_url('help.support'),
     ];
-    $links['ranking'] = [
-        'getOverall' => osu_url('ranking.overall'),
-        'getCharts' => osu_url('ranking.charts'),
-        'getCountry' => osu_url('ranking.country'),
-        'getMapper' => osu_url('ranking.mapper'),
+    $links['rankings'] = [
+        'index' => route('ranking', ['mode' => 'osu', 'type' => 'performance']),
+        'charts' => osu_url('rankings.charts'),
+        'country' => osu_url('rankings.country'),
+        'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),

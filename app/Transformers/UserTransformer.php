@@ -29,6 +29,7 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'userAchievements',
+        'active',
         'allRankHistories',
         'allScores',
         'allScoresBest',
@@ -92,6 +93,13 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($user->playmode);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeActive(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return ['is_active' => $user->loginRecords->first() !== null];
+        });
     }
 
     public function includeAllStatistics(User $user)

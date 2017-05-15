@@ -108,6 +108,7 @@ elixir(function(mix) {
     path.join(node_root, 'react-motion/build/react-motion.js'),
     path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
     path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
+    path.join(node_root, 'react-table/react-table.js'),
   ], 'public/js/vendor.js')
   .scripts([
     'ga.js',
@@ -151,6 +152,10 @@ elixir(function(mix) {
     'react/contest/entry/*.coffee',
     'react/contest-entry.coffee',
   ], 'public/js/react/contest-entry.js')
+  .coffee([
+    'react/ranking/*.coffee',
+    'react/ranking-page.coffee',
+  ], 'public/js/react/ranking-page.js')
   .version([
     'css/app.css',
     'js/app.js',

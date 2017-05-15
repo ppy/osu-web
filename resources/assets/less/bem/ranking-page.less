@@ -16,48 +16,44 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-mode-link {
-  @_top: page-mode-link;
-  .link-plain();
-  .link-gray-light();
-  font-weight: 300;
-  padding: 5px 0 10px;
+.ranking-page {
+  @top: ranking-page;
 
-  &--is-active {
-    font-weight: 600;
-    color: #fff;
+  &__header {
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    .at2x-simple('/images/headers/rankings.jpg');
   }
 
-  &--white {
-    .link-white();
+  &__title {
+    font-size: 35px;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 10px;
   }
 
-  &--is-disabled {
-    .link-gray-light-disabled();
-    cursor: default;
+  &__title-type {
+    color: @yellow;
+    text-transform: capitalize;
   }
 
-  &__stripe {
-    position: absolute;
-    width: 100%;
-    display: block;
-    bottom: 0;
-    height: 5px;
-    transform: translateY(5px) scaleY(0);
-    transition: transform 120ms ease-in-out;
-    background-color: @yellow;
+  &__title-ranking {
+    color: white;
+  }
 
-    &--black {
-      background-color: #000;
-    }
+  &__container {
+    height: 250px;
+    padding: 10px 40px 0;
+  }
 
-    .@{_top}--is-active &,
-    .@{_top}:hover & {
-      transform: translateY(0) scaleY(1);
-    }
+  &__user-link {
+    display: flex;
+    align-items: center;
+  }
 
-    .@{_top}--is-disabled & {
-      opacity: 0;
-    }
+  &__user-link-text {
+    color: #99eeff;
+    font-style: italic;
   }
 }
