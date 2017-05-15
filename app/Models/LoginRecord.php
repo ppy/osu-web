@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use App\Models\User;
-
 class LoginRecord extends Model
 {
     protected $table = 'osu_logins';

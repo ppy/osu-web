@@ -34,7 +34,7 @@ class RankingController extends Controller
     const PAGE_SIZE = 20;
     const MAX_RESULTS = 10000;
 
-    public function index($mode = 'osu', $type, $page = 1)
+    public function index($mode, $type, $page = 1)
     {
         $max_pages = ceil($this::MAX_RESULTS / $this::PAGE_SIZE);
 
@@ -63,7 +63,7 @@ class RankingController extends Controller
             'paging' => [
                 'page' => $page,
                 'pages' => $max_pages,
-            ]
+            ],
         ];
 
         if (Request::ajax()) {
