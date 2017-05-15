@@ -1,0 +1,23 @@
+.grid {
+  display: flex;
+  &.grid--stack {
+    flex-direction: column;
+  }
+}
+
+// grid has gutters between the cells but not at the start or end.
+.grid--margin {
+  & > .grid-cell + .grid-cell {
+    margin-left: 1em;
+  }
+}
+
+.grid-cell {
+  flex: 1;
+}
+
+// squashes the flex content down to the smallest possible
+// size to let other cells expand and fill the gap.
+.grid-cell--squash {
+  flex: 0 1 0%;
+}
