@@ -71,7 +71,7 @@ class RankingController extends Controller
         } else {
             $countries = json_collection(Country::all(), new CountryTransformer);
 
-            return view('ranking.overall', compact('scores', 'countries'));
+            return view('ranking.index', compact('scores', 'countries'));
         }
     }
 }
