@@ -89,7 +89,7 @@ Route::put('contest-entries/{contest_entry}/vote', ['as' => 'contest-entries.vot
 Route::resource('contest-entries', 'ContestEntriesController', ['only' => ['store', 'destroy']]);
 
 // ranking section
-Route::get('/rankings/{mode}', function ($mode) {
+Route::get('/rankings/{mode?}', function ($mode = 'osu') {
     if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
         abort(404);
     }
