@@ -21,9 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
-use App\Models\Country;
 use App\Models\UserStatistics;
-use App\Transformers\CountryTransformer;
 use App\Transformers\UserStatisticsTransformer;
 use Request;
 
@@ -68,9 +66,7 @@ class RankingController extends Controller
         if (Request::ajax()) {
             return $scores;
         } else {
-            $countries = json_collection(Country::all(), new CountryTransformer);
-
-            return view('ranking.index', compact('scores', 'countries'));
+            return view('ranking.index', compact('scores'));
         }
     }
 }

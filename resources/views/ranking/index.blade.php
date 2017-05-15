@@ -26,8 +26,5 @@
     <script id="json-scores" type="application/json">
         {!! json_encode($scores) !!}
     </script>
-    <script id="json-countries" type="application/json">
-        {!! json_encode($countries) !!}
-    </script>
     <script src="{{ elixir("js/react/ranking-page.js") }}" data-turbolinks-track="reload"></script>
 @endsection
