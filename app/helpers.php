@@ -322,11 +322,11 @@ function nav_links()
     ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
-        'artists' => route('artist.index'),
+        'artists' => route('artists.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
-        'contests' => route('community.contests.index'),
+        'contests' => route('contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'dev' => osu_url('dev'),

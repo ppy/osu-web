@@ -39,7 +39,7 @@
                 @endforeach
             </div>
             @foreach ($contests as $contest)
-                <a href='{{route('community.contests.show', $contest->id)}}' class='contest-list-item contest-list-item--{{$contest->state()}}'>
+                <a href='{{route('contests.show', $contest->id)}}' class='contest-list-item contest-list-item--{{$contest->state()}}'>
                     <div class='contest-list-item__image' style="background-image: url({{$contest->header_url}})"></div>
                     <div class='contest-list-item__container'>
                         <div class='contest-list-item__left-content'>
