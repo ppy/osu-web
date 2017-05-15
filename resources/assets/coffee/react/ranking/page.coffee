@@ -46,7 +46,7 @@ class Ranking.Page extends React.Component
       pages: props.paging.pages
       loading: false
       mode: props.mode
-      ranking_type: 'performance'
+      ranking_type: 'performance' # hard coded until other types are implemented
 
 
   changePage: (page) =>
@@ -112,17 +112,20 @@ class Ranking.Page extends React.Component
     $.unsubscribe '.rankingPage'
 
 
+  renderRank: (props) =>
+    div className: 'ranking-page__rank-column',
+      "##{@state.page * @state.page_size + props.index + 1}"
+
   renderUserLink: (props) ->
-    div className: 'ranking-page__user-link',
+    a
+      href: laroute.route 'users.show', user: props.row.user.id
+      className: 'ranking-page__user-link'
       span
         className: 'flag-country'
         title: props.row.user.country_code
         style:
           backgroundImage: "url('/images/flags/#{props.row.user.country_code}.png')"
-          marginRight: '10px'
-
-      a
-        href: laroute.route 'users.show', user: props.row.user.id
+      span
         className: 'ranking-page__user-link-text'
         props.row.user.username
 
@@ -140,6 +143,10 @@ class Ranking.Page extends React.Component
 
 
   render: =>
+    # override defaults here because setting 'sortable: false' on
+    #   the table itself doesn't disable sorting, idk
+    ReactTable.ReactTableDefaults.column.sortable = false
+
     div null,
       div className: 'osu-page',
         el PlaymodeTabs,
@@ -163,7 +170,7 @@ class Ranking.Page extends React.Component
               span className: 'ranking-page__title-ranking', ' Ranking'
 
       div className: 'osu-page osu-page--small',
-        div className: 'profile-header-extra',
+        div className: 'ranking-page__table',
           el ReactTable.default,
               columns: [
                 {
@@ -171,23 +178,18 @@ class Ranking.Page extends React.Component
                   header: ''
                   accessor: 'pp_rank'
                   width: 50
-                  sortable: false
-                  render: (props) =>
-                    div style: { display: 'flex', alignItems: 'center', justifyContent: 'flex-end'},
-                      "##{@state.page * @state.page_size + props.index + 1}"
+                  render: @renderRank
                 },
                 {
                   id: 'username'
                   header: ''
                   accessor: 'user.username'
-                  sortable: false
                   render: @renderUserLink
                 },
                 {
                   id: 'hit_accuracy'
                   header: osu.trans('ranking.stat.accuracy')
                   width: 75
-                  sortable: false
                   accessor: (r) ->
                     "#{parseFloat(r.hit_accuracy).toFixed(2)}%"
                 },
@@ -195,7 +197,6 @@ class Ranking.Page extends React.Component
                   id: 'play_count'
                   header: osu.trans('ranking.stat.play_count')
                   width: 75
-                  sortable: false
                   accessor: (r) ->
                     r.play_count.toLocaleString()
                 },
@@ -203,20 +204,14 @@ class Ranking.Page extends React.Component
                   id: 'performance',
                   header: osu.trans('ranking.stat.performance')
                   width: 110
-                  sortable: false
+                  headerClassName: '-active'
                   accessor: (r) ->
                     "#{Math.round(r.pp).toLocaleString()}pp"
-                  headerStyle:
-                    color: 'white'
-                    borderRight: 'none'
-                    boxShadow: 'none'
-                    textAlign: 'left'
                 },
                 {
                   id: 'ss_count'
                   header: osu.trans('ranking.stat.ss')
                   width: 50
-                  sortable: false
                   accessor: (r) ->
                     r.grade_counts.ss.toLocaleString()
                 },
@@ -224,7 +219,6 @@ class Ranking.Page extends React.Component
                   id: 's_count'
                   header: osu.trans('ranking.stat.s')
                   width: 50
-                  sortable: false
                   accessor: (r) ->
                     r.grade_counts.s.toLocaleString()
                 },
@@ -232,7 +226,6 @@ class Ranking.Page extends React.Component
                   id: 'a_count'
                   header: osu.trans('ranking.stat.a')
                   width: 50
-                  sortable: false
                   accessor: (r) ->
                     r.grade_counts.a.toLocaleString()
                 },

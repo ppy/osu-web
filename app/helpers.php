@@ -786,7 +786,7 @@ function build_icon($prefix)
     }
 }
 
-// clamps $number between $min and $max
+// clamps $number to be between $min and $max
 function clamp($number, $min, $max)
 {
     return min($max, max($min, $number));
