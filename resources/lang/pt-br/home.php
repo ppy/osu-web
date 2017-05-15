@@ -51,7 +51,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos Beatmaps Aprovados',
+            'new' => 'Novos beatmaps aprovados',
             'popular' => 'Beatmaps populares',
         ],
         'buttons' => [
