@@ -47,7 +47,6 @@ class RankingController extends Controller
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             })
-            ->withCount('loginRecords')
             ->orderBy('rank_score', 'desc')
             ->limit($this::PAGE_SIZE);
 

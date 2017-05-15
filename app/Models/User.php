@@ -398,6 +398,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->osu_subscriber === true;
     }
 
+    public function isActive()
+    {
+        return $this->user_lastvisit > Carbon::now()->subMonth();
+    }
+
     public function isPrivileged()
     {
         return $this->isAdmin()

@@ -26,7 +26,6 @@ use League\Fractal;
 class UserCompactTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'active',
         'country',
     ];
 
@@ -38,14 +37,8 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'profile_colour' => presence($user->user_colour),
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
+            'is_active' => $user->isActive(),
         ];
-    }
-
-    public function includeActive(User $user)
-    {
-        return $this->item($user, function ($user) {
-            return ['is_active' => $user->loginRecords->first() !== null];
-        });
     }
 
     public function includeCountry(User $user)

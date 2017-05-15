@@ -251,7 +251,7 @@ class Ranking.Page extends React.Component
               onPageChange: @changePage
               PaginationComponent: Ranking.Paginator
               getTrProps: (state, rowInfo, column) ->
-                if !rowInfo.row.active_user
+                if !rowInfo.row.user.is_active
                   style:
                     opacity: 0.5
                 else

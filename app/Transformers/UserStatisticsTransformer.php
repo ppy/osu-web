@@ -58,7 +58,6 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
                 's' => $stats->s_rank_count,
                 'a' => $stats->a_rank_count,
             ],
-            'active_user' => $stats->login_records_count > 0,
         ];
     }
 
