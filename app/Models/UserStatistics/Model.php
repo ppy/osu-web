@@ -20,7 +20,6 @@
 
 namespace App\Models\UserStatistics;
 
-use App\Models\LoginRecord;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -37,11 +36,6 @@ abstract class Model extends BaseModel
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function loginRecords()
-    {
-        return $this->hasManyThrough(LoginRecord::class, User::class, 'user_id', 'user_id');
     }
 
     public function setCreatedAt($value)
