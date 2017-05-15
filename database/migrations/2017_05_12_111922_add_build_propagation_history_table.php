@@ -12,7 +12,7 @@ class AddBuildPropagationHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('osu_build_propagation_histories', function ($table) {
+        Schema::create('build_propagation_histories', function ($table) {
             $table->increments('id');
             $table->integer('stream_id')->unsigned();
             $table->unsignedMediumInteger('user_count')->default(0);
@@ -27,6 +27,6 @@ class AddBuildPropagationHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('osu_build_propagation_histories');
+        Schema::drop('build_propagation_histories');
     }
 }
