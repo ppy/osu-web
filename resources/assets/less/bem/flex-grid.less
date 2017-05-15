@@ -5,6 +5,13 @@
   }
 }
 
+// grid has gutters between the cells but not at the start or end.
+.grid--margin {
+  & > .grid-cell + .grid-cell {
+    margin-left: 1em;
+  }
+}
+
 .grid-cell {
   flex: 1;
 }

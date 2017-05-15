@@ -33,7 +33,7 @@
         <div class="grid-cell store-support-osu__textual-info">
             <div class="grid">
                 <div class="grid grid--stack grid-cell">
-                    <div class="grid">
+                    <div class="grid grid--margin">
                         <div class="grid-cell">
                             {!! Form::label('username', 'Gift a player') !!}
                             {!! Form::text('item[extra_info]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
