@@ -50,7 +50,7 @@ class RankingController extends Controller
             ->orderBy('rank_score', 'desc')
             ->limit($this::PAGE_SIZE);
 
-        $page = min($max_pages, max(1, get_int($page))) - 1; // clamp page between 1-[max_pages]
+        $page = clamp(get_int($page), 1, $max_pages) - 1;
 
         $stats->offset($this::PAGE_SIZE * $page);
 

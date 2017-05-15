@@ -785,3 +785,9 @@ function build_icon($prefix)
         case 'misc': return 'question';
     }
 }
+
+// clamps $number between $min and $max
+function clamp($number, $min, $max)
+{
+    return min($max, max($min, $number));
+}
