@@ -95,8 +95,6 @@ return [
             'news' => '/p/news',
         ],
         'help' => [
-            'wiki' => '/wiki/Main_Page',
-            'faq' => '/wiki/FAQ',
             'support' => 'http://help.ppy.sh/',
         ],
     ],
