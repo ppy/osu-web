@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Models\Beatmap;
 use App\Models\User;
 
 class RouteTest extends TestCase
@@ -78,8 +79,29 @@ class RouteTest extends TestCase
      */
     public function testRankingRoutes()
     {
-        $this->assertGetRoutes(['/ranking/country', '/ranking/overall', '/ranking/charts', '/ranking/mapper']);
+        $rankingTypes = ['performance'];
+
+        foreach (Beatmap::MODES as $mode => $enum) {
+            foreach ($rankingTypes as $type) {
+                $this->assertGetRoutes(["/rankings/{$mode}/{$type}"]);
+            }
+        }
     }
+
+    /**
+     * Test the redirects for the ranking pages.
+     *
+     * @return void
+     */
+    public function testRankingRedirects()
+    {
+        foreach (Beatmap::MODES as $mode => $enum) {
+            $this->assertRedirect(["/rankings/{$mode}"]);
+        }
+
+        $this->assertRedirect(["/rankings/"]);
+    }
+
 
     /**
      * Test the profile page doesn't error.
@@ -114,6 +136,19 @@ class RouteTest extends TestCase
         foreach ($routes as $route) {
             $response = $this->call($method, $route);
             $this->assertTrue($response->isOK() || $response->isRedirect());
+        }
+    }
+
+    /**
+     * Asserts that the given routes perform redirects.
+     *
+     * @return void
+     */
+    protected function assertRedirect(array $routes, $method = 'GET')
+    {
+        foreach ($routes as $route) {
+            $response = $this->call($method, $route);
+            $this->assertTrue($response->isRedirect());
         }
     }
 }
