@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\UserStatistics;
-use App\Transformers\UserStatisticsTransformer;
 use Request;
 
 class RankingController extends Controller

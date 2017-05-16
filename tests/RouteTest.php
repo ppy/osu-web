@@ -99,9 +99,8 @@ class RouteTest extends TestCase
             $this->assertRedirect(["/rankings/{$mode}"]);
         }
 
-        $this->assertRedirect(["/rankings/"]);
+        $this->assertRedirect(['/rankings/']);
     }
-
 
     /**
      * Test the profile page doesn't error.
