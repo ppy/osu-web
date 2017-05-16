@@ -27,7 +27,7 @@
 
     <!-- Main style -->
     <div class="osu-nav js-nav-popup js-nav-search--popup-width-reference">
-        <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="/">
+        <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="{{ route('home') }}">
             @include('objects._logo')
         </a>
 
