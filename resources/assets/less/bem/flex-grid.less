@@ -6,6 +6,13 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  // Use this if we don't want the grid to collapse into a stack.
+  // FIXME: better name
+  &__no-block {
+    display: flex;
+  }
+
   &.grid--stack {
     flex-direction: column;
   }
@@ -46,6 +53,10 @@
   }
 
   &--c1of3 {
-    flex: 0 0 33.33%;
+    flex: 0 0 (1 / 3 * 100%);
+  }
+
+  &--c5of12 {
+    flex: 0 0 (5 / 12 * 100%);
   }
 }
