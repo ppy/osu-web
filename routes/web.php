@@ -250,6 +250,9 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return ujs_redirect(route('home'));
+});
 
 // redirects go here
 Route::get('forum/p/{post}', function ($post) {
