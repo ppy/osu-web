@@ -158,8 +158,8 @@ class Page extends Base
                     } catch (GitHubNotFoundException $_e) {
                         return;
                     }
-                    $this->indexAdd($page);
 
+                    // FIXME: add indexAdd/Remove accordingly.
                     if (present($page)) {
                         return WikiProcessor::process($page, [
                             'path' => '/wiki/'.$this->path,

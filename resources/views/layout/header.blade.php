@@ -15,11 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    if (!isset($search)) {
-        $search = ['url' => route('search')];
-    }
-?>
 @include('layout._header_mobile')
 
 <nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main hidden-xs">
@@ -54,7 +49,8 @@
             </div>
         </div>
 
-        @if (Auth::check())
+        {{-- FIXME: enable later. --}}
+        @if (false && Auth::check())
             <div class="osu-nav__col js-nav-switch js-nav-search--input-container" data-nav-mode="search" data-nav-mode-switch="0">
                 <div class="osu-nav__highlight-bar">
                     <span class="bar"></span>
