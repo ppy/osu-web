@@ -31,6 +31,19 @@ function array_search_null($value, $array)
     }
 }
 
+function es_query_and_words($words)
+{
+    $parts = preg_split("/\s+/", trim($words ?? ''));
+
+    $partsEscaped = [];
+
+    foreach ($parts as $part) {
+        $partsEscaped[] = urlencode($part);
+    }
+
+    return implode(' AND ', $partsEscaped);
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -264,6 +277,17 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_url($page = 'Welcome', $locale = null)
+{
+    $url = route('wiki.show', ['page' => $page]);
+
+    if (present($locale) && $locale !== App::getLocale()) {
+        $url .= '?locale='.$locale;
+    }
+
+    return $url;
+}
+
 function bbcode($text, $uid, $withGallery = false)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
@@ -307,11 +331,11 @@ function nav_links()
     $links['home'] = [
         'getNews' => osu_url('home.news'),
         'getChangelog' => route('changelog'),
-        'getDownload' => osu_url('home.download'),
+        'getDownload' => route('download'),
     ];
     $links['help'] = [
-        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
-        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
         'getSupport' => osu_url('help.support'),
     ];
     $links['ranking'] = [
@@ -347,10 +371,10 @@ function footer_links()
         'changelog' => route('changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => route('wiki.show', ['page' => 'Welcome']),
+        'wiki' => wiki_url('Welcome'),
     ];
     $links['help'] = [
-        'faq' => route('wiki.show', ['page' => 'FAQ']),
+        'faq' => wiki_url('FAQ'),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -491,12 +515,15 @@ function json_item($model, $transformer, $includes = null)
 function fast_imagesize($url)
 {
     return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
-        $headers = ['Range: bytes=0-32768'];
         $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($curl, CURLOPT_MAXREDIRS, 5);
+        curl_setopt_array($curl, [
+            CURLOPT_HTTPHEADER => [
+                'Range: bytes=0-32768',
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 5,
+        ]);
         $data = curl_exec($curl);
         curl_close($curl);
 

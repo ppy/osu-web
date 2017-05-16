@@ -27,6 +27,7 @@ use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
+use App\Models\Wiki;
 use Auth;
 use Request;
 use View;
@@ -126,6 +127,24 @@ class HomeController extends Controller
         } else {
             return view('home.landing', ['stats' => new CurrentStats()]);
         }
+    }
+
+    public function search()
+    {
+        $query = Request::input('q');
+        $limit = 5;
+
+        if (strlen($query) < 3) {
+            return [];
+        }
+
+        $params = compact('query', 'limit');
+
+        $beatmapsets = Beatmapset::search($params);
+        $posts = Post::search($params);
+        $wikiPages = Wiki\Page::search($params);
+
+        return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages'));
     }
 
     public function setLocale()

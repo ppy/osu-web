@@ -249,14 +249,14 @@ class Beatmapset extends Model
     public static function searchES(array $params = [])
     {
         extract($params);
-        $count = config('osu.beatmaps.max', 50);
-        $offset = (max(0, $page - 1)) * $count;
+        $limit = min(config('osu.beatmaps.max'), $limit ?? config('osu.beatmaps.max'));
+        $offset = (max(0, $page - 1)) * $limit;
         $current_user = Auth::user();
 
         $searchParams = [
             'index' => config('osu.elasticsearch.index'),
             'type' => 'beatmaps',
-            'size' => $count,
+            'size' => $limit,
             'from' => $offset,
             'body' => [
                 'sort' => [
@@ -399,8 +399,8 @@ class Beatmapset extends Model
     {
         extract($params);
 
-        $count = config('osu.beatmaps.max', 50);
-        $offset = max(0, $page - 1) * $count;
+        $limit = min(config('osu.beatmaps.max'), $limit ?? config('osu.beatmaps.max'));
+        $offset = max(0, $page - 1) * $limit;
 
         $query = self::where('title', 'like', '%'.$query.'%');
 
@@ -430,7 +430,7 @@ class Beatmapset extends Model
             }
         }
 
-        return $query->take($count)->skip($offset)
+        return $query->take($limit)->skip($offset)
             ->orderBy($sort_field, $sort_order)
             ->get()->pluck('beatmapset_id')->toArray();
     }

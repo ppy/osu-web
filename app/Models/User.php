@@ -24,7 +24,6 @@ use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
-use App\Transformers\UserTransformer;
 use Carbon\Carbon;
 use DB;
 use Exception;
@@ -837,11 +836,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return json_item(
-            $this,
-            new UserTransformer(),
-            'userAchievements,defaultStatistics,disqus_auth'
-        );
+        return json_item($this, 'User', 'disqus_auth');
     }
 
     public function supportLength()

@@ -138,6 +138,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('account/verify', 'AccountController@verify')->name('account.verify');
     Route::put('account', 'AccountController@update')->name('account.update');
 
+    // FIXME: enable later.
+    // Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog', 'HomeController@getChangelog')->name('changelog');
     Route::get('download', 'HomeController@getDownload')->name('download');
@@ -171,11 +173,15 @@ Route::group(['prefix' => 'help'], function () {
     Route::get('wiki/{page}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     Route::get('wiki', function () {
-        return ujs_redirect(route('wiki.show', ['page' => 'Welcome']).'/');
+        return ujs_redirect(wiki_url());
     })->name('wiki');
 
     Route::get('support', 'HelpController@getSupport')->name('support');
     Route::get('faq', 'HelpController@getFaq')->name('faq');
+
+    Route::get('/', function () {
+        return ujs_redirect(wiki_url());
+    });
 });
 
 // FIXME: someone split this crap up into proper controllers
@@ -243,7 +249,10 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', ['uses' => 'LegacyInterOpController@regenerateBeatmapsetCovers']);
 });
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', function () {
+    return ujs_redirect(route('home'));
+});
 
 // redirects go here
 Route::get('forum/p/{post}', function ($post) {
