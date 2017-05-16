@@ -173,11 +173,15 @@ Route::group(['prefix' => 'help'], function () {
     Route::get('wiki/{page}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     Route::get('wiki', function () {
-        return ujs_redirect(route('wiki.show', ['page' => 'Welcome']).'/');
+        return ujs_redirect(wiki_url());
     })->name('wiki');
 
     Route::get('support', 'HelpController@getSupport')->name('support');
     Route::get('faq', 'HelpController@getFaq')->name('faq');
+
+    Route::get('/', function () {
+        return ujs_redirect(wiki_url());
+    });
 });
 
 // FIXME: someone split this crap up into proper controllers

@@ -277,7 +277,7 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
-function wiki_url($page, $locale = null)
+function wiki_url($page = 'Welcome', $locale = null)
 {
     $url = route('wiki.show', ['page' => $page]);
 
