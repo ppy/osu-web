@@ -20,10 +20,6 @@
   &--gutters {
     margin-left: -@grid-gutter-size;
     margin-right: -@grid-gutter-size;
-    & > .grid-cell {
-      padding-left: @grid-gutter-size;
-      padding-right: @grid-gutter-size;
-    }
   }
 }
 
@@ -36,6 +32,10 @@
 
 .grid-cell {
   flex: 1;
+  .grid--gutters > & {
+    padding-left: @grid-gutter-size;
+    padding-right: @grid-gutter-size;
+  }
   // squashes the flex content down to the smallest possible
   // size to let other cells expand and fill the gap.
   &--squash {
