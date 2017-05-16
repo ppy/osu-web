@@ -1,5 +1,8 @@
 .grid {
-  display: flex;
+  // 840px seems a big large for this to trigger?
+  @media @desktop {
+    display: flex;
+  }
   &.grid--stack {
     flex-direction: column;
   }
