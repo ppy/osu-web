@@ -46,9 +46,9 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
     public static function process($input, $config)
     {
         $env = Environment::createCommonMarkEnvironment();
-        $processor = new static();
+        $processor = new static;
         $env->addDocumentProcessor($processor);
-        $env->addExtension(new TableExtension\TableExtension());
+        $env->addExtension(new TableExtension\TableExtension);
         $converter = new CommonMarkConverter(array_merge($config, [
             'html_input' => 'strip',
         ]), $env);
