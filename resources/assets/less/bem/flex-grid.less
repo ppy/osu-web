@@ -1,5 +1,3 @@
-@grid-gutter-size: 20px;
-
 .grid {
   // 840px seems a big large for this to trigger?
   @media @desktop {
@@ -14,16 +12,16 @@
   }
 
   &--gutters {
-    margin-left: -@grid-gutter-size;
-    margin-right: -@grid-gutter-size;
+    margin-left: -@flex-grid--gutter-width;
+    margin-right: -@flex-grid--gutter-width;
   }
 }
 
 .grid-cell {
   flex: 1;
   .grid--gutters > & {
-    padding-left: @grid-gutter-size;
-    padding-right: @grid-gutter-size;
+    padding-left: @flex-grid--gutter-width;
+    padding-right: @flex-grid--gutter-width;
   }
   // squashes the flex content down to the smallest possible
   // size to let other cells expand and fill the gap.
