@@ -98,7 +98,7 @@
             </div>
             <div class="panel-body">
                 <div class="grid grid--gutters">
-                    <div class="grid-cell grid-cell--c2of3">
+                    <div class="grid-cell grid-cell--2of3">
                         {!! Form::open(['route' => ['admin.store.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
                             <div class="form-group">
                             @if ($o->status === 'paid' || $o->status === 'shipped')

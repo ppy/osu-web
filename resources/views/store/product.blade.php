@@ -49,7 +49,7 @@
 
             @else
             <div class="grid grid--gutters">
-                <div class="grid-cell grid-cell--c1of2">
+                <div class="grid-cell grid-cell--1of2">
                     <div class="gallery-previews">
                         @foreach($product->images() as $i => $image)
                             <?php $imageSize = fast_imagesize($image[1]); ?>
@@ -81,7 +81,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="grid-cell grid-cell--c1of2">
+                <div class="grid-cell grid-cell--1of2">
                     <div class="grid">
                         <div class="grid-cell grid-cell--fill">
                             {!! Markdown::convertToHtml($product->description) !!}

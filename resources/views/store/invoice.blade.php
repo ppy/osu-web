@@ -54,7 +54,7 @@
     @endif
     <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page"><div class="grid-cell grid-cell--fill">
         <div class="grid grid__no-block">
-            <div class="grid-cell grid-cell--c5of12">
+            <div class="grid-cell grid-cell--5of12">
                 <div>
                     <h1>Invoice</h1>
                 </div>
@@ -80,13 +80,13 @@
 
         @if($order->address !== null)
         <div class="grid grid__no-block">
-            <div class="grid-cell grid-cell--c1of3">
+            <div class="grid-cell grid-cell--1of3">
                 <h4>Sent Via:</h4>
                 @include('store.objects.address', ['data' => $sentViaAddress, 'grid' => ''])
             </div>
-            <div class="grid-cell grid-cell--c1of3">
+            <div class="grid-cell grid-cell--1of3">
             </div>
-            <div class="grid-cell grid-cell--c1of3">
+            <div class="grid-cell grid-cell--1of3">
                 <h4>Shipping To:</h4>
                 @include('store.objects.address', ['data' => $order->address, 'grid' => ''])
             </div>
