@@ -29,6 +29,7 @@ $(document).on 'submit', 'form', (e) ->
 
 
 @accountEdit ?= new AccountEdit
+@turbolinksDisable ?= new TurbolinksDisable
 @accountEditAvatar ?= new AccountEditAvatar
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
