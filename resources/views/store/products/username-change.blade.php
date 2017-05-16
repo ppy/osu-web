@@ -16,8 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @if(!Auth::user())
-<div class="row">
-    <div class="col-md-6">
+<div class="grid grid--gutters">
+    <div class="grid-cell grid-cell--c1of2">
         You need to be <a href="#" class="js-user-link" title="{{ trans("users.anonymous.login_link") }}">logged in</a> to change your name!
     </div>
 </div>
