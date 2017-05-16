@@ -39,5 +39,5 @@ class @TurbolinksDisable
   cancelIfExternal: (event) ->
     prefix = "#{document.location.protocol}//#{document.location.host}/"
 
-    if RegExp("^(?:#{internal})(?:$|/)").test event.data.url.substr(prefix.length)
+    unless RegExp("^(?:#{internal})(?:$|/)").test event.data.url.substr(prefix.length)
       event.preventDefault()
