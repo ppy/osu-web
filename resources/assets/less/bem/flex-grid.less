@@ -2,16 +2,17 @@
   // 840px seems a big large for this to trigger?
   @media @desktop {
     display: flex;
+    flex-wrap: wrap;
   }
   &.grid--stack {
     flex-direction: column;
   }
-}
 
-.grid--gutters {
-  & > .grid-cell {
-    padding-left: 20px;
-    padding-right: 20px;
+  &--gutters {
+    & > .grid-cell {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 }
 
@@ -24,10 +25,23 @@
 
 .grid-cell {
   flex: 1;
-}
+  // squashes the flex content down to the smallest possible
+  // size to let other cells expand and fill the gap.
+  &--squash {
+    flex: 0 1 0%;
+  }
 
-// squashes the flex content down to the smallest possible
-// size to let other cells expand and fill the gap.
-.grid-cell--squash {
-  flex: 0 1 0%;
+  &--fill {
+    flex: 1 0 100%;
+  }
+
+  // compiler doesn't like it if it starts with a number
+  // e.g. --1of2
+  &--c1of2 {
+    flex: 1 1 50%;
+  }
+
+  &--c1of3 {
+    flex: 1 1 33%;
+  }
 }
