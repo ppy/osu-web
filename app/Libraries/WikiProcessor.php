@@ -32,7 +32,7 @@ use Webuni\CommonMark\TableExtension;
 
 class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 1;
+    const VERSION = 2;
 
     private $config;
     private $event;
@@ -81,6 +81,7 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
             $this->loadToc();
 
             // last to prevent possible conflict
+            $this->prefixUrl();
             $this->addClass();
         }
     }
@@ -171,6 +172,19 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
         ];
 
         $this->node->data['attributes']['id'] = $slug;
+    }
+
+    public function prefixUrl()
+    {
+        if ($this->event->isEntering() || !method_exists($this->node, 'getUrl')) {
+            return;
+        }
+
+        $url = $this->node->getUrl();
+
+        if (starts_with($url, '/wiki/')) {
+            $this->node->setUrl('/help'.$url);
+        }
     }
 
     public function setTitle()

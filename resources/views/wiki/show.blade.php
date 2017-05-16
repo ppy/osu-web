@@ -109,7 +109,9 @@
                         {{ trans('wiki.show.toc') }}
                     </h2>
 
-                    @include('wiki._toc')
+                    @if ($page->page() !== null)
+                        @include('wiki._toc')
+                    @endif
                 </div>
             </div>
 
