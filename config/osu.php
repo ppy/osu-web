@@ -92,7 +92,6 @@ return [
             'mapper' => '/p/kudosu',
         ],
         'home' => [
-            'download' => '/p/download',
             'news' => '/p/news',
         ],
         'help' => [

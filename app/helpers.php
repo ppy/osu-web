@@ -331,7 +331,7 @@ function nav_links()
     $links['home'] = [
         'getNews' => osu_url('home.news'),
         'getChangelog' => route('changelog'),
-        'getDownload' => osu_url('home.download'),
+        'getDownload' => route('download'),
     ];
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),
