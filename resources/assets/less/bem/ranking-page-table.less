@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,21 +16,25 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'header' => "<span class='ranking-page-header__title-type'>:type</span> <span class='ranking-page-header__title-ranking'>Ranking</span>",
-    'type' => [
-        'performance' => 'Performance',
-        'chart' => 'Chart',
-        'score' => 'Score',
-        'country' => 'Country',
-        'kudosu' => 'Kudosu',
-    ],
-    'stat' => [
-        'accuracy' => 'Accuracy',
-        'play_count' => 'Play Count',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
-    ],
-];
+.ranking-page-table {
+  background-color: #333;
+  padding: 15px 20px 0;
+  color: #fff;
+  font-size: @font-size--normal;
+
+  &__user-link {
+    display: flex;
+    align-items: center;
+  }
+
+  &__user-link-text {
+    color: #99eeff;
+    font-style: italic;
+    margin-left: 10px;
+  }
+
+  &__rank-column {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

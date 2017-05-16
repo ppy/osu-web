@@ -16,14 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.ranking-page {
-  @top: ranking-page;
+.ranking-page-header {
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+  .at2x-simple('/images/headers/rankings.jpg');
 
-  &__header {
-    background-color: #333;
-    background-size: cover;
-    background-position: center;
-    .at2x-simple('/images/headers/rankings.jpg');
+  &__container {
+    height: 250px;
+    padding: 10px 40px 0;
   }
 
   &__title {
@@ -42,31 +43,4 @@
     color: white;
   }
 
-  &__container {
-    height: 250px;
-    padding: 10px 40px 0;
-  }
-
-  &__user-link {
-    display: flex;
-    align-items: center;
-  }
-
-  &__user-link-text {
-    color: #99eeff;
-    font-style: italic;
-    margin-left: 10px;
-  }
-
-  &__rank-column {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  &__table {
-    background-color: #333;
-    padding: 15px 20px 0;
-    color: #fff;
-    font-size: @font-size--normal;
-  }
 }

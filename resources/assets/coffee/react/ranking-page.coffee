@@ -16,11 +16,9 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-propsFunction = =>
+reactTurbolinks.register 'ranking-page', Ranking.Page, ->
   scores = osu.parseJson('json-scores')
 
   mode: scores.mode
   paging: scores.paging
   scores: scores.scores
-
-reactTurbolinks.register 'ranking-page', Ranking.Page, propsFunction

@@ -23,7 +23,7 @@ class Ranking.Page extends React.Component
   constructor: (props) ->
     super props
 
-    @ranking_tabs =
+    @rankingTabs =
       performance:
         title: osu.trans('ranking.type.performance')
       chart:
@@ -63,6 +63,7 @@ class Ranking.Page extends React.Component
       laroute.route 'ranking',
         mode: @state.mode
         type: @state.ranking_type
+
 
   updateHash: =>
     newUrl = @generateHash()
@@ -113,20 +114,21 @@ class Ranking.Page extends React.Component
 
 
   renderRank: (props) =>
-    div className: 'ranking-page__rank-column',
+    div className: 'ranking-page-table__rank-column',
       "##{@state.page * @state.page_size + props.index + 1}"
+
 
   renderUserLink: (props) ->
     a
       href: laroute.route 'users.show', user: props.row.user.id
-      className: 'ranking-page__user-link'
+      className: 'ranking-page-table__user-link'
       span
         className: 'flag-country'
         title: props.row.user.country_code
         style:
           backgroundImage: "url('/images/flags/#{props.row.user.country_code}.png')"
       span
-        className: 'ranking-page__user-link-text'
+        className: 'ranking-page-table__user-link-text'
         props.row.user.username
 
 
@@ -155,22 +157,21 @@ class Ranking.Page extends React.Component
           hrefFunc: @playmodeTabHrefFunc
 
         div
-          className: 'ranking-page__header'
+          className: 'ranking-page-header'
           div
-            className: 'ranking-page__container'
+            className: 'ranking-page-header__container'
 
             el Tabs,
               name: 'ranking'
               currentTab: @state.ranking_type
-              tabs: @ranking_tabs
+              tabs: @rankingTabs
               hrefFunc: @rankingTypeTabHrefFunc
 
-            div className: 'ranking-page__title',
-              span className: 'ranking-page__title-type', @ranking_tabs[@state.ranking_type].title
-              span className: 'ranking-page__title-ranking', ' Ranking'
+            div className: 'ranking-page-header__title', dangerouslySetInnerHTML:
+              __html: osu.trans('ranking.header', type: @rankingTabs[@state.ranking_type].title)
 
       div className: 'osu-page osu-page--small',
-        div className: 'ranking-page__table',
+        div className: 'ranking-page-table',
           el ReactTable.default,
               columns: [
                 {

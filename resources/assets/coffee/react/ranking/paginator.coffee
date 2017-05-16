@@ -22,12 +22,12 @@ class Ranking.Paginator extends React.Component
 
   pageLink: (page, label, active = false) =>
     classes = [
-      'ranking-paginator__page',
-      'ranking-paginator__page--current' if active
+      'ranking-page-paginator__page',
+      'ranking-page-paginator__page--current' if active
     ]
 
     if page == @props.page
-      classes.push 'ranking-paginator__page--disabled' if !active
+      classes.push 'ranking-page-paginator__page--disabled' if !active
       span
         key: "page-#{label}"
         className: classes.join ' '
@@ -65,7 +65,7 @@ class Ranking.Paginator extends React.Component
     rightEnd = page + rightPages
 
 
-    div className: 'ranking-paginator',
+    div className: 'ranking-page-paginator',
       # first/previous page links
       @pageLink 0, '«'
       @pageLink Math.max(0, @props.page - 1), '‹'

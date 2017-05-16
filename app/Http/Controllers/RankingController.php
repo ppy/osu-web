@@ -34,7 +34,8 @@ class RankingController extends Controller
 
     public function index($mode, $type, $page = 1)
     {
-        $max_pages = ceil($this::MAX_RESULTS / $this::PAGE_SIZE);
+        $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
+        $page = clamp(get_int($page), 1, $maxPages) - 1;
 
         if (!array_key_exists($mode, Beatmap::MODES)) {
             abort(404);
@@ -46,20 +47,17 @@ class RankingController extends Controller
                 $userQuery->default();
             })
             ->orderBy('rank_score', 'desc')
-            ->limit($this::PAGE_SIZE);
+            ->limit(static::PAGE_SIZE)
+            ->offset(static::PAGE_SIZE * $page);
 
-        $page = clamp(get_int($page), 1, $max_pages) - 1;
-
-        $stats->offset($this::PAGE_SIZE * $page);
-
-        $scores = json_collection($stats->get(), new UserStatisticsTransformer, ['user']);
+        $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
 
         $scores = [
             'mode' => $mode,
             'scores' => $scores,
             'paging' => [
                 'page' => $page,
-                'pages' => $max_pages,
+                'pages' => $maxPages,
             ],
         ];
 

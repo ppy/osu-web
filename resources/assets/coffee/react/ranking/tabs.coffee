@@ -53,6 +53,6 @@ class @Tabs extends React.Component
     e.preventDefault()
     tab = e.target.dataset.tab
 
-    return if @props.currentTab == tab || tab == undefined
+    return if @props.currentTab == tab || !tab?
 
     $.publish "tabs:switch:#{@props.name}", tab: tab
