@@ -53,11 +53,11 @@
 </style>
 
 <div class="osu-layout__row osu-layout__row--page">
-    <div class="fake">
+    <div>
         <h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
     </div>
 
-    <div class="fake">
+    <div>
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ trans("store.admin.warehouse") }}</h3>
@@ -81,8 +81,7 @@
     </div>
 
     @foreach ($orders as $o)
-    <div class="fake">
-
+    <div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Order #{{ $o->order_id }} for
