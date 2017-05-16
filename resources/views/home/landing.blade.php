@@ -175,7 +175,7 @@
         </div>
     </div>
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--landing-buttons">
         <div class="landing-middle-buttons">
             <a
                 href="{{ route('support-the-game') }}"

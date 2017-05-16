@@ -23,7 +23,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
-use App\Models\WikiPage;
+use App\Models\Wiki;
 use Request;
 
 class WikiController extends Controller
@@ -40,31 +40,18 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        // ensure correct relative paths
-        if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
-            return $this->redirectWithTrailingSlash();
-        }
-
-        $pageLocale = Request::input('locale', App::getLocale());
-        $page = new WikiPage($path, $pageLocale);
-        $pageLocales = $page->locales();
+        $page = new Wiki\Page($path, $this->locale());
         $titles = explode('/', str_replace('_', ' ', trim($path, '/')), 2);
         $title = array_pop($titles);
         $subtitle = array_pop($titles);
 
-        try {
-            $pageMd = $page->markdown();
-        } catch (GitHubNotFoundException $e) {
-            $pageMd = null;
+        if ($page->page() === null) {
             $status = 404;
         }
 
         return response()
             ->view('wiki.show', compact(
                 'page',
-                'pageLocale',
-                'pageLocales',
-                'pageMd',
                 'path',
                 'subtitle',
                 'title'
@@ -75,24 +62,20 @@ class WikiController extends Controller
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new WikiPage($path))->refresh();
+        (new Wiki\Page($path, $this->locale()))->refresh();
 
         return ujs_redirect(Request::getUri());
     }
 
-    private function redirectWithTrailingSlash()
+    private function locale()
     {
-        $queryString = present(Request::getQueryString())
-            ? '?'.Request::getQueryString()
-            : '';
-
-        return ujs_redirect(Request::url().'/'.$queryString);
+        return Request::input('locale', App::getLocale());
     }
 
     private function showImage($path)
     {
         try {
-            $image = WikiPage::fetchImage($path, Request::url(), Request::header('referer'));
+            $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->data();
         } catch (GitHubNotFoundException $e) {
             abort(404);
         } catch (GitHubTooLargeException $e) {

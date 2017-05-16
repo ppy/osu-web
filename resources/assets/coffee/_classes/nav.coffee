@@ -76,6 +76,7 @@ class @Nav
 
   gracefulHidePopup: =>
     return if @currentMode() == 'user' && !currentUser.id?
+    return if @currentMode() == 'search'
 
     Timeout.clear @hideTimeout
     @hideTimeout = Timeout.set 250, @hidePopup
@@ -129,6 +130,7 @@ class @Nav
     @data().currentMode = newMode
     @data().currentSubMode = newSubMode
     @syncMode()
+    $.publish 'nav:mode:set', mode: newMode
     true
 
 
@@ -151,7 +153,7 @@ class @Nav
       e.preventDefault()
 
       modeHash = e.currentTarget.dataset
-      modeHash = null if @currentMode() == modeHash.navMode
+      modeHash = null if @currentMode() == modeHash.navMode && modeHash.navModeSwitch != '0'
 
     @setMode modeHash
 
