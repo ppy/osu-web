@@ -13,20 +13,9 @@
     display: flex;
   }
 
-  &.grid--stack {
-    flex-direction: column;
-  }
-
   &--gutters {
     margin-left: -@grid-gutter-size;
     margin-right: -@grid-gutter-size;
-  }
-}
-
-// grid has gutters between the cells but not at the start or end.
-.grid--margin {
-  & > .grid-cell + .grid-cell {
-    margin-left: 1em;
   }
 }
 
