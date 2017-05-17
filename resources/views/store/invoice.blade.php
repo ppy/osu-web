@@ -53,7 +53,7 @@
     <div class='print-page-break'></div>
     @endif
     <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page"><div class="grid-cell grid-cell--fill">
-        <div class="grid grid--no-block">
+        <div class="grid grid--xs">
             <div class="grid-cell grid-cell--5of12">
                 <div>
                     <h1>Invoice</h1>
@@ -79,7 +79,7 @@
         <hr />
 
         @if($order->address !== null)
-        <div class="grid grid--no-block">
+        <div class="grid grid--xs">
             <div class="grid-cell grid-cell--1of3">
                 <h4>Sent Via:</h4>
                 @include('store.objects.address', ['data' => $sentViaAddress, 'grid' => ''])
