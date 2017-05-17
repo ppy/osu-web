@@ -124,17 +124,17 @@
             </div>
 
             <div class="wiki-page__content">
-                <div class="js-wiki-content">
-                    @if ($page->page() !== null)
-                        {!! $page->page()['output'] !!}
-                    @else
+                @if ($page->page() !== null)
+                    {!! $page->page()['output'] !!}
+                @else
+                    <div class="wiki-content">
                         @if (empty($page->locales()))
                             {{ trans('wiki.show.missing') }}
                         @else
                             {{ trans('wiki.show.missing_translation') }}
                         @endif
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
