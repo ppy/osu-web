@@ -63,6 +63,8 @@
 
   &--account-edit {
     width: @avatar-size--base;
+    padding: 7px 10px;
+    text-align: left;
   }
 
   &--beatmap-discussion {
@@ -136,6 +138,11 @@
     justify-content: space-between;
     align-items: center;
 
+    .@{top}--account-edit & {
+      width: auto;
+      margin: 0 -5px;
+    }
+
     &--center {
       justify-content: center;
     }
@@ -155,6 +162,13 @@
     flex: none;
     margin: 0 5px;
     font-size: 150%;
+
+    .@{top}--account-edit & {
+      height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
     .@{top}--download & {
       .circle(40px);

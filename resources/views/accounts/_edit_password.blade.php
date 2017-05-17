@@ -20,7 +20,7 @@
     'method' => 'PUT',
     'data-remote' => true,
     'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-form-clear js-form-error account-edit'
+    'class' => 'js-form-clear js-form-error js-account-edit account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
@@ -83,7 +83,7 @@
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
+                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
                             {{ trans('accounts.update_password.update') }}
@@ -94,6 +94,8 @@
                         </div>
                     </div>
                 </button>
+
+                @include('accounts._edit_entry_status')
             </div>
         </div>
     </div>

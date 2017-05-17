@@ -16,53 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapset-info {
-  font-size: @font-size--normal;
-
+.account-edit-status {
+  margin-left: 10px;
   display: flex;
-  flex-direction: column;
+  font-weight: bold;
 
-  padding: 0 30px 0;
+  &__content {
+    opacity: 0;
 
-  @media @desktop {
-    flex-direction: row;
-    height: 220px;
-  }
+    &--saved {
+      color: @green;
+      padding-right: 10px;
 
-  &__box {
-    margin: 15px 10px 0;
-    flex: none;
-
-    &--description {
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    &--meta {
-      @media @desktop {
-        width: 175px;
-        overflow: hidden;
+      [data-account-edit-state=saved] & {
+        opacity: 1;
+        .fade-element(120ms);
       }
     }
 
-    &--success-rate {
-      .center-content();
-      padding: 0 15px;
-      background-color: #eee;
-      font-size: @font-size--normal;
+    &--saving {
+      width: 0;
 
-      @media @desktop {
-        width: @beatmapset-float-box-width;
+      [data-account-edit-state=saving] & {
+        opacity: 1;
       }
     }
-  }
-
-  &__header {
-    font-size: @font-size--title-small;
-    color: inherit;
-    font-weight: bold;
-    font-style: normal;
-    padding: 0;
-    margin: 20px 0 5px;
   }
 }

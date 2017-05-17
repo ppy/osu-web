@@ -19,7 +19,7 @@
     'route' => 'account.update',
     'method' => 'PUT',
     'data-remote' => true,
-    'class' => 'account-edit'
+    'class' => 'account-edit js-account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
@@ -53,8 +53,8 @@
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
+            <div class="account-edit-entry account-edit-entry--no-label">
+                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
                             {{ trans('accounts.edit.signature.update') }}
@@ -65,6 +65,8 @@
                         </div>
                     </div>
                 </button>
+
+                @include('accounts._edit_entry_status')
             </div>
         </div>
     </div>
