@@ -73,12 +73,12 @@ function json_time($time)
 
 function locale_flag($locale)
 {
-    return App\Libraries\LocaleMeta::flagFor(strtolower($locale));
+    return App\Libraries\LocaleMeta::flagFor($locale);
 }
 
 function locale_name($locale)
 {
-    return App\Libraries\LocaleMeta::nameFor(strtolower($locale));
+    return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
 function locale_for_timeago($locale)
