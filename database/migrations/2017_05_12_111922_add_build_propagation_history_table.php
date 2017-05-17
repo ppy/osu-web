@@ -14,7 +14,7 @@ class AddBuildPropagationHistoryTable extends Migration
     {
         Schema::create('build_propagation_histories', function ($table) {
             $table->increments('id');
-            $table->integer('stream_id')->unsigned();
+            $table->unsignedMediumInteger('build_id');
             $table->unsignedMediumInteger('user_count')->default(0);
             $table->timestamp('created_at')->useCurrent();
         });

@@ -8,6 +8,7 @@ class BuildPropagationHistory extends Model
 {
     protected $guarded = [];
 
+    public $timestamps = false;
     protected $dates = [
         'created_at',
     ];
