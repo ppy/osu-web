@@ -20,10 +20,41 @@ class @AccountEdit
   constructor: ->
     $(document).on 'input', '.js-account-edit__input', @initializeUpdate
 
+    $(document).on 'ajax:error', '.js-account-edit', @ajaxError
+    $(document).on 'ajax:send', '.js-account-edit', @ajaxSaving
+    $(document).on 'ajax:success', '.js-account-edit', @ajaxSaved
+
 
   initializeUpdate: (e) =>
     e.currentTarget.debouncedUpdate ?= _.debounce @update, 1000
     e.currentTarget.debouncedUpdate e
+
+
+  ajaxError: (e) =>
+    @clearState e.currentTarget
+
+
+  ajaxSaving: (e) =>
+    @saving e.currentTarget
+
+
+  ajaxSaved: (e) =>
+    @saved e.currentTarget
+
+
+  clearState: (el) =>
+    el.dataset.accountEditState = ''
+
+
+  saved: (el) =>
+    el.dataset.accountEditState = 'saved'
+
+    Timeout.set 3000, =>
+      @clearState el
+
+
+  saving: (el) =>
+    el.dataset.accountEditState = 'saving'
 
 
   update: (e) =>
@@ -39,7 +70,7 @@ class @AccountEdit
     Timeout.clear input.savingTimeout
 
     input.savingTimeout = Timeout.set 1000, =>
-      $main.addClass 'js-account-edit--saving'
+      @saving $main[0]
 
     $.ajax laroute.route('account.update'),
       method: 'PUT'
@@ -47,10 +78,7 @@ class @AccountEdit
         "#{input.name}": value
 
     .done =>
-      $main.addClass 'js-account-edit--saved'
-
-      input.savedTimeout = Timeout.set 3000, =>
-        $main.removeClass 'js-account-edit--saved'
+      @saved $main[0]
 
     .fail (xhr) =>
       input.lastValue = prevValue

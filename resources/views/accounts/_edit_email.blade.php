@@ -20,7 +20,7 @@
     'method' => 'PUT',
     'data-remote' => true,
     'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-form-error js-form-clear account-edit'
+    'class' => 'js-form-error js-form-clear js-account-edit account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
@@ -92,6 +92,8 @@
                         </div>
                     </div>
                 </button>
+
+                @include('accounts._edit_entry_status')
             </div>
         </div>
     </div>

@@ -15,17 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus">
-    <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
+<div class="account-edit-status">
+    <div class="account-edit-status__content account-edit-status__content--saving">
+        <i class="fa fa-spinner fa-pulse fa-fw"></i>
     </div>
 
-    <input
-        class="account-edit-entry__input js-account-edit__input"
-        name="user[{{ $field }}]"
-        data-last-value="{{ Auth::user()->$field }}"
-        value="{{ Auth::user()->$field }}"
-    >
-
-    @include('accounts._edit_entry_status')
-</label>
+    <div class="account-edit-status__content account-edit-status__content--saved">
+        {{ trans('common.saved') }}
+    </div>
+</div>

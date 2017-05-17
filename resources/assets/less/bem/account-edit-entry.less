@@ -28,7 +28,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 10px 10px 0;
   margin: 0;
 
   &--avatar {
@@ -100,7 +100,6 @@
     color: #fff;
     font-weight: normal;
     padding: 5px;
-    margin: 0 10px 0 0;
 
     &:focus, .@{top}.js-parent-focus--focus & {
       border-color: @yellow;
@@ -147,28 +146,6 @@
 
     .@{top}.js-account-edit-avatar--saving & {
       opacity: 1;
-    }
-  }
-
-  &__status {
-    opacity: 0;
-
-    &--saved {
-      color: @green;
-      padding-right: 10px;
-
-      .@{top}.js-account-edit--saved & {
-        opacity: 1;
-        .fade-element(120ms);
-      }
-    }
-
-    &--saving {
-      width: 0;
-
-      .@{top}.js-account-edit--saving & {
-        opacity: 1;
-      }
     }
   }
 }
