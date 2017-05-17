@@ -24,6 +24,12 @@ return [
         'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
         'more-info' => 'Check here for more information.',
     ],
+
+    'index' => [
+        'title' => 'Beatmaps Listing',
+        'guest_title' => 'Beatmaps',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 

@@ -18,8 +18,8 @@
 @extends("master", [
   'current_section' => 'beatmaps',
   'current_action' => 'index',
-  'title' => 'Beatmaps Listing',
-  'pageDescription' => 'Beatmaps Listing',
+  'title' => trans('beatmapsets.index.title'),
+  'pageDescription' => trans('beatmapsets.index.title'),
   'body_additional_classes' => 'osu-layout--body-ddd'
 ])
 
