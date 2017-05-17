@@ -25,19 +25,25 @@
   @input-width-wide: 400px;
 
   text-transform: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 10px 10px 10px 0;
+  padding: 10px 0;
   margin: 0;
 
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
   &--avatar {
-    padding-left: @label-width;
     display: block;
+
+    @media @desktop {
+      padding-left: @label-width;
+    }
   }
 
   &--no-label {
-    padding-left: @label-width;
+    @media @desktop {
+      padding-left: @label-width;
+    }
   }
 
   &__avatar {
@@ -80,8 +86,12 @@
     display: none;
     margin-top: 5px;
     width: 100%;
-    padding-left: (@label-width + 10px);
     color: @yellow;
+    padding-left: 10px;
+
+    @media @desktop {
+      padding-left: (@label-width + 10px);
+    }
 
     .@{top}[data-form-error-state=error] & {
       display: block;
@@ -101,6 +111,10 @@
     font-weight: normal;
     padding: 5px;
 
+    @media @mobile {
+      font-size: @font-size--phone-input;
+    }
+
     &:focus, .@{top}.js-parent-focus--focus & {
       border-color: @yellow;
     }
@@ -115,11 +129,17 @@
   }
 
   &__label {
+    width: 100%;
     flex: none;
-    align-self: center;
-    width: @label-width;
-    padding-right: 10px;
-    text-align: right;
+    padding-bottom: 5px;
+
+    @media @desktop {
+      align-self: center;
+      width: @label-width;
+      padding-right: 10px;
+      padding-bottom: 0;
+      text-align: right;
+    }
 
     .@{top}.js-parent-focus--focus & {
       color: #fff;
