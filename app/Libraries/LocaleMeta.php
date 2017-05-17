@@ -115,11 +115,11 @@ class LocaleMeta
 
     public static function flagFor($locale)
     {
-        return static::MAPPINGS[$locale]['flag'] ?? '__';
+        return static::MAPPINGS[strtolower($locale)]['flag'] ?? '__';
     }
 
     public static function nameFor($locale)
     {
-        return static::MAPPINGS[$locale]['name'] ?? '??';
+        return static::MAPPINGS[strtolower($locale)]['name'] ?? '??';
     }
 }

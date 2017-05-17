@@ -116,4 +116,17 @@
     .inner-shadow-top();
     margin-bottom: 10px;
   }
+
+  &--wiki {
+    .inner-shadow-top();
+    background-color: #333;
+    color: #fff;
+    font-size: @font-size--wiki;
+    padding: 20px;
+
+    @media @desktop {
+      padding-left: @padding-wiki-desktop;
+      padding-right: @padding-wiki-desktop;
+    }
+  }
 }

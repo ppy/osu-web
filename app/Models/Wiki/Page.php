@@ -29,6 +29,7 @@ use Es;
 class Page extends Base
 {
     public $locale;
+    public $requestedLocale;
 
     private $cache = [];
 
@@ -64,8 +65,7 @@ class Page extends Base
     public function __construct($path, $locale)
     {
         $this->path = $this->cleanPath($path);
-        $this->pagePath = $this->path.'/'.$locale.'.md';
-        $this->locale = $locale;
+        $this->requestedLocale = $locale;
     }
 
     public function cacheKeyLocales()
@@ -75,12 +75,12 @@ class Page extends Base
 
     public function cacheKeyPage()
     {
-        return 'wiki:page:page:'.WikiProcessor::VERSION.':'.$this->pagePath;
+        return 'wiki:page:page:'.WikiProcessor::VERSION.':'.$this->pagePath();
     }
 
     public function editUrl()
     {
-        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->pagePath;
+        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
     public function fetchLocales()
@@ -120,7 +120,7 @@ class Page extends Base
         $params = [
             'index' => config('osu.elasticsearch.index').':wiki_pages',
             'type' => 'wiki_page',
-            'id' => $this->pagePath,
+            'id' => $this->pagePath(),
             'body' => [
                 'locale' => $this->locale,
                 'path' => $this->path,
@@ -149,27 +149,44 @@ class Page extends Base
     public function page()
     {
         if (!array_key_exists('page', $this->cache)) {
-            $this->cache['page'] = Cache::remember(
-                $this->cacheKeyPage(),
-                static::CACHE_DURATION,
-                function () {
-                    try {
-                        $page = static::fetchContent($this->pagePath);
-                    } catch (GitHubNotFoundException $_e) {
-                        return;
-                    }
+            foreach ([$this->requestedLocale, config('app.fallback_locale')] as $locale) {
+                $this->locale = $locale;
 
-                    // FIXME: add indexAdd/Remove accordingly.
-                    if (present($page)) {
-                        return WikiProcessor::process($page, [
-                            'path' => '/wiki/'.$this->path,
-                        ]);
+                $this->cache['page'] = Cache::remember(
+                    $this->cacheKeyPage(),
+                    static::CACHE_DURATION,
+                    function () {
+                        try {
+                            $page = static::fetchContent($this->pagePath());
+                        } catch (GitHubNotFoundException $_e) {
+                            return;
+                        }
+
+                        // FIXME: add indexAdd/Remove accordingly.
+                        if (present($page)) {
+                            return WikiProcessor::process($page, [
+                                'path' => '/wiki/'.$this->path,
+                            ]);
+                        }
                     }
+                );
+
+                if ($this->cache['page'] !== null) {
+                    break;
                 }
-            );
+            }
         }
 
         return $this->cache['page'];
+    }
+
+    public function pagePath()
+    {
+        if ($this->locale === null) {
+            throw \Exception('locale not set!');
+        }
+
+        return $this->path.'/'.$this->locale.'.md';
     }
 
     public function refresh()
