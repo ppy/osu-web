@@ -22,7 +22,7 @@
         <h1>Contest Entries</h1>
         <pre>{{json_encode($contest, JSON_PRETTY_PRINT)}}</pre>
         {!! Form::open([
-            'route' => ['admin.contests.getZip', $contest->id],
+            'route' => ['admin.contests.get-zip', $contest->id],
             'method' => 'POST'
         ]) !!}
             <button>Download all entries as ZIP</button>

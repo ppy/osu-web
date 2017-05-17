@@ -33,6 +33,17 @@
 
         <div
             class="nav-popup-box nav-popup-box--extra js-nav-switch--animated js-nav-switch--menu"
+            data-nav-mode="search"
+        >
+            <div class="nav-popup-box__slide-y">
+                <div class="nav-popup-box__content">
+                    @include('layout._popup_search')
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="nav-popup-box nav-popup-box--extra js-nav-switch--animated js-nav-switch--menu"
             data-nav-mode="user"
         >
             <div class="nav-popup-box__slide-y">

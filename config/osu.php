@@ -92,12 +92,9 @@ return [
             'mapper' => '/p/kudosu',
         ],
         'home' => [
-            'download' => '/p/download',
             'news' => '/p/news',
         ],
         'help' => [
-            'wiki' => '/wiki/Main_Page',
-            'faq' => '/wiki/FAQ',
             'support' => 'http://help.ppy.sh/',
         ],
     ],
