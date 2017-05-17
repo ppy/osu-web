@@ -149,7 +149,7 @@ class Page extends Base
     public function page()
     {
         if (!array_key_exists('page', $this->cache)) {
-            foreach ([$this->requestedLocale, config('app.fallback_locale')] as $locale) {
+            foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
                 $this->cache['page'] = Cache::remember(
