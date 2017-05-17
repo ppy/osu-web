@@ -67,10 +67,6 @@ return [
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 
-        'legal' => [
-            'dmca' => '/p/copyright',
-            'tos' => '/p/terms',
-        ],
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/p/twitter',
