@@ -35,30 +35,30 @@ mix
 .copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
-.less('app.less', 'public/build/css')
+.less('resources/assets/less/app.less', 'public/build/css')
 .js([
-  '_classes/*.coffee',
+  'resources/assets/coffee/_classes/*.coffee',
 
-  'react-namespaces.coffee',
-  'react/_components/*.coffee',
-  'react/_mixins/*.coffee',
+  'resources/assets/coffee/react-namespaces.coffee',
+  'resources/assets/coffee/react/_components/*.coffee',
+  'resources/assets/coffee/react/_mixins/*.coffee',
 
-  'jquery-pubsub.coffee',
-  'osu!live.coffee',
-  'osu_common.coffee',
+  'resources/assets/coffee/jquery-pubsub.coffee',
+  'resources/assets/coffee/osu!live.coffee',
+  'resources/assets/coffee/osu_common.coffee',
 
-  'navbar-mobile.coffee',
-  'spoilerbox.coffee',
-  'store.coffee',
-  'forum/post-box.coffee',
-  'forum/topic-ajax.coffee',
-  'ujs-common.coffee',
-  'bootstrap-modal.coffee',
-  'logout.coffee',
-  'shared.coffee',
-  'turbolinks-overrides.coffee',
+  'resources/assets/coffee/navbar-mobile.coffee',
+  'resources/assets/coffee/spoilerbox.coffee',
+  'resources/assets/coffee/store.coffee',
+  'resources/assets/coffee/forum/post-box.coffee',
+  'resources/assets/coffee/forum/topic-ajax.coffee',
+  'resources/assets/coffee/ujs-common.coffee',
+  'resources/assets/coffee/bootstrap-modal.coffee',
+  'resources/assets/coffee/logout.coffee',
+  'resources/assets/coffee/shared.coffee',
+  'resources/assets/coffee/turbolinks-overrides.coffee',
 
-  'main.coffee'
+  'resources/assets/coffee/main.coffee'
 ], 'resources/assets/js/build/app-main.js')
 .scripts([
   path.join(node_root, 'turbolinks/dist/turbolinks.js'),
@@ -96,40 +96,40 @@ mix
   'build/app-main.js',
 ], 'public/js/app.js')
 .js([
-  'react/profile-page/*.coffee',
-  'react/profile-page.coffee',
+  'resources/assets/coffee/react/profile-page/*.coffee',
+  'resources/assets/coffee/react/profile-page.coffee',
 ], 'public/js/react/profile-page.js')
 .js([
-  'react/beatmaps/*.coffee',
-  'react/beatmaps.coffee'
+  'resources/assets/coffee/react/beatmaps/*.coffee',
+  'resources/assets/coffee/react/beatmaps.coffee'
 ], 'public/js/react/beatmaps.js')
 .js([
-  'react/status-page/*.coffee',
-  'react/status-page.coffee'
+  'resources/assets/coffee/react/status-page/*.coffee',
+  'resources/assets/coffee/react/status-page.coffee'
 ], 'public/js/react/status-page.js')
 .js([
-  'react/beatmap-discussions/*.coffee',
-  'react/beatmap-discussions.coffee'
+  'resources/assets/coffee/react/beatmap-discussions/*.coffee',
+  'resources/assets/coffee/react/beatmap-discussions.coffee'
 ], 'public/js/react/beatmap-discussions.js')
 .js([
-  'react/beatmapset-page/*.coffee',
-  'react/beatmapset-page.coffee'
+  'resources/assets/coffee/react/beatmapset-page/*.coffee',
+  'resources/assets/coffee/react/beatmapset-page.coffee'
 ], 'public/js/react/beatmapset-page.js')
 .js([
-  'react/mp-history/*.coffee',
-  'react/mp-history.coffee'
+  'resources/assets/coffee/react/mp-history/*.coffee',
+  'resources/assets/coffee/react/mp-history.coffee'
 ], 'public/js/react/mp-history.js')
 .js([
-  'react/artist-page.coffee',
+  'resources/assets/coffee/react/artist-page.coffee',
 ], 'public/js/react/artist-page.js')
 .js([
-  'react/contest/voting/_base-entry-list.coffee',
-  'react/contest/voting/*.coffee',
-  'react/contest-voting.coffee',
+  'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
+  'resources/assets/coffee/react/contest/voting/*.coffee',
+  'resources/assets/coffee/react/contest-voting.coffee',
 ], 'public/js/react/contest-voting.js')
 .js([
-  'react/contest/entry/*.coffee',
-  'react/contest-entry.coffee',
+  'resources/assets/coffee/react/contest/entry/*.coffee',
+  'resources/assets/coffee/react/contest-entry.coffee',
 ], 'public/js/react/contest-entry.js')
 // .version([
 //   'css/app.css',
