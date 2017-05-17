@@ -18,6 +18,10 @@
 
 const { mix } = require('laravel-mix');
 const path = require('path');
+
+// .js doesn't support globbing by itself, so we need to glob
+// and spread the values in.
+const glob = require('glob');
 const min = ''; // temporary dummy setting.
 
 // relative from resources/assets/*/
@@ -37,11 +41,11 @@ mix
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
 .less('resources/assets/less/app.less', 'public/build/css')
 .js([
-  'resources/assets/coffee/_classes/*.coffee',
+  ...glob.sync('resources/assets/coffee/_classes/*.coffee'),
 
-  'resources/assets/coffee/react-namespaces.coffee',
-  'resources/assets/coffee/react/_components/*.coffee',
-  'resources/assets/coffee/react/_mixins/*.coffee',
+  ...glob.sync('resources/assets/coffee/react-namespaces.coffee'),
+  ...glob.sync('resources/assets/coffee/react/_components/*.coffee'),
+  ...glob.sync('resources/assets/coffee/react/_mixins/*.coffee'),
 
   'resources/assets/coffee/jquery-pubsub.coffee',
   'resources/assets/coffee/osu!live.coffee',
@@ -96,39 +100,39 @@ mix
   'build/app-main.js',
 ], 'public/js/app.js')
 .js([
-  'resources/assets/coffee/react/profile-page/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
   'resources/assets/coffee/react/profile-page.coffee',
 ], 'public/js/react/profile-page.js')
 .js([
-  'resources/assets/coffee/react/beatmaps/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/beatmaps/*.coffee'),
   'resources/assets/coffee/react/beatmaps.coffee'
 ], 'public/js/react/beatmaps.js')
 .js([
-  'resources/assets/coffee/react/status-page/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/status-page/*.coffee'),
   'resources/assets/coffee/react/status-page.coffee'
 ], 'public/js/react/status-page.js')
 .js([
-  'resources/assets/coffee/react/beatmap-discussions/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/beatmap-discussions/*.coffee'),
   'resources/assets/coffee/react/beatmap-discussions.coffee'
 ], 'public/js/react/beatmap-discussions.js')
 .js([
-  'resources/assets/coffee/react/beatmapset-page/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/beatmapset-page/*.coffee'),
   'resources/assets/coffee/react/beatmapset-page.coffee'
 ], 'public/js/react/beatmapset-page.js')
 .js([
-  'resources/assets/coffee/react/mp-history/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/mp-history/*.coffee'),
   'resources/assets/coffee/react/mp-history.coffee'
 ], 'public/js/react/mp-history.js')
 .js([
   'resources/assets/coffee/react/artist-page.coffee',
 ], 'public/js/react/artist-page.js')
 .js([
-  'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
-  'resources/assets/coffee/react/contest/voting/*.coffee',
+  // 'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
+  ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
   'resources/assets/coffee/react/contest-voting.coffee',
 ], 'public/js/react/contest-voting.js')
 .js([
-  'resources/assets/coffee/react/contest/entry/*.coffee',
+  ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'public/js/react/contest-entry.js')
 // .version([
