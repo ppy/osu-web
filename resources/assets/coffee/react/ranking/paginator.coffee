@@ -43,7 +43,7 @@ class Ranking.Paginator extends React.Component
 
   changePage: (e) =>
     e.preventDefault()
-    page = e.target.dataset.page
+    page = parseInt(e.target.dataset.page)
     if (@props.page != page)
       @props.onPageChange page - 1
 
