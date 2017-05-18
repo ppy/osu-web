@@ -22,7 +22,7 @@ return [
     'header' => "<span class='ranking-page-header__title-type'>:type</span> <span class='ranking-page-header__title-ranking'>Ranking</span>",
     'type' => [
         'performance' => 'Performance',
-        'chart' => 'Chart',
+        'charts' => 'Charts',
         'score' => 'Score',
         'country' => 'Country',
         'kudosu' => 'Kudosu',

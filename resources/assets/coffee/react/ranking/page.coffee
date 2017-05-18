@@ -26,8 +26,8 @@ class Ranking.Page extends React.Component
     @rankingTabs =
       performance:
         title: osu.trans('ranking.type.performance')
-      chart:
-        title: osu.trans('ranking.type.chart')
+      charts:
+        title: osu.trans('ranking.type.charts')
         disabled: true
       score:
         title: osu.trans('ranking.type.score')
