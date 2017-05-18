@@ -31,6 +31,8 @@ class Build extends Model
         'date',
     ];
 
+    private $cache = [];
+
     public function updateStream()
     {
         return $this->belongsTo(UpdateStream::class, 'stream_id', 'stream_id');
@@ -55,6 +57,31 @@ class Build extends Model
     {
         return $query->where('allow_bancho', true)
             ->where('test_build', false);
+    }
+
+    public function versionNext()
+    {
+        if (!array_key_exists('versionNext', $this->cache)) {
+            $this->cache['versionNext'] = static
+                ::where('build_id', '>', $this->build_id)
+                ->where('stream_id', $this->stream_id)
+                ->orderBy('build_id', 'ASC')
+                ->first();
+        }
+
+        return $this->cache['versionNext'];
+    }
+
+    public function versionPrevious()
+    {
+        if (!array_key_exists('versionPrevious', $this->cache)) {
+            $this->cache['versionPrevious'] = static
+                ::where('build_id', '<', $this->build_id)
+                ->where('stream_id', $this->stream_id)
+                ->orderBy('build_id', 'DESC')
+                ->first();
+        }
+        return $this->cache['versionPrevious'];
     }
 
     public function displayVersion()
