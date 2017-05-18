@@ -104,38 +104,38 @@ mix
 .js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
   'resources/assets/coffee/react/profile-page.coffee',
-], 'public/js/react/profile-page.js')
+], 'js/react/profile-page.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/beatmaps/*.coffee'),
   'resources/assets/coffee/react/beatmaps.coffee'
-], 'public/js/react/beatmaps.js')
+], 'js/react/beatmaps.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/status-page/*.coffee'),
   'resources/assets/coffee/react/status-page.coffee'
-], 'public/js/react/status-page.js')
+], 'js/react/status-page.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/beatmap-discussions/*.coffee'),
   'resources/assets/coffee/react/beatmap-discussions.coffee'
-], 'public/js/react/beatmap-discussions.js')
+], 'js/react/beatmap-discussions.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/beatmapset-page/*.coffee'),
   'resources/assets/coffee/react/beatmapset-page.coffee'
-], 'public/js/react/beatmapset-page.js')
+], 'js/react/beatmapset-page.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/mp-history/*.coffee'),
   'resources/assets/coffee/react/mp-history.coffee'
-], 'public/js/react/mp-history.js')
+], 'js/react/mp-history.js')
 .js([
   'resources/assets/coffee/react/artist-page.coffee',
-], 'public/js/react/artist-page.js')
+], 'js/react/artist-page.js')
 .js([
   // 'resources/assets/coffee/react/contest/voting/_base-entry-list.coffee',
   ...glob.sync('resources/assets/coffee/react/contest/voting/*.coffee'),
   'resources/assets/coffee/react/contest-voting.coffee',
-], 'public/js/react/contest-voting.js')
+], 'js/react/contest-voting.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
-], 'public/js/react/contest-entry.js')
+], 'js/react/contest-entry.js')
 .version()
 .sourceMaps(!mix.config.inProduction);
