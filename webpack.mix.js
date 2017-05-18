@@ -46,7 +46,7 @@ mix
 .js([
   ...glob.sync('resources/assets/coffee/_classes/*.coffee'),
 
-  ...glob.sync('resources/assets/coffee/react-namespaces.coffee'),
+  'resources/assets/coffee/react-namespaces.coffee',
   ...glob.sync('resources/assets/coffee/react/_components/*.coffee'),
   ...glob.sync('resources/assets/coffee/react/_mixins/*.coffee'),
 
