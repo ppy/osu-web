@@ -33,8 +33,13 @@
   }
 
   &--is-disabled {
-    .link-gray-light-disabled();
+    .link-gray-555();
     cursor: default;
+
+    &.@{_top}--white {
+      .link-white();
+      opacity: 0.5;
+    }
   }
 
   &__stripe {
