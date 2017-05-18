@@ -137,7 +137,5 @@ mix
   ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'public/js/react/contest-entry.js')
-.version([
-  'public/build/css/app.css'
-])
+.version()
 .sourceMaps(!mix.config.inProduction);
