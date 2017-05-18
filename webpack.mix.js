@@ -139,4 +139,5 @@ mix
 ], 'public/js/react/contest-entry.js')
 .version([
   'public/build/css/app.css'
-]);
+])
+.sourceMaps(!mix.config.inProduction);
