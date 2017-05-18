@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
+    <div class="osu-page osu-page--wiki">
         @if (count($page->locales()) > 0)
             <div class="wiki-language-list">
                 <div class="wiki-language-list__header">
@@ -81,7 +81,7 @@
                 </div>
 
                 @foreach ($page->locales() as $locale)
-                    @if ($locale === $page->locale)
+                    @if ($locale === $page->requestedLocale)
                         <span class="wiki-language-list__item wiki-language-list__item--current">
                             {{ App\Libraries\LocaleMeta::nameFor($locale) }}
                         </span>
@@ -91,6 +91,14 @@
                         </a>
                     @endif
                 @endforeach
+            </div>
+        @endif
+
+        @if ($page->page() !== null && $page->locale !== $page->requestedLocale)
+            <div class="wiki-fallback-locale">
+                <div class="wiki-fallback-locale__box">
+                    {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
+                </div>
             </div>
         @endif
 
@@ -116,17 +124,17 @@
             </div>
 
             <div class="wiki-page__content">
-                <div class="js-wiki-content">
-                    @if ($page->page() !== null)
-                        {!! $page->page()['output'] !!}
-                    @else
+                @if ($page->page() !== null)
+                    {!! $page->page()['output'] !!}
+                @else
+                    <div class="wiki-content">
                         @if (empty($page->locales()))
                             {{ trans('wiki.show.missing') }}
                         @else
                             {{ trans('wiki.show.missing_translation') }}
                         @endif
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

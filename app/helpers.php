@@ -384,8 +384,8 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
-        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
+        'tos' => wiki_url('Legal/TOS'),
+        'copyright' => wiki_url('Legal/Copyright'),
         'serverStatus' => osu_url('status.server'),
         'osuStatus' => osu_url('status.osustatus'),
     ];
