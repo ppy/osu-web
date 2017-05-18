@@ -70,6 +70,8 @@ class SessionsController extends Controller
             unset($_COOKIE['phpbb3_2cjk5_sid_check']);
             setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
             setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
+            setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.osu.ppy.sh');
+            setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.osu.ppy.sh');
         }
 
         Request::session()->flush();

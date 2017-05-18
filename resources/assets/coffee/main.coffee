@@ -29,6 +29,7 @@ $(document).on 'submit', 'form', (e) ->
 
 
 @accountEdit ?= new AccountEdit
+@turbolinksDisable ?= new TurbolinksDisable
 @accountEditAvatar ?= new AccountEditAvatar
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
@@ -47,6 +48,8 @@ $(document).on 'submit', 'form', (e) ->
 @landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
+# FIXME: enable later.
+#@navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus

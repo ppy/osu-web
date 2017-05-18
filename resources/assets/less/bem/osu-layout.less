@@ -45,8 +45,12 @@
   }
 
   &--body-dark {
+    background-color: #333;
+
     &::before {
       .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+
+      opacity: 0.25;
     }
   }
 
@@ -245,8 +249,7 @@
     }
 
     &--landing-footer {
-      height: 100%;
-      flex-grow: 1;
+      flex: none;
       .at2x("/images/backgrounds/page-000.png", 500px, 500px);
     }
   }

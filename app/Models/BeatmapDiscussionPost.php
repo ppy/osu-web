@@ -66,7 +66,7 @@ class BeatmapDiscussionPost extends Model
     public function getMessageAttribute($value)
     {
         if ($this->system) {
-            return json_decode($value);
+            return json_decode($value, true);
         } else {
             return $value;
         }

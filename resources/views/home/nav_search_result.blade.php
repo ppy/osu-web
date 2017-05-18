@@ -15,14 +15,32 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print">
-    <div class="footer__row">
-        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">Terms of Service</a>
-        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">Copyright (DMCA)</a>
-        <a class="footer__link" href="{{ osu_url('status.server') }}">Server Status</a>
-        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">@osustatus</a>
-    </div>
-    <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
+<ul>
+    @foreach ($beatmapsets as $beatmapset)
+        <li>
+            <a href="{{ route('beatmapsets.show', $beatmapset->getKey()) }}">
+                {{ $beatmapset->title }}
+            </a>
+        </li>
+    @endforeach
+</ul>
 
-    <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
-</footer>
+<ul>
+    @foreach ($posts as $post)
+        <li>
+            <a href="{{ post_url($post->topic_id, $post->getKey()) }}">
+                {{ $post->topic->topic_title }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+
+<ul>
+    @foreach ($wikiPages as $page)
+        <li>
+            <a href="{{ wiki_url($page['_source']['path'], $page['_source']['locale']) }}">
+                {{ $page['_source']['path'] }}
+            </a>
+        </li>
+    @endforeach
+</ul>

@@ -64,7 +64,6 @@ elixir(function(mix) {
     'react/_mixins/*.coffee',
 
     'jquery-pubsub.coffee',
-    'osu!live.coffee',
     'osu_common.coffee',
 
     'navbar-mobile.coffee',

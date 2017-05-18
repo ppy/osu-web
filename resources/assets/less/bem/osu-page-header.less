@@ -40,6 +40,13 @@
     }
   }
 
+  &--beatmapsets-header-guest {
+    .default-box-shadow();
+    height: 200px;
+    padding: 30px;
+    align-items: center;
+  }
+
   &--forum-index {
     .at2x-simple("/images/headers/forum-top.png");
     .default-box-shadow();
@@ -228,6 +235,14 @@
 
     &--smaller {
       font-size: @font-size--header-description;
+    }
+
+    .@{top}--beatmapsets-header-guest {
+      font-size: @font-size--large-3;
+      font-style: normal;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
     }
 
     .@{top}--forum-index & {

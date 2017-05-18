@@ -67,10 +67,6 @@ return [
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 
-        'legal' => [
-            'dmca' => '/p/copyright',
-            'tos' => '/p/terms',
-        ],
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/p/twitter',
@@ -91,12 +87,9 @@ return [
             'kudosu' => '/p/kudosu',
         ],
         'home' => [
-            'download' => '/p/download',
             'news' => '/p/news',
         ],
         'help' => [
-            'wiki' => '/wiki/Main_Page',
-            'faq' => '/wiki/FAQ',
             'support' => 'http://help.ppy.sh/',
         ],
     ],

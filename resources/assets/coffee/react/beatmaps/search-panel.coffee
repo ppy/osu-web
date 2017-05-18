@@ -49,18 +49,14 @@ class Beatmaps.SearchPanel extends React.Component
 
   renderGuest: =>
     div
-      className: 'osu-page-header osu-page-header--forum-index'
+      className: 'osu-page-header osu-page-header--beatmapsets-header-guest'
       div
         className: 'osu-page-header__background'
         style:
           backgroundImage: "url(#{@props.background})"
-      div className: 'osu-page-header__title-box',
-        h2
-          className: 'osu-page-header__title osu-page-header__title--small'
-          'witty tag line'
-        h1
-          className: 'osu-page-header__title'
-          'beatmaps'
+      h1
+        className: 'osu-page-header__title'
+        'Beatmaps'
 
 
   renderUser: =>

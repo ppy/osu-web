@@ -30,6 +30,7 @@ return [
         'reply' => 'Reply',
         'reset' => 'Reset',
         'save' => 'Save',
+        'saving' => 'Saving...',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
     ],

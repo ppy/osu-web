@@ -15,14 +15,24 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print">
-    <div class="footer__row">
-        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">Terms of Service</a>
-        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">Copyright (DMCA)</a>
-        <a class="footer__link" href="{{ osu_url('status.server') }}">Server Status</a>
-        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">@osustatus</a>
+<div class="nav-popup js-nav-search--container">
+    <div>
+        <div class="js-nav-search--result hidden">
+            {{-- shall be replaced by the thing--}}
+        </div>
+        <div class="js-nav-search--initial">
+            {{ trans('layout.popup_search.initial') }}
+        </div>
+        <div class="js-nav-search--loading hidden">
+            <span class="fa fa-spin fa-refresh"></span>
+        </div>
+        <div class="js-nav-search--fail hidden">
+            <a href="#" class="js-nav-search--run-link">
+                {{ trans('layout.popup_search.retry') }}
+            </a>
+        </div>
     </div>
-    <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
-
-    <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
-</footer>
+    <div class="nav-popup__bar">
+        <span class="bar u-section-bg"></span>
+    </div>
+</div>

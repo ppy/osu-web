@@ -29,7 +29,7 @@ class RouteTest extends TestCase
      */
     public function testHomeRoutes()
     {
-        $this->assertGetRoutes(['/']);
+        $this->assertGetRoutes(['/home']);
     }
 
     /**

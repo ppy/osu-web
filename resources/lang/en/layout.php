@@ -241,4 +241,8 @@ return [
             'profile' => 'My Profile',
         ],
     ],
+
+    'popup_search' => [
+        'initial' => 'Type to search!',
+    ],
 ];
