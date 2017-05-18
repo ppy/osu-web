@@ -33,9 +33,10 @@ const node_root = 'node_modules';
 mix
 .webpackConfig({
   module: {
-    rules: [
-      { test: /\.coffee$/, loader: 'coffee-loader' }
-    ]
+    rules: [{
+      test: /\.coffee$/,
+      use: ['imports-loader?this=>window', 'coffee-loader']
+    }]
   }
 })
 .copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
