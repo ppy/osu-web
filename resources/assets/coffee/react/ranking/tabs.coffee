@@ -18,7 +18,7 @@
 
 {div, a, li, span, ul, hr} = React.DOM
 
-class @Tabs extends React.Component
+class Ranking.Tabs extends React.Component
   render: =>
     div null,
       ul className: 'page-mode page-mode--ranking-page-mode-tabs',

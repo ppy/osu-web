@@ -154,7 +154,7 @@ class Ranking.Page extends React.Component
         div
           className: 'ranking-page-header'
 
-          el Tabs,
+          el Ranking.Tabs,
             name: 'ranking'
             currentTab: @state.rankingType
             tabs: @rankingTabs
