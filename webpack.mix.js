@@ -43,6 +43,13 @@ mix
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
 .less('resources/assets/less/app.less', 'public/build/css')
+.scripts([
+  'resources/assets/js/ga.js',
+  'resources/assets/js/messages.js',
+  'resources/assets/js/laroute.js'
+], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
+                            // compiling coffee and then concating together doesn't
+                            // work so well when versioning is used with webpack.
 .js([
   ...glob.sync('resources/assets/coffee/_classes/*.coffee'),
 
@@ -66,7 +73,7 @@ mix
   'resources/assets/coffee/turbolinks-overrides.coffee',
 
   'resources/assets/coffee/main.coffee'
-], 'resources/assets/js/build/app-main.js')
+], 'js/app.js')
 .scripts([
   path.join(node_root, 'turbolinks/dist/turbolinks.js'),
   path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
@@ -96,12 +103,6 @@ mix
   path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
   path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
 ], 'public/js/vendor.js')
-.scripts([
-  'resources/assets/js/ga.js',
-  'resources/assets/js/messages.js',
-  'resources/assets/js/laroute.js',
-  'resources/assets/js/build/app-main.js',
-], 'public/js/app.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
   'resources/assets/coffee/react/profile-page.coffee',

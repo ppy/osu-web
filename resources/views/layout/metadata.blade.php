@@ -44,6 +44,7 @@
 </script>
 
 <script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
 
