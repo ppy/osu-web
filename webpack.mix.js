@@ -137,17 +137,17 @@ mix
   ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'public/js/react/contest-entry.js')
-// .version([
-//   'css/app.css',
-//   'js/app.js',
-//   'js/vendor.js',
-//   'js/react/profile-page.js',
-//   'js/react/beatmaps.js',
-//   'js/react/status-page.js',
-//   'js/react/beatmap-discussions.js',
-//   'js/react/beatmapset-page.js',
-//   'js/react/mp-history.js',
-//   'js/react/artist-page.js',
-//   'js/react/contest-voting.js',
-//   'js/react/contest-entry.js',
-// ]);
+.version([
+  'public/build/css/app.css',
+  // 'public/js/app.js', // .scripts() already minifies and versions.
+  // 'public/js/vendor.js',
+  // 'public/js/react/profile-page.js',
+  // 'public/js/react/beatmaps.js',
+  // 'public/js/react/status-page.js',
+  // 'public/js/react/beatmap-discussions.js',
+  // 'public/js/react/beatmapset-page.js',
+  // 'public/js/react/mp-history.js',
+  // 'public/js/react/artist-page.js',
+  // 'public/js/react/contest-voting.js',
+  // 'public/js/react/contest-entry.js',
+]);
