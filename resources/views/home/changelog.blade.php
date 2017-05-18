@@ -111,17 +111,17 @@
                         @each('home._changelog_change', $logs, 'log')
                     </div>
                 @endforeach
-            </div>
 
-            @if ($build !== null)
-                <div
-                    class="changelog-disqus js-turbolinks-disqus"
-                    data-turbolinks-disqus="{{ json_encode([
-                        'identifier' => $build->disqusId(),
-                        'title' => $build->disqusTitle(),
-                    ]) }}"
-                ></div>
-            @endif
+                @if ($build !== null)
+                    <div
+                        class="changelog__disqus js-turbolinks-disqus"
+                        data-turbolinks-disqus="{{ json_encode([
+                            'identifier' => $build->disqusId(),
+                            'title' => $build->disqusTitle(),
+                        ]) }}"
+                    ></div>
+                @endif
+            </div>
         </div>
     </div>
 @endsection
