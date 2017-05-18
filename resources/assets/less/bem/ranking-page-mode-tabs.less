@@ -36,7 +36,7 @@
     margin-top: 0;
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #222222, rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, transparent, #222, transparent);
   }
 
   &__item {
@@ -48,14 +48,6 @@
     .@{_top}--breadcrumb & {
       margin-left: 5px;
       margin-right: 5px;
-    }
-
-    // nanaya pls
-    .@{_top}--breadcrumb & + &::before {
-      content: '»';
-      margin-right: 10px;
-      margin-top: 5px;
-      vertical-align: middle;
     }
   }
 }
