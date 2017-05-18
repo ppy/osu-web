@@ -35,9 +35,6 @@ class Ranking.Page extends React.Component
       country:
         title: osu.trans('ranking.type.country')
         disabled: true
-      kudosu:
-        title: osu.trans('ranking.type.kudosu')
-        disabled: true
 
     @state =
       data: props.scores
