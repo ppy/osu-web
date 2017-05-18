@@ -21,7 +21,7 @@
 class @Tabs extends React.Component
   render: =>
     div null,
-      ul className: 'ranking-page-mode-tabs',
+      ul className: 'page-mode page-mode--ranking-page-mode-tabs',
         for name, tab of @props.tabs
           active = name == @props.currentTab
 
@@ -29,7 +29,7 @@ class @Tabs extends React.Component
           linkClass += ' page-mode-link--is-active' if active
 
           li
-            className: 'ranking-page-mode-tabs__item'
+            className: 'page-mode__item'
             key: name
             if tab.disabled
               linkClass += ' page-mode-link--is-disabled'
@@ -46,7 +46,7 @@ class @Tabs extends React.Component
                 tab.title
                 span className: 'page-mode-link__stripe page-mode-link__stripe--black'
 
-      hr className: 'ranking-page-mode-tabs__line'
+      hr className: 'page-mode__underline'
 
 
   switchMode: (e) =>
