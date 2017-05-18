@@ -50,7 +50,7 @@ class Ranking.Page extends React.Component
     @setState page: page, @retrieve
 
 
-  generateHash: =>
+  generateURL: =>
     if @state.page > 0
       laroute.route 'ranking',
         mode: @state.mode
@@ -62,8 +62,8 @@ class Ranking.Page extends React.Component
         type: @state.rankingType
 
 
-  updateHash: =>
-    newUrl = @generateHash()
+  updateURL: =>
+    newUrl = @generateURL()
 
     return if newUrl == location.pathname
 
@@ -72,7 +72,7 @@ class Ranking.Page extends React.Component
 
   retrieve: =>
     @setState loading: true, =>
-      $.ajax @generateHash(),
+      $.ajax @generateURL(),
         method: 'get'
         dataType: 'json'
 
@@ -84,7 +84,7 @@ class Ranking.Page extends React.Component
           loading: false
 
         @setState newState, ->
-          @updateHash()
+          @updateURL()
 
 
   setCurrentPlaymode: (_e, {mode}) =>
@@ -97,8 +97,6 @@ class Ranking.Page extends React.Component
     return if @state.rankingType == tab
 
     @setState rankingType: tab, page: 0, @retrieve
-
-
 
 
   componentDidMount: =>
