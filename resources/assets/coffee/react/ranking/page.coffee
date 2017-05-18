@@ -119,11 +119,9 @@ class Ranking.Page extends React.Component
     a
       href: laroute.route 'users.show', user: props.row.user.id
       className: 'ranking-page-table__user-link'
-      span
-        className: 'flag-country'
-        title: props.row.user.country_code
-        style:
-          backgroundImage: "url('/images/flags/#{props.row.user.country_code}.png')"
+      el FlagCountry, country:
+        code: props.row.user.country_code
+        name: props.row.user.country_code
       span
         className: 'ranking-page-table__user-link-text'
         props.row.user.username
