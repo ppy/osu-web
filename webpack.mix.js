@@ -31,25 +31,6 @@ if (mix.config.inProduction) {
 const node_root = 'node_modules';
 
 mix
-.webpackConfig({
-  module: {
-    rules: [{
-      test: /\.coffee$/,
-      use: ['imports-loader?this=>window', 'coffee-loader']
-    }]
-  }
-})
-.copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
-.copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
-.copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
-.less('resources/assets/less/app.less', 'public/build/css')
-.scripts([
-  'resources/assets/js/ga.js',
-  'resources/assets/js/messages.js',
-  'resources/assets/js/laroute.js'
-], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
-                            // compiling coffee and then concating together doesn't
-                            // work so well when versioning is used with webpack.
 .js([
   ...glob.sync('resources/assets/coffee/_classes/*.coffee'),
 
@@ -74,35 +55,6 @@ mix
 
   'resources/assets/coffee/main.coffee'
 ], 'js/app.js')
-.scripts([
-  path.join(node_root, 'turbolinks/dist/turbolinks.js'),
-  path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
-  path.join(node_root, 'jquery-ujs/src/rails.js'),
-  path.join(node_root, 'qtip2/dist/jquery.qtip' + min + '.js'),
-  path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
-  path.join(node_root, 'jquery-ui/ui/data.js'),
-  path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
-  path.join(node_root, 'jquery-ui/ui/widget.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
-  path.join(node_root, 'timeago/jquery.timeago.js'),
-  path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
-  path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
-  path.join(node_root, 'lodash/lodash.js'),
-  path.join(node_root, 'layzr.js/dist/layzr.js'),
-  path.join(node_root, 'react/dist/react-with-addons' + min + '.js'),
-  path.join(node_root, 'react-dom/dist/react-dom' + min + '.js'),
-  path.join(node_root, 'photoswipe/dist/photoswipe.js'),
-  path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(node_root, 'd3/build/d3' + min + '.js'),
-  path.join(node_root, 'moment/moment.js'),
-  path.join(node_root, 'js-cookie/src/js.cookie.js'),
-
-  path.join(node_root, 'react-height/build/react-height' + min + '.js'),
-  path.join(node_root, 'react-motion/build/react-motion.js'),
-  path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
-  path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
-], 'public/js/vendor.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
   'resources/assets/coffee/react/profile-page.coffee',
@@ -139,5 +91,53 @@ mix
   ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'js/react/contest-entry.js')
+.webpackConfig({
+  module: {
+    rules: [{
+      test: /\.coffee$/,
+      use: ['imports-loader?this=>window', 'coffee-loader']
+    }]
+  }
+})
+.copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
+.copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
+.copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
+.less('resources/assets/less/app.less', 'public/build/css')
+.scripts([
+  'resources/assets/js/ga.js',
+  'resources/assets/js/messages.js',
+  'resources/assets/js/laroute.js'
+], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
+                            // compiling coffee and then concating together doesn't
+                            // work so well when versioning is used with webpack.
+.scripts([
+  path.join(node_root, 'turbolinks/dist/turbolinks.js'),
+  path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
+  path.join(node_root, 'jquery-ujs/src/rails.js'),
+  path.join(node_root, 'qtip2/dist/jquery.qtip' + min + '.js'),
+  path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
+  path.join(node_root, 'jquery-ui/ui/data.js'),
+  path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
+  path.join(node_root, 'jquery-ui/ui/widget.js'),
+  path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
+  path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
+  path.join(node_root, 'timeago/jquery.timeago.js'),
+  path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
+  path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
+  path.join(node_root, 'lodash/lodash.js'),
+  path.join(node_root, 'layzr.js/dist/layzr.js'),
+  path.join(node_root, 'react/dist/react-with-addons' + min + '.js'),
+  path.join(node_root, 'react-dom/dist/react-dom' + min + '.js'),
+  path.join(node_root, 'photoswipe/dist/photoswipe.js'),
+  path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
+  path.join(node_root, 'd3/build/d3' + min + '.js'),
+  path.join(node_root, 'moment/moment.js'),
+  path.join(node_root, 'js-cookie/src/js.cookie.js'),
+
+  path.join(node_root, 'react-height/build/react-height' + min + '.js'),
+  path.join(node_root, 'react-motion/build/react-motion.js'),
+  path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
+  path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
+], 'public/js/vendor.js')
 .version()
 .sourceMaps(!mix.config.inProduction);
