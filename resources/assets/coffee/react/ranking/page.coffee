@@ -42,11 +42,11 @@ class Ranking.Page extends React.Component
     @state =
       data: props.scores
       page: props.paging.page
-      page_size: props.scores.length
+      pageSize: props.scores.length
       pages: props.paging.pages
       loading: false
       mode: props.mode
-      ranking_type: 'performance' # hard coded until other types are implemented
+      rankingType: 'performance' # hard coded until other types are implemented
 
 
   changePage: (page) =>
@@ -57,12 +57,12 @@ class Ranking.Page extends React.Component
     if @state.page > 0
       laroute.route 'ranking',
         mode: @state.mode
-        type: @state.ranking_type
+        type: @state.rankingType
         page: (@state.page + 1)
     else
       laroute.route 'ranking',
         mode: @state.mode
-        type: @state.ranking_type
+        type: @state.rankingType
 
 
   updateHash: =>
@@ -97,9 +97,11 @@ class Ranking.Page extends React.Component
 
 
   switchRankingTab: (_e, {tab}) =>
-    return if @state.ranking_type == tab
+    return if @state.rankingType == tab
 
-    @setState ranking_type: tab, @retrieve
+    @setState rankingType: tab, page: 0, @retrieve
+
+
 
 
   componentDidMount: =>
@@ -115,7 +117,7 @@ class Ranking.Page extends React.Component
 
   renderRank: (props) =>
     div className: 'ranking-page-table__rank-column',
-      "##{@state.page * @state.page_size + props.index + 1}"
+      "##{@state.page * @state.pageSize + props.index + 1}"
 
 
   renderUserLink: (props) ->
@@ -135,7 +137,7 @@ class Ranking.Page extends React.Component
   playmodeTabHrefFunc: (mode) =>
     laroute.route 'ranking',
       mode: mode
-      type: @state.ranking_type
+      type: @state.rankingType
 
 
   rankingTypeTabHrefFunc: (type) =>
@@ -163,12 +165,12 @@ class Ranking.Page extends React.Component
 
             el Tabs,
               name: 'ranking'
-              currentTab: @state.ranking_type
+              currentTab: @state.rankingType
               tabs: @rankingTabs
               hrefFunc: @rankingTypeTabHrefFunc
 
             div className: 'ranking-page-header__title', dangerouslySetInnerHTML:
-              __html: osu.trans('ranking.header', type: @rankingTabs[@state.ranking_type].title)
+              __html: osu.trans('ranking.header', type: @rankingTabs[@state.rankingType].title)
 
       div className: 'osu-page osu-page--small',
         div className: 'ranking-page-table',
@@ -236,11 +238,11 @@ class Ranking.Page extends React.Component
               showPageJump: false
               resizable: false
               showPageSizeOptions: false
-              defaultPageSize: @state.page_size
+              defaultPageSize: @state.pageSize
               data: @state.data
               page: @state.page
               pages: @state.pages
-              pageSize: @state.page_size
+              pageSize: @state.pageSize
               loading: @state.loading
               onPageChange: @changePage
               PaginationComponent: Ranking.Paginator
