@@ -160,17 +160,15 @@ class Ranking.Page extends React.Component
 
         div
           className: 'ranking-page-header'
-          div
-            className: 'ranking-page-header__container'
 
-            el Tabs,
-              name: 'ranking'
-              currentTab: @state.rankingType
-              tabs: @rankingTabs
-              hrefFunc: @rankingTypeTabHrefFunc
+          el Tabs,
+            name: 'ranking'
+            currentTab: @state.rankingType
+            tabs: @rankingTabs
+            hrefFunc: @rankingTypeTabHrefFunc
 
-            div className: 'ranking-page-header__title', dangerouslySetInnerHTML:
-              __html: osu.trans('ranking.header', type: @rankingTabs[@state.rankingType].title)
+          div className: 'ranking-page-header__title', dangerouslySetInnerHTML:
+            __html: osu.trans('ranking.header', type: @rankingTabs[@state.rankingType].title)
 
       div className: 'osu-page osu-page--small',
         div className: 'ranking-page-table',
