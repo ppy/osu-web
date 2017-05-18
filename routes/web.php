@@ -17,191 +17,6 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Explicit > Implicit. Easier to change stuff without breaking anything.
-|
-*/
-
-// home section
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-
-Route::post('/set-locale', ['as' => 'set-locale', 'uses' => 'HomeController@setLocale']);
-Route::post('/bbcode-preview', ['as' => 'bbcode-preview', 'uses' => 'HomeController@bbcodePreview']);
-Route::get('/home/download', ['as' => 'download', 'uses' => 'HomeController@getDownload']);
-Route::get('/home/changelog', ['as' => 'changelog', 'uses' => 'HomeController@getChangelog']);
-Route::get('/home/support', ['as' => 'support-the-game', 'uses' => 'HomeController@supportTheGame']);
-
-Route::get('/icons', 'HomeController@getIcons');
-
-// featured artists
-Route::get('/beatmaps/artists', ['as' => 'artist.index', 'uses' => 'ArtistsController@index']);
-Route::get('/beatmaps/artists/{artist}', ['as' => 'artist.show', 'uses' => 'ArtistsController@show']);
-
-// beatmapsets
-Route::get('/beatmaps/{beatmap}/scores', ['as' => 'beatmaps.scores', 'uses' => 'BeatmapsController@scores']);
-Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
-
-// redirects to beatmapset anyways so there's no point
-// in having an another redirect on top of that
-Route::get('/b/{beatmap}', ['uses' => 'BeatmapsController@show']);
-
-Route::get('/beatmapsets/search/{filters?}', ['as' => 'beatmapsets.search', 'uses' => 'BeatmapsetsController@search']);
-Route::resource('/beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
-Route::post('/beatmapsets/{beatmapset}/update-favourite', ['as' => 'beatmapsets.update-favourite', 'uses' => 'BeatmapsetsController@updateFavourite']);
-
-Route::get('/s/{beatmapset}', function ($beatmapset) {
-    return ujs_redirect(route('beatmapsets.show', ['beatmapset' => $beatmapset]));
-});
-
-// beatmapset discussions
-Route::get('beatmapsets/{beatmapset}/discussion', ['as' => 'beatmapsets.discussion', 'uses' => 'BeatmapsetsController@discussion']);
-Route::put('beatmapsets/{beatmapset}/nominate', ['as' => 'beatmapsets.nominate', 'uses' => 'BeatmapsetsController@nominate']);
-Route::put('beatmapsets/{beatmapset}/disqualify', ['as' => 'beatmapsets.disqualify', 'uses' => 'BeatmapsetsController@disqualify']);
-Route::put('beatmap-discussions/{beatmap_discussion}/vote', ['uses' => 'BeatmapDiscussionsController@vote', 'as' => 'beatmap-discussions.vote']);
-Route::post('beatmap-discussions/{beatmap_discussion}/restore', ['uses' => 'BeatmapDiscussionsController@restore', 'as' => 'beatmap-discussions.restore']);
-Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', ['uses' => 'BeatmapDiscussionsController@denyKudosu', 'as' => 'beatmap-discussions.deny-kudosu']);
-Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', ['uses' => 'BeatmapDiscussionsController@allowKudosu', 'as' => 'beatmap-discussions.allow-kudosu']);
-Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', [
-    'only' => ['show', 'destroy'],
-]);
-
-Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', [
-    'uses' => 'BeatmapDiscussionPostsController@restore',
-    'as' => 'beatmap-discussion-posts.restore',
-]);
-Route::resource('beatmap-discussion-posts',
-    'BeatmapDiscussionPostsController',
-    ['only' => ['destroy', 'store', 'update']]
-);
-
-// contests
-Route::group(['as' => 'community.', 'prefix' => 'community'], function () {
-    Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
-});
-
-// contest entries
-Route::put('contest-entries/{contest_entry}/vote', ['as' => 'contest-entries.vote', 'uses' => 'ContestEntriesController@vote']);
-Route::resource('contest-entries', 'ContestEntriesController', ['only' => ['store', 'destroy']]);
-
-// ranking section
-Route::get('/rankings/{mode?}', function ($mode = 'osu') {
-    if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
-        abort(404);
-    }
-
-    return Redirect::route('ranking', ['mode' => $mode, 'type' => 'performance']);
-});
-Route::get('/rankings/{mode}/{type}/{page?}', ['as' => 'ranking', 'uses' => 'RankingController@index']);
-
-// community section (forum will end up being a section of its own)
-Route::get('/community/forum', function () {
-    return Redirect::to('/forum');
-});
-
-// temporary news redirect
-Route::get('/news/{id}', function ($id) {
-    return Redirect::to("https://osu.ppy.sh/news/{$id}");
-})->name('news.show');
-
-Route::resource('livestreams', 'LivestreamsController', ['only' => ['index']]);
-Route::post('livestreams/promote', ['as' => 'livestreams.promote', 'uses' => 'LivestreamsController@promote']);
-
-Route::get('/community/chat', ['as' => 'chat', 'uses' => 'CommunityController@getChat']);
-Route::get('/community/profile/{id}', function ($id) {
-    return Redirect::route('users.show', $id);
-});
-
-Route::resource('matches', 'MatchesController', ['only' => ['show']]);
-Route::get('/matches/{match}/history', ['as' => 'matches.history', 'uses' => 'MatchesController@history']);
-
-Route::get('/mp/{match}', function ($match) {
-    return ujs_redirect(route('matches.show', ['match' => $match]));
-});
-
-Route::post('users/check-username-availability', ['as' => 'users.check-username-availability', 'uses' => 'UsersController@checkUsernameAvailability']);
-Route::get('users/disabled', ['as' => 'users.disabled', 'uses' => 'UsersController@disabled']);
-
-Route::post('session', 'SessionsController@store')->name('login');
-Route::delete('session', 'SessionsController@destroy')->name('logout');
-
-// Authentication section (Temporarily set up as replacement/improvement of config("osu.urls.*"))
-Route::get('users/forgot-password', ['as' => 'users.forgot-password', function () {
-    return Redirect::to('https://osu.ppy.sh/p/forgot');
-}]);
-Route::get('users/register', ['as' => 'users.register', function () {
-    return Redirect::to('https://osu.ppy.sh/p/register');
-}]);
-
-Route::get('u/{user}', ['as' => 'users.show', 'uses' => 'UsersController@show']);
-
-// soon-to-be notifications
-Route::get('/notifications', ['as' => 'notifications.index', function () {
-    return Redirect::to('https://osu.ppy.sh/forum/ucp.php?i=pm&folder=inbox');
-}]);
-
-// help section
-Route::get('/wiki', ['as' => 'wiki', function () {
-    return ujs_redirect(route('wiki.show', ['page' => 'Welcome']).'/');
-}]);
-Route::get('wiki/{page?}', ['as' => 'wiki.show', 'uses' => 'WikiController@show'])->where('page', '.+');
-Route::put('wiki/{page?}', ['uses' => 'WikiController@update'])->where('page', '.+');
-
-Route::get('/help/support', ['as' => 'support', 'uses' => 'HelpController@getSupport']);
-Route::get('/help/faq', ['as' => 'faq', 'uses' => 'HelpController@getFaq']);
-
-Route::get('/store', 'StoreController@getIndex');
-Route::get('/store/listing', 'StoreController@getListing')->name('store.products.index');
-Route::get('/store/invoice', 'StoreController@getInvoice');
-Route::get('/store/invoice/{invoice}', 'StoreController@getInvoice');
-Route::get('/store/product/{product}', 'StoreController@getProduct')->name('store.product');
-Route::get('/store/cart', 'StoreController@getCart');
-Route::get('/store/checkout', 'StoreController@getCheckout');
-Route::post('/store/update-cart', 'StoreController@postUpdateCart');
-Route::post('/store/update-address', 'StoreController@postUpdateAddress');
-Route::post('/store/new-address', 'StoreController@postNewAddress');
-Route::post('/store/add-to-cart', 'StoreController@postAddToCart');
-Route::post('/store/checkout', 'StoreController@postCheckout');
-Route::post('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')
-    ->name('store.notification-request');
-Route::delete('/store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
-
-Route::resource('tournaments', 'TournamentsController');
-Route::post('/tournaments/{tournament}/unregister', ['as' => 'tournaments.unregister', 'uses' => 'TournamentsController@unregister']);
-Route::post('/tournaments/{tournament}/register', ['as' => 'tournaments.register', 'uses' => 'TournamentsController@register']);
-
-// Forum controllers
-Route::group(['as' => 'forum.', 'prefix' => 'forum', 'namespace' => 'Forum'], function () {
-    Route::get('search', ['as' => 'forums.search', 'uses' => 'ForumsController@search']);
-    Route::get('t/{topic}', ['as' => 'topics.show', 'uses' => 'TopicsController@show']);
-    Route::post('topics/preview', ['as' => 'topics.preview', 'uses' => 'TopicsController@preview']);
-    Route::post('topics/{topic}/issue-tag', ['as' => 'topics.issue-tag', 'uses' => 'TopicsController@issueTag']);
-    Route::post('topics/{topic}/lock', ['as' => 'topics.lock', 'uses' => 'TopicsController@lock']);
-    Route::post('topics/{topic}/move', ['as' => 'topics.move', 'uses' => 'TopicsController@move']);
-    Route::post('topics/{topic}/pin', ['as' => 'topics.pin', 'uses' => 'TopicsController@pin']);
-    Route::post('topics/{topic}/reply', ['as' => 'topics.reply', 'uses' => 'TopicsController@reply']);
-    Route::post('topics/{topic}/vote-feature', ['as' => 'topics.vote-feature', 'uses' => 'TopicsController@voteFeature']);
-    Route::post('topics/{topic}/vote', ['as' => 'topics.vote', 'uses' => 'TopicsController@vote']);
-    Route::post('topics/{topic}/watch', ['as' => 'topics.watch', 'uses' => 'TopicsController@watch']);
-    Route::resource('topics', 'TopicsController', ['only' => ['create', 'store', 'update']]);
-    Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index']]);
-
-    Route::resource('forum-covers', 'ForumCoversController', ['only' => ['store', 'update', 'destroy']]);
-    Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
-
-    Route::get('p/{post}', ['as' => 'posts.show', 'uses' => 'PostsController@show']);
-    Route::get('posts/{post}/raw', ['as' => 'posts.raw', 'uses' => 'PostsController@raw']);
-    Route::post('posts/{post}/restore', ['as' => 'posts.restore', 'uses' => 'PostsController@restore']);
-    Route::resource('posts', 'PostsController', ['only' => ['update', 'edit', 'destroy']]);
-
-    Route::get('/', ['as' => 'forums.index', 'uses' => 'ForumsController@index']);
-    Route::get('{forum}', ['as' => 'forums.show', 'uses' => 'ForumsController@show']);
-});
-
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
     Route::post('/beatmapsets/{beatmapset}/covers/regenerate', 'BeatmapsetsController@regenerateCovers')->name('beatmapsets.covers.regenerate');
@@ -337,6 +152,16 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
 });
+
+// ranking section
+Route::get('/rankings/{mode?}', function ($mode = 'osu') {
+    if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
+        abort(404);
+    }
+
+    return Redirect::route('ranking', ['mode' => $mode, 'type' => 'performance']);
+});
+Route::get('/rankings/{mode}/{type}/{page?}', ['as' => 'ranking', 'uses' => 'RankingController@index']);
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
