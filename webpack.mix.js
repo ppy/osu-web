@@ -138,16 +138,5 @@ mix
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'public/js/react/contest-entry.js')
 .version([
-  'public/build/css/app.css',
-  // 'public/js/app.js', // .scripts() already minifies and versions.
-  // 'public/js/vendor.js',
-  // 'public/js/react/profile-page.js',
-  // 'public/js/react/beatmaps.js',
-  // 'public/js/react/status-page.js',
-  // 'public/js/react/beatmap-discussions.js',
-  // 'public/js/react/beatmapset-page.js',
-  // 'public/js/react/mp-history.js',
-  // 'public/js/react/artist-page.js',
-  // 'public/js/react/contest-voting.js',
-  // 'public/js/react/contest-entry.js',
+  'public/build/css/app.css'
 ]);
