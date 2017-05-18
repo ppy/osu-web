@@ -23,6 +23,7 @@ desktop.ini
 /npm-debug.log
 
 # Compiled/copied assets
+/public/fonts/vendor
 /public/js
 /public/css
 /public/build
