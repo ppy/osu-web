@@ -17,8 +17,4 @@
 ###
 
 reactTurbolinks.register 'ranking-page', Ranking.Page, ->
-  scores = osu.parseJson('json-scores')
-
-  mode: scores.mode
-  paging: scores.paging
-  scores: scores.scores
+  osu.parseJson('json-scores')
