@@ -37,12 +37,12 @@ There are a few different options to get started:
 
 ### Generating assets
 
-Using Laravel's [Elixir](http://laravel.com/docs/5.1/elixir).
+Using Laravel's [Mix](https://laravel.com/docs/5.4/mix).
 
     C:\osu-web\vagrant> vagrant ssh
     $ cd /data/osu\!web
     $ php artisan lang:js resources/assets/js/messages.js
-    $ ./node_modules/.bin/gulp
+    $ yarn run development
 
 ### Reset the database + Seeding sample data
 
@@ -57,9 +57,9 @@ Developing
 
 ### Generating assets while developing
 
-To continuously generate assets as you make changes to files (less, coffeescript) you can run `gulp` in `watch` mode.
+To continuously generate assets as you make changes to files (less, coffeescript) you can run `webpack` in `watch` mode.
 
-    $ ./node_modules/.bin/gulp watch
+    $ yarn run watch
 
 ### Use of React vs Laravel Blade templates
 
