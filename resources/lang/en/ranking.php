@@ -19,7 +19,7 @@
  */
 
 return [
-    'header' => "<span class='ranking-page-header__title-type'>:type</span> <span class='ranking-page-header__title-ranking'>Ranking</span>",
+    'header' => ':type Ranking',
     'type' => [
         'performance' => 'Performance',
         'charts' => 'Charts',

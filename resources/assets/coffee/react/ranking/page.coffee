@@ -161,7 +161,7 @@ class Ranking.Page extends React.Component
             hrefFunc: @rankingTypeTabHrefFunc
 
           div className: 'ranking-page-header__title', dangerouslySetInnerHTML:
-            __html: osu.trans('ranking.header', type: @rankingTabs[@state.rankingType].title)
+            __html: osu.trans('ranking.header', type: "<span class='ranking-page-header__title-type'>#{@rankingTabs[@state.rankingType].title}</span>")
 
       div className: 'osu-page osu-page--small',
         div className: 'ranking-page-table',
