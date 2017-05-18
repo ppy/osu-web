@@ -81,6 +81,7 @@ class Build extends Model
                 ->orderBy('build_id', 'DESC')
                 ->first();
         }
+
         return $this->cache['versionPrevious'];
     }
 
