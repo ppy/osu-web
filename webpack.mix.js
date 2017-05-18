@@ -22,11 +22,13 @@ const path = require('path');
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');
-const min = ''; // temporary dummy setting.
+let min = '';
+if (mix.config.inProduction) {
+  min = '.min';
+}
 
-// relative from resources/assets/*/
-const composer_root = '../../../vendor/';
-const node_root = '../../../node_modules/';
+// relative from root?
+const node_root = 'node_modules';
 
 mix
 .webpackConfig({
@@ -94,10 +96,10 @@ mix
   path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
 ], 'public/js/vendor.js')
 .scripts([
-  'ga.js',
-  'messages.js',
-  'laroute.js',
-  'build/app-main.js',
+  'resources/assets/js/ga.js',
+  'resources/assets/js/messages.js',
+  'resources/assets/js/laroute.js',
+  'resources/assets/js/build/app-main.js',
 ], 'public/js/app.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
