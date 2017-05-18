@@ -61,7 +61,7 @@ class BuildsUpdatePropagationHistory extends Command
             ->whereIn('stream_id', config('osu.changelog.update_streams'))
             ->get();
 
-        foreach($builds as $build) {
+        foreach ($builds as $build) {
             BuildPropagationHistory::create([
                 'build_id' => $build->build_id,
                 'user_count' => $build->users,
