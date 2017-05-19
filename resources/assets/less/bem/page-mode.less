@@ -31,9 +31,17 @@
   flex-wrap: wrap;
   margin: 0;
   font-size: 15px;
+  overflow: hidden;
 
   &--page-extra-tabs {
     background-color: transparent;
+  }
+
+  &--ranking-page-mode-tabs {
+    background-color: transparent;
+    color: white;
+
+    padding: 10px 10px 0;
   }
 
   &__item {
@@ -54,5 +62,12 @@
       margin-top: 5px;
       vertical-align: middle;
     }
+  }
+
+  &__underline {
+    margin-top: 0;
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, #222, transparent);
   }
 }

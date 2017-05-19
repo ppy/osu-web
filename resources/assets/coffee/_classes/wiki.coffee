@@ -34,7 +34,6 @@ class @Wiki
     el.style.position = 'absolute'
     el.style.top = 'auto'
     el.style.bottom = 0
-    el.style.left = 0
     el.style.width = 'auto'
 
 
@@ -47,7 +46,6 @@ class @Wiki
     el.style.position = 'absolute'
     el.style.top = 0
     el.style.bottom = 'auto'
-    el.style.left = 0
     el.style.width = 'auto'
 
 
@@ -60,7 +58,6 @@ class @Wiki
     el.style.position = 'fixed'
     el.style.top = 0
     el.style.bottom = 'auto'
-    el.style.left = "#{containerRect.left}px"
     el.style.width = "#{containerRect.width}px"
 
 

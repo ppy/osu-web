@@ -67,10 +67,6 @@ return [
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 
-        'legal' => [
-            'dmca' => '/p/copyright',
-            'tos' => '/p/terms',
-        ],
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/p/twitter',
@@ -85,11 +81,10 @@ return [
             'rules' => '/wiki/Osu!:Rules',
             'signup' => '/p/register',
         ],
-        'ranking' => [
-            'overall' => '/p/pp',
-             'charts' => '/p/chart',
+        'rankings' => [
+            'charts' => '/p/chart',
             'country' => '/p/countryranking',
-            'mapper' => '/p/kudosu',
+            'kudosu' => '/p/kudosu',
         ],
         'home' => [
             'news' => '/p/news',
