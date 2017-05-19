@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,21 +16,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'header' => ':type Ranking',
-    'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Charts',
-        'score' => 'Score',
-        'country' => 'Country',
-        'kudosu' => 'Kudosu',
-    ],
-    'stat' => [
-        'accuracy' => 'Accuracy',
-        'play_count' => 'Play Count',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
-    ],
-];
+.grid-cell {
+  flex: 1;
+
+  &--1of2 {
+    flex: 0 0 50%;
+  }
+
+  &--1of3 {
+    flex: 0 0 (1 / 3 * 100%);
+  }
+
+  &--2of3 {
+    flex: 0 0 (2 / 3 * 100%);
+  }
+
+  &--5of12 {
+    flex: 0 0 (5 / 12 * 100%);
+  }
+
+  &--fill {
+    flex: 1 0 100%;
+  }
+
+  .grid--gutters > & {
+    padding-left: @flex-grid--gutter-width;
+    padding-right: @flex-grid--gutter-width;
+  }
+  // squashes the flex content down to the smallest possible
+  // size to let other cells expand and fill the gap.
+  &--squash {
+    flex: 0 1 0%;
+  }
+}

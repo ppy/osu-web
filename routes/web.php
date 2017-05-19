@@ -153,10 +153,15 @@ Route::group(['prefix' => 'home'], function () {
     Route::put('password-reset', 'PasswordResetController@update');
 });
 
-Route::get('/ranking/overall', ['as' => 'ranking-overall', 'uses' => 'RankingController@getOverall']);
-Route::get('/ranking/charts', ['as' => 'ranking-charts', 'uses' => 'RankingController@getCharts']);
-Route::get('/ranking/country', ['as' => 'ranking-country', 'uses' => 'RankingController@getCountry']);
-Route::get('/ranking/mapper', ['as' => 'ranking-mapper', 'uses' => 'RankingController@getMapper']);
+// ranking section
+Route::get('/rankings/{mode?}', function ($mode = 'osu') {
+    if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
+        abort(404);
+    }
+
+    return Redirect::route('ranking', ['mode' => $mode, 'type' => 'performance']);
+});
+Route::get('/rankings/{mode}/{type}/{page?}', ['as' => 'ranking', 'uses' => 'RankingController@index']);
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');

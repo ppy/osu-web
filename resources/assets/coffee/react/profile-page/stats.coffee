@@ -46,25 +46,25 @@ ProfilePage.Stats = ({stats}) ->
     div className: 'profile-stats__row',
       simpleEntry
         key: 'ranked_score'
-        value: stats.rankedScore.toLocaleString()
+        value: stats.ranked_score.toLocaleString()
       simpleEntry
         key: 'hit_accuracy'
-        value: "#{stats.hitAccuracy.toFixed(2)}%"
+        value: "#{stats.hit_accuracy.toFixed(2)}%"
       simpleEntry
         key: 'play_count'
-        value: stats.playCount.toLocaleString()
+        value: stats.play_count.toLocaleString()
       simpleEntry
         key: 'total_score'
-        value: stats.totalScore.toLocaleString()
+        value: stats.total_score.toLocaleString()
       simpleEntry
         key: 'total_hits'
-        value: stats.totalHits.toLocaleString()
+        value: stats.total_hits.toLocaleString()
       simpleEntry
         key: 'maximum_combo'
-        value: stats.maximumCombo.toLocaleString()
+        value: stats.maximum_combo.toLocaleString()
       simpleEntry
         key: 'replays_watched_by_others'
-        value: stats.replaysWatchedByOthers.toLocaleString()
+        value: stats.replays_watched_by_others.toLocaleString()
 
       div className: 'profile-stats__value profile-stats__value--score-ranks',
         rankCountEntry('XH')

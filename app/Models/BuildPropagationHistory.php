@@ -18,21 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'header' => ':type Ranking',
-    'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Charts',
-        'score' => 'Score',
-        'country' => 'Country',
-        'kudosu' => 'Kudosu',
-    ],
-    'stat' => [
-        'accuracy' => 'Accuracy',
-        'play_count' => 'Play Count',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
-    ],
-];
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class BuildPropagationHistory extends Model
+{
+    protected $guarded = [];
+
+    public $timestamps = false;
+    protected $dates = [
+        'created_at',
+    ];
+}

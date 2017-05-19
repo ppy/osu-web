@@ -54,13 +54,13 @@ return [
             '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'overall',
-            'getCountry' => 'country',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'overall',
+        'rankings' => [
+            '_' => 'rankings',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'charts',
+            'country' => 'country',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
