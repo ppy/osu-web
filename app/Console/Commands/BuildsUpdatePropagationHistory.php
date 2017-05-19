@@ -22,6 +22,7 @@ namespace App\Console\Commands;
 
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class BuildsUpdatePropagationHistory extends Command
@@ -57,6 +58,8 @@ class BuildsUpdatePropagationHistory extends Command
      */
     public function handle()
     {
+        $date = Carbon::now();
+
         $builds = Build::propagationHistory()
             ->whereIn('stream_id', config('osu.changelog.update_streams'))
             ->get();
@@ -65,6 +68,7 @@ class BuildsUpdatePropagationHistory extends Command
             BuildPropagationHistory::create([
                 'build_id' => $build->build_id,
                 'user_count' => $build->users,
+                'created_at' => $date,
             ]);
         }
     }
