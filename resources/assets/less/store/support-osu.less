@@ -1,32 +1,52 @@
-.store-support-osu__textual-info {
-  margin: 8px 20px;  // TODO: placeholder
-  .error {
-    align-self: flex-end;
-  }
-}
-
-.store-support-osu__user {
-  &.store-support-osu__user--searching {
-    display: none;
-  }
-}
-
-.store-support-osu--disabled {
-  .js-slider {
-    .ui-slider-handle {
-      background-color: gray;
-      border-radius: 50%;
+.store-support-osu {
+  &__textual-info {
+    margin: 8px 20px;  // TODO: placeholder
+    .error {
+      align-self: flex-end;
     }
-    &.ui-slider {
-      background-color: lightgray;
-      .ui-slider-range {
-        background-color: gray;
+  }
+
+  &__user {
+    &--searching {
+      display: none;
+    }
+  }
+
+  &__user-search {
+    @media @mobile {
+      &.grid--margin {
+        > .grid-cell {
+          & + .grid-cell {
+            margin-left: 0;
+          }
+        }
       }
     }
+  }
+
+  &--disabled {
+    .js-slider {
+      .ui-slider-handle {
+        background-color: gray;
+        border-radius: 50%;
+      }
+      &.ui-slider {
+        background-color: lightgray;
+        .ui-slider-range {
+          background-color: gray;
+        }
+      }
+    }
+  }
+
+  .price-box {
+    margin-left: 20px;
+    white-space: nowrap; // TODO: elevate?
   }
 }
 
 .ui-slider {
+  margin: 8px 0;
   .ui-slider-pip {
     position: absolute;
     text-align: center;

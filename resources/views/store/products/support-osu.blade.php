@@ -24,16 +24,16 @@
 @else
 <div id="js-store-support-osu" class="js-store-support-osu store-support-osu"
     data-username="{{ Auth::user()->username }}" data-avatar-url="{{ Auth::user()->user_avatar }}">
-    <div class="grid grid-cell store-support-osu__user">
+    <div class="grid store-support-osu__user">
         <div class="grid-cell grid-cell--squash store-support-osu__user-icon">
             <center>
                 <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
             </center>
         </div>
         <div class="grid-cell store-support-osu__textual-info">
-            <div class="grid">
+            <div class="grid grid--xs">
                 <div class="grid grid--stack grid-cell">
-                    <div class="grid grid--margin">
+                    <div class="grid grid--margin store-support-osu__user-search">
                         <div class="grid-cell">
                             {!! Form::label('username', 'Gift a player') !!}
                             {!! Form::text('item[extra_info]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
@@ -43,7 +43,7 @@
                     <div>Currently have no supporter tag</div>
                     <div>Choose your amount</div>
                 </div>
-                <div class="price-box">
+                <div class="grid-cell grid-cell--1of3 price-box">
                     <p class="js-price price text-right">MONEHS</p>
                     <div class="js-duration text-right">
                         1 month
