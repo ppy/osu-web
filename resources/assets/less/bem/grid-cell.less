@@ -43,6 +43,12 @@
     padding-left: @flex-grid--gutter-width;
     padding-right: @flex-grid--gutter-width;
   }
+
+  // grid has gutters between the cells but not at the start or end.
+  .grid--margin > & + & {
+    margin-left: 1em;
+  }
+
   // squashes the flex content down to the smallest possible
   // size to let other cells expand and fill the gap.
   &--squash {
