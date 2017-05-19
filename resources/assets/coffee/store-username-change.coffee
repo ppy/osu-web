@@ -43,5 +43,5 @@ $(document).on 'input', '.js-username-change #username.form-control', ->
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->
-  return if $('#username.form-control').length == 0
+  return if $('.js-username-change #username.form-control').length == 0
   preventUsernameSubmission()
