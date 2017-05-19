@@ -115,9 +115,11 @@ class @StoreSupportOsu
     .done (data) =>
       @updateSlider(data?)
       @updateUserDisplay(data)
+      @updateCart(data)
     .fail (xhr) =>
       @updateSlider(false)
       @updateUserDisplay(null)
+      @updateCart(null)
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
     .always =>
@@ -158,6 +160,12 @@ class @StoreSupportOsu
       , 0)
 
     @debouncedGetUser(event.currentTarget.value)
+
+  updateCart: (data) ->
+    # FIXME: should consolidate implementations into a service class.
+    disabled = !data?
+    $('.js-store-add-to-cart').prop 'disabled', disabled
+    $('#product-form').data 'disabled', disabled
 
   updateSearchResult: (searching) ->
     $('.js-error').text('searching') if searching
