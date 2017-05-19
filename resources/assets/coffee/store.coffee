@@ -63,7 +63,7 @@ checkUsernameValidity = ->
 debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
 
 
-$(document).on 'input', '#username.form-control', ->
+$(document).on 'input', '.js-username-change #username.form-control', ->
   $status = $('#username-check-status')
   requestedUsername = $('#username.form-control').val()
 
