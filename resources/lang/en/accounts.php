@@ -28,7 +28,7 @@ return [
         ],
 
         'email' => [
-            'current' => 'current password',
+            'current' => 'current email',
             'new' => 'new email',
             'new_confirmation' => 'email confirmation',
             'title' => 'Email',
