@@ -58,7 +58,7 @@ return [
             'accuracy' => 'Precisão',
             'ar' => 'Approach Rate',
             'stars' => 'Dificuldade',
-            'total_length' => 'Duração'
+            'total_length' => 'Duração',
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de círculos',
             'count_sliders' => 'Quantidade de sliders',
