@@ -93,7 +93,7 @@ class @StoreSupportOsu
                 else ''
         label
     })
-    @updatePriceDisplay(@calculate(@MIN_VALUE * @RESOLUTION))
+    @updatePrice(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
 
   initializeSliderPresets: =>
@@ -146,7 +146,7 @@ class @StoreSupportOsu
 
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
-    @updatePriceDisplay(values)
+    @updatePrice(values)
 
   onInput: (event) =>
     if !@searching
@@ -170,7 +170,8 @@ class @StoreSupportOsu
   updateSearchResult: (searching) ->
     $('.js-error').text('searching') if searching
 
-  updatePriceDisplay: (obj) =>
+  updatePrice: (obj) =>
+    @el.querySelector('input[name="item[cost]"').value = obj.price
     @priceElement.textContent = "USD #{obj.price}"
     monthText = if (obj.duration == 1) then 'month' else 'months'
     @durationElement.textContent = "#{obj.duration} #{monthText}"

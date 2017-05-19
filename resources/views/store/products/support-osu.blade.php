@@ -26,7 +26,7 @@
     data-username="{{ Auth::user()->username }}" data-avatar-url="{{ Auth::user()->user_avatar }}">
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
-    <input type="hidden" id="support-osu-form-price" name="item[cost]" value="0" />
+    <input type="hidden" id="support-osu-form-price" name="item[cost]" value="4" />
     <div class="grid store-support-osu__user">
         <div class="grid-cell grid-cell--squash store-support-osu__user-icon">
             <center>
