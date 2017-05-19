@@ -32,12 +32,14 @@ class @StoreSupportOsu
   }
 
   constructor: ->
-    $(document).on 'turbolinks:load', @initialize
+    $(document).on 'turbolinks:load', =>
+      @initialize(document.getElementById('js-store-support-osu'))
 
-  initialize: =>
+  initialize: (rootElement) =>
+    return unless rootElement
+    @el = rootElement
     @searching = false
     @searchData = null
-    @el = document.getElementById('js-store-support-osu')
     @currentUser = {
       username: @el.dataset.username
       avatar_url: @el.dataset.avatarUrl
