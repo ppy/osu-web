@@ -27,7 +27,7 @@ return [
     'index' => [
         'title' => 'Lista de beatmaps',
         'guest_title' => 'Beatmaps',
-    ],       
+    ],
     'show' => [
         'discussion' => 'Discussão',
 
