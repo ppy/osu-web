@@ -39,7 +39,6 @@ mix
   ...glob.sync('resources/assets/coffee/react/_mixins/*.coffee'),
 
   'resources/assets/coffee/jquery-pubsub.coffee',
-  'resources/assets/coffee/osu!live.coffee',
   'resources/assets/coffee/osu_common.coffee',
 
   'resources/assets/coffee/navbar-mobile.coffee',
