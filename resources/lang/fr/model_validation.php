@@ -50,7 +50,7 @@ return [
     ],
 
     'user_email' => [
-        'invalid' => "Ça ne semble pas être une adresse email.",
+        'invalid' => 'Ça ne semble pas être une adresse email.',
         'already_used' => 'Adresse email déjà utilisée.',
         'wrong_confirmation' => "La confirmation de l'email ne correspond pas.",
         'wrong_current_password' => "Le mot de passe actuel n'est pas correct.",
