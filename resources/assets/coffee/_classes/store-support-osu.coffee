@@ -56,8 +56,6 @@ class @StoreSupportOsu
     @initializeSlider()
     @initializeSliderPresets()
     @initializeUsernameInput()
-    $(@el.querySelectorAll('.js-gift-someone')).on 'click', =>
-      @toggleMode()
     @
 
   initializeSlider: =>
@@ -99,12 +97,7 @@ class @StoreSupportOsu
   initializeSliderPresets: =>
     $(@el.querySelectorAll('.js-slider-preset')).on 'click', (event) =>
       target = event.currentTarget
-      console.log(target.dataset)
       $(@slider).slider('option', 'value', target.dataset.presetValue * @RESOLUTION)
-
-    # # add presets
-    # for key, value of StoreSupportOsu.Presets
-    #   console.log("#{key}, #{value}")
 
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', (event) =>
