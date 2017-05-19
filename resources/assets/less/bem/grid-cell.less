@@ -18,19 +18,6 @@
 
 .grid-cell {
   flex: 1;
-  .grid--gutters > & {
-    padding-left: @flex-grid--gutter-width;
-    padding-right: @flex-grid--gutter-width;
-  }
-  // squashes the flex content down to the smallest possible
-  // size to let other cells expand and fill the gap.
-  &--squash {
-    flex: 0 1 0%;
-  }
-
-  &--fill {
-    flex: 1 0 100%;
-  }
 
   &--1of2 {
     flex: 0 0 50%;
@@ -46,5 +33,19 @@
 
   &--5of12 {
     flex: 0 0 (5 / 12 * 100%);
+  }
+
+  &--fill {
+    flex: 1 0 100%;
+  }
+
+  .grid--gutters > & {
+    padding-left: @flex-grid--gutter-width;
+    padding-right: @flex-grid--gutter-width;
+  }
+  // squashes the flex content down to the smallest possible
+  // size to let other cells expand and fill the gap.
+  &--squash {
+    flex: 0 1 0%;
   }
 }
