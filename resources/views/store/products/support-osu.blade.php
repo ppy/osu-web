@@ -24,6 +24,9 @@
 @else
 <div id="js-store-support-osu" class="js-store-support-osu store-support-osu"
     data-username="{{ Auth::user()->username }}" data-avatar-url="{{ Auth::user()->user_avatar }}">
+    <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
+    <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
+    <input type="hidden" id="support-osu-form-price" name="item[cost]" value="0" />
     <div class="grid store-support-osu__user">
         <div class="grid-cell grid-cell--squash store-support-osu__user-icon">
             <center>
@@ -40,7 +43,7 @@
                         </div>
                         <div class="grid-cell js-error error"></div>
                     </div>
-                    <div>Currently have no supporter tag</div>
+                    <div>-</div>
                     <div>Choose your amount</div>
                 </div>
                 <div class="grid-cell grid-cell--1of3 price-box">
