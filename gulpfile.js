@@ -69,6 +69,7 @@ elixir(function(mix) {
     'navbar-mobile.coffee',
     'spoilerbox.coffee',
     'store.coffee',
+    'store-username-change.coffee',
     'forum/post-box.coffee',
     'forum/topic-ajax.coffee',
     'ujs-common.coffee',
