@@ -45,11 +45,13 @@ return [
 
     'pinned_topics' => 'Sujets épinglés',
     'post' => [
-        'confirm_delete' => 'Vraiment supprimer le post?',
+        'confirm_destroy' => 'Vraiment supprimer ce post?',
+        'confirm_restore' => 'Vraiment restorer ce post?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
         'actions' => [
             'delete' => 'Supprimer le post',
+            'restore' => 'Restorer le post',
             'edit' => 'Modifier le post',
         ],
     ],
@@ -67,6 +69,9 @@ return [
                 'title' => 'Cliquez ici pour définir le titre du post',
             ],
             'preview' => 'Prévisualisation',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Écrire',
             'submit' => 'Poster',
         ],
         'go_to_latest' => 'voir le dernier post',
@@ -95,8 +100,9 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Abonnements aux sujets',
+            'title' => 'Abonnements aux Sujets',
             'title_compact' => 'abonnements',
+            'title_main' => '<strong>Abonnements</strong> aux Sujets',
 
             'box' => [
                 'total' => 'Sujets suivis',
@@ -152,6 +158,48 @@ return [
             'replies' => 'réponses',
         ],
 
+        'issue_tag_added' => [
+            'action-0' => 'Supprimer le tag "added"',
+            'action-1' => 'Ajouter le tag "added"',
+            'state-0' => 'Tag "added" supprimé',
+            'state-1' => 'Tag "added" ajouté',
+        ],
+
+        'issue_tag_assigned' => [
+            'action-0' => 'Supprimer le tag "assigned"',
+            'action-1' => 'Ajouter le tag "assigned"',
+            'state-0' => 'Tag "assigned" supprimé',
+            'state-1' => 'Tag "assigned" ajouté',
+        ],
+
+        'issue_tag_confirmed' => [
+            'action-0' => 'Supprimer le tag "confirmed"',
+            'action-1' => 'Ajouter le tag "confirmed"',
+            'state-0' => 'Tag "confirmed" supprimé',
+            'state-1' => 'Tag "confirmed" ajouté',
+        ],
+
+        'issue_tag_duplicate' => [
+            'action-0' => 'Supprimer le tag "duplicate"',
+            'action-1' => 'Ajouter le tag "duplicate"',
+            'state-0' => 'Tag "duplicate" supprimé',
+            'state-1' => 'Tag "duplicate" ajouté',
+        ],
+
+        'issue_tag_invalid' => [
+            'action-0' => 'Supprimer le tag "invalid"',
+            'action-1' => 'Ajouter le tag "invalid"',
+            'state-0' => 'Tag "invalid" supprimé',
+            'state-1' => 'Tag "invalid" ajouté',
+        ],
+
+        'issue_tag_resolved' => [
+            'action-0' => 'Supprimer le tag "resolved"',
+            'action-1' => 'Ajouter le tag "resolved"',
+            'state-0' => 'Tag "resolved" supprimé',
+            'state-1' => 'Tag "resolved" ajouté',
+        ],
+
         'lock' => [
             'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
             'lock-0' => 'Déverouiller le sujet',
@@ -164,7 +212,7 @@ return [
             'title' => 'Se déplacer dans un autre forum',
         ],
 
-        'pin' => [
+        'moderate_pin' => [
             'pin-0' => 'Désépingler le sujet',
             'pin-1' => 'Épingler le sujet',
             'pinned-0' => 'Le sujet a été désépinglé',
@@ -172,7 +220,8 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Total des posts',
+            'total_posts' => 'Total des Posts',
+            'deleted-posts' => 'Posts Supprimés',
 
             'feature_vote' => [
                 'current' => 'Priorité : +:count',

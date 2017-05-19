@@ -25,8 +25,13 @@ return [
     ],
     'voting' => [
         'over' => 'Le vote pour ce concours est terminé',
+        'login_required' => 'Veuillez vous connecter pour voter.',
+        'best_of' => [
+            'none_played' => "Il semble que vous n'ayez joué aucune beatmap qualifiée pour ce concours!",
+        ],
     ],
     'entry' => [
+        '_' => 'inscription',
         'login_required' => 'Merci de vous connecter pour participer.',
         'silenced_or_restricted' => 'Vous ne pouvez pas entrer dans un concours quand vous êtes réduit au silence ou restreint.',
         'preparation' => 'Nous sommes en train de préparer le concours. Merci de patienter!',
@@ -44,6 +49,7 @@ return [
         'download' => "Télécharger l'inscription",
     ],
     'vote' => [
+        'list' => 'votes',
         'count' => '1 vote|:count votes',
     ],
     'dates' => [

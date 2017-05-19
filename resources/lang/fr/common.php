@@ -19,17 +19,21 @@
  */
 
 return [
+    'confirmation' => 'Êtes vous sûr?',
+    'saved' => 'Sauvegardé',
+
     'buttons' => [
         'cancel' => 'Annuler',
+        'delete' => 'Supprimer',
+        'permalink' => 'line permanent',
         'post' => 'Poster',
         'reply' => 'Répondre',
         'reset' => 'Réinitialiser',
         'save' => 'Sauvegarder',
+        'saving' => 'Sauvegarde...',
         'show_more' => 'Plus de résultats',
         'delete' => 'Supprimer',
     ],
-
-    'confirmation' => 'Êtes-vous sûr ?',
 
     'count' => [
         'item' => ':count objet|:count objets',

@@ -19,9 +19,16 @@
  */
 
 return [
-    'error' => [
-        'chat' => [
-            'limit_exceeded' => 'Vous envoyez des messages trop rapidement, veuillez attendre un peu avant de réessayer.',
+    'show' => [
+        'fallback_translation' => "La page demandeée n'est pas encore traduite dans votre langue (:language). Affichage de a version anglaise",
+        'languages' => 'Langues',
+        'missing' => "La page demandée n'a pas pu être trouvée.",
+        'missing_translation' => "La page demandée n'a pas pu être trouvée pour la langue sélectionnée actuellement",
+        'toc' => 'Contenu',
+
+        'edit' => [
+            'link' => 'Montrer sur GitHub',
+            'refresh' => 'Rafraîchir',
         ],
     ],
 ];

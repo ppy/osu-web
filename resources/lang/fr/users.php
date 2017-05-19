@@ -23,6 +23,7 @@ return [
 
     'login' => [
         '_' => 'Se connecter',
+        'locked_ip' => 'votre adresse IP est bloquée. Veuillez attendre quelques minutes.',
         'username' => "Nom d'utilisateur",
         'password' => 'Mot de passe',
         'button' => 'Se connecter',
@@ -61,6 +62,7 @@ return [
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
+        'plays_with' => 'Jout avec :devices',
         'title' => 'profil de :username',
 
         'edit' => [
@@ -111,8 +113,32 @@ return [
                     'amount' => ':amount kudosu',
                     'empty' => "Cet utilisateur n'a jamais reçu de Kudosu!",
 
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Reçu :amount kudosu du post de modding :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Refus de :amount kudosu du post :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Perte de :amount kudosu suite à la suppression du post :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Réception de :amount kudosu suite à la restoration du post :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Réception de :amount kudosu suite aux votes reçus dans le post :post',
+                            'reset' => 'Perte de :amount kudosu suite aux votes perdus dans le post :post',
+                        ],
+                    ],
+
                     'forum_post' => [
                         'give' => 'A reçu :amount de :giver pour un post sur :post',
+                        'reset' => 'Kudosu réinitialisé par :giver pour le post :post',
                         'revoke' => 'Kudosu refusé par :giver pour le post sur :post',
                     ],
                 ],
@@ -172,7 +198,6 @@ return [
             'total_score' => 'Score total',
         ],
     ],
-
     'verify' => [
         'title' => 'Vérification de compte',
     ],

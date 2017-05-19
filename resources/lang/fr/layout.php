@@ -26,18 +26,21 @@ return [
     'menu' => [
         'home' => [
             '_' => 'accueil',
-            'index' => 'osu!',
+            'account-edit' => 'paramètres',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'getNews' => 'nouvelles',
+            'index' => 'osu!',
             'supportTheGame' => 'supporter le jeu',
+            'password-reset-index' => 'réinitialiser le mot de passe',
         ],
         'help' => [
             '_' => 'aide',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
             'getSupport' => 'support',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -51,16 +54,17 @@ return [
             '_' => 'sets de beatmap',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'classement',
-            'getOverall' => 'général',
-            'getCountry' => 'national',
-            'getCharts' => 'graphiques',
-            'getMapper' => 'mappeur',
-            'index' => 'général',
+        'rankings' => [
+            '_' => 'rankings',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'graphiques',
+            'country' => 'pays',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'communauté',
+            'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getSupport' => 'support',
@@ -232,8 +236,13 @@ return [
 
     'popup_user' => [
         'links' => [
+            'account-edit' => 'Paramètres',
             'profile' => 'Mon profil',
             'logout' => 'Se déconnecter',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Écrivez pour chercher!',
     ],
 ];
