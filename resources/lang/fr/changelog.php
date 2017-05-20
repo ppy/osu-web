@@ -20,7 +20,7 @@
 
 return [
     'feed_title' => 'flux',
-    'generic' => 'Corrections de bugs et améliorations mineurs.',
+    'generic' => 'Corrections de bugs et améliorations mineures.',
     'users-online' => '1 user online|:users users online',
 
     'prefixes' => [

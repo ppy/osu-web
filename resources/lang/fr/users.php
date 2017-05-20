@@ -62,7 +62,7 @@ return [
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
-        'plays_with' => 'Jout avec :devices',
+        'plays_with' => 'Joue avec :devices',
         'title' => 'profil de :username',
 
         'edit' => [
@@ -103,7 +103,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponibles',
-                'available_info' => "Les Kudosu peuvent être échangé pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés..",
+                'available_info' => "Les Kudosu peuvent être échangés pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés.",
                 'recent_entries' => 'Hitorique de Kudosu récents',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
@@ -159,7 +159,7 @@ return [
                 ],
                 'empty' => 'Pas de première place. :(',
                 'first' => [
-                    'title' => 'Première places',
+                    'title' => 'Premières places',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Classements',

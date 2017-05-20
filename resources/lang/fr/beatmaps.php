@@ -94,7 +94,7 @@ return [
 
     'nominations' => [
         'disqualifed-at' => 'disqualifiée :time_ago (:reason).',
-        'disqualifed_no_reason' => 'aucune raison scpécifiée',
+        'disqualifed_no_reason' => 'aucune raison spcécifiée',
         'disqualification-prompt' => 'Raison de la disqualification?',
         'disqualify' => 'Disqualifier',
         'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
@@ -128,8 +128,8 @@ return [
     ],
     'status' => [
         'any' => 'Tous',
-        'ranked-approved' => 'Classifié & approuvé',
-        'approved' => 'Approuvé',
+        'ranked-approved' => 'Classifiée & approuvée',
+        'approved' => 'Approuvée',
         'loved' => 'Loved',
         'faves' => 'Favoris',
         'modreqs' => 'Requêtes de mods',

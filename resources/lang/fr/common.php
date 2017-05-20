@@ -19,13 +19,13 @@
  */
 
 return [
-    'confirmation' => 'Êtes vous sûr?',
+    'confirmation' => 'Êtes-vous sûr?',
     'saved' => 'Sauvegardé',
 
     'buttons' => [
         'cancel' => 'Annuler',
         'delete' => 'Supprimer',
-        'permalink' => 'line permanent',
+        'permalink' => 'lien permanent',
         'post' => 'Poster',
         'reply' => 'Répondre',
         'reset' => 'Réinitialiser',
@@ -67,7 +67,7 @@ return [
     'time' => [
         'days_ago' => 'il y a :count|il y a:count',
         'hours_ago' => 'il y a :count heure|il y a :count heures',
-        'now' => 'Maitenant',
+        'now' => 'Maintenant',
         'remaining' => 'Temps restant',
     ],
 

@@ -20,7 +20,7 @@
 
 return [
     'show' => [
-        'fallback_translation' => "La page demandeée n'est pas encore traduite dans votre langue (:language). Affichage de a version anglaise",
+        'fallback_translation' => "La page demandée n'est pas encore traduite dans votre langue (:language). Affichage de la version anglaise",
         'languages' => 'Langues',
         'missing' => "La page demandée n'a pas pu être trouvée.",
         'missing_translation' => "La page demandée n'a pas pu être trouvée pour la langue sélectionnée actuellement",

@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => 'This beatmap is currently not available for download.',
-        'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
-        'more-info' => 'Check here for more information.',
+        'disabled' => "Cette beatmap n'est actuellement pas disponible qu téléchargement.",
+        'parts-removed' => "Des portions de cette beatmpa ont été supprimées suite à la requête du créateur ou d'un titulaire des droits tiers",
+        'more-info' => "Regarder ici pour plus d'informations.",
     ],
 
     'index' => [
-        'title' => 'Beatmaps Listing',
+        'title' => 'Liste des beatmap',
         'guest_title' => 'Beatmaps',
     ],
 
@@ -52,12 +52,12 @@ return [
             'unfavourite' => 'Retirer ce beatmapset des favoris',
         ],
         'stats' => [
-            'cs' => 'Taille du Cercle',
+            'cs' => 'Taille des Cercles',
             'cs-mania' => 'Nombre de touches',
             'drain' => 'Drainage PV',
             'accuracy' => 'Précision',
             'ar' => "Niveau d'approche",
-            'stars' => 'Difficulté étoiles',
+            'stars' => 'Difficulté en étoiles',
             'total_length' => 'Longeur',
             'bpm' => 'BPM',
             'count_circles' => 'Nombre de Cercles',

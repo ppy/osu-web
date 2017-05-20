@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est seulement à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu! - Le rythme est à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
 
     'menu' => [
@@ -194,18 +194,18 @@ return [
             'link' => false,
         ],
         '500' => [
-            'error' => 'Oh non! Quelquechose a cassé! ;_;',
+            'error' => 'Oh non! Quelque chose a cassé! ;_;',
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh non! Quelquechose a cassé! (gravement) ;_;',
+            'error' => 'Oh non! Quelque chose a cassé! (gravement) ;_;',
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Maitenance en cours!',
-            'description' => "Les maitenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
+            'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
@@ -223,7 +223,7 @@ return [
             'title' => 'Se connecter pour continuer',
 
             'error' => [
-                'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
+                'email' => "Le nom d'utilisateur ou l'email ne correspond pas",
                 'password' => 'Mot de passe incorrect',
             ],
         ],

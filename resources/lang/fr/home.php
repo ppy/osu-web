@@ -33,7 +33,7 @@ return [
 
         'slogan' => [
             'main' => 'simulateur de cercles free-to-win',
-            'sub' => 'Le rythme est juste à un seul clic',
+            'sub' => 'Le rythme est à un seul clic',
         ],
     ],
 

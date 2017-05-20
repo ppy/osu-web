@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'small' => 'Compete in more ways than just clicking circles.',
+        'small' => "Concourez plsu qu'en cliquant juste sur des cercles",
         'large' => 'Concours communautaires osu!',
     ],
     'voting' => [
@@ -41,7 +41,7 @@ return [
         'wrong_type' => [
             'art' => 'Uniquement les fichiers .jpg et .png sont admis pour ce concours.',
             'beatmap' => 'Uniquement les fichiers .osu sont admis pour ce concours.',
-            'music' => 'Uniquement les fichiers .mp3 sont admin pour ce concours.',
+            'music' => 'Uniquement les fichiers .mp3 sont admis pour ce concours.',
         ],
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
