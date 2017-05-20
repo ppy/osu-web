@@ -56,8 +56,8 @@ return [
         ],
         'rankings' => [
             '_' => 'colocações',
-            'index' => 'performance',
-            'performance' => 'performance',
+            'index' => 'desempenho',
+            'performance' => 'desempenho',
             'charts' => 'gráficos',
             'country' => 'país',
             'kudosu' => 'kudosu',
@@ -243,6 +243,6 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Digite para procurar!',
+        'initial' => 'Digite para buscar!',
     ],
 ];
