@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,13 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
-// use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-// use Illuminate\Foundation\Auth\Access\AuthorizesResources;
+use App\Models\Log;
+use Auth;
+use Carbon\Carbon;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Request;
 
 abstract class Controller extends BaseController
 {
@@ -36,7 +40,28 @@ abstract class Controller extends BaseController
      */
     public function __construct()
     {
-        view()->share('current_section', $this->section);
+        view()->share('current_section', $this->section ?? '');
         view()->share('current_action', ($this->actionPrefix ?? '').current_action());
+    }
+
+    protected function formatValidationErrors(Validator $validator)
+    {
+        return ['validation_error' => $validator->errors()->getMessages()];
+    }
+
+    protected function log($params)
+    {
+        $params['user_id'] = Auth::user()->user_id ?? 0;
+        $params['log_ip'] = Request::ip();
+        $params['log_time'] = Carbon::now();
+
+        Log::log($params);
+    }
+
+    protected function login($user, $remember = false)
+    {
+        Request::session()->flush();
+        Request::session()->regenerateToken();
+        Auth::login($user, $remember);
     }
 }

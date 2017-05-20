@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -19,35 +19,59 @@
  */
 
 return [
-        'buttons' => [
-            'cancel' => 'Cancel',
-            'post' => 'Post',
-            'reply' => 'Reply',
-            'reset' => 'Reset',
-            'save' => 'Save',
-            'show_more' => 'show more',
-        ],
+    'confirmation' => 'Are you sure?',
+    'saved' => 'Saved',
 
-        'count' => [
-            'item' => ':count unit|:count units',
-        ],
+    'buttons' => [
+        'cancel' => 'Cancel',
+        'delete' => 'Delete',
+        'permalink' => 'permalink',
+        'post' => 'Post',
+        'reply' => 'Reply',
+        'reset' => 'Reset',
+        'save' => 'Save',
+        'saving' => 'Saving...',
+        'show_more' => 'show more',
+        'upload_image' => 'upload image',
+    ],
 
-        'dropzone' => [
-            'target' => 'drop here to upload',
-        ],
+    'count' => [
+        'item' => ':count unit|:count units',
+    ],
 
-        'pagination' => [
-            'previous' => 'prev',
-            'next' => 'next',
-        ],
+    'device' => [
+        'keyboard' => 'Keyboard',
+        'mouse' => 'Mouse',
+        'tablet' => 'Tablet',
+        'touch' => 'Touch Screen',
+    ],
 
-        'time' => [
-            'days_ago' => ':count day ago|:count days ago',
-            'hours_ago' => ':count hour ago|:count hours ago',
-            'now' => 'now',
-        ],
+    'dropzone' => [
+        'target' => 'drop here to upload',
+    ],
 
-        'title' => [
-            'notice' => 'Notice',
-        ],
+    'pagination' => [
+        'previous' => 'prev',
+        'next' => 'next',
+    ],
+
+    'score_count' => [
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Miss',
+    ],
+
+    'time' => [
+        'days_ago' => ':count day ago|:count days ago',
+        'hours_ago' => ':count hour ago|:count hours ago',
+        'now' => 'now',
+        'remaining' => 'Time Remaining',
+    ],
+
+    'title' => [
+        'notice' => 'Notice',
+    ],
 ];

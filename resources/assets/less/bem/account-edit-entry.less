@@ -1,0 +1,171 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.account-edit-entry {
+  @top: account-edit-entry;
+
+  @section-width: 250px;
+  @label-width: 160px;
+  @input-width: 250px;
+  @input-width-wide: 400px;
+
+  text-transform: none;
+  padding: 10px 0;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &--avatar {
+    display: block;
+
+    @media @desktop {
+      padding-left: @label-width;
+    }
+  }
+
+  &--no-label {
+    @media @desktop {
+      padding-left: @label-width;
+    }
+  }
+
+  &__avatar {
+    .default-border-radius();
+    .own-layer();
+    width: @avatar-size--base;
+    height: @avatar-size--base;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  &__drop-overlay {
+    .full-size();
+    .center-content();
+    padding: 10px;
+    opacity: 0;
+    color: #fff;
+
+    &::before {
+      .full-size();
+      background-color: #000;
+      opacity: 0;
+      transition: all 120ms;
+
+      .@{top}.js-account-edit-avatar--start & {
+        opacity: 0.5;
+      }
+
+      .@{top}.js-account-edit-avatar--hover & {
+        opacity: 0.7;
+      }
+    }
+
+    .@{top}.js-account-edit-avatar--start & {
+      opacity: 1;
+    }
+  }
+
+  &__error {
+    display: none;
+    margin-top: 5px;
+    width: 100%;
+    color: @yellow;
+    padding-left: 10px;
+
+    @media @desktop {
+      padding-left: (@label-width + 10px);
+    }
+
+    .@{top}[data-form-error-state=error] & {
+      display: block;
+    }
+  }
+
+  &__input {
+    .reset-input();
+    .default-border-radius();
+
+    flex: 1;
+    max-width: @input-width;
+    align-self: stretch;
+    background-color: #444;
+    border: 2px solid transparent;
+    color: #fff;
+    font-weight: normal;
+    padding: 5px;
+
+    @media @mobile {
+      font-size: @font-size--phone-input;
+    }
+
+    &:focus, .@{top}.js-parent-focus--focus & {
+      border-color: @yellow;
+    }
+
+    .@{top}[data-form-error-state=error] & {
+      border-color: @red;
+    }
+
+    .@{top}--wide & {
+      max-width: @input-width-wide;
+    }
+  }
+
+  &__label {
+    width: 100%;
+    flex: none;
+    padding-bottom: 5px;
+
+    @media @desktop {
+      align-self: center;
+      width: @label-width;
+      padding-right: 10px;
+      padding-bottom: 0;
+      text-align: right;
+    }
+
+    .@{top}.js-parent-focus--focus & {
+      color: #fff;
+    }
+  }
+
+  &__misc-info {
+    max-width: @input-width;
+    display: block;
+    margin-right: 10px;
+
+    .@{top}--wide & {
+      max-width: @input-width-wide;
+    }
+  }
+
+  &__overlay-spinner {
+    .full-size();
+    .center-content();
+
+    background-color: fade(#000, 75%);
+    opacity: 0;
+    transition: all 120ms;
+
+    .@{top}.js-account-edit-avatar--saving & {
+      opacity: 1;
+    }
+  }
+}

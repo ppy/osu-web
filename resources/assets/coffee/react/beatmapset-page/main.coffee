@@ -1,64 +1,97 @@
 ###
-# Copyright 2016 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{div, audio} = React.DOM
+
+{div} = React.DOM
 el = React.createElement
 
-BeatmapsetPage.Main = React.createClass
-  mixins: [ScrollingPageMixin]
+class BeatmapsetPage.Main extends React.Component
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
     optionsHash = BeatmapsetPageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    beatmaps = _.keyBy @props.beatmapset.beatmaps.data, (o) -> o.id
+    beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
+    beatmaps = BeatmapHelper.group beatmaps
 
-    currentBeatmapId =
-      if optionsHash.beatmapId? && beatmaps[optionsHash.beatmapId]?
-        optionsHash.beatmapId
-      else
-        _.last(@props.beatmapset.beatmaps.data).id
+    currentBeatmap = BeatmapHelper.find
+      group: beatmaps
+      id: optionsHash.beatmapId
+      mode: optionsHash.playmode
 
-    beatmaps: beatmaps
-    beatmapsByMode: _.groupBy @props.beatmapset.beatmaps.data, (o) -> o.mode
-    currentBeatmapId: currentBeatmapId
-    currentPlaymode: beatmaps[currentBeatmapId].mode
-    loading: false
-    isPreviewPlaying: false
-    currentScoreboard: 'global'
-    scores: []
+    # fall back to the first mode that has beatmaps in this mapset
+    currentBeatmap ?= BeatmapHelper.default items: beatmaps[optionsHash.playmode]
+    currentBeatmap ?= BeatmapHelper.default group: beatmaps
 
-  setHash: ->
-    osu.setHash BeatmapsetPageHash.generate page: @state.currentPage, beatmapId: @state.currentBeatmapId
+    @scoreboardXhr = null
+    @favouriteXhr = null
 
-  setCurrentScoreboard: (_e, {scoreboard, forceReload = false}) ->
-    return if @state.loading
+    @state =
+      beatmaps: beatmaps
+      currentBeatmap: currentBeatmap
+      favcount: props.beatmapset.favourite_count
+      hasFavourited: props.beatmapset.has_favourited
+      loading: false
+      currentScoreboardType: 'global'
+      enabledMods: []
+      scores: []
+      userScore: null
+      userScorePosition: -1
+
+
+  setHash: =>
+    osu.setHash BeatmapsetPageHash.generate
+      beatmap: @state.currentBeatmap
+
+
+  setCurrentScoreboard: (_e, {
+    scoreboardType = @state.currentScoreboardType,
+    enabledMod = null,
+    forceReload = false,
+    resetMods = false
+  }) =>
+    @scoreboardXhr?.abort()
 
     @setState
-      currentScoreboard: scoreboard
-      scores: []
+      currentScoreboardType: scoreboardType
 
-    return if scoreboard != 'global' && !currentUser.isSupporter
+    if scoreboardType != 'global' && !currentUser.isSupporter
+      @setState scores: []
+      return
+
+    enabledMods = if resetMods
+      []
+    else if enabledMod != null && _.includes @state.enabledMods, enabledMod
+      _.without @state.enabledMods, enabledMod
+    else if enabledMod != null
+      _.concat @state.enabledMods, enabledMod
+    else
+      @state.enabledMods
 
     @scoresCache ?= {}
-    cacheKey = "#{@state.currentBeatmapId}-#{scoreboard}"
+    cacheKey = "#{@state.currentBeatmap.id}-#{@state.currentBeatmap.mode}-#{_.sortBy enabledMods}-#{scoreboardType}"
 
     loadScore = =>
-      @setState scores: @scoresCache[cacheKey]
+      @setState
+        scores: @scoresCache[cacheKey].scores
+        userScore: @scoresCache[cacheKey].userScore if @scoresCache[cacheKey].userScore?
+        userScorePosition: @scoresCache[cacheKey].userScorePosition
+        enabledMods: enabledMods
 
     if !forceReload && @scoresCache[cacheKey]?
       loadScore()
@@ -67,95 +100,114 @@ BeatmapsetPage.Main = React.createClass
     $.publish 'beatmapset:scoreboard:loading', true
     @setState loading: true
 
-    $.ajax (laroute.route 'beatmaps.scores', beatmaps: @state.currentBeatmapId),
+    @scoreboardXhr = $.ajax (laroute.route 'beatmaps.scores', beatmap: @state.currentBeatmap.id),
       method: 'GET'
       dataType: 'JSON'
       data:
-        type: scoreboard
+        type: scoreboardType
+        mods: enabledMods
+        mode: @state.currentBeatmap.mode
 
     .done (data) =>
-      @scoresCache[cacheKey] = data.data
+      @scoresCache[cacheKey] = data
       loadScore()
 
-    .fail osu.ajaxError
+    .fail (xhr, status) =>
+      if status == 'abort'
+        return
+
+      osu.ajaxError xhr
 
     .always =>
       $.publish 'beatmapset:scoreboard:loading', false
       @setState loading: false
 
 
-  setCurrentBeatmapId: (_e, beatmapId) ->
-    return if @state.currentBeatmapId == beatmapId
+  setCurrentBeatmap: (_e, {beatmap}) =>
+    return unless beatmap?
+    return if @state.currentBeatmap.id == beatmap.id && @state.currentBeatmap.mode == beatmap.mode
 
     @setState
-      currentBeatmapId: beatmapId
-      currentPlaymode: @state.beatmaps[beatmapId].mode
+      currentBeatmap: beatmap
       =>
         @setHash()
-        @setCurrentScoreboard null, scoreboard: 'global'
+        @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
-  togglePreviewPlayingState: (_e, isPreviewPlaying) ->
-    @setState isPreviewPlaying: isPreviewPlaying
 
-    if isPreviewPlaying
-      @audioPreview.play()
-    else
-      @audioPreview.pause()
-      @audioPreview.currentTime = 0;
+  setCurrentPlaymode: (_e, {mode}) =>
+    return if @state.currentBeatmap.mode == mode
 
-  onPreviewEnded: ->
-    @setState isPreviewPlaying: false
+    @setCurrentBeatmap null,
+      beatmap: BeatmapHelper.default items: @state.beatmaps[mode]
+
+
+  setHoveredBeatmap: (_e, hoveredBeatmap) =>
+    @setState hoveredBeatmap: hoveredBeatmap
+
+
+  toggleFavourite: =>
+    @favouriteXhr = $.ajax
+      url: laroute.route('beatmapsets.update-favourite', beatmapset: @props.beatmapset.id)
+      method: 'post'
+      dataType: 'json'
+      data:
+        action: if @state.hasFavourited then 'unfavourite' else 'favourite'
+
+    .done (data) =>
+      @setState
+        favcount: data.favcount
+        hasFavourited: data.favourited
 
   componentDidMount: ->
-    @removeListeners()
-
-    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmapId
-    $.subscribe 'beatmapset:page:jump.beatmapsetPage', @pageJump
+    $.subscribe 'beatmapset:beatmap:set.beatmapsetPage', @setCurrentBeatmap
+    $.subscribe 'playmode:set.beatmapsetPage', @setCurrentPlaymode
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
-    $.subscribe 'beatmapset:preview:toggle.beatmapsetPage', @togglePreviewPlayingState
+    $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
+    $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
 
-    @pageJump null, @initialPage
-    @setCurrentScoreboard null, scoreboard: 'global'
+    @setHash()
+    @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
-    @audioPreview = document.getElementsByClassName('js-beatmapset-page--audio-preview')[0]
 
   componentWillUnmount: ->
-    @removeListeners()
-
-
-  removeListeners: ->
     $.unsubscribe '.beatmapsetPage'
+    @scoreboardXhr?.abort()
+    @favouriteXhr?.abort()
 
   render: ->
     div className: 'osu-layout__section',
-      audio
-        className: 'js-beatmapset-page--audio-preview'
-        src: @props.beatmapset.previewUrl
-        preload: 'auto'
-        onEnded: @onPreviewEnded
+      div className: 'osu-layout__row osu-layout__row--page-compact',
+        el BeatmapsetPage.Header,
+          beatmapset: @props.beatmapset
+          beatmaps: @state.beatmaps
+          currentBeatmap: @state.currentBeatmap
+          hoveredBeatmap: @state.hoveredBeatmap
+          favcount: @state.favcount
+          hasFavourited: @state.hasFavourited
 
-      el BeatmapsetPage.Header,
-        title: @props.beatmapset.title
-        artist: @props.beatmapset.artist
-        playcount: @props.beatmapset.play_count
-        favcount: @props.beatmapset.favourite_count
-        cover: @props.beatmapset.covers.cover
-        isPreviewPlaying: @state.isPreviewPlaying
+        el BeatmapsetPage.Info,
+          beatmapset: @props.beatmapset
+          beatmap: @state.currentBeatmap
 
-      el BeatmapsetPage.Contents,
-        beatmapset: @props.beatmapset
-        beatmaps: @state.beatmaps
-        beatmapsByMode: @state.beatmapsByMode
-        currentPlaymode: @state.currentPlaymode
-        currentBeatmapId: @state.currentBeatmapId
-        currentPage: @state.currentPage
+      div className: 'osu-layout__section osu-layout__section--extra',
+        div className: 'osu-page',
+          el BeatmapsetPage.Scoreboard,
+            type: @state.currentScoreboardType
+            beatmap: @state.currentBeatmap
+            scores: @state.scores
+            userScore: @state.userScore?.score
+            userScorePosition: @state.userScore?.position
+            enabledMods: @state.enabledMods
+            countries: @props.countries
+            loading: @state.loading
+            hasScores: @props.beatmapset.has_scores
 
-      el BeatmapsetPage.Extra,
-        beatmapset: @props.beatmapset
-        beatmaps: @state.beatmaps
-        beatmap: @state.beatmaps[@state.currentBeatmapId]
-        currentPage: @state.currentPage
-        currentBeatmapId: @state.currentBeatmapId
-        currentScoreboard: @state.currentScoreboard
-        scores: @state.scores
-        countries: @props.countries
+        if @props.beatmapset.ranked > 0
+          div className: 'osu-page osu-page--comments',
+            el ReactDisqusThread,
+              shortname: diqusShortName
+              identifier: "beatmapset_#{@props.beatmapset.id}"
+              title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"
+              url: "#{document.location.origin}#{laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)}"
+              remote_auth_s3: currentUser.disqus_auth?.auth_data
+              api_key: currentUser.disqus_auth?.public_key

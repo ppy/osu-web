@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Country;
@@ -43,10 +44,9 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
-            'putRequestNotification',
         ]]);
 
-        $this->middleware('App\Http\Middleware\CheckUserRestricted', ['only' => [
+        $this->middleware('check-user-restricted', ['only' => [
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
@@ -54,7 +54,13 @@ class StoreController extends Controller
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
-            'putRequestNotification',
+        ]]);
+
+        $this->middleware('verify-user', ['only' => [
+            'getInvoice',
+            'getCheckout',
+            'postCheckout',
+            'postUpdateAddress',
         ]]);
 
         return parent::__construct();
@@ -231,8 +237,8 @@ class StoreController extends Controller
     {
         $order = $this->userCart();
 
-        if (!$order) {
-            return response(['message' => 'cart is empty'], 422);
+        if ($order->items()->count() === 0) {
+            return error_popup('cart is empty');
         }
 
         $order->checkout();
@@ -244,35 +250,6 @@ class StoreController extends Controller
         }
 
         return js_view('store.order-create');
-    }
-
-    public function putRequestNotification($product_id, $action)
-    {
-        $user = Auth::user();
-        $product = Store\Product::findOrFail($product_id);
-
-        if ($product->inStock()) {
-            return error_popup(trans('store.product.notification_in_stock'));
-        }
-
-        $request = $product->notificationRequests()->where('user_id', $user->user_id)->first();
-
-        if ($request && $action === 'create') {
-            return error_popup(trans('store.product.notification_exists'));
-        } elseif ($request) {
-            $request->delete();
-        }
-
-        if (!$request && $action === 'delete') {
-            return error_popup(trans('store.product.notification_doesnt_exist'));
-        } elseif (!$request) {
-            $request = Store\NotificationRequest::create([
-                'user_id' => $user->user_id,
-                'product_id' => $product_id,
-            ]);
-        }
-
-        return js_view('layout.ujs-reload');
     }
 
     private function userCart()

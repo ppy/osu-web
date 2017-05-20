@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
@@ -24,16 +25,17 @@ use App\Models\DeletedUser;
 use App\Models\Log;
 use Carbon\Carbon;
 use DB;
-use Illuminate\Database\Eloquent\Model;
+use Es;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
     protected $guarded = [];
 
-    protected $dates = ['post_edit_time', 'post_time'];
-    protected $dateFormat = 'U';
     public $timestamps = false;
 
     protected $casts = [
@@ -71,6 +73,26 @@ class Post extends Model
         $this->attributes['bbcode_bitfield'] = $bbcode->bitfield;
     }
 
+    public function setPostTimeAttribute($value)
+    {
+        $this->attributes['post_time'] = $value->timestamp;
+    }
+
+    public function getPostTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setPostEditTimeAttribute($value)
+    {
+        $this->attributes['post_edit_time'] = $value->timestamp;
+    }
+
+    public function getPostEditTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
     public static function lastUnreadByUser($topic, $user)
     {
         if ($user === null) {
@@ -95,6 +117,66 @@ class Post extends Model
         }
 
         return $unreadPostId;
+    }
+
+    public static function search($params)
+    {
+        $ids = static::searchES(static::searchParams($params));
+
+        return count($ids) > 0
+            ? static
+                ::with('topic')
+                ->whereIn('post_id', $ids)
+                ->orderByField('post_id', $ids)
+                ->get()
+            : [];
+    }
+
+    public static function searchES($params = [])
+    {
+        $query = es_query_and_words($params['query']);
+
+        if (!empty($params['user_ids'])) {
+            $query .= ' AND user_id:('.implode(' OR ', $params['user_ids']).')';
+        }
+
+        if (!empty($params['forum_ids'])) {
+            $query .= ' AND forum_id:('.implode(' OR ', $params['forum_ids']).')';
+        }
+
+        if (isset($params['topic_id'])) {
+            $query .= ' AND topic_id:'.$params['topic_id'];
+        }
+
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index'),
+            'type' => 'posts',
+            'size' => $params['limit'],
+            'from' => ($params['page'] - 1) * $params['limit'],
+            'q' => $query,
+        ];
+
+        $resultEs = Es::search($searchParams);
+
+        $result = [];
+
+        foreach ($resultEs['hits']['hits'] ?? [] as $post) {
+            $result[] = $post['_id'];
+        }
+
+        return $result;
+    }
+
+    public static function searchParams($params)
+    {
+        $params['query'] = $params['query'] ?? null;
+        $params['limit'] = max(1, min(50, $params['limit'] ?? 50));
+        $params['page'] = max(1, $params['page'] ?? 1);
+        $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
+        $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int');
+        $params['topic_id'] = get_int($params['topic_id'] ?? null);
+
+        return $params;
     }
 
     public function normalizeUser($user)
@@ -168,6 +250,13 @@ class Post extends Model
 
     public function scopeLast($query)
     {
-        return $query->orderBy('post_time', 'desc')->limit(1);
+        return $query->orderBy('post_id', 'desc')->limit(1);
+    }
+
+    public function scopeShowDeleted($query, $showDeleted)
+    {
+        if ($showDeleted) {
+            $query->withTrashed();
+        }
     }
 }

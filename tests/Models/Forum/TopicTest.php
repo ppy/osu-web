@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,21 +21,21 @@ use App\Models\Forum\Topic;
 
 class TopicTest extends TestCase
 {
-    public function testIssues()
+    public function testIssueTags()
     {
         $topic = new Topic();
         $topic->forum_id = config('osu.forum.help_forum_ids')[0];
 
         $topic->topic_title = '[invalid] herp a derp';
-        $this->assertEquals(['invalid'], $topic->issues());
+        $this->assertSame(['invalid'], $topic->issueTags());
     }
 
-    public function testIssuesWithKeywordAsTitle()
+    public function testIssueTagsWithKeywordAsTitle()
     {
         $topic = new Topic();
         $topic->forum_id = config('osu.forum.help_forum_ids')[0];
 
         $topic->topic_title = 'invalid herp a derp';
-        $this->assertEquals([], $topic->issues());
+        $this->assertSame([], $topic->issueTags());
     }
 }

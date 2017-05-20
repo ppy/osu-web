@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,13 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
+use App\Exceptions\ScoreRetrievalException;
 use App\Models\Beatmap;
-use App\Models\Beatmapset;
-use App\Transformers\ScoreTransformer;
-use Request;
 use Auth;
+use Request;
 
 class BeatmapsController extends Controller
 {
@@ -31,46 +31,64 @@ class BeatmapsController extends Controller
 
     public function show($id)
     {
-        $set = Beatmap::findOrFail($id)->beatmapset;
+        $beatmap = Beatmap::findOrFail($id);
+        $set = $beatmap->beatmapset;
 
-        return ujs_redirect(route('beatmapsets.show', ['id' => $set->beatmapset_id]).'#'.$id);
+        return ujs_redirect(route('beatmapsets.show', ['beatmap' => $set->beatmapset_id]).'#'.$beatmap->mode.'/'.$id);
     }
 
     public function scores($id)
     {
+        $beatmap = Beatmap::findOrFail($id);
+        $mode = presence(Request::input('mode')) ?? $beatmap->mode;
+        $mods = get_arr(Request::input('mods'), 'presence') ?? [];
         $type = Request::input('type', 'global');
-
         $user = Auth::user();
 
-        if ($type !== 'global') {
-            if (!$user) {
-                abort(403);
-            } elseif (!$user->isSupporter()) {
-                return error_popup(trans('errors.supporter_only'));
-            }
+        if ($beatmap->approved <= 0) {
+            return ['scores' => []];
         }
 
-        $beatmap = Beatmap::findOrFail($id);
+        try {
+            if ($type !== 'global' || !empty($mods)) {
+                if ($user === null || !$user->isSupporter()) {
+                    throw new ScoreRetrievalException(trans('errors.supporter_only'));
+                }
+            }
 
-        $scores = $beatmap
-            ->scoresBest()
-            ->defaultListing()
-            ->limit(config('osu.beatmaps.max-scores'))
-            ->with('user');
+            $query = $beatmap
+                ->scoresBest($mode)
+                ->defaultListing();
+        } catch (ScoreRetrievalException $ex) {
+            return error_popup($ex->getMessage());
+        }
+
+        $query->withMods($mods);
 
         switch ($type) {
             case 'country':
-                $scores = $scores
-                    ->whereHas('user', function ($query) use (&$user) {
-                        $query->where('country_acronym', $user->country_acronym);
-                    });
+                $query->fromCountry($user->country_acronym);
                 break;
             case 'friend':
-                $scores = $scores
-                    ->whereIn('user_id', model_pluck($user->friends(), 'zebra_id'));
+                $query->friendsOf($user);
                 break;
         }
 
-        return fractal_collection_array($scores->get(), new ScoreTransformer, 'user');
+        $results = [
+            'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
+        ];
+
+        if ($user !== null) {
+            $score = (clone $query)->where('user_id', $user->user_id)->first();
+
+            if ($score !== null) {
+                $results['userScore'] = [
+                    'position' => $query->userRank($score),
+                    'score' => json_item($score, 'Score', ['user', 'user.country']),
+                ];
+            }
+        }
+
+        return $results;
     }
 }

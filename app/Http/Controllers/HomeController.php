@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,22 +17,69 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
+use App;
+use App\Libraries\CurrentStats;
+use App\Models\Beatmapset;
+use App\Models\Build;
+use App\Models\Changelog;
+use App\Models\Forum\Post;
+use App\Models\News;
+use App\Models\Wiki;
+use Auth;
+use Request;
 use View;
 
 class HomeController extends Controller
 {
     protected $section = 'home';
 
-    public function getNews()
+    public function bbcodePreview()
     {
-        return view('home.news');
+        $post = new Post(['post_text' => Request::input('text')]);
+
+        return $post->bodyHTML;
     }
 
     public function getChangelog()
     {
-        return view('home.changelog');
+        $build = presence(Request::input('build'));
+
+        $changelogs = Changelog::default()
+            ->with('user');
+
+        if ($build !== null) {
+            $build = Build::with('updateStream')->where('version', $build)->firstOrFail();
+
+            $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
+        } else {
+            $from = Changelog::default()->first();
+            $changelogs = $changelogs
+                ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
+                ->get()
+                ->groupBy(function ($item) {
+                    return $item->date->format('F j, Y');
+                });
+        }
+
+        $streams = Build::latestByStream(config('osu.changelog.update_streams'))
+            ->orderByField('stream_id', config('osu.changelog.update_streams'))
+            ->with('updateStream')
+            ->get();
+
+        $featuredStream = null;
+
+        foreach ($streams as $index => $stream) {
+            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
+                $featuredStream = $stream;
+                unset($streams[$index]);
+                break;
+            }
+        }
+
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build'));
     }
 
     public function getDownload()
@@ -44,14 +91,75 @@ class HomeController extends Controller
     {
         return view('home.icons')
         ->with('icons', [
-            'osu-o', 'mania-o', 'fruits-o', 'taiko-o',
-            'osu', 'mania', 'fruits', 'taiko',
-            'bat', 'bubble', 'hourglass', 'dice', 'bomb', 'osu-spinner', 'net', 'mod-headphones',
-            'easy-osu', 'normal-osu', 'hard-osu', 'insane-osu', 'expert-osu',
-            'easy-taiko', 'normal-taiko', 'hard-taiko', 'insane-taiko', 'expert-taiko',
-            'easy-fruits', 'normal-fruits', 'hard-fruits', 'insane-fruits', 'expert-fruits',
-            'easy-mania', 'normal-mania', 'hard-mania', 'insane-mania', 'expert-mania',
+            'osu',
+            'mode-osu',
+            'mode-mania',
+            'mode-fruits',
+            'mode-taiko',
+            'social-patreon',
         ]);
+    }
+
+    public function index()
+    {
+        $host = Request::getHttpHost();
+        $subdomain = substr($host, 0, strpos($host, '.'));
+
+        if ($subdomain === 'store') {
+            return ujs_redirect(route('store.products.index'));
+        }
+
+        if (Auth::check()) {
+            $news = News::all();
+            $newBeatmapsets = Beatmapset::latestRankedOrApproved();
+            $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
+            $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
+            $popularBeatmapsets = Beatmapset::whereIn('beatmapset_id', $popularBeatmapsetIds)
+                ->orderByField('beatmapset_id', $popularBeatmapsetIds)
+                ->get();
+
+            return view('home.user', compact(
+                'newBeatmapsets',
+                'news',
+                'popularBeatmapsets',
+                'popularBeatmapsetsPlaycount'
+            ));
+        } else {
+            return view('home.landing', ['stats' => new CurrentStats()]);
+        }
+    }
+
+    public function search()
+    {
+        $query = Request::input('q');
+        $limit = 5;
+
+        if (strlen($query) < 3) {
+            return [];
+        }
+
+        $params = compact('query', 'limit');
+
+        $beatmapsets = Beatmapset::search($params);
+        $posts = Post::search($params);
+        $wikiPages = Wiki\Page::search($params);
+
+        return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages'));
+    }
+
+    public function setLocale()
+    {
+        $newLocale = get_valid_locale(Request::input('locale'));
+        App::setLocale($newLocale);
+
+        if (Auth::check()) {
+            Auth::user()->update([
+                'user_lang' => $newLocale,
+            ]);
+        }
+
+        return js_view('layout.ujs-reload')
+            ->withCookie(cookie()->forever('locale', $newLocale));
     }
 
     public function supportTheGame()

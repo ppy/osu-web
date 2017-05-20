@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,23 +17,26 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Es;
-use Illuminate\Database\Eloquent\Model;
-use Auth;
-use DB;
-use App\Libraries\StorageWithUrl;
-use App\Libraries\ImageProcessorService;
 use App\Exceptions\BeatmapProcessorException;
-use App\Models\Forum\Topic;
-use App\Models\Forum\Post;
+use App\Libraries\ImageProcessorService;
+use App\Libraries\StorageWithUrl;
+use App\Transformers\BeatmapsetTransformer;
+use Auth;
+use Cache;
+use Carbon\Carbon;
+use DB;
+use Es;
+use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
+    protected $guarded = [];
 
     protected $casts = [
         'active' => 'boolean',
@@ -64,61 +67,41 @@ class Beatmapset extends Model
         'thread_id',
     ];
 
-    protected $fillable = [
-        'cover_updated_at',
+    const STATES = [
+        'graveyard' => -2,
+        'wip' => -1,
+        'pending' => 0,
+        'ranked' => 1,
+        'approved' => 2,
+        'qualified' => 3,
+        'loved' => 4,
     ];
 
-    const GRAVEYARD = -2;
-    const WIP = -1;
-    const PENDING = 0;
-    const RANKED = 1;
-    const APPROVED = 2;
-    const QUALIFIED = 3;
+    const NOMINATIONS_PER_DAY = 1;
+    const QUALIFICATIONS_PER_DAY = 6;
+    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Accesssors
+    |--------------------------------------------------------------------------
+    */
+
+    public function getApprovedDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
+
+    public function getSubmitDateAttribute($value)
+    {
+        return (new Carbon($value))->subHours(8);
+    }
 
     // ranking functions for the set
 
     public function beatmapsetDiscussion()
     {
         return $this->hasOne(BeatmapsetDiscussion::class, 'beatmapset_id', 'beatmapset_id');
-    }
-
-    public function rank(User $user = null)
-    {
-        $this->setRank(static::RANKED, $user);
-    }
-
-    public function pending(User $user = null)
-    {
-        $this->setRank(static::PENDING, $user);
-    }
-
-    public function wip(User $user = null)
-    {
-        $this->setRank(static::WIP, $user);
-    }
-
-    public function approve(User $user = null)
-    {
-        $this->setRank(static::APPROVED, $user);
-    }
-
-    public function qualify(User $user = null)
-    {
-        $this->setRank(static::QUALIFIED, $user);
-    }
-
-    public function graveyard(User $user = null)
-    {
-        $this->setRank(static::GRAVEYARD, $user);
-    }
-
-    protected function setRank($rank, User $user = null)
-    {
-        $user = $user ?: new User(User::SYSTEM_USER);
-
-        $this->approved_by = $user->user_id;
-        $this->approved = $rank;
-        $this->save();
     }
 
     // Beatmapset::rankable();
@@ -142,37 +125,37 @@ class Beatmapset extends Model
 
     public function scopeGraveyard($query)
     {
-        return $query->where('approved', '=', static::GRAVEYARD);
+        return $query->where('approved', '=', self::STATES['graveyard']);
     }
 
     public function scopeWip($query)
     {
-        return $query->where('approved', '=', static::WIP);
+        return $query->where('approved', '=', self::STATES['wip']);
     }
 
     public function scopeUnranked($query)
     {
-        return $query->where('approved', '=', static::PENDING);
+        return $query->where('approved', '=', self::STATES['pending']);
     }
 
     public function scopeRanked($query)
     {
-        return $query->where('approved', '=', static::RANKED);
+        return $query->where('approved', '=', self::STATES['ranked']);
     }
 
     public function scopeApproved($query)
     {
-        return $query->where('approved', '=', static::APPROVED);
+        return $query->where('approved', '=', self::STATES['approved']);
     }
 
     public function scopeQualified($query)
     {
-        return $query->where('approved', '=', static::QUALIFIED);
+        return $query->where('approved', '=', self::STATES['qualified']);
     }
 
     public function scopeRankedOrApproved($query)
     {
-        return $query->whereIn('approved', [static::RANKED, static::APPROVED]);
+        return $query->whereIn('approved', [self::STATES['ranked'], self::STATES['approved']]);
     }
 
     public function scopeActive($query)
@@ -184,32 +167,37 @@ class Beatmapset extends Model
 
     public function isGraveyard()
     {
-        return $this->approved === static::GRAVEYARD;
+        return $this->approved === self::STATES['graveyard'];
     }
 
     public function isWIP()
     {
-        return $this->approved === static::WIP;
+        return $this->approved === self::STATES['wip'];
     }
 
     public function isPending()
     {
-        return $this->approved === static::PENDING;
+        return $this->approved === self::STATES['pending'];
     }
 
     public function isRanked()
     {
-        return $this->approved === static::RANKED;
+        return $this->approved === self::STATES['ranked'];
     }
 
     public function isApproved()
     {
-        return $this->approved === static::APPROVED;
+        return $this->approved === self::STATES['approved'];
     }
 
     public function isQualified()
     {
-        return $this->approved === static::QUALIFIED;
+        return $this->approved === self::STATES['qualified'];
+    }
+
+    public function hasScores()
+    {
+        return $this->attributes['approved'] > 0;
     }
 
     private static function sanitizeSearchParams(array &$params = [])
@@ -261,16 +249,23 @@ class Beatmapset extends Model
     public static function searchES(array $params = [])
     {
         extract($params);
-        $count = config('osu.beatmaps.max', 50);
-        $offset = (max(0, $page - 1)) * $count;
+        $limit = min(config('osu.beatmaps.max'), $limit ?? config('osu.beatmaps.max'));
+        $offset = (max(0, $page - 1)) * $limit;
         $current_user = Auth::user();
 
-        $searchParams['index'] = config('osu.elasticsearch.index');
-        $searchParams['type'] = 'beatmaps';
-        $searchParams['size'] = $count;
-        $searchParams['from'] = $offset;
-        $searchParams['body']['sort'] = [$sort_field => ['order' => $sort_order]];
-        $searchParams['fields'] = ['id'];
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index'),
+            'type' => 'beatmaps',
+            'size' => $limit,
+            'from' => $offset,
+            'body' => [
+                'sort' => [
+                    $sort_field => ['order' => $sort_order],
+                ],
+            ],
+            'fields' => 'id',
+        ];
+
         $matchParams = [];
         $shouldParams = [];
 
@@ -300,8 +295,29 @@ class Beatmapset extends Model
         }
 
         if (!empty($rank)) {
-            $klass = presence($mode) !== null ? Score\Best\Model::getClass(intval($mode)) : Score\Best\Combined::class;
-            $scores = model_pluck($klass::forUser($current_user)->whereIn('rank', $rank), 'beatmapset_id');
+            if (present($mode)) {
+                $modes = [$mode];
+            } else {
+                $modes = array_keys(Beatmap::MODES);
+            }
+
+            $unionQuery = null;
+            foreach ($modes as $mode) {
+                $newQuery =
+                    Score\Best\Model::getClass((int) $mode)
+                    ->forUser($current_user)
+                    ->whereIn('rank', $rank)
+                    ->select('beatmapset_id');
+
+                if ($unionQuery === null) {
+                    $unionQuery = $newQuery;
+                } else {
+                    $unionQuery->union($newQuery);
+                }
+            }
+
+            $scores = model_pluck($unionQuery, 'beatmapset_id');
+
             $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
         }
 
@@ -310,12 +326,15 @@ class Beatmapset extends Model
             switch ((int) $status) {
                 case 0: // Ranked & Approved
                     $shouldParams[] = [
-                        ['match' => ['approved' => self::RANKED]],
-                        ['match' => ['approved' => self::APPROVED]],
+                        ['match' => ['approved' => self::STATES['ranked']]],
+                        ['match' => ['approved' => self::STATES['approved']]],
                     ];
                     break;
                 case 1: // Approved
-                    $matchParams[] = ['match' => ['approved' => self::APPROVED]];
+                    $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
+                    break;
+                case 8: // Loved
+                    $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                     break;
                 case 2: // Favourites
                     $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
@@ -324,26 +343,28 @@ class Beatmapset extends Model
                 case 3: // Mod Requests
                     $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                    $matchParams[] = ['match' => ['approved' => self::PENDING]];
+                    $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
                     break;
                 case 4: // Pending
                     $shouldParams[] = [
-                        ['match' => ['approved' => self::WIP]],
-                        ['match' => ['approved' => self::PENDING]],
+                        ['match' => ['approved' => self::STATES['wip']]],
+                        ['match' => ['approved' => self::STATES['pending']]],
                     ];
                     break;
                 case 5: // Graveyard
-                    $matchParams[] = ['match' => ['approved' => self::GRAVEYARD]];
+                    $matchParams[] = ['match' => ['approved' => self::STATES['graveyard']]];
                     break;
                 case 6: // My Maps
                     $maps = model_pluck($current_user->beatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
+                case 7: // Explicit Any
+                    break;
                 default: // null, etc
                     break;
             }
         } else {
-            $matchParams[] = ['range' => ['approved' => ['gte' => self::PENDING]]];
+            $matchParams[] = ['range' => ['approved' => ['gte' => self::STATES['pending']]]];
         }
 
         if (presence($mode) !== null) {
@@ -374,6 +395,46 @@ class Beatmapset extends Model
         return $beatmap_ids;
     }
 
+    public static function searchDB(array $params = [])
+    {
+        extract($params);
+
+        $limit = min(config('osu.beatmaps.max'), $limit ?? config('osu.beatmaps.max'));
+        $offset = max(0, $page - 1) * $limit;
+
+        $query = self::where('title', 'like', '%'.$query.'%');
+
+        if ($mode) {
+            $query = $query->whereHas('beatmaps', function ($query) use (&$mode) {
+                $query->where('playmode', '=', $mode);
+            });
+        }
+
+        if ($genre) {
+            $query->where('genre_id', '=', $genre);
+        }
+
+        if ($language) {
+            $query->where('language_id', '=', $language);
+        }
+
+        if ($extra) {
+            foreach ($extra as $val) {
+                if ($val === '0') {
+                    $query->where('video', '=', 1);
+                }
+
+                if ($val === '1') {
+                    $query->where('storyboard', '=', 1);
+                }
+            }
+        }
+
+        return $query->take($limit)->skip($offset)
+            ->orderBy($sort_field, $sort_order)
+            ->get()->pluck('beatmapset_id')->toArray();
+    }
+
     public static function search(array $params = [])
     {
         // default search params
@@ -391,77 +452,58 @@ class Beatmapset extends Model
 
         self::sanitizeSearchParams($params);
 
-        $beatmap_ids = self::searchES($params);
-        $beatmaps = [];
-
-        if (count($beatmap_ids) > 0) {
-            $ids = implode(',', $beatmap_ids);
-            $beatmaps = self::whereIn('beatmapset_id', $beatmap_ids)->orderByRaw(DB::raw("FIELD(beatmapset_id, {$ids})"))->get();
+        if (empty(config('elasticsearch.hosts'))) {
+            $beatmap_ids = self::searchDB($params);
+        } else {
+            $beatmap_ids = self::searchES($params);
         }
 
-        return $beatmaps;
+        return count($beatmap_ids) > 0
+            ? static
+                ::with('beatmaps')
+                ->whereIn('beatmapset_id', $beatmap_ids)
+                ->orderByField('beatmapset_id', $beatmap_ids)
+                ->get()
+            : [];
+    }
+
+    public static function latestRankedOrApproved($count = 5)
+    {
+        // TODO: add filtering by game mode after mode-toggle UI/UX happens
+
+        return Cache::remember("beatmapsets_latest_{$count}", 60, function () use ($count) {
+            // We union here so mysql can use indexes to speed this up
+            $ranked = self::ranked()->active()->orderBy('approved_date', 'desc')->limit($count);
+            $approved = self::approved()->active()->orderBy('approved_date', 'desc')->limit($count);
+
+            return $ranked->union($approved)->orderBy('approved_date', 'desc')->limit($count)->get();
+        });
+    }
+
+    public static function mostPlayedToday($mode = 'osu', $count = 5)
+    {
+        // TODO: this only returns based on osu mode plays for now, add other game modes after mode-toggle UI/UX happens
+
+        return Cache::remember("beatmapsets_most_played_today_{$mode}_{$count}", 60, function () use ($mode, $count) {
+            $counts = Score\Osu::selectRaw('beatmapset_id, count(*) as playcount')
+                    ->whereNotIn('beatmapset_id', self::BUNDLED_IDS)
+                    ->groupBy('beatmapset_id')
+                    ->orderBy('playcount', 'desc')
+                    ->limit($count)
+                    ->get();
+
+            $mostPlayed = [];
+            foreach ($counts as $value) {
+                $mostPlayed[$value['beatmapset_id']] = $value['playcount'];
+            }
+
+            return $mostPlayed;
+        });
     }
 
     public static function listing()
     {
         return self::search();
-    }
-
-    public function comments($time = null)
-    {
-        $mods = Mod::query()
-            ->where('beatmapset_id', '=', $this->beatmapset_id)
-            ->whereNull('parent_item_id')
-            ->orderBy('created_at', 'desc');
-
-        if ($time) {
-            $mods = $mods->where(function ($query) use ($time) {
-                $query->where(DB::raw('UNIX_TIMESTAMP(`created_at`)'), '>', $time);
-                $query->orWhere(DB::raw('UNIX_TIMESTAMP(`updated_at`)'), '>', $time);
-            })
-            ->withTrashed();
-        }
-
-        $mods = $mods->get()->load('creator');
-
-        $new = [];
-
-        foreach ($mods as $mod) {
-            $new[$mod->item_id] = $mod->toArray();
-        }
-
-        return $new;
-    }
-
-    public function replies($time = null)
-    {
-        $replies = Mod::query()
-                ->whereNotNull('parent_item_id')
-                ->where('beatmapset_id', '=', $this->beatmapset_id)
-                ->orderBy('created_at', 'asc');
-
-        if ($time) {
-            // also grab soft-deleted posts
-            $replies = $replies->where(function ($query) use ($time) {
-                $query->where(DB::raw('UNIX_TIMESTAMP(`created_at`)'), '>', $time);
-                $query->orWhere(DB::raw('UNIX_TIMESTAMP(`updated_at`)'), '>', $time);
-            })
-            ->withTrashed();
-        }
-
-        $replies = $replies->get()->load('creator');
-
-        $new = [];
-
-        foreach ($replies as $reply) {
-            if (!isset($new[$reply->parent_item_id])) {
-                $new[$reply->parent_item_id] = [];
-            }
-
-            $new[$reply->parent_item_id][$reply->item_id] = $reply->toArray();
-        }
-
-        return $new;
     }
 
     public static function coverSizes()
@@ -587,23 +629,22 @@ class Beatmapset extends Model
             }
 
             $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
-            if (!$bgFile) {
-                throw new BeatmapProcessorException("Background image missing: {$bgFile}");
-            }
 
-            $processor = new ImageProcessorService($tmpBase);
+            if ($bgFile !== false) {
+                $processor = new ImageProcessorService($tmpBase);
 
-            // upload original image
-            $this->storeCover('raw.jpg', $bgFile);
+                // upload original image
+                $this->storeCover('raw.jpg', $bgFile);
 
-            // upload optimized version
-            $optimized = $processor->optimize($this->coverURL('raw'));
-            $this->storeCover('fullsize.jpg', $optimized);
+                // upload optimized version
+                $optimized = $processor->optimize($this->coverURL('raw'));
+                $this->storeCover('fullsize.jpg', $optimized);
 
-            // use thumbnailer to generate and upload all our variants
-            foreach (self::coverSizes() as $size) {
-                $resized = $processor->resize($this->coverURL('fullsize'), $size);
-                $this->storeCover("$size.jpg", $resized);
+                // use thumbnailer to generate and upload all our variants
+                foreach (self::coverSizes() as $size) {
+                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $this->storeCover("$size.jpg", $resized);
+                }
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
@@ -646,6 +687,134 @@ class Beatmapset extends Model
         return $imageFilename;
     }
 
+    public function setApproved($state, $user)
+    {
+        $this->approved = static::STATES[$state];
+
+        if ($this->approved > 0) {
+            $this->approved_date = Carbon::now();
+            $this->approvedby_id = $user->user_id;
+        } else {
+            $this->approved_date = null;
+            $this->approvedby_id = null;
+        }
+
+        $this->save();
+
+        $this
+            ->beatmaps()
+            ->update(['approved' => $this->approved]);
+    }
+
+    public function disqualify(User $user, $comment)
+    {
+        if (!$this->isQualified()) {
+            return false;
+        }
+
+        DB::transaction(function () use ($user, $comment) {
+            $this->events()->create([
+                'type' => BeatmapsetEvent::DISQUALIFY,
+                'user_id' => $user->user_id,
+                'comment' => $comment,
+            ]);
+
+            $this->setApproved('pending', $user);
+        });
+
+        return true;
+    }
+
+    public function qualify($user)
+    {
+        if (!$this->isPending()) {
+            return false;
+        }
+
+        DB::transaction(function () use ($user) {
+            $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
+
+            $this->setApproved('qualified', $user);
+        });
+
+        return true;
+    }
+
+    public function nominate(User $user)
+    {
+        if (!$this->isPending()) {
+            return false;
+        }
+
+        DB::transaction(function () use ($user) {
+            $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id);
+            if (!$nomination->exists()) {
+                $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
+                if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
+                    $this->qualify($user);
+                }
+            }
+        });
+
+        return true;
+    }
+
+    public function nominators()
+    {
+        $events = $this
+            ->recentEvents()
+            ->with('user')
+            ->where(['type' => BeatmapsetEvent::NOMINATE])
+            ->select('user_id')
+            ->get()
+            ->all();
+
+        return array_map(function ($event) {
+            if ($event->user !== null) {
+                return [
+                    'id' => $event->user_id,
+                    'username' => $event->user->username,
+                ];
+            }
+        }, $events);
+    }
+
+    public function favourite($user)
+    {
+        DB::transaction(function () use ($user) {
+            try {
+                FavouriteBeatmapset::create([
+                    'user_id' => $user->user_id,
+                    'beatmapset_id' => $this->beatmapset_id,
+                ]);
+            } catch (QueryException $e) {
+                if (is_sql_unique_exception($e)) {
+                    return;
+                } else {
+                    throw $e;
+                }
+            }
+
+            $this->favourite_count = DB::raw('favourite_count + 1');
+            $this->save();
+        });
+    }
+
+    public function unfavourite($user)
+    {
+        if ($user === null || !$user->hasFavourited($this)) {
+            return;
+        }
+
+        DB::transaction(function () use ($user) {
+            $this->favourites()->where('user_id', $user->user_id)
+                ->delete();
+
+            $this->favourite_count = DB::raw('GREATEST(favourite_count - 1, 0)');
+            $this->save();
+        });
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Relationships
@@ -661,30 +830,118 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
+    public function events()
+    {
+        return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
+    }
+
+    public function requiredNominationCount()
+    {
+        $longest_map_duration = $this->beatmaps->max('total_length');
+
+        return $longest_map_duration > 315 ? 3 : 2;
+    }
+
+    public function currentNominationCount()
+    {
+        return count($this->recentEvents()->nominations()->get());
+    }
+
+    public function rankingETA()
+    {
+        if (!$this->isQualified()) {
+            return;
+        }
+
+        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
+        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+
+        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+    }
+
+    public function recentEvents()
+    {
+        // relevant events differ depending on state of beatmapset
+        $events = $this->events();
+        switch ($this->approved) {
+            case self::STATES['pending']:
+            case self::STATES['qualified']:
+                // last 'disqualify' event (if any) and all events since
+                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+                if ($disqualifyEvent) {
+                    $events->where('id', '>=', $disqualifyEvent->id);
+                }
+        }
+
+        return $events;
+    }
+
+    public function status()
+    {
+        return array_search($this->approved, self::STATES, true);
+    }
+
+    public function defaultJson($currentUser = null)
+    {
+        $includes = ['beatmaps', 'nominations'];
+
+        return json_item($this, new BeatmapsetTransformer, $includes);
+    }
+
     public function defaultBeatmaps()
     {
         return $this->hasMany(Beatmap::class, 'beatmapset_id')->default();
     }
 
-    public function mods()
-    {
-        return $this->hasMany("App\Models\Mod", 'beatmapset_id', 'beatmapset_id');
-    }
-
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function approver()
     {
-        return $this->belongsTo("App\Models\User", 'user_id', 'approvedby_id');
+        return $this->belongsTo(User::class, 'user_id', 'approvedby_id');
+    }
+
+    public function userRatings()
+    {
+        return $this->hasMany(BeatmapsetUserRating::class, 'beatmapset_id');
+    }
+
+    public function ratingsCount()
+    {
+        $ratings = [];
+
+        for ($i = 0; $i <= 10; $i++) {
+            $ratings[$i] = 0;
+        }
+
+        $userRatings = $this->userRatings()
+            ->select('rating', \DB::raw('count(*) as count'))
+            ->groupBy('rating')
+            ->get();
+
+        foreach ($userRatings as $rating) {
+            $ratings[$rating->rating] = $rating->count;
+        }
+
+        return $ratings;
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany(FavouriteBeatmapset::class, 'beatmapset_id');
     }
 
     public function description()
     {
-        $topic = Topic::find($this->thread_id);
-        $post = Post::find($topic->topic_first_post_id);
+        $topic = Forum\Topic::find($this->thread_id);
+
+        if ($topic === null) {
+            return;
+        }
+
+        $post = Forum\Post::find($topic->topic_first_post_id);
 
         // Any description (after the first match) that matches
         // '[-{15}]' within its body doesn't get split anymore,
@@ -695,6 +952,6 @@ class Beatmapset extends Model
         // (mostly older beatmapsets)
         $description = $split[1] ?? '';
 
-        return bbcode($description, $post->bbcode_uid, true);
+        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
     }
 }

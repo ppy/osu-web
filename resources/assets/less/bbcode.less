@@ -1,32 +1,41 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 @import "app";
 
 .bbcode {
   line-height: 1.5;
+
+  h2,
   h4 {
-    font-size: inherit;
+    font-family: @font-family-sans-serif;
     font-style: normal;
+    font-weight: bold;
   }
 
+  // heading tag
   h2 {
-    padding-bottom: @grid-gutter-width/2;
+    font-size: @font-size--forum-post-heading;
+  }
+
+  // quote tag
+  h4 {
+    font-size: @font-size--forum-quote-heading;
   }
 
   blockquote {
@@ -54,8 +63,29 @@
   .size-85 { font-size: 85%; }
   .size-150 { font-size: 150%; }
 
+  &--normal-line-height {
+    line-height: inherit;
+  }
+
   &__list-title {
     list-style: none;
     margin: 0;
+  }
+
+  &__video-box {
+    max-width: 425px;
+  }
+
+  &__video {
+    position: relative;
+    padding-bottom: 75%;
+
+    & iframe {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 }

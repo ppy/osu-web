@@ -1,9 +1,10 @@
 <?php
+
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'beatmap_discussion' => [
         'resolve' => [
@@ -32,13 +34,13 @@ return [
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'El acceso al canal solicitado no se te está permitido.',
+                'no_access' => 'No tienes permiso para acceder al canal solicitado.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Se requiere acceso al canal objetivo.',
+                    'no_access' => 'Se requiere acceso al canal.',
                     'moderated' => 'El canal está actualmente moderado.',
                 ],
                 'not_allowed' => 'No se puede enviar un mensaje mientras se esté baneado/restringido/silenciado.',
@@ -55,7 +57,7 @@ return [
                 'not_owner' => 'Solo el creador del post puede eliminarlo.',
             ],
             'edit' => [
-                'can_not_post' => 'No se puede editar un post a cuyo hilo no se puede responder.',
+                'can_not_post' => 'No se puede editar un post cuyo hilo no se puede responder.',
                 'locked' => 'La edición del post está bloqueada.',
                 'not_owner' => 'Solo el creador del post puede editarlo.',
             ],

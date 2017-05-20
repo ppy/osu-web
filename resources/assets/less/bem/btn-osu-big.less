@@ -1,0 +1,203 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.btn-osu-big {
+  @top: btn-osu-big;
+
+  .reset-input();
+  .link-plain();
+  .default-border-radius();
+  border: none;
+
+  display: inline-block;
+
+  background-color: @blue-darker;
+  background-image: url('/images/backgrounds/buttonblue@2x.png');
+  background-size: cover;
+  background-position: 50% 50%;
+  transition: background-position 120ms;
+
+  padding: 5px;
+  color: #fff;
+  font-size: @font-size--normal;
+  font-weight: 600;
+  overflow: hidden;
+  cursor: pointer;
+  text-transform: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: #fff;
+    background-position: calc(50% ~'-' 20px) 50%;
+  }
+
+  &[disabled] {
+    &:hover,
+    &:focus,
+    &:active {
+      background-position: 50% 50%;
+    }
+
+    &::before {
+      .full-size();
+      border-radius: inherit;
+      background-color: fade(#fff, 50%);
+    }
+  }
+
+  &--account-edit {
+    width: @avatar-size--base;
+    padding: 7px 10px;
+    text-align: left;
+  }
+
+  &--beatmap-discussion {
+    margin-left: 5px;
+  }
+
+  &--beatmapset-header {
+    width: 120px;
+    height: 45px;
+    margin: 0 5px 5px 0;
+  }
+
+  &--beatmapset-header-square {
+    width: 45px;
+    height: 45px;
+    margin: 0 5px 5px 0;
+  }
+
+  &--beatmapset-header-square-unfavourite {
+    background-image: url('/images/backgrounds/buttonpink@2x.png');
+  }
+
+  &--contest-download {
+    width: 300px;
+    height: 45px;
+    margin: 0 5px 5px 0;
+    &:hover {
+      background-position: calc(50% ~'-' (20px - 2px)) 50%;
+    }
+  }
+
+  &--download {
+    .default-box-shadow();
+    .default-text-shadow();
+    font-style: italic;
+    font-size: @font-size--title-small;
+    padding: 10px 5px;
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &--green {
+    background-color: @green;
+  }
+
+  &--password-reset {
+    padding: 10px;
+    text-align: center;
+  }
+
+  &--pink {
+    background-color: @pink;
+  }
+
+  &--user-homepage {
+    display: block;
+    width: 100%;
+    background-image: url('/images/backgrounds/button.svg');
+    background-size: 175%;
+    background-color: @blue;
+    margin-bottom: 5px;
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .@{top}--account-edit & {
+      width: auto;
+      margin: 0 -5px;
+    }
+
+    &--center {
+      justify-content: center;
+    }
+
+    .@{top}--user-homepage & {
+      flex-direction: column;
+    }
+  }
+
+  &__fileupload {
+    position: absolute;
+    left: -200%;
+    top: -200%;
+  }
+
+  &__icon {
+    flex: none;
+    margin: 0 5px;
+    font-size: 150%;
+
+    .@{top}--account-edit & {
+      height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .@{top}--download & {
+      .circle(40px);
+      .center-content();
+      .thick-box-shadow();
+      margin-left: 20px;
+      font-size: 20px;
+      border: 2px solid #fff;
+    }
+  }
+
+  &__left {
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .@{top}--user-homepage & {
+      align-items: center;
+    }
+  }
+
+  &__text-top {
+    .@{top}--user-homepage & {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__text-bottom {
+    font-size: @font-size--small;
+  }
+}

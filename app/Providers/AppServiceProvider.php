@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,12 +17,18 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Providers;
 
+use App\Http\Middleware\StartSession;
 use App\Libraries\OsuAuthorize;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
+use App\Models\Forum\PollVote as ForumPollVote;
+use Datadog;
+use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
+use Queue;
 use Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -45,6 +51,16 @@ class AppServiceProvider extends ServiceProvider
 
         BeatmapDiscussionPost::saving(function ($post) {
             return $post->isValid();
+        });
+
+        ForumPollVote::saving(function ($vote) {
+            return $vote->isValid();
+        });
+
+        Queue::after(function (JobProcessed $event) {
+            if (config('datadog-helper.enabled', false)) {
+                Datadog::increment(config('datadog-helper.prefix').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+            }
         });
     }
 
@@ -69,5 +85,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('OsuAuthorize', function () {
             return new OsuAuthorize();
         });
+
+        // The middleware breaks without this. Not sure why.
+        // Originally defined in Laravel's SessionServiceProvider.
+        $this->app->singleton(StartSession::class);
     }
 }

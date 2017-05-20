@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,30 +17,31 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
 
 class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
+    protected $primaryKey = 'group_id';
     public $timestamps = false;
+    protected $guarded = [];
 
     // taken from current forum
     const GROUPS = [
         'default' => 2,
         'gmt' => 4,
         'admin' => 5,
-        'bat' => 7,
+        'qat' => 7,
         'dev' => 11,
-        'mat' => 14,
         'alumni' => 16,
         'hax' => 17,
         'mod' => 18,
+        'bng' => 28,
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

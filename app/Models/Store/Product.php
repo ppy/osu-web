@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Store;
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models\Store;
 
 class Product extends Model
 {
-    protected $connection = 'mysql-store';
-    protected $table = 'products';
     protected $primaryKey = 'product_id';
 
     protected $casts = [
@@ -55,7 +52,7 @@ class Product extends Model
 
     public function notificationRequests()
     {
-        return $this->hasMany(NotificationRequest::class);
+        return $this->hasMany(NotificationRequest::class, 'product_id');
     }
 
     public function inStock($quantity = 1, $includeVariations = false)
@@ -65,7 +62,7 @@ class Product extends Model
         if ($inStock === false && $includeVariations === true) {
             $inStock = ($this->masterProduct ?? $this)
                 ->variations
-                ->contains(function ($_, $variation) use ($quantity) {
+                ->contains(function ($variation) use ($quantity) {
                     return $variation->inStock($quantity);
                 });
         }

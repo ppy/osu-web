@@ -1,17 +1,14 @@
 <?php
 
-use App\Models\Beatmapset;
 use App\Models\Beatmap;
-use App\Models\User;
-use App\Models\BeatmapsetDiscussion;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Beatmapset;
+use App\Models\BeatmapsetDiscussion;
+use App\Models\User;
 
 class BeatmapDiscussionPostsControllerTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function setUp()
     {
         parent::setUp();
@@ -43,10 +40,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
-        $this->assertEquals($currentDiscussions + 1, BeatmapDiscussion::count());
-        $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+        $this->assertSame($currentDiscussions + 1, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
     }
 
     public function testPostStoreNewReply()
@@ -62,10 +59,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
-        $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
-        $this->assertEquals($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
 
         // changing resolve status adds two posts
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
@@ -81,9 +78,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
-        $this->assertEquals($currentDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        $this->assertSame($currentDiscussionPosts + 2, BeatmapDiscussionPost::count());
     }
 
     public function testPostStoreNewDiscussionRequestBeatmapsetDiscussion()
@@ -99,10 +96,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => 'Hello',
                 ],
             ])
-            ->assertResponseStatus(404);
+            ->assertStatus(404);
 
-        $this->assertEquals($currentDiscussions, BeatmapDiscussion::count());
-        $this->assertEquals($currentDiscussionPosts, BeatmapDiscussionPost::count());
+        $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
+        $this->assertSame($currentDiscussionPosts, BeatmapDiscussionPost::count());
     }
 
     public function testPostUpdate()
@@ -125,11 +122,11 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => $editedMessage,
                 ],
             ])
-            ->assertResponseStatus(403);
+            ->assertStatus(403);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
 
-        $this->assertEquals($initialMessage, $beatmapDiscussionPost->message);
+        $this->assertSame($initialMessage, $beatmapDiscussionPost->message);
 
         // correct user
         $this
@@ -139,10 +136,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
                     'message' => $editedMessage,
                 ],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
 
-        $this->assertEquals($editedMessage, $beatmapDiscussionPost->message);
+        $this->assertSame($editedMessage, $beatmapDiscussionPost->message);
     }
 }

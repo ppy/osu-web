@@ -1,20 +1,21 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 {a, button, div, p, span} = React.DOM
 el = React.createElement
 
@@ -26,96 +27,88 @@ BeatmapDiscussions.Discussions = React.createClass
 
 
   render: ->
-    @reboot()
+    discussions = @props.currentDiscussions[@props.mode]
 
-    div
-      className: bn
-
-      div className: "#{bn}__toolbar",
-        div null,
-          ['general', 'timeline'].map @modeSwitchButton
-
-        div null,
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
-            onClick: => $.publish 'beatmapDiscussion:collapse', all: 'collapse'
-            el Icon, name: 'minus-circle'
-            span className: "#{bn}__collapse-button-text",
-              Lang.get('beatmaps.discussions.collapse.all-collapse')
-
-          button
-            className: "btn-osu-lite btn-osu-lite--default #{bn}__collapse-button"
-            onClick: => $.publish 'beatmapDiscussion:collapse', all: 'expand'
-            el Icon, name: 'plus-circle'
-            span className: "#{bn}__collapse-button-text",
-              Lang.get('beatmaps.discussions.collapse.all-expand')
-
+    div className: 'osu-page osu-page--small',
       div
-        className: "#{bn}__discussions"
-        if @props.mode == 'timeline'
-          div className: "#{bn}__timeline-line hidden-xs"
+        className: bn
 
-        div className: "#{bn}__discussions",
-          @currentDiscussions.map @discussionPage
+        div className: 'page-title',
+          osu.trans('beatmaps.discussions.title')
 
-          if !@hasDiscussion?
-            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.empty'
-          else if @hasDiscussion == 'filtered'
-            div className: "#{bn}__discussion #{bn}__discussion--empty", Lang.get 'beatmaps.discussions.empty.filtered'
+        div className: "#{bn}__toolbar",
+          div className: "#{bn}__toolbar-content #{bn}__toolbar-content--right",
+            a
+              href: '#'
+              className: "#{bn}__toolbar-link"
+              'data-type': 'collapse'
+              onClick: @expand
+              el IconExpand, expand: false
+              span className: 'btn-osu-lite__right',
+                osu.trans('beatmaps.discussions.collapse.all-collapse')
 
-      if @props.mode == 'timeline'
-        div className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
+            a
+              href: '#'
+              className: "#{bn}__toolbar-link"
+              'data-type': 'expand'
+              onClick: @expand
+              el IconExpand
+              span className: 'btn-osu-lite__right',
+                osu.trans('beatmaps.discussions.collapse.all-expand')
 
+        div
+          className: "#{bn}__discussions"
 
-  modeSwitchButton: (mode) ->
-    circleClass = "#{bn}__mode-circle"
-    circleClass += " #{bn}__mode-circle--active" if mode == @props.mode
+          @timelineCircle()
 
-    button
-      key: "mode-#{mode}"
-      className: "#{bn}__mode"
-      onClick: => $.publish 'beatmapDiscussion:setMode', mode
-      div className: "#{bn}__mode-container",
-        div className: circleClass
-        if mode == 'timeline' && mode == @props.mode
-          div className: "#{bn}__timeline-line #{bn}__timeline-line--bottom #{bn}__timeline-line--half hidden-xs"
-        span className: "#{bn}__mode-text",
-          Lang.get("#{lp}.mode.#{mode}")
+          if @props.mode == 'timeline'
+              div className: "#{bn}__timeline-line hidden-xs"
+
+          div null,
+            discussions.map @discussionPage
+
+            if discussions.length == 0
+              div className: "#{bn}__discussion #{bn}__discussion--empty",
+                osu.trans 'beatmaps.discussions.empty.empty'
+            else if @props.mode == 'timeline' &&
+            _.size(@props.currentDiscussions.timelineByFilter[@props.currentFilter]) == 0
+              div className: "#{bn}__discussion #{bn}__discussion--empty",
+                osu.trans 'beatmaps.discussions.empty.hidden'
+
+          @timelineCircle()
+
 
   discussionPage: (discussion) ->
-    className = "#{bn}__discussion"
-    hidden =
-      if !@currentBeatmap(discussion)
-        true
-      else if @filtered(discussion)
-        @hasDiscussion ?= 'filtered'
-        true
-      else
-        @hasDiscussion = 'visible'
-        false
+    return if !discussion.id?
 
-    className += ' hidden' if hidden
+    className = "#{bn}__discussion"
+
+    if @props.mode == 'timeline' &&
+    !@props.currentDiscussions.timelineByFilter[@props.currentFilter][discussion.id]?
+      className += ' u-hide-by-height'
+    else
+      visible = true
 
     div
       key: discussion.id
       className: className
       el BeatmapDiscussions.Discussion,
         discussion: discussion
-        lookupUser: @props.lookupUser
+        users: @props.users
         currentUser: @props.currentUser
         beatmapset: @props.beatmapset
         currentBeatmap: @props.currentBeatmap
         userPermissions: @props.userPermissions
-        highlighted: discussion.id == @props.highlightedDiscussionId
         readPostIds: @props.readPostIds
-        collapsed: _.includes @props.collapsedBeatmapDiscussionIds, discussion.id
+        visible: visible?
 
 
-  currentBeatmap: (discussion) ->
-    discussion.beatmap_id == @currentBeatmapId
+  expand: (e) ->
+    e.preventDefault()
+    $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
 
 
-  filtered: (discussion) ->
+  hidden: (discussion) ->
     switch @props.currentFilter
       when 'mine' then discussion.user_id != @props.currentUser.id
       when 'resolved' then discussion.message_type == 'praise' || !discussion.resolved
@@ -124,11 +117,7 @@ BeatmapDiscussions.Discussions = React.createClass
       else false
 
 
-  reboot: ->
-    @currentDiscussions = _.chain @props.beatmapsetDiscussion.beatmap_discussions.data
-      .orderBy ['timestamp', 'id'], ['asc', 'asc']
-      .value()
-
-    @currentBeatmapId = if @props.mode == 'general' then null else @props.currentBeatmap.id
-
-    @hasDiscussion = null
+  timelineCircle: ->
+    div
+      'data-visibility': if @props.mode != 'timeline' then 'hidden'
+      className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"

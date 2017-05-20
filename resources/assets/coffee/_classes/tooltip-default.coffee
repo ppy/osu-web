@@ -1,23 +1,27 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 class @TooltipDefault
   constructor: ->
-    $(document).on 'mouseover', '[title]', @onMouseOver
+    $(document).on 'mouseover', '[title]:not(iframe)', @onMouseOver
+    $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow', @autoAddTooltip
+    $(document).on 'turbolinks:before-cache', @rollback
+
 
   onMouseOver: (event) =>
     el = event.currentTarget
@@ -67,3 +71,25 @@ class @TooltipDefault
     el.setAttribute 'data-orig-title', title
 
     $(el).qtip options, event
+
+  autoAddTooltip: (e) =>
+    # Automagically add qtips when text becomes truncated (and auto-removes
+    # them when text becomes... un-truncated)
+    target = e.currentTarget
+    $target = $(target)
+    api = $target.qtip('api')
+
+    if (target.offsetWidth < target.scrollWidth)
+      if (api)
+        api.enable()
+      else
+        $target.attr 'title', $target.text()
+        $target.trigger('mouseover') # immediately trigger qtip magic
+    else
+      api?.disable()
+
+  rollback: =>
+    $('.qtip').remove()
+
+    for el in document.querySelectorAll('[data-orig-title]')
+      el.setAttribute 'title', el.getAttribute('data-orig-title')

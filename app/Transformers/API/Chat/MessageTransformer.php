@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,25 +17,36 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers\API\Chat;
 
+use App\Models\DeletedUser;
+use App\Transformers\UserCompactTransformer;
 use League\Fractal;
-use App\Models\Chat\Message;
 
 class MessageTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(Message $message)
+    protected $availableIncludes = [
+        'sender',
+    ];
+
+    public function transform($message)
     {
         return [
             'message_id' => $message->message_id,
-            'user_id' => $message->user_id,
-            'channel_id' => $message->channel_id,
-            'timestamp' => $message->timestamp->toDateTimeString(),
+            'sender_id' => $message->user_id,
+            'target_type' => $message->target_type,
+            'target_id' => $message->target_id,
+            'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
-            'sender' => [
-                'username' => $message->user->username,
-                'colour' => $message->user->user_colour,
-            ],
         ];
+    }
+
+    public function includeSender($message)
+    {
+        return $this->item(
+            $message->sender ?? (new DeletedUser),
+            new UserCompactTransformer
+        );
     }
 }

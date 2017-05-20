@@ -2,8 +2,8 @@
 
 namespace App\Libraries;
 
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Request;
 
 class OAuth2PasswordGrantVerifier

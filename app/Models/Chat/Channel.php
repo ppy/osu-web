@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Chat;
 
-use App\Models\User;
 use App\Interfaces\Messageable;
+use App\Models\User;
 
 class Channel extends Model implements Messageable
 {
-    protected $table = 'channels';
     protected $primaryKey = 'channel_id';
     protected $dates = [
         'creation_time',
@@ -32,7 +32,7 @@ class Channel extends Model implements Messageable
 
     public function messages()
     {
-        $this->hasMany(Message::class, 'channel_id', 'channel_id');
+        $this->hasMany(Message::class, 'channel_id');
     }
 
     public function getAllowedGroupsAttribute($allowed_groups)
@@ -40,7 +40,12 @@ class Channel extends Model implements Messageable
         return array_map('intval', explode(',', $allowed_groups));
     }
 
-    public function sendMessage(User $sender, $body)
+    public function getTypeAttribute($type)
+    {
+        return strtolower($type);
+    }
+
+    public function receiveMessage(User $sender, $body)
     {
         $message = new Message();
         $message->user_id = $sender->user_id;
@@ -48,6 +53,6 @@ class Channel extends Model implements Messageable
         $message->channel()->associate($this);
         $message->save();
 
-        return true;
+        return $message->fresh();
     }
 }

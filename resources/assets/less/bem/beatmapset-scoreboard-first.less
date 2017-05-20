@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,7 +14,6 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 .beatmapset-scoreboard-first {
@@ -24,8 +23,8 @@
   max-width: 820px;
 
   margin: 0 auto;
-  margin-top: @spacing * 2;
-  margin-bottom: @spacing * 3;
+  margin-top: 20px;
+  margin-bottom: 30px;
 
   @media @desktop {
     padding: 0 100px;
@@ -35,11 +34,11 @@
     flex-wrap: wrap;
     max-width: 400px;
 
-    padding: 0 @spacing * 2;
-    padding-top: @spacing * 2;
+    padding: 0 20px;
+    padding-top: 20px;
   }
 
-  .default-box-shadow;
+  .default-box-shadow();
 
   &__item {
     flex-basis: 100%;
@@ -49,7 +48,7 @@
 
       padding: 30px 0;
 
-      border-width: 0px 1px 0px 0px;
+      border-width: 0 1px 0 0;
       border-style: solid;
       border-image: linear-gradient(to top, #ccc, transparent 80%) 1;
 
@@ -60,19 +59,19 @@
       }
 
       &--right {
-        padding-left: @spacing * 2;
+        padding-left: 20px;
       }
     }
 
     @media @mobile {
-      padding-bottom: @spacing * 2;
+      padding-bottom: 20px;
     }
 
     &--left {
       display: flex;
 
       @media @desktop {
-        padding-right: @spacing * 2;
+        padding-right: 20px;
       }
 
       @media @mobile {
@@ -85,14 +84,14 @@
     display: flex;
     flex-direction: column;
 
-    padding-right: @spacing * 5;
+    padding-right: 50px;
   }
 
   &__label {
     font-style: italic;
     font-weight: 600;
 
-    padding-bottom: @spacing * 0.5;
+    padding-bottom: 5px;
 
     &--rank {
       font-size: 24px;
@@ -112,7 +111,7 @@
     border-radius: 5px;
     background-color: #ffffff;
 
-    .default-box-shadow;
+    .default-box-shadow();
   }
 
   &__avatar {

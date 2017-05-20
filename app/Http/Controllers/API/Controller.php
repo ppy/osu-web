@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\API;
 
 use Auth;
-use Authorizer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use LucaDegasperi\OAuth2Server\Exceptions\NoActiveAccessTokenException;
 
 class Controller extends BaseController
 {
@@ -32,12 +31,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        // allow route:list to work instead of failing from exception
-        // thrown by Authorizer.
-        try {
-            Auth::onceUsingId(Authorizer::getResourceOwnerId());
-        } catch (NoActiveAccessTokenException $_e) {
-            //
-        }
+        $this->middleware('auth:api');
     }
 }

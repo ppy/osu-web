@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,14 +14,15 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
-// block should be a label
 .osu-checkbox {
   @_top: osu-checkbox;
 
   text-transform: initial;
+  flex: none;
+  display: inline-flex;
+  margin: 0;
 
   // the input is hidden
   &__input {
@@ -34,8 +35,12 @@
   &__tick {
     visibility: hidden;
     padding: 3px;
-    color: @grey-f;
-    margin-right: (@spacing / 2);
+    color: #fff;
+    margin-right: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .@{_top}__input:checked ~ & {
       visibility: visible;
@@ -50,9 +55,9 @@
       .full-size();
       .default-border-radius();
       .default-box-shadow();
-      border: 2px solid @grey-f;
+      border: 2px solid #fff;
       visibility: visible;
-      background-color: @grey-c;
+      background-color: #ccc;
     }
   }
 }

@@ -1,9 +1,11 @@
 preset: laravel
 
 enabled:
-  - unalign_double_arrow
+  - alpha_ordered_imports
   - strict
   - strict_param
+  - unalign_double_arrow
 
 disabled:
+  - length_ordered_imports
   - logical_not_operators_with_successor_space

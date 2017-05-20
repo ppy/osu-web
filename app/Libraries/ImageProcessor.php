@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Exceptions\ImageProcessorException;
@@ -47,7 +48,7 @@ class ImageProcessor
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.too_large'));
         }
 
-        if ($this->inputDim === false || !in_array($this->inputDim[2], $this->allowedTypes, true)) {
+        if ($this->inputDim === null || !in_array($this->inputDim[2], $this->allowedTypes, true)) {
             throw new ImageProcessorException(trans('users.show.edit.cover.upload.unsupported_format'));
         }
 
@@ -69,7 +70,7 @@ class ImageProcessor
             return;
         }
 
-        $this->inputDim = getimagesize($this->inputPath);
+        $this->inputDim = read_image_properties($this->inputPath);
         $this->inputFileSize = filesize($this->inputPath);
     }
 

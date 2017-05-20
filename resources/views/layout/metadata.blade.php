@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -21,9 +21,12 @@
 <meta name="description" content="{{ $pageDescription or trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#cc5288">
 
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+
+<meta name="turbolinks-cache-control" content="no-preview">
 
 @if(config("services.ga.tracking_id") !== '')
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
@@ -32,10 +35,17 @@
 <link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track>
+<link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track="reload">
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 
-<script src="{{ elixir("js/app.js") }}" data-turbolinks-track></script>
+<script>
+    var currentLocale = {!! json_encode(App::getLocale()) !!};
+    var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
+</script>
+
+<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ elixir("js/app.js") }}" data-turbolinks-track="reload"></script>
+<script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
 
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">

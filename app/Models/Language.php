@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,11 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use League\Fractal\Manager;
-use League\Fractal\Resource\Collection;
 use App\Transformers\LanguageTransformer;
 
 class Language extends Model
@@ -37,10 +35,6 @@ class Language extends Model
 
     public static function listing()
     {
-        $fractal = new Manager();
-        $data = new Collection(parent::all(), new LanguageTransformer);
-        $list = $fractal->createData($data)->toArray()['data'];
-
-        return $list;
+        return json_collection(static::all(), new LanguageTransformer);
     }
 }

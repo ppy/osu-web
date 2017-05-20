@@ -1,45 +1,46 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 .footer {
-  background-color: fade(@grey-0, 60%);
+  background-color: fade(#000, 60%);
 
-  &:extend(.default-text-shadow);
-  background-image: linear-gradient(to bottom, fade(@grey-0, 60%) 0, transparent 4px);
+  .default-text-shadow();
+  background-image: linear-gradient(to bottom, fade(#000, 60%) 0, transparent 4px);
 
-  color: @grey-c;
+  color: #ccc;
   font-size: 10px;
 
   display: flex;
   flex-direction: column;
+  flex: none;
 
-  padding: @spacing 0 (@spacing / 2);
+  padding: 10px 0 5px;
 
   &__row {
-    margin-bottom: (@spacing / 2);
+    margin-bottom: 5px;
     display: flex;
     justify-content: center;
   }
 
   &__link {
     font-weight: bold;
-    color: @grey-f;
-    margin: 0 @spacing;
+    color: #fff;
+    margin: 0 10px;
 
     &:hover, &:active, &:focus {
       color: @pink;

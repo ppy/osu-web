@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,13 +17,14 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use Cache;
 
 class LivestreamCollection
 {
-    const FEATURED_CACHE_KEY = 'featuredStream';
+    const FEATURED_CACHE_KEY = 'featuredStream:arr';
 
     private $streams;
 
@@ -35,8 +36,8 @@ class LivestreamCollection
     public function all()
     {
         if ($this->streams === null) {
-            $this->streams = Cache::remember('livestreams', 5, function () {
-                return $this->download()->streams;
+            $this->streams = Cache::remember('livestreams:arr', 5, function () {
+                return $this->download()['streams'] ?? [];
             });
         }
 
@@ -55,13 +56,21 @@ class LivestreamCollection
             ],
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_URL => $streamsApi,
+            CURLOPT_FAILONERROR => true,
         ]);
 
         // TODO: error handling
         $response = curl_exec($ch);
+
+        if (curl_errno($ch) === CURLE_OK) {
+            $return = json_decode($response, true);
+        } else {
+            $return = null;
+        }
+
         curl_close($ch);
 
-        return json_decode($response);
+        return $return;
     }
 
     public function featured()
@@ -70,7 +79,7 @@ class LivestreamCollection
 
         if ($featuredStreamId !== null) {
             foreach ($this->all() as $stream) {
-                if ((string) $stream->_id !== $featuredStreamId) {
+                if ((string) $stream['_id'] !== $featuredStreamId) {
                     continue;
                 }
 

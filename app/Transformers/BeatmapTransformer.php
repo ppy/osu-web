@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,9 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
+use App\Models\BeatmapFailtimes;
 use League\Fractal;
 
 class BeatmapTransformer extends Fractal\TransformerAbstract
@@ -27,6 +29,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'scoresBest',
         'failtimes',
+        'beatmapset',
     ];
 
     public function transform(Beatmap $beatmap = null)
@@ -40,6 +43,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'beatmapset_id' => $beatmap->beatmapset_id,
             'mode' => $beatmap->mode,
             'mode_int' => $beatmap->playmode,
+            'convert' => $beatmap->convert,
             'difficulty_size' => $beatmap->diff_size,
             'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
@@ -50,6 +54,11 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'ar' => $beatmap->diff_approach,
             'playcount' => $beatmap->playcount,
             'passcount' => $beatmap->passcount,
+            'count_circles' => $beatmap->countNormal,
+            'count_sliders' => $beatmap->countSlider,
+            'last_updated' => json_time($beatmap->last_update),
+            'ranked' => $beatmap->approved,
+            'status' => $beatmap->status(),
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
         ];
     }
@@ -67,6 +76,30 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
     public function includeFailtimes(Beatmap $beatmap)
     {
-        return $this->collection($beatmap->failtimes, new BeatmapFailtimesTransformer);
+        $failtimes = $beatmap->failtimes;
+
+        // adding a set of empty failtimes, so that the chart transitions
+        // to 0 when a map has no failtimes (for now non-standard modes)
+        if ($failtimes->isEmpty() || $beatmap->convert) {
+            $failtimes = [
+                new BeatmapFailtimes(['type' => 'fail']),
+                new BeatmapFailtimes(['type' => 'exit']),
+            ];
+        }
+
+        $result = [];
+
+        foreach ($failtimes as $failtime) {
+            $result[$failtime->type] = $failtime->data;
+        }
+
+        return $this->item($result, function ($result) {
+            return $result;
+        });
+    }
+
+    public function includeBeatmapset(Beatmap $beatmap)
+    {
+        return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,10 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Score\Best;
 
+use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
 use Aws\S3\S3Client;
+use DB;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
 use League\Flysystem\Filesystem;
 
@@ -28,6 +31,12 @@ abstract class Model extends BaseModel
 {
     public $position = null;
     public $weight = null;
+    public $macros = [
+        'forListing',
+        'rankCounts',
+        'userBest',
+        'userRank',
+    ];
 
     public function getReplay()
     {
@@ -65,7 +74,6 @@ abstract class Model extends BaseModel
                 ->where('pp', '>', function ($q) {
                     $q->from($this->table)->where('score_id', $this->score_id)->select('pp');
                 })
-                ->orderBy('pp', 'desc')
                 ->count();
         }
 
@@ -91,16 +99,128 @@ abstract class Model extends BaseModel
      */
     public static function fillInPosition($scores)
     {
-        if ($scores->first() === null) {
+        if (!isset($scores[0])) {
             return;
         }
 
-        $position = $scores->first()->position();
+        $position = $scores[0]->position();
 
         foreach ($scores as $score) {
             $score->position = $position;
             $position++;
         }
+    }
+
+    public function macroForListing()
+    {
+        return function ($query) {
+            $limit = config('osu.beatmaps.max-scores');
+            $newQuery = (clone $query)->with('user')->limit($limit * 3);
+            $newQuery->getQuery()->orders = null;
+
+            $baseResult = $newQuery->orderBy('score', 'desc')->get();
+            $baseResult = $baseResult->sortBy('date')->sortByDesc('score');
+
+            $result = [];
+            $users = [];
+
+            foreach ($baseResult as $entry) {
+                if (isset($users[$entry->user_id])) {
+                    continue;
+                }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $users[$entry->user_id] = true;
+                $result[] = $entry;
+            }
+
+            return $result;
+        };
+    }
+
+    public function macroUserRank()
+    {
+        return function ($query, $userScore) {
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            return 1 + $newQuery
+                ->limit(null)
+                ->where('score', '>', $userScore->score)
+                ->count(DB::raw('DISTINCT user_id'));
+        };
+    }
+
+    public function macroUserBest()
+    {
+        return function ($query, $limit, $includes = []) {
+            $baseResult = (clone $query)->with($includes)->limit($limit * 3)->get();
+
+            $result = [];
+            $beatmaps = [];
+
+            foreach ($baseResult as $entry) {
+                if (isset($beatmaps[$entry->beatmap_id])) {
+                    continue;
+                }
+
+                if (count($result) >= $limit) {
+                    break;
+                }
+
+                $beatmaps[$entry->beatmap_id] = true;
+                $result[] = $entry;
+            }
+
+            return $result;
+        };
+    }
+
+    public function macroRankCounts()
+    {
+        return function ($query) {
+            $newQuery = clone $query;
+            // FIXME: mysql 5.6 compat
+            $newQuery->getQuery()->orders = null;
+
+            $scores = $newQuery
+                ->select(['user_id', 'beatmap_id', 'score', 'rank'])
+                ->get();
+
+            $result = [];
+            $counted = [];
+
+            foreach ($scores as $score) {
+                if (!isset($result[$score->user_id])) {
+                    $result[$score->user_id] = [];
+                }
+
+                $countedKey = "{$score->user_id}:{$score->beatmap_id}";
+
+                if (isset($counted[$countedKey])) {
+                    $countedScore = $counted[$countedKey];
+                    if ($countedScore->score < $score->score) {
+                        $result[$score->user_id][$countedScore->rank] -= 1;
+                        $counted[$countedKey] = $score;
+                    } else {
+                        continue;
+                    }
+                }
+                $counted[$countedKey] = $score;
+
+                if (!isset($result[$score->user_id][$score->rank])) {
+                    $result[$score->user_id][$score->rank] = 0;
+                }
+
+                $result[$score->user_id][$score->rank] += 1;
+            }
+
+            return $result;
+        };
     }
 
     public function scopeDefault($query)
@@ -116,6 +236,36 @@ abstract class Model extends BaseModel
         return $query
             ->default()
             ->orderBy('score', 'DESC')
-            ->orderBy('date', 'ASC');
+            ->orderBy('date', 'ASC')
+            ->limit(config('osu.beatmaps.max-scores'));
+    }
+
+    public function scopeWithMods($query, $modsArray)
+    {
+        return $query->where(function ($q) use ($modsArray) {
+            if (in_array('NM', $modsArray, true)) {
+                $q->orWhere('enabled_mods', 0);
+            }
+
+            $bitset = ModsHelper::toBitset($modsArray);
+            if ($bitset > 0) {
+                $q->orWhereRaw('enabled_mods & ? != 0', [$bitset]);
+            }
+        });
+    }
+
+    public function scopeFromCountry($query, $countryAcronym)
+    {
+        return $query->whereHas('user', function ($q) use ($countryAcronym) {
+            $q->where('country_acronym', $countryAcronym);
+        });
+    }
+
+    public function scopeFriendsOf($query, $user)
+    {
+        $userIds = model_pluck($user->friends(), 'zebra_id');
+        $userIds[] = $user->user_id;
+
+        return $query->whereIn('user_id', $userIds);
     }
 }

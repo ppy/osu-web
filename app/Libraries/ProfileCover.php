@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Traits\Imageable;
@@ -38,7 +39,7 @@ class ProfileCover
 
     public function getMaxDimensions()
     {
-        return [2700, 500];
+        return [2000, 700];
     }
 
     public function getFileRoot()
@@ -104,6 +105,6 @@ class ProfileCover
             return $this->fileUrl();
         }
 
-        return '/images/headers/profile-covers/c'.$this->id().'.jpg';
+        return config('app.url').'/images/headers/profile-covers/c'.$this->id().'.jpg';
     }
 }

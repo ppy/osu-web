@@ -1,20 +1,19 @@
-###*
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
+###
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
 {div} = React.DOM
@@ -23,21 +22,22 @@ el = React.createElement
 class Beatmaps.Main extends React.Component
   constructor: (props) ->
     super props
-    beatmaps = JSON.parse(document.getElementById('json-beatmaps').text)['data']
+
     @state =
-      beatmaps: beatmaps
+      beatmaps: @props.beatmaps
       query: null
       paging:
         page: 1
         url: '/beatmapsets/search'
         loading: false
-        more: beatmaps.length > 0
+        more: @props.beatmaps.length > 0
       filters: @filterDefaults
       sorting:
         field: 'ranked'
         order: 'desc'
       loading: false
       just_restored: true
+
 
   filterDefaults:
     mode: '0'
@@ -78,7 +78,7 @@ class Beatmaps.Main extends React.Component
     $.extend {'q': query}, @getFilterState(), @getSortState()
 
   search: =>
-    searchText = $('#searchbox').val()?.trim()
+    searchText = $('.js-beatmapsets-search-input').val()?.trim()
 
     # update url
     filterState = @getFilterState()
@@ -108,13 +108,13 @@ class Beatmaps.Main extends React.Component
         data: @buildSearchQuery(searchText)
       .done (data) =>
         newState =
-          beatmaps: data['data']
+          beatmaps: data
           query: searchText
           paging:
             page: 1
             url: @state.paging.url
             loading: false
-            more: data['data'].length > 10
+            more: data.length > 10
           just_restored: false
           loading: false
 
@@ -137,9 +137,9 @@ class Beatmaps.Main extends React.Component
       dataType: 'json'
       data: $.extend(@buildSearchQuery(searchText), 'page': @state.paging.page + 1)
     .done (data) =>
-      more = data['data'].length > 10
+      more = data.length > 10
       newState =
-        beatmaps: @state.beatmaps.concat(data['data'])
+        beatmaps: @state.beatmaps.concat(data)
         paging:
           page: @state.paging.page + (if more then 1 else 0)
           url: @state.paging.url
@@ -148,13 +148,16 @@ class Beatmaps.Main extends React.Component
 
       @setState newState
 
+
   showLoader: =>
     @setState loading: true
     $('#loading-area').show()
 
+
   hideLoader: =>
     @setState loading: false
     $('#loading-area').hide()
+
 
   updateFilters: (_e, payload) =>
     newFilters = $.extend({}, @state.filters) # clone object
@@ -164,16 +167,19 @@ class Beatmaps.Main extends React.Component
       @setState filters: newFilters, ->
         $(document).trigger 'beatmap:search:start'
 
+
   updateSort: (_b, payload) =>
     if @state.sorting != payload
       @setState sorting: payload, ->
         $(document).trigger 'beatmap:search:start'
+
 
   convertFilterKeys: (obj) ->
     newObj = {}
     for key of obj
       newObj[@charToKey(key)] = obj[key]
     return newObj
+
 
   restoreState: ->
     state = {}
@@ -218,6 +224,7 @@ class Beatmaps.Main extends React.Component
         if expand
           $('#search').addClass 'expanded' #such seperation of concerns
 
+
   componentDidMount: ->
     @componentWillUnmount()
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
@@ -225,25 +232,45 @@ class Beatmaps.Main extends React.Component
     $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'beatmap:search:sorted.beatmaps', @updateSort
-    $(document).on 'ready.beatmaps turbolinks:load.beatmaps osu:page:change.beatmaps', (e) =>
+    $(document).on 'turbolinks:load.beatmaps osu:page:change.beatmaps', (e) =>
       @restoreState()
     $(window).on 'popstate.beatmaps', (e) =>
       @restoreState()
+
 
   componentWillUnmount: ->
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
 
+
   render: ->
-    if @state.beatmaps.length > 0
-      searchBackground = @state.beatmaps[0].covers.cover
-    else
-      searchBackground = ''
+    searchBackground = @state.beatmaps[0]?.covers?.cover
 
     div className: 'osu-layout__section',
       el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
-      div id: 'beatmaps-listing', className: 'osu-layout__row osu-layout__row--page',
-        if currentUser.id?
-          el(Beatmaps.SearchSort, sorting: @state.sorting)
-        el(Beatmaps.BeatmapsListing, beatmaps: @state.beatmaps, loading: @state.loading)
-        el(Beatmaps.Paginator, paging: @state.paging)
+
+      div className: 'osu-layout__row osu-layout__row--page-compact',
+        div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
+          if currentUser.id?
+            el(Beatmaps.SearchSort, sorting: @state.sorting)
+
+          div
+            className: 'beatmapsets__content'
+            if @state.beatmaps.length > 0
+              div
+                className: 'beatmapsets__items'
+                for beatmap in @state.beatmaps
+                  div
+                    className: 'beatmapsets__item'
+                    key: beatmap.id
+                    el BeatmapsetPanel, beatmap: beatmap
+
+            else
+              div className: 'beatmapsets__empty',
+                el Img2x,
+                  src: '/images/layout/beatmaps/not-found.png'
+                  alt: osu.trans("beatmaps.listing.search.not-found")
+                  title: osu.trans("beatmaps.listing.search.not-found")
+                osu.trans("beatmaps.listing.search.not-found-quote")
+
+          el(Beatmaps.Paginator, paging: @state.paging)

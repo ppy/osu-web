@@ -1,20 +1,21 @@
 ###
-Copyright 2015 ppy Pty. Ltd.
-
-This file is part of osu!web. osu!web is distributed with the hope of
-attracting more community contributions to the core ecosystem of osu!.
-
-osu!web is free software: you can redistribute it and/or modify
-it under the terms of the Affero GNU General Public License version 3
-as published by the Free Software Foundation.
-
-osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 fixedElements = document.getElementsByClassName('js-fixed-element')
 
 $(document).on 'shown.bs.modal', '.modal', (e) ->
@@ -31,11 +32,9 @@ $(document).on 'hidden.bs.modal', '.modal', ->
 
 $(document).on 'show.bs.modal', '.modal', ->
   # trigger modal display immediately instead of waiting for backdrop animation to finish
-  triggerModal = ->
-    $('.modal-backdrop').trigger 'bsTransitionEnd'
-
   # have to wait a bit until the backdrop is created
-  setTimeout triggerModal, 10
+  Timeout.set 10,  ->
+    $('.modal-backdrop').trigger 'bsTransitionEnd'
 
   alignments = []
 

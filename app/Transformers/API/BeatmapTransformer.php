@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers\API;
 
 use App\Models\Beatmap;
@@ -31,13 +32,13 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 
         return [
           //beatmap
-          'beatmapset_id' => $beatmap->beatmapset_id,
           'beatmap_id' => $beatmap->beatmap_id,
+          'beatmapset_id' => $beatmap->beatmapset_id,
           'approved' => $beatmap->approved,
           'total_length' => $beatmap->total_length,
           'hit_length' => $beatmap->hit_length,
           'version' => $beatmap->version,
-          'file_md5' => $beatmap->checksum,
+          'checksum' => $beatmap->checksum,
           'diff_size' => $beatmap->diff_size,
           'diff_overall' => $beatmap->diff_overall,
           'diff_approach' => $beatmap->diff_approach,
@@ -47,8 +48,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'passcount' => $beatmap->passcount,
 
           //beatmapset
-          'approved_date' => $beatmap->beatmapset->approved_date ? $beatmap->beatmapset->approved_date->toDateTimeString() : null,
-          'last_update' => $beatmap->beatmapset->last_update->tz('Australia/Perth')->toDateTimeString(),
+          'approved_date' => json_time($beatmap->beatmapset->approved_date),
+          'last_update' => json_time($beatmap->beatmapset->last_update),
           'artist' => $beatmap->beatmapset->artist,
           'title' => $beatmap->beatmapset->title,
           'creator' => $beatmap->beatmapset->creator,

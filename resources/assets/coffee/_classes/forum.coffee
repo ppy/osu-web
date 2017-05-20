@@ -1,28 +1,22 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-class @Forum
-  _totalPostsDiv: document.getElementsByClassName('js-forum__topic-total-posts')
-  _postsCounter: document.getElementsByClassName('js-forum__posts-counter')
-  _postsProgress: document.getElementsByClassName('js-forum__posts-progress')
-  _stickyHeaderTopic: document.getElementsByClassName('js-forum-topic-headernav')
-  posts: document.getElementsByClassName('js-forum-post')
-  loadMoreLinks: document.getElementsByClassName('js-forum-posts-show-more')
 
+class @Forum
   boot: =>
     @refreshCounter()
     @refreshLoadMoreLinks()
@@ -32,34 +26,60 @@ class @Forum
 
 
   constructor: ->
-    # `boot` is called first to avoid triggering anything when scrolling to
-    # target post.
-    @boot()
+    @_totalPostsDiv = document.getElementsByClassName('js-forum__total-count')
+    @_deletedPostsDiv = document.getElementsByClassName('js-forum__deleted-count')
+    @_firstPostDiv = document.getElementsByClassName('js-forum__topic-first-post-id')
+    @_postsCounter = document.getElementsByClassName('js-forum__posts-counter')
+    @_postsProgress = document.getElementsByClassName('js-forum__posts-progress')
+    @_stickyHeaderTopic = document.getElementsByClassName('js-forum-topic-headernav')
+    @posts = document.getElementsByClassName('js-forum-post')
+    @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
+
+    $(document).on 'turbolinks:load osu:page:change', @boot
 
     $(window).on 'throttled-scroll', @refreshCounter
-
-    $(document).on 'ready turbolinks:load osu:page:change', @boot
-
     $(document).on 'click', '.js-forum-posts-show-more', @showMore
     $(document).on 'click', '.js-post-url', @postUrlClick
     $(document).on 'submit', '.js-forum-posts-jump-to', @jumpToSubmit
+    $(document).on 'keyup', @keyboardNavigation
 
     $.subscribe 'stickyHeader', @stickHeader
 
 
+  postPosition: (el) =>
+    parseInt(el.getAttribute('data-post-position'), 10)
+
+
+  firstPostId: ->
+    parseInt @_firstPostDiv[0].getAttribute('data-first-post-id'), 10
+
+
+  postId: (el) ->
+    parseInt el.getAttribute('data-post-id'), 10
+
+
   totalPosts: =>
     return null if @_totalPostsDiv.length == 0
-    parseInt @_totalPostsDiv[0].getAttribute('data-total-count'), 10
+    parseInt @_totalPostsDiv[0].textContent, 10
 
 
   setTotalPosts: (n) =>
-    @_totalPostsDiv[0].setAttribute('data-total-count', n)
-    document.getElementsByClassName('js-forum__total-count')[0].textContent = n
+    $(@_totalPostsDiv).text(n)
+
+
+  deletedPosts: ->
+    return null if @_deletedPostsDiv.length == 0
+    parseInt @_deletedPostsDiv[0].textContent, 10
+
+
+  setDeletedPosts: (n) ->
+    $(@_deletedPostsDiv).text(n)
 
 
   setCounter: (currentPost) =>
-    @currentPostPosition = parseInt currentPost.getAttribute('data-post-position'), 10
+    @currentPostPosition = @postPosition(currentPost)
 
+    @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
     window.reloadUrl = @postUrlN @currentPostPosition
 
     @_postsCounter[0].textContent = @currentPostPosition
@@ -70,11 +90,11 @@ class @Forum
 
 
   firstPostLoaded: =>
-    @posts[0].getAttribute('data-post-position') == '1'
+    @postId(@posts[0]) == @firstPostId()
 
 
   lastPostLoaded: =>
-    parseInt(@endPost().getAttribute('data-post-position'), 10) == @totalPosts()
+    @postPosition(@endPost()) == @totalPosts()
 
 
   refreshLoadMoreLinks: =>
@@ -92,10 +112,10 @@ class @Forum
       .toggleClass 'hidden', lastPostLoaded
 
     if !(currentUser.isAdmin || currentUser.isGMT)
-      $('.delete-post-link').hide()
+      $('.js-post-delete-toggle').hide()
 
     if lastPostLoaded
-      $(@endPost()).find('.delete-post-link').css(display: '')
+      $(@endPost()).find('.js-post-delete-toggle').css(display: '')
 
 
   refreshCounter: =>
@@ -137,13 +157,23 @@ class @Forum
 
     true
 
+  keyboardNavigation: (e) =>
+    return if osu.isInputElement(e.target) or not @_postsCounter.length
+
+    e.preventDefault()
+
+    n = switch e.which
+      when 37 then @currentPostPosition - 1
+      when 39 then @currentPostPosition + 1
+
+    try @jumpTo n
 
   scrollTo: (postId) =>
     post = document.querySelector(".js-forum-post[data-post-id='#{postId}']")
 
     return unless post
 
-    if post.getAttribute('data-post-position') == '1'
+    if @postPosition(post) == 1
       postTop = 0
     else
       postDim = post.getBoundingClientRect()
@@ -215,16 +245,20 @@ class @Forum
 
         $linkDiv.after data
 
-        # restore scroll position after prepending the page
-        x = window.pageXffset
-        currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
-        currentDocumentScrollTop = window.pageYOffset
-        targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
-        window.scrollTo x, targetDocumentScrollTop
+        # Restore scroll position after prepending the page.
+        # Called after refreshLoadMoreLinks to allow header changes
+        # to be included in calculation.
+        restoreScrollPosition = =>
+          x = window.pageXOffset
+          currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
+          currentDocumentScrollTop = window.pageYOffset
+          targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
+          window.scrollTo x, targetDocumentScrollTop
       else
         $linkDiv.before data
 
       @refreshLoadMoreLinks()
+      restoreScrollPosition?()
 
       osu.pageChange()
       $link.attr 'data-failed', '0'
@@ -237,7 +271,7 @@ class @Forum
 
   jumpToSubmit: (e) =>
     e.preventDefault()
-    osu.hideLoadingOverlay()
+    LoadingOverlay.hide()
 
     if @jumpTo $(e.target).find('[name="n"]').val()
       $.publish 'forum:topic:jumpTo'

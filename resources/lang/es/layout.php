@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'defaults' => [
         'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia!  Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
@@ -24,17 +25,17 @@ return [
     'menu' => [
         'home' => [
             '_' => 'inicio',
-            'getNews' => 'novedades',
             'getChangelog' => 'listado de cambios',
-            'getDownload' => 'desargar',
+            'getDownload' => 'descargar',
             'getIcons' => 'iconos',
+            'getNews' => 'novedades',
             'supportTheGame' => 'apoya el juego',
         ],
         'help' => [
             '_' => 'ayuda',
             'getWiki' => 'wiki',
-            'getFaq' => 'preguntas frequentes',
-            'getSupport' => 'support',
+            'getFaq' => 'preguntas frecuentes',
+            'getSupport' => 'soporte',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -56,12 +57,11 @@ return [
             'index' => 'global',
         ],
         'community' => [
-            '_' => 'communidad',
+            '_' => 'comunidad',
             'getForum' => 'foro',
             'getChat' => 'chat',
-            'getSupport' => 'support',
+            'getSupport' => 'soporte',
             'getLive' => 'live',
-            'getSlack' => 'osu!dev',
             'profile' => 'perfil',
             'tournaments' => 'torneos',
             'tournaments-index' => 'torneos',
@@ -131,12 +131,12 @@ return [
         ],
         '403' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque, podrás intentar volver atrás.',
+            'description' => 'Aunque podrías intentar volver atrás.',
             'link' => false,
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque, podrías intentar volver atrás. O tal vez iniciar sesión.',
+            'description' => 'Aunque podrías intentar volver atrás, o iniciar sesión.',
             'link' => false,
         ],
         '405' => [
@@ -146,17 +146,17 @@ return [
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => 'Somos automáticamente notificados de cada error.',
+            'description' => 'Hemos sido notificados automáticamente del error.',
             'link' => false,
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => 'Somos automáticamente notificados de cada error.',
+            'description' => 'Hemos sido notificados automáticamente del error.',
             'link' => false,
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente toma de 5 segundos a 10 minutos. Si excedemos el tiempo, mira :link para más información.',
+            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si sigue pasado ese tiempo, haz clic en :link para más información.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',

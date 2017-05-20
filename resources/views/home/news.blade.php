@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -24,4 +24,3 @@
         <div>Welcome to the future home of osu!. This site isn't complete yet, but is being used for some new services we are offering in the meantime. Please look forward to the full release in the coming months!</div>
     </div>
 @stop
-

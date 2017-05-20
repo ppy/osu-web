@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,10 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Models\Achievement;
-use App\Models\LoginAttempt;
 use App\Models\User;
 use App\Transformers\AchievementTransformer;
 use App\Transformers\UserTransformer;
@@ -33,10 +33,6 @@ class UsersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest', ['only' => [
-            'login',
-        ]]);
-
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
         ]]);
@@ -68,49 +64,11 @@ class UsersController extends Controller
         ];
     }
 
-    public function login()
-    {
-        $ip = Request::getClientIp();
-
-        if (LoginAttempt::isLocked($ip)) {
-            return error_popup('your IP address is locked. Please wait a few minutes.');
-        } else {
-            $username = Request::input('username');
-            $password = Request::input('password');
-            $remember = Request::input('remember') === 'yes';
-
-            Auth::attempt(['username' => $username, 'password' => $password], $remember);
-
-            if (Auth::check()) {
-                return Auth::user()->defaultJson();
-            } else {
-                LoginAttempt::failedAttempt($ip, $username);
-
-                return error_popup('wrong password or username');
-            }
-        }
-    }
-
-    public function logout()
-    {
-        if (Auth::check()) {
-            Auth::logout();
-
-            // FIXME: Temporarily here for cross-site login, nuke after old site is... nuked.
-            unset($_COOKIE['phpbb3_2cjk5_sid']);
-            unset($_COOKIE['phpbb3_2cjk5_sid_check']);
-            setcookie('phpbb3_2cjk5_sid', '', 1, '/', '.ppy.sh');
-            setcookie('phpbb3_2cjk5_sid_check', '', 1, '/', '.ppy.sh');
-        }
-
-        return [];
-    }
-
     public function show($id)
     {
-        $user = User::lookup($id);
+        $user = User::lookup($id, null, true);
 
-        if ($user === null || !$user->hasProfile()) {
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
             abort(404);
         }
 
@@ -118,14 +76,18 @@ class UsersController extends Controller
             return ujs_redirect(route('users.show', $user));
         }
 
-        $achievements = fractal_collection_array(
-            Achievement::achievable()->orderBy('grouping')->orderBy('ordering')->orderBy('progression')->get(),
+        $achievements = json_collection(
+            Achievement::achievable()
+                ->orderBy('grouping')
+                ->orderBy('ordering')
+                ->orderBy('progression')
+                ->get(),
             new AchievementTransformer()
         );
 
-        $userArray = fractal_item_array(
+        $userArray = json_item(
             $user,
-            new UserTransformer(), implode(',', [
+            new UserTransformer(), [
                 'userAchievements',
                 'allRankHistories',
                 'allScores',
@@ -138,7 +100,7 @@ class UsersController extends Controller
                 'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsets.beatmaps',
                 'favouriteBeatmapsets.beatmaps',
-            ])
+            ]
         );
 
         return view('users.show', compact('user', 'userArray', 'achievements'));

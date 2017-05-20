@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -30,7 +30,7 @@
         }
     }
 ?>
-<div class="{{{ $grid or 'col-md-6' }}}" id="address-{{ $data->address_id }}">
+<div class="{{{ $grid or 'grid-cell grid-cell--1of2' }}}" id="address-{{ $data->address_id }}">
     <div class="{{ $mainClasses }}">
         @if((isset($modifiable) && $modifiable))
         {!! Form::open(['action' => 'StoreController@postUpdateAddress', "data-remote" => true]) !!}

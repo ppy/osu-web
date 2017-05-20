@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,15 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class KudosuHistory extends Model
 {
     protected $table = 'osu_kudos_exchange';
     protected $primaryKey = 'exchange_id';
+    protected $guarded = [];
+    protected $casts = [
+        'details' => 'array',
+    ];
 
     protected $dates = ['date'];
     public $timestamps = false;
@@ -43,6 +47,11 @@ class KudosuHistory extends Model
     public function post()
     {
         return $this->belongsTo(Forum\Post::class, 'post_id', 'post_id');
+    }
+
+    public function kudosuable()
+    {
+        return $this->morphTo();
     }
 
     public function scopeWithPost($query)

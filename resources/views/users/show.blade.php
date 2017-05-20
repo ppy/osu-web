@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -35,16 +35,16 @@
     @parent
 
     <script data-turbolinks-eval="always">
-        var postEditorToolbar = {!! json_encode(["html" => view()->make('forum._post_toolbar')->render()]) !!};
+        var postEditorToolbar = {!! json_encode(["html" => render_to_string('forum._post_toolbar')]) !!};
     </script>
 
     <script id="json-user" type="application/json">
-        {!! json_encode($userArray['data']) !!}
+        {!! json_encode($userArray) !!}
     </script>
 
     <script id="json-achievements" type="application/json">
-        {!! json_encode($achievements['data']) !!}
+        {!! json_encode($achievements) !!}
     </script>
 
-    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track></script>
+    <script src="{{ elixir("js/react/profile-page.js") }}" data-turbolinks-track="reload"></script>
 @endsection

@@ -1,28 +1,27 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 class @ForumPostsSeek
-  tooltip: document.getElementsByClassName('js-forum-posts-seek--tooltip')
-  tooltipNumber: document.getElementsByClassName('js-forum-posts-seek-tooltip-number')
-  seekbar: document.getElementsByClassName('js-forum__posts-seek')
+  constructor: (@forum) ->
+    @tooltip = document.getElementsByClassName('js-forum-posts-seek--tooltip')
+    @tooltipNumber = document.getElementsByClassName('js-forum-posts-seek-tooltip-number')
+    @seekbar = document.getElementsByClassName('js-forum__posts-seek')
 
-
-  constructor: (forum) ->
-    @forum = forum
     $(document).on 'mousemove', '.js-forum__posts-seek', @move
     $(document).on 'mouseleave', '.js-forum__posts-seek', @hideTooltip
     $(document).on 'click', '.js-forum__posts-seek', @click
@@ -41,8 +40,8 @@ class @ForumPostsSeek
 
     Fade.in @tooltip[0]
 
-    clearTimeout @_autohide
-    @_autohide = setTimeout @hideTooltip, 1000
+    Timeout.clear @_autohide
+    @_autohide = Timeout.set 1000, @hideTooltip
 
 
   click: =>
@@ -78,5 +77,5 @@ class @ForumPostsSeek
     postPosition = Math.min(postPosition, totalPosts)
     @postPosition = Math.max(postPosition, 1)
 
-    @tooltip[0].style.left = "#{x}px"
+    @tooltip[0].style.transform = "translateX(#{x}px)"
     @tooltipNumber[0].textContent = @postPosition

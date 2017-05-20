@@ -3,7 +3,7 @@
   "description": "osu!web",
   "type": "project",
   "homepage": "https://new.ppy.sh",
-  "license": "AGPL-3.0+",
+  "license": "AGPL-3.0",
   "support": {
     "email": "support@ppy.sh",
     "issues": "https://github.com/ppy/osu-web/issues"
@@ -11,35 +11,38 @@
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/nanaya/Laravel-JS-Localization",
-      "_explanation": "Because the current master doesn't work (submodule not loaded)"
+      "url": "https://github.com/nanaya/slack-php"
     }
   ],
   "require": {
-    "laravel/framework": "5.2.*",
-    "laravelcollective/html": "5.2.*",
-    "predis/predis": "~1.0",
     "doctrine/dbal": "*",
-    "graham-campbell/markdown": "*",
-    "itsgoingd/clockwork": "~1.9",
-    "maknz/slack": "*",
     "ezyang/htmlpurifier": "^4.7",
-    "mariuzzo/laravel-js-localization": "dev-nosubmodule",
-    "league/fractal": "^0.13.0",
-    "shift31/laravel-elasticsearch": "~1.0",
-    "league/statsd": "dev-master#3dafde1b6c5e3896073cc947130cf9536b335975",
+    "graham-campbell/github": "^5.0",
+    "graham-campbell/markdown": "*",
+    "guzzlehttp/guzzle": "^6.2",
+    "itsgoingd/clockwork": "~1.9",
+    "laravel/framework": "5.4.*",
+    "laravel/passport": "^2.0",
+    "laravel/tinker": "~1.0",
+    "laravelcollective/html": "5.4.*",
     "league/flysystem-aws-s3-v3": "^1.0",
+    "league/fractal": "^0.14.0",
     "lord/laroute": "~2.0",
-    "lucadegasperi/oauth2-server-laravel": "^5.1",
-    "sentry/sentry-laravel": "^0.3.0"
+    "maknz/slack": "dev-laravel-5.4",
+    "mariuzzo/laravel-js-localization": "*",
+    "predis/predis": "~1.0",
+    "sentry/sentry-laravel": "^0.6.0",
+    "shift31/laravel-elasticsearch": "~1.0",
+    "webuni/commonmark-table-extension": "^0.6.1",
+    "chaseconey/laravel-datadog-helper": "^0.6.0",
+    "tumblr/tumblr": "^0.2.0"
   },
   "require-dev": {
-    "fzaninotto/faker": "~1.5",
+    "fzaninotto/faker": "~1.4",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~4.0",
-    "phpspec/phpspec": "~2.1",
-    "symfony/dom-crawler": "~3.0",
-    "symfony/css-selector": "~3.0"
+    "phpunit/phpunit": "~5.7",
+    "symfony/css-selector": "3.1.*",
+    "symfony/dom-crawler": "3.1.*"
   },
   "autoload": {
     "classmap": [

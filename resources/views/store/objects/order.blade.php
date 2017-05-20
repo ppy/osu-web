@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -27,7 +27,7 @@
                     <td></td>
                 @endif
             @endif
-            <td>{{{item_count($i->quantity)}}}</td>
+            <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
             <td class="text-right">{{{currency($i->subtotal())}}}</td>
         </tr>
         @endforeach

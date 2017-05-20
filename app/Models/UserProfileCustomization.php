@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,62 +17,78 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
 use App\Libraries\ProfileCover;
-use Illuminate\Database\Eloquent\Model;
 
 class UserProfileCustomization extends Model
 {
-    protected $casts = [
-        'cover_json' => 'array',
-        'extras_order' => 'array',
+    /**
+     * An array of all possible profile sections, also in their default order.
+     */
+    const SECTIONS = [
+        'me',
+        'recent_activities',
+        'top_ranks',
+        'medals',
+        'historical',
+        'beatmaps',
+        'kudosu',
     ];
 
-    private $_cover;
+    protected $casts = [
+        'cover_json' => 'array',
+    ];
 
-    public function getCoverAttribute()
+    protected $guarded = [];
+
+    private $cover;
+
+    public function cover()
     {
-        if ($this->_cover === null) {
-            $this->_cover = new ProfileCover($this->user_id, $this->cover_json);
+        if ($this->cover === null) {
+            $this->cover = new ProfileCover($this->user_id, $this->cover_json);
         }
 
-        return $this->_cover;
+        return $this->cover;
     }
 
     public function setCover($id, $file)
     {
-        $this->cover_json = $this->cover->set($id, $file);
+        $this->cover_json = $this->cover()->set($id, $file);
 
         $this->save();
     }
 
-    /**
-     * An array of all possible profile sections, also in their default order.
-     */
-    public static $sections = ['me', 'performance', 'recent_activities', 'top_ranks', 'medals', 'historical', 'beatmaps', 'kudosu'];
-
-    public function setExtrasOrder($order)
+    public function getExtrasOrderAttribute($value)
     {
-        $this->extras_order = $order;
-
-        $this->save();
-    }
-
-    public function getExtrasOrder()
-    {
-        if ($this->extras_order === null) {
-            $this->extras_order = self::$sections;
+        if ($value === null) {
+            return static::SECTIONS;
         }
 
-        return $this->extras_order;
+        return static::repairExtrasOrder(json_decode($value, true));
     }
 
-    public function __construct($attributes = [])
+    public function setExtrasOrderAttribute($value)
     {
-        $this->cover_json = ['id' => null, 'file' => null];
-        $this->extras_order = null;
+        $this->attributes['extras_order'] = json_encode(static::repairExtrasOrder($value));
+    }
 
-        return parent::__construct($attributes);
+    public static function repairExtrasOrder($value)
+    {
+        // read from inside out
+        return
+            array_values(
+                // remove duplicate sections from previous merge
+                array_unique(
+                    // ensure all sections are included
+                    array_merge(
+                        // remove invalid sections
+                        array_intersect($value, static::SECTIONS),
+                        static::SECTIONS
+                    )
+                )
+            );
     }
 }

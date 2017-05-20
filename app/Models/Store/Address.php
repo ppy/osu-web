@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,27 +17,26 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Store;
 
-use Auth;
 use App\Models\Country;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use Auth;
 
 class Address extends Model
 {
-    protected $connection = 'mysql-store';
-    protected $table = 'addresses';
     protected $primaryKey = 'address_id';
     protected $guarded = ['id', 'user_id'];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function country()
     {
-        return $this->belongsTo('App\Models\Country', 'country_code');
+        return $this->belongsTo(Country::class, 'country_code');
     }
 
     public function shippingRate()

@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,15 +14,19 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 // main: compiled.less
 @import "app";
+
+blockquote {
+  font-size: inherit;
+}
 
 h1 {
   font-size: 30px;
   font-weight: normal;
-  margin: 0px 0px 20px 0px;
+  margin: 0 0 20px 0;
 }
 
 h2 {
@@ -44,31 +48,27 @@ a {
   transition: color 80ms linear;
 }
 
+code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border-radius: 0;
+}
+
 a.object_link
 {
   color: @gray !important;
 }
 
 @font-face {
-  font-family: 'osu!';
-  src: url('@{fa-osu-font-path}/osu!font.eot');
-  src:
-    url('@{fa-osu-font-path}/osu!font.eot?#iefix') format('embedded-opentype'),
-    url('@{fa-osu-font-path}/osu!font.woff') format('woff'),
-    url('@{fa-osu-font-path}/osu!font.ttf') format('truetype'),
-    url('@{fa-osu-font-path}/osu!font.svg#osu!font') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'osu';
-  src: url('@{osu-font-path}/osu.eot');
-  src:
-    url('@{osu-font-path}/osu.eot?#iefix') format('embedded-opentype'),
-    url('@{osu-font-path}/osu.woff') format('woff'),
-    url('@{osu-font-path}/osu.ttf') format('truetype'),
-    url('@{osu-font-path}/osu.svg#osu') format('svg');
+  font-family: 'FontAwesomeExtra';
+  src: url('@{extra-font-path}/extra.eot?1280178');
+  src: url('@{extra-font-path}/extra.eot?1280178#iefix') format('embedded-opentype'),
+       url('@{extra-font-path}/extra.woff2?1280178') format('woff2'),
+       url('@{extra-font-path}/extra.woff?1280178') format('woff'),
+       url('@{extra-font-path}/extra.ttf?1280178') format('truetype'),
+       url('@{extra-font-path}/extra.svg?1280178#extra') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -81,33 +81,8 @@ body .initially-hidden {
   clear: both;
 }
 
-.selector {
-  color: @gray-light !important;
-  margin-top: 10px;
-  font-size: 90%;
-
-  > a {
-    color: @gray-light !important;
-    margin-right: 25px;
-  }
-
-  .active {
-    font-weight: bold;
-  }
-
-  .header {
-    display: inline-block;
-    font-weight: bold;
-    width: 100px;
-  }
-}
-
 .large {
   font-size: 120%;
-}
-
-.paddingvertical5 {
-  padding: 10px 0;
 }
 
 .form-control {
@@ -128,17 +103,17 @@ body .initially-hidden {
 }
 
 select.form-control {
-    .default-box-shadow;
+    .default-box-shadow();
     font-weight: 700;
 
     &:focus {
-      .default-box-shadow;
+      .default-box-shadow();
     }
   }
 
 .btn-osu {
   &:extend(.btn all);
-  &:extend(.default-text-shadow);
+  .default-text-shadow();
   &, &:focus, &.focus, &:hover {
     color: #fff;
   }
@@ -151,14 +126,14 @@ select.form-control {
 
   &, &:active, &.active {
     .btn-bg;
-    &:extend(.default-box-shadow);
+    .default-box-shadow();
   }
 
   border: none;
 
   &--small {
     font-size: 12px;
-    padding: @grid-gutter-width/4 @grid-gutter-width/2;
+    padding: 10px 20px;
   }
 
   &--lite {
@@ -182,6 +157,19 @@ select.form-control {
   &--full-width {
     display: block;
     width: 100%;
+  }
+
+  &--textlike {
+    background: none;
+    box-shadow: none;
+    &:active {
+      background: none;
+    }
+  }
+
+  &--stick-right {
+    position: absolute;
+    right: 0;
   }
 }
 
@@ -207,11 +195,11 @@ select.form-control {
     box-shadow: 0 10px darken(@secondary, 10%), 0 7px 10px fade(#000, 80%);
   }
 
-  &:active {
-    transform: translate(0px, 5px);
+  &:active, &.active {
+    transform: translate(0, 5px);
 
     background-color: darken(@main, 10%);
-    box-shadow: 0px 5px darken(@secondary, 10%), 0px 5px 5px fade(#000, 80%);
+    box-shadow: 0 5px darken(@secondary, 10%), 0 5px 5px fade(#000, 80%);
   }
 }
 
@@ -252,10 +240,10 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 .shadow-hover {
-  .default-box-shadow;
+  .default-box-shadow();
 
   &:hover {
-    .thicker-box-shadow;
+    .thicker-box-shadow();
   }
 }
 
@@ -263,81 +251,12 @@ a[disabled] { &:extend(.btn[disabled]); }
 
 .clickable-row { cursor: pointer; }
 
-.hide-overflow {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .visible-xs-flex {
   display: flex !important;
 
   @media @desktop {
     display: none !important;
   }
-}
-
-.flex-none { flex: none; }
-.flex-full { flex: 1 0 auto; }
-
-.flex-fullwidth {
-  width: 100%;
-  align-items: center;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: column;
-  @media @desktop {
-    flex-direction: row;
-  }
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-col-66 {
-  padding-left: @grid-gutter-width/2;
-  padding-right: @grid-gutter-width/2;
-
-  @media @desktop {
-    flex-basis: 100% * 2 / 3;
-    max-width: 100% * 2 / 3;
-  }
-}
-
-.flex-col-33 {
-  padding-left: @grid-gutter-width/2;
-  padding-right: @grid-gutter-width/2;
-
-  @media @desktop {
-    flex-basis: 100% / 3;
-    max-width: 100% / 3;
-  }
-}
-
-
-.user-icon {
-  .icon-bg;
-  &:extend(.default-box-shadow);
-
-  color: #fff;
-  font-size: 12px;
-  .center-content;
-
-  .circle(26px);
-  padding: 0px;
-  border: 2px solid white;
-}
-
-.compact > * {
-  margin: 0px;
-}
-
-.u-blackout-visible {
-  z-index: @z-index--blackout-visible !important;
 }
 
 [data-visibility] {
@@ -348,5 +267,9 @@ a[disabled] { &:extend(.btn[disabled]); }
     opacity: 0;
     pointer-events: none;
     z-index: @z-index--visibility-hidden;
+  }
+
+  &[data-visibility-animation="none"] {
+    transition-duration: 0s;
   }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,15 +17,25 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models;
 
 class Changelog extends Model
 {
     public $timestamps = false;
     protected $table = 'osu_changelog';
     protected $primaryKey = 'changelog_id';
+    protected $guarded = [];
+
+    protected $dates = [
+        'date',
+    ];
+
+    const PREFIXES = [
+        'add' => '+',
+        'fix' => '*',
+        'misc' => '?',
+    ];
 
     // Changelog::all()->listing($offset)->get();
     // Changelog::with('user', function($changelog) {
@@ -43,8 +53,49 @@ class Changelog extends Model
             ->orderBy('changelog_id', 'desc');
     }
 
+    public function scopeDefault($query)
+    {
+        return $query
+            ->where('private', 0)
+            ->orderBy('date', 'desc')
+            ->orderBy('major', 'desc');
+    }
+
     public function user()
     {
-        return $this->hasOne('User');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function updateStream()
+    {
+        return $this->hasOne(UpdateStream::class, 'stream_id', 'stream_id');
+    }
+
+    public function gameBuild()
+    {
+        return $this->belongsTo(Build::class, 'build', 'version');
+    }
+
+    public function getPrefixAttribute($value)
+    {
+        return array_search_null($value, static::PREFIXES);
+    }
+
+    public static function placeholder()
+    {
+        $user = new User([
+            // not sure if those should be put in config
+            'user_id' => 2,
+            'username' => 'peppy',
+        ]);
+
+        $change = new static([
+            'user' => $user,
+            'user_id' => $user->user_id,
+            'prefix' => '*',
+            'message' => trans('changelog.generic'),
+        ]);
+
+        return $change;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
@@ -30,7 +30,9 @@ class UserSeeder extends Seeder
         $this->common_countries = ['US', 'JP', 'CN', 'DE', 'TW', 'RU', 'KR', 'PL', 'CA', 'FR', 'BR', 'GB', 'AU'];
 
         // Create 10 users and their stats
-        factory(App\Models\User::class, 10)->create()->each(function ($u) {
+        factory(App\Models\User::class, 10)->create([
+            'osu_subscriber' => 1,
+        ])->each(function ($u) {
 
             // USER STATS
             $country_code = array_rand_val($this->common_countries);
@@ -39,10 +41,10 @@ class UserSeeder extends Seeder
             $rank1 = rand(1, 500000);
             $rank2 = rand(1, 500000);
             $rank3 = rand(1, 500000);
-            $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->create(['country_acronym' => $country_code, 'rank' => $rank0, 'rank_score_index' => $rank0]));
-            $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->create(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
-            $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->create(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
-            $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->create(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
+            $st = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Osu::class)->make(['country_acronym' => $country_code, 'rank' => $rank0, 'rank_score_index' => $rank0]));
+            $st1 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Taiko::class)->make(['country_acronym' => $country_code, 'rank' => $rank1, 'rank_score_index' => $rank1]));
+            $st2 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Fruits::class)->make(['country_acronym' => $country_code, 'rank' => $rank2, 'rank_score_index' => $rank2]));
+            $st3 = $u->statisticsOsu()->save(factory(App\Models\UserStatistics\Mania::class)->make(['country_acronym' => $country_code, 'rank' => $rank3, 'rank_score_index' => $rank3]));
             // END USER STATS
 
             // RANK HISTORY
@@ -95,6 +97,9 @@ class UserSeeder extends Seeder
                 $u->rankHistories()->save($hist);
             }
             // END RANK HISTORY
+
+            // USER GROUP
+            $u->userGroups()->save(new App\Models\UserGroup(['group_id' => App\Models\UserGroup::GROUPS['default']]));
         }); // end each user
     }
 }

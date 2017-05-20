@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,14 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print flex-none">
+<footer class="footer no-print">
     <div class="footer__row">
-        <a class="footer__link" href="{{ config("osu.urls.legal.tos") }}" target="_blank">Terms of Service</a>
-        <a class="footer__link" href="{{ config("osu.urls.legal.dmca") }}" target="_blank">Copyright (DMCA)</a>
-        <a class="footer__link" href="{{ config("osu.urls.status.server") }}" target="_blank">Server Status</a>
-        <a class="footer__link" href="{{ config("osu.urls.status.osustatus") }}" target="_blank">@osustatus</a>
+        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">Terms of Service</a>
+        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">Copyright (DMCA)</a>
+        <a class="footer__link" href="{{ osu_url('status.server') }}">Server Status</a>
+        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">@osustatus</a>
     </div>
-    <div class="footer__row">ppy powered 2007-{{ date("Y") }}</div>
+    <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
     <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
 </footer>

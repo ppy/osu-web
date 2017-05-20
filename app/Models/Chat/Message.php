@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,25 +17,35 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Chat;
 
 use App\Models\User;
 
 class Message extends Model
 {
-    protected $table = 'messages';
     protected $primaryKey = 'message_id';
     protected $dates = [
         'timestamp',
     ];
 
-    public function channel()
+    public function getTargetTypeAttribute()
     {
-        return $this->belongsTo(Channel::class);
+        return 'channel';
     }
 
-    public function user()
+    public function getTargetIdAttribute()
     {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
+        return $this->channel_id;
+    }
+
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class, 'channel_id');
+    }
+
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,27 +17,32 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\API;
 
-use Auth;
-use Request;
 use App\Models\Chat\Channel;
 use App\Models\Chat\Message;
 use App\Models\Chat\PrivateMessage;
-use App\Transformers\API\Chat\MessageTransformer;
-use App\Transformers\API\Chat\PrivateMessageTransformer;
-use App\Transformers\API\Chat\ChannelTransformer;
 use App\Models\User;
+use Auth;
+use Carbon\Carbon;
+use Request;
 
 class ChatController extends Controller
 {
+    // Limits for chatting, throttles after CHAT_LIMIT_MESSAGES messages in CHAT_LIMIT_WINDOW seconds
+    const PUBLIC_CHAT_LIMIT_MESSAGES = 5;
+    const PUBLIC_CHAT_LIMIT_WINDOW = 4;
+    const PRIVATE_CHAT_LIMIT_MESSAGES = 10;
+    const PRIVATE_CHAT_LIMIT_WINDOW = 5;
+
     public function channels()
     {
         $channels = Channel::where('type', 'Public')->get();
 
-        return fractal_api_serialize_collection(
+        return json_collection(
             $channels,
-            new ChannelTransformer()
+            'API/Chat/Channel'
         );
     }
 
@@ -53,17 +58,19 @@ class ChatController extends Controller
                 return priv_check('ChatChannelRead', $channel)->can();
             });
 
-        $messages = Message::whereIn('channel_id', $channel_ids)->with('user');
+        $messages = Message::whereIn('channel_id', $channel_ids)
+            ->with('sender');
 
         if ($since) {
             $messages = $messages->where('message_id', '>', $since);
         }
 
-        $collection = fractal_api_serialize_collection(
+        $collection = json_collection(
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
-            new MessageTransformer()
+            'API/Chat/Message',
+            ['sender']
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -74,7 +81,7 @@ class ChatController extends Controller
         $since = intval(Request::input('since'));
         $limit = min(50, intval(Request::input('limit', 50)));
 
-        $messages = PrivateMessage::toOrFrom($this->current_user->user_id)
+        $messages = PrivateMessage::toOrFrom(Auth::user()->user_id)
             ->with('sender')
             ->with('receiver');
 
@@ -82,11 +89,15 @@ class ChatController extends Controller
             $messages = $messages->where('message_id', '>', $since);
         }
 
-        $collection = fractal_api_serialize_collection(
+        $collection = json_collection(
             $messages->orderBy('message_id', $since ? 'asc' : 'desc')
                 ->limit($limit)
                 ->get(),
-            new PrivateMessageTransformer()
+            'API/Chat/Message',
+            [
+                'sender',
+                'receiver',
+            ]
         );
 
         return $since ? $collection : array_reverse($collection);
@@ -94,21 +105,43 @@ class ChatController extends Controller
 
     public function postMessage()
     {
+        if (mb_strlen(Request::input('message'), 'UTF-8') >= 1024) {
+            abort(422);
+        }
+
         switch (Request::input('target_type')) {
             case 'channel':
-                $target = Channel::findOrFail(Request::input('channel_id'));
+                $target = Channel::findOrFail(Request::input('target_id'));
+                $messageLookup = Message::class;
+                $limit = self::PUBLIC_CHAT_LIMIT_MESSAGES;
+                $window = self::PUBLIC_CHAT_LIMIT_WINDOW;
                 break;
-            case 'user':
-                $target = User::findOrFail(Request::input('user_id'));
-                break;
+            // case 'user':
+            //     $target = User::findOrFail(Request::input('target_id'));
+            //     $messageLookup = PrivateMessage::class;
+            //     $limit = self::PRIVATE_CHAT_LIMIT_MESSAGES;
+            //     $window = self::PRIVATE_CHAT_LIMIT_WINDOW;
+            //     break;
             default:
                 abort(422);
         }
 
         priv_check('ChatMessageSend', $target)->ensureCan();
 
-        $target->sendMessage(Auth::user(), Request::input('message'));
+        $sent = $messageLookup::where('user_id', Auth::user()->user_id)
+            ->where('timestamp', '>=', Carbon::now()->subSecond($window))
+            ->count();
 
-        return json_encode('ok');
+        if ($sent > $limit) {
+            return error_popup(trans('api.error.chat.limit_exceeded'), 429);
+        }
+
+        $message = $target->receiveMessage(Auth::user(), Request::input('message'));
+
+        return json_item(
+            $message,
+            'API/Chat/Message',
+            ['sender']
+        );
     }
 }

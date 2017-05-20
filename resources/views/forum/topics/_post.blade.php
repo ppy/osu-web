@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -22,105 +22,97 @@
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
-    if (!isset($options['large'])) { $options['large'] = $options['postPosition'] === 1; }
+    if (!isset($options['large'])) {
+        $options['large'] = $options['postPosition'] === ($post->trashed() ? 0 : 1);
+    }
 ?>
 <div
-        class="js-forum-post osu-layout__row {{ $options['large'] ? '' : 'osu-layout__row--sm2-desktop' }}"
-        data-post-id="{{ $post->post_id }}"
-        data-post-position="{{ $options["postPosition"] }}">
-    <div class="
-        forum-post
-        {{ $post->userNormalized()->is_special ? 'forum-post--special' : '' }}
-    ">
+    class="js-forum-post {{ $post->trashed() ? 'js-forum-post--hidden' : '' }} osu-page {{ $options['large'] ? '' : 'osu-page--small-desktop' }}"
+    data-post-id="{{ $post->post_id }}"
+    data-post-position="{{ $options["postPosition"] }}"
+>
+    <div class="forum-post">
+        @if ($post->userNormalized()->isSpecial())
+            <div
+                class="forum-post__stripe"
+                style="{{ user_color_style($post->userNormalized()->user_colour, "background-color") }}"
+            ></div>
+        @endif
 
-        <div class="
-            forum-post__card
-            {{ $options['large'] ? ($post->userNormalized()->is_special ? 'forum-post__card--large-special' : 'forum-post__card--large') : '' }}
-        ">
-            @if ($post->userNormalized()->is_special)
-                <div
-                    class="forum-post__stripe"
-                    style="{{ user_colour_style($post->userNormalized()->user_colour, "background-color") }}"
-                ></div>
+        @include("forum.topics._post_info", ["user" => $post->userNormalized()])
+
+        <div class="forum-post__body">
+            <div class="forum-post__content forum-post__content--header">
+                <a class="js-post-url link link--gray" href="{{ route('forum.posts.show', $post->post_id) }}">
+                    {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
+                </a>
+            </div>
+
+            <div class="forum-post__content forum-post__content--main">
+                <div class="forum-post-content {{ $options['contentExtraClasses'] ?? '' }}">
+                    {!! $post->bodyHTML !!}
+                </div>
+            </div>
+
+            @if($post->post_edit_count > 0)
+                <div class="forum-post__content forum-post__content--footer">
+                    {!!
+                        trans("forum.post.edited", [
+                            "count" => $post->post_edit_count,
+                            "user" => $post->lastEditorNormalized()->username,
+                            "when" => timeago($post->post_edit_time),
+                        ])
+                    !!}
+                </div>
             @endif
 
-            @include("forum.topics._post_info", ["user" => $post->userNormalized()])
-
-            <div class="forum-post__body">
-                <div class="forum-post__content forum-post__content--header">
-                    <a class="js-post-url link link--grey" href="{{ route('forum.posts.show', $post->post_id) }}">
-                        {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
-                    </a>
+            @if($options["signature"] !== false && present($post->userNormalized()->user_sig))
+                <div class="forum-post__content forum-post__content--signature hidden-xs">
+                    {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
                 </div>
-
-                <div class="forum-post__content forum-post__content--main">
-                    <div class="forum-post-content">
-                        {!! $post->bodyHTML !!}
-                    </div>
-                </div>
-
-                @if($post->post_edit_count > 0)
-                    <div class="forum-post__content forum-post__content--footer">
-                        {!!
-                            trans("forum.post.edited", [
-                                "count" => $post->post_edit_count,
-                                "user" => $post->lastEditorNormalized()->username,
-                                "when" => timeago($post->post_edit_time),
-                            ])
-                        !!}
-                    </div>
-                @endif
-
-                @if($options["signature"] !== false && $post->userNormalized()->user_sig)
-                    <div class="forum-post__content forum-post__content--signature hidden-xs">
-                        {!! bbcode($post->userNormalized()->user_sig, $post->userNormalized()->user_sig_bbcode_uid) !!}
-                    </div>
-                @endif
-            </div>
+            @endif
         </div>
 
         <div class="forum-post__actions">
             <div class="forum-post-actions">
-                @if ($options["editLink"] === true)
-                    <a
-                        title="{{ trans('forum.post.actions.edit') }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.edit", $post) }}"
-                        class="forum-post-actions__action edit-post-link"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-edit"></i>
-                    </a>
+                @if ($options['editLink'] === true)
+                    <div class="forum-post-actions__action">
+                        <a
+                            title="{{ trans('forum.post.actions.edit') }}"
+                            data-tooltip-position="left center"
+                            href="{{ route('forum.posts.edit', $post) }}"
+                            class="btn-circle edit-post-link"
+                            data-remote="1"
+                        >
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
                 @endif
+
                 @if ($options["deleteLink"] === true)
-                    <a
-                        title="{{ trans('forum.post.actions.delete') }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.destroy", $post) }}"
-                        class="forum-post-actions__action delete-post-link"
-                        data-method="delete"
-                        data-confirm="{{ trans("forum.post.confirm_delete") }}"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-trash"></i>
-                    </a>
+                    <div class="forum-post-actions__action">
+                        @include('forum.topics._post_hide_action')
+                    </div>
                 @endif
-                @if ($options["replyLink"] === true)
-                    <a
-                        title="{{ trans('forum.topics.actions.reply_with_quote') }}"
-                        data-tooltip-position="left center"
-                        href="{{ route("forum.posts.raw", ["id" => $post, "quote" => 1]) }}"
-                        class="forum-post-actions__action js-forum-topic-reply--quote"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-reply"></i>
-                    </a>
+
+                @if ($options['replyLink'] === true)
+                    <div class="forum-post-actions__action">
+                        <a
+                            title="{{ trans('forum.topics.actions.reply_with_quote') }}"
+                            data-tooltip-position="left center"
+                            href="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
+                            class="btn-circle js-forum-topic-reply--quote"
+                            data-remote="1"
+                        >
+                            <i class="fa fa-reply"></i>
+                        </a>
+                    </div>
                 @endif
             </div>
         </div>
-    </div>
 
-    @if($options["overlay"] === true)
-        <div class="post-overlay"></div>
-    @endif
+        @if($options["overlay"] === true)
+            <div class="forum-post__overlay"></div>
+        @endif
+    </div>
 </div>

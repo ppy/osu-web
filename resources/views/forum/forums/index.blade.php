@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,26 +15,39 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends("master", [
+    'search' => [
+        'url' => route('forum.forums.search'),
+    ],
+])
 
 @section("content")
-    <div id="forum-index-header" class="osu-layout__row osu-layout__row--page">
-        <div class="text-area">
-            <div class="text">
-                <h2>it's dangerous to play alone.</h2>
-                <h1>{{ trans("forum.title") }}</h1>
+    <div class="osu-page">
+        <div class="osu-page-header osu-page-header--forum-index">
+            <div class="osu-page-header__title-box">
+                <h2 class="osu-page-header__title osu-page-header__title--small">
+                    it's dangerous to play alone.
+                </h2>
+
+                <h1 class="osu-page-header__title">
+                    {{ trans("forum.title") }}
+                </h1>
             </div>
         </div>
     </div>
 
-    <div class="hidden-xs osu-layout__row osu-layout__row--lg2">
-        <div class="pippy"></div>
+    <div class="osu-page osu-page--forum-pippi">
+        <div class="hidden-xs forum-pippi"></div>
     </div>
 
-    <div class="osu-layout__row">
+    <div class="osu-page">
         @foreach($forums as $category)
-            <div id="forum-{{ $category->forum_id }}" class="forum-category col-sm-12 forum-colour {{ $category->categorySlug() }}">
-                <div class="row forum-category-header forum-category-header--forum-index forum-colour__bg--{{ $category->categorySlug() }}">
+            <div id="forum-{{ $category->forum_id }}" class="
+                forum-category
+                col-sm-12
+                t-forum-{{ $category->categorySlug() }}
+            ">
+                <div class="row forum-category-header forum-category-header--forum-index u-forum--bg">
                     <div class="forum-category-header__name">{{ $category->forum_name }}</div>
                     <div class="forum-category-header__description">{{ $category->forum_desc }}</div>
                 </div>

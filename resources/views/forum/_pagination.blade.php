@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
             {{-- decide if we're showing first page link separately --}}
             @if ($object->currentPage() > 5)
                 <li>
-                    <a href="{{ $object->url(1) }}">1</a>
+                    <a class="u-forum--link" href="{{ $object->url(1) }}">1</a>
                 </li>
             @endif
 
@@ -36,7 +36,7 @@
                     </li>
                 @else
                     <li>
-                        <a href="{{ $object->url($page) }}">{{ $page }}</a>
+                        <a class="u-forum--link" href="{{ $object->url($page) }}">{{ $page }}</a>
                     </li>
                 @endif
             @endforeach
@@ -50,7 +50,7 @@
             {{-- see if the link is needed --}}
             @if (($object->currentPage() + 4) < $object->lastPage())
                 <li>
-                    <a href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
+                    <a class="u-forum--link" href="{{ $object->url($object->lastPage()) }}">{{ $object->lastPage() }}</a>
                 </li>
             @endif
         </ul>
@@ -63,7 +63,7 @@
                         {{ trans("common.pagination.previous") }}
                     </span>
                 @else
-                    <a href="{{ $object->url($object->currentPage() - 1) }}">
+                    <a class="u-forum--link" href="{{ $object->url($object->currentPage() - 1) }}">
                         <i class="fa fa-angle-left"></i>
                         {{ trans("common.pagination.previous") }}
                     </a>
@@ -76,7 +76,7 @@
                         <i class="fa fa-angle-right"></i>
                     </span>
                 @else
-                    <a href="{{ $object->url($object->currentPage() + 1) }}">
+                    <a class="u-forum--link" href="{{ $object->url($object->currentPage() + 1) }}">
                         {{ trans("common.pagination.next") }}
                         <i class="fa fa-angle-right"></i>
                     </a>

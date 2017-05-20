@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,9 +17,9 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
-use App\Models\Score\Model as Score;
 use App\Models\Score\Best\Model as ScoreBest;
 use League\Fractal;
 
@@ -30,36 +30,55 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         'beatmapset',
         'weight',
         'user',
+        'multiplayer',
     ];
 
-    public function transform(Score $score)
+    public function transform($score)
     {
         return [
-            'id' => $score->score_id,
             'user_id' => $score->user_id,
-            'created_at' => $score->date->toIso8601String(),
-            'pp' => $score->pp,
             'accuracy' => $score->accuracy(),
-            'rank' => $score->rank,
             'mods' => $score->enabled_mods,
             'score' => $score->score,
-            'count50' => $score->count50,
-            'count100' => $score->count100,
-            'count300' => $score->count300,
+            'max_combo' => $score->maxcombo,
+            'perfect' => $score->perfect,
+            'statistics' => [
+                'count_50' => $score->count50,
+                'count_100' => $score->count100,
+                'count_300' => $score->count300,
+                'count_geki' => $score->countgeki,
+                'count_katu' => $score->countkatu,
+                'count_miss' => $score->countmiss,
+            ],
+            'pp' => $score->pp,
+            // ranks are hardcoded to "0" for game_scores atm (i.e. scores from a mp game), return null instead for now
+            'rank' => $score->rank === '0' ? null : $score->rank,
+            'created_at' => json_time($score->date),
         ];
     }
 
-    public function includeBeatmap(Score $score)
+    public function includeMultiplayer($score)
+    {
+        return $this->item($score, function ($score) {
+            return [
+                'slot' => $score->slot,
+                'team' => $score->team,
+                'pass' => $score->pass,
+            ];
+        });
+    }
+
+    public function includeBeatmap($score)
     {
         return $this->item($score->beatmap, new BeatmapTransformer);
     }
 
-    public function includeBeatmapset(Score $score)
+    public function includeBeatmapset($score)
     {
         return $this->item($score->beatmapset, new BeatmapsetTransformer);
     }
 
-    public function includeWeight(Score $score)
+    public function includeWeight($score)
     {
         if (($score instanceof ScoreBest) === false) {
             return;
@@ -73,7 +92,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeUser(Score $score)
+    public function includeUser($score)
     {
         return $this->item($score->user, new UserCompactTransformer);
     }

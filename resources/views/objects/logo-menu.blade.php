@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -25,7 +25,7 @@
     <div class="logo-menu__menu logo-menu__menu--main js-menu" data-menu-id="logo-menu" data-visibility="hidden">
         <div class="logo-menu__menu-item">
             @if (Auth::check())
-                <div class="logo-menu__user logo-menu__user--split js-logo-menu-user">
+                <div class="logo-menu__user logo-menu__user--split js-current-user-cover">
                     <a
                         class="logo-menu__user-slice logo-menu__user-slice--avatar logo-menu__user-slice--bg"
                         href="{{ route('users.show', Auth::user()) }}"
@@ -38,7 +38,7 @@
 
                     <a
                         class="logo-menu__user-slice logo-menu__user-slice--session logo-menu__user-slice--bg js-logout-link"
-                        href="{{ route('users.logout') }}"
+                        href="{{ route('logout') }}"
                         data-method="delete"
                         data-confirm="{{ trans('users.logout_confirm') }}"
                         data-remote="1"
@@ -49,10 +49,8 @@
             @else
                 <a
                     href="#"
-                    data-toggle="modal"
-                    data-target="#user-dropdown-modal"
                     title="{{ trans('users.anonymous.login_link') }}"
-                    class="logo-menu__user logo-menu__user--full"
+                    class="logo-menu__user logo-menu__user--full js-user-link"
                 >
                     <div class="logo-menu__user-slice logo-menu__user-slice--avatar">
                         <div class="avatar avatar--guest avatar--full-rounded"></div>
@@ -70,7 +68,7 @@
         @foreach (nav_links() as $section => $links)
             <div class="logo-menu__menu-item">
                 <a href="{{ array_values($links)[0] }}" class="logo-menu__menu-link js-menu" data-menu-target="logo-menu--{{ $section }}">
-                    <div class="logo-menu__menu-stripe logo-menu__menu-stripe--hover bg--{{ $section }}"></div>
+                    <div class="logo-menu__menu-stripe logo-menu__menu-stripe--hover u-section-{{ $section }}--bg"></div>
                     <span class="logo-menu__menu-text logo-menu__menu-text--main">
                         {{ trans("layout.menu.{$section}._") }}
 
@@ -79,7 +77,7 @@
                 </a>
 
                 <div class="logo-menu__menu logo-menu__menu--sub js-menu" data-menu-id="logo-menu--{{ $section }}" data-visibility="hidden">
-                    <div class="logo-menu__menu-stripe bg--{{ $section }}"></div>
+                    <div class="logo-menu__menu-stripe u-section-{{ $section }}--bg"></div>
 
                     @foreach ($links as $action => $link)
                         <div class="logo-menu__menu-item">

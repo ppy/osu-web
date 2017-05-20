@@ -2,10 +2,9 @@ cache:
   directories:
     - vendor
     - node_modules
-    - bower_components
+    - $HOME/.yarn-cache
 
-addons:
-  mariadb: 10.0
+sudo: true
 
 language: php
 
@@ -16,12 +15,15 @@ matrix:
   fast_finish: true
 
 env:
-  - DB_USERNAME=root
+  global:
+    - DB_USERNAME=root
+    - SLACK_ENDPOINT=http://myconan.net/null/
 
 before_install:
-  - nvm install 4.2
-  - nvm use 4.2
-  - ./bin/db_setup
+  - sudo ./bin/mysql_debian_install
+  - nvm install 6.9
+  - nvm use 6.9
+  - ./bin/db_setup.sh
   - ./build.sh
 
 script: ./vendor/bin/phpunit

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,81 +17,141 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
-use Auth;
-use Request;
+use App\Libraries\UserVerification;
+use App\Mail\UserEmailUpdated;
+use App\Mail\UserPasswordUpdated;
 use App\Models\User;
-use App\Models\UserProfileCustomization;
+use App\Models\UserEmail;
+use App\Models\UserPassword;
+use Auth;
+use Illuminate\Http\Request as HttpRequest;
+use Mail;
+use Request;
 
 class AccountController extends Controller
 {
-    protected $section = 'account';
+    protected $section = 'home';
+    protected $actionPrefix = 'account-';
 
     public function __construct()
     {
         $this->middleware('auth');
 
-        if (Auth::check() && Auth::user()->isSilenced()) {
-            abort(403);
-        }
+        $this->middleware(function ($request, $next) {
+            if (Auth::check() && Auth::user()->isSilenced()) {
+                return abort(403);
+            }
+
+            return $next($request);
+        });
+
+        $this->middleware('verify-user');
+        $this->middleware('throttle:60,10', [
+            'only' => [
+                'updateEmail',
+                'updatePassword',
+            ],
+        ]);
 
         return parent::__construct();
     }
 
-    public function updateProfile()
+    public function avatar()
+    {
+        try {
+            Auth::user()->setAvatar(Request::file('avatar_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
+        }
+
+        return Auth::user()->defaultJson();
+    }
+
+    public function cover()
     {
         if (Request::hasFile('cover_file') && !Auth::user()->osu_subscriber) {
             return error_popup(trans('errors.supporter_only'));
         }
 
-        if (Request::hasFile('cover_file') || Request::has('cover_id')) {
-            try {
-                Auth::user()
-                    ->profileCustomization()
-                    ->firstOrCreate([])
-                    ->setCover(Request::input('cover_id'), Request::file('cover_file'));
-            } catch (ImageProcessorException $e) {
-                return error_popup($e->getMessage());
-            }
-        }
-
-        if (Request::has('order')) {
-            $order = Request::input('order');
-
-            $error = 'errors.account.profile-order.generic';
-
-            // Checking whether the input has the same amount of elements
-            // as the master sections array.
-            if (count($order) !== count(UserProfileCustomization::$sections)) {
-                return error_popup(trans($error));
-            }
-
-            // Checking if any section that was sent in input
-            // also appears in the master sections arrray.
-            foreach ($order as $i) {
-                if (!in_array($i, UserProfileCustomization::$sections, true)) {
-                    return error_popup(trans($error));
-                }
-            }
-
-            // Checking whether the elements sent in input do not repeat.
-            $occurences = array_count_values($order);
-
-            foreach ($occurences as $i) {
-                if ($i > 1) {
-                    return error_popup(trans($error));
-                }
-            }
-
+        try {
             Auth::user()
                 ->profileCustomization()
-                ->firstOrCreate([])
-                ->setExtrasOrder($order);
+                ->setCover(Request::input('cover_id'), Request::file('cover_file'));
+        } catch (ImageProcessorException $e) {
+            return error_popup($e->getMessage());
         }
 
         return Auth::user()->defaultJson();
+    }
+
+    public function edit()
+    {
+        return view('accounts.edit');
+    }
+
+    public function update()
+    {
+        $customizationParams = get_params(
+            Request::all(),
+            'user_profile_customization',
+            [
+                'extras_order:string[]',
+            ]
+        );
+
+        $userParams = get_params(
+            Request::all(),
+            'user',
+            [
+                'user_from:string',
+                'user_interests:string',
+                'user_msnm:string',
+                'user_occ:string',
+                'user_twitter:string',
+                'user_website:string',
+                'user_sig:string',
+            ]
+        );
+
+        if (count($customizationParams) > 0) {
+            Auth::user()
+                ->profileCustomization()
+                ->update($customizationParams);
+        }
+
+        if (count($userParams) > 0) {
+            Auth::user()->update($userParams);
+        }
+
+        return Auth::user()->defaultJson();
+    }
+
+    public function updateEmail()
+    {
+        $user = Auth::user();
+        $previousEmail = $user->user_email;
+        $userEmail = (new UserEmail($user))
+            ->fill(Request::input('user_email'));
+
+        if ($userEmail->save() === true) {
+            $addresses = [$user->user_email];
+            if (present($previousEmail)) {
+                $addresses[] = $previousEmail;
+            }
+            foreach ($addresses as $address) {
+                Mail::to($address)->send(new UserEmailUpdated($user));
+            }
+
+            return ['message' => trans('accounts.update_email.updated')];
+        } else {
+            return response(['form_error' => [
+                'user_email' => $userEmail->validationErrors()->all(),
+            ]], 422);
+        }
     }
 
     public function updatePage()
@@ -103,5 +163,38 @@ class AccountController extends Controller
         $user = $user->updatePage(Request::input('body'));
 
         return ['html' => $user->userPage->bodyHTML];
+    }
+
+    public function updatePassword()
+    {
+        $user = Auth::user();
+        $userPassword = (new UserPassword($user))
+            ->fill(Request::input('user_password'));
+
+        if ($userPassword->save() === true) {
+            if (present($user->user_email)) {
+                Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
+            }
+
+            return ['message' => trans('accounts.update_password.updated')];
+        } else {
+            return response(['form_error' => [
+                'user_password' => $userPassword->validationErrors()->all(),
+            ]], 422);
+        }
+    }
+
+    public function verify(HttpRequest $request)
+    {
+        $verification = new UserVerification(Auth::user(), $request);
+
+        return $verification->verify();
+    }
+
+    public function reissueCode(HttpRequest $request)
+    {
+        $verification = new UserVerification(Auth::user(), $request);
+
+        return $verification->reissue();
     }
 }

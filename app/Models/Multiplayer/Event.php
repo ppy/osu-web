@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,24 +17,56 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Multiplayer;
+
+use App\Models\User;
 
 class Event extends Model
 {
-    protected $table = 'events';
     protected $primaryKey = 'event_id';
     protected $dates = [
         'timestamp',
     ];
     public $timestamps = false;
 
+    const EVENT_TYPES = [
+        'player-left' => 'PART',
+        'player-joined' => 'JOIN',
+        'player-kicked' => 'KICK',
+        'match-created' => 'CREATE',
+        'match-disbanded' => 'DISBAND',
+        'host-changed' => 'HOST',
+    ];
+
     public function match()
     {
-        return $this->belongsTo(Match::class);
+        return $this->belongsTo(Match::class, 'match_id');
     }
 
     public function game()
     {
-        return $this->belongsTo(Game::class);
+        return $this->belongsTo(Game::class, 'game_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->orderBy('event_id', 'asc');
+    }
+
+    public function getDetailAttribute()
+    {
+        $value = $this->text;
+
+        if (in_array($value, self::EVENT_TYPES, true)) {
+            return ['type' => array_search_null($value, self::EVENT_TYPES)];
+        } else {
+            return ['type' => 'other', 'text' => $value];
+        }
     }
 }

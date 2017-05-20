@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,42 +17,40 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers\API;
 
-use Response;
-use Request;
-use App\Transformers\API\ScoreTransformer;
-use App\Transformers\API\BeatmapTransformer;
 use App\Models\Beatmap;
+use Request;
 
 class BeatmapsController extends Controller
 {
-    public function scores()
+    public function show($id)
     {
-        // FIXME: scores are obtained via filename/checksum lookup for legacy reason (temporarily)
-        $filename = Request::input('f');
-        $checksum = Request::input('c');
-        $per_page = min(Request::input('n', 50), 50);
-        $page = max(Request::input('p', 1), 1);
+        $beatmap = Beatmap::findOrFail($id);
 
-        $beatmap = Beatmap::where('filename', $filename)->where('checksum', $checksum)->firstorFail();
+        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes']);
+    }
 
-        $beatmap_meta = fractal_api_serialize_item(
-            $beatmap,
-            new BeatmapTransformer()
-        );
+    public function lookup()
+    {
+        $checksum = Request::input('checksum');
+        $filename = urldecode(Request::input('filename'));
 
-        $scores = $beatmap->scoresBest()->defaultListing()->forPage($page, $per_page);
-
-        if ($beatmap->approved >= 1) {
-            $beatmap_scores = fractal_api_serialize_collection(
-                $scores->get(),
-                new ScoreTransformer()
-            );
-        } else {
-            $beatmap_scores = [];
+        // Try to look up via checksum
+        if (present($checksum)) {
+            $beatmap = Beatmap::where('checksum', $checksum)->first();
         }
 
-        return Response::json(['beatmap' => $beatmap_meta, 'scores' => $beatmap_scores]);
+        // If checksum is missing (or not found), try to look up by filename instead
+        if (!isset($beatmap) && present($filename)) {
+            $beatmap = Beatmap::where('filename', $filename)->firstOrFail();
+        }
+
+        if (!isset($beatmap)) {
+            abort(404);
+        }
+
+        return json_item($beatmap, 'Beatmap', ['beatmapset.ratings', 'failtimes']);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,12 +17,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
+use Auth;
 use DB;
 use Exception;
 use Request;
@@ -38,6 +39,30 @@ class BeatmapDiscussionPostsController extends Controller
         return parent::__construct();
     }
 
+    public function destroy($id)
+    {
+        $post = BeatmapDiscussionPost::whereNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionPostDestroy', $post)->ensureCan();
+
+        $error = $post->softDelete(Auth::user());
+
+        if ($error === null) {
+            return $post->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function restore($id)
+    {
+        $post = BeatmapDiscussionPost::whereNotNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionPostRestore', $post)->ensureCan();
+
+        $post->restore();
+
+        return $post->beatmapsetDiscussion->defaultJson();
+    }
+
     public function store()
     {
         $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
@@ -51,17 +76,15 @@ class BeatmapDiscussionPostsController extends Controller
             $discussion->beatmapset_discussion_id = $beatmapsetDiscussion->id;
         }
 
-        $posts = [new BeatmapDiscussionPost($this->postParams($discussion))];
         $previousDiscussionResolved = $discussion->resolved;
         $discussion->fill($this->discussionParams($isNewDiscussion));
 
-        priv_check('BeatmapDiscussionPost', $discussion)->ensureCan();
+        priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
-        if ($discussion->resolved === true) {
-            priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
-        }
+        $posts = [new BeatmapDiscussionPost($this->postParams())];
 
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
+            priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
         }
 
@@ -86,9 +109,7 @@ class BeatmapDiscussionPostsController extends Controller
             $saved = false;
         }
 
-        $postIds = array_map(function ($post) {
-            return $post->id;
-        }, $posts);
+        $postIds = array_pluck($posts, 'id');
 
         if ($saved === true) {
             return [
@@ -107,7 +128,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         priv_check('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
-        $post->update($this->postParams($post->beatmapDiscussion, false));
+        $post->update($this->postParams(false));
 
         return [
             'beatmapset_discussion' => $post->beatmapsetDiscussion->defaultJson(),
@@ -116,38 +137,30 @@ class BeatmapDiscussionPostsController extends Controller
 
     private function discussionParams($isNew)
     {
-        $filters = ['resolved:bool'];
-
         if ($isNew) {
-            $filters = array_merge($filters, [
+            $filters = [
                 'beatmap_id:int',
                 'message_type',
                 'timestamp:int',
-            ]);
+            ];
+        } else {
+            $filters = ['resolved:bool'];
         }
 
-        $params = get_params(Request::all(), 'beatmap_discussion',
-            $filters,
-            ['resolved' => false]
-        );
+        $params = get_params(Request::all(), 'beatmap_discussion', $filters);
 
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;
+            $params['resolved'] = false;
         }
 
         return $params;
     }
 
-    private function postParams($discussion, $isNew = true)
+    private function postParams($isNew = true)
     {
-        $params = get_params(Request::all(), 'beatmap_discussion_post',
-            ['message'],
-            [],
-            [
-                'beatmap_discussion_id' => $discussion->id,
-                'last_editor_id' => Auth::user()->user_id,
-            ]
-        );
+        $params = get_params(Request::all(), 'beatmap_discussion_post', ['message']);
+        $params['last_editor_id'] = Auth::user()->user_id;
 
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;

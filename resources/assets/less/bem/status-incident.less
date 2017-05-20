@@ -1,5 +1,5 @@
 /**
- *    Copyright 2016 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,8 +14,8 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 @import '../app';
 
 // incident colors
@@ -25,10 +25,6 @@
 @username: @blue-dark;
 
 .status-incident {
-  @media (max-width: @screen-lg-min) {
-    margin-left: -8px;
-  }
-
   &--active {
     font-weight: bold;
     color: @pink-dark;
@@ -63,10 +59,6 @@
     margin: 10px;
     margin-left: 0;
     margin-top: 3px;
-
-    @media (max-width: @screen-lg-min) {
-      margin-left: 10px;
-    }
 
     &--resolved {
       background: @resolved;
@@ -104,10 +96,6 @@
   &__content {
     margin-top: 40px;
     margin-bottom: 40px;
-
-    @media (max-width: @screen-lg-min) {
-      padding-left: 10px;
-    }
   }
 
   &__info-date {

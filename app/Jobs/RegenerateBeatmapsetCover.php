@@ -2,18 +2,18 @@
 
 namespace App\Jobs;
 
-use App\Models\Beatmapset;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Bus\SelfHandling;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Raven_Client;
 use App\Exceptions\SilencedException;
-use Statsd;
+use App\Models\Beatmapset;
+use Datadog;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Raven_Client;
 
-class RegenerateBeatmapsetCover extends Job implements SelfHandling, ShouldQueue
+class RegenerateBeatmapsetCover implements ShouldQueue
 {
-    use InteractsWithQueue, SerializesModels;
+    use InteractsWithQueue, Queueable, SerializesModels;
     protected $beatmapset;
 
     /**
@@ -36,10 +36,10 @@ class RegenerateBeatmapsetCover extends Job implements SelfHandling, ShouldQueue
         try {
             echo "Processing {$this->beatmapset->beatmapset_id}... ";
             $this->beatmapset->regenerateCovers();
-            Statsd::increment(['thumbdonger.processed', 'thumbdonger.ok']);
+            Datadog::increment(['thumbdonger.processed', 'thumbdonger.ok']);
             echo "ok.\n";
         } catch (\Exception $e) {
-            Statsd::increment(['thumbdonger.processed', 'thumbdonger.error']);
+            Datadog::increment(['thumbdonger.processed', 'thumbdonger.error']);
             echo "errored.\n";
             if (config('osu.beatmap_processor.sentry')) {
                 $tags = [

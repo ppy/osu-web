@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,10 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
-use App\Models\Beatmapset;
 use App\Exceptions\BeatmapProcessorException;
+use App\Models\Beatmapset;
 
 class ImageProcessorService
 {
@@ -53,7 +54,18 @@ class ImageProcessorService
     {
         $src = preg_replace("/https?:\/\//", '', $src);
         $tmpFile = tempnam($this->workingFolder, 'ips').'.jpg';
-        $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
+        try {
+            $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
+        } catch (\ErrorException $e) {
+            if (strpos($e->getMessage(), 'HTTP request failed!') !== false) {
+                throw new BeatmapProcessorException('HTTP request failed!');
+            } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
+                throw new BeatmapProcessorException('Connection refused');
+            } else {
+                throw $e;
+            }
+        }
+
         if (!$ok || filesize($tmpFile) < 100) {
             throw new BeatmapProcessorException("Error retrieving processed image: $method");
         }

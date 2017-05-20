@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,11 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Transformers;
 
 use App\Models\Beatmap;
-use App\Models\User;
 use App\Models\Score\Best\Model as ScoreBestModel;
+use App\Models\User;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -40,11 +41,12 @@ class UserTransformer extends Fractal\TransformerAbstract
         'recentlyReceivedKudosu',
         'rankedAndApprovedBeatmapsets',
         'favouriteBeatmapsets',
+        'disqus_auth',
     ];
 
     public function transform(User $user)
     {
-        $profileCustomization = $user->profileCustomization()->firstOrNew([]);
+        $profileCustomization = $user->profileCustomization();
 
         return [
             'id' => $user->user_id,
@@ -54,25 +56,30 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
             ],
-            'age' => $user->age,
-            'avatarUrl' => $user->user_avatar,
+            'age' => $user->age(),
+            'avatar_url' => $user->user_avatar,
             'isAdmin' => $user->isAdmin(),
             'isSupporter' => $user->osu_subscriber,
             'isGMT' => $user->isGMT(),
+            'isQAT' => $user->isQAT(),
+            'isBNG' => $user->isBNG(),
+            'is_active' => $user->isActive(),
+            'interests' => $user->user_interests,
             'title' => $user->title(),
             'location' => $user->user_from,
-            'lastvisit' => $user->user_lastvisit->toIso8601String(),
+            'lastvisit' => json_time($user->user_lastvisit),
             'twitter' => $user->user_twitter,
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
-            'profileColour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->getExtrasOrder(),
+            'profile_colour' => $user->user_colour,
+            'profileOrder' => $profileCustomization->extras_order,
+            'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
-                'customUrl' => $profileCustomization->cover->fileUrl(),
-                'url' => $profileCustomization->cover->url(),
-                'id' => $profileCustomization->cover->id(),
+                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'url' => $profileCustomization->cover()->url(),
+                'id' => $profileCustomization->cover()->id(),
             ],
             'kudosu' => [
                 'total' => $user->osu_kudostotal,
@@ -85,7 +92,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $stats = $user->statistics($user->playmode);
 
-        return $this->item($stats, new UserStatisticsTransformer());
+        return $this->item($stats, new UserStatisticsTransformer);
     }
 
     public function includeAllStatistics(User $user)
@@ -93,7 +100,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $all[$mode] = fractal_item_array($user->statistics($mode), new UserStatisticsTransformer());
+                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer, ['rank', 'scoreRanks']);
             }
 
             return $all;
@@ -104,11 +111,8 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             $all = [];
-
             foreach ($user->rankHistories as $history) {
-                $modeStr = Beatmap::modeStr($history->mode);
-
-                $all[$modeStr] = fractal_item_array($history, new RankHistoryTransformer());
+                $all[$history->mode] = json_item($history, new RankHistoryTransformer());
             }
 
             return $all;
@@ -123,11 +127,9 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
-                    ->with('beatmapset', 'beatmap')
-                    ->limit(100)
-                    ->get();
+                    ->userBest(100, ['beatmapset', 'beatmap']);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -143,13 +145,11 @@ class UserTransformer extends Fractal\TransformerAbstract
                     ->scoresBest($mode, true)
                     ->default()
                     ->orderBy('pp', 'DESC')
-                    ->with('beatmapset', 'beatmap')
-                    ->limit(100)
-                    ->get();
+                    ->userBest(100, ['beatmapset', 'beatmap']);
 
                 ScoreBestModel::fillInPosition($scores);
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
             }
 
             return $all;
@@ -164,7 +164,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             foreach (array_keys(Beatmap::MODES) as $mode) {
                 $scores = $user->scores($mode, true)->default()->with('beatmapset', 'beatmap')->get();
 
-                $all[$mode] = fractal_collection_array($scores, new ScoreTransformer(), 'beatmap,beatmapset');
+                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
 
             return $all;
@@ -219,9 +219,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $user->receivedKudosu()
-                ->withPost()
-                ->withGiver()
-                ->with('post', 'post.topic', 'giver')
+                ->with('post', 'post.topic', 'giver', 'kudosuable')
                 ->orderBy('exchange_id', 'desc')
                 ->limit(15)
                 ->get(),
@@ -232,7 +230,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeRankedAndApprovedBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->beatmapsets()->rankedOrApproved()->active()->with('defaultBeatmaps')->get(),
+            $user->beatmapsets()->rankedOrApproved()->active()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
     }
@@ -240,8 +238,31 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFavouriteBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->favouriteBeatmapsets()->with('defaultBeatmaps')->get(),
+            $user->favouriteBeatmapsets()->with('beatmaps')->get(),
             new BeatmapsetTransformer()
         );
+    }
+
+    public function includeDisqusAuth(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $data = [
+                'id' => $user->user_id,
+                'username' => $user->username,
+                'email' => $user->user_email,
+                'avatar' => $user->user_avatar,
+                'url' => route('users.show', $user->user_id),
+            ];
+
+            $encodedData = base64_encode(json_encode($data));
+            $timestamp = time();
+            $hmac = hash_hmac('sha1', "$encodedData $timestamp", config('services.disqus.secret_key'));
+
+            return [
+                'short_name' => config('services.disqus.short_name'),
+                'public_key' => config('services.disqus.public_key'),
+                'auth_data' => "$encodedData $hmac $timestamp",
+            ];
+        });
     }
 }

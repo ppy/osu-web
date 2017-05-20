@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -23,7 +23,7 @@
 
 <ul>
     <li>
-        You have broken one or more of our <a href="{{ config("osu.urls.user.rules") }}">community rules</a> or <a href="{{ config("osu.urls.legal.tos") }}">terms of service</a>.
+        You have broken one or more of our <a href="{{ osu_url('user.rules') }}">community rules</a> or <a href="{{ osu_url('legal.tos') }}">terms of service</a>.
     </li>
     <li>
         Your account has deemed to be compromised. It may be disabled temporarily while its identity is confirmed.

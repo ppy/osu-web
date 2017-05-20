@@ -1,29 +1,28 @@
 ###
-# Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-# This file is part of osu!web. osu!web is distributed with the hope of
-# attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-# osu!web is free software: you can redistribute it and/or modify
-# it under the terms of the Affero GNU General Public License version 3
-# as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-# osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-# warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-# You should have received a copy of the GNU Affero General Public License
-# along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 class @ForumCover
-  header: document.getElementsByClassName('js-forum-cover--header')
-  $uploadButton: => $(@uploadButton[0])
-  uploadButton: document.getElementsByClassName('js-forum-cover--upload-button')
-  overlay: document.getElementsByClassName('js-forum-cover--overlay')
-  loading: document.getElementsByClassName('js-forum-cover--loading')
-
-
   constructor: ->
+    @header = document.getElementsByClassName('js-forum-cover--header')
+    @uploadButton = document.getElementsByClassName('js-forum-cover--upload-button')
+    @overlay = document.getElementsByClassName('js-forum-cover--overlay')
+    @loading = document.getElementsByClassName('js-forum-cover--loading')
+
     $(document).on 'click', '.js-forum-cover--open-modal', @toggleModal
     $(document).on 'click', '.js-forum-cover--remove', @remove
     $(document).on 'click', @closeModal
@@ -35,12 +34,14 @@ class @ForumCover
 
     $.subscribe 'key:esc', @closeModal
 
-    $(document).on 'ready turbolinks:load', @refresh
-    @refresh()
+    $(document).on 'turbolinks:load', @refresh
+
+
+  $uploadButton: => $(@uploadButton[0])
 
 
   closeModal: (e) =>
-    return unless @hasCoverEditor() && @header[0]._open
+    return unless @hasCoverEditor() && @isModalOpen()
 
     if e
       return if $(e.target).closest('.js-forum-cover--open-modal').length
@@ -48,10 +49,10 @@ class @ForumCover
 
     return if $('#overlay').is(':visible')
 
-    Fade.out $('.blackout')[0]
-    @header[0].classList.remove 'forum-category-header--cover-modal'
+    Blackout.hide()
+    @header[0].classList.remove 'js-forum-cover--is-open'
 
-    @header[0]._open = false
+    @isModalOpen(false)
 
 
   hasCover: =>
@@ -62,23 +63,22 @@ class @ForumCover
     @uploadButton.length > 0
 
 
-  toggleModal: (e) =>
-    e.preventDefault()
+  isModalOpen: (isModalOpen) =>
+    return false if !@hasCoverEditor()
 
-    if @header[0]._open
-      @closeModal()
-    else
-      @openModal()
+    if isModalOpen?
+      @header[0].dataset.isModalOpen = if isModalOpen then '1' else ''
+
+    @header[0].dataset.isModalOpen == '1'
 
 
-  openModal: =>
-    Fade.in $('.blackout')[0]
-    @header[0]._open = true
-    @header[0].classList.add 'forum-category-header--cover-modal'
+  initFileupload: =>
+    return unless @isModalOpen()
+    return if @uploadButton[0]._initialized
+
+    @uploadButton[0]._initialized = true
 
     $dropZone = $('.js-forum-cover--modal')
-
-    return if @uploadButton[0]._initialized
 
     @$uploadButton().fileupload
       method: 'POST'
@@ -90,21 +90,35 @@ class @ForumCover
         @loading[0].dataset.state = 'enabled'
 
       done: (_e, data) =>
-        @update(data.result.data)
+        @update(data.result)
 
-      fail: (_e, data) ->
-        osu.ajaxError data.jqXHR
+      fail: osu.fileuploadFailCallback(@$uploadButton())
 
       complete: (_e, data) =>
         @loading[0].dataset.state = ''
 
     @updateOptions()
 
-    @uploadButton[0]._initialized = true
+
+  toggleModal: (e) =>
+    e.preventDefault()
+
+    if @isModalOpen()
+      @closeModal()
+    else
+      @openModal()
+
+
+  openModal: =>
+    Blackout.show()
+    @isModalOpen(true)
+    @header[0].classList.add 'js-forum-cover--is-open'
+
+    @initFileupload()
 
 
   setOverlay: (targetState) =>
-    return unless @header.length
+    return unless @hasCoverEditor()
 
     return if targetState == @overlay[0].getAttribute('data-state')
 
@@ -144,7 +158,7 @@ class @ForumCover
       url: @uploadButton[0].dataset.url
       method: 'delete'
     .done (data) =>
-      @update data.data
+      @update data
     .always =>
       @loading[0].dataset.state = ''
 
@@ -157,4 +171,6 @@ class @ForumCover
     backgroundImage = if backgroundImageUrl? then "url('#{backgroundImageUrl}')" else ''
     @header[0].style.backgroundImage = backgroundImage
 
-    $('.js-forum-cover--remove').toggleClass('forum-post-actions__action--disabled', !@hasCover())
+    $('.js-forum-cover--remove').toggleClass('js-disabled', !@hasCover())
+
+    @initFileupload()

@@ -26,13 +26,13 @@ class OrdersController extends Controller
             $orders->where('orders.status', 'paid');
         }
 
-        $ordersItemsQuantities = Store\Order::itemsQuantities($orders);
+        $ordersItemsQuantities = $orders->itemsQuantities();
 
         $orders = $orders->orderBy('created_at')->get();
 
         $productId = (int) Request::input('product');
         if ($productId) {
-            $orders = array_where($orders, function ($_i, $order) use ($productId) {
+            $orders = $orders->filter(function ($order) use ($productId) {
                 return $order->items()->where('product_id', $productId)->exists();
             });
         }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,12 +21,9 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetDiscussion;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BeatmapDiscussionTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function testIsValid()
     {
         $beatmapset = factory(Beatmapset::class)->create();

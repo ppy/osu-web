@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Models\Smiley;
@@ -46,11 +47,19 @@ class BBCodeForDB
         $this->uid = config('osu.bbcode.uid');
     }
 
-    /*
-    * Handles:
-    * - Centre (centre)
-    */
+    public function parseAudio($text)
+    {
+        return preg_replace(
+            ",\[(audio)\](.+?\.mp3)\[(/audio)\],",
+            "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
+            $text
+        );
+    }
 
+    /**
+     * Handles:
+     * - Centre (centre).
+     */
     public function parseBlockSimple($text)
     {
         foreach (['centre'] as $tag) {
@@ -286,7 +295,7 @@ class BBCodeForDB
 
     public function generate()
     {
-        $text = e($this->text);
+        $text = htmlentities($this->text, ENT_QUOTES, 'UTF-8', true);
 
         $text = $this->parseCode($text);
         $text = $this->parseNotice($text);
@@ -296,6 +305,7 @@ class BBCodeForDB
 
         $text = $this->parseBlockSimple($text);
         $text = $this->parseInlineSimple($text);
+        $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);
         $text = $this->parseSize($text);
@@ -306,11 +316,6 @@ class BBCodeForDB
         $text = $this->parseSmiley($text);
         $text = $this->parseLinks($text);
 
-        // escape stuff ("<", "&", etc?)
-        // escape content of [code]...[/code]
-        // autolink
-        // smileys
-        // $uid suffix
         return $text;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -29,18 +30,28 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-        'Illuminate\Cookie\Middleware\EncryptCookies',
-        'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-        'Illuminate\Session\Middleware\StartSession',
-        'Illuminate\View\Middleware\ShareErrorsFromSession',
-        'App\Http\Middleware\VerifyCsrfToken',
-        'App\Http\Middleware\AutologinFromLegacyCookie',
-        'App\Http\Middleware\CheckUserBanStatus',
-        'App\Http\Middleware\UpdateUserLastvisit',
-        'Clockwork\Support\Laravel\ClockworkMiddleware',
-        'LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware',
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        Middleware\EncryptCookies::class,
+        \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+        Middleware\StartSession::class,
+        \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+        Middleware\VerifyCsrfToken::class,
+        Middleware\SetLocale::class,
+        Middleware\AutologinFromLegacyCookie::class,
+        Middleware\VerifyPrivilegedUser::class,
+        Middleware\CheckUserBanStatus::class,
+        Middleware\UpdateUserLastvisit::class,
+        \Clockwork\Support\Laravel\ClockworkMiddleware::class,
         Middleware\TurbolinksSupport::class,
+        \ChaseConey\LaravelDatadogHelper\Middleware\LaravelDatadogMiddleware::class,
+    ];
+
+    protected $middlewareGroups = [
+        'api' => [],
+        'web' => [],
+        'lio' => [
+            Middleware\LegacyInterOpAuth::class,
+        ],
     ];
 
     /**
@@ -49,12 +60,11 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => 'App\Http\Middleware\Authenticate',
-        'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-        'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-        'oauth' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthMiddleware',
-        'oauth-user' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthUserOwnerMiddleware',
-        'oauth-client' => 'LucaDegasperi\OAuth2Server\Middleware\OAuthClientOwnerMiddleware',
-        'check-authorization-params' => 'LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware',
+        'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'check-user-restricted' => Middleware\CheckUserRestricted::class,
+        'guest' => Middleware\RedirectIfAuthenticated::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verify-user' => Middleware\VerifyUser::class,
     ];
 }

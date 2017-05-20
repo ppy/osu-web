@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 /*
@@ -48,6 +49,14 @@ class BBCodeFromDB
         return preg_replace("/>\s*</", '><', $text);
     }
 
+    public function parseAudio($text)
+    {
+        $text = str_replace("[audio:{$this->uid}]", '<audio controls="controls" src="', $text);
+        $text = str_replace("[/audio:{$this->uid}]", '"></audio>', $text);
+
+        return $text;
+    }
+
     public function parseBold($text)
     {
         $text = str_replace("[b:{$this->uid}]", '<strong>', $text);
@@ -69,7 +78,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down js-spoilerbox__arrow bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='js-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
@@ -142,7 +151,8 @@ class BBCodeFromDB
             $imageTag = '';
 
             $imageSize = fast_imagesize($proxiedSrc);
-            if ($imageSize !== false && $imageSize[0] !== 0) {
+            // FIXME: remove in May after current cache expires
+            if ($imageSize !== false && $imageSize !== null && $imageSize[0] !== 0) {
                 $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
 
                 $topClass = 'proportional-container';
@@ -218,7 +228,7 @@ class BBCodeFromDB
 
     public function parseSmilies($text)
     {
-        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.config('osu.urls.smilies').'/\2 />', $text);
+        return preg_replace('#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/(.*?) \/><!\-\- s\1 \-\->#', '<img class="smiley" src="'.osu_url('smilies').'/\2 />', $text);
     }
 
     public function parseStrike($text)
@@ -266,13 +276,13 @@ class BBCodeFromDB
 
     public function parseYoutube($text)
     {
-        $text = str_replace("[youtube:{$this->uid}]", "<iframe width='425' height='344' src='https://www.youtube.com/embed/", $text);
-        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe>", $text);
+        $text = str_replace("[youtube:{$this->uid}]", "<div class='bbcode__video-box'><div class='bbcode__video'><iframe src='https://www.youtube.com/embed/", $text);
+        $text = str_replace("[/youtube:{$this->uid}]", "?rel=0' frameborder='0' allowfullscreen></iframe></div></div>", $text);
 
         return $text;
     }
 
-    public function toHTML()
+    public function toHTML($ignoreLineHeight = false)
     {
         $text = $this->text;
 
@@ -286,6 +296,7 @@ class BBCodeFromDB
         $text = $this->clearSpacesBetweenTags($text);
 
         // inline
+        $text = $this->parseAudio($text);
         $text = $this->parseBold($text);
         $text = $this->parseCentre($text);
         $text = $this->parseColour($text);
@@ -304,7 +315,13 @@ class BBCodeFromDB
         $text = str_replace("\n", '<br />', $text);
         $text = CleanHTML::purify($text);
 
-        return "<div class='bbcode'>{$text}</div>";
+        $className = 'bbcode';
+
+        if ($ignoreLineHeight) {
+            $className .= ' bbcode--normal-line-height';
+        }
+
+        return "<div class='{$className}'>{$text}</div>";
     }
 
     public function toEditor()
@@ -329,6 +346,6 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text);
+        return html_entity_decode($text, ENT_QUOTES);
     }
 }

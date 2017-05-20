@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,3 +16,74 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master")
+
+@section('content')
+    <div class="osu-layout__section osu-layout__section--full">
+        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--changelog-header">
+            <ol class="page-mode page-mode--breadcrumb">
+                <li class="page-mode__item">
+                    <a class="page-mode-link" href="{{ route('changelog') }}">
+                        {{ trans("layout.menu.{$current_section}.{$current_action}") }}
+
+                        <span class="page-mode-link__stripe">
+                        </span>
+                    </a>
+                </li>
+
+                <li class="page-mode__item">
+                    @if ($build === null)
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog') }}">
+                            {{ trans('changelog.feed_title') }}
+
+                            <span class="page-mode-link__stripe">
+                            </span>
+                        </a>
+                    @else
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build' => $build->version]) }}">
+                            {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+
+                            <span class="page-mode-link__stripe">
+                            </span>
+                        </a>
+                    @endif
+                </li>
+            </ol>
+
+            <div class="changelog-header">
+                <div class="changelog-header__streams-box">
+                    <div class="changelog-header__streams">
+                        @include('home._changelog_stream', ['stream' => $featuredStream, 'featured' => true])
+                    </div>
+                    <div class="changelog-header__streams">
+                        @foreach($streams as $stream)
+                            @include('home._changelog_stream', ['stream' => $stream, 'featured' => false])
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="osu-layout__row osu-layout__row--page-compact">
+            <div class="changelog">
+                @foreach($changelogs as $date => $logs)
+                    <p class="changelog__text changelog__text--date">{{ $date }}</p>
+                    @if ($build !== null)
+                        <p class="changelog__text changelog__text--build">
+                            {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+                        </p>
+                    @endif
+
+                    <div class="changelog__list">
+                        @php
+                            if (count($logs) === 0) {
+                                $logs = [App\Models\Changelog::placeholder()];
+                            }
+                        @endphp
+
+                        @each('home._changelog_change', $logs, 'log')
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endsection

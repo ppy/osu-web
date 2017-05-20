@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,23 +14,25 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .page-extra {
-  .default-box-shadow;
-  background-color: @grey-f;
-  padding: (@spacing * 2) @spacing;
-  margin-bottom: @spacing;
+  @top: page-extra;
+
+  .default-box-shadow();
+  background-color: #fff;
+  padding: 20px 10px;
+  margin-top: 10px;
 
   font-size: 14px;
 
   @media @desktop {
-    padding-left: (@spacing * 3);
-    padding-right: (@spacing * 3);
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
-  &:hover &__actions {
-    opacity: 1;
+  &--compact {
+    padding: 0;
   }
 
   &__actions {
@@ -40,24 +42,29 @@
 
     position: absolute;
 
-    right: (@spacing * 3);
-    top: (@spacing * 2);
+    right: 30px;
+    top: 20px;
+
     @media @desktop {
       right: 0;
-      top: (@spacing * 2);
+      top: 20px;
       width: 0;
       opacity: 0;
+    }
+
+    .@{top}:hover & {
+      opacity: 1;
     }
   }
 
   &__title {
     font-size: 18px;
     font-weight: 500;
-    margin: 0 0 (@spacing * 2);
+    margin: 0 0 20px;
 
     &--small {
       font-size: 15px;
-      margin-top: (@spacing * 3);
+      margin-top: 30px;
     }
   }
 

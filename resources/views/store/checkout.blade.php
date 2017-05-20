@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -40,12 +40,12 @@
 
         @if ($order->requiresShipping())
             <div class="osu-layout__sub-row">
-                <div class="row">
-                    <div class="col-md-12"><h2>Shipping Address</h2></div>
+                <div class="grid grid--gutters">
+                    <div class="grid-cell grid-cell--fill"><h2>Shipping Address</h2></div>
                 </div>
 
                 @if(count($addresses))
-                    <div class="row address-list">
+                    <div class="grid grid--gutters address-list">
                         @foreach($addresses as $a)
                         @include('store.objects.address', ['data' => $a, 'selected' => ($order->address && $order->address->address_id == $a->address_id), 'modifiable' => true])
                         @endforeach

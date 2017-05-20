@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,69 +14,75 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-list {
-  @_top: beatmap-list;
+  @top: beatmap-list;
+  color: #fff;
+  min-width: 0;
+  display: flex;
 
   &--selecting {
     z-index: @z-index--blackout-visible;
   }
 
   &__selector {
+    .default-box-shadow();
+
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
-    margin-top: (@spacing / 2);
-    background-color: @grey-f;
+    margin-top: 5px;
+    background-color: @gray-blue-darker;
 
     flex-direction: column;
 
-    .default-box-shadow();
 
     display: none;
-    .@{_top}--selecting & {
+    .@{top}--selecting & {
       display: flex;
     }
 
     &--submenu {
       top: 0;
       left: 100%;
-      margin-left: (@spacing / 2);
+      margin-left: 5px;
       margin-top: 0;
-      padding: @spacing 0;
+      padding: 10px 0;
     }
   }
 
   &__item {
     .reset-input();
-    background-color: @grey-f;
+    .link-plain();
+    .link-white();
 
     display: flex;
     align-items: center;
-
-    width: 100%;
     text-align: left;
+    padding: 5px 10px;
 
-    padding: (@spacing / 2) @spacing;
-
-    &.js-menu--active, &:hover {
-      background-color: @text-color;
-      color: @grey-f;
+    &:hover {
+      background-color: #000;
     }
 
     &--selected {
       .default-box-shadow();
       .default-border-radius();
+      background-color: @gray-blue-darker;
+      box-shadow: 0 0 0 2px fade(#000, 25%);
+      height: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      min-width: 0;
+
+      &:hover {
+        background-color: #000;
+      }
     }
 
     &--current {
-      background-color: @grey-c;
-    }
-
-    &--large {
-      padding: @spacing;
+      background-color: #111;
     }
   }
 }

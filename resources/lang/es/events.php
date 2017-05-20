@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'achievement' => '<strong><em>:user</em></strong> ha desbloqueado el logro "<strong>:achievement</strong>"!',
     'beatmapset_delete' => ':beatmapset ha sido eliminado.',
@@ -28,6 +29,6 @@ return [
     'rank_lost' => '<strong><em>:user</em></strong> ha perdido el primer lugar en <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> ha elegido apoyar osu! una vez más - ¡gracias por tu generosidad!',
     'user_support_first' => '<strong>:user</strong> se ha convertido en osu! supporter - ¡gracias por tu generosidad!',
-    'user_support_gift' => '<strong>:user</strong> ha recibido el regalo de osu! supporter!',
-    'username_change' => '<strong>:previousUsername</strong> ha cambiado su nombre de usuario a <strong><em>:user</strong></em>!',
+    'user_support_gift' => '¡<strong>:user</strong> ha recibido el regalo de osu! supporter!',
+    'username_change' => '¡<strong>:previousUsername</strong> ha cambiado su nombre de usuario a <strong><em>:user</strong></em>!',
 ];

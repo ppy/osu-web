@@ -1,20 +1,19 @@
-###*
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
+###
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
 {div,a,span} = React.DOM
@@ -36,7 +35,7 @@ class Beatmaps.SearchFilter extends React.Component
   @defaultProps: ->
     multiselect: false
     selected: []
-    default: []
+    default: ''
 
   @propTypes:
     title: React.PropTypes.string.isRequired
@@ -85,10 +84,15 @@ class Beatmaps.SearchFilter extends React.Component
     $.inArray(i, @state.selected) > -1
 
   render: ->
-    selectors = []
-    $.each @props.options, (i, e) =>
-      selectors.push a href:'#', className: ('active' if @selected(e['id'])), value: e['id'], key: i, onClick: @clickReject, onMouseDown: @select.bind(@, e['id']), e['name']
+    div id: @props.id, className: 'beatmapsets-search-filter', 'data-name': @props.name,
+      span className:'beatmapsets-search-filter__header', @props.title
 
-    div id: @props.id, className: 'selector', 'data-name': @props.name,
-      span className:'header', @props.title
-      selectors
+      for option, i in @props.options
+        a
+          key: i
+          href: '#'
+          className: "beatmapsets-search-filter__item #{'beatmapsets-search-filter__item--active' if @selected(option.id)}"
+          value: option.id
+          onClick: @clickReject
+          onMouseDown: @select.bind(@, option.id)
+          option.name

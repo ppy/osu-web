@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\ScoreRetrievalException;
 
 class Beatmap extends Model
 {
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
+    protected $guarded = [];
 
     protected $casts = [
         'orphaned' => 'boolean',
@@ -34,11 +36,6 @@ class Beatmap extends Model
     public $timestamps = false;
 
     protected $hidden = ['checksum', 'filename', 'orphaned'];
-
-    public function mods()
-    {
-        return $this->hasMany(Mod::class, 'beatmap_id', 'beatmap_id');
-    }
 
     const MODES = [
         'osu' => 0,
@@ -64,7 +61,7 @@ class Beatmap extends Model
 
     public function beatmapDiscussions()
     {
-        return $this->hasMany(BeatmapDiscussion::class);
+        return $this->hasMany(BeatmapDiscussion::class, 'beatmap_id');
     }
 
     public function creator()
@@ -74,12 +71,12 @@ class Beatmap extends Model
 
     public function difficulty()
     {
-        return $this->hasMany(BeatmapDifficulty::class);
+        return $this->hasMany(BeatmapDifficulty::class, 'beatmap_id');
     }
 
     public function difficultyAttribs()
     {
-        return $this->hasMany(BeatmapDifficultyAttrib::class);
+        return $this->hasMany(BeatmapDifficultyAttrib::class, 'beatmap_id');
     }
 
     public function getModeAttribute()
@@ -96,20 +93,34 @@ class Beatmap extends Model
 
     public function failtimes()
     {
-        return $this->hasMany(BeatmapFailtimes::class);
+        return $this->hasMany(BeatmapFailtimes::class, 'beatmap_id');
     }
 
-    public function scores()
+    private function getScores($model_path, $mode)
     {
-        $mode = studly_case($this->modeStr($this->playmode));
+        $mode = $mode ?? static::modeStr($this->playmode);
 
-        return $this->hasMany("App\Models\Score\\{$mode}");
+        if ($this->mode !== 'osu' && $this->mode !== $mode) {
+            throw new ScoreRetrievalException(trans('errors.beatmaps.standard-converts-only'));
+        }
+
+        $mode = studly_case($mode);
+
+        return $this->hasMany("{$model_path}\\{$mode}", 'beatmap_id');
     }
 
-    public function scoresBest()
+    public function scores($mode = null)
     {
-        $mode = studly_case($this->modeStr($this->playmode));
+        return $this->getScores("App\Models\Score", $mode);
+    }
 
-        return $this->hasMany("App\Models\Score\Best\\{$mode}");
+    public function scoresBest($mode = null)
+    {
+        return $this->getScores("App\Models\Score\Best", $mode);
+    }
+
+    public function status()
+    {
+        return array_search($this->approved, Beatmapset::STATES, true);
     }
 }

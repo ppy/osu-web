@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,14 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Store;
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models\Store;
 
 class OrderItem extends Model
 {
-    protected $connection = 'mysql-store';
-    protected $table = 'order_items';
     protected $primaryKey = 'id';
 
     public function subtotal()
@@ -34,12 +31,12 @@ class OrderItem extends Model
 
     public function order()
     {
-        return $this->belongsTo('App\Models\Store\Order');
+        return $this->belongsTo(Order::class, 'order_id');
     }
 
     public function product()
     {
-        return $this->belongsTo('App\Models\Store\Product');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 
     public function refreshCost()

@@ -1,20 +1,21 @@
 ###
-Copyright 2015 ppy Pty. Ltd.
-
-This file is part of osu!web. osu!web is distributed with the hope of
-attracting more community contributions to the core ecosystem of osu!.
-
-osu!web is free software: you can redistribute it and/or modify
-it under the terms of the Affero GNU General Public License version 3
-as published by the Free Software Foundation.
-
-osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-See the GNU Affero General Public License for more details.
-
-You should have received a copy of the GNU Affero General Public License
-along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
+
 # address form show/hide.
 $(document).on 'click', '#new-address-switch a', (e) ->
   e.preventDefault()
@@ -56,7 +57,7 @@ checkUsernameValidity = ->
     $status.toggleClass 'pink-dark', !data.available
   .fail (xhr) ->
     if xhr.status == 401
-      osu.popup Lang.get('errors.logged_out'), 'danger'
+      osu.popup osu.trans('errors.logged_out'), 'danger'
 
 
 debouncedCheckUsernameValidity = _.debounce checkUsernameValidity, 300
@@ -82,22 +83,22 @@ checkCheckoutConfirmations = ->
   $checkboxesChecked = $checkboxes.filter(':checked')
   $('#checkout-with-paypal').toggleClass('disabled', $checkboxesChecked.length < $checkboxes.length)
 
-$(document).on 'ready turbolinks:load', checkCheckoutConfirmations
+$(document).on 'turbolinks:load', checkCheckoutConfirmations
 $(document).on 'change', '.js-checkout-confirmation-step', checkCheckoutConfirmations
 
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   quantity = parseInt $('.js-store-item-quantity').val(), 10
 
   return if quantity > 0
 
   $('.js-store-add-to-cart').hide()
 
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   return if $('#username.form-control').length == 0
 
   preventUsernameSubmission()
 
-$(document).on 'ready turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   # delegating doesn't work because of timing.
   $('#product-form').submit (e) ->
     !$(e.target).data('disabled')

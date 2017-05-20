@@ -1,0 +1,312 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.artist {
+  @_top: artist;
+  &__index {
+    background-color: #293336;
+    padding: 10px;
+    font-weight: 300;
+    .default-box-shadow();
+
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &__box {
+    margin: 10px;
+
+    &--hidden {
+      opacity: 0.25;
+    }
+  }
+
+  &__album {
+    background-color: #161A1C;
+    padding: 20px;
+    align-items: center;
+    .default-box-shadow();
+    overflow: hidden;
+    @media @desktop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__album-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__album-header-overlay {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+    opacity: 0.5;
+    transition: 1s ease-in-out;
+    top: 0;
+    // Hide this overlay in Internet Explorer
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      display: none;
+    }
+    &--sidebar {
+      opacity: 0;
+    }
+  }
+
+  &__album-cover {
+    width: 64px;
+    height: 64px;
+    .default-box-shadow();
+
+    &--sidebar {
+      width: 128px;
+      height: 128px;
+    }
+  }
+
+  &__sidebar-album-link {
+    display: block;
+    text-align: center;
+    margin: 20px;
+    color: white;
+    &:hover, &:active {
+      color: white;
+      text-decoration: none;
+    }
+
+    &:hover {
+      .@{_top}__album-header-overlay {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  &__admin-note {
+    background-color: @yellow-dark;
+    color: black;
+    font-weight: bold;
+    padding: 20px;
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    @media @desktop {
+      .default-box-shadow();
+    }
+  }
+
+  &__album-title {
+    padding: 10px;
+    font-size: 2em;
+    color: white;
+    .default-text-shadow();
+    &--sidebar {
+      padding: 0;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  }
+
+  &__name {
+    text-align: center;
+    color: #FFCD23;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+    &:hover {
+      color: #FFCD23;
+    }
+  }
+
+  &__track-count {
+    color: #777777;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  &__description {
+    background-color: #293336;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0 20px 20px 20px;
+
+    @media @desktop {
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+    .default-box-shadow();
+
+    > h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+
+    &--index {
+      padding: 30px;
+      background-color: #1A2223;
+    }
+  }
+
+  &__portrait-wrapper {
+    width: 250px;
+    height: 250px;
+    &--index {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  &__portrait {
+    .at2x-simple("/images/layout/artist-noavatar.jpg");
+    width: 250px;
+    height: 250px;
+    .default-box-shadow();
+    .default-border-radius();
+    background-size: cover;
+    background-position: center;
+    display: block;
+
+    margin: -90px auto 10px auto;
+
+    @media @desktop {
+      margin-top: -160px;
+    }
+
+    &--index {
+      width: 200px;
+      height: 200px;
+      margin: 0;
+      @media @desktop {
+        margin: 0;
+      }
+    }
+  }
+
+  &__label-overlay {
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    border-radius: 4px 0 3px 0;
+  }
+
+  &__links-area {
+    margin: 0 auto 10px auto;
+    width: 270px;
+    padding: 10px;
+
+    @media @desktop {
+      .default-box-shadow();
+      background: #2A3336;
+    }
+
+    &--albums {
+      @media @mobile {
+        display: none;
+      }
+    }
+  }
+
+  &__white-link {
+    .link-white();
+    .link-plain();
+  }
+
+  &__button {
+    align-items: center;
+    background: #181f21;
+    border-radius: 4px;
+    color: white;
+    display: flex;
+    font-size: 16px;
+    height: 40px;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    user-select: none;
+
+    .default-text-shadow();
+    .default-box-shadow();
+
+    transition: 0.1s;
+
+    &:hover, &:focus {
+      color: white;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background: lighten(#181f21, 2%);
+    }
+
+    &--twitter {
+      background: @twitter-colour;
+      &:hover {
+        background: lighten(@twitter-colour, 5%);
+      }
+    }
+
+    &--facebook {
+      background: @facebook-colour;
+      &:hover {
+        background: lighten(@facebook-colour, 5%);
+      }
+    }
+
+    &--soundcloud {
+      background: @soundcloud-colour;
+      &:hover {
+        background: lighten(@soundcloud-colour, 5%);
+      }
+    }
+
+    &--bandcamp {
+      background: @bandcamp-colour;
+      &:hover {
+        background: lighten(@bandcamp-colour, 5%);
+      }
+    }
+
+    &--patreon {
+      background: @patreon-colour;
+      &:hover {
+        background: lighten(@patreon-colour, 5%);
+      }
+    }
+
+  }
+
+  &__link-text {
+    font-weight: 200;
+    flex-basis: 100%;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  &__chevron {
+    right: 0;
+  }
+}

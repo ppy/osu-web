@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -33,7 +33,7 @@ class BBCodeFromDBTest extends TestCase
             $text->text = trim(file_get_contents($dbFilePath));
             $referenceHtmlOutput = $this->wrapDiv(str_replace("\n", '', trim(file_get_contents($htmlFilePath))));
 
-            $this->assertEquals($referenceHtmlOutput, $text->toHTML());
+            $this->assertSame($referenceHtmlOutput, $text->toHTML());
         }
     }
 

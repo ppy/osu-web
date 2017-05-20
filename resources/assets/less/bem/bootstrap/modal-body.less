@@ -1,21 +1,20 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 .modal-body {
   padding: 10px;
@@ -32,18 +31,18 @@
   }
 
   &--user-dropdown {
-    background-color: #FFF;
+    background-color: #fff;
   }
 
   &--page {
     .default-border-radius();
-    background-color: @grey-f;
+    background-color: #fff;
   }
 
   // Elements
   &__compartment {
     display: flex;
-    padding: @grid-gutter-width/4;
+    padding: 10px;
 
     &--left {
       border-radius: 0 0 0 5px;
@@ -52,11 +51,11 @@
     }
 
     &--right {
-      background-color: #EEE;
+      background-color: #eee;
       border-radius: 0 0 5px;
       flex: none;
       justify-content: flex-end;
-      padding: 0px;
+      padding: 0;
     }
   }
 
@@ -64,7 +63,7 @@
     align-items: stretch;
     display: flex;
     flex-wrap: wrap;
-    margin: @grid-gutter-width/4 0 0 0;
+    margin: 10px 0 0 0;
 
     @media (min-width: @screen-sm-min) {
       flex-wrap: nowrap;
@@ -74,7 +73,7 @@
   &__paragraph {
     display: block;
     font-size: 12px;
-    margin: @grid-gutter-width/4 0 0 0;
+    margin: 10px 0 0 0;
   }
 
   &__title {

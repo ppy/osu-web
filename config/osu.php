@@ -2,6 +2,11 @@
 
 // osu config~
 return [
+    'avatar' => [
+        'storage' => env('AVATAR_STORAGE', 'local-avatar'),
+        'cache_purge_prefix' => env('AVATAR_CACHE_PURGE_PREFIX'),
+    ],
+
     'bbcode' => [
         // this should be random or a config variable.
         // ...who am I kidding, this shouldn't even exist at all.
@@ -29,6 +34,10 @@ return [
     'forum' => [
         'admin_forum_id' => intval(env('ADMIN_FORUM_ID', 28)),
         'help_forum_ids' => array_map('intval', explode(' ', env('HELP_FORUM_IDS', '4 5 29 30 101'))),
+        'double_post_time' => [
+            'normal' => 72,
+            'author' => 24,
+        ],
         'feature_forum_id' => get_int(env('FEATURE_FORUM_ID')),
 
         'slack_watch' => [
@@ -36,8 +45,14 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
+    'mp-history' => [
+        'event-count' => 500,
+    ],
+    'landing' => [
+        'video_url' => env('LANDING_VIDEO_URL', 'https://assets.ppy.sh/media/landing.mp4'),
+    ],
     'legacy' => [
-        'shared_cookie_secret' => env('SHARED_COOKIE_SECRET', ''),
+        'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
@@ -46,26 +61,52 @@ return [
     ],
     'twitch_client_id' => env('TWITCH_CLIENT_ID'),
     'urls' => [
-        'legal' => [
-            'dmca' => 'https://osu.ppy.sh/p/copyright',
-            'tos' => 'https://osu.ppy.sh/p/terms',
-        ],
-        'smilies' => 'https://osu.ppy.sh/forum/images/smilies',
+        'base' => 'https://osu.ppy.sh',
+        'dev' => 'https://discord.gg/ppy',
+        'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
+        'smilies' => '/forum/images/smilies',
+        'support-the-game' => '/p/support#transactionarea',
+
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
-            'twitter' => 'https://osu.ppy.sh/p/twitter',
+            'twitter' => '/p/twitter',
         ],
         'status' => [
             'osustatus' => 'https://twitter.com/osustatus',
             'server' => 'http://stat.ppy.sh/',
         ],
-        'support-the-game' => 'https://osu.ppy.sh/p/support#transactionarea',
         'user' => [
-            'kudosu' => 'https://osu.ppy.sh/wiki/Kudosu',
-            'rules' => 'https://osu.ppy.sh/wiki/Osu!:Rules',
+            'kudosu' => '/wiki/Kudosu',
+            'recover' => '/p/forgot-email',
+            'rules' => '/wiki/Osu!:Rules',
+            'signup' => '/p/register',
+        ],
+        'rankings' => [
+            'charts' => '/p/chart',
+            'country' => '/p/countryranking',
+            'kudosu' => '/p/kudosu',
+        ],
+        'home' => [
+            'news' => '/p/news',
+        ],
+        'help' => [
+            'support' => 'http://help.ppy.sh/',
         ],
     ],
     'user' => [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
+        'verification_key_length_hex' => 8,
+        'verification_key_tries_limit' => 8,
+
+        'password_reset' => [
+            'expires_hour' => 2,
+            'key_length' => 8,
+            'tries' => 8,
+        ],
+    ],
+    'changelog' => [
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
     ],
 ];

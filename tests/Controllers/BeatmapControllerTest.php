@@ -1,6 +1,7 @@
 <?php
+
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,8 +17,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-use App\Models\User;
 use App\Models\Beatmap;
+use App\Models\User;
 
 class BeatmapControllerTest extends TestCase
 {
@@ -26,7 +27,7 @@ class BeatmapControllerTest extends TestCase
         parent::setUp();
 
         $this->user = factory(User::class)->create();
-        $this->beatmap = factory(Beatmap::class)->create();
+        $this->beatmap = factory(Beatmap::class)->states('approved')->create();
     }
 
     /**
@@ -38,7 +39,8 @@ class BeatmapControllerTest extends TestCase
     {
         $this->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
             'type' => 'country',
-        ])->seeStatusCode(403);
+        ])->assertStatus(422)
+        ->assertJson(['error' => trans('errors.supporter_only')]);
     }
 
     /**
@@ -50,8 +52,8 @@ class BeatmapControllerTest extends TestCase
         $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
                 'type' => 'country',
-            ])->seeStatusCode(422)
-            ->seeJson(['error' => trans('errors.supporter_only')]);
+            ])->assertStatus(422)
+            ->assertJson(['error' => trans('errors.supporter_only')]);
 
         $this->user->osu_subscriber = true;
         $this->user->save();
@@ -59,6 +61,6 @@ class BeatmapControllerTest extends TestCase
         $this->actingAs($this->user)
             ->json('GET', route('beatmaps.scores', ['id' => $this->beatmap->beatmap_id]), [
                 'type' => 'country',
-            ])->seeStatusCode(200);
+            ])->assertStatus(200);
     }
 }

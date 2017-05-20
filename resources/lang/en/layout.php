@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -26,52 +26,63 @@ return [
     'menu' => [
         'home' => [
             '_' => 'home',
-            'getNews' => 'news',
+            'account-edit' => 'settings',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'getNews' => 'news',
+            'index' => 'osu!',
             'supportTheGame' => 'support the game',
+            'password-reset-index' => 'reset password',
         ],
         'help' => [
             '_' => 'help',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
             'getSupport' => 'support',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'listing',
+            'artists' => 'featured artists',
             // 'getPacks' => 'packs',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
-            '_' => 'beatmapsets',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'overall',
-            'getCountry' => 'country',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'overall',
+        'rankings' => [
+            '_' => 'rankings',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'charts',
+            'country' => 'country',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
+            'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getSupport' => 'support',
             'getLive' => 'live',
-            'getSlack' => 'osu!dev',
+            'contests' => 'contests',
             'profile' => 'profile',
             'tournaments' => 'tournaments',
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
+            'forum-topic-watches-index' => 'subscriptions',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
+        ],
+        'multiplayer' => [
+            '_' => 'multiplayer',
+            'show' => 'match',
         ],
         'error' => [
             '_' => 'error',
@@ -121,6 +132,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
@@ -129,6 +141,37 @@ return [
             ],
         ],
     ],
+
+    'footer' => [
+        'general' => [
+            '_' => 'General',
+            'home' => 'Home',
+            'changelog' => 'Changelog',
+            'beatmaps' => 'Beatmap Listings',
+            'download' => 'Download osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Help & Community',
+            'faq' => 'Frequently Asked Questions',
+            'forum' => 'CommunityForums',
+            'livestreams' => 'Live Streams',
+            'report' => 'Report an Issue',
+        ],
+        'support' => [
+            '_' => 'Support osu!',
+            'tags' => 'Supporter Tags',
+            'merchandise' => 'Merchandise',
+        ],
+        'legal' => [
+            '_' => 'Legal & Status',
+            'tos' => 'Terms of Service',
+            'copyright' => 'Copyright (DMCA)',
+            'serverStatus' => 'Server Status',
+            'osuStatus' => '@osustatus',
+        ],
+    ],
+
     'errors' => [
         '404' => [
             'error' => 'Page Missing',
@@ -170,5 +213,36 @@ return [
         ],
         // used by sentry if it returns an error
         'reference' => "Just in case, here's a code you can give to support!",
+    ],
+
+    'popup_login' => [
+        'login' => [
+            'email' => 'email address',
+            'forgot' => "I've forgotten my details",
+            'password' => 'password',
+            'title' => 'Sign In To Proceed',
+
+            'error' => [
+                'email' => "Username or email address doesn't exist",
+                'password' => 'Incorrect password',
+            ],
+        ],
+
+        'register' => [
+            'info' => "You need an account, sir. Why don't you have one already?",
+            'title' => "Don't have an account?",
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'account-edit' => 'Settings',
+            'logout' => 'Log Out',
+            'profile' => 'My Profile',
+        ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Type to search!',
     ],
 ];

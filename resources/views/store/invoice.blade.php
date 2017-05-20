@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -24,22 +24,22 @@
     border: none;
     box-shadow: none;
     background-color: #fff;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 </style>
 
 @if(!$order)
-<div class="osu-layout__row osu-layout__row--page">
-    <div class="col-md-12">
+<div class="grid grid--gutters osu-layout__row osu-layout__row--page">
+    <div class="grid-cell grid-cell--fill">
         <h1>Not Found</h1>
         <p>The requested order could not be found.</p>
     </div>
 </div>
 @else
-@if(Input::has("thanks"))
-<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap no-print">
-    <div class="col-xs-12">
+@if(Request::has('thanks'))
+<div class="grid grid--gutters osu-layout__row osu-layout__row--page no-print">
+    <div class="grid-cell grid-cell--fill">
         <h1>Thanks for your order!</h1>
         <p>
             You will receive a confirmation email soon. If you have any enquiries, please <a href='mailto:osustore@ppy.sh'>contact us</a>!
@@ -52,9 +52,9 @@
     @if($i > 0)
     <div class='print-page-break'></div>
     @endif
-    <div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap invoice-page"><div class="col-md-12">
-        <div class="row">
-            <div class="col-xs-5">
+    <div class="grid grid--gutters osu-layout__row osu-layout__row--page invoice-page"><div class="grid-cell grid-cell--fill">
+        <div class="grid grid--xs">
+            <div class="grid-cell grid-cell--5of12">
                 <div>
                     <h1>Invoice</h1>
                 </div>
@@ -69,7 +69,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-xs-7 shipper-info">
+            <div class="grid-cell shipper-info">
                 <strong>ppy Pty Ltd</strong>
                 <p>ACN 163 593 413 a.t.f. Dean Herbert Family Trust</p>
                 <p>contact: pe@ppy.sh / +81 80 1381 1430</p>
@@ -79,28 +79,28 @@
         <hr />
 
         @if($order->address !== null)
-        <div class="row">
-            <div class="col-xs-4">
+        <div class="grid grid--xs">
+            <div class="grid-cell grid-cell--1of3">
                 <h4>Sent Via:</h4>
                 @include('store.objects.address', ['data' => $sentViaAddress, 'grid' => ''])
             </div>
-            <div class="col-xs-4">
+            <div class="grid-cell grid-cell--1of3">
             </div>
-            <div class="col-xs-4">
+            <div class="grid-cell grid-cell--1of3">
                 <h4>Shipping To:</h4>
                 @include('store.objects.address', ['data' => $order->address, 'grid' => ''])
             </div>
         </div>
         @endif
 
-        <div class="row">
-            <div class="col-xs-12">
+        <div class="grid">
+            <div class="grid-cell">
                 <h3>Order Details</h3>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-xs-12">
+        <div class="grid">
+            <div class="grid-cell">
                 @include("store.objects.order", ['order' => $order, 'weight' => true, 'shipping' => false])
             </div>
         </div>

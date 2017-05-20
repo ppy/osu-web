@@ -1,29 +1,29 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 .navbar-mobile {
   @content-height: @navbar-mobile--content-height;
-  border-width: 0px;
+  border-width: 0;
+  margin-bottom: 0;
 
   &__brand {
     float: none;
-    padding: 0px @grid-gutter-width/4;
+    padding: 0 10px;
     height: auto;
   }
 
@@ -55,8 +55,11 @@
 
   &__menu {
     box-shadow: none;
-    border-top-width: 0px;
+    border-top-width: 0;
     background-color: #444;
+    position: absolute;
+    width: 100%;
+    z-index: @z-index--nav-popup;
 
     &:focus,
     &:hover,
@@ -86,7 +89,7 @@
       }
 
       &--logout {
-        &:extend(.default-border-radius);
+        .default-border-radius();
         width: @content-height;
         height: @content-height;
         border: 2px solid fade(#fff, 50%);
@@ -111,7 +114,7 @@
 
   &__menu-item-icon {
     width: @content-height;
-    margin-right: @grid-gutter-width/4;
+    margin-right: 10px;
     text-align: center;
 
     &--closed {
@@ -132,7 +135,7 @@
   }
 
   &__menu-items {
-    margin-top: 0px;
+    margin-top: 0;
   }
 
   &__menu-subitem {
@@ -141,7 +144,7 @@
       color: #fff;
       display: flex;
       align-items: center;
-      padding-left: @content-height + @grid-gutter-width/2;
+      padding-left: (@content-height + 20px);
 
       &:focus,
       &:hover,
@@ -154,15 +157,15 @@
 
   &__menu-subitem-icon {
     width: @content-height;
-    margin-right: @grid-gutter-width/4;
+    margin-right: 10px;
   }
 
   &__toggle {
     float: none;
     width: @content-height;
     height: @content-height;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 
     border-width: 2px;
     color: #fff;

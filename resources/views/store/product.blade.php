@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -31,16 +31,16 @@
         </div>
 
         <div class="osu-layout__sub-row">
-            <div class="row">
-                <div class="col-md-12">
+            <div class="grid">
+                <div class="grid-cell grid-cell--fill">
                     <h1>{{ $product->name }}</h1>
                 </div>
             </div>
 
             @if($product->custom_class && View::exists("store.products.{$product->custom_class}"))
 
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="grid">
+                    <div class="grid-cell grid-cell--fill">
                         {!! Markdown::convertToHtml($product->description) !!}
                     </div>
                 </div>
@@ -48,40 +48,47 @@
                 @include("store.products.{$product->custom_class}")
 
             @else
-            <div class="row">
-                <div class="col-md-6">
-                    <ul id="product-slides" class="rslides">
+            <div class="grid grid--gutters">
+                <div class="grid-cell grid-cell--1of2">
+                    <div class="gallery-previews">
                         @foreach($product->images() as $i => $image)
-                        <li>
                             <?php $imageSize = fast_imagesize($image[1]); ?>
                             <a
-                                class="js-gallery"
+                                class="gallery-previews__item js-gallery"
                                 data-width="{{ $imageSize[0] }}"
                                 data-height="{{ $imageSize[1] }}"
                                 data-gallery-id="product-{{ $product->product_id }}"
                                 data-index="{{ $i }}"
                                 href="{{ $image[1] }}"
-                                style="background-image: url('{{ $image[1] }}');">
-                            </a>
-                        </li>
+                                style="background-image: url('{{ $image[1] }}');"
+                                data-visibility="{{ $loop->first ? '' : 'hidden' }}"
+                            ></a>
                         @endforeach
-                    </ul>
-                    <ul id="product-slides-nav" class="rslides-nav">
-                        @foreach($product->images() as $image)
-                        <li>
-                            <a href="#"><div style="background-image: url('{{ $image[0] }}');"></div></a>
-                        </li>
+                    </div>
+                    <div class="gallery-thumbnails">
+                        @foreach($product->images() as $i => $image)
+                            <a
+                                href="#"
+                                style="background-image: url('{{ $image[0] }}');"
+                                class="
+                                    gallery-thumbnails__item
+                                    js-gallery-thumbnail
+                                    {{ $loop->first ? 'js-gallery-thumbnail--active' : '' }}
+                                "
+                                data-gallery-id="product-{{ $product->product_id }}"
+                                data-index="{{ $i }}"
+                            ></a>
                         @endforeach
-                    </ul>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
+                <div class="grid-cell grid-cell--1of2">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             {!! Markdown::convertToHtml($product->description) !!}
                         </div>
                     </div>
-                    <div class="row price-box">
-                        <div class="col-md-12">
+                    <div class="grid price-box">
+                        <div class="grid-cell grid-cell--fill">
                             <p class="price">{{ currency($product->cost) }}</p>
                             <p class="notes">excluding shipping fees</p>
                         </div>
@@ -104,8 +111,8 @@
                     @endif
 
                     @if($product->inStock())
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
                                 {!! Form::label('item[quantity]', 'Quantity') !!}
@@ -114,14 +121,14 @@
                         </div>
                     </div>
                     @elseif($product->inStock(1, true))
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             {{ trans('store.product.stock.out_with_alternative') }}
                         </div>
                     </div>
                     @else
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             {{ trans('store.product.stock.out') }}
                         </div>
                     </div>
@@ -139,7 +146,12 @@
                     </button>
 
                 @elseif(!$requestedNotification)
-                    <a class="btn-osu btn-osu-default" href="{{ route('store.request-notification', ['product_id' => $product->product_id, 'create']) }}" data-remote="true" data-method="put">
+                    <a
+                        class="btn-osu btn-osu-default"
+                        href="{{ route('store.notification-request', ['product' => $product->product_id]) }}"
+                        data-remote="true"
+                        data-method="POST"
+                    >
                         {{ trans('store.product.notify') }}
                     </a>
                 @endif
@@ -148,7 +160,16 @@
             @if($requestedNotification && !$product->inStock())
                 <div class="store-notification-requested-alert">
                     <span class="fa fa-check-circle-o store-notification-requested-alert__icon"></span>
-                    <p class="store-notification-requested-alert__text">{!! trans('store.product.notification_success', ['link' => link_to_route('store.request-notification', trans('store.product.notification_remove_text'), ['product_id' => $product->product_id, 'delete'], ['data-remote' => 'true', 'data-method' => 'put'])]) !!}</p>
+                    <p class="store-notification-requested-alert__text">
+                        {!! trans('store.product.notification_success', [
+                            'link' => link_to_route(
+                                'store.notification-request',
+                                trans('store.product.notification_remove_text'),
+                                ['product' => $product->product_id],
+                                ['data-remote' => 'true', 'data-method' => 'DELETE']
+                            )
+                        ]) !!}
+                    </p>
                 </div>
             @endif
         </div>

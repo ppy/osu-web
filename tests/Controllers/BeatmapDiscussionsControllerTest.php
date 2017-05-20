@@ -1,22 +1,20 @@
 <?php
 
-use App\Models\Beatmapset;
 use App\Models\Beatmap;
-use App\Models\User;
-use App\Models\BeatmapsetDiscussion;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\Beatmapset;
+use App\Models\BeatmapsetDiscussion;
+use App\Models\User;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {
-    use DatabaseTransactions;
-
     public function setUp()
     {
         parent::setUp();
 
         $this->user = factory(User::class)->create();
+        $this->anotherUser = factory(User::class)->create();
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->user->user_id,
         ]);
@@ -38,6 +36,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
     // normal vote
     public function testPutVoteInitial()
     {
+        // can not vote as discussion starter
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
@@ -46,52 +45,66 @@ class BeatmapDiscussionsControllerTest extends TestCase
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '1'],
             ])
-            ->assertResponseOk();
+            ->assertStatus(403);
 
-        $this->assertEquals($currentVotes + 1, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore, $this->currentScore($this->beatmapDiscussion));
+
+        // and then no problem as another user
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
+
+        $this
+            ->actingAs($this->anotherUser)
+            ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
+                'beatmap_discussion_vote' => ['score' => '1'],
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
     }
 
     // voting again only changes the score
     public function testPutVoteChange()
     {
-        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->user->user_id]);
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->anotherUser->user_id]);
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
         $this
-            ->actingAs($this->user)
+            ->actingAs($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
-        $this->assertEquals($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
     }
 
     // voting 0 will remove the vote
     public function testPutVoteRemove()
     {
-        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->user->user_id]);
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->anotherUser->user_id]);
 
         $currentVotes = BeatmapDiscussionVote::count();
         $currentScore = $this->currentScore($this->beatmapDiscussion);
 
         $this
-            ->actingAs($this->user)
+            ->actingAs($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '0'],
             ])
-            ->assertResponseOk();
+            ->assertStatus(200);
 
-        $this->assertEquals($currentVotes - 1, BeatmapDiscussionVote::count());
-        $this->assertEquals($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentVotes - 1, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
     }
 
     private function currentScore($discussion)
     {
-        return $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+        return (int) $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
     }
 }

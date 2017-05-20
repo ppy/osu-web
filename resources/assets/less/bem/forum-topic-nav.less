@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,74 +14,24 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .forum-topic-nav {
-  @_top: ~"forum-topic-nav";
+  @_top: forum-topic-nav;
 
   @_content-height: 30px;
-  @_main-height: (@_content-height + (@spacing * 2));
+  @_main-height: (@_content-height + 20px);
   width: 100%;
   background-image: linear-gradient(to top, @gray-dark @_main-height, transparent @_main-height);
 
   height: @_main-height;
-
-  &:hover {
-    .@{_top}__seek-bar {
-
-      @media @desktop {
-        height: (@spacing * 3 / 2);
-      }
-
-      &--all {
-        opacity: 0.5;
-      }
-    }
-  }
-
-
-  &__button-circle {
-    flex: none;
-    .default-box-shadow();
-    .circle(@_content-height);
-    color: @grey-f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: @blue-darker;
-    margin: 0 (@spacing / 2);
-    outline: none;
-    border: none;
-    -webkit-appearance: none;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: @grey-f;
-      text-decoration: none;
-      .thicker-box-shadow();
-    }
-
-    &--blank {
-      background-color: transparent;
-      box-shadow: none;
-      opacity: 0.7;
-
-      &:focus,
-      &:hover,
-      &:active {
-        box-shadow: none;
-      }
-
-    }
-  }
 
   &__content {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 (@spacing / 2);
+    padding: 0 5px;
     height: @_main-height;
     position: absolute;
     bottom: 0;
@@ -97,7 +47,7 @@
 
     &--input {
       .reset-input();
-      color: @grey-f;
+      color: #fff;
       display: none;
 
       border: 0;
@@ -110,7 +60,7 @@
     &--middle {
       width: auto;
       text-align: center;
-      margin: 0 @spacing;
+      margin: 0 10px;
     }
   }
 
@@ -138,11 +88,11 @@
 
   &__item {
     .default-border-radius;
-    color: @grey-f;
+    color: #fff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: 0 (@spacing / 2);
+    margin: 0 5px;
     border: 2px solid transparent;
 
     font-size: 12px;
@@ -151,8 +101,8 @@
     }
 
     ._button-hover() {
-      background-color: @grey-1;
-      color: @grey-f;
+      background-color: #111;
+      color: #fff;
       text-decoration: none;
     }
 
@@ -172,9 +122,9 @@
     }
 
     &--main {
-      margin: 0 (@spacing / 4);
+      margin: 0 2.5px;
       @media @desktop {
-        margin: 0 @spacing;
+        margin: 0 10px;
       }
     }
 
@@ -191,9 +141,9 @@
     cursor: pointer;
     backface-visibility: hidden;
 
-    height: @spacing;
+    height: 10px;
     @media @desktop {
-      height: (@spacing / 2);
+      height: 5px;
     }
 
     &::before {
@@ -212,9 +162,15 @@
       position: absolute;
       left: 0;
       bottom: 100%;
-      height: @spacing;
+      height: 10px;
       width: 100%;
       background-color: transparent;
+    }
+
+    .@{_top}:hover & {
+      @media @desktop {
+        height: 15px;
+      }
     }
 
     &--all {
@@ -230,9 +186,12 @@
           display: none;
         }
       }
+
+      .@{_top}:hover & {
+        opacity: 0.5;
+      }
     }
   }
-
 
   &__seek-bar-container {
     position: absolute;
@@ -245,19 +204,19 @@
 
   &__seek-tooltip {
     position: absolute;
-    bottom: (@_main-height + @spacing * 3);
+    bottom: (@_main-height + 30px);
 
     display: flex;
     width: 0;
     justify-content: center;
+    will-change: opacity, transform;
   }
 
-
   &__seek-tooltip-number {
-    &:extend(.default-border-radius);
+    .default-border-radius();
     background-color: @gray-dark;
-    padding: (@spacing / 2) (@spacing * 2);
-    color: @grey-f;
+    padding: 5px 20px;
+    color: #fff;
     flex: none;
 
     &::before {

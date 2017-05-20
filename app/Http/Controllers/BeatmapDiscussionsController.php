@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,11 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Models\BeatmapDiscussion;
-use App\Models\BeatmapsetDiscussion;
+use Auth;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -30,9 +30,72 @@ class BeatmapDiscussionsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => 'show']);
 
         return parent::__construct();
+    }
+
+    public function allowKudosu($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+        priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
+
+        $error = $discussion->allowKudosu();
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function denyKudosu($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+        priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
+
+        $error = $discussion->denyKudosu(Auth::user());
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $discussion = BeatmapDiscussion::whereNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionDestroy', $discussion)->ensureCan();
+
+        $error = $discussion->softDelete(Auth::user());
+
+        if ($error === null) {
+            return $discussion->beatmapsetDiscussion->defaultJson();
+        } else {
+            return error_popup($error);
+        }
+    }
+
+    public function restore($id)
+    {
+        $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
+        priv_check('BeatmapDiscussionRestore', $discussion)->ensureCan();
+
+        $discussion->restore();
+
+        return $discussion->beatmapsetDiscussion->defaultJson();
+    }
+
+    public function show($id)
+    {
+        $discussion = BeatmapDiscussion::findOrFail($id);
+
+        if ($discussion->beatmap === null) {
+            abort(404);
+        }
+
+        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
     }
 
     public function vote($id)
@@ -41,13 +104,8 @@ class BeatmapDiscussionsController extends Controller
 
         priv_check('BeatmapDiscussionVote', $discussion)->ensureCan();
 
-        $params = get_params(Request::all(), 'beatmap_discussion_vote',
-            ['score:int'],
-            [],
-            [
-                'user_id' => Auth::user()->user_id,
-            ]
-        );
+        $params = get_params(Request::all(), 'beatmap_discussion_vote', ['score:int']);
+        $params['user_id'] = Auth::user()->user_id;
 
         if ($discussion->vote($params)) {
             return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());

@@ -23,12 +23,13 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get install \
     git \
-    mysql-server-5.7 \
+    mysql-community-server \
     nginx \
     nodejs \
     php7.0-curl \
     php7.0-fpm \
     php7.0-gd \
+    php7.0-intl \
     php7.0-json \
     php7.0-mbstring \
     php7.0-mcrypt \
@@ -40,6 +41,8 @@ apt-get install \
     vim \
     wget \
     -q -y --force-yes
+
+npm install -g yarn
 
 update-rc.d php7.0-fpm defaults
 
@@ -62,6 +65,6 @@ service mysql restart
 service php7.0-fpm restart
 service nginx restart
 
-./bin/db_setup
+./bin/db_setup.sh
 
 echo "Finished setup of daemons and servers"

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,10 +17,10 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Forum;
 
 use DB;
-use Illuminate\Database\Eloquent\Model;
 
 class Forum extends Model
 {
@@ -93,7 +93,7 @@ class Forum extends Model
 
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class, 'forum_id');
     }
 
     public function parentForum()
@@ -108,7 +108,7 @@ class Forum extends Model
 
     public function cover()
     {
-        return $this->hasOne(ForumCover::class);
+        return $this->hasOne(ForumCover::class, 'forum_id');
     }
 
     public function scopeMoveDestination($query)
@@ -196,12 +196,12 @@ class Forum extends Model
         $lastTopic = $this->lastTopic(false);
 
         if ($lastTopic === null) {
-            $this->forum_last_post_id = null;
-            $this->forum_last_post_time = null;
-            $this->forum_last_post_subject = null;
-            $this->forum_last_poster_id = null;
-            $this->forum_last_poster_name = null;
-            $this->forum_last_poster_colour = null;
+            $this->forum_last_post_id = 0;
+            $this->forum_last_post_time = 0;
+            $this->forum_last_post_subject = '';
+            $this->forum_last_poster_id = 0;
+            $this->forum_last_poster_name = '';
+            $this->forum_last_poster_colour = '';
         } else {
             $this->forum_last_post_id = $lastTopic->topic_last_post_id;
             $this->forum_last_post_time = $lastTopic->topic_last_post_time;

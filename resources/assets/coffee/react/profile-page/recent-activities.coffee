@@ -1,3 +1,21 @@
+###
+#    Copyright 2015-2017 ppy Pty. Ltd.
+#
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
+#
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
+#
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+###
+
 el = React.createElement
 
 class ProfilePage.RecentActivities extends React.Component
@@ -18,34 +36,34 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.rank',
+            __html: osu.trans 'events.rank',
               user: osu.link(event.user.url, event.user.username)
               rank: event.rank
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-              mode: Lang.get "beatmaps.mode.#{event.mode}"
+              mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'rankLost'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.rank_lost',
+            __html: osu.trans 'events.rank_lost',
               user: osu.link(event.user.url, event.user.username)
               rank: event.rank
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
-              mode: Lang.get "beatmaps.mode.#{event.mode}"
+              mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'beatmapsetDelete'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmapset_delete',
+            __html: osu.trans 'events.beatmapset_delete',
               beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
 
       when 'beatmapsetRevive'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmapset_revive',
+            __html: osu.trans 'events.beatmapset_revive',
               beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
               user: osu.link(event.user.url, event.user.username)
 
@@ -53,7 +71,7 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmapset_update',
+            __html: osu.trans 'events.beatmapset_update',
               user: osu.link(event.user.url, event.user.username)
               beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
 
@@ -61,7 +79,7 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.beatmapset_upload',
+            __html: osu.trans 'events.beatmapset_upload',
               beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
               user: osu.link(event.user.url, event.user.username)
 
@@ -76,7 +94,7 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.achievement',
+            __html: osu.trans 'events.achievement',
               user: osu.link(event.user.url, event.user.username)
               achievement: event.achievement.name
 
@@ -84,7 +102,7 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.username_change',
+            __html: osu.trans 'events.username_change',
               user: osu.link(event.user.url, event.user.username)
               previousUsername: event.user.previousUsername
 
@@ -92,21 +110,21 @@ class ProfilePage.RecentActivities extends React.Component
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.user_support_again',
+            __html: osu.trans 'events.user_support_again',
               user: osu.link(event.user.url, event.user.username)
 
       when 'userSupportFirst'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.user_support_first',
+            __html: osu.trans 'events.user_support_first',
               user: osu.link(event.user.url, event.user.username)
 
       when 'userSupportGift'
         text = el 'div',
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
-            __html: Lang.get 'events.user_support_gift',
+            __html: osu.trans 'events.user_support_gift',
               user: osu.link(event.user.url, event.user.username)
 
       else
@@ -132,4 +150,4 @@ class ProfilePage.RecentActivities extends React.Component
         el 'ul', className: 'profile-extra-entries',
           @props.recentActivities.map (activity) => @_renderEntry(activity)
       else
-        el 'p', className: 'profile-extra-entries', Lang.get('events.empty')
+        el 'p', className: 'profile-extra-entries', osu.trans('events.empty')

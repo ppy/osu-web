@@ -1,0 +1,68 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmapset-info {
+  font-size: @font-size--normal;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 30px 0;
+
+  @media @desktop {
+    flex-direction: row;
+    height: 220px;
+  }
+
+  &__box {
+    margin: 15px 10px 0;
+    flex: none;
+
+    &--description {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    &--meta {
+      @media @desktop {
+        width: 175px;
+        overflow: hidden;
+      }
+    }
+
+    &--success-rate {
+      .center-content();
+      padding: 0 15px;
+      background-color: #eee;
+      font-size: @font-size--normal;
+
+      @media @desktop {
+        width: @beatmapset-float-box-width;
+      }
+    }
+  }
+
+  &__header {
+    font-size: @font-size--title-small;
+    color: inherit;
+    font-weight: bold;
+    font-style: normal;
+    padding: 0;
+    margin: 20px 0 5px;
+  }
+}

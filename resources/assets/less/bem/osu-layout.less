@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,12 +14,12 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .osu-layout {
   ._page {
-    .default-box-shadow;
-    background-color: @grey-f;
+    .default-box-shadow();
+    background-color: #fff;
   }
 
   display: flex;
@@ -44,6 +44,28 @@
     }
   }
 
+  &--body-dark {
+    background-color: #333;
+
+    &::before {
+      .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+
+      opacity: 0.25;
+    }
+  }
+
+  &--body-darker {
+    &::before {
+      .at2x("/images/backgrounds/page-darker.png", 500px, 500px);
+    }
+  }
+
+  &--body-333 {
+    &::before {
+      .at2x("/images/backgrounds/page-333.png", 500px, 500px);
+    }
+  }
+
   &--body-ddd {
     &::before {
       .at2x("/images/backgrounds/page-ddd.png", 500px, 500px);
@@ -51,18 +73,24 @@
   }
 
   &__col {
-    width: calc(100% ~'-' @spacing);
-    margin: (@spacing / 2);
+    width: calc(100% ~'-' 10px);
+    margin: 5px;
 
     &--sm-6 {
       @media @desktop {
-        width: calc((6 / 12 * 100%) ~'-' @spacing);
+        width: calc((6 / 12 * 100%) ~'-' 10px);
       }
     }
 
-    &--lg-4 {
-      @media @screen-large {
-        width: calc((4 / 12 * 100%) ~'-' @spacing);
+    &--sm-4 {
+      @media @desktop {
+        width: calc((4 / 12 * 100%) ~'-' 10px);
+      }
+    }
+
+    &--sm-3 {
+      @media @desktop {
+        width: calc((3 / 12 * 100%) ~'-' 10px);
       }
     }
   }
@@ -72,7 +100,11 @@
     flex-wrap: wrap;
 
     &--with-gutter {
-      margin: (-@spacing / 2);
+      margin: -5px;
+    }
+
+    &--landing-sitemap {
+      width: 100%;
     }
   }
 
@@ -90,6 +122,7 @@
     align-self: center;
     margin-left: auto;
     margin-right: auto;
+
     ._width;
     @media @desktop {
       ._width-desktop;
@@ -99,9 +132,13 @@
       .clearfix;
     }
 
+    &--changelog-header {
+      background-color: #555;
+    }
+
     &--forum-post-create {
       ._page;
-      padding: (@spacing * 2);
+      padding: 20px;
       padding-bottom: 0;
     }
 
@@ -115,64 +152,80 @@
       height: 100%;
     }
 
-    &--lg2 {
-      ._width(-@spacing * 4);
+    &--page {
+      ._page;
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+
+    &--page-artist-index {
+      margin-top: -20px;
+
       @media @desktop {
-        ._width-desktop(-@spacing * 4);
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 10px;
       }
     }
 
-    &--page {
-      ._page;
-      padding: (@spacing * 2);
-      margin-bottom: @spacing;
+    &--page-artist {
+      margin-top: -20px;
+
+      @media @desktop {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
     }
 
     &--page-compact {
       ._page;
-      margin-bottom: @spacing;
+      margin-bottom: 10px;
+    }
+
+    &--page-compact-no-margin {
+      ._page;
     }
 
     &--page-profile {
       ._page;
       padding: 0;
-      padding-top: (@spacing * 2);
-      margin-bottom: @spacing;
+      padding-top: 20px;
+      margin-bottom: 10px;
     }
 
-    &--page-beatmapset {
+    &--page-mp-history {
       ._page;
-      padding: @spacing * 2;
-      padding-bottom: 0;
-      margin-bottom: @spacing;
-
-      @media @mobile {
-        padding: 0;
-        padding-top: @spacing * 2;
-      }
+      padding: 20px;
     }
 
     &--sm1 {
-      ._width(@spacing * 2);
+      ._width(20px);
       @media @desktop {
-        ._width-desktop(@spacing * 2);
+        ._width-desktop(20px);
       }
     }
 
     &--sm2-desktop {
       @media @desktop {
-        ._width-desktop(@spacing * 4);
+        ._width-desktop(40px);
       }
     }
 
     &--with-gutter {
-      margin-top: (-@spacing / 2);
-      margin-bottom: (@spacing + (-@spacing / 2));
+      margin-top: -5px;
+      // default vertical margin + gutter
+      margin-bottom: (10px + -5px);
 
       width: 100%;
       @media @desktop {
-        ._width-desktop(-@spacing / 2);
+        ._width-desktop(-5px);
       }
+    }
+
+    &--landing-sitemap {
+      max-width: 800px;
+      margin: 35px 0 40px;
+      width: calc(100% ~'-' 20px);
     }
   }
 
@@ -181,19 +234,10 @@
     flex-direction: column;
 
     &--extra {
+      .inner-shadow-top();
       flex: 1 0 auto;
-      background-color: fade(@grey-0, 75%);
-
-      // for some reason linear-gradient doesn't work on main div
-      &::before {
-        content: ' ';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 4px;
-        background-image: linear-gradient(to bottom, @grey-3, transparent);
-      }
+      background-color: fade(#000, 75%);
+      padding-bottom: 10px;
     }
 
     &--full {
@@ -203,21 +247,34 @@
     &--minimum {
       flex: none;
     }
+
+    &--landing-footer {
+      flex: none;
+      .at2x("/images/backgrounds/page-000.png", 500px, 500px);
+    }
   }
 
   &__sub-row {
-    padding: (@spacing * 2);
+    padding: 20px;
 
     &--lg1 {
       ._page;
 
-      margin-left: (-@spacing * 2);
-      margin-right: (-@spacing * 2);
-      padding: (@spacing * 2) (@spacing * 4);
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 20px 40px;
+    }
+
+    &--lg1-compact {
+      ._page();
+
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 0;
     }
 
     &--with-separator {
-      background-image: linear-gradient(to bottom, fade(@grey-0, 20%), transparent 3px);
+      background-image: linear-gradient(to bottom, fade(#000, 20%), transparent 3px);
     }
   }
 }

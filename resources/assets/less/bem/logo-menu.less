@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,13 +14,13 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .logo-menu {
-  @_menu-colour: @grey-3;
-  @_menu-colour-hover: @grey-2;
-  @_menu-text-colour: @grey-f;
-  @_stripe-width: (@spacing / 2);
+  @_menu-colour: #333;
+  @_menu-colour-hover: #222;
+  @_menu-text-colour: #fff;
+  @_stripe-width: 5px;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -77,7 +77,7 @@
 
   &__menu-item {
     &--separator {
-      height: @spacing;
+      height: 10px;
     }
   }
 
@@ -100,7 +100,7 @@
   }
 
   &__menu-link-icon {
-    padding-left: (@spacing * 2);
+    padding-left: 20px;
   }
 
   &__menu-stripe {
@@ -119,12 +119,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex: 1 0 auto;
-    padding: (@spacing / 2) @spacing (@spacing / 2) (@spacing * 2);
+    flex: 1;
+    padding: 5px 10px 5px 20px;
     font-size: 15px;
+    white-space: nowrap;
 
     &--sub {
-      padding-right: (@spacing * 2);
+      padding-right: 20px;
     }
   }
 
@@ -144,7 +145,7 @@
   }
 
   &__user-slice {
-    padding: @spacing;
+    padding: 10px;
     color: @_menu-text-colour;
 
     &:focus,
@@ -157,13 +158,14 @@
 
     &--avatar {
       @_avatar-size: 40px;
-      width: (@spacing * 2 + @_avatar-size);
-      height: (@spacing * 2 + @_avatar-size);
-      padding: @spacing;
+      padding: 10px;
+      // includes padding*2
+      width: (20px + @_avatar-size);
+      height: (20px + @_avatar-size);
     }
 
     &--bg {
-      background-color: fade(@grey-0, 50%);
+      background-color: fade(#000, 50%);
     }
 
     &--session {

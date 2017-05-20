@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,8 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Listeners\Forum;
 
+use App\Events\Forum\TopicWasCreated;
+use App\Events\Forum\TopicWasReplied;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Slack;
 
@@ -30,14 +33,59 @@ class NotifySlack implements ShouldQueue
     public $prefix;
     public $message;
 
-    private function init($event, $options)
+    public function notifyNew($event)
+    {
+        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+            return;
+        }
+
+        return $this->notify($event, [
+            'message' => 'A new topic has been created at watched forum',
+            'prefix' => 'New topic',
+        ]);
+    }
+
+    public function notifyReply($event)
+    {
+        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
+            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+            return;
+        }
+
+        return $this->notify($event, [
+            'message' => 'A watched topic has been replied to',
+            'prefix' => 'Reply',
+        ]);
+    }
+
+    public function notify($event, $options)
     {
         $this->post = $event->post;
         $this->topic = $event->topic;
         $this->user = $event->user;
-
         $this->prefix = $options['prefix'];
         $this->message = html_entity_decode($options['message'], ENT_QUOTES | ENT_XML1, 'UTF-8');
+
+        return Slack::to('dev')
+            ->attach([
+                'color' => $this->notifyColour(),
+                'fallback' => $this->message,
+                'text' => $this->post->post_text,
+            ])
+            ->send($this->mainMessage());
+    }
+
+    public function subscribe($events)
+    {
+        $events->listen(
+            TopicWasCreated::class,
+            static::class.'@notifyNew'
+        );
+
+        $events->listen(
+            TopicWasReplied::class,
+            static::class.'@notifyReply'
+        );
     }
 
     private function replyCommand()
@@ -85,58 +133,5 @@ class NotifySlack implements ShouldQueue
         }
 
         return $this->user->username.$suffix;
-    }
-
-    public function notifyNew($event)
-    {
-        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
-            return;
-        }
-
-        $this->init($event, [
-            'message' => 'A new topic has been created at watched forum',
-            'prefix' => 'New topic',
-        ]);
-
-        return $this->notify();
-    }
-
-    public function notifyReply($event)
-    {
-        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
-            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
-            return;
-        }
-
-        $this->init($event, [
-            'message' => 'A watched topic has been replied to',
-            'prefix' => 'Reply',
-        ]);
-
-        return $this->notify();
-    }
-
-    public function notify()
-    {
-        return Slack::to('dev')
-            ->attach([
-                'color' => $this->notifyColour(),
-                'fallback' => $this->message,
-                'text' => $this->post->post_text,
-            ])
-            ->send($this->mainMessage());
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            "App\Events\Forum\TopicWasCreated",
-            "App\Listeners\Forum\NotifySlack@notifyNew"
-        );
-
-        $events->listen(
-            "App\Events\Forum\TopicWasReplied",
-            "App\Listeners\Forum\NotifySlack@notifyReply"
-        );
     }
 }

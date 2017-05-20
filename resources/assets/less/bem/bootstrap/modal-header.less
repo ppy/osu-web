@@ -1,21 +1,21 @@
 /**
-*    Copyright 2015 ppy Pty. Ltd.
-*
-*    This file is part of osu!web. osu!web is distributed with the hope of
-*    attracting more community contributions to the core ecosystem of osu!.
-*
-*    osu!web is free software: you can redistribute it and/or modify
-*    it under the terms of the Affero GNU General Public License version 3
-*    as published by the Free Software Foundation.
-*
-*    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-*    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*    See the GNU Affero General Public License for more details.
-*
-*    You should have received a copy of the GNU Affero General Public License
-*    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 .modal-header {
   border-radius: 5px 5px 0 0;
   border-bottom: 0;
@@ -39,15 +39,15 @@
   }
 
   &__title {
-    &:extend(.default-text-shadow);
+    .default-text-shadow();
     font-style: normal;
     font-size: 24px;
     color: #FFF;
 
     position: absolute;
-    margin: @grid-gutter-width/4;
-    bottom: 0px;
-    left: 0px;
+    margin: 10px;
+    bottom: 0;
+    left: 0;
   }
 
   &__userinfo {
@@ -69,6 +69,6 @@
     display: flex;
     height: 70px;
     justify-content: space-between;
-    padding: @grid-gutter-width/8 @grid-gutter-width/4;
+    padding: 5px 10px;
   }
 }

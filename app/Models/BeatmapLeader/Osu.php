@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\BeatmapLeader;
 
 use App\Models\Score;
@@ -27,6 +28,6 @@ class Osu extends Model
 
     public function score()
     {
-        return $this->belongsTo(Score\Osu::class);
+        return $this->belongsTo(Score\Osu::class, 'score_id');
     }
 }

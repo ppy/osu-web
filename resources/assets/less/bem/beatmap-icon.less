@@ -1,5 +1,5 @@
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -14,52 +14,77 @@
  *
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
+
 .beatmap-icon {
-  .icon-bg();
-  .default-box-shadow();
-  .center-content();
-
-  color: @grey-f;
-  border: 2px solid @grey-f;
-
-  .circle(21px);
+  color: #fff;
   font-size: 22px;
+  display: flex;
 
-  padding: 0;
+  &::before {
+    .full-size();
+    .icon-bg();
+
+    @margin: 2px;
+    @size: calc(100% ~'-' (@margin * 2));
+    height: auto;
+    width: @size;
+    padding-bottom: @size;
+    top: @margin;
+    left: @margin;
+    border-radius: 50%;
+    background-color: @pink;
+  }
 
   &--large {
-    .circle(29px);
     font-size: 30px;
   }
 
   &--beatmapset {
-    .circle(48px);
-    margin: 0;
-    
-    font-size: 52px;
-
-    cursor: pointer;
+    font-size: 40px;
   }
 
   &--easy {
-    background-color: @green;
+    &::before {
+      background-color: @green;
+    }
   }
 
   &--normal {
-    background-color: @yellow;
+    &::before {
+      background-color: @yellow;
+    }
   }
 
   &--hard {
-    background-color: @pink;
+    &::before {
+      background-color: @pink;
+    }
   }
 
   &--insane {
-    background-color: @purple;
+    &::before {
+      background-color: @purple;
+    }
   }
 
   &--expert {
-    background-color: @grey-0;
+    &::before {
+      background-color: #000;
+    }
+  }
+
+  &__shadow {
+    .default-box-shadow();
+    .full-size();
+
+    @margin: 1px;
+    @size: calc(100% ~'-' (@margin * 2));
+    height: auto;
+    width: @size;
+    padding-bottom: @size;
+    top: @margin;
+    left: @margin;
+    border-radius: 50%;
   }
 }

@@ -1,20 +1,19 @@
 ###
-#  Copyright 2015 ppy Pty. Ltd.
+#    Copyright 2015-2017 ppy Pty. Ltd.
 #
-#  This file is part of osu!web. osu!web is distributed with the hope of
-#  attracting more community contributions to the core ecosystem of osu!.
+#    This file is part of osu!web. osu!web is distributed with the hope of
+#    attracting more community contributions to the core ecosystem of osu!.
 #
-#  osu!web is free software: you can redistribute it and/or modify
-#  it under the terms of the Affero GNU General Public License version 3
-#  as published by the Free Software Foundation.
+#    osu!web is free software: you can redistribute it and/or modify
+#    it under the terms of the Affero GNU General Public License version 3
+#    as published by the Free Software Foundation.
 #
-#  osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
-#  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#  See the GNU Affero General Public License for more details.
+#    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+#    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#    See the GNU Affero General Public License for more details.
 #
-#  You should have received a copy of the GNU Affero General Public License
-#  along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
-#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
 {a, div, img, small, span} = React.DOM
@@ -45,14 +44,14 @@ el = React.createElement
           div
             className: 'detail-row__detail-row detail-row__detail-row--main'
             a
-              href: score.beatmap.data.url
+              href: score.beatmap.url
               className: 'detail-row__text-score detail-row__text-score--title'
-              title: "#{score.beatmapset.data.artist} - #{score.beatmapset.data.title} "
-              "#{score.beatmapset.data.title} [#{score.beatmap.data.version}]"
+              title: "#{score.beatmapset.artist} - #{score.beatmapset.title} "
+              "#{score.beatmapset.title} [#{score.beatmap.version}]"
               ' '
               small
                 className: 'detail-row__text-score detail-row__text-score--artist'
-                score.beatmapset.data.artist
+                score.beatmapset.artist
           div
             className: 'detail-row__detail-row detail-row__detail-row--bottom'
             span
@@ -71,7 +70,7 @@ el = React.createElement
               span
                 className: 'detail-row__text-score detail-row__text-score--pp'
                 if score.pp
-                  Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
+                  osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
                 else
                   score.score.toLocaleString()
             div
@@ -79,9 +78,9 @@ el = React.createElement
               span
                 className: 'detail-row__text-score'
                 if score.weight
-                  Lang.get 'users.show.extra.top_ranks.weighted_pp',
-                    percentage: "#{Math.round(score.weight.data.percentage)}%"
-                    pp: Lang.get('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.data.pp))
+                  osu.trans 'users.show.extra.top_ranks.weighted_pp',
+                    percentage: "#{Math.round(score.weight.percentage)}%"
+                    pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp))
                 else if !score.pp
-                  Lang.get 'users.show.extra.historical.recent_plays.accuracy',
+                  osu.trans 'users.show.extra.historical.recent_plays.accuracy',
                     percentage: "#{(score.accuracy * 100).toFixed(2)}%"

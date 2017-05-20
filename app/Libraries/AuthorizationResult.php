@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,9 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
+use Illuminate\Auth\AuthenticationException;
 
 class AuthorizationResult
 {
@@ -59,6 +61,13 @@ class AuthorizationResult
             return;
         }
 
-        throw new AuthorizationException($this->message());
+        if ($this->rawMessage() === 'require_login' ||
+            ends_with($this->rawMessage(), '.require_login')) {
+            $class = AuthenticationException::class;
+        } else {
+            $class = AuthorizationException::class;
+        }
+
+        throw new $class($this->message());
     }
 }

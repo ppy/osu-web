@@ -22,10 +22,16 @@ rm -f bootstrap/cache/*.php bootstrap/cache/*.json
 
 php composer.phar install
 
-php artisan migrate --force
+php artisan view:clear
+
+# e.g. OSU_SKIP_DB_MIGRATION=1 ./build.sh to bypass running migrations
+if [ -z "${OSU_SKIP_DB_MIGRATION:-}" ]; then
+  php artisan migrate --force
+fi
+
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
-npm install
-./node_modules/bower/bin/bower install --allow-root
+command -v yarn || npm install -g yarn
+yarn
 ./node_modules/gulp/bin/gulp.js --production

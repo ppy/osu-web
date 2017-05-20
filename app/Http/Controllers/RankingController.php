@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,29 +17,53 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Http\Controllers;
+
+use App\Models\Beatmap;
+use App\Models\UserStatistics;
+use Request;
 
 class RankingController extends Controller
 {
-    protected $section = 'ranking';
+    protected $section = 'rankings';
 
-    public function getOverall()
-    {
-        return view('ranking.overall');
-    }
+    const PAGE_SIZE = 20;
+    const MAX_RESULTS = 10000;
 
-    public function getCountry()
+    public function index($mode, $type, $page = 1)
     {
-        return view('ranking.country');
-    }
+        $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
+        $page = clamp(get_int($page), 1, $maxPages) - 1;
 
-    public function getCharts()
-    {
-        return view('ranking.charts');
-    }
+        if (!array_key_exists($mode, Beatmap::MODES)) {
+            abort(404);
+        }
 
-    public function getMapper()
-    {
-        return view('ranking.mapper');
+        $stats = UserStatistics\Model::getClass($mode)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('rank_score', 'desc')
+            ->limit(static::PAGE_SIZE)
+            ->offset(static::PAGE_SIZE * $page);
+
+        $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
+
+        $scores = [
+            'mode' => $mode,
+            'scores' => $scores,
+            'paging' => [
+                'page' => $page,
+                'pages' => $maxPages,
+            ],
+        ];
+
+        if (Request::ajax()) {
+            return $scores;
+        } else {
+            return view('ranking.index', compact('scores'));
+        }
     }
 }

@@ -3,7 +3,7 @@
 	[
 		{
 			"follow_symlinks": true,
-			"folder_exclude_patterns": ["logs", "storage", "bower_components", "public/build", "public/js", ".module-cache", "vendor"],
+			"folder_exclude_patterns": ["logs", "storage", "public/build", "public/js", ".module-cache", "vendor"],
 			"file_exclude_patterns": ["*.css*", "*.min*"],
 			"path": "."
 		}

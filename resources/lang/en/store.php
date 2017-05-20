@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -49,8 +49,5 @@ return [
         'notification_remove_text' => 'here',
 
         'notification_in_stock' => 'This product is already in stock!',
-
-        'notification_exists' => 'You have already requested a notification for this product!',
-        'notification_doesnt_exist' => "You haven't even requested a notification for this product!",
     ],
 ];

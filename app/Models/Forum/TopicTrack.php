@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,9 +17,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-namespace App\Models\Forum;
 
-use Illuminate\Database\Eloquent\Model;
+namespace App\Models\Forum;
 
 class TopicTrack extends Model
 {
@@ -47,11 +46,13 @@ class TopicTrack extends Model
             ->select('topic_id', 'mark_time')
             ->get();
 
-        $buf = [];
+        $result = [];
         foreach ($readStatus as $r) {
-            $buf[$r->topic_id] = ($r->mark_time >= $topicData[$r->topic_id]);
+            if ($r->mark_time >= $topicData[$r->topic_id]) {
+                $result[$r->topic_id] = true;
+            }
         }
 
-        return $buf;
+        return $result;
     }
 }

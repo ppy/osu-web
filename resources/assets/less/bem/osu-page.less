@@ -1,0 +1,132 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.osu-page {
+  .width(@extra-margin: 0px) {
+    width: calc(100% ~'-' (@extra-margin * 2));
+    max-width: (@container-sm - @extra-margin * 2);
+  }
+
+  .width-desktop(@extra-margin: 0px) {
+    width: calc(100% ~'-' ((@extra-margin + @grid-gutter-width) * 2));
+    max-width: (@container-sm - @extra-margin * 2);
+  }
+
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex: none;
+
+  .width();
+  @media @desktop {
+    .width-desktop();
+  }
+
+  &--account-edit-header {
+    .default-box-shadow();
+  }
+
+  &--beatmapsets-search-header {
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
+
+  &--comments {
+    .default-box-shadow();
+    background-color: #fff;
+    padding: 10px 20px;
+  }
+
+  &--contest {
+    @media @desktop {
+      .width-desktop(20px);
+      margin-bottom: 10px;
+    }
+  }
+
+  &--contests {
+    @media @desktop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &--forum-pippi {
+    margin-bottom: 10px;
+  }
+
+  &--header {
+    .default-box-shadow();
+    background-color: #333;
+  }
+
+  &--landing-buttons {
+    flex: 1 0 auto;
+  }
+
+  &--password-reset {
+    .default-box-shadow();
+    .inner-shadow-top();
+    margin-bottom: 10px;
+    background-color: #333;
+
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
+  &--small {
+    .width(20px);
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
+  &--small-desktop {
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
+  &--stg-block {
+    .default-box-shadow();
+    margin: 10px 0;
+  }
+
+  &--users-show-header {
+    .default-box-shadow();
+  }
+
+  &--users-show-header-extra {
+    .default-box-shadow();
+    .inner-shadow-top();
+    margin-bottom: 10px;
+  }
+
+  &--wiki {
+    .inner-shadow-top();
+    background-color: #333;
+    color: #fff;
+    font-size: @font-size--wiki;
+    padding: 20px;
+
+    @media @desktop {
+      padding-left: @padding-wiki-desktop;
+      padding-right: @padding-wiki-desktop;
+    }
+  }
+}

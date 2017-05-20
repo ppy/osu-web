@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,11 +17,11 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 namespace App\Models\Multiplayer;
 
 class Match extends Model
 {
-    protected $table = 'matches';
     protected $primaryKey = 'match_id';
     protected $hidden = ['private', 'keep_forever'];
     protected $dates = [
@@ -32,12 +32,12 @@ class Match extends Model
 
     public function games()
     {
-        return $this->hasMany(Game::class);
+        return $this->hasMany(Game::class, 'match_id');
     }
 
     public function events()
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(Event::class, 'match_id');
     }
 
     public function currentPlayers()

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use Faker\Factory;
+use Illuminate\Database\Seeder;
 
 class ForumSeeder extends Seeder
 {
@@ -15,19 +15,23 @@ class ForumSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         try {
-            // DB::table('phpbb_forums')->delete();
-            // DB::table('phpbb_topics')->delete();
-            // DB::table('phpbb_posts')->delete();
+            // Create appropriate forum permissions
+            $authOptionIds = [];
 
-            $forums = [];
+            foreach (['f_post', 'f_reply'] as $authOption) {
+                $option = new App\Models\Forum\AuthOption;
+                $option->auth_option = $authOption;
+                $option->save();
+
+                $authOptionIds[] = $option->auth_option_id;
+            }
 
             $beatmapCount = App\Models\Beatmapset::count();
             if ($beatmapCount > 0) {
                 // Create beatmap threads
-                $f = App\Models\Forum\Forum::create([
+                $f = factory(App\Models\Forum\Forum::class, 'parent')->create([
                     'forum_name' => 'Beatmap Threads',
                     'forum_desc' => 'Beatmap thread info for beatmaps',
-                    'forum_type' => 0,
                 ]);
 
                 $f2 = $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
@@ -40,7 +44,7 @@ class ForumSeeder extends Seeder
                 foreach ($bms as $set) {
                     $t = $f2->topics()->save(factory(App\Models\Forum\Topic::class)->make([
                         'forum_id' => $f2->forum_id,
-                        'topic_poster' => $set->creator,
+                        'topic_poster' => $set->user_id,
                         'topic_title' => $set->artist.' - '.$set->title,
                     ]));
 
@@ -78,6 +82,19 @@ class ForumSeeder extends Seeder
                     $f2->refreshCache();
                 }
             });
+
+            foreach (App\Models\Forum\Forum::all() as $forum) {
+                foreach ($authOptionIds as $optionId) {
+                    $group = new App\Models\Forum\Authorize;
+
+                    $group->group_id = App\Models\UserGroup::GROUPS['default'];
+                    $group->forum_id = $forum->forum_id;
+                    $group->auth_option_id = $optionId;
+                    $group->auth_setting = 1;
+
+                    $group->save();
+                }
+            }
         } catch (\Illuminate\Database\QueryException $e) {
             echo $e->getMessage()."\r\n";
         } catch (Exception $ex) {

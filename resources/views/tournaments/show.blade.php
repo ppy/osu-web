@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015 ppy Pty. Ltd.
+    Copyright 2015-2017 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -18,7 +18,7 @@
 @extends("master")
 
 @section("content")
-<div class="osu-layout__row osu-layout__row--page">
+<div class="osu-layout__row osu-layout__row--page-compact">
     <div class="osu-page-header osu-page-header--tournaments">
         <h1 class="osu-page-header__title">{{ $tournament->name }}</h1>
         <h2 class="osu-page-header__title osu-page-header__title--small">
@@ -37,7 +37,7 @@
 
     @if (!Auth::user())
         <div>
-        Please <a href="#" title="{{ trans("users.anonymous.login_link") }}" data-toggle="modal" data-target="#user-dropdown-modal">login</a> to view registration details!
+        Please <a href="#" class="js-user-link" title="{{ trans("users.anonymous.login_link") }}">login</a> to view registration details!
         </div>
     @else
         <div>

@@ -1,10 +1,10 @@
 <?php
 
 /**
- *    Copyright 2015 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
- *    This file is part of osu!web. osu!web is distributed in the hopes of
- *    attracting more community contributions to the core ecosystem of osu!
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
  *
  *    osu!web is free software: you can redistribute it and/or modify
  *    it under the terms of the Affero GNU General Public License version 3
@@ -32,16 +32,28 @@ return [
     ],
 
     'discussions' => [
+        'allow_kudosu' => 'allow kudosu',
+        'delete' => 'delete',
+        'deleted' => 'Deleted by :editor :delete_time',
+        'deny_kudosu' => 'deny kudosu',
+        'edit' => 'edit',
+        'edited' => 'Last edited by :editor :update_time',
+        'message_placeholder' => 'Type here to post',
+        'message_type_select' => 'Select Comment Type',
+        'reply_placeholder' => 'Type your response here',
+        'require-login' => 'Please login to post or reply',
+        'resolved' => 'Resolved',
+        'restore' => 'restore',
+        'title' => 'Discussions',
+
         'collapse' => [
             'all-collapse' => 'Collapse all',
             'all-expand' => 'Expand all',
         ],
 
-        'edit' => 'edit',
-        'edited' => 'Last edited by :editor :update_time',
         'empty' => [
             'empty' => 'No discussions yet!',
-            'filtered' => 'No discussion matches selected filter.',
+            'hidden' => 'No discussion matches selected filter.',
         ],
 
         'message_hint' => [
@@ -49,29 +61,29 @@ return [
             'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
         ],
 
-        'message_placeholder' => 'Type here to post',
-
         'message_type' => [
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
         ],
 
-        'message_type_select' => 'Select Comment Type',
-
         'mode' => [
             'general' => 'General',
             'timeline' => 'Timeline',
         ],
 
-        'require-login' => 'Please login to post or reply',
-        'resolved' => 'Resolved',
+        'new' => [
+            'timestamp' => 'Timestamp',
+            'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
+            'title' => 'New Discussion',
+        ],
 
         'show' => [
-            'title' => 'Beatmap Discussion',
+            'title' => ':title mapped by :mapper',
         ],
 
         'stats' => [
+            'deleted' => 'Deleted',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
@@ -80,11 +92,25 @@ return [
         ],
     ],
 
+    'nominations' => [
+        'disqualifed-at' => 'disqualified :time_ago (:reason).',
+        'disqualifed_no_reason' => 'no reason specified',
+        'disqualification-prompt' => 'Reason for disqualification?',
+        'disqualify' => 'Disqualify',
+        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'nominate' => 'Nominate',
+        'nominate-confirm' => 'Nominate this beatmap?',
+        'qualified' => 'Estimated to be ranked :date, if no issues are found.',
+        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'required-text' => 'Nominations: :current/:required',
+        'title' => 'Nomination Status',
+    ],
+
     'listing' => [
         'search' => [
             'prompt' => 'type in keywords...',
             'options' => 'More Search Options',
-            'not-found' => 'not results',
+            'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
         ],
         'mode' => 'Mode',
@@ -92,80 +118,6 @@ return [
         'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
-    ],
-    'beatmapset' => [
-        'show' => [
-            'details' => [
-                'made-by' => 'made by :user',
-                'submitted' => 'submitted on ',
-                'ranked' => 'ranked on ',
-                'logged-out' => 'You need to log in before downloading any beatmaps!',
-                'download' => [
-                    'normal' => 'download',
-                    'direct' => 'osu!direct',
-                    'no-video' => 'without video version',
-                ],
-            ],
-            'stats' => [
-                'cs' => 'Circle Size',
-                'hp' => 'HP Drain',
-                'od' => 'Accuracy',
-                'ar' => 'Approach Rate',
-                'stars' => 'Star Difficulty',
-                'length' => 'Length',
-                'bpm' => 'BPM',
-
-                'chart' => [
-                    'cs' => 'CS',
-                    'hp' => 'HP',
-                    'od' => 'OD',
-                    'ar' => 'AR',
-                    'sd' => 'SD',
-                ],
-
-                'source' => 'Source',
-                'tags' => 'Tags',
-            ],
-            'extra' => [
-                'description' => [
-                    'title' => 'Description',
-                ],
-                'success-rate' => [
-                    'title' => 'Success Rate',
-                    'rate' => 'Success Rate: :percentage%',
-                    'points' => 'Points of Failure',
-                    'retry' => 'Retry',
-                    'fail' => 'Fail',
-                ],
-                'scoreboard' => [
-                    'title' => 'Scoreboard',
-                    'no-scores' => [
-                        'global' => 'No scores yet. Maybe you should try setting some?',
-                        'loading' => 'Loading scores...',
-                        'country' => 'No one from your country has set a score on this map yet!',
-                        'friend' => 'No one of your friends has set a score on this map yet!',
-                    ],
-                    'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
-                    'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
-                    'global' => 'Global Ranking',
-                    'country' => 'Country Ranking',
-                    'friend' => 'Friend Ranking',
-                    'first' => [
-                        'accuracy' => 'Accuracy',
-                        'score' => 'Score',
-                        'count300' => '300',
-                        'count100' => '100',
-                        'count50' => '50',
-                    ],
-                    'list' => [
-                        'rank-header' => 'Rank',
-                        'player-header' => 'Player',
-                        'score' => 'Score',
-                        'accuracy' => 'Accuracy',
-                    ],
-                ],
-            ],
-        ],
     ],
     'mode' => [
         'any' => 'Any',
@@ -178,6 +130,7 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'loved' => 'Loved',
         'faves' => 'Favourites',
         'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
@@ -196,19 +149,42 @@ return [
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
     ],
+    'mods' => [
+        'NF' => 'No Fail',
+        'EZ' => 'Easy Mode',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'SD' => 'Sudden Death',
+        'DT' => 'Double Time',
+        'Relax' => 'Relax',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'FL' => 'Flashlight',
+        'SO' => 'Spun Out',
+        'AP' => 'Auto Pilot',
+        'PF' => 'Perfect',
+        '4K' => '4K',
+        '5K' => '5K',
+        '6K' => '6K',
+        '7K' => '7K',
+        '8K' => '8K',
+        'FI' => 'Fade In',
+        '9K' => '9K',
+        'NM' => 'No mods',
+    ],
     'language' => [
-    'any' => 'Any',
-    'english' => 'English',
-    'chinese' => 'Chinese',
-    'french' => 'French',
-    'german' => 'German',
-    'italian' => 'Italian',
-    'japanese' => 'Japanese',
-    'korean' => 'Korean',
-    'spanish' => 'Spanish',
-    'swedish' => 'Swedish',
-    'instrumental' => 'Instrumental',
-    'other' => 'Other',
+        'any' => 'Any',
+        'english' => 'English',
+        'chinese' => 'Chinese',
+        'french' => 'French',
+        'german' => 'German',
+        'italian' => 'Italian',
+        'japanese' => 'Japanese',
+        'korean' => 'Korean',
+        'spanish' => 'Spanish',
+        'swedish' => 'Swedish',
+        'instrumental' => 'Instrumental',
+        'other' => 'Other',
     ],
     'extra' => [
         'video' => 'Has Video',
