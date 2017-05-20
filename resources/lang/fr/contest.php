@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'small' => "Concourez plsu qu'en cliquant juste sur des cercles",
+        'small' => "Concourez plus qu'en cliquant juste sur des cercles",
         'large' => 'Concours communautaires osu!',
     ],
     'voting' => [
