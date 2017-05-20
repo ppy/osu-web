@@ -58,7 +58,7 @@
 
         <a
             class="js-logout-link nav-popup__link"
-            href="{{ route('users.logout') }}"
+            href="{{ route('logout') }}"
             data-confirm="{{ trans('users.logout_confirm') }}"
             data-method="delete"
             data-remote="1"

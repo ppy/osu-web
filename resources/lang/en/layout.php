@@ -33,6 +33,7 @@ return [
             'getNews' => 'news',
             'index' => 'osu!',
             'supportTheGame' => 'support the game',
+            'password-reset-index' => 'reset password',
         ],
         'help' => [
             '_' => 'help',
@@ -53,13 +54,13 @@ return [
             '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'overall',
-            'getCountry' => 'country',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'overall',
+        'rankings' => [
+            '_' => 'rankings',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'charts',
+            'country' => 'country',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
@@ -239,5 +240,9 @@ return [
             'logout' => 'Log Out',
             'profile' => 'My Profile',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Type to search!',
     ],
 ];

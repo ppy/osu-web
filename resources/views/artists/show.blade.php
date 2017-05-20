@@ -39,6 +39,9 @@
     <div class="osu-layout__row osu-layout__row--page-artist">
         <div class="page-contents page-contents--artist">
             <div class="page-contents__artist-left">
+                @if (!$artist->visible)
+                    <div class="artist__admin-note">{{ trans('artist.admin.hidden') }}</div>
+                @endif
                 <div class="artist__description">{!! Markdown::convertToHtml($artist->description) !!}</div>
                 @if (count($albums) > 0)
                     <div class="artist__albums">

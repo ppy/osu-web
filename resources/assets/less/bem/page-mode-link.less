@@ -28,9 +28,18 @@
     color: #fff;
   }
 
+  &--white {
+    .link-white();
+  }
+
   &--is-disabled {
-    .link-gray-light-disabled();
+    .link-gray-555();
     cursor: default;
+
+    &.@{_top}--white {
+      .link-white();
+      opacity: 0.5;
+    }
   }
 
   &__stripe {
@@ -42,6 +51,10 @@
     transform: translateY(5px) scaleY(0);
     transition: transform 120ms ease-in-out;
     background-color: @yellow;
+
+    &--black {
+      background-color: #000;
+    }
 
     .@{_top}--is-active &,
     .@{_top}:hover & {

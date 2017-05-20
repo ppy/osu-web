@@ -148,7 +148,9 @@ class AccountController extends Controller
 
             return ['message' => trans('accounts.update_email.updated')];
         } else {
-            return response($userEmail->validationErrors()->all(), 422);
+            return response(['form_error' => [
+                'user_email' => $userEmail->validationErrors()->all(),
+            ]], 422);
         }
     }
 
@@ -176,7 +178,9 @@ class AccountController extends Controller
 
             return ['message' => trans('accounts.update_password.updated')];
         } else {
-            return response($userPassword->validationErrors()->all(), 422);
+            return response(['form_error' => [
+                'user_password' => $userPassword->validationErrors()->all(),
+            ]], 422);
         }
     }
 

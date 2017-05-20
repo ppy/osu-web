@@ -24,7 +24,6 @@ use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
-use App\Transformers\UserTransformer;
 use Carbon\Carbon;
 use DB;
 use Exception;
@@ -398,6 +397,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->osu_subscriber === true;
     }
 
+    public function isActive()
+    {
+        return $this->user_lastvisit > Carbon::now()->subMonth();
+    }
+
     public function isPrivileged()
     {
         return $this->isAdmin()
@@ -758,6 +762,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return Beatmap::modeStr($this->osu_playmode);
     }
 
+    public function changelogs()
+    {
+        return $this->hasMany(Changelog::class, 'user_id');
+    }
+
     public function setPlaymodeAttribute($value)
     {
         $this->osu_playmode = Beatmap::modeInt($attribute);
@@ -832,11 +841,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return json_item(
-            $this,
-            new UserTransformer(),
-            'userAchievements,defaultStatistics,disqus_auth'
-        );
+        return json_item($this, 'User', 'disqus_auth');
     }
 
     public function supportLength()

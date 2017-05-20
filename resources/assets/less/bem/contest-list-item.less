@@ -30,6 +30,10 @@
 
   border-right: 5px solid #323E41;
 
+  @media @mobile {
+    height: 90px;
+  }
+
   &:active, &:focus, &:hover {
     color: white;
     text-decoration: none;
@@ -88,14 +92,14 @@
   }
 
   &__name {
-    font-size: 17px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    @media @mobile {
-      font-size: 14px;
-    }
+    font-size: 14px;
     padding-bottom: 5px;
+    @media @desktop {
+      font-size: 17px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 
   &__date {
@@ -124,6 +128,7 @@
     float: left;
     @media @mobile {
       width: 50px;
+      height: 90px;
     }
   }
 }

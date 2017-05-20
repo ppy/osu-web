@@ -30,10 +30,16 @@
                     <h2 class="osu-page-header__title osu-page-header__title--small">{{ $subtitle }}</h2>
                 @endif
 
-                <h1 class="js-wiki-title osu-page-header__title osu-page-header__title--main">{{ $title }}</h1>
+                <h1 class="osu-page-header__title osu-page-header__title--main">
+                    @if (isset($page->page()['title']))
+                        {{ $page->page()['title'] }}
+                    @else
+                        {{ $title }}
+                    @endif
+                </h1>
             </div>
 
-            @if (!empty($pageLocales))
+            @if (!empty($page->locales()))
                 <div class="osu-page-header__actions">
                     <div class="forum-post-actions">
                         <div class="forum-post-actions__action">
@@ -67,15 +73,15 @@
         </div>
     </div>
 
-    <div class="osu-layout__row osu-layout__row--page-compact">
-        @if (count($pageLocales) > 0)
+    <div class="osu-page osu-page--wiki">
+        @if (count($page->locales()) > 0)
             <div class="wiki-language-list">
                 <div class="wiki-language-list__header">
                     {{ trans('wiki.show.languages') }}:
                 </div>
 
-                @foreach ($pageLocales as $locale)
-                    @if ($locale === $pageLocale)
+                @foreach ($page->locales() as $locale)
+                    @if ($locale === $page->requestedLocale)
                         <span class="wiki-language-list__item wiki-language-list__item--current">
                             {{ App\Libraries\LocaleMeta::nameFor($locale) }}
                         </span>
@@ -85,6 +91,14 @@
                         </a>
                     @endif
                 @endforeach
+            </div>
+        @endif
+
+        @if ($page->page() !== null && $page->locale !== $page->requestedLocale)
+            <div class="wiki-fallback-locale">
+                <div class="wiki-fallback-locale__box">
+                    {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
+                </div>
             </div>
         @endif
 
@@ -102,21 +116,25 @@
                     <h2 class="wiki-toc__title">
                         {{ trans('wiki.show.toc') }}
                     </h2>
+
+                    @if ($page->page() !== null)
+                        @include('wiki._toc')
+                    @endif
                 </div>
             </div>
 
             <div class="wiki-page__content">
-                <div class="js-wiki-content">
-                    @if (present($pageMd))
-                        {!! Markdown::convertToHtml($pageMd) !!}
-                    @else
-                        @if (empty($pageLocales))
+                @if ($page->page() !== null)
+                    {!! $page->page()['output'] !!}
+                @else
+                    <div class="wiki-content">
+                        @if (empty($page->locales()))
                             {{ trans('wiki.show.missing') }}
                         @else
                             {{ trans('wiki.show.missing_translation') }}
                         @endif
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

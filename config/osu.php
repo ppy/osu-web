@@ -67,10 +67,6 @@ return [
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 
-        'legal' => [
-            'dmca' => '/p/copyright',
-            'tos' => '/p/terms',
-        ],
         'social' => [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/p/twitter',
@@ -85,20 +81,15 @@ return [
             'rules' => '/wiki/Osu!:Rules',
             'signup' => '/p/register',
         ],
-        'ranking' => [
-            'overall' => '/p/pp',
-             'charts' => '/p/chart',
+        'rankings' => [
+            'charts' => '/p/chart',
             'country' => '/p/countryranking',
-            'mapper' => '/p/kudosu',
+            'kudosu' => '/p/kudosu',
         ],
         'home' => [
-            'changelog' => '/p/changelog',
-            'download' => '/p/download',
             'news' => '/p/news',
         ],
         'help' => [
-            'wiki' => '/wiki/Main_Page',
-            'faq' => '/wiki/FAQ',
             'support' => 'http://help.ppy.sh/',
         ],
     ],
@@ -106,5 +97,16 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
+
+        'password_reset' => [
+            'expires_hour' => 2,
+            'key_length' => 8,
+            'tries' => 8,
+        ],
+    ],
+    'changelog' => [
+        'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
+        'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
+        'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
     ],
 ];

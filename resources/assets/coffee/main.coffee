@@ -28,50 +28,51 @@ $(document).on 'submit', 'form', (e) ->
   LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
 
-@currentUserObserver ?= new CurrentUserObserver
-@parentFocus ?= new ParentFocus
-@reactTurbolinks ||= new ReactTurbolinks
-@twitchPlayer ?= new TwitchPlayer
-@landingGraph ?= new LandingGraph
-@fancyGraph ?= new FancyGraph
-@landingHero ?= new LandingHero
-@timeago ?= new Timeago
-@osuLayzr ?= new OsuLayzr
-@nav ?= new Nav
-@userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification(@nav)
-@throttledWindowEvents ?= new ThrottledWindowEvents
-@checkboxValidation ?= new CheckboxValidation
-@formToggle ?= new FormToggle
 @accountEdit ?= new AccountEdit
+@turbolinksDisable ?= new TurbolinksDisable
 @accountEditAvatar ?= new AccountEditAvatar
-@password ?= new Password
-@userEmail ?= new UserEmail
-@wiki ?= new Wiki
-@osuAudio ?= new OsuAudio
-@scale ?= new Scale
-
+@checkboxValidation ?= new CheckboxValidation
+@currentUserObserver ?= new CurrentUserObserver
 @editorZoom ?= new EditorZoom
-@stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
-@globalDrag ?= new GlobalDrag
-@gallery ?= new Gallery
+@fancyGraph ?= new FancyGraph
+@formClear ?= new FormClear
+@formError ?= new FormError
 @formPlaceholderHide ?= new FormPlaceholderHide
-@tooltipDefault ?= new TooltipDefault
-
-@syncHeight ?= new SyncHeight
-
+@formToggle ?= new FormToggle
 @forum ?= new Forum
 @forumAutoClick ?= new ForumAutoClick
+@forumCover ?= new ForumCover
+@gallery ?= new Gallery
+@globalDrag ?= new GlobalDrag
+@landingGraph ?= new LandingGraph
+@landingHero ?= new LandingHero
+@menu ?= new Menu
+@nav ?= new Nav
+# FIXME: enable later.
+#@navSearch ?= new NavSearch
+@osuAudio ?= new OsuAudio
+@osuLayzr ?= new OsuLayzr
+@parentFocus ?= new ParentFocus
+@postPreview ?= new PostPreview
+@reactTurbolinks ||= new ReactTurbolinks
+@replyPreview ?= new ReplyPreview
+@scale ?= new Scale
+@stickyFooter ?= new StickyFooter
+@stickyHeader ?= new StickyHeader
+@syncHeight ?= new SyncHeight
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@timeago ?= new Timeago
+@tooltipDefault ?= new TooltipDefault
+@twitchPlayer ?= new TwitchPlayer
+@wiki ?= new Wiki
+
+@formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@forumCover ?= new ForumCover
-@postPreview ?= new PostPreview
-@replyPreview ?= new ReplyPreview
-
-@menu ?= new Menu
+@userLogin ?= new UserLogin(@nav)
+@userVerification ?= new UserVerification(@nav)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

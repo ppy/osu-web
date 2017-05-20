@@ -24,7 +24,7 @@ use Cache;
 
 class LivestreamCollection
 {
-    const FEATURED_CACHE_KEY = 'featuredStream';
+    const FEATURED_CACHE_KEY = 'featuredStream:arr';
 
     private $streams;
 
@@ -36,8 +36,8 @@ class LivestreamCollection
     public function all()
     {
         if ($this->streams === null) {
-            $this->streams = Cache::remember('livestreams', 5, function () {
-                return $this->download()->streams ?? [];
+            $this->streams = Cache::remember('livestreams:arr', 5, function () {
+                return $this->download()['streams'] ?? [];
             });
         }
 
@@ -63,7 +63,7 @@ class LivestreamCollection
         $response = curl_exec($ch);
 
         if (curl_errno($ch) === CURLE_OK) {
-            $return = json_decode($response);
+            $return = json_decode($response, true);
         } else {
             $return = null;
         }
@@ -79,7 +79,7 @@ class LivestreamCollection
 
         if ($featuredStreamId !== null) {
             foreach ($this->all() as $stream) {
-                if ((string) $stream->_id !== $featuredStreamId) {
+                if ((string) $stream['_id'] !== $featuredStreamId) {
                     continue;
                 }
 

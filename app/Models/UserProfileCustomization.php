@@ -67,7 +67,7 @@ class UserProfileCustomization extends Model
             return static::SECTIONS;
         }
 
-        return static::repairExtrasOrder(json_decode($value));
+        return static::repairExtrasOrder(json_decode($value, true));
     }
 
     public function setExtrasOrderAttribute($value)

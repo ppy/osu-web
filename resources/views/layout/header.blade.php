@@ -26,8 +26,8 @@
     </div>
 
     <!-- Main style -->
-    <div class="osu-nav js-nav-popup">
-        <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="/">
+    <div class="osu-nav js-nav-popup js-nav-search--popup-width-reference">
+        <a class="osu-nav__col osu-nav__col--logo u-nav-float" href="{{ route('home') }}">
             @include('objects._logo')
         </a>
 
@@ -49,18 +49,23 @@
             </div>
         </div>
 
-        @if (isset($search))
-            <div class="osu-nav__col">
-                <form class="header-search-box js-parent-focus" action="{{ $search['url'] }}" data-loading-overlay="0">
-                    <input class="header-search-box__input" name="q" />
-                    <span class="header-search-box__icon">
+        {{-- FIXME: enable later. --}}
+        @if (false && Auth::check())
+            <div class="osu-nav__col js-nav-switch js-nav-search--input-container" data-nav-mode="search" data-nav-mode-switch="0">
+                <div class="osu-nav__highlight-bar">
+                    <span class="bar"></span>
+                </div>
+
+                <label class="header-search-box js-parent-focus">
+                    <input class="header-search-box__input js-nav-search--input" name="q" />
+                    <a href="#" class="js-nav-search--run-link header-search-box__icon">
                         <i class="fa fa-fw fa-search"></i>
-                    </span>
+                    </a>
 
                     @foreach ($search['params'] ?? [] as $name => $value)
                         <input type="hidden" name="{{ $name }}" value="{{ $value }}">
                     @endforeach
-                </form>
+                </label>
             </div>
         @endif
 

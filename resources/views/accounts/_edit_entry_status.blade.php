@@ -15,4 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+<div class="account-edit-status">
+    <div class="account-edit-status__content account-edit-status__content--saving">
+        <i class="fa fa-spinner fa-pulse fa-fw"></i>
+    </div>
+
+    <div class="account-edit-status__content account-edit-status__content--saved">
+        {{ trans('common.saved') }}
+    </div>
+</div>

@@ -202,6 +202,20 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_changelog', 'DYNAMIC');
 
+        Schema::create('osu_builds', function ($table) {
+            $table->mediumIncrements('build_id');
+            $table->string('version', 40)->nullable();
+            $table->timestamp('date')->useCurrent();
+            $table->tinyInteger('allow_ranking')->default(1);
+            $table->tinyInteger('allow_bancho')->default(1);
+            $table->tinyInteger('test_build')->default(0);
+            $table->string('comments', 200)->nullable();
+            $table->unsignedMediumInteger('users')->default(0);
+            $table->unsignedTinyInteger('stream_id')->nullable();
+        });
+        DB::statement('ALTER TABLE osu_builds ADD hash BINARY(16)');
+        DB::statement('ALTER TABLE osu_builds ADD last_hash BINARY(16)');
+
         Schema::create('osu_countries', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -1387,6 +1401,7 @@ class BaseTables extends Migration
         Schema::drop('osu_beatmapsets');
         Schema::drop('osu_user_beatmapset_ratings');
         Schema::drop('osu_changelog');
+        Schema::drop('osu_builds');
         Schema::drop('osu_countries');
         Schema::drop('osu_counts');
         Schema::drop('osu_events');

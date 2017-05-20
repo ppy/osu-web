@@ -20,7 +20,7 @@
     'method' => 'PUT',
     'data-remote' => true,
     'data-skip-ajax-error-popup' => '1',
-    'class' => 'js-user-email--form account-edit'
+    'class' => 'js-form-error js-form-clear js-account-edit account-edit'
 ]) !!}
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
@@ -30,39 +30,39 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus js-user-email" data-user-email-field="current_password">
+            <label class="account-edit-entry js-parent-focus" data-user-email-field="current_password">
                 <div class="account-edit-entry__label">
                     {{ trans('accounts.edit.email.current') }}
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-user-email-done-reset--input js-user-email--input"
+                    class="account-edit-entry__input js-form-clear--target"
                     name="user_email[current_password]"
                     type="password"
                     required
                 >
 
-                <div class="account-edit-entry__error js-user-email--error"></div>
+                <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
         </div>
 
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus js-user-email" data-user-email-field="email">
+            <label class="account-edit-entry js-parent-focus" data-user-email-field="email">
                 <div class="account-edit-entry__label">
                     {{ trans('accounts.edit.email.new') }}
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-user-email-done-reset--input js-user-email--input"
+                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
                     name="user_email[email]"
                     required
                 >
 
-                <div class="account-edit-entry__error js-user-email--error"></div>
+                <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
 
             <label
-                class="account-edit-entry js-parent-focus js-user-email-validation js-user-email"
+                class="account-edit-entry js-parent-focus"
                 data-user-email-field="email_confirmation"
             >
                 <div class="account-edit-entry__label">
@@ -70,18 +70,18 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-user-email-done-reset--input js-user-email--input"
+                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
                     name="user_email[email_confirmation]"
                     required
                 >
 
-                <div class="account-edit-entry__error js-user-email--error"></div>
+                <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
         </div>
 
         <div class="account-edit__input-group">
             <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
-                <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
+                <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
                             {{ trans('accounts.update_password.update') }}
@@ -92,6 +92,8 @@
                         </div>
                     </div>
                 </button>
+
+                @include('accounts._edit_entry_status')
             </div>
         </div>
     </div>
