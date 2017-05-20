@@ -33,23 +33,23 @@ return [
     ],
 
     'error' => [
-        'contact_support' => 'Por favor entre em contato com o suporte para recuperar a conta.',
+        'contact_support' => 'Por favor, entre em contato com o suporte para recuperar a sua conta.',
         'is_privileged' => 'Fala com o peppy lul.',
         'missing_key' => 'Necessário.',
-        'too_many_tries' => 'Muitas tentativas falhas.',
-        'user_not_found' => 'Usuário selecionado não existe.',
+        'too_many_tries' => 'Número de tentativas excedido.',
+        'user_not_found' => 'O usuário selecionado não existe.',
         'wrong_key' => 'Código incorreto.',
     ],
 
     'notice' => [
-        'sent' => 'Verifique seu email para obter o código.',
+        'sent' => 'Verifique seu email para obter o código de verificação.',
         'saved' => 'Nova senha salva!',
     ],
 
     'started' => [
         'password' => 'Nova senha',
         'password_confirmation' => 'Confirmar senha',
-        'title' => 'Redefinindo senha na conta <strong>:username</strong>.',
+        'title' => 'Redefinindo senha para a conta <strong>:username</strong>.',
         'verification_key' => 'Código de verificação',
     ],
 
