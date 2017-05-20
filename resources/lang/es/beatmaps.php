@@ -105,7 +105,7 @@ return [
         'required-text' => 'Nominaciones: :current/:required',
         'title' => 'Estado de Nominación',
     ],
-        
+
     'listing' => [
         'search' => [
             'prompt' => 'escribe en palabras clave...',
