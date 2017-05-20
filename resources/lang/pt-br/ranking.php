@@ -21,7 +21,7 @@
 return [
     'header' => ':type Posição',
     'type' => [
-        'performance' => 'Performance',
+        'performance' => 'Desempenho',
         'charts' => 'Gráficos',
         'score' => 'Pontuação',
         'country' => 'País',
