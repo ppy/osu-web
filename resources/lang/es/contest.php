@@ -27,7 +27,7 @@ return [
         'over' => 'Las votaciones para este concurso ya han terminado',
         'login_required' => 'Inicia sesión para votar.',
         'best_of' => [
-            'none_played' => "¡No parece que hayas jugado algún beatmap que califique para este concurso!",
+            'none_played' => '¡No parece que hayas jugado algún beatmap que califique para este concurso!',
         ],
     ],
     'entry' => [

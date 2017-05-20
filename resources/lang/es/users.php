@@ -147,7 +147,7 @@ return [
                 'title' => 'sobre mi!',
             ],
             'medals' => [
-                'empty' => "Este usuario aún no ha conseguido ninguna. ;_;",
+                'empty' => 'Este usuario aún no ha conseguido ninguna. ;_;',
                 'title' => 'Medallas',
             ],
             'recent_activities' => [

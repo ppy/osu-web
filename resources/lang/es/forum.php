@@ -205,7 +205,7 @@ return [
             'lock-0' => 'Abrir tema',
             'lock-1' => 'Cerrar tema',
             'state-0' => 'El tema ha sido abierto',
-            'state-1' => 'El tema ha sido cerrado',  
+            'state-1' => 'El tema ha sido cerrado',
         ],
 
         'moderate_move' => [

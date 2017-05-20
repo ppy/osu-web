@@ -33,7 +33,7 @@ return [
             'quantity' => 'Cantidad',
         ],
     ],
-    
+
     'product' => [
         'name' => 'Nombre',
 
