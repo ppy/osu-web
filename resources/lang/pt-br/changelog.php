@@ -24,8 +24,8 @@ return [
     'users-online' => '1 usuário online|:users usuários online',
 
     'prefixes' => [
-        'add' => 'adicionado',
-        'fix' => 'corrigido',
+        'add' => 'adição',
+        'fix' => 'correção',
         'misc' => 'outro',
     ],
 ];
