@@ -39,7 +39,7 @@ return [
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Un post generado automáticamente no puede ser editado.',
+            'system_generated' => 'Una publiación generada automáticamente no puede ser editada.',
             'not_owner' => 'La publicación solo puede ser editada por su creador.',
         ],
     ],

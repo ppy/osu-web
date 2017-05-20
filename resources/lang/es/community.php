@@ -60,7 +60,7 @@ return [
 
             'upload_more' => [
                 'title' => 'Sube más',
-                'description' => 'Espacios para beatmaps pendiente adicionales (por beatmap rankeado) hasta un máximo de 10.',
+                'description' => 'Espacios para beatmaps pendientes adicionales (por beatmap rankeado) hasta un máximo de 10.',
             ],
 
             'early_access' => [

@@ -20,7 +20,7 @@
 
 return [
     'required' => ':attribute es requerido.',
-    'wrong_confirmation' => 'La confirmacción no coincide.',
+    'wrong_confirmation' => 'La confirmación no coincide.',
 
     'beatmap_discussion_post' => [
         'first_post' => 'No puedes eliminar la primera publicación.',

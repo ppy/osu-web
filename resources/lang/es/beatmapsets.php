@@ -45,7 +45,7 @@ return [
             'download' => [
                 '_' => 'Descargar',
                 'video' => 'con Video',
-                'no-video' => 'sin video',
+                'no-video' => 'sin Video',
                 'direct' => 'osu!direct',
             ],
             'favourite' => 'Marcar como favorito',
