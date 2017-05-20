@@ -118,7 +118,7 @@ return [
                 'description' => '',
             ],
         ],
-        
+
         'convinced' => [
             'title' => '¡Estoy convencido! :D',
             'support' => 'Apoyar osu!',

@@ -26,7 +26,7 @@ return [
             'wrong_user' => 'Debes ser dueño del post para editarlo.',
         ],
     ],
-    
+
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resuelto por :user',

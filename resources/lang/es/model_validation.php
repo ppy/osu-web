@@ -32,7 +32,7 @@ return [
             'not_enough_feature_votes' => 'Votos insuficientes.',
         ],
 
-     	'poll_vote' => [
+         'poll_vote' => [
             'invalid' => 'Opción inválida.',
         ],
 
@@ -50,7 +50,7 @@ return [
     ],
 
     'user_email' => [
-        'invalid' => "No parece que haya un correo electrónico.",
+        'invalid' => 'No parece que haya un correo electrónico.',
         'already_used' => 'Correo electrónico ya en uso.',
         'wrong_confirmation' => 'La confirmación de correo electrónico no coincide.',
         'wrong_current_password' => 'Contraseña actual incorrecta.',

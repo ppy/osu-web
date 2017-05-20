@@ -55,7 +55,7 @@ return [
                 'web' => 'web',
             ],
         ],
-        
+
         'when' => [
             'today' => 'hoy',
             'week' => 'semana',

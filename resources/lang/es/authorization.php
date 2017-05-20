@@ -90,11 +90,11 @@ return [
                 'locked' => 'No puedes responder a un hilo cerrado.',
                 'no_forum_access' => 'Necesitas acceso al foro solicitado.',
                 'no_permission' => 'No tienes permisos para responder.',
-                
+
                 'user' => [
                     'require_login' => 'Inicia sesión para responder.',
-                    'restricted' => "No puedes responder mientras estés restringido.",
-                    'silenced' => "No puedes responder mientras estés silenciado.",
+                    'restricted' => 'No puedes responder mientras estés restringido.',
+                    'silenced' => 'No puedes responder mientras estés silenciado.',
                 ],
             ],
 
@@ -111,8 +111,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Inicia sesión para votar.',
-                    'restricted' => "No puedes votar mientras estés restringido.",
-                    'silenced' => "No puedes votar mientras estés silenciado.",
+                    'restricted' => 'No puedes votar mientras estés restringido.',
+                    'silenced' => 'No puedes votar mientras estés silenciado.',
                 ],
             ],
 

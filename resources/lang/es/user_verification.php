@@ -26,8 +26,8 @@ return [
         'issuing' => 'Emitiendo nuevo código...',
 
         'info' => [
-            'check_spam' => "Asegúrate de revisar la carpeta de correos no deseados si no logras encontrar el correo.",
-            'recover' => "Si no puedes entrar a tu correo o has olvidado cuál usaste, sigue este :link.",
+            'check_spam' => 'Asegúrate de revisar la carpeta de correos no deseados si no logras encontrar el correo.',
+            'recover' => 'Si no puedes entrar a tu correo o has olvidado cuál usaste, sigue este :link.',
             'recover_link' => 'proceso de recuperación de correo electrónico aquí',
             'reissue' => 'También puedes :reissue_link o :logout_link.',
             'reissue_link' => 'solicitar otro código',

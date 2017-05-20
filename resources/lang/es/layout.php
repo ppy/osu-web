@@ -218,19 +218,19 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'correo electrónico',
-            'forgot' => "He olvidado mis datos",
+            'forgot' => 'He olvidado mis datos',
             'password' => 'contraseña',
             'title' => 'Regístrate para continuar',
 
             'error' => [
-                'email' => "El nombre de usuario o correo electrónico no existe",
+                'email' => 'El nombre de usuario o correo electrónico no existe',
                 'password' => 'Contraseña incorrecta',
             ],
         ],
 
         'register' => [
-            'info' => "Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?",
-            'title' => "¿No tienes una cuenta?",
+            'info' => 'Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?',
+            'title' => '¿No tienes una cuenta?',
         ],
     ],
 
