@@ -20,6 +20,7 @@
 
 return [
     'required' => ':attribute é obrigatório.',
+    'wrong_confirmation' => 'Confirmação não correspondida.',
 
     'beatmap_discussion_post' => [
         'first_post' => 'Não é possível excluir a publicação inicial.',
