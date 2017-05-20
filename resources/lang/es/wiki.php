@@ -19,21 +19,16 @@
  */
 
 return [
-    'header' => ':type Ranking',
-    'type' => [
-        'performance' => 'Rendimiento',
-        'charts' => 'Gráficos',
-        'score' => 'Puntuación',
-        'country' => 'País',
-        'kudosu' => 'Kudosu',
-    ],
-    'stat' => [
-        'accuracy' => 'Precisión',
-        'play_count' => 'Conteo de jugadas',
-        'performance' => 'Rendimiento',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'show' => [
+        'fallback_translation' => 'La página solicitada aún no está traducida al idioma seleccionado (:language). Mostrando versión en inglés.',
+        'languages' => 'Idiomas',
+        'missing' => 'La página solicitada no fue encontrada.',
+        'missing_translation' => 'La página solicitada no se encontró en el idioma seleccionado.',
+        'toc' => 'Contenidos',
+
+        'edit' => [
+            'link' => 'Mostrar en GitHub',
+            'refresh' => 'Recargar',
+        ],
     ],
 ];
-

@@ -19,21 +19,13 @@
  */
 
 return [
-    'header' => ':type Ranking',
-    'type' => [
-        'performance' => 'Rendimiento',
-        'charts' => 'Gráficos',
-        'score' => 'Puntuación',
-        'country' => 'País',
-        'kudosu' => 'Kudosu',
-    ],
-    'stat' => [
-        'accuracy' => 'Precisión',
-        'play_count' => 'Conteo de jugadas',
-        'performance' => 'Rendimiento',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'feed_title' => 'feed',
+    'generic' => 'Corrección de errores y mejoras menores.',
+    'users-online' => '1 usuario en línea|:users usuarios en línea',
+
+    'prefixes' => [
+        'add' => 'adición',
+        'fix' => 'corrección',
+        'misc' => 'misceláneo',
     ],
 ];
-

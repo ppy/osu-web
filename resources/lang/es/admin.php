@@ -46,7 +46,7 @@ return [
                     'update' => 'Actualizar',
                 ],
 
-                'title' => 'Lista de portadas de foro',
+                'title' => 'Lista de portadas',
 
                 'type-title' => [
                     'default-topic' => 'Portada del tema por defecto',
@@ -77,7 +77,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Listado de orden',
+                'title' => 'Listado de Pedidos',
             ],
         ],
     ],
