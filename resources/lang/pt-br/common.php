@@ -43,7 +43,7 @@ return [
         'keyboard' => 'Teclado',
         'mouse' => 'Mouse',
         'tablet' => 'Mesa digitalizadora',
-        'touch' => 'Touch Screen',
+        'touch' => 'Touch screen',
     ],
 
     'dropzone' => [
