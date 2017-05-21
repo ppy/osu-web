@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Match multijoueur',
+        'header' => 'Matchs multijoueur',
         'team-types' => [
             'head-to-head' => 'Chacun pour soi',
             'tag-coop' => 'Tag en coopération',
@@ -37,12 +37,12 @@ return [
             'match-disbanded' => ':user a dissous le match',
             'host-changed' => ':user a pris le contrôle de la salle',
 
-            'player-left-no-user' => 'un joueur a quitté le match',
-            'player-joined-no-user' => 'un joueur a rejoint le match',
-            'player-kicked-no-user' => 'un joueur a été exclu du match',
-            'match-created-no-user' => 'le match a été créé',
-            'match-disbanded-no-user' => 'le match a été dissous',
-            'host-changed-no-user' => "l'hôte a été changé",
+            'player-left-no-user' => 'Un joueur a quitté le match',
+            'player-joined-no-user' => 'Un joueur a rejoint le match',
+            'player-kicked-no-user' => 'Un joueur a été exclu du match',
+            'match-created-no-user' => 'Le match a été créé',
+            'match-disbanded-no-user' => 'Le match a été dissous',
+            'host-changed-no-user' => "L'hôte a été changé",
         ],
         'in-progress' => '(match en cours)',
         'score' => [
@@ -57,11 +57,11 @@ return [
             'blue' => 'Équipe bleue',
             'red' => 'Équipe rouge',
         ],
-        'winner' => ':team gagne',
+        'winner' => "L'équipe :team gagne",
         'difference' => 'par :difference',
         'loading-events' => 'Chargement des évènements...',
-        'more-events' => 'voir tout...',
-        'beatmap-deleted' => 'beatmap supprimée',
+        'more-events' => 'Voir tout...',
+        'beatmap-deleted' => 'Beatmap supprimée',
     ],
     'game' => [
         'scoring-type' => [
