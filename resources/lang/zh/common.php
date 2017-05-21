@@ -30,6 +30,7 @@ return [
         'reply' => '回复',
         'reset' => '重置',
         'save' => '保存',
+        'saving' => '保存中...',
         'show_more' => '显示更多',
         'upload_image' => '上传图片',
     ],
