@@ -46,6 +46,11 @@ class WikiController extends Controller
         $subtitle = array_pop($titles);
 
         if ($page->page() === null) {
+            if (!preg_match('#/redirect/#', $_SERVER['REQUEST_URI'])) {
+                header('Location: '.'/help/wiki/redirect/'.strtolower($path));
+                exit();
+            }
+            $subtitle = 'Not Found';
             $status = 404;
         }
 

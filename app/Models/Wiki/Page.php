@@ -148,31 +148,40 @@ class Page extends Base
 
     public function page()
     {
-        if (!array_key_exists('page', $this->cache)) {
-            foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
-                $this->locale = $locale;
+        if (preg_match('#/redirect/#', $_SERVER['REQUEST_URI'])) {
+            try {
+                header('Location: '.static::fetchContent($this->pagePath()));
+                exit();
+            } catch (GitHubNotFoundException $_e) {
+                return;
+            }
+        } else {
+            if (!array_key_exists('page', $this->cache)) {
+                foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
+                    $this->locale = $locale;
 
-                $this->cache['page'] = Cache::remember(
-                    $this->cacheKeyPage(),
-                    static::CACHE_DURATION,
-                    function () {
-                        try {
-                            $page = static::fetchContent($this->pagePath());
-                        } catch (GitHubNotFoundException $_e) {
-                            return;
-                        }
+                    $this->cache['page'] = Cache::remember(
+                        $this->cacheKeyPage(),
+                        static::CACHE_DURATION,
+                        function () {
+                            try {
+                                $page = static::fetchContent($this->pagePath());
+                            } catch (GitHubNotFoundException $_e) {
+                                return;
+                            }
 
-                        // FIXME: add indexAdd/Remove accordingly.
-                        if (present($page)) {
-                            return WikiProcessor::process($page, [
-                                'path' => '/wiki/'.$this->path,
-                            ]);
+                            // FIXME: add indexAdd/Remove accordingly.
+                            if (present($page)) {
+                                return WikiProcessor::process($page, [
+                                    'path' => '/wiki/'.$this->path,
+                                ]);
+                            }
                         }
+                    );
+
+                    if ($this->cache['page'] !== null) {
+                        break;
                     }
-                );
-
-                if ($this->cache['page'] !== null) {
-                    break;
                 }
             }
         }
@@ -183,7 +192,8 @@ class Page extends Base
     public function pagePath()
     {
         if ($this->locale === null) {
-            throw \Exception('locale not set!');
+            $this->locale = 'en';
+            //throw \Exception('locale not set!');
         }
 
         return $this->path.'/'.$this->locale.'.md';
