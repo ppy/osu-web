@@ -20,7 +20,7 @@
 
 return [
     'required' => '需要 :attribute.',
-    'wrong_confirmation' => '确认信息不匹配.' //需要上下文,
+    'wrong_confirmation' => '确认信息不匹配.', //需要上下文,
 
     'beatmap_discussion_post' => [
         'first_post' => '无法删除第一个提交.',
