@@ -89,7 +89,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
                 [$stats->user_id] ?? null;
         }
 
-        return $this->item($stats, function ($stats) {
+        return $this->item($scoreRankCounts, function ($scoreRankCounts) {
             return [
                 'XH' => $scoreRankCounts['XH'] ?? 0,
                 'SH' => $scoreRankCounts['SH'] ?? 0,
