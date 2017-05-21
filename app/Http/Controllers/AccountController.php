@@ -102,7 +102,6 @@ class AccountController extends Controller
                 'extras_order:string[]',
             ]
         );
-
         $userParams = get_params(
             Request::all(),
             'user',
@@ -114,9 +113,9 @@ class AccountController extends Controller
                 'user_twitter:string',
                 'user_website:string',
                 'user_sig:string',
+                'osu_playstyle:string[]',
             ]
         );
-
         if (count($customizationParams) > 0) {
             Auth::user()
                 ->profileCustomization()
