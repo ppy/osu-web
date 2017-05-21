@@ -82,7 +82,9 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if ($stats->user_id !== null) {
+        if ($stats->user_id === null) {
+            $scoreRankCounts = null;
+        } else {
             $scoreRankClass = ScoreBest::class.'\\'.get_class_basename(get_class($stats));
             $scoreRankCounts = $scoreRankClass::where('user_id', '=', $stats->user_id)
                 ->rankCounts()
