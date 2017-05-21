@@ -16,3 +16,15 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master")
+
+@section("content")
+    <div class="js-react--ranking-page"></div>
+@endsection
+
+@section("script")
+    @parent
+    <script id="json-scores" type="application/json">
+        {!! json_encode($scores) !!}
+    </script>
+    <script src="{{ elixir("js/react/ranking-page.js") }}" data-turbolinks-track="reload"></script>
+@endsection

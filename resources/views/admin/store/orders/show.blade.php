@@ -52,12 +52,12 @@
 
 </style>
 
-<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
-    <div class="col-md-12">
+<div class="osu-layout__row osu-layout__row--page">
+    <div>
         <h1>Store Admin <small>{!! count($orders) !!} orders waiting to be shipped!</small></h1>
     </div>
 
-    <div class="col-sm-12">
+    <div>
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">{{ trans("store.admin.warehouse") }}</h3>
@@ -81,8 +81,7 @@
     </div>
 
     @foreach ($orders as $o)
-    <div class="col-md-12">
-
+    <div>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Order #{{ $o->order_id }} for
@@ -98,30 +97,29 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <div class='row'>
-                    {!! Form::open(['route' => ['admin.store.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
-                    <div class='col-md-8'>
-                        <div class="form-group">
-                        @if ($o->status === 'paid' || $o->status === 'shipped')
-                            {!! Form::label('order[status]', 'Status') !!}
-                            {!! Form::select('order[status]', ['paid' => 'Paid', 'shipped' => 'Shipped'], $o->status, ['class' => 'js-auto-submit form-control']) !!}
-                        @else
-                            <h1 style='text-transform: uppercase;'>{{ $o->status }}</h1>
-                        @endif
-                        </div>
+                <div class="grid grid--gutters">
+                    <div class="grid-cell grid-cell--2of3">
+                        {!! Form::open(['route' => ['admin.store.orders.update', $o->order_id], 'method' => 'put', 'data-remote' => true]) !!}
+                            <div class="form-group">
+                            @if ($o->status === 'paid' || $o->status === 'shipped')
+                                {!! Form::label('order[status]', 'Status') !!}
+                                {!! Form::select('order[status]', ['paid' => 'Paid', 'shipped' => 'Shipped'], $o->status, ['class' => 'js-auto-submit form-control']) !!}
+                            @else
+                                <h1 style='text-transform: uppercase;'>{{ $o->status }}</h1>
+                            @endif
+                            </div>
 
-                        <div class="form-group">
-                        {!! Form::label('order[tracking_code]', 'Tracking/Notes') !!}
-                        @if ($o->tracking_code)
-                        <a target="_blank" href="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={!! $o->tracking_code !!}">lookup</a>
-                        @endif
+                            <div class="form-group">
+                            {!! Form::label('order[tracking_code]', 'Tracking/Notes') !!}
+                            @if ($o->tracking_code)
+                            <a target="_blank" href="https://trackings.post.japanpost.jp/services/srv/search/direct?searchKind=S004&locale=en&reqCodeNo1={!! $o->tracking_code !!}">lookup</a>
+                            @endif
 
-                        {!! Form::text('order[tracking_code]', $o->tracking_code, ['class' => 'js-auto-submit form-control']) !!}
+                            {!! Form::text('order[tracking_code]', $o->tracking_code, ['class' => 'js-auto-submit form-control']) !!}
 
-                        </div>
+                            </div>
+                        {!! Form::close() !!}
                     </div>
-                    {!! Form::close() !!}
-
                     @if ($o->address)
                         @include('store.objects.address_editable', ['data' => $o->address, 'modifiable' => true])
                     @endif
@@ -166,7 +164,7 @@
     @endforeach
 </div>
 
-<div class="osu-layout__row osu-layout__row--page osu-layout__row--bootstrap">
+<div class="osu-layout__row osu-layout__row--page">
     {!! Form::open(['route' => 'admin.store.orders.ship', 'method' => 'post', 'data-remote' => true]) !!}
     <div class="big-button">
         <button type="submit" class="btn-osu btn-osu-danger">Ship all tracked orders</button>

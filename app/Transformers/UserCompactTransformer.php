@@ -37,6 +37,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'profile_colour' => presence($user->user_colour),
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
+            'is_active' => $user->isActive(),
         ];
     }
 
