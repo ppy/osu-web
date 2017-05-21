@@ -36,7 +36,7 @@ return [
     ],
 
     'count' => [
-        'item' => ':count 件|:count 件', //参考翻译:件/份/个
+        'item' => ':count 件', //参考翻译:件/份/个
     ],
 
     'device' => [
@@ -65,8 +65,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count 天前|:count 天前',
-        'hours_ago' => ':count 小时前|:count 小时前',
+        'days_ago' => ':count 天前',
+        'hours_ago' => ':count 小时前',
         'now' => '现在',
         'remaining' => '剩余时间',
     ],

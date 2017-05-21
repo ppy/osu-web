@@ -45,7 +45,7 @@ return [
         ],
         'header' => [
             'welcome' => '嗨, <strong>:username</strong>!',
-            'messages' => '你有 1 条新消息|你有 :count 条新消息',
+            'messages' => '你有 :count 条新消息',
             'stats' => [
                 'online' => '在线用户',
             ],
