@@ -21,7 +21,7 @@ return [
     'feed_title' => 'feed', //需要上下文
     'generic' => '修复Bug并且做了小的改动.',
     'users-online' => '1 用户在线|:users 用户在线',
-    
+
     'prefixes' => [
         'add' => '添加',
         'fix' => '修复',

@@ -36,7 +36,7 @@ return [
             'sub' => 'rhythm is just a click away',
         ],
     ],
-    
+
     'user' => [
         'title' => '新闻',
         'news' => [

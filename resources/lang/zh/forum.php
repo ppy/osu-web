@@ -162,35 +162,35 @@ return [
             'state-0' => '已移除 "added" 标签',
             'state-1' => '已添加 "added" 标签',
         ],
-        
+
         'issue_tag_assigned' => [
             'action-0' => '移除 "assigned" 标签',
             'action-1' => '添加 "assigned" 标签',
             'state-0' => '已移除 "assigned" 标签',
             'state-1' => '已添加 "assigned" 标签',
         ],
-        
+
         'issue_tag_confirmed' => [
             'action-0' => '移除 "confirmed" 标签',
             'action-1' => '添加 "confirmed" 标签',
             'state-0' => '已移除 "confirmed" 标签',
             'state-1' => '已添加 "confirmed" 标签',
         ],
-        
+
         'issue_tag_duplicate' => [
             'action-0' => '移除 "duplicate" 标签',
             'action-1' => '添加 "duplicate" 标签',
             'state-0' => '已移除 "duplicate" 标签',
             'state-1' => '已添加 "duplicate" 标签',
         ],
-        
+
         'issue_tag_invalid' => [
             'action-0' => '移除 "invalid" 标签',
             'action-1' => '添加 "invalid" 标签',
             'state-0' => '已移除 "invalid" 标签',
             'state-1' => '已添加 "invalid" 标签',
         ],
-        
+
         'issue_tag_resolved' => [
             'action-0' => '移除 "resolved" 标签',
             'action-1' => '添加 "resolved" 标签',

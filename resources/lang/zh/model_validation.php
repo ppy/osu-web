@@ -50,7 +50,7 @@ return [
     ],
 
     'user_email' => [
-        'invalid' => "似乎不是有效的邮箱地址.",
+        'invalid' => '似乎不是有效的邮箱地址.',
         'already_used' => '邮箱已被使用.',
         'wrong_confirmation' => '确认邮箱与新邮箱不一致.',
         'wrong_current_password' => '当前密码错误.',
