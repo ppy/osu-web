@@ -142,6 +142,19 @@ class Order extends Model
         });
     }
 
+    private function removeProduct(Product $product)
+    {
+        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+
+        if ($item) {
+            $item->delete();
+        }
+
+        if ($this->items()->count() === 0) {
+            $this->delete();
+        }
+    }
+
     public function updateItem($item_form, $add_new = false)
     {
         $quantity = intval(array_get($item_form, 'quantity'));
@@ -152,30 +165,32 @@ class Order extends Model
 
         if ($product) {
             if ($quantity <= 0) {
-                $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-
-                if ($item) {
-                    $item->delete();
-                }
-
-                if ($this->items()->count() === 0) {
-                    $this->delete();
-                }
+                $this->removeProduct($product);
             } else {
-                $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-                if ($item) {
-                    if ($add_new) {
-                        $item->quantity += $quantity;
-                    } else {
-                        $item->quantity = $quantity;
-                    }
-                } else {
+                if ($product->allow_multiple) {
                     $item = new OrderItem();
                     $item->quantity = $quantity;
                     $item->extra_info = $extraInfo;
                     $item->product()->associate($product);
                     if ($product->cost === null) {
                         $item->cost = intval($item_form['cost']);
+                    }
+                } else {
+                    $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+                    if ($item) {
+                        if ($add_new) {
+                            $item->quantity += $quantity;
+                        } else {
+                            $item->quantity = $quantity;
+                        }
+                    } else {
+                        $item = new OrderItem();
+                        $item->quantity = $quantity;
+                        $item->extra_info = $extraInfo;
+                        $item->product()->associate($product);
+                        if ($product->cost === null) {
+                            $item->cost = intval($item_form['cost']);
+                        }
                     }
                 }
 
