@@ -19,7 +19,7 @@
  */
 
 return [
-    'header' => ':type Posição',
+    'header' => 'Classificação de :type',
     'type' => [
         'performance' => 'Desempenho',
         'charts' => 'Gráficos',
