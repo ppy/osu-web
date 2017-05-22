@@ -31,16 +31,16 @@
         </div>
 
         <div class="osu-layout__sub-row">
-            <div class="row">
-                <div class="col-md-12">
+            <div class="grid">
+                <div class="grid-cell grid-cell--fill">
                     <h1>{{ $product->name }}</h1>
                 </div>
             </div>
 
             @if($product->custom_class && View::exists("store.products.{$product->custom_class}"))
 
-                <div class="row">
-                    <div class="col-md-12">
+                <div class="grid">
+                    <div class="grid-cell grid-cell--fill">
                         {!! Markdown::convertToHtml($product->description) !!}
                     </div>
                 </div>
@@ -48,8 +48,8 @@
                 @include("store.products.{$product->custom_class}")
 
             @else
-            <div class="row">
-                <div class="col-md-6">
+            <div class="grid grid--gutters">
+                <div class="grid-cell grid-cell--1of2">
                     <div class="gallery-previews">
                         @foreach($product->images() as $i => $image)
                             <?php $imageSize = fast_imagesize($image[1]); ?>
@@ -81,14 +81,14 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
+                <div class="grid-cell grid-cell--1of2">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             {!! Markdown::convertToHtml($product->description) !!}
                         </div>
                     </div>
-                    <div class="row price-box">
-                        <div class="col-md-12">
+                    <div class="grid price-box">
+                        <div class="grid-cell grid-cell--fill">
                             <p class="price">{{ currency($product->cost) }}</p>
                             <p class="notes">excluding shipping fees</p>
                         </div>
@@ -111,8 +111,8 @@
                     @endif
 
                     @if($product->inStock())
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             <div class='form-group'>
                                 <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
                                 {!! Form::label('item[quantity]', 'Quantity') !!}
@@ -121,14 +121,14 @@
                         </div>
                     </div>
                     @elseif($product->inStock(1, true))
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             {{ trans('store.product.stock.out_with_alternative') }}
                         </div>
                     </div>
                     @else
-                    <div class="row">
-                        <div class="col-md-12">
+                    <div class="grid">
+                        <div class="grid-cell grid-cell--fill">
                             {{ trans('store.product.stock.out') }}
                         </div>
                     </div>

@@ -63,6 +63,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'isGMT' => $user->isGMT(),
             'isQAT' => $user->isQAT(),
             'isBNG' => $user->isBNG(),
+            'is_active' => $user->isActive(),
             'interests' => $user->user_interests,
             'title' => $user->title(),
             'location' => $user->user_from,
@@ -91,7 +92,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $stats = $user->statistics($user->playmode);
 
-        return $this->item($stats, new UserStatisticsTransformer());
+        return $this->item($stats, new UserStatisticsTransformer);
     }
 
     public function includeAllStatistics(User $user)
@@ -99,7 +100,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer());
+                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer, ['rank', 'scoreRanks']);
             }
 
             return $all;

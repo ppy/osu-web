@@ -26,13 +26,38 @@ return [
 
         'download' => [
             '_' => 'Télécharger maitenant',
+            'soon' => "osu! pour d'autres systèmes d'exploitations à venir",
             'for' => 'pour :os',
             'other' => 'cliquez ici pour :os1 ou :os2',
         ],
 
         'slogan' => [
             'main' => 'simulateur de cercles free-to-win',
-            'sub' => 'Le rythme est juste à un seul clic',
+            'sub' => 'Le rythme est à un seul clic',
+        ],
+    ],
+
+    'user' => [
+        'title' => 'nouvelles',
+        'news' => [
+            'title' => 'Nouvelles',
+            'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page?...',
+        ],
+        'header' => [
+            'welcome' => 'Bonjour, <strong>:username</strong>!',
+            'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
+            'stats' => [
+                'online' => 'Utilisateurs en ligne',
+            ],
+        ],
+        'beatmaps' => [
+            'new' => 'Nouvelles Beatmaps Approuvées',
+            'popular' => 'Beatmaps Populaires',
+        ],
+        'buttons' => [
+            'download' => 'Télécharger osu!',
+            'support' => 'Supporter osu!',
+            'store' => 'osu!store',
         ],
     ],
 ];

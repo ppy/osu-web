@@ -23,16 +23,16 @@ return [
         'header' => [
             // size in font-size
             'big_description' => "Vous aimez osu!?<br/>
-                                Supportez le dévloppement d'osu! :D",
+                                Supportez le développement d'osu! :D",
             'small_description' => '',
             'support_button' => 'Je veux supporter osu!',
         ],
 
-        'dev_quote' => "osu! est un free-to-play complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maitenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consommes une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
+        'dev_quote' => "osu! est un free-to-play complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maintenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consomme une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
                     <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom \"peppy\".
                     J'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,
-                    et à certaints temps je lutte pour garder mes standars que je m'efforce à garder.
-                    J'aurais aimé d'offrir mes remerciments personnels pour ce qui ont supportés osu! jusque là,
+                    et à certains moments je lutte pour garder mes standards.
+                    J'aurais aimé d'offrir mes remerciments personnels pour ceux qui ont supporté osu! jusque là,
                     et aussi ceux qui continueront à supporter ce super jeu et la communauté dans le futur :).",
 
         'why_support' => [
@@ -70,7 +70,7 @@ return [
 
             'customisation' => [
                 'title' => 'Personnalisation',
-                'description' => 'Personnalisez votre profil avec une page utilisateur complètement changable.',
+                'description' => 'Personnalisez votre profil avec une page utilisateur complètement changeable.',
             ],
 
             'beatmap_filters' => [

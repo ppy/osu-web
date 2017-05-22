@@ -16,19 +16,19 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @if(!Auth::user())
-<div class="row">
-    <div class="col-md-6">
+<div class="grid grid--gutters">
+    <div class="grid-cell grid-cell--1of2">
         You need to be <a href="#" class="js-user-link" title="{{ trans("users.anonymous.login_link") }}">logged in</a> to change your name!
     </div>
 </div>
 @else
-<div class="row">
-    <div class="col-sm-2">
+<div class="grid grid--gutters">
+    <div class="grid-cell grid-cell--squash">
         <center>
             <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar"></div>
         </center>
     </div>
-    <div class="col-sm-5">
+    <div class="grid-cell">
         <div>
             <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
             <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
@@ -41,7 +41,7 @@
         </strong>
         <div>Your current username is "<i>{{ Auth::user()->username }}</i>".</div>
     </div>
-    <div class="col-sm-3 col-sm-offset-2 price-box">
+    <div class="grid-cell price-box">
         <p class="price" id="username-check-price"></p>
     </div>
 </div>

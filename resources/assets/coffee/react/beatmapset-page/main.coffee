@@ -205,7 +205,7 @@ class BeatmapsetPage.Main extends React.Component
         if @props.beatmapset.ranked > 0
           div className: 'osu-page osu-page--comments',
             el ReactDisqusThread,
-              shortname: diqusShortName
+              shortname: disqusShortName
               identifier: "beatmapset_#{@props.beatmapset.id}"
               title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"
               url: "#{document.location.origin}#{laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)}"

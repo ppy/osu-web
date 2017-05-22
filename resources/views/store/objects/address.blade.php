@@ -30,7 +30,7 @@
         }
     }
 ?>
-<div class="{{{ $grid or 'col-md-6' }}}" id="address-{{ $data->address_id }}">
+<div class="{{{ $grid or 'grid-cell grid-cell--1of2' }}}" id="address-{{ $data->address_id }}">
     <div class="{{ $mainClasses }}">
         @if((isset($modifiable) && $modifiable))
         {!! Form::open(['action' => 'StoreController@postUpdateAddress', "data-remote" => true]) !!}

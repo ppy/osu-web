@@ -64,6 +64,7 @@ $(document).on 'submit', 'form', (e) ->
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
+@turbolinksDisqus ?= new TurbolinksDisqus
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
 

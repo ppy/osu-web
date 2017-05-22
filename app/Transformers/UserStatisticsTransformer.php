@@ -26,47 +26,88 @@ use League\Fractal;
 
 class UserStatisticsTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'rank',
+        'scoreRanks',
+        'user',
+    ];
+
     public function transform(UserStatistics\Model $stats = null)
     {
         if ($stats === null) {
             $stats = new UserStatistics\Osu();
         }
 
-        if ($stats->user_id !== null) {
-            $scoreRankClass = ScoreBest::class.'\\'.get_class_basename(get_class($stats));
-            $scoreRankCounts = $scoreRankClass::where('user_id', '=', $stats->user_id)
-                ->rankCounts()
-                [$stats->user_id] ?? null;
-        }
-
         return [
-            'rank' => [
-                'isRanked' => $stats->rank_score_index > 0,
-                'global' => $stats->rank_score_index,
-                'country' => $stats->countryRank(),
-            ],
-
             'level' => [
                 'current' => $stats->currentLevel(),
                 'progress' => $stats->currentLevelProgressPercent(),
             ],
 
             'pp' => $stats->rank_score,
-            'rankedScore' => $stats->ranked_score,
-            'hitAccuracy' => $stats->accuracy_new,
-            'playCount' => $stats->playcount,
-            'totalScore' => $stats->total_score,
-            'totalHits' => $stats->totalHits(),
-            'maximumCombo' => $stats->max_combo,
-            'replaysWatchedByOthers' => $stats->replay_popularity,
+            'pp_rank' => $stats->rank_score_index,
+            'ranked_score' => $stats->ranked_score,
+            'hit_accuracy' => $stats->accuracy_new,
+            'play_count' => $stats->playcount,
+            'total_score' => $stats->total_score,
+            'total_hits' => $stats->totalHits(),
+            'maximum_combo' => $stats->max_combo,
+            'replays_watched_by_others' => $stats->replay_popularity,
+            'grade_counts' => [
+                'ss' => $stats->x_rank_count,
+                's' => $stats->s_rank_count,
+                'a' => $stats->a_rank_count,
+            ],
+        ];
+    }
 
-            'scoreRanks' => [
+    public function includeRank(UserStatistics\Model $stats = null)
+    {
+        if ($stats === null) {
+            $stats = new UserStatistics\Osu();
+        }
+
+        return $this->item($stats, function ($stats) {
+            return [
+                'is_ranked' => $stats->rank_score_index > 0,
+                'global' => $stats->rank_score_index,
+                'country' => $stats->countryRank(),
+            ];
+        });
+    }
+
+    public function includeScoreRanks(UserStatistics\Model $stats = null)
+    {
+        if ($stats === null) {
+            $stats = new UserStatistics\Osu();
+        }
+
+        if ($stats->user_id === null) {
+            $scoreRankCounts = null;
+        } else {
+            $scoreRankClass = ScoreBest::class.'\\'.get_class_basename(get_class($stats));
+            $scoreRankCounts = $scoreRankClass::where('user_id', '=', $stats->user_id)
+                ->rankCounts()
+                [$stats->user_id] ?? null;
+        }
+
+        return $this->item($scoreRankCounts, function ($scoreRankCounts) {
+            return [
                 'XH' => $scoreRankCounts['XH'] ?? 0,
                 'SH' => $scoreRankCounts['SH'] ?? 0,
                 'X' => $scoreRankCounts['X'] ?? 0,
                 'S' => $scoreRankCounts['S'] ?? 0,
                 'A' => $scoreRankCounts['A'] ?? 0,
-            ],
-        ];
+            ];
+        });
+    }
+
+    public function includeUser(UserStatistics\Model $stats = null)
+    {
+        if ($stats === null) {
+            $stats = new UserStatistics\Osu();
+        }
+
+        return $this->item($stats->user, new UserCompactTransformer);
     }
 }

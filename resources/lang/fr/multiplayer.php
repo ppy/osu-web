@@ -32,16 +32,14 @@ return [
             'player-joined' => ':user a rejoint le match',
             'player-kicked' => ':user a été exclu du match',
             'match-created' => ':user a créé le match',
-            // the ":the" var ?
-            // Original : ':the match was disbanded'
-            'match-disbanded' => ':user a dissous le match',
-            'host-changed' => ':user a pris le contrôle de la salle',
+            'match-disbanded' => ':user a dissout le match',
+            'host-changed' => ':user a prit le contrôle de la salle',
 
             'player-left-no-user' => 'un joueur a quitté le match',
             'player-joined-no-user' => 'un joueur a rejoint le match',
             'player-kicked-no-user' => 'un joueur a été exclu du match',
             'match-created-no-user' => 'le match a été créé',
-            'match-disbanded-no-user' => 'le match a été dissous',
+            'match-disbanded-no-user' => 'le match a été dissout',
             'host-changed-no-user' => "l'hôte a été changé",
         ],
         'in-progress' => '(match en cours)',

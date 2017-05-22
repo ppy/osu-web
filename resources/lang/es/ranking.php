@@ -18,4 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [];
+return [
+    'header' => ':type Ranking',
+    'type' => [
+        'performance' => 'Rendimiento',
+        'charts' => 'Gráficos',
+        'score' => 'Puntuación',
+        'country' => 'País',
+        'kudosu' => 'Kudosu',
+    ],
+    'stat' => [
+        'accuracy' => 'Precisión',
+        'play_count' => 'Conteo de jugadas',
+        'performance' => 'Rendimiento',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
+    ],
+];
