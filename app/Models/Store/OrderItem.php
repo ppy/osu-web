@@ -59,8 +59,15 @@ class OrderItem extends Model
     public function getDisplayName()
     {
         if (is_array($this->extra_info)) {
-            // extra_info['type'] === 'support-osu'
-            $extra_text = " ({$this->extra_info['username']}, {$this->extra_info['duration']} months)";
+            $extra_text = '';
+            // this prevents fires if type is not set.
+            if (isset($this->extra_info['type'])) {
+                switch ($this->extra_info['type']) {
+                    case 'support-osu':
+                        $extra_text = " for {$this->extra_info['username']} ({$this->extra_info['duration']} months)"; // FIXME: i18n?
+                        break;
+                }
+            }
             return $this->product->name.($extra_text);
         } else {
             return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
