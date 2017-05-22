@@ -28,36 +28,70 @@ use League\CommonMark\Environment;
 use League\CommonMark\Inline\Element as Inline;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
+use Symfony\Component\Yaml\Yaml;
 use Webuni\CommonMark\TableExtension;
 
-class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
+class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 2;
+    const VERSION = 7;
+
+    public $firstImage;
+    public $title;
+    public $toc = [];
 
     private $config;
     private $event;
     private $node;
     private $previousNode;
-    public $title;
-    public $toc = [];
     private $tocSlugs = [];
     private $listLevel = 0;
 
     public static function process($input, $config)
     {
+        $config = array_merge([
+            'html_input' => 'strip',
+            'block_name' => 'osu-md',
+        ], $config);
+
         $env = Environment::createCommonMarkEnvironment();
         $processor = new static;
         $env->addDocumentProcessor($processor);
         $env->addExtension(new TableExtension\TableExtension);
-        $converter = new CommonMarkConverter(array_merge($config, [
-            'html_input' => 'strip',
-        ]), $env);
 
-        $output = '<div class="wiki-content">'.$converter->convertToHtml($input).'</div>';
+        $converter = new CommonMarkConverter($config, $env);
+
+        $blockClass = $config['block_name'];
+
+        foreach ($config['block_modifiers'] ?? [] as $blockModifier) {
+            $blockClass .= " {$config['block_name']}--{$blockModifier}";
+        }
+
+        $input = static::parseYamlHeader($input);
+        $output = sprintf(
+            '<div class="%s">%s</div>',
+            $blockClass,
+            $converter->convertToHtml($input['document'])
+        );
+        $header = $input['header'] ?? [];
         $title = $processor->title;
         $toc = $processor->toc;
+        $firstImage = $processor->firstImage;
 
-        return compact('output', 'title', 'toc');
+        return compact('header', 'output', 'title', 'toc', 'firstImage');
+    }
+
+    public static function parseYamlHeader($input)
+    {
+        $hasMatch = preg_match('#^(?:---\n(?<header>.+?)\n(?:---|\.\.\.)\n)(?<document>.+)$#s', $input, $matches);
+
+        if ($hasMatch === 1) {
+            return [
+                'header' => Yaml::parse($matches['header']),
+                'document' => $matches['document'],
+            ];
+        }
+
+        return ['document' => $input];
     }
 
     public function setConfiguration(Configuration $config)
@@ -73,15 +107,17 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
             $this->previousNode = $this->node;
             $this->node = $this->event->getNode();
 
+            $this->updateLocaleLink();
+            $this->fixRelativeUrl();
+            $this->prefixUrl();
+            $this->recordFirstImage();
+
             $this->trackListLevel();
 
             $this->setTitle();
-            $this->fixImageSrc();
-            $this->updateLocaleLink();
             $this->loadToc();
 
             // last to prevent possible conflict
-            $this->prefixUrl();
             $this->addClass();
         }
     }
@@ -92,37 +128,39 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
             return;
         }
 
+        $blockClass = $this->config->getConfig('block_name');
+
         switch (get_class($this->node)) {
             case Block\ListBlock::class:
-                $class = 'wiki-content__list';
+                $class = "{$blockClass}__list";
                 break;
             case Block\ListItem::class:
-                $class = 'wiki-content__list-item';
+                $class = "{$blockClass}__list-item";
 
                 if ($this->listLevel > 1) {
-                    $class .= ' wiki-content__list-item--deep';
+                    $class .= " {$blockClass}__list-item--deep";
                 }
                 break;
             case Block\Heading::class:
-                $class = 'wiki-content__header wiki-content__header--'.$this->node->getLevel();
+                $class = "{$blockClass}__header {$blockClass}__header--".$this->node->getLevel();
                 break;
             case Block\Paragraph::class:
-                $class = 'wiki-content__paragraph';
+                $class = "{$blockClass}__paragraph";
                 break;
             case Inline\Image::class:
-                $class = 'wiki-content__image';
+                $class = "{$blockClass}__image";
                 break;
             case Inline\Link::class:
-                $class = 'wiki-content__link';
+                $class = "{$blockClass}__link";
                 break;
             case TableExtension\Table::class:
-                $class = 'wiki-content__table';
+                $class = "{$blockClass}__table";
                 break;
             case TableExtension\TableCell::class:
-                $class = 'wiki-content__table-data';
+                $class = "{$blockClass}__table-data";
 
                 if ($this->node->type === 'th') {
-                    $class .= ' wiki-content__table-data--header';
+                    $class .= " {$blockClass}__table-data--header";
                 }
                 break;
         }
@@ -132,9 +170,9 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
         }
     }
 
-    public function fixImageSrc()
+    public function fixRelativeUrl()
     {
-        if (!$this->node instanceof Inline\Image || !$this->event->isEntering()) {
+        if (!$this->event->isEntering() || !method_exists($this->node, 'getUrl')) {
             return;
         }
 
@@ -176,7 +214,7 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
 
     public function prefixUrl()
     {
-        if ($this->event->isEntering() || !method_exists($this->node, 'getUrl')) {
+        if (!$this->event->isEntering() || !method_exists($this->node, 'getUrl')) {
             return;
         }
 
@@ -185,6 +223,15 @@ class WikiProcessor implements DocumentProcessorInterface, ConfigurationAwareInt
         if (starts_with($url, '/wiki/')) {
             $this->node->setUrl('/help'.$url);
         }
+    }
+
+    public function recordFirstImage()
+    {
+        if ($this->firstImage !== null || !$this->node instanceof Inline\Image || !$this->event->isEntering()) {
+            return;
+        }
+
+        $this->firstImage = $this->node->getUrl();
     }
 
     public function setTitle()

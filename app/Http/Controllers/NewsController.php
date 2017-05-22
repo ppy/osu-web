@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,34 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.changelog-header {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-end;
+namespace App\Http\Controllers;
 
-  min-height: 250px;
+use App\Models\News;
+use Request;
 
-  background-size: cover;
-  background-position: center;
+class NewsController extends Controller
+{
+    protected $section = 'home';
+    protected $actionPrefix = 'news-';
 
-  background-image: url('/images/headers/generic.jpg');
+    public function index()
+    {
+        $page = get_int(Request::input('page'));
+        $limit = get_int(Request::input('limit'));
 
-  padding: 0 40px;
+        $entries = News\Listing::all($page, $limit);
 
-  .default-box-shadow;
-  .inner-shadow-top;
-
-  &__streams {
-    display: flex;
-    flex-direction: row;
-
-    @media @mobile {
-      flex-wrap: wrap;
+        return view('news.index', compact('entries'));
     }
-  }
 
-  &__streams-box {
-    margin-top: auto;
-    padding-top: 10px;
-  }
+    public function show($id)
+    {
+        $entry = (new News\Entry($id));
+
+        if ($entry->page() === null) {
+            abort(404);
+        }
+
+        return view('news.show', compact('entry'));
+    }
 }

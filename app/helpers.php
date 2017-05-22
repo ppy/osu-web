@@ -31,6 +31,15 @@ function array_search_null($value, $array)
     }
 }
 
+function background_image($url)
+{
+    if (!present($url)) {
+        return '';
+    }
+
+    return sprintf(' style="background-image:url(\'%s\');" ', e(proxy_image($url)));
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", trim($words ?? ''));
@@ -329,7 +338,7 @@ function nav_links()
     $links = [];
 
     $links['home'] = [
-        'getNews' => osu_url('home.news'),
+        'news-index' => route('news.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
     ];

@@ -110,7 +110,7 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            $news = News::all();
+            $news = News\Listing::all();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
