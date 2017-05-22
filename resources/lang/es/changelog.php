@@ -19,18 +19,13 @@
  */
 
 return [
-    'authorizations' => [
-        'update' => [
-            'null_user' => 'Debes iniciar sesión para editar.',
-            'system_generated' => 'No se puede editar una publicación generada por el sistema.',
-            'wrong_user' => 'Debes ser dueño del post para editarlo.',
-        ],
-    ],
+    'feed_title' => 'feed',
+    'generic' => 'Corrección de errores y mejoras menores.',
+    'users-online' => '1 usuario en línea|:users usuarios en línea',
 
-    'system' => [
-        'resolved' => [
-            'true' => 'Marcado como resuelto por :user',
-            'false' => 'Reabierto por :user',
-        ],
+    'prefixes' => [
+        'add' => 'adición',
+        'fix' => 'corrección',
+        'misc' => 'misceláneo',
     ],
 ];

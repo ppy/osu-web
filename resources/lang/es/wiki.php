@@ -19,18 +19,16 @@
  */
 
 return [
-    'authorizations' => [
-        'update' => [
-            'null_user' => 'Debes iniciar sesión para editar.',
-            'system_generated' => 'No se puede editar una publicación generada por el sistema.',
-            'wrong_user' => 'Debes ser dueño del post para editarlo.',
-        ],
-    ],
+    'show' => [
+        'fallback_translation' => 'La página solicitada aún no está traducida al idioma seleccionado (:language). Mostrando versión en inglés.',
+        'languages' => 'Idiomas',
+        'missing' => 'La página solicitada no fue encontrada.',
+        'missing_translation' => 'La página solicitada no se encontró en el idioma seleccionado.',
+        'toc' => 'Contenidos',
 
-    'system' => [
-        'resolved' => [
-            'true' => 'Marcado como resuelto por :user',
-            'false' => 'Reabierto por :user',
+        'edit' => [
+            'link' => 'Mostrar en GitHub',
+            'refresh' => 'Recargar',
         ],
     ],
 ];
