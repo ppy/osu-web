@@ -43,14 +43,6 @@
                 <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
                 </div>
-
-                <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_checkbox', ['field' => 'mouse'])
-                    @include('accounts._edit_entry_checkbox', ['field' => 'keyboard'])
-                    @include('accounts._edit_entry_checkbox', ['field' => 'tablet'])
-                    @include('accounts._edit_entry_checkbox', ['field' => 'touch'])
-                </div>
-
             </div>
         </div>
     </div>
@@ -106,6 +98,10 @@
 
     <div class="osu-page osu-page--small">
         @include('accounts._edit_signature')
+    </div>
+
+    <div class="osu-page osu-page--small">
+        @include('accounts._edit_playstyles')
     </div>
 
     <div class="osu-page osu-page--small">
