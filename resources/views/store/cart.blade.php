@@ -43,7 +43,7 @@
                             <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
 
                             @if($i->product->allow_multiple)
-                                <span>{{{ $i->quantity }}}</span>
+                                <span>{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
                             @else
                                 {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
                             @endif

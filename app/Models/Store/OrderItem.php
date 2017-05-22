@@ -24,6 +24,15 @@ class OrderItem extends Model
 {
     protected $primaryKey = 'id';
 
+    protected $casts = [
+        'extra_info' => 'array',
+    ];
+    // The format for extra_info is:
+    // [
+    //     'type' => 'custom-extra-info',
+    //     ...additional fields
+    // ]
+
     public function subtotal()
     {
         return $this->cost * $this->quantity;
@@ -49,6 +58,12 @@ class OrderItem extends Model
 
     public function getDisplayName()
     {
-        return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
+        if (is_array($this->extra_info)) {
+            // extra_info['type'] === 'support-osu'
+            $extra_text = " ({$this->extra_info['username']}, {$this->extra_info['duration']} months)";
+            return $this->product->name.($extra_text);
+        } else {
+            return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
+        }
     }
 }
