@@ -252,13 +252,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_sig'] = $bbcode->generate();
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
+
     public function setOsuPlaystyleAttribute($value)
     {
         $styles = 0;
 
         foreach ($value as $type) {
             $styles += self::PLAYSTYLES[$type];
-            }
+        }
 
         $this->attributes['osu_playstyle'] = $styles;
     }
