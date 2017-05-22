@@ -254,10 +254,10 @@ class User extends Model implements AuthenticatableContract, Messageable
     }
     public function setOsuPlaystyleAttribute($value)
     {
-        $styles=0;
+        $styles = 0;
 
         foreach ($value as $type) {
-            $styles+=self::PLAYSTYLES[$type];
+            $styles += self::PLAYSTYLES[$type];
             }
 
         $this->attributes['osu_playstyle'] = $styles;
