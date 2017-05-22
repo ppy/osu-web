@@ -129,7 +129,7 @@ class Page extends Base
         ];
 
         Es::index($params);
-    }
+    }  
 
     public function locales()
     {
@@ -148,40 +148,31 @@ class Page extends Base
 
     public function page()
     {
-        if (preg_match('#/redirect/#', $_SERVER['REQUEST_URI'])) {
-            try {
-                header('Location: '.static::fetchContent($this->pagePath()));
-                exit();
-            } catch (GitHubNotFoundException $_e) {
-                return;
-            }
-        } else {
-            if (!array_key_exists('page', $this->cache)) {
-                foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
-                    $this->locale = $locale;
+        if (!array_key_exists('page', $this->cache)) {
+            foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
+                $this->locale = $locale;
 
-                    $this->cache['page'] = Cache::remember(
-                        $this->cacheKeyPage(),
-                        static::CACHE_DURATION,
-                        function () {
-                            try {
-                                $page = static::fetchContent($this->pagePath());
-                            } catch (GitHubNotFoundException $_e) {
-                                return;
-                            }
-
-                            // FIXME: add indexAdd/Remove accordingly.
-                            if (present($page)) {
-                                return WikiProcessor::process($page, [
-                                    'path' => '/wiki/'.$this->path,
-                                ]);
-                            }
+                $this->cache['page'] = Cache::remember(
+                    $this->cacheKeyPage(),
+                    static::CACHE_DURATION,
+                    function () {
+                        try {
+                            $page = static::fetchContent($this->pagePath());
+                        } catch (GitHubNotFoundException $_e) {
+                            return;
                         }
-                    );
 
-                    if ($this->cache['page'] !== null) {
-                        break;
+                        // FIXME: add indexAdd/Remove accordingly.
+                        if (present($page)) {
+                            return WikiProcessor::process($page, [
+                                'path' => '/wiki/'.$this->path,
+                            ]);
+                        }
                     }
+                );
+
+                if ($this->cache['page'] !== null) {
+                    break;
                 }
             }
         }
@@ -192,8 +183,7 @@ class Page extends Base
     public function pagePath()
     {
         if ($this->locale === null) {
-            $this->locale = 'en';
-            //throw \Exception('locale not set!');
+            throw \Exception('locale not set!');
         }
 
         return $this->path.'/'.$this->locale.'.md';
