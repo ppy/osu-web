@@ -19,16 +19,13 @@
  */
 
 return [
-    'show' => [
-        'fallback_translation' => 'A página selecionada ainda não foi traduzida no idioma selecionado (:language). Exibindo a versão em inglês.',
-        'languages' => 'Idiomas',
-        'missing' => 'A página solicitada não pôde ser encontrada.',
-        'missing_translation' => 'A página solicitada não foi encontrada no idioma selecionado atualmente.',
-        'toc' => 'Índice',
+    'feed_title' => 'painel de registros',
+    'generic' => 'Correção de erros e aperfeiçoamentos.',
+    'users-online' => '1 usuário online|:users usuários online',
 
-        'edit' => [
-            'link' => 'Exibir no GitHub',
-            'refresh' => 'Atualizar',
-        ],
+    'prefixes' => [
+        'add' => 'adição',
+        'fix' => 'correção',
+        'misc' => 'outro',
     ],
 ];
