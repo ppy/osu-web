@@ -30,12 +30,13 @@ return [
         'reply' => '回复',
         'reset' => '重置',
         'save' => '保存',
+        'saving' => '保存中...',
         'show_more' => '显示更多',
         'upload_image' => '上传图片',
     ],
 
     'count' => [
-        'item' => ':count 件|:count 件', //参考翻译:件/份/个
+        'item' => ':count 件', //参考翻译:件/份/个
     ],
 
     'device' => [
@@ -64,8 +65,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count 天前|:count 天前',
-        'hours_ago' => ':count 小时前|:count 小时前',
+        'days_ago' => ':count 天前',
+        'hours_ago' => ':count 小时前',
         'now' => '现在',
         'remaining' => '剩余时间',
     ],

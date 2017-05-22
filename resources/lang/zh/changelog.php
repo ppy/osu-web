@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -19,20 +18,13 @@
  */
 
 return [
-    'header' => ':type 排名',
-    'type' => [
-        'performance' => '表现',
-        'charts' => 'Charts', //暂时没有合适的翻译
-        'score' => '总分',
-        'country' => '国家',
-        'kudosu' => 'Kudosu', //mapping相关,暂不翻译
-    ],
-    'stat' => [
-        'accuracy' => '准确率',
-        'play_count' => '游戏次数',
-        'performance' => '表现',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'feed_title' => 'feed', //需要上下文
+    'generic' => '修复Bug并且做了小的改动.',
+    'users-online' => ':users 用户在线',
+
+    'prefixes' => [
+        'add' => '添加',
+        'fix' => '修复',
+        'misc' => 'miscellanous', //需要上下文,可能的翻译为"混合"
     ],
 ];

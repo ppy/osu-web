@@ -20,6 +20,7 @@
 
 return [
     'required' => '需要 :attribute.',
+    'wrong_confirmation' => '确认信息不匹配.', //需要上下文,
 
     'beatmap_discussion_post' => [
         'first_post' => '无法删除第一个提交.',
@@ -46,5 +47,20 @@ return [
         'topic_vote' => [
             'too_many' => '选择了太多的选项.',
         ],
+    ],
+
+    'user_email' => [
+        'invalid' => '似乎不是有效的邮箱地址.',
+        'already_used' => '邮箱已被使用.',
+        'wrong_confirmation' => '确认邮箱与新邮箱不一致.',
+        'wrong_current_password' => '当前密码错误.',
+    ],
+
+    'user_password' => [
+        'contains_username' => '密码不能包含用户名.',
+        'too_short' => '新密码太短.',
+        'weak' => '弱密码.',
+        'wrong_confirmation' => '确认密码与新密码不一致.',
+        'wrong_current_password' => '当前密码错误.',
     ],
 ];
