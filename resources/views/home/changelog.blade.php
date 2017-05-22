@@ -69,7 +69,35 @@
                     <p class="changelog__text changelog__text--date">{{ $date }}</p>
                     @if ($build !== null)
                         <p class="changelog__text changelog__text--build">
+                            @if ($build->versionPrevious() !== null)
+                                <a
+                                    class="changelog__build-link"
+                                    href="{{ route('changelog', ['build' => $build->versionPrevious()->version]) }}"
+                                    title="{{ $build->versionPrevious()->displayVersion() }}"
+                                >
+                                    <i class="fa fa-angle-double-left"></i>
+                                </a>
+                            @else
+                                <span class="changelog__build-link changelog__build-link--disabled">
+                                    <i class="fa fa-angle-double-left"></i>
+                                </span>
+                            @endif
+
                             {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+
+                            @if ($build->versionNext() !== null)
+                                <a
+                                    class="changelog__build-link"
+                                    href="{{ route('changelog', ['build' => $build->versionNext()->version]) }}"
+                                    title="{{ $build->versionNext()->displayVersion() }}"
+                                >
+                                    <i class="fa fa-angle-double-right"></i>
+                                </a>
+                            @else
+                                <span class="changelog__build-link changelog__build-link--disabled">
+                                    <i class="fa fa-angle-double-right"></i>
+                                </span>
+                            @endif
                         </p>
                     @endif
 
@@ -83,6 +111,16 @@
                         @each('home._changelog_change', $logs, 'log')
                     </div>
                 @endforeach
+
+                @if ($build !== null)
+                    <div
+                        class="changelog__disqus js-turbolinks-disqus"
+                        data-turbolinks-disqus="{{ json_encode([
+                            'identifier' => $build->disqusId(),
+                            'title' => $build->disqusTitle(),
+                        ]) }}"
+                    ></div>
+                @endif
             </div>
         </div>
     </div>
