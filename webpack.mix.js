@@ -32,27 +32,7 @@ const node_root = 'node_modules';
 
 mix
 .js([
-  ...glob.sync('resources/assets/coffee/_classes/*.coffee'),
-
-  'resources/assets/coffee/react-namespaces.coffee',
-  ...glob.sync('resources/assets/coffee/react/_components/*.coffee'),
-  ...glob.sync('resources/assets/coffee/react/_mixins/*.coffee'),
-
-  'resources/assets/coffee/jquery-pubsub.coffee',
-  'resources/assets/coffee/osu_common.coffee',
-
-  'resources/assets/coffee/navbar-mobile.coffee',
-  'resources/assets/coffee/spoilerbox.coffee',
-  'resources/assets/coffee/store.coffee',
-  'resources/assets/coffee/forum/post-box.coffee',
-  'resources/assets/coffee/forum/topic-ajax.coffee',
-  'resources/assets/coffee/ujs-common.coffee',
-  'resources/assets/coffee/bootstrap-modal.coffee',
-  'resources/assets/coffee/logout.coffee',
-  'resources/assets/coffee/shared.coffee',
-  'resources/assets/coffee/turbolinks-overrides.coffee',
-
-  'resources/assets/coffee/main.coffee'
+  'resources/assets/app.js'
 ], 'js/app.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/profile-page/*.coffee'),
@@ -92,10 +72,18 @@ mix
 ], 'js/react/contest-entry.js')
 .webpackConfig({
   module: {
-    rules: [{
-      test: /\.coffee$/,
-      use: ['imports-loader?this=>window', 'coffee-loader']
-    }]
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|coffee)$/,
+        loader: 'import-glob-loader',
+        exclude: /(node_modules)/,
+      },
+      {
+        test: /\.coffee$/,
+        use: ['imports-loader?this=>window', 'coffee-loader']
+      }
+    ]
   }
 })
 .copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
