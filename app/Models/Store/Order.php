@@ -167,7 +167,7 @@ class Order extends Model
         $result = [true, ''];
 
         if ($quantity <= 0) {
-            $this->removeProduct($product, $extra);
+            $this->removeProduct($product, $extraInfo);
         } else {
             if ($product->allow_multiple) {
                 $item = $this->newOrderItem($product, $quantity, $extraInfo, $cost);
@@ -259,7 +259,7 @@ class Order extends Model
         };
     }
 
-    private function removeProduct(Product $product, array $extraInfo)
+    private function removeProduct(Product $product, $extraInfo)
     {
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
 
