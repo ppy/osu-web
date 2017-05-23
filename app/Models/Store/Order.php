@@ -142,7 +142,7 @@ class Order extends Model
         });
     }
 
-    private function removeProduct(Product $product)
+    private function removeProduct(Product $product, array $extraInfo)
     {
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
 
@@ -155,6 +155,19 @@ class Order extends Model
         }
     }
 
+    private function newOrderItem(Product $product, $quantity, array $extraInfo)
+    {
+        $item = new OrderItem();
+        $item->quantity = $quantity;
+        $item->extra_info = $extraInfo;
+        $item->product()->associate($product);
+        if ($product->cost === null) {
+            $item->cost = intval($item_form['cost']);
+        }
+
+        return $item;
+    }
+
     public function updateItem($item_form, $add_new = false)
     {
         $quantity = intval(array_get($item_form, 'quantity'));
@@ -165,16 +178,10 @@ class Order extends Model
 
         if ($product) {
             if ($quantity <= 0) {
-                $this->removeProduct($product);
+                $this->removeProduct($product, $extraInfo);
             } else {
                 if ($product->allow_multiple) {
-                    $item = new OrderItem();
-                    $item->quantity = $quantity;
-                    $item->extra_info = $extraInfo;
-                    $item->product()->associate($product);
-                    if ($product->cost === null) {
-                        $item->cost = intval($item_form['cost']);
-                    }
+                    $item = newOrderItem($product, $quantity, $extraInfo);
                 } else {
                     $item = $this->items()->where('product_id', $product->product_id)->get()->first();
                     if ($item) {
@@ -184,13 +191,7 @@ class Order extends Model
                             $item->quantity = $quantity;
                         }
                     } else {
-                        $item = new OrderItem();
-                        $item->quantity = $quantity;
-                        $item->extra_info = $extraInfo;
-                        $item->product()->associate($product);
-                        if ($product->cost === null) {
-                            $item->cost = intval($item_form['cost']);
-                        }
+                        $item = newOrderItem($product, $quantity, $extraInfo);
                     }
                 }
 
