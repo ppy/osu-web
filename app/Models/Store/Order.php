@@ -174,40 +174,40 @@ class Order extends Model
         $product = Product::find(array_get($item_form, 'product_id'));
         $extraInfo = array_get($item_form, 'extra_info');
 
+        if ($product === null) {
+            return [false, 'no product'];
+        }
+
         $result = [true, ''];
 
-        if ($product) {
-            if ($quantity <= 0) {
-                $this->removeProduct($product, $extraInfo);
+        if ($quantity <= 0) {
+            $this->removeProduct($product, $extra);
+        } else {
+            if ($product->allow_multiple) {
+                $item = newOrderItem($product, $quantity, $extraInfo);
             } else {
-                if ($product->allow_multiple) {
-                    $item = newOrderItem($product, $quantity, $extraInfo);
-                } else {
-                    $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-                    if ($item) {
-                        if ($add_new) {
-                            $item->quantity += $quantity;
-                        } else {
-                            $item->quantity = $quantity;
-                        }
+                $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+                if ($item) {
+                    if ($add_new) {
+                        $item->quantity += $quantity;
                     } else {
-                        $item = newOrderItem($product, $quantity, $extraInfo);
+                        $item->quantity = $quantity;
                     }
-                }
-
-                if (!$product->inStock($item->quantity)) {
-                    $result = [false, 'not enough stock'];
-                } elseif (!$product->enabled) {
-                    $result = [false, 'invalid item'];
-                } elseif ($item->quantity > $product->max_quantity) {
-                    $result = [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
                 } else {
-                    $this->save();
-                    $this->items()->save($item);
+                    $item = newOrderItem($product, $quantity, $extraInfo);
                 }
             }
-        } else {
-            $result = [false, 'no product'];
+
+            if (!$product->inStock($item->quantity)) {
+                $result = [false, 'not enough stock'];
+            } elseif (!$product->enabled) {
+                $result = [false, 'invalid item'];
+            } elseif ($item->quantity > $product->max_quantity) {
+                $result = [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
+            } else {
+                $this->save();
+                $this->items()->save($item);
+            }
         }
 
         return $result;
