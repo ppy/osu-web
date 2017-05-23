@@ -171,20 +171,44 @@ class Order extends Model
     private function updateSingleItem(Product $product, $quantity, $extraInfo, $add_new = false)
     {
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-        if ($item) {
-            if ($add_new) {
-                $item->quantity += $quantity;
-            } else {
-                $item->quantity = $quantity;
-            }
+        if ($item === null) {
+            return newOrderItem($product, $quantity, $extraInfo);
+        }
+
+        if ($add_new) {
+            $item->quantity += $quantity;
         } else {
-            $item = newOrderItem($product, $quantity, $extraInfo);
+            $item->quantity = $quantity;
         }
 
         return $item;
     }
 
-    public function updateItem($item_form, $add_new = false)
+    private function validateBeforeSave(Product $product, $item)
+    {
+        if (!$product->inStock($item->quantity)) {
+            return [false, 'not enough stock'];
+        } elseif (!$product->enabled) {
+            return [false, 'invalid item'];
+        } elseif ($item->quantity > $product->max_quantity) {
+            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
+        }
+
+        return [true, ''];
+    }
+
+    /**
+     * Updates the Order with form parameters.
+     *
+     * Updates the Order with with an item extracted from submitted form parameters.
+     * The function returns an array containing whether the operation was successful,
+     * and a message.
+     *
+     * @param array $item_form form parameters.
+     * @param boolean $add_new whether the quantity should be added or replaced.
+     * @return array [success, message]
+     **/
+    public function updateItem(array $item_form, $add_new = false)
     {
         $quantity = intval(array_get($item_form, 'quantity'));
         $product = Product::find(array_get($item_form, 'product_id'));
@@ -205,13 +229,8 @@ class Order extends Model
                 $item = updateSingleItem($product, $quantity, $extraInfo, $add_new);
             }
 
-            if (!$product->inStock($item->quantity)) {
-                $result = [false, 'not enough stock'];
-            } elseif (!$product->enabled) {
-                $result = [false, 'invalid item'];
-            } elseif ($item->quantity > $product->max_quantity) {
-                $result = [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
-            } else {
+            $result = $this->validateBeforeSave($product, $item);
+            if ($result[0]) {
                 $this->save();
                 $this->items()->save($item);
             }
