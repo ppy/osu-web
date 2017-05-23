@@ -35,7 +35,7 @@ return [
             'score' => 'Envois de score dans les dernières 24h',
         ],
         'current' => 'Utilisateurs en ligne',
-        'score' => 'Envois de score par secondes',
+        'score' => 'Envoi de score par secondes',
     ],
 
     'recent' => [

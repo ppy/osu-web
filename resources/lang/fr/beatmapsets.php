@@ -19,28 +19,54 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => "Cette beatmap n'est actuellement pas disponible qu téléchargement.",
+        'parts-removed' => "Des portions de cette beatmpa ont été supprimées suite à la requête du créateur ou d'un titulaire des droits tiers",
+        'more-info' => "Regarder ici pour plus d'informations.",
+    ],
+
+    'index' => [
+        'title' => 'Liste des beatmap',
+        'guest_title' => 'Beatmaps',
+    ],
+
     'show' => [
+        'discussion' => 'Discussion',
+
         'details' => [
             'made-by' => 'créé par ',
             'submitted' => 'envoyé le ',
+            'updated' => 'dernière mise à jour le ',
             'ranked' => 'classifié le ',
+            'approved' => 'approuvé le ',
+            'qualified' => 'qualifié le ',
+            'loved' => 'loved le ',
             'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps!',
             'download' => [
                 '_' => 'télécharger',
-                'no-video' => 'sans la vidéo',
+                'video' => 'avec Vidéo',
+                'no-video' => 'sans Vidéo',
                 'direct' => 'osu!direct',
             ],
+            'favourite' => 'Ajouter ce beatmapset aux favoris',
+            'unfavourite' => 'Retirer ce beatmapset des favoris',
         ],
         'stats' => [
-            'cs' => 'Taille du cercle',
+            'cs' => 'Taille des Cercles',
+            'cs-mania' => 'Nombre de touches',
             'drain' => 'Drainage PV',
             'accuracy' => 'Précision',
             'ar' => "Niveau d'approche",
-            'stars' => 'Difficulté étoiles',
+            'stars' => 'Difficulté en étoiles',
             'total_length' => 'Longeur',
             'bpm' => 'BPM',
+            'count_circles' => 'Nombre de Cercles',
+            'count_sliders' => 'Nombre de Sliders',
+            'user-rating' => 'Évaluation des joueurs',
+            'rating-spread' => 'Rating Spread',
         ],
         'info' => [
+            'no_scores' => 'Beatmap non classifiée',
             'success-rate' => 'Taux de réussite',
             'points-of-failure' => 'Points de ratés',
 
@@ -50,6 +76,7 @@ return [
             'tags' => 'Tags',
         ],
         'scoreboard' => [
+            'achieved' => 'atteint :when',
             'country' => 'Classement national',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
@@ -68,6 +95,11 @@ return [
                 'friend' => "Personnne de vos amis n'a encore fait un score!",
                 'global' => 'Pas de scores. Peut-être vous dans le classement?',
                 'loading' => 'Chargement des scores...',
+                'unranked' => 'Beatmap non classifié.',
+            ],
+            'score' => [
+                'first' => 'En Tête',
+                'own' => 'Votre meilleur',
             ],
             'stats' => [
                 'accuracy' => 'Précision',

@@ -22,6 +22,7 @@ return [
     'codes' => [
         'http-403' => '拒绝访问.',
         'http-401' => '请先登录.',
+        'http-429' => '请求过多,请稍后重试.',
     ],
     'account' => [
         'profile-order' => [

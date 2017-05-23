@@ -24,6 +24,12 @@ return [
         'parts-removed' => '根据作者/第三方的要求,这张谱面已经被移除.', //可能不准确
         'more-info' => '点击这里获得更多信息.',
     ],
+
+    'index' => [
+         'title' => '谱面列表',
+         'guest_title' => '谱面',
+     ],
+
     'show' => [
         'discussion' => '讨论',
 

@@ -19,13 +19,20 @@
  */
 
 return [
+    'confirmation' => '¿Estás seguro?',
+    'saved' => 'Guardado',
+
     'buttons' => [
         'cancel' => 'Cancelar',
-        'post' => 'Enviar',
+        'delete' => 'Eliminar',
+        'permalink' => 'enlace permanente',
+        'post' => 'Publicar',
         'reply' => 'Responder',
-        'reset' => 'Resetear',
+        'reset' => 'Reiniciar',
         'save' => 'Guardar',
+        'saving' => 'Guardando...',
         'show_more' => 'mostrar más',
+        'upload_image' => 'subir imagen',
     ],
 
     'count' => [
@@ -48,10 +55,20 @@ return [
         'next' => 'siguiente',
     ],
 
+     'score_count' => [
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Fallo',
+    ],
+
     'time' => [
         'days_ago' => 'hace :count día|hace :count días',
         'hours_ago' => 'hace :count hora|hace :count horas',
         'now' => 'ahora',
+        'remaining' => 'Tiempo Restante',
     ],
 
     'title' => [

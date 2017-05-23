@@ -24,6 +24,10 @@ return [
         'parts-removed' => 'Partes deste beatmap foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
         'more-info' => 'Clique aqui para mais informações.',
     ],
+    'index' => [
+        'title' => 'Lista de beatmaps',
+        'guest_title' => 'Beatmaps',
+    ],
     'show' => [
         'discussion' => 'Discussão',
 
@@ -34,10 +38,10 @@ return [
             'ranked' => 'ranqueado em ',
             'approved' => 'aprovado em ',
             'qualified' => 'qualificado em ',
-            'loved' => 'amado em ',
+            'loved' => 'loved em ',
             'logged-out' => 'Você precisa iniciar a sessão antes de baixar beatmaps!',
             'download' => [
-                '_' => 'baixar',
+                '_' => 'Baixar',
                 'video' => 'com vídeo',
                 'no-video' => 'sem vídeo',
                 'direct' => 'osu!direct',
@@ -46,13 +50,13 @@ return [
             'unfavourite' => 'Remover dos favoritos',
         ],
         'stats' => [
-            'cs' => 'Tamanho do círculo',
+            'cs' => 'Circle Size',
             'cs-mania' => 'Número de teclas',
             'drain' => 'Dreno de HP',
             'accuracy' => 'Precisão',
-            'ar' => 'Taxa de aproximação',
-            'stars' => 'Estrelas de dificuldade',
-            'total_length' => 'Comprimento',
+            'ar' => 'Approach Rate',
+            'stars' => 'Dificuldade',
+            'total_length' => 'Duração',
             'bpm' => 'BPM',
             'count_circles' => 'Quantidade de círculos',
             'count_sliders' => 'Quantidade de sliders',
@@ -60,7 +64,7 @@ return [
             'rating-spread' => 'Gráfico de avaliações',
         ],
         'info' => [
-            'no_scores' => 'Beatmap não rankeado',
+            'no_scores' => 'Beatmap não ranqueado',
             'points-of-failure' => 'Pontos de falha',
             'success-rate' => 'Taxa de sucesso',
 
@@ -81,13 +85,13 @@ return [
             'list' => [
                 'accuracy' => 'Precisão',
                 'player-header' => 'Jogador',
-                'rank-header' => 'Rank',
+                'rank-header' => 'Colocação',
                 'score' => 'Pontuação',
             ],
             'no_scores' => [
                 'country' => 'Ninguém do seu país fez uma pontuação neste mapa ainda!',
                 'friend' => 'Nenhum dos seus amigos fez uma pontuação neste mapa ainda!',
-                'global' => 'Sem pontuações ainda. Não quer tentar marcar algumas?',
+                'global' => 'Sem pontuações ainda. Não quer tentar marcar alguma?',
                 'loading' => 'Carregando pontuações...',
                 'unranked' => 'Beatmap não rankeado.',
             ],
