@@ -20,11 +20,6 @@
 
 namespace App\Models\Wiki;
 
-use App\Exceptions\GitHubNotFoundException;
-use App\Exceptions\GitHubTooLargeException;
-use App\Libraries\WikiProcessor;
-use Es;
-
 class Redirect extends Page
 {
     public $path;
@@ -36,18 +31,16 @@ class Redirect extends Page
         $this->locale = $locale;
     }
 
-  public function target()
-  {
-      $redirectList = explode(PHP_EOL, static::fetchContent('redirect.txt'));
-      $pattern = '/^'.preg_quote($this->path, '/').'/';
-      foreach ($redirectList as &$value)
-      {
-          if (preg_match($pattern, $value))
-          {
-              $target = preg_replace('/^.*\s/', '', $value);
-              return $target;
-          }
-      }
-  }
+    public function target()
+    {
+        $redirectList = explode(PHP_EOL, static::fetchContent('redirect.txt'));
+        $pattern = '/^'.preg_quote($this->path, '/').'/';
+        foreach ($redirectList as &$value) {
+            if (preg_match($pattern, $value)) {
+                $target = preg_replace('/^.*\s/', '', $value);
+                return $target;
+            }
+        }
+    }
 
 }

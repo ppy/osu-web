@@ -129,7 +129,7 @@ class Page extends Base
         ];
 
         Es::index($params);
-    }  
+    }
 
     public function locales()
     {
