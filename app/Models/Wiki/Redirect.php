@@ -38,9 +38,9 @@ class Redirect extends Page
         foreach ($redirectList as &$value) {
             if (preg_match($pattern, $value)) {
                 $target = preg_replace('/^.*\s/', '', $value);
+
                 return $target;
             }
         }
     }
-
 }
