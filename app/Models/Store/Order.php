@@ -142,61 +142,6 @@ class Order extends Model
         });
     }
 
-    private function removeProduct(Product $product, array $extraInfo)
-    {
-        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-
-        if ($item) {
-            $item->delete();
-        }
-
-        if ($this->items()->count() === 0) {
-            $this->delete();
-        }
-    }
-
-    private function newOrderItem(Product $product, $quantity, array $extraInfo)
-    {
-        $item = new OrderItem();
-        $item->quantity = $quantity;
-        $item->extra_info = $extraInfo;
-        $item->product()->associate($product);
-        if ($product->cost === null) {
-            $item->cost = intval($item_form['cost']);
-        }
-
-        return $item;
-    }
-
-    private function updateSingleItem(Product $product, $quantity, $extraInfo, $add_new = false)
-    {
-        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-        if ($item === null) {
-            return newOrderItem($product, $quantity, $extraInfo);
-        }
-
-        if ($add_new) {
-            $item->quantity += $quantity;
-        } else {
-            $item->quantity = $quantity;
-        }
-
-        return $item;
-    }
-
-    private function validateBeforeSave(Product $product, $item)
-    {
-        if (!$product->inStock($item->quantity)) {
-            return [false, 'not enough stock'];
-        } elseif (!$product->enabled) {
-            return [false, 'invalid item'];
-        } elseif ($item->quantity > $product->max_quantity) {
-            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
-        }
-
-        return [true, ''];
-    }
-
     /**
      * Updates the Order with form parameters.
      *
@@ -311,5 +256,60 @@ class Order extends Model
 
             return $query->get();
         };
+    }
+
+    private function removeProduct(Product $product, array $extraInfo)
+    {
+        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+
+        if ($item) {
+            $item->delete();
+        }
+
+        if ($this->items()->count() === 0) {
+            $this->delete();
+        }
+    }
+
+    private function newOrderItem(Product $product, $quantity, array $extraInfo)
+    {
+        $item = new OrderItem();
+        $item->quantity = $quantity;
+        $item->extra_info = $extraInfo;
+        $item->product()->associate($product);
+        if ($product->cost === null) {
+            $item->cost = intval($item_form['cost']);
+        }
+
+        return $item;
+    }
+
+    private function updateSingleItem(Product $product, $quantity, $extraInfo, $add_new = false)
+    {
+        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+        if ($item === null) {
+            return newOrderItem($product, $quantity, $extraInfo);
+        }
+
+        if ($add_new) {
+            $item->quantity += $quantity;
+        } else {
+            $item->quantity = $quantity;
+        }
+
+        return $item;
+    }
+
+    private function validateBeforeSave(Product $product, $item)
+    {
+        if (!$product->inStock($item->quantity)) {
+            return [false, 'not enough stock'];
+        } elseif (!$product->enabled) {
+            return [false, 'invalid item'];
+        } elseif ($item->quantity > $product->max_quantity) {
+            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
+        }
+
+        return [true, ''];
     }
 }
