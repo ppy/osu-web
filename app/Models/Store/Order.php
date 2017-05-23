@@ -168,6 +168,22 @@ class Order extends Model
         return $item;
     }
 
+    private function updateSingleItem(Product $product, $quantity, $extraInfo, $add_new = false)
+    {
+        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+        if ($item) {
+            if ($add_new) {
+                $item->quantity += $quantity;
+            } else {
+                $item->quantity = $quantity;
+            }
+        } else {
+            $item = newOrderItem($product, $quantity, $extraInfo);
+        }
+
+        return $item;
+    }
+
     public function updateItem($item_form, $add_new = false)
     {
         $quantity = intval(array_get($item_form, 'quantity'));
@@ -186,16 +202,7 @@ class Order extends Model
             if ($product->allow_multiple) {
                 $item = newOrderItem($product, $quantity, $extraInfo);
             } else {
-                $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-                if ($item) {
-                    if ($add_new) {
-                        $item->quantity += $quantity;
-                    } else {
-                        $item->quantity = $quantity;
-                    }
-                } else {
-                    $item = newOrderItem($product, $quantity, $extraInfo);
-                }
+                $item = updateSingleItem($product, $quantity, $extraInfo, $add_new);
             }
 
             if (!$product->inStock($item->quantity)) {
