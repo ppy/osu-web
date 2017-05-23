@@ -158,6 +158,7 @@ class Order extends Model
         $quantity = intval(array_get($item_form, 'quantity'));
         $product = Product::find(array_get($item_form, 'product_id'));
         $extraInfo = array_get($item_form, 'extra_info');
+        $cost = intval(array_get($item_form, 'cost'));
 
         if ($product === null) {
             return [false, 'no product'];
@@ -169,9 +170,9 @@ class Order extends Model
             $this->removeProduct($product, $extra);
         } else {
             if ($product->allow_multiple) {
-                $item = $this->newOrderItem($product, $quantity, $extraInfo);
+                $item = $this->newOrderItem($product, $quantity, $extraInfo, $cost);
             } else {
-                $item = $this->updateSingleItem($product, $quantity, $extraInfo, $add_new);
+                $item = $this->updateSingleItem($product, $quantity, $extraInfo, $cost, $add_new);
             }
 
             $result = $this->validateBeforeSave($product, $item);
@@ -271,24 +272,24 @@ class Order extends Model
         }
     }
 
-    private function newOrderItem(Product $product, $quantity, $extraInfo)
+    private function newOrderItem(Product $product, $quantity, $extraInfo, $cost)
     {
         $item = new OrderItem();
         $item->quantity = $quantity;
         $item->extra_info = $extraInfo;
         $item->product()->associate($product);
         if ($product->cost === null) {
-            $item->cost = intval($item_form['cost']);
+            $item->cost = $cost;
         }
 
         return $item;
     }
 
-    private function updateSingleItem(Product $product, $quantity, $extraInfo, $add_new = false)
+    private function updateSingleItem(Product $product, $quantity, $extraInfo, $cost, $add_new = false)
     {
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return $this->newOrderItem($product, $quantity, $extraInfo);
+            return $this->newOrderItem($product, $quantity, $extraInfo, $cost);
         }
 
         if ($add_new) {
