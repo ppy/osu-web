@@ -169,9 +169,9 @@ class Order extends Model
             $this->removeProduct($product, $extra);
         } else {
             if ($product->allow_multiple) {
-                $item = newOrderItem($product, $quantity, $extraInfo);
+                $item = $this->newOrderItem($product, $quantity, $extraInfo);
             } else {
-                $item = updateSingleItem($product, $quantity, $extraInfo, $add_new);
+                $item = $this->updateSingleItem($product, $quantity, $extraInfo, $add_new);
             }
 
             $result = $this->validateBeforeSave($product, $item);
@@ -271,7 +271,7 @@ class Order extends Model
         }
     }
 
-    private function newOrderItem(Product $product, $quantity, array $extraInfo)
+    private function newOrderItem(Product $product, $quantity, $extraInfo)
     {
         $item = new OrderItem();
         $item->quantity = $quantity;
@@ -288,7 +288,7 @@ class Order extends Model
     {
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return newOrderItem($product, $quantity, $extraInfo);
+            return $this->newOrderItem($product, $quantity, $extraInfo);
         }
 
         if ($add_new) {
