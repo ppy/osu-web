@@ -22,10 +22,11 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Debes iniciar sesión para editar.',
-            'system_generated' => 'No se puede editar un post generado por el sistema.',
+            'system_generated' => 'No se puede editar una publicación generada por el sistema.',
             'wrong_user' => 'Debes ser dueño del post para editarlo.',
         ],
     ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marcado como resuelto por :user',

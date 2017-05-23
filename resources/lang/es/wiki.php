@@ -19,11 +19,16 @@
  */
 
 return [
-    'top-headers' => [
-        'headline' => 'Streams en direct',
-        'description' => "Les données sont obtenues de twitch.tv toutes les minutes basées sur les listes et répertoires. Libre à vous de streamer et d'apparaître ici! Pour plus d'informations sur osu! en streaming, merci d'aller voir la page wiki sur le live streaming.",
-    ],
-    'headers' => [
-        'regular' => 'En cours de streaming',
+    'show' => [
+        'fallback_translation' => 'La página solicitada aún no está traducida al idioma seleccionado (:language). Mostrando versión en inglés.',
+        'languages' => 'Idiomas',
+        'missing' => 'La página solicitada no fue encontrada.',
+        'missing_translation' => 'La página solicitada no se encontró en el idioma seleccionado.',
+        'toc' => 'Contenidos',
+
+        'edit' => [
+            'link' => 'Mostrar en GitHub',
+            'refresh' => 'Recargar',
+        ],
     ],
 ];

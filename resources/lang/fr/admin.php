@@ -68,7 +68,7 @@ return [
 
             'sections' => [
                 'forum' => 'Forum',
-                'general' => 'Géneral',
+                'general' => 'Général',
                 'store' => 'Magasin',
             ],
         ],

@@ -19,11 +19,13 @@
  */
 
 return [
-    'top-headers' => [
-        'headline' => 'Streams en direct',
-        'description' => "Les données sont obtenues de twitch.tv toutes les minutes basées sur les listes et répertoires. Libre à vous de streamer et d'apparaître ici! Pour plus d'informations sur osu! en streaming, merci d'aller voir la page wiki sur le live streaming.",
-    ],
-    'headers' => [
-        'regular' => 'En cours de streaming',
+    'feed_title' => 'flux',
+    'generic' => 'Corrections de bugs et améliorations mineures.',
+    'users-online' => '1 user online|:users users online',
+
+    'prefixes' => [
+        'add' => 'ajout',
+        'fix' => 'correction',
+        'misc' => 'divers',
     ],
 ];

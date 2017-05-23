@@ -19,17 +19,21 @@
  */
 
 return [
+    'confirmation' => 'Êtes-vous sûr?',
+    'saved' => 'Sauvegardé',
+
     'buttons' => [
         'cancel' => 'Annuler',
+        'delete' => 'Supprimer',
+        'permalink' => 'lien permanent',
         'post' => 'Poster',
         'reply' => 'Répondre',
         'reset' => 'Réinitialiser',
         'save' => 'Sauvegarder',
+        'saving' => 'Sauvegarde...',
         'show_more' => 'Plus de résultats',
         'delete' => 'Supprimer',
     ],
-
-    'confirmation' => 'Êtes-vous sûr ?',
 
     'count' => [
         'item' => ':count objet|:count objets',
@@ -63,7 +67,7 @@ return [
     'time' => [
         'days_ago' => 'il y a :count|il y a:count',
         'hours_ago' => 'il y a :count heure|il y a :count heures',
-        'now' => 'Maitenant',
+        'now' => 'Maintenant',
         'remaining' => 'Temps restant',
     ],
 

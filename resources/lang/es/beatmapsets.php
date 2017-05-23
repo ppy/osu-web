@@ -19,30 +19,56 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => 'Este beatmap no está actualmente disponible para descargar.',
+        'parts-removed' => 'Partes de este beatmap han sido removidas por solicitud de su creador o un titular de derechos.',
+        'more-info' => 'Más información.',
+    ],
+
+    'index' => [
+        'title' => 'Listado de Beatmaps',
+        'guest_title' => 'Beatmaps',
+    ],
+
     'show' => [
+        'discussion' => 'Discusión',
+
         'details' => [
             'made-by' => 'creado por ',
             'submitted' => 'enviado el ',
+            'updated' => 'última actualización el ',
             'ranked' => 'rankeado el ',
+            'approved' => 'aprobado el ',
+            'qualified' => 'calificado el ',
+            'loved' => 'amado el ',
             'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
             'download' => [
-                '_' => 'descargar',
+                '_' => 'Descargar',
+                'video' => 'con Video',
+                'no-video' => 'sin Video',
                 'direct' => 'osu!direct',
-                'no-video' => 'sin video',
             ],
+            'favourite' => 'Marcar como favorito',
+            'unfavourite' => 'Desmarcar como favorito',
         ],
         'stats' => [
-            'cs' => 'Tamaño de círculo',
-            'drain' => 'Disminución de HP',
+            'cs' => 'Tamaño de Círculo',
+            'cs-mania' => 'Cantidad de Teclas',
+            'drain' => 'Drenado de HP',
             'accuracy' => 'Precisión',
             'ar' => 'Velocidad de aproximación',
             'stars' => 'Estrellas de Dificultad',
             'total_length' => 'Duración',
             'bpm' => 'BPM',
+            'count_circles' => 'Número de Círculos',
+            'count_sliders' => 'Número de Deslizadores',
+            'user-rating' => 'Valoración de los Usuarios',
+            'rating-spread' => 'Rating Spread', // I don't know the context for this, please provide a translation or context
         ],
         'info' => [
-            'success-rate' => 'Tasa de éxito',
+            'no_scores' => 'Beatmap no rankeado',
             'points-of-failure' => 'Puntos de Fracaso',
+            'success-rate' => 'Tasa de éxito',
 
             'description' => 'Descripción',
 
@@ -50,6 +76,7 @@ return [
             'tags' => 'Etiquetas',
         ],
         'scoreboard' => [
+            'achieved' => 'logrado :when',
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
@@ -68,6 +95,11 @@ return [
                 'friend' => '¡Ninguno de tus amigos ha marcado una puntuación en este mapa aún!',
                 'global' => 'Sin puntuaciones aún. ¿Tal vez deberías intentar marcar alguna?',
                 'loading' => 'Cargando puntuaciones...',
+                'unranked' => 'Beatmap no rankeado.',
+            ],
+            'score' => [
+                'first' => 'Liderando',
+                'own' => 'Tu mejor puntuación',
             ],
             'stats' => [
                 'accuracy' => 'Precisión',

@@ -64,7 +64,7 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => 'Console de administrador',
+            'title' => 'Coisinha de administração',
 
             'sections' => [
                 'forum' => 'Fórum',

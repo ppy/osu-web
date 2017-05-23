@@ -20,55 +20,55 @@
 
 return [
     'edit' => [
-        'title' => 'Configurações da <strong>conta</strong>',
-        'title_compact' => 'configurações',
+        'title' => '<strong>Ajustes</strong> de la Cuenta',
+        'title_compact' => 'ajustes',
 
         'avatar' => [
-            'title' => 'Editar avatar',
+            'title' => 'Editar Avatar',
         ],
 
         'email' => [
-            'current' => 'senha atual',
-            'new' => 'novo e-mail',
-            'new_confirmation' => 'confirmar e-mail',
-            'title' => 'E-mail',
+            'current' => 'correo electrónico actual',
+            'new' => 'nuevo correo electrónico',
+            'new_confirmation' => 'verificar correo electrónico',
+            'title' => 'Correo Electrónico',
         ],
 
         'password' => [
-            'current' => 'senha atual',
-            'new' => 'nova senha',
-            'new_confirmation' => 'confirmar senha',
-            'title' => 'Senha',
+            'current' => 'contraseña actual',
+            'new' => 'nueva contraseña',
+            'new_confirmation' => 'verificar contraseña',
+            'title' => 'Contraseña',
         ],
 
         'profile' => [
-            'title' => 'Editar perfil',
+            'title' => 'Editar Perfil',
 
             'user' => [
-                'user_from' => 'localização atual',
-                'user_interests' => 'interesses',
+                'user_from' => 'ubicación actual',
+                'user_interests' => 'intereses',
                 'user_msnm' => 'skype',
-                'user_occ' => 'ocupação',
+                'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',
-                'user_website' => 'site',
+                'user_website' => 'sitio web',
             ],
         ],
 
         'signature' => [
-            'title' => 'Assinatura',
-            'update' => 'atualizar',
+            'title' => 'Firma',
+            'update' => 'actualizar',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'Confirmação de alteração de endereço de e-mail do osu!',
-        'update' => 'atualizar',
-        'updated' => 'E-mail atualizado',
+        'email_subject' => 'osu! - Confirmación de cambio de correo electrónico',
+        'update' => 'actualizar',
+        'updated' => 'Correo electrónico actualizado',
     ],
 
     'update_password' => [
-        'email_subject' => 'Confirmação de alteração de senha do osu!',
-        'update' => 'atualizar',
-        'updated' => 'Senha atualizada',
+        'email_subject' => 'osu! - Confirmación de cambio de contraseña',
+        'update' => 'actualizar',
+        'updated' => 'Contraseña actualizada',
     ],
 ];

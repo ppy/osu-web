@@ -32,7 +32,7 @@ return [
         ],
 
         'slogan' => [
-            'main' => 'simulador de círculos grátis para jogar',
+            'main' => 'simulador de ritmo gratuito',
             'sub' => 'o ritmo está a um clique de distância',
         ],
     ],
@@ -51,7 +51,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos beapmaps aprovados',
+            'new' => 'Novos beatmaps aprovados',
             'popular' => 'Beatmaps populares',
         ],
         'buttons' => [
