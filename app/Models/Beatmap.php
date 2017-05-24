@@ -105,7 +105,7 @@ class Beatmap extends Model
         }
 
         if ($this->mode !== 'osu' && $this->mode !== $mode) {
-            throw new ScoreRetrievalException(trans('errors.beatmaps.standard-converts-only'));
+            throw new ScoreRetrievalException(trans('errors.beatmaps.standard_converts_only'));
         }
 
         $mode = studly_case($mode);
