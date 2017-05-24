@@ -59,6 +59,7 @@ return [
             'index' => 'performance',
             'performance' => 'performance',
             'charts' => 'charts',
+            'score' => 'score',
             'country' => 'country',
             'kudosu' => 'kudosu',
         ],

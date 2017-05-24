@@ -341,6 +341,7 @@ function nav_links()
     $links['rankings'] = [
         'index' => route('ranking', ['mode' => 'osu', 'type' => 'performance']),
         'charts' => osu_url('rankings.charts'),
+        'score' => route('ranking', ['mode' => 'osu', 'type' => 'score']),
         'country' => osu_url('rankings.country'),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
