@@ -98,7 +98,7 @@ class Beatmap extends Model
 
     private function getScores($modelPath, $mode)
     {
-        if (static::modeInt($mode) === null) {
+        if (!array_key_exists($mode, static::MODES)) {
             $mode = static::modeStr($this->playmode);
         }
 
