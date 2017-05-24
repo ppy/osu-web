@@ -96,7 +96,7 @@ class Beatmap extends Model
         return $this->hasMany(BeatmapFailtimes::class, 'beatmap_id');
     }
 
-    private function getScores($model_path, $mode)
+    private function getScores($modelPath, $mode)
     {
         if (static::modeInt($mode) === null) {
             $mode = static::modeStr($this->playmode);
@@ -108,7 +108,7 @@ class Beatmap extends Model
 
         $mode = studly_case($mode);
 
-        return $this->hasMany("{$model_path}\\{$mode}", 'beatmap_id');
+        return $this->hasMany("{$modelPath}\\{$mode}", 'beatmap_id');
     }
 
     public function scores($mode = null)
