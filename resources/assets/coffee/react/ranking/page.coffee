@@ -44,6 +44,7 @@ class Ranking.Page extends React.Component
       mode: props.mode
       rankingType: 'performance' # hard coded until other types are implemented
 
+
   columnSettings: =>
     {
       rank: {
@@ -115,6 +116,7 @@ class Ranking.Page extends React.Component
       },
     }
 
+
   # column rendering stuff
   renderRank: (props) =>
     div className: 'ranking-page-table__rank-column',
@@ -133,7 +135,7 @@ class Ranking.Page extends React.Component
         props.row.user.username
 
 
-  # mode_page/type_tab handling
+  # mode/tab change handling
   changePage: (page) =>
     @setState page: page, @retrieve
 

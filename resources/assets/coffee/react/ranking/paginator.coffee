@@ -19,7 +19,6 @@
 {div, span, a} = React.DOM
 
 class Ranking.Paginator extends React.Component
-
   pageLink: (page, label, active = false) =>
     classes = [
       'ranking-page-paginator__page',
@@ -41,11 +40,13 @@ class Ranking.Paginator extends React.Component
         className: classes.join ' '
         label
 
+
   changePage: (e) =>
     e.preventDefault()
     page = parseInt(e.target.dataset.page)
     if (@props.page != page)
       @props.onPageChange page
+
 
   render: =>
     page = @props.page
