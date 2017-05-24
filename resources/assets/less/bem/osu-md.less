@@ -47,6 +47,11 @@
       font-size: @font-size--header-wiki-2;
       margin: 50px -20px 10px;
       color: #fff;
+
+      .@{top}--news & {
+        color: @pink-darker;
+        margin-left: 0;
+      }
     }
 
     &--3 {
@@ -100,7 +105,8 @@
   }
 
   &__paragraph {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
+    line-height: 1.5;
   }
 
   &__table {

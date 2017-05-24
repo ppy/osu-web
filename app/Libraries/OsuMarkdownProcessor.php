@@ -114,7 +114,9 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
             $this->trackListLevel();
 
-            $this->setTitle();
+            if ($this->config->getConfig('fetch_title')) {
+                $this->setTitle();
+            }
             $this->loadToc();
 
             // last to prevent possible conflict

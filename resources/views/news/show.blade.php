@@ -27,31 +27,55 @@
     </div>
 
     <div class="osu-page osu-page--generic">
-        <div>
-            {{ $entry->createdAt() }}
-        </div>
+        <div class="news">
+            <div class="news__time">
+                {!! trans('news.show.posted', ['date' => timeago($entry->createdAt())]) !!}
+            </div>
 
-        {!! $entry->bodyHtml() !!}
+            {!! $entry->bodyHtml() !!}
 
-        <div>
-            @if ($entry->navNewerId() === null)
-                <span>
-                    {{ trans('news.show.nav.newer') }}
-                </span>
-            @else
-                <a href="{{ route('news.show', $entry->navNewerId()) }}">
-                    {{ trans('news.show.nav.newer') }}
-                </a>
-            @endif
-            @if ($entry->navOlderId() === null)
-                <span>
-                    {{ trans('news.show.nav.older') }}
-                </span>
-            @else
-                <a href="{{ route('news.show', $entry->navOlderId()) }}">
-                    {{ trans('news.show.nav.older') }}
-                </a>
-            @endif
+            <div class="news__nav">
+                @if ($entry->navNewerId() === null)
+                    <span
+                        class="news__nav-button"
+                        title="{{ trans('news.show.nav.newer') }}"
+                    >
+                        <span class="fa fa-chevron-circle-left"></span>
+                    </span>
+                @else
+                    <a
+                        class="news__nav-button news__nav-button--link"
+                        href="{{ route('news.show', $entry->navNewerId()) }}"
+                        title="{{ trans('news.show.nav.newer') }}"
+                    >
+                        <span class="fa fa-chevron-circle-left"></span>
+                    </a>
+                @endif
+                @if ($entry->navOlderId() === null)
+                    <span
+                        class="news__nav-button"
+                        title="{{ trans('news.show.nav.older') }}"
+                    >
+                        <span class="fa fa-chevron-circle-right"></span>
+                    </span>
+                @else
+                    <a
+                        href="{{ route('news.show', $entry->navOlderId()) }}"
+                        class="news__nav-button news__nav-button--link"
+                        title="{{ trans('news.show.nav.older') }}"
+                    >
+                        <span class="fa fa-chevron-circle-right"></span>
+                    </a>
+                @endif
+            </div>
+
+            <div
+                class="js-turbolinks-disqus"
+                data-turbolinks-disqus="{{ json_encode([
+                    'identifier' => $entry->disqusId(),
+                    'title' => $entry->title(),
+                ]) }}"
+            ></div>
         </div>
     </div>
 @endsection

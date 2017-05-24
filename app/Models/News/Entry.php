@@ -71,6 +71,21 @@ class Entry
         return $this->page()['header']['date'];
     }
 
+    public function disqusId()
+    {
+        $tumblrUrl = $this->page()['header']['tumblr_url'] ?? null;
+
+        if (!present($tumblrUrl)) {
+            $key = $this->getKey();
+        } else {
+            preg_match('#^.*/post/(?<id>[^/]+)/.*$#', $tumblrUrl, $matches);
+
+            $key = $matches['id'];
+        }
+
+        return 'news_'.$key;
+    }
+
     public function filename()
     {
         return static::nameFile($this->id);

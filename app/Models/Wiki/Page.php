@@ -175,6 +175,7 @@ class Page
                         // FIXME: add indexAdd/Remove accordingly.
                         if (present($page)) {
                             return OsuMarkdownProcessor::process($page, [
+                                'fetch_title' => true,
                                 'path' => '/help/wiki/'.$this->path,
                             ]);
                         }
