@@ -46,75 +46,63 @@ class Ranking.Page extends React.Component
 
 
   columnSettings: =>
-    {
-      rank: {
-        id: 'rank'
-        accessor: 'pp_rank'
-        width: 50
-        render: @renderRank
-      },
-      username: {
-        id: 'username'
-        accessor: 'user.username'
-        render: @renderUserLink
-      },
-      accuracy: {
-        id: 'hit_accuracy'
-        header: osu.trans('ranking.stat.accuracy')
-        width: 75
-        accessor: (r) ->
-          "#{parseFloat(r.hit_accuracy).toFixed(2)}%"
-      },
-      playCount: {
-        id: 'play_count'
-        header: osu.trans('ranking.stat.play_count')
-        width: 75
-        accessor: (r) ->
-          r.play_count.toLocaleString()
-      },
-      performance: {
-        id: 'performance',
-        header: osu.trans('ranking.stat.performance')
-        width: 110
-        accessor: (r) ->
-          "#{Math.round(r.pp).toLocaleString()}pp"
-      },
-      total_score: {
-        id: 'total_score',
-        header: osu.trans('ranking.stat.total_score')
-        width: 110
-        accessor: (r) ->
-          r.total_score.toLocaleString()
-      },
-      ranked_score: {
-        id: 'ranked_score',
-        header: osu.trans('ranking.stat.ranked_score')
-        width: 110
-        accessor: (r) ->
-          r.ranked_score.toLocaleString()
-      },
-      ss_count: {
-        id: 'ss_count'
-        header: osu.trans('ranking.stat.ss')
-        width: 50
-        accessor: (r) ->
-          r.grade_counts.ss.toLocaleString()
-      },
-      s_count: {
-        id: 's_count'
-        header: osu.trans('ranking.stat.s')
-        width: 50
-        accessor: (r) ->
-          r.grade_counts.s.toLocaleString()
-      },
-      a_count: {
-        id: 'a_count'
-        header: osu.trans('ranking.stat.a')
-        width: 50
-        accessor: (r) ->
-          r.grade_counts.a.toLocaleString()
-      },
-    }
+    rank:
+      id: 'rank'
+      accessor: 'pp_rank'
+      width: 50
+      render: @renderRank
+    username:
+      id: 'username'
+      accessor: 'user.username'
+      render: @renderUserLink
+    accuracy:
+      id: 'hit_accuracy'
+      header: osu.trans('ranking.stat.accuracy')
+      width: 75
+      accessor: (r) ->
+        "#{parseFloat(r.hit_accuracy).toFixed(2)}%"
+    playCount:
+      id: 'play_count'
+      header: osu.trans('ranking.stat.play_count')
+      width: 75
+      accessor: (r) ->
+        r.play_count.toLocaleString()
+    performance:
+      id: 'performance',
+      header: osu.trans('ranking.stat.performance')
+      width: 110
+      accessor: (r) ->
+        "#{Math.round(r.pp).toLocaleString()}pp"
+    total_score:
+      id: 'total_score',
+      header: osu.trans('ranking.stat.total_score')
+      width: 110
+      accessor: (r) ->
+        r.total_score.toLocaleString()
+    ranked_score:
+      id: 'ranked_score',
+      header: osu.trans('ranking.stat.ranked_score')
+      width: 110
+      accessor: (r) ->
+        r.ranked_score.toLocaleString()
+    ss_count:
+      id: 'ss_count'
+      header: osu.trans('ranking.stat.ss')
+      width: 50
+      accessor: (r) ->
+        r.grade_counts.ss.toLocaleString()
+    s_count:
+      id: 's_count'
+      header: osu.trans('ranking.stat.s')
+      width: 50
+      accessor: (r) ->
+        r.grade_counts.s.toLocaleString()
+    a_count:
+      id: 'a_count'
+      header: osu.trans('ranking.stat.a')
+      width: 50
+      accessor: (r) ->
+        r.grade_counts.a.toLocaleString()
 
 
   # column rendering stuff
