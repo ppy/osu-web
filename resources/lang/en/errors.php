@@ -30,6 +30,7 @@ return [
         ],
     ],
     'beatmaps' => [
+        'invalid_mode' => 'Invalid mode specified.',
         'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
     ],
     'beatmapsets' => [
