@@ -62,7 +62,7 @@ class Ranking.Paginator extends React.Component
 
     rightPages = Math.min(range, range - leftPages)
 
-    leftStart = page - leftPages
+    leftStart = Math.max(1, page - leftPages)
     rightEnd = page + rightPages
 
 
@@ -72,7 +72,7 @@ class Ranking.Paginator extends React.Component
       @pageLink Math.max(1, @props.page - 1), '‹'
 
       # page links
-      for page in [(leftStart+1)..rightEnd]
+      for page in [leftStart..rightEnd]
         @pageLink page, page, page == @props.page
 
       # next/last page links

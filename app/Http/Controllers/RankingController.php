@@ -37,11 +37,7 @@ class RankingController extends Controller
         $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
         $page = clamp(get_int($page), 1, $maxPages);
 
-        if (!array_key_exists($mode, Beatmap::MODES)) {
-            abort(404);
-        }
-
-        if (!in_array($type, static::RANKING_TYPES)) {
+        if (!array_key_exists($mode, Beatmap::MODES) || !in_array($type, static::RANKING_TYPES)) {
             abort(404);
         }
 
