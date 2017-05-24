@@ -29,6 +29,10 @@
     max-width: 100%;
   }
 
+  &--news {
+    padding: 0;
+  }
+
   &__header {
     font-family: @font-family-sans-serif;
     font-weight: bold;
@@ -78,7 +82,7 @@
   &__link {
     .link-yellow();
 
-    .@{top}--light & {
+    .@{top}--news & {
       .link-default();
     }
   }

@@ -27,6 +27,10 @@
     </div>
 
     <div class="osu-page osu-page--generic">
+        <div>
+            {{ $entry->createdAt() }}
+        </div>
+
         {!! $entry->bodyHtml() !!}
 
         <div>

@@ -22,4 +22,11 @@ return [
     'index' => [
         'title' => 'News Listing',
     ],
+
+    'show' => [
+        'nav' => [
+            'newer' => 'Newer post',
+            'older' => 'Older post',
+        ],
+    ],
 ];

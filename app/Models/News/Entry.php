@@ -29,7 +29,7 @@ class Entry
 {
     // in minutes
     const CACHE_DURATION = 86400;
-    const VERSION = 2;
+    const VERSION = 3;
 
     private $cache = [];
     private $id;
@@ -150,7 +150,7 @@ class Entry
                         $data = OsuMarkdownProcessor::process($page, [
                             'html_input' => 'allow',
                             'path' => '/news',
-                            'block_modifiers' => ['light'],
+                            'block_modifiers' => ['news'],
                         ]);
 
                         $data['header']['date'] = Carbon::parse($data['header']['date'] ?? null);
