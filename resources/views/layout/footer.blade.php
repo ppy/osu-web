@@ -17,10 +17,10 @@
 --}}
 <footer class="footer no-print">
     <div class="footer__row">
-        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">{{ trans('layout.legal.tos') }}</a>
-        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">{{ trans('layout.legal.copyright') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.server') }}">{{ trans('layout.legal.serverStatus') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">{{ trans('layout.legal.osuStatus') }}</a>
+        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">{{ trans('layout.footer.legal.tos') }}</a>
+        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">{{ trans('layout.footer.legal.copyright') }}</a>
+        <a class="footer__link" href="{{ osu_url('status.server') }}">{{ trans('layout.footer.legal.serverStatus') }}</a>
+        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">{{ trans('layout.footer.legal.osuStatus') }}</a>
     </div>
     <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
