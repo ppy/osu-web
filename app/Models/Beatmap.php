@@ -98,7 +98,9 @@ class Beatmap extends Model
 
     private function getScores($model_path, $mode)
     {
-        $mode = $mode ?? static::modeStr($this->playmode);
+        if (static::modeInt($mode) === null) {
+            $mode = static::modeStr($this->playmode);
+        }
 
         if ($this->mode !== 'osu' && $this->mode !== $mode) {
             throw new ScoreRetrievalException(trans('errors.beatmaps.standard-converts-only'));
