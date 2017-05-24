@@ -30,6 +30,7 @@ class RankingController extends Controller
 
     const PAGE_SIZE = 20;
     const MAX_RESULTS = 10000;
+    const RANKING_TYPES = ['performance', 'score'];
 
     public function index($mode, $type, $page = 1)
     {
@@ -37,6 +38,10 @@ class RankingController extends Controller
         $page = clamp(get_int($page), 1, $maxPages);
 
         if (!array_key_exists($mode, Beatmap::MODES)) {
+            abort(404);
+        }
+
+        if (!in_array($type, static::RANKING_TYPES)) {
             abort(404);
         }
 
