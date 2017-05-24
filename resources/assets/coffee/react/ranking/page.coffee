@@ -31,7 +31,6 @@ class Ranking.Page extends React.Component
         disabled: true
       score:
         title: osu.trans('ranking.type.score')
-        disabled: true
       country:
         title: osu.trans('ranking.type.country')
         disabled: true
@@ -45,9 +44,122 @@ class Ranking.Page extends React.Component
       mode: props.mode
       rankingType: 'performance' # hard coded until other types are implemented
 
+  columnSettings: =>
+    {
+      rank: {
+        id: 'rank'
+        accessor: 'pp_rank'
+        width: 50
+        render: @renderRank
+      },
+      username: {
+        id: 'username'
+        accessor: 'user.username'
+        render: @renderUserLink
+      },
+      accuracy: {
+        id: 'hit_accuracy'
+        header: osu.trans('ranking.stat.accuracy')
+        width: 75
+        accessor: (r) ->
+          "#{parseFloat(r.hit_accuracy).toFixed(2)}%"
+      },
+      playCount: {
+        id: 'play_count'
+        header: osu.trans('ranking.stat.play_count')
+        width: 75
+        accessor: (r) ->
+          r.play_count.toLocaleString()
+      },
+      performance: {
+        id: 'performance',
+        header: osu.trans('ranking.stat.performance')
+        width: 110
+        accessor: (r) ->
+          "#{Math.round(r.pp).toLocaleString()}pp"
+      },
+      total_score: {
+        id: 'total_score',
+        header: osu.trans('ranking.stat.total_score')
+        width: 110
+        accessor: (r) ->
+          r.total_score.toLocaleString()
+      },
+      ranked_score: {
+        id: 'ranked_score',
+        header: osu.trans('ranking.stat.ranked_score')
+        width: 110
+        accessor: (r) ->
+          r.ranked_score.toLocaleString()
+      },
+      ss_count: {
+        id: 'ss_count'
+        header: osu.trans('ranking.stat.ss')
+        width: 50
+        accessor: (r) ->
+          r.grade_counts.ss.toLocaleString()
+      },
+      s_count: {
+        id: 's_count'
+        header: osu.trans('ranking.stat.s')
+        width: 50
+        accessor: (r) ->
+          r.grade_counts.s.toLocaleString()
+      },
+      a_count: {
+        id: 'a_count'
+        header: osu.trans('ranking.stat.a')
+        width: 50
+        accessor: (r) ->
+          r.grade_counts.a.toLocaleString()
+      },
+    }
 
+  # column rendering stuff
+  renderRank: (props) =>
+    div className: 'ranking-page-table__rank-column',
+      "##{@state.page * @state.pageSize + props.index + 1}"
+
+
+  renderUserLink: (props) ->
+    a
+      href: laroute.route 'users.show', user: props.row.user.id
+      className: 'ranking-page-table__user-link'
+      el FlagCountry, country:
+        code: props.row.user.country_code
+        name: props.row.user.country_code
+      span
+        className: 'ranking-page-table__user-link-text'
+        props.row.user.username
+
+
+  # mode_page/type_tab handling
   changePage: (page) =>
     @setState page: page, @retrieve
+
+
+  setCurrentPlaymode: (_e, {mode}) =>
+    return if @state.loading or @state.mode == mode
+
+    @setState mode: mode, page: 0, @retrieve
+
+
+  switchRankingTab: (_e, {tab}) =>
+    return if @state.rankingType == tab
+
+    @setState rankingType: tab, page: 0, @retrieve
+
+
+  playmodeTabHrefFunc: (mode) =>
+    laroute.route 'ranking',
+      mode: mode
+      type: @state.rankingType
+
+
+  rankingTypeTabHrefFunc: (type) =>
+    laroute.route 'ranking',
+      mode: @state.mode
+      type: type
 
 
   generateURL: =>
@@ -87,18 +199,6 @@ class Ranking.Page extends React.Component
           @updateURL()
 
 
-  setCurrentPlaymode: (_e, {mode}) =>
-    return if @state.loading or @state.mode == mode
-
-    @setState mode: mode, page: 0, @retrieve
-
-
-  switchRankingTab: (_e, {tab}) =>
-    return if @state.rankingType == tab
-
-    @setState rankingType: tab, page: 0, @retrieve
-
-
   componentDidMount: =>
     $.subscribe 'playmode:set.rankingPage', @setCurrentPlaymode
     $.subscribe 'rankingmode:set.rankingPage', @setCurrentRankingMode
@@ -110,39 +210,26 @@ class Ranking.Page extends React.Component
     $.unsubscribe '.rankingPage'
 
 
-  renderRank: (props) =>
-    div className: 'ranking-page-table__rank-column',
-      "##{@state.page * @state.pageSize + props.index + 1}"
-
-
-  renderUserLink: (props) ->
-    a
-      href: laroute.route 'users.show', user: props.row.user.id
-      className: 'ranking-page-table__user-link'
-      el FlagCountry, country:
-        code: props.row.user.country_code
-        name: props.row.user.country_code
-      span
-        className: 'ranking-page-table__user-link-text'
-        props.row.user.username
-
-
-  playmodeTabHrefFunc: (mode) =>
-    laroute.route 'ranking',
-      mode: mode
-      type: @state.rankingType
-
-
-  rankingTypeTabHrefFunc: (type) =>
-    laroute.route 'ranking',
-      mode: @state.mode
-      type: type
-
-
   render: =>
     # override defaults here because setting 'sortable: false' on
     #   the table itself doesn't disable sorting, idk
     ReactTable.ReactTableDefaults.column.sortable = false
+
+    switch @state.rankingType
+      when 'performance'
+        columns = ['rank', 'username', 'accuracy', 'playCount', 'performance', 'ss_count', 's_count', 'a_count']
+        activeHeader = 'performance'
+      when 'score'
+        columns = ['rank', 'username', 'accuracy', 'playCount', 'total_score', 'ranked_score', 'ss_count', 's_count', 'a_count']
+        activeHeader = 'ranked_score'
+
+    columnsToShow = columns.map (column) =>
+      if column == activeHeader
+        settings = _.clone @columnSettings()[column]
+        settings.headerClassName = '-active'
+        settings
+      else
+        @columnSettings()[column]
 
     div null,
       div className: 'osu-page',
@@ -166,64 +253,7 @@ class Ranking.Page extends React.Component
       div className: 'osu-page osu-page--small',
         div className: 'ranking-page-table',
           el ReactTable.default,
-              columns: [
-                {
-                  id: 'rank'
-                  header: ''
-                  accessor: 'pp_rank'
-                  width: 50
-                  render: @renderRank
-                },
-                {
-                  id: 'username'
-                  header: ''
-                  accessor: 'user.username'
-                  render: @renderUserLink
-                },
-                {
-                  id: 'hit_accuracy'
-                  header: osu.trans('ranking.stat.accuracy')
-                  width: 75
-                  accessor: (r) ->
-                    "#{parseFloat(r.hit_accuracy).toFixed(2)}%"
-                },
-                {
-                  id: 'play_count'
-                  header: osu.trans('ranking.stat.play_count')
-                  width: 75
-                  accessor: (r) ->
-                    r.play_count.toLocaleString()
-                },
-                {
-                  id: 'performance',
-                  header: osu.trans('ranking.stat.performance')
-                  width: 110
-                  headerClassName: '-active'
-                  accessor: (r) ->
-                    "#{Math.round(r.pp).toLocaleString()}pp"
-                },
-                {
-                  id: 'ss_count'
-                  header: osu.trans('ranking.stat.ss')
-                  width: 50
-                  accessor: (r) ->
-                    r.grade_counts.ss.toLocaleString()
-                },
-                {
-                  id: 's_count'
-                  header: osu.trans('ranking.stat.s')
-                  width: 50
-                  accessor: (r) ->
-                    r.grade_counts.s.toLocaleString()
-                },
-                {
-                  id: 'a_count'
-                  header: osu.trans('ranking.stat.a')
-                  width: 50
-                  accessor: (r) ->
-                    r.grade_counts.a.toLocaleString()
-                },
-              ]
+              columns: columnsToShow
               className: '-highlight'
               manual: true
               showPageJump: false

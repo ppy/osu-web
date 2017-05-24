@@ -45,9 +45,17 @@ class RankingController extends Controller
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             })
-            ->orderBy('rank_score', 'desc')
             ->limit(static::PAGE_SIZE)
             ->offset(static::PAGE_SIZE * $page);
+
+        switch ($type) {
+            case 'performance':
+                $stats->orderBy('rank_score', 'desc');
+                break;
+            case 'score':
+                $stats->orderBy('ranked_score', 'desc');
+                break;
+        }
 
         $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
 
