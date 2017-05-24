@@ -66,6 +66,7 @@ class RankingController extends Controller
 
         $scores = [
             'mode' => $mode,
+            'ranking_type' => $type,
             'scores' => $scores,
             'paging' => [
                 'page' => $page,

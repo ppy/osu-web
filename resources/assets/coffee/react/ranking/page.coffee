@@ -42,7 +42,7 @@ class Ranking.Page extends React.Component
       pages: props.paging.pages
       loading: false
       mode: props.mode
-      rankingType: 'performance' # hard coded until other types are implemented
+      rankingType: props.ranking_type
 
 
   columnSettings: =>
