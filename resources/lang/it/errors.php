@@ -29,7 +29,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
+        'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
     'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.',
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',

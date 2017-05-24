@@ -30,7 +30,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Solo el modo osu!standard puede tener puntuaciones en otros modos.',
+        'standard_converts_only' => 'Solo el modo osu!standard puede tener puntuaciones en otros modos.',
     ],
      'beatmapsets' => [
         'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
