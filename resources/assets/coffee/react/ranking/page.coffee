@@ -118,7 +118,7 @@ class Ranking.Page extends React.Component
   # column rendering stuff
   renderRank: (props) =>
     div className: 'ranking-page-table__rank-column',
-      "##{@state.page * @state.pageSize + props.index + 1}"
+      "##{(@state.page - 1) * @state.pageSize + props.index + 1}"
 
 
   renderUserLink: (props) ->
@@ -141,13 +141,13 @@ class Ranking.Page extends React.Component
   setCurrentPlaymode: (_e, {mode}) =>
     return if @state.loading or @state.mode == mode
 
-    @setState mode: mode, page: 0, @retrieve
+    @setState mode: mode, page: 1, @retrieve
 
 
   switchRankingTab: (_e, {tab}) =>
     return if @state.rankingType == tab
 
-    @setState rankingType: tab, page: 0, @retrieve
+    @setState rankingType: tab, page: 1, @retrieve
 
 
   playmodeTabHrefFunc: (mode) =>
@@ -163,11 +163,11 @@ class Ranking.Page extends React.Component
 
 
   generateURL: =>
-    if @state.page > 0
+    if @state.page > 1
       laroute.route 'ranking',
         mode: @state.mode
         type: @state.rankingType
-        page: (@state.page + 1)
+        page: @state.page
     else
       laroute.route 'ranking',
         mode: @state.mode

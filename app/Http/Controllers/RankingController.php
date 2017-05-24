@@ -34,7 +34,7 @@ class RankingController extends Controller
     public function index($mode, $type, $page = 1)
     {
         $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
-        $page = clamp(get_int($page), 1, $maxPages) - 1;
+        $page = clamp(get_int($page), 1, $maxPages);
 
         if (!array_key_exists($mode, Beatmap::MODES)) {
             abort(404);
@@ -46,7 +46,7 @@ class RankingController extends Controller
                 $userQuery->default();
             })
             ->limit(static::PAGE_SIZE)
-            ->offset(static::PAGE_SIZE * $page);
+            ->offset(static::PAGE_SIZE * ($page - 1));
 
         switch ($type) {
             case 'performance':
