@@ -257,8 +257,10 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $styles = 0;
 
-        foreach ($value as $type) {
-            $styles += self::PLAYSTYLES[$type];
+        foreach (self::PLAYSTYLES as $type => $bit) {
+            if (in_array($type, $value, true)) {
+                $styles += $bit;
+            }
         }
 
         $this->attributes['osu_playstyle'] = $styles;

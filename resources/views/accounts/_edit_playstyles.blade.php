@@ -25,11 +25,10 @@
     <div class="account-edit__input-groups">
 
         <div class="account-edit__input-group">
-            @include('accounts._edit_entry_checkbox', ['field' => __('accounts.playstyles.mouse')])
-            @include('accounts._edit_entry_checkbox', ['field' => __('accounts.playstyles.keyboard')])
-            @include('accounts._edit_entry_checkbox', ['field' => __('accounts.playstyles.tablet')])
-            @include('accounts._edit_entry_checkbox', ['field' => __('accounts.playstyles.touch')])
+            @foreach (Auth::user()::PLAYSTYLES as $key => $value)
+                @include('accounts._edit_playstyle_checkbox', ['field' => $key])
+            @endforeach
         </div>
-
     </div>
+
 </div>

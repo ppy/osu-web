@@ -20,13 +20,37 @@ class @AccountEditPlaystyle
   checkboxes: document.getElementsByClassName('js-account-edit-playstyle')
 
   constructor: ->
-    $(document).on 'click', '.js-account-edit-playstyle', @update
+    $(document).on 'change', '.js-account-edit-playstyle', @update
 
-  update: =>
-    arr = []
+  saved: (el) =>
+    el.dataset.accountEditState = 'saved'
+
+    Timeout.set 3000, =>
+      @clearState el
+
+  clearState: (el) =>
+    el.dataset.accountEditState = ''
+
+  saving: (el) =>
+    el.dataset.accountEditState = 'saving'
+
+  update: (e) =>
+    input = e.currentTarget
+    $main = $(input).closest('.js-account-edit')
+
+    arr = [""]
     for checkbox in @checkboxes
-      arr.push checkbox.name if checkbox.checked
+      arr.push checkbox.value if checkbox.checked
+
+    @saving $main[0]
+
     $.ajax laroute.route('account.update'),
       method: 'PUT'
       data:
-        "user[osu_playstyle]" : arr
+        user: osu_playstyle: arr
+    .done =>
+      @saved $main[0]
+
+    .fail (xhr) =>
+      osu.ajaxError xhr
+      @clearState $main[0]

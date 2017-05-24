@@ -15,17 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry">
+<label class="account-edit-entry js-account-edit">
     <div class="account-edit-entry__label">
-        {{$field}}
+        @lang('accounts.playstyles.'.$field)
     </div>
 
     <div class="osu-checkbox">
         <input
-            name="{{$field}}"
+            value="{{$field}}"
             class="osu-checkbox__input js-account-edit-playstyle"
             type="checkbox"
-            @if (in_array($field, Auth::user()->osu_playstyle))
+            @if (is_array(Auth::user()->osu_playstyle) && in_array($field, Auth::user()->osu_playstyle))
                 checked
             @endif
         >
@@ -33,5 +33,6 @@
             <i class="fa fa-fw fa-check"></i>
         </span>
     </div>
+    @include('accounts._edit_entry_status')
 
 </label>
