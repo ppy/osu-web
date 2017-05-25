@@ -29,25 +29,25 @@
     <div class="osu-page osu-page--generic">
         <div class="news-index">
             <div class="news-index__list">
-                @foreach ($entries['entries'] as $entry)
+                @foreach ($posts['posts'] as $post)
                     <div class="news-index-item">
                         <a
-                            href="{{ route('news.show', $entry->getKey()) }}"
+                            href="{{ route('news.show', $post->getKey()) }}"
                             class="news-index-item__title"
-                        >{{ $entry->title() }}</a>
+                        >{{ $post->title() }}</a>
 
                         <span class="news-index-item__time">
-                            {!! trans('news.show.posted', ['time' => timeago($entry->createdAt())]) !!}
+                            {!! trans('news.show.posted', ['time' => timeago($post->createdAt())]) !!}
                         </span>
                     </div>
                 @endforeach
             </div>
 
             <div class="news-index__nav">
-                @if (isset($entries['newerPosts']))
+                @if (isset($posts['newerPosts']))
                     <a
                         class="news-index__nav-button news-index__nav-button--link"
-                        href="{{ route('news.index', ['page' => $entries['newerPosts'], 'limit' => $limit]) }}"
+                        href="{{ route('news.index', ['page' => $posts['newerPosts'], 'limit' => $limit]) }}"
                         title="{{ trans('news.index.nav.newer') }}"
                     >
                         <span class="fa fa-chevron-circle-left"></span>
@@ -61,10 +61,10 @@
                     </span>
                 @endif
 
-                @if (isset($entries['olderPosts']))
+                @if (isset($posts['olderPosts']))
                     <a
                         class="news-index__nav-button news-index__nav-button--link"
-                        href="{{ route('news.index', ['page' => $entries['olderPosts'], 'limit' => $limit]) }}"
+                        href="{{ route('news.index', ['page' => $posts['olderPosts'], 'limit' => $limit]) }}"
                         title="{{ trans('news.index.nav.older') }}"
                     >
                         <span class="fa fa-chevron-circle-right"></span>

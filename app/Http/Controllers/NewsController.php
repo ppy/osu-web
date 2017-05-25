@@ -33,27 +33,27 @@ class NewsController extends Controller
         $page = get_int(Request::input('page'));
         $limit = get_int(Request::input('limit'));
 
-        $entries = News\Listing::all($page, $limit);
+        $posts = News\Index::all($page, $limit);
 
-        return view('news.index', compact('entries', 'limit'));
+        return view('news.index', compact('posts', 'limit'));
     }
 
     public function show($id)
     {
-        $entry = (new News\Entry($id));
+        $post = (new News\Post($id));
 
-        if ($entry->page() === null) {
+        if ($post->page() === null) {
             abort(404);
         }
 
-        return view('news.show', compact('entry'));
+        return view('news.show', compact('post'));
     }
 
     public function store()
     {
         priv_check('NewsIndexRefresh')->ensureCan();
 
-        News\Listing::refresh();
+        News\Index::refresh();
 
         return ['message' => trans('news.store.ok')];
     }
@@ -62,7 +62,7 @@ class NewsController extends Controller
     {
         priv_check('NewsRefresh')->ensureCan();
 
-        (new News\Entry($id))->refresh();
+        (new News\Post($id))->refresh();
 
         return ['message' => trans('news.update.ok')];
     }

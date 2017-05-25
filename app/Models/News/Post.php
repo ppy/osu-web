@@ -25,7 +25,7 @@ use App\Libraries\OsuWiki;
 use Cache;
 use Carbon\Carbon;
 
-class Entry
+class Post
 {
     // in minutes
     const CACHE_DURATION = 86400;
@@ -56,9 +56,9 @@ class Entry
         $this->index = $index;
     }
 
-    public function cacheKeyPage()
+    public function cacheKey()
     {
-        return 'news:page:'.static::cacheVersion().':'.$this->id;
+        return 'news:post:'.static::cacheVersion().':'.$this->id;
     }
 
     public function bodyHtml()
@@ -106,7 +106,7 @@ class Entry
     public function index()
     {
         if ($this->index === null) {
-            $this->index = Listing::index();
+            $this->index = Index::index();
         }
 
         return $this->index;
@@ -152,7 +152,7 @@ class Entry
     {
         if (!array_key_exists('page', $this->cache)) {
             $this->cache['page'] = Cache::remember(
-                $this->cacheKeyPage(),
+                $this->cacheKey(),
                 static::CACHE_DURATION,
                 function () {
                     try {
@@ -187,7 +187,7 @@ class Entry
 
     public function refresh()
     {
-        Cache::forget($this->cacheKeyPage());
+        Cache::forget($this->cacheKey());
     }
 
     public function title()

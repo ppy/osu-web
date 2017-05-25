@@ -23,7 +23,7 @@ namespace App\Models\News;
 use App\Libraries\OsuWiki;
 use Cache;
 
-class Listing
+class Index
 {
     const VERSION = 2;
     const CACHE_DURATION = 86400;
@@ -38,7 +38,7 @@ class Listing
 
         $files = static::index();
 
-        $entries = [];
+        $posts = [];
 
         foreach ($files as $i => $file) {
             if ($i < $start) {
@@ -57,7 +57,7 @@ class Listing
                 continue;
             }
 
-            $entries[] = new Entry(Entry::nameId($file['name']));
+            $posts[] = new Post(Post::nameId($file['name']));
         }
 
         if ($start > 0) {
@@ -68,12 +68,12 @@ class Listing
             $olderPosts = $page + 1;
         }
 
-        return compact('entries', 'newerPosts', 'olderPosts');
+        return compact('posts', 'newerPosts', 'olderPosts');
     }
 
     public static function cacheKey()
     {
-        return 'news:listing:'.static::VERSION;
+        return 'news:index:'.static::VERSION;
     }
 
     public static function index()
