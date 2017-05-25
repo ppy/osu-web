@@ -167,7 +167,7 @@ class Order extends Model
         $result = [true, ''];
 
         if ($quantity <= 0) {
-            $this->removeProduct($product, $extraInfo);
+            $this->removeOrderItem($item_form);
         } else {
             if ($product->allow_multiple) {
                 $item = $this->newOrderItem($product, $quantity, $extraInfo, $cost);
@@ -259,9 +259,10 @@ class Order extends Model
         };
     }
 
-    private function removeProduct(Product $product, $extraInfo)
+    private function removeOrderItem(array $item_form)
     {
-        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+        $item_id = array_get($item_form, 'id');
+        $item = $this->items()->find($item_id);
 
         if ($item) {
             $item->delete();

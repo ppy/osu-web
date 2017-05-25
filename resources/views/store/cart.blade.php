@@ -41,7 +41,7 @@
 
                         {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
                             <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
-
+                            <input type="hidden" name="item[id]" value="{{ $i->id }}">
                             @if($i->product->allow_multiple)
                                 <span>{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
                             @else
