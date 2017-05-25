@@ -234,7 +234,7 @@ function ujs_redirect($url)
 
 function timeago($date)
 {
-    $display_date = $date->toRfc850String();
+    $display_date = i18n_time($date);
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
@@ -462,6 +462,12 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG)
     );
 
     return $formatter->format($datetime);
+}
+
+function i18n_time($datetime, $format = IntlDateFormatter::LONG)
+{
+    return IntlDateFormatter::create(App::getLocale(), $format, $format)
+        ->format($datetime);
 }
 
 function open_image($path, $dimensions = null)
