@@ -28,16 +28,20 @@
 
     <div class="osu-page osu-page--generic">
         <div class="news-index">
-            <ul>
+            <div class="news-index__list">
                 @foreach ($entries['entries'] as $entry)
-                    <li>
-                        <a href="{{ route('news.show', $entry->getKey()) }}">
-                            {{ $entry->createdAt() }}
-                            {{ $entry->title() }}
-                        </a>
-                    </li>
+                    <div class="news-index-item">
+                        <a
+                            href="{{ route('news.show', $entry->getKey()) }}"
+                            class="news-index-item__title"
+                        >{{ $entry->title() }}</a>
+
+                        <span class="news-index-item__time">
+                            {!! trans('news.show.posted', ['date' => timeago($entry->createdAt())]) !!}
+                        </span>
+                    </div>
                 @endforeach
-            </ul>
+            </div>
 
             <div class="news-index__nav">
                 @if (isset($entries['newerPosts']))

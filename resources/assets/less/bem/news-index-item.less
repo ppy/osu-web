@@ -16,19 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.news-index {
-  &__list {
-    margin: -10px 0;
+.news-index-item {
+  margin: 10px 0;
+
+  &__time {
+    font-size: @font-size--normal;
   }
 
-  &__nav {
-    display: flex;
-    justify-content: center;
-    padding: 20px 10px;
-  }
-
-  &__nav-button {
-    font-size: 40px;
-    margin: 0 10px;
+  &__title {
+    .link-pink-dark();
+    font-size: @font-size--large;
   }
 }
