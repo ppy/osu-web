@@ -52,6 +52,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_timezone', 'float',
     ];
 
+    const PLAYSTYLES = [
+        'mouse' => 1,
+        'keyboard' => 2,
+        'tablet' => 4,
+        'touch' => 8,
+    ];
+
     public $flags;
     private $groupIds;
     private $supportLength;
@@ -246,6 +253,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
+    public function setOsuPlaystyleAttribute($value)
+    {
+        $styles = 0;
+
+        foreach (self::PLAYSTYLES as $type => $bit) {
+            if (in_array($type, $value, true)) {
+                $styles += $bit;
+            }
+        }
+
+        $this->attributes['osu_playstyle'] = $styles;
+    }
+
     public function isSpecial()
     {
         return $this->user_id !== null && present($this->user_colour);
@@ -294,14 +314,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
         $styles = [];
 
-        $mappings = [
-            'mouse' => 1,
-            'keyboard' => 2,
-            'tablet' => 4,
-            'touch' => 8,
-        ];
-
-        foreach ($mappings as $type => $bit) {
+        foreach (self::PLAYSTYLES as $type => $bit) {
             if (($value & $bit) !== 0) {
                 $styles[] = $type;
             }

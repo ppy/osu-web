@@ -114,6 +114,7 @@ class AccountController extends Controller
                 'user_twitter:string',
                 'user_website:string',
                 'user_sig:string',
+                'osu_playstyle:string[]',
             ]
         );
 
