@@ -71,4 +71,12 @@ return [
         'update' => 'update',
         'updated' => 'Password updated',
     ],
+
+    'playstyles' => [
+        'title' => 'Playstyles',
+        'mouse' => 'mouse',
+        'keyboard' => 'keyboard',
+        'tablet' => 'tablet',
+        'touch' => 'touch',
+    ],
 ];
