@@ -37,6 +37,7 @@ class Ranking.Page extends React.Component
 
     @state =
       data: props.scores
+      dataRankingType: props.ranking_type
       page: props.paging.page
       pageSize: props.scores.length
       pages: props.paging.pages
@@ -181,6 +182,7 @@ class Ranking.Page extends React.Component
       .done (data) =>
         newState =
           data: data.scores
+          dataRankingType: @state.rankingType
           page: data.paging.page
           pages: data.paging.pages
           loading: false
@@ -205,7 +207,7 @@ class Ranking.Page extends React.Component
     #   the table itself doesn't disable sorting, idk
     ReactTable.ReactTableDefaults.column.sortable = false
 
-    switch @state.rankingType
+    switch @state.dataRankingType
       when 'performance'
         columns = ['rank', 'username', 'accuracy', 'playCount', 'performance', 'ss_count', 's_count', 'a_count']
         activeHeader = 'performance'
