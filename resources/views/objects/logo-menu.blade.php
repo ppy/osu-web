@@ -38,7 +38,7 @@
 
                     <a
                         class="logo-menu__user-slice logo-menu__user-slice--session logo-menu__user-slice--bg js-logout-link"
-                        href="{{ route('users.logout') }}"
+                        href="{{ route('logout') }}"
                         data-method="delete"
                         data-confirm="{{ trans('users.logout_confirm') }}"
                         data-remote="1"

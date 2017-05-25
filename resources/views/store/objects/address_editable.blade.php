@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="{{{ $grid or 'col-md-6' }}}" id="address-{{ $data->address_id }}">
+<div class="{{{ $grid or 'grid-cell' }}}" id="address-{{ $data->address_id }}">
     <div>
         {!! Form::open(['route' => ['admin.store.addresses.update', $data->address_id], 'class' => 'editable-content-form', 'method' => 'put', 'data-remote' => true]) !!}
             <div class="first_name">

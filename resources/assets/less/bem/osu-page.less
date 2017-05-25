@@ -74,6 +74,21 @@
     background-color: #333;
   }
 
+  &--landing-buttons {
+    flex: 1 0 auto;
+  }
+
+  &--password-reset {
+    .default-box-shadow();
+    .inner-shadow-top();
+    margin-bottom: 10px;
+    background-color: #333;
+
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
   &--small {
     .width(20px);
     @media @desktop {
@@ -100,5 +115,18 @@
     .default-box-shadow();
     .inner-shadow-top();
     margin-bottom: 10px;
+  }
+
+  &--wiki {
+    .inner-shadow-top();
+    background-color: #333;
+    color: #fff;
+    font-size: @font-size--wiki;
+    padding: 20px;
+
+    @media @desktop {
+      padding-left: @padding-wiki-desktop;
+      padding-right: @padding-wiki-desktop;
+    }
   }
 }

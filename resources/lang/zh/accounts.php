@@ -27,6 +27,20 @@ return [
             'title' => '编辑头像',
         ],
 
+        'email' => [
+            'current' => '当前邮箱地址',
+            'new' => '新邮箱地址',
+            'new_confirmation' => '重复邮箱地址',
+            'title' => '邮箱',
+        ],
+
+        'password' => [
+            'current' => '当前密码',
+            'new' => '新密码',
+            'new_confirmation' => '重复密码',
+            'title' => '密码',
+        ],
+
         'profile' => [
             'title' => '编辑个人资料',
 
@@ -39,5 +53,22 @@ return [
                 'user_website' => '个人主页',
             ],
         ],
+
+        'signature' => [
+            'title' => '签名',
+            'update' => '更新',
+        ],
+    ],
+
+    'update_email' => [
+        'email_subject' => 'osu! 邮箱变更确认',
+        'update' => '更新',
+        'updated' => '邮箱已更新',
+    ],
+
+    'update_password' => [
+        'email_subject' => 'osu! 密码变更确认',
+        'update' => '更新',
+        'updated' => '密码已更新',
     ],
 ];

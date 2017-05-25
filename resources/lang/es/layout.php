@@ -22,25 +22,31 @@ return [
     'defaults' => [
         'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia!  Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
+
     'menu' => [
         'home' => [
             '_' => 'inicio',
+            'account-edit' => 'ajustes',
             'getChangelog' => 'listado de cambios',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
             'getNews' => 'novedades',
+            'index' => 'osu!',
             'supportTheGame' => 'apoya el juego',
+            'password-reset-index' => 'reestablecer contraseña',
         ],
         'help' => [
             '_' => 'ayuda',
-            'getWiki' => 'wiki',
             'getFaq' => 'preguntas frecuentes',
             'getSupport' => 'soporte',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'show' => 'información',
             'index' => 'listado',
+            'artists' => 'artistas destacados',
             // 'getPacks' => 'packs',
             // 'getCharts' => 'charts',
         ],
@@ -48,28 +54,31 @@ return [
             '_' => 'beatmapsets',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'global',
-            'getCountry' => 'nacional',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'global',
+        'rankings' => [
+            '_' => 'rankings',
+            'charts' => 'charts',
         ],
         'community' => [
             '_' => 'comunidad',
+            'dev' => 'osu!dev',
             'getForum' => 'foro',
             'getChat' => 'chat',
             'getSupport' => 'soporte',
             'getLive' => 'live',
+            'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneos',
             'tournaments-index' => 'torneos',
             'tournaments-show' => 'información de torneos',
+            'forum-topic-watches-index' => 'suscripciones',
             'forum-topics-create' => 'foro',
             'forum-topics-show' => 'foro',
             'forum-forums-index' => 'foro',
             'forum-forums-show' => 'foro',
+        ],
+        'multiplayer' => [
+            '_' => 'multiplayer',
+            'show' => 'match',
         ],
         'error' => [
             '_' => 'error',
@@ -84,9 +93,11 @@ return [
             '_' => 'usuario',
             'getLogin' => 'iniciar sesión',
             'disabled' => 'desactivado',
+
             'register' => 'registrarse',
             'reset' => 'reiniciar',
             'new' => 'nuevo',
+
             'messages' => 'Mensajes',
             'settings' => 'Opciones',
             'logout' => 'Salir',
@@ -96,9 +107,11 @@ return [
             '_' => 'tienda',
             'getListing' => 'listado',
             'getCart' => 'carro',
+
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',
             'getProduct' => 'producto',
+
             'new' => 'nuevo',
             'home' => 'inicio',
             'index' => 'inicio',
@@ -115,6 +128,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'root' => 'índice',
             'logs-index' => 'registro',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
@@ -123,6 +137,37 @@ return [
             ],
         ],
     ],
+
+    'footer' => [
+        'general' => [
+            '_' => 'General',
+            'home' => 'Inicio',
+            'changelog' => 'Listado de Cambios',
+            'beatmaps' => 'Lista de Beatmaps',
+            'download' => 'Descarga osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Ayuda y Comunidad',
+            'faq' => 'Preguntas Frecuentes',
+            'forum' => 'Foros de la Comunidad',
+            'livestreams' => 'Transmisiones en vivo',
+            'report' => 'Reportar un Error',
+        ],
+        'support' => [
+            '_' => 'Apoyar osu!',
+            'tags' => 'Supporter',
+            'merchandise' => 'Mercancías',
+        ],
+        'legal' => [
+            '_' => 'Estatus Legal',
+            'tos' => 'Términos de Servicio',
+            'copyright' => 'Copyright (DMCA)',
+            'serverStatus' => 'Estado del Servidor',
+            'osuStatus' => '@osustatus',
+        ],
+    ],
+
     'errors' => [
         '404' => [
             'error' => 'Página no encontrada',
@@ -136,7 +181,7 @@ return [
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque podrías intentar volver atrás, o iniciar sesión.',
+            'description' => 'Aunque podrías intentar volver atrás. O iniciar sesión.',
             'link' => false,
         ],
         '405' => [
@@ -146,17 +191,17 @@ return [
         ],
         '500' => [
             'error' => '¡Oh no! ¡Algo se ha roto! ;_;',
-            'description' => 'Hemos sido notificados automáticamente del error.',
+            'description' => 'Hemos sido notificados del error.',
             'link' => false,
         ],
         'fatal' => [
             'error' => '¡Oh no! ¡Algo se ha roto (gravemente)! ;_;',
-            'description' => 'Hemos sido notificados automáticamente del error.',
+            'description' => 'Hemos sido notificados del error.',
             'link' => false,
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si sigue pasado ese tiempo, haz clic en :link para más información.',
+            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, haz clic en :link para más información.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
@@ -164,5 +209,36 @@ return [
         ],
         // used by sentry if it returns an error
         'reference' => '¡Por si acaso, aquí tienes un código que puedes dar a soporte técnico!',
+    ],
+
+    'popup_login' => [
+        'login' => [
+            'email' => 'correo electrónico',
+            'forgot' => 'He olvidado mis datos',
+            'password' => 'contraseña',
+            'title' => 'Regístrate para continuar',
+
+            'error' => [
+                'email' => 'El nombre de usuario o correo electrónico no existe',
+                'password' => 'Contraseña incorrecta',
+            ],
+        ],
+
+        'register' => [
+            'info' => 'Necesitas una cuenta, amigo. ¿Por qué aún no tienes una?',
+            'title' => '¿No tienes una cuenta?',
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'account-edit' => 'Ajustes',
+            'logout' => 'Cerrar sesión',
+            'profile' => 'Mi perfil',
+        ],
+    ],
+
+    'popup_search' => [
+        'initial' => '¡Escribe para buscar!',
     ],
 ];

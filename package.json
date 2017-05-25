@@ -27,6 +27,7 @@
     "react-dom": "^15.1.0",
     "react-height": "^2.1.1",
     "react-motion": "^0.4.5",
+    "react-table": "5.5.3",
     "retina.js": "^1.1.0",
     "timeago": "^1.5.0",
     "turbolinks": "^5.0.0-beta4"

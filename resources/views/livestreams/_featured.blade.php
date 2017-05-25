@@ -22,27 +22,27 @@
     <div
         id="{{ $playerId }}"
         class="js-twitch-player livestream-featured__content hidden"
-        data-channel="{{ $featuredStream->channel->name }}"
+        data-channel="{{ $featuredStream['channel']['name'] }}"
     ></div>
 
     <a
-        href="{{ $featuredStream->channel->url }}"
+        href="{{ $featuredStream['channel']['url'] }}"
         class="js-twitch-player--no-cookie livestream-featured__content livestream-featured__content--no-cookie"
-        style="background-image: url('{{ $featuredStream->preview->large }}');"
+        style="background-image: url('{{ $featuredStream['preview']['large'] }}');"
         data-visibility="visible"
         data-player-id="{{ $playerId }}"
     >
         <div class="livestream-featured__info">
             <h3 class="livestream-featured__text livestream-featured__text--name">
-                {{ $featuredStream->channel->name }}
+                {{ $featuredStream['channel']['name'] }}
             </h3>
 
             <p class="livestream-featured__text livestream-featured__text--detail">
-                {{ $featuredStream->channel->status }}
+                {{ $featuredStream['channel']['status'] }}
             </p>
 
             <p class="livestream-featured__text livestream-featured__text--detail">
-                {{ $featuredStream->viewers }} <i class="fa fa-eye"></i>
+                {{ $featuredStream['viewers'] }} <i class="fa fa-eye"></i>
             </p>
         </div>
     </a>

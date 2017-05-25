@@ -33,6 +33,7 @@ return [
             'getNews' => 'notícias',
             'index' => 'osu!',
             'supportTheGame' => 'apoie o jogo',
+            'password-reset-index' => 'redefinir senha',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -47,19 +48,19 @@ return [
             'index' => 'lista',
             'artists' => 'artistas em destaque',
             // 'getPacks' => 'pacotes',
-            // 'getCharts' => 'charts',
+            // 'getCharts' => 'gráficos',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'geral',
-            'getCountry' => 'país',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'geral',
+        'rankings' => [
+            '_' => 'colocações',
+            'index' => 'desempenho',
+            'performance' => 'desempenho',
+            'charts' => 'gráficos',
+            'country' => 'país',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunidade',
@@ -179,12 +180,12 @@ return [
         ],
         '403' => [
             'error' => 'Você não deveria estar aqui.',
-            'description' => 'Você pode tentar voltar.',
+            'description' => 'Mas você poderia tentar voltar.',
             'link' => false,
         ],
         '401' => [
             'error' => 'Você não deveria estar aqui.',
-            'description' => 'Você pode tentar voltar. Ou iniciar a sessão.',
+            'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.',
             'link' => false,
         ],
         '405' => [
@@ -239,5 +240,9 @@ return [
             'logout' => 'Finalizar sessão',
             'profile' => 'Perfil',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Digite para buscar!',
     ],
 ];

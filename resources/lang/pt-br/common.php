@@ -30,6 +30,7 @@ return [
         'reply' => 'Responder',
         'reset' => 'Limpar',
         'save' => 'Salvar',
+        'saving' => 'Salvando...',
         'show_more' => 'exibir mais',
         'upload_image' => 'enviar imagem',
     ],
@@ -42,7 +43,7 @@ return [
         'keyboard' => 'Teclado',
         'mouse' => 'Mouse',
         'tablet' => 'Mesa digitalizadora',
-        'touch' => 'Tela sensível ao toque',
+        'touch' => 'Touch screen',
     ],
 
     'dropzone' => [

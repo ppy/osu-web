@@ -23,10 +23,12 @@ return [
         'title' => 'estado',
         'description' => '¿qué está pasando?',
     ],
+
     'incidents' => [
         'title' => 'Incidentes activos',
         'automated' => 'automatizado',
     ],
+
     'online' => [
         'title' => [
             'users' => 'Usuarios en línea en las últimas 24 Horas',
@@ -35,6 +37,7 @@ return [
         'current' => 'Usuarios en línea actualmente',
         'score' => 'Envíos de puntuaciones por segundo',
     ],
+
     'recent' => [
         'incidents' => [
             'title' => 'Incidentes recientes',
@@ -44,6 +47,7 @@ return [
                 'unknown' => 'Desconocido',
             ],
         ],
+
         'uptime' => [
             'title' => 'Tiempo de actividad',
             'graphs' => [
@@ -51,6 +55,7 @@ return [
                 'web' => 'web',
             ],
         ],
+
         'when' => [
             'today' => 'hoy',
             'week' => 'semana',

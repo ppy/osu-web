@@ -25,19 +25,25 @@
   @input-width-wide: 400px;
 
   text-transform: none;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   padding: 10px 0;
   margin: 0;
 
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
   &--avatar {
-    padding-left: @label-width;
     display: block;
+
+    @media @desktop {
+      padding-left: @label-width;
+    }
   }
 
   &--no-label {
-    padding-left: @label-width;
+    @media @desktop {
+      padding-left: @label-width;
+    }
   }
 
   &__avatar {
@@ -80,10 +86,14 @@
     display: none;
     margin-top: 5px;
     width: 100%;
-    padding-left: (@label-width + 10px);
     color: @yellow;
+    padding-left: 10px;
 
-    .@{top}[data-field-state=error] & {
+    @media @desktop {
+      padding-left: (@label-width + 10px);
+    }
+
+    .@{top}[data-form-error-state=error] & {
       display: block;
     }
   }
@@ -100,13 +110,16 @@
     color: #fff;
     font-weight: normal;
     padding: 5px;
-    margin: 0 10px 0 0;
+
+    @media @mobile {
+      font-size: @font-size--phone-input;
+    }
 
     &:focus, .@{top}.js-parent-focus--focus & {
       border-color: @yellow;
     }
 
-    .@{top}[data-field-state=error] & {
+    .@{top}[data-form-error-state=error] & {
       border-color: @red;
     }
 
@@ -116,11 +129,17 @@
   }
 
   &__label {
+    width: 100%;
     flex: none;
-    align-self: center;
-    width: @label-width;
-    padding-right: 10px;
-    text-align: right;
+    padding-bottom: 5px;
+
+    @media @desktop {
+      align-self: center;
+      width: @label-width;
+      padding-right: 10px;
+      padding-bottom: 0;
+      text-align: right;
+    }
 
     .@{top}.js-parent-focus--focus & {
       color: #fff;
@@ -147,28 +166,6 @@
 
     .@{top}.js-account-edit-avatar--saving & {
       opacity: 1;
-    }
-  }
-
-  &__status {
-    opacity: 0;
-
-    &--saved {
-      color: @green;
-      padding-right: 10px;
-
-      .@{top}.js-account-edit--saved & {
-        opacity: 1;
-        .fade-element(120ms);
-      }
-    }
-
-    &--saving {
-      width: 0;
-
-      .@{top}.js-account-edit--saving & {
-        opacity: 1;
-      }
     }
   }
 }

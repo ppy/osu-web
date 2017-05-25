@@ -1,0 +1,145 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+
+.changelog-stream {
+  @changelog-stream--stable: @blue;
+  @changelog-stream--stable-fallback: @gray-light;
+  @changelog-stream--beta-ce: @yellow;
+  @changelog-stream--lazer: @red;
+
+  .box-color(@radius, @color) {
+    &::before {
+      box-shadow: 0 0 0 @radius @color;
+    }
+  }
+
+  @_top: changelog-stream;
+
+  width: 125px;
+  min-width: 125px;
+  height: 65px;
+
+  margin-left: 10px;
+  margin-bottom: 10px;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+
+  display: flex;
+  align-items: flex-start;
+
+  padding: 0 10px;
+
+  background-color: #fff;
+
+  .default-border-radius;
+  .default-box-shadow;
+
+  &:hover, &:visited, &:link, &:active {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &--active {
+    .thicker-box-shadow;
+
+    &::before {
+      .full-size;
+      border-radius: @border-radius-base;
+    }
+  }
+
+  &--beta, &--cutting-edge {
+    .box-color(3px, @changelog-stream--beta-ce);
+  }
+
+  &--lazer {
+    .box-color(3px, @changelog-stream--lazer);
+  }
+
+  &--stable {
+    .box-color(3px, @changelog-stream--stable);
+  }
+
+  &--stable-fallback {
+    .box-color(3px, @changelog-stream--stable-fallback);
+  }
+
+  &--featured {
+    width: 260px;
+  }
+
+  &__build {
+    font-size: @font-size--title-small-3;
+    font-weight: 300;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    height: 100%;
+    padding: 7px 0;
+  }
+
+  &__indicator {
+    height: 28px;
+    width: 5px;
+
+    margin: 10px 0;
+    margin-left: auto;
+
+    .default-border-radius;
+
+    .@{_top}--beta &, .@{_top}--cutting-edge & {
+      background-color: @changelog-stream--beta-ce;
+    }
+
+    .@{_top}--lazer & {
+      background-color: @changelog-stream--lazer;
+    }
+
+    .@{_top}--stable & {
+      background-color: @changelog-stream--stable;
+    }
+
+    .@{_top}--stable-fallback & {
+      background-color: @changelog-stream--stable-fallback;
+    }
+  }
+
+  &__indicator-box {
+
+  }
+
+  &__name {
+    font-size: @font-size--small-2;
+    font-weight: 700;
+  }
+
+  &__users {
+    font-size: @font-size--small;
+    color: #999;
+
+    margin-top: auto;
+  }
+}

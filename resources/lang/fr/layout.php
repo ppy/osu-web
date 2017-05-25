@@ -20,24 +20,27 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est seulement à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu! - Le rythme est à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
 
     'menu' => [
         'home' => [
-            '_' => 'acceuil',
-            'index' => 'osu!',
+            '_' => 'accueil',
+            'account-edit' => 'paramètres',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'getNews' => 'nouvelles',
+            'index' => 'osu!',
             'supportTheGame' => 'supporter le jeu',
+            'password-reset-index' => 'réinitialiser le mot de passe',
         ],
         'help' => [
             '_' => 'aide',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
             'getSupport' => 'support',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -51,16 +54,17 @@ return [
             '_' => 'sets de beatmap',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'classement',
-            'getOverall' => 'général',
-            'getCountry' => 'national',
-            'getCharts' => 'graphiques',
-            'getMapper' => 'mappeur',
-            'index' => 'général',
+        'rankings' => [
+            '_' => 'rankings',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'graphiques',
+            'country' => 'pays',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'communauté',
+            'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'chat',
             'getSupport' => 'support',
@@ -190,18 +194,18 @@ return [
             'link' => false,
         ],
         '500' => [
-            'error' => 'Oh non! Quelquechose a cassé! ;_;',
+            'error' => 'Oh non! Quelque chose a cassé! ;_;',
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh non! Quelquechose a cassé! (gravement) ;_;',
+            'error' => 'Oh non! Quelque chose a cassé! (gravement) ;_;',
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Maitenance en cours!',
-            'description' => "Les maitenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
+            'description' => "Les maintenances prennent en général 5 à 10 minutes. Si c'est plus long, regardez :link pour plus d'informations.",
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
@@ -219,7 +223,7 @@ return [
             'title' => 'Se connecter pour continuer',
 
             'error' => [
-                'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
+                'email' => "Le nom d'utilisateur ou l'email ne correspond pas",
                 'password' => 'Mot de passe incorrect',
             ],
         ],
@@ -232,8 +236,13 @@ return [
 
     'popup_user' => [
         'links' => [
+            'account-edit' => 'Paramètres',
             'profile' => 'Mon profil',
             'logout' => 'Se déconnecter',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Écrivez pour chercher!',
     ],
 ];

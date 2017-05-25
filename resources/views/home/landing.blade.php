@@ -45,7 +45,7 @@
                             src="{{ flag_path(locale_flag(App::getLocale())) }}"
                             alt="{{ App::getLocale() }}"
                         >
-                        {{ App::getLocale() }}
+                        {{ locale_name(App::getLocale()) }}
                     </span>
 
                     <div
@@ -70,7 +70,7 @@
                                     alt="{{ $locale }}"
                                 >
 
-                                {{ $locale }}
+                                {{ locale_name($locale) }}
                             </a>
                         @endforeach
                     </div>
@@ -175,7 +175,7 @@
         </div>
     </div>
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--landing-buttons">
         <div class="landing-middle-buttons">
             <a
                 href="{{ route('support-the-game') }}"
@@ -225,8 +225,8 @@
         </div>
 
         <div class="landing-footer-bottom">
-            <a href="{{ osu_url('legal.tos') }}" class="landing-footer-bottom__link">terms of service</a>
-            <a href="{{ osu_url('legal.dmca') }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
+            <a href="{{ wiki_url('Legal/TOS') }}" class="landing-footer-bottom__link">terms of service</a>
+            <a href="{{ wiki_url('Legal/Copyright') }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
             <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">server status</a>
             <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
 

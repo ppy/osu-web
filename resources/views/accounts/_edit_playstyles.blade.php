@@ -15,4 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+<div class="account-edit account-edit--first">
+    <div class="account-edit__section">
+        <h2 class="account-edit__section-title">
+            {{ trans('accounts.playstyles.title') }}
+        </h2>
+    </div>
+
+    <div class="account-edit__input-groups">
+
+        <div class="account-edit__input-group">
+            @foreach (Auth::user()::PLAYSTYLES as $key => $value)
+                @include('accounts._edit_playstyle_checkbox', ['field' => $key])
+            @endforeach
+        </div>
+    </div>
+
+</div>

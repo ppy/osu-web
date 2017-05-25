@@ -28,7 +28,7 @@ return [
         ],
 
         'email' => [
-            'current' => 'current password',
+            'current' => 'current email',
             'new' => 'new email',
             'new_confirmation' => 'email confirmation',
             'title' => 'Email',
@@ -70,5 +70,13 @@ return [
         'email_subject' => 'osu! password change confirmation',
         'update' => 'update',
         'updated' => 'Password updated',
+    ],
+
+    'playstyles' => [
+        'title' => 'Playstyles',
+        'mouse' => 'mouse',
+        'keyboard' => 'keyboard',
+        'tablet' => 'tablet',
+        'touch' => 'touch',
     ],
 ];

@@ -15,4 +15,21 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+
+<div class="changelog-change">
+    <div class="changelog-change__left">
+        <span class="changelog-change__icon fa fa-{{ build_icon($log->prefix) }}" title={{ trans('changelog.prefixes.'.$log->prefix) }}></span>
+        <a
+            href="{{route('users.show', ['user' => $log->user_id])}}"
+            class="changelog-change__username"
+        >
+            {{ $log->user->username }}
+        </a>
+    </div>
+    <div class="changelog-change__right {{ $log->major === 1 ? 'changelog-change__right--major' : '' }}">
+        @if(present($log->category) === true)
+            {{ $log->category }}:
+        @endif
+        {{ $log->message }}
+    </div>
+</div>

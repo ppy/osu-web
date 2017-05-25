@@ -31,6 +31,19 @@ function array_search_null($value, $array)
     }
 }
 
+function es_query_and_words($words)
+{
+    $parts = preg_split("/\s+/", trim($words ?? ''));
+
+    $partsEscaped = [];
+
+    foreach ($parts as $part) {
+        $partsEscaped[] = urlencode($part);
+    }
+
+    return implode(' AND ', $partsEscaped);
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -264,6 +277,17 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_url($page = 'Welcome', $locale = null)
+{
+    $url = route('wiki.show', ['page' => $page]);
+
+    if (present($locale) && $locale !== App::getLocale()) {
+        $url .= '?locale='.$locale;
+    }
+
+    return $url;
+}
+
 function bbcode($text, $uid, $withGallery = false)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
@@ -306,27 +330,28 @@ function nav_links()
 
     $links['home'] = [
         'getNews' => osu_url('home.news'),
-        'getChangelog' => osu_url('home.changelog'),
-        'getDownload' => osu_url('home.download'),
+        'getChangelog' => route('changelog'),
+        'getDownload' => route('download'),
     ];
     $links['help'] = [
-        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
-        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
         'getSupport' => osu_url('help.support'),
     ];
-    $links['ranking'] = [
-        'getOverall' => osu_url('ranking.overall'),
-        'getCharts' => osu_url('ranking.charts'),
-        'getCountry' => osu_url('ranking.country'),
-        'getMapper' => osu_url('ranking.mapper'),
+    $links['rankings'] = [
+        'index' => route('ranking', ['mode' => 'osu', 'type' => 'performance']),
+        'charts' => osu_url('rankings.charts'),
+        'score' => route('ranking', ['mode' => 'osu', 'type' => 'score']),
+        'country' => osu_url('rankings.country'),
+        'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
-        'artists' => route('artist.index'),
+        'artists' => route('artists.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
-        'contests' => route('community.contests.index'),
+        'contests' => route('contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'dev' => osu_url('dev'),
@@ -344,13 +369,13 @@ function footer_links()
     $links = [];
     $links['general'] = [
         'home' => route('home'),
-        'changelog' => osu_url('home.changelog'),
+        'changelog' => route('changelog'),
         'beatmaps' => action('BeatmapsetsController@index'),
         'download' => osu_url('home.download'),
-        'wiki' => route('wiki.show', ['page' => 'Welcome']),
+        'wiki' => wiki_url('Welcome'),
     ];
     $links['help'] = [
-        'faq' => route('wiki.show', ['page' => 'FAQ']),
+        'faq' => wiki_url('FAQ'),
         'forum' => route('forum.forums.index'),
         'livestreams' => route('livestreams.index'),
         'report' => route('forum.topics.create', ['forum_id' => 5]),
@@ -360,8 +385,8 @@ function footer_links()
         'merchandise' => action('StoreController@getListing'),
     ];
     $links['legal'] = [
-        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
-        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
+        'tos' => wiki_url('Legal/TOS'),
+        'copyright' => wiki_url('Legal/Copyright'),
         'serverStatus' => osu_url('status.server'),
         'osuStatus' => osu_url('status.osustatus'),
     ];
@@ -491,12 +516,15 @@ function json_item($model, $transformer, $includes = null)
 function fast_imagesize($url)
 {
     return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
-        $headers = ['Range: bytes=0-32768'];
         $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($curl, CURLOPT_MAXREDIRS, 5);
+        curl_setopt_array($curl, [
+            CURLOPT_HTTPHEADER => [
+                'Range: bytes=0-32768',
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 5,
+        ]);
         $data = curl_exec($curl);
         curl_close($curl);
 
@@ -775,4 +803,19 @@ function find_first_image($html)
     }
 
     return $post_images[0];
+}
+
+function build_icon($prefix)
+{
+    switch ($prefix) {
+        case 'add': return 'plus';
+        case 'fix': return 'wrench';
+        case 'misc': return 'question';
+    }
+}
+
+// clamps $number to be between $min and $max
+function clamp($number, $min, $max)
+{
+    return min($max, max($min, $number));
 }
