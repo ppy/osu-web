@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'News Listing',
+        'title' => 'osu!news',
 
         'nav' => [
             'newer' => 'Newer posts',
