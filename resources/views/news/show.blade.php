@@ -18,13 +18,7 @@
 @extends('master', ['titleAppend' => $post->title()])
 
 @section('content')
-    <div class="osu-page">
-        <div class="osu-page-header osu-page-header--news">
-            <h1 class="osu-page-header__title">
-                {{ $post->title() }}
-            </h1>
-        </div>
-    </div>
+    @include('news._header', ['title' => $post->title()])
 
     <div class="osu-page osu-page--generic">
         <div class="news">
