@@ -49,13 +49,9 @@ return [
             '_' => 'beatmapsets',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'globaal',
-            'getCountry' => 'landelijke',
-            'getCharts' => 'grafieken',
-            'getMapper' => 'mapper',
-            'index' => 'globaal',
+        'rankings' => [
+            '_' => 'rankings',
+            'charts' => 'grafieken',
         ],
         'community' => [
             '_' => 'community',
