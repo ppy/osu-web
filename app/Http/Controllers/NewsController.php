@@ -51,18 +51,18 @@ class NewsController extends Controller
 
     public function store()
     {
-        priv_check('NewsIndexRefresh')->ensureCan();
+        priv_check('NewsIndexUpdate')->ensureCan();
 
-        News\Index::refresh();
+        News\Index::cacheClear();
 
         return ['message' => trans('news.store.ok')];
     }
 
     public function update($id)
     {
-        priv_check('NewsRefresh')->ensureCan();
+        priv_check('NewsPostUpdate')->ensureCan();
 
-        (new News\Post($id))->refresh();
+        (new News\Post($id))->cacheClear();
 
         return ['message' => trans('news.update.ok')];
     }

@@ -21,18 +21,20 @@
     @component('news._header', ['title' => $post->title()])
         @slot('actions')
             <div class="forum-post-actions">
-                <div class="forum-post-actions__action">
-                    <a
-                        class="btn-circle"
-                        href="{{ Request::url() }}"
-                        data-remote="true"
-                        data-method="PUT"
-                        title="{{ trans('news.update.button') }}"
-                        data-tooltip-position="left center"
-                    >
-                        <i class="fa fa-refresh"></i>
-                    </a>
-                </div>
+                @if (priv_check('NewsPostUpdate')->can())
+                    <div class="forum-post-actions__action">
+                        <a
+                            class="btn-circle"
+                            href="{{ Request::url() }}"
+                            data-remote="true"
+                            data-method="PUT"
+                            title="{{ trans('news.update.button') }}"
+                            data-tooltip-position="left center"
+                        >
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
         @endslot
     @endcomponent

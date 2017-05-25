@@ -21,18 +21,20 @@
     @component('news._header', ['title' => trans('news.index.title')])
         @slot('actions')
             <div class="forum-post-actions">
-                <div class="forum-post-actions__action">
-                    <a
-                        class="btn-circle"
-                        href="{{ Request::url() }}"
-                        data-remote="true"
-                        data-method="POST"
-                        title="{{ trans('news.store.button') }}"
-                        data-tooltip-position="left center"
-                    >
-                        <i class="fa fa-refresh"></i>
-                    </a>
-                </div>
+                @if (priv_check('NewsIndexUpdate')->can())
+                    <div class="forum-post-actions__action">
+                        <a
+                            class="btn-circle"
+                            href="{{ Request::url() }}"
+                            data-remote="true"
+                            data-method="POST"
+                            title="{{ trans('news.store.button') }}"
+                            data-tooltip-position="left center"
+                        >
+                            <i class="fa fa-refresh"></i>
+                        </a>
+                    </div>
+                @endif
             </div>
         @endslot
     @endcomponent

@@ -561,12 +561,12 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkNewsRefresh($user)
+    public function checkNewsIndexUpdate($user)
     {
         // yet another admin only =D
     }
 
-    public function checkNewsIndexRefresh($user)
+    public function checkNewsPostUpdate($user)
     {
         // yet another admin only =D
     }

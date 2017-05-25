@@ -71,6 +71,11 @@ class Index
         return compact('posts', 'newerPosts', 'olderPosts');
     }
 
+    public static function cacheClear()
+    {
+        Cache::forget(static::cacheKey());
+    }
+
     public static function cacheKey()
     {
         return 'news:index:'.static::VERSION;
@@ -85,10 +90,5 @@ class Index
                 return array_reverse(OsuWiki::fetch('news'));
             }
         );
-    }
-
-    public static function refresh()
-    {
-        Cache::forget(static::cacheKey());
     }
 }

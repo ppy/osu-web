@@ -56,6 +56,11 @@ class Post
         $this->index = $index;
     }
 
+    public function cacheClear()
+    {
+        Cache::forget($this->cacheKey());
+    }
+
     public function cacheKey()
     {
         return 'news:post:'.static::cacheVersion().':'.$this->id;
@@ -183,11 +188,6 @@ class Post
         }
 
         return $this->cache['page'];
-    }
-
-    public function refresh()
-    {
-        Cache::forget($this->cacheKey());
     }
 
     public function title()
