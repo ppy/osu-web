@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,35 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'breadcrumbs' => [
-        'index' => 'listing',
-        'news-show' => 'view post',
-    ],
+.news-index {
+  &__nav {
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+  }
 
-    'index' => [
-        'title' => 'News Listing',
-
-        'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
-        ],
-    ],
-
-    'show' => [
-        'posted' => 'posted :date',
-
-        'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
-        ],
-    ],
-
-    'store' => [
-        'ok' => 'Listing updated.',
-    ],
-
-    'update' => [
-        'ok' => 'Post updated.',
-    ],
-];
+  &__nav-button {
+    font-size: 40px;
+    margin: 0 10px;
+  }
+}

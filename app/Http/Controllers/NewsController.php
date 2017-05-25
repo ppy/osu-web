@@ -35,7 +35,7 @@ class NewsController extends Controller
 
         $entries = News\Listing::all($page, $limit);
 
-        return view('news.index', compact('entries'));
+        return view('news.index', compact('entries', 'limit'));
     }
 
     public function show($id)
@@ -47,5 +47,23 @@ class NewsController extends Controller
         }
 
         return view('news.show', compact('entry'));
+    }
+
+    public function store()
+    {
+        priv_check('NewsIndexRefresh')->ensureCan();
+
+        News\Listing::refresh();
+
+        return ['message' => trans('news.store.ok')];
+    }
+
+    public function update($id)
+    {
+        priv_check('NewsRefresh')->ensureCan();
+
+        (new News\Entry($id))->refresh();
+
+        return ['message' => trans('news.update.ok')];
     }
 }

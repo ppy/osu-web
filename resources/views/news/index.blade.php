@@ -27,15 +27,53 @@
     </div>
 
     <div class="osu-page osu-page--generic">
-        <ul>
-            @foreach ($entries as $entry)
-                <li>
-                    <a href="{{ route('news.show', $entry->getKey()) }}">
-                        {{ $entry->createdAt() }}
-                        {{ $entry->title() }}
+        <div class="news-index">
+            <ul>
+                @foreach ($entries['entries'] as $entry)
+                    <li>
+                        <a href="{{ route('news.show', $entry->getKey()) }}">
+                            {{ $entry->createdAt() }}
+                            {{ $entry->title() }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+
+            <div class="news-index__nav">
+                @if (isset($entries['newerPosts']))
+                    <a
+                        class="news-index__nav-button news-index__nav-button--link"
+                        href="{{ route('news.index', ['page' => $entries['newerPosts'], 'limit' => $limit]) }}"
+                        title="{{ trans('news.index.nav.newer') }}"
+                    >
+                        <span class="fa fa-chevron-circle-left"></span>
                     </a>
-                </li>
-            @endforeach
-        </ul>
+                @else
+                    <span
+                        class="news-index__nav-button"
+                        title="{{ trans('news.index.nav.newer') }}"
+                    >
+                        <span class="fa fa-chevron-circle-left"></span>
+                    </span>
+                @endif
+
+                @if (isset($entries['olderPosts']))
+                    <a
+                        class="news-index__nav-button news-index__nav-button--link"
+                        href="{{ route('news.index', ['page' => $entries['olderPosts'], 'limit' => $limit]) }}"
+                        title="{{ trans('news.index.nav.older') }}"
+                    >
+                        <span class="fa fa-chevron-circle-right"></span>
+                    </a>
+                @else
+                    <span
+                        class="news-index__nav-button"
+                        title="{{ trans('news.index.nav.older') }}"
+                    >
+                        <span class="fa fa-chevron-circle-right"></span>
+                    </span>
+                @endif
+            </div>
+        </div>
     </div>
 @endsection

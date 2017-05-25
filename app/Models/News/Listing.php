@@ -60,17 +60,35 @@ class Listing
             $entries[] = new Entry(Entry::nameId($file['name']));
         }
 
-        return $entries;
+        if ($start > 0) {
+            $newerPosts = $page - 1;
+        }
+
+        if ($end < count($files)) {
+            $olderPosts = $page + 1;
+        }
+
+        return compact('entries', 'newerPosts', 'olderPosts');
+    }
+
+    public static function cacheKey()
+    {
+        return 'news:listing:'.static::VERSION;
     }
 
     public static function index()
     {
         return Cache::remember(
-            'news:listing:'.static::VERSION,
+            static::cacheKey(),
             static::CACHE_DURATION,
             function () {
                 return array_reverse(OsuWiki::fetch('news'));
             }
         );
+    }
+
+    public static function refresh()
+    {
+        Cache::forget(static::cacheKey());
     }
 }

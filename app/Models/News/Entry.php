@@ -185,6 +185,11 @@ class Entry
         return $this->cache['page'];
     }
 
+    public function refresh()
+    {
+        Cache::forget($this->cacheKeyPage());
+    }
+
     public function title()
     {
         return $this->page()['header']['title'];

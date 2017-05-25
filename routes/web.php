@@ -152,7 +152,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
 
-    Route::resource('news', 'NewsController', ['only' => ['index', 'show']]);
+    Route::resource('news', 'NewsController', ['only' => ['index', 'show', 'store', 'update']]);
 });
 
 // ranking section
