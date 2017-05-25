@@ -46,7 +46,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
     private $tocSlugs = [];
     private $listLevel = 0;
 
-    public static function process($input, $config)
+    public static function process($rawInput, $config)
     {
         $config = array_merge([
             'html_input' => 'strip',
@@ -66,7 +66,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $blockClass .= " {$config['block_name']}--{$blockModifier}";
         }
 
-        $input = static::parseYamlHeader($input);
+        $input = static::parseYamlHeader($rawInput);
         $output = sprintf(
             '<div class="%s">%s</div>',
             $blockClass,
