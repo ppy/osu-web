@@ -21,7 +21,7 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'listing',
-        'news-show' => 'view post',
+        'news-show' => 'post',
     ],
 
     'index' => [
