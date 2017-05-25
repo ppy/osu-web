@@ -51,20 +51,18 @@ class Ranking.Paginator extends React.Component
   render: =>
     page = @props.page
     maxPages = @props.pages
-    range = 8 # number of pages (excluding current page) to show at a time
+    range = Math.min(maxPages, 8) # number of pages (excluding current page) to show at a time
 
-    leftPages = Math.floor(range/2)
-    if page < leftPages
-      leftPages = page
+    pagesOnLeft = Math.floor(range/2)
 
-    if page > maxPages - Math.floor(range/2) # 4
-      leftPages = page - (maxPages - range)
+    if page < pagesOnLeft
+      leftStart = 1
+    else if page > (maxPages - pagesOnLeft)
+      leftStart = maxPages - range
+    else
+      leftStart = Math.max(1, page - pagesOnLeft)
 
-    rightPages = Math.min(range, range - leftPages)
-
-    leftStart = Math.max(1, page - leftPages)
-    rightEnd = page + rightPages
-
+    rightEnd = leftStart + range
 
     div className: 'ranking-page-paginator',
       # first/previous page links
