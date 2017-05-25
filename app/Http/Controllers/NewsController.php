@@ -33,9 +33,10 @@ class NewsController extends Controller
         $page = get_int(Request::input('page'));
         $limit = get_int(Request::input('limit'));
 
-        $posts = News\Index::all($page, $limit);
 
-        return view('news.index', compact('posts', 'limit'));
+        return view('news.index', [
+            'posts' => News\Index::all($page, $limit),
+        ]);
     }
 
     public function show($id)

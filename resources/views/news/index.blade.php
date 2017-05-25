@@ -42,7 +42,7 @@
     <div class="osu-page osu-page--generic">
         <div class="news-index">
             <div class="news-index__list">
-                @foreach ($posts['posts'] as $post)
+                @foreach ($posts as $post)
                     <div class="news-index-item">
                         <a
                             href="{{ route('news.show', $post->getKey()) }}"
@@ -56,40 +56,12 @@
                 @endforeach
             </div>
 
-            <div class="news-index__nav">
-                @if (isset($posts['newerPosts']))
-                    <a
-                        class="news-index__nav-button news-index__nav-button--link"
-                        href="{{ route('news.index', ['page' => $posts['newerPosts'], 'limit' => $limit]) }}"
-                        title="{{ trans('news.index.nav.newer') }}"
-                    >
-                        <span class="fa fa-chevron-circle-left"></span>
-                    </a>
-                @else
-                    <span
-                        class="news-index__nav-button"
-                        title="{{ trans('news.index.nav.newer') }}"
-                    >
-                        <span class="fa fa-chevron-circle-left"></span>
-                    </span>
-                @endif
-
-                @if (isset($posts['olderPosts']))
-                    <a
-                        class="news-index__nav-button news-index__nav-button--link"
-                        href="{{ route('news.index', ['page' => $posts['olderPosts'], 'limit' => $limit]) }}"
-                        title="{{ trans('news.index.nav.older') }}"
-                    >
-                        <span class="fa fa-chevron-circle-right"></span>
-                    </a>
-                @else
-                    <span
-                        class="news-index__nav-button"
-                        title="{{ trans('news.index.nav.older') }}"
-                    >
-                        <span class="fa fa-chevron-circle-right"></span>
-                    </span>
-                @endif
+            <div class="t-forum-category-osu">
+                @include('forum._pagination', ['object' => $posts
+                    ->appends([
+                        'limit' => Request::input('limit'),
+                    ])
+                ])
             </div>
         </div>
     </div>

@@ -22,6 +22,7 @@ namespace App\Models\News;
 
 use App\Libraries\OsuWiki;
 use Cache;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Index
 {
@@ -68,7 +69,9 @@ class Index
             $olderPosts = $page + 1;
         }
 
-        return compact('posts', 'newerPosts', 'olderPosts');
+        return new LengthAwarePaginator($posts, count($files), $limit, $page, [
+            'path' => route('news.index'),
+        ]);
     }
 
     public static function cacheClear()
