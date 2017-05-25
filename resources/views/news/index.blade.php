@@ -37,7 +37,7 @@
                         >{{ $entry->title() }}</a>
 
                         <span class="news-index-item__time">
-                            {!! trans('news.show.posted', ['date' => timeago($entry->createdAt())]) !!}
+                            {!! trans('news.show.posted', ['time' => timeago($entry->createdAt())]) !!}
                         </span>
                     </div>
                 @endforeach

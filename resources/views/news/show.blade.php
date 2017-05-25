@@ -29,7 +29,7 @@
     <div class="osu-page osu-page--generic">
         <div class="news">
             <div class="news__time">
-                {!! trans('news.show.posted', ['date' => timeago($entry->createdAt())]) !!}
+                {!! trans('news.show.posted', ['time' => timeago($entry->createdAt())]) !!}
             </div>
 
             {!! $entry->bodyHtml() !!}
