@@ -18,7 +18,24 @@
 @extends('master', ['titleAppend' => trans('news.index.title')])
 
 @section('content')
-    @include('news._header', ['title' => trans('news.index.title')])
+    @component('news._header', ['title' => trans('news.index.title')])
+        @slot('actions')
+            <div class="forum-post-actions">
+                <div class="forum-post-actions__action">
+                    <a
+                        class="btn-circle"
+                        href="{{ Request::url() }}"
+                        data-remote="true"
+                        data-method="POST"
+                        title="{{ trans('news.store.button') }}"
+                        data-tooltip-position="left center"
+                    >
+                        <i class="fa fa-refresh"></i>
+                    </a>
+                </div>
+            </div>
+        @endslot
+    @endcomponent
 
     <div class="osu-page osu-page--generic">
         <div class="news-index">

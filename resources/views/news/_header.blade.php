@@ -39,5 +39,9 @@
         <h1 class="osu-page-header__title">
             {{ $title }}
         </h1>
+
+        <div class="osu-page-header__actions">
+            {!! $actions !!}
+        </div>
     </div>
 </div>

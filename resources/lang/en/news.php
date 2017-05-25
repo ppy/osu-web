@@ -43,10 +43,12 @@ return [
     ],
 
     'store' => [
+        'button' => 'Update',
         'ok' => 'Listing updated.',
     ],
 
     'update' => [
+        'button' => 'Update',
         'ok' => 'Post updated.',
     ],
 ];
