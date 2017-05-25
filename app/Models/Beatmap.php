@@ -96,17 +96,21 @@ class Beatmap extends Model
         return $this->hasMany(BeatmapFailtimes::class, 'beatmap_id');
     }
 
-    private function getScores($model_path, $mode)
+    private function getScores($modelPath, $mode)
     {
-        $mode = $mode ?? static::modeStr($this->playmode);
+        $mode ?? ($mode = $this->mode);
+
+        if (!array_key_exists($mode, static::MODES)) {
+            throw new ScoreRetrievalException(trans('errors.beatmaps.invalid_mode'));
+        }
 
         if ($this->mode !== 'osu' && $this->mode !== $mode) {
-            throw new ScoreRetrievalException(trans('errors.beatmaps.standard-converts-only'));
+            throw new ScoreRetrievalException(trans('errors.beatmaps.standard_converts_only'));
         }
 
         $mode = studly_case($mode);
 
-        return $this->hasMany("{$model_path}\\{$mode}", 'beatmap_id');
+        return $this->hasMany("{$modelPath}\\{$mode}", 'beatmap_id');
     }
 
     public function scores($mode = null)

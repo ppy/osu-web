@@ -49,13 +49,9 @@ return [
             '_' => 'mapsety',
             'discussion' => 'modowanie',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'ogólny',
-            'getCountry' => 'krajowy',
-            'getCharts' => 'charty',
-            'getMapper' => 'mapper',
-            'index' => 'ogólne',
+        'rankings' => [
+            '_' => 'rankings',
+            'charts' => 'charty',
         ],
         'community' => [
             '_' => 'społeczność',
