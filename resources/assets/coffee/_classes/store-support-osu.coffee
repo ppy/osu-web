@@ -119,21 +119,20 @@ class @StoreSupportOsu
       @searching = false
 
   calculate: (position) =>
-    cost = Math.floor(position / @RESOLUTION)
-    values = switch
-      when cost < @MIN_VALUE then { price: @MIN_VALUE, duration: 0 }
-      when cost < 8 then { price: cost, duration: 1 }
-      when cost < 12 then { price: cost, duration: 2 }
-      when cost < 16 then { price: cost, duration: 4 }
-      when cost < 20 then { price: cost, duration: 6 }
-      when cost < 22 then { price: cost, duration: 8 }
-      when cost < 24 then { price: cost, duration: 9 }
-      when cost < 25 then { price: cost, duration: 10 }
-      when cost < 28 then { price: cost, duration: 12 }
+    price = Math.floor(position / @RESOLUTION)
+    duration = switch
+      when price < 8 then 1
+      when price < 12 then 2
+      when price < 16 then 4
+      when price < 20 then 6
+      when price < 22 then 8
+      when price < 24 then 9
+      when price < 25 then 10
+      when price < 28 then 10
       else
-        { price: cost, duration: Math.floor(cost / 26.0 * 12) }
+        Math.floor(price / 26.0 * 12)
 
-    Object.assign(Object.create(StoreSupportOsu.Price), values)
+    Object.assign(Object.create(StoreSupportOsu.Price), { price: price, duration: duration })
 
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
