@@ -25,9 +25,9 @@ class OrderItem extends Model
     protected $primaryKey = 'id';
 
     protected $casts = [
-        'extra_info' => 'array',
+        'extra_data' => 'array',
     ];
-    // The format for extra_info is:
+    // The format for extra_data is:
     // [
     //     'type' => 'custom-extra-info',
     //     ...additional fields
@@ -58,13 +58,13 @@ class OrderItem extends Model
 
     public function getDisplayName()
     {
-        if (is_array($this->extra_info)) {
+        if (is_array($this->extra_data)) {
             $extra_text = '';
             // this prevents fires if type is not set.
-            if (isset($this->extra_info['type'])) {
-                switch ($this->extra_info['type']) {
+            if (isset($this->extra_data['type'])) {
+                switch ($this->extra_data['type']) {
                     case 'supporter-tag':
-                        $extra_text = " for {$this->extra_info['username']} ({$this->extra_info['duration']} months)"; // FIXME: i18n?
+                        $extra_text = " for {$this->extra_data['username']} ({$this->extra_data['duration']} months)"; // FIXME: i18n?
                         break;
                 }
             }

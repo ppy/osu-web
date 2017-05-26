@@ -162,7 +162,7 @@ class @StoreSupporterTag
 
   updatePrice: (obj) =>
     @el.querySelector('input[name="item[cost]"').value = obj.price
-    @el.querySelector('input[name="item[extra_info][duration]"').value = obj.duration
+    @el.querySelector('input[name="item[extra_data][duration]"').value = obj.duration
     @priceElement.textContent = "USD #{obj.price}"
     monthText = if (obj.duration == 1) then 'month' else 'months'
     @durationElement.textContent = "#{obj.duration} #{monthText}"

@@ -27,8 +27,8 @@
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
     <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />
-    <input type="hidden" name="item[extra_info][type]" value="supporter-tag" />
-    <input type="hidden" name="item[extra_info][duration]" value="1" />
+    <input type="hidden" name="item[extra_data][type]" value="supporter-tag" />
+    <input type="hidden" name="item[extra_data][duration]" value="1" />
     <div class="grid store-supporter-tag__user">
         <div class="grid-cell grid-cell--squash store-supporter-tag__user-icon">
             <center>
@@ -41,7 +41,7 @@
                     <div class="grid grid--margin store-supporter-tag__user-search">
                         <div class="grid-cell">
                             {!! Form::label('username', 'Gift a player') !!}
-                            {!! Form::text('item[extra_info][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
+                            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
                         </div>
                         <div class="grid-cell js-error error"></div>
                     </div>

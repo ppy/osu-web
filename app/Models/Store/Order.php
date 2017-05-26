@@ -158,6 +158,7 @@ class Order extends Model
         $quantity = intval(array_get($item_form, 'quantity'));
         $product = Product::find(array_get($item_form, 'product_id'));
         $extraInfo = array_get($item_form, 'extra_info');
+        $extraData = array_get($item_form, 'extra_data');
         $cost = intval(array_get($item_form, 'cost'));
 
         if ($product === null) {
@@ -170,9 +171,9 @@ class Order extends Model
             $this->removeOrderItem($item_form);
         } else {
             if ($product->allow_multiple) {
-                $item = $this->newOrderItem($product, $quantity, $extraInfo, $cost);
+                $item = $this->newOrderItem($product, $quantity, $extraInfo, $extraData, $cost);
             } else {
-                $item = $this->updateSingleItem($product, $quantity, $extraInfo, $cost, $add_new);
+                $item = $this->updateSingleItem($product, $quantity, $extraInfo, $extraData, $cost, $add_new);
             }
 
             $result = $this->validateBeforeSave($product, $item);
@@ -273,11 +274,12 @@ class Order extends Model
         }
     }
 
-    private function newOrderItem(Product $product, $quantity, $extraInfo, $cost)
+    private function newOrderItem(Product $product, $quantity, $extraInfo, $extraData, $cost)
     {
         $item = new OrderItem();
         $item->quantity = $quantity;
         $item->extra_info = $extraInfo;
+        $item->extra_data = $extraData;
         $item->product()->associate($product);
         if ($product->cost === null) {
             $item->cost = $cost;
@@ -286,11 +288,11 @@ class Order extends Model
         return $item;
     }
 
-    private function updateSingleItem(Product $product, $quantity, $extraInfo, $cost, $add_new = false)
+    private function updateSingleItem(Product $product, $quantity, $extraInfo, $extraData, $cost, $add_new = false)
     {
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
-            return $this->newOrderItem($product, $quantity, $extraInfo, $cost);
+            return $this->newOrderItem($product, $quantity, $extraInfo, $extraData, $cost);
         }
 
         if ($add_new) {
