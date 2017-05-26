@@ -128,12 +128,10 @@ class @StoreSupportOsu
       when cost < 20 then { price: cost, duration: 6 }
       when cost < 22 then { price: cost, duration: 8 }
       when cost < 24 then { price: cost, duration: 9 }
-      when cost < 26 then { price: cost, duration: 10 }
+      when cost < 25 then { price: cost, duration: 10 }
+      when cost < 28 then { price: cost, duration: 12 }
       else
-        months = 0
-        while ((months + 1) / 12 * 26 <= cost)
-          months++
-        { price: cost, duration: months }
+        { price: cost, duration: Math.floor(cost / 26.0 * 12) }
 
     Object.assign(Object.create(StoreSupportOsu.Price), values)
 
