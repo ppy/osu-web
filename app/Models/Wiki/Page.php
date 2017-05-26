@@ -76,6 +76,7 @@ class Page
     {
         $this->path = OsuWiki::cleanPath($path);
         $this->requestedLocale = $locale;
+        $this->locale = $locale;
     }
 
     public function cacheKeyLocales()
@@ -192,10 +193,6 @@ class Page
 
     public function pagePath()
     {
-        if ($this->locale === null) {
-            throw \Exception('locale not set!');
-        }
-
         return $this->path.'/'.$this->locale.'.md';
     }
 
