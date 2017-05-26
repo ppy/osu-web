@@ -29,7 +29,7 @@ class Index
     const VERSION = 2;
     const CACHE_DURATION = 86400;
 
-    public static function all($page = 1, $limit = 10)
+    public static function all($page = null, $limit = null)
     {
         $page = max(1, $page ?? 1);
         $limit = clamp($limit ?? 10, 10, 50);
