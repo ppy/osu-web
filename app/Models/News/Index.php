@@ -27,7 +27,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class Index
 {
     const VERSION = 2;
-    const CACHE_DURATION = 86400;
+    const CACHE_DURATION = 5;
 
     public static function all($page = null, $limit = null)
     {
