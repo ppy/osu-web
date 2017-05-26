@@ -48,6 +48,11 @@ class Build extends Model
         $query->whereNotNull('stream_id');
     }
 
+    public function propagationHistories()
+    {
+        return $this->hasMany(BuildPropagationHistory::class, 'build_id');
+    }
+
     public function scopeLatestByStream($query, $streamIds)
     {
         $latestBuildIds = static::default()

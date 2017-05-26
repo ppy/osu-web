@@ -126,3 +126,9 @@
         </div>
     </div>
 @endsection
+
+@section('script')
+    <script id="json-chart-data" type="application/json">
+        {!! json_encode($buildHistory) !!}
+    </script>
+@endsection

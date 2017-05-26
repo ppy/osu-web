@@ -30,4 +30,9 @@ class BuildPropagationHistory extends Model
     protected $dates = [
         'created_at',
     ];
+
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'build_id1');
+    }
 }

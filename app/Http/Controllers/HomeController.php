@@ -25,11 +25,14 @@ use App\Libraries\CurrentStats;
 use App\Libraries\Search;
 use App\Models\Beatmapset;
 use App\Models\Build;
+use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
+use DB;
 use Request;
 use View;
 
@@ -92,7 +95,16 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build'));
+        $buildsTable = with(new Build)->getTable();
+        $propagationTable = with(new BuildPropagationHistory)->getTable();
+        $buildHistory = BuildPropagationHistory::join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
+            ->select(DB::raw('created_at, stream_id, sum(user_count) as user_count'))
+            ->where('created_at', '>', Carbon::now()->subDays(config('osu.changelog.chart_days')))
+            ->groupBy(['created_at', 'stream_id'])
+            ->orderBy('created_at', 'asc')
+            ->get();
+
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory'));
     }
 
     public function getDownload()
