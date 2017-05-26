@@ -19,7 +19,6 @@
 {div, span, a} = React.DOM
 
 class Ranking.Paginator extends React.Component
-
   pageLink: (page, label, active = false) =>
     classes = [
       'ranking-page-paginator__page',
@@ -37,19 +36,21 @@ class Ranking.Paginator extends React.Component
         key: "page-#{label}"
         href: '#',
         onClick: @changePage,
-        'data-page': page + 1,
+        'data-page': page,
         className: classes.join ' '
         label
+
 
   changePage: (e) =>
     e.preventDefault()
     page = parseInt(e.target.dataset.page)
     if (@props.page != page)
-      @props.onPageChange page - 1
+      @props.onPageChange page
+
 
   render: =>
     page = @props.page
-    maxPages = @props.pages - 1
+    maxPages = @props.pages
     range = 8 # number of pages (excluding current page) to show at a time
 
     leftPages = Math.floor(range/2)
@@ -61,19 +62,19 @@ class Ranking.Paginator extends React.Component
 
     rightPages = Math.min(range, range - leftPages)
 
-    leftStart = page - leftPages
+    leftStart = Math.max(1, page - leftPages)
     rightEnd = page + rightPages
 
 
     div className: 'ranking-page-paginator',
       # first/previous page links
-      @pageLink 0, '«'
-      @pageLink Math.max(0, @props.page - 1), '‹'
+      @pageLink 1, '«'
+      @pageLink Math.max(1, @props.page - 1), '‹'
 
       # page links
       for page in [leftStart..rightEnd]
-        @pageLink page, page + 1, page == @props.page
+        @pageLink page, page, page == @props.page
 
       # next/last page links
-      @pageLink Math.min(@props.pages - 1, @props.page + 1), '›'
-      @pageLink @props.pages - 1, '»'
+      @pageLink Math.min(@props.pages, @props.page + 1), '›'
+      @pageLink @props.pages, '»'

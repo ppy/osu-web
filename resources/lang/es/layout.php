@@ -54,13 +54,9 @@ return [
             '_' => 'beatmapsets',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'global',
-            'getCountry' => 'nacional',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'global',
+        'rankings' => [
+            '_' => 'rankings',
+            'charts' => 'charts',
         ],
         'community' => [
             '_' => 'comunidad',
