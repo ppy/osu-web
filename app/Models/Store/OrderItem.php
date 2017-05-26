@@ -68,6 +68,7 @@ class OrderItem extends Model
                         break;
                 }
             }
+
             return $this->product->name.($extra_text);
         } else {
             return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');

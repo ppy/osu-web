@@ -150,7 +150,7 @@ class Order extends Model
      * and a message.
      *
      * @param array $item_form form parameters.
-     * @param boolean $add_new whether the quantity should be added or replaced.
+     * @param bool $add_new whether the quantity should be added or replaced.
      * @return array [success, message]
      **/
     public function updateItem(array $item_form, $add_new = false)
