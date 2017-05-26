@@ -30,10 +30,11 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
-            'getNews' => 'news',
             'index' => 'osu!',
-            'supportTheGame' => 'support the game',
+            'news-index' => 'news',
+            'news-show' => 'news',
             'password-reset-index' => 'reset password',
+            'supportTheGame' => 'support the game',
         ],
         'help' => [
             '_' => 'help',

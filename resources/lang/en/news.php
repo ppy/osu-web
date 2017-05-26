@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,34 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.changelog-header {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-end;
+return [
+    'breadcrumbs' => [
+        'news-index' => 'listing',
+        'news-show' => 'post',
+    ],
 
-  min-height: 250px;
+    'index' => [
+        'title' => 'osu!news',
 
-  background-size: cover;
-  background-position: center;
+        'nav' => [
+            'newer' => 'Newer posts',
+            'older' => 'Older posts',
+        ],
+    ],
 
-  background-image: url('/images/headers/generic.jpg');
+    'show' => [
+        'posted' => 'posted :time',
 
-  padding: 0 40px;
+        'nav' => [
+            'newer' => 'Newer post',
+            'older' => 'Older post',
+        ],
+    ],
 
-  .default-box-shadow;
-  .inner-shadow-top;
+    'store' => [
+        'button' => 'Update',
+        'ok' => 'Listing updated.',
+    ],
 
-  &__streams {
-    display: flex;
-    flex-direction: row;
-
-    @media @mobile {
-      flex-wrap: wrap;
-    }
-  }
-
-  &__streams-box {
-    margin-top: auto;
-    padding-top: 10px;
-  }
-}
+    'update' => [
+        'button' => 'Update',
+        'ok' => 'Post updated.',
+    ],
+];

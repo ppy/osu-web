@@ -16,12 +16,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.wiki-content {
+.osu-md {
+  @top: osu-md;
+
   .content-font();
   color: inherit;
   padding: 10px 20px 0;
   font-size: @font-size--wiki;
   word-wrap: break-word;
+
+  img {
+    max-width: 100%;
+  }
+
+  &--news {
+    padding: 0;
+  }
 
   &__header {
     font-family: @font-family-sans-serif;
@@ -37,6 +47,11 @@
       font-size: @font-size--header-wiki-2;
       margin: 50px -20px 10px;
       color: #fff;
+
+      .@{top}--news & {
+        color: @pink-darker;
+        margin-left: 0;
+      }
     }
 
     &--3 {
@@ -71,6 +86,10 @@
 
   &__link {
     .link-yellow();
+
+    .@{top}--news & {
+      .link-default();
+    }
   }
 
   &__list {
@@ -86,7 +105,8 @@
   }
 
   &__paragraph {
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
+    line-height: 1.5;
   }
 
   &__table {

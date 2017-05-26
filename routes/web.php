@@ -151,6 +151,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
+
+    Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
 // ranking section
@@ -290,7 +292,7 @@ Route::get('forum', function () {
 // temporary news redirect
 Route::get('news/{id}', function ($id) {
     return Redirect::to("https://osu.ppy.sh/news/{$id}");
-})->name('news.show');
+});
 
 Route::get('mp/{match}', function ($match) {
     return ujs_redirect(route('matches.show', compact('match')));
