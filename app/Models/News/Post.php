@@ -169,7 +169,7 @@ class Post
                     if (isset($page) && present($page)) {
                         $data = OsuMarkdownProcessor::process($page, [
                             'html_input' => 'allow',
-                            'path' => '/news',
+                            'path' => '/news/'.$this->id,
                             'block_modifiers' => ['news'],
                         ]);
 

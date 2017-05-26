@@ -53,6 +53,13 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             'block_name' => 'osu-md',
         ], $config);
 
+        $input = static::parseYamlHeader($rawInput);
+        $header = $input['header'] ?? [];
+
+        if (!isset($config['fetch_title']) && isset($header['title'])) {
+            $config['fetch_title'] = false;
+        }
+
         $env = Environment::createCommonMarkEnvironment();
         $processor = new static;
         $env->addDocumentProcessor($processor);
@@ -66,14 +73,21 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $blockClass .= " {$config['block_name']}--{$blockModifier}";
         }
 
-        $input = static::parseYamlHeader($rawInput);
         $output = sprintf(
             '<div class="%s">%s</div>',
             $blockClass,
             $converter->convertToHtml($input['document'])
         );
-        $header = $input['header'] ?? [];
-        $title = $processor->title;
+
+        if (!isset($header['title'])) {
+            $header['title'] = $processor->title;
+        }
+
+        if (!present($header['title'] ?? null)) {
+            $header['title'] = substr($config['path'], strrpos($config['path'], '/') + 1);
+        }
+
+        $title = $header['title'];
         $toc = $processor->toc;
         $firstImage = $processor->firstImage;
 
