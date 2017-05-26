@@ -56,8 +56,8 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $input = static::parseYamlHeader($rawInput);
         $header = $input['header'] ?? [];
 
-        if (!isset($config['fetch_title']) && isset($header['title'])) {
-            $config['fetch_title'] = false;
+        if (!isset($config['fetch_title'])) {
+            $config['fetch_title'] = !isset($header['title']);
         }
 
         $env = Environment::createCommonMarkEnvironment();
