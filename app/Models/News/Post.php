@@ -91,6 +91,11 @@ class Post
         return 'news_'.$key;
     }
 
+    public function editUrl()
+    {
+        return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/news/'.$this->filename();
+    }
+
     public function filename()
     {
         return static::nameFile($this->id);

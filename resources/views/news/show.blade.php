@@ -25,6 +25,17 @@
                     <div class="forum-post-actions__action">
                         <a
                             class="btn-circle"
+                            href="{{ $post->editUrl() }}"
+                            title="{{ trans('wiki.show.edit.link') }}"
+                            data-tooltip-position="left center"
+                        >
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+
+                    <div class="forum-post-actions__action">
+                        <a
+                            class="btn-circle"
                             href="{{ Request::url() }}"
                             data-remote="true"
                             data-method="PUT"
