@@ -21,9 +21,38 @@ class @Wiki
   constructor: ->
     @floatTocContainer = document.getElementsByClassName('js-wiki-toc-float-container')
     @floatToc = document.getElementsByClassName('js-wiki-toc-float')
+    @images = document.getElementsByClassName('wiki-content__image')
 
     $.subscribe 'stickyHeader', @stickyToc
-
+    $(document).ready ->
+      for el in @images
+        do (el) ->
+          if $(el.parentNode).is('p') and $(el.parentNode).children().length is 1 and el.hasAttribute('title')
+            title = el.getAttribute 'title'
+            figure = $('<figure/>', {'class': 'wiki-content__figure'})
+            newImg = $(el).clone()
+            newImg.on 'load', ->
+              figure.css("width": el.naturalWidth + 8)
+            figure.append(newImg)
+            figcaption = $('<figcaption/>', {'class': 'wiki-content__figure-caption'}).append(title)
+            figure.append(figcaption)
+            $(el).replaceWith(figure)
+      ###i = 0
+      while i < @images.length
+        do (i) ->
+          el = @images[i]
+          console.log i
+          if $(el.parentNode).is('p') and $(el.parentNode).children().length is 1 and el.hasAttribute('title')
+            title = el.getAttribute 'title'
+            figure = $('<figure/>', {'class': 'wiki-content__figure'})
+            newImg = $(el).clone()
+            newImg.on 'load', ->
+              figure.css("width": el.naturalWidth + 8)
+            figure.append(newImg)
+            figcaption = $('<figcaption/>', {'class': 'wiki-content__figure-caption'}).append(title)
+            figure.append(figcaption)
+            $(el).replaceWith(figure)
+        i++###
 
   positionTocBottom: =>
     el = @floatToc[0]
