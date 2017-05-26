@@ -30,7 +30,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Apenas o modo osu! pode ter pontuações em outros modos.',
+        'standard_converts_only' => 'Apenas o modo osu! pode ter pontuações em outros modos.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'Há muitos beatmaps nos seus favoritos! Por favor, remova um antes de continuar.',

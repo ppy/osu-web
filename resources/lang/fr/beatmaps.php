@@ -32,13 +32,25 @@ return [
     ],
 
     'discussions' => [
+        'allow_kudosu' => 'permettre le kudosu',
+        'delete' => 'supprimer',
+        'deleted' => 'supprimé par :editor :delete_time',
+        'deny_kudosu' => 'interdire le kudosu',
+        'edit' => 'éditer',
+        'edited' => 'Dernière édition par :editor :update_time',
+        'message_placeholder' => 'Écrivez ici pour poster',
+        'message_type_select' => 'Select Comment Type',
+        'reply_placeholder' => 'Type your response here',
+        'require-login' => 'Please login to post or reply',
+        'resolved' => 'Resolved',
+        'restore' => 'restore',
+        'title' => 'Discussions',
+
         'collapse' => [
             'all-collapse' => 'Tout replier',
             'all-expand' => 'Tout déplier',
         ],
 
-        'edit' => 'Éditer',
-        'edited' => 'Édité par :editor le :update_time',
         'empty' => [
             'empty' => 'Pas de discussion !',
             'filtered' => 'Aucune discussion ne correspond à vos critères.',
@@ -57,7 +69,7 @@ return [
             'suggestion' => 'Suggestion',
         ],
 
-        'message_type_select' => 'Séléctionner le type de commentaire',
+        'message_type_select' => 'Sélectionner le type de commentaire',
 
         'mode' => [
             'general' => 'Général',
@@ -81,14 +93,17 @@ return [
     ],
 
     'nominations' => [
-        'disqualify' => 'Disqualifier',
-        'nominate' => 'Nominer',
-        'required-text' => 'Nominations: :current/:required',
-        'disqualifed-at' => 'disqualifié :time_ago',
+        'disqualifed-at' => 'disqualifiée :time_ago (:reason).',
+        'disqualifed_no_reason' => 'aucune raison spcécifiée',
         'disqualification-prompt' => 'Raison de la disqualification?',
+        'disqualify' => 'Disqualifier',
+        'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
+        'nominate' => 'Nominer',
+        'nominate-confirm' => 'Nominer cette beatmap?',
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified-soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
-        'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
+        'required-text' => 'Nominations: :current/:required',
+        'title' => 'Statut de Nomination',
     ],
 
     'listing' => [
@@ -113,12 +128,13 @@ return [
     ],
     'status' => [
         'any' => 'Tous',
-        'ranked-approved' => 'Classifié & approuvé',
-        'approved' => 'Approuvé',
+        'ranked-approved' => 'Classifiée & approuvée',
+        'approved' => 'Approuvée',
+        'loved' => 'Loved',
         'faves' => 'Favoris',
         'modreqs' => 'Requêtes de mods',
         'pending' => 'En attente',
-        'graveyard' => 'Cimtière',
+        'graveyard' => 'Cimetière',
         'my-maps' => 'Mes maps',
     ],
     'genre' => [
@@ -132,6 +148,29 @@ return [
         'novelty' => 'Novelty',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Electronic',
+    ],
+    'mods' => [
+        'NF' => 'No Fail',
+        'EZ' => 'Easy Mode',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'SD' => 'Sudden Death',
+        'DT' => 'Double Time',
+        'Relax' => 'Relax',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'FL' => 'Flashlight',
+        'SO' => 'Spun Out',
+        'AP' => 'Auto Pilot',
+        'PF' => 'Perfect',
+        '4K' => '4K',
+        '5K' => '5K',
+        '6K' => '6K',
+        '7K' => '7K',
+        '8K' => '8K',
+        'FI' => 'Fade In',
+        '9K' => '9K',
+        'NM' => 'No mods',
     ],
     'language' => [
         'any' => 'Tous',
@@ -149,10 +188,10 @@ return [
     ],
     'extra' => [
         'video' => 'Avec vidéo',
-        'storyboard' => 'Avec un storyboard',
+        'storyboard' => 'Avec storyboard',
     ],
     'rank' => [
-        'any' => 'Any',
+        'any' => "N'importe",
         'XH' => "SS d'argent",
         'X' => 'SS',
         'SH' => "S d'argent",

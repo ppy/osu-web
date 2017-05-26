@@ -69,6 +69,7 @@ return [
                 'title' => '点击这里设置标题',
             ],
             'preview' => '预览',
+            'preview_hide' => '编辑',
             'submit' => '发表',
         ],
         'go_to_latest' => '查看最后的帖子',
@@ -99,6 +100,7 @@ return [
         'index' => [
             'title' => '订阅的主题',
             'title_compact' => '订阅',
+            'title_main' => '<strong>订阅的</strong>主题',
 
             'box' => [
                 'total' => '订阅的主题',
@@ -154,6 +156,48 @@ return [
             'replies' => '回复数',
         ],
 
+        'issue_tag_added' => [ //所有的issue_tag_xxx都需要上下文
+            'action-0' => '移除 "added" 标签',
+            'action-1' => '添加 "added" 标签',
+            'state-0' => '已移除 "added" 标签',
+            'state-1' => '已添加 "added" 标签',
+        ],
+
+        'issue_tag_assigned' => [
+            'action-0' => '移除 "assigned" 标签',
+            'action-1' => '添加 "assigned" 标签',
+            'state-0' => '已移除 "assigned" 标签',
+            'state-1' => '已添加 "assigned" 标签',
+        ],
+
+        'issue_tag_confirmed' => [
+            'action-0' => '移除 "confirmed" 标签',
+            'action-1' => '添加 "confirmed" 标签',
+            'state-0' => '已移除 "confirmed" 标签',
+            'state-1' => '已添加 "confirmed" 标签',
+        ],
+
+        'issue_tag_duplicate' => [
+            'action-0' => '移除 "duplicate" 标签',
+            'action-1' => '添加 "duplicate" 标签',
+            'state-0' => '已移除 "duplicate" 标签',
+            'state-1' => '已添加 "duplicate" 标签',
+        ],
+
+        'issue_tag_invalid' => [
+            'action-0' => '移除 "invalid" 标签',
+            'action-1' => '添加 "invalid" 标签',
+            'state-0' => '已移除 "invalid" 标签',
+            'state-1' => '已添加 "invalid" 标签',
+        ],
+
+        'issue_tag_resolved' => [
+            'action-0' => '移除 "resolved" 标签',
+            'action-1' => '添加 "resolved" 标签',
+            'state-0' => '已移除 "resolved" 标签',
+            'state-1' => '已添加 "resolved" 标签',
+        ],
+
         'lock' => [
             'is_locked' => '主题已被锁定,不能回复',
             'lock-0' => '解锁主题',
@@ -183,7 +227,7 @@ return [
 
                 'user' => [
                     'current' => '您还有 :votes 票.',
-                    'count' => '{0} 没有票|{1} :count票|[2,*] :count票',
+                    'count' => '{0} 没有票|[1,*] :count票',
                     'not_enough' => '您没有票了',
                 ],
             ],

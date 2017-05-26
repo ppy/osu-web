@@ -29,6 +29,7 @@ $(document).on 'submit', 'form', (e) ->
 
 
 @accountEdit ?= new AccountEdit
+@accountEditPlaystyle ?= new AccountEditPlaystyle
 @turbolinksDisable ?= new TurbolinksDisable
 @accountEditAvatar ?= new AccountEditAvatar
 @checkboxValidation ?= new CheckboxValidation
@@ -63,6 +64,7 @@ $(document).on 'submit', 'form', (e) ->
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
+@turbolinksDisqus ?= new TurbolinksDisqus
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
 

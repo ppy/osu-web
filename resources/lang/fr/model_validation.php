@@ -20,6 +20,7 @@
 
 return [
     'required' => ':attribute est requis.',
+    'wrong_confirmation' => 'La confirmation ne correspond pas.',
 
     'beatmap_discussion_post' => [
         'first_post' => 'Impossible de supprimer le post de départ.',
@@ -46,5 +47,20 @@ return [
         'topic_vote' => [
             'too_many' => 'Vous avez choisi trop de réponses.',
         ],
+    ],
+
+    'user_email' => [
+        'invalid' => 'Ça ne semble pas être une adresse email.',
+        'already_used' => 'Adresse email déjà utilisée.',
+        'wrong_confirmation' => "La confirmation de l'email ne correspond pas.",
+        'wrong_current_password' => "Le mot de passe actuel n'est pas correct.",
+    ],
+
+    'user_password' => [
+        'contains_username' => "Le mot de passe ne doit pas contenir de nom d'utilisateur.",
+        'too_short' => 'Le nouveau mot de passe est trop court.',
+        'weak' => 'Mot de passe interdits.',
+        'wrong_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
+        'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
     ],
 ];

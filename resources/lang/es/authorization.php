@@ -20,17 +20,30 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'has_reply' => 'No es posible eliminar una discusión con respuestas',
+        ],
+        'nominate' => [
+            'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, inténtalo de nuevo mañana.',
+        ],
         'resolve' => [
-            'general_discussion' => 'La discusión general no puede ser resuelta.',
-            'not_owner' => 'Únicamente el iniciador del hilo y el dueño del beatmap pueden resolver una discusión.',
+            'general_discussion' => 'No se pueden resolver discusiones generales.',
+            'not_owner' => 'Solo el creador del tema y el dueño del beatmap pueden resolver una discusión.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => 'Espera un poco antes de seguir votando',
+            'owner' => '¡No puedes votar discusiones propias!',
         ],
     ],
+
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Un post automáticamente generado no puede ser editado.',
-            'not_owner' => 'El post solo puede ser editado por su creador.',
+            'system_generated' => 'Una publiación generada automáticamente no puede ser editada.',
+            'not_owner' => 'La publicación solo puede ser editada por su creador.',
         ],
     ],
+
     'chat' => [
         'channel' => [
             'read' => [
@@ -42,64 +55,98 @@ return [
                 'channel' => [
                     'no_access' => 'Se requiere acceso al canal.',
                     'moderated' => 'El canal está actualmente moderado.',
+                    'not_lazer' => 'Solo puedes hablar en #lazer en este momento.',
                 ],
+
                 'not_allowed' => 'No se puede enviar un mensaje mientras se esté baneado/restringido/silenciado.',
             ],
         ],
     ],
+
+    'contest' => [
+        'voting_over' => 'No puedes cambiar tu voto después de haber concluido el periodo de votación.',
+    ],
+
     'forum' => [
         'post' => [
             'delete' => [
-                // how to english
-                // Returned when TopicReply check fails.
-                'can_not_post' => 'No se puede eliminar un post a cuyo hilo no se puede responder.',
-                'can_only_delete_last_post' => 'Solo se puede eliminar el último post.',
-                'not_owner' => 'Solo el creador del post puede eliminarlo.',
+                'only_last_post' => 'Solo se puede eliminar la última publicación.',
+                'locked' => 'No se puede eliminar una publicación en un hilo cerrado.',
+                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'not_owner' => 'Solo el creador de la publicación puede eliminarla.',
             ],
+
             'edit' => [
-                'can_not_post' => 'No se puede editar un post cuyo hilo no se puede responder.',
                 'locked' => 'La edición del post está bloqueada.',
+                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador del post puede editarlo.',
+                'topic_locked' => 'No puedes editar una publicación en un hilo cerrado.',
             ],
         ],
+
         'topic' => [
             'reply' => [
-                'can_not_post' => 'Se requiere acceso al foro solicitado.',
-                'locked' => 'No se puede responder a un hilo cerrado.',
-            ],
-            'store' => [
-                'can_not_view_forum' => 'Se requiere acceso al foro.',
-                'can_not_post' => 'No estás autorizado para escribir un post.',
-                'forum_closed' => 'El foro está cerrado y no se puede escribir en él.',
+                'double_post' => 'Acabas de publicar. Espera un momento o edita tu última publicación.',
+                'locked' => 'No puedes responder a un hilo cerrado.',
+                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'no_permission' => 'No tienes permisos para responder.',
+
                 'user' => [
-                    'silenced' => 'No puedes hacer un post mientras estés silenciado.',
-                    'restricted' => 'No puedes hacer un post mientras estés restringido.',
+                    'require_login' => 'Inicia sesión para responder.',
+                    'restricted' => 'No puedes responder mientras estés restringido.',
+                    'silenced' => 'No puedes responder mientras estés silenciado.',
                 ],
             ],
+
+            'store' => [
+                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'no_permission' => 'No tienes permisos para crear un nuevo hilo.',
+                'forum_closed' => 'Este foro está cerrado y no puedes publicar en él.',
+            ],
+
+            'vote' => [
+                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+                'over' => 'La encuesta ha terminado y ya no puedes votar.',
+                'voted' => 'No se puede cambiar tu voto.',
+
+                'user' => [
+                    'require_login' => 'Inicia sesión para votar.',
+                    'restricted' => 'No puedes votar mientras estés restringido.',
+                    'silenced' => 'No puedes votar mientras estés silenciado.',
+                ],
+            ],
+
+            'watch' => [
+                'no_forum_access' => 'Necesitas acceso al foro solicitado.',
+            ],
         ],
+
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Portada inválida especificada.',
+                'uneditable' => 'Portada inválida.',
                 'not_owner' => 'Solo el dueño puede cambiar la portada.',
             ],
         ],
+
         'view' => [
             'admin_only' => 'Solo los administradores pueden ver este foro.',
         ],
     ],
+
     'require_login' => 'Inicia sesión para continuar.',
+
     'unauthorized' => 'Acceso denegado.',
+
     'silenced' => 'No puedes hacer eso mientras estés silenciado.',
+
     'restricted' => 'No puedes hacer eso mientras estés restringido.',
+
     'user' => [
         'page' => [
             'edit' => [
                 'locked' => 'La página de usuario está bloqueada.',
-                'require_support_to_create' => 'Necesitas ser supporter.',
-                'user' => [
-                    'silenced' => 'No puedes editar tu página de usuario mientras estás silenciado.',
-                    'restricted' => 'No puedes editar tu página de usuario mientras estás restringido.',
-                ],
+                'not_owner' => 'Solo puedes editar tu página de usuario.',
+                'require_supporter_tag' => 'Necesitas ser supporter.',
             ],
         ],
     ],

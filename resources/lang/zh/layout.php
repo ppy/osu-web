@@ -32,7 +32,8 @@ return [
             'getIcons' => '图标',
             'getNews' => '新闻',
             'index' => 'osu!',
-            'supportTheGame' => '支持osu!', //或许应该翻译为捐赠
+            'supportTheGame' => '支持osu!',
+            'password-reset-index' => '重置密码',
         ],
         'help' => [
             '_' => '帮助',
@@ -53,13 +54,13 @@ return [
             '_' => '谱面',
             'discussion' => '修改',
         ],
-        'ranking' => [
+        'rankings' => [
             '_' => '排名',
-            'getOverall' => '全部',
-            'getCountry' => '国家',
-            'getCharts' => '个人',
-            'getMapper' => '制谱人',
-            'index' => '全部',
+            'index' => '表现',
+            'performance' => '表现',
+            'charts' => 'charts',
+            'country' => '国家',
+            'kudosu' => 'kudosu', //mapping相关，暂时不翻译
         ],
         'community' => [
             '_' => '社区',
@@ -239,5 +240,9 @@ return [
             'logout' => '退出',
             'profile' => '我的资料',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => '输入以搜索!',
     ],
 ];

@@ -19,8 +19,11 @@
  */
 
 return [
+    'deleted' => '[usuario eliminado]',
+
     'login' => [
         '_' => 'Iniciar sesión',
+        'locked_ip' => 'tu dirección IP está bloqueada. Espera unos minutos.',
         'username' => 'Nombre de usuario',
         'password' => 'Contraseña',
         'button' => 'Iniciar sesión',
@@ -33,7 +36,11 @@ return [
             'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
             'small' => '(supporters tendrán acceso pronto)',
         ],
+
         'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
+    ],
+    'signup' => [
+        '_' => 'Registrarse',
     ],
     'anonymous' => [
         'login_link' => 'clic para iniciar sesión',
@@ -55,6 +62,7 @@ return [
         'origin_country' => 'De :country',
         'origin_country_age' => ':age de :country',
         'page_description' => 'osu! - Todo lo que siempre quisiste saber acerca de :username!',
+        'plays_with' => 'Juega con :devices',
         'title' => 'perfil / :username',
 
         'edit' => [
@@ -105,16 +113,41 @@ return [
                     'amount' => ':amount kudosu',
                     'empty' => '¡Este usuario no ha recibido ningún kudosu!',
 
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Recibido :amount de revocación de negación de kudosu de la publicación de modding :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Denegado :amount de la publicación de modding :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Perdido :amount por eliminación de la publicación de modding :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Recibido :amount por la restauración de la publicación de modding de :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Recibido :amount por obtención de votos en la publicación de modding de :post',
+                            'reset' => 'Perdido :amount por perder votos en la publicación de modding de :post',
+                        ],
+                    ],
+
                     'forum_post' => [
-                        'give' => 'Recibido :amount de :giver por un post en :post',
-                        'revoke' => 'Kudosu denegado por :giver por el post :post',
+                        'give' => 'Recibido :amount de :giver por una publicación en :post',
+                        'reset' => 'Kudosu reiniciado por :giver por la publicación :post',
+                        'revoke' => 'Kudosu denegado por :giver por una publicación en :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'me!', // translating this is a little tricky (maybe "sobre mi"?)
+                'title' => 'sobre mi!',
             ],
             'medals' => [
+                'empty' => 'Este usuario aún no ha conseguido ninguna. ;_;',
                 'title' => 'Medallas',
             ],
             'recent_activities' => [
@@ -144,8 +177,8 @@ return [
             ],
         ],
         'page' => [
-            'description' => '<strong>me!</strong> es una área personalizable en tu perfil.',
-            'edit_big' => 'Editar me!',
+            'description' => '<strong>sobre mi!</strong> es una área personalizable en tu perfil.',
+            'edit_big' => 'Editar sobre mi!',
             'placeholder' => 'Escribe el contenido aquí',
             'restriction_info' => "Necesitas ser un <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear esta característica.",
         ],
@@ -164,5 +197,8 @@ return [
             'total_hits' => 'Aciertos totales',
             'total_score' => 'Puntuación total',
         ],
+    ],
+     'verify' => [
+        'title' => 'Verificación de la Cuenta',
     ],
 ];

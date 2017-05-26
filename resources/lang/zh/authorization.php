@@ -55,6 +55,7 @@ return [
                 'channel' => [
                     'no_access' => '需要有指定频道的权限.',
                     'moderated' => '频道已满.',
+                    'not_lazer' => '您当前只能在#lazer聊天.',
                 ],
 
                 'not_allowed' => '当账户受限时不能发言.',

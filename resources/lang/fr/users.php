@@ -23,6 +23,7 @@ return [
 
     'login' => [
         '_' => 'Se connecter',
+        'locked_ip' => 'votre adresse IP est bloquée. Veuillez attendre quelques minutes.',
         'username' => "Nom d'utilisateur",
         'password' => 'Mot de passe',
         'button' => 'Se connecter',
@@ -61,6 +62,7 @@ return [
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
+        'plays_with' => 'Joue avec :devices',
         'title' => 'profil de :username',
 
         'edit' => [
@@ -101,7 +103,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponibles',
-                'available_info' => "Les Kudosu peuvent être échangé pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés..",
+                'available_info' => "Les Kudosu peuvent être échangés pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés.",
                 'recent_entries' => 'Hitorique de Kudosu récents',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu reçus au total',
@@ -111,8 +113,32 @@ return [
                     'amount' => ':amount kudosu',
                     'empty' => "Cet utilisateur n'a jamais reçu de Kudosu!",
 
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Reçu :amount kudosu du post de modding :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Refus de :amount kudosu du post :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Perte de :amount kudosu suite à la suppression du post :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Réception de :amount kudosu suite à la restoration du post :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Réception de :amount kudosu suite aux votes reçus dans le post :post',
+                            'reset' => 'Perte de :amount kudosu suite aux votes perdus dans le post :post',
+                        ],
+                    ],
+
                     'forum_post' => [
                         'give' => 'A reçu :amount de :giver pour un post sur :post',
+                        'reset' => 'Kudosu réinitialisé par :giver pour le post :post',
                         'revoke' => 'Kudosu refusé par :giver pour le post sur :post',
                     ],
                 ],
@@ -133,7 +159,7 @@ return [
                 ],
                 'empty' => 'Pas de première place. :(',
                 'first' => [
-                    'title' => 'Première places',
+                    'title' => 'Premières places',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Classements',
@@ -172,7 +198,6 @@ return [
             'total_score' => 'Score total',
         ],
     ],
-
     'verify' => [
         'title' => 'Vérification de compte',
     ],
