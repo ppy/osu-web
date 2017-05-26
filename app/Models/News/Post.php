@@ -20,6 +20,7 @@
 
 namespace App\Models\News;
 
+use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Cache;
@@ -165,27 +166,27 @@ class Post
         }
 
         if (!array_key_exists('page', $this->cache)) {
-            $this->cache['page'] = Cache::remember(
-                $this->cacheKey(),
-                static::CACHE_DURATION,
-                function () {
-                    $page = OsuWiki::fetchContent('news/'.$this->filename());
+            $page = Cache::get($this->cacheKey());
 
-                    $data = OsuMarkdownProcessor::process($page, [
-                        'html_input' => 'allow',
-                        'path' => '/news/'.$this->id,
-                        'block_modifiers' => ['news'],
-                    ]);
-
-                    $data['header']['date'] = Carbon::parse($data['header']['date'] ?? null);
-
-                    return $data;
+            if ($page === null) {
+                try {
+                    $rawPage = OsuWiki::fetchContent('news/'.$this->filename());
+                } catch (GitHubNotFoundException $_e) {
+                    return;
                 }
-            );
 
-            if ($this->cache['page'] === []) {
-                $this->cache['page'] = null;
+                $page = OsuMarkdownProcessor::process($rawPage, [
+                    'html_input' => 'allow',
+                    'path' => '/news/'.$this->id,
+                    'block_modifiers' => ['news'],
+                ]);
+
+                $page['header']['date'] = Carbon::parse($page['header']['date'] ?? null);
+
+                Cache::put($this->cacheKey(), $page, static::CACHE_DURATION);
             }
+
+            $this->cache['page'] = $page;
         }
 
         return $this->cache['page'];
