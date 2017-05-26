@@ -28,6 +28,7 @@
                             href="{{ Request::url() }}"
                             data-remote="true"
                             data-method="PUT"
+                            data-reload-on-success="1"
                             title="{{ trans('news.update.button') }}"
                             data-tooltip-position="left center"
                         >
