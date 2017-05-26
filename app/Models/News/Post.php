@@ -169,25 +169,17 @@ class Post
                 $this->cacheKey(),
                 static::CACHE_DURATION,
                 function () {
-                    try {
-                        $page = OsuWiki::fetchContent('news/'.$this->filename());
-                    } catch (GitHubNotFoundException $_e) {
-                        // whee
-                    }
+                    $page = OsuWiki::fetchContent('news/'.$this->filename());
 
-                    if (isset($page) && present($page)) {
-                        $data = OsuMarkdownProcessor::process($page, [
-                            'html_input' => 'allow',
-                            'path' => '/news/'.$this->id,
-                            'block_modifiers' => ['news'],
-                        ]);
+                    $data = OsuMarkdownProcessor::process($page, [
+                        'html_input' => 'allow',
+                        'path' => '/news/'.$this->id,
+                        'block_modifiers' => ['news'],
+                    ]);
 
-                        $data['header']['date'] = Carbon::parse($data['header']['date'] ?? null);
+                    $data['header']['date'] = Carbon::parse($data['header']['date'] ?? null);
 
-                        return $data;
-                    } else {
-                        return [];
-                    }
+                    return $data;
                 }
             );
 
