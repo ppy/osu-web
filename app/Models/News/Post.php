@@ -160,6 +160,10 @@ class Post
 
     public function page()
     {
+        if ($this->navIndex() === null) {
+            return;
+        }
+
         if (!array_key_exists('page', $this->cache)) {
             $this->cache['page'] = Cache::remember(
                 $this->cacheKey(),

@@ -58,7 +58,7 @@ class Index
                 continue;
             }
 
-            $posts[] = new Post(Post::nameId($file['name']));
+            $posts[] = new Post(Post::nameId($file['name']), $files);
         }
 
         if ($start > 0) {
