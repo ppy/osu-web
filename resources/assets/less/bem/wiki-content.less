@@ -104,4 +104,23 @@
       font-weight: bold;
     }
   }
+
+  code {
+    .default-border-radius();
+    background-color: #222;
+    border: 1px solid #111;
+    color: @blue;
+    padding: 1px 4px;
+  }
+
+  pre {
+    background-color: #222;
+    border: none;
+    border-radius: 0px;
+
+    code {
+      border: none;
+      padding: 0px;
+    }
+  }
 }
