@@ -63,7 +63,7 @@ class OrderItem extends Model
             // this prevents fires if type is not set.
             if (isset($this->extra_info['type'])) {
                 switch ($this->extra_info['type']) {
-                    case 'support-osu':
+                    case 'supporter-tag':
                         $extra_text = " for {$this->extra_info['username']} ({$this->extra_info['duration']} months)"; // FIXME: i18n?
                         break;
                 }

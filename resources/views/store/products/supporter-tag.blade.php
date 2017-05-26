@@ -22,23 +22,23 @@
     </div>
 </div>
 @else
-<div id="js-store-support-osu" class="js-store-support-osu store-support-osu"
+<div id="js-store-supporter-tag" class="js-store-supporter-tag store-supporter-tag"
     data-username="{{ Auth::user()->username }}" data-avatar-url="{{ Auth::user()->user_avatar }}">
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
-    <input type="hidden" id="support-osu-form-price" name="item[cost]" value="4" />
-    <input type="hidden" name="item[extra_info][type]" value="support-osu" />
+    <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />
+    <input type="hidden" name="item[extra_info][type]" value="supporter-tag" />
     <input type="hidden" name="item[extra_info][duration]" value="1" />
-    <div class="grid store-support-osu__user">
-        <div class="grid-cell grid-cell--squash store-support-osu__user-icon">
+    <div class="grid store-supporter-tag__user">
+        <div class="grid-cell grid-cell--squash store-supporter-tag__user-icon">
             <center>
                 <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
             </center>
         </div>
-        <div class="grid-cell store-support-osu__textual-info">
+        <div class="grid-cell store-supporter-tag__textual-info">
             <div class="grid grid--xs">
                 <div class="grid grid--stack grid-cell">
-                    <div class="grid grid--margin store-support-osu__user-search">
+                    <div class="grid grid--margin store-supporter-tag__user-search">
                         <div class="grid-cell">
                             {!! Form::label('username', 'Gift a player') !!}
                             {!! Form::text('item[extra_info][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
@@ -49,10 +49,8 @@
                     <div>Choose your amount</div>
                 </div>
                 <div class="grid-cell grid-cell--1of3 price-box">
-                    <p class="js-price price text-right">MONEHS</p>
-                    <div class="js-duration text-right">
-                        1 month
-                    </div>
+                    <p class="js-price price text-right"></p>
+                    <div class="js-duration text-right"></div>
                     <div class="js-price-per-month text-right"></div>
                     <div class="js-discount text-right"></div>
                 </div>

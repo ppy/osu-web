@@ -60,7 +60,7 @@ $(document).on 'submit', 'form', (e) ->
 @scale ?= new Scale
 @stickyFooter ?= new StickyFooter
 @stickyHeader ?= new StickyHeader
-@storeSupportOsu ?= new StoreSupportOsu
+@storeSupporterTag ?= new StoreSupporterTag
 @syncHeight ?= new SyncHeight
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago

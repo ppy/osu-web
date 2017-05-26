@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @StoreSupportOsu
+class @StoreSupporterTag
   RESOLUTION: 8
   MIN_VALUE: 4
   MAX_VALUE: 52
@@ -33,7 +33,7 @@ class @StoreSupportOsu
 
   constructor: ->
     $(document).on 'turbolinks:load', =>
-      @initialize(document.getElementById('js-store-support-osu'))
+      @initialize(document.getElementById('js-store-supporter-tag'))
 
   initialize: (rootElement) =>
     return unless rootElement
@@ -132,7 +132,7 @@ class @StoreSupportOsu
       else
         Math.floor(price / 26.0 * 12)
 
-    Object.assign(Object.create(StoreSupportOsu.Price), { price: price, duration: duration })
+    Object.assign(Object.create(StoreSupporterTag.Price), { price: price, duration: duration })
 
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
@@ -182,5 +182,5 @@ class @StoreSupportOsu
     )
 
   updateSlider: (enabled) =>
-    $(@el).toggleClass('store-support-osu--disabled', !enabled)
+    $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
     $('.js-slider').slider({ 'disabled': !enabled })
