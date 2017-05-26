@@ -33,7 +33,6 @@ class Ranking.Page extends React.Component
         title: osu.trans('ranking.type.score')
       country:
         title: osu.trans('ranking.type.country')
-        disabled: true
 
     @state =
       data: props.scores
@@ -44,7 +43,6 @@ class Ranking.Page extends React.Component
       loading: false
       mode: props.mode
       rankingType: props.ranking_type
-
 
   columnSettings: =>
     rank:
@@ -67,43 +65,56 @@ class Ranking.Page extends React.Component
       header: osu.trans('ranking.stat.play_count')
       width: 75
       accessor: (r) ->
-        r.play_count.toLocaleString()
+        (r.play_count || r.ranking.play_count).toLocaleString()
     performance:
       id: 'performance',
       header: osu.trans('ranking.stat.performance')
       width: 110
       accessor: (r) ->
-        "#{Math.round(r.pp).toLocaleString()}pp"
-    total_score:
+        pp = r.pp || r.ranking.performance
+        "#{Math.round(pp).toLocaleString()}pp"
+    totalScore:
       id: 'total_score',
       header: osu.trans('ranking.stat.total_score')
       width: 110
       accessor: (r) ->
         r.total_score.toLocaleString()
-    ranked_score:
+    rankedScore:
       id: 'ranked_score',
       header: osu.trans('ranking.stat.ranked_score')
       width: 110
       accessor: (r) ->
-        r.ranked_score.toLocaleString()
-    ss_count:
+        (r.ranked_score || r.ranking.ranked_score).toLocaleString()
+    ssCount:
       id: 'ss_count'
       header: osu.trans('ranking.stat.ss')
       width: 50
       accessor: (r) ->
         r.grade_counts.ss.toLocaleString()
-    s_count:
+    sCount:
       id: 's_count'
       header: osu.trans('ranking.stat.s')
       width: 50
       accessor: (r) ->
         r.grade_counts.s.toLocaleString()
-    a_count:
+    aCount:
       id: 'a_count'
       header: osu.trans('ranking.stat.a')
       width: 50
       accessor: (r) ->
         r.grade_counts.a.toLocaleString()
+
+    # country ranking stuff
+    country:
+      id: 'country'
+      header: osu.trans('ranking.stat.country')
+      render: @renderCountry
+    activeUsers:
+      id: 'active_users'
+      header: osu.trans('ranking.stat.active_users')
+      width: 100
+      accessor: (r) ->
+        r.ranking.active_users.toLocaleString()
 
 
   # column rendering stuff
@@ -122,6 +133,16 @@ class Ranking.Page extends React.Component
       span
         className: 'ranking-page-table__user-link-text'
         props.row.user.username
+
+
+  renderCountry: (props) ->
+    div
+      # href: '#'
+      className: 'ranking-page-table__user-link'
+      el FlagCountry, country: props.row
+      span
+        className: 'ranking-page-table__user-link-text'
+        props.row.name
 
 
   # mode/tab change handling
@@ -209,11 +230,15 @@ class Ranking.Page extends React.Component
 
     switch @state.dataRankingType
       when 'performance'
-        columns = ['rank', 'username', 'accuracy', 'playCount', 'performance', 'ss_count', 's_count', 'a_count']
+        columns = ['rank', 'username', 'accuracy', 'playCount', 'performance', 'ssCount', 'sCount', 'aCount']
         activeHeader = 'performance'
       when 'score'
-        columns = ['rank', 'username', 'accuracy', 'playCount', 'total_score', 'ranked_score', 'ss_count', 's_count', 'a_count']
-        activeHeader = 'ranked_score'
+        columns = ['rank', 'username', 'accuracy', 'playCount', 'totalScore', 'rankedScore', 'ssCount', 'sCount', 'aCount']
+        activeHeader = 'rankedScore'
+      when 'country'
+        columns = ['rank', 'country', 'activeUsers', 'playCount', 'rankedScore', 'performance']
+        activeHeader = 'performance'
+
 
     columnsToShow = columns.map (column) =>
       if column == activeHeader
@@ -260,8 +285,12 @@ class Ranking.Page extends React.Component
               onPageChange: @changePage
               PaginationComponent: Ranking.Paginator
               getTrProps: (state, rowInfo, column) ->
-                if !rowInfo.row.user.is_active
+                if !rowInfo
                   style:
-                    opacity: 0.5
+                    display: 'none'
                 else
-                  {}
+                  if rowInfo.row.user && !rowInfo.row.user.is_active
+                    style:
+                      opacity: 0.5
+                  else
+                    {}

@@ -28,6 +28,8 @@ return [
     ],
     'stat' => [
         'accuracy' => 'Accuracy',
+        'active_users' => 'Active Users',
+        'country' => 'Country',
         'play_count' => 'Play Count',
         'performance' => 'Performance',
         'total_score' => 'Total Score',

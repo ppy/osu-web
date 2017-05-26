@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
+use App\Models\Country;
 use App\Models\UserStatistics;
 use Request;
 
@@ -30,35 +31,48 @@ class RankingController extends Controller
 
     const PAGE_SIZE = 20;
     const MAX_RESULTS = 10000;
-    const RANKING_TYPES = ['performance', 'score'];
+    const RANKING_TYPES = ['performance', 'score', 'country'];
 
     public function index($mode, $type, $page = 1)
     {
-        $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
-        $page = clamp(get_int($page), 1, $maxPages);
-
         if (!array_key_exists($mode, Beatmap::MODES) || !in_array($type, static::RANKING_TYPES, true)) {
             abort(404);
         }
 
-        $stats = UserStatistics\Model::getClass($mode)
-            ->with('user')
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            })
-            ->limit(static::PAGE_SIZE)
-            ->offset(static::PAGE_SIZE * ($page - 1));
+        if ($type == 'performance' || $type == 'score') {
+            $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
+            $page = clamp(get_int($page), 1, $maxPages);
 
-        switch ($type) {
-            case 'performance':
-                $stats->orderBy('rank_score', 'desc');
-                break;
-            case 'score':
-                $stats->orderBy('ranked_score', 'desc');
-                break;
+            $stats = UserStatistics\Model::getClass($mode)
+                ->with('user')
+                ->whereHas('user', function ($userQuery) {
+                    $userQuery->default();
+                })
+                ->limit(static::PAGE_SIZE)
+                ->offset(static::PAGE_SIZE * ($page - 1));
+
+            switch ($type) {
+                case 'performance':
+                    $stats->orderBy('rank_score', 'desc');
+                    break;
+                case 'score':
+                    $stats->orderBy('ranked_score', 'desc');
+                    break;
+            }
+            $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
         }
 
-        $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
+        if ($type == 'country') {
+            $maxPages = ceil(Country::where('display', '>', 0)->count() / static::PAGE_SIZE);
+            $page = clamp(get_int($page), 1, $maxPages);
+
+            $stats = Country::where('display', '>', 0)
+                ->orderBy('pp', 'desc')
+                ->limit(static::PAGE_SIZE)
+                ->offset(static::PAGE_SIZE * ($page - 1));
+
+            $scores = json_collection($stats->get(), 'Country', ['ranking']);
+        }
 
         $scores = [
             'mode' => $mode,
