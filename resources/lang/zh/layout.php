@@ -32,8 +32,10 @@ return [
             'getIcons' => '图标',
             'getNews' => '新闻',
             'index' => 'osu!',
-            'supportTheGame' => '支持osu!',
+            'news-index' => '新闻',
+            'news-show' => '新闻',
             'password-reset-index' => '重置密码',
+            'supportTheGame' => '支持osu!',
         ],
         'help' => [
             '_' => '帮助',

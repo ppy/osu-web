@@ -31,6 +31,8 @@ return [
         'accuracy' => '准确率',
         'play_count' => '游戏次数',
         'performance' => '表现',
+        'total_score' => '总分',
+        'ranked_score' => 'Ranked 总分',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

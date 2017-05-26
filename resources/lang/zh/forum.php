@@ -137,7 +137,7 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => 'Run poll for', //TODO 需要上下文
                 'length_days_prefix' => '',
                 'length_days_suffix' => '天',
                 'length_info' => '如果无期限则留空',
@@ -156,7 +156,7 @@ return [
             'replies' => '回复数',
         ],
 
-        'issue_tag_added' => [ //所有的issue_tag_xxx都需要上下文
+        'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
             'action-0' => '移除 "added" 标签',
             'action-1' => '添加 "added" 标签',
             'state-0' => '已移除 "added" 标签',

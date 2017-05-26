@@ -20,8 +20,8 @@
 
 return [
     'codes' => [
-        'http-403' => '拒绝访问.',
         'http-401' => '请先登录.',
+        'http-403' => '拒绝访问.',
         'http-429' => '请求过多,请稍后重试.',
     ],
     'account' => [
@@ -30,7 +30,8 @@ return [
         ],
     ],
     'beatmaps' => [ //TODO 需要帮助
-        'standard_converts_only' => 'Only the osu! mode can have scores in other modes.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => '您收藏的谱面过多,请删除一个后继续.',
