@@ -33,7 +33,7 @@ return [
 
         'slogan' => [
             'main' => '免费音乐游戏',
-            'sub' => 'rhythm is just a click away', //TODO 暂无较好的翻译
+            'sub' => '节奏只需轻轻一点', //@zby1999 的翻译建议
         ],
     ],
 
