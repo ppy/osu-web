@@ -48,8 +48,7 @@ class WikiController extends Controller
         if ($page->page() === null) {
             $redirect = new Wiki\Redirect($path, $this->locale());
             if ($redirect->target() !== null) {
-                header('Location: '.$redirect->target());
-                exit();
+                return ujs_redirect($redirect->target());
             } else {
                 $status = 404;
             }

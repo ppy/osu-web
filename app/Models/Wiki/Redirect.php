@@ -20,27 +20,40 @@
 
 namespace App\Models\Wiki;
 
+use App\Libraries\OsuWiki;
+use Cache;
+
 class Redirect extends Page
 {
     public $path;
-    public $locale;
 
-    public function __construct($path, $locale)
+    private $cache = [];
+
+    public function __construct($path)
     {
-        $this->path = $this->cleanPath($path);
-        $this->locale = $locale;
+        $this->path = str_replace(' ', '_', strtolower($this->path));
     }
 
     public function target()
     {
-        $redirectList = explode(PHP_EOL, static::fetchContent('redirect.txt'));
-        $pattern = '/^'.preg_quote($this->path, '/').'/';
-        foreach ($redirectList as &$value) {
-            if (preg_match($pattern, $value)) {
-                $target = preg_replace('/^.*\s/', '', $value);
+        if (!array_key_exists('redirect', $this->cache)) {
+            $this->cache['redirect'] = Cache::remember(
+                $this->cacheKeyPage(),
+                static::CACHE_DURATION,
+                function () {
+                    try {
+                        $redirect = OsuWiki::fetchContent('wiki/redirect.txt');
+                    } catch (GitHubNotFoundException $_e) {
+                        return;
+                    }
 
-                return $target;
-            }
+                    if (present($redirect)) {
+                        return $redirect;
+                    }
+                }
+            );
         }
+
+        return $this->cache['redirect'][$this->path];
     }
 }
