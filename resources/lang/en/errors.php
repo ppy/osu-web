@@ -30,7 +30,8 @@ return [
         ],
     ],
     'beatmaps' => [
-        'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',

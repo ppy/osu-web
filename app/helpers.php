@@ -31,6 +31,15 @@ function array_search_null($value, $array)
     }
 }
 
+function background_image($url)
+{
+    if (!present($url)) {
+        return '';
+    }
+
+    return sprintf(' style="background-image:url(\'%s\');" ', e(proxy_image($url)));
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", trim($words ?? ''));
@@ -225,7 +234,7 @@ function ujs_redirect($url)
 
 function timeago($date)
 {
-    $display_date = $date->toRfc850String();
+    $display_date = i18n_time($date);
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
@@ -329,7 +338,7 @@ function nav_links()
     $links = [];
 
     $links['home'] = [
-        'getNews' => osu_url('home.news'),
+        'news-index' => route('news.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
     ];
@@ -341,6 +350,7 @@ function nav_links()
     $links['rankings'] = [
         'index' => route('ranking', ['mode' => 'osu', 'type' => 'performance']),
         'charts' => osu_url('rankings.charts'),
+        'score' => route('ranking', ['mode' => 'osu', 'type' => 'score']),
         'country' => osu_url('rankings.country'),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
@@ -452,6 +462,12 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG)
     );
 
     return $formatter->format($datetime);
+}
+
+function i18n_time($datetime, $format = IntlDateFormatter::LONG)
+{
+    return IntlDateFormatter::create(App::getLocale(), $format, $format)
+        ->format($datetime);
 }
 
 function open_image($path, $dimensions = null)

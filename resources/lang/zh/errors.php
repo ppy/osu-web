@@ -30,7 +30,7 @@ return [
         ],
     ],
     'beatmaps' => [ //TODO 需要帮助
-        'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
+        'standard_converts_only' => 'Only the osu! mode can have scores in other modes.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => '您收藏的谱面过多,请删除一个后继续.',

@@ -19,21 +19,36 @@
  */
 
 return [
-    'header' => ':type Ranking',
-    'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Charts',
-        'score' => 'Score',
-        'country' => 'Country',
+    'breadcrumbs' => [
+        'news-index' => 'listing',
+        'news-show' => 'post',
     ],
-    'stat' => [
-        'accuracy' => 'Accuracy',
-        'play_count' => 'Play Count',
-        'performance' => 'Performance',
-        'total_score' => 'Total Score',
-        'ranked_score' => 'Ranked Score',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'index' => [
+        'title' => 'osu!news',
+
+        'nav' => [
+            'newer' => 'Newer posts',
+            'older' => 'Older posts',
+        ],
+    ],
+
+    'show' => [
+        'posted' => 'posted :time',
+
+        'nav' => [
+            'newer' => 'Newer post',
+            'older' => 'Older post',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Update',
+        'ok' => 'Listing updated.',
+    ],
+
+    'update' => [
+        'button' => 'Update',
+        'ok' => 'Post updated.',
     ],
 ];

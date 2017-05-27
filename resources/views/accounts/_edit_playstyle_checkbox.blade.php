@@ -15,14 +15,24 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print">
-    <div class="footer__row">
-        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">{{ trans('layout.footer.legal.tos') }}</a>
-        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">{{ trans('layout.footer.legal.copyright') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.server') }}">{{ trans('layout.footer.legal.serverStatus') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">{{ trans('layout.footer.legal.osuStatus') }}</a>
+<label class="account-edit-entry js-account-edit">
+    <div class="account-edit-entry__label">
+        @lang('accounts.playstyles.'.$field)
     </div>
-    <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
-    <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
-</footer>
+    <div class="osu-checkbox">
+        <input
+            value="{{$field}}"
+            class="osu-checkbox__input js-account-edit-playstyle"
+            type="checkbox"
+            @if (is_array(Auth::user()->osu_playstyle) && in_array($field, Auth::user()->osu_playstyle))
+                checked
+            @endif
+        >
+        <span class="osu-checkbox__tick">
+            <i class="fa fa-check"></i>
+        </span>
+    </div>
+    @include('accounts._edit_entry_status')
+
+</label>

@@ -15,14 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print">
-    <div class="footer__row">
-        <a class="footer__link" href="{{ wiki_url('Legal/TOS') }}">{{ trans('layout.footer.legal.tos') }}</a>
-        <a class="footer__link" href="{{ wiki_url('Legal/Copyright') }}">{{ trans('layout.footer.legal.copyright') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.server') }}">{{ trans('layout.footer.legal.serverStatus') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">{{ trans('layout.footer.legal.osuStatus') }}</a>
+<div class="account-edit account-edit--first">
+    <div class="account-edit__section">
+        <h2 class="account-edit__section-title">
+            {{ trans('accounts.playstyles.title') }}
+        </h2>
     </div>
-    <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
-    <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>
-</footer>
+    <div class="account-edit__input-groups">
+
+        <div class="account-edit__input-group">
+            @foreach (Auth::user()::PLAYSTYLES as $key => $value)
+                @include('accounts._edit_playstyle_checkbox', ['field' => $key])
+            @endforeach
+        </div>
+    </div>
+
+</div>
