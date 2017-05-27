@@ -31,12 +31,12 @@ class Redirect extends Page
 
     public function __construct($path)
     {
-        $this->path = str_replace(' ', '_', strtolower($this->path));
+        $this->path = $path/*str_replace(' ', '_', strtolower($this->path))*/;
     }
 
     public function target()
     {
-        if (!array_key_exists('redirect', $this->cache)) {
+        if (!array_key_exists('redirect', $this->cache) or true) {
             $this->cache['redirect'] = Cache::remember(
                 $this->cacheKeyPage(),
                 static::CACHE_DURATION,
@@ -54,6 +54,10 @@ class Redirect extends Page
             );
         }
 
-        return $this->cache['redirect'][$this->path];
+        if ( array_key_exists($this->path, $this->cache['redirect']) ){
+            return $this->cache['redirect'][$this->path];
+        } else {
+            return null;
+        }
     }
 }
