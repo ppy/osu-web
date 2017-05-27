@@ -54,10 +54,10 @@ class Redirect extends Page
             );
         }
 
-        if ( array_key_exists($this->path, $this->cache['redirect']) ){
+        if (array_key_exists($this->path, $this->cache['redirect'])) {
             return $this->cache['redirect'][$this->path];
         } else {
-            return null;
+            return;
         }
     }
 }
