@@ -46,12 +46,12 @@ return [
     'pinned_topics' => 'Pinned Topics', //TODO 需要帮助
     'post' => [
         'confirm_destroy' => '真的要删除这个回复吗?',
-        'confirm_restore' => 'Really restore post?', //TODO 需要帮助
+        'confirm_restore' => '真的要恢复这个回复吗?',
         'edited' => '最后由 :user 于 :when 编辑,总共编辑了 :count 次.',
         'posted_at' => '发表于 :when',
         'actions' => [
             'destroy' => '删除回复',
-            'restore' => 'Restore post', //TODO 需要帮助
+            'restore' => '恢复回复',
             'edit' => '编辑回复',
         ],
     ],
@@ -137,7 +137,7 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Run poll for', //TODO 需要上下文
+                'length' => '投票持续',
                 'length_days_prefix' => '',
                 'length_days_suffix' => '天',
                 'length_info' => '如果无期限则留空',
