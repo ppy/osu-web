@@ -71,4 +71,12 @@ return [
         'update' => 'mettre à jour',
         'updated' => 'Mot de passe mis à jour',
     ],
+
+    'playstyles' => [
+        'title' => 'Styles de jeu',
+        'mouse' => 'souris',
+        'keyboard' => 'clavier',
+        'tablet' => 'tablette',
+        'touch' => 'touché',
+    ],
 ];
