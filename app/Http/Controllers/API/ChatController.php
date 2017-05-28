@@ -105,10 +105,15 @@ class ChatController extends Controller
 
     public function postMessage()
     {
-        if (mb_strlen(Request::input('message'), 'UTF-8') >= 1024) {
+        $messagecontent = preg_replace('/[\x00-\x1f\x7F]/', '', Request::input('message'));
+
+        if (mb_strlen(Request::input('message'), 'UTF-8') >= 1000) {
             abort(422);
         }
 
+        if (Request::input('is_action') === 'True') {
+            $messagecontent = "\001ACTION ".$messagecontent."\001";
+        }
         switch (Request::input('target_type')) {
             case 'channel':
                 $target = Channel::findOrFail(Request::input('target_id'));
@@ -136,7 +141,7 @@ class ChatController extends Controller
             return error_popup(trans('api.error.chat.limit_exceeded'), 429);
         }
 
-        $message = $target->receiveMessage(Auth::user(), Request::input('message'));
+        $message = $target->receiveMessage(Auth::user(), $messagecontent);
 
         return json_item(
             $message,

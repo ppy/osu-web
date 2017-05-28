@@ -38,7 +38,8 @@ class MessageTransformer extends Fractal\TransformerAbstract
             'target_type' => $message->target_type,
             'target_id' => $message->target_id,
             'timestamp' => json_time($message->timestamp),
-            'content' => $message->content,
+            'content' => preg_replace('/\x01ACTION |[\x00-\x1f\x7F]/', '', $message->content),
+            'is_action' => preg_match('/\x01ACTION\s.*\x01/', $message->content),
         ];
     }
 
