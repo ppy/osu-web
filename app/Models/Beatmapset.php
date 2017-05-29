@@ -269,11 +269,11 @@ class Beatmapset extends Model
         $matchParams = [];
         $shouldParams = [];
 
-        if (presence($genre) !== null) {
+        if (present($genre)) {
             $matchParams[] = ['match' => ['genre_id' => (int) $genre]];
         }
 
-        if (presence($language) !== null) {
+        if (present($language)) {
             $matchParams[] = ['match' => ['language_id' => (int) $language]];
         }
 
@@ -290,7 +290,7 @@ class Beatmapset extends Model
             }
         }
 
-        if (presence($query) !== null) {
+        if (present($query)) {
             $matchParams[] = ['query_string' => ['query' => $query]];
         }
 
@@ -322,7 +322,7 @@ class Beatmapset extends Model
         }
 
         // TODO: This logic probably shouldn't be at the model level... maybe?
-        if (presence($status) !== null) {
+        if (present($status)) {
             switch ((int) $status) {
                 case 0: // Ranked & Approved
                     $shouldParams[] = [
@@ -367,7 +367,7 @@ class Beatmapset extends Model
             $matchParams[] = ['range' => ['approved' => ['gte' => self::STATES['pending']]]];
         }
 
-        if (presence($mode) !== null) {
+        if (present($mode)) {
             $matchParams[] = ['match' => ['playmode' => (int) $mode]];
         }
 
