@@ -161,6 +161,18 @@ class User extends Model implements AuthenticatableContract, Messageable
         return [];
     }
 
+    public static function search($params)
+    {
+        $params['query'] = $params['query'] ?? null;
+        $params['limit'] = clamp(get_int($params['limit'] ?? 50), 1, 50);
+        $params['page'] = max(1, get_int($params['page'] ?? 1));
+
+        return static::where('username', 'LIKE', "{$params['query']}%")
+            ->orderBy(DB::raw('LENGTH(username)'))
+            ->limit($params['limit'])
+            ->offset(($params['page'] - 1) * $params['limit']);
+    }
+
     public function validateUsernameChangeTo($username)
     {
         if (!$this->hasSupported()) {
