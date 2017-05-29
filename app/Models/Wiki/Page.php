@@ -69,11 +69,11 @@ class Page
             $document = $hit['_source'];
 
             if (!isset($pages[$document['path']]) || $document['locale'] !== $locale) {
-                $pages[$document['path']] = $document;
+                $pages[$document['path']] = new static(null, null, $document);
             }
         }
 
-        return $pages;
+        return array_values($pages);
     }
 
     public static function searchIndexConfig($params = [])
@@ -96,8 +96,14 @@ class Page
         return $params;
     }
 
-    public function __construct($path, $locale)
+    public function __construct($path, $locale, $esCache = null)
     {
+        if ($esCache !== null) {
+            $path = $esCache['path'];
+            $locale = $esCache['locale'];
+            $this->cache['page'] = $esCache['page'];
+        }
+
         $this->path = OsuWiki::cleanPath($path);
         $this->requestedLocale = $locale;
         $this->locale = $locale;
