@@ -121,7 +121,7 @@ class Post extends Model
 
     public static function search($params)
     {
-        $ids = static::searchES(static::searchParams($params));
+        $ids = static::searchEs(static::searchParams($params));
 
         return count($ids) > 0
             ? static
@@ -132,7 +132,7 @@ class Post extends Model
             : [];
     }
 
-    public static function searchES($params = [])
+    public static function searchEs($params = [])
     {
         $query = es_query_and_words($params['query']);
 
