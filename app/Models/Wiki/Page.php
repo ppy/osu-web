@@ -165,6 +165,7 @@ class Page
                 'path' => $this->path,
                 'title' => $page['header']['title'],
                 'page_text' => strip_tags($page['output']),
+                'page' => $page,
             ],
         ]);
 
