@@ -17,30 +17,30 @@
 --}}
 
 <div class="news-post-preview{{$collapsed ? ' news-post-preview--collapsed' : ''}}">
-    @php
-        $post_image = find_first_image($post->body);
-        $post_image_tag = presence($post_image) ? ' style="background-image: url('.proxy_image($post_image).');"' : null;
-    @endphp
-    <a class="news-post-preview__image"{!!$post_image_tag!!} href='{{route('news.show', $post->id)}}'></a>
+    <a
+        class="news-post-preview__image"
+        href='{{ route('news.show', $post->getKey() )}}'
+        {!! background_image(find_first_image($post->bodyHtml())) !!}
+    ></a>
     <div class="news-post-preview__body">
         <div class="news-post-preview__post-date">
             <div class="news-post-preview__date">
-                {{Carbon\Carbon::parse($post->date)->formatLocalized('%d')}}
+                {{$post->createdAt()->formatLocalized('%d')}}
             </div>
             <div class="news-post-preview__month-year">
                 @if ($collapsed)
-                    {{Carbon\Carbon::parse($post->date)->formatLocalized('&nbsp;%b')}}
+                    {{$post->createdAt()->formatLocalized('&nbsp;%b')}}
                 @else
-                    {{Carbon\Carbon::parse($post->date)->formatLocalized('%b %Y')}}
+                    {{$post->createdAt()->formatLocalized('%b %Y')}}
                 @endif
             </div>
         </div>
         <div class="news-post-preview__post-right">
-            <a href='{{route('news.show', $post->id)}}' class='news-post-preview__post-title'>
-                {{$post->title}}
+            <a href='{{ route('news.show', $post->getKey()) }}' class='news-post-preview__post-title'>
+                {{ $post->title() }}
             </a>
             <div class="news-post-preview__post-content">
-                <p>{!! first_paragraph($post->body) !!}</p>
+                <p>{!! first_paragraph($post->bodyHtml()) !!}</p>
             </div>
         </div>
     </div>

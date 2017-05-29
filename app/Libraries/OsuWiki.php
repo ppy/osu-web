@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki;
+namespace App\Libraries;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use GitHub;
 use Github\Exception\RuntimeException as GithubException;
 
-class Base
+class OsuWiki
 {
     const CACHE_DURATION = 60;
     const REPOSITORY = 'osu-wiki';
@@ -41,7 +41,7 @@ class Base
         try {
             return GitHub::repo()
                 ->contents()
-                ->show(static::USER, static::REPOSITORY, 'wiki/'.$path);
+                ->show(static::USER, static::REPOSITORY, $path);
         } catch (GithubException $e) {
             $message = $e->getMessage();
 

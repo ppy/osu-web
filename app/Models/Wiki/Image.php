@@ -21,10 +21,14 @@
 namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
+use App\Libraries\OsuWiki;
 use Cache;
 
-class Image extends Base
+class Image
 {
+    // in minutes
+    const CACHE_DURATION = 120;
+
     public $path;
     public $url;
     public $referrer;
@@ -33,7 +37,7 @@ class Image extends Base
 
     public function __construct($path, $url = null, $referrer = null)
     {
-        $this->path = $this->cleanPath($path);
+        $this->path = OsuWiki::cleanPath($path);
         $this->url = presence($this->url);
         $this->referrer = presence($this->referrer);
     }
@@ -48,7 +52,7 @@ class Image extends Base
         if (!array_key_exists('data', $this->cache)) {
             $this->cache['data'] = Cache::remember($this->cacheKeyData(), static::CACHE_DURATION, function () {
                 try {
-                    $data = static::fetchContent($this->path);
+                    $data = OsuWiki::fetchContent('wiki/'.$this->path);
                     $type = image_type_to_mime_type(
                         read_image_properties_from_string($data)[2] ?? null
                     );

@@ -151,6 +151,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
+
+    Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
 // ranking section
@@ -232,6 +234,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::get('beatmaps/lookup', ['uses' => 'BeatmapsController@lookup']);
         //   GET /api/v2/beatmaps/:beatmap_id
         Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
+        //   GET /api/v2/beatmapsets/search/:filters
+        Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
         Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
         Route::get('users/{user}', ['uses' => 'UsersController@show']);                   //  GET /api/v2/users/:user_id
@@ -288,7 +292,7 @@ Route::get('forum', function () {
 // temporary news redirect
 Route::get('news/{id}', function ($id) {
     return Redirect::to("https://osu.ppy.sh/news/{$id}");
-})->name('news.show');
+});
 
 Route::get('mp/{match}', function ($match) {
     return ujs_redirect(route('matches.show', compact('match')));

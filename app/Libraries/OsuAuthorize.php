@@ -561,6 +561,16 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkNewsIndexUpdate($user)
+    {
+        // yet another admin only =D
+    }
+
+    public function checkNewsPostUpdate($user)
+    {
+        // yet another admin only =D
+    }
+
     public function checkLivestreamPromote($user)
     {
         if ($user !== null && $user->isGMT()) {

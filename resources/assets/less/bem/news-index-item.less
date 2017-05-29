@@ -16,34 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.changelog-header {
-  display: flex;
-  flex-direction: column;
-  align-content: flex-end;
+.news-index-item {
+  margin: 10px 0;
 
-  min-height: 250px;
-
-  background-size: cover;
-  background-position: center;
-
-  background-image: url('/images/headers/generic.jpg');
-
-  padding: 0 40px;
-
-  .default-box-shadow;
-  .inner-shadow-top;
-
-  &__streams {
-    display: flex;
-    flex-direction: row;
-
-    @media @mobile {
-      flex-wrap: wrap;
-    }
+  &__time {
+    font-size: @font-size--normal;
   }
 
-  &__streams-box {
-    margin-top: auto;
-    padding-top: 10px;
+  &__title {
+    .link-pink-dark();
+    font-size: @font-size--large;
   }
 }

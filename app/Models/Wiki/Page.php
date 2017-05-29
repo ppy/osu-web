@@ -22,16 +22,26 @@ namespace App\Models\Wiki;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
-use App\Libraries\WikiProcessor;
+use App\Libraries\OsuMarkdownProcessor;
+use App\Libraries\OsuWiki;
 use Cache;
 use Es;
 
-class Page extends Base
+class Page
 {
+    // in minutes
+    const CACHE_DURATION = 300;
+    const VERSION = 1;
+
     public $locale;
     public $requestedLocale;
 
     private $cache = [];
+
+    public static function cacheVersionPage()
+    {
+        return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
+    }
 
     public static function search($params)
     {
@@ -64,8 +74,9 @@ class Page extends Base
 
     public function __construct($path, $locale)
     {
-        $this->path = $this->cleanPath($path);
+        $this->path = OsuWiki::cleanPath($path);
         $this->requestedLocale = $locale;
+        $this->locale = $locale;
     }
 
     public function cacheKeyLocales()
@@ -75,12 +86,12 @@ class Page extends Base
 
     public function cacheKeyPage()
     {
-        return 'wiki:page:page:'.WikiProcessor::VERSION.':'.$this->pagePath();
+        return 'wiki:page:page:'.static::cacheVersionPage().':'.$this->pagePath();
     }
 
     public function editUrl()
     {
-        return 'https://github.com/'.static::USER.'/'.static::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
+        return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
     public function fetchLocales()
@@ -88,7 +99,7 @@ class Page extends Base
         $locales = [];
 
         try {
-            $data = static::fetch($this->path);
+            $data = OsuWiki::fetch('wiki/'.$this->path);
         } catch (GitHubNotFoundException $e) {
             return $locales;
         } catch (GitHubTooLargeException $e) {
@@ -157,15 +168,15 @@ class Page extends Base
                     static::CACHE_DURATION,
                     function () {
                         try {
-                            $page = static::fetchContent($this->pagePath());
+                            $page = OsuWiki::fetchContent('wiki/'.$this->pagePath());
                         } catch (GitHubNotFoundException $_e) {
                             return;
                         }
 
                         // FIXME: add indexAdd/Remove accordingly.
                         if (present($page)) {
-                            return WikiProcessor::process($page, [
-                                'path' => '/wiki/'.$this->path,
+                            return OsuMarkdownProcessor::process($page, [
+                                'path' => '/help/wiki/'.$this->path,
                             ]);
                         }
                     }
@@ -182,10 +193,6 @@ class Page extends Base
 
     public function pagePath()
     {
-        if ($this->locale === null) {
-            throw \Exception('locale not set!');
-        }
-
         return $this->path.'/'.$this->locale.'.md';
     }
 
