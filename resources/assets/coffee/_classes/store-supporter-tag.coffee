@@ -158,7 +158,7 @@ class @StoreSupporterTag
     $('#product-form').data 'disabled', disabled
 
   updateSearchResult: (searching) ->
-    $('.js-error').text('searching') if searching
+    $('.js-input-feedback').text('searching') if searching
 
   updatePrice: (obj) =>
     @el.querySelector('input[name="item[cost]"').value = obj.price
@@ -171,10 +171,10 @@ class @StoreSupporterTag
 
   updateUserDisplay: (user) =>
     avatarUrl = if user
-                   $('.js-error').text('')
+                   $('.js-input-feedback').text('')
                    user.avatar_url
                  else
-                   $('.js-error').text("This user doesn't exist!")
+                   $('.js-input-feedback').text("This user doesn't exist!")
                    ''
 
     $(@el.querySelectorAll('.js-avatar')).css(

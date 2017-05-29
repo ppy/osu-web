@@ -29,37 +29,26 @@
     <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />
     <input type="hidden" name="item[extra_data][type]" value="supporter-tag" />
     <input type="hidden" name="item[extra_data][duration]" value="1" />
-    <div class="grid store-supporter-tag__user">
-        <div class="grid-cell grid-cell--squash store-supporter-tag__user-icon">
-            <center>
-                <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
-            </center>
+    <div class="store-supporter-tag__user-icon">
+        <center>
+            <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
+        </center>
+    </div>
+    <div class="store-supporter-tag__user-search">
+        <div class="">
+            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
         </div>
-        <div class="grid-cell store-supporter-tag__textual-info">
-            <div class="grid grid--xs">
-                <div class="grid grid--stack grid-cell">
-                    <div class="grid grid--margin store-supporter-tag__user-search">
-                        <div class="grid-cell">
-                            {!! Form::label('username', 'Gift a player') !!}
-                            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
-                        </div>
-                        <div class="grid-cell js-error error"></div>
-                    </div>
-                    <div>-</div>
-                    <div>Choose your amount</div>
-                </div>
-                <div class="grid-cell grid-cell--1of3 price-box">
-                    <p class="js-price price text-right"></p>
-                    <div class="js-duration text-right"></div>
-                    <div class="js-price-per-month text-right"></div>
-                    <div class="js-discount text-right"></div>
-                </div>
-            </div>
-            <div>
-                <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-                    <div class="ui-slider-handle"></div>
-                </div>
-            </div>
+        <div class="js-input-feedback"></div>
+    </div>
+    <div class="store-supporter-tag__slider">
+        <div class="">
+            <p class="js-price price"></p>
+            <div class="js-duration"></div>
+            <div class="js-price-per-month"></div>
+            <div class="js-discount"></div>
+        </div>
+        <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
+            <div class="ui-slider-handle"></div>
         </div>
     </div>
 </div>
