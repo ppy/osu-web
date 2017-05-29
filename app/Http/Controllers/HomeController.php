@@ -144,7 +144,7 @@ class HomeController extends Controller
         $beatmapsets = Beatmapset::search($params);
         $posts = Post::search($params);
         $wikiPages = Wiki\Page::search($params);
-        $users = User::search($params)->get();
+        $users = User::search($params);
 
         return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages', 'users'));
     }
