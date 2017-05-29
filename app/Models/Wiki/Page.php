@@ -45,27 +45,49 @@ class Page
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
     }
 
-    public static function search($params)
+    public static function search($params, $locale = null)
     {
+        $locale ?? ($locale = config('app.fallback_locale'));
         $params = static::searchParams($params);
 
-        $query = es_query_and_words($params['query']);
+        if (!present($params['query'])) {
+            return [];
+        }
 
-        $searchParams = [
-            'index' => config('osu.elasticsearch.index').':wiki_pages',
-            'type' => 'wiki_page',
+        $searchParams = static::searchIndexConfig([
             'size' => $params['limit'],
             'from' => ($params['page'] - 1) * $params['limit'],
-            'q' => $query,
-        ];
+        ]);
 
-        return Es::search($searchParams)['hits']['hits'];
+        $searchParams['body']['query']['bool']['must']['query_string']['query'] = $params['query'];
+
+        $hits = Es::search($searchParams)['hits']['hits'];
+
+        $pages = [];
+
+        foreach ($hits as $hit) {
+            $document = $hit['_source'];
+
+            if (!isset($pages[$document['path']]) || $document['locale'] !== $locale) {
+                $pages[$document['path']] = $document;
+            }
+        }
+
+        return $pages;
+    }
+
+    public static function searchIndexConfig($params = [])
+    {
+        return array_merge([
+            'index' => config('osu.elasticsearch.index').':wiki_pages',
+            'type' => 'wiki_page',
+        ], $params);
     }
 
     public static function searchParams($params)
     {
         $params['query'] = $params['query'] ?? null;
-        $params['limit'] = max(1, min(50, $params['limit'] ?? 50));
+        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
         $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
         $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int');
@@ -134,18 +156,26 @@ class Page
 
     public function indexAdd($page = null)
     {
-        $params = [
-            'index' => config('osu.elasticsearch.index').':wiki_pages',
-            'type' => 'wiki_page',
+        $page ?? ($page = $this->page());
+
+        $params = static::searchIndexConfig([
             'id' => $this->pagePath(),
             'body' => [
                 'locale' => $this->locale,
                 'path' => $this->path,
-                'page' => $page ?? $this->page(),
+                'title' => $page['header']['title'],
+                'page_text' => strip_tags($page['output']),
             ],
-        ];
+        ]);
 
         Es::index($params);
+    }
+
+    public function indexRemove()
+    {
+        Es::delete(static::searchIndexConfig([
+            'id' => $this->pagePath(),
+        ]));
     }
 
     public function locales()
@@ -174,17 +204,21 @@ class Page
                     static::CACHE_DURATION,
                     function () {
                         try {
-                            $page = OsuWiki::fetchContent('wiki/'.$this->pagePath());
+                            $body = OsuWiki::fetchContent('wiki/'.$this->pagePath());
                         } catch (GitHubNotFoundException $_e) {
-                            $page = null;
+                            $body = null;
                         }
 
-                        // FIXME: add indexAdd/Remove accordingly.
-                        if (present($page)) {
-                            return OsuMarkdownProcessor::process($page, [
+                        if (present($body)) {
+                            $page = OsuMarkdownProcessor::process($body, [
                                 'path' => route('wiki.show', $this->path),
                             ]);
+                            $this->indexAdd($page);
+
+                            return $page;
                         } else {
+                            $this->indexRemove();
+
                             return [];
                         }
                     }
