@@ -24,7 +24,6 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
-use Auth;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -251,7 +250,6 @@ class Beatmapset extends Model
         extract($params);
         $limit = min(config('osu.beatmaps.max'), $limit ?? config('osu.beatmaps.max'));
         $offset = (max(0, $page - 1)) * $limit;
-        $current_user = Auth::user();
 
         $searchParams = [
             'index' => config('osu.elasticsearch.index'),
@@ -305,7 +303,7 @@ class Beatmapset extends Model
             foreach ($modes as $mode) {
                 $newQuery =
                     Score\Best\Model::getClass((int) $mode)
-                    ->forUser($current_user)
+                    ->forUser($user)
                     ->whereIn('rank', $rank)
                     ->select('beatmapset_id');
 
@@ -337,7 +335,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                     break;
                 case 2: // Favourites
-                    $favs = model_pluck($current_user->favouriteBeatmapsets(), 'beatmapset_id');
+                    $favs = model_pluck($user->favouriteBeatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                     break;
                 case 3: // Mod Requests
@@ -355,7 +353,7 @@ class Beatmapset extends Model
                     $matchParams[] = ['match' => ['approved' => self::STATES['graveyard']]];
                     break;
                 case 6: // My Maps
-                    $maps = model_pluck($current_user->beatmapsets(), 'beatmapset_id');
+                    $maps = model_pluck($user->beatmapsets(), 'beatmapset_id');
                     $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
                     break;
                 case 7: // Explicit Any

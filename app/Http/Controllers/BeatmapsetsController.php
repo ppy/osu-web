@@ -109,11 +109,11 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $current_user = Auth::user();
+        $user = Auth::user();
 
         $params = [];
 
-        if (is_null($current_user)) {
+        if (is_null($user)) {
             $params = [
                 'page' => Request::input('page'),
             ];
@@ -128,9 +128,10 @@ class BeatmapsetsController extends Controller
                 'rank' => array_filter(explode('-', Request::input('r')), 'strlen'),
                 'page' => Request::input('page'),
                 'sort' => explode('_', Request::input('sort')),
+                'user' => $user,
             ];
 
-            if (!$current_user->isSupporter()) {
+            if (!$user->isSupporter()) {
                 unset($params['rank']);
             }
         }
