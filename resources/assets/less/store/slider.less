@@ -33,21 +33,22 @@
 .js-slider {
   // overrides
   .ui-slider-handle {
-    width: 18px;
-    height: 18px;
+    width: 10px;
+    height: 20px;
+    border-radius: 30px;
     background-color: @pink-dark;
-    border-radius: 50%;
+    outline: none;
   }
   &.ui-slider {
-    background-color: lightgray;
+    background-color: darkgray;
     .ui-slider-range {
       background-color: @pink-dark;
     }
   }
 
   &.ui-slider-horizontal {
-    height: 8px;
-    .ui-slider-handle { top: -5px; margin-left: -9px; }
+    height: 10px;
+    .ui-slider-handle { top: -5px; margin-left: -5px; }
   }
 }
 
