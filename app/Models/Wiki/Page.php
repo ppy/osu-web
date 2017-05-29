@@ -175,12 +175,12 @@ class Page
             ],
         ]);
 
-        Es::index($params);
+        return Es::index($params);
     }
 
     public function indexRemove()
     {
-        Es::delete(static::searchIndexConfig([
+        return Es::delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
         ]));
     }

@@ -27,6 +27,7 @@ use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
+use App\Models\User;
 use App\Models\Wiki;
 use Auth;
 use Request;
@@ -131,7 +132,7 @@ class HomeController extends Controller
 
     public function search()
     {
-        $query = Request::input('q');
+        $query = Request::input('query');
         $limit = 5;
 
         if (strlen($query) < 3) {
@@ -143,8 +144,9 @@ class HomeController extends Controller
         $beatmapsets = Beatmapset::search($params);
         $posts = Post::search($params);
         $wikiPages = Wiki\Page::search($params);
+        $users = User::search($params)->get();
 
-        return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages'));
+        return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages', 'users'));
     }
 
     public function setLocale()

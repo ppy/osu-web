@@ -50,8 +50,7 @@ $(document).on 'turbolinks:load', ->
 @landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
-# FIXME: enable later.
-#@navSearch ?= new NavSearch
+@navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus

@@ -38,8 +38,18 @@
 <ul>
     @foreach ($wikiPages as $page)
         <li>
-            <a href="{{ wiki_url($page['_source']['path'], $page['_source']['locale']) }}">
-                {{ $page['_source']['path'] }}
+            <a href="{{ wiki_url($page->path, $page->locale) }}">
+                {{ $page->page()['header']['title'] }}
+            </a>
+        </li>
+    @endforeach
+</ul>
+
+<ul>
+    @foreach ($users as $user)
+        <li>
+            <a href="{{ route('users.show', $user->getKey()) }}">
+                {{ $user->username }}
             </a>
         </li>
     @endforeach
