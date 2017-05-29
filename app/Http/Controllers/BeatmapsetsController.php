@@ -141,7 +141,7 @@ class BeatmapsetsController extends Controller
                 if (is_array($v)) {
                     return !empty($v);
                 } else {
-                    return presence($v) !== null;
+                    return present($v);
                 }
             },
             ARRAY_FILTER_USE_BOTH
