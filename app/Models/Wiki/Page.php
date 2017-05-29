@@ -68,7 +68,7 @@ class Page
         foreach ($hits as $hit) {
             $document = $hit['_source'];
 
-            if (!isset($pages[$document['path']]) || $document['locale'] !== $locale) {
+            if (!isset($pages[$document['path']]) || $document['locale'] === $locale) {
                 $pages[$document['path']] = new static(null, null, $document);
             }
         }
