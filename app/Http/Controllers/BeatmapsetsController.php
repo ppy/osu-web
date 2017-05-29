@@ -125,14 +125,13 @@ class BeatmapsetsController extends Controller
                 'genre' => Request::input('g'),
                 'language' => Request::input('l'),
                 'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
-                'rank' => array_filter(explode('-', Request::input('r')), 'strlen'),
                 'page' => Request::input('page'),
                 'sort' => explode('_', Request::input('sort')),
                 'user' => $user,
             ];
 
-            if (!$user->isSupporter()) {
-                unset($params['rank']);
+            if ($user->isSupporter()) {
+                $params['rank'] = array_filter(explode('-', Request::input('r')), 'strlen');
             }
         }
 
