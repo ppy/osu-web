@@ -71,26 +71,6 @@ class @StoreSupporterTag
       change: (event, ui) =>
         @onSliderValueChanged event, ui
     }
-    .slider('pips', {
-      step: 4,
-      rest: "label",
-      labels: (value) ->
-        # That's how the pip labels work ¯\_(ツ)_/¯
-        return '' if value == 'first'
-        return 24 if value == 'last'
-        label = switch ((value - 4) / 8) + 4
-                when 8 then 2
-                when 12 then 4
-                when 16 then 6
-                when 20 then 8
-                when 22 then 9
-                when 24 then 10
-                when 26 then 12
-                when 39 then 18
-                when 52 then 24
-                else ''
-        label
-    })
     @updatePrice(@calculate(@MIN_VALUE * @RESOLUTION))
     slider
 
