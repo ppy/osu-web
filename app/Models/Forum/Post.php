@@ -138,7 +138,7 @@ class Post extends Model
         $any = [];
 
         if (present($params['query'])) {
-            $required[] = ['query_string' => ['query' => $params['query']]];
+            $required[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
         }
 
         foreach ($params['user_ids'] as $userId) {

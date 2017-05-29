@@ -86,7 +86,7 @@ class Page
 
     public static function searchParams($params)
     {
-        $params['query'] = $params['query'] ?? null;
+        $params['query'] = es_query_and_words($params['query'] ?? null);
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
         $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
