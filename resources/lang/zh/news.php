@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listing',
-        'news-show' => 'post',
+        'news-index' => '列表',
+        'news-show' => '新闻', //未使用字段
     ],
 
     'index' => [
-        'title' => 'osu!news',
+        'title' => 'osu!新闻',
 
         'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
+            'newer' => '下一条新闻',
+            'older' => '上一条新闻',
         ],
     ],
 
     'show' => [
-        'posted' => 'posted :time',
+        'posted' => ':time 推送',
 
         'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
+            'newer' => '下一条新闻',
+            'older' => '上一条新闻',
         ],
     ],
 
     'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
+        'button' => '更新', //未使用字段
+        'ok' => '列表已更新.', //未使用字段
     ],
 
     'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
+        'button' => '更新',
+        'ok' => '新闻已更新.', //未使用字段
     ],
 ];
