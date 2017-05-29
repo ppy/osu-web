@@ -382,17 +382,17 @@ class Beatmapset extends Model
 
         try {
             $results = Es::search($searchParams);
-            $beatmap_ids = array_map(
+            $beatmapIds = array_map(
                 function ($e) {
                     return $e['_id'];
                 },
                 $results['hits']['hits']
             );
         } catch (\Exception $e) {
-            $beatmap_ids = [];
+            $beatmapIds = [];
         }
 
-        return $beatmap_ids;
+        return $beatmapIds;
     }
 
     public static function searchDB(array $params = [])
