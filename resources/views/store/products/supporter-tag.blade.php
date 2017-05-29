@@ -52,6 +52,15 @@
                 </div>
             </div>
         </div>
+        <div class="grid grid--packed">
+            <div class="js-slider-mark">2</div>
+            <div class="js-slider-mark">4</div>
+            <div class="js-slider-mark">6</div>
+            <div class="js-slider-mark">8</div>
+            <div class="js-slider-mark">12</div>
+            <div class="js-slider-mark">18</div>
+            <div class="js-slider-mark">24</div>
+        </div>
     </div>
 </div>
 @endif
