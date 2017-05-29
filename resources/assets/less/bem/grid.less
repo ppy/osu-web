@@ -25,6 +25,15 @@
 
   &.grid--stack {
     flex-direction: column;
+    // stack shouldn't devolve into block when shrunk.
+    @media @mobile {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &--centered {
+    align-items: center;
   }
 
   &--gutters {

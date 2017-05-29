@@ -174,7 +174,7 @@ class @StoreSupporterTag
                    $('.js-input-feedback').text('')
                    user.avatar_url
                  else
-                   $('.js-input-feedback').text("This user doesn't exist!")
+                   $('.js-input-feedback').text("This user doesn't exist")
                    ''
 
     $(@el.querySelectorAll('.js-avatar')).css(

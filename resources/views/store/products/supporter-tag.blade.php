@@ -34,11 +34,13 @@
             <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
         </center>
     </div>
-    <div class="store-supporter-tag__user-search">
-        <div class="">
+    <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
+        <div class="grid-cell">
             {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
         </div>
-        <div class="js-input-feedback"></div>
+        <div class="grid-cell">
+            <div class="js-input-feedback"></div>
+        </div>
     </div>
     <div class="store-supporter-tag__slider">
         <div class="">

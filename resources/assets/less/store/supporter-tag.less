@@ -1,26 +1,19 @@
 .store-supporter-tag {
-  &__textual-info {
-    margin: 8px 20px;  // TODO: placeholder
-    .error {
-      align-self: flex-end;
-    }
-  }
+  background-color: #ccc;
 
-  &__user {
-    &--searching {
-      display: none;
-    }
+  &__user-icon {
+    margin: 8px;
   }
 
   &__user-search {
-    @media @mobile {
-      &.grid--margin {
-        > .grid-cell {
-          & + .grid-cell {
-            margin-left: 0;
-          }
-        }
-      }
+    margin: 8px;
+
+    .grid-cell {
+      margin: 0 0 8px 0;
+    }
+
+    input.form-control {
+      min-width: 15em;
     }
   }
 
@@ -39,9 +32,20 @@
     }
   }
 
+  .form-control {
+    color: #555;
+    border: none;
+    box-shadow: none;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
   .js-input-feedback {
-    display: inline-block;
-    margin: 8px;
+    display: inline-block; // prevent collapsing of empty block
+    font-weight: 600;
+    color: #555;
     text-align: center;
   }
 
@@ -53,14 +57,17 @@
 
 .ui-slider {
   margin: 8px 0;
+
   .ui-slider-pip {
     position: absolute;
     text-align: center;
+
     .ui-slider-label {
       display: block;
       padding: 8px;
       margin-left: -100%;
       cursor: pointer;
+
       &:empty {
         display: none;
       }
