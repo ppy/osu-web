@@ -146,7 +146,7 @@ class @StoreSupporterTag
     @priceElement.textContent = "USD #{obj.price}"
     monthText = if (obj.duration == 1) then 'month' else 'months'
     @durationElement.textContent = "#{obj.duration} #{monthText}"
-    @pricePerMonthElement.textContent = obj.pricePerMonth()
+    # @pricePerMonthElement.textContent = obj.pricePerMonth()
     @discountElement.textContent = obj.discount()
 
   updateUserDisplay: (user) =>

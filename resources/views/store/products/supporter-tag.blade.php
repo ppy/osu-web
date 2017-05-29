@@ -43,14 +43,14 @@
         </div>
     </div>
     <div class="store-supporter-tag__slider">
-        <div class="">
-            <p class="js-price price"></p>
-            <div class="js-duration"></div>
-            <div class="js-price-per-month"></div>
-            <div class="js-discount"></div>
-        </div>
         <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
-            <div class="ui-slider-handle"></div>
+            <div class="ui-slider-handle">
+                <div class="slider-callout arrow-box">
+                    <div class="js-price price"></div>
+                    <div class="js-duration"></div>
+                    <div class="js-discount"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
