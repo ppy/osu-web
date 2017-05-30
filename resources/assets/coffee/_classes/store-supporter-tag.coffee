@@ -21,6 +21,18 @@ class @StoreSupporterTag
   MIN_VALUE: 4
   MAX_VALUE: 52
 
+  CUTOFFS: {
+    2: 8,
+    4: 12,
+    6: 16,
+    8: 20,
+    9: 22,
+    10: 24,
+    12: 28,
+    18: 39,
+    24: 52,
+  }
+
   @Price = {
     price: 0
     duration: 0
@@ -50,6 +62,7 @@ class @StoreSupporterTag
     @pricePerMonthElement = @el.querySelector('.js-price-per-month')
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
+    @sliderMarks = @el.querySelectorAll('.js-slider-mark')
     @usernameInput = @el.querySelector('#username.form-control')
 
     @debouncedGetUser = _.debounce @getUser, 300
@@ -61,9 +74,9 @@ class @StoreSupporterTag
   initializeSlider: =>
     slider = $(@slider).slider {
       range: 'min',
-      value: @MIN_VALUE * @RESOLUTION,
-      min: @MIN_VALUE * @RESOLUTION,
-      max: @MAX_VALUE * @RESOLUTION,
+      value: @sliderValue(@MIN_VALUE),
+      min: @sliderValue(@MIN_VALUE),
+      max: @sliderValue(@MAX_VALUE),
       step: 1,
       animate: 'fast',
       slide: (event, ui) =>
@@ -71,13 +84,15 @@ class @StoreSupporterTag
       change: (event, ui) =>
         @onSliderValueChanged event, ui
     }
-    @updatePrice(@calculate(@MIN_VALUE * @RESOLUTION))
+    @updatePrice(@calculate(@sliderValue(@MIN_VALUE)))
     slider
 
   initializeSliderPresets: =>
-    $(@el.querySelectorAll('.js-slider-preset')).on 'click', (event) =>
+    $(@sliderMarks).on 'click', (event) =>
       target = event.currentTarget
-      $(@slider).slider('option', 'value', target.dataset.presetValue * @RESOLUTION)
+      price = @CUTOFFS[target.dataset.months]
+      console.debug(price)
+      $(@slider).slider('option', 'value', @sliderValue(price)) if price
 
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', (event) =>
@@ -117,6 +132,7 @@ class @StoreSupporterTag
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
     @updatePrice(values)
+    @updateSliderMarks(values)
 
   onInput: (event) =>
     if !@searching
@@ -130,6 +146,9 @@ class @StoreSupporterTag
       , 0)
 
     @debouncedGetUser(event.currentTarget.value)
+
+  sliderValue: (price) ->
+    price * @RESOLUTION
 
   updateCart: (data) ->
     # FIXME: should consolidate implementations into a service class.
@@ -164,3 +183,9 @@ class @StoreSupporterTag
   updateSlider: (enabled) =>
     $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
     $('.js-slider').slider({ 'disabled': !enabled })
+
+  updateSliderMarks: (values) =>
+    @updateSliderMark(elem, values) for elem in @sliderMarks
+
+  updateSliderMark: (elem, values) ->
+    $(elem).toggleClass('js-slider-mark--active', values.duration >= +elem.dataset.months)

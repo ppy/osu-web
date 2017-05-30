@@ -100,8 +100,9 @@
 }
 
 .js-slider-mark {
-  background-color: @pink-darker;
+  background-color: #666;
   color: #fff;
+  cursor: pointer;
   font-size: 12px;
   margin: 4px;
   height: 20px;
@@ -109,4 +110,8 @@
   line-height: 19px;
   text-align: center;
   border-radius: 10px;
+
+  &--active {
+    background-color: @pink-darker;
+  }
 }
