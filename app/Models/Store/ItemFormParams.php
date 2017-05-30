@@ -24,37 +24,37 @@ class ItemFormParams
 {
     private $params;
 
-    function __construct(array $item_form)
+    public function __construct(array $item_form)
     {
         $this->params = $item_form;
     }
 
-    function id()
+    public function id()
     {
         return array_get($this->params, 'id');
     }
 
-    function quantity()
+    public function quantity()
     {
         return array_get($this->params, 'quantity');
     }
 
-    function product()
+    public function product()
     {
         return Product::find(array_get($this->params, 'product_id'));
     }
 
-    function extraInfo()
+    public function extraInfo()
     {
         return array_get($this->params, 'extra_info');
     }
 
-    function extraData()
+    public function extraData()
     {
         return array_get($this->params, 'extra_data');
     }
 
-    function cost()
+    public function cost()
     {
         return intval(array_get($this->params, 'cost'));
     }
