@@ -46,7 +46,12 @@ class WikiController extends Controller
         $subtitle = array_pop($titles);
 
         if ($page->page() === null) {
-            $status = 404;
+            $redirect = new Wiki\Redirect($path);
+            if ($redirect->target() !== null) {
+                return ujs_redirect(route('wiki.show', $redirect->target()));
+            } else {
+                $status = 404;
+            }
         }
 
         return response()
