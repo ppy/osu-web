@@ -53,13 +53,13 @@
             </div>
         </div>
         <div class="grid grid--packed">
-            <div class="js-slider-mark" data-months="2">2</div>
-            <div class="js-slider-mark" data-months="4">4</div>
-            <div class="js-slider-mark" data-months="6">6</div>
-            <div class="js-slider-mark" data-months="8">8</div>
-            <div class="js-slider-mark" data-months="12">12</div>
-            <div class="js-slider-mark" data-months="18">18</div>
-            <div class="js-slider-mark" data-months="24">24</div>
+            <div class="js-slider-preset" data-months="2">2</div>
+            <div class="js-slider-preset" data-months="4">4</div>
+            <div class="js-slider-preset" data-months="6">6</div>
+            <div class="js-slider-preset" data-months="8">8</div>
+            <div class="js-slider-preset" data-months="12">12</div>
+            <div class="js-slider-preset" data-months="18">18</div>
+            <div class="js-slider-preset" data-months="24">24</div>
         </div>
     </div>
 </div>

@@ -62,7 +62,7 @@ class @StoreSupporterTag
     @pricePerMonthElement = @el.querySelector('.js-price-per-month')
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
-    @sliderMarks = @el.querySelectorAll('.js-slider-mark')
+    @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @usernameInput = @el.querySelector('#username.form-control')
 
     @debouncedGetUser = _.debounce @getUser, 300
@@ -88,7 +88,7 @@ class @StoreSupporterTag
     slider
 
   initializeSliderPresets: =>
-    $(@sliderMarks).on 'click', (event) =>
+    $(@sliderPresets).on 'click', (event) =>
       target = event.currentTarget
       price = @CUTOFFS[target.dataset.months]
       console.debug(price)
@@ -132,7 +132,7 @@ class @StoreSupporterTag
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
     @updatePrice(values)
-    @updateSliderMarks(values)
+    @updateSliderPresets(values)
 
   onInput: (event) =>
     if !@searching
@@ -184,8 +184,8 @@ class @StoreSupporterTag
     $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
     $('.js-slider').slider({ 'disabled': !enabled })
 
-  updateSliderMarks: (values) =>
-    @updateSliderMark(elem, values) for elem in @sliderMarks
+  updateSliderPresets: (values) =>
+    @updateSliderPreset(elem, values) for elem in @sliderPresets
 
-  updateSliderMark: (elem, values) ->
-    $(elem).toggleClass('js-slider-mark--active', values.duration >= +elem.dataset.months)
+  updateSliderPreset: (elem, values) ->
+    $(elem).toggleClass('js-slider-preset--active', values.duration >= +elem.dataset.months)
