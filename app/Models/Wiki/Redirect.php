@@ -42,13 +42,9 @@ class Redirect extends Page
                 static::CACHE_DURATION,
                 function () {
                     try {
-                        $redirect = json_decode(OsuWiki::fetchContent('wiki/redirect.json'), true);
+                        return json_decode(OsuWiki::fetchContent('wiki/redirect.json'), true);
                     } catch (GitHubNotFoundException $_e) {
                         return;
-                    }
-
-                    if (present($redirect)) {
-                        return $redirect;
                     }
                 }
             );
