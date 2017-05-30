@@ -18,22 +18,22 @@
   &--disabled {
     .js-slider {
       .ui-slider-handle {
-        background-color: darkgray;
+        background-color: #999;
       }
       &.ui-slider {
-        background-color: darkgray;
+        background-color: #999;
         .ui-slider-range {
-          background-color: darkgray;
+          background-color: #999;
         }
       }
     }
     .js-slider-preset {
-      background-color: darkgray;
+      background-color: #999;
       pointer-events: none;
       cursor: default;
 
       &--active {
-        background-color: darkgray;
+        background-color: #999;
       }
     }
   }
@@ -50,6 +50,7 @@
 
   .js-input-feedback {
     display: inline-block; // prevent collapsing of empty block
+    font-size: 13px;
     font-weight: 600;
     color: #555;
     text-align: center;
@@ -59,10 +60,10 @@
     margin-left: 20px;
     white-space: nowrap; // TODO: elevate?
   }
-}
 
-.ui-slider {
-  margin: 85px 50px 24px 50px;
+  .ui-slider {
+    margin: 85px 50px 24px 50px;
+  }
 }
 
 .slider-callout {
