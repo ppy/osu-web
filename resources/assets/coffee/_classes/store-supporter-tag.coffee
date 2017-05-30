@@ -91,7 +91,7 @@ class @StoreSupporterTag
     $(@sliderPresets).on 'click', (event) =>
       target = event.currentTarget
       price = @CUTOFFS[target.dataset.months]
-      $(@slider).slider('option', 'value', @sliderValue(price)) if price
+      $(@slider).slider('value', @sliderValue(price)) if price
 
   initializeUsernameInput: =>
     $(@usernameInput).on 'input', (event) =>
