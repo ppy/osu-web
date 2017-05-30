@@ -31,7 +31,7 @@ class Redirect extends Page
 
     public function __construct($path)
     {
-        $this->path = $path/*str_replace(' ', '_', strtolower($this->path))*/;
+        $this->path = str_replace(' ', '_', strtolower($path));
     }
 
     public function target()
@@ -42,7 +42,7 @@ class Redirect extends Page
                 static::CACHE_DURATION,
                 function () {
                     try {
-                        $redirect = OsuWiki::fetchContent('wiki/redirect.txt');
+                        $redirect = json_decode(OsuWiki::fetchContent('wiki/redirect.json'), true);
                     } catch (GitHubNotFoundException $_e) {
                         return;
                     }
@@ -54,10 +54,6 @@ class Redirect extends Page
             );
         }
 
-        if (array_key_exists($this->path, $this->cache['redirect'])) {
-            return $this->cache['redirect'][$this->path];
-        } else {
-            return;
-        }
+        return $this->cache['redirect'][$this->path] ?? null;
     }
 }
