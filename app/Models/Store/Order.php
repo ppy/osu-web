@@ -155,29 +155,31 @@ class Order extends Model
      **/
     public function updateItem(array $item_form, $add_new = false)
     {
-        $params = new ItemFormParams($item_form);
-        $quantity = $params->quantity();
-        $product = $params->product();
-        $extraInfo = $params->extraInfo();
-        $extraData = $params->extraData();
-        $cost = $params->cost();
+        $params = [
+            'id' => array_get($item_form, 'id'),
+            'quantity' => array_get($item_form, 'quantity'),
+            'product' => Product::find(array_get($item_form, 'product_id')),
+            'cost' => intval(array_get($item_form, 'cost')),
+            'extraInfo' => array_get($item_form, 'extra_info'),
+            'extraData' => array_get($item_form, 'extra_data'),
+        ];
 
-        if ($product === null) {
+        if ($params['product'] === null) {
             return [false, 'no product'];
         }
 
         $result = [true, ''];
 
-        if ($quantity <= 0) {
+        if ($params['quantity'] <= 0) {
             $this->removeOrderItem($params);
         } else {
-            if ($product->allow_multiple) {
+            if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
                 $item = $this->updateSingleItem($params, $add_new);
             }
 
-            $result = $this->validateBeforeSave($product, $item);
+            $result = $this->validateBeforeSave($params['product'], $item);
             if ($result[0]) {
                 $this->save();
                 $this->items()->save($item);
@@ -261,9 +263,9 @@ class Order extends Model
         };
     }
 
-    private function removeOrderItem(ItemFormParams $params)
+    private function removeOrderItem(array $params)
     {
-        $item_id = $params->id();
+        $item_id = $params['id'];
         $item = $this->items()->find($item_id);
 
         if ($item) {
@@ -275,34 +277,34 @@ class Order extends Model
         }
     }
 
-    private function newOrderItem(ItemFormParams $params)
+    private function newOrderItem(array $params)
     {
-        $product = $params->product();
+        $product = $params['product'];
 
         $item = new OrderItem();
-        $item->quantity = $params->quantity();
-        $item->extra_info = $params->extraInfo();
-        $item->extra_data = $params->extraData();
+        $item->quantity = $params['quantity'];
+        $item->extra_info = $params['extraInfo'];
+        $item->extra_data = $params['extraData'];
         $item->product()->associate($product);
         if ($product->cost === null) {
-            $item->cost = $params->cost();
+            $item->cost = $params['cost'];
         }
 
         return $item;
     }
 
-    private function updateSingleItem(ItemFormparams $params, $add_new = false)
+    private function updateSingleItem(array $params, $add_new = false)
     {
-        $product = $params->product();
+        $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
         if ($item === null) {
             return $this->newOrderItem($params);
         }
 
         if ($add_new) {
-            $item->quantity += $params->quantity();
+            $item->quantity += $params['quantity'];
         } else {
-            $item->quantity = $params->quantity();
+            $item->quantity = $params['quantity'];
         }
 
         return $item;
