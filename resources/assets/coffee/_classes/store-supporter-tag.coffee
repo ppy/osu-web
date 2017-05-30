@@ -78,7 +78,7 @@ class @StoreSupporterTag
       min: @sliderValue(@MIN_VALUE),
       max: @sliderValue(@MAX_VALUE),
       step: 1,
-      animate: 'fast',
+      animate: true,
       slide: (event, ui) =>
         @onSliderValueChanged event, ui
       change: (event, ui) =>
