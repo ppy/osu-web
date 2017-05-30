@@ -23,7 +23,7 @@ namespace App\Models\Wiki;
 use App\Libraries\OsuWiki;
 use Cache;
 
-class Redirect extends Page
+class Redirect
 {
     public $path;
 
@@ -36,10 +36,10 @@ class Redirect extends Page
 
     public function target()
     {
-        if (!array_key_exists('redirect', $this->cache) or true) {
+        if (!array_key_exists('redirect', $this->cache)) {
             $this->cache['redirect'] = Cache::remember(
-                $this->cacheKeyPage(),
-                static::CACHE_DURATION,
+                'wiki:redirect',
+                60,
                 function () {
                     try {
                         return json_decode(OsuWiki::fetchContent('wiki/redirect.json'), true);
