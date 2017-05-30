@@ -101,11 +101,11 @@ class @StoreSupporterTag
   getUser: (username) =>
     $.post '/users/check-username-exists', username: username
     .done (data) =>
-      @updateSlider(data?)
+      @setUserInteraction(data?)
       @updateUserDisplay(data)
       @updateCart(data)
     .fail (xhr) =>
-      @updateSlider(false)
+      @setUserInteraction(false)
       @updateUserDisplay(null)
       @updateCart(null)
       if xhr.status == 401
@@ -142,7 +142,7 @@ class @StoreSupporterTag
       # until after the debounce?
       setTimeout(() =>
         @updateSearchResult(true)
-        @updateSlider(false)
+        @setUserInteraction(false)
       , 0)
 
     @debouncedGetUser(event.currentTarget.value)
@@ -180,7 +180,7 @@ class @StoreSupporterTag
       'background-image': "url(#{avatarUrl})"
     )
 
-  updateSlider: (enabled) =>
+  setUserInteraction: (enabled) =>
     $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
     $('.js-slider').slider({ 'disabled': !enabled })
 
