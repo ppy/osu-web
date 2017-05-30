@@ -32,9 +32,9 @@ return [
         'failed' => '登录失败',
         'register' => '没有 osu! 账户? 现在注册一个吧',
         'forgot' => '忘记密码?',
-        'beta' => [
-            'main' => 'Beta access is currently restricted to privileged users.', //TODO 需要上下文
-            'small' => '(supporters will get in soon)', //TODO 需要上下文
+        'beta' => [ //TODO 需要上下文
+            'main' => 'Beta access is currently restricted to privileged users.',
+            'small' => '(supporters will get in soon)',
         ],
 
         'here' => '此处', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
@@ -50,7 +50,7 @@ return [
     'logout_confirm' => '你确定要退出吗? :(',
     'show' => [
         '404' => '找不到指定的用户',
-        'origin_age' => ':age 岁',
+        'age' => ':age 岁',
         'current_location' => '现在在 :location',
         'first_members' => 'here since the beginning', //TODO 需要上下文
         'is_developer' => 'osu!开发者',
@@ -62,6 +62,7 @@ return [
         'origin_country' => '来自 :country',
         'origin_country_age' => ':age,来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
+        'plays_with' => '惯用 :devices',
         'title' => ':username 的个人资料',
 
         'edit' => [
@@ -137,6 +138,7 @@ return [
 
                     'forum_post' => [
                         'give' => 'Received :amount from :giver for a post at :post',
+                        'reset' => 'Kudosu reset by :giver for the post :post',
                         'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
@@ -196,7 +198,6 @@ return [
             'total_score' => '总分',
         ],
     ],
-
     'verify' => [
         'title' => '账户认证',
     ],

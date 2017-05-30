@@ -19,7 +19,7 @@
  */
 
 return [
-    'errors' => [
+    'error' => [
         'chat' => [
             'limit_exceeded' => '您发送消息过快, 请稍后重试.',
         ],
