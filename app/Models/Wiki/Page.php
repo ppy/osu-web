@@ -170,7 +170,7 @@ class Page
                         try {
                             $page = OsuWiki::fetchContent('wiki/'.$this->pagePath());
                         } catch (GitHubNotFoundException $_e) {
-                            return;
+                            $page = null;
                         }
 
                         // FIXME: add indexAdd/Remove accordingly.
@@ -178,13 +178,19 @@ class Page
                             return OsuMarkdownProcessor::process($page, [
                                 'path' => '/help/wiki/'.$this->path,
                             ]);
+                        } else {
+                            return [];
                         }
                     }
                 );
 
-                if ($this->cache['page'] !== null) {
+                if (!empty($this->cache['page'])) {
                     break;
                 }
+            }
+
+            if (empty($this->cache['page'])) {
+                $this->cache['page'] = null;
             }
         }
 
