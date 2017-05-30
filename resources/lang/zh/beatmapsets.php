@@ -37,10 +37,10 @@ return [
             'made-by' => '制谱人: ',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
-            'ranked' => 'ranked on ',
-            'approved' => 'approved on ',
-            'qualified' => 'qualified on ',
-            'loved' => 'loved on ',
+            'ranked' => 'ranked 于 ',
+            'approved' => 'approved 于 ',
+            'qualified' => 'qualified 于 ',
+            'loved' => 'loved 于 ',
             'logged-out' => '下载谱面前请先登录!',
             'download' => [
                 '_' => '下载',
@@ -66,6 +66,7 @@ return [
             'rating-spread' => 'Rating Spread',
         ],
         'info' => [
+            'no_scores' => 'Unranked 谱面',
             'success-rate' => '成功率',
             'points-of-failure' => '失败位置',
 

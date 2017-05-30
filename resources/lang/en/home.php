@@ -26,7 +26,7 @@ return [
 
         'download' => [
             '_' => 'Download now',
-            'soon' => 'osu! for other operating systems are coming soon',
+            'soon' => 'osu! coming soon to other operating systems',
             'for' => 'for :os',
             'other' => 'click here for :os1 or :os2',
         ],

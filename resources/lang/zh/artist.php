@@ -22,7 +22,7 @@ return [
     'page_description' => 'osu! 杰出艺术家',
     'title' => '杰出艺术家',
 
-     'admin' => [
+    'admin' => [
         'hidden' => '艺术家当前被隐藏',
     ],
 
