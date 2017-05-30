@@ -22,6 +22,7 @@ namespace App\Models\Wiki;
 
 use App\Libraries\OsuWiki;
 use Cache;
+use Symfony\Component\Yaml\Yaml;
 
 class Redirect
 {
@@ -42,7 +43,7 @@ class Redirect
                 60,
                 function () {
                     try {
-                        return json_decode(OsuWiki::fetchContent('wiki/redirect.json'), true);
+                        return Yaml::parse(OsuWiki::fetchContent('wiki/redirect.yaml'), true);
                     } catch (GitHubNotFoundException $_e) {
                         return;
                     }
