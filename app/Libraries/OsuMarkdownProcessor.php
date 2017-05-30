@@ -199,6 +199,21 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         }
     }
 
+    public function getText($node)
+    {
+        $text = '';
+
+        foreach ($node->children() as $child) {
+            if (method_exists($child, 'getContent')) {
+                $text .= $child->getContent();
+            } elseif (method_exists($child, 'children')) {
+                $text .= $this->getText($child);
+            }
+        }
+
+        return presence($text);
+    }
+
     public function loadToc()
     {
         if (
@@ -209,7 +224,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        $title = presence($this->node->getStringContent());
+        $title = $this->getText($this->node);
         $slug = presence(str_slug($title)) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
