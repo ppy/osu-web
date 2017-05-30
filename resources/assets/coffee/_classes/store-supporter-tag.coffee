@@ -40,7 +40,7 @@ class @StoreSupporterTag
       (@price / @duration).toFixed(2)
     discount: ->
       raw = if @duration >= 12 then 46 else ((1 - (@price / @duration) / 4) * 100)
-      Math.round(raw, 0)
+      Math.max(0, Math.round(raw, 0))
   }
 
   constructor: ->
