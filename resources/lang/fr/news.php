@@ -19,22 +19,36 @@
  */
 
 return [
-    'header' => ':type 排名',
-    'type' => [
-        'performance' => '表现',
-        'charts' => 'Charts', //暂时没有合适的翻译
-        'score' => '总分',
-        'country' => '国家',
-        'kudosu' => 'Kudosu', //mapping相关,暂不翻译
+    'breadcrumbs' => [
+        'news-index' => 'liste',
+        'news-show' => 'post',
     ],
-    'stat' => [
-        'accuracy' => '准确率',
-        'play_count' => '游戏次数',
-        'performance' => '表现',
-        'total_score' => '总分',
-        'ranked_score' => 'Ranked 总分',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'index' => [
+        'title' => 'osu!news',
+
+        'nav' => [
+            'newer' => 'Nouveaux posts',
+            'older' => 'Anciens posts',
+        ],
+    ],
+
+    'show' => [
+        'posted' => 'posté le :time',
+
+        'nav' => [
+            'newer' => 'Nouveaux posts',
+            'older' => 'Anciens posts',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Mettre à jouer',
+        'ok' => 'Liste mise à jour.',
+    ],
+
+    'update' => [
+        'button' => 'Mettre à jour',
+        'ok' => 'Post mis à jour.',
     ],
 ];

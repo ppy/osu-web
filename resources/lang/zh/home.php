@@ -31,9 +31,9 @@ return [
             'other' => '点击这里下载 :os1 或 :os2 版',
         ],
 
-        'slogan' => [//这两句保持原文可能比较好
-            'main' => 'free-to-play rhythm game',
-            'sub' => 'rhythm is just a click away',
+        'slogan' => [
+            'main' => '免费音乐游戏',
+            'sub' => '节奏只需轻轻一点', //@zby1999 的翻译建议
         ],
     ],
 
