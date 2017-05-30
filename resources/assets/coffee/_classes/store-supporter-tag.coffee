@@ -166,7 +166,7 @@ class @StoreSupporterTag
     monthText = if (obj.duration == 1) then 'month' else 'months'
     @durationElement.textContent = "#{obj.duration} #{monthText}"
     # @pricePerMonthElement.textContent = obj.pricePerMonth()
-    @discountElement.textContent = obj.discount()
+    @discountElement.textContent = "save #{obj.discount()}%"
 
   updateUserDisplay: (user) =>
     avatarUrl = if user
