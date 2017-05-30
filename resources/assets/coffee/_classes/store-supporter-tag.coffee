@@ -91,7 +91,6 @@ class @StoreSupporterTag
     $(@sliderPresets).on 'click', (event) =>
       target = event.currentTarget
       price = @CUTOFFS[target.dataset.months]
-      console.debug(price)
       $(@slider).slider('option', 'value', @sliderValue(price)) if price
 
   initializeUsernameInput: =>
@@ -165,7 +164,6 @@ class @StoreSupporterTag
     @priceElement.textContent = "USD #{obj.price}"
     monthText = if (obj.duration == 1) then 'month' else 'months'
     @durationElement.textContent = "#{obj.duration} #{monthText}"
-    # @pricePerMonthElement.textContent = obj.pricePerMonth()
     @discountElement.textContent = "save #{obj.discount()}%"
 
   updateUserDisplay: (user) =>
