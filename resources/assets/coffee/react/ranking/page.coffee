@@ -112,9 +112,33 @@ class Ranking.Page extends React.Component
     activeUsers:
       id: 'active_users'
       header: osu.trans('ranking.stat.active_users')
-      width: 100
+      width: 75
       accessor: (r) ->
         r.ranking.active_users.toLocaleString()
+    playCountWider:
+      id: 'play_count'
+      header: osu.trans('ranking.stat.play_count')
+      width: 100
+      accessor: (r) ->
+        (r.play_count || r.ranking.play_count).toLocaleString()
+    rankedScoreWider:
+      id: 'ranked_score',
+      header: osu.trans('ranking.stat.ranked_score')
+      width: 125
+      accessor: (r) ->
+        (r.ranked_score || r.ranking.ranked_score).toLocaleString()
+    averageScore:
+      id: 'average_score',
+      header: osu.trans('ranking.stat.average_score')
+      width: 75
+      accessor: (r) ->
+        Math.round(r.ranking.ranked_score / r.ranking.active_users).toLocaleString()
+    averagePerformance:
+      id: 'average_performance',
+      header: osu.trans('ranking.stat.average_performance')
+      width: 60
+      accessor: (r) ->
+        "#{Math.round(r.ranking.performance / r.ranking.active_users).toLocaleString()}pp"
 
 
   # column rendering stuff
@@ -236,7 +260,7 @@ class Ranking.Page extends React.Component
         columns = ['rank', 'username', 'accuracy', 'playCount', 'totalScore', 'rankedScore', 'ssCount', 'sCount', 'aCount']
         activeHeader = 'rankedScore'
       when 'country'
-        columns = ['rank', 'country', 'activeUsers', 'playCount', 'rankedScore', 'performance']
+        columns = ['rank', 'country', 'activeUsers', 'playCountWider', 'rankedScoreWider', 'averageScore', 'performance', 'averagePerformance']
         activeHeader = 'performance'
 
 
