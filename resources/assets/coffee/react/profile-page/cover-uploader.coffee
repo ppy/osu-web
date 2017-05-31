@@ -24,15 +24,15 @@ class ProfilePage.CoverUploader extends React.Component
   componentDidMount: =>
     $dropzone = $('.js-profile-cover-upload--dropzone')
 
-    @$uploadButton = $ '<input>',
+    $uploadButton = $ '<input>',
       class: 'js-profile-cover-upload fileupload__input'
       type: 'file'
       name: 'cover_file'
       disabled: !@props.canUpload
 
-    @refs.uploadButtonContainer.appendChild(@$uploadButton[0])
+    @refs.uploadButtonContainer.appendChild($uploadButton[0])
 
-    @$uploadButton.fileupload
+    $uploadButton.fileupload
       url: laroute.route('account.cover')
       dataType: 'json'
       dropZone: $dropzone
@@ -44,14 +44,15 @@ class ProfilePage.CoverUploader extends React.Component
       done: (_e, data) ->
         $.publish 'user:update', data.result
 
-      fail: osu.fileuploadFailCallback(@$uploadButton)
+      fail: =>
+        osu.fileuploadFailCallback @$uploadButton()
 
       complete: ->
         $.publish 'user:cover:upload:state', false
 
 
   componentWillUnmount: =>
-    @$uploadButton
+    @$uploadButton()
       .fileupload 'destroy'
       .remove()
 
@@ -80,3 +81,7 @@ class ProfilePage.CoverUploader extends React.Component
 
         el 'p', className: 'profile-cover-uploader__info-entry',
           osu.trans 'users.show.edit.cover.upload.size_info'
+
+
+  $uploadButton: =>
+    $(@refs.uploadButtonContainer).find('.js-profile-cover-upload')
