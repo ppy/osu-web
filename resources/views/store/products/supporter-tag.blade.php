@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="grid grid--packed">
+        <div class="grid grid--xs grid--packed">
             <div class="js-slider-preset" data-months="2">2</div>
             <div class="js-slider-preset" data-months="4">4</div>
             <div class="js-slider-preset" data-months="6">6</div>
