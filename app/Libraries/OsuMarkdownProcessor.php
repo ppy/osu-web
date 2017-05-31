@@ -33,7 +33,7 @@ use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 7;
+    const VERSION = 8;
 
     public $firstImage;
     public $title;
