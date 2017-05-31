@@ -51,17 +51,21 @@ class Ranking.Paginator extends React.Component
   render: =>
     page = @props.page
     maxPages = @props.pages
-    range = Math.min(maxPages, 8) # number of pages (excluding current page) to show at a time
+    range = Math.min(maxPages-1, 8) # number of pages (excluding current page) to show at a time
 
     pagesOnLeft = Math.floor(range/2)
 
+    # current page will be left of the center
     if page < pagesOnLeft
       leftStart = 1
+    # current page will be right of the center
     else if page > (maxPages - pagesOnLeft)
       leftStart = maxPages - range
+    # current page will be centered
     else
-      leftStart = Math.max(1, page - pagesOnLeft)
+      leftStart = page - pagesOnLeft
 
+    leftStart = Math.max(1, leftStart)
     rightEnd = leftStart + range
 
     div className: 'ranking-page-paginator',
