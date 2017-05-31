@@ -90,8 +90,8 @@ class BeatmapsetPage.Info extends React.Component
                 ]
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        div className: 'beatmap-success-rate',
-          if @props.beatmapset.has_scores
+        if @props.beatmapset.has_scores
+          div className: 'beatmap-success-rate',
             h3
               className: 'beatmap-success-rate__header'
               osu.trans 'beatmapsets.show.info.success-rate'
@@ -115,7 +115,8 @@ class BeatmapsetPage.Info extends React.Component
             div
               className: 'beatmap-success-rate__chart'
               ref: 'chartArea'
-          else
+        else
+          div className: 'beatmap-success-rate',
             div
               className: 'beatmap-success-rate__empty'
               osu.trans 'beatmapsets.show.info.no_scores'
