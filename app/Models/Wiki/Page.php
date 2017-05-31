@@ -176,7 +176,8 @@ class Page
                         // FIXME: add indexAdd/Remove accordingly.
                         if (present($page)) {
                             return OsuMarkdownProcessor::process($page, [
-                                'path' => '/help/wiki/'.$this->path,
+                                'path_prefix' => '/help/wiki',
+                                'path' => $this->path,
                             ]);
                         } else {
                             return [];
@@ -206,5 +207,15 @@ class Page
     {
         Cache::forget($this->cacheKeyPage());
         Cache::forget($this->cacheKeyLocales());
+    }
+
+    public function title()
+    {
+        return $this->page()['header']['title'];
+    }
+
+    public function subtitle()
+    {
+        return $this->page()['header']['subtitle'];
     }
 }

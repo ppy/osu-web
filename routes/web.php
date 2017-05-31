@@ -155,6 +155,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
+Route::get('legal/{page}', 'LegalController@show')->name('legal');
+
 // ranking section
 Route::get('/rankings/{mode?}', function ($mode = 'osu') {
     if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {

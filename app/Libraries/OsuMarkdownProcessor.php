@@ -56,6 +56,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $input = static::parseYamlHeader($rawInput);
         $header = $input['header'] ?? [];
 
+        $pathTitleComponents = array_slice(explode('/', str_replace('_', ' ', $config['path'])), -2);
+        $pathTitle = array_pop($pathTitleComponents);
+        $pathSubtitle = array_pop($pathTitleComponents);
+
         if (!isset($config['fetch_title'])) {
             $config['fetch_title'] = !isset($header['title']);
         }
@@ -84,7 +88,11 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         }
 
         if (!present($header['title'] ?? null)) {
-            $header['title'] = substr($config['path'], strrpos($config['path'], '/') + 1);
+            $header['title'] = $pathTitle;
+        }
+
+        if (!isset($header['subtitle'])) {
+            $header['subtitle'] = $pathSubtitle;
         }
 
         $title = $header['title'];
@@ -195,7 +203,11 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $src = $this->node->getUrl();
 
         if (preg_match('#^(/|https?://)#', $src) !== 1) {
-            $this->node->setUrl($this->config->getConfig('path').'/'.$src);
+            $this->node->setUrl(sprintf('%s/%s/%s',
+                $this->config->getConfig('path_prefix'),
+                $this->config->getConfig('path'),
+                $src
+            ));
         }
     }
 
