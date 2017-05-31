@@ -204,7 +204,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $text = '';
 
         foreach ($node->children() as $child) {
-            if (method_exists($child, 'getContent')) {
+            if ($child instanceof Inline\Image) {
+                // avoid using image title as text
+                continue;
+            } elseif (method_exists($child, 'getContent')) {
                 $text .= $child->getContent();
             } elseif (method_exists($child, 'children')) {
                 $text .= $this->getText($child);
