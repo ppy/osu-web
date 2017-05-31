@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\UserStatistics;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class RankingController extends Controller
@@ -33,7 +34,7 @@ class RankingController extends Controller
     const MAX_RESULTS = 10000;
     const RANKING_TYPES = ['performance', 'score', 'country'];
 
-    public function index($mode, $type, $page = 1)
+    public function index($mode, $type)
     {
         if (!array_key_exists($mode, Beatmap::MODES) || !in_array($type, static::RANKING_TYPES, true)) {
             abort(404);
@@ -41,7 +42,7 @@ class RankingController extends Controller
 
         if ($type == 'performance' || $type == 'score') {
             $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
-            $page = clamp(get_int($page), 1, $maxPages);
+            $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
             $stats = UserStatistics\Model::getClass($mode)
                 ->with('user')
@@ -64,7 +65,7 @@ class RankingController extends Controller
 
         if ($type == 'country') {
             $maxPages = ceil(Country::where('display', '>', 0)->count() / static::PAGE_SIZE);
-            $page = clamp(get_int($page), 1, $maxPages);
+            $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
             $stats = Country::where('display', '>', 0)
                 ->orderBy('pp', 'desc')
@@ -74,20 +75,10 @@ class RankingController extends Controller
             $scores = json_collection($stats->get(), 'Country', ['ranking']);
         }
 
-        $scores = [
-            'mode' => $mode,
-            'ranking_type' => $type,
-            'scores' => $scores,
-            'paging' => [
-                'page' => $page,
-                'pages' => $maxPages,
-            ],
-        ];
+        $scores = new LengthAwarePaginator($scores, static::MAX_RESULTS, static::PAGE_SIZE, $page, [
+            'path' => route('ranking', ['mode' => $mode, 'type' => $type]),
+        ]);
 
-        if (Request::ajax()) {
-            return $scores;
-        } else {
-            return view('ranking.index', compact('scores'));
-        }
+        return view('ranking.index', compact('scores', 'mode', 'type'));
     }
 }
