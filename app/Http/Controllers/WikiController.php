@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use App\Models\Wiki;
