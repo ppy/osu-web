@@ -19,23 +19,21 @@
 @extends('master', [
     'body_additional_classes' => 'osu-layout--body-333',
     'title' => null,
-    'titleAppend' => (present($subtitle) ? $subtitle.' / ' : '').$title,
+    'titleAppend' => (present($page->subtitle()) ? $page->subtitle().' / ' : '').$page->title(),
 ])
 
 @section('content')
     <div class="osu-layout__row">
         <div class="osu-page-header osu-page-header--wiki">
             <div class="osu-page-header__title-box">
-                @if (present($subtitle))
-                    <h2 class="osu-page-header__title osu-page-header__title--small">{{ $subtitle }}</h2>
+                @if (present($page->subtitle()))
+                    <h2 class="osu-page-header__title osu-page-header__title--small">
+                        {{ $page->subtitle() }}
+                    </h2>
                 @endif
 
                 <h1 class="osu-page-header__title osu-page-header__title--main">
-                    @if (isset($page->page()['title']))
-                        {{ $page->page()['title'] }}
-                    @else
-                        {{ $title }}
-                    @endif
+                    {{ $page->title() }}
                 </h1>
             </div>
 

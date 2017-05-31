@@ -31,6 +31,7 @@ return [
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'index' => 'osu!',
+            'legal-show' => 'information',
             'news-index' => 'news',
             'news-show' => 'news',
             'password-reset-index' => 'reset password',
