@@ -69,17 +69,14 @@ class UsersController extends Controller
     {
         $username = Request::input('username');
         $user = User::where('username', $username)->first();
-        $response = null;
-        if (!is_null($user)) {
-            $response = [
-                'username' => $user->username,
-                'avatar_url' => $user->user_avatar,
-            ];
-        } else {
+        if ($user === null) {
             abort(404);
         }
 
-        return $response;
+        return $response = [
+            'username' => $user->username,
+            'avatar_url' => $user->user_avatar,
+        ];
     }
 
     public function show($id)
