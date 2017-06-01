@@ -207,7 +207,7 @@
     <footer class="osu-layout__section osu-layout__section--landing-footer">
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
-                @foreach (footer_links() as $section => $links)
+                @foreach (footer_landing_links() as $section => $links)
                     <div class="osu-layout__col osu-layout__col--sm-3">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
@@ -234,14 +234,7 @@
             </a>
         </div>
 
-        <div class="landing-footer-bottom">
-            <a href="{{ wiki_url('Legal/TOS') }}" class="landing-footer-bottom__link">terms of service</a>
-            <a href="{{ wiki_url('Legal/Copyright') }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
-            <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">server status</a>
-            <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
-
-            <div class="landing-footer-bottom__copyright">ppy powered 2007-2017</div>
-        </div>
+        @include('layout.footer', ['modifiers' => ['landing']])
     </footer>
 
     @include('layout.popup-container')

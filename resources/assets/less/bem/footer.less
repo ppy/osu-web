@@ -17,9 +17,10 @@
  */
 
 .footer {
-  background-color: fade(#000, 60%);
+  @top: footer;
 
   .default-text-shadow();
+  background-color: fade(#000, 60%);
   background-image: linear-gradient(to bottom, fade(#000, 60%) 0, transparent 4px);
 
   color: #ccc;
@@ -31,6 +32,15 @@
 
   padding: 10px 0 5px;
 
+  &--landing {
+    background: transparent;
+    color: #fff;
+    font-style: italic;
+    font-size: @font-size--normal;
+    font-weight: 600;
+    padding: 20px 0;
+  }
+
   &__row {
     margin-bottom: 5px;
     display: flex;
@@ -38,13 +48,17 @@
   }
 
   &__link {
+    .link-plain();
     font-weight: bold;
     color: #fff;
     margin: 0 10px;
 
-    &:hover, &:active, &:focus {
+    &:hover, &:focus, &:active {
       color: @pink;
-      text-decoration: none;
+    }
+
+    .@{top}--landing & {
+      font-weight: inherit;
     }
   }
 }
