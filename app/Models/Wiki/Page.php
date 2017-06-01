@@ -37,6 +37,8 @@ class Page
     public $requestedLocale;
 
     private $cache = [];
+    private $defaultTitle;
+    private $defaultSubtitle;
 
     public static function cacheVersionPage()
     {
@@ -77,6 +79,10 @@ class Page
         $this->path = OsuWiki::cleanPath($path);
         $this->requestedLocale = $locale;
         $this->locale = $locale;
+
+        $defaultTitles = explode('/', str_replace('_', ' ', $this->path));
+        $this->defaultTitle = array_pop($defaultTitles);
+        $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
     public function cacheKeyLocales()
@@ -176,8 +182,7 @@ class Page
                         // FIXME: add indexAdd/Remove accordingly.
                         if (present($page)) {
                             return OsuMarkdownProcessor::process($page, [
-                                'path_prefix' => '/help/wiki',
-                                'path' => $this->path,
+                                'path' => route('wiki.show', $this->path),
                             ]);
                         } else {
                             return [];
@@ -211,11 +216,11 @@ class Page
 
     public function title()
     {
-        return $this->page()['header']['title'];
+        return presence($this->page()['header']['title'] ?? null) ?? $this->defaultTitle;
     }
 
     public function subtitle()
     {
-        return $this->page()['header']['subtitle'];
+        return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 }
