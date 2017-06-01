@@ -73,10 +73,10 @@ class @StoreSupporterTag
     @el = rootElement
     @searching = false
     @searchData = null
-    @currentUser = {
+    @currentUser =
       username: @el.dataset.username
       avatar_url: @el.dataset.avatarUrl
-    }
+
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
     @durationElement = @el.querySelector('.js-duration')
