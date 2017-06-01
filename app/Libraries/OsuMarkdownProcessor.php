@@ -33,7 +33,7 @@ use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 8;
+    const VERSION = 9;
 
     public $firstImage;
     public $title;
@@ -140,6 +140,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
                 $this->setTitle();
             }
             $this->loadToc();
+            $this->parseFigure();
 
             // last to prevent possible conflict
             $this->addClass();
@@ -256,6 +257,31 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         ];
 
         $this->node->data['attributes']['id'] = $slug;
+    }
+
+    public function parseFigure()
+    {
+        if (!$this->node instanceof Block\Paragraph || !$this->event->isEntering()) {
+            return;
+        }
+
+        if (count($this->node->children()) !== 1 || !$this->node->children()[0] instanceof Inline\Image) {
+            return;
+        }
+
+        $blockClass = $this->config->getConfig('block_name');
+
+        $image = $this->node->children()[0];
+        $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";
+        $image->data['attributes']['class'] = "{$blockClass}__figure-image";
+
+        if (present($image->data['title'] ?? null)) {
+            $text = new Inline\Text($image->data['title']);
+            $textContainer = new Block\Paragraph();
+            $textContainer->data['attributes']['class'] = "{$blockClass}__figure-caption";
+            $textContainer->appendChild($text);
+            $this->node->appendChild($textContainer);
+        }
     }
 
     public function prefixUrl()
