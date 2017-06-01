@@ -41,6 +41,27 @@ class @StoreSupporterTag
     discount: ->
       raw = if @duration >= 12 then 46 else ((1 - (@price / @duration) / 4) * 100)
       Math.max(0, Math.round(raw, 0))
+    durationInYears: ->
+      { years: Math.floor(@duration / 12), months: Math.floor(@duration % 12) }
+    durationText: ->
+      obj = @durationInYears()
+      yearsText = switch obj.years
+                  when 0
+                    ''
+                  when 1
+                    "#{obj.years} year"
+                  else
+                    "#{obj.years} years"
+
+      monthsText = switch obj.months
+                  when 0
+                    ''
+                  when 1
+                    "#{obj.months} month"
+                  else
+                    "#{obj.months} months"
+
+      _.compact([yearsText, monthsText]).join(', ')
   }
 
   constructor: ->
@@ -162,8 +183,7 @@ class @StoreSupporterTag
     @el.querySelector('input[name="item[cost]"').value = obj.price
     @el.querySelector('input[name="item[extra_data][duration]"').value = obj.duration
     @priceElement.textContent = "USD #{obj.price}"
-    monthText = if (obj.duration == 1) then 'month' else 'months'
-    @durationElement.textContent = "#{obj.duration} #{monthText}"
+    @durationElement.textContent = obj.durationText()
     @discountElement.textContent = "save #{obj.discount()}%"
 
   updateUserDisplay: (user) =>
