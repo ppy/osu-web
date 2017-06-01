@@ -49,7 +49,11 @@
                         #{{ $scores->firstItem() + $index }}
                     </td>
                     <td>
-                        <a class="ranking-page-table__user-link" href="#">
+                        <a class="ranking-page-table__user-link" href="{{route('ranking', [
+                            'mode' => $mode,
+                            'type' => 'performance',
+                            'country' => $score['code'],
+                        ])}}">
                             @include('objects._country-flag', [
                                 'country_name' => $score['name'],
                                 'country_code' => $score['code'],

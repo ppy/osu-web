@@ -25,7 +25,7 @@
                 </span>
             @else
                 <a class="page-mode-link page-mode-link--white{{$type == $tab ? ' page-mode-link--is-active' : ''}}"
-                    href="{{route('ranking', ['mode' => $mode, 'type' => $tab])}}"
+                    href="{{$tab == 'country' ? route('ranking', ['mode' => $mode, 'type' => $tab]) : $route($mode, $tab)}}"
                 >
                     {{trans("ranking.type.{$tab}")}}
                     <span class="page-mode-link__stripe page-mode-link__stripe--black"></span>

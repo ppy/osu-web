@@ -22,8 +22,12 @@
         $selectorParams = [
             'type' => $type,
             'mode' => $mode,
-            'route' => function($mode, $type) {
-                return route('ranking', ['mode' => $mode, 'type' => $type]);
+            'route' => function($mode, $type) use ($country) {
+                return route('ranking', [
+                    'mode' => $mode,
+                    'type' => $type,
+                    'country' => $country['acronym'],
+                ]);
             }
         ];
     @endphp
@@ -34,6 +38,13 @@
             <hr class="page-mode__underline">
 
             <div class='ranking-page-header__title'>
+                @if ($country !== null)
+                    @include('objects._country-flag', [
+                        'country_name' => $country['name'],
+                        'country_code' => $country['acronym'],
+                    ])
+                @endif
+
                 {!! trans('ranking.header', [
                     'type' => "<span class='ranking-page-header__title-type'>".trans("ranking.type.{$type}")."</span>"
                 ]) !!}
@@ -42,6 +53,6 @@
     </div>
     <div class="osu-page osu-page--small ranking-page">
         @yield("scores")
-        @include('objects._pagination', ['object' => $scores])
+        @include('objects._pagination', ['object' => $scores->appends(['country' => $country['acronym']])])
     </div>
 @endsection

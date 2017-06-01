@@ -40,8 +40,16 @@ class RankingController extends Controller
             abort(404);
         }
 
+        $country = null;
+
         if ($type == 'performance' || $type == 'score') {
-            $maxPages = ceil(static::MAX_RESULTS / static::PAGE_SIZE);
+            if (Request::has('country')) {
+                $country = Country::where('display', '>', 0)
+                    ->where('acronym', Request::input('country'))
+                    ->first();
+            }
+
+            $maxPages = ceil(min($country->usercount, static::MAX_RESULTS) / static::PAGE_SIZE);
             $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
             $stats = UserStatistics\Model::getClass($mode)
@@ -51,6 +59,10 @@ class RankingController extends Controller
                 })
                 ->limit(static::PAGE_SIZE)
                 ->offset(static::PAGE_SIZE * ($page - 1));
+
+            if ($country) {
+                $stats->where('country_acronym', $country['acronym']);
+            }
 
             switch ($type) {
                 case 'performance':
@@ -79,6 +91,6 @@ class RankingController extends Controller
             'path' => route('ranking', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        return view("ranking.{$type}", compact('scores', 'mode', 'type'));
+        return view("ranking.{$type}", compact('scores', 'mode', 'type', 'country'));
     }
 }
