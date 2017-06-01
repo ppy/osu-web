@@ -19,22 +19,30 @@
 .ranking-page-table {
   min-width: 650px;
   width: 100%;
+  text-align: center;
 
   &__heading {
     font-weight: normal;
     color: #999;
     padding: 5px 0px;
+    text-align: center;
 
     &--main {
       width: 350px;
     }
 
-    &--active {
+    &--focused {
       color: white;
     }
 
     &--rank {
       width: 50px;
+    }
+  }
+
+  &__column {
+    &--dimmed {
+      opacity: 0.6;
     }
   }
 
@@ -67,6 +75,7 @@
   &__rank-column {
     width: 50px;
     text-align: center;
+    opacity: 1;
   }
 
   &__rounded-left {

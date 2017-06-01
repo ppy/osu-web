@@ -75,10 +75,10 @@ class RankingController extends Controller
             $scores = json_collection($stats->get(), 'Country', ['ranking']);
         }
 
-        $scores = new LengthAwarePaginator($scores, static::MAX_RESULTS, static::PAGE_SIZE, $page, [
+        $scores = new LengthAwarePaginator($scores, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
             'path' => route('ranking', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        return view('ranking.index', compact('scores', 'mode', 'type'));
+        return view("ranking.{$type}", compact('scores', 'mode', 'type'));
     }
 }
