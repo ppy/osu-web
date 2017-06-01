@@ -100,10 +100,8 @@ class @StoreSupporterTag
       max: @sliderValue(@MAX_VALUE),
       step: 1,
       animate: true,
-      slide: (event, ui) =>
-        @onSliderValueChanged event, ui
-      change: (event, ui) =>
-        @onSliderValueChanged event, ui
+      slide: @onSliderValueChanged,
+      change: @onSliderValueChanged,
     }
     @updatePrice(@calculate(@sliderValue(@MIN_VALUE)))
     slider
