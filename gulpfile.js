@@ -92,6 +92,7 @@ elixir(function(mix) {
     path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
     path.join(node_root, 'jquery-ui/ui/widgets/slider.js'),
     path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
+    path.join(node_root, 'jquery-ui/ui/keycode.js'),
     path.join(node_root, 'timeago/jquery.timeago.js'),
     path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
     path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
