@@ -18,23 +18,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'header' => ':type 排名',
-    'type' => [
-        'performance' => '表现',
-        'charts' => 'Charts', //暂时没有合适的翻译
-        'score' => '总分',
-        'country' => '国家',
-        'kudosu' => 'Kudosu', //mapping相关,暂不翻译
-    ],
-    'stat' => [
-        'accuracy' => '准确率',
-        'play_count' => '游戏次数',
-        'performance' => '表现',
-        'total_score' => '总分',
-        'ranked_score' => 'Ranked 总分',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
-    ],
-];
+namespace App\Http\Controllers;
+
+use App\Models\Wiki;
+
+class LegalController extends Controller
+{
+    protected $section = 'home';
+    protected $actionPrefix = 'legal-';
+
+    public function show($page)
+    {
+        switch ($page) {
+            case 'copyright':
+                $path = 'Legal/Copyright';
+                break;
+            case 'terms':
+                $path = 'Legal/TOS';
+                break;
+            default:
+                abort(404);
+        }
+
+        return view('wiki.show', [
+            'page' => new Wiki\Page($path, $this->locale()),
+        ]);
+    }
+}

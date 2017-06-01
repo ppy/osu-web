@@ -116,4 +116,7 @@ class BeatmapsetPage.Info extends React.Component
               className: 'beatmap-success-rate__chart'
               ref: 'chartArea'
         else
-          osu.trans 'beatmapsets.show.info.no_scores'
+          div className: 'beatmap-success-rate',
+            div
+              className: 'beatmap-success-rate__empty'
+              osu.trans 'beatmapsets.show.info.no_scores'

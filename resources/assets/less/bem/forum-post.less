@@ -45,7 +45,7 @@
   }
 
   &__actions {
-    ._dektop-position {
+    .desktop-position() {
       @media @desktop {
         justify-content: flex-start;
         width: 0;
@@ -70,12 +70,12 @@
 
     right: 30px;
     bottom: 20px;
-    ._dektop-position;
+    .desktop-position();
 
     &--reply {
       top: (-@_reply-xs-top-margin);
       height: 0;
-      ._dektop-position;
+      .desktop-position();
     }
   }
 

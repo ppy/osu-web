@@ -39,6 +39,7 @@ return [
     'links' => [
         'site' => 'Site officiel',
     ],
+
     'songs' => [
         '_' => 'Musiques',
         'count' => '1 musique|:count musiques',

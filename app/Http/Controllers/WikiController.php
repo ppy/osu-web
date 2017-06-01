@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use App\Models\Wiki;
@@ -41,21 +40,17 @@ class WikiController extends Controller
         }
 
         $page = new Wiki\Page($path, $this->locale());
-        $titles = explode('/', str_replace('_', ' ', trim($path, '/')), 2);
-        $title = array_pop($titles);
-        $subtitle = array_pop($titles);
 
         if ($page->page() === null) {
-            $status = 404;
+            $redirect = new Wiki\Redirect($path);
+            if ($redirect->target() !== null) {
+                return ujs_redirect(route('wiki.show', $redirect->target()));
+            } else {
+                $status = 404;
+            }
         }
 
-        return response()
-            ->view('wiki.show', compact(
-                'page',
-                'path',
-                'subtitle',
-                'title'
-            ), $status ?? 200);
+        return response()->view('wiki.show', compact('page'), $status ?? 200);
     }
 
     public function update($path)
@@ -65,11 +60,6 @@ class WikiController extends Controller
         (new Wiki\Page($path, $this->locale()))->refresh();
 
         return ujs_redirect(Request::getUri());
-    }
-
-    private function locale()
-    {
-        return Request::input('locale', App::getLocale());
     }
 
     private function showImage($path)

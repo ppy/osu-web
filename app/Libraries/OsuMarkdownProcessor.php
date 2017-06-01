@@ -33,7 +33,7 @@ use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 7;
+    const VERSION = 9;
 
     public $firstImage;
     public $title;
@@ -55,6 +55,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         $input = static::parseYamlHeader($rawInput);
         $header = $input['header'] ?? [];
+
+        $pathTitleComponents = array_slice(explode('/', str_replace('_', ' ', $config['path'])), -2);
+        $pathTitle = array_pop($pathTitleComponents);
+        $pathSubtitle = array_pop($pathTitleComponents);
 
         if (!isset($config['fetch_title'])) {
             $config['fetch_title'] = !isset($header['title']);
@@ -84,7 +88,11 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         }
 
         if (!present($header['title'] ?? null)) {
-            $header['title'] = substr($config['path'], strrpos($config['path'], '/') + 1);
+            $header['title'] = $pathTitle;
+        }
+
+        if (!isset($header['subtitle'])) {
+            $header['subtitle'] = $pathSubtitle;
         }
 
         $title = $header['title'];
@@ -132,6 +140,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
                 $this->setTitle();
             }
             $this->loadToc();
+            $this->parseFigure();
 
             // last to prevent possible conflict
             $this->addClass();
@@ -195,8 +204,30 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $src = $this->node->getUrl();
 
         if (preg_match('#^(/|https?://)#', $src) !== 1) {
-            $this->node->setUrl($this->config->getConfig('path').'/'.$src);
+            $this->node->setUrl(sprintf('%s/%s/%s',
+                $this->config->getConfig('path_prefix'),
+                $this->config->getConfig('path'),
+                $src
+            ));
         }
+    }
+
+    public function getText($node)
+    {
+        $text = '';
+
+        foreach ($node->children() as $child) {
+            if ($child instanceof Inline\Image) {
+                // avoid using image title as text
+                continue;
+            } elseif (method_exists($child, 'getContent')) {
+                $text .= $child->getContent();
+            } elseif (method_exists($child, 'children')) {
+                $text .= $this->getText($child);
+            }
+        }
+
+        return presence($text);
     }
 
     public function loadToc()
@@ -209,7 +240,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        $title = presence($this->node->getStringContent());
+        $title = $this->getText($this->node);
         $slug = presence(str_slug($title)) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
@@ -226,6 +257,31 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         ];
 
         $this->node->data['attributes']['id'] = $slug;
+    }
+
+    public function parseFigure()
+    {
+        if (!$this->node instanceof Block\Paragraph || !$this->event->isEntering()) {
+            return;
+        }
+
+        if (count($this->node->children()) !== 1 || !$this->node->children()[0] instanceof Inline\Image) {
+            return;
+        }
+
+        $blockClass = $this->config->getConfig('block_name');
+
+        $image = $this->node->children()[0];
+        $this->node->data['attributes']['class'] = "{$blockClass}__figure-container";
+        $image->data['attributes']['class'] = "{$blockClass}__figure-image";
+
+        if (present($image->data['title'] ?? null)) {
+            $text = new Inline\Text($image->data['title']);
+            $textContainer = new Inline\Emphasis();
+            $textContainer->data['attributes']['class'] = "{$blockClass}__figure-caption";
+            $textContainer->appendChild($text);
+            $this->node->appendChild($textContainer);
+        }
     }
 
     public function prefixUrl()

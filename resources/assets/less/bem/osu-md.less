@@ -18,6 +18,7 @@
 
 .osu-md {
   @top: osu-md;
+  @paragraph-space: 1.5em;
 
   .content-font();
   color: inherit;
@@ -31,6 +32,22 @@
 
   &--news {
     padding: 0;
+  }
+
+  &__figure-caption {
+    margin-top: 5px;
+    font-style: normal;
+    display: inline-block;
+  }
+
+  &__figure-container {
+    margin: @paragraph-space 0;
+    text-align: center;
+  }
+
+  &__figure-image {
+    display: block;
+    margin: 0 auto;
   }
 
   &__header {
@@ -105,7 +122,7 @@
   }
 
   &__paragraph {
-    margin-bottom: 1.5em;
+    margin-bottom: @paragraph-space;
     line-height: 1.5;
   }
 

@@ -170,21 +170,28 @@ class Page
                         try {
                             $page = OsuWiki::fetchContent('wiki/'.$this->pagePath());
                         } catch (GitHubNotFoundException $_e) {
-                            return;
+                            $page = null;
                         }
 
                         // FIXME: add indexAdd/Remove accordingly.
                         if (present($page)) {
                             return OsuMarkdownProcessor::process($page, [
-                                'path' => '/help/wiki/'.$this->path,
+                                'path_prefix' => '/help/wiki',
+                                'path' => $this->path,
                             ]);
+                        } else {
+                            return [];
                         }
                     }
                 );
 
-                if ($this->cache['page'] !== null) {
+                if (!empty($this->cache['page'])) {
                     break;
                 }
+            }
+
+            if (empty($this->cache['page'])) {
+                $this->cache['page'] = null;
             }
         }
 
@@ -200,5 +207,15 @@ class Page
     {
         Cache::forget($this->cacheKeyPage());
         Cache::forget($this->cacheKeyLocales());
+    }
+
+    public function title()
+    {
+        return $this->page()['header']['title'];
+    }
+
+    public function subtitle()
+    {
+        return $this->page()['header']['subtitle'];
     }
 }
