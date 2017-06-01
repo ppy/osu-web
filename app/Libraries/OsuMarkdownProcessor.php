@@ -277,7 +277,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         if (present($image->data['title'] ?? null)) {
             $text = new Inline\Text($image->data['title']);
-            $textContainer = new Block\Paragraph();
+            $textContainer = new Inline\Emphasis();
             $textContainer->data['attributes']['class'] = "{$blockClass}__figure-caption";
             $textContainer->appendChild($text);
             $this->node->appendChild($textContainer);
