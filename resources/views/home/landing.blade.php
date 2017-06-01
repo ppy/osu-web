@@ -235,10 +235,10 @@
         </div>
 
         <div class="landing-footer-bottom">
-            <a href="{{ wiki_url('Legal/TOS') }}" class="landing-footer-bottom__link">terms of service</a>
-            <a href="{{ wiki_url('Legal/Copyright') }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
-            <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">server status</a>
-            <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
+            <a href="{{ wiki_url('Legal/TOS') }}" class="landing-footer-bottom__link">{{ trans('layout.footer.legal.tos') }}</a>
+            <a href="{{ wiki_url('Legal/Copyright') }}" class="landing-footer-bottom__link">{{ trans('layout.footer.legal.copyright') }}</a>
+            <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">{{ trans('layout.footer.legal.serverStatus') }}</a>
+            <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">{{ trans('layout.footer.legal.osuStatus') }}</a>
 
             <div class="landing-footer-bottom__copyright">ppy powered 2007-2017</div>
         </div>
