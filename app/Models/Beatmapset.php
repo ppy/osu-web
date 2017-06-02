@@ -234,14 +234,7 @@ class Beatmapset extends Model
         }
 
         if ($params['query'] !== null) {
-            $params['query'] = preg_replace('/\s{2,}/', ' ', $params['query']);
-            $params['query'] = trim($params['query']);
-
-            $query_parts = explode(' ', $params['query']);
-            foreach ($query_parts as $key => $value) {
-                $query_parts[$key] = urlencode($value);
-            }
-            $params['query'] = implode(' AND ', $query_parts);
+            $params['query'] = es_query_and_words($params['query']);
         }
     }
 
