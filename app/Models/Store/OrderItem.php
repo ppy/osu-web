@@ -64,12 +64,12 @@ class OrderItem extends Model
             if (isset($this->extra_data['type'])) {
                 switch ($this->extra_data['type']) {
                     case 'supporter-tag':
-                        $extra_text = " for {$this->extra_data['username']} ({$this->extra_data['duration']} months)"; // FIXME: i18n?
-                        break;
+                        return "{$this->product->name} for {$this->extra_data['username']} ({$this->extra_data['duration']} months)"; // FIXME: i18n?
                 }
             }
 
-            return $this->product->name.($extra_text);
+            // abandon all hope
+            return $this->product->name;
         } else {
             return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }
