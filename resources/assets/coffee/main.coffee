@@ -65,6 +65,7 @@ $(document).on 'submit', 'form', (e) ->
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
 @turbolinksDisqus ?= new TurbolinksDisqus
+@turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
 
