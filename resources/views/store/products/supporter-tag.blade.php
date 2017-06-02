@@ -36,7 +36,7 @@
     </div>
     <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
         <div class="grid-cell">
-            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
+            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'js-username-input form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
         </div>
         <div class="grid-cell">
             <div class="js-input-feedback"></div>

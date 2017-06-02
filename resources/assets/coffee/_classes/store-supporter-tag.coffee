@@ -42,7 +42,7 @@ class @StoreSupporterTag
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
-    @usernameInput = @el.querySelector('#username.form-control')
+    @usernameInput = @el.querySelector('.js-username-input')
 
     @initializeSlider()
     @initializeSliderPresets()
