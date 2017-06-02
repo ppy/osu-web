@@ -35,6 +35,7 @@ $(document).on 'turbolinks:load', ->
 @accountEdit ?= new AccountEdit
 @accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
+@changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
 @editorZoom ?= new EditorZoom

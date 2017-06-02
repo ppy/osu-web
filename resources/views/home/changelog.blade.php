@@ -19,7 +19,7 @@
 
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
-        <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--changelog-header">
+        <div class="osu-layout__row osu-layout__row--changelog-header">
             <ol class="page-mode page-mode--breadcrumb">
                 <li class="page-mode__item">
                     <a class="page-mode-link" href="{{ route('changelog') }}">
@@ -61,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            <div class="changelog-chart js-changelog-chart"></div>
         </div>
 
         <div class="osu-layout__row osu-layout__row--page-compact">
