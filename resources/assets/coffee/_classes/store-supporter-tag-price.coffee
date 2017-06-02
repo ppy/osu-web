@@ -32,7 +32,7 @@ class @StoreSupporterTagPrice
       when @_price < 20 then 6
       when @_price < 22 then 8
       when @_price < 24 then 9
-      when @_price < 25 then 10
+      when @_price < 26 then 10
       else
         Math.floor(@_price / 26.0 * 12)
 
