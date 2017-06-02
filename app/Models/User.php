@@ -303,6 +303,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return presence($value);
     }
 
+    public function getUserWebsiteAttribute($value)
+    {
+        return presence($value);
+    }
+
     public function getUserMsnmAttribute($value)
     {
         return presence($value);
