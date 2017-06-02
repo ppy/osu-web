@@ -149,19 +149,19 @@ class Order extends Model
      * The function returns an array containing whether the operation was successful,
      * and a message.
      *
-     * @param array $item_form form parameters.
-     * @param bool $add_new whether the quantity should be added or replaced.
+     * @param array $itemForm form parameters.
+     * @param bool $addNew whether the quantity should be added or replaced.
      * @return array [success, message]
      **/
-    public function updateItem(array $item_form, $add_new = false)
+    public function updateItem(array $itemForm, $addNew = false)
     {
         $params = [
-            'id' => array_get($item_form, 'id'),
-            'quantity' => array_get($item_form, 'quantity'),
-            'product' => Product::find(array_get($item_form, 'product_id')),
-            'cost' => intval(array_get($item_form, 'cost')),
-            'extraInfo' => array_get($item_form, 'extra_info'),
-            'extraData' => array_get($item_form, 'extra_data'),
+            'id' => array_get($itemForm, 'id'),
+            'quantity' => array_get($itemForm, 'quantity'),
+            'product' => Product::find(array_get($itemForm, 'product_id')),
+            'cost' => intval(array_get($itemForm, 'cost')),
+            'extraInfo' => array_get($itemForm, 'extra_info'),
+            'extraData' => array_get($itemForm, 'extra_data'),
         ];
 
         if ($params['product'] === null) {
@@ -176,7 +176,7 @@ class Order extends Model
             if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
-                $item = $this->updateSingleItem($params, $add_new);
+                $item = $this->updateSingleItem($params, $addNew);
             }
 
             $result = $this->validateBeforeSave($params['product'], $item);
@@ -265,8 +265,8 @@ class Order extends Model
 
     private function removeOrderItem(array $params)
     {
-        $item_id = $params['id'];
-        $item = $this->items()->find($item_id);
+        $itemId = $params['id'];
+        $item = $this->items()->find($itemId);
 
         if ($item) {
             $item->delete();
@@ -293,7 +293,7 @@ class Order extends Model
         return $item;
     }
 
-    private function updateSingleItem(array $params, $add_new = false)
+    private function updateSingleItem(array $params, $addNew = false)
     {
         $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
@@ -301,7 +301,7 @@ class Order extends Model
             return $this->newOrderItem($params);
         }
 
-        if ($add_new) {
+        if ($addNew) {
             $item->quantity += $params['quantity'];
         } else {
             $item->quantity = $params['quantity'];
