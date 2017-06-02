@@ -21,18 +21,6 @@ class @StoreSupporterTag
   MIN_VALUE: 4
   MAX_VALUE: 52
 
-  CUTOFFS: {
-    2: 8,
-    4: 12,
-    6: 16,
-    8: 20,
-    9: 22,
-    10: 24,
-    12: 28,
-    18: 39,
-    24: 52,
-  }
-
   constructor: ->
     $(document).on 'turbolinks:load', =>
       @initialize(document.getElementById('js-store-supporter-tag'))
@@ -78,7 +66,7 @@ class @StoreSupporterTag
   initializeSliderPresets: =>
     $(@sliderPresets).on 'click', (event) =>
       target = event.currentTarget
-      price = @CUTOFFS[target.dataset.months]
+      price = StoreSupporterTagPrice.durationToPrice(target.dataset.months)
       $(@slider).slider('value', @sliderValue(price)) if price
 
   initializeUsernameInput: =>

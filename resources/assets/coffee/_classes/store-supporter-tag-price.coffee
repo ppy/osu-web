@@ -17,6 +17,19 @@
 ###
 
 class @StoreSupporterTagPrice
+  @durationToPrice: (duration) ->
+    duration = +duration
+    switch
+      when duration >= 12 then Math.ceil(duration / 12.0 * 26)
+      when duration == 10 then 24
+      when duration == 9 then 22
+      when duration == 8 then 20
+      when duration == 6 then 16
+      when duration == 4 then 12
+      when duration == 2 then 8
+      when duration == 1 then 4
+      else null
+
   constructor: (price) ->
     @_price = price
 
@@ -25,16 +38,15 @@ class @StoreSupporterTagPrice
 
   duration: ->
     @_duration ||= switch
-      when @_price < 1 then 0
-      when @_price < 8 then 1
-      when @_price < 12 then 2
-      when @_price < 16 then 4
-      when @_price < 20 then 6
-      when @_price < 22 then 8
-      when @_price < 24 then 9
-      when @_price < 26 then 10
-      else
-        Math.floor(@_price / 26.0 * 12)
+      when @_price >= 26 then Math.floor(@_price / 26.0 * 12)
+      when @_price >= 24 then 10
+      when @_price >= 22 then 9
+      when @_price >= 20 then 8
+      when @_price >= 16 then 6
+      when @_price >= 12 then 4
+      when @_price >= 8 then 2
+      when @_price >= 4 then 1
+      else 0
 
   pricePerMonth: ->
     (@_price / @duration()).toFixed(2)
