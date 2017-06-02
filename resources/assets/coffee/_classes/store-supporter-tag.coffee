@@ -145,7 +145,10 @@ class @StoreSupporterTag
       else
         Math.floor(price / 26.0 * 12)
 
-    Object.assign(Object.create(StoreSupporterTag.Price), { price: price, duration: duration })
+    cost = Object.create(StoreSupporterTag.Price)
+    cost.price = price
+    cost.duration = duration
+    cost
 
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
