@@ -69,7 +69,7 @@ class @StoreSupporterTag
       @initialize(document.getElementById('js-store-supporter-tag'))
 
   initialize: (rootElement) =>
-    return unless rootElement
+    return unless rootElement?
     @el = rootElement
     @searching = false
     @searchData = null
