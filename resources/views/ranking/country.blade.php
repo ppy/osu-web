@@ -55,31 +55,31 @@
                             'country' => $score['code'],
                         ])}}">
                             @include('objects._country-flag', [
-                                'country_name' => $score['name'],
-                                'country_code' => $score['code'],
+                                'country_name' => $score['country']['name'],
+                                'country_code' => $score['country']['code'],
                             ])
                             <span class="ranking-page-table__user-link-text">
-                                {{ $score['name'] }}
+                                {{ $score['country']['name'] }}
                             </span>
                         </a>
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {{ number_format($score['ranking']['active_users']) }}
+                        {{ number_format($score['active_users']) }}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag($score['ranking']['play_count']) !!}
+                        {!! suffixed_number_format_tag($score['play_count']) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag($score['ranking']['ranked_score']) !!}
+                        {!! suffixed_number_format_tag($score['ranked_score']) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag(round($score['ranking']['ranked_score'] / $score['ranking']['active_users'])) !!}
+                        {!! suffixed_number_format_tag(round($score['ranked_score'] / max($score['active_users'], 1))) !!}
                     </td>
                     <td class="ranking-page-table__column--focused">
-                        {!! suffixed_number_format_tag(round($score['ranking']['performance'])) !!}
+                        {!! suffixed_number_format_tag(round($score['performance'])) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed ranking-page-table__rounded-right">
-                        {{ number_format(round($score['ranking']['performance'] / $score['ranking']['active_users'])) }}
+                        {{ number_format(round($score['performance'] / max($score['active_users'], 1))) }}
                     </td>
                 </tr>
             @endforeach

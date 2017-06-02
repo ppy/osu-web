@@ -20,7 +20,7 @@
     @php
         $currentPage = $object->currentPage();
         $maxPages = $object->lastPage();
-        $range = min($maxPages-1, 8); // number of pages (excluding current page) to show at a time
+        $range = min($maxPages-1, $num_shown ?? 8); // number of additional pages (i.e. excluding current page) to show at a time
 
         $pagesOnLeft = floor($range/2);
 
@@ -41,7 +41,7 @@
         $rightEnd = $leftStart + $range;
     @endphp
 
-    <div class="paginator">
+    <div class="paginator" id="pagination">
         @include('objects._pagination-page', ['page' => 1, 'label' => '«'])
         @include('objects._pagination-page', ['page' => max(1, $currentPage - 1), 'label' => '‹'])
 

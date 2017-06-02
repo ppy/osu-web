@@ -23,11 +23,11 @@
             'type' => $type,
             'mode' => $mode,
             'route' => function($mode, $type) use ($country) {
-                return route('ranking', [
+                return trim(route('ranking', [
                     'mode' => $mode,
                     'type' => $type,
                     'country' => $country['acronym'],
-                ]);
+                ]), '?');
             }
         ];
     @endphp

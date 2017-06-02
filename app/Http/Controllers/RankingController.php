@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\UserStatistics;
+use App\Models\CountryStatistics;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
@@ -41,15 +42,33 @@ class RankingController extends Controller
         }
 
         $country = null;
+        $modeInt = Beatmap::modeInt($mode);
 
-        if ($type == 'performance' || $type == 'score') {
+        if ($type == 'country') {
+            $maxResults = CountryStatistics::where('display', 1)
+                ->where('mode', $modeInt)
+                ->count();
+
+            $maxPages = ceil($maxResults / static::PAGE_SIZE);
+            $page = clamp(get_int(Request::input('page')), 1, $maxPages);
+
+            $stats = CountryStatistics::where('display', 1)
+                ->with('country')
+                ->where('mode', $modeInt)
+                ->orderBy('performance', 'desc')
+                ->limit(static::PAGE_SIZE)
+                ->offset(static::PAGE_SIZE * ($page - 1));
+
+            $scores = json_collection($stats->get(), 'CountryStatistics', ['country']);
+        } else {
             if (Request::has('country')) {
                 $country = Country::where('display', '>', 0)
                     ->where('acronym', Request::input('country'))
                     ->first();
             }
 
-            $maxPages = ceil(min($country->usercount, static::MAX_RESULTS) / static::PAGE_SIZE);
+            $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
+            $maxPages = ceil($maxResults / static::PAGE_SIZE);
             $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
             $stats = UserStatistics\Model::getClass($mode)
@@ -73,18 +92,6 @@ class RankingController extends Controller
                     break;
             }
             $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
-        }
-
-        if ($type == 'country') {
-            $maxPages = ceil(Country::where('display', '>', 0)->count() / static::PAGE_SIZE);
-            $page = clamp(get_int(Request::input('page')), 1, $maxPages);
-
-            $stats = Country::where('display', '>', 0)
-                ->orderBy('pp', 'desc')
-                ->limit(static::PAGE_SIZE)
-                ->offset(static::PAGE_SIZE * ($page - 1));
-
-            $scores = json_collection($stats->get(), 'Country', ['ranking']);
         }
 
         $scores = new LengthAwarePaginator($scores, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
