@@ -38,7 +38,6 @@ class @StoreSupporterTag
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
     @durationElement = @el.querySelector('.js-duration')
-    @pricePerMonthElement = @el.querySelector('.js-price-per-month')
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
