@@ -33,37 +33,6 @@ class @StoreSupporterTag
     24: 52,
   }
 
-  @Price = {
-    price: 0
-    duration: 0
-    pricePerMonth: ->
-      (@price / @duration).toFixed(2)
-    discount: ->
-      raw = if @duration >= 12 then 46 else ((1 - (@price / @duration) / 4) * 100)
-      Math.max(0, Math.round(raw, 0))
-    durationInYears: ->
-      { years: Math.floor(@duration / 12), months: Math.floor(@duration % 12) }
-    durationText: ->
-      obj = @durationInYears()
-      yearsText = switch obj.years
-                  when 0
-                    ''
-                  when 1
-                    "#{obj.years} year"
-                  else
-                    "#{obj.years} years"
-
-      monthsText = switch obj.months
-                  when 0
-                    ''
-                  when 1
-                    "#{obj.months} month"
-                  else
-                    "#{obj.months} months"
-
-      _.compact([yearsText, monthsText]).join(', ')
-  }
-
   constructor: ->
     $(document).on 'turbolinks:load', =>
       @initialize(document.getElementById('js-store-supporter-tag'))
@@ -132,23 +101,7 @@ class @StoreSupporterTag
       @searching = false
 
   calculate: (position) =>
-    price = Math.floor(position / @RESOLUTION)
-    duration = switch
-      when price < 8 then 1
-      when price < 12 then 2
-      when price < 16 then 4
-      when price < 20 then 6
-      when price < 22 then 8
-      when price < 24 then 9
-      when price < 25 then 10
-      when price < 28 then 10
-      else
-        Math.floor(price / 26.0 * 12)
-
-    cost = Object.create(StoreSupporterTag.Price)
-    cost.price = price
-    cost.duration = duration
-    cost
+    new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
 
   onSliderValueChanged: (event, ui) =>
     values = @calculate(ui.value)
@@ -181,9 +134,9 @@ class @StoreSupporterTag
     $('.js-input-feedback').text('searching') if searching
 
   updatePrice: (obj) =>
-    @el.querySelector('input[name="item[cost]"').value = obj.price
-    @el.querySelector('input[name="item[extra_data][duration]"').value = obj.duration
-    @priceElement.textContent = "USD #{obj.price}"
+    @el.querySelector('input[name="item[cost]"').value = obj.price()
+    @el.querySelector('input[name="item[extra_data][duration]"').value = obj.duration()
+    @priceElement.textContent = "USD #{obj.price()}"
     @durationElement.textContent = obj.durationText()
     @discountElement.textContent = "save #{obj.discount()}%"
 
@@ -207,4 +160,4 @@ class @StoreSupporterTag
     @updateSliderPreset(elem, values) for elem in @sliderPresets
 
   updateSliderPreset: (elem, values) ->
-    $(elem).toggleClass('js-slider-preset--active', values.duration >= +elem.dataset.months)
+    $(elem).toggleClass('js-slider-preset--active', values.duration() >= +elem.dataset.months)
