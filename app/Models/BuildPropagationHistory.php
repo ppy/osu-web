@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class BuildPropagationHistory extends Model
@@ -33,6 +34,19 @@ class BuildPropagationHistory extends Model
 
     public function build()
     {
-        return $this->belongsTo(Build::class, 'build_id1');
+        return $this->belongsTo(Build::class, 'build_id');
+    }
+
+    public function scopeChangelog($query)
+    {
+        $buildsTable = with(new Build)->getTable();
+        $propagationTable = with(new BuildPropagationHistory)->getTable();
+        $streamsTable = 'osu_updates.'.with(new UpdateStream)->getTable();
+
+        $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
+            ->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
+            ->select(DB::raw('created_at, pretty_name, sum(user_count) as user_count'))
+            ->groupBy(['created_at', 'pretty_name'])
+            ->orderBy('created_at', 'asc');
     }
 }

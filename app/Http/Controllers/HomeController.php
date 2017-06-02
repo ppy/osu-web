@@ -97,11 +97,8 @@ class HomeController extends Controller
 
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new BuildPropagationHistory)->getTable();
-        $buildHistory = BuildPropagationHistory::join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
-            ->select(DB::raw('created_at, stream_id, sum(user_count) as user_count'))
+        $buildHistory = BuildPropagationHistory::changelog()
             ->where('created_at', '>', Carbon::now()->subDays(config('osu.changelog.chart_days')))
-            ->groupBy(['created_at', 'stream_id'])
-            ->orderBy('created_at', 'asc')
             ->get();
 
         return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory'));
