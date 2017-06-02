@@ -67,6 +67,7 @@ class @StoreSupporterTag
   constructor: ->
     $(document).on 'turbolinks:load', =>
       @initialize(document.getElementById('js-store-supporter-tag'))
+    @debouncedGetUser = _.debounce @getUser, 300
 
   initialize: (rootElement) =>
     return unless rootElement?
@@ -86,7 +87,6 @@ class @StoreSupporterTag
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @usernameInput = @el.querySelector('#username.form-control')
 
-    @debouncedGetUser = _.debounce @getUser, 300
     @initializeSlider()
     @initializeSliderPresets()
     @initializeUsernameInput()
