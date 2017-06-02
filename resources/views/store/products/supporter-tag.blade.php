@@ -30,9 +30,7 @@
     <input type="hidden" name="item[extra_data][type]" value="supporter-tag" />
     <input type="hidden" name="item[extra_data][duration]" value="1" />
     <div class="store-supporter-tag__user-icon">
-        <center>
-            <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar js-avatar"></div>
-        </center>
+        <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered js-avatar"></div>
     </div>
     <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
         <div class="grid-cell">

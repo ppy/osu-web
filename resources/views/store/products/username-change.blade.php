@@ -24,9 +24,7 @@
 @else
 <div class="js-username-change grid grid--gutters">
     <div class="grid-cell grid-cell--squash">
-        <center>
-            <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar"></div>
-        </center>
+        <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered"></div>
     </div>
     <div class="grid-cell">
         <div>
