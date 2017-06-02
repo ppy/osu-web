@@ -73,7 +73,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        return $response = [
+        return [
             'username' => $user->username,
             'avatar_url' => $user->user_avatar,
         ];
