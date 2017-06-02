@@ -117,7 +117,7 @@ class @StoreSupporterTag
       @onInput(event)
 
   getUser: (username) =>
-    $.post '/users/check-username-exists', username: username
+    $.post laroute.route('users.check-username-exists'), username: username
     .done (data) =>
       @setUserInteraction(data?)
       @updateUserDisplay(data)
