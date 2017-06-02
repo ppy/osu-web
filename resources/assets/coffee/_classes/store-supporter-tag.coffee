@@ -161,7 +161,7 @@ class @StoreSupporterTag
       setTimeout(() =>
         @updateSearchResult(true)
         @setUserInteraction(false)
-      , 0)
+      )
 
     @debouncedGetUser(event.currentTarget.value)
 
