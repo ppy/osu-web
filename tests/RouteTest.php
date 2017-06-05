@@ -79,7 +79,7 @@ class RouteTest extends TestCase
      */
     public function testRankingRoutes()
     {
-        $rankingTypes = ['performance', 'score'];
+        $rankingTypes = ['performance', 'score', 'country'];
 
         foreach (Beatmap::MODES as $mode => $enum) {
             foreach ($rankingTypes as $type) {
