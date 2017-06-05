@@ -21,13 +21,11 @@ class @StoreSupporterTag
   MIN_VALUE: 4
   MAX_VALUE: 52
 
-  constructor: ->
-    $(document).on 'turbolinks:load', =>
-      @initialize(document.getElementById('js-store-supporter-tag'))
-    @debouncedGetUser = _.debounce @getUser, 300
+  @initialize: ->
+    new StoreSupporterTag(elem) for elem in document.getElementsByClassName('js-store-supporter-tag')
 
-  initialize: (rootElement) =>
-    return unless rootElement?
+  constructor: (rootElement) ->
+    @debouncedGetUser = _.debounce @getUser, 300
     @el = rootElement
     @searching = false
     @searchData = null
@@ -46,7 +44,6 @@ class @StoreSupporterTag
     @initializeSlider()
     @initializeSliderPresets()
     @initializeUsernameInput()
-    @
 
   initializeSlider: =>
     slider = $(@slider).slider {

@@ -22,7 +22,7 @@
     </div>
 </div>
 @else
-<div id="js-store-supporter-tag" class="js-store-supporter-tag store-supporter-tag"
+<div class="js-store-supporter-tag store-supporter-tag"
     data-username="{{ Auth::user()->username }}" data-avatar-url="{{ Auth::user()->user_avatar }}">
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />

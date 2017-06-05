@@ -27,6 +27,8 @@ $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 $(document).on 'submit', 'form', (e) ->
   LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
+$(document).on 'turbolinks:load', ->
+  StoreSupporterTag.initialize()
 
 @accountEdit ?= new AccountEdit
 @accountEditPlaystyle ?= new AccountEditPlaystyle
@@ -60,7 +62,6 @@ $(document).on 'submit', 'form', (e) ->
 @scale ?= new Scale
 @stickyFooter ?= new StickyFooter
 @stickyHeader ?= new StickyHeader
-@storeSupporterTag ?= new StoreSupporterTag
 @syncHeight ?= new SyncHeight
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
