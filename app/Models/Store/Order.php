@@ -176,7 +176,7 @@ class Order extends Model
             if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
-                $item = $this->updateSingleItem($params, $addNew);
+                $item = $this->updateOrderItem($params, $addNew);
             }
 
             $result = $this->validateBeforeSave($params['product'], $item);
@@ -293,7 +293,7 @@ class Order extends Model
         return $item;
     }
 
-    private function updateSingleItem(array $params, $addNew = false)
+    private function updateOrderItem(array $params, $addNew = false)
     {
         $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
