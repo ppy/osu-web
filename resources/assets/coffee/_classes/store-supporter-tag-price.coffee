@@ -28,7 +28,6 @@ class @StoreSupporterTagPrice
       when duration == 4 then 12
       when duration == 2 then 8
       when duration == 1 then 4
-      else null
 
   constructor: (price) ->
     @_price = price
