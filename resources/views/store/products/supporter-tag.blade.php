@@ -51,13 +51,9 @@
             </div>
         </div>
         <div class="grid grid--xs grid--packed">
-            <div class="js-slider-preset store-slider__preset" data-months="2">2</div>
-            <div class="js-slider-preset store-slider__preset" data-months="4">4</div>
-            <div class="js-slider-preset store-slider__preset" data-months="6">6</div>
-            <div class="js-slider-preset store-slider__preset" data-months="8">8</div>
-            <div class="js-slider-preset store-slider__preset" data-months="12">12</div>
-            <div class="js-slider-preset store-slider__preset" data-months="18">18</div>
-            <div class="js-slider-preset store-slider__preset" data-months="24">24</div>
+            @foreach([2, 4, 6, 8, 12, 18, 24] as $months)
+                <div class="js-slider-preset store-slider__preset" data-months="{{$months}}">{{$months}}</div>
+            @endforeach
         </div>
     </div>
 </div>
