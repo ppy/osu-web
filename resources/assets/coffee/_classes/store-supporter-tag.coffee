@@ -44,16 +44,16 @@ class @StoreSupporterTag
     @initializeUsernameInput()
 
   initializeSlider: =>
-    slider = $(@slider).slider {
-      range: 'min',
-      value: @sliderValue(@MIN_VALUE),
-      min: @sliderValue(@MIN_VALUE),
-      max: @sliderValue(@MAX_VALUE),
-      step: 1,
-      animate: true,
-      slide: @onSliderValueChanged,
-      change: @onSliderValueChanged,
-    }
+    slider = $(@slider).slider
+      range: 'min'
+      value: @sliderValue(@MIN_VALUE)
+      min: @sliderValue(@MIN_VALUE)
+      max: @sliderValue(@MAX_VALUE)
+      step: 1
+      animate: true
+      slide: @onSliderValueChanged
+      change: @onSliderValueChanged
+
     @updatePrice(@calculate(@sliderValue(@MIN_VALUE)))
     slider
 
