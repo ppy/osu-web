@@ -1,4 +1,5 @@
 .store-supporter-tag {
+  @_top: store-supporter-tag;
   &__slider {
     .ui-slider {
       background-color: darkgray;
@@ -27,19 +28,21 @@
   }
 
   &--disabled {
-    .js-slider-preset {
-      background-color: #999;
-      pointer-events: none;
-      cursor: default;
-
-      &--active {
+    &.@{_top} { // need the extra specificity to override
+      .js-slider-preset {
         background-color: #999;
+        pointer-events: none;
+        cursor: default;
+
+        &--active {
+          background-color: #999;
+        }
       }
-    }
 
-    .ui-slider {
-      .ui-slider-handle, .ui-slider-range {
-        background-color: #999;
+      .ui-slider {
+        .ui-slider-handle, .ui-slider-range {
+          background-color: #999;
+        }
       }
     }
   }
