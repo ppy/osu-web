@@ -55,13 +55,4 @@ class CountryStatistics extends Model
             ]);
         }
     }
-
-    public static function recalculateAll()
-    {
-        foreach (Country::where('display', '>', 0)->get() as $country) {
-            foreach (Beatmap::MODES as $mode) {
-                static::recalculate($country->acronym, $mode);
-            }
-        }
-    }
 }
