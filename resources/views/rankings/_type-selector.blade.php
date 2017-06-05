@@ -21,13 +21,13 @@
         <li class="page-mode__item">
             @if ($tab == 'charts')
                 <span class="page-mode-link page-mode-link--white page-mode-link--is-disabled" title="Coming soon!™">
-                    {{trans("ranking.type.{$tab}")}}
+                    {{trans("rankings.type.{$tab}")}}
                 </span>
             @else
                 <a class="page-mode-link page-mode-link--white{{$type == $tab ? ' page-mode-link--is-active' : ''}}"
                     href="{{$tab == 'country' ? route('ranking', ['mode' => $mode, 'type' => $tab]) : $route($mode, $tab)}}"
                 >
-                    {{trans("ranking.type.{$tab}")}}
+                    {{trans("rankings.type.{$tab}")}}
                     <span class="page-mode-link__stripe page-mode-link__stripe--black"></span>
                 </a>
             @endif

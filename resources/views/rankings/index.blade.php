@@ -47,8 +47,8 @@
                         <div class='ranking-page-header__flag-overlay'><i class="fa fa-fw fa-times"></i></div>
                     </a>
                 @endif
-                {!! trans('ranking.header', [
-                    'type' => "<span class='ranking-page-header__title-type'>".trans("ranking.type.{$type}")."</span>"
+                {!! trans('rankings.header', [
+                    'type' => "<span class='ranking-page-header__title-type'>".trans("rankings.type.{$type}")."</span>"
                 ]) !!}
             </div>
         </div>

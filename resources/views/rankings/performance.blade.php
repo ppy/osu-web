@@ -23,22 +23,22 @@
             <tr>
                 <th class="ranking-page-table__heading ranking-page-table__heading--main" colspan="2"></th>
                 <th class="ranking-page-table__heading">
-                    {{ trans('ranking.stat.accuracy') }}
+                    {{ trans('rankings.stat.accuracy') }}
                 </th>
                 <th class="ranking-page-table__heading">
-                    {{ trans('ranking.stat.play_count') }}
+                    {{ trans('rankings.stat.play_count') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--focused">
-                    {{ trans('ranking.stat.performance') }}
+                    {{ trans('rankings.stat.performance') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--rank">
-                    {{ trans('ranking.stat.ss') }}
+                    {{ trans('rankings.stat.ss') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--rank">
-                    {{ trans('ranking.stat.s') }}
+                    {{ trans('rankings.stat.s') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--rank">
-                    {{ trans('ranking.stat.a') }}
+                    {{ trans('rankings.stat.a') }}
                 </th>
             </tr>
         </thead>
