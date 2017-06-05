@@ -253,6 +253,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
+    public function setUserWebsiteAttribute($value)
+    {
+        $value = trim($value);
+        if (!starts_with($value, ['http://', 'https://'])) {
+            $value = "https://{$value}";
+        }
+
+        $this->attributes['user_website'] = $value;
+    }
+
     public function setOsuPlaystyleAttribute($value)
     {
         $styles = 0;
@@ -775,14 +785,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(Forum\Post::class, 'poster_id');
     }
 
-    public function getPlaymodeAttribute($value)
-    {
-        return Beatmap::modeStr($this->osu_playmode);
-    }
-
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'user_id');
+    }
+
+    public function getPlaymodeAttribute($value)
+    {
+        return Beatmap::modeStr($this->osu_playmode);
     }
 
     public function setPlaymodeAttribute($value)
