@@ -36,7 +36,7 @@ class @StoreSupporterTagPrice
     @_price
 
   duration: ->
-    @_duration ||= switch
+    @_duration ?= switch
       when @_price >= 26 then Math.floor(@_price / 26.0 * 12)
       when @_price >= 24 then 10
       when @_price >= 22 then 9
