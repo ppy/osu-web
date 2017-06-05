@@ -770,14 +770,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(Forum\Post::class, 'poster_id');
     }
 
-    public function getPlaymodeAttribute($value)
-    {
-        return Beatmap::modeStr($this->osu_playmode);
-    }
-
     public function changelogs()
     {
         return $this->hasMany(Changelog::class, 'user_id');
+    }
+
+    public function getPlaymodeAttribute($value)
+    {
+        return Beatmap::modeStr($this->osu_playmode);
     }
 
     public function setPlaymodeAttribute($value)
