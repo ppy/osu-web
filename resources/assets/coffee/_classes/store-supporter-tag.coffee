@@ -95,14 +95,8 @@ class @StoreSupporterTag
   onInput: (event) =>
     if !@searching
       @searching = true
-      # need to trigger immediately on first input.
-      # without setTimeout, some browsers might not trigger the class update
-      # until after the debounce?
-      setTimeout () =>
-        @updateSearchResult(true)
-        @setUserInteraction(false)
-
-
+      @updateSearchResult(true)
+      @setUserInteraction(false)
     @debouncedGetUser(event.currentTarget.value)
 
   sliderValue: (price) ->
