@@ -50,11 +50,14 @@ class @StoreSupporterTagPrice
 
   pricePerMonth: ->
     (@_price / @duration()).toFixed(2)
+
   discount: ->
     raw = if @duration() >= 12 then 46 else ((1 - (@_price / @duration()) / 4) * 100)
     Math.max(0, Math.round(raw, 0))
+
   durationInYears: ->
     { years: Math.floor(@duration() / 12), months: Math.floor(@duration() % 12) }
+
   durationText: ->
     obj = @durationInYears()
     yearsText = switch obj.years
