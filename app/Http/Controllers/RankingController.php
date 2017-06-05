@@ -22,8 +22,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
 use App\Models\Country;
-use App\Models\UserStatistics;
 use App\Models\CountryStatistics;
+use App\Models\UserStatistics;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
@@ -44,7 +44,7 @@ class RankingController extends Controller
         $country = null;
         $modeInt = Beatmap::modeInt($mode);
 
-        if ($type == 'country') {
+        if ($type === 'country') {
             $maxResults = CountryStatistics::where('display', 1)
                 ->where('mode', $modeInt)
                 ->count();

@@ -23,7 +23,6 @@ namespace App\Console\Commands;
 use App\Models\Beatmap;
 use App\Models\Country;
 use App\Models\CountryStatistics;
-use DB;
 use Illuminate\Console\Command;
 
 class RankingsRecalculateCountryStats extends Command

@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use App\Models\Beatmap;
-use App\Models\UserStatistics;
 use DB;
 
 class CountryStatistics extends Model
@@ -44,7 +42,7 @@ class CountryStatistics extends Model
         $currentStats = $statQuery->get();
 
         if ($stats->ranked_score > 0) {
-            CountryStatistics::updateOrCreate([
+            self::updateOrCreate([
                 'country_code' => $countryAcronym,
                 'mode' => $modeInt,
             ], [

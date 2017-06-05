@@ -852,7 +852,7 @@ function suffixed_number_format($number)
 
 function suffixed_number_format_tag($number)
 {
-    return "<span title='".number_format($number)."'>".suffixed_number_format($number)."</span>";
+    return "<span title='".number_format($number)."'>".suffixed_number_format($number).'</span>';
 }
 
 // formats a number as a percentage with a fixed number of precision
