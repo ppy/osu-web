@@ -33,14 +33,14 @@ return [
         'register' => 'У Вас нет аккаунта в osu!? Создайте один',
         'forgot' => 'Забыли свой пароль?',
         'beta' => [
-            'main' => 'Доступ к бета-версии доступен привилегированными пользователями.',
+            'main' => 'Доступ к бета-версии ограничен.',
             'small' => '(саппортеры получат доступ позже)',
         ],
 
         'here' => 'тут', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'signup' => [
-        '_' => 'Зарегистрироваться',
+        '_' => 'Регистрация',
     ],
     'anonymous' => [
         'login_link' => 'нажмите для входа',
@@ -55,11 +55,11 @@ return [
         'first_members' => 'Зарегистрирован тут с самого начала',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Зарегистрировался :date',
-        'lastvisit' => 'В последний раз замечен :date',
+        'joined_at' => 'Зарегистрирован :date',
+        'lastvisit' => 'Был в сети :date',
         'missingtext' => 'Возможно, Вы сделали опечатку! (или может пользователь забанен)',
         'origin_age' => ':age',
-        'origin_country' => 'Из :country',
+        'origin_country' => 'Из страны :country',
         'origin_country_age' => ':age из :country',
         'page_description' => 'osu! - Всё, что вы хотели знать про :username!',
         'plays_with' => 'Играет с :devices',
