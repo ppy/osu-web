@@ -16,6 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <span class="flag-country"
-    title="{{$country_name}}"
+    @if (isset($country_name))
+        title="{{$country_name}}"
+    @endif
     style="background-image: url('/images/flags/{{$country_code}}.png');"
 ></span>

@@ -55,7 +55,6 @@
                             'country' => $score['code'],
                         ])}}">
                             @include('objects._country-flag', [
-                                'country_name' => $score['country']['name'],
                                 'country_code' => $score['country']['code'],
                             ])
                             <span class="ranking-page-table__user-link-text">

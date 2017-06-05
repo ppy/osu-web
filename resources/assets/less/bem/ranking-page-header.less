@@ -17,6 +17,8 @@
  */
 
 .ranking-page-header {
+  @top: ranking-page-header;
+
   background-color: #333;
   background-size: cover;
   background-position: center;
@@ -36,5 +38,28 @@
   &__title-type {
     color: @yellow;
     text-transform: capitalize;
+  }
+
+  &__flag {
+    .link-plain();
+    &:hover {
+      .flag-country {
+        opacity: 0.5;
+      }
+      .@{top}__flag-overlay {
+        display: block;
+      }
+    }
+  }
+
+  &__flag-overlay {
+    display: none;
+    pointer-events: none;
+    font-size: 20px;
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    color: white;
+    opacity: 0.75;
   }
 }

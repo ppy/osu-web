@@ -60,7 +60,7 @@ class RankingController extends Controller
                 ->offset(static::PAGE_SIZE * ($page - 1));
 
             $scores = json_collection($stats->get(), 'CountryStatistics', ['country']);
-        } else {
+        } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $country = Country::where('display', '>', 0)
                     ->where('acronym', Request::input('country'))
@@ -72,7 +72,7 @@ class RankingController extends Controller
             $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
             $stats = UserStatistics\Model::getClass($mode)
-                ->with('user')
+                ->with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
                 })
@@ -91,7 +91,7 @@ class RankingController extends Controller
                     $stats->orderBy('ranked_score', 'desc');
                     break;
             }
-            $scores = json_collection($stats->get(), 'UserStatistics', ['user']);
+            $scores = json_collection($stats->get(), 'UserStatistics', ['user', 'user.country']);
         }
 
         $scores = new LengthAwarePaginator($scores, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [

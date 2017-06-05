@@ -38,13 +38,15 @@
             <hr class="page-mode__underline">
 
             <div class='ranking-page-header__title'>
-                @if ($country !== null)
-                    @include('objects._country-flag', [
-                        'country_name' => $country['name'],
-                        'country_code' => $country['acronym'],
-                    ])
+                @if (isset($country))
+                    <a class='ranking-page-header__flag' href="{{route('ranking', ['mode' => $mode, 'type' => $type])}}">
+                        @include('objects._country-flag', [
+                            'country_code' => $country['acronym'],
+                            'country_name' => $country['name'],
+                        ])
+                        <div class='ranking-page-header__flag-overlay'><i class="fa fa-fw fa-times"></i></div>
+                    </a>
                 @endif
-
                 {!! trans('ranking.header', [
                     'type' => "<span class='ranking-page-header__title-type'>".trans("ranking.type.{$type}")."</span>"
                 ]) !!}
