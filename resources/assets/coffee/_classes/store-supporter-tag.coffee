@@ -66,8 +66,7 @@ class @StoreSupporterTag
       $(@slider).slider('value', @sliderValue(price)) if price
 
   initializeUsernameInput: =>
-    $(@usernameInput).on 'input', (event) =>
-      @onInput(event)
+    $(@usernameInput).on 'input', @onInput
 
   getUser: (username) =>
     $.post laroute.route('users.check-username-exists'), username: username
