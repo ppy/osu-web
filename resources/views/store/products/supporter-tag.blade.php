@@ -40,7 +40,7 @@
             <div class="js-input-feedback"></div>
         </div>
     </div>
-    <div class="store-supporter-tag__slider">
+    <div class="store-slider">
         <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
             <div class="ui-slider-handle">
                 <div class="slider-callout arrow-box">
@@ -51,13 +51,13 @@
             </div>
         </div>
         <div class="grid grid--xs grid--packed">
-            <div class="js-slider-preset" data-months="2">2</div>
-            <div class="js-slider-preset" data-months="4">4</div>
-            <div class="js-slider-preset" data-months="6">6</div>
-            <div class="js-slider-preset" data-months="8">8</div>
-            <div class="js-slider-preset" data-months="12">12</div>
-            <div class="js-slider-preset" data-months="18">18</div>
-            <div class="js-slider-preset" data-months="24">24</div>
+            <div class="js-slider-preset store-slider__preset" data-months="2">2</div>
+            <div class="js-slider-preset store-slider__preset" data-months="4">4</div>
+            <div class="js-slider-preset store-slider__preset" data-months="6">6</div>
+            <div class="js-slider-preset store-slider__preset" data-months="8">8</div>
+            <div class="js-slider-preset store-slider__preset" data-months="12">12</div>
+            <div class="js-slider-preset store-slider__preset" data-months="18">18</div>
+            <div class="js-slider-preset store-slider__preset" data-months="24">24</div>
         </div>
     </div>
 </div>

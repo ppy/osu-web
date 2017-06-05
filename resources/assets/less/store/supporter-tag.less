@@ -1,13 +1,5 @@
 .store-supporter-tag {
   @_top: store-supporter-tag;
-  &__slider {
-    .ui-slider {
-      background-color: darkgray;
-      .ui-slider-range {
-        background-color: @pink-darker;
-      }
-    }
-  }
 
   &__user-icon {
     margin: 8px;
@@ -28,21 +20,19 @@
   }
 
   &--disabled {
-    &.@{_top} { // need the extra specificity to override
-      .js-slider-preset {
+    .store-slider__preset {
+      background-color: #999;
+      pointer-events: none;
+      cursor: default;
+
+      &--active {
         background-color: #999;
-        pointer-events: none;
-        cursor: default;
-
-        &--active {
-          background-color: #999;
-        }
       }
+    }
 
-      .ui-slider {
-        .ui-slider-handle, .ui-slider-range {
-          background-color: #999;
-        }
+    .ui-slider {
+      .ui-slider-handle, .ui-slider-range {
+        background-color: #999;
       }
     }
   }
@@ -105,23 +95,6 @@
     font-weight: 600;
     color: #555;
     text-align: center;
-  }
-
-  .js-slider-preset {
-    background-color: #666;
-    color: #fff;
-    cursor: pointer;
-    font-size: 12px;
-    margin: 4px;
-    height: 20px;
-    width: 32px;
-    line-height: 19px;
-    text-align: center;
-    border-radius: 10px;
-
-    &--active {
-      background-color: @pink-darker;
-    }
   }
 
   .price-box {
