@@ -59,7 +59,6 @@ class OrderItem extends Model
     public function getDisplayName()
     {
         if (is_array($this->extra_data)) {
-            $extra_text = '';
             // this prevents fires if type is not set.
             if (isset($this->extra_data['type'])) {
                 switch ($this->extra_data['type']) {
