@@ -43,7 +43,7 @@
     <div class="store-slider">
         <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
             <div class="ui-slider-handle">
-                <div class="slider-callout arrow-box">
+                <div class="store-slider__callout arrow-box">
                     <div class="js-price price"></div>
                     <div class="js-duration"></div>
                     <div class="js-discount"></div>

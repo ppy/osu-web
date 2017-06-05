@@ -34,6 +34,48 @@
     }
   }
 
+  &__callout {
+    position: relative;
+    background-color: #333;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 6px;
+    width: 220px;
+    left: 5px;
+    transform: translate3d(-50%, calc(-100% - 20px), 0);
+
+    &:after, &:before {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      transform: scaleX(0.5);
+    }
+
+    &:after {
+      border-color: rgba(136, 183, 213, 0);
+      border-top-color: #333;
+      border-width: 12px;
+      margin-left: -12px;
+    }
+
+    .js-discount {
+      margin-top: 2px;
+      color: #999;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
   .ui-slider {
     background-color: darkgray;
     .ui-slider-range {
