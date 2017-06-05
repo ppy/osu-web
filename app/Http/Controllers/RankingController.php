@@ -98,6 +98,6 @@ class RankingController extends Controller
             'path' => route('ranking', ['mode' => $mode, 'type' => $type]),
         ]);
 
-        return view("ranking.{$type}", compact('scores', 'mode', 'type', 'country'));
+        return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country'));
     }
 }

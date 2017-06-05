@@ -34,7 +34,7 @@
     <div class="osu-page">
         @include('objects._mode-selector', $selectorParams)
         <div class="ranking-page-header">
-            @include('ranking._type-selector', $selectorParams)
+            @include('rankings._type-selector', $selectorParams)
             <hr class="page-mode__underline">
 
             <div class='ranking-page-header__title'>

@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("ranking.index")
+@extends("rankings.index")
 
 @section("scores")
     <table class="ranking-page-table">
@@ -28,8 +28,11 @@
                 <th class="ranking-page-table__heading">
                     {{ trans('ranking.stat.play_count') }}
                 </th>
+                <th class="ranking-page-table__heading">
+                    {{ trans('ranking.stat.total_score') }}
+                </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--focused">
-                    {{ trans('ranking.stat.performance') }}
+                    {{ trans('ranking.stat.ranked_score') }}
                 </th>
                 <th class="ranking-page-table__heading ranking-page-table__heading--rank">
                     {{ trans('ranking.stat.ss') }}
@@ -51,8 +54,8 @@
                     <td>
                         <a class="ranking-page-table__user-link" href="/users/{{$score['user']['id']}}">
                             @include('objects._country-flag', [
-                                'country_name' => $score['user']['country_code'],
-                                'country_code' => $score['user']['country_code'],
+                                'country_name' => $score['user']['country']['name'],
+                                'country_code' => $score['user']['country']['code'],
                             ])
                             <span class="ranking-page-table__user-link-text">
                                 {{ $score['user']['username'] }}
@@ -65,8 +68,11 @@
                     <td class="ranking-page-table__column--dimmed">
                         {{ number_format($score['play_count']) }}
                     </td>
+                    <td class="ranking-page-table__column--dimmed">
+                        {!! suffixed_number_format_tag($score['total_score']) !!}
+                    </td>
                     <td class="ranking-page-table__column--focused">
-                        {{ number_format(round($score['pp'])) }}
+                        {!! suffixed_number_format_tag($score['ranked_score']) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
                         {{ number_format($score['grade_counts']['ss']) }}

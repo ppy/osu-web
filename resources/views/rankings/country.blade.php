@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("ranking.index")
+@extends("rankings.index")
 
 @section("scores")
     <table class="ranking-page-table">
@@ -23,65 +23,62 @@
             <tr>
                 <th class="ranking-page-table__heading ranking-page-table__heading--main" colspan="2"></th>
                 <th class="ranking-page-table__heading">
-                    {{ trans('ranking.stat.accuracy') }}
+                    {{ trans('ranking.stat.active_users') }}
                 </th>
                 <th class="ranking-page-table__heading">
                     {{ trans('ranking.stat.play_count') }}
                 </th>
                 <th class="ranking-page-table__heading">
-                    {{ trans('ranking.stat.total_score') }}
-                </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--focused">
                     {{ trans('ranking.stat.ranked_score') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--rank">
-                    {{ trans('ranking.stat.ss') }}
+                <th class="ranking-page-table__heading">
+                    {{ trans('ranking.stat.average_score') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--rank">
-                    {{ trans('ranking.stat.s') }}
+                <th class="ranking-page-table__heading ranking-page-table__heading--focused">
+                    {{ trans('ranking.stat.performance') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--rank">
-                    {{ trans('ranking.stat.a') }}
+                <th class="ranking-page-table__heading">
+                    {{ trans('ranking.stat.average_performance') }}
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach ($scores as $index => $score)
-                <tr class="ranking-page-table__row{{$score['user']['is_active'] ? '' : ' ranking-page-table__row--inactive'}}">
+                <tr class="ranking-page-table__row">
                     <td class="ranking-page-table__rounded-left ranking-page-table__rank-column">
                         #{{ $scores->firstItem() + $index }}
                     </td>
                     <td>
-                        <a class="ranking-page-table__user-link" href="/users/{{$score['user']['id']}}">
+                        <a class="ranking-page-table__user-link" href="{{route('ranking', [
+                            'mode' => $mode,
+                            'type' => 'performance',
+                            'country' => $score['code'],
+                        ])}}">
                             @include('objects._country-flag', [
-                                'country_name' => $score['user']['country']['name'],
-                                'country_code' => $score['user']['country']['code'],
+                                'country_code' => $score['country']['code'],
                             ])
                             <span class="ranking-page-table__user-link-text">
-                                {{ $score['user']['username'] }}
+                                {{ $score['country']['name'] }}
                             </span>
                         </a>
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {{ format_percentage($score['hit_accuracy']) }}
+                        {{ number_format($score['active_users']) }}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {{ number_format($score['play_count']) }}
+                        {!! suffixed_number_format_tag($score['play_count']) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {!! suffixed_number_format_tag($score['total_score']) !!}
-                    </td>
-                    <td class="ranking-page-table__column--focused">
                         {!! suffixed_number_format_tag($score['ranked_score']) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed">
-                        {{ number_format($score['grade_counts']['ss']) }}
+                        {!! suffixed_number_format_tag(round($score['ranked_score'] / max($score['active_users'], 1))) !!}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
-                        {{ number_format($score['grade_counts']['s']) }}
+                    <td class="ranking-page-table__column--focused">
+                        {!! suffixed_number_format_tag(round($score['performance'])) !!}
                     </td>
                     <td class="ranking-page-table__column--dimmed ranking-page-table__rounded-right">
-                        {{ number_format($score['grade_counts']['a']) }}
+                        {{ number_format(round($score['performance'] / max($score['active_users'], 1))) }}
                     </td>
                 </tr>
             @endforeach
