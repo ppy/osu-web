@@ -253,6 +253,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_sig_bbcode_uid'] = $bbcode->uid;
     }
 
+    public function setUserWebsiteAttribute($value)
+    {
+        $value = trim($value);
+        if (!starts_with($value, ['http://', 'https://'])) {
+            $value = "https://{$value}";
+        }
+
+        $this->attributes['user_website'] = $value;
+    }
+
     public function setOsuPlaystyleAttribute($value)
     {
         $styles = 0;
