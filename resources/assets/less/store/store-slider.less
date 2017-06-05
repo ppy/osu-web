@@ -17,21 +17,9 @@
  */
 
 .store-slider {
-  &__preset {
-    background-color: #666;
-    color: #fff;
-    cursor: pointer;
-    font-size: 12px;
-    margin: 4px;
-    height: 20px;
-    width: 32px;
-    line-height: 19px;
-    text-align: center;
-    border-radius: 10px;
-
-    &--active {
-      background-color: @pink-darker;
-    }
+  &__bigtext { // stupid name
+    font-size: 18px;
+    font-weight: 600;
   }
 
   &__callout {
@@ -44,7 +32,7 @@
     padding: 6px;
     width: 220px;
     left: 5px;
-    transform: translate3d(-50%, calc(-100% - 20px), 0);
+    transform: translate3d(-50%, calc(-100% ~'-' 14px), 0);
 
     &:after, &:before {
       top: 100%;
@@ -64,16 +52,28 @@
       border-width: 12px;
       margin-left: -12px;
     }
+  }
 
-    .js-discount {
-      margin-top: 2px;
-      color: #999;
-    }
+  &__preset {
+    background-color: #666;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 4px;
+    height: 20px;
+    width: 32px;
+    line-height: 19px;
+    text-align: center;
+    border-radius: 10px;
 
-    .price {
-      font-size: 18px;
-      font-weight: 600;
+    &--active {
+      background-color: @pink-darker;
     }
+  }
+
+  &__subtext { // stupid name
+    margin-top: 2px;
+    color: #999;
   }
 
   .ui-slider {

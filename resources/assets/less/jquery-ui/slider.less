@@ -8,13 +8,13 @@
  * http://docs.jquery.com/UI/Slider#theming
  */
 
-.ui-corner-all {
-  border-radius: 5px;
-}
-
 .ui-slider {
   position: relative;
   text-align: left;
+
+  .ui-corner-all {
+    border-radius: @border-radius-large;
+  }
 
   .ui-slider-handle {
     position: absolute;
@@ -30,7 +30,6 @@
   .ui-slider-range {
     position: absolute;
     z-index: 1;
-    font-size: .7em;
     display: block;
     border: 0;
     background-position: 0 0;
@@ -56,31 +55,5 @@
 
   .ui-slider-range-max {
     right: 0;
-  }
-}
-
-.ui-slider-vertical {
-  height: 10px;
-  height: 100px;
-
-  .ui-slider-handle {
-    width: 10px;
-    height: 20px;
-    left: -5px;
-    margin-left: 0;
-    margin-bottom: -5px;
-  }
-
-  .ui-slider-range {
-    left: 0;
-    width: 100%;
-  }
-
-  .ui-slider-range-min {
-    bottom: 0;
-  }
-
-  .ui-slider-range-max {
-    top: 0;
   }
 }

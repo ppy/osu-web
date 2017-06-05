@@ -1,16 +1,21 @@
 .store-supporter-tag {
+  &__input {
+    .reset-input();
+    .default-border-radius();
+
+    background-color: #eee;
+    color: #555;
+    padding: 4px 8px;
+    text-align: center;
+    min-width: 14em;
+  }
+
   &__user-icon {
     margin: 8px;
   }
 
   &__user-search {
     margin: 8px;
-
-    input.form-control {
-      background-color: #eee;
-      text-align: center;
-      min-width: 14em;
-    }
   }
 
   &--disabled {
@@ -31,27 +36,12 @@
     }
   }
 
-  .form-control {
-    color: #555;
-    border: none;
-    box-shadow: none;
-
-    &:focus {
-      box-shadow: none;
-    }
-  }
-
   .js-input-feedback {
     display: inline-block; // prevent collapsing of empty block
     font-size: 13px;
     font-weight: 600;
     color: #555;
     text-align: center;
-  }
-
-  .price-box {
-    margin-left: 20px;
-    white-space: nowrap; // TODO: elevate?
   }
 
   .ui-slider {

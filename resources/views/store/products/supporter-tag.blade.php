@@ -34,19 +34,19 @@
     </div>
     <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
         <div class="grid-cell">
-            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'js-username-input form-control', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
+            {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'js-username-input store-supporter-tag__input', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
         </div>
         <div class="grid-cell">
             <div class="js-input-feedback"></div>
         </div>
     </div>
     <div class="store-slider">
-        <div class="js-slider ui-slider ui-slider-horizontal ui-widget ui-widget-content">
+        <div class="js-slider ui-slider ui-slider-horizontal">
             <div class="ui-slider-handle">
-                <div class="store-slider__callout arrow-box">
-                    <div class="js-price price"></div>
+                <div class="store-slider__callout">
+                    <div class="js-price store-slider__bigtext"></div>
                     <div class="js-duration"></div>
-                    <div class="js-discount"></div>
+                    <div class="js-discount store-slider__subtext"></div>
                 </div>
             </div>
         </div>
