@@ -1,6 +1,5 @@
 preventUsernameSubmission = ->
-  $('.js-store-add-to-cart').attr 'disabled', true
-  $('#product-form').data('disabled', true)
+  StoreCart.setEnabled(false)
   $('#username-check-price').html ''
 
 checkUsernameValidity = ->

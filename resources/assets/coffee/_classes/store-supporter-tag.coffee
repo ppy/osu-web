@@ -105,10 +105,7 @@ class @StoreSupporterTag
     price * @RESOLUTION
 
   updateCart: (data) ->
-    # FIXME: should consolidate implementations into a service class.
-    disabled = !data?
-    $('.js-store-add-to-cart').prop 'disabled', disabled
-    $('#product-form').data 'disabled', disabled
+    StoreCart.setEnabled(data?)
 
   updateSearchResult: =>
     if @searching
