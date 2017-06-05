@@ -37,6 +37,7 @@ class @StoreSupporterTag
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @usernameInput = @el.querySelector('.js-username-input')
+    @inputFeedback = @el.querySelector('.js-input-feedback')
 
     @initializeSlider()
     @initializeSliderPresets()
@@ -105,7 +106,7 @@ class @StoreSupporterTag
     $('#product-form').data 'disabled', disabled
 
   updateSearchResult: (searching) ->
-    $('.js-input-feedback').text('searching') if searching
+    @inputFeedback.textContent = 'searching' if searching
 
   updatePrice: (obj) =>
     @el.querySelector('input[name="item[cost]"').value = obj.price()
@@ -116,10 +117,10 @@ class @StoreSupporterTag
 
   updateUserDisplay: (user) =>
     avatarUrl = if user
-                  $('.js-input-feedback').text('')
+                  @inputFeedback.textContent = ''
                   user.avatar_url
                 else
-                  $('.js-input-feedback').text("This user doesn't exist")
+                  @inputFeedback.textContent = "This user doesn't exist"
                   ''
 
     $(@el.querySelectorAll('.js-avatar')).css(
