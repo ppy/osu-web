@@ -129,6 +129,13 @@ class HomeController extends Controller
         }
     }
 
+    public function getFriends()
+    {
+        $friends = json_collection(Auth::user()->friends, 'UserRelation', ['target', 'target.cover']);
+
+        return view('home.friends', compact('friends'));
+    }
+
     public function search()
     {
         $query = Request::input('q');

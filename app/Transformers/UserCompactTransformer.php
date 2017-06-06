@@ -27,6 +27,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'country',
+        'cover',
     ];
 
     public function transform(User $user)
@@ -44,5 +45,16 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
     public function includeCountry(User $user)
     {
         return $this->item($user->country, new CountryTransformer);
+    }
+
+    public function includeCover(User $user)
+    {
+        return $this->item($user, function($user) {
+            return [
+                'customUrl' => $user->profileCustomization()->cover()->fileUrl(),
+                'url' => $user->profileCustomization()->cover()->url(),
+                'id' => $user->profileCustomization()->cover()->id(),
+            ];
+        });
     }
 }

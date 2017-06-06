@@ -11,4 +11,9 @@ class UserRelation extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
+
+    public function target()
+    {
+        return $this->belongsTo(User::class, 'zebra_id', 'user_id');
+    }
 }
