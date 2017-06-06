@@ -103,43 +103,16 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Кудосу доступно',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
                 'recent_entries' => 'Последние переводы',
                 'title' => 'Кудосу!',
                 'total' => 'Всего кудосу накоплено',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
 
                 'entry' => [
                     'amount' => ':amount кудосу',
                     'empty' => "Этот пользователь не получал кудосу!",
 
-                    'beatmap_discussion' => [
-                        'allow_kudosu' => [
-                            'give' => 'Получено :amount from kudosu deny repeal of modding post :post',
-                        ],
-
-                        'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
-                        ],
-
-                        'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
-                        ],
-
-                        'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
-                        ],
-
-                        'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
-                        ],
-                    ],
-
                     'forum_post' => [
                         'give' => 'Получено :amount от :giver за пост в :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
             ],

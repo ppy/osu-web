@@ -21,7 +21,6 @@
 return [
     'achievement' => '<strong><em>:user</em></strong> получил достижение "<strong>:achievement</strong>"!',
     'beatmapset_delete' => ':beatmapset был удалён.',
-    'beatmapset_revive' => ':beatmapset has been revived from eternal slumber by <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> обновил карту "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> опубликовал карту ":beatmapset"',
     'empty' => "Этот пользователь не делал ничего заметного в последнее время!",
