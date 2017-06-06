@@ -67,11 +67,17 @@ return [
 
         'edit' => [
             'cover' => [
-                'button' => 'Сменить обложку профиля',
-                'defaults_info' => 'Больше вариантов в недалеком будущем',
+                'button' => 'Change Profile Cover',
+                'defaults_info' => 'More cover options will be available in the future',
                 'upload' => [
-                    'broken_file' => 'Не удалось установить обложку. Перепроверьте загруженную картинку и попробуйте ещё раз.',
-                    'button' => 'Загрузить изображение',
+                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
+                    'button' => 'Upload image',
+                    'dropzone' => 'Drop here to upload',
+                    'dropzone_info' => 'You can also drop your image here to upload',
+                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'size_info' => 'Cover size should be 2000x700',
+                    'too_large' => 'Uploaded file is too large.',
+                    'unsupported_format' => 'Unsupported format.',
                 ],
             ],
         ],
