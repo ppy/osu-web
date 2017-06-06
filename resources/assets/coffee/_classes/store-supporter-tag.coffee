@@ -83,10 +83,10 @@ class @StoreSupporterTag
         osu.popup osu.trans('errors.logged_out'), 'danger'
 
     .always =>
+      @searching = false
       @setUserInteraction(@user?)
       @updateCart(@user)
-      @updateUserDisplay()
-      @searching = false
+      @updateSearchResult()
 
   calculate: (position) =>
     new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
@@ -99,7 +99,7 @@ class @StoreSupporterTag
   onInput: (event) =>
     if !@searching
       @searching = true
-      @updateSearchResult(true)
+      @updateSearchResult()
       @setUserInteraction(false)
     @debouncedGetUser(event.currentTarget.value)
 
@@ -112,8 +112,18 @@ class @StoreSupporterTag
     $('.js-store-add-to-cart').prop 'disabled', disabled
     $('#product-form').data 'disabled', disabled
 
-  updateSearchResult: (searching) ->
-    @inputFeedback.textContent = 'searching' if searching
+  updateSearchResult: =>
+    return @inputFeedback.textContent = 'searching' if @searching
+
+    [avatarUrl, text] = if @user
+                          [@user.avatarUrl, '']
+                        else
+                          ['', "This user doesn't exist"]
+
+    @inputFeedback.textContent = text
+    $(@el.querySelectorAll('.js-avatar')).css(
+      'background-image': "url(#{avatarUrl})"
+    )
 
   updatePrice: (obj) =>
     @el.querySelector('input[name="item[cost]"').value = obj.price()
@@ -121,18 +131,6 @@ class @StoreSupporterTag
     @priceElement.textContent = "USD #{obj.price()}"
     @durationElement.textContent = obj.durationText()
     @discountElement.textContent = "save #{obj.discount()}%"
-
-  updateUserDisplay: =>
-    avatarUrl = if @user
-                  @inputFeedback.textContent = ''
-                  @user.avatarUrl
-                else
-                  @inputFeedback.textContent = "This user doesn't exist"
-                  ''
-
-    $(@el.querySelectorAll('.js-avatar')).css(
-      'background-image': "url(#{avatarUrl})"
-    )
 
   setUserInteraction: (enabled) =>
     $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
