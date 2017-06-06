@@ -84,7 +84,6 @@ class @StoreSupporterTag
 
     .always =>
       @searching = false
-      @setUserInteraction(@user?)
       @updateCart(@user)
       @updateSearchResult()
 
@@ -100,8 +99,11 @@ class @StoreSupporterTag
     if !@searching
       @searching = true
       @updateSearchResult()
-      @setUserInteraction(false)
     @debouncedGetUser(event.currentTarget.value)
+
+  setUserInteraction: (enabled) =>
+    $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
+    $('.js-slider').slider({ 'disabled': !enabled })
 
   sliderValue: (price) ->
     price * @RESOLUTION
@@ -113,7 +115,9 @@ class @StoreSupporterTag
     $('#product-form').data 'disabled', disabled
 
   updateSearchResult: =>
-    return @inputFeedback.textContent = 'searching' if @searching
+    if @searching
+      @inputFeedback.textContent = 'searching'
+      return @setUserInteraction(false)
 
     [avatarUrl, text] = if @user
                           [@user.avatarUrl, '']
@@ -124,6 +128,7 @@ class @StoreSupporterTag
     $(@el.querySelectorAll('.js-avatar')).css(
       'background-image': "url(#{avatarUrl})"
     )
+    @setUserInteraction(@user?)
 
   updatePrice: (obj) =>
     @el.querySelector('input[name="item[cost]"').value = obj.price()
@@ -131,10 +136,6 @@ class @StoreSupporterTag
     @priceElement.textContent = "USD #{obj.price()}"
     @durationElement.textContent = obj.durationText()
     @discountElement.textContent = "save #{obj.discount()}%"
-
-  setUserInteraction: (enabled) =>
-    $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
-    $('.js-slider').slider({ 'disabled': !enabled })
 
   updateSliderPresets: (values) =>
     @updateSliderPreset(elem, values) for elem in @sliderPresets
