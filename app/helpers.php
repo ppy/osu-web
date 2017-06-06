@@ -859,5 +859,5 @@ function suffixed_number_format_tag($number)
 // e.g.: 98.3 -> 98.30%
 function format_percentage($number, $precision = 2)
 {
-    return sprintf("%01.{$precision}f", round($number, $precision)).'%';
+    return sprintf("%.{$precision}f%%", round($number, $precision));
 }

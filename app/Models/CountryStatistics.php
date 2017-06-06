@@ -35,7 +35,7 @@ class CountryStatistics extends Model
     {
         $stats = UserStatistics\Model::getClass(Beatmap::modeStr($modeInt))
             ->where('country_acronym', $countryAcronym)
-            ->select(DB::raw('sum(ranked_score) as ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
+            ->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
             ->first();
 
         $statQuery = static::where('country_code', $countryAcronym)->where('mode', $modeInt);
