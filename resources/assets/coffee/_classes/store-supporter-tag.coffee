@@ -28,7 +28,6 @@ class @StoreSupporterTag
     @debouncedGetUser = _.debounce @getUser, 300
     @el = rootElement
     @searching = false
-    @searchData = null
 
     # Everything should be scoped under the root @el
     @priceElement = @el.querySelector('.js-price')
@@ -43,12 +42,13 @@ class @StoreSupporterTag
       username: @el.dataset.username
       avatarUrl: @el.dataset.avatarUrl
 
-    @initializeSlider()
+    @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
     @initializeUsernameInput()
+    @updateCostDisplay()
 
   initializeSlider: =>
-    slider = $(@slider).slider
+    $(@slider).slider
       range: 'min'
       value: @sliderValue(@MIN_VALUE)
       min: @sliderValue(@MIN_VALUE)
@@ -57,9 +57,6 @@ class @StoreSupporterTag
       animate: true
       slide: @onSliderValueChanged
       change: @onSliderValueChanged
-
-    @updatePrice(@calculate(@sliderValue(@MIN_VALUE)))
-    slider
 
   initializeSliderPresets: =>
     $(@sliderPresets).on 'click', (event) =>
@@ -91,9 +88,8 @@ class @StoreSupporterTag
     new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
 
   onSliderValueChanged: (event, ui) =>
-    values = @calculate(ui.value)
-    @updatePrice(values)
-    @updateSliderPresets(values)
+    @cost = @calculate(ui.value)
+    @updateCostDisplay()
 
   onInput: (event) =>
     if !@searching
@@ -130,15 +126,13 @@ class @StoreSupporterTag
     )
     @setUserInteraction(@user?)
 
-  updatePrice: (obj) =>
-    @el.querySelector('input[name="item[cost]"').value = obj.price()
-    @el.querySelector('input[name="item[extra_data][duration]"').value = obj.duration()
-    @priceElement.textContent = "USD #{obj.price()}"
-    @durationElement.textContent = obj.durationText()
-    @discountElement.textContent = "save #{obj.discount()}%"
+  updateCostDisplay: =>
+    @el.querySelector('input[name="item[cost]"').value = @cost.price()
+    @el.querySelector('input[name="item[extra_data][duration]"').value = @cost.duration()
+    @priceElement.textContent = "USD #{@cost.price()}"
+    @durationElement.textContent = @cost.durationText()
+    @discountElement.textContent = "save #{@cost.discount()}%"
+    @updateSliderPreset(elem, @cost) for elem in @sliderPresets
 
-  updateSliderPresets: (values) =>
-    @updateSliderPreset(elem, values) for elem in @sliderPresets
-
-  updateSliderPreset: (elem, values) ->
-    $(elem).toggleClass('store-slider__preset--active', values.duration() >= +elem.dataset.months)
+  updateSliderPreset: (elem, cost) ->
+    $(elem).toggleClass('store-slider__preset--active', cost.duration() >= +elem.dataset.months)
