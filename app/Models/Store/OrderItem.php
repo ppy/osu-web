@@ -63,7 +63,11 @@ class OrderItem extends Model
             if (isset($this->extra_data['type'])) {
                 switch ($this->extra_data['type']) {
                     case 'supporter-tag':
-                        return "{$this->product->name} for {$this->extra_data['username']} ({$this->extra_data['duration']} months)"; // FIXME: i18n?
+                        return __('store.order.item.display_name.supporter_tag', [
+                            'name' => $this->product->name,
+                            'username' => $this->extra_data['username'],
+                            'duration' => $this->extra_data['duration'],
+                        ]);
                 }
             }
 

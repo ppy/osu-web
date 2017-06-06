@@ -30,6 +30,9 @@ return [
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name for :username (:duration months)',
+            ],
             'quantity' => 'Quantity',
         ],
     ],
