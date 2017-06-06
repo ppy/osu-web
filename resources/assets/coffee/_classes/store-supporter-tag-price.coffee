@@ -58,7 +58,7 @@ class @StoreSupporterTagPrice
       Math.max(0, Math.round(raw, 0))
 
   durationInYears: ->
-    years: Math.floor(@duration() / 12),
+    years: Math.floor(@duration() / 12)
     months: Math.floor(@duration() % 12)
 
   durationText: ->
