@@ -32,15 +32,15 @@
         ];
     @endphp
     <div class="osu-page">
-        @include('objects._mode-selector', $selectorParams)
+        @include('objects._mode_selector', $selectorParams)
         <div class="ranking-page-header">
-            @include('rankings._type-selector', $selectorParams)
+            @include('rankings._type_selector', $selectorParams)
             <hr class="page-mode__underline">
 
             <div class='ranking-page-header__title'>
                 @if (isset($country))
                     <a class='ranking-page-header__flag' href="{{route('ranking', ['mode' => $mode, 'type' => $type])}}">
-                        @include('objects._country-flag', [
+                        @include('objects._country_flag', [
                             'country_code' => $country['acronym'],
                             'country_name' => $country['name'],
                         ])

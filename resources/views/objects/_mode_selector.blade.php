@@ -17,7 +17,7 @@
 --}}
 
 <ul class="page-mode">
-    @foreach (['osu', 'taiko', 'fruits', 'mania'] as $tab)
+    @foreach (App\Models\Beatmap::MODES as $tab => $_int)
         <li class="page-mode__item">
             <a class="page-mode-link{{$mode == $tab ? ' page-mode-link--is-active' : ''}}" href="{{$route($tab, $type)}}">
                 {{trans("beatmaps.mode.{$tab}")}}

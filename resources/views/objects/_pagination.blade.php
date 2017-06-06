@@ -42,14 +42,14 @@
     @endphp
 
     <div class="paginator" id="pagination">
-        @include('objects._pagination-page', ['page' => 1, 'label' => '«'])
-        @include('objects._pagination-page', ['page' => max(1, $currentPage - 1), 'label' => '‹'])
+        @include('objects._pagination_page', ['page' => 1, 'label' => '«'])
+        @include('objects._pagination_page', ['page' => max(1, $currentPage - 1), 'label' => '‹'])
 
         @foreach(range($leftStart, $rightEnd) as $page)
-            @include('objects._pagination-page', ['page' => $page, 'label' => $page, 'active' => ($page == $currentPage)])
+            @include('objects._pagination_page', ['page' => $page, 'label' => $page, 'active' => ($page == $currentPage)])
         @endforeach
 
-        @include('objects._pagination-page', ['page' => min($maxPages, $currentPage + 1), 'label' => '›'])
-        @include('objects._pagination-page', ['page' => $maxPages, 'label' => '»'])
+        @include('objects._pagination_page', ['page' => min($maxPages, $currentPage + 1), 'label' => '›'])
+        @include('objects._pagination_page', ['page' => $maxPages, 'label' => '»'])
     </div>
 @endif

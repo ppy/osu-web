@@ -50,7 +50,7 @@
                     </td>
                     <td>
                         <a class="ranking-page-table__user-link" href="/users/{{$score['user']['id']}}">
-                            @include('objects._country-flag', [
+                            @include('objects._country_flag', [
                                 'country_name' => $score['user']['country_code'],
                                 'country_code' => $score['user']['country_code'],
                             ])
