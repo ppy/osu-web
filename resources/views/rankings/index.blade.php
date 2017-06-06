@@ -23,7 +23,7 @@
             'type' => $type,
             'mode' => $mode,
             'route' => function($mode, $type) use ($country) {
-                return trim(route('ranking', [
+                return trim(route('rankings', [
                     'mode' => $mode,
                     'type' => $type,
                     'country' => $country['acronym'],
@@ -39,7 +39,7 @@
 
             <div class='ranking-page-header__title'>
                 @if (isset($country))
-                    <a class='ranking-page-header__flag' href="{{route('ranking', ['mode' => $mode, 'type' => $type])}}">
+                    <a class='ranking-page-header__flag' href="{{route('rankings', ['mode' => $mode, 'type' => $type])}}">
                         @include('objects._country_flag', [
                             'country_code' => $country['acronym'],
                             'country_name' => $country['name'],

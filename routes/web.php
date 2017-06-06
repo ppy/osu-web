@@ -163,9 +163,9 @@ Route::get('/rankings/{mode?}', function ($mode = 'osu') {
         abort(404);
     }
 
-    return Redirect::route('ranking', ['mode' => $mode, 'type' => 'performance']);
+    return Redirect::route('rankings', ['mode' => $mode, 'type' => 'performance']);
 });
-Route::get('/rankings/{mode}/{type}', ['as' => 'ranking', 'uses' => 'RankingController@index']);
+Route::get('/rankings/{mode}/{type}', ['as' => 'rankings', 'uses' => 'RankingController@index']);
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');

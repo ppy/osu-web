@@ -95,7 +95,7 @@ class RankingController extends Controller
         }
 
         $scores = new LengthAwarePaginator($scores, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
-            'path' => route('ranking', ['mode' => $mode, 'type' => $type]),
+            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
         ]);
 
         return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country'));

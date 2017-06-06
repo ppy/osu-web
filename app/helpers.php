@@ -348,10 +348,10 @@ function nav_links()
         'getSupport' => osu_url('help.support'),
     ];
     $links['rankings'] = [
-        'index' => route('ranking', ['mode' => 'osu', 'type' => 'performance']),
+        'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
         'charts' => osu_url('rankings.charts'),
-        'score' => route('ranking', ['mode' => 'osu', 'type' => 'score']),
-        'country' => route('ranking', ['mode' => 'osu', 'type' => 'country']),
+        'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
+        'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['beatmaps'] = [
