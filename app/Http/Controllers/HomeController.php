@@ -130,7 +130,7 @@ class HomeController extends Controller
         }
     }
 
-    public function search()
+    public function quickSearch()
     {
         $query = Request::input('query');
         $limit = 5;
@@ -144,9 +144,18 @@ class HomeController extends Controller
         $beatmapsets = Beatmapset::search($params);
         $posts = Post::search($params);
         $wikiPages = Wiki\Page::search($params);
-        $users = User::search($params);
+        $users = User::search($params)->get();
+        $counts = [
+            'users' => User::search($params)->count(),
+        ];
 
-        return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages', 'users'));
+        return view('home.nav_search_result', compact(
+            'beatmapsets',
+            'counts',
+            'posts',
+            'users',
+            'wikiPages'
+        ));
     }
 
     public function setLocale()

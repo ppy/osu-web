@@ -31,13 +31,15 @@ function array_search_null($value, $array)
     }
 }
 
-function background_image($url)
+function background_image($url, $proxy = true)
 {
     if (!present($url)) {
         return '';
     }
 
-    return sprintf(' style="background-image:url(\'%s\');" ', e(proxy_image($url)));
+    $url = $proxy ? proxy_image($url) : $url;
+
+    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
 function es_query_and_words($words)

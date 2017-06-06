@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="nav-popup js-nav-search--container">
-    <div>
+    <div class="nav-search">
         <div class="js-nav-search--result hidden">
             {{-- shall be replaced by the thing--}}
         </div>
@@ -32,6 +32,7 @@
             </a>
         </div>
     </div>
+
     <div class="nav-popup__bar">
         <span class="bar u-section-bg"></span>
     </div>

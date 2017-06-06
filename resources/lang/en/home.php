@@ -37,6 +37,13 @@ return [
         ],
     ],
 
+    'search' => [
+        'users' => [
+            'more' => ':count more player search results',
+            'title' => 'Players',
+        ],
+    ],
+
     'user' => [
         'title' => 'news',
         'news' => [
