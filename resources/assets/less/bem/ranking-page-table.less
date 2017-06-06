@@ -17,39 +17,57 @@
  */
 
 .ranking-page-table {
-  min-width: 650px;
   width: 100%;
+  min-width: 650px;
+  white-space: nowrap;
   text-align: center;
 
   &__heading {
     font-weight: normal;
     color: #999;
-    padding: 5px 0px;
+    padding: 5px 10px;
     text-align: center;
 
     &--main {
-      width: 350px;
+      width: 100%;
     }
 
     &--focused {
       color: white;
     }
 
-    &--rank {
-      width: 50px;
+    &--grade {
+      padding: 5px 20px;
     }
   }
 
   &__column {
+    padding: 6px 0px;
+
     &--dimmed {
       opacity: 0.6;
+    }
+
+    &--rank {
+      text-align: center;
+      padding: 0px 10px;
+      opacity: 1;
+    }
+
+    &:first-child {
+      border-top-left-radius: @border-radius-base;
+      border-bottom-left-radius: @border-radius-base;
+    }
+
+    &:last-child {
+      border-top-right-radius: @border-radius-base;
+      border-bottom-right-radius: @border-radius-base;
     }
   }
 
   &__row {
     background: #444;
     border-bottom: 3px solid #333;
-    height: 34px;
     .default-border-radius();
 
     &--inactive {
@@ -70,21 +88,5 @@
     color: @blue-light;
     font-style: italic;
     margin-left: 10px;
-  }
-
-  &__rank-column {
-    width: 50px;
-    text-align: center;
-    opacity: 1;
-  }
-
-  &__rounded-left {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  &__rounded-right {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
   }
 }

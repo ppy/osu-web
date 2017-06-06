@@ -53,8 +53,10 @@
             </div>
         </div>
     </div>
-    <div class="osu-page osu-page--small ranking-page">
-        @yield("scores")
+    <div class="osu-page osu-page--small osu-page--rankings">
+        <div class="ranking-page">
+            @yield("scores")
+        </div>
         @include('objects._pagination', ['object' => $scores->appends(['country' => $country['acronym']])])
     </div>
 @endsection

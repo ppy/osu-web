@@ -21,7 +21,8 @@
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading ranking-page-table__heading--main" colspan="2"></th>
+                <th class="ranking-page-table__heading"></th>
+                <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ trans('rankings.stat.active_users') }}
                 </th>
@@ -45,10 +46,10 @@
         <tbody>
             @foreach ($scores as $index => $score)
                 <tr class="ranking-page-table__row">
-                    <td class="ranking-page-table__rounded-left ranking-page-table__rank-column">
+                    <td class="ranking-page-table__column ranking-page-table__column--rank">
                         #{{ $scores->firstItem() + $index }}
                     </td>
-                    <td>
+                    <td class="ranking-page-table__column">
                         <a class="ranking-page-table__user-link" href="{{route('rankings', [
                             'mode' => $mode,
                             'type' => 'performance',
@@ -62,22 +63,22 @@
                             </span>
                         </a>
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format($score['active_users']) }}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag($score['play_count']) !!}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag($score['ranked_score']) !!}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag(round($score['ranked_score'] / max($score['active_users'], 1))) !!}
                     </td>
-                    <td class="ranking-page-table__column--focused">
+                    <td class="ranking-page-table__column ranking-page-table__column--focused">
                         {!! suffixed_number_format_tag(round($score['performance'])) !!}
                     </td>
-                    <td class="ranking-page-table__column--dimmed ranking-page-table__rounded-right">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format(round($score['performance'] / max($score['active_users'], 1))) }}
                     </td>
                 </tr>

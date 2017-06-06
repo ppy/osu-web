@@ -46,20 +46,21 @@
       .flag-country {
         opacity: 0.5;
       }
-      .@{top}__flag-overlay {
-        display: block;
-      }
     }
   }
 
   &__flag-overlay {
     display: none;
     pointer-events: none;
-    font-size: 20px;
     position: absolute;
+    font-size: 20px;
     left: 2px;
     top: 10px;
     color: white;
     opacity: 0.75;
+
+    .@{top}__flag:hover & {
+      display: block;
+    }
   }
 }

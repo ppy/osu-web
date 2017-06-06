@@ -21,7 +21,8 @@
     <table class="ranking-page-table">
         <thead>
             <tr>
-                <th class="ranking-page-table__heading ranking-page-table__heading--main" colspan="2"></th>
+                <th class="ranking-page-table__heading"></th>
+                <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
                 <th class="ranking-page-table__heading">
                     {{ trans('rankings.stat.accuracy') }}
                 </th>
@@ -34,13 +35,13 @@
                 <th class="ranking-page-table__heading ranking-page-table__heading--focused">
                     {{ trans('rankings.stat.ranked_score') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--rank">
+                <th class="ranking-page-table__heading ranking-page-table__heading--grade">
                     {{ trans('rankings.stat.ss') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--rank">
+                <th class="ranking-page-table__heading ranking-page-table__heading--grade">
                     {{ trans('rankings.stat.s') }}
                 </th>
-                <th class="ranking-page-table__heading ranking-page-table__heading--rank">
+                <th class="ranking-page-table__heading ranking-page-table__heading--grade">
                     {{ trans('rankings.stat.a') }}
                 </th>
             </tr>
@@ -48,11 +49,11 @@
         <tbody>
             @foreach ($scores as $index => $score)
                 <tr class="ranking-page-table__row{{$score['user']['is_active'] ? '' : ' ranking-page-table__row--inactive'}}">
-                    <td class="ranking-page-table__rounded-left ranking-page-table__rank-column">
+                    <td class="ranking-page-table__column ranking-page-table__column--rank">
                         #{{ $scores->firstItem() + $index }}
                     </td>
-                    <td>
-                        <a class="ranking-page-table__user-link" href="/users/{{$score['user']['id']}}">
+                    <td class="ranking-page-table__column">
+                        <a class="ranking-page-table__user-link" href="{{route('users.show', $score['user']['id'])}}">
                             @include('objects._country_flag', [
                                 'country_name' => $score['user']['country']['name'],
                                 'country_code' => $score['user']['country']['code'],
@@ -62,25 +63,25 @@
                             </span>
                         </a>
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ format_percentage($score['hit_accuracy']) }}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format($score['play_count']) }}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {!! suffixed_number_format_tag($score['total_score']) !!}
                     </td>
-                    <td class="ranking-page-table__column--focused">
+                    <td class="ranking-page-table__column ranking-page-table__column--focused">
                         {!! suffixed_number_format_tag($score['ranked_score']) !!}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format($score['grade_counts']['ss']) }}
                     </td>
-                    <td class="ranking-page-table__column--dimmed">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format($score['grade_counts']['s']) }}
                     </td>
-                    <td class="ranking-page-table__column--dimmed ranking-page-table__rounded-right">
+                    <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format($score['grade_counts']['a']) }}
                     </td>
                 </tr>
