@@ -39,6 +39,10 @@ class @StoreSupporterTag
     @usernameInput = @el.querySelector('.js-username-input')
     @inputFeedback = @el.querySelector('.js-input-feedback')
 
+    @user =
+      username: @el.dataset.username
+      avatarUrl: @el.dataset.avatarUrl
+
     @initializeSlider()
     @initializeSliderPresets()
     @initializeUsernameInput()
@@ -69,16 +73,19 @@ class @StoreSupporterTag
   getUser: (username) =>
     $.post laroute.route('users.check-username-exists'), username: username
     .done (data) =>
-      @setUserInteraction(data?)
-      @updateUserDisplay(data)
-      @updateCart(data)
+      @user =
+        username: data.username
+        avatarUrl: data.avatar_url
+
     .fail (xhr) =>
-      @setUserInteraction(false)
-      @updateUserDisplay(null)
-      @updateCart(null)
+      @user = null
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
+
     .always =>
+      @setUserInteraction(@user?)
+      @updateCart(@user)
+      @updateUserDisplay()
       @searching = false
 
   calculate: (position) =>
@@ -115,10 +122,10 @@ class @StoreSupporterTag
     @durationElement.textContent = obj.durationText()
     @discountElement.textContent = "save #{obj.discount()}%"
 
-  updateUserDisplay: (user) =>
-    avatarUrl = if user
+  updateUserDisplay: =>
+    avatarUrl = if @user
                   @inputFeedback.textContent = ''
-                  user.avatar_url
+                  @user.avatarUrl
                 else
                   @inputFeedback.textContent = "This user doesn't exist"
                   ''
