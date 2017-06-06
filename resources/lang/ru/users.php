@@ -90,7 +90,7 @@ return [
                 'title' => 'Карты',
             ],
             'historical' => [
-                'empty' => 'Нет записей о производительности. :(',
+                'empty' => 'Нет каких-либо записей. :(',
                 'most_played' => [
                     'count' => 'раз сыграно',
                     'title' => 'Наибольше сыгранные карты',
@@ -105,7 +105,7 @@ return [
                 'available' => 'Кудосу доступно',
                 'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
                 'recent_entries' => 'Последние переводы',
-                'title' => 'Kudosu!',
+                'title' => 'Кудосу!',
                 'total' => 'Всего кудосу накоплено',
                 'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
 
@@ -144,7 +144,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'обо мне!',
             ],
             'medals' => [
                 'empty' => "Этот пользователь ничего не получил. ;_;",
@@ -171,13 +171,13 @@ return [
                     'title' => 'Любимые карты (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ранкнутые & одобренные карты (:count)',
+                    'title' => 'Рейтинговые и одобренные карты (:count)',
                 ],
                 'none' => 'Ничего нет...',
             ],
         ],
         'page' => [
-            'description' => '<strong>я!</strong> - это Ваше личное редактируемое пространство в Вашем профиле.',
+            'description' => '<strong>обо мне!</strong> - это Ваше личное редактируемое пространство в Вашем профиле.',
             'edit_big' => 'Отредактируй меня!',
             'placeholder' => 'Вводите контент этой страницы',
             'restriction_info' => "Вы должны иметь тег <a href='".osu_url('support-the-game')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
@@ -191,7 +191,7 @@ return [
             'level' => 'Уровень :level',
             'maximum_combo' => 'Максимальное комбо',
             'play_count' => 'Количество игр',
-            'ranked_score' => 'Рейтинговое очко',
+            'ranked_score' => 'Рейтинговые очки',
             'replays_watched_by_others' => 'Реплеев просмотрено другими',
             'score_ranks' => 'Очко рейтинга',
             'total_hits' => 'Всего попаданий',
