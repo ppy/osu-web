@@ -20,13 +20,13 @@
 
 return [
     'landing' => [
-        'online' => 'из них <strong>:players</strong> сейчас в <strong>:games</strong> играх',
+        'online' => 'из них сейчас <strong>:players</strong> в <strong>:games</strong> играх',
         'peak' => 'Пик :count активных игроков',
-        'players' => '<strong>:count</strong> зарегистрированных игроков',
+        'players' => 'зарегистрировано <strong>:count</strong> игроков',
 
         'download' => [
-            '_' => 'Скачать игру',
-            'soon' => 'osu! пока доступен только для Windows',
+            '_' => 'Скачать сейчас',
+            'soon' => 'osu! пока доступна только для Windows',
             'for' => 'для :os',
             'other' => 'или для :os1 и :os2',
         ],
