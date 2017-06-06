@@ -99,7 +99,7 @@ class @StoreSupporterTag
 
   setUserInteraction: (enabled) =>
     $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
-    $('.js-slider').slider({ 'disabled': !enabled })
+    $('.js-slider').slider('disabled': !enabled)
 
   sliderValue: (price) ->
     price * @RESOLUTION
@@ -118,9 +118,9 @@ class @StoreSupporterTag
                           ['', "This user doesn't exist"]
 
     @inputFeedback.textContent = text
-    $(@el.querySelectorAll('.js-avatar')).css(
+    $(@el.querySelectorAll('.js-avatar')).css
       'background-image': "url(#{avatarUrl})"
-    )
+
     @setUserInteraction(@user?)
 
   updateCostDisplay: =>
