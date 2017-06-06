@@ -58,23 +58,15 @@ class OrderItem extends Model
 
     public function getDisplayName()
     {
-        if (is_array($this->extra_data)) {
-            // this prevents fires if type is not set.
-            if (isset($this->extra_data['type'])) {
-                switch ($this->extra_data['type']) {
-                    case 'supporter-tag':
-                        return __('store.order.item.display_name.supporter_tag', [
-                            'name' => $this->product->name,
-                            'username' => $this->extra_data['username'],
-                            'duration' => $this->extra_data['duration'],
-                        ]);
-                }
-            }
-
-            // abandon all hope
-            return $this->product->name;
-        } else {
-            return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
+        switch ($this->product->custom_class) {
+            case 'supporter-tag':
+                return __('store.order.item.display_name.supporter_tag', [
+                    'name' => $this->product->name,
+                    'username' => $this->extra_data['username'],
+                    'duration' => $this->extra_data['duration'],
+                ]);
+            default:
+                return $this->product->name.($this->extra_info !== null ? " ({$this->extra_info})" : '');
         }
     }
 }
