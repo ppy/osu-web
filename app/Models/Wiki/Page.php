@@ -216,11 +216,19 @@ class Page
 
     public function title()
     {
+        if ($this->page() === null) {
+            return trans('wiki.show.missing_title');
+        }
+
         return presence($this->page()['header']['title'] ?? null) ?? $this->defaultTitle;
     }
 
     public function subtitle()
     {
+        if ($this->page() === null) {
+            return;
+        }
+
         return presence($this->page()['header']['subtitle'] ?? null) ?? $this->defaultSubtitle;
     }
 }
