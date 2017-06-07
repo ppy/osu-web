@@ -33,7 +33,7 @@ use Webuni\CommonMark\TableExtension;
 
 class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationAwareInterface
 {
-    const VERSION = 9;
+    const VERSION = 10;
 
     public $firstImage;
     public $title;
@@ -55,10 +55,6 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         $input = static::parseYamlHeader($rawInput);
         $header = $input['header'] ?? [];
-
-        $pathTitleComponents = array_slice(explode('/', str_replace('_', ' ', $config['path'])), -2);
-        $pathTitle = array_pop($pathTitleComponents);
-        $pathSubtitle = array_pop($pathTitleComponents);
 
         if (!isset($config['fetch_title'])) {
             $config['fetch_title'] = !isset($header['title']);
@@ -87,19 +83,10 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             $header['title'] = $processor->title;
         }
 
-        if (!present($header['title'] ?? null)) {
-            $header['title'] = $pathTitle;
-        }
-
-        if (!isset($header['subtitle'])) {
-            $header['subtitle'] = $pathSubtitle;
-        }
-
-        $title = $header['title'];
         $toc = $processor->toc;
         $firstImage = $processor->firstImage;
 
-        return compact('header', 'output', 'title', 'toc', 'firstImage');
+        return compact('header', 'output', 'toc', 'firstImage');
     }
 
     public static function parseYamlHeader($input)
@@ -204,11 +191,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $src = $this->node->getUrl();
 
         if (preg_match('#^(/|https?://)#', $src) !== 1) {
-            $this->node->setUrl(sprintf('%s/%s/%s',
-                $this->config->getConfig('path_prefix'),
-                $this->config->getConfig('path'),
-                $src
-            ));
+            $this->node->setUrl($this->config->getConfig('path').'/'.$src);
         }
     }
 
