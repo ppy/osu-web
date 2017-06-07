@@ -19,6 +19,10 @@
  */
 
 return [
+    'user_search' => [
+        'searching' => 'searching...',
+        'not_found' => "This user doesn't exist",
+    ],
     'duration' => [
         'months' => ':length month|:length months',
         'years' => ':length year|:length years',

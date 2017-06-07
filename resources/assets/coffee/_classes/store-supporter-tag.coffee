@@ -109,13 +109,13 @@ class @StoreSupporterTag
 
   updateSearchResult: =>
     if @searching
-      @inputFeedback.textContent = 'searching'
+      @inputFeedback.textContent = Lang.get('supporter_tag.user_search.searching')
       return @setUserInteraction(false)
 
     [avatarUrl, text] = if @user
                           [@user.avatarUrl, '']
                         else
-                          ['', "This user doesn't exist"]
+                          ['', Lang.get("supporter_tag.user_search.not_found")]
 
     @inputFeedback.textContent = text
     $(@el.querySelectorAll('.js-avatar')).css
