@@ -57,10 +57,16 @@ return [
     ],
 
     'supporter_tag' => [
-        'require_login' => 'You need to be <a href="#" class="js-user-link" title=":title">logged in</a> to get a supporter tag!',
+        'require_login' => [
+            '_' => 'You need to be :link to get a supporter tag!',
+            'link_text' => 'logged in',
+        ],
     ],
 
     'username_change' => [
-        'require_login' => 'You need to be <a href="#" class="js-user-link" title=":title">logged in</a> to change your name!',
+        'require_login' => [
+            '_' => 'You need to be :link to change your name!',
+            'link_text' => 'logged in',
+        ]
     ],
 ];

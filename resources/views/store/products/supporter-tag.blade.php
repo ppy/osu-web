@@ -18,7 +18,12 @@
 @if(!Auth::user())
 <div class="grid grid--gutters">
     <div class="grid-cell grid-cell--1of2">
-        {!! trans('store.supporter_tag.require_login', ['title' => trans('users.anonymous.login_link')]) !!}
+        @php
+            $title = __('users.anonymous.login_link');
+            $text = __('store.supporter_tag.require_login.link_text');
+            $link = Html::link('#', $text, ['class' => 'js-user-link', 'title' => $title]);
+        @endphp
+        {!! __('store.supporter_tag.require_login._', ['link' => $link]) !!}
     </div>
 </div>
 @else
