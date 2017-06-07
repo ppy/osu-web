@@ -57,6 +57,9 @@ class @StoreSupporterTagPrice
       raw = ((1 - (@_price / @duration()) / 4) * 100)
       Math.max(0, Math.round(raw, 0))
 
+  discountText: ->
+    osu.trans('store.discount', percent: @discount())
+
   durationInYears: ->
     years: Math.floor(@duration() / 12)
     months: Math.floor(@duration() % 12)

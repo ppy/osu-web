@@ -28,6 +28,8 @@ return [
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
 
+    'discount' => 'save :percent%',
+
     'order' => [
         'item' => [
             'display_name' => [

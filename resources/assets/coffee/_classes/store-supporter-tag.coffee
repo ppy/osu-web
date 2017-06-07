@@ -128,7 +128,7 @@ class @StoreSupporterTag
     @el.querySelector('input[name="item[extra_data][duration]"').value = @cost.duration()
     @priceElement.textContent = "USD #{@cost.price()}"
     @durationElement.textContent = @cost.durationText()
-    @discountElement.textContent = "save #{@cost.discount()}%"
+    @discountElement.textContent = @cost.discountText()
     @updateSliderPreset(elem, @cost) for elem in @sliderPresets
 
   updateSliderPreset: (elem, cost) ->
