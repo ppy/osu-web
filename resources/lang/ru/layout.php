@@ -168,10 +168,10 @@ return [
         ],
         'legal' => [
             '_' => 'Права и статус',
-            'tos' => 'Условия использования',
             'copyright' => 'Авторские права (DMCA)',
-            'serverStatus' => 'Статус серверов',
-            'osuStatus' => '@osustatus',
+            'osu_status' => '@osustatus',
+            'server_status' => 'Статус серверов',
+            'terms' => 'Условия использования',
         ],
     ],
 
