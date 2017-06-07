@@ -67,6 +67,6 @@ return [
         'require_login' => [
             '_' => 'You need to be :link to change your name!',
             'link_text' => 'logged in',
-        ]
+        ],
     ],
 ];
