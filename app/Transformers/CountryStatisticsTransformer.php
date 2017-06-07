@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,52 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.ranking-page-header {
-  @top: ranking-page-header;
+namespace App\Transformers;
 
-  background-color: #333;
-  background-size: cover;
-  background-position: center;
-  .at2x-simple('/images/headers/rankings.jpg');
+use App\Models\CountryStatistics;
+use League\Fractal;
 
-  height: 250px;
-  padding: 10px 40px 0;
+class CountryStatisticsTransformer extends Fractal\TransformerAbstract
+{
+    protected $availableIncludes = ['country'];
 
-  &__title {
-    font-size: 35px;
-    font-weight: 100;
-    text-align: center;
-    padding-top: 10px;
-    color: white;
-  }
-
-  &__title-type {
-    color: @yellow;
-    text-transform: capitalize;
-  }
-
-  &__flag {
-    display: inline-flex;
-    .link-plain();
-    &:hover {
-      .flag-country {
-        opacity: 0.5;
-      }
+    public function transform(CountryStatistics $stat)
+    {
+        return [
+            'code' => $stat->country_code,
+            'active_users' => $stat->user_count,
+            'play_count' => $stat->play_count,
+            'ranked_score' => $stat->ranked_score,
+            'performance' => $stat->performance,
+        ];
     }
-  }
 
-  &__flag-overlay {
-    pointer-events: none;
-    font-size: 20px;
-    color: white;
-    opacity: 0.75;
-
-    .full-size();
-    .center-content();
-    display: none;
-
-    .@{top}__flag:hover & {
-      display: flex;
+    public function includeCountry(CountryStatistics $stat)
+    {
+        return $this->item($stat->country, new CountryTransformer);
     }
-  }
 }
