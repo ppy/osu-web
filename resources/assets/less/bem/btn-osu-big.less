@@ -113,6 +113,13 @@
     background-color: @green;
   }
 
+  &--nav-popup {
+    text-align: left;
+    width: 120px;
+    height: 35px;
+    padding: 7px 10px;
+  }
+
   &--password-reset {
     padding: 10px;
     text-align: center;
@@ -139,13 +146,18 @@
     justify-content: space-between;
     align-items: center;
 
+    &--center {
+      justify-content: center;
+    }
+
     .@{top}--account-edit & {
       width: auto;
       margin: 0 -5px;
     }
 
-    &--center {
-      justify-content: center;
+    .@{top}--nav-popup & {
+      width: auto;
+      margin: 0 -5px;
     }
 
     .@{top}--user-homepage & {
@@ -178,6 +190,13 @@
       margin-left: 20px;
       font-size: 20px;
       border: 2px solid #fff;
+    }
+
+    .@{top}--nav-popup & {
+      height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 

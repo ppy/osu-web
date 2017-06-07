@@ -107,5 +107,6 @@
 
 @section("script")
   @parent
-  <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track="reload"></script>
+
+  @include('layout._extra_js', ['src' => 'js/react/artist-page.js'])
 @stop
