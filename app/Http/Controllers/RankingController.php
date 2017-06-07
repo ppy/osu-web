@@ -49,9 +49,6 @@ class RankingController extends Controller
                 ->where('mode', $modeInt)
                 ->count();
 
-            $maxPages = ceil($maxResults / static::PAGE_SIZE);
-            $page = clamp(get_int(Request::input('page')), 1, $maxPages);
-
             $stats = CountryStatistics::where('display', 1)
                 ->with('country')
                 ->where('mode', $modeInt)
@@ -64,8 +61,6 @@ class RankingController extends Controller
             }
 
             $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
-            $maxPages = ceil($maxResults / static::PAGE_SIZE);
-            $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
             $stats = UserStatistics\Model::getClass($mode)
                 ->with(['user', 'user.country'])
@@ -84,7 +79,12 @@ class RankingController extends Controller
             }
         }
 
-        $stats = $stats->limit(static::PAGE_SIZE)->offset(static::PAGE_SIZE * ($page - 1))->get();
+        $maxPages = ceil($maxResults / static::PAGE_SIZE);
+        $page = clamp(get_int(Request::input('page')), 1, $maxPages);
+
+        $stats = $stats->limit(static::PAGE_SIZE)
+            ->offset(static::PAGE_SIZE * ($page - 1))
+            ->get();
 
         if (Request::is('api/v2/*')) {
             switch ($type) {
