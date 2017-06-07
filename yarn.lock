@@ -1294,10 +1294,6 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
-
 cli-table@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cli-table/-/cli-table-0.3.1.tgz#f53b05266a8b1a0b934b3d0821e6e2dc5914ae23"
@@ -4967,12 +4963,6 @@ react-motion@^0.4.5:
     performance-now "^0.2.0"
     prop-types "^15.5.8"
     raf "^3.1.0"
-
-react-table@5.5.3:
-  version "5.5.3"
-  resolved "https://registry.yarnpkg.com/react-table/-/react-table-5.5.3.tgz#55a4b1e1dc792c828cbacc8929c1a54462d6c187"
-  dependencies:
-    classnames "^2.2.5"
 
 react@^15.1.0:
   version "15.5.4"
