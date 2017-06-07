@@ -40,11 +40,11 @@ class SessionsController extends Controller
     public function store()
     {
         $ip = Request::getClientIp();
-        $username = presence(trim(Request::input('username')));
-        $password = presence(trim(Request::input('password')));
+        $username = trim(Request::input('username'));
+        $password = trim(Request::input('password'));
         $remember = Request::input('remember') === 'yes';
 
-        if ($username === null || $password === null) {
+        if (!present($username) || !present($password)) {
             abort(422);
         }
 
