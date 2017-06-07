@@ -62,21 +62,17 @@ class @StoreSupporterTagPrice
     months: Math.floor(@duration() % 12)
 
   durationText: ->
-    obj = @durationInYears()
-    yearsText = switch obj.years
+    duration = @durationInYears()
+    yearsText = switch duration.years
                 when 0
                   ''
-                when 1
-                  "#{obj.years} year"
                 else
-                  "#{obj.years} years"
+                  Lang.choice('supporter_tag.duration.years', duration.years, length: duration.years)
 
-    monthsText = switch obj.months
-                when 0
-                  ''
-                when 1
-                  "#{obj.months} month"
-                else
-                  "#{obj.months} months"
+    monthsText = switch duration.months
+                 when 0
+                   ''
+                 else
+                   Lang.choice('supporter_tag.duration.months', duration.months, length: duration.months)
 
     _.compact([yearsText, monthsText]).join(', ')
