@@ -61,7 +61,7 @@ class Kernel extends ConsoleKernel
             ->everyThirtyMinutes();
 
         $schedule->command('rankings:recalculate-country')
-            ->cron('25 */3+2 * * *');
+            ->cron('25 0,3,6,9,12,15,18,21 * * *');
     }
 
     protected function commands()
