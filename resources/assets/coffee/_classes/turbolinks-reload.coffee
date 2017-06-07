@@ -16,30 +16,25 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-internal = [
-  'admin'
-  'api/v2'
-  'beatmaps'
-  'beatmapsets'
-  'community'
-  'help'
-  'home'
-  'legal'
-  'oauth'
-  'rankings'
-  'session'
-  'store'
-  'users'
-].join('|')
-
-
-class @TurbolinksDisable
+class @TurbolinksReload
   constructor: ->
-    addEventListener 'turbolinks:click', @cancelIfExternal
+    @loaded = {}
+    @scripts = document.getElementsByClassName('js-extra-script')
+
+    addEventListener 'turbolinks:before-cache', @unload
 
 
-  cancelIfExternal: (event) ->
-    prefix = "#{document.location.protocol}//#{document.location.host}/"
+  load: (src) =>
+    return if @loaded[src]?
 
-    unless RegExp("^(?:#{internal})(?:$|/)").test event.data.url.substr(prefix.length)
-      event.preventDefault()
+    el = document.createElement('script')
+    el.classList.add 'js-extra-script'
+    el.src = src
+
+    document.body.appendChild(el)
+
+    @loaded[src] = true
+
+
+  unload: =>
+     document.body.removeChild(@scripts[0]) while @scripts[0]?
