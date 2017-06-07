@@ -17,11 +17,19 @@
 --}}
 <link rel="shortcut icon" href="{{ Config::get("osu.static", "//s.ppy.sh") }}/favicon.ico" type="image/vnd.microsoft.icon">
 <link rel="icon" href="{{ Config::get("osu.static", "//s.ppy.sh") }}/favicon.ico" type="image/vnd.microsoft.icon">
+
+<link rel="manifest" href="manifest.json">
+
 <meta charset="utf-8">
 <meta name="description" content="{{ $pageDescription or trans('layout.defaults.page_description') }}">
 <meta name="keywords" content="osu, peppy, ouendan, elite, beat, agents, ds, windows, game, taiko, tatsujin, simulator, sim, xna, ddr, beatmania, osu!, osume">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="theme-color" content="#cc5288">
+<meta name="msapplication-navbutton-color" content="#cc5288">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="mobile-web-app-capable" content="yes">
 
 <meta name="csrf-param" content="_token">
 <meta name="csrf-token" content="{{ csrf_token() }}">
