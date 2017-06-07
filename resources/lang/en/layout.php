@@ -168,10 +168,10 @@ return [
         ],
         'legal' => [
             '_' => 'Legal & Status',
-            'tos' => 'Terms of Service',
             'copyright' => 'Copyright (DMCA)',
-            'serverStatus' => 'Server Status',
-            'osuStatus' => '@osustatus',
+            'osu_status' => '@osustatus',
+            'server_status' => 'Server Status',
+            'terms' => 'Terms of Service',
         ],
     ],
 

@@ -373,34 +373,38 @@ function nav_links()
     return $links;
 }
 
-function footer_links()
+function footer_landing_links()
 {
-    $links = [];
-    $links['general'] = [
-        'home' => route('home'),
-        'changelog' => route('changelog'),
-        'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => osu_url('home.download'),
-        'wiki' => wiki_url('Welcome'),
+    return [
+        'general' => [
+            'home' => route('home'),
+            'changelog' => route('changelog'),
+            'beatmaps' => action('BeatmapsetsController@index'),
+            'download' => osu_url('home.download'),
+            'wiki' => wiki_url('Welcome'),
+        ],
+        'help' => [
+            'faq' => wiki_url('FAQ'),
+            'forum' => route('forum.forums.index'),
+            'livestreams' => route('livestreams.index'),
+            'report' => route('forum.topics.create', ['forum_id' => 5]),
+        ],
+        'support' => [
+            'tags' => route('support-the-game'),
+            'merchandise' => action('StoreController@getListing'),
+        ],
+        'legal' => footer_legal_links(),
     ];
-    $links['help'] = [
-        'faq' => wiki_url('FAQ'),
-        'forum' => route('forum.forums.index'),
-        'livestreams' => route('livestreams.index'),
-        'report' => route('forum.topics.create', ['forum_id' => 5]),
-    ];
-    $links['support'] = [
-        'tags' => route('support-the-game'),
-        'merchandise' => action('StoreController@getListing'),
-    ];
-    $links['legal'] = [
-        'tos' => route('legal', 'terms'),
-        'copyright' => route('legal', 'copyright'),
-        'serverStatus' => osu_url('status.server'),
-        'osuStatus' => osu_url('status.osustatus'),
-    ];
+}
 
-    return $links;
+function footer_legal_links()
+{
+    return [
+        'terms' => route('legal', 'terms'),
+        'copyright' => route('legal', 'copyright'),
+        'server_status' => osu_url('status.server'),
+        'osu_status' => osu_url('status.osustatus'),
+    ];
 }
 
 function presence($string, $valueIfBlank = null)
