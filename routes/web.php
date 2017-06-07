@@ -239,8 +239,12 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
-        Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
-        Route::get('users/{user}', ['uses' => 'UsersController@show']);                   //  GET /api/v2/users/:user_id
+        //  GET /api/v2/me
+        Route::get('me', ['uses' => 'UsersController@me']);
+        //  GET /api/v2/rankings/:mode/:type
+        Route::get('rankings/{mode}/{type}', ['uses' => '\App\Http\Controllers\RankingController@index']);
+        //  GET /api/v2/users/:user_id
+        Route::get('users/{user}', ['uses' => 'UsersController@show']);
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {
