@@ -281,6 +281,14 @@ class Order extends Model
     {
         $product = $params['product'];
 
+        // FIXME: custom class stuff should probably not go in Order...
+        if ($product->custom_class === 'supporter-tag') {
+            $targetUsername = $params['extraData']['username'];
+            $user = User::where('username', $targetUsername)->first();
+            // TODO: burst into flames if user is null
+            $params['extraData']['target_id'] = $user->user_id;
+        }
+
         $item = new OrderItem();
         $item->quantity = $params['quantity'];
         $item->extra_info = $params['extraInfo'];
