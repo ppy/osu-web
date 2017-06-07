@@ -30,7 +30,7 @@
             <div class="nav-popup__action"></div>
 
             <div class="nav-popup__action">
-                <a href="{{ osu_url('user.signup') }}" class="nav-popup__button btn-osu-big">
+                <a href="{{ osu_url('user.signup') }}" class="btn-osu-big btn-osu-big--nav-popup">
                     <div class="btn-osu-big__content">
                         <span class="btn-osu-big__left">
                             {{ trans('users.signup._') }}
@@ -64,12 +64,14 @@
                 class="nav-popup__form-input js-nav-auto-focus"
                 name="username"
                 placeholder="{{ trans('layout.popup_login.login.email') }}"
+                required
             />
             <input
                 class="nav-popup__form-input"
                 name="password"
                 type="password"
                 placeholder="{{ trans('layout.popup_login.login.password') }}"
+                required
             />
         </div>
 
@@ -81,7 +83,10 @@
             </div>
 
             <div class="nav-popup__action">
-                <button class="nav-popup__button btn-osu-big">
+                <button
+                    class="btn-osu-big btn-osu-big--nav-popup"
+                    data-disable-with="{{ trans('users.login.button_posting') }}"
+                >
                     <div class="btn-osu-big__content">
                         <span class="btn-osu-big__left">
                             {{ trans('users.login._') }}
