@@ -16,5 +16,25 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.register 'ranking-page', Ranking.Page, ->
-  osu.parseJson('json-scores')
+class @TurbolinksReload
+  constructor: ->
+    @loaded = {}
+    @scripts = document.getElementsByClassName('js-extra-script')
+
+    addEventListener 'turbolinks:before-cache', @unload
+
+
+  load: (src) =>
+    return if @loaded[src]?
+
+    el = document.createElement('script')
+    el.classList.add 'js-extra-script'
+    el.src = src
+
+    document.body.appendChild(el)
+
+    @loaded[src] = true
+
+
+  unload: =>
+     document.body.removeChild(@scripts[0]) while @scripts[0]?

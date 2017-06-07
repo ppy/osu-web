@@ -161,10 +161,10 @@ return [
         ],
         'legal' => [
             '_' => 'Estatus Legal',
-            'tos' => 'Términos de Servicio',
             'copyright' => 'Copyright (DMCA)',
-            'serverStatus' => 'Estado del Servidor',
-            'osuStatus' => '@osustatus',
+            'osu_status' => '@osustatus',
+            'server_status' => 'Estado del Servidor',
+            'terms' => 'Términos de Servicio',
         ],
     ],
 

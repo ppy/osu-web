@@ -348,10 +348,10 @@ function nav_links()
         'getSupport' => osu_url('help.support'),
     ];
     $links['rankings'] = [
-        'index' => route('ranking', ['mode' => 'osu', 'type' => 'performance']),
+        'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
         'charts' => osu_url('rankings.charts'),
-        'score' => route('ranking', ['mode' => 'osu', 'type' => 'score']),
-        'country' => osu_url('rankings.country'),
+        'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
+        'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['beatmaps'] = [
@@ -373,34 +373,38 @@ function nav_links()
     return $links;
 }
 
-function footer_links()
+function footer_landing_links()
 {
-    $links = [];
-    $links['general'] = [
-        'home' => route('home'),
-        'changelog' => route('changelog'),
-        'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => osu_url('home.download'),
-        'wiki' => wiki_url('Welcome'),
+    return [
+        'general' => [
+            'home' => route('home'),
+            'changelog' => route('changelog'),
+            'beatmaps' => action('BeatmapsetsController@index'),
+            'download' => osu_url('home.download'),
+            'wiki' => wiki_url('Welcome'),
+        ],
+        'help' => [
+            'faq' => wiki_url('FAQ'),
+            'forum' => route('forum.forums.index'),
+            'livestreams' => route('livestreams.index'),
+            'report' => route('forum.topics.create', ['forum_id' => 5]),
+        ],
+        'support' => [
+            'tags' => route('support-the-game'),
+            'merchandise' => action('StoreController@getListing'),
+        ],
+        'legal' => footer_legal_links(),
     ];
-    $links['help'] = [
-        'faq' => wiki_url('FAQ'),
-        'forum' => route('forum.forums.index'),
-        'livestreams' => route('livestreams.index'),
-        'report' => route('forum.topics.create', ['forum_id' => 5]),
-    ];
-    $links['support'] = [
-        'tags' => route('support-the-game'),
-        'merchandise' => action('StoreController@getListing'),
-    ];
-    $links['legal'] = [
-        'tos' => route('legal', 'terms'),
-        'copyright' => route('legal', 'copyright'),
-        'serverStatus' => osu_url('status.server'),
-        'osuStatus' => osu_url('status.osustatus'),
-    ];
+}
 
-    return $links;
+function footer_legal_links()
+{
+    return [
+        'terms' => route('legal', 'terms'),
+        'copyright' => route('legal', 'copyright'),
+        'server_status' => osu_url('status.server'),
+        'osu_status' => osu_url('status.osustatus'),
+    ];
 }
 
 function presence($string, $valueIfBlank = null)
@@ -833,4 +837,31 @@ function build_icon($prefix)
 function clamp($number, $min, $max)
 {
     return min($max, max($min, $number));
+}
+
+// e.g. 100634983048665 -> 100.63 trillion
+function suffixed_number_format($number)
+{
+    $suffixes = ['', 'k', 'millon', 'billion', 'trillion']; // TODO: localize
+    $k = 1000;
+
+    if ($number < $k) {
+        return $number;
+    }
+
+    $i = floor(log($number) / log($k));
+
+    return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+}
+
+function suffixed_number_format_tag($number)
+{
+    return "<span title='".number_format($number)."'>".suffixed_number_format($number).'</span>';
+}
+
+// formats a number as a percentage with a fixed number of precision
+// e.g.: 98.3 -> 98.30%
+function format_percentage($number, $precision = 2)
+{
+    return sprintf("%.{$precision}f%%", round($number, $precision));
 }

@@ -15,12 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<footer class="footer no-print">
+@php
+    $blockClass = 'no-print footer';
+
+    foreach ($modifiers ?? [] as $modifier) {
+        $blockClass .= " footer--{$modifier}";
+    }
+@endphp
+<footer class="{{ $blockClass }}">
     <div class="footer__row">
-        <a class="footer__link" href="{{ route('legal', 'terms') }}">{{ trans('layout.footer.legal.tos') }}</a>
-        <a class="footer__link" href="{{ route('legal', 'copyright') }}">{{ trans('layout.footer.legal.copyright') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.server') }}">{{ trans('layout.footer.legal.serverStatus') }}</a>
-        <a class="footer__link" href="{{ osu_url('status.osustatus') }}">{{ trans('layout.footer.legal.osuStatus') }}</a>
+        @foreach (footer_legal_links() as $action => $link)
+            <a class="footer__link" href="{{ $link }}">
+                {{ trans("layout.footer.legal.{$action}") }}
+            </a>
+        @endforeach
     </div>
     <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
