@@ -64,12 +64,14 @@
                 class="nav-popup__form-input js-nav-auto-focus"
                 name="username"
                 placeholder="{{ trans('layout.popup_login.login.email') }}"
+                required
             />
             <input
                 class="nav-popup__form-input"
                 name="password"
                 type="password"
                 placeholder="{{ trans('layout.popup_login.login.password') }}"
+                required
             />
         </div>
 
