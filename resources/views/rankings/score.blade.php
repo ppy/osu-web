@@ -55,8 +55,8 @@
                     <td class="ranking-page-table__column">
                         <a class="ranking-page-table__user-link" href="{{route('users.show', $score->user_id)}}">
                             @include('objects._country_flag', [
-                                'country_name' => $score->user->country_acronym,
-                                'country_code' => $score->user->country_acronym,
+                                'country_name' => $score->user->country->name,
+                                'country_code' => $score->user->country->acronym,
                             ])
                             <span class="ranking-page-table__user-link-text">
                                 {{ $score->user->username }}
@@ -76,13 +76,13 @@
                         {!! suffixed_number_format_tag($score->ranked_score) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score->x_rank_count) }}
+                        {{ number_format(max(0, $score->x_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score->s_rank_count) }}
+                        {{ number_format(max(0, $score->s_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score->a_rank_count) }}
+                        {{ number_format(max(0, $score->a_rank_count)) }}
                     </td>
                 </tr>
             @endforeach
