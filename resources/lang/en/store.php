@@ -55,4 +55,12 @@ return [
 
         'notification_in_stock' => 'This product is already in stock!',
     ],
+
+    'supporter_tag' => [
+        'require_login' => 'You need to be <a href="#" class="js-user-link" title=":title">logged in</a> to get a supporter tag!',
+    ],
+
+    'username_change' => [
+        'require_login' => 'You need to be <a href="#" class="js-user-link" title=":title">logged in</a> to change your name!',
+    ],
 ];

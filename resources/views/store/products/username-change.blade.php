@@ -18,7 +18,7 @@
 @if(!Auth::user())
 <div class="grid grid--gutters">
     <div class="grid-cell grid-cell--1of2">
-        You need to be <a href="#" class="js-user-link" title="{{ trans("users.anonymous.login_link") }}">logged in</a> to change your name!
+        {!! trans('store.username_change.require_login', ['title' => trans('users.anonymous.login_link')]) !!}
     </div>
 </div>
 @else
