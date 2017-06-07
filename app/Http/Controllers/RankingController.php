@@ -56,7 +56,6 @@ class RankingController extends Controller
                 ->with('country')
                 ->where('mode', $modeInt)
                 ->orderBy('performance', 'desc');
-
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $country = Country::where('display', '>', 0)
@@ -78,7 +77,7 @@ class RankingController extends Controller
                 $stats->where('country_acronym', $country['acronym']);
             }
 
-            if ($type == 'performance') {
+            if ($type === 'performance') {
                 $stats->orderBy('rank_score', 'desc');
             } else { // 'score'
                 $stats->orderBy('ranked_score', 'desc');
