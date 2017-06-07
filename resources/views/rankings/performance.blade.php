@@ -45,38 +45,38 @@
         </thead>
         <tbody>
             @foreach ($scores as $index => $score)
-                <tr class="ranking-page-table__row{{$score['user']['is_active'] ? '' : ' ranking-page-table__row--inactive'}}">
+                <tr class="ranking-page-table__row{{$score->user->isActive() ? '' : ' ranking-page-table__row--inactive'}}">
                     <td class="ranking-page-table__column ranking-page-table__column--rank">
                         #{{ $scores->firstItem() + $index }}
                     </td>
                     <td class="ranking-page-table__column">
-                        <a class="ranking-page-table__user-link" href="{{route('users.show', $score['user']['id'])}}">
+                        <a class="ranking-page-table__user-link" href="{{route('users.show', $score->user_id)}}">
                             @include('objects._country_flag', [
-                                'country_name' => $score['user']['country_code'],
-                                'country_code' => $score['user']['country_code'],
+                                'country_name' => $score->user->country_acronym,
+                                'country_code' => $score->user->country_acronym,
                             ])
                             <span class="ranking-page-table__user-link-text">
-                                {{ $score['user']['username'] }}
+                                {{ $score->user->username }}
                             </span>
                         </a>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ format_percentage($score['hit_accuracy']) }}
+                        {{ format_percentage($score->accuracy_new) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score['play_count']) }}
+                        {{ number_format($score->playcount) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--focused">
-                        {{ number_format(round($score['pp'])) }}
+                        {{ number_format(round($score->rank_score)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score['grade_counts']['ss']) }}
+                        {{ number_format($score->x_rank_count) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score['grade_counts']['s']) }}
+                        {{ number_format($score->s_rank_count) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format($score['grade_counts']['a']) }}
+                        {{ number_format($score->a_rank_count) }}
                     </td>
                 </tr>
             @endforeach

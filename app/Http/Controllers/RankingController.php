@@ -55,11 +55,8 @@ class RankingController extends Controller
             $stats = CountryStatistics::where('display', 1)
                 ->with('country')
                 ->where('mode', $modeInt)
-                ->orderBy('performance', 'desc')
-                ->limit(static::PAGE_SIZE)
-                ->offset(static::PAGE_SIZE * ($page - 1));
+                ->orderBy('performance', 'desc');
 
-            $scores = json_collection($stats->get(), 'CountryStatistics', ['country']);
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
                 $country = Country::where('display', '>', 0)
@@ -75,29 +72,38 @@ class RankingController extends Controller
                 ->with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();
-                })
-                ->limit(static::PAGE_SIZE)
-                ->offset(static::PAGE_SIZE * ($page - 1));
+                });
 
             if ($country) {
                 $stats->where('country_acronym', $country['acronym']);
             }
 
-            switch ($type) {
-                case 'performance':
-                    $stats->orderBy('rank_score', 'desc');
-                    break;
-                case 'score':
-                    $stats->orderBy('ranked_score', 'desc');
-                    break;
+            if ($type == 'performance') {
+                $stats->orderBy('rank_score', 'desc');
+            } else { // 'score'
+                $stats->orderBy('ranked_score', 'desc');
             }
-            $scores = json_collection($stats->get(), 'UserStatistics', ['user', 'user.country']);
         }
 
-        $scores = new LengthAwarePaginator($scores, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
-            'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
-        ]);
+        $stats = $stats->limit(static::PAGE_SIZE)->offset(static::PAGE_SIZE * ($page - 1))->get();
 
-        return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country'));
+        if (Request::is('api/v2/*')) {
+            switch ($type) {
+                case 'country':
+                    return json_collection($stats, 'CountryStatistics', ['country']);
+                break;
+
+                case 'performance':
+                case 'score':
+                    return json_collection($stats, 'UserStatistics', ['user', 'user.country']);
+                    break;
+            }
+        } else {
+            $scores = new LengthAwarePaginator($stats, $maxPages * static::PAGE_SIZE, static::PAGE_SIZE, $page, [
+                'path' => route('rankings', ['mode' => $mode, 'type' => $type]),
+            ]);
+
+            return view("rankings.{$type}", compact('scores', 'mode', 'type', 'country'));
+        }
     }
 }
