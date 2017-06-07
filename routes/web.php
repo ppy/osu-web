@@ -165,7 +165,7 @@ Route::get('/rankings/{mode?}', function ($mode = 'osu') {
 
     return Redirect::route('rankings', ['mode' => $mode, 'type' => 'performance']);
 });
-Route::get('/rankings/{mode}/{type}', ['as' => 'rankings', 'uses' => 'RankingController@index']);
+Route::get('/rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
@@ -242,7 +242,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //  GET /api/v2/me
         Route::get('me', ['uses' => 'UsersController@me']);
         //  GET /api/v2/rankings/:mode/:type
-        Route::get('rankings/{mode}/{type}', ['uses' => '\App\Http\Controllers\RankingController@index']);
+        Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
         //  GET /api/v2/users/:user_id
         Route::get('users/{user}', ['uses' => 'UsersController@show']);
     });
