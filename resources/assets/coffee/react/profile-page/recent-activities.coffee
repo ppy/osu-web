@@ -23,9 +23,6 @@ class ProfilePage.RecentActivities extends React.Component
   _renderEntry: (event) =>
     return if event.parse_error
 
-    # default, empty badge
-    badge = div className: 'profile-extra-entries__icon'
-
     switch event.type
       when 'achievement'
         badge = el ProfilePage.AchievementBadge,
@@ -151,6 +148,9 @@ class ProfilePage.RecentActivities extends React.Component
       else
         # unkown event
         return
+
+    # default, empty badge
+    badge ?= div className: 'profile-extra-entries__icon'
 
     li
       className: 'profile-extra-entries__item'
