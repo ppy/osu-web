@@ -84,7 +84,6 @@ class @StoreSupporterTag
 
     .always =>
       @searching = false
-      @updateCart(@user)
       @updateSearchResult()
 
   calculate: (position) =>
@@ -101,14 +100,12 @@ class @StoreSupporterTag
     @debouncedGetUser(event.currentTarget.value)
 
   setUserInteraction: (enabled) =>
+    StoreCart.setEnabled(enabled)
     $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
     $('.js-slider').slider('disabled': !enabled)
 
   sliderValue: (price) ->
     price * @RESOLUTION
-
-  updateCart: (data) ->
-    StoreCart.setEnabled(data?)
 
   updateSearchResult: =>
     if @searching
