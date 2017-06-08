@@ -19,5 +19,5 @@
 @if ($page == $currentPage)
     <span class="paginator__page {{ (isset($active) && $active) ? 'paginator__page--current' : 'paginator__page--disabled'}}">{{ $label }}</span>
 @else
-    <a class="paginator__page" href="{{ $object->url($page) }}#pagination">{{ $label }}</a>
+    <a class="paginator__page" href="{{ $object->url($page) }}">{{ $label }}</a>
 @endif

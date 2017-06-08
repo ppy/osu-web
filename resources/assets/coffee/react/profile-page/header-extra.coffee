@@ -112,6 +112,10 @@ class ProfilePage.HeaderExtra extends React.Component
               key: 'interests'
               icon: 'heart-o'
 
+            @fancyLink
+              key: 'occupation'
+              icon: 'suitcase'
+
           div className: "#{bn}__rows",
             @fancyLink
               key: 'twitter'
@@ -122,6 +126,11 @@ class ProfilePage.HeaderExtra extends React.Component
                     style: fontStyle: 'normal'
                     '@'
                   @props.user.twitter
+
+            @fancyLink
+              key: 'website'
+              icon: 'globe'
+              url: "#{@props.user.website}"
 
             @fancyLink
               key: 'skype'
