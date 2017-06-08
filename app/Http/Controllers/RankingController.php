@@ -31,7 +31,7 @@ class RankingController extends Controller
 {
     protected $section = 'rankings';
 
-    const PAGE_SIZE = 20;
+    const PAGE_SIZE = 50;
     const MAX_RESULTS = 10000;
     const RANKING_TYPES = ['performance', 'score', 'country'];
 
