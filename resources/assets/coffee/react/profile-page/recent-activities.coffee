@@ -16,24 +16,101 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+{div, li, p, ul} = React.DOM
 el = React.createElement
 
-class ProfilePage.RecentActivities extends React.Component
-  _renderEntry: (event) =>
-    # default, empty badge
-    badge = el 'div', className: 'profile-extra-entries__icon'
+class ProfilePage.RecentActivities extends React.PureComponent
+  render: =>
+    div
+      className: 'page-extra'
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
-    if event.parse_error
-      return
+      if @props.recentActivities.length
+        ul
+          className: 'profile-extra-entries'
+          @props.recentActivities.map @_renderEntry
+      else
+        p className: 'profile-extra-entries', osu.trans('events.empty')
+
+
+  _renderEntry: (event) =>
+    return if event.parse_error
 
     switch event.type
+      when 'achievement'
+        badge = el ProfilePage.AchievementBadge,
+          achievement: event.achievement
+          userAchievement:
+            achieved_at: event.createdAt
+            achievement_id: event.achievement.id
+          additionalClasses: 'profile-extra-entries__icon'
+
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.achievement',
+              user: osu.link(event.user.url, event.user.username)
+              achievement: event.achievement.name
+
+      when 'beatmapPlaycount'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.beatmap_playcount',
+              beatmap: osu.link(event.beatmap.url, event.beatmap.title)
+              count: event.count
+
+      when 'beatmapsetApprove'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.beatmapset_approve',
+              approval: event.approval
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
+              user: osu.link(event.user.url, event.user.username)
+
+      when 'beatmapsetDelete'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.beatmapset_delete',
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
+
+      when 'beatmapsetRevive'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.beatmapset_revive',
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
+              user: osu.link(event.user.url, event.user.username)
+
+      when 'beatmapsetUpdate'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.beatmapset_update',
+              user: osu.link(event.user.url, event.user.username)
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
+
+      when 'beatmapsetUpload'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.beatmapset_upload',
+              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
+              user: osu.link(event.user.url, event.user.username)
+
+      when 'medal'
+        # shouldn't exist because the type is overridden to achievement.
+        return
+
       when 'rank'
-        badge = el 'div',
+        badge = div
           className: "profile-extra-entries__icon"
-          el 'div',
+          div
             className: "badge-rank badge-rank--#{event.scoreRank} profile-extra-entries__icon"
 
-        text = el 'div',
+        text = div
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.rank',
@@ -43,7 +120,7 @@ class ProfilePage.RecentActivities extends React.Component
               mode: osu.trans "beatmaps.mode.#{event.mode}"
 
       when 'rankLost'
-        text = el 'div',
+        text = div
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.rank_lost',
@@ -52,102 +129,50 @@ class ProfilePage.RecentActivities extends React.Component
               beatmap: osu.link(event.beatmap.url, event.beatmap.title)
               mode: osu.trans "beatmaps.mode.#{event.mode}"
 
-      when 'beatmapsetDelete'
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_delete',
-              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
-
-      when 'beatmapsetRevive'
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_revive',
-              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
-              user: osu.link(event.user.url, event.user.username)
-
-      when 'beatmapsetUpdate'
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_update',
-              user: osu.link(event.user.url, event.user.username)
-              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
-
-      when 'beatmapsetUpload'
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.beatmapset_upload',
-              beatmapset: osu.link(event.beatmapset.url, event.beatmapset.title)
-              user: osu.link(event.user.url, event.user.username)
-
-      when 'achievement'
-        badge = el ProfilePage.AchievementBadge,
-          achievement: event.achievement
-          userAchievement:
-            achieved_at: event.createdAt
-            achievement_id: event.achievement.id
-          additionalClasses: 'profile-extra-entries__icon'
-
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.achievement',
-              user: osu.link(event.user.url, event.user.username)
-              achievement: event.achievement.name
-
-      when 'usernameChange'
-        text = el 'div',
-          className: 'profile-extra-entries__text'
-          dangerouslySetInnerHTML:
-            __html: osu.trans 'events.username_change',
-              user: osu.link(event.user.url, event.user.username)
-              previousUsername: event.user.previousUsername
-
       when 'userSupportAgain'
-        text = el 'div',
+        text = div
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.user_support_again',
               user: osu.link(event.user.url, event.user.username)
 
       when 'userSupportFirst'
-        text = el 'div',
+        text = div
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.user_support_first',
               user: osu.link(event.user.url, event.user.username)
 
       when 'userSupportGift'
-        text = el 'div',
+        text = div
           className: 'profile-extra-entries__text'
           dangerouslySetInnerHTML:
             __html: osu.trans 'events.user_support_gift',
               user: osu.link(event.user.url, event.user.username)
 
-      else
-        return null
+      when 'usernameChange'
+        text = div
+          className: 'profile-extra-entries__text'
+          dangerouslySetInnerHTML:
+            __html: osu.trans 'events.username_change',
+              user: osu.link(event.user.url, event.user.username)
+              previousUsername: event.user.previousUsername
 
-    el 'li',
+      else
+        # unkown event
+        return
+
+    # default, empty badge
+    badge ?= div className: 'profile-extra-entries__icon'
+
+    li
       className: 'profile-extra-entries__item'
       key: event.id
-      el 'div', className: 'profile-extra-entries__detail',
+      div
+        className: 'profile-extra-entries__detail'
         badge
         text
-      el 'div',
+      div
         className: 'profile-extra-entries__time'
-        dangerouslySetInnerHTML: { __html: osu.timeago(event.createdAt) }
-
-
-  render: =>
-    el 'div',
-      className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-
-      if @props.recentActivities.length
-        el 'ul', className: 'profile-extra-entries',
-          @props.recentActivities.map (activity) => @_renderEntry(activity)
-      else
-        el 'p', className: 'profile-extra-entries', osu.trans('events.empty')
+        dangerouslySetInnerHTML:
+          __html: osu.timeago(event.createdAt)
