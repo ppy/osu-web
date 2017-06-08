@@ -148,7 +148,7 @@ class BeatmapsetPage.Header extends React.Component
                       top: osu.trans 'beatmapsets.show.discussion'
                     icon: 'comments-o'
                     props:
-                      href: laroute.route 'beatmapsetss.show.discussion', beatmapset: @props.beatmapset.id
+                      href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
             ]
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
