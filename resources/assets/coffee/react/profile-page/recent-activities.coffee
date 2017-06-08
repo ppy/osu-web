@@ -20,6 +20,19 @@
 el = React.createElement
 
 class ProfilePage.RecentActivities extends React.Component
+  render: =>
+    div
+      className: 'page-extra'
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+
+      if @props.recentActivities.length
+        ul
+          className: 'profile-extra-entries'
+          @props.recentActivities.map (activity) => @_renderEntry(activity)
+      else
+        p className: 'profile-extra-entries', osu.trans('events.empty')
+
+
   _renderEntry: (event) =>
     return if event.parse_error
 
@@ -163,16 +176,3 @@ class ProfilePage.RecentActivities extends React.Component
         className: 'profile-extra-entries__time'
         dangerouslySetInnerHTML:
           __html: osu.timeago(event.createdAt)
-
-
-  render: =>
-    div
-      className: 'page-extra'
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
-
-      if @props.recentActivities.length
-        ul
-          className: 'profile-extra-entries'
-          @props.recentActivities.map (activity) => @_renderEntry(activity)
-      else
-        p className: 'profile-extra-entries', osu.trans('events.empty')
