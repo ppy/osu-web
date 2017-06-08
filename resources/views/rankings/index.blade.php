@@ -55,8 +55,13 @@
     </div>
     <div class="osu-page osu-page--small osu-page--rankings">
         <div class="ranking-page">
+            <div class="ranking-page__jump-target" id="jump-target"></div>
             @yield("scores")
         </div>
-        @include('objects._pagination', ['object' => $scores->appends(['country' => $country['acronym']])])
+        @include('objects._pagination', [
+            'object' => $scores
+                ->appends(['country' => $country['acronym']])
+                ->fragment('jump-target')
+        ])
     </div>
 @endsection
