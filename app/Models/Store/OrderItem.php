@@ -60,14 +60,14 @@ class OrderItem extends Model
     {
         switch ($this->product->custom_class) {
             case 'supporter-tag':
-                // FIXME: WIP, probably should move out
+                // FIXME: probably should move out...somewhere
                 $duration = (int)$this->extra_data['duration'];
                 $years = floor($duration / 12);
                 $months = $duration % 12;
                 $yearsText = trans_choice('supporter_tag.duration.years', $years, ['length' => $years]);
                 $monthsText = trans_choice('supporter_tag.duration.months', $months, ['length' => $months]);
-                // FIXME: no commas if empty
-                $text = "{$yearsText}, {$monthsText}";
+                $text = join(', ', array_filter([$yearsText, $monthsText]));
+
                 return __('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,
                     'username' => $this->extra_data['username'],
