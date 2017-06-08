@@ -19,7 +19,7 @@
 {div, li, p, ul} = React.DOM
 el = React.createElement
 
-class ProfilePage.RecentActivities extends React.Component
+class ProfilePage.RecentActivities extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
