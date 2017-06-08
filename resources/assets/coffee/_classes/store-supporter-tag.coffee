@@ -39,6 +39,7 @@ class @StoreSupporterTag
     @inputFeedback = @el.querySelector('.js-input-feedback')
 
     @user =
+      userId: @el.dataset.userId
       username: @el.dataset.username
       avatarUrl: @el.dataset.avatarUrl
 
@@ -70,7 +71,9 @@ class @StoreSupporterTag
   getUser: (username) =>
     $.post laroute.route('users.check-username-exists'), username: username
     .done (data) =>
+      # make a User DTO?
       @user =
+        userId: data.user_id
         username: data.username
         avatarUrl: data.avatar_url
 
@@ -118,6 +121,8 @@ class @StoreSupporterTag
                           ['', Lang.get("supporter_tag.user_search.not_found")]
 
     @inputFeedback.textContent = text
+    # Avoid setting value to undefined
+    @el.querySelector('input[name="item[extra_data][target_id]"').value = @user?.userId ? null
     $(@el.querySelectorAll('.js-avatar')).css
       'background-image': "url(#{avatarUrl})"
 

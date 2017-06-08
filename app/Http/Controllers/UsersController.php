@@ -74,6 +74,7 @@ class UsersController extends Controller
         }
 
         return [
+            'user_id' => $user->user_id,
             'username' => $user->username,
             'avatar_url' => $user->user_avatar,
         ];
