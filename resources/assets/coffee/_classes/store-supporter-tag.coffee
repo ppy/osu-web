@@ -134,4 +134,4 @@ class @StoreSupporterTag
     @updateSliderPreset(elem, @cost) for elem in @sliderPresets
 
   updateSliderPreset: (elem, cost) ->
-    $(elem).toggleClass('store-slider__preset--active', cost.duration() >= +elem.dataset.months)
+    $(elem).toggleClass('js-slider-preset--active', cost.duration() >= +elem.dataset.months)

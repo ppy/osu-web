@@ -71,8 +71,11 @@
       cursor: default;
     }
 
-    &--active {
+    &.js-slider-preset--active {
       background-color: @pink-darker;
+      .store-supporter-tag--disabled & {
+        background-color: #999;
+      }
     }
   }
 
