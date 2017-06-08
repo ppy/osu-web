@@ -28,7 +28,7 @@ class ProfilePage.RecentActivities extends React.Component
       if @props.recentActivities.length
         ul
           className: 'profile-extra-entries'
-          @props.recentActivities.map (activity) => @_renderEntry(activity)
+          @props.recentActivities.map @_renderEntry
       else
         p className: 'profile-extra-entries', osu.trans('events.empty')
 
