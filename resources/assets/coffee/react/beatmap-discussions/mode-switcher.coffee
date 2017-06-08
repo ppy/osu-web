@@ -55,7 +55,7 @@ BeatmapDiscussions.ModeSwitcher = React.createClass
           'data-sync-height-target': 'page-extra-tabs'
           div className: 'osu-page',
             ul className: 'page-mode page-mode--page-extra-tabs',
-              for mode in ['general', 'timeline']
+              for mode in ['general_all', 'general', 'timeline']
                 li
                   key: mode
                   className: 'page-mode__item'

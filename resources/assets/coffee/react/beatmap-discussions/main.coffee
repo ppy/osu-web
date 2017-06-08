@@ -142,6 +142,8 @@ BeatmapDiscussions.Main = React.createClass
     if !@cache.currentDiscussions?
       general = []
       timeline = []
+      generalAll = []
+
       timelineByFilter =
         deleted: {}
         mine: {}
@@ -171,13 +173,19 @@ BeatmapDiscussions.Main = React.createClass
             timelineByFilter.mine[d.id] = d
 
         else
-          general.push d
+          if d.beatmap_id?
+            if d.beatmap_id == @state.currentBeatmap.id
+              general.push d
+          else
+            generalAll.push d
 
       timeline = _.orderBy timeline, ['timestamp', 'id']
       general = _.orderBy general, 'id'
+      generalAll = _.orderBy generalAll, 'id'
 
       @cache.currentDiscussions =
         general: general
+        general_all: generalAll
         timeline: timeline
         timelineByFilter: timelineByFilter
 
