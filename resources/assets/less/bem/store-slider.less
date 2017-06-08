@@ -65,6 +65,12 @@
     text-align: center;
     border-radius: 10px;
 
+    .store-supporter-tag--disabled & {
+      background-color: #999;
+      pointer-events: none;
+      cursor: default;
+    }
+
     &--active {
       background-color: @pink-darker;
     }
