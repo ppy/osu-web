@@ -123,8 +123,8 @@ BeatmapDiscussions.Main = React.createClass
         format: 'json'
         last_updated: moment(@state.beatmapsetDiscussion.updated_at).unix()
 
-    .done (data) =>
-      if data.updated? && !data.updated
+    .done (data, _textStatus, xhr) =>
+      if xhr.status == 304
         @nextTimeout *= 2
         return
 

@@ -166,7 +166,7 @@ class BeatmapsetsController extends Controller
         $discussion = $beatmapset->beatmapsetDiscussion()->firstOrFail();
 
         if ($returnJson && $lastUpdated !== null && $lastUpdated >= $discussion->updated_at->timestamp) {
-            return ['updated' => false];
+            return response([], 304);
         }
 
         $initialData = [
