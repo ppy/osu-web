@@ -127,8 +127,8 @@ class @StoreSupporterTag
     @setUserInteraction(@user?)
 
   updateCostDisplay: =>
-    @el.querySelector('input[name="item[cost]"').value = @cost.price()
-    @el.querySelector('input[name="item[extra_data][duration]"').value = @cost.duration()
+    @el.querySelector('input[name="item[cost]"]').value = @cost.price()
+    @el.querySelector('input[name="item[extra_data][duration]"]').value = @cost.duration()
     @priceElement.textContent = "USD #{@cost.price()}"
     @durationElement.textContent = @cost.durationText()
     @discountElement.textContent = @cost.discountText()
