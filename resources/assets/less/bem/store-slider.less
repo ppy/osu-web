@@ -23,7 +23,7 @@
   }
 
   &__callout {
-    position: relative;
+    position: absolute;
     background-color: #333;
     color: #fff;
     font-size: 12px;
@@ -32,7 +32,8 @@
     padding: 6px;
     width: @slider-callout--width;
     left: 5px;
-    transform: translate3d(-50%, calc(-100% ~'-' 14px), 0);
+    transform: translateX(-50%);
+    bottom: calc(100% ~'+' @slider-callout--arrow-height + @slider-callout--arrow-gap);
 
     &:after, &:before {
       top: 100%;
