@@ -101,7 +101,8 @@ class @StoreSupporterTag
 
   setUserInteraction: (enabled) =>
     StoreCart.setEnabled(enabled)
-    $(@el).toggleClass('store-supporter-tag--disabled', !enabled)
+    # TODO: need to elevate this element when switching over to new store design.
+    $(@el).toggleClass('js-store--disabled', !enabled)
     $('.js-slider').slider('disabled': !enabled)
 
   sliderValue: (price) ->

@@ -27,7 +27,7 @@
     </div>
 </div>
 @else
-<div class="js-store-supporter-tag store-supporter-tag"
+<div class="js-store js-store-supporter-tag store-supporter-tag"
     data-user-id="{{ Auth::user()->user_id }}"
     data-username="{{ Auth::user()->username }}"
     data-avatar-url="{{ Auth::user()->user_avatar }}">

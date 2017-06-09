@@ -66,7 +66,7 @@
     text-align: center;
     border-radius: 10px;
 
-    .store-supporter-tag--disabled & {
+    .js-store--disabled & {
       background-color: #999;
       pointer-events: none;
       cursor: default;
@@ -74,7 +74,7 @@
 
     &.js-slider-preset--active {
       background-color: @pink-darker;
-      .store-supporter-tag--disabled & {
+      .js-store--disabled & {
         background-color: #999;
       }
     }
@@ -87,6 +87,11 @@
 
   .ui-slider {
     background-color: darkgray;
+    .js-store--disabled & {
+      .ui-slider-handle, .ui-slider-range {
+        background-color: #999;
+      }
+    }
     .ui-slider-range {
       background-color: @pink-darker;
     }
