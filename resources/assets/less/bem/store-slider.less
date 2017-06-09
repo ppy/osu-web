@@ -30,7 +30,7 @@
     text-align: center;
     border-radius: 10px;
     padding: 6px;
-    width: 220px;
+    width: @slider-callout--width;
     left: 5px;
     transform: translate3d(-50%, calc(-100% ~'-' 14px), 0);
 
@@ -48,8 +48,8 @@
 
     &:after {
       border-top-color: #333;
-      border-width: 12px;
-      margin-left: -12px;
+      border-width: @slider-callout--arrow-height;
+      margin-left: -@slider-callout--arrow-height;
     }
   }
 
