@@ -130,7 +130,7 @@ class ProfilePage.HeaderExtra extends React.Component
             @fancyLink
               key: 'website'
               icon: 'globe'
-              url: "#{@props.user.website}"
+              url: @props.user.website
 
             @fancyLink
               key: 'skype'

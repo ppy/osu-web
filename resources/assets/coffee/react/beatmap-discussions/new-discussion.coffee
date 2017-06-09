@@ -113,11 +113,15 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         beatmap_discussion_post:
           message: @state.message
 
-    if @props.mode == 'timeline'
-      data.beatmap_discussion =
-        message_type: e.currentTarget.dataset.type
-        timestamp: @state.timestamp
-        beatmap_id: @props.currentBeatmap.id
+    switch @props.mode
+      when 'general'
+        data.beatmap_discussion =
+          beatmap_id: @props.currentBeatmap.id
+      when 'timeline'
+        data.beatmap_discussion =
+          message_type: e.currentTarget.dataset.type
+          timestamp: @state.timestamp
+          beatmap_id: @props.currentBeatmap.id
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'

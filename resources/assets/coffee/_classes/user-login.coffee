@@ -83,7 +83,11 @@ class @UserLogin
   showOnError: (e, xhr) =>
     return unless xhr.status == 401 && xhr.responseJSON?.authentication == 'basic'
 
-    @show e.target
+    if currentUser.id?
+      # broken page state
+      osu.reloadPage()
+    else
+      @show e.target
 
 
   # for pages which require authentication
