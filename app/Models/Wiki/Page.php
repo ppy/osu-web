@@ -61,11 +61,11 @@ class Page
 
         $searchParams['body']['query']['bool']['must']['query_string']['query'] = $params['query'];
 
-        $hits = Es::search($searchParams)['hits']['hits'];
+        $results = Es::search($searchParams);
 
         $pages = [];
 
-        foreach ($hits as $hit) {
+        foreach ($results['hits']['hits'] as $hit) {
             $document = $hit['_source'];
 
             if (!isset($pages[$document['path']]) || $document['locale'] === $locale) {
@@ -73,7 +73,10 @@ class Page
             }
         }
 
-        return array_values($pages);
+        return [
+            'data' => array_values($pages),
+            'total' => $results['hits']['total'],
+        ];
     }
 
     public static function searchIndexConfig($params = [])

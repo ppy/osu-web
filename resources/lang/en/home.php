@@ -38,9 +38,24 @@ return [
     ],
 
     'search' => [
+        'advanced_link' => 'Advanced search',
+
+        'beatmapsets' => [
+            'more' => ':count more beatmap search results',
+            'title' => 'Beatmaps',
+        ],
+
+        'posts' => [
+            'link' => 'Search the forums',
+        ],
+
         'users' => [
             'more' => ':count more player search results',
             'title' => 'Players',
+        ],
+
+        'wiki_pages' => [
+            'link' => 'Search the wiki',
         ],
     ],
 

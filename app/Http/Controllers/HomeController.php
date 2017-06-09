@@ -28,7 +28,6 @@ use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
 use App\Models\User;
-use App\Models\Wiki;
 use Auth;
 use Request;
 use View;
@@ -142,16 +141,10 @@ class HomeController extends Controller
         $params = compact('query', 'limit');
 
         $beatmapsets = Beatmapset::search($params);
-        $posts = Post::search($params);
-        $wikiPages = Wiki\Page::search($params);
-        $users = User::search($params)->get();
-        $counts = [
-            'users' => User::search($params)->count(),
-        ];
+        $users = User::search($params);
 
         return view('home.nav_search_result', compact(
             'beatmapsets',
-            'counts',
             'posts',
             'users',
             'wikiPages'

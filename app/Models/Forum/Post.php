@@ -121,15 +121,17 @@ class Post extends Model
 
     public static function search($params)
     {
-        $ids = static::searchEs(static::searchParams($params));
+        $result = static::searchEs(static::searchParams($params));
 
-        return count($ids) > 0
-            ? static
-                ::with('topic')
-                ->whereIn('post_id', $ids)
-                ->orderByField('post_id', $ids)
-                ->get()
-            : [];
+        $query = static
+            ::with('topic')
+            ->whereIn('post_id', $result['ids'])
+            ->orderByField('post_id', $result['ids']);
+
+        return [
+            'data' => $query->get(),
+            'total' => $result['total'],
+        ];
     }
 
     public static function searchEs($params = [])
@@ -171,13 +173,16 @@ class Post extends Model
 
         $resultEs = Es::search($searchParams);
 
-        $result = [];
+        $ids = [];
 
-        foreach ($resultEs['hits']['hits'] ?? [] as $post) {
-            $result[] = get_int($post['_id']);
+        foreach ($resultEs['hits']['hits'] as $post) {
+            $ids[] = get_int($post['_id']);
         }
 
-        return $result;
+        return [
+            'ids' => $ids,
+            'total' => $resultEs['hits']['total'],
+        ];
     }
 
     public static function searchParams($params)

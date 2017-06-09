@@ -20,16 +20,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding-right: @nav-search-icon-width;
+  padding: 20px @nav-search-icon-width 20px 0;
 
   &__count {
     font-style: inherit;
     font-weight: bold;
   }
 
+  &__link {
+    margin: 5px 0;
+  }
+
   &__more {
-    font-size: @font-size--small;
     color: #999;
+    font-size: @font-size--small;
+    font-style: italic;
+    margin-bottom: 20px;
 
     .link-hover({
       color: #bbb;
@@ -42,12 +48,18 @@
 
   &__results {
     display: flex;
-    margin: 10px -10px;
+    margin: 5px -10px;
+    flex-direction: column;
+    align-items: flex-end;
+
+    &--horizontal {
+      flex-direction: row;
+      align-items: stretch;
+    }
   }
 
   &__title {
     font-size: @font-size--small;
     color: @yellow;
-    margin-top: 10px;
   }
 }
