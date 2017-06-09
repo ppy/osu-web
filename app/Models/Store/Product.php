@@ -30,6 +30,7 @@ class Product extends Model
         'next_shipping' => 'float',
         'promoted' => 'boolean',
         'enabled' => 'boolean',
+        'allow_multiple' => 'boolean',
     ];
 
     private $images;

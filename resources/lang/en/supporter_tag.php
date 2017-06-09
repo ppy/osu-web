@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,38 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.grid {
-  // 840px seems a big large for this to trigger?
-  @media @desktop {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  &--stack {
-    flex-direction: column;
-    // stack shouldn't devolve into block when shrunk.
-    @media @mobile {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
-
-  &--centered {
-    align-items: center;
-  }
-
-  &--gutters {
-    margin-left: -@flex-grid--gutter-width;
-    margin-right: -@flex-grid--gutter-width;
-  }
-
-  &--packed {
-    justify-content: center;
-  }
-
-  // Use this if we don't want the grid to collapse into a stack.
-  // FIXME: better name
-  &--xs {
-    display: flex;
-  }
-}
+return [
+    'user_search' => [
+        'searching' => 'searching...',
+        'not_found' => "This user doesn't exist",
+    ],
+    'duration' => [
+        'months' => ':length month|:length months|{0}',
+        'years' => ':length year|:length years|{0}',
+    ],
+];

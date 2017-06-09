@@ -1,0 +1,99 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.store-slider {
+  &__bigtext { // stupid name
+    font-size: @font-size--large;
+    font-weight: 600;
+  }
+
+  &__callout {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    font-size: @font-size--normal;
+    text-align: center;
+    border-radius: 10px;
+    padding: 6px;
+    width: @slider-callout--width;
+    left: 5px;
+    transform: translateX(-50%);
+    bottom: calc(100% ~'+' @slider-callout--arrow-height + @slider-callout--arrow-gap);
+
+    &:after, &:before {
+      top: 100%;
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      transform: scaleX(0.5);
+    }
+
+    &:after {
+      border-top-color: #333;
+      border-width: @slider-callout--arrow-height;
+      margin-left: -@slider-callout--arrow-height;
+    }
+  }
+
+  &__preset {
+    background-color: #666;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 4px;
+    height: 20px;
+    width: 32px;
+    line-height: 19px;
+    text-align: center;
+    border-radius: 10px;
+
+    .js-store--disabled & {
+      background-color: #999;
+      pointer-events: none;
+      cursor: default;
+    }
+
+    &.js-slider-preset--active {
+      background-color: @pink-darker;
+      .js-store--disabled & {
+        background-color: #999;
+      }
+    }
+  }
+
+  &__subtext { // stupid name
+    margin-top: 2px;
+    color: #999;
+  }
+
+  .ui-slider {
+    background-color: darkgray;
+    .js-store--disabled & {
+      .ui-slider-handle, .ui-slider-range {
+        background-color: #999;
+      }
+    }
+    .ui-slider-range {
+      background-color: @pink-darker;
+    }
+  }
+}

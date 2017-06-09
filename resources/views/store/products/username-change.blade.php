@@ -18,15 +18,18 @@
 @if(!Auth::user())
 <div class="grid grid--gutters">
     <div class="grid-cell grid-cell--1of2">
-        You need to be <a href="#" class="js-user-link" title="{{ trans("users.anonymous.login_link") }}">logged in</a> to change your name!
+        @php
+            $title = __('users.anonymous.login_link');
+            $text = __('store.username_change.require_login.link_text');
+            $link = Html::link('#', $text, ['class' => 'js-user-link', 'title' => $title]);
+        @endphp
+        {!! __('store.username_change.require_login._', ['link' => $link]) !!}
     </div>
 </div>
 @else
-<div class="grid grid--gutters">
+<div class="js-username-change grid grid--gutters">
     <div class="grid-cell grid-cell--squash">
-        <center>
-            <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar"></div>
-        </center>
+        <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered"></div>
     </div>
     <div class="grid-cell">
         <div>

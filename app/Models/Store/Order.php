@@ -142,56 +142,48 @@ class Order extends Model
         });
     }
 
-    public function updateItem($item_form, $add_new = false)
+    /**
+     * Updates the Order with form parameters.
+     *
+     * Updates the Order with with an item extracted from submitted form parameters.
+     * The function returns an array containing whether the operation was successful,
+     * and a message.
+     *
+     * @param array $itemForm form parameters.
+     * @param bool $addNew whether the quantity should be added or replaced.
+     * @return array [success, message]
+     **/
+    public function updateItem(array $itemForm, $addNew = false)
     {
-        $quantity = intval(array_get($item_form, 'quantity'));
-        $product = Product::find(array_get($item_form, 'product_id'));
-        $extraInfo = array_get($item_form, 'extra_info');
+        $params = [
+            'id' => array_get($itemForm, 'id'),
+            'quantity' => array_get($itemForm, 'quantity'),
+            'product' => Product::find(array_get($itemForm, 'product_id')),
+            'cost' => intval(array_get($itemForm, 'cost')),
+            'extraInfo' => array_get($itemForm, 'extra_info'),
+            'extraData' => array_get($itemForm, 'extra_data'),
+        ];
+
+        if ($params['product'] === null) {
+            return [false, 'no product'];
+        }
 
         $result = [true, ''];
 
-        if ($product) {
-            if ($quantity <= 0) {
-                $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-
-                if ($item) {
-                    $item->delete();
-                }
-
-                if ($this->items()->count() === 0) {
-                    $this->delete();
-                }
-            } else {
-                $item = $this->items()->where('product_id', $product->product_id)->get()->first();
-                if ($item) {
-                    if ($add_new) {
-                        $item->quantity += $quantity;
-                    } else {
-                        $item->quantity = $quantity;
-                    }
-                } else {
-                    $item = new OrderItem();
-                    $item->quantity = $quantity;
-                    $item->extra_info = $extraInfo;
-                    $item->product()->associate($product);
-                    if ($product->cost === null) {
-                        $item->cost = intval($item_form['cost']);
-                    }
-                }
-
-                if (!$product->inStock($item->quantity)) {
-                    $result = [false, 'not enough stock'];
-                } elseif (!$product->enabled) {
-                    $result = [false, 'invalid item'];
-                } elseif ($item->quantity > $product->max_quantity) {
-                    $result = [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
-                } else {
-                    $this->save();
-                    $this->items()->save($item);
-                }
-            }
+        if ($params['quantity'] <= 0) {
+            $this->removeOrderItem($params);
         } else {
-            $result = [false, 'no product'];
+            if ($params['product']->allow_multiple) {
+                $item = $this->newOrderItem($params);
+            } else {
+                $item = $this->updateOrderItem($params, $addNew);
+            }
+
+            $result = $this->validateBeforeSave($params['product'], $item);
+            if ($result[0]) {
+                $this->save();
+                $this->items()->save($item);
+            }
         }
 
         return $result;
@@ -269,5 +261,73 @@ class Order extends Model
 
             return $query->get();
         };
+    }
+
+    private function removeOrderItem(array $params)
+    {
+        $itemId = $params['id'];
+        $item = $this->items()->find($itemId);
+
+        if ($item) {
+            $item->delete();
+        }
+
+        if ($this->items()->count() === 0) {
+            $this->delete();
+        }
+    }
+
+    private function newOrderItem(array $params)
+    {
+        $product = $params['product'];
+
+        // FIXME: custom class stuff should probably not go in Order...
+        if ($product->custom_class === 'supporter-tag') {
+            $targetUsername = $params['extraData']['username'];
+            $user = User::where('username', $targetUsername)->first();
+            // TODO: burst into flames if user is null
+            $params['extraData']['target_id'] = $user->user_id;
+        }
+
+        $item = new OrderItem();
+        $item->quantity = $params['quantity'];
+        $item->extra_info = $params['extraInfo'];
+        $item->extra_data = $params['extraData'];
+        $item->product()->associate($product);
+        if ($product->cost === null) {
+            $item->cost = $params['cost'];
+        }
+
+        return $item;
+    }
+
+    private function updateOrderItem(array $params, $addNew = false)
+    {
+        $product = $params['product'];
+        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+        if ($item === null) {
+            return $this->newOrderItem($params);
+        }
+
+        if ($addNew) {
+            $item->quantity += $params['quantity'];
+        } else {
+            $item->quantity = $params['quantity'];
+        }
+
+        return $item;
+    }
+
+    private function validateBeforeSave(Product $product, $item)
+    {
+        if (!$product->inStock($item->quantity)) {
+            return [false, 'not enough stock'];
+        } elseif (!$product->enabled) {
+            return [false, 'invalid item'];
+        } elseif ($item->quantity > $product->max_quantity) {
+            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
+        }
+
+        return [true, ''];
     }
 }

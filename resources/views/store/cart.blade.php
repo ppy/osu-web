@@ -41,8 +41,12 @@
 
                         {!! Form::open(["url" => "store/update-cart", "data-remote" => true]) !!}
                             <input type="hidden" name="item[product_id]" value="{{ $i->product_id }}">
-
-                            {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
+                            <input type="hidden" name="item[id]" value="{{ $i->id }}">
+                            @if($i->product->allow_multiple)
+                                <span>{{{ trans_choice('common.count.item', $i->quantity) }}}</span>
+                            @else
+                                {!! Form::select("item[quantity]", product_quantity_options($i->product), $i->quantity, ['class' => 'item-quantity form-control js-auto-submit']) !!}
+                            @endif
                             <span class="subtotal">{{{currency($i->subtotal())}}}</span>
                             <button type="submit" class="btn btn-flat" name="item[quantity]" value="0"><i class="fa fa-remove"></i></button>
                         {!! Form::close() !!}

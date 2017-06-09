@@ -1,0 +1,55 @@
+/*!
+ * jQuery UI Slider 1.8.23
+ *
+ * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Slider#theming
+ */
+
+.ui-slider {
+  position: relative;
+  text-align: left;
+
+  .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    cursor: default;
+    width: 10px;
+    height: 20px;
+    border-radius: 30px;
+    background-color: @pink-darker;
+    outline: none;
+  }
+
+  .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    border: 0;
+    background-position: 0 0;
+  }
+}
+
+.ui-slider-horizontal {
+  height: 10px;
+
+  .ui-slider-handle {
+    top: -5px;
+    margin-left: -5px;
+  }
+
+  .ui-slider-range {
+    top: 0;
+    height: 100%;
+  }
+
+  .ui-slider-range-min {
+    left: 0;
+  }
+
+  .ui-slider-range-max {
+    right: 0;
+  }
+}
