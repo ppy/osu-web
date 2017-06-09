@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,52 +18,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.ranking-page-header {
-  @top: ranking-page-header;
+namespace App\Http\Controllers;
 
-  background-color: #333;
-  background-size: cover;
-  background-position: center;
-  .at2x-simple('/images/headers/rankings.jpg');
+use App\Models\Wiki;
 
-  height: 250px;
-  padding: 10px 40px 0;
+class LegalController extends Controller
+{
+    protected $section = 'home';
+    protected $actionPrefix = 'legal-';
 
-  &__title {
-    font-size: 35px;
-    font-weight: 100;
-    text-align: center;
-    padding-top: 10px;
-    color: white;
-  }
+    public function show($page)
+    {
+        switch ($page) {
+            case 'copyright':
+                $path = 'Legal/Copyright';
+                break;
+            case 'terms':
+                $path = 'Legal/TOS';
+                break;
+            default:
+                abort(404);
+        }
 
-  &__title-type {
-    color: @yellow;
-    text-transform: capitalize;
-  }
-
-  &__flag {
-    display: inline-flex;
-    .link-plain();
-    &:hover {
-      .flag-country {
-        opacity: 0.5;
-      }
+        return view('wiki.show', [
+            'page' => new Wiki\Page($path, $this->locale()),
+        ]);
     }
-  }
-
-  &__flag-overlay {
-    pointer-events: none;
-    font-size: 20px;
-    color: white;
-    opacity: 0.75;
-
-    .full-size();
-    .center-content();
-    display: none;
-
-    .@{top}__flag:hover & {
-      display: flex;
-    }
-  }
 }

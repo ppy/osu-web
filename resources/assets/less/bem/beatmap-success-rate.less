@@ -17,10 +17,13 @@
  */
 
 .beatmap-success-rate {
+  .full-size();
+  padding: 0 15px;
+  background-color: #eee;
+  font-size: @font-size--normal;
+
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
 
   &__chart {
     flex: none;
@@ -32,6 +35,11 @@
       min-height: 0;
       height: auto;
     }
+  }
+
+  &__empty {
+    .center-content();
+    flex: 1;
   }
 
   &__header {

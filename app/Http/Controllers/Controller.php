@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Models\Log;
 use Auth;
 use Carbon\Carbon;
@@ -63,5 +64,10 @@ abstract class Controller extends BaseController
         Request::session()->flush();
         Request::session()->regenerateToken();
         Auth::login($user, $remember);
+    }
+
+    protected function locale()
+    {
+        return Request::input('locale', App::getLocale());
     }
 }

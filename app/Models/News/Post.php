@@ -177,7 +177,7 @@ class Post
 
                 $page = OsuMarkdownProcessor::process($rawPage, [
                     'html_input' => 'allow',
-                    'path' => '/news/'.$this->id,
+                    'path' => route('news.show', $this->id),
                     'block_modifiers' => ['news'],
                 ]);
 

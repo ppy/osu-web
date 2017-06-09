@@ -15,16 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
-
-@section("content")
-    <div class="js-react--ranking-page"></div>
-@endsection
-
-@section("script")
-    @parent
-    <script id="json-scores" type="application/json">
-        {!! json_encode($scores) !!}
-    </script>
-    <script src="{{ elixir("js/react/ranking-page.js") }}" data-turbolinks-track="reload"></script>
-@endsection
+<span class="flag-country"
+    @if (isset($country_name))
+        title="{{$country_name}}"
+    @endif
+    style="background-image: url('/images/flags/{{$country_code}}.png');"
+></span>

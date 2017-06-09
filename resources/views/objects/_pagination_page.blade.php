@@ -15,29 +15,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master", [
-    'current_section' => 'beatmaps',
-])
 
-@section("content")
-    <div class="js-react--beatmapset-page"></div>
-    {{--
-        this should content a server side react.js render which doesn't exist in hhvm
-        because the only library for it, which is experimental, requires PHP extension
-        which isn't supported by hhvm (v8js).
-    --}}
-@endsection
-
-@section("script")
-    @parent
-
-    <script id="json-beatmapset" type="application/json">
-        {!! json_encode($set) !!}
-    </script>
-
-    <script id="json-countries" type="application/json">
-        {!! json_encode($countries) !!}
-    </script>
-
-    @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])
-@endsection
+@if ($page == $currentPage)
+    <span class="paginator__page {{ (isset($active) && $active) ? 'paginator__page--current' : 'paginator__page--disabled'}}">{{ $label }}</span>
+@else
+    <a class="paginator__page" href="{{ $object->url($page) }}">{{ $label }}</a>
+@endif

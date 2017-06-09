@@ -19,7 +19,9 @@
  */
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> unlocked the "<strong>:achievement</strong>" achievement!',
+    'achievement' => '<strong><em>:user</em></strong> unlocked the "<strong>:achievement</strong>" medal!',
+    'beatmap_playcount' => ':beatmap has been played :count times!',
+    'beatmapset_approve' => ':beatmapset by <strong>:user</strong> has been :approval!',
     'beatmapset_delete' => ':beatmapset has been deleted.',
     'beatmapset_revive' => ':beatmapset has been revived from eternal slumber by <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> has updated the beatmap "<em>:beatmapset</em>"',

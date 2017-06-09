@@ -116,7 +116,7 @@ class Product extends Model
                 $this->images = json_decode($this->images_json, true);
             }
 
-            return $this->images;
+            return $this->images ?? [];
         }
     }
 

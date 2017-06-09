@@ -155,15 +155,17 @@ Route::group(['prefix' => 'home'], function () {
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
+Route::get('legal/{page}', 'LegalController@show')->name('legal');
+
 // ranking section
 Route::get('/rankings/{mode?}', function ($mode = 'osu') {
     if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
         abort(404);
     }
 
-    return Redirect::route('ranking', ['mode' => $mode, 'type' => 'performance']);
+    return Redirect::route('rankings', ['mode' => $mode, 'type' => 'performance']);
 });
-Route::get('/rankings/{mode}/{type}/{page?}', ['as' => 'ranking', 'uses' => 'RankingController@index']);
+Route::get('/rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
@@ -238,8 +240,12 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
-        Route::get('me', ['uses' => 'UsersController@me']);                               //  GET /api/v2/me
-        Route::get('users/{user}', ['uses' => 'UsersController@show']);                   //  GET /api/v2/users/:user_id
+        //  GET /api/v2/me
+        Route::get('me', ['uses' => 'UsersController@me']);
+        //  GET /api/v2/rankings/:mode/:type
+        Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
+        //  GET /api/v2/users/:user_id
+        Route::get('users/{user}', ['uses' => 'UsersController@show']);
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {

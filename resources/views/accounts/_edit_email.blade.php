@@ -32,7 +32,7 @@
         <div class="account-edit__input-group">
             <label class="account-edit-entry js-parent-focus" data-user-email-field="current_password">
                 <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.email.current') }}
+                    {{ trans('accounts.edit.password.current') }}
                 </div>
 
                 <input

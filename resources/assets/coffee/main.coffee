@@ -32,7 +32,6 @@ $(document).on 'turbolinks:load', ->
 
 @accountEdit ?= new AccountEdit
 @accountEditPlaystyle ?= new AccountEditPlaystyle
-@turbolinksDisable ?= new TurbolinksDisable
 @accountEditAvatar ?= new AccountEditAvatar
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
@@ -66,7 +65,9 @@ $(document).on 'turbolinks:load', ->
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
+@turbolinksDisable ?= new TurbolinksDisable
 @turbolinksDisqus ?= new TurbolinksDisqus
+@turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
 

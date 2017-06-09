@@ -167,10 +167,10 @@ return [
         ],
         'legal' => [
             '_' => '法律 & 状态',
-            'tos' => '服务条款',
             'copyright' => 'Copyright (DMCA)',
-            'serverStatus' => '服务器状态',
-            'osuStatus' => '@osustatus',
+            'osu_status' => '@osustatus',
+            'server_status' => '服务器状态',
+            'terms' => '服务条款',
         ],
     ],
 
