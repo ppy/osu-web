@@ -62,7 +62,7 @@ BeatmapDiscussions.Discussions = React.createClass
           @timelineCircle()
 
           if @props.mode == 'timeline'
-              div className: "#{bn}__timeline-line hidden-xs"
+            div className: "#{bn}__timeline-line hidden-xs"
 
           div null,
             discussions.map @discussionPage

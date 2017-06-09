@@ -55,7 +55,7 @@ BeatmapDiscussions.ModeSwitcher = React.createClass
           'data-sync-height-target': 'page-extra-tabs'
           div className: 'osu-page',
             ul className: 'page-mode page-mode--page-extra-tabs',
-              for mode in ['general', 'timeline']
+              for mode in ['generalAll', 'general', 'timeline']
                 li
                   key: mode
                   className: 'page-mode__item'
@@ -64,7 +64,7 @@ BeatmapDiscussions.ModeSwitcher = React.createClass
                     onClick: @switch
                     href: '#'
                     'data-mode': mode
-                    osu.trans("beatmaps.discussions.mode.#{mode}")
+                    osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
                     span className: 'page-mode-link__stripe'
 
 
