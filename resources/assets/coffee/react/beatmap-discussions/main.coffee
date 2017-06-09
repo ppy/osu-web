@@ -123,8 +123,8 @@ BeatmapDiscussions.Main = React.createClass
         format: 'json'
         last_updated: moment(@state.beatmapsetDiscussion.updated_at).unix()
 
-    .done (data) =>
-      if data.updated? && !data.updated
+    .done (data, _textStatus, xhr) =>
+      if xhr.status == 304
         @nextTimeout *= 2
         return
 
@@ -142,6 +142,8 @@ BeatmapDiscussions.Main = React.createClass
     if !@cache.currentDiscussions?
       general = []
       timeline = []
+      generalAll = []
+
       timelineByFilter =
         deleted: {}
         mine: {}
@@ -171,13 +173,19 @@ BeatmapDiscussions.Main = React.createClass
             timelineByFilter.mine[d.id] = d
 
         else
-          general.push d
+          if d.beatmap_id?
+            if d.beatmap_id == @state.currentBeatmap.id
+              general.push d
+          else
+            generalAll.push d
 
       timeline = _.orderBy timeline, ['timestamp', 'id']
       general = _.orderBy general, 'id'
+      generalAll = _.orderBy generalAll, 'id'
 
       @cache.currentDiscussions =
         general: general
+        generalAll: generalAll
         timeline: timeline
         timelineByFilter: timelineByFilter
 
