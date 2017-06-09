@@ -44,8 +44,8 @@ class ProfilePage.CoverUploader extends React.Component
       done: (_e, data) ->
         $.publish 'user:update', data.result
 
-      fail: =>
-        osu.fileuploadFailCallback @$uploadButton()
+      fail: (event, data) =>
+        osu.fileuploadFailCallback(@$uploadButton()) event, data
 
       complete: ->
         $.publish 'user:cover:upload:state', false

@@ -59,7 +59,7 @@
     osu.popup osu.xhrErrorMessage(xhr), 'danger'
 
 
-  emitAjaxError: (element) =>
+  emitAjaxError: (element = document.body) =>
     (xhr, status, error) =>
       $(element).trigger 'ajax:error', [xhr, status, error]
 
