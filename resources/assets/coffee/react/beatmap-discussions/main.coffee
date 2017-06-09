@@ -185,7 +185,7 @@ BeatmapDiscussions.Main = React.createClass
 
       @cache.currentDiscussions =
         general: general
-        general_all: generalAll
+        generalAll: generalAll
         timeline: timeline
         timelineByFilter: timelineByFilter
 
