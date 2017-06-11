@@ -108,7 +108,7 @@ class LocaleMeta
             'flag' => 'HK',
         ],
         'zh-tw' => [
-            'name' => '中文(繁體)',
+            'name' => '繁體中文',
             'flag' => 'TW',
         ],
     ];
