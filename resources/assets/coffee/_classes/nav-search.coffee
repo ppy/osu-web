@@ -38,7 +38,7 @@ class @NavSearch
     if mode == 'search'
       $('.js-nav-search--input').focus()
 
-      if $('.js-nav-search--result').html().length > 0
+      if $('.js-nav-search--result').html().trim().length > 0
         @setMode 'result'
     else
       @setMode 'initial'
