@@ -12,6 +12,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/nanaya/slack-php"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/nanaya/commonmark-table-extension"
     }
   ],
   "require": {
@@ -33,7 +37,7 @@
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "^0.6.0",
     "shift31/laravel-elasticsearch": "~1.0",
-    "webuni/commonmark-table-extension": "^0.6.1",
+    "webuni/commonmark-table-extension": "dev-fix-escapes",
     "chaseconey/laravel-datadog-helper": "^0.6.0",
     "tumblr/tumblr": "^0.2.0"
   },

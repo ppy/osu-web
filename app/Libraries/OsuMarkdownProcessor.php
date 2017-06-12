@@ -170,6 +170,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
                 break;
             case TableExtension\TableCell::class:
                 $class = "{$blockClass}__table-data";
+                $class .= " {$blockClass}__table-data--{$this->node->align}";
 
                 if ($this->node->type === 'th') {
                     $class .= " {$blockClass}__table-data--header";
