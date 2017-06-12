@@ -27,34 +27,10 @@
             <h2 class="user-home__news-title">Friends</h2>
             <div class="user-friends__list">
                 @foreach ($friends as $connection)
-                    @php
-                        $friend = $connection->target;
-                        $online = $friend->isOnline();
-                    @endphp
-                    <div class="user-card{{$connection->mutual ? ' user-card--mutual' : ''}}" style="background-image: url({{$friend->cover()}});">
-                        <div class="user-card__main-card">
-                            <img class="user-card__avatar" src="{{$friend->user_avatar}}">
-                            <div class="user-card__metadata">
-                                <div class="user-card__username">{{$friend->username}}</div>
-                                <div class="user-card__flags">
-                                    @include('objects._country_flag', [
-                                        'country_code' => $friend->country->acronym,
-                                    ])
-                                    @if ($friend->isSupporter())
-                                        <span class="user-card__supporter">
-                                            <span class="fa fa-fw fa-heart"></span>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="user-card__status user-card__status--{{$online ? 'online' : 'offline'}}">
-                            <span class="fa fa-fw fa-circle-o" style="padding-right: 10px;"></span>
-                            <span class="user-card__status-message" title="last seen {{$friend->user_lastvisit->diffForHumans()}}">
-                                {{$online ? 'Online' : 'Offline'}}
-                            </span>
-                        </div>
-                    </div>
+                    @include('objects._usercard', [
+                        'user' => $connection->target,
+                        'mutual' => $connection->mutual
+                    ])
                 @endforeach
             </div>
         </div>

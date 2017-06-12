@@ -16,7 +16,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-card {
+.usercard {
   @card-width: 260px;
   @card-height: 100px;
 
@@ -29,8 +29,8 @@
   @online-color: @blue-darker;
 
 
-  .default-box-shadow();
-  .default-border-radius();
+  display: flex;
+  flex-direction: column;
 
   width: @card-width;
   height: @card-height;
@@ -40,10 +40,16 @@
   background-position: center;
   margin: @card-item-spacing;
 
-  color: white;
+  .own-layer();
+  .link-white();
+  .link-plain();
+  .link-hover({
+    .thicker-box-shadow();
+  });
 
-  display: flex;
-  flex-direction: column;
+  .default-box-shadow();
+  .fade-element(120ms);
+  .default-border-radius();
 
   &::before {
     .full-size();
@@ -104,6 +110,10 @@
     &--online {
       background: fade(@online-color, 50%);
     }
+  }
+
+  &__status-icon {
+    padding-right: @card-item-spacing;
   }
 
   &__main-card {
