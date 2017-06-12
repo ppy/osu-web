@@ -22,9 +22,9 @@
         'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
     ])
 
-    <div class="osu-page osu-page--small-desktop osu-page--rankings">
+    <div class="osu-page osu-page--generic osu-page--dark-bg">
         <div class="user-friends">
-            <h2 class="user-home__news-title">Friends</h2>
+            <h2 class="user-home__news-title">{{trans('friends.title')}}</h2>
             <div class="user-friends__list">
                 @foreach ($friends as $connection)
                     @include('objects._usercard', [

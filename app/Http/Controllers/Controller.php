@@ -43,6 +43,7 @@ abstract class Controller extends BaseController
     {
         view()->share('current_section', $this->section ?? '');
         view()->share('current_action', ($this->actionPrefix ?? '').current_action());
+        view()->share('current_controller', current_controller());
     }
 
     protected function formatValidationErrors(Validator $validator)
