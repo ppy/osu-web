@@ -142,7 +142,6 @@ Route::group(['prefix' => 'home'], function () {
     // Route::get('search', 'HomeController@search')->name('search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog', 'HomeController@getChangelog')->name('changelog');
-    Route::get('friends', 'HomeController@getFriends')->name('friends');
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::get('icons', 'HomeController@getIcons');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
@@ -153,6 +152,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
 
+    Route::resource('friends', 'FriendsController');
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 

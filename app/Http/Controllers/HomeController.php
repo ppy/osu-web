@@ -129,21 +129,6 @@ class HomeController extends Controller
         }
     }
 
-    public function getFriends()
-    {
-        $friends = Auth::user()
-            ->friends()
-            ->withMutual()
-            ->with([
-                'target',
-                'target.userProfileCustomization',
-                'target.country',
-            ])
-            ->get();
-
-        return view('home.friends', compact('friends'));
-    }
-
     public function search()
     {
         $query = Request::input('q');
