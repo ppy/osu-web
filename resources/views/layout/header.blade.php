@@ -60,10 +60,6 @@
                     <a href="#" class="js-nav-search--run-link header-search-box__icon">
                         <i class="fa fa-fw fa-search"></i>
                     </a>
-
-                    @foreach ($search['params'] ?? [] as $name => $value)
-                        <input type="hidden" name="{{ $name }}" value="{{ $value }}">
-                    @endforeach
                 </label>
             </div>
         @endif

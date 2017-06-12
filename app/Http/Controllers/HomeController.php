@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
+use App\Libraries\Search;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Changelog;
@@ -146,6 +147,15 @@ class HomeController extends Controller
         return view('home.nav_search_result', compact(
             'beatmapsets',
             'users'
+        ));
+    }
+
+    public function search()
+    {
+        $search = new Search(Request::all());
+
+        return view('home.search', compact(
+            'search'
         ));
     }
 

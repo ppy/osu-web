@@ -39,10 +39,19 @@ return [
 
     'search' => [
         'advanced_link' => 'Advanced search',
+        'title' => 'Search Results',
 
         'beatmapsets' => [
             'more' => ':count more beatmap search results',
             'title' => 'Beatmaps',
+        ],
+
+        'mode' => [
+            'all' => 'all',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
+            'user' => 'player',
+            'wiki_page' => 'wiki',
         ],
 
         'posts' => [
