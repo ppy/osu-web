@@ -22,19 +22,22 @@
     font-weight: 600;
   }
 
-  &__callout {
+  &__fake-callout {
     position: absolute;
+    left: 5px;
+    padding: 0 32px @slider-callout--arrow-height 32px;
+    transform: translateX(-50%);
+    bottom: calc(100% ~'+' @slider-callout--arrow-gap);
+  }
+
+  &__callout {
     background-color: #333;
     color: #fff;
-    cursor: pointer;
     font-size: @font-size--normal;
     text-align: center;
     border-radius: 10px;
     padding: 6px;
     width: @slider-callout--width;
-    left: 5px;
-    transform: translateX(-50%);
-    bottom: calc(100% ~'+' @slider-callout--arrow-height + @slider-callout--arrow-gap);
 
     &:after, &:before {
       top: 100%;
