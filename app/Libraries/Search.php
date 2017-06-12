@@ -32,12 +32,16 @@ class Search
 
     public function __construct($params)
     {
-        $this->mode = $params['mode'] ?? static::MODES[0];
+        $this->mode = array_pull($params, 'mode') ?? static::MODES[0];
+        if (!in_array($this->mode, static::MODES, true)) {
+            $this->mode = static::MODES[0];
+        }
+
         $this->params = $params;
     }
 
     public function url($newParams)
     {
-        return route('search', array_merge($this->params, $newParams));
+        return route('search', array_merge($this->params, ['mode' => $this->mode], $newParams));
     }
 }
