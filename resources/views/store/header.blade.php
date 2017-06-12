@@ -26,20 +26,6 @@
                 </a>
             @endif
 
-            @if(!isset($skip_back_link))
-                <div class="store-header__float store-header__float--left">
-                    <a href="javascript:history.back()" class="store-header__float-link">
-                        <span class="store-header__float-link-text store-header__float-link-text--icon">
-                            <i class="fa fa-chevron-left"></i>
-                        </span>
-
-                        <span class="store-header__float-link-text">
-                            back
-                        </span>
-                    </a>
-                </div>
-            @endif
-
             @if(isset($cart) && $cart && $cart->items()->exists())
                 <div class="store-header__float store-header__float--right">
                     <a href="/store/cart" class="store-header__float-link">
