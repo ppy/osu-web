@@ -131,7 +131,15 @@ class HomeController extends Controller
 
     public function getFriends()
     {
-        $friends = json_collection(Auth::user()->friends, 'UserRelation', ['target', 'target.cover']);
+        $friends = Auth::user()
+            ->friends()
+            ->withMutual()
+            ->with([
+                'target',
+                'target.userProfileCustomization',
+                'target.country',
+            ])
+            ->get();
 
         return view('home.friends', compact('friends'));
     }

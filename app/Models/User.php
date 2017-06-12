@@ -303,6 +303,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_birthday->age ?? null;
     }
 
+    public function cover()
+    {
+        return $this->profileCustomization()->cover()->url();
+    }
+
     public function getUserTwitterAttribute($value)
     {
         return presence(ltrim($value, '@'));
@@ -428,6 +433,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isActive()
     {
         return $this->user_lastvisit > Carbon::now()->subMonth();
+    }
+
+    public function isOnline()
+    {
+        return $this->user_lastvisit > Carbon::now()->subMinute();
     }
 
     public function isPrivileged()

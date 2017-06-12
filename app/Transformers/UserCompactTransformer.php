@@ -39,6 +39,8 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
             'is_active' => $user->isActive(),
+            'is_supporter' => $user->isSupporter(),
+            'is_online' => $user->isOnline(),
         ];
     }
 
@@ -49,11 +51,11 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 
     public function includeCover(User $user)
     {
-        return $this->item($user, function($user) {
+        return $this->item($user, function ($user) {
             return [
-                'customUrl' => $user->profileCustomization()->cover()->fileUrl(),
-                'url' => $user->profileCustomization()->cover()->url(),
-                'id' => $user->profileCustomization()->cover()->id(),
+                'customUrl' => $user->cover()->fileUrl(),
+                'url' => $user->cover()->url(),
+                'id' => $user->cover()->id(),
             ];
         });
     }

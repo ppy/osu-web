@@ -22,15 +22,39 @@
         'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
     ])
 
-    <div class="osu-page osu-page--small-desktop">
-        <div class="user-home">
-            <div class="user-home__news">
-                <h2 class="user-home__news-title">Mah Frans</h2>
-                @foreach ($friends as $friend)
-                    <div class="wang" style="width: 260px; height: 100px; border-radius: 4px; margin: 10px; background: url({{$friend['target']['cover']['url']}}); background-color: #333; background-size: cover ">
-                        <img style="width: 50px; height: 50px; margin: 10px; border-radius: 4px;" src="{{$friend['target']['avatar_url']}}">
-                        <span style="color: white;">{{$friend['target']['username']}}</span>
-                        <div class="thingy" style="height: 30px;width: 100%; background: rgba(179, 228, 17, 0.51); border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; color: white; text-align: center;">online</div> </div>
+    <div class="osu-page osu-page--small-desktop osu-page--rankings">
+        <div class="user-friends">
+            <h2 class="user-home__news-title">Friends</h2>
+            <div class="user-friends__list">
+                @foreach ($friends as $connection)
+                    @php
+                        $friend = $connection->target;
+                        $online = $friend->isOnline();
+                    @endphp
+                    <div class="user-card{{$connection->mutual ? ' user-card--mutual' : ''}}" style="background-image: url({{$friend->cover()}});">
+                        <div class="user-card__main-card">
+                            <img class="user-card__avatar" src="{{$friend->user_avatar}}">
+                            <div class="user-card__metadata">
+                                <div class="user-card__username">{{$friend->username}}</div>
+                                <div class="user-card__flags">
+                                    @include('objects._country_flag', [
+                                        'country_code' => $friend->country->acronym,
+                                    ])
+                                    @if ($friend->isSupporter())
+                                        <span class="user-card__supporter">
+                                            <span class="fa fa-fw fa-heart"></span>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-card__status user-card__status--{{$online ? 'online' : 'offline'}}">
+                            <span class="fa fa-fw fa-circle-o" style="padding-right: 10px;"></span>
+                            <span class="user-card__status-message" title="last seen {{$friend->user_lastvisit->diffForHumans()}}">
+                                {{$online ? 'Online' : 'Offline'}}
+                            </span>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
