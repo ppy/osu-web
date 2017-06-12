@@ -33,7 +33,9 @@ class UserRelationTransformer extends Fractal\TransformerAbstract
     {
         return [
             'target_id' => $userRelation->zebra_id,
-            'relation_type' => $userRelation->friend ? 'friend' : 'block'
+            'relation_type' => $userRelation->friend ? 'friend' : 'block',
+            // mutual is a bit derpy, it only applies to friends
+            'mutual' => $userRelation->mutual,
         ];
     }
 

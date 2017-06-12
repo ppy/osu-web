@@ -8,6 +8,7 @@ class UserRelation extends Model
 {
     protected $table = 'phpbb_zebra';
     public $timestamps = false;
+    protected $guarded = [];
 
     public function user()
     {

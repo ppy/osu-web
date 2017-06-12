@@ -17,39 +17,31 @@
  */
 
 .usercard {
+  @top: usercard;
   @card-width: 260px;
   @card-height: 100px;
-
   @avatar-size: 50px;
   @status-bar-size: 30px;
-
   @card-item-spacing: 10px;
-
   @offline-color: #000;
   @online-color: @blue-darker;
 
-
   display: flex;
   flex-direction: column;
-
   width: @card-width;
   height: @card-height;
-
   background-color: #333;
   background-size: cover;
   background-position: center;
   margin: @card-item-spacing;
 
-  .own-layer();
-  .link-white();
-  .link-plain();
+  .default-box-shadow();
   .link-hover({
     .thicker-box-shadow();
   });
-
-  .default-box-shadow();
   .fade-element(120ms);
   .default-border-radius();
+  .own-layer();
 
   &::before {
     .full-size();
@@ -59,6 +51,34 @@
 
   &--mutual {
     border: 2px solid @pink;
+  }
+
+  &__link-wrapper {
+    .link-white();
+    .link-plain();
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__main-card {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__metadata {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__actions {
+    position: absolute;
+    top: -@card-item-spacing;
+    right: -@card-item-spacing;
+    .fade-element(120ms);
+    opacity: 0;
+    .@{top}:hover & {
+      opacity: 1;
+    }
   }
 
   &__avatar {
@@ -93,7 +113,7 @@
     background-color: @pink;
   }
 
-  &__status {
+  &__status-bar {
     font-weight: 100;
     height: @status-bar-size;
     width: 100%;
@@ -114,15 +134,5 @@
 
   &__status-icon {
     padding-right: @card-item-spacing;
-  }
-
-  &__main-card {
-    display: flex;
-    flex-direction: row;
-  }
-
-  &__metadata {
-    display: flex;
-    flex-direction: column;
   }
 }

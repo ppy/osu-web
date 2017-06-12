@@ -20,11 +20,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\UserRelation;
 use Auth;
+use Request;
 
 class FriendsController extends Controller
 {
     protected $section = 'home';
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        $this->middleware('verify-user', [
+            'only' => [
+                'store',
+                'destroy',
+            ],
+        ]);
+
+        return parent::__construct();
+    }
 
     public function index()
     {
@@ -39,5 +56,52 @@ class FriendsController extends Controller
             ->get();
 
         return view('friends.index', compact('friends'));
+    }
+
+    public function store()
+    {
+        //TODO: check user friend quota
+
+        $target_id = get_int(Request::input('target'));
+        $user = User::find($target_id)->firstOrFail();
+
+        $friend = Auth::user()
+            ->friends()
+            ->where(['zebra_id' => $target_id])
+            ->first();
+
+        if (!$friend) {
+            UserRelation::create([
+                'user_id' => Auth::user()->user_id,
+                'zebra_id' => $target_id,
+                'friend' => 1,
+            ]);
+        }
+
+        if (Request::has('ujs')) {
+            return 'ok';
+        } else {
+            return Auth::user()->defaultJson();
+        }
+    }
+
+    public function destroy($id)
+    {
+        $friend = Auth::user()
+            ->friends()
+            ->where(['zebra_id' => $id])
+            ->firstOrFail();
+
+        UserRelation::where([
+            'user_id' => Auth::user()->user_id,
+            'zebra_id' => $id,
+            'friend' => 1,
+        ])->delete();
+
+        if (Request::has('ujs')) {
+            return js_view('friends.ujs-destroy', ['user_id' => $id]);
+        } else {
+            return Auth::user()->defaultJson();
+        }
     }
 }

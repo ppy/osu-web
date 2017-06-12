@@ -29,7 +29,8 @@
                 @foreach ($friends as $connection)
                     @include('objects._usercard', [
                         'user' => $connection->target,
-                        'mutual' => $connection->mutual
+                        'mutual' => $connection->mutual,
+                        'showActions' => true,
                     ])
                 @endforeach
             </div>

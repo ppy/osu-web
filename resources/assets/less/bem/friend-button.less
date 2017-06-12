@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,20 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'title' => 'Friends',
-    'title_compact' => 'friends',
-
-    'state' => [
-      'friends' => 'friends',
-      'mutual' => 'mutual',
-    ],
-
-    'buttons' => [
-      'add' => 'add friend',
-      'remove' => 'remove',
-    ],
-
-    'confirm_add' => 'Are you sure you want to friend this user?',
-    'confirm_remove' => 'Are you sure you want to unfriend this user?',
-];
+.friend-button {
+  margin-bottom: 10px;
+  .link-white();
+  .link-plain();
+}

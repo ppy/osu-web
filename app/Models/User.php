@@ -879,7 +879,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return json_item($this, 'User', 'disqus_auth');
+        return json_item($this, 'User', ['disqus_auth', 'friends']);
     }
 
     public function supportLength()

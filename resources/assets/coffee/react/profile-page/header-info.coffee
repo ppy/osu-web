@@ -21,7 +21,10 @@ el = React.createElement
 
 ProfilePage.HeaderInfo = ({user}) ->
   div className: 'profile-info',
-    el UserAvatar, user: user, modifiers: ['profile']
+    div className: 'profile-info__avatar-wrapper',
+      if currentUser.id?
+        el FriendButton, user: user
+      el UserAvatar, user: user, modifiers: ['profile']
     div className: 'profile-info__details',
       if user.isSupporter
         el Icon,

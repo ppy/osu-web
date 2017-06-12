@@ -36,6 +36,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'allStatistics',
         'beatmapPlaycounts',
         'defaultStatistics',
+        'friends',
         'page',
         'recentActivities',
         'recentlyReceivedKudosu',
@@ -95,6 +96,14 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($user->playmode);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeFriends(User $user)
+    {
+        return $this->collection(
+            $user->friends()->withMutual()->get(),
+            new UserRelationTransformer()
+        );
     }
 
     public function includeAllStatistics(User $user)
