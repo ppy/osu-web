@@ -145,9 +145,7 @@ class HomeController extends Controller
 
         return view('home.nav_search_result', compact(
             'beatmapsets',
-            'posts',
-            'users',
-            'wikiPages'
+            'users'
         ));
     }
 
