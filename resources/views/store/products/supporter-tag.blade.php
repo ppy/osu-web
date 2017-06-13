@@ -50,10 +50,12 @@
     <div class="store-slider">
         <div class="js-slider ui-slider ui-slider-horizontal">
             <div class="ui-slider-handle">
-                <div class="store-slider__callout">
-                    <div class="js-price store-slider__bigtext"></div>
-                    <div class="js-duration"></div>
-                    <div class="js-discount store-slider__subtext"></div>
+                <div class="store-slider__fake-callout">
+                    <div class="store-slider__callout">
+                        <div class="js-price store-slider__bigtext"></div>
+                        <div class="js-duration"></div>
+                        <div class="js-discount store-slider__subtext"></div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -10,14 +10,15 @@
 
 .ui-slider {
   position: relative;
+  cursor: pointer;
   text-align: left;
 
   .ui-slider-handle {
     position: absolute;
     z-index: 2;
-    cursor: default;
-    width: 10px;
-    height: 20px;
+    cursor: pointer;
+    width: @slider-handle-width;
+    height: @slider-handle-height;
     border-radius: 30px;
     background-color: @pink-darker;
     outline: none;
@@ -33,11 +34,11 @@
 }
 
 .ui-slider-horizontal {
-  height: 10px;
+  height: @slider-height;
 
   .ui-slider-handle {
-    top: -5px;
-    margin-left: -5px;
+    top: -(@slider-handle-height - @slider-height) / 2;
+    margin-left: -@slider-handle-width / 2;
   }
 
   .ui-slider-range {
