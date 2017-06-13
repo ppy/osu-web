@@ -49,9 +49,12 @@ class @StoreSupporterTag
     @updateCostDisplay()
 
   initializeSlider: =>
+    # remove leftover from previous initialization
+    $(@slider).find('.ui-slider-range').remove()
+
     $(@slider).slider
       range: 'min'
-      value: @sliderValue(@MIN_VALUE)
+      value: @slider.dataset.lastValue ? @sliderValue(@MIN_VALUE)
       min: @sliderValue(@MIN_VALUE)
       max: @sliderValue(@MAX_VALUE)
       step: 1
@@ -90,6 +93,7 @@ class @StoreSupporterTag
     new StoreSupporterTagPrice(Math.floor(position / @RESOLUTION))
 
   onSliderValueChanged: (event, ui) =>
+    @slider.dataset.lastValue = ui.value
     @cost = @calculate(ui.value)
     @updateCostDisplay()
 
