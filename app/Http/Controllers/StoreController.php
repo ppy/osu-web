@@ -76,7 +76,6 @@ class StoreController extends Controller
     public function getListing()
     {
         return view('store.index')
-            ->with('skip_back_link', true)
             ->with('cart', $this->userCart())
             ->with('products', Store\Product::latest()->simplePaginate(30));
     }
