@@ -124,7 +124,7 @@ class @StoreSupporterTag
 
     @inputFeedback.textContent = text
     # Avoid setting value to undefined
-    @el.querySelector('input[name="item[extra_data][target_id]"').value = @user?.userId ? null
+    @el.querySelector('input[name="item[extra_data][target_id]"]').value = @user?.userId ? null
     $(@el.querySelectorAll('.js-avatar')).css
       'background-image': "url(#{avatarUrl})"
 
