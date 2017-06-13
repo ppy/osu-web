@@ -24,6 +24,7 @@ class Search
 {
     const MODES = [
         'all',
+
         'beatmapset',
         'forum_post',
         'user',
