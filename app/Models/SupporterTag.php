@@ -40,6 +40,7 @@ class SupporterTag
      * Gets the duration for a donated amount.
      *
      * Gets the supporter tag duration for an amount donated.
+     * This function is currently unused but implemented for future reference.
      *
      * @param int $amount Amount to get the duration for.
      * @return int duration in months.
