@@ -371,19 +371,18 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        try {
-            $results = Es::search($searchParams);
-            $beatmapIds = array_map(
-                function ($e) {
-                    return $e['_id'];
-                },
-                $results['hits']['hits']
-            );
-        } catch (\Exception $e) {
-            $beatmapIds = [];
-        }
+        $results = Es::search($searchParams);
+        $beatmapIds = array_map(
+            function ($e) {
+                return $e['_id'];
+            },
+            $results['hits']['hits']
+        );
 
-        return $beatmapIds;
+        return [
+            'ids' => $beatmapIds,
+            'total' => $results['hits']['total'],
+        ];
     }
 
     public static function searchDB(array $params = [])
@@ -421,9 +420,13 @@ class Beatmapset extends Model
             }
         }
 
-        return $query->take($limit)->skip($offset)
+        $ids = $query->take($limit)->skip($offset)
             ->orderBy($sort_field, $sort_order)
             ->get()->pluck('beatmapset_id')->toArray();
+
+        $total = $query->count();
+
+        return compact('ids', 'total');
     }
 
     public static function search(array $params = [])
@@ -444,18 +447,23 @@ class Beatmapset extends Model
         self::sanitizeSearchParams($params);
 
         if (empty(config('elasticsearch.hosts'))) {
-            $beatmap_ids = self::searchDB($params);
+            $result = self::searchDB($params);
         } else {
-            $beatmap_ids = self::searchES($params);
+            $result = self::searchES($params);
         }
 
-        return count($beatmap_ids) > 0
+        $data = count($result['ids']) > 0
             ? static
                 ::with('beatmaps')
-                ->whereIn('beatmapset_id', $beatmap_ids)
-                ->orderByField('beatmapset_id', $beatmap_ids)
+                ->whereIn('beatmapset_id', $result['ids'])
+                ->orderByField('beatmapset_id', $result['ids'])
                 ->get()
             : [];
+
+        return [
+            'data' => $data,
+            'total' => $result['total'],
+        ];
     }
 
     public static function latestRankedOrApproved($count = 5)
@@ -494,7 +502,7 @@ class Beatmapset extends Model
 
     public static function listing()
     {
-        return self::search();
+        return static::search()['data'];
     }
 
     public static function coverSizes()

@@ -147,7 +147,7 @@ class BeatmapsetsController extends Controller
             ARRAY_FILTER_USE_BOTH
         );
 
-        $beatmaps = Beatmapset::search($params);
+        $beatmaps = Beatmapset::search($params)['data'];
 
         return json_collection(
             $beatmaps,
