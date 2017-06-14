@@ -19,6 +19,13 @@
 parseInt10 = (string) -> parseInt string, 10
 
 class @BeatmapsetFilter
+  @cast:
+    mode: parseInt10
+    status: parseInt10
+    genre: parseInt10
+    language: parseInt10
+
+
   @charToKey:
     m: 'mode'
     s: 'status'
@@ -40,11 +47,5 @@ class @BeatmapsetFilter
     sort: 'ranked_desc'
     query: ''
 
-
-  @cast:
-    mode: parseInt10
-    status: parseInt10
-    genre: parseInt10
-    language: parseInt10
 
   @expand: ['genre', 'language', 'extra', 'rate']
