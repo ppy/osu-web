@@ -153,6 +153,7 @@ class Beatmaps.Main extends React.PureComponent
 
     return if "#{location.pathname}#{location.search}" == newUrl
 
+    # copied from https://github.com/turbolinks/turbolinks/pull/61
     Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier newUrl, Turbolinks.uuid()
 
     @showLoader()
