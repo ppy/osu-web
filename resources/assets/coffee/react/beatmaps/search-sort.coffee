@@ -19,7 +19,7 @@
 {div, a, span} = React.DOM
 el = React.createElement
 
-class Beatmaps.SearchSort extends React.Component
+class Beatmaps.SearchSort extends React.PureComponent
   render: =>
     div className: 'beatmapsets-sorting',
       for field in ['title', 'artist', 'difficulty', 'ranked', 'rating', 'plays']

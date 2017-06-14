@@ -19,7 +19,7 @@
 {div,a,i,input,h1,h2} = React.DOM
 el = React.createElement
 
-class Beatmaps.SearchPanel extends React.Component
+class Beatmaps.SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
@@ -27,11 +27,15 @@ class Beatmaps.SearchPanel extends React.Component
     @debouncedSubmit = _.debounce @submit, 500
 
     @state =
-      isExpanded: false
       filters: osu.parseJson('json-filters')
 
 
+  componentDidMount: =>
+    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+
+
   componentWillUnmount: =>
+    $(document).off '.beatmaps-search-cache'
     @debouncedSubmit.cancel()
 
 
@@ -77,6 +81,7 @@ class Beatmaps.SearchPanel extends React.Component
           name: 'search'
           placeholder: osu.trans('beatmaps.listing.search.prompt')
           onInput: @onInput
+          defaultValue: @props.filters.query
         div className: 'fancy-search__icon',
           el Icon, name: 'search'
 
@@ -140,4 +145,4 @@ class Beatmaps.SearchPanel extends React.Component
 
     @prevText = text
 
-    $(document).trigger 'beatmap:search:start'
+    $(document).trigger 'beatmap:search:filtered', query: text

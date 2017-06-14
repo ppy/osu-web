@@ -38,15 +38,22 @@ class @ReactTurbolinks
         continue if !component.loaded
 
         component.loaded = false
+
+        continue if component.persistent
         for target in component.targets
           ReactDOM.unmountComponentAtNode target
 
 
   register: (name, element, propsFunction = ->) =>
+    @registerPersistent name, element, false, propsFunction
+
+
+  registerPersistent: (name, element, persistent = true, propsFunction = ->) =>
     return if @components[name]
 
     @components[name] =
       loaded: false
+      persistent: persistent
       targets: document.getElementsByClassName("js-react--#{name}")
       element: element
       propsFunction: propsFunction

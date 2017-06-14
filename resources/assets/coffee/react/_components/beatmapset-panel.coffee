@@ -59,7 +59,6 @@ el = React.createElement
         div className: 'beatmapset-panel__header',
           a
             href: laroute.route('beatmapsets.show', beatmapset: beatmapset.id)
-            target: '_blank'
             className: 'beatmapset-panel__thumb'
             style:
               backgroundImage: "url(#{beatmapset.covers.card})"

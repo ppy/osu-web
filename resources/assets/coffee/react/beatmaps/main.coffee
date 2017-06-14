@@ -19,13 +19,14 @@
 {div} = React.DOM
 el = React.createElement
 
-class Beatmaps.Main extends React.Component
+class Beatmaps.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
     @xhr = {}
 
-    @state = _.extend
+    @state = JSON.parse(props.container.dataset.reactState ? null)
+    @state ?= _.extend
       beatmaps: @props.beatmaps
       paging:
         page: 1
@@ -39,12 +40,11 @@ class Beatmaps.Main extends React.Component
 
 
   componentDidMount: =>
-    $('.js-beatmapsets-search-input').val(@initialInput)
-
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
     $(document).on 'beatmap:search:start.beatmaps', @search
     $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
+    $(document).on 'turbolinks:before-cache.beatmaps', @saveState
 
 
   componentWillUnmount: =>
@@ -92,10 +92,7 @@ class Beatmaps.Main extends React.Component
 
 
   buildSearchQuery: =>
-    query = $('.js-beatmapsets-search-input').val().trim()
-    query = null if query.length == 0
-
-    params = _.extend {}, @state.filters, query: query
+    params = _.extend {}, @state.filters
 
     keyToChar = _.invert BeatmapsetFilter.charToKey
     charParams = {}
@@ -141,6 +138,11 @@ class Beatmaps.Main extends React.Component
         loading: false
 
       @setState newState
+
+
+  saveState: =>
+    @props.container.dataset.reactState = JSON.stringify @state
+    @componentWillUnmount()
 
 
   search: =>
@@ -196,7 +198,7 @@ class Beatmaps.Main extends React.Component
       continue if !key? || value.length == 0
 
       value = BeatmapsetFilter.cast[key](value) if BeatmapsetFilter.cast[key]
-      expand = key in BeatmapsetFilter.expand
+      expand = true if key in BeatmapsetFilter.expand
 
       state[key] = value
 

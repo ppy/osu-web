@@ -38,6 +38,7 @@ class @BeatmapsetFilter
     extra: null
     rank: null
     sort: 'ranked_desc'
+    query: ''
 
 
   @cast:
