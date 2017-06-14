@@ -30,7 +30,8 @@ class SupporterTag
      * @return bool true if the amount is valid; false, otherwise.
      * @throws Exception
      **/
-    public static function checkPrice(int $value, int $duration) {
+    public static function checkPrice(int $value, int $duration)
+    {
         $required = self::getMinimumDonation($duration);
 
         return $required <= $value;
@@ -45,7 +46,8 @@ class SupporterTag
      * @param int $amount Amount to get the duration for.
      * @return int duration in months.
      **/
-    public static function getDuration(int $amount) {
+    public static function getDuration(int $amount)
+    {
         switch (true) {
             case $amount >= 26:
                 return floor($amount / 26.0 * 12);
@@ -75,7 +77,8 @@ class SupporterTag
      * @return int Minimum donation required.
      * @throws Exception
      **/
-    private static function getMinimumDonation(int $duration) {
+    private static function getMinimumDonation(int $duration)
+    {
         switch (true) {
             case $duration >= 12:
                  return ceil($duration / 12.0 * 26);
