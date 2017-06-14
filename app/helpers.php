@@ -42,7 +42,11 @@ function background_image($url)
 
 function es_query_and_words($words)
 {
-    $parts = preg_split("/\s+/", trim($words ?? ''));
+    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
+
+    if (empty($parts)) {
+        return;
+    }
 
     $partsEscaped = [];
 
