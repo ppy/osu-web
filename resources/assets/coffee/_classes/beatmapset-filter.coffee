@@ -19,7 +19,7 @@
 parseInt10 = (string) -> parseInt string, 10
 
 class @BeatmapsetFilter
-  @cast:
+  @castFromString:
     mode: parseInt10
     status: parseInt10
     genre: parseInt10

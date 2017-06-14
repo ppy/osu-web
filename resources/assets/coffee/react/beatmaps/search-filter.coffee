@@ -46,7 +46,7 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
 
   cast: (value) =>
-    BeatmapsetFilter.cast[@props.name]?(value) ? value
+    BeatmapsetFilter.castFromString[@props.name]?(value) ? value
 
 
   select: (e) =>

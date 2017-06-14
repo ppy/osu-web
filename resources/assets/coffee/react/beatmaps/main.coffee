@@ -198,7 +198,7 @@ class Beatmaps.Main extends React.PureComponent
 
       continue if !key? || value.length == 0
 
-      value = BeatmapsetFilter.cast[key](value) if BeatmapsetFilter.cast[key]
+      value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
       expand = true if key in BeatmapsetFilter.expand
 
       state[key] = value
