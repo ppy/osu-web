@@ -20,6 +20,11 @@
 
 namespace App\Libraries;
 
+use App\Models\Beatmapset;
+use App\Models\Forum\Post as ForumPost;
+use App\Models\User;
+use App\Models\Wiki\Page as WikiPage;
+
 class Search
 {
     const MODES = [
@@ -28,8 +33,10 @@ class Search
         'beatmapset',
         'forum_post',
         'user',
-        'wiki_page'
+        'wiki_page',
     ];
+
+    private $cache = [];
 
     public function __construct($params)
     {
@@ -38,11 +45,77 @@ class Search
             $this->mode = static::MODES[0];
         }
 
+        if ($this->mode === 'all') {
+            $params['limit'] = 6;
+        }
+
         $this->params = $params;
+    }
+
+    public function all()
+    {
+        $all = [];
+
+        foreach (static::MODES as $mode) {
+            if ($mode === 'all') {
+                continue;
+            }
+
+            if ($this->mode === 'all' || $this->mode === $mode) {
+                $function = 'search'.studly_case($mode);
+                $all[$mode] = $this->$function();
+
+                if ($this->mode !== 'all') {
+                    $this->params = $all[$mode]['params'];
+                }
+            }
+        }
+
+        return $all;
+    }
+
+    public function searchBeatmapset()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->cache)) {
+            $this->cache[__FUNCTION__] = Beatmapset::search($this->params);
+        }
+
+        return $this->cache[__FUNCTION__];
+    }
+
+    public function searchForumPost()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->cache)) {
+            $this->cache[__FUNCTION__] = ForumPost::search($this->params);
+        }
+
+        return $this->cache[__FUNCTION__];
+    }
+
+    public function searchUser()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->cache)) {
+            $this->cache[__FUNCTION__] = User::search($this->params);
+        }
+
+        return $this->cache[__FUNCTION__];
+    }
+
+    public function searchWikiPage()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->cache)) {
+            $this->cache[__FUNCTION__] = WikiPage::search($this->params);
+        }
+
+        return $this->cache[__FUNCTION__];
     }
 
     public function url($newParams)
     {
+        if ($this->mode === 'all') {
+            $newParams['limit'] = null;
+        }
+
         return route('search', array_merge($this->params, ['mode' => $this->mode], $newParams));
     }
 }

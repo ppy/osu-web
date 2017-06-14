@@ -16,10 +16,48 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.search {
-  .inner-shadow-top();
+.search-result {
+  @top: search-result;
+  .default-border-radius();
   .default-box-shadow();
-  padding: 0 40px 20px;
-  background-color: #222;
-  color: #fff;
+  background-color: #333;
+  padding: 15px 20px;
+  margin-top: 20px;
+
+  &::before {
+    .full-size();
+    width: 5px;
+    border-top-left-radius: @border-radius-base;
+    border-bottom-left-radius: @border-radius-base;
+  }
+
+  &--beatmapset::before {
+    background-color: @pink-dark;
+  }
+
+  &__entry {
+    flex: none;
+    padding: 5px;
+    width: 100%;
+
+    .@{top}--beatmapset & {
+      @media @desktop {
+        width: 50%;
+      }
+    }
+  }
+
+  &__result {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+    padding: 15px 0;
+  }
+
+  &__title {
+    font-size: @font-size--title-small-2;
+    color: #fff;
+    font-style: italic;
+    margin: 0;
+  }
 }

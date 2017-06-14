@@ -37,7 +37,7 @@
     <div class="osu-page osu-page--small">
         <div class="search">
             <div class="page-mode page-mode--search">
-                @foreach (App\Libraries\Search::MODES as $mode)
+                @foreach ($search::MODES as $mode)
                     <div class="page-mode__item">
                         <a
                             href="{{ $search->url(['mode' => $mode]) }}"
@@ -53,7 +53,11 @@
                     </div>
                 @endforeach
             </div>
-            hi
+            <div>
+                @foreach ($search->all() as $mode => $result)
+                    @include("home._search_{$mode}", compact('result'))
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection

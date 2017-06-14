@@ -43,6 +43,7 @@ return [
 
         'beatmapsets' => [
             'more' => ':count more beatmap search results',
+            'more_simple' => 'See more beatmap search results',
             'title' => 'Beatmaps',
         ],
 

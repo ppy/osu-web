@@ -90,6 +90,9 @@ $(document).on 'keydown', (e) ->
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
 
+reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
+  JSON.parse(el.dataset.beatmapsetPanel)
+
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
