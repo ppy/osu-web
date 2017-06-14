@@ -284,9 +284,9 @@ class Order extends Model
 
         // FIXME: custom class stuff should probably not go in Order...
         if ($product->custom_class === 'supporter-tag') {
-            $targetUsername = $params['extraData']['username'];
-            $user = User::where('username', $targetUsername)->firstOrFail();
-            $params['extraData']['target_id'] = $user->user_id;
+            $targetId = $params['extraData']['target_id'];
+            $user = User::where('user_id', $targetId)->firstOrFail();
+            $params['extraData']['username'] = $user->username;
 
             $duration = $params['extraData']['duration'];
             if (!SupporterTag::checkPrice($params['cost'], $duration)) {
