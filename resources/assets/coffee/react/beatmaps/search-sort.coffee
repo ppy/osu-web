@@ -32,9 +32,10 @@ class Beatmaps.SearchSort extends React.Component
           onClick: @select
           'data-field': field
           field
-          if selected
-            span className: 'beatmapsets-sorting__item-arrow',
-              el Icon, name: "caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
+          span
+            className: 'beatmapsets-sorting__item-arrow'
+            'data-visibility': ('hidden' if !selected)
+            el Icon, name: "caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
 
 
   select: (e) =>
@@ -47,9 +48,7 @@ class Beatmaps.SearchSort extends React.Component
     else
       order = 'desc'
 
-    $(document).trigger 'beatmap:search:sorted',
-      field: field
-      order: order
+    $(document).trigger 'beatmap:search:filtered', sort: "#{field}_#{order}"
 
 
   selected: (field) =>

@@ -23,12 +23,16 @@ class Beatmaps.SearchPanel extends React.Component
   constructor: (props) ->
     super props
 
-    @keyDelay = null
     @prevText = null
+    @debouncedSubmit = _.debounce @submit, 500
 
     @state =
       isExpanded: false
       filters: osu.parseJson('json-filters')
+
+
+  componentWillUnmount: =>
+    @debouncedSubmit.cancel()
 
 
   render: =>
@@ -40,11 +44,9 @@ class Beatmaps.SearchPanel extends React.Component
         @renderGuest()
 
 
-  keypressed: (e) =>
-    @text = e.target.value.trim()
-
-    Timeout.clear @keyDelay
-    @keyDelay = Timeout.set 500, @submit
+  onInput: (event) =>
+    event.persist()
+    @debouncedSubmit event
 
 
   renderGuest: =>
@@ -63,7 +65,7 @@ class Beatmaps.SearchPanel extends React.Component
     filters = @state.filters
 
     div
-      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @state.isExpanded}"
+      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
       div
         className: 'beatmapsets-search__background'
         style:
@@ -73,35 +75,69 @@ class Beatmaps.SearchPanel extends React.Component
           className: 'fancy-search__input js-beatmapsets-search-input'
           type: 'textbox'
           name: 'search'
-          placeholder: osu.trans("beatmaps.listing.search.prompt")
-          onChange: @keypressed
+          placeholder: osu.trans('beatmaps.listing.search.prompt')
+          onInput: @onInput
         div className: 'fancy-search__icon',
-          i className:'fa fa-search'
+          el Icon, name: 'search'
 
-      el(Beatmaps.SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: '0', selected: @props.filters.mode)
-      el(Beatmaps.SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: '0', selected: @props.filters.status)
+      el Beatmaps.SearchFilter,
+        name: 'mode'
+        title: 'Mode'
+        options: filters.modes
+        default: @props.filterDefaults.mode
+        selected: @props.filters.mode
 
-      a className: 'beatmapsets-search__expand-link', href:'#', onClick: @showMore,
+      el Beatmaps.SearchFilter,
+        name:'status'
+        title: 'Rank Status'
+        options: filters.statuses
+        default: @props.filterDefaults.status
+        selected: @props.filters.status
+
+      a
+        className: 'beatmapsets-search__expand-link'
+        href:'#'
+        onClick: @props.expand
         div {}, osu.trans('beatmaps.listing.search.options')
         div {}, i className:'fa fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
-        el(Beatmaps.SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'], selected: @props.filters.genre)
-        el(Beatmaps.SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'], selected: @props.filters.language)
-        el(Beatmaps.SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true, selected: @props.filters.extra)
+        el Beatmaps.SearchFilter,
+          name: 'genre'
+          title: 'Genre'
+          options: filters.genres
+          default: @props.filterDefaults.genre
+          selected: @props.filters.genre
+
+        el Beatmaps.SearchFilter,
+          name: 'language'
+          title: 'Language'
+          options: filters.languages
+          default: @props.filterDefaults.language
+          selected: @props.filters.language
+
+        el Beatmaps.SearchFilter,
+          name: 'extra'
+          title: 'Extra'
+          options: filters.extras
+          multiselect: true
+          selected: @props.filters.extra
+
         if currentUser.isSupporter
-          el(Beatmaps.SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true, selected: @props.filters.rank)
+          el Beatmaps.SearchFilter,
+            name: 'rank'
+            title: 'Rank Achieved'
+            options: filters.ranks
+            multiselect: true
+            selected: @props.filters.rank
 
 
-  showMore: (e) =>
-    e.preventDefault()
-    @setState isExpanded: true
+  submit: (e) =>
+    text = e.target.value.trim()
 
-
-  submit: =>
-    if (!@prevText? && @text == '') || @text == @prevText
+    if text == @prevText
       return
 
-    @prevText = @text
+    @prevText = text
 
     $(document).trigger 'beatmap:search:start'

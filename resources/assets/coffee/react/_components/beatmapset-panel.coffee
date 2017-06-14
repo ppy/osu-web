@@ -47,7 +47,7 @@ el = React.createElement
     difficulties = beatmapset.beatmaps[..maxDisplayedDifficulty - 1].map (b) =>
       div
         className: 'beatmapset-panel__difficulty-icon'
-        key: b.version
+        key: b.id
         el BeatmapIcon, beatmap: b
 
     if beatmapset.beatmaps.length > maxDisplayedDifficulty
