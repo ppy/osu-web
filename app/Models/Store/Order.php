@@ -288,10 +288,7 @@ class Order extends Model
             $user = User::where('user_id', $targetId)->firstOrFail();
             $params['extraData']['username'] = $user->username;
 
-            $duration = $params['extraData']['duration'];
-            if (!SupporterTag::checkPrice($params['cost'], $duration)) {
-                throw new \Exception('check failed.');
-            }
+            $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
         }
 
         $item = new OrderItem();

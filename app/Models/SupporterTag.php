@@ -22,32 +22,24 @@ namespace App\Models;
 
 class SupporterTag
 {
-    /**
-     * Checks if the amount to be donated is valid for the duration specified.
-     *
-     * @param int $value Amount of the donation to check.
-     * @param int $duration Duration to check the donation against.
-     * @return bool true if the amount is valid; false, otherwise.
-     * @throws Exception
-     **/
-    public static function checkPrice(int $value, int $duration)
-    {
-        $required = self::getMinimumDonation($duration);
-
-        return $required <= $value;
-    }
+    const MIN_DONATION = 4;
 
     /**
      * Gets the duration for a donated amount.
      *
      * Gets the supporter tag duration for an amount donated.
-     * This function is currently unused but implemented for future reference.
      *
      * @param int $amount Amount to get the duration for.
      * @return int duration in months.
+     * @throws Exception
      **/
     public static function getDuration(int $amount)
     {
+        if ($amount < self::MIN_DONATION) {
+            $minDonation = self::MIN_DONATION; // can't interpolate const :D
+            throw new \Exception("amount must be >= {$minDonation}");
+        }
+
         switch (true) {
             case $amount >= 26:
                 return floor($amount / 26.0 * 12);
@@ -72,6 +64,8 @@ class SupporterTag
 
     /**
      * Gets the minimum donation amount required for a given length of support.
+     *
+     * This function is currently unused but implemented for future reference.
      *
      * @param int $duration Duration to get the minimum amount for.
      * @return int Minimum donation required.
