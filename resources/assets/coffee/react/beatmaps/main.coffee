@@ -203,10 +203,6 @@ class Beatmaps.Main extends React.PureComponent
 
       state[key] = value
 
-      if key == 'query'
-        # ;_;
-        @initialInput = value
-
     filters: state
     isExpanded: expand
 
