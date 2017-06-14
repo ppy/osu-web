@@ -20,8 +20,8 @@
 
 namespace App\Models\Store;
 
-use App\Models\User;
 use App\Models\SupporterTag;
+use App\Models\User;
 use DB;
 
 class Order extends Model
