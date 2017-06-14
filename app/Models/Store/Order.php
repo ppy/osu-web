@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Models\User;
+use App\Models\SupporterTag;
 use DB;
 
 class Order extends Model
@@ -284,9 +285,13 @@ class Order extends Model
         // FIXME: custom class stuff should probably not go in Order...
         if ($product->custom_class === 'supporter-tag') {
             $targetUsername = $params['extraData']['username'];
-            $user = User::where('username', $targetUsername)->first();
-            // TODO: burst into flames if user is null
+            $user = User::where('username', $targetUsername)->firstOrFail();
             $params['extraData']['target_id'] = $user->user_id;
+
+            $duration = $params['extraData']['duration'];
+            if (!SupporterTag::checkPrice($params['cost'], $duration)) {
+                throw new \Exception('check failed.');
+            }
         }
 
         $item = new OrderItem();
