@@ -37,6 +37,9 @@ class Search
     ];
 
     private $cache = [];
+    public $params;
+    public $user;
+    public $requestedLocale;
 
     public function __construct($params)
     {
@@ -46,9 +49,10 @@ class Search
         }
 
         if ($this->mode === 'all') {
-            $params['limit'] = 6;
+            $params['limit'] = 8;
         }
 
+        $this->user = array_pull($params, 'user');
         $this->params = $params;
     }
 
@@ -56,22 +60,36 @@ class Search
     {
         $all = [];
 
-        foreach (static::MODES as $mode) {
-            if ($mode === 'all') {
+        foreach (static::MODES as $i => $mode) {
+            if ($i === 0) {
                 continue;
             }
 
-            if ($this->mode === 'all' || $this->mode === $mode) {
-                $function = 'search'.studly_case($mode);
-                $all[$mode] = $this->$function();
+            if ($this->mode === static::MODES[0] || $this->mode === $mode) {
+                $all[$mode] = $this->search($mode);
 
-                if ($this->mode !== 'all') {
+                if ($this->mode !== static::MODES[0] && isset($all[$mode]['params'])) {
                     $this->params = $all[$mode]['params'];
                 }
             }
         }
 
         return $all;
+    }
+
+    public function search($mode)
+    {
+        if ($mode === static::MODES[0]) {
+            return;
+        }
+
+        if ($this->mode !== static::MODES[0] && $this->mode !== $mode) {
+            return;
+        }
+
+        $function = 'search'.studly_case($mode);
+
+        return $this->$function();
     }
 
     public function searchBeatmapset()
@@ -104,7 +122,7 @@ class Search
     public function searchWikiPage()
     {
         if (!array_key_exists(__FUNCTION__, $this->cache)) {
-            $this->cache[__FUNCTION__] = WikiPage::search($this->params);
+            $this->cache[__FUNCTION__] = WikiPage::search($this->params, $this->requestedLocale);
         }
 
         return $this->cache[__FUNCTION__];

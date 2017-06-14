@@ -20,6 +20,7 @@
 
 namespace App\Models\Wiki;
 
+use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
 use App\Libraries\OsuMarkdownProcessor;
@@ -49,6 +50,7 @@ class Page
     {
         $locale ?? ($locale = config('app.fallback_locale'));
         $params = static::searchParams($params);
+        $matchParams = [];
 
         if (!present($params['query'])) {
             return [];
@@ -59,22 +61,36 @@ class Page
             'from' => ($params['page'] - 1) * $params['limit'],
         ]);
 
-        $searchParams['body']['query']['bool']['must']['query_string']['query'] = $params['query'];
+        if ($params['locale'] !== null) {
+            $matchParams[] = [
+                'match' => ['locale' => $params['locale']],
+            ];
+        }
+
+        $matchParams[] = ['query_string' => ['query' => $params['query']]];
+
+        $searchParams['body']['query']['bool']['must'] = $matchParams;
 
         $results = Es::search($searchParams);
 
-        $pages = [];
+        $pages = [
+            'appLocale' => [],
+            'otherLocale' => [],
+        ];
 
         foreach ($results['hits']['hits'] as $hit) {
             $document = $hit['_source'];
+            $page = new static(null, null, $document);
 
-            if (!isset($pages[$document['path']]) || $document['locale'] === $locale) {
-                $pages[$document['path']] = new static(null, null, $document);
+            if ($params['locale'] !== null || $document['locale'] === App::getLocale()) {
+                $pages['appLocale'][] = $page;
+            } else {
+                $pages['otherLocale'][] = $page;
             }
         }
 
         return [
-            'data' => array_values($pages),
+            'data' => array_merge(...array_values($pages)),
             'total' => $results['hits']['total'],
         ];
     }
@@ -92,6 +108,7 @@ class Page
         $params['query'] = es_query_and_words($params['query'] ?? null);
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
+        $params['locale'] = $params['locale'] ?? null;
         $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
         $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int');
         $params['topic_id'] = get_int($params['topic_id'] ?? null);

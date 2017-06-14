@@ -162,6 +162,14 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
+function search_total_display($total)
+{
+    if ($total >= 100) {
+        return "99+";
+    }
+
+    return (string) $total;
+}
 function obscure_email($email)
 {
     $email = explode('@', $email);

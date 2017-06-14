@@ -47,6 +47,12 @@
                                 {{ trans("home.search.mode.{$mode}") }}
                             </span>
 
+                            @if (isset($search->search($mode)['total']))
+                                <span class="page-mode-link__badge">
+                                    {{ search_total_display($search->search($mode)['total']) }}
+                                </span>
+                            @endif
+
                             <span class="page-mode-link__stripe u-forum--bg">
                             </span>
                         </a>

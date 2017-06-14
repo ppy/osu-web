@@ -152,7 +152,9 @@ class HomeController extends Controller
 
     public function search()
     {
-        $search = new Search(Request::all());
+        $search = new Search(array_merge(Request::all(), [
+            'user' => Auth::user(),
+        ]));
 
         return view('home.search', compact(
             'search'
