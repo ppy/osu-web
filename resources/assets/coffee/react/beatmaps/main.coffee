@@ -95,6 +95,8 @@ class Beatmaps.Main extends React.PureComponent
 
 
   buildSearchQuery: =>
+    return {} if !currentUser.id?
+
     params = _.extend {}, @state.filters
 
     keyToChar = _.invert BeatmapsetFilter.charToKey
@@ -103,6 +105,8 @@ class Beatmaps.Main extends React.PureComponent
     for own key, value of params
       if value? && BeatmapsetFilter.defaults[key] != value
         charParams[keyToChar[key]] = value
+
+    delete charParams[keyToChar['rank']] if !currentUser.isSupporter
 
     charParams
 
