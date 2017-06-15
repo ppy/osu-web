@@ -228,14 +228,14 @@ class Beatmapset extends Model
 
         // rank
         $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode(',', $params['rank'] ?? null), $validRanks);
+        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
 
         // the rest, oneliner
         $params['query'] = presence($params['query'] ?? null);
         $params['status'] = get_int($params['status'] ?? 0);
         $params['genre'] = get_int($params['genre'] ?? null);
         $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode(',', $params['extra'] ?? null);
+        $params['extra'] = explode('.', $params['extra'] ?? null);
         $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
         $params['page'] = max(1, get_int($params['page'] ?? 1));
         $params['offset'] = ($params['page'] - 1) * $params['limit'];
