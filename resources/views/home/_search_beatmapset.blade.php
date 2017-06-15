@@ -31,7 +31,7 @@
 
     <a
         class="search-result__more"
-        href="{{ route('beatmapsets.index', ['q' => $search->params['query']]) }}"
+        href="{{ $search->url(['mode' => 'beatmapset']) }}"
     >
         @lang('home.search.beatmapsets.more_simple')
     </a>
