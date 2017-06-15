@@ -385,7 +385,7 @@ class Beatmapset extends Model
     {
         $query = static::where('title', 'like', '%'.$params['query'].'%');
 
-        if ($mode !== null) {
+        if ($params['mode'] !== null) {
             $query->whereHas('beatmaps', function ($query) use ($params) {
                 $query->where('playmode', '=', $params['mode']);
             });
@@ -400,7 +400,7 @@ class Beatmapset extends Model
         }
 
         if (!empty($params['extra'])) {
-            foreach ($extra as $val) {
+            foreach ($params['extra'] as $val) {
                 switch ($val) {
                     case 'video':
                         $query->where('video', '=', 1);
