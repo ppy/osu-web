@@ -51,7 +51,7 @@ class HomeController extends Controller
             ->with('user');
 
         if ($build !== null) {
-            $build = Build::with('updateStream')->where('version', $build)->firstOrFail();
+            $build = Build::default()->with('updateStream')->where('version', $build)->firstOrFail();
 
             $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
         } else {
