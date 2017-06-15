@@ -229,9 +229,13 @@ function js_view($view, $vars = [])
 
 function ujs_redirect($url)
 {
-    if (Request::ajax()) {
+    if (Request::ajax() && !Request::isMethod('get')) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
+        if (Request::header('Turbolinks-Referrer')) {
+            Request::session()->put('_turbolinks_location', $url);
+        }
+
         return redirect($url);
     }
 }
