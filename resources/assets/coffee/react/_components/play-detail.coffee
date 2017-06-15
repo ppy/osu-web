@@ -74,7 +74,7 @@ el = React.createElement
                 else
                   score.score.toLocaleString()
             div
-              className: 'detail-row__detail-row detail-row__score-details'
+              className: 'detail-row__score-details'
               if score.weight
                 div
                   className: 'detail-row__text-score'
