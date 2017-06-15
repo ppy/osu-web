@@ -43,7 +43,7 @@ class @BeatmapsetFilter
     genre: null
     language: null
     extra: ''
-    rank: null
+    rank: ''
     sort: 'ranked_desc'
     query: ''
 
