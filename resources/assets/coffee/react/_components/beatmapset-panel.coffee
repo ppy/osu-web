@@ -19,25 +19,30 @@
 {div,a,i,span} = React.DOM
 el = React.createElement
 
-@BeatmapsetPanel = React.createClass
-  getInitialState: ->
-    preview: 'ended'
-    previewDuration: 0
+class @BeatmapsetPanel extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @eventId = "beatmapsetPanel-#{props.beatmap.beatmapset_id}-#{osu.generateId()}"
+
+    @state =
+      preview: 'ended'
+      previewDuration: 0
 
 
-  componentDidMount: ->
-    @eventId = "beatmapsetPanel#{@props.beatmap.beatmapset_id}"
-
+  componentDidMount: =>
     $.subscribe "osuAudio:initializing.#{@eventId}", @previewInitializing
     $.subscribe "osuAudio:playing.#{@eventId}", @previewStart
     $.subscribe "osuAudio:ended.#{@eventId}", @previewStop
+    $(document).on "turbolinks:before-cache.#{@eventId}", @componentWillUnmount
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
+    $(document).off ".#{@eventId}"
 
 
-  render: ->
+  render: =>
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
@@ -115,7 +120,7 @@ el = React.createElement
       div className: 'beatmapset-panel__shadow'
 
 
-  previewInitializing: (_e, {url, player}) ->
+  previewInitializing: (_e, {url, player}) =>
     if url != @props.beatmap.previewUrl
       return @previewStop()
 
@@ -124,7 +129,7 @@ el = React.createElement
       previewDuration: 0
 
 
-  previewStart: (_e, {url, player}) ->
+  previewStart: (_e, {url, player}) =>
     if url != @props.beatmap.previewUrl
       return @previewStop()
 
@@ -133,7 +138,7 @@ el = React.createElement
       previewDuration: player.duration
 
 
-  previewStop: ->
+  previewStop: =>
     return if @state.preview == 'ended'
 
     @setState
