@@ -23,6 +23,7 @@ Beatmaps.Paginator = React.createClass
   componentDidMount: ->
     @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
     $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
+    Timeout.set 0, @throttledAutoPagerOnScroll
 
 
   componentWillUnmount: ->
