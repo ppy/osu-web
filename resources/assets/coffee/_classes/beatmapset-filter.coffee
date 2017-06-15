@@ -19,7 +19,7 @@
 parseInt10 = (string) ->
   int = parseInt string, 10
 
-  int if _.isFinite(int)
+  if _.isFinite(int) then int else null
 
 
 class @BeatmapsetFilter
