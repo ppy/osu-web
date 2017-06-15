@@ -130,7 +130,7 @@ class Beatmaps.Main extends React.PureComponent
       dataType: 'json'
       data: _.extend @buildSearchQuery(), page: @state.paging.page + 1
     .done (data) =>
-      more = data.length > 10
+      more = data.length > 0
 
       @setState
         beatmaps: [].concat(@state.beatmaps, data)
