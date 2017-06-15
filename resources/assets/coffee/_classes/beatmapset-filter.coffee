@@ -16,7 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-parseInt10 = (string) -> parseInt string, 10
+parseInt10 = (string) ->
+  int = parseInt string, 10
+
+  int if _.isFinite(int)
+
 
 class @BeatmapsetFilter
   @castFromString:
