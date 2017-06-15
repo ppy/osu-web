@@ -41,7 +41,7 @@ class TurbolinksSupport
         $isNormalResponse = method_exists($response, 'header');
 
         if ($isTurbolinks && $isNormalResponse) {
-            return $response->header('Turbolinks-Location', $request->getUri());
+            return $response->header('Turbolinks-Location', $request->getRequestUri());
         }
 
         return $response;
