@@ -69,6 +69,9 @@ class Beatmaps.SearchFilter extends React.PureComponent
   currentSelection: =>
     @cache.currentSelection ?=
       if @props.multiselect
-        @props.selected?.split('-') ? []
+        if @props.selected?.length > 0
+          @props.selected.split('-')
+        else
+          []
       else
         [@props.selected]
