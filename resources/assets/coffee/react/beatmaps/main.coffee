@@ -118,10 +118,10 @@ class Beatmaps.Main extends React.PureComponent
     if @state.loading || @state.paging.loading || !@state.paging.more
       return
 
-    paging_state = @state.paging
-    paging_state.loading = true
+    pagingState = _.extend {}, @state.paging
+    pagingState.loading = true
 
-    @setState paging: paging_state
+    @setState paging: pagingState
 
     $.ajax @state.paging.url,
       method: 'get'
@@ -129,15 +129,17 @@ class Beatmaps.Main extends React.PureComponent
       data: _.extend @buildSearchQuery(), page: @state.paging.page + 1
     .done (data) =>
       more = data.length > 10
-      newState =
-        beatmaps: @state.beatmaps.concat(data)
+
+      @setState newState
+        beatmaps: [].concat(@state.beatmaps, data)
         paging:
           page: @state.paging.page + (if more then 1 else 0)
           url: @state.paging.url
           more: more
         loading: false
-
-      @setState newState
+        =>
+          # copied from https://github.com/turbolinks/turbolinks/pull/61
+          Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier newUrl, Turbolinks.uuid()
 
 
   saveState: =>
@@ -152,9 +154,6 @@ class Beatmaps.Main extends React.PureComponent
     newUrl = laroute.route 'beatmapsets.index', params
 
     return if "#{location.pathname}#{location.search}" == newUrl
-
-    # copied from https://github.com/turbolinks/turbolinks/pull/61
-    Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier newUrl, Turbolinks.uuid()
 
     @showLoader()
     @xhr.search = $.ajax @state.paging.url,
