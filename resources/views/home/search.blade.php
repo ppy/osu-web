@@ -25,7 +25,7 @@
             </div>
 
             <label class="search-header__box">
-                <input class="search-header__input" name="query" value="{{ $search->params['query'] ?? '' }}" />
+                <input class="search-header__input" name="query" value="{{ $search->urlParams()['query'] ?? '' }}" />
 
                 <span class="search-header__icon">
                     <i class="fa fa-search"></i>
@@ -61,7 +61,50 @@
             </div>
             <div>
                 @foreach ($search->all() as $mode => $result)
-                    @include("home._search_{$mode}", compact('result'))
+                    <div class="search-result search-result--{{ $mode }}">
+                        <h2 class="search-result__row search-result__row--title">
+                            @lang("home.search.{$mode}.title")
+                        </h2>
+
+                        @if (empty($result['data']))
+                            <div class="search-result__row search-result__row--empty">
+                                @lang('home.search.empty_result')
+                            </div>
+                        @else
+                            <div class="search-result__row search-result__row--entries-container">
+                                <div class="search-result__entries">
+                                    @foreach ($result['data'] as $entry)
+                                        <div class="search-result__entry">
+                                            @include("home._search_{$mode}", compact('entry'))
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <a
+                                    class="
+                                        search-result__more-button
+                                        {{ $search->mode === $mode ? 'search-result__more-button--hidden' : '' }}
+                                    "
+                                    href="{{ $search->url(['mode' => $mode]) }}"
+                                >
+                                    <span class="fa fa-angle-right"></span>
+                                </a>
+                            </div>
+
+                            @if ($search->mode === $mode)
+                                @include('objects._pagination', [
+                                    'object' => $search->search($mode)['data'],
+                                ])
+                            @else
+                                <a
+                                    class="search-result__row search-result__row--more"
+                                    href="{{ $search->url(['mode' => $mode]) }}"
+                                >
+                                    @lang("home.search.{$mode}.more_simple")
+                                </a>
+                            @endif
+                        @endif
+                    </div>
                 @endforeach
             </div>
         </div>

@@ -79,6 +79,18 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function html_excerpt($body, $limit = 300)
+{
+    // not using strip_tags because <br> and <p> needs to be converted to space
+    $body = preg_replace('#<[^>]+>#', ' ', $body);
+
+    if (strlen($body) < $limit) {
+        return $body;
+    }
+
+    return substr($body, 0, $limit).'...';
+}
+
 function json_time($time)
 {
     if ($time !== null) {

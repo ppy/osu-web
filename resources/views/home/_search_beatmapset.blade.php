@@ -15,24 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="search-result search-result--beatmapset">
-    <h2 class="search-result__title">
-        @lang('home.search.beatmapsets.title')
-    </h2>
-
-    <div class="search-result__result">
-        @foreach ($result['data'] as $entry)
-            <div
-                class="js-react--beatmapset-panel search-result__entry"
-                data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
-            ></div>
-        @endforeach
-    </div>
-
-    <a
-        class="search-result__more"
-        href="{{ $search->url(['mode' => 'beatmapset']) }}"
-    >
-        @lang('home.search.beatmapsets.more_simple')
-    </a>
-</div>
+<div
+    class="js-react--beatmapset-panel"
+    data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
+></div>

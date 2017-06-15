@@ -39,12 +39,19 @@ return [
 
     'search' => [
         'advanced_link' => 'Advanced search',
+        'empty_result' => 'Nothing found!',
         'title' => 'Search Results',
 
-        'beatmapsets' => [
+        'beatmapset' => [
             'more' => ':count more beatmap search results',
             'more_simple' => 'See more beatmap search results',
             'title' => 'Beatmaps',
+        ],
+
+        'forum_post' => [
+            'link' => 'Search the forum',
+            'more_simple' => 'See more forum search results',
+            'title' => 'Forum',
         ],
 
         'mode' => [
@@ -55,17 +62,16 @@ return [
             'wiki_page' => 'wiki',
         ],
 
-        'posts' => [
-            'link' => 'Search the forums',
-        ],
-
-        'users' => [
+        'user' => [
             'more' => ':count more player search results',
+            'more_simple' => 'See more player search results',
             'title' => 'Players',
         ],
 
-        'wiki_pages' => [
+        'wiki_page' => [
             'link' => 'Search the wiki',
+            'more_simple' => 'See more wiki search results',
+            'title' => 'Wiki',
         ],
     ],
 

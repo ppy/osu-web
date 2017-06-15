@@ -24,15 +24,17 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
 use App\Models\User;
 use App\Models\Wiki\Page as WikiPage;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Search
 {
     const MODES = [
         'all',
 
+        // also display order
+        'user',
         'beatmapset',
         'forum_post',
-        'user',
         'wiki_page',
     ];
 
@@ -61,20 +63,25 @@ class Search
         $all = [];
 
         foreach (static::MODES as $i => $mode) {
-            if ($i === 0) {
-                continue;
-            }
+            $result = $this->search($mode);
 
-            if ($this->mode === static::MODES[0] || $this->mode === $mode) {
-                $all[$mode] = $this->search($mode);
-
-                if ($this->mode !== static::MODES[0] && isset($all[$mode]['params'])) {
-                    $this->params = $all[$mode]['params'];
-                }
+            if ($result !== null) {
+                $all[$mode] = $result;
             }
         }
 
         return $all;
+    }
+
+    public function paginate($mode)
+    {
+        return new LengthAwarePaginator(
+            $this->search($mode)['data'],
+            $this->search($mode)['total'],
+            $this->search($mode)['params']['limit'],
+            $this->search($mode)['params']['page'],
+            ['path' => route('search')]
+        );
     }
 
     public function search($mode)
@@ -128,6 +135,11 @@ class Search
         return $this->cache[__FUNCTION__];
     }
 
+    public function urlParams()
+    {
+        return $this->search($this->mode)['cleanParams'] ?? $this->params;
+    }
+
     public function url($newParams)
     {
         if ($this->mode === static::MODES[0]) {
@@ -140,6 +152,6 @@ class Search
             $newParams['mode'] = null;
         }
 
-        return route('search', array_merge($this->params, $newParams));
+        return route('search', array_merge($this->urlParams(), $newParams));
     }
 }

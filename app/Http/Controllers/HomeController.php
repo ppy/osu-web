@@ -156,13 +156,19 @@ class HomeController extends Controller
             return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
         }
 
-        $search = new Search(array_merge(Request::all(), [
+        $params = array_merge(Request::all(), [
             'user' => Auth::user(),
-        ]));
+        ]);
 
-        return view('home.search', compact(
-            'search'
-        ));
+        if (Request::input('mode') === Search::MODES[0]) {
+            $params['limit'] = 8;
+        } else {
+            $params['limit'] ?? ($params['limit'] = 20);
+        }
+
+        return view('home.search', [
+            'search' => new Search($params),
+        ]);
     }
 
     public function setLocale()

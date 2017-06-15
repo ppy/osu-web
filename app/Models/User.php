@@ -59,6 +59,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         'touch' => 8,
     ];
 
+    const SEARCH_DEFAULTS = [
+        'query' => null,
+        'limit' => 20,
+        'page' => 1,
+    ];
+
     public $flags;
     private $groupIds;
     private $supportLength;
@@ -163,8 +169,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public static function search($params)
     {
-        $params['query'] = $params['query'] ?? null;
-        $params['limit'] = clamp(get_int($params['limit'] ?? 50), 1, 50);
+        $params['query'] = presence($params['query'] ?? null);
+        $params['limit'] = clamp(get_int($params['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($params['page'] ?? 1));
 
         $query = static::where('username', 'LIKE', "{$params['query']}%")
@@ -172,9 +178,19 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->limit($params['limit'])
             ->offset(($params['page'] - 1) * $params['limit']);
 
+        $cleanParams = [];
+
+        foreach (static::SEARCH_DEFAULTS as $key => $value) {
+            if ($params[$key] !== $value) {
+                $cleanParams[$key] = $value;
+            }
+        }
+
         return [
             'total' => $query->count(),
             'data' => $query->get(),
+            'params' => $params,
+            'cleanParams' => $cleanParams,
         ];
     }
 

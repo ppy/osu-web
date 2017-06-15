@@ -15,6 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@foreach ($result['data'] as $entry)
-    {{ json_encode($entry) }}
-@endforeach
+<a
+    class="search-entry"
+    href="{{ wiki_url($entry->path, $entry->locale) }}"
+>
+    <h1 class="search-entry__row search-entry__row--title">
+        {{ $entry->title() }}
+    </h1>
+
+    <p class="search-entry__row search-entry__row--excerpt">
+        {{ html_excerpt($entry->page()['output']) }}
+    </p>
+
+    <p class="search-entry__row search-entry__row--footer">
+        {{ wiki_url($entry->path, $entry->locale) }}"
+    </p>
+</a>

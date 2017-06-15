@@ -18,22 +18,13 @@
 <div class="nav-search-result">
     @if (count($users['data']) > 0)
         <div class="nav-search-result__title">
-            {{ trans('home.search.users.title') }}
+            {{ trans('home.search.user.title') }}
         </div>
 
         <div class="nav-search-result__results nav-search-result__results--horizontal">
-            @foreach ($users['data'] as $user)
+            @foreach ($users['data'] as $entry)
                 <div class="nav-search-result__result">
-                    <a class="user-quick" href="{{ route('users.show', $user->getKey()) }}">
-                        <div class="user-quick__avatar">
-                            <div class="avatar avatar--full" {!! background_image($user->user_avatar, false) !!}>
-                            </div>
-                        </div>
-
-                        <div class="user-quick__name u-ellipsis-overflow">
-                            {{ $user->username }}
-                        </div>
-                    </a>
+                    @include('home._search_user', compact('entry'))
                 </div>
             @endforeach
         </div>
@@ -43,7 +34,7 @@
                 href="{{ route('search', ['query' => Request::input('query')]) }}"
                 class="nav-search-result__more"
             >
-                {!! trans('home.search.users.more', [
+                {!! trans('home.search.user.more', [
                     'count' =>
                         '<em class="nav-search-result__count">'.($users['total'] - count($users['data'])).'</em>'
                 ]) !!}
@@ -53,7 +44,7 @@
 
     @if (count($beatmapsets['data']) > 0)
         <div class="nav-search-result__title">
-            {{ trans('home.search.beatmapsets.title') }}
+            {{ trans('home.search.beatmapset.title') }}
         </div>
 
         <div class="nav-search-result__results">
@@ -73,7 +64,7 @@
                 href="{{ route('search', ['query' => Request::input('query')]) }}"
                 class="nav-search-result__more"
             >
-                {!! trans('home.search.beatmapsets.more', [
+                {!! trans('home.search.beatmapset.more', [
                     'count' =>
                         '<em class="nav-search-result__count">'.($beatmapsets['total'] - count($beatmapsets['data'])).'</em>'
                 ]) !!}
@@ -84,7 +75,7 @@
     <div class="nav-search-result__link">
         @include('home._nav_search_entry', [
             'url' => route('search', ['query' => Request::input('query')]),
-            'title' => trans('home.search.wiki_pages.link'),
+            'title' => trans('home.search.wiki_page.link'),
             'modifier' => 'extra',
         ])
     </div>
@@ -92,7 +83,7 @@
     <div class="nav-search-result__link">
         @include('home._nav_search_entry', [
             'url' => route('search', ['query' => Request::input('query')]),
-            'title' => trans('home.search.posts.link'),
+            'title' => trans('home.search.forum_post.link'),
             'modifier' => 'extra',
         ])
     </div>
