@@ -171,7 +171,7 @@ class Beatmaps.Main extends React.PureComponent
           page: 1
           url: @state.paging.url
           loading: false
-          more: data.length > 10
+          more: data.length > 0
         loading: false
 
       @setState newState, ->
