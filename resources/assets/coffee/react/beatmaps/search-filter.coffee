@@ -55,7 +55,7 @@ class Beatmaps.SearchFilter extends React.PureComponent
 
     newSelection =
       if @props.multiselect
-        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).join('-')
+        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).join(',')
       else
         if @selected(i) then @props.default else i
 
@@ -70,7 +70,7 @@ class Beatmaps.SearchFilter extends React.PureComponent
     @cache.currentSelection ?=
       if @props.multiselect
         if @props.selected?.length > 0
-          @props.selected.split('-')
+          @props.selected.split(',')
         else
           []
       else
