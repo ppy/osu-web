@@ -16,7 +16,40 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.registerPersistent 'beatmaps', Beatmaps.Main, true, (el) ->
-  container: el
-  beatmaps: osu.parseJson('json-beatmaps')
-  availableFilters: osu.parseJson('json-filters')
+parseInt10 = (string) ->
+  int = parseInt string, 10
+
+  if _.isFinite(int) then int else null
+
+
+class @BeatmapsetFilter
+  @castFromString:
+    mode: parseInt10
+    status: parseInt10
+    genre: parseInt10
+    language: parseInt10
+
+
+  @charToKey:
+    m: 'mode'
+    s: 'status'
+    g: 'genre'
+    l: 'language'
+    e: 'extra'
+    r: 'rank'
+    q: 'query'
+    sort: 'sort'
+
+
+  @defaults:
+    mode: null
+    status: 0
+    genre: null
+    language: null
+    extra: ''
+    rank: ''
+    sort: 'ranked_desc'
+    query: ''
+
+
+  @expand: ['genre', 'language', 'extra', 'rank']
