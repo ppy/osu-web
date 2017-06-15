@@ -52,4 +52,4 @@ class @BeatmapsetFilter
     query: ''
 
 
-  @expand: ['genre', 'language', 'extra', 'rate']
+  @expand: ['genre', 'language', 'extra', 'rank']
