@@ -165,7 +165,7 @@ function render_to_string($view, $variables = [])
 function search_total_display($total)
 {
     if ($total >= 100) {
-        return "99+";
+        return '99+';
     }
 
     return (string) $total;
