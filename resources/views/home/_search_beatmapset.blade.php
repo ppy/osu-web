@@ -27,12 +27,12 @@
                 data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"
             ></div>
         @endforeach
-
-        <a
-            class="search-result__more"
-            href="{{ route('beatmapsets.index', ['q' => $search->params['query']]) }}"
-        >
-            @lang('home.search.beatmapsets.more_simple')
-        </a>
     </div>
+
+    <a
+        class="search-result__more"
+        href="{{ route('beatmapsets.index', ['q' => $search->params['query']]) }}"
+    >
+        @lang('home.search.beatmapsets.more_simple')
+    </a>
 </div>
