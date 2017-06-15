@@ -130,10 +130,16 @@ class Search
 
     public function url($newParams)
     {
-        if ($this->mode === 'all') {
+        if ($this->mode === static::MODES[0]) {
             $newParams['limit'] = null;
         }
 
-        return route('search', array_merge($this->params, ['mode' => $this->mode], $newParams));
+        $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
+
+        if ($newParams['mode'] === static::MODES[0]) {
+            $newParams['mode'] = null;
+        }
+
+        return route('search', array_merge($this->params, $newParams));
     }
 }
