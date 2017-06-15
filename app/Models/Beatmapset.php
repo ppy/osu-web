@@ -202,7 +202,8 @@ class Beatmapset extends Model
     public static function searchParams(array $params = [])
     {
         // mode
-        if (!in_array(get_int($params['mode'] ?? null), Beatmap::MODES, true)) {
+        $params['mode'] = get_int($params['mode'] ?? null);
+        if (!in_array($params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
 
