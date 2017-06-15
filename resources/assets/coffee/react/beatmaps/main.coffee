@@ -25,7 +25,9 @@ class Beatmaps.Main extends React.PureComponent
 
     @xhr = {}
 
-    @state = JSON.parse(props.container.dataset.reactState ? null)
+    prevState = JSON.parse(props.container.dataset.reactState ? '{}')
+
+    @state = prevState.data if prevState.url == location.href
     @state ?= _.extend
       beatmaps: @props.beatmaps
       paging:
@@ -130,20 +132,17 @@ class Beatmaps.Main extends React.PureComponent
     .done (data) =>
       more = data.length > 10
 
-      @setState newState
+      @setState
         beatmaps: [].concat(@state.beatmaps, data)
         paging:
           page: @state.paging.page + (if more then 1 else 0)
           url: @state.paging.url
           more: more
         loading: false
-        =>
-          # copied from https://github.com/turbolinks/turbolinks/pull/61
-          Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier newUrl, Turbolinks.uuid()
 
 
   saveState: =>
-    @props.container.dataset.reactState = JSON.stringify @state
+    @props.container.dataset.reactState = JSON.stringify state: @state, url: location.href
     @componentWillUnmount()
 
 
@@ -212,3 +211,5 @@ class Beatmaps.Main extends React.PureComponent
     if !_.isEqual @state.filters, newFilters
       @setState filters: newFilters, ->
         $(document).trigger 'beatmap:search:start'
+        # copied from https://github.com/turbolinks/turbolinks/pull/61
+        Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier laroute.route('beatmapsets.index', @buildSearchQuery()), Turbolinks.uuid()
