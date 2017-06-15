@@ -26,9 +26,6 @@ class Beatmaps.SearchPanel extends React.PureComponent
     @prevText = null
     @debouncedSubmit = _.debounce @submit, 500
 
-    @state =
-      filters: osu.parseJson('json-filters')
-
 
   componentDidMount: =>
     $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
@@ -66,7 +63,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
 
   renderUser: =>
-    filters = @state.filters
+    filters = @props.availableFilters
 
     div
       className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"

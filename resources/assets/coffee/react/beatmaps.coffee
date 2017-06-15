@@ -19,3 +19,4 @@
 reactTurbolinks.registerPersistent 'beatmaps', Beatmaps.Main, true, (el) ->
   container: el
   beatmaps: osu.parseJson('json-beatmaps')
+  availableFilters: osu.parseJson('json-filters')
