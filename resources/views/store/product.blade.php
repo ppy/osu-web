@@ -90,7 +90,9 @@
                     <div class="grid price-box">
                         <div class="grid-cell grid-cell--fill">
                             <p class="price">{{ currency($product->cost) }}</p>
-                            <p class="notes">excluding shipping fees</p>
+                            @if($product->requiresShipping())
+                                <p class="notes">excluding shipping fees</p>
+                            @endif
                         </div>
                     </div>
 
