@@ -35,6 +35,7 @@ class UsersController extends Controller
     {
         $this->middleware('auth', ['only' => [
             'checkUsernameAvailability',
+            'checkUsernameExists',
         ]]);
 
         return parent::__construct();
@@ -61,6 +62,21 @@ class UsersController extends Controller
             'message' => $message,
             'cost' => $cost,
             'costString' => currency($cost),
+        ];
+    }
+
+    public function checkUsernameExists()
+    {
+        $username = Request::input('username');
+        $user = User::where('username', $username)->first();
+        if ($user === null) {
+            abort(404);
+        }
+
+        return [
+            'user_id' => $user->user_id,
+            'username' => $user->username,
+            'avatar_url' => $user->user_avatar,
         ];
     }
 

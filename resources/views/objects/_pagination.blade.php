@@ -19,37 +19,42 @@
 @if ($object->lastPage() > 1)
     @php
         $currentPage = $object->currentPage();
-        $maxPages = $object->lastPage();
-        $range = min($maxPages-1, $num_shown ?? 8); // number of additional pages (i.e. excluding current page) to show at a time
+        $lastPage = $object->lastPage();
+        // should be an odd number (i.e. left pages + current page + right pages)
+        $pages ?? ($pages = 9);
 
-        $pagesOnLeft = floor($range/2);
-
-        // if current page will be left of the center
-        if ($currentPage < $pagesOnLeft) {
-          $leftStart = 1;
-
-        // current page will be right of the center
-        } elseif ($currentPage > ($maxPages - $pagesOnLeft)) {
-          $leftStart = $maxPages - $range;
-
-        // current page will be centered
+        if ($lastPage <= $pages) {
+            // less pages than desired
+            $start = 1;
+            $end = $lastPage;
         } else {
-          $leftStart = $currentPage - $pagesOnLeft;
-        }
+            $sidePages = ($pages - 1) / 2;
 
-        $leftStart = max(1, $leftStart);
-        $rightEnd = $leftStart + $range;
+            if ($currentPage - $sidePages < 1) {
+                // not enough pages on left, start from 1
+                $start = 1;
+                $end = $pages;
+            } elseif ($currentPage + $sidePages > $lastPage) {
+                // not enough pages on right, end at $lastPage
+                $end = $lastPage;
+                $start = $lastPage - $pages + 1;
+            } else {
+                // standard case
+                $start = $currentPage - $sidePages;
+                $end = $currentPage + $sidePages;
+            }
+        }
     @endphp
 
-    <div class="paginator" id="pagination">
+    <div class="paginator">
         @include('objects._pagination_page', ['page' => 1, 'label' => '«'])
         @include('objects._pagination_page', ['page' => max(1, $currentPage - 1), 'label' => '‹'])
 
-        @foreach(range($leftStart, $rightEnd) as $page)
-            @include('objects._pagination_page', ['page' => $page, 'label' => $page, 'active' => ($page == $currentPage)])
+        @foreach(range($start, $end) as $page)
+            @include('objects._pagination_page', ['page' => $page, 'label' => $page, 'active' => ($page === $currentPage)])
         @endforeach
 
-        @include('objects._pagination_page', ['page' => min($maxPages, $currentPage + 1), 'label' => '›'])
-        @include('objects._pagination_page', ['page' => $maxPages, 'label' => '»'])
+        @include('objects._pagination_page', ['page' => min($lastPage, $currentPage + 1), 'label' => '›'])
+        @include('objects._pagination_page', ['page' => $lastPage, 'label' => '»'])
     </div>
 @endif

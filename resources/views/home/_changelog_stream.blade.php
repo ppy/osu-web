@@ -18,14 +18,14 @@
     class="
         changelog-stream
         {{ $featured ? 'changelog-stream--featured' : '' }}
-        {{ $build !== null && $build->version === $stream->version ? 'changelog-stream--active' : '' }}
+        {{ isset($build) && $build->version === $stream->version ? 'changelog-stream--active' : '' }}
         changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}
     "
     href={{ route('changelog', ['build' => $stream->version]) }}
   >
     <div class="changelog-stream__content">
-        <span class="changelog-stream__name">{{ $stream->updateStream->pretty_name }}</span>
-        <span class="changelog-stream__build">{{ $stream->displayVersion() }}</span>
+        <span class="changelog-stream__name u-ellipsis-overflow">{{ $stream->updateStream->pretty_name }}</span>
+        <span class="changelog-stream__build u-ellipsis-overflow">{{ $stream->displayVersion() }}</span>
         <span class="changelog-stream__users">{{ trans_choice('changelog.users-online', $stream->users, ['users' => $stream->users]) }}</span>
     </div>
     <div class="changelog-stream__indicator"></div>

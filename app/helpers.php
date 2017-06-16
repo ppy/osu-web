@@ -42,7 +42,11 @@ function background_image($url)
 
 function es_query_and_words($words)
 {
-    $parts = preg_split("/\s+/", trim($words ?? ''));
+    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
+
+    if (empty($parts)) {
+        return;
+    }
 
     $partsEscaped = [];
 
@@ -71,6 +75,11 @@ function get_valid_locale($requestedLocale)
         },
         config('app.fallback_locale')
     );
+}
+
+function json_date($date)
+{
+    return json_time($date->startOfDay());
 }
 
 function json_time($time)
@@ -225,9 +234,13 @@ function js_view($view, $vars = [])
 
 function ujs_redirect($url)
 {
-    if (Request::ajax()) {
+    if (Request::ajax() && !Request::isMethod('get')) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
+        if (Request::header('Turbolinks-Referrer')) {
+            Request::session()->put('_turbolinks_location', $url);
+        }
+
         return redirect($url);
     }
 }
@@ -448,12 +461,14 @@ function display_regdate($user)
         return;
     }
 
+    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return trans('users.show.first_members');
+        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+        'date' => "<strong>{$formattedDate}</strong>",
     ]);
 }
 

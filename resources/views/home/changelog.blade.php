@@ -31,16 +31,16 @@
                 </li>
 
                 <li class="page-mode__item">
-                    @if ($build === null)
-                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog') }}">
-                            {{ trans('changelog.feed_title') }}
+                    @if (isset($build))
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build' => $build->version]) }}">
+                            {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
 
                             <span class="page-mode-link__stripe">
                             </span>
                         </a>
                     @else
-                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build' => $build->version]) }}">
-                            {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog') }}">
+                            {{ trans('changelog.feed_title') }}
 
                             <span class="page-mode-link__stripe">
                             </span>
@@ -67,7 +67,8 @@
             <div class="changelog">
                 @foreach($changelogs as $date => $logs)
                     <p class="changelog__text changelog__text--date">{{ $date }}</p>
-                    @if ($build !== null)
+
+                    @if (isset($build))
                         <p class="changelog__text changelog__text--build">
                             @if ($build->versionPrevious() !== null)
                                 <a
@@ -112,7 +113,7 @@
                     </div>
                 @endforeach
 
-                @if ($build !== null)
+                @if (isset($build))
                     <div
                         class="changelog__disqus js-turbolinks-disqus"
                         data-turbolinks-disqus="{{ json_encode([

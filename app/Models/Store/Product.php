@@ -30,6 +30,7 @@ class Product extends Model
         'next_shipping' => 'float',
         'promoted' => 'boolean',
         'enabled' => 'boolean',
+        'allow_multiple' => 'boolean',
     ];
 
     private $images;
@@ -117,6 +118,11 @@ class Product extends Model
 
             return $this->images ?? [];
         }
+    }
+
+    public function requiresShipping()
+    {
+        return $this->weight !== null;
     }
 
     public function scopeLatest($query)
