@@ -39,7 +39,7 @@ class BeatmapsetsController extends Controller
         $languages = Language::listing();
         $genres = Genre::listing();
         $beatmaps = json_collection(
-            Beatmapset::listing(),
+            Beatmapset::search($this->searchParams())['data'],
             new BeatmapsetTransformer,
             'beatmaps'
         );
@@ -47,24 +47,24 @@ class BeatmapsetsController extends Controller
         // temporarily put filters here
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
         foreach (Beatmap::MODES as $name => $id) {
-            $modes[] = ['id' => (string) $id, 'name' => trans("beatmaps.mode.{$name}")];
+            $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
         }
 
         $statuses = [
-            ['id' => '7', 'name' => trans('beatmaps.status.any')],
-            ['id' => '0', 'name' => trans('beatmaps.status.ranked-approved')],
-            ['id' => '1', 'name' => trans('beatmaps.status.approved')],
-            ['id' => '8', 'name' => trans('beatmaps.status.loved')],
-            ['id' => '2', 'name' => trans('beatmaps.status.faves')],
-            ['id' => '3', 'name' => trans('beatmaps.status.modreqs')],
-            ['id' => '4', 'name' => trans('beatmaps.status.pending')],
-            ['id' => '5', 'name' => trans('beatmaps.status.graveyard')],
-            ['id' => '6', 'name' => trans('beatmaps.status.my-maps')],
+            ['id' => 7, 'name' => trans('beatmaps.status.any')],
+            ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
+            ['id' => 1, 'name' => trans('beatmaps.status.approved')],
+            ['id' => 8, 'name' => trans('beatmaps.status.loved')],
+            ['id' => 2, 'name' => trans('beatmaps.status.faves')],
+            ['id' => 3, 'name' => trans('beatmaps.status.modreqs')],
+            ['id' => 4, 'name' => trans('beatmaps.status.pending')],
+            ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
+            ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
         ];
 
         $extras = [
-            ['id' => '0', 'name' => trans('beatmaps.extra.video')],
-            ['id' => '1', 'name' => trans('beatmaps.extra.storyboard')],
+            ['id' => 'video', 'name' => trans('beatmaps.extra.video')],
+            ['id' => 'storyboard', 'name' => trans('beatmaps.extra.storyboard')],
         ];
 
         $ranks = [];
@@ -109,45 +109,10 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $current_user = Auth::user();
+        $user = Auth::user();
 
-        $params = [];
-
-        if (is_null($current_user)) {
-            $params = [
-                'page' => Request::input('page'),
-            ];
-        } else {
-            $params = [
-                'query' => Request::input('q'),
-                'mode' => Request::input('m'),
-                'status' => Request::input('s'),
-                'genre' => Request::input('g'),
-                'language' => Request::input('l'),
-                'extra' => array_filter(explode('-', Request::input('e')), 'strlen'),
-                'rank' => array_filter(explode('-', Request::input('r')), 'strlen'),
-                'page' => Request::input('page'),
-                'sort' => explode('_', Request::input('sort')),
-            ];
-
-            if (!$current_user->isSupporter()) {
-                unset($params['rank']);
-            }
-        }
-
-        $params = array_filter(
-            $params,
-            function ($v, $k) {
-                if (is_array($v)) {
-                    return !empty($v);
-                } else {
-                    return presence($v) !== null;
-                }
-            },
-            ARRAY_FILTER_USE_BOTH
-        );
-
-        $beatmaps = Beatmapset::search($params);
+        $params = $this->searchParams();
+        $beatmaps = Beatmapset::search($params)['data'];
 
         return json_collection(
             $beatmaps,
@@ -229,5 +194,34 @@ class BeatmapsetsController extends Controller
           'favcount' => $beatmapset->fresh()->favourite_count,
           'favourited' => $user->fresh()->hasFavourited($beatmapset),
         ];
+    }
+
+    private function searchParams()
+    {
+        $user = Auth::user();
+
+        if ($user === null) {
+            $params = [
+                'page' => Request::input('page'),
+            ];
+        } else {
+            $params = [
+                'query' => Request::input('q'),
+                'mode' => Request::input('m'),
+                'status' => Request::input('s'),
+                'genre' => Request::input('g'),
+                'language' => Request::input('l'),
+                'extra' => Request::input('e'),
+                'page' => Request::input('page'),
+                'sort' => Request::input('sort'),
+                'user' => $user,
+            ];
+
+            if ($user->isSupporter()) {
+                $params['rank'] = Request::input('r');
+            }
+        }
+
+        return $params;
     }
 }

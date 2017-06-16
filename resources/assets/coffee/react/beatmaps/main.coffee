@@ -19,240 +19,58 @@
 {div} = React.DOM
 el = React.createElement
 
-class Beatmaps.Main extends React.Component
+class Beatmaps.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @state =
+    @xhr = {}
+
+    prevState = JSON.parse(props.container.dataset.reactState ? '{}')
+
+    @state = prevState.data if prevState.url == location.href
+    @state ?= _.extend
       beatmaps: @props.beatmaps
-      query: null
       paging:
         page: 1
-        url: '/beatmapsets/search'
+        url: laroute.route('beatmapsets.search')
         loading: false
         more: @props.beatmaps.length > 0
-      filters: @filterDefaults
-      sorting:
-        field: 'ranked'
-        order: 'desc'
       loading: false
-      just_restored: true
+      filters: null
+      isExpanded: null
+      @stateFromUrl()
 
 
-  filterDefaults:
-    mode: '0'
-    status: '0'
-    genre: null
-    language: null
-    extra: null
-    rank: null
-
-  getFilterState: =>
-    'm': @state.filters.mode
-    's': @state.filters.status
-    'g': @state.filters.genre
-    'l': @state.filters.language
-    'e': @state.filters.extra
-    'r': @state.filters.rank
-
-  getSortState: =>
-    'sort': [@state.sorting.field, @state.sorting.order].join('_')
-
-  validSortFields: ->
-    ['title', 'artist', 'creator', 'difficulty', 'ranked', 'rating', 'plays']
-
-  validSortOrders: ->
-    ['asc', 'desc']
-
-  charToKey: (char) ->
-    switch char
-      when 'm' then 'mode'
-      when 's' then 'status'
-      when 'g' then 'genre'
-      when 'l' then 'language'
-      when 'e' then 'extra'
-      when 'r' then 'rank'
-      when 'q' then 'query'
-
-  buildSearchQuery: (query) =>
-    $.extend {'q': query}, @getFilterState(), @getSortState()
-
-  search: =>
-    searchText = $('.js-beatmapsets-search-input').val()?.trim()
-
-    # update url
-    filterState = @getFilterState()
-    sortState = @getSortState()
-
-    $.each filterState, (k,v) =>
-      if !v || @filterDefaults[@charToKey(k)] == v
-        delete filterState[k]
-
-    params = []
-    if searchText
-      params.push("q=#{encodeURIComponent(searchText)}")
-    for key, value of filterState
-      params.push("#{key}=#{value}")
-    for key, value of sortState
-      if value != 'ranked_desc'
-        params.push("so=#{value}")
-
-    if @state.just_restored or location.search.substr(1) != params.join('&')
-      if !@state.just_restored
-        history.pushState(@state, "¯\_(ツ)_/¯", "/beatmapsets/?#{params.join('&')}")
-
-      @showLoader()
-      $.ajax @state.paging.url,
-        method: 'get'
-        dataType: 'json'
-        data: @buildSearchQuery(searchText)
-      .done (data) =>
-        newState =
-          beatmaps: data
-          query: searchText
-          paging:
-            page: 1
-            url: @state.paging.url
-            loading: false
-            more: data.length > 10
-          just_restored: false
-          loading: false
-
-        @setState newState, ->
-            $(document).trigger 'beatmap:search:done'
-
-  loadMore: =>
-    if @state.loading or @state.paging.loading or !@state.paging.more
-      return
-
-    paging_state = @state.paging
-    paging_state.loading = true
-
-    @setState paging: paging_state
-
-    searchText = $('#searchbox').val()?.trim()
-
-    $.ajax @state.paging.url,
-      method: 'get'
-      dataType: 'json'
-      data: $.extend(@buildSearchQuery(searchText), 'page': @state.paging.page + 1)
-    .done (data) =>
-      more = data.length > 10
-      newState =
-        beatmaps: @state.beatmaps.concat(data)
-        paging:
-          page: @state.paging.page + (if more then 1 else 0)
-          url: @state.paging.url
-          more: more
-        loading: false
-
-      @setState newState
-
-
-  showLoader: =>
-    @setState loading: true
-    $('#loading-area').show()
-
-
-  hideLoader: =>
-    @setState loading: false
-    $('#loading-area').hide()
-
-
-  updateFilters: (_e, payload) =>
-    newFilters = $.extend({}, @state.filters) # clone object
-    newFilters[payload.name] = payload.value
-
-    if @state.filters != newFilters
-      @setState filters: newFilters, ->
-        $(document).trigger 'beatmap:search:start'
-
-
-  updateSort: (_b, payload) =>
-    if @state.sorting != payload
-      @setState sorting: payload, ->
-        $(document).trigger 'beatmap:search:start'
-
-
-  convertFilterKeys: (obj) ->
-    newObj = {}
-    for key of obj
-      newObj[@charToKey(key)] = obj[key]
-    return newObj
-
-
-  restoreState: ->
-    state = {}
-    params = location.search.substr(1).split('&')
-    filters = []
-    sorting = {'field': 'ranked', 'order': 'desc'}
-
-    for filter of @getFilterState()
-      filters.push(filter)
-
-    expand = false
-    present = false
-    query = null
-
-    for part in params
-      [key, value] = part.split('=')
-      if $.inArray(key, ['g', 'l', 'e', 'r']) > -1
-        expand = true
-
-      if $.inArray(key, filters) > -1
-        state[key] = value
-        present = true
-
-      if key == 'so'
-        [sort_field, sort_order] = value.split('_')
-        if $.inArray(sort_field, @validSortFields()) > -1 && $.inArray(sort_order, @validSortOrders()) > -1
-          sorting = {'field': sort_field, 'order': sort_order}
-          present = true
-
-      if key == 'q'
-        value = decodeURIComponent(value)
-        $('#searchbox').val(value)
-        query = value
-        present = true
-
-    if present
-      newState = $.extend(this.getFilterState(), state) # clone
-      newState = @convertFilterKeys(newState)           # convert keys
-
-      @setState filters: newState, sorting: sorting, just_restored: true, ->
-        @search()
-        if expand
-          $('#search').addClass 'expanded' #such seperation of concerns
-
-
-  componentDidMount: ->
-    @componentWillUnmount()
+  componentDidMount: =>
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
     $(document).on 'beatmap:search:start.beatmaps', @search
     $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
-    $(document).on 'beatmap:search:sorted.beatmaps', @updateSort
-    $(document).on 'turbolinks:load.beatmaps osu:page:change.beatmaps', (e) =>
-      @restoreState()
-    $(window).on 'popstate.beatmaps', (e) =>
-      @restoreState()
+    $(document).on 'turbolinks:before-cache.beatmaps', @saveState
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $(document).off '.beatmaps'
     $(window).off '.beatmaps'
+    xhr.abort() for own _type, xhr of @xhr when xhr?
 
 
-  render: ->
+  render: =>
     searchBackground = @state.beatmaps[0]?.covers?.cover
 
     div className: 'osu-layout__section',
-      el(Beatmaps.SearchPanel, background: searchBackground, filters: @state.filters)
+      el Beatmaps.SearchPanel,
+        background: searchBackground
+        availableFilters: @props.availableFilters
+        filters: @state.filters
+        filterDefaults: BeatmapsetFilter.defaults
+        expand: @expand
+        isExpanded: @state.isExpanded
 
       div className: 'osu-layout__row osu-layout__row--page-compact',
         div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
           if currentUser.id?
-            el(Beatmaps.SearchSort, sorting: @state.sorting)
+            el Beatmaps.SearchSort, sorting: @sorting()
 
           div
             className: 'beatmapsets__content'
@@ -274,3 +92,129 @@ class Beatmaps.Main extends React.Component
                 osu.trans("beatmaps.listing.search.not-found-quote")
 
           el(Beatmaps.Paginator, paging: @state.paging)
+
+
+  buildSearchQuery: =>
+    return {} if !currentUser.id?
+
+    params = _.extend {}, @state.filters
+
+    keyToChar = _.invert BeatmapsetFilter.charToKey
+    charParams = {}
+
+    for own key, value of params
+      if value? && BeatmapsetFilter.defaults[key] != value
+        charParams[keyToChar[key]] = value
+
+    delete charParams[keyToChar['rank']] if !currentUser.isSupporter
+
+    charParams
+
+
+  expand: (e) =>
+    e.preventDefault()
+
+    @setState isExpanded: !@state.isExpanded
+
+
+  hideLoader: =>
+    @setState loading: false
+
+
+  loadMore: =>
+    if @state.loading || @state.paging.loading || !@state.paging.more
+      return
+
+    pagingState = _.extend {}, @state.paging
+    pagingState.loading = true
+
+    @setState paging: pagingState
+
+    $.ajax @state.paging.url,
+      method: 'get'
+      dataType: 'json'
+      data: _.extend @buildSearchQuery(), page: @state.paging.page + 1
+    .done (data) =>
+      more = data.length > 0
+
+      @setState
+        beatmaps: [].concat(@state.beatmaps, data)
+        paging:
+          page: @state.paging.page + (if more then 1 else 0)
+          url: @state.paging.url
+          more: more
+        loading: false
+
+
+  saveState: =>
+    @props.container.dataset.reactState = JSON.stringify state: @state, url: location.href
+    @componentWillUnmount()
+
+
+  search: =>
+    @xhr.search?.abort()
+
+    params = @buildSearchQuery()
+    newUrl = laroute.route 'beatmapsets.index', params
+
+    return if "#{location.pathname}#{location.search}" == newUrl
+
+    @showLoader()
+    @xhr.search = $.ajax @state.paging.url,
+      method: 'get'
+      dataType: 'json'
+      data: params
+    .done (data) =>
+      newState =
+        beatmaps: data
+        paging:
+          page: 1
+          url: @state.paging.url
+          loading: false
+          more: data.length > 0
+        loading: false
+
+      @setState newState, ->
+          $(document).trigger 'beatmap:search:done'
+
+
+  showLoader: =>
+    @setState loading: true
+
+
+  sorting: =>
+    [field, order] = @state.filters.sort.split('_')
+
+    { field, order }
+
+
+  stateFromUrl: =>
+    state = _.extend {}, BeatmapsetFilter.defaults
+    params = location.search.substr(1).split('&')
+
+    expand = false
+
+    for part in params
+      [key, value] = part.split('=')
+      value = decodeURIComponent(value)
+      key = BeatmapsetFilter.charToKey[key]
+
+      continue if !key? || value.length == 0
+
+      value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
+      expand = true if key in BeatmapsetFilter.expand
+
+      state[key] = value
+
+    filters: state
+    isExpanded: expand
+
+
+  updateFilters: (_e, newFilters) =>
+    newFilters = _.extend {}, @state.filters, newFilters
+
+    if !_.isEqual @state.filters, newFilters
+      @setState filters: newFilters, ->
+        $(document).trigger 'beatmap:search:start'
+        # copied from https://github.com/turbolinks/turbolinks/pull/61
+        Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier laroute.route('beatmapsets.index', @buildSearchQuery()), Turbolinks.uuid()
