@@ -18,18 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-class BeatmapPack extends Model
+use App\Models\BeatmapPack;
+use Auth;
+use Request;
+
+class BeatmapPacksController extends Controller
 {
-    protected $table = 'osu_beatmappacks';
-    protected $primaryKey = 'pack_id';
+    protected $section = 'beatmaps';
 
-    protected $dates = ['date'];
-    public $timestamps = false;
-
-    public function items()
+    public function index()
     {
-        return $this->hasMany(BeatmapPackItem::class, 'pack_id');
+        // array("S", "T", "A", "R")
+        $packs = BeatmapPack::where('tag', 'like', 'S%')->get();
+        return view('beatmappacks.index')
+            ->with('packs', $packs);
     }
 }

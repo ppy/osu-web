@@ -18,18 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
-
-class BeatmapPack extends Model
-{
-    protected $table = 'osu_beatmappacks';
-    protected $primaryKey = 'pack_id';
-
-    protected $dates = ['date'];
-    public $timestamps = false;
-
-    public function items()
-    {
-        return $this->hasMany(BeatmapPackItem::class, 'pack_id');
-    }
-}
+return [
+    'index' => [
+        'title' => 'Beatmap packs',
+        'description' => 'Beatmap packs',
+    ],
+];

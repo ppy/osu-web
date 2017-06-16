@@ -20,16 +20,14 @@
 
 namespace App\Models;
 
-class BeatmapPack extends Model
+class BeatmapPackItem extends Model
 {
-    protected $table = 'osu_beatmappacks';
-    protected $primaryKey = 'pack_id';
-
-    protected $dates = ['date'];
+    protected $table = 'osu_beatmappacks_items';
+    protected $primaryKey = 'item_id';
     public $timestamps = false;
 
-    public function items()
+    public function pack()
     {
-        return $this->hasMany(BeatmapPackItem::class, 'pack_id');
+        return $this->belongsTo(BeatmapPack::class, 'pack_id');
     }
 }

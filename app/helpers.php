@@ -427,6 +427,7 @@ function nav_links()
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artists.index'),
+        'packs' => route('beatmappacks.index')
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),

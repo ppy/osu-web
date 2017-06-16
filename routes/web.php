@@ -49,6 +49,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     });
 });
 
+Route::resource('beatmappacks', 'BeatmapPacksController', ['only' => ['index']]);
+
 Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);

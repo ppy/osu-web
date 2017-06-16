@@ -47,12 +47,16 @@ return [
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
+        'beatmappacks' => [
+            '_' => 'beatmaps',
+            'index' => 'packs',
+        ],
         'beatmaps' => [
             '_' => 'beatmaps',
             'show' => 'info',
             'index' => 'listing',
             'artists' => 'featured artists',
-            // 'getPacks' => 'packs',
+            'packs' => 'packs',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
