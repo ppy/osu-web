@@ -77,6 +77,11 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function json_date($date)
+{
+    return json_time($date->startOfDay());
+}
+
 function json_time($time)
 {
     if ($time !== null) {
@@ -456,12 +461,14 @@ function display_regdate($user)
         return;
     }
 
+    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return trans('users.show.first_members');
+        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+        'date' => "<strong>{$formattedDate}</strong>",
     ]);
 }
 
