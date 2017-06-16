@@ -92,9 +92,11 @@
                             </div>
 
                             @if ($search->mode === $mode)
-                                @include('objects._pagination', [
-                                    'object' => $search->search($mode)['data'],
-                                ])
+                                @if (false && 'maybe infinite scroll?')
+                                    @include('objects._pagination', [
+                                        'object' => $search->search($mode)['data'],
+                                    ])
+                                @endif
                             @else
                                 <a
                                     class="search-result__row search-result__row--more"
