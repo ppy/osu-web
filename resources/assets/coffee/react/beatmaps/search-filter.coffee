@@ -19,72 +19,19 @@
 {div,a,span} = React.DOM
 el = React.createElement
 
-class Beatmaps.SearchFilter extends React.Component
+class Beatmaps.SearchFilter extends React.PureComponent
   constructor: (props) ->
     super props
 
-    if @props.default?
-      if @props.multiselect
-        selected = @props.default.split('-')
-      else
-        selected = @props.default
+    @cache = {}
 
-    @state =
-      selected: [].concat(selected)
 
-  @defaultProps: ->
-    multiselect: false
-    selected: []
-    default: ''
+  componentWillReceiveProps: (nextProps) =>
+    @cache = {}
 
-  @propTypes:
-    title: React.PropTypes.string.isRequired
-    options: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
-    selected: React.PropTypes.string
-    multiselect: React.PropTypes.bool
 
-  select: (i, e) ->
-    if @selected(i)
-      if @props.multiselect
-        @setState { selected: _.without(@state.selected, i) }, @triggerUpdate
-      else
-        @setState { selected: [].concat(@props.default) }, @triggerUpdate
-    else
-      if @props.multiselect
-        @setState { selected: @state.selected.concat(i) }, @triggerUpdate
-      else
-        @setState { selected: [ i ] }, @triggerUpdate
-
-  clickReject: (e) ->
-    e.preventDefault()
-
-  componentWillReceiveProps: (props) ->
-    if @state.selected != props.selected
-      if @props.multiselect
-        selected = props.selected?.split('-')
-      else
-        selected = props.selected
-
-      @setState {selected: [].concat(selected)}
-
-  triggerUpdate: ->
-    if @props.multiselect
-      value = @state.selected.filter (n) ->
-        n? && n != ""
-      .join('-')
-    else
-      value = @state.selected[0]
-
-    payload =
-      name: @props.name
-      value: value
-    $(document).trigger 'beatmap:search:filtered', payload
-
-  selected: (i) ->
-    $.inArray(i, @state.selected) > -1
-
-  render: ->
-    div id: @props.id, className: 'beatmapsets-search-filter', 'data-name': @props.name,
+  render: =>
+    div className: 'beatmapsets-search-filter',
       span className:'beatmapsets-search-filter__header', @props.title
 
       for option, i in @props.options
@@ -93,6 +40,39 @@ class Beatmaps.SearchFilter extends React.Component
           href: '#'
           className: "beatmapsets-search-filter__item #{'beatmapsets-search-filter__item--active' if @selected(option.id)}"
           value: option.id
-          onClick: @clickReject
-          onMouseDown: @select.bind(@, option.id)
+          'data-filter-value': option.id
+          onClick: @select
           option.name
+
+
+  cast: (value) =>
+    BeatmapsetFilter.castFromString[@props.name]?(value) ? value ? null
+
+
+  select: (e) =>
+    e.preventDefault()
+    i = @cast(e.target.dataset.filterValue)
+
+    newSelection =
+      if @props.multiselect
+        _(@currentSelection())[if @selected(i) then 'without' else 'concat'](i).sort().join('.')
+      else
+        if @selected(i) then @props.default else i
+
+    $(document).trigger 'beatmap:search:filtered', "#{@props.name}": newSelection
+
+
+  selected: (i) =>
+    i in @currentSelection()
+
+
+  currentSelection: =>
+    @cache.currentSelection ?=
+      if @props.multiselect
+        _(@props.selected ? '')
+          .split('.')
+          .filter (s) =>
+            s in _.map(@props.options, 'id')
+          .value()
+      else
+        [@props.selected]

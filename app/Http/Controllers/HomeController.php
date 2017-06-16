@@ -45,13 +45,13 @@ class HomeController extends Controller
 
     public function getChangelog()
     {
-        $build = presence(Request::input('build'));
+        $buildId = presence(Request::input('build'));
 
         $changelogs = Changelog::default()
             ->with('user');
 
-        if ($build !== null) {
-            $build = Build::with('updateStream')->where('version', $build)->firstOrFail();
+        if ($buildId !== null) {
+            $build = Build::default()->with('updateStream')->where('version', $buildId)->firstOrFail();
 
             $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
         } else {

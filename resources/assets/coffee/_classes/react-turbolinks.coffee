@@ -18,6 +18,8 @@
 
 class @ReactTurbolinks
   constructor: (@components = {}) ->
+    @targets = []
+    $(document).on 'turbolinks:load', @destroyPersisted
     $(document).on 'turbolinks:load', @boot
     $(document).on 'turbolinks:before-cache', @destroy
 
@@ -30,6 +32,7 @@ class @ReactTurbolinks
 
         component.loaded = true
         for target in component.targets
+          @targets.push target
           ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
 
 
@@ -38,15 +41,26 @@ class @ReactTurbolinks
         continue if !component.loaded
 
         component.loaded = false
+
+        continue if component.persistent
         for target in component.targets
           ReactDOM.unmountComponentAtNode target
 
 
+  destroyPersisted: =>
+    ReactDOM.unmountComponentAtNode(target) while target = @targets.pop()
+
+
   register: (name, element, propsFunction = ->) =>
+    @registerPersistent name, element, false, propsFunction
+
+
+  registerPersistent: (name, element, persistent = true, propsFunction = ->) =>
     return if @components[name]
 
     @components[name] =
       loaded: false
+      persistent: persistent
       targets: document.getElementsByClassName("js-react--#{name}")
       element: element
       propsFunction: propsFunction
