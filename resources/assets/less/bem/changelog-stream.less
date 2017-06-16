@@ -90,6 +90,7 @@
   &__build {
     font-size: @font-size--title-small-3;
     font-weight: 300;
+    width: 100%;
   }
 
   &__content {
@@ -99,6 +100,7 @@
 
     height: 100%;
     padding: 7px 0;
+    min-width: 0;
   }
 
   &__indicator {
@@ -107,6 +109,7 @@
 
     margin: 10px 0;
     margin-left: auto;
+    flex: none;
 
     .default-border-radius;
 
@@ -127,13 +130,10 @@
     }
   }
 
-  &__indicator-box {
-
-  }
-
   &__name {
     font-size: @font-size--small-2;
     font-weight: 700;
+    width: 100%;
   }
 
   &__users {
