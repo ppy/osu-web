@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Вы уверены?',
+    'confirmation' => 'Ты уверен?',
     'saved' => 'Сохранено',
 
     'buttons' => [

@@ -30,14 +30,14 @@ return [
         'email' => [
             'current' => 'текущий email',
             'new' => 'новый email',
-            'new_confirmation' => 'повторите email',
+            'new_confirmation' => 'повтори email',
             'title' => 'Email',
         ],
 
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
-            'new_confirmation' => 'подтверждение пароля',
+            'new_confirmation' => 'повтори пароль',
             'title' => 'Пароль',
         ],
 
