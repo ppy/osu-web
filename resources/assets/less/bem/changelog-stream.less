@@ -75,6 +75,10 @@
     .box-color(3px, @changelog-stream--lazer);
   }
 
+  &--lazer-experimental {
+    .box-color(3px, @changelog-stream--lazer);
+  }
+
   &--stable {
     .box-color(3px, @changelog-stream--stable);
   }
@@ -118,6 +122,10 @@
     }
 
     .@{_top}--lazer & {
+      background-color: @changelog-stream--lazer;
+    }
+
+    .@{_top}--lazer-experimental & {
       background-color: @changelog-stream--lazer;
     }
 
