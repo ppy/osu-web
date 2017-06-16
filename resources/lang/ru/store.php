@@ -28,8 +28,13 @@ return [
         'delayed_shipping' => 'В настоящее время у нас много заказов. Ты можешь закать товар, но пожалуйста, помни, что его обработка может занять дополнительно 1-2 недели.',
     ],
 
+    'discount' => 'сэкономить :percent%',
+
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name для :username (:duration)',
+            ],
             'quantity' => 'Количество',
         ],
     ],
@@ -49,5 +54,19 @@ return [
         'notification_remove_text' => 'сюда',
 
         'notification_in_stock' => 'Данный товар уже в наличии!',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => 'Ты должен :link для покупки тега саппортера!',
+            'link_text' => 'войти',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => 'Ты должен :link для смены ника!',
+            'link_text' => 'войти',
+        ],
     ],
 ];
