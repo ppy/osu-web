@@ -23,7 +23,7 @@ return [
     'wrong_confirmation' => 'Повторы не совпадают.',
 
     'beatmap_discussion_post' => [
-        'first_post' => 'Невозможно удалить первый пост.',
+        'first_post' => 'Невозможно удалить первую публикацию.',
     ],
 
     'forum' => [

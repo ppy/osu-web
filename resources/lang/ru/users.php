@@ -115,7 +115,7 @@ return [
                     'empty' => 'Этот пользователь не обменивался Кудосу!',
 
                     'forum_post' => [
-                        'give' => 'Получено :amount от :giver за пост в :post',
+                        'give' => 'Получено :amount от :giver за публикацию в :post',
                     ],
                 ],
             ],
