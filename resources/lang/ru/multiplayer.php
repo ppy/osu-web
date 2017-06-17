@@ -45,7 +45,7 @@ return [
         'in-progress' => '(игра в процессе)',
         'score' => [
             'stats' => [
-                'accuracy' => 'Аккуратность',
+                'accuracy' => 'Точность',
                 'combo' => 'Комбо',
                 'score' => 'Очки',
             ],
@@ -64,7 +64,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Лучшие очки',
-            'accuracy' => 'Лучшая аккуратность',
+            'accuracy' => 'Лучшая точность',
             'combo' => 'Лучшее комбо',
             'scorev2' => 'Score V2',
         ],
