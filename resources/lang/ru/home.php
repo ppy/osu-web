@@ -40,14 +40,14 @@ return [
     'user' => [
         'title' => 'новости',
         'news' => [
-            'title' => 'Новости',
+            'title' => 'Последние новости',
             'error' => 'Не удалось загрузить последние новости, пробовал обновить страницу?',
         ],
         'header' => [
             'welcome' => 'Привет, <strong>:username</strong>!',
             'messages' => 'У тебя одно новое сообщение|У тебя :count новых сообщений',
             'stats' => [
-                'online' => 'Пользователей в игре',
+                'online' => 'Сейчас в игре',
             ],
         ],
         'beatmaps' => [
@@ -57,7 +57,7 @@ return [
         'buttons' => [
             'download' => 'Скачать osu!',
             'support' => 'Поддержать osu!',
-            'store' => 'osu!store',
+            'store' => 'osu!магазин',
         ],
     ],
 ];

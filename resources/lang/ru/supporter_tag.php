@@ -21,7 +21,7 @@
 return [
     'user_search' => [
         'searching' => 'поиск...',
-        'not_found' => 'Пользователь не существует',
+        'not_found' => 'Пользователь не найден',
     ],
     'duration' => [
         'months' => ':length месяц|:length месяцев|{0}',

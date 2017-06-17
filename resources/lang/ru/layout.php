@@ -60,7 +60,7 @@ return [
             '_' => 'рейтинг',
             'index' => 'производительности',
             'performance' => 'производительности',
-            'charts' => 'по таблицам',
+            'charts' => 'по месяцам',
             'score' => 'по очкам',
             'country' => 'по странам',
             'kudosu' => 'кудос',
@@ -68,7 +68,7 @@ return [
         'community' => [
             '_' => 'сообщество',
             'dev' => 'osu!dev',
-            'getForum' => 'форум',
+            'getForum' => 'форумы',
             'getChat' => 'чат',
             'getSupport' => 'поддержка',
             'getLive' => 'трансляции по osu!',
