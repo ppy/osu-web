@@ -57,7 +57,7 @@ return [
         'buttons' => [
             'download' => 'Скачать osu!',
             'support' => 'Поддержать osu!',
-            'store' => 'osu!магазин',
+            'store' => 'osu!store',
         ],
     ],
 ];
