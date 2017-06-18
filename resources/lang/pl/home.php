@@ -1,4 +1,5 @@
 <?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 return [
     'landing' => [
         'online' => '<strong>:players</strong> jest obecnie online w <strong>:games</strong> grach',
