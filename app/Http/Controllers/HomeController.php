@@ -37,6 +37,18 @@ class HomeController extends Controller
 {
     protected $section = 'home';
 
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => [
+                'search',
+                'quickSearch',
+            ],
+        ]);
+
+        return parent::__construct();
+    }
+
     public function bbcodePreview()
     {
         $post = new Post(['post_text' => Request::input('text')]);
@@ -135,8 +147,8 @@ class HomeController extends Controller
         $query = Request::input('query');
         $limit = 5;
 
-        if (strlen($query) < 3) {
-            return [];
+        if (strlen($query) < config('osu.search.minimum_length')) {
+            return response([], 204);
         }
 
         $params = compact('query', 'limit');
@@ -160,15 +172,14 @@ class HomeController extends Controller
             'user' => Auth::user(),
         ]);
 
-        if (Request::input('mode') === Search::MODES[0]) {
-            $params['limit'] = 8;
-        } else {
-            $params['limit'] ?? ($params['limit'] = 20);
+        $search = new Search($params);
+        $missingQuery = strlen(trim(Request::input('query'))) < config('osu.search.minimum_length');
+
+        if ($search->mode === Search::DEFAULT_MODE) {
+            $search->params['limit'] = 8;
         }
 
-        return view('home.search', [
-            'search' => new Search($params),
-        ]);
+        return view('home.search', compact('search', 'missingQuery'));
     }
 
     public function setLocale()

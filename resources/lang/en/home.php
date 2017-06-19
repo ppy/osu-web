@@ -40,6 +40,7 @@ return [
     'search' => [
         'advanced_link' => 'Advanced search',
         'empty_result' => 'Nothing found!',
+        'missing_query' => 'Search keyword of minimum :n characters is required',
         'title' => 'Search Results',
 
         'beatmapset' => [

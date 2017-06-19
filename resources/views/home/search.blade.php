@@ -19,7 +19,15 @@
 
 @section('content')
     <div class="osu-page">
-        <div class="search-header">
+        <form class="search-header">
+            @foreach ($search->urlParams() as $key => $value)
+                @if ($key === 'query')
+                    @continue
+                @endif
+
+                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+            @endforeach
+
             <div class="search-header__title">
                 {{ trans('home.search.title') }}
             </div>
@@ -27,17 +35,17 @@
             <label class="search-header__box">
                 <input class="search-header__input" name="query" value="{{ $search->urlParams()['query'] ?? '' }}" />
 
-                <span class="search-header__icon">
+                <button class="search-header__icon">
                     <i class="fa fa-search"></i>
-                </span>
+                </button>
             </label>
-        </div>
+        </form>
     </div>
 
     <div class="osu-page osu-page--small">
         <div class="search">
             <div class="page-mode page-mode--search">
-                @foreach ($search::MODES as $mode)
+                @foreach ($search::MODES as $mode => $_class)
                     <div class="page-mode__item">
                         <a
                             href="{{ $search->url(['mode' => $mode]) }}"
@@ -47,7 +55,7 @@
                                 {{ trans("home.search.mode.{$mode}") }}
                             </span>
 
-                            @if (isset($search->search($mode)['total']))
+                            @if (!$missingQuery && isset($search->search($mode)['total']))
                                 <span class="page-mode-link__badge">
                                     {{ search_total_display($search->search($mode)['total']) }}
                                 </span>
@@ -59,56 +67,13 @@
                     </div>
                 @endforeach
             </div>
-            <div>
-                @foreach ($search->all() as $mode => $result)
-                    <div class="search-result search-result--{{ $mode }}">
-                        <h2 class="search-result__row search-result__row--title">
-                            @lang("home.search.{$mode}.title")
-                        </h2>
-
-                        @if (empty($result['data']))
-                            <div class="search-result__row search-result__row--empty">
-                                @lang('home.search.empty_result')
-                            </div>
-                        @else
-                            <div class="search-result__row search-result__row--entries-container">
-                                <div class="search-result__entries">
-                                    @foreach ($result['data'] as $entry)
-                                        <div class="search-result__entry">
-                                            @include("home._search_{$mode}", compact('entry'))
-                                        </div>
-                                    @endforeach
-                                </div>
-
-                                <a
-                                    class="
-                                        search-result__more-button
-                                        {{ $search->mode === $mode ? 'search-result__more-button--hidden' : '' }}
-                                    "
-                                    href="{{ $search->url(['mode' => $mode]) }}"
-                                >
-                                    <span class="fa fa-angle-right"></span>
-                                </a>
-                            </div>
-
-                            @if ($search->mode === $mode)
-                                @if (false && 'maybe infinite scroll?')
-                                    @include('objects._pagination', [
-                                        'object' => $search->search($mode)['data'],
-                                    ])
-                                @endif
-                            @else
-                                <a
-                                    class="search-result__row search-result__row--more"
-                                    href="{{ $search->url(['mode' => $mode]) }}"
-                                >
-                                    @lang("home.search.{$mode}.more_simple")
-                                </a>
-                            @endif
-                        @endif
-                    </div>
-                @endforeach
-            </div>
+            @if ($missingQuery)
+                <div>
+                    @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
+                </div>
+            @else
+                @include('home._search_results')
+            @endif
         </div>
     </div>
 @endsection

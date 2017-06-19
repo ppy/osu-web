@@ -31,20 +31,21 @@
   &__box {
     .default-border-radius();
     background-color: fade(#000, 50%);
-    padding: 20px 0 20px 10px;
     display: flex;
-    cursor: text;
     font-size: @font-size--title-small-2;
   }
 
   &__icon {
+    .reset-input();
     .center-content();
+    flex: none;
     padding: 0 10px;
   }
 
   &__input {
     .reset-input();
-    width: 100%;
+    flex: 1;
+    padding: 20px 10px;
     font-weight: normal;
   }
 

@@ -29,14 +29,16 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class Search
 {
     const MODES = [
-        'all',
+        'all' => null,
 
         // also display order
-        'user',
-        'beatmapset',
-        'forum_post',
-        'wiki_page',
+        'user' => User::class,
+        'beatmapset' => Beatmapset::class,
+        'forum_post' => ForumPost::class,
+        'wiki_page' => WikiPage::class,
     ];
+
+    const DEFAULT_MODE = 'all';
 
     private $cache = [];
     public $params;
@@ -45,13 +47,9 @@ class Search
 
     public function __construct($params)
     {
-        $this->mode = array_pull($params, 'mode') ?? static::MODES[0];
-        if (!in_array($this->mode, static::MODES, true)) {
-            $this->mode = static::MODES[0];
-        }
-
-        if ($this->mode === 'all') {
-            $params['limit'] = 8;
+        $this->mode = array_pull($params, 'mode');
+        if (!array_key_exists($this->mode, static::MODES)) {
+            $this->mode = static::DEFAULT_MODE;
         }
 
         $this->user = array_pull($params, 'user');
@@ -62,7 +60,7 @@ class Search
     {
         $all = [];
 
-        foreach (static::MODES as $i => $mode) {
+        foreach (static::MODES as $mode => $_class) {
             $result = $this->search($mode);
 
             if ($result !== null) {
@@ -86,72 +84,41 @@ class Search
 
     public function search($mode)
     {
-        if ($mode === static::MODES[0]) {
+        $class = static::MODES[$mode];
+
+        if ($class === null) {
             return;
         }
 
-        if ($this->mode !== static::MODES[0] && $this->mode !== $mode) {
+        if ($this->mode !== static::DEFAULT_MODE && $this->mode !== $mode) {
             return;
         }
 
-        $function = 'search'.studly_case($mode);
+        $key = __FUNCTION__.':'.$mode;
 
-        return $this->$function();
-    }
-
-    public function searchBeatmapset()
-    {
-        if (!array_key_exists(__FUNCTION__, $this->cache)) {
-            $this->cache[__FUNCTION__] = Beatmapset::search($this->params);
+        if (!array_key_exists($key, $this->cache)) {
+            $this->cache[$key] = $class::search($this->params);
         }
 
-        return $this->cache[__FUNCTION__];
-    }
-
-    public function searchForumPost()
-    {
-        if (!array_key_exists(__FUNCTION__, $this->cache)) {
-            $this->cache[__FUNCTION__] = ForumPost::search($this->params);
-        }
-
-        return $this->cache[__FUNCTION__];
-    }
-
-    public function searchUser()
-    {
-        if (!array_key_exists(__FUNCTION__, $this->cache)) {
-            $this->cache[__FUNCTION__] = User::search($this->params);
-        }
-
-        return $this->cache[__FUNCTION__];
-    }
-
-    public function searchWikiPage()
-    {
-        if (!array_key_exists(__FUNCTION__, $this->cache)) {
-            $this->cache[__FUNCTION__] = WikiPage::search($this->params, $this->requestedLocale);
-        }
-
-        return $this->cache[__FUNCTION__];
+        return $this->cache[$key];
     }
 
     public function urlParams()
     {
-        return $this->search($this->mode)['cleanParams'] ?? $this->params;
+        $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
+
+        if ($newParams['mode'] === static::DEFAULT_MODE) {
+            $newParams['mode'] = null;
+            $newParams['limit'] = null;
+        }
+
+        $currentParams = $this->search($this->mode)['params'] ?? $this->params;
+
+        return array_merge($currentParams, $newParams);
     }
 
     public function url($newParams)
     {
-        if ($this->mode === static::MODES[0]) {
-            $newParams['limit'] = null;
-        }
-
-        $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
-
-        if ($newParams['mode'] === static::MODES[0]) {
-            $newParams['mode'] = null;
-        }
-
-        return route('search', array_merge($this->urlParams(), $newParams));
+        return route('search', $this->urlParams($newParams));
     }
 }
