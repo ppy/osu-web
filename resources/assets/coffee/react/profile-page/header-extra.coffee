@@ -79,10 +79,18 @@ class ProfilePage.HeaderExtra extends React.Component
                         age: rowValue osu.trans('users.show.age', age: @props.user.age)
 
           div className: "#{bn}__rows",
-            div
-              className: "#{bn}__row"
-              dangerouslySetInnerHTML:
-                __html: @props.user.joinDate
+            if moment(@props.user.join_date).isBefore moment('2008-01-01')
+              div
+                className: "#{bn}__row"
+                title: moment(@props.user.join_date).format('MMMM YYYY'),
+                  osu.trans 'users.show.first_members'
+            else
+              div
+                className: "#{bn}__row"
+                dangerouslySetInnerHTML:
+                  __html:
+                    osu.trans 'users.show.joined_at',
+                      date: rowValue moment(@props.user.join_date).format('MMMM YYYY')
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
