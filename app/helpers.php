@@ -128,6 +128,15 @@ function osu_url($key)
     return $url;
 }
 
+function param_string_simple($value)
+{
+    if (is_array($value)) {
+        $value = implode(',', $value);
+    }
+
+    return presence($value);
+}
+
 function product_quantity_options($product)
 {
     if ($product->stock === null) {

@@ -21,11 +21,15 @@
     <div class="osu-page">
         <form class="search-header">
             @foreach ($search->urlParams() as $key => $value)
-                @if ($key === 'query')
+                @if (in_array($key, ['query', 'page']))
                     @continue
                 @endif
 
-                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @if (($value = param_string_simple($value)) === null)
+                    @continue
+                @endif
+
+                <input type="hidden" name="{{ $key }}" value="{{ param_string_simple($value) }}">
             @endforeach
 
             <div class="search-header__title">

@@ -103,7 +103,7 @@ class Search
         return $this->cache[$key];
     }
 
-    public function urlParams()
+    public function urlParams($newParams = [])
     {
         $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
 
@@ -117,7 +117,7 @@ class Search
         return array_merge($currentParams, $newParams);
     }
 
-    public function url($newParams)
+    public function url($newParams = [])
     {
         return route('search', $this->urlParams($newParams));
     }

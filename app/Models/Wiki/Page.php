@@ -46,10 +46,10 @@ class Page
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
     }
 
-    public static function search($params, $locale = null)
+    public static function search($rawParams, $locale = null)
     {
         $locale ?? ($locale = config('app.fallback_locale'));
-        $params = static::searchParams($params);
+        $params = static::searchParams($rawParams);
         $matchParams = [];
 
         if (!present($params['query'])) {
@@ -92,6 +92,7 @@ class Page
         return [
             'data' => array_merge(...array_values($pages)),
             'total' => $results['hits']['total'],
+            'params' => $params,
         ];
     }
 

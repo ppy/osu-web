@@ -167,11 +167,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         return [];
     }
 
-    public static function search($params)
+    public static function search($rawParams)
     {
-        $params['query'] = presence($params['query'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
+        $params = [];
+        $params['query'] = presence($rawParams['query'] ?? null);
+        $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
+        $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
 
         $query = static::where('username', 'LIKE', "{$params['query']}%");
 

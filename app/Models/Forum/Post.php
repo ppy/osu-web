@@ -119,9 +119,10 @@ class Post extends Model
         return $unreadPostId;
     }
 
-    public static function search($params)
+    public static function search($rawParams)
     {
-        $result = static::searchEs(static::searchParams($params));
+        $params = static::searchParams($rawParams);
+        $result = static::searchEs($params);
 
         $query = static
             ::with('topic')
@@ -131,6 +132,7 @@ class Post extends Model
         return [
             'data' => $query->get(),
             'total' => $result['total'],
+            'params' => $params,
         ];
     }
 
