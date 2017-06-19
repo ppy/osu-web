@@ -174,12 +174,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
 
-        $query = static::where('username', 'LIKE', "{$params['query']}%");
+        $query = static::where('username', 'LIKE', "{$params['query']}%")
+            ->where('username', 'NOT LIKE', '%_old')
+            ->default();
 
         return [
             'total' => $query->count(),
             'data' => $query
-                ->orderBy(DB::raw('LENGTH(username)'))
+                ->orderBy('user_id', 'ASC')
                 ->limit($params['limit'])
                 ->offset(($params['page'] - 1) * $params['limit'])
                 ->get(),
