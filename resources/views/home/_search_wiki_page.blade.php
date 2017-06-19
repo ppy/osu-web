@@ -28,6 +28,6 @@
     </p>
 
     <p class="search-entry__row search-entry__row--footer">
-        {{ wiki_url($entry->path, $entry->locale) }}"
+        {{ wiki_url($entry->path, $entry->locale) }}
     </p>
 </a>
