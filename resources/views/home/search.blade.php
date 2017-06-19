@@ -21,7 +21,7 @@
     <div class="osu-page">
         <form class="search-header">
             @foreach ($search->urlParams() as $key => $value)
-                @if (in_array($key, ['query', 'page']))
+                @if (in_array($key, ['query', 'page', 'limit']))
                     @continue
                 @endif
 
@@ -52,7 +52,7 @@
                 @foreach ($search::MODES as $mode => $_class)
                     <div class="page-mode__item">
                         <a
-                            href="{{ $search->url(['mode' => $mode]) }}"
+                            href="{{ $search->url(['mode' => $mode, 'limit' => null]) }}"
                             class="page-mode-link {{ $mode === $search->mode ? 'page-mode-link--is-active' : '' }}"
                         >
                             <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
