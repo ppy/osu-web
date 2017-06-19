@@ -181,7 +181,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         return [
             'total' => $query->count(),
             'data' => $query
-                ->orderBy(DB::raw('LENGTH(username)'))
+                ->orderBy('user_id', 'ASC')
                 ->limit($params['limit'])
                 ->offset(($params['page'] - 1) * $params['limit'])
                 ->get(),
