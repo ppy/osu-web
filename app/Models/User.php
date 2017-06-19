@@ -59,6 +59,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         'touch' => 8,
     ];
 
+    const SEARCH_DEFAULTS = [
+        'query' => null,
+        'limit' => 20,
+        'page' => 1,
+    ];
+
     public $flags;
     private $groupIds;
     private $supportLength;
@@ -159,6 +165,26 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return [];
+    }
+
+    public static function search($rawParams)
+    {
+        $params = [];
+        $params['query'] = presence($rawParams['query'] ?? null);
+        $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
+        $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
+
+        $query = static::where('username', 'LIKE', "{$params['query']}%");
+
+        return [
+            'total' => $query->count(),
+            'data' => $query
+                ->orderBy(DB::raw('LENGTH(username)'))
+                ->limit($params['limit'])
+                ->offset(($params['page'] - 1) * $params['limit'])
+                ->get(),
+            'params' => $params,
+        ];
     }
 
     public function validateUsernameChangeTo($username)

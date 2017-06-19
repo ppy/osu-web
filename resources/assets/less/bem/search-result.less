@@ -1,0 +1,117 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.search-result {
+  @top: search-result;
+  .default-border-radius();
+  .thicker-box-shadow();
+  background-color: #333;
+  padding: 10px 20px;
+  padding-right: 0;
+  margin-top: 20px;
+
+  &::before {
+    .full-size();
+    width: 5px;
+    border-top-left-radius: @border-radius-base;
+    border-bottom-left-radius: @border-radius-base;
+  }
+
+  &--beatmapset::before {
+    background-color: @pink-dark;
+  }
+
+  &--forum_post::before {
+    background-color: @yellow-dark;
+  }
+
+  &--user::before {
+    background-color: @blue-dark;
+  }
+
+  &--wiki_page::before {
+    background-color: @purple-dark;
+  }
+
+  &__entries {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+  }
+
+  &__entry {
+    flex: none;
+    padding: 5px;
+    width: 100%;
+
+    .@{top}--beatmapset & {
+      @media @desktop {
+        width: 50%;
+      }
+    }
+
+    .@{top}--user & {
+      width: auto;
+    }
+  }
+
+  &__more-button {
+    flex: none;
+    .link-plain();
+    .link-white();
+    .center-content();
+    font-size: 20px; // icon size
+    padding: 5px;
+    width: 30px;
+
+    &--hidden {
+      opacity: 0;
+      padding: 0;
+      width: 20px;
+      pointer-events: none;
+    }
+  }
+
+  &__row {
+    padding: 5px 0;
+
+    &--empty {
+      font-size: @font-size--normal;
+      color: #ccc;
+    }
+
+    &--more {
+      .link-gray-light();
+      font-size: @font-size--normal;
+      display: block;
+      text-align: center;
+    }
+
+    &--entries-container {
+      display: flex;
+    }
+
+    &--title {
+      font-size: @font-size--title-small-2;
+      color: #fff;
+      font-style: italic;
+      margin: 0;
+    }
+  }
+}

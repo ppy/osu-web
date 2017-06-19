@@ -37,6 +37,45 @@ return [
         ],
     ],
 
+    'search' => [
+        'advanced_link' => 'Advanced search',
+        'empty_result' => 'Nothing found!',
+        'missing_query' => 'Search keyword of minimum :n characters is required',
+        'title' => 'Search Results',
+
+        'beatmapset' => [
+            'more' => ':count more beatmap search results',
+            'more_simple' => 'See more beatmap search results',
+            'title' => 'Beatmaps',
+        ],
+
+        'forum_post' => [
+            'link' => 'Search the forum',
+            'more_simple' => 'See more forum search results',
+            'title' => 'Forum',
+        ],
+
+        'mode' => [
+            'all' => 'all',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'forum',
+            'user' => 'player',
+            'wiki_page' => 'wiki',
+        ],
+
+        'user' => [
+            'more' => ':count more player search results',
+            'more_simple' => 'See more player search results',
+            'title' => 'Players',
+        ],
+
+        'wiki_page' => [
+            'link' => 'Search the wiki',
+            'more_simple' => 'See more wiki search results',
+            'title' => 'Wiki',
+        ],
+    ],
+
     'user' => [
         'title' => 'news',
         'news' => [
