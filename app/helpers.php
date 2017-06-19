@@ -31,13 +31,15 @@ function array_search_null($value, $array)
     }
 }
 
-function background_image($url)
+function background_image($url, $proxy = true)
 {
     if (!present($url)) {
         return '';
     }
 
-    return sprintf(' style="background-image:url(\'%s\');" ', e(proxy_image($url)));
+    $url = $proxy ? proxy_image($url) : $url;
+
+    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
 function es_query_and_words($words)
@@ -75,6 +77,18 @@ function get_valid_locale($requestedLocale)
         },
         config('app.fallback_locale')
     );
+}
+
+function html_excerpt($body, $limit = 300)
+{
+    // not using strip_tags because <br> and <p> needs to be converted to space
+    $body = preg_replace('#<[^>]+>#', ' ', $body);
+
+    if (strlen($body) < $limit) {
+        return $body;
+    }
+
+    return substr($body, 0, $limit).'...';
 }
 
 function json_date($date)
@@ -117,6 +131,15 @@ function osu_url($key)
     }
 
     return $url;
+}
+
+function param_string_simple($value)
+{
+    if (is_array($value)) {
+        $value = implode(',', $value);
+    }
+
+    return presence($value);
 }
 
 function product_quantity_options($product)
@@ -165,6 +188,14 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
+function search_total_display($total)
+{
+    if ($total >= 100) {
+        return '99+';
+    }
+
+    return (string) $total;
+}
 function obscure_email($email)
 {
     $email = explode('@', $email);

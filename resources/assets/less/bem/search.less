@@ -16,36 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.header-search-box {
-  .default-border-radius();
-  margin: 5px 0;
+.search {
+  .inner-shadow-top();
+  .default-box-shadow();
+  padding: 0 40px 20px;
+  background-color: #222;
   color: #fff;
-  background-color: fade(#000, 15%);
-  padding: 5px;
-  // let icon do its thing
-  padding-right: 0;
-  display: flex;
-  align-items: center;
-
-  &.js-parent-focus--focus {
-    background-color: fade(#000, 25%);
-  }
-
-  &__icon {
-    .link-white();
-    .link-plain();
-    font-size: @font-size--title-small;
-    flex: none;
-    width: @nav-search-icon-width;
-    text-align: center;
-  }
-
-  &__input {
-    .reset-input();
-    flex: none;
-    width: 160px;
-    text-align: right;
-    font-size: @font-size-base;
-    font-weight: normal;
-  }
 }

@@ -50,8 +50,7 @@ $(document).on 'turbolinks:load', ->
 @landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
-# FIXME: enable later.
-#@navSearch ?= new NavSearch
+@navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus
@@ -90,6 +89,9 @@ $(document).on 'keydown', (e) ->
 # Globally init countdown timers
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
+
+reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
+  JSON.parse(el.dataset.beatmapsetPanel)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
