@@ -31,9 +31,11 @@
             </div>
         </div>
         <div class="js-nav-search--fail hidden">
-            <a href="#" class="js-nav-search--run-link">
-                {{ trans('layout.popup_search.retry') }}
-            </a>
+            <div class="nav-search__box">
+                <a href="#" class="js-nav-search--run-link nav-search__link">
+                    {{ trans('layout.popup_search.retry') }}
+                </a>
+            </div>
         </div>
     </div>
 
