@@ -22,7 +22,8 @@
                 @lang("home.search.{$mode}.title")
             </h2>
 
-            @if (empty($result['data']))
+            {{-- `empty(collect())` is false :D --}}
+            @if (count($result['data']) === 0)
                 <div class="search-result__row search-result__row--empty">
                     @lang('home.search.empty_result')
                 </div>

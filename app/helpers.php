@@ -53,7 +53,7 @@ function es_query_and_words($words)
     $partsEscaped = [];
 
     foreach ($parts as $part) {
-        $partsEscaped[] = urlencode($part);
+        $partsEscaped[] = str_replace('-', '%2D', urlencode($part));
     }
 
     return implode(' AND ', $partsEscaped);
