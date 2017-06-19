@@ -42,7 +42,7 @@
                             search-result__more-button
                             {{ $search->mode === $mode ? 'search-result__more-button--hidden' : '' }}
                         "
-                        href="{{ $search->url(['mode' => $mode]) }}"
+                        href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
                     >
                         <span class="fa fa-angle-right"></span>
                     </a>
@@ -57,7 +57,7 @@
                 @else
                     <a
                         class="search-result__row search-result__row--more"
-                        href="{{ $search->url(['mode' => $mode]) }}"
+                        href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
                     >
                         @lang("home.search.{$mode}.more_simple")
                     </a>
