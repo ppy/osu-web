@@ -32,4 +32,15 @@ class BeatmapPack extends Model
     {
         return $this->hasMany(BeatmapPackItem::class, 'pack_id');
     }
+
+    public function beatmapsets()
+    {
+        $thisTable = $this->getTable();
+        $setsTable = (new Beatmapset)->getTable();
+        $itemsTable = (new BeatmapPackItem)->getTable();
+        return static::query()
+            ->where("{$thisTable}.pack_id", '=', $this->pack_id)
+            ->join($itemsTable, "{$itemsTable}.pack_id", '=', "{$thisTable}.pack_id")
+            ->join($setsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id");
+    }
 }

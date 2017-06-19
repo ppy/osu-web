@@ -35,4 +35,16 @@ class BeatmapPacksController extends Controller
         return view('beatmappacks.index')
             ->with('packs', $packs);
     }
+
+    public function show($id)
+    {
+        $pack = BeatmapPack::findOrFail($id);
+        $items = $pack->items()->get();
+        return [
+            'pack_id' => $pack['pack_id'],
+            'name' => $pack['name'],
+            'author' => $pack['author'],
+            'sets' => $pack->beatmapsets()->get(),
+        ];
+    }
 }

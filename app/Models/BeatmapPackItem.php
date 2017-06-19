@@ -30,4 +30,9 @@ class BeatmapPackItem extends Model
     {
         return $this->belongsTo(BeatmapPack::class, 'pack_id');
     }
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+    }
 }

@@ -31,6 +31,7 @@
         </a>
         <span class="beatmap-pack__date">{{ $pack['date'] }}</span>
         <span class="beatmap-pack__author">{{ $pack['author'] }}</span>
+        {{-- @include('beatmappacks._items', ['items' =>$pack->items()->get()]) --}}
       </div>
     @endforeach
   </div>
