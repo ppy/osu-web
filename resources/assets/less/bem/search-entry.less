@@ -16,36 +16,58 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.header-search-box {
+.search-entry {
+  .link-plain();
+  .default-box-shadow();
   .default-border-radius();
-  margin: 5px 0;
-  color: #fff;
-  background-color: fade(#000, 15%);
-  padding: 5px;
-  // let icon do its thing
-  padding-right: 0;
+  background-color: #444;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  padding: 5px 10px;
+  padding-bottom: 15px;
 
-  &.js-parent-focus--focus {
-    background-color: fade(#000, 25%);
+  &::after, &::before {
+    .full-size();
+    will-change: opacity;
+    transition: opacity 120ms;
+    pointer-events: none;
   }
 
-  &__icon {
-    .link-white();
-    .link-plain();
-    font-size: @font-size--title-small;
-    flex: none;
-    width: @nav-search-icon-width;
-    text-align: center;
+  &::after {
+    .thicker-box-shadow();
+    opacity: 0;
   }
 
-  &__input {
-    .reset-input();
-    flex: none;
-    width: 160px;
-    text-align: right;
-    font-size: @font-size-base;
-    font-weight: normal;
+  &:hover::after {
+    opacity: 1;
+  }
+
+  &::before {
+    .default-box-shadow();
+  }
+
+  &:hover::before {
+    opacity: 0;
+  }
+
+  &__row {
+    margin: 5px 0;
+    padding: 0;
+    line-height: 1.5;
+
+    &--title {
+      color: #fff;
+      font-size: @font-size--title-small-2;
+    }
+
+    &--excerpt {
+      color: #ddd;
+      font-size: @font-size--small-2;
+    }
+
+    &--footer {
+      color: #999;
+      font-size: @font-size--small;
+    }
   }
 }

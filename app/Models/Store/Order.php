@@ -76,7 +76,7 @@ class Order extends Model
     public function requiresShipping()
     {
         foreach ($this->items as $i) {
-            if ($i->product->weight !== null) {
+            if ($i->product->requiresShipping()) {
                 return true;
             }
         }

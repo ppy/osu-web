@@ -19,35 +19,43 @@
 {div,a,span,i} = React.DOM
 el = React.createElement
 
-Beatmaps.Paginator = React.createClass
-  componentDidMount: ->
+class Beatmaps.Paginator extends React.PureComponent
+  constructor: (props) ->
+    super props
+
     @throttledAutoPagerOnScroll = _.throttle(@autoPagerOnScroll, 500)
+    @autoPagerTriggerDistance = 3000
+
+
+  componentDidMount: =>
+    Timeout.set 0, @throttledAutoPagerOnScroll
     $(window).on 'scroll.paginator', @throttledAutoPagerOnScroll
+    $(document).on 'turbolinks:before-cache.paginator', @componentWillUnmount
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $(window).off '.paginator'
+    $(document).off '.paginator'
     @throttledAutoPagerOnScroll.cancel()
 
 
-  render: ->
-    if @props.paging.load || @props.paging.more
-      div
-        className: 'beatmapsets-show-more'
-        if @props.paging.loading
-          el Icon, name: 'refresh', modifiers: ['spin']
-        else if @props.paging.more
-          a
-            href: @props.paging.url
-            className: 'beatmapsets-show-more__link'
-            ref: (el) => @autoPagerTarget = el
-            onClick: @showMore
-            osu.trans('common.buttons.show_more')
-    else
-      div()
+  render: =>
+    return div() if !@props.paging.loading && !@props.paging.more
+
+    div
+      className: 'beatmapsets-show-more'
+      if @props.paging.loading
+        el Icon, name: 'refresh', modifiers: ['spin']
+      else if @props.paging.more
+        a
+          href: @props.paging.url
+          className: 'beatmapsets-show-more__link'
+          ref: (el) => @autoPagerTarget = el
+          onClick: @showMore
+          osu.trans('common.buttons.show_more')
 
 
-  autoPagerOnScroll: (e) ->
+  autoPagerOnScroll: =>
     return if !@props.paging.more || @props.paging.loading
 
     currentTarget = @autoPagerTarget.getBoundingClientRect().top
@@ -59,9 +67,6 @@ Beatmaps.Paginator = React.createClass
     $(document).trigger 'beatmap:load_more'
 
 
-  autoPagerTriggerDistance: 3000
-
-
-  showMore: (e) ->
+  showMore: (e) =>
     e.preventDefault()
     $(document).trigger 'beatmap:load_more'

@@ -74,13 +74,14 @@ el = React.createElement
                 else
                   score.score.toLocaleString()
             div
-              className: 'detail-row__detail-row detail-row__detail-row--bottom'
-              span
-                className: 'detail-row__text-score'
-                if score.weight
+              className: 'detail-row__score-details'
+              if score.weight
+                div
+                  className: 'detail-row__text-score'
                   osu.trans 'users.show.extra.top_ranks.weighted_pp',
                     percentage: "#{Math.round(score.weight.percentage)}%"
                     pp: osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.weight.pp))
-                else if !score.pp
-                  osu.trans 'users.show.extra.historical.recent_plays.accuracy',
-                    percentage: "#{(score.accuracy * 100).toFixed(2)}%"
+              div
+                className: 'detail-row__text-score'
+                osu.trans 'users.show.extra.historical.recent_plays.accuracy',
+                  percentage: "#{(score.accuracy * 100).toFixed(2)}%"

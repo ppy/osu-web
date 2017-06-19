@@ -138,8 +138,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('account/verify', 'AccountController@verify')->name('account.verify');
     Route::put('account', 'AccountController@update')->name('account.update');
 
-    // FIXME: enable later.
-    // Route::get('search', 'HomeController@search')->name('search');
+    Route::get('search', 'HomeController@search')->name('search');
+    Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::get('changelog', 'HomeController@getChangelog')->name('changelog');
     Route::get('download', 'HomeController@getDownload')->name('download');

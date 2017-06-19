@@ -75,6 +75,10 @@
     .box-color(3px, @changelog-stream--lazer);
   }
 
+  &--lazer-experimental {
+    .box-color(3px, @changelog-stream--lazer);
+  }
+
   &--stable {
     .box-color(3px, @changelog-stream--stable);
   }
@@ -90,6 +94,7 @@
   &__build {
     font-size: @font-size--title-small-3;
     font-weight: 300;
+    width: 100%;
   }
 
   &__content {
@@ -98,7 +103,8 @@
     align-items: flex-start;
 
     height: 100%;
-    padding: 7px 0;
+    padding: 5px 5px 5px 0;
+    min-width: 0;
   }
 
   &__indicator {
@@ -107,6 +113,7 @@
 
     margin: 10px 0;
     margin-left: auto;
+    flex: none;
 
     .default-border-radius;
 
@@ -115,6 +122,10 @@
     }
 
     .@{_top}--lazer & {
+      background-color: @changelog-stream--lazer;
+    }
+
+    .@{_top}--lazer-experimental & {
       background-color: @changelog-stream--lazer;
     }
 
@@ -127,13 +138,10 @@
     }
   }
 
-  &__indicator-box {
-
-  }
-
   &__name {
     font-size: @font-size--small-2;
     font-weight: 700;
+    width: 100%;
   }
 
   &__users {

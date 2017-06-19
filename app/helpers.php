@@ -31,18 +31,24 @@ function array_search_null($value, $array)
     }
 }
 
-function background_image($url)
+function background_image($url, $proxy = true)
 {
     if (!present($url)) {
         return '';
     }
 
-    return sprintf(' style="background-image:url(\'%s\');" ', e(proxy_image($url)));
+    $url = $proxy ? proxy_image($url) : $url;
+
+    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
 function es_query_and_words($words)
 {
-    $parts = preg_split("/\s+/", trim($words ?? ''));
+    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
+
+    if (empty($parts)) {
+        return;
+    }
 
     $partsEscaped = [];
 
@@ -71,6 +77,23 @@ function get_valid_locale($requestedLocale)
         },
         config('app.fallback_locale')
     );
+}
+
+function html_excerpt($body, $limit = 300)
+{
+    // not using strip_tags because <br> and <p> needs to be converted to space
+    $body = preg_replace('#<[^>]+>#', ' ', $body);
+
+    if (strlen($body) < $limit) {
+        return $body;
+    }
+
+    return substr($body, 0, $limit).'...';
+}
+
+function json_date($date)
+{
+    return json_time($date->startOfDay());
 }
 
 function json_time($time)
@@ -108,6 +131,15 @@ function osu_url($key)
     }
 
     return $url;
+}
+
+function param_string_simple($value)
+{
+    if (is_array($value)) {
+        $value = implode(',', $value);
+    }
+
+    return presence($value);
 }
 
 function product_quantity_options($product)
@@ -156,6 +188,14 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
+function search_total_display($total)
+{
+    if ($total >= 100) {
+        return '99+';
+    }
+
+    return (string) $total;
+}
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -225,9 +265,13 @@ function js_view($view, $vars = [])
 
 function ujs_redirect($url)
 {
-    if (Request::ajax()) {
+    if (Request::ajax() && !Request::isMethod('get')) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
+        if (Request::header('Turbolinks-Referrer')) {
+            Request::session()->put('_turbolinks_location', $url);
+        }
+
         return redirect($url);
     }
 }
@@ -448,12 +492,14 @@ function display_regdate($user)
         return;
     }
 
+    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return trans('users.show.first_members');
+        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+        'date' => "<strong>{$formattedDate}</strong>",
     ]);
 }
 

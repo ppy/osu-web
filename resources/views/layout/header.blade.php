@@ -49,22 +49,17 @@
             </div>
         </div>
 
-        {{-- FIXME: enable later. --}}
-        @if (false && Auth::check())
+        @if (Auth::check())
             <div class="osu-nav__col js-nav-switch js-nav-search--input-container" data-nav-mode="search" data-nav-mode-switch="0">
                 <div class="osu-nav__highlight-bar">
                     <span class="bar"></span>
                 </div>
 
                 <label class="header-search-box js-parent-focus">
-                    <input class="header-search-box__input js-nav-search--input" name="q" />
+                    <input class="header-search-box__input js-nav-search--input" name="query" />
                     <a href="#" class="js-nav-search--run-link header-search-box__icon">
                         <i class="fa fa-fw fa-search"></i>
                     </a>
-
-                    @foreach ($search['params'] ?? [] as $name => $value)
-                        <input type="hidden" name="{{ $name }}" value="{{ $value }}">
-                    @endforeach
                 </label>
             </div>
         @endif

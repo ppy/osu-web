@@ -178,13 +178,15 @@ window.onload = function() {
             @endif
         @else
             <p><strong>Your order is being prepared!</strong></p>
-            <p>
-                Please wait a bit longer for it to be shipped. Tracking information will appear here once the order has been processed and sent. This can take up to 5 days (but usually less!) depending on how busy we are.
-            </p>
+            @if ($order->requiresShipping())
+                <p>
+                    Please wait a bit longer for it to be shipped. Tracking information will appear here once the order has been processed and sent. This can take up to 5 days (but usually less!) depending on how busy we are.
+                </p>
 
-            <p>
-                We send all orders from Japan using a variety of shipping services depending on the weight and value. This area will update with specifics once we have shipped the order.
-            </p>
+                <p>
+                    We send all orders from Japan using a variety of shipping services depending on the weight and value. This area will update with specifics once we have shipped the order.
+                </p>
+            @endif
         @endif
     </div>
 

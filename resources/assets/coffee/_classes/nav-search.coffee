@@ -38,7 +38,7 @@ class @NavSearch
     if mode == 'search'
       $('.js-nav-search--input').focus()
 
-      if $('.js-nav-search--result').html().length > 0
+      if $('.js-nav-search--result').html().trim().length > 0
         @setMode 'result'
     else
       @setMode 'initial'
@@ -66,7 +66,7 @@ class @NavSearch
     @setMode 'loading'
 
     @abort()
-    @xhr = $.get laroute.route('search'), q: query
+    @xhr = $.get laroute.route('quick-search'), query: query
       .done @showResult
       .fail => @setMode 'fail'
 

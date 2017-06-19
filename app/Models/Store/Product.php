@@ -120,6 +120,11 @@ class Product extends Model
         }
     }
 
+    public function requiresShipping()
+    {
+        return $this->weight !== null;
+    }
+
     public function scopeLatest($query)
     {
         return $query
