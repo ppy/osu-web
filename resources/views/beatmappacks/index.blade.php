@@ -25,12 +25,13 @@
 @section("content")
   <div class="beatmap-packs">
     @foreach ($packs as $pack)
-      <div class="beatmap-pack">
-        <a class="beatmap-pack__link"
-          href="{{ $pack['url'] }}">{{ $pack['name'] }}
+      <div class="js-beatmap-pack beatmap-pack" data-pack-id="{{ $pack['pack_id'] }}">
+        <a class="js-beatmap-pack-link beatmap-pack__link" data-pack-id="{{ $pack['pack_id'] }}"
+          href="#">{{ $pack['name'] }}
         </a>
         <span class="beatmap-pack__date">{{ $pack['date'] }}</span>
         <span class="beatmap-pack__author">{{ $pack['author'] }}</span>
+        <div class="js-beatmap-pack__items js-beatmap-pack__items--collapsed beatmap-pack__items"></div>
         {{-- @include('beatmappacks._items', ['items' =>$pack->items()->get()]) --}}
       </div>
     @endforeach

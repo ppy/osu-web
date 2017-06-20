@@ -16,24 +16,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-packs {
-  display: flex;
-  flex-direction: column;
-}
-
-.beatmap-pack {
+.beatmap-pack-items {
+  &__title {
+    font-size: 120%;
+  }
 
   &__author {
-    display: inline-block;
+    font-size: 90%;
   }
 
-  &__date {
-    display: inline-block;
+  &__set {
+    display: list-item;
+    list-style: square;
   }
 
-  &__items {
-    &.js-beatmap-pack__items--collapsed {
-      display: none;
-    }
+  &__sets {
+    margin-left: 1.5em;
   }
 }
