@@ -226,6 +226,6 @@ class Forum extends Model
 
         $stack[] = $this->forum_name;
 
-        return join(' » ', $stack);
+        return implode(' » ', $stack);
     }
 }
