@@ -50,7 +50,7 @@
             <h4>{{ trans('home.download.more') }}</h4>
 
             <p>
-                {{ trans('home.download.more_text') }}
+                {!! trans('home.download.more_text') !!}
             </p>
         </div>
 
