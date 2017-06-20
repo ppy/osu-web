@@ -41,7 +41,7 @@ return [
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
         ],
         'header' => [
-            'welcome' => 'Witaj, <strong>:username!</strong>',
+            'welcome' => 'Witaj, <strong>:username</strong>!',
             'messages' => 'Masz 1 nową wiadomość|Masz :count nowych wiadomości',
             'stats' => [
                 'online' => 'Użytkownicy online',
