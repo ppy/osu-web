@@ -58,7 +58,7 @@ return [
 
     'supporter_tag' => [
         'require_login' => [
-            '_' => 'Vous devez être :link pour obtenir a tag supporter !',
+            '_' => 'Vous devez être un :link pour obtenir a tag supporter !',
             'link_text' => 'connecté',
         ],
     ],
