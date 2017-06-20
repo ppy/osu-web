@@ -216,4 +216,16 @@ class Forum extends Model
     {
         return $this->forum_type === 1;
     }
+
+    public function toMetaDescription()
+    {
+        $stack = [__('forum.title')];
+        foreach ($this->forum_parents as $forumId => $forumData) {
+            $stack[] = $forumData[0];
+        }
+
+        $stack[] = $this->forum_name;
+
+        return join(' » ', $stack);
+    }
 }
