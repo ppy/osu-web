@@ -19,26 +19,12 @@
  */
 
 return [
-    'header' => 'Classement par :type',
-    'type' => [
-        'performance' => 'Performance',
-        'charts' => 'Charts',
-        'score' => 'Score',
-        'country' => 'Pays',
-        'kudosu' => 'Kudosu',
+    'user_search' => [
+        'searching' => 'recherche en cours...',
+        'not_found' => "Cet utilisateur n'existe pas",
     ],
-    'stat' => [
-        'accuracy' => 'Précision',
-        'active_users' => 'Utilisateurs Actifs',
-        'country' => 'Pays',
-        'play_count' => 'Nombre de Fois Jouées',
-        'performance' => 'Performance',
-        'total_score' => 'Score Total',
-        'ranked_score' => 'Score Classé',
-        'average_score' => 'Score Moyen',
-        'average_performance' => 'Perf. Moyenne',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'duration' => [
+        'months' => ':length mois|:length mois|{0}',
+        'years' => ':length année|:length années|{0}',
     ],
 ];

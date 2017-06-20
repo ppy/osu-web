@@ -27,6 +27,7 @@ return [
         'username' => "Nom d'utilisateur",
         'password' => 'Mot de passe',
         'button' => 'Se connecter',
+        'button_posting' => 'Connexion...',
         'remember' => 'Se souvenir de moi sur cet ordinateur',
         'title' => 'Merci de vous connecter pour continuer',
         'failed' => 'Identifiants incorrects',
@@ -57,20 +58,20 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu la dernière fois :date',
-        'missingtext' => "Vous avez fait une erreur de typo, je crois! (ou l'utilisateur est banni)",
+        'missingtext' => "Vous avez fait une erreur de frappe, je crois! (ou l'utilisateur est banni)",
         'origin_age' => ':age',
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
         'page_description' => 'osu! - Tout ce que vous devez savoir à propos de :username!',
         'plays_with' => 'Joue avec :devices',
-        'title' => 'profil de :username',
+        'title' => 'Profil de :username',
 
         'edit' => [
             'cover' => [
                 'button' => 'Changer la bannière du profil',
                 'defaults_info' => "Plus d'options seront disponibles bientôt",
                 'upload' => [
-                    'broken_file' => "Impossible de traiter l'image. Vérifiez l'image mise en ligne et réesayez.",
+                    'broken_file' => "Impossible de traiter l'image. Vérifiez l'image mise en ligne et réessayez.",
                     'button' => "Mettre en ligne l'image",
                     'dropzone' => 'Déplacez ici pour uploader',
                     'dropzone_info' => "Vous pouvez aussi déplacer l'image ici pour la mettre en ligne",
