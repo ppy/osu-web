@@ -248,5 +248,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Type to search!',
+        'retry' => 'Search failed. Click to retry.',
     ],
 ];

@@ -31,7 +31,7 @@
 
         @if (count($users['data']) < $users['total'])
             <a
-                href="{{ route('search', ['query' => Request::input('query')]) }}"
+                href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'user']) }}"
                 class="nav-search-result__more"
             >
                 {!! trans('home.search.user.more', [
@@ -61,7 +61,7 @@
 
         @if (count($beatmapsets['data']) < $beatmapsets['total'])
             <a
-                href="{{ route('search', ['query' => Request::input('query')]) }}"
+                href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'beatmapset']) }}"
                 class="nav-search-result__more"
             >
                 {!! trans('home.search.beatmapset.more', [
@@ -74,7 +74,7 @@
 
     <div class="nav-search-result__link">
         @include('home._nav_search_entry', [
-            'url' => route('search', ['query' => Request::input('query')]),
+            'url' => route('search', ['query' => Request::input('query'), 'mode' => 'wiki_page']),
             'title' => trans('home.search.wiki_page.link'),
             'modifier' => 'extra',
         ])
@@ -82,7 +82,7 @@
 
     <div class="nav-search-result__link">
         @include('home._nav_search_entry', [
-            'url' => route('search', ['query' => Request::input('query')]),
+            'url' => route('search', ['query' => Request::input('query'), 'mode' => 'forum_post']),
             'title' => trans('home.search.forum_post.link'),
             'modifier' => 'extra',
         ])
