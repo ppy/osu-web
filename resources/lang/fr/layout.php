@@ -108,7 +108,7 @@ return [
             'help' => 'Aide',
         ],
         'store' => [
-            '_' => 'Magasin',
+            '_' => 'magasin',
             'getListing' => 'liste',
             'getCart' => 'panier',
 

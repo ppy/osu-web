@@ -27,7 +27,7 @@ return [
         'toc' => 'Contenu',
 
         'edit' => [
-            'link' => 'Montrer sur GitHub',
+            'link' => 'Afficher sur GitHub',
             'refresh' => 'Rafraîchir',
         ],
     ],

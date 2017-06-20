@@ -77,7 +77,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Ordre de liste',
+                'title' => 'Liste des commandes',
             ],
         ],
     ],
