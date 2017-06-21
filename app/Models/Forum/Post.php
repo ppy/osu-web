@@ -22,7 +22,6 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
-use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Es;
