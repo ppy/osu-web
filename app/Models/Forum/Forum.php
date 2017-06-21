@@ -219,7 +219,7 @@ class Forum extends Model
 
     public function toMetaDescription()
     {
-        $stack = [__('forum.title')];
+        $stack = [trans('forum.title')];
         foreach ($this->forum_parents as $forumId => $forumData) {
             $stack[] = $forumData[0];
         }

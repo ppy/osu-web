@@ -19,7 +19,7 @@
     'search' => [
         'url' => route('forum.forums.search'),
     ],
-    'pageDescription' => __('forum.title')
+    'pageDescription' => trans('forum.title')
 ])
 
 @section("content")
