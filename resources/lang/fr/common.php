@@ -65,7 +65,7 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'il y a :count|il y a :count',
+        'days_ago' => 'il y a :count jour|il y a :count jours',
         'hours_ago' => 'il y a :count heure|il y a :count heures',
         'now' => 'Maintenant',
         'remaining' => 'Temps restant',
