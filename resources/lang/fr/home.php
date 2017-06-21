@@ -20,7 +20,7 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> joueurs en ligne en ce moment in <strong>:games</strong> games',
+        'online' => '<strong>:players</strong> joueurs en ligne en ce moment dans <strong>:games</strong> parties',
         'peak' => 'Pic, :count joueurs en ligne',
         'players' => '<strong>:count</strong> joueurs inscrits',
 
@@ -39,7 +39,7 @@ return [
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
-        'empty_result' => 'Aucun Résultat!',
+        'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'title' => 'Résultats de la Recherche',
         'beatmapset' => [
@@ -75,10 +75,10 @@ return [
         'title' => 'nouvelles',
         'news' => [
             'title' => 'Nouvelles',
-            'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page?...',
+            'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
         ],
         'header' => [
-            'welcome' => 'Bonjour, <strong>:username</strong>!',
+            'welcome' => 'Bonjour, <strong>:username</strong> !',
             'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'online' => 'Utilisateurs en ligne',

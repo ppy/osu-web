@@ -58,7 +58,7 @@ return [
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Ici depuis :date',
         'lastvisit' => 'Vu la dernière fois :date',
-        'missingtext' => "Vous avez fait une erreur de frappe, je crois! (ou l'utilisateur est banni)",
+        'missingtext' => "Vous avez fait une faute de frappe, je crois ! (ou l'utilisateur est banni)",
         'origin_age' => ':age',
         'origin_country' => 'Depuis :country',
         'origin_country_age' => ':age ans et de :country',
@@ -112,7 +112,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Cet utilisateur n'a jamais reçu de Kudosu!",
+                    'empty' => "Cet utilisateur n'a jamais reçu de Kudosu !",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -179,7 +179,7 @@ return [
         ],
         'page' => [
             'description' => '<strong>Moi!</strong> est une zone personnalisable du profil.',
-            'edit_big' => 'Éditer le moi!',
+            'edit_big' => 'Éditez-moi !',
             'placeholder' => 'Tapez le contenu de la page',
             'restriction_info' => "Vous devez être <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> pour débloquer cette fonctionnalité.",
         ],
