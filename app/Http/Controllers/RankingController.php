@@ -55,9 +55,10 @@ class RankingController extends Controller
                 ->orderBy('performance', 'desc');
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
-                $country = Country::where('display', '>', 0)
-                    ->where('acronym', Request::input('country'))
-                    ->first();
+                $country = CountryStatistics::where('display', 1)
+                    ->where('country_code', Request::input('country'))
+                    ->first()
+                    ->country;
             }
 
             $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
