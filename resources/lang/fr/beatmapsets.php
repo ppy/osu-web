@@ -21,8 +21,8 @@
 return [
     'availability' => [
         'disabled' => "Cette beatmap n'est actuellement pas disponible au téléchargement.",
-        'parts-removed' => "Des portions de cette beatmpa ont été supprimées suite à la requête du créateur ou d'un titulaire de droits tiers",
-        'more-info' => "Regardez ici pour plus d'informations.",
+        'parts-removed' => "Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d'un titulaire de droits tiers",
+        'more-info' => "Voir ici pour plus d'informations.",
     ],
 
     'index' => [
