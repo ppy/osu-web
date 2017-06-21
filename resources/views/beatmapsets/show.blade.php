@@ -17,6 +17,7 @@
 --}}
 @extends("master", [
     'current_section' => 'beatmaps',
+    'pageDescription' => $title,
 ])
 
 @section("content")
