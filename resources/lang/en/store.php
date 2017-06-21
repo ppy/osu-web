@@ -28,8 +28,13 @@ return [
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
 
+    'discount' => 'save :percent%',
+
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name for :username (:duration)',
+            ],
             'quantity' => 'Quantity',
         ],
     ],
@@ -49,5 +54,19 @@ return [
         'notification_remove_text' => 'here',
 
         'notification_in_stock' => 'This product is already in stock!',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => 'You need to be :link to get a supporter tag!',
+            'link_text' => 'logged in',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => 'You need to be :link to change your name!',
+            'link_text' => 'logged in',
+        ],
     ],
 ];

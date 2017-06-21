@@ -64,12 +64,12 @@ elixir(function(mix) {
     'react/_mixins/*.coffee',
 
     'jquery-pubsub.coffee',
-    'osu!live.coffee',
     'osu_common.coffee',
 
     'navbar-mobile.coffee',
     'spoilerbox.coffee',
     'store.coffee',
+    'store-username-change.coffee',
     'forum/post-box.coffee',
     'forum/topic-ajax.coffee',
     'ujs-common.coffee',
@@ -90,7 +90,9 @@ elixir(function(mix) {
     path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
     path.join(node_root, 'jquery-ui/ui/widget.js'),
     path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
+    path.join(node_root, 'jquery-ui/ui/widgets/slider.js'),
     path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
+    path.join(node_root, 'jquery-ui/ui/keycode.js'),
     path.join(node_root, 'timeago/jquery.timeago.js'),
     path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
     path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),

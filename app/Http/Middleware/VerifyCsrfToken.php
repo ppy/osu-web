@@ -39,6 +39,7 @@ class VerifyCsrfToken extends BaseVerifier
         } catch (TokenMismatchException $_e) {
             $request->session()->flush();
             Auth::logout();
+            session(['_skip' => true]);
 
             return $next($request);
         }

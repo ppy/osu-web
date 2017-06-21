@@ -24,6 +24,7 @@
         'url' => route('forum.forums.search'),
     ],
     'titleAppend' => $forum->forum_name,
+    'pageDescription' => $forum->toMetaDescription(),
 ])
 
 @section("content")
@@ -74,20 +75,22 @@
             ])
         @endif
 
-        @if (count($topics) > 0 || $forum->isOpen())
-            @include('forum.forums._topics', [
-                'title' => trans('forum.topics._'),
-                'topics' => $topics,
-                'withNewTopicLink' => $forum->isOpen(),
-            ])
-
-            @include('forum._pagination', ['object' => $topics
-                ->fragment('topics')
-                ->appends([
-                    'sort' => Request::input('sort'),
-                    'with_replies' => Request::input('with_replies'),
+        <div id="topics">
+            @if (count($topics) > 0 || $forum->isOpen())
+                @include('forum.forums._topics', [
+                    'title' => trans('forum.topics._'),
+                    'topics' => $topics,
+                    'withNewTopicLink' => $forum->isOpen(),
                 ])
-            ])
-        @endif
+
+                @include('forum._pagination', ['object' => $topics
+                    ->fragment('topics')
+                    ->appends([
+                        'sort' => Request::input('sort'),
+                        'with_replies' => Request::input('with_replies'),
+                    ])
+                ])
+            @endif
+        </div>
     </div>
 @endsection

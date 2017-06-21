@@ -18,8 +18,8 @@
 @extends("master", [
   'current_section' => 'beatmaps',
   'current_action' => 'index',
-  'title' => 'Beatmaps Listing',
-  'pageDescription' => 'Beatmaps Listing',
+  'title' => trans('beatmapsets.index.title'),
+  'pageDescription' => trans('beatmapsets.index.title'),
   'body_additional_classes' => 'osu-layout--body-ddd'
 ])
 
@@ -43,5 +43,5 @@
     {!! json_encode($beatmaps) !!}
   </script>
 
-  <script src="{{ elixir("js/react/beatmaps.js") }}" data-turbolinks-track="reload"></script>
+  @include('layout._extra_js', ['src' => 'js/react/beatmaps.js'])
 @stop

@@ -22,9 +22,13 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
+use App\Libraries\Search;
 use App\Models\Beatmapset;
+use App\Models\Build;
+use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
+use App\Models\User;
 use Auth;
 use Request;
 use View;
@@ -32,6 +36,18 @@ use View;
 class HomeController extends Controller
 {
     protected $section = 'home';
+
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => [
+                'search',
+                'quickSearch',
+            ],
+        ]);
+
+        return parent::__construct();
+    }
 
     public function bbcodePreview()
     {
@@ -42,7 +58,41 @@ class HomeController extends Controller
 
     public function getChangelog()
     {
-        return view('home.changelog');
+        $buildId = presence(Request::input('build'));
+
+        $changelogs = Changelog::default()
+            ->with('user');
+
+        if ($buildId !== null) {
+            $build = Build::default()->with('updateStream')->where('version', $buildId)->firstOrFail();
+
+            $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
+        } else {
+            $from = Changelog::default()->first();
+            $changelogs = $changelogs
+                ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
+                ->get()
+                ->groupBy(function ($item) {
+                    return $item->date->format('F j, Y');
+                });
+        }
+
+        $streams = Build::latestByStream(config('osu.changelog.update_streams'))
+            ->orderByField('stream_id', config('osu.changelog.update_streams'))
+            ->with('updateStream')
+            ->get();
+
+        $featuredStream = null;
+
+        foreach ($streams as $index => $stream) {
+            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
+                $featuredStream = $stream;
+                unset($streams[$index]);
+                break;
+            }
+        }
+
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build'));
     }
 
     public function getDownload()
@@ -73,7 +123,7 @@ class HomeController extends Controller
         }
 
         if (Auth::check()) {
-            $news = News::all();
+            $news = News\Index::all();
             $newBeatmapsets = Beatmapset::latestRankedOrApproved();
             $popularBeatmapsetsPlaycount = Beatmapset::mostPlayedToday();
             $popularBeatmapsetIds = array_keys($popularBeatmapsetsPlaycount);
@@ -90,6 +140,46 @@ class HomeController extends Controller
         } else {
             return view('home.landing', ['stats' => new CurrentStats()]);
         }
+    }
+
+    public function quickSearch()
+    {
+        $query = Request::input('query');
+        $limit = 5;
+
+        if (strlen($query) < config('osu.search.minimum_length')) {
+            return response([], 204);
+        }
+
+        $params = compact('query', 'limit');
+
+        $beatmapsets = Beatmapset::search($params);
+        $users = User::search($params);
+
+        return view('home.nav_search_result', compact(
+            'beatmapsets',
+            'users'
+        ));
+    }
+
+    public function search()
+    {
+        if (Request::input('mode') === 'beatmapset') {
+            return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
+        }
+
+        $params = array_merge(Request::all(), [
+            'user' => Auth::user(),
+        ]);
+
+        $search = new Search($params);
+        $missingQuery = strlen(trim(Request::input('query'))) < config('osu.search.minimum_length');
+
+        if ($search->mode === Search::DEFAULT_MODE) {
+            $search->params['limit'] = 8;
+        }
+
+        return view('home.search', compact('search', 'missingQuery'));
     }
 
     public function setLocale()

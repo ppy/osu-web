@@ -30,6 +30,10 @@
   color: white;
   height: 100px;
 
+  @media @mobile {
+    justify-content: center;
+  }
+
   @media @desktop {
     padding-left: 40px;
     padding-right: @padding-big;
@@ -67,6 +71,10 @@
     font-size: @font-size--new-header-subtitle;
     margin-bottom: 10px;
     margin-top: 5px;
+
+    @media @mobile {
+      font-size: @font-size--new-header-subtitle-mobile;
+    }
   }
 
   &__title {
@@ -75,7 +83,8 @@
     font-style: italic;
 
     @media @mobile {
-      margin-top: 10px;
+      margin-top: 0;
+      font-size: @font-size--new-header-title-mobile;
     }
 
     &--artist {

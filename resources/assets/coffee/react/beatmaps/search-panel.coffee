@@ -19,74 +19,127 @@
 {div,a,i,input,h1,h2} = React.DOM
 el = React.createElement
 
-class Beatmaps.SearchPanel extends React.Component
-  keyDelay: null
-  prevText: null
-
+class Beatmaps.SearchPanel extends React.PureComponent
   constructor: (props) ->
     super props
-    @state =
-      filters: osu.parseJson('json-filters')
 
-  keypressed: ->
-    text = $('#searchbox').val().trim()
+    @prevText = null
+    @debouncedSubmit = _.debounce @submit, 500
 
-    if (@prevText == null and (text == null or text == '')) or text == @prevText
+
+  componentDidMount: =>
+    $(document).on 'turbolinks:before-cache.beatmaps-search-cache', @componentWillUnmount
+
+
+  componentWillUnmount: =>
+    $(document).off '.beatmaps-search-cache'
+    @debouncedSubmit.cancel()
+
+
+  render: =>
+    div
+      className: 'osu-page osu-page--beatmapsets-search-header'
+      if currentUser.id?
+        @renderUser()
+      else
+        @renderGuest()
+
+
+  onInput: (event) =>
+    event.persist()
+    @debouncedSubmit event
+
+
+  renderGuest: =>
+    div
+      className: 'osu-page-header osu-page-header--beatmapsets-header-guest'
+      div
+        className: 'osu-page-header__background'
+        style:
+          backgroundImage: "url(#{@props.background})"
+      h1
+        className: 'osu-page-header__title'
+        'Beatmaps'
+
+
+  renderUser: =>
+    filters = @props.availableFilters
+
+    div
+      className: "beatmapsets-search #{'beatmapsets-search--expanded' if @props.isExpanded}"
+      div
+        className: 'beatmapsets-search__background'
+        style:
+          backgroundImage: "url(#{@props.background})"
+      div className: 'fancy-search fancy-search--beatmapsets',
+        input
+          className: 'fancy-search__input js-beatmapsets-search-input'
+          type: 'textbox'
+          name: 'search'
+          placeholder: osu.trans('beatmaps.listing.search.prompt')
+          onInput: @onInput
+          defaultValue: @props.filters.query
+        div className: 'fancy-search__icon',
+          el Icon, name: 'search'
+
+      el Beatmaps.SearchFilter,
+        name: 'mode'
+        title: 'Mode'
+        options: filters.modes
+        default: @props.filterDefaults.mode
+        selected: @props.filters.mode
+
+      el Beatmaps.SearchFilter,
+        name:'status'
+        title: 'Rank Status'
+        options: filters.statuses
+        default: @props.filterDefaults.status
+        selected: @props.filters.status
+
+      a
+        className: 'beatmapsets-search__expand-link'
+        href:'#'
+        onClick: @props.expand
+        div {}, osu.trans('beatmaps.listing.search.options')
+        div {}, i className:'fa fa-angle-down'
+
+      div className: 'beatmapsets-search__advanced',
+        el Beatmaps.SearchFilter,
+          name: 'genre'
+          title: 'Genre'
+          options: filters.genres
+          default: @props.filterDefaults.genre
+          selected: @props.filters.genre
+
+        el Beatmaps.SearchFilter,
+          name: 'language'
+          title: 'Language'
+          options: filters.languages
+          default: @props.filterDefaults.language
+          selected: @props.filters.language
+
+        el Beatmaps.SearchFilter,
+          name: 'extra'
+          title: 'Extra'
+          options: filters.extras
+          multiselect: true
+          selected: @props.filters.extra
+
+        if currentUser.isSupporter
+          el Beatmaps.SearchFilter,
+            name: 'rank'
+            title: 'Rank Achieved'
+            options: filters.ranks
+            multiselect: true
+            selected: @props.filters.rank
+
+
+  submit: (e) =>
+    text = e.target.value.trim()
+
+    if text == @prevText
       return
 
     @prevText = text
 
-    Timeout.clear @keyDelay
-    @keyDelay = Timeout.set 500, @submit
-
-  submit: =>
-    searchText = @prevText
-    $(document).trigger 'beatmap:search:start'
-
-  componentDidMount: ->
-    $('#searchbox').on 'keyup', @keypressed.bind(this)
-
-  componentWillUnmount: ->
-    $('#searchbox').off 'keyup'
-
-  show_more: ->
-    $('#search').addClass 'beatmapsets-search--expanded'
-
-  render: ->
-    background = backgroundImage: "url(#{@props.background})"
-    filters = @state.filters
-
-    if currentUser.id?
-      div id: 'search', className: 'osu-layout__row osu-layout__row--page-compact',
-        div id: 'search', className: 'beatmapsets-search',
-          div className: 'beatmapsets-search__background', style: background
-          div className: 'fancy-search fancy-search--beatmapsets',
-            input
-              id: 'searchbox'
-              className: 'fancy-search__input'
-              type: 'textbox'
-              name: 'search'
-              placeholder: osu.trans("beatmaps.listing.search.prompt")
-            div className: 'fancy-search__icon',
-              i className:'fa fa-search'
-
-          el(Beatmaps.SearchFilter, name: 'mode', title: 'Mode', options: filters.modes, default: '0', selected: @props.filters.mode)
-          el(Beatmaps.SearchFilter, name:'status', title: 'Rank Status', options: filters.statuses, default: '0', selected: @props.filters.status)
-
-          a className: 'beatmapsets-search__expand-link', href:'#', onMouseDown: @show_more,
-            div {}, osu.trans('beatmaps.listing.search.options')
-            div {}, i className:'fa fa-angle-down'
-
-          div className: 'beatmapsets-search__advanced',
-            el(Beatmaps.SearchFilter, name: 'genre', title: 'Genre', options: filters.genres, default: filters.genres[0]['id'], selected: @props.filters.genre)
-            el(Beatmaps.SearchFilter, name: 'language', title: 'Language', options: filters.languages, default: filters.languages[0]['id'], selected: @props.filters.language)
-            el(Beatmaps.SearchFilter, name: 'extra', title: 'Extra', options: filters.extras, multiselect: true, selected: @props.filters.extra)
-            if currentUser.isSupporter
-              el(Beatmaps.SearchFilter, name: 'rank', title: 'Rank Achieved', options: filters.ranks, multiselect: true, selected: @props.filters.rank)
-    else
-      div id: 'forum-index-header', className: 'beatmaps-header osu-layout__row osu-layout__row--page',
-        div className: 'background', style: background
-        div className: 'text-area',
-          div className: 'text',
-            h2 {}, 'witty tag line'
-            h1 {}, 'beatmaps'
+    $(document).trigger 'beatmap:search:filtered', query: text

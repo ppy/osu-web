@@ -18,7 +18,7 @@
 <div class="js-nav-popup--beacon"></div>
 <div class="js-nav-popup--container u-nav-popup no-print">
     <div
-        class="osu-layout__row {{ $navPopupExtraClasses ?? '' }} js-nav-popup js-nav-popup--popup"
+        class="osu-page js-nav-popup js-nav-popup--popup"
     >
         <div
             class="nav-popup-box js-nav-switch--menu"
@@ -27,6 +27,17 @@
             <div class="nav-popup-box__slide-y">
                 <div class="nav-popup-box__content">
                     @include('layout._popup_menu')
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="nav-popup-box nav-popup-box--extra js-nav-switch--animated js-nav-switch--menu"
+            data-nav-mode="search"
+        >
+            <div class="nav-popup-box__slide-y">
+                <div class="nav-popup-box__content">
+                    @include('layout._popup_search')
                 </div>
             </div>
         </div>

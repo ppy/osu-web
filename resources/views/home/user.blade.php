@@ -22,7 +22,7 @@
         'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
     ])
 
-    <div class="osu-page osu-page--small">
+    <div class="osu-page osu-page--small-desktop">
         <div class="user-home">
             <div class="user-home__news">
                 <h2 class="user-home__news-title">{{ trans('home.user.news.title') }}</h2>

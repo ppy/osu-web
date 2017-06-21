@@ -45,8 +45,12 @@
   }
 
   &--body-dark {
+    background-color: #333;
+
     &::before {
       .at2x("/images/backgrounds/page-dark.png", 500px, 500px);
+
+      opacity: 0.25;
     }
   }
 
@@ -118,7 +122,6 @@
     align-self: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
 
     ._width;
     @media @desktop {
@@ -127,6 +130,10 @@
 
     &--bootstrap {
       .clearfix;
+    }
+
+    &--changelog-header {
+      background-color: #555;
     }
 
     &--forum-post-create {
@@ -145,22 +152,25 @@
       height: 100%;
     }
 
-    &--lg2 {
-      ._width(-2.5px);
-      @media @desktop {
-        ._width-desktop(-2.5px);
-      }
-    }
-
     &--page {
       ._page;
       padding: 20px;
       margin-bottom: 10px;
     }
 
+    &--page-artist-index {
+      margin-top: -20px;
+
+      @media @desktop {
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 10px;
+      }
+    }
+
     &--page-artist {
       margin-top: -20px;
-      margin-bottom: 10px;
+
       @media @desktop {
         padding-left: 20px;
         padding-right: 20px;
@@ -224,19 +234,10 @@
     flex-direction: column;
 
     &--extra {
+      .inner-shadow-top();
       flex: 1 0 auto;
       background-color: fade(#000, 75%);
-
-      // for some reason linear-gradient doesn't work on main div
-      &::before {
-        content: ' ';
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 4px;
-        background-image: linear-gradient(to bottom, #333, transparent);
-      }
+      padding-bottom: 10px;
     }
 
     &--full {
@@ -248,8 +249,7 @@
     }
 
     &--landing-footer {
-      height: 100%;
-      flex-grow: 1;
+      flex: none;
       .at2x("/images/backgrounds/page-000.png", 500px, 500px);
     }
   }

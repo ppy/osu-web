@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Models\Log;
 use Auth;
 use Carbon\Carbon;
@@ -56,5 +57,17 @@ abstract class Controller extends BaseController
         $params['log_time'] = Carbon::now();
 
         Log::log($params);
+    }
+
+    protected function login($user, $remember = false)
+    {
+        Request::session()->flush();
+        Request::session()->regenerateToken();
+        Auth::login($user, $remember);
+    }
+
+    protected function locale()
+    {
+        return Request::input('locale', App::getLocale());
     }
 }

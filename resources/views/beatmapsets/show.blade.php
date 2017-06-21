@@ -39,5 +39,5 @@
         {!! json_encode($countries) !!}
     </script>
 
-    <script src="{{ elixir("js/react/beatmapset-page.js") }}" data-turbolinks-track="reload"></script>
+    @include('layout._extra_js', ['src' => 'js/react/beatmapset-page.js'])
 @endsection

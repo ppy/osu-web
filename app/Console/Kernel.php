@@ -40,6 +40,9 @@ class Kernel extends ConsoleKernel
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
+        Commands\BuildsUpdatePropagationHistory::class,
+
+        Commands\RankingsRecalculateCountryStats::class,
     ];
 
     /**
@@ -53,6 +56,12 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('store:tracking')
             ->cron('0 0,8,16 * * *');
+
+        $schedule->command('builds:update-propagation-history')
+            ->everyThirtyMinutes();
+
+        $schedule->command('rankings:recalculate-country')
+            ->cron('25 0,3,6,9,12,15,18,21 * * *');
     }
 
     protected function commands()

@@ -30,23 +30,21 @@ abstract class Model extends BaseModel
 
     public function getMacros()
     {
-        $macros = $this->macros ?? [];
-
-        // default macros
-        $macros[] = 'orderByField';
-
-        return $macros;
+        return $this->macros ?? [];
     }
 
-    public function macroOrderByField()
+    public function scopeOrderByField($query, $field, $ids)
     {
-        return function ($query, $field, $ids) {
-            $bind = implode(',', array_fill(0, count($ids), '?'));
-            $string = "FIELD({$field}, {$bind})";
-            $values = array_map('strval', $ids);
+        $size = count($ids);
 
-            return $query
-                ->orderByRaw($string, $values);
-        };
+        if ($size === 0) {
+            return;
+        }
+
+        $bind = implode(',', array_fill(0, $size, '?'));
+        $string = "FIELD({$field}, {$bind})";
+        $values = array_map('strval', $ids);
+
+        $query->orderByRaw($string, $values);
     }
 }

@@ -34,16 +34,17 @@ class TurbolinksSupport
      */
     public function handle($request, Closure $next)
     {
-        $isTurbolinks = presence($request->header('Turbolinks-Referrer'));
+        $turbolinksLocation = $request->session()->pull('_turbolinks_location');
+
         $response = $next($request);
 
         // symphony responder (debug error page) doesn't have header method
         $isNormalResponse = method_exists($response, 'header');
 
-        if ($isTurbolinks && $isNormalResponse) {
-            return $response->header('Turbolinks-Location', $request->getUri());
+        if ($isNormalResponse && present($turbolinksLocation)) {
+            return $response->header('Turbolinks-Location', $turbolinksLocation);
+        } else {
+            return $response;
         }
-
-        return $response;
     }
 }

@@ -23,14 +23,9 @@
     <input
         class="account-edit-entry__input js-account-edit__input"
         name="user[{{ $field }}]"
+        data-last-value="{{ Auth::user()->$field }}"
         value="{{ Auth::user()->$field }}"
     >
 
-    <div class="account-edit-entry__status account-edit-entry__status--saving">
-        <i class="fa fa-spinner fa-pulse fa-fw"></i>
-    </div>
-
-    <div class="account-edit-entry__status account-edit-entry__status--saved">
-        {{ trans('common.saved') }}
-    </div>
+    @include('accounts._edit_entry_status')
 </label>

@@ -20,7 +20,7 @@ el = React.createElement
 
 class ProfilePage.Rank extends React.Component
   render: =>
-    return el('div') unless @props.rank.isRanked
+    return el('div') unless @props.rank.is_ranked
 
     el 'div', className: 'user-profile-header__basic user-profile-header__basic--right',
         el 'p',

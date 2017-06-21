@@ -20,10 +20,9 @@
 
 namespace App\Http\Controllers;
 
-use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
-use App\Models\WikiPage;
+use App\Models\Wiki;
 use Request;
 
 class WikiController extends Controller
@@ -40,59 +39,33 @@ class WikiController extends Controller
             return $this->showImage($path);
         }
 
-        // ensure correct relative paths
-        if (preg_match(',/(\?.*)?$,', Request::getUri()) === 0) {
-            return $this->redirectWithTrailingSlash();
+        $page = new Wiki\Page($path, $this->locale());
+
+        if ($page->page() === null) {
+            $redirect = new Wiki\Redirect($path);
+            if ($redirect->target() !== null) {
+                return ujs_redirect(route('wiki.show', $redirect->target()));
+            } else {
+                $status = 404;
+            }
         }
 
-        $pageLocale = Request::input('locale', App::getLocale());
-        $page = new WikiPage($path, $pageLocale);
-        $pageLocales = $page->locales();
-        $titles = explode('/', str_replace('_', ' ', trim($path, '/')), 2);
-        $title = array_pop($titles);
-        $subtitle = array_pop($titles);
-
-        try {
-            $pageMd = $page->markdown();
-        } catch (GitHubNotFoundException $e) {
-            $pageMd = null;
-            $status = 404;
-        }
-
-        return response()
-            ->view('wiki.show', compact(
-                'page',
-                'pageLocale',
-                'pageLocales',
-                'pageMd',
-                'path',
-                'subtitle',
-                'title'
-            ), $status ?? 200);
+        return response()->view('wiki.show', compact('page'), $status ?? 200);
     }
 
     public function update($path)
     {
         priv_check('WikiPageRefresh')->ensureCan();
 
-        (new WikiPage($path))->refresh();
+        (new Wiki\Page($path, $this->locale()))->refresh();
 
         return ujs_redirect(Request::getUri());
-    }
-
-    private function redirectWithTrailingSlash()
-    {
-        $queryString = present(Request::getQueryString())
-            ? '?'.Request::getQueryString()
-            : '';
-
-        return ujs_redirect(Request::url().'/'.$queryString);
     }
 
     private function showImage($path)
     {
         try {
-            $image = WikiPage::fetchImage($path, Request::url(), Request::header('referer'));
+            $image = (new Wiki\Image($path, Request::url(), Request::header('referer')))->data();
         } catch (GitHubNotFoundException $e) {
             abort(404);
         } catch (GitHubTooLargeException $e) {

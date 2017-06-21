@@ -31,6 +31,34 @@ function array_search_null($value, $array)
     }
 }
 
+function background_image($url, $proxy = true)
+{
+    if (!present($url)) {
+        return '';
+    }
+
+    $url = $proxy ? proxy_image($url) : $url;
+
+    return sprintf(' style="background-image:url(\'%s\');" ', e($url));
+}
+
+function es_query_and_words($words)
+{
+    $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
+
+    if (empty($parts)) {
+        return;
+    }
+
+    $partsEscaped = [];
+
+    foreach ($parts as $part) {
+        $partsEscaped[] = str_replace('-', '%2D', urlencode($part));
+    }
+
+    return implode(' AND ', $partsEscaped);
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -49,6 +77,23 @@ function get_valid_locale($requestedLocale)
         },
         config('app.fallback_locale')
     );
+}
+
+function html_excerpt($body, $limit = 300)
+{
+    // not using strip_tags because <br> and <p> needs to be converted to space
+    $body = preg_replace('#<[^>]+>#', ' ', $body);
+
+    if (strlen($body) < $limit) {
+        return $body;
+    }
+
+    return substr($body, 0, $limit).'...';
+}
+
+function json_date($date)
+{
+    return json_time($date->startOfDay());
 }
 
 function json_time($time)
@@ -86,6 +131,15 @@ function osu_url($key)
     }
 
     return $url;
+}
+
+function param_string_simple($value)
+{
+    if (is_array($value)) {
+        $value = implode(',', $value);
+    }
+
+    return presence($value);
 }
 
 function product_quantity_options($product)
@@ -134,6 +188,14 @@ function render_to_string($view, $variables = [])
     return view()->make($view, $variables)->render();
 }
 
+function search_total_display($total)
+{
+    if ($total >= 100) {
+        return '99+';
+    }
+
+    return (string) $total;
+}
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -203,16 +265,20 @@ function js_view($view, $vars = [])
 
 function ujs_redirect($url)
 {
-    if (Request::ajax()) {
+    if (Request::ajax() && !Request::isMethod('get')) {
         return js_view('layout.ujs-redirect', ['url' => $url]);
     } else {
+        if (Request::header('Turbolinks-Referrer')) {
+            Request::session()->put('_turbolinks_location', $url);
+        }
+
         return redirect($url);
     }
 }
 
 function timeago($date)
 {
-    $display_date = $date->toRfc850String();
+    $display_date = i18n_time($date);
     $attribute_date = json_time($date);
 
     return "<time class='timeago' datetime='{$attribute_date}'>{$display_date}</time>";
@@ -264,6 +330,17 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
     return $url;
 }
 
+function wiki_url($page = 'Welcome', $locale = null)
+{
+    $url = route('wiki.show', ['page' => $page]);
+
+    if (present($locale) && $locale !== App::getLocale()) {
+        $url .= '?locale='.$locale;
+    }
+
+    return $url;
+}
+
 function bbcode($text, $uid, $withGallery = false)
 {
     return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
@@ -305,28 +382,29 @@ function nav_links()
     $links = [];
 
     $links['home'] = [
-        'getNews' => osu_url('home.news'),
-        'getChangelog' => osu_url('home.changelog'),
-        'getDownload' => osu_url('home.download'),
+        'news-index' => route('news.index'),
+        'getChangelog' => route('changelog'),
+        'getDownload' => route('download'),
     ];
     $links['help'] = [
-        'getWiki' => route('wiki.show', ['page' => 'Welcome']),
-        'getFaq' => route('wiki.show', ['page' => 'FAQ']),
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
         'getSupport' => osu_url('help.support'),
     ];
-    $links['ranking'] = [
-        'getOverall' => osu_url('ranking.overall'),
-        'getCharts' => osu_url('ranking.charts'),
-        'getCountry' => osu_url('ranking.country'),
-        'getMapper' => osu_url('ranking.mapper'),
+    $links['rankings'] = [
+        'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
+        'charts' => osu_url('rankings.charts'),
+        'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
+        'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
+        'kudosu' => osu_url('rankings.kudosu'),
     ];
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
-        'artists' => route('artist.index'),
+        'artists' => route('artists.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
-        'contests' => route('community.contests.index'),
+        'contests' => route('contests.index'),
         'tournaments' => route('tournaments.index'),
         'getLive' => route('livestreams.index'),
         'dev' => osu_url('dev'),
@@ -339,34 +417,38 @@ function nav_links()
     return $links;
 }
 
-function footer_links()
+function footer_landing_links()
 {
-    $links = [];
-    $links['general'] = [
-        'home' => route('home'),
-        'changelog' => osu_url('home.changelog'),
-        'beatmaps' => action('BeatmapsetsController@index'),
-        'download' => osu_url('home.download'),
-        'wiki' => route('wiki.show', ['page' => 'Welcome']),
+    return [
+        'general' => [
+            'home' => route('home'),
+            'changelog' => route('changelog'),
+            'beatmaps' => action('BeatmapsetsController@index'),
+            'download' => osu_url('home.download'),
+            'wiki' => wiki_url('Welcome'),
+        ],
+        'help' => [
+            'faq' => wiki_url('FAQ'),
+            'forum' => route('forum.forums.index'),
+            'livestreams' => route('livestreams.index'),
+            'report' => route('forum.topics.create', ['forum_id' => 5]),
+        ],
+        'support' => [
+            'tags' => route('support-the-game'),
+            'merchandise' => action('StoreController@getListing'),
+        ],
+        'legal' => footer_legal_links(),
     ];
-    $links['help'] = [
-        'faq' => route('wiki.show', ['page' => 'FAQ']),
-        'forum' => route('forum.forums.index'),
-        'livestreams' => route('livestreams.index'),
-        'report' => route('forum.topics.create', ['forum_id' => 5]),
-    ];
-    $links['support'] = [
-        'tags' => route('support-the-game'),
-        'merchandise' => action('StoreController@getListing'),
-    ];
-    $links['legal'] = [
-        'tos' => route('wiki.show', ['page' => 'Legal/TOS']),
-        'copyright' => route('wiki.show', ['page' => 'Legal/Copyright']),
-        'serverStatus' => osu_url('status.server'),
-        'osuStatus' => osu_url('status.osustatus'),
-    ];
+}
 
-    return $links;
+function footer_legal_links()
+{
+    return [
+        'terms' => route('legal', 'terms'),
+        'copyright' => route('legal', 'copyright'),
+        'server_status' => osu_url('status.server'),
+        'osu_status' => osu_url('status.osustatus'),
+    ];
 }
 
 function presence($string, $valueIfBlank = null)
@@ -410,12 +492,14 @@ function display_regdate($user)
         return;
     }
 
+    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
-        return trans('users.show.first_members');
+        return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
     }
 
     return trans('users.show.joined_at', [
-        'date' => '<strong>'.$user->user_regdate->formatLocalized('%B %Y').'</strong>',
+        'date' => "<strong>{$formattedDate}</strong>",
     ]);
 }
 
@@ -428,6 +512,12 @@ function i18n_date($datetime, $format = IntlDateFormatter::LONG)
     );
 
     return $formatter->format($datetime);
+}
+
+function i18n_time($datetime, $format = IntlDateFormatter::LONG)
+{
+    return IntlDateFormatter::create(App::getLocale(), $format, $format)
+        ->format($datetime);
 }
 
 function open_image($path, $dimensions = null)
@@ -491,12 +581,15 @@ function json_item($model, $transformer, $includes = null)
 function fast_imagesize($url)
 {
     return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
-        $headers = ['Range: bytes=0-32768'];
         $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-        curl_setopt($curl, CURLOPT_MAXREDIRS, 5);
+        curl_setopt_array($curl, [
+            CURLOPT_HTTPHEADER => [
+                'Range: bytes=0-32768',
+            ],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_MAXREDIRS => 5,
+        ]);
         $data = curl_exec($curl);
         curl_close($curl);
 
@@ -775,4 +868,46 @@ function find_first_image($html)
     }
 
     return $post_images[0];
+}
+
+function build_icon($prefix)
+{
+    switch ($prefix) {
+        case 'add': return 'plus';
+        case 'fix': return 'wrench';
+        case 'misc': return 'question';
+    }
+}
+
+// clamps $number to be between $min and $max
+function clamp($number, $min, $max)
+{
+    return min($max, max($min, $number));
+}
+
+// e.g. 100634983048665 -> 100.63 trillion
+function suffixed_number_format($number)
+{
+    $suffixes = ['', 'k', 'millon', 'billion', 'trillion']; // TODO: localize
+    $k = 1000;
+
+    if ($number < $k) {
+        return $number;
+    }
+
+    $i = floor(log($number) / log($k));
+
+    return number_format($number / pow($k, $i), 2).' '.$suffixes[$i];
+}
+
+function suffixed_number_format_tag($number)
+{
+    return "<span title='".number_format($number)."'>".suffixed_number_format($number).'</span>';
+}
+
+// formats a number as a percentage with a fixed number of precision
+// e.g.: 98.3 -> 98.30%
+function format_percentage($number, $precision = 2)
+{
+    return sprintf("%.{$precision}f%%", round($number, $precision));
 }

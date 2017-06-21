@@ -45,7 +45,7 @@
   }
 
   &__actions {
-    ._dektop-position {
+    .desktop-position() {
       @media @desktop {
         justify-content: flex-start;
         width: 0;
@@ -70,12 +70,12 @@
 
     right: 30px;
     bottom: 20px;
-    ._dektop-position;
+    .desktop-position();
 
     &--reply {
       top: (-@_reply-xs-top-margin);
       height: 0;
-      ._dektop-position;
+      .desktop-position();
     }
   }
 
@@ -92,9 +92,7 @@
     // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
     min-width: 0;
 
-    &--reply {
-      .default-box-shadow();
-      background-color: #fff;
+    &--reply-form {
       flex: 1;
     }
   }
@@ -257,6 +255,14 @@
 
   &__overlay {
     .full-size();
+  }
+
+  &__reply-body {
+    .default-box-shadow();
+    background-color: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   &__reply-container {

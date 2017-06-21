@@ -30,8 +30,12 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
-            'getNews' => 'news',
             'index' => 'osu!',
+            'legal-show' => 'information',
+            'news-index' => 'news',
+            'news-show' => 'news',
+            'password-reset-index' => 'reset password',
+            'search' => 'Search',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
@@ -53,13 +57,14 @@ return [
             '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
-        'ranking' => [
-            '_' => 'ranking',
-            'getOverall' => 'overall',
-            'getCountry' => 'country',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'overall',
+        'rankings' => [
+            '_' => 'rankings',
+            'index' => 'performance',
+            'performance' => 'performance',
+            'charts' => 'charts',
+            'score' => 'score',
+            'country' => 'country',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'community',
@@ -164,10 +169,10 @@ return [
         ],
         'legal' => [
             '_' => 'Legal & Status',
-            'tos' => 'Terms of Service',
             'copyright' => 'Copyright (DMCA)',
-            'serverStatus' => 'Server Status',
-            'osuStatus' => '@osustatus',
+            'osu_status' => '@osustatus',
+            'server_status' => 'Server Status',
+            'terms' => 'Terms of Service',
         ],
     ],
 
@@ -239,5 +244,10 @@ return [
             'logout' => 'Log Out',
             'profile' => 'My Profile',
         ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Type to search!',
+        'retry' => 'Search failed. Click to retry.',
     ],
 ];

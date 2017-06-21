@@ -17,15 +17,8 @@
  */
 
 .wiki-page {
-  background-color: #333;
-  color: #fff;
+  margin-top: 20px;
   display: flex;
-  padding: 20px;
-
-  @media @desktop {
-    padding-left: @padding-wiki-desktop;
-    padding-right: @padding-wiki-desktop;
-  }
 
   &__toc {
     margin-right: 10px;
@@ -34,7 +27,7 @@
   }
 
   &__content {
+    flex: 1;
     min-width: 0;
-    word-wrap: break-word;
   }
 }

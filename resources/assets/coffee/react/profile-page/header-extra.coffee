@@ -79,10 +79,18 @@ class ProfilePage.HeaderExtra extends React.Component
                         age: rowValue osu.trans('users.show.age', age: @props.user.age)
 
           div className: "#{bn}__rows",
-            div
-              className: "#{bn}__row"
-              dangerouslySetInnerHTML:
-                __html: @props.user.joinDate
+            if moment(@props.user.join_date).isBefore moment('2008-01-01')
+              div
+                className: "#{bn}__row"
+                title: moment(@props.user.join_date).format('MMMM YYYY'),
+                  osu.trans 'users.show.first_members'
+            else
+              div
+                className: "#{bn}__row"
+                dangerouslySetInnerHTML:
+                  __html:
+                    osu.trans 'users.show.joined_at',
+                      date: rowValue moment(@props.user.join_date).format('MMMM YYYY')
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
@@ -112,6 +120,10 @@ class ProfilePage.HeaderExtra extends React.Component
               key: 'interests'
               icon: 'heart-o'
 
+            @fancyLink
+              key: 'occupation'
+              icon: 'suitcase'
+
           div className: "#{bn}__rows",
             @fancyLink
               key: 'twitter'
@@ -122,6 +134,11 @@ class ProfilePage.HeaderExtra extends React.Component
                     style: fontStyle: 'normal'
                     '@'
                   @props.user.twitter
+
+            @fancyLink
+              key: 'website'
+              icon: 'globe'
+              url: @props.user.website
 
             @fancyLink
               key: 'skype'
@@ -138,14 +155,14 @@ class ProfilePage.HeaderExtra extends React.Component
               div className: "#{bn}__rank-global",
                 if @state.hoverLine1?
                   @state.hoverLine1
-                else if @props.stats.rank.isRanked
+                else if @props.stats.rank.is_ranked
                   "##{Math.round(@props.stats.rank.global).toLocaleString()}"
                 else
                   '\u00A0'
               div className: "#{bn}__rank-country",
                 if @state.hoverLine2?
                   @state.hoverLine2
-                else if @props.stats.rank.isRanked
+                else if @props.stats.rank.is_ranked
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
                 else
                   '\u00A0'

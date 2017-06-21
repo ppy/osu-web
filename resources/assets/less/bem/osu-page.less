@@ -30,6 +30,7 @@
   align-self: center;
   margin-left: auto;
   margin-right: auto;
+  flex: none;
 
   .width();
   @media @desktop {
@@ -40,10 +41,38 @@
     .default-box-shadow();
   }
 
+  &--beatmapsets-search-header {
+    .default-box-shadow();
+    margin-bottom: 10px;
+  }
+
   &--comments {
     .default-box-shadow();
     background-color: #fff;
     padding: 10px 20px;
+  }
+
+  &--contest {
+    @media @desktop {
+      .width-desktop(20px);
+      margin-bottom: 10px;
+    }
+  }
+
+  &--contests {
+    @media @desktop {
+      margin-bottom: 10px;
+    }
+  }
+
+  &--forum-pippi {
+    margin-bottom: 10px;
+  }
+
+  &--generic {
+    .default-box-shadow();
+    background-color: #fff;
+    padding: 20px;
     margin-bottom: 10px;
   }
 
@@ -52,8 +81,42 @@
     background-color: #333;
   }
 
+  &--header-news {
+    .default-box-shadow();
+    background-color: #333;
+    margin-bottom: 10px;
+  }
+
+  &--landing-buttons {
+    flex: 1 0 auto;
+  }
+
+  &--password-reset {
+    .default-box-shadow();
+    .inner-shadow-top();
+    margin-bottom: 10px;
+    background-color: #333;
+
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
+  &--rankings {
+    .default-box-shadow();
+    margin-bottom: 10px;
+    padding: 15px 20px 0;
+    background-color: #333;
+  }
+
   &--small {
     .width(20px);
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
+  &--small-desktop {
     @media @desktop {
       .width-desktop(20px);
     }
@@ -71,6 +134,19 @@
   &--users-show-header-extra {
     .default-box-shadow();
     .inner-shadow-top();
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+
+  &--wiki {
+    .inner-shadow-top();
+    background-color: #333;
+    color: #fff;
+    font-size: @font-size--wiki;
+    padding: 20px;
+
+    @media @desktop {
+      padding-left: @padding-wiki-desktop;
+      padding-right: @padding-wiki-desktop;
+    }
   }
 }

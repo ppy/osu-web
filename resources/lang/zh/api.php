@@ -19,8 +19,9 @@
  */
 
 return [
-    'errors' => [
-        'csrf' => '拒绝访问',
-        'missing' => '无法找到',
+    'error' => [
+        'chat' => [
+            'limit_exceeded' => '您发送消息过快, 请稍后重试.',
+        ],
     ],
 ];

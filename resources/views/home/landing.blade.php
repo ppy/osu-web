@@ -45,7 +45,7 @@
                             src="{{ flag_path(locale_flag(App::getLocale())) }}"
                             alt="{{ App::getLocale() }}"
                         >
-                        {{ App::getLocale() }}
+                        {{ locale_name(App::getLocale()) }}
                     </span>
 
                     <div
@@ -70,7 +70,7 @@
                                     alt="{{ $locale }}"
                                 >
 
-                                {{ $locale }}
+                                {{ locale_name($locale) }}
                             </a>
                         @endforeach
                     </div>
@@ -102,17 +102,25 @@
     </nav>
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
-    @include('layout._popup', ['navPopupExtraClasses' => 'osu-layout__row--landing'])
+    @include('layout._popup')
 
     <div class="osu-page">
         <div class="landing-hero">
             <div class="landing-hero__bg-container">
-                <div
-                    class="landing-hero__bg-inner-container js-scale js-yt-loop"
-                    data-yt-loop-video-id="{{ config('osu.landing.video_id') }}"
-                    data-yt-loop-class="landing-hero__bg"
-                    data-scale="ws"
-                ></div>
+                <div class="landing-hero__bg-inner-container js-scale" data-scale="ws">
+                    {{--
+                        playsinline is for iphone autoplay
+                        reference: https://webkit.org/blog/6784/new-video-policies-for-ios/
+                    --}}
+                    <video
+                        class="landing-hero__bg js-autoplay"
+                        autoplay
+                        loop
+                        muted
+                        playsinline
+                        src="{{ config('osu.landing.video_url') }}"
+                    ></video>
+                </div>
             </div>
 
             <div class="landing-hero__pippi">
@@ -128,6 +136,12 @@
             </div>
 
             <div class="landing-hero__messages">
+                <div class="landing-hero__message-extra-container">
+                    <div class="landing-hero__message-extra landing-hero__message-extra--top">
+                        <div class="landing-hero__logo"></div>
+                    </div>
+                </div>
+
                 <div class="landing-hero__slogan">
                     <h1 class="landing-hero__slogan-main">
                         {{ trans('home.landing.slogan.main') }}
@@ -138,24 +152,28 @@
                     </h2>
                 </div>
 
-                <div class="landing-hero__download">
-                    <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download">
-                        <span class="btn-osu-big__content">
-                            <span class="btn-osu-big__left">
-                                <span class="btn-osu-big__text-top">
-                                    {{ trans("home.landing.download._") }}
+                <div class="landing-hero__message-extra-container">
+                    <div class="landing-hero__message-extra landing-hero__message-extra--bottom">
+                        <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download">
+                            <span class="btn-osu-big__content">
+                                <span class="btn-osu-big__left">
+                                    <span class="btn-osu-big__text-top">
+                                        {{ trans("home.landing.download._") }}
+                                    </span>
+
+                                    <span class="btn-osu-big__text-bottom">{{ trans('home.landing.download.for', ['os' => 'Windows'])}}</span>
                                 </span>
 
-                                <span class="btn-osu-big__text-bottom">{{ trans('home.landing.download.for', ['os' => 'Windows'])}}</span>
+                                <span class="btn-osu-big__icon">
+                                    <span class="fa fa-cloud-download"></span>
+                                </span>
                             </span>
+                        </a>
 
-                            <span class="btn-osu-big__icon">
-                                <span class="fa fa-cloud-download"></span>
-                            </span>
+                        <span class="landing-hero__download-other">
+                            {{ trans('home.landing.download.soon') }}
                         </span>
-                    </a>
-
-                    <span class="landing-hero__download-other">{{ trans('home.landing.download.soon') }}</span>
+                    </div>
                 </div>
             </div>
 
@@ -167,7 +185,7 @@
         </div>
     </div>
 
-    <div class="osu-page">
+    <div class="osu-page osu-page--landing-buttons">
         <div class="landing-middle-buttons">
             <a
                 href="{{ route('support-the-game') }}"
@@ -189,7 +207,7 @@
     <footer class="osu-layout__section osu-layout__section--landing-footer">
         <div class="osu-layout__row osu-layout__row--landing-sitemap landing-sitemap">
             <div class="osu-layout__col-container osu-layout__col-container--landing-sitemap">
-                @foreach (footer_links() as $section => $links)
+                @foreach (footer_landing_links() as $section => $links)
                     <div class="osu-layout__col osu-layout__col--sm-3">
                         <ul class="landing-sitemap__list">
                             <li class="landing-sitemap__item">
@@ -216,14 +234,7 @@
             </a>
         </div>
 
-        <div class="landing-footer-bottom">
-            <a href="{{ osu_url('legal.tos') }}" class="landing-footer-bottom__link">terms of service</a>
-            <a href="{{ osu_url('legal.dmca') }}" class="landing-footer-bottom__link">copyright (DMCA)</a>
-            <a href="{{ osu_url('legal.server') }}" class="landing-footer-bottom__link">server status</a>
-            <a href="{{ osu_url('legal.osustatus') }}" class="landing-footer-bottom__link landing-footer-bottom__link--no-pad">@osustatus</a>
-
-            <div class="landing-footer-bottom__copyright">ppy powered 2007-2017</div>
-        </div>
+        @include('layout.footer', ['modifiers' => ['landing']])
     </footer>
 
     @include('layout.popup-container')

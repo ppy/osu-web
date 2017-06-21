@@ -38,7 +38,10 @@
     </div>
     <div class="osu-layout__row osu-layout__row--page-artist">
         <div class="page-contents page-contents--artist">
-            <div class="page-contents__content--artist-left">
+            <div class="page-contents__artist-left">
+                @if (!$artist->visible)
+                    <div class="artist__admin-note">{{ trans('artist.admin.hidden') }}</div>
+                @endif
                 <div class="artist__description">{!! Markdown::convertToHtml($artist->description) !!}</div>
                 @if (count($albums) > 0)
                     <div class="artist__albums">
@@ -71,7 +74,7 @@
                     </div>
                 @endif
             </div>
-            <div class="page-contents__content--sidebar">
+            <div class="page-contents__sidebar">
                 <div class="artist__links-area">
                     <div class="artist__portrait">
                         @if($artist->label !== null)
@@ -104,5 +107,6 @@
 
 @section("script")
   @parent
-  <script src="{{ elixir("js/react/artist-page.js") }}" data-turbolinks-track="reload"></script>
+
+  @include('layout._extra_js', ['src' => 'js/react/artist-page.js'])
 @stop

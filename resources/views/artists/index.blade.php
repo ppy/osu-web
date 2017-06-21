@@ -30,20 +30,20 @@
             <div class="osu-page-header-v2__title">{{trans('artist.title')}}</div>
         </div>
     </div>
-    <div class="osu-layout__row osu-layout__row--page-artist">
+    <div class="osu-layout__row osu-layout__row--page-artist-index">
         <div class="page-contents page-contents--artist">
-            <div class="page-contents__content--artist-left">
+            <div class="page-contents__artist-left">
                 <div class="artist__description artist__description--index">{!! trans('artist.index.description') !!}</div>
                 <div class="artist__index">
                     @foreach ($artists as $artist)
-                        <div class="artist__box">
+                        <div class="artist__box{{$artist->visible ? '' : ' artist__box--hidden'}}">
                             <div class="artist__portrait-wrapper artist__portrait-wrapper--index">
-                                <a href="{{route('artist.show', ['id' => $artist->id])}}" class="artist__portrait artist__portrait--index" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
+                                <a href="{{route('artists.show', ['id' => $artist->id])}}" class="artist__portrait artist__portrait--index" style="{{$artist->cover_url ? 'background-image: url(' . $artist->cover_url . ')' : ''}}"></a>
                                 @if($artist->label !== null)
                                     <a class="artist__label-overlay artist__label-overlay--index" href="{{$artist->label->website}}" style="background-image: url('{{$artist->label->icon_url}}')"></a>
                                 @endif
                             </div>
-                            <a href="{{route('artist.show', ['id' => $artist->id])}}" class="artist__name">{{$artist->name}}</a>
+                            <a href="{{route('artists.show', ['id' => $artist->id])}}" class="artist__name">{{$artist->name}}</a>
                             <div class="artist__track-count">{{trans_choice('artist.songs.count', $artist->tracks_count)}}</div>
                         </div>
                     @endforeach

@@ -1,0 +1,67 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.ranking-page-header {
+  @top: ranking-page-header;
+
+  background-color: #333;
+  background-size: cover;
+  background-position: center;
+  .at2x-simple('/images/headers/rankings.jpg');
+
+  height: 250px;
+  padding: 10px 40px 0;
+
+  &__title {
+    font-size: 35px;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 10px;
+    color: white;
+  }
+
+  &__title-type {
+    color: @yellow;
+    text-transform: capitalize;
+  }
+
+  &__flag {
+    display: inline-flex;
+    .link-plain();
+    &:hover {
+      .flag-country {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &__flag-overlay {
+    pointer-events: none;
+    font-size: 20px;
+    color: white;
+    opacity: 0.75;
+
+    .full-size();
+    .center-content();
+    display: none;
+
+    .@{top}__flag:hover & {
+      display: flex;
+    }
+  }
+}

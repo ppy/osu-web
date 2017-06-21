@@ -46,12 +46,12 @@ return [
     'pinned_topics' => 'Pinned Topics', //TODO 需要帮助
     'post' => [
         'confirm_destroy' => '真的要删除这个回复吗?',
-        'confirm_restore' => 'Really restore post?', //TODO 需要帮助
+        'confirm_restore' => '真的要恢复这个回复吗?',
         'edited' => '最后由 :user 于 :when 编辑,总共编辑了 :count 次.',
         'posted_at' => '发表于 :when',
         'actions' => [
             'destroy' => '删除回复',
-            'restore' => 'Restore post', //TODO 需要帮助
+            'restore' => '恢复回复',
             'edit' => '编辑回复',
         ],
     ],
@@ -69,6 +69,7 @@ return [
                 'title' => '点击这里设置标题',
             ],
             'preview' => '预览',
+            'preview_hide' => '编辑',
             'submit' => '发表',
         ],
         'go_to_latest' => '查看最后的帖子',
@@ -99,6 +100,7 @@ return [
         'index' => [
             'title' => '订阅的主题',
             'title_compact' => '订阅',
+            'title_main' => '<strong>订阅的</strong>主题',
 
             'box' => [
                 'total' => '订阅的主题',
@@ -135,7 +137,7 @@ return [
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => '投票持续',
                 'length_days_prefix' => '',
                 'length_days_suffix' => '天',
                 'length_info' => '如果无期限则留空',
@@ -152,6 +154,48 @@ return [
         'index' => [
             'views' => '查看数',
             'replies' => '回复数',
+        ],
+
+        'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
+            'action-0' => '移除 "added" 标签',
+            'action-1' => '添加 "added" 标签',
+            'state-0' => '已移除 "added" 标签',
+            'state-1' => '已添加 "added" 标签',
+        ],
+
+        'issue_tag_assigned' => [
+            'action-0' => '移除 "assigned" 标签',
+            'action-1' => '添加 "assigned" 标签',
+            'state-0' => '已移除 "assigned" 标签',
+            'state-1' => '已添加 "assigned" 标签',
+        ],
+
+        'issue_tag_confirmed' => [
+            'action-0' => '移除 "confirmed" 标签',
+            'action-1' => '添加 "confirmed" 标签',
+            'state-0' => '已移除 "confirmed" 标签',
+            'state-1' => '已添加 "confirmed" 标签',
+        ],
+
+        'issue_tag_duplicate' => [
+            'action-0' => '移除 "duplicate" 标签',
+            'action-1' => '添加 "duplicate" 标签',
+            'state-0' => '已移除 "duplicate" 标签',
+            'state-1' => '已添加 "duplicate" 标签',
+        ],
+
+        'issue_tag_invalid' => [
+            'action-0' => '移除 "invalid" 标签',
+            'action-1' => '添加 "invalid" 标签',
+            'state-0' => '已移除 "invalid" 标签',
+            'state-1' => '已添加 "invalid" 标签',
+        ],
+
+        'issue_tag_resolved' => [
+            'action-0' => '移除 "resolved" 标签',
+            'action-1' => '添加 "resolved" 标签',
+            'state-0' => '已移除 "resolved" 标签',
+            'state-1' => '已添加 "resolved" 标签',
         ],
 
         'lock' => [
@@ -183,7 +227,7 @@ return [
 
                 'user' => [
                     'current' => '您还有 :votes 票.',
-                    'count' => '{0} 没有票|{1} :count票|[2,*] :count票',
+                    'count' => '{0} 没有票|[1,*] :count票',
                     'not_enough' => '您没有票了',
                 ],
             ],

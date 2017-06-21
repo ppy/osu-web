@@ -6,4 +6,5 @@
 @Contest.Voting = {}
 @MPHistory = {}
 @ProfilePage = {}
+@Ranking = {}
 @Status = {}

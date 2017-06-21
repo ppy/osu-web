@@ -31,29 +31,27 @@
             <div class="osu-page-header-v2__subtitle">{{trans('contest.header.small')}}</div>
         </div>
     </div>
-    <div class="osu-layout__row osu-layout__row--page-contests">
-        <div class="page-contents__content--contests">
-            <div class="contest-list">
-                <div class="contest-list-legend">
-                    @foreach (['entry', 'voting', 'results'] as $state)
-                        <div class="contest-list-legend__item contest-list-legend__item--{{$state}}">{{trans("contest.states.$state")}}</div>
-                    @endforeach
-                </div>
-                @foreach ($contests as $contest)
-                    <a href='{{route('community.contests.show', $contest->id)}}' class='contest-list-item contest-list-item--{{$contest->state()}}'>
-                        <div class='contest-list-item__image' style="background-image: url({{$contest->header_url}})"></div>
-                        <div class='contest-list-item__container'>
-                            <div class='contest-list-item__left-content'>
-                                <div class='contest-list-item__name'>{{$contest->name}}</div>
-                                <div class='contest-list-item__date'>{{$contest->currentPhaseDateRange()}}</div>
-                            </div>
-                            <div class='contest-list-item__right-content'>
-                                <div class='contest-list-item__type'>{{$contest->type}}</div>
-                            </div>
-                        </div>
-                    </a>
+    <div class="osu-page osu-page--contests">
+        <div class="contest-list">
+            <div class="contest-list-legend">
+                @foreach (['entry', 'voting', 'results'] as $state)
+                    <div class="contest-list-legend__item contest-list-legend__item--{{$state}}">{{trans("contest.states.$state")}}</div>
                 @endforeach
             </div>
+            @foreach ($contests as $contest)
+                <a href='{{route('contests.show', $contest->id)}}' class='contest-list-item contest-list-item--{{$contest->state()}}'>
+                    <div class='contest-list-item__image' style="background-image: url({{$contest->header_url}})"></div>
+                    <div class='contest-list-item__container'>
+                        <div class='contest-list-item__left-content'>
+                            <div class='contest-list-item__name'>{{$contest->name}}</div>
+                            <div class='contest-list-item__date'>{{$contest->currentPhaseDateRange()}}</div>
+                        </div>
+                        <div class='contest-list-item__right-content'>
+                            <div class='contest-list-item__type'>{{$contest->type}}</div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
         </div>
     </div>
 @endsection

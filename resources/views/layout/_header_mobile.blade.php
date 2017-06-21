@@ -29,7 +29,7 @@
         <div class="container">
             <div class="navbar-header navbar-mobile__header">
                 <div class="navbar-mobile__header-section">
-                    <a class="navbar-mobile__logo" href="/"></a>
+                    <a class="navbar-mobile__logo" href="{{ route('home') }}"></a>
                     <span class="navbar-mobile__brand navbar-brand">
                         {{ trans("layout.menu.$current_section.$current_action") }}
                     </span>
@@ -90,7 +90,7 @@
 
                     <a
                         class="navbar-mobile__menu-item navbar-mobile__menu-item--logout js-logout-link"
-                        href="{{ route('users.logout') }}"
+                        href="{{ route('logout') }}"
                         data-method="delete"
                         data-confirm="{{ trans('users.logout_confirm') }}"
                         data-remote="1"

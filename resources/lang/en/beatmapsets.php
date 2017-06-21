@@ -24,6 +24,12 @@ return [
         'parts-removed' => 'Portions of this beatmap have been removed at the request of the creator or a third-party rights holder.',
         'more-info' => 'Check here for more information.',
     ],
+
+    'index' => [
+        'title' => 'Beatmaps Listing',
+        'guest_title' => 'Beatmaps',
+    ],
+
     'show' => [
         'discussion' => 'Discussion',
 
@@ -86,7 +92,7 @@ return [
             ],
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
-                'friend' => 'No one of your friends has set a score on this map yet!',
+                'friend' => 'None of your friends has set a score on this map yet!',
                 'global' => 'No scores yet. Maybe you should try setting some?',
                 'loading' => 'Loading scores...',
                 'unranked' => 'Unranked beatmap.',

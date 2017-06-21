@@ -218,7 +218,7 @@ ProfilePage.Main = React.createClass
         $.publish 'user:update', userData
 
       .fail (xhr) =>
-        osu.ajaxError xhr
+        osu.emitAjaxError() xhr
 
         @setState profileOrder: @state.user.profileOrder
 

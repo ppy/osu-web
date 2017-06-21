@@ -32,26 +32,39 @@
   @media @desktop {
     padding-left: @padding-big;
     padding-right: @padding-big;
+  }
 
-    &--artist {
-      padding-left: 40px;
-    }
-
-    &--contests {
+  &--artist {
+    @media @desktop {
       padding-left: 40px;
     }
   }
 
+  &--beatmapsets-header-guest {
+    .default-box-shadow();
+    height: 200px;
+    padding: 30px;
+    align-items: center;
+  }
+
+  &--forum-index {
+    .at2x-simple("/images/headers/forum-top.png");
+    .default-box-shadow();
+    background-size: cover;
+    background-position: 0 0;
+    height: 200px;
+  }
+
   &--home-user {
     color: #fff;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-end;
+    flex-direction: column;
     padding: 0 10px;
-    min-height: 150px;
 
     @media @desktop {
+      flex-direction: row;
+      align-items: flex-end;
       padding: 0 40px;
+      height: 150px;
     }
 
     &::before {
@@ -66,8 +79,9 @@
 
   }
 
-  &--tournaments {
-    .at2x-simple("/images/headers/tournament.jpg");
+  &--live {
+    .at2x-simple("/images/headers/live-top.png");
+    height: 165px;
   }
 
   &--mp-history {
@@ -76,31 +90,24 @@
     height: 125px;
   }
 
-  &--contests {
-    .at2x-simple("/images/headers/contest.jpg");
-    background-position: center center;
-    justify-content: flex-start;
-    color: white;
+  &--news {
+    background-image: url('/images/headers/generic.jpg');
     height: 200px;
-
-    &__subtitle {
-      font-size: @font-size--new-header-subtitle;
-      margin-bottom: 10px;
-      margin-top: 40px;
-      @media @mobile {
-        margin-top: 65px;
-      }
-    }
-
-    &__title {
-      font-size: @font-size--new-header-title;
-      margin-top: -5px;
-    }
+    text-align: center;
   }
 
-  &--live {
-    .at2x-simple("/images/headers/live-top.png");
-    height: 165px;
+  &--password-reset {
+    .at2x-simple("/images/headers/password-reset.jpg");
+    .default-box-shadow();
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  &--tournaments {
+    .at2x-simple("/images/headers/tournament.jpg");
   }
 
   &--wiki {
@@ -136,6 +143,14 @@
     .@{top}:hover & {
       opacity: 1;
     }
+  }
+
+  &__background {
+    .full-size();
+    .default-header-overlay();
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__box {
@@ -228,9 +243,22 @@
       font-size: @font-size--header-description;
     }
 
+    .@{top}--beatmapsets-header-guest {
+      font-size: @font-size--large-3;
+      font-style: normal;
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
+    }
+
+    .@{top}--forum-index & {
+      font-style: normal;
+      margin: 0;
+    }
+
     .@{top}--home-user & {
       font-size: @font-size--new-header-title;
-      font-weight: 100;
+      font-weight: 300;
       strong {
         font-weight: 500;
       }
@@ -238,6 +266,14 @@
 
     .@{top}--mp-history & {
       font-style: italic;
+    }
+
+    .@{top}--password-reset & {
+      font-style: normal;
+      font-size: @font-size--new-header-title;
+      font-weight: 300;
+      color: @gray-blue-darker;
+      text-shadow: none;
     }
 
     .@{top}--wiki &--main {
@@ -251,6 +287,17 @@
   &__title-box {
     position: absolute;
     bottom: 10px;
+
+    .@{top}--forum-index & {
+      width: 100%;
+      // the diameter of circle thing (more or less)
+      max-width: 740px;
+      // thickness of the circle (more or less)
+      padding: 20px 70px;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+    }
 
     .@{top}--mp-history & {
       @media @desktop {

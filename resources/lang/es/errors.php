@@ -20,15 +20,22 @@
 
 return [
     'codes' => [
-        'http-403' => 'Acceso denegado.',
         'http-401' => 'Inicia sesión para continuar.',
+        'http-403' => 'Acceso denegado.',
+        'http-429' => 'Demasiados intentos. Inténtalo de nuevo más tarde.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta recargar la página.',
+            'generic' => 'Ha ocurrido un error. Intenta recargando la página.',
         ],
     ],
-    'logged_out' => 'Tu sesión ha expirado. Inicia sesión de nuevo y vuelve a intentarlo.',
+    'beatmaps' => [
+        'standard_converts_only' => 'Solo el modo osu!standard puede tener puntuaciones en otros modos.',
+    ],
+     'beatmapsets' => [
+        'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
+    ],
+    'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.',
     'supporter_only' => 'Debes de ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
     'unknown' => 'Ha ocurrido un error desconocido.',

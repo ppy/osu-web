@@ -24,6 +24,12 @@ return [
         'parts-removed' => '根据作者/第三方的要求,这张谱面已经被移除.', //可能不准确
         'more-info' => '点击这里获得更多信息.',
     ],
+
+    'index' => [
+         'title' => '谱面列表',
+         'guest_title' => '谱面',
+     ],
+
     'show' => [
         'discussion' => '讨论',
 
@@ -31,10 +37,10 @@ return [
             'made-by' => '制谱人: ',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
-            'ranked' => 'ranked on ',
-            'approved' => 'approved on ',
-            'qualified' => 'qualified on ',
-            'loved' => 'loved on ',
+            'ranked' => 'ranked 于 ',
+            'approved' => 'approved 于 ',
+            'qualified' => 'qualified 于 ',
+            'loved' => 'loved 于 ',
             'logged-out' => '下载谱面前请先登录!',
             'download' => [
                 '_' => '下载',
@@ -60,6 +66,7 @@ return [
             'rating-spread' => 'Rating Spread',
         ],
         'info' => [
+            'no_scores' => 'Unranked 谱面',
             'success-rate' => '成功率',
             'points-of-failure' => '失败位置',
 

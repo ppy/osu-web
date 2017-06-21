@@ -17,20 +17,44 @@
  */
 
 .page-mode-link {
-  @_top: page-mode-link;
+  @top: page-mode-link;
   .link-plain();
   .link-gray-light();
   font-weight: 300;
   padding: 5px 0 10px;
+  display: flex;
 
   &--is-active {
     font-weight: 600;
     color: #fff;
   }
 
+  &--white {
+    .link-white();
+  }
+
   &--is-disabled {
-    .link-gray-light-disabled();
+    .link-gray-555();
     cursor: default;
+
+    &.@{top}--white {
+      .link-white();
+      opacity: 0.5;
+    }
+  }
+
+  &__badge {
+    .default-border-radius();
+    padding: 2px 5px;
+    font-size: 80%;
+    font-weight: bold;
+    margin-left: 5px;
+    background-color: @link-gray-light;
+    color: #555;
+
+    .@{top}:hover & {
+      background-color: @link-gray-light-hover;
+    }
   }
 
   &__stripe {
@@ -43,12 +67,16 @@
     transition: transform 120ms ease-in-out;
     background-color: @yellow;
 
-    .@{_top}--is-active &,
-    .@{_top}:hover & {
+    &--black {
+      background-color: #000;
+    }
+
+    .@{top}--is-active &,
+    .@{top}:hover & {
       transform: translateY(0) scaleY(1);
     }
 
-    .@{_top}--is-disabled & {
+    .@{top}--is-disabled & {
       opacity: 0;
     }
   }

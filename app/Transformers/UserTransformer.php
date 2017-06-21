@@ -51,7 +51,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return [
             'id' => $user->user_id,
             'username' => $user->username,
-            'joinDate' => display_regdate($user),
+            'join_date' => json_date($user->user_regdate),
             'country' => [
                 'code' => $user->country_acronym,
                 'name' => $user->countryName(),
@@ -63,13 +63,16 @@ class UserTransformer extends Fractal\TransformerAbstract
             'isGMT' => $user->isGMT(),
             'isQAT' => $user->isQAT(),
             'isBNG' => $user->isBNG(),
+            'is_active' => $user->isActive(),
             'interests' => $user->user_interests,
+            'occupation' => $user->user_occ,
             'title' => $user->title(),
             'location' => $user->user_from,
             'lastvisit' => json_time($user->user_lastvisit),
             'twitter' => $user->user_twitter,
             'lastfm' => $user->user_lastfm,
             'skype' => $user->user_msnm,
+            'website' => $user->user_website,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'profile_colour' => $user->user_colour,
@@ -91,7 +94,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         $stats = $user->statistics($user->playmode);
 
-        return $this->item($stats, new UserStatisticsTransformer());
+        return $this->item($stats, new UserStatisticsTransformer);
     }
 
     public function includeAllStatistics(User $user)
@@ -99,7 +102,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             $all = [];
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer());
+                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer, ['rank', 'scoreRanks']);
             }
 
             return $all;

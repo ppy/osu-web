@@ -158,9 +158,9 @@ class BeatmapDiscussion extends Model
 
     public function hasValidMessageType()
     {
+        // either has no message type (a general message) or attached to a beatmap
         return
-            ($this->beatmap_id === null && $this->message_type === null) ||
-            ($this->beatmap_id !== null && $this->message_type !== null);
+            $this->message_type === null || $this->beatmap_id !== null;
     }
 
     public function hasValidTimestamp()

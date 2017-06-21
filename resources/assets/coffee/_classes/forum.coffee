@@ -79,6 +79,7 @@ class @Forum
   setCounter: (currentPost) =>
     @currentPostPosition = @postPosition(currentPost)
 
+    @setTotalPosts(@currentPostPosition) if @currentPostPosition > @totalPosts()
     window.reloadUrl = @postUrlN @currentPostPosition
 
     @_postsCounter[0].textContent = @currentPostPosition

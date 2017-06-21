@@ -50,13 +50,9 @@ return [
             '_' => 'beatmapsets',
             'discussion' => 'modding',
         ],
-        'ranking' => [
+        'rankings' => [
             '_' => 'rank',
-            'getOverall' => 'globale',
-            'getCountry' => 'paese',
-            'getCharts' => 'charts',
-            'getMapper' => 'mapper',
-            'index' => 'generale',
+            'charts' => 'charts',
         ],
         'community' => [
             '_' => 'comunità',
@@ -159,10 +155,10 @@ return [
         ],
         'legal' => [
             '_' => 'Legale e Status',
-            'tos' => 'Termini di Servizio',
             'copyright' => 'Copyright (DMCA)',
-            'serverStatus' => 'Stato del Server',
-            'osuStatus' => '@osustatus',
+            'osu_status' => '@osustatus',
+            'server_status' => 'Stato del Server',
+            'terms' => 'Termini di Servizio',
         ],
     ],
 

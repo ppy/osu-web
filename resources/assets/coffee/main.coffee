@@ -27,52 +27,56 @@ $(document).on 'turbolinks:request-end', LoadingOverlay.hide
 $(document).on 'submit', 'form', (e) ->
   LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
+$(document).on 'turbolinks:load', ->
+  StoreSupporterTag.initialize()
 
-@currentUserObserver ?= new CurrentUserObserver
-@parentFocus ?= new ParentFocus
-@reactTurbolinks ||= new ReactTurbolinks
-@twitchPlayer ?= new TwitchPlayer
-@landingGraph ?= new LandingGraph
-@fancyGraph ?= new FancyGraph
-@landingHero ?= new LandingHero
-@timeago ?= new Timeago
-@osuLayzr ?= new OsuLayzr
-@nav ?= new Nav
-@userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification(@nav)
-@throttledWindowEvents ?= new ThrottledWindowEvents
-@checkboxValidation ?= new CheckboxValidation
-@formToggle ?= new FormToggle
 @accountEdit ?= new AccountEdit
+@accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
-@password ?= new Password
-@userEmail ?= new UserEmail
-@wiki ?= new Wiki
-@osuAudio ?= new OsuAudio
-@ytLoop ?= new YtLoop
-@scale ?= new Scale
-
+@checkboxValidation ?= new CheckboxValidation
+@currentUserObserver ?= new CurrentUserObserver
 @editorZoom ?= new EditorZoom
-@stickyFooter ?= new StickyFooter
-@stickyHeader ?= new StickyHeader
-@globalDrag ?= new GlobalDrag
-@gallery ?= new Gallery
+@fancyGraph ?= new FancyGraph
+@formClear ?= new FormClear
+@formError ?= new FormError
 @formPlaceholderHide ?= new FormPlaceholderHide
-@tooltipDefault ?= new TooltipDefault
-
-@syncHeight ?= new SyncHeight
-
+@formToggle ?= new FormToggle
 @forum ?= new Forum
 @forumAutoClick ?= new ForumAutoClick
+@forumCover ?= new ForumCover
+@gallery ?= new Gallery
+@globalDrag ?= new GlobalDrag
+@landingGraph ?= new LandingGraph
+@landingHero ?= new LandingHero
+@menu ?= new Menu
+@nav ?= new Nav
+@navSearch ?= new NavSearch
+@osuAudio ?= new OsuAudio
+@osuLayzr ?= new OsuLayzr
+@parentFocus ?= new ParentFocus
+@postPreview ?= new PostPreview
+@reactTurbolinks ||= new ReactTurbolinks
+@replyPreview ?= new ReplyPreview
+@scale ?= new Scale
+@stickyFooter ?= new StickyFooter
+@stickyHeader ?= new StickyHeader
+@syncHeight ?= new SyncHeight
+@throttledWindowEvents ?= new ThrottledWindowEvents
+@timeago ?= new Timeago
+@tooltipDefault ?= new TooltipDefault
+@turbolinksDisable ?= new TurbolinksDisable
+@turbolinksDisqus ?= new TurbolinksDisqus
+@turbolinksReload ?= new TurbolinksReload
+@twitchPlayer ?= new TwitchPlayer
+@wiki ?= new Wiki
+
+@formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
-@forumCover ?= new ForumCover
-@postPreview ?= new PostPreview
-@replyPreview ?= new ReplyPreview
-
-@menu ?= new Menu
+@userLogin ?= new UserLogin(@nav)
+@userVerification ?= new UserVerification(@nav)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->
@@ -85,6 +89,9 @@ $(document).on 'keydown', (e) ->
 # Globally init countdown timers
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
+
+reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
+  JSON.parse(el.dataset.beatmapsetPanel)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

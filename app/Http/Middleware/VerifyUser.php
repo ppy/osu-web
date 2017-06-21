@@ -36,9 +36,9 @@ class VerifyUser
 
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->is('account/verify')
-            && !$request->is('account/reissue-code')
-            && !$request->is('users/logout')
+        if (!$request->is('home/account/verify')
+            && !$request->is('home/account/reissue-code')
+            && !$request->is('session')
             && $this->requiresVerification($request)) {
             $verification = new UserVerification($this->auth->user(), $request);
 

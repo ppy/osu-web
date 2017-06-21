@@ -22,9 +22,9 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
-use App\Models\Log;
 use Carbon\Carbon;
 use DB;
+use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -118,6 +118,86 @@ class Post extends Model
         return $unreadPostId;
     }
 
+    public static function search($rawParams)
+    {
+        $params = static::searchParams($rawParams);
+        $result = static::searchEs($params);
+
+        $query = static
+            ::with('topic')
+            ->whereIn('post_id', $result['ids'])
+            ->orderByField('post_id', $result['ids']);
+
+        return [
+            'data' => $query->get(),
+            'total' => $result['total'],
+            'params' => $params,
+        ];
+    }
+
+    public static function searchEs($params = [])
+    {
+        $required = [];
+        $any = [];
+
+        if (present($params['query'])) {
+            $required[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
+        }
+
+        foreach ($params['user_ids'] as $userId) {
+            $any[] = ['match' => ['poster_id' => $userId]];
+        }
+
+        foreach ($params['forum_ids'] as $forumId) {
+            $any[] = ['match' => ['forum_id' => $forumId]];
+        }
+
+        if ($params['topic_id'] !== null) {
+            $required[] = ['match' => ['topic_id' => $params['topic_id']]];
+        }
+
+        $searchParams = [
+            'index' => config('osu.elasticsearch.index'),
+            'type' => 'posts',
+            'size' => $params['limit'],
+            'from' => ($params['page'] - 1) * $params['limit'],
+        ];
+
+        if (count($required) > 0) {
+            $searchParams['body']['query']['bool']['must'] = $required;
+        }
+
+        if (count($any) > 0) {
+            $searchParams['body']['query']['bool']['should'] = $any;
+            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
+        }
+
+        $resultEs = Es::search($searchParams);
+
+        $ids = [];
+
+        foreach ($resultEs['hits']['hits'] as $post) {
+            $ids[] = get_int($post['_id']);
+        }
+
+        return [
+            'ids' => $ids,
+            'total' => $resultEs['hits']['total'],
+        ];
+    }
+
+    public static function searchParams($params)
+    {
+        $params['query'] = $params['query'] ?? null;
+        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
+        $params['page'] = max(1, $params['page'] ?? 1);
+        $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int') ?? [];
+        $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int') ?? [];
+        $params['topic_id'] = get_int($params['topic_id'] ?? null);
+
+        return $params;
+    }
+
     public function normalizeUser($user)
     {
         $key = $user === null ? 'user-null' : "user-{$user->user_id}";
@@ -164,15 +244,11 @@ class Post extends Model
             'post_text' => $body,
         ];
 
-        if ($user->user_id === $this->poster_id) {
-            $updates = array_merge($updates, [
-                'post_edit_time' => Carbon::now(),
-                'post_edit_count' => DB::raw('post_edit_count + 1'),
-                'post_edit_user' => $user->user_id,
-            ]);
-        } else {
-            Log::logModerateForumPost('LOG_POST_EDITED', $this);
-        }
+        $updates = array_merge($updates, [
+            'post_edit_time' => Carbon::now(),
+            'post_edit_count' => DB::raw('post_edit_count + 1'),
+            'post_edit_user' => $user->user_id,
+        ]);
 
         return $this->update($updates);
     }

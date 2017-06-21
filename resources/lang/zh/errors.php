@@ -20,16 +20,18 @@
 
 return [
     'codes' => [
-        'http-403' => '拒绝访问.',
         'http-401' => '请先登录.',
+        'http-403' => '拒绝访问.',
+        'http-429' => '请求过多,请稍后重试.',
     ],
     'account' => [
         'profile-order' => [
             'generic' => '发生未知错误,请尝试刷新页面.',
         ],
     ],
-    'beatmaps' => [ //TODO 需要帮助
-        'standard-converts-only' => 'Only the osu! mode can have scores in other modes.',
+    'beatmaps' => [
+        'invalid_mode' => '指定的游戏模式无效.',
+        'standard_converts_only' => '此谱面的此难度在请求的游戏模式下的分数不可用.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => '您收藏的谱面过多,请删除一个后继续.',

@@ -103,23 +103,23 @@ class LocaleMeta
             'name' => '中文',
             'flag' => 'CN',
         ],
-        'zh-CN' => [
-            'name' => '中文 (简体)',
-            'flag' => 'CN',
+        'zh-hk' => [
+            'name' => '粤语',
+            'flag' => 'HK',
         ],
-        'zh-TW' => [
-            'name' => '中文 (繁體)',
+        'zh-tw' => [
+            'name' => '繁體中文',
             'flag' => 'TW',
         ],
     ];
 
     public static function flagFor($locale)
     {
-        return static::MAPPINGS[$locale]['flag'] ?? '__';
+        return static::MAPPINGS[strtolower($locale)]['flag'] ?? '__';
     }
 
     public static function nameFor($locale)
     {
-        return static::MAPPINGS[$locale]['name'] ?? '??';
+        return static::MAPPINGS[strtolower($locale)]['name'] ?? '??';
     }
 }
