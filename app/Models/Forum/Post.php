@@ -22,7 +22,6 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
-use App\Models\Log;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -245,15 +244,11 @@ class Post extends Model
             'post_text' => $body,
         ];
 
-        if ($user->user_id === $this->poster_id) {
-            $updates = array_merge($updates, [
-                'post_edit_time' => Carbon::now(),
-                'post_edit_count' => DB::raw('post_edit_count + 1'),
-                'post_edit_user' => $user->user_id,
-            ]);
-        } else {
-            Log::logModerateForumPost('LOG_POST_EDITED', $this);
-        }
+        $updates = array_merge($updates, [
+            'post_edit_time' => Carbon::now(),
+            'post_edit_count' => DB::raw('post_edit_count + 1'),
+            'post_edit_user' => $user->user_id,
+        ]);
 
         return $this->update($updates);
     }

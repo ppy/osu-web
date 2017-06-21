@@ -48,7 +48,7 @@ class RankingsRecalculateCountryStats extends Command
      */
     public function handle()
     {
-        $countries = Country::where('display', '>', 0)->get();
+        $countries = Country::where('rankedscore', '>', 0)->get();
         $bar = $this->output->createProgressBar(count($countries) * count(Beatmap::MODES));
 
         foreach ($countries as $country) {

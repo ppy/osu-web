@@ -100,6 +100,17 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
+        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+            $this->logModerate(
+                'LOG_POST_EDITED',
+                [
+                    $post->topic->topic_title,
+                    $post->user->username,
+                ],
+                $post
+            );
+        }
+
         $body = Request::input('body');
         if ($body !== '') {
             $post->edit($body, Auth::user());
