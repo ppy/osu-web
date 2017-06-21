@@ -80,7 +80,7 @@ return [
             'country' => 'Classement national',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
-            'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec !',
+            'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
             'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité !',
             'title' => 'Tableaux des scores',
 
