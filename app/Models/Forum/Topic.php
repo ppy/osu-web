@@ -698,4 +698,9 @@ class Topic extends Model
     {
         return strpos($this->topic_title, "[{$tag}]") !== false;
     }
+
+    public function toMetaDescription()
+    {
+        return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
+    }
 }
