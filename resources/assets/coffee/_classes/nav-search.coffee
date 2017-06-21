@@ -68,7 +68,9 @@ class @NavSearch
     @abort()
     @xhr = $.get laroute.route('quick-search'), query: query
       .done @showResult
-      .fail => @setMode 'fail'
+      .fail (_xhr, status) =>
+        return if status == 'abort'
+        @setMode 'fail'
 
 
   setMode: (newMode) =>

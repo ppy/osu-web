@@ -26,6 +26,7 @@ use App\Exceptions\GitHubTooLargeException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Cache;
+use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Es;
 
 class Page
@@ -201,9 +202,13 @@ class Page
 
     public function indexRemove()
     {
-        return Es::delete(static::searchIndexConfig([
-            'id' => $this->pagePath(),
-        ]));
+        try {
+            return Es::delete(static::searchIndexConfig([
+                'id' => $this->pagePath(),
+            ]));
+        } catch (Missing404Exception $_e) {
+            // do nothing
+        }
     }
 
     public function locales()
