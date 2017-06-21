@@ -25,6 +25,7 @@ use App\Models\Country;
 use App\Models\CountryStatistics;
 use App\Models\UserStatistics;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Redirect;
 use Request;
 
 class RankingController extends Controller
@@ -55,10 +56,15 @@ class RankingController extends Controller
                 ->orderBy('performance', 'desc');
         } else { // if $type == 'performance' || $type == 'score'
             if (Request::has('country')) {
-                $country = CountryStatistics::where('display', 1)
+                $countryStats = CountryStatistics::where('display', 1)
                     ->where('country_code', Request::input('country'))
-                    ->first()
-                    ->country;
+                    ->first();
+
+                if (!$countryStats) {
+                    return Redirect::route('rankings', ['mode' => $mode, 'type' => $type]);
+                } else {
+                    $country = $countryStats->country;
+                }
             }
 
             $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
