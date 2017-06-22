@@ -951,6 +951,7 @@ class Beatmapset extends Model
     public function toMetaDescription()
     {
         $section = trans('layout.menu.beatmaps._');
+
         return "osu! » {$section} » {$this->artist} - {$this->title}";
     }
 }
