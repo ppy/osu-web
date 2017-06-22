@@ -104,7 +104,7 @@ class BeatmapsetsController extends Controller
 
         $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
-        return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion'));
+        return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
     }
 
     public function search()

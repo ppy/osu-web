@@ -17,7 +17,7 @@
 --}}
 @extends("master", [
     'current_section' => 'beatmaps',
-    'pageDescription' => $title,
+    'pageDescription' => $beatmapset->toMetaDescription(),
 ])
 
 @section("content")
