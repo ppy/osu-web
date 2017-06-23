@@ -353,6 +353,15 @@ function bbcode_for_editor($text, $uid)
 
 function proxy_image($url)
 {
+    // turn relative urls into absolute urls
+    if (!preg_match('/^https?\:\/\//', $url)) {
+        // ensure url is relative to the site root
+        if ($url[0] !== '/') {
+            $url = "/{$url}";
+        }
+        $url = config('app.url').$url;
+    }
+
     $decoded = urldecode(html_entity_decode($url));
 
     if (config('osu.camo.key') === '') {
@@ -848,7 +857,6 @@ function first_paragraph($html, $split_on = "\n")
 
     return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
 }
-
 
 function build_icon($prefix)
 {
