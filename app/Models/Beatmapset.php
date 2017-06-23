@@ -947,4 +947,11 @@ class Beatmapset extends Model
 
         return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
     }
+
+    public function toMetaDescription()
+    {
+        $section = trans('layout.menu.beatmaps._');
+
+        return "osu! » {$section} » {$this->artist} - {$this->title}";
+    }
 }
