@@ -849,26 +849,6 @@ function first_paragraph($html, $split_on = "\n")
     return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
 }
 
-function find_images($html)
-{
-    // regex based on answer in http://stackoverflow.com/questions/12933528/regular-expression-pattern-to-match-image-url-from-text
-    $regex = "/(?:https?\:\/\/[a-zA-Z](?:[\w\-]+\.)+(?:[\w]{2,5}))(?:\:[\d]{1,6})?\/(?:[^\s\/]+\/)*(?:[^\s]+\.(?:jpe?g|gif|png))(?:\?\w?(?:=\w)?(?:&\w?(?:=\w)?)*)?/";
-    $matches = [];
-    preg_match_all($regex, $html, $matches);
-
-    return $matches[0];
-}
-
-function find_first_image($html)
-{
-    $post_images = find_images($html);
-
-    if (!is_array($post_images) || count($post_images) < 1) {
-        return;
-    }
-
-    return $post_images[0];
-}
 
 function build_icon($prefix)
 {
