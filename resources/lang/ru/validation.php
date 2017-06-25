@@ -19,20 +19,6 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
-    ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
+    'mixture' => ':attribute содержит неправильное число или букву',
+    'required' => ':attribute является необходимым',
 ];

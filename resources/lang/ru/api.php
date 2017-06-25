@@ -19,20 +19,9 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
+    'error' => [
+        'chat' => [
+            'limit_exceeded' => 'Ты отправляешь сообщения слишком быстро, пожалуйста, подожди немного перед повторной попыткой.',
+        ],
     ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
 ];

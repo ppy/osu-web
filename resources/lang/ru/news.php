@@ -19,13 +19,36 @@
  */
 
 return [
-    'feed_title' => 'flux',
-    'generic' => 'Corrections de bugs et améliorations mineures.',
-    'users-online' => '1 utilisateur en ligne|:users utilisateurs en ligne',
+    'breadcrumbs' => [
+        'news-index' => 'список',
+        'news-show' => 'публикация',
+    ],
 
-    'prefixes' => [
-        'add' => 'ajout',
-        'fix' => 'correction',
-        'misc' => 'divers',
+    'index' => [
+        'title' => 'osu!новости',
+
+        'nav' => [
+            'newer' => 'Новые публикации',
+            'older' => 'Старые публикации',
+        ],
+    ],
+
+    'show' => [
+        'posted' => 'опубликовано :time',
+
+        'nav' => [
+            'newer' => 'Новая публикация',
+            'older' => 'Старая публикация',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Обновить',
+        'ok' => 'Список обновлён.',
+    ],
+
+    'update' => [
+        'button' => 'Обновить',
+        'ok' => 'Публикация обновлена.',
     ],
 ];

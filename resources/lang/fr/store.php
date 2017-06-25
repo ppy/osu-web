@@ -25,7 +25,7 @@ return [
 
     'checkout' => [
         'pay' => 'Payer avec PayPal',
-        'delayed_shipping' => 'Nous sommes blindés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
+        'delayed_shipping' => 'Nous sommes surchargés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
     ],
 
     'discount' => 'économisez :percent%',

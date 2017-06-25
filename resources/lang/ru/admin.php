@@ -23,11 +23,11 @@ return [
     'beatmapsets' => [
         'show' => [
             'discussion' => [
-                '_' => 'Modding v2',
-                'activate' => 'activer',
-                'activate_confirm' => 'activer le modding v2 pour cette beatmap?',
-                'active' => 'actif',
-                'inactive' => 'inactif',
+                '_' => 'Моддинг v2',
+                'activate' => 'включить',
+                'activate_confirm' => 'включить моддинг v2 для этой карты?',
+                'active' => 'включить',
+                'inactive' => 'выключить',
             ],
         ],
     ],
@@ -35,22 +35,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Supprimer',
+                'delete' => 'Удалить',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => 'Форум #:id: :name',
 
-                'no-cover' => 'Pas de bannière définie',
+                'no-cover' => 'Нет обложки',
 
                 'submit' => [
-                    'save' => 'Sauvegarder',
-                    'update' => 'Modifier',
+                    'save' => 'Сохранить',
+                    'update' => 'Обновить',
                 ],
 
-                'title' => 'Liste des bannières forum',
+                'title' => 'Список форумов',
 
                 'type-title' => [
-                    'default-topic' => 'Bannière forum par défaut',
-                    'main' => 'Bannière du forum',
+                    'default-topic' => 'Стандартная обложка темы',
+                    'main' => 'Обложка форума',
                 ],
             ],
         ],
@@ -58,18 +58,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visionneur de logs',
+            'title' => 'Просмотр логов',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Trucs de console Admin',
+            'title' => 'Консоль администратора Thingy',
 
             'sections' => [
-                'forum' => 'Forum',
-                'general' => 'Général',
-                'store' => 'Magasin',
+                'forum' => 'Форум',
+                'general' => 'Главная',
+                'store' => 'Магазин',
             ],
         ],
     ],
@@ -77,7 +77,7 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Liste des commandes',
+                'title' => 'Список заказов',
             ],
         ],
     ],

@@ -19,20 +19,25 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
+    'header' => 'Рейтинг :type',
+    'type' => [
+        'performance' => 'Производительности',
+        'charts' => 'Графики',
+        'score' => 'Очков',
+        'country' => 'Стран',
     ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
+    'stat' => [
+        'accuracy' => 'Точность',
+        'active_users' => 'Активные пользователи',
+        'country' => 'Страна',
+        'play_count' => 'Количество игр',
+        'performance' => 'Производительность',
+        'total_score' => 'Всего очков',
+        'ranked_score' => 'Рейтинговых очков',
+        'average_score' => 'Ср. очки',
+        'average_performance' => 'Ср. произ.',
+        'ss' => 'SS',
+        's' => 'S',
+        'a' => 'A',
+    ],
 ];

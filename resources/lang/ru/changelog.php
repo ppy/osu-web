@@ -19,20 +19,13 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
+    'feed_title' => 'лента',
+    'generic' => 'Исправления ошибок и мелкие улучшения.',
+    'users-online' => '1 пользователь в сети|:users пользователей в сети',
+
+    'prefixes' => [
+        'add' => 'дополнение',
+        'fix' => 'исправление',
+        'misc' => 'другое',
     ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
 ];

@@ -19,20 +19,12 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
+    'user_search' => [
+        'searching' => 'поиск...',
+        'not_found' => 'Пользователь не найден',
     ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
+    'duration' => [
+        'months' => ':length месяц|:length месяцев|{0}',
+        'years' => ':length год|:length лет|{0}',
+    ],
 ];

@@ -19,20 +19,17 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
+    'show' => [
+        'fallback_translation' => 'Запрашиваемая страница не переведана на этот язык (:language). Показывается версия на английском.',
+        'languages' => 'Языки',
+        'missing' => 'Запрашиваемая страница не найдена.',
+        'missing_title' => 'Не найдено',
+        'missing_translation' => 'Запрашиваемая страница не может быть найдена для этого языка.',
+        'toc' => 'Содержимое',
+
+        'edit' => [
+            'link' => 'Показать на GitHub',
+            'refresh' => 'Обновить',
+        ],
     ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
 ];

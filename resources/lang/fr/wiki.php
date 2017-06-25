@@ -28,8 +28,8 @@ return [
         'toc' => 'Contenu',
 
         'edit' => [
-            'link' => 'Montrer sur GitHub',
-            'refresh' => 'Rafraîchir',
+            'link' => 'Afficher sur GitHub',
+            'refresh' => 'Actualiser',
         ],
     ],
 ];

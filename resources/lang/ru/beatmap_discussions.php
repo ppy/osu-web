@@ -19,20 +19,18 @@
  */
 
 return [
-    'bold' => 'Gras',
-    'heading' => 'Titre',
-    'image' => 'Image',
-    'italic' => 'Italique',
-    'link' => 'Lien',
-    'list' => 'Liste',
-    'list_numbered' => 'Liste numérique',
-    'size' => [
-        '_' => 'Taille de police',
-        'tiny' => 'Très petite',
-        'small' => 'Petite',
-        'normal' => 'Normale',
-        'large' => 'Large',
+    'authorizations' => [
+        'update' => [
+            'null_user' => 'Ты должен быть авторизирован для редактирования.',
+            'system_generated' => 'Системное сообщение не может быть отредактировано.',
+            'wrong_user' => 'Ты должен быть автором данной публикации для его редактирования.',
+        ],
     ],
-    'spoilerbox' => 'Spoiler déroulant',
-    'strikethrough' => 'Barré',
+
+    'system' => [
+        'resolved' => [
+            'true' => 'Помечено решённым пользователем :user',
+            'false' => 'Открыто заново пользователем :user',
+        ],
+    ],
 ];
