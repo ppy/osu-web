@@ -37,6 +37,69 @@ return [
         ],
     ],
 
+    'search' => [
+        'advanced_link' => '高级搜索',
+        'empty_result' => '没有结果!',
+        'missing_query' => '至少应该提供 :n 个字符',
+        'title' => '搜索结果',
+
+        'beatmapset' => [
+            'more' => '搜索到 :count 张谱面',
+            'more_simple' => '查看更多搜索结果',
+            'title' => '搜索',
+        ],
+
+        'forum_post' => [
+            'link' => '在论坛中搜索',
+            'more_simple' => '查看更多搜索结果',
+            'title' => '论坛',
+        ],
+
+        'mode' => [
+            'all' => '所有',
+            'beatmapset' => '谱面',
+            'forum_post' => '论坛',
+            'user' => '玩家',
+            'wiki_page' => 'wiki',
+        ],
+
+        'user' => [
+            'more' => '搜索到 :count 个玩家',
+            'more_simple' => '查看更多搜索结果',
+            'title' => '玩家',
+        ],
+
+        'wiki_page' => [
+            'link' => '在wiki中搜索',
+            'more_simple' => '查看更多搜索结果',
+            'title' => 'Wiki',
+        ],
+    ],
+
+    'download' => [
+      'header' => [
+          '1' => "让我们",
+          '2' => '开始吧',
+          '3' => '下载 osu! Windows版',
+      ],
+      'steps' => [
+          '1' => [
+              'name' => '第一步',
+              'content' => '下载 osu!',
+          ],
+          '2' => [
+              'name' => '第二步',
+              'content' => '注册osu!账户',
+          ],
+          '3' => [
+              'name' => '第三步',
+              'content' => '???',
+          ],
+      ],
+      'more' => '想了解更多?',
+      'more_text' => '查看<a href="https://www.youtube.com/user/osuacademy/">osu!学院 YouTube 频道</a>(国内用户可能访问有困难) 获取最新的教程',
+    ],
+
     'user' => [
         'title' => '新闻',
         'news' => [
@@ -47,6 +110,7 @@ return [
             'welcome' => '嗨, <strong>:username</strong>!',
             'messages' => '你有 :count 条新消息',
             'stats' => [
+                'games' => '房间',
                 'online' => '在线用户',
             ],
         ],

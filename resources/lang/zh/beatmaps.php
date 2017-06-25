@@ -69,12 +69,13 @@ return [
 
         'mode' => [
             'general' => 'General', //不好翻译
+            'general_all' => 'General (all difficulties)', //不好翻译
             'timeline' => '时间线',
         ],
 
         'new' => [
             'timestamp' => '时间戳',
-            'timestamp_missing' => '在编辑模式下按Ctrl+C然后在您的信息中粘贴以添加时间戳!',
+            'timestamp_missing' => '在编辑模式下按 Ctrl+C 然后在您的信息中粘贴以添加时间戳!',
             'title' => '新的讨论',
         ],
 

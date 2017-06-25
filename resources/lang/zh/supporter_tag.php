@@ -19,25 +19,12 @@
  */
 
 return [
-    'header' => ':type 排名',
-    'type' => [
-        'performance' => '表现',
-        'charts' => 'Charts', //暂时没有合适的翻译
-        'score' => '总分',
-        'country' => '国家',
+    'user_search' => [
+        'searching' => 'searching...',
+        'not_found' => "This user doesn't exist",
     ],
-    'stat' => [
-        'accuracy' => '准确率',
-        'active_users' => '活跃用户',
-        'country' => '国家',
-        'play_count' => '游戏次数',
-        'performance' => '表现',
-        'total_score' => '总分',
-        'ranked_score' => 'Ranked 总分',
-        'average_score' => '平均得分',
-        'average_performance' => '平均表现',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'duration' => [
+        'months' => ':length month|:length months|{0}',
+        'years' => ':length year|:length years|{0}',
     ],
 ];
