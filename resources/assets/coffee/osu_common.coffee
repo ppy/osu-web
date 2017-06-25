@@ -16,8 +16,6 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-Lang.setLocale(currentLocale)
-
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
 
