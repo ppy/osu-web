@@ -18,6 +18,7 @@
 
 @osu =
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
+  Lang.set(currentLocale)
 
 
   executeAction: (element) =>
