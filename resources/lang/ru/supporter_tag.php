@@ -24,7 +24,7 @@ return [
         'not_found' => 'Пользователь не найден',
     ],
     'duration' => [
-        'months' => ':length месяц|:length месяцев|{0}',
-        'years' => ':length год|:length лет|{0}',
+        'months' => ':length месяц|:length месяцев|:length месяцев|{0}',
+        'years' => ':length год|:length лет|:length лет|{0}',
     ],
 ];
