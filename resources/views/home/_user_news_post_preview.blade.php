@@ -20,7 +20,7 @@
     <a
         class="news-post-preview__image"
         href='{{ route('news.show', $post->getKey() )}}'
-        {!! background_image(find_first_image($post->bodyHtml())) !!}
+        {!! background_image($post->firstImage()) !!}
     ></a>
     <div class="news-post-preview__body">
         <div class="news-post-preview__post-date">
