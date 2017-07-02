@@ -20,11 +20,11 @@
 
 return [
     'user_search' => [
-        'searching' => 'searching...',
-        'not_found' => "This user doesn't exist",
+        'searching' => '搜索中..',
+        'not_found' => '该用户不存在',
     ],
     'duration' => [
-        'months' => ':length month|:length months|{0}',
-        'years' => ':length year|:length years|{0}',
+        'months' => ':length 个月|:length 个月|{0}',
+        'years' => ':length 年|:length 年|{0}',
     ],
 ];
