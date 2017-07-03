@@ -62,6 +62,7 @@ return [
     ],
     'subforums' => 'Подфорумы',
     'title' => 'osu!сообщество',
+    'slogan' => 'опасно играть в одиночестве.',
     'topic' => [
         'create' => [
             'placeholder' => [
