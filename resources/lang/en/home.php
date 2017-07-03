@@ -110,12 +110,15 @@ return [
             'welcome' => 'Hello, <strong>:username</strong>!',
             'messages' => 'You have 1 new message|You have :count new messages',
             'stats' => [
+                'games' => 'Games',
                 'online' => 'Online Users',
             ],
         ],
         'beatmaps' => [
             'new' => 'New Approved Beatmaps',
             'popular' => 'Popular Beatmaps',
+            'by' => 'by',
+            'plays' => ':count plays'
         ],
         'buttons' => [
             'download' => 'Download osu!',
