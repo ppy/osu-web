@@ -118,7 +118,7 @@ return [
             'new' => 'New Approved Beatmaps',
             'popular' => 'Popular Beatmaps',
             'by' => 'by',
-            'plays' => ':count plays'
+            'plays' => ':count plays',
         ],
         'buttons' => [
             'download' => 'Download osu!',
