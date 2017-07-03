@@ -36,13 +36,13 @@
                 {{ trans('home.search.title') }}
             </div>
 
-            <label class="search-header__box">
+            <div class="search-header__box">
                 <input class="search-header__input" name="query" value="{{ $search->urlParams()['query'] ?? '' }}" />
 
                 <button class="search-header__icon">
                     <i class="fa fa-search"></i>
                 </button>
-            </label>
+            </div>
         </form>
     </div>
 
