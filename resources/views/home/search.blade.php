@@ -29,7 +29,7 @@
                     @continue
                 @endif
 
-                <input type="hidden" name="{{ $key }}" value="{{ param_string_simple($value) }}">
+                <input type="hidden" name="{{ $key }}" value="{{ $value }}">
             @endforeach
 
             <div class="search-header__title">
