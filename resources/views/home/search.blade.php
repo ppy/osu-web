@@ -72,7 +72,7 @@
                 @endforeach
             </div>
             @if ($missingQuery)
-                <div>
+                <div class="search__notice">
                     @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
                 </div>
             @else
