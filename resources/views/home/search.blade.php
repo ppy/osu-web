@@ -52,7 +52,7 @@
                 @foreach ($search::MODES as $mode => $_class)
                     <div class="page-mode__item">
                         <a
-                            href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
+                            href="{{ route('search', ['mode' => $mode, 'query' => $search->urlParams()['query'] ?? '']) }}"
                             class="page-mode-link {{ $mode === $search->mode ? 'page-mode-link--is-active' : '' }}"
                         >
                             <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
