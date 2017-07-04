@@ -22,11 +22,8 @@ el = React.createElement
 bn = 'beatmap-discussions'
 lp = 'beatmaps.discussions'
 
-BeatmapDiscussions.Discussions = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  render: ->
+class BeatmapDiscussions.Discussions extends React.PureComponent
+  render: =>
     discussions = @props.currentDiscussions[@props.mode]
 
     div className: 'osu-page osu-page--small',
@@ -78,7 +75,7 @@ BeatmapDiscussions.Discussions = React.createClass
           @timelineCircle()
 
 
-  discussionPage: (discussion) ->
+  discussionPage: (discussion) =>
     return if !discussion.id?
 
     className = "#{bn}__discussion"
@@ -103,12 +100,12 @@ BeatmapDiscussions.Discussions = React.createClass
         visible: visible?
 
 
-  expand: (e) ->
+  expand: (e) =>
     e.preventDefault()
     $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
 
 
-  hidden: (discussion) ->
+  hidden: (discussion) =>
     switch @props.currentFilter
       when 'mine' then discussion.user_id != @props.currentUser.id
       when 'resolved' then discussion.message_type == 'praise' || !discussion.resolved
@@ -117,7 +114,7 @@ BeatmapDiscussions.Discussions = React.createClass
       else false
 
 
-  timelineCircle: ->
+  timelineCircle: =>
     div
       'data-visibility': if @props.mode != 'timeline' then 'hidden'
       className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
