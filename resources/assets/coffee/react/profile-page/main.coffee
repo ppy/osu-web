@@ -19,10 +19,17 @@
 {div, h2, li, ul} = React.DOM
 el = React.createElement
 
-ProfilePage.Main = React.createClass
-  mixins: [StickyTabsMixin, ScrollingPageMixin]
+pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
+pagesOffset = document.getElementsByClassName("js-switchable-mode-page--scrollspy-offset")
 
-  getInitialState: ->
+currentLocation = ->
+  "#{document.location.pathname}#{document.location.search}"
+
+
+class ProfilePage.Main extends React.PureComponent
+  constructor: (props) ->
+    super props
+
     savedStateString = document.body.dataset.profilePageState
     if savedStateString?
       return JSON.parse(savedStateString)
@@ -30,24 +37,26 @@ ProfilePage.Main = React.createClass
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page
 
-    currentMode: @validMode(optionsHash.mode ? @props.user.playmode)
-    user: @props.user
-    userPage:
-      html: @props.userPage.html
-      initialRaw: @props.userPage.raw
-      raw: @props.userPage.raw
-      editing: false
-      selection: [0, 0]
-    tabsSticky: false
-    profileOrder: @props.user.profileOrder[..]
+    @state =
+      currentMode: @validMode(optionsHash.mode ? props.user.playmode)
+      user: props.user
+      userPage:
+        html: props.userPage.html
+        initialRaw: props.userPage.raw
+        raw: props.userPage.raw
+        editing: false
+        selection: [0, 0]
+      tabsSticky: false
+      profileOrder: props.user.profileOrder[..]
 
 
-  componentDidMount: ->
+  componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
     $.subscribe 'playmode:set.profilePage', @setCurrentMode
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
+    $(window).on 'throttled-scroll.profilePage', @pageScan
 
     $(@refs.pages).sortable
       cursor: 'move'
@@ -67,11 +76,13 @@ ProfilePage.Main = React.createClass
 
     osu.pageChange()
 
+    @modeScrollUrl = currentLocation()
+
     Timeout.set 0, =>
       @pageJump null, @initialPage
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $.unsubscribe '.profilePage'
     $(window).off '.profilePage'
 
@@ -80,8 +91,11 @@ ProfilePage.Main = React.createClass
 
     document.body.dataset.profilePageState = JSON.stringify(@state)
 
+    $(window).stop()
+    Timeout.clear @modeScrollTimeout
 
-  render: ->
+
+  render: =>
     rankHistories = @props.allRankHistories[@state.currentMode]
     stats = @props.allStats[@state.currentMode]
     scores = @props.allScores[@state.currentMode]
@@ -180,7 +194,12 @@ ProfilePage.Main = React.createClass
             @extraPage name, extraPageParams[name]
 
 
-  extraPage: (name, {extraClass, props, component}) ->
+  _tabsStick: (_e, target) =>
+    newState = (target == 'page-extra-tabs')
+    @setState(tabsSticky: newState) if newState != @state.tabsSticky
+
+
+  extraPage: (name, {extraClass, props, component}) =>
     topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
     props.withEdit = @props.withEdit
     props.name = name
@@ -192,12 +211,78 @@ ProfilePage.Main = React.createClass
       el component, props
 
 
-  setCurrentMode: (_e, {mode}) ->
+  pageJump: (_e, page) =>
+    if page == 'main'
+      @setCurrentPage null, page
+      return
+
+    target = $(".js-switchable-mode-page--page[data-page-id='#{page}']")
+
+    # if invalid page is specified, scan current position
+    if target.length == 0
+      @pageScan()
+      return
+
+    # Don't bother scanning the current position.
+    # The result will be wrong when target page is too short anyway.
+    @scrolling = true
+    Timeout.clear @modeScrollTimeout
+
+    $(window).stop().scrollTo target, 500,
+      onAfter: =>
+        # Manually set the mode to avoid confusion (wrong highlight).
+        # Scrolling will obviously break it but that's unfortunate result
+        # from having the scrollspy marker at middle of page.
+        @setCurrentPage null, page, =>
+          # Doesn't work:
+          # - part of state (callback, part of mode setting)
+          # - simple variable in callback
+          # Both still change the switch too soon.
+          @modeScrollTimeout = Timeout.set 100, => @scrolling = false
+      # count for the tabs height
+      offset: pagesOffset[0].getBoundingClientRect().height * -1
+
+
+  pageScan: =>
+    return if @modeScrollUrl != currentLocation()
+
+    return if @scrolling
+    return if pages.length == 0
+
+    anchorHeight = pagesOffset[0].getBoundingClientRect().height
+
+    if osu.bottomPage()
+      @setCurrentPage null, _.last(pages).dataset.pageId
+      return
+
+    for page in pages
+      pageDims = page.getBoundingClientRect()
+      pageBottom = pageDims.bottom - Math.min(pageDims.height * 0.75, 200)
+      continue unless pageBottom > anchorHeight
+
+      @setCurrentPage null, page.dataset.pageId
+      return
+
+    @setCurrentPage null, page.dataset.pageId
+
+
+  setCurrentMode: (_e, {mode}) =>
     return if @state.currentMode == mode
     @setState currentMode: @validMode(mode)
 
 
-  updateOrder: (event) ->
+  setCurrentPage: (_e, page, extraCallback) =>
+    callback = =>
+      extraCallback?()
+      @setHash?()
+
+    if @state.currentPage == page
+      return callback()
+
+    @setState currentPage: page, callback
+
+
+  updateOrder: (event) =>
     $elems = $(event.target)
 
     newOrder = $elems.sortable('toArray', attribute: 'data-page-id')
@@ -225,17 +310,17 @@ ProfilePage.Main = React.createClass
       .always LoadingOverlay.hide
 
 
-  userUpdate: (_e, user) ->
+  userUpdate: (_e, user) =>
     return if !user?
     @setState user: user
 
 
-  userPageUpdate: (_e, newUserPage) ->
+  userPageUpdate: (_e, newUserPage) =>
     currentUserPage = _.cloneDeep @state.userPage
     @setState userPage: _.extend(currentUserPage, newUserPage)
 
 
-  validMode: (mode) ->
+  validMode: (mode) =>
     modes = BeatmapHelper.modes
 
     if _.includes(modes, mode)
