@@ -19,24 +19,24 @@
 {a, div, li, span, ul} = React.DOM
 el = React.createElement
 
-BeatmapDiscussions.ModeSwitcher = React.createClass
-  mixins: [StickyTabsMixin]
+class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @state =
+      tabsSticky: false
 
 
-  componentDidMount: ->
-    $.subscribe 'stickyHeader.beatmapDiscussionsMode', @_tabsStick
+  componentDidMount: =>
+    $.subscribe 'stickyHeader.beatmapDiscussionsMode', @tabsStick
     osu.pageChange()
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $.unsubscribe '.beatmapDiscussionsMode'
 
 
-  getInitialState: ->
-    tabsSticky: false
-
-
-  render: ->
+  render: =>
     div null,
       div
         className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
@@ -68,7 +68,12 @@ BeatmapDiscussions.ModeSwitcher = React.createClass
                     span className: 'page-mode-link__stripe'
 
 
-  switch: (e) ->
+  tabsStick: (_e, target) =>
+    newState = (target == 'page-extra-tabs')
+    @setState(tabsSticky: newState) if newState != @state.tabsSticky
+
+
+  switch: (e) =>
     e.preventDefault()
 
     $.publish 'beatmapDiscussion:setMode', e.currentTarget.dataset.mode
