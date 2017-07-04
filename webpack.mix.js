@@ -23,7 +23,7 @@ const path = require('path');
 // and spread the values in.
 const glob = require('glob');
 let min = '';
-if (mix.config.inProduction) {
+if (mix.inProduction) {
   min = '.min';
 }
 
@@ -129,4 +129,4 @@ mix
   path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
 ], 'public/js/vendor.js')
 .version()
-.sourceMaps(!mix.config.inProduction);
+.sourceMaps(!mix.inProduction);
