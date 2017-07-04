@@ -59,7 +59,8 @@ class ProfilePage.Historical extends React.PureComponent
               key: 'more'
               href: '#'
               className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'showingPlaycounts')
+              'data-show-more': 'showingPlaycounts'
+              onClick: @_showMore
               osu.trans('common.buttons.show_more')
         ]
 
@@ -80,7 +81,8 @@ class ProfilePage.Historical extends React.PureComponent
               key: 'more'
               href: '#'
               className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'showingRecent')
+              'data-show-more': 'showingRecent'
+              onClick: @_showMore
               osu.trans('common.buttons.show_more')
         ]
 
@@ -131,7 +133,9 @@ class ProfilePage.Historical extends React.PureComponent
             details[1]
 
 
-  _showMore: (key, e) =>
-    e.preventDefault() if e
+  _showMore: (e) =>
+    e.preventDefault()
+
+    key = e.currentTarget.dataset.showMore
 
     @setState "#{key}": (@state[key] + 5)
