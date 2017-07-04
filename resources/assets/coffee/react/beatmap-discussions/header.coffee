@@ -19,23 +19,20 @@
 {a, div, h1, h2, p} = React.DOM
 el = React.createElement
 
-BeatmapDiscussions.Header = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  componentDidMount: ->
+class BeatmapDiscussions.Header extends React.PureComponent
+  componentDidMount: =>
     @updateChart()
 
 
-  componentDidUpdate: ->
+  componentDidUpdate: =>
     @updateChart()
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $(window).off '.beatmapDiscussionsOverview'
 
 
-  render: ->
+  render: =>
     div null,
       div
         className: 'osu-page'
@@ -46,7 +43,7 @@ BeatmapDiscussions.Header = React.createClass
         @headerBottom()
 
 
-  headerBottom: ->
+  headerBottom: =>
     bn = 'beatmap-discussions-header-bottom'
 
     div className: bn,
@@ -61,7 +58,7 @@ BeatmapDiscussions.Header = React.createClass
           user: @props.users[@props.beatmapset.user_id]
 
 
-  headerTop: ->
+  headerTop: =>
     bn = 'beatmap-discussions-header-top'
 
     div
@@ -106,7 +103,7 @@ BeatmapDiscussions.Header = React.createClass
               beatmap: @props.currentBeatmap
 
 
-  stats: ->
+  stats: =>
     bn = 'counter-box'
 
     for type in ['mine', 'resolved', 'pending', 'praises', 'deleted', 'total']
@@ -134,7 +131,7 @@ BeatmapDiscussions.Header = React.createClass
         div className: "#{bn}__line"
 
 
-  updateChart: ->
+  updateChart: =>
     if !@_chart?
       area = @refs.chartArea
       length = @props.currentBeatmap.total_length * 1000
@@ -146,6 +143,6 @@ BeatmapDiscussions.Header = React.createClass
     @_chart.loadData _.values(@props.currentDiscussions.timelineByFilter[@props.currentFilter])
 
 
-  setFilter: (e) ->
+  setFilter: (e) =>
     e.preventDefault()
     $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type
