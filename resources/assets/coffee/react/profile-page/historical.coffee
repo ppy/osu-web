@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h2, h3, img, p, small, span} = React.DOM
+{a, div, h2, h3, img, p, small, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.Historical extends React.PureComponent

@@ -23,6 +23,7 @@
     "react": "^15.1.0",
     "react-collapse": "^4.0.2",
     "react-dom": "^15.1.0",
+    "react-dom-factories": "^1.0.0",
     "react-height": "^2.1.1",
     "react-motion": "^0.4.5",
     "require-dir": "^0.3.2",

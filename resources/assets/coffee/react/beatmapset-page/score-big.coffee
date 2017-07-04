@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a} = React.DOM
+{div, a} = ReactDOMFactories
 el = React.createElement
 bn = 'beatmap-score-big'
 

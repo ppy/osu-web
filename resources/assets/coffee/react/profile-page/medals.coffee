@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3} = React.DOM
+{div, h2, h3} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.Medals extends React.PureComponent

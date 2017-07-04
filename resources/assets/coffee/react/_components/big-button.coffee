@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span} = React.DOM
+{a, button, div, span} = ReactDOMFactories
 el = React.createElement
 
 @BigButton = ({modifiers = [], text, icon, props = {}}) ->

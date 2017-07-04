@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, p} = React.DOM
+{a, div, h1, p} = ReactDOMFactories
 el = React.createElement
 
 modeSwitcher = document.getElementsByClassName('js-mode-switcher')

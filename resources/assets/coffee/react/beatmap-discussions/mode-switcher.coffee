@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, li, span, ul} = React.DOM
+{a, div, li, span, ul} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapDiscussions.ModeSwitcher extends React.PureComponent

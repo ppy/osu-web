@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, span} = React.DOM
+{div, h2, span} = ReactDOMFactories
 el = React.createElement
 
 ProfilePage.ExtraHeader = (props) ->

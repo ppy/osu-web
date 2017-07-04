@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = React.DOM
+{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.Beatmaps extends React.PureComponent

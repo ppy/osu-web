@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, p, span, textarea} = React.DOM
+{button, div, input, p, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'

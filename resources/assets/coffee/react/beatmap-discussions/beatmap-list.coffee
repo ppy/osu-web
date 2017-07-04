@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div} = React.DOM
+{a, div} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-list'

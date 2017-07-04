@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, img, small, span} = React.DOM
+{a, div, img, small, span} = ReactDOMFactories
 el = React.createElement
 
 @PlayDetail = ({score, shown}) ->
