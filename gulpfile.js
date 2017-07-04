@@ -98,7 +98,7 @@ elixir(function(mix) {
     path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
     path.join(node_root, 'lodash/lodash.js'),
     path.join(node_root, 'layzr.js/dist/layzr.js'),
-    path.join(node_root, 'react/dist/react-with-addons' + min + '.js'),
+    path.join(node_root, 'react/dist/react' + min + '.js'),
     path.join(node_root, 'react-dom/dist/react-dom' + min + '.js'),
     path.join(node_root, 'photoswipe/dist/photoswipe.js'),
     path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),

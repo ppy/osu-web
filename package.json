@@ -21,7 +21,6 @@
     "photoswipe": "^4.1.1",
     "qtip2": "^3.0.3",
     "react": "^15.1.0",
-    "react-addons-pure-render-mixin": "^15.1.0",
     "react-collapse": "^4.0.2",
     "react-dom": "^15.1.0",
     "react-height": "^2.1.1",
