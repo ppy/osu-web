@@ -19,62 +19,16 @@
 {a, div, h2, h3, img, p, small, span} = React.DOM
 el = React.createElement
 
-ProfilePage.Historical = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class ProfilePage.Historical extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
-    showingPlaycounts: 5
-    showingRecent: 5
-
-  _showMore: (key, e) ->
-    e.preventDefault() if e
-
-    @setState "#{key}": (@state[key] + 5)
+    @state =
+      showingPlaycounts: 5
+      showingRecent: 5
 
 
-  _beatmapRow: (bm, bmset, key, shown, details = []) ->
-    topClasses = 'beatmapset-row'
-    topClasses += ' hidden' unless shown
-
-    div
-      key: key
-      className: topClasses
-      div
-        className: 'beatmapset-row__cover'
-        style:
-          backgroundImage: "url('#{bmset.covers.list}')"
-      div
-        className: 'beatmapset-row__detail'
-        div
-          className: 'beatmapset-row__detail-row'
-          div
-            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-            a
-              className: 'beatmapset-row__title'
-              href: laroute.route 'beatmaps.show', beatmap: bm.id
-              title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
-              "#{bmset.title} [#{bm.version}] "
-              span
-                className: 'beatmapset-row__title-small'
-                bmset.artist
-          div
-            className: 'beatmapset-row__detail-column'
-            details[0]
-        div
-          className: 'beatmapset-row__detail-row'
-          div
-            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
-            span dangerouslySetInnerHTML:
-                __html: osu.trans 'beatmaps.listing.mapped-by',
-                  mapper: laroute.link_to_route 'users.show',
-                    bmset.creator
-                    { user: bmset.user_id }
-                    class: 'beatmapset-row__title-small'
-          div
-            className: 'beatmapset-row__detail-column'
-            details[1]
-
-  render: ->
+  render: =>
     div
       className: 'page-extra'
 
@@ -132,3 +86,52 @@ ProfilePage.Historical = React.createClass
 
       else
         p null, osu.trans('users.show.extra.historical.empty')
+
+
+  _beatmapRow: (bm, bmset, key, shown, details = []) =>
+    topClasses = 'beatmapset-row'
+    topClasses += ' hidden' unless shown
+
+    div
+      key: key
+      className: topClasses
+      div
+        className: 'beatmapset-row__cover'
+        style:
+          backgroundImage: "url('#{bmset.covers.list}')"
+      div
+        className: 'beatmapset-row__detail'
+        div
+          className: 'beatmapset-row__detail-row'
+          div
+            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
+            a
+              className: 'beatmapset-row__title'
+              href: laroute.route 'beatmaps.show', beatmap: bm.id
+              title: "#{bmset.artist} - #{bmset.title} [#{bm.version}] "
+              "#{bmset.title} [#{bm.version}] "
+              span
+                className: 'beatmapset-row__title-small'
+                bmset.artist
+          div
+            className: 'beatmapset-row__detail-column'
+            details[0]
+        div
+          className: 'beatmapset-row__detail-row'
+          div
+            className: 'beatmapset-row__detail-column beatmapset-row__detail-column--full'
+            span dangerouslySetInnerHTML:
+                __html: osu.trans 'beatmaps.listing.mapped-by',
+                  mapper: laroute.link_to_route 'users.show',
+                    bmset.creator
+                    { user: bmset.user_id }
+                    class: 'beatmapset-row__title-small'
+          div
+            className: 'beatmapset-row__detail-column'
+            details[1]
+
+
+  _showMore: (key, e) =>
+    e.preventDefault() if e
+
+    @setState "#{key}": (@state[key] + 5)
