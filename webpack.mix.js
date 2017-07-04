@@ -128,5 +128,8 @@ mix
   path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
   path.join(node_root, 'react-disqus-thread/dist/react-disqus-thread' + min + '.js'),
 ], 'public/js/vendor.js')
-.version()
 .sourceMaps(!mix.inProduction());
+
+if (mix.inProduction()) {
+  mix.version();
+}
