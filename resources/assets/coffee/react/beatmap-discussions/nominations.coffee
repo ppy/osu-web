@@ -21,54 +21,20 @@ el = React.createElement
 
 bn = 'beatmap-discussion-nomination'
 
-BeatmapDiscussions.Nominations = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-  nominate: ->
-    return unless confirm(osu.trans('beatmaps.nominations.nominate-confirm'))
-
-    @doAjax 'nominate'
-
-  disqualify: ->
-    reason = prompt osu.trans('beatmaps.nominations.disqualification-prompt')
-    return unless reason
-
-    @doAjax 'disqualify', reason
-
-  doAjax: (action, comment) ->
-    LoadingOverlay.show()
-
-    params =
-      method: 'PUT'
-
-    if comment
-      params.data =
-        comment: comment
-
-    @xhr?.abort()
-
-    @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
-
-    .done (response) =>
-      $.publish 'beatmapset:update', beatmapset: response.beatmapset
-
-    .fail osu.ajaxError
-    .always LoadingOverlay.hide
-
-
-  componentDidMount: ->
+class BeatmapDiscussions.Nominations extends React.PureComponent
+  componentDidMount: =>
     osu.pageChange()
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     @xhr?.abort()
 
 
-  componentDidUpdate: ->
+  componentDidUpdate: =>
     osu.pageChange()
 
 
-  render: ->
+  render: =>
     userCanNominate = @props.currentUser.isAdmin || @props.currentUser.isBNG || @props.currentUser.isQAT
     userCanDisqualify = @props.currentUser.isAdmin || @props.currentUser.isQAT
     mapCanBeNominated = (@props.beatmapset.status == 'pending')
@@ -145,3 +111,37 @@ BeatmapDiscussions.Nominations = React.createClass
               props:
                 disabled: @props.beatmapset.nominations.nominated
                 onClick: @nominate
+
+
+  disqualify: =>
+    reason = prompt osu.trans('beatmaps.nominations.disqualification-prompt')
+    return unless reason
+
+    @doAjax 'disqualify', reason
+
+
+  doAjax: (action, comment) =>
+    LoadingOverlay.show()
+
+    params =
+      method: 'PUT'
+
+    if comment
+      params.data =
+        comment: comment
+
+    @xhr?.abort()
+
+    @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
+
+    .done (response) =>
+      $.publish 'beatmapset:update', beatmapset: response.beatmapset
+
+    .fail osu.ajaxError
+    .always LoadingOverlay.hide
+
+
+  nominate: =>
+    return unless confirm(osu.trans('beatmaps.nominations.nominate-confirm'))
+
+    @doAjax 'nominate'
