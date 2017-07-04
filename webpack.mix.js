@@ -31,6 +31,22 @@ if (mix.inProduction) {
 const node_root = 'node_modules';
 
 mix
+.webpackConfig({
+  module: {
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|coffee)$/,
+        loader: 'import-glob-loader',
+        exclude: /(node_modules)/,
+      },
+      {
+        test: /\.coffee$/,
+        use: ['imports-loader?this=>window', 'coffee-loader']
+      }
+    ]
+  }
+})
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
@@ -70,22 +86,6 @@ mix
   ...glob.sync('resources/assets/coffee/react/contest/entry/*.coffee'),
   'resources/assets/coffee/react/contest-entry.coffee',
 ], 'js/react/contest-entry.js')
-.webpackConfig({
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|coffee)$/,
-        loader: 'import-glob-loader',
-        exclude: /(node_modules)/,
-      },
-      {
-        test: /\.coffee$/,
-        use: ['imports-loader?this=>window', 'coffee-loader']
-      }
-    ]
-  }
-})
 .copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
