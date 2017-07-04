@@ -22,14 +22,8 @@ el = React.createElement
 @BeatmapIcon = (props) ->
   beatmap = props.beatmap
 
-  difficultyRating =
-    if props.overrideVersion?
-      props.overrideVersion
-    else
-      BeatmapHelper.getDiffRating beatmap.difficulty_rating
-
+  difficultyRating = props.overrideVersion ? BeatmapHelper.getDiffRating(beatmap.difficulty_rating)
   showTitle = (props.showTitle ? true) && !props.overrideVersion?
-
   mode = if beatmap.convert then 'osu' else beatmap.mode
 
   div
