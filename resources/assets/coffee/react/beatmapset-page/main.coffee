@@ -164,15 +164,21 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:scoreboard:set.beatmapsetPage', @setCurrentScoreboard
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
+    $.publish 'turbolinksDisqusReload'
 
     @setHash()
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
+
+
+  componentDidUpdate: ->
+    $.publish 'turbolinksDisqusReload'
 
 
   componentWillUnmount: ->
     $.unsubscribe '.beatmapsetPage'
     @scoreboardXhr?.abort()
     @favouriteXhr?.abort()
+
 
   render: ->
     div className: 'osu-layout__section',
@@ -203,11 +209,8 @@ class BeatmapsetPage.Main extends React.Component
             hasScores: @props.beatmapset.has_scores
 
         if @props.beatmapset.ranked > 0
-          div className: 'osu-page osu-page--comments',
-            el ReactDisqusThread,
-              shortname: disqusShortName
+          div
+            className: 'osu-page osu-page--comments js-turbolinks-disqus'
+            'data-turbolinks-disqus': JSON.stringify
               identifier: "beatmapset_#{@props.beatmapset.id}"
               title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"
-              url: "#{document.location.origin}#{laroute.route('beatmapsets.show', beatmapset: @props.beatmapset.id)}"
-              remote_auth_s3: currentUser.disqus_auth?.auth_data
-              api_key: currentUser.disqus_auth?.public_key

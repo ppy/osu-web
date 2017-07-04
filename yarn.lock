@@ -1548,14 +1548,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@15.5.2:
+create-react-class@15.5.2, create-react-class@^15.5.2:
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.5.2.tgz#6a8758348df660b88326a0e764d569f274aad681"
   dependencies:
     fbjs "^0.8.9"
     object-assign "^4.1.1"
 
-create-react-class@^15.5.2, create-react-class@^15.6.0:
+create-react-class@^15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.0.tgz#ab448497c26566e1e29413e883207d57cfe7bed4"
   dependencies:
@@ -4819,13 +4819,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.8:
+prop-types@15.5.8, prop-types@^15.5.8:
   version "15.5.8"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.8.tgz#6b7b2e141083be38c8595aa51fc55775c7199394"
   dependencies:
     fbjs "^0.8.9"
 
-prop-types@^15.5.10, prop-types@^15.5.8:
+prop-types@^15.5.10:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4944,10 +4944,6 @@ react-collapse@^4.0.2:
   resolved "https://registry.yarnpkg.com/react-collapse/-/react-collapse-4.0.2.tgz#e40dbe00437b9e76ee73b3774501e3e23167b6ab"
   dependencies:
     prop-types "15.5.8"
-
-"react-disqus-thread@https://github.com/nekodex/react-disqus-thread":
-  version "0.6.0"
-  resolved "https://github.com/nekodex/react-disqus-thread#1d0b54c63bb0c6b6299afd60bbeff870e7347eef"
 
 react-dom@^15.1.0:
   version "15.6.1"
