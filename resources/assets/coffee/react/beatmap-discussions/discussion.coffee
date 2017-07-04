@@ -79,7 +79,6 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
                 el Icon, name: 'chevron-down'
         el ReactCollapse,
           isOpened: !@state.collapsed
-          keepCollapsedContent: true
           className: "#{bn}__expanded"
           div
             className: "#{bn}__replies"
