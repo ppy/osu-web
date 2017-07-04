@@ -19,27 +19,21 @@
 {div} = React.DOM
 el = React.createElement
 
-@BeatmapIcon = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+@BeatmapIcon = (props) ->
+  beatmap = props.beatmap
 
-  getDefaultProps: ->
-    showTitle: true
+  difficultyRating =
+    if props.overrideVersion?
+      props.overrideVersion
+    else
+      BeatmapHelper.getDiffRating beatmap.difficulty_rating
 
-  render: ->
-    beatmap = @props.beatmap
+  showTitle = (props.showTitle ? true) && !props.overrideVersion?
 
-    difficultyRating =
-      if @props.overrideVersion?
-        @props.overrideVersion
-      else
-        BeatmapHelper.getDiffRating beatmap.difficulty_rating
+  mode = if beatmap.convert then 'osu' else beatmap.mode
 
-    showTitle = @props.showTitle && !@props.overrideVersion?
-
-    mode = if beatmap.convert then 'osu' else beatmap.mode
-
-    div
-      className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
-      title: beatmap.version if showTitle
-      div className: 'beatmap-icon__shadow'
-      el Icon, name: "extra-mode-#{mode}"
+  div
+    className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{props.modifier}"
+    title: beatmap.version if showTitle
+    div className: 'beatmap-icon__shadow'
+    el Icon, name: "extra-mode-#{mode}"
