@@ -21,31 +21,27 @@ el = React.createElement
 
 bn = 'beatmap-list-item'
 
-BeatmapDiscussions.BeatmapListItem = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+BeatmapDiscussions.BeatmapListItem = (props) ->
+  topClasses = bn
+  topClasses += " #{bn}--large" if props.large
 
+  version = if props.beatmap.mode == 'mania'
+    "[#{props.beatmap.difficulty_size}k] #{props.beatmap.version}"
+  else
+    props.beatmap.version
 
-  render: ->
-    topClasses = bn
-    topClasses += " #{bn}--large" if @props.large
+  div
+    className: topClasses
 
-    version = if @props.beatmap.mode == 'mania'
-      "[#{@props.beatmap.difficulty_size}k] #{@props.beatmap.version}"
-    else
-      @props.beatmap.version
+    div className: "#{bn}__col",
+      el BeatmapIcon,
+        beatmap: props.beatmap
+        modifier: "#{'large' if props.large}"
 
-    div
-      className: topClasses
+    div className: "#{bn}__col #{bn}__col--main",
+      div className: 'u-ellipsis-overflow',
+        version
 
+    if props.withButton?
       div className: "#{bn}__col",
-        el BeatmapIcon,
-          beatmap: @props.beatmap
-          modifier: "#{'large' if @props.large}"
-
-      div className: "#{bn}__col #{bn}__col--main",
-        div className: 'u-ellipsis-overflow',
-          version
-
-      if @props.withButton?
-        div className: "#{bn}__col",
-          el Icon, name: "chevron-#{@props.withButton}"
+        el Icon, name: "chevron-#{props.withButton}"
