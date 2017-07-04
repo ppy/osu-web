@@ -19,21 +19,16 @@
 {div, h2, h3, ul, li, a, p, pre, span} = React.DOM
 el = React.createElement
 
-ProfilePage.TopRanks = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class ProfilePage.TopRanks extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
-    showingBest: 5
-    showingFirst: 5
-
-
-  _showMore: (key, e) ->
-      e.preventDefault()
-
-      @setState "#{key}": (@state[key] + 5)
+    @state =
+      showingBest: 5
+      showingFirst: 5
 
 
-  render: ->
+  render: =>
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
@@ -61,3 +56,9 @@ ProfilePage.TopRanks = React.createClass
                 a href: '#', onClick: @_showMore.bind(@, 'showingFirst'), osu.trans('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
+
+
+  _showMore: (key, e) =>
+      e.preventDefault()
+
+      @setState "#{key}": (@state[key] + 5)
