@@ -22,6 +22,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
+use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -148,6 +149,17 @@ class Post extends Model
             $any[] = ['match' => ['poster_id' => $userId]];
         }
 
+        if ($params['forum_children']) {
+            $forumIds = [];
+
+            foreach (Forum::whereIn('forum_id', $params['forum_ids'])->get() as $forum) {
+                $forumIds = array_merge($forumIds, $forum->allSubForums());
+            }
+        } else {
+            $forumIds = $params['forum_ids'];
+        }
+        $forumIds = array_unique($forumIds);
+
         foreach ($params['forum_ids'] as $forumId) {
             $any[] = ['match' => ['forum_id' => $forumId]];
         }
@@ -191,9 +203,30 @@ class Post extends Model
         $params['query'] = $params['query'] ?? null;
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
+        $params['username'] = get_string($params['username'] ?? null);
+        $params['forum_children'] = get_bool($params['forum_children'] ?? false);
+        $params['forum_id'] = get_int($params['forum_id'] ?? null);
         $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int') ?? [];
         $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int') ?? [];
         $params['topic_id'] = get_int($params['topic_id'] ?? null);
+
+        if ($params['forum_id'] !== null) {
+            $params['forum_ids'][] = $params['forum_id'];
+            unset($params['forum_id']);
+        }
+
+        $params['forum_ids'] = array_unique($params['forum_ids']);
+        sort($params['forum_ids']);
+
+        if (present($params['username'])) {
+            $user = User::where('username', '=', $params['username'])->select('user_id')->first();
+
+            $params['user_ids'][] = $user === null ? -1 : $user->getKey();
+            unset($params['username']);
+        }
+
+        $params['user_ids'] = array_unique($params['user_ids']);
+        sort($params['user_ids']);
 
         return $params;
     }
