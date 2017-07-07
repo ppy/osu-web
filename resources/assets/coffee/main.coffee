@@ -17,7 +17,8 @@
 ###
 
 @polyfills ?= new Polyfills
-
+Lang.setLocale(currentLocale)
+Lang.setFallback(fallbackLocale)
 
 # loading animation overlay
 # fired from turbolinks
