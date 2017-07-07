@@ -61,8 +61,8 @@ return [
             'week' => 'week',
             'month' => 'month',
             'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'last_week' => '上周',
+            'weeks_ago' => ':count 周前',
         ],
     ],
 ];

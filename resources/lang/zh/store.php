@@ -58,15 +58,15 @@ return [
 
     'supporter_tag' => [
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => '你需要 :link 以获得 supporter 标签!',
+            'link_text' => '登录',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            '_' => '你需要 :link 才能改变你的用户名!',
+            'link_text' => '登录',
         ],
     ],
 ];

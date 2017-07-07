@@ -33,7 +33,7 @@ return [
         'failed' => '登录失败',
         'register' => '没有 osu! 账户? 现在注册一个吧',
         'forgot' => '忘记密码?',
-        'beta' => [ //TODO 需要上下文
+        'beta' => [ //已弃用(?)
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(supporters will get in soon)',
         ],
@@ -163,7 +163,7 @@ return [
                     'title' => '第一名',
                 ],
                 'pp' => ':amountpp',
-                'title' => '排位',
+                'title' => '表现',
                 'weighted_pp' => '权重: :pp (:percentage)',
             ],
             'beatmaps' => [

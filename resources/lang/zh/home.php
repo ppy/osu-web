@@ -108,7 +108,7 @@ return [
         ],
         'header' => [
             'welcome' => '嗨, <strong>:username</strong>!',
-            'messages' => '你有 :count 条新消息',
+            'messages' => '你有 :count 条新消息|{0}', //无消息时隐藏消息通知
             'stats' => [
                 'games' => '房间',
                 'online' => '在线用户',
