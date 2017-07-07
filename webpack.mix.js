@@ -89,7 +89,7 @@ mix
 .copy('node_modules/font-awesome/fonts', 'public/vendor/fonts/font-awesome')
 .copy('node_modules/photoswipe/dist/default-skin', 'public/vendor/_photoswipe-default-skin')
 .copy('node_modules/timeago/locales', 'public/vendor/js/timeago-locales')
-.less('resources/assets/less/app.less', 'public/build/css')
+.less('resources/assets/less/app.less', 'public/css')
 .scripts([
   'resources/assets/js/ga.js',
   'resources/assets/js/messages.js',
