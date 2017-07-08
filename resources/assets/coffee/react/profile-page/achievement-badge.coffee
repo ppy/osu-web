@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, img} = React.DOM
+{div, img} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.AchievementBadge extends React.Component

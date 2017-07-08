@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,span} = React.DOM
+{div,a,i,span} = ReactDOMFactories
 el = React.createElement
 
 class @BeatmapsetPanel extends React.PureComponent

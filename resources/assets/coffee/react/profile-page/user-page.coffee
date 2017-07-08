@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, p} = React.DOM
+{button, div, p} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component

@@ -21,6 +21,7 @@ class @TurbolinksDisqus
     @el = document.getElementsByClassName('js-turbolinks-disqus')
 
     addEventListener 'turbolinks:load', @initialize
+    $.subscribe 'turbolinksDisqusReload', @initialize
 
 
   attributes: =>

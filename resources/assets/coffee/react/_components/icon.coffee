@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{span} = React.DOM
+{span} = ReactDOMFactories
 
 @Icon = ({name, modifiers = [], parentClass, title}) ->
   className = "fa fa-#{name}"

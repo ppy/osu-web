@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span, h1, h2} = React.DOM
+{div, a, span, h1, h2} = ReactDOMFactories
 el = React.createElement
 
 class MPHistory.GameHeader extends React.Component
