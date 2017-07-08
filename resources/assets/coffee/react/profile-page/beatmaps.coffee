@@ -16,19 +16,19 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = React.DOM
+{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
 el = React.createElement
 
-ProfilePage.Beatmaps = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class ProfilePage.Beatmaps extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @state =
+      visible_favourite: 6
+      visible_ranked_and_approved: 6
 
 
-  getInitialState: ->
-    visible_favourite: 6
-    visible_ranked_and_approved: 6
-
-
-  render: ->
+  render: =>
     allBeatmapsets =
       favourite: @props.favouriteBeatmapsets
       ranked_and_approved: @props.rankedAndApprovedBeatmapsets
@@ -63,7 +63,7 @@ ProfilePage.Beatmaps = React.createClass
             p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')
 
 
-  _showMore: (e) ->
+  _showMore: (e) =>
     e.preventDefault()
 
     key = e.currentTarget.dataset.section

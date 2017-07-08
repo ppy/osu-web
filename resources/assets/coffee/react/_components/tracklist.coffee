@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, table, thead, tbody, tr, th} = React.DOM
+{div, table, thead, tbody, tr, th} = ReactDOMFactories
 el = React.createElement
 
 class @Tracklist extends React.Component

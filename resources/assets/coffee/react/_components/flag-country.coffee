@@ -17,7 +17,7 @@
 ###
 
 el = React.createElement
-{span} = React.DOM
+{span} = ReactDOMFactories
 
 bn = 'flag-country'
 

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, br, strong, h1, h4, h5} = React.DOM
+{div, span, br, strong, h1, h4, h5} = ReactDOMFactories
 el = React.createElement
 
 class @Status.Page extends React.Component

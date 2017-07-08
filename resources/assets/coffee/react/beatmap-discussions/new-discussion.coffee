@@ -16,30 +16,28 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, p, span, textarea} = React.DOM
+{button, div, input, p, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
 
-BeatmapDiscussions.NewDiscussion = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class BeatmapDiscussions.NewDiscussion extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-
-  getInitialState: ->
-    message: ''
-    timestamp: null
-
-
-  componentDidMount: ->
     @throttledPost = _.throttle @post, 1000
 
+    @state =
+      message: ''
+      timestamp: null
 
-  componentWillUnmount: ->
+
+  componentWillUnmount: =>
     @postXhr?.abort()
     @throttledPost.cancel()
 
 
-  render: ->
+  render: =>
     div
       className: 'osu-page osu-page--small'
       div
@@ -91,18 +89,18 @@ BeatmapDiscussions.NewDiscussion = React.createClass
                   onClick: @post
 
 
-  setTimestamp: (e) ->
+  setTimestamp: (e) =>
     @setState timestamp: e.currentTarget.value
 
 
-  setMessage: (e) ->
+  setMessage: (e) =>
     if @props.mode == 'timeline'
       callback = @parseTimestamp
 
     @setState message: e.currentTarget.value, callback
 
 
-  post: (e) ->
+  post: (e) =>
     return unless @validPost()
 
     @postXhr?.abort()
@@ -143,7 +141,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
     .always LoadingOverlay.hide
 
 
-  submitButton: (type) ->
+  submitButton: (type) =>
     el BigButton,
       key: type
       modifiers: ['beatmap-discussion']
@@ -155,7 +153,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
         onClick: @post
 
 
-  validPost: ->
+  validPost: =>
     return false if @state.message.length == 0
 
     if @props.mode == 'timeline'
@@ -164,7 +162,7 @@ BeatmapDiscussions.NewDiscussion = React.createClass
       true
 
 
-  parseTimestamp: ->
+  parseTimestamp: =>
     timestampRe = @state.message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
 
     @setState timestamp:

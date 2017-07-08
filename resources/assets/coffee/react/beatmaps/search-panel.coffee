@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,input,h1,h2} = React.DOM
+{div,a,i,input,h1,h2} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchPanel extends React.PureComponent

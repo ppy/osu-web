@@ -19,4 +19,4 @@
 @Img2x = (props) ->
   allProps = _.extend osu.src2x(props.src), props
 
-  React.DOM.img allProps, props.children
+  ReactDOMFactories.img allProps, props.children

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, h5} = React.DOM
+{div, h1, h5} = ReactDOMFactories
 el = React.createElement
 
 class Status.Uptime extends React.Component
