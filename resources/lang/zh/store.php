@@ -28,8 +28,13 @@ return [
         'delayed_shipping' => '我们欢迎您下单,但是我们正在处理大量的订单,所以您的订单可能会有1-2天的延迟.',
     ],
 
+    'discount' => '节省 :percent%',
+
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name for :username (:duration)',
+            ],
             'quantity' => '数量',
         ],
     ],
@@ -49,5 +54,19 @@ return [
         'notification_remove_text' => '这里',
 
         'notification_in_stock' => '这件商品已经进货!',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => '你需要 :link 以获得 supporter 标签!',
+            'link_text' => '登录',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => '你需要 :link 才能改变你的用户名!',
+            'link_text' => '登录',
+        ],
     ],
 ];

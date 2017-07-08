@@ -42,7 +42,7 @@ return [
     'device' => [
         'keyboard' => '键盘',
         'mouse' => '鼠标',
-        'tablet' => '数位板', //板子
+        'tablet' => '数位板',
         'touch' => '触摸屏',
     ],
 
