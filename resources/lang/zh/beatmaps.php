@@ -69,12 +69,13 @@ return [
 
         'mode' => [
             'general' => 'General', //不好翻译
+            'general_all' => 'General (all difficulties)', //不好翻译
             'timeline' => '时间线',
         ],
 
         'new' => [
             'timestamp' => '时间戳',
-            'timestamp_missing' => '在编辑模式下按Ctrl+C然后在您的信息中粘贴以添加时间戳!',
+            'timestamp_missing' => '在编辑模式下按 Ctrl+C 然后在您的信息中粘贴以添加时间戳!',
             'title' => '新的讨论',
         ],
 
@@ -112,6 +113,14 @@ return [
             'options' => '更多搜索选项',
             'not-found' => '没有结果',
             'not-found-quote' => '... 呃,什么也没有.',
+            'filters' => [
+                'mode' => '模式',
+                'status' => 'Rank 状态',
+                'genre' => '流派',
+                'language' => '语言',
+                'extra' => '额外',
+                'rank' => '已 Rank',
+            ],
         ],
         'mode' => '模式',
         'status' => 'Rank 状态',
@@ -130,8 +139,8 @@ return [
         'any' => '任意',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
-        'loved' => '喜欢',
-        'faves' => '收藏',
+        'loved' => 'Loved',
+        'faves' => 'Favourites',
         'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
@@ -139,7 +148,7 @@ return [
     ],
     'genre' => [ //不翻译
         'any' => '任意',
-        'unspecified' => 'Unspecified',
+        'unspecified' => '未指定',
         'video-game' => 'Video Game',
         'anime' => 'Anime',
         'rock' => 'Rock',

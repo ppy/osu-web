@@ -16,28 +16,28 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div} = React.DOM
+{a, div} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-list'
 
-BeatmapDiscussions.BeatmapList = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class BeatmapDiscussions.BeatmapList extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @state =
+      showingSelector: false
 
 
-  getInitialState: ->
-    showingSelector: false
-
-
-  componentDidMount: ->
+  componentDidMount: =>
     $(document).on 'click.beatmapList', @hideSelector
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $(document).off '.beatmapList'
 
 
-  render: ->
+  render: =>
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
       a
@@ -51,7 +51,7 @@ BeatmapDiscussions.BeatmapList = React.createClass
         @props.beatmaps.map @beatmapListItem
 
 
-  beatmapListItem: (beatmap) ->
+  beatmapListItem: (beatmap) =>
     menuItemClasses = "#{bn}__item"
     menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
 
@@ -64,14 +64,14 @@ BeatmapDiscussions.BeatmapList = React.createClass
       el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
 
 
-  hideSelector: (e) ->
+  hideSelector: (e) =>
     return unless @state.showingSelector
     return if $(e.target).closest('.js-beatmap-list-selector').length
 
     @setSelector false
 
 
-  setSelector: (state) ->
+  setSelector: (state) =>
     return if @state.showingSelector == state
 
     Blackout.toggle(state)
@@ -79,13 +79,13 @@ BeatmapDiscussions.BeatmapList = React.createClass
     @setState showingSelector: state
 
 
-  selectBeatmap: (e) ->
+  selectBeatmap: (e) =>
     e.preventDefault()
 
     $.publish 'beatmap:select', id: parseInt(e.currentTarget.dataset.id, 10)
 
 
-  toggleSelector: (e) ->
+  toggleSelector: (e) =>
     e.preventDefault()
 
     @setSelector !@state.showingSelector

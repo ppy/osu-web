@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, li, p, ul} = React.DOM
+{div, li, p, ul} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.RecentActivities extends React.PureComponent

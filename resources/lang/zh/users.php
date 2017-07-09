@@ -27,12 +27,13 @@ return [
         'username' => '用户名',
         'password' => '密码',
         'button' => '登录',
+        'button_posting' => '登录中...',
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
         'register' => '没有 osu! 账户? 现在注册一个吧',
         'forgot' => '忘记密码?',
-        'beta' => [ //TODO 需要上下文
+        'beta' => [ //已弃用(?)
             'main' => 'Beta access is currently restricted to privileged users.',
             'small' => '(supporters will get in soon)',
         ],
@@ -52,13 +53,13 @@ return [
         '404' => '找不到指定的用户',
         'age' => ':age 岁',
         'current_location' => '现在在 :location',
-        'first_members' => 'here since the beginning', //TODO 需要上下文
+        'first_members' => 'Here since the beginning', //TODO 需要上下文
         'is_developer' => 'osu!开发者',
         'is_supporter' => 'osu!支持者',
         'joined_at' => '注册时间: :date',
         'lastvisit' => '上次登录: :date',
         'missingtext' => '您可能输错了! (或者该用户已经被ban)',
-        'origin_age' => ':age',
+        'origin_age' => ':age 岁',
         'origin_country' => '来自 :country',
         'origin_country_age' => ':age,来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
@@ -162,7 +163,7 @@ return [
                     'title' => '第一名',
                 ],
                 'pp' => ':amountpp',
-                'title' => '排位',
+                'title' => '表现',
                 'weighted_pp' => '权重: :pp (:percentage)',
             ],
             'beatmaps' => [

@@ -16,38 +16,39 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = React.DOM
+{a, button, div, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-BeatmapDiscussions.Post = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  getInitialState: ->
-    editing: false
-    message: @props.post.message
-
-
-  componentDidMount: ->
-    osu.pageChange()
+class BeatmapDiscussions.Post extends React.PureComponent
+  constructor: (props) ->
+    super props
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @xhr = {}
 
+    @state =
+      editing: false
+      message: @props.post.message
 
-  componentDidUpdate: ->
+
+  componentDidMount: =>
     osu.pageChange()
 
 
-  componentWillUnmount: ->
+  componentDidUpdate: =>
+    osu.pageChange()
+
+
+  componentWillUnmount: =>
     @throttledUpdatePost.cancel()
+
     for own _id, xhr of @xhr
       xhr?.abort()
 
 
-  render: ->
+  render: =>
     topClasses = "#{bn} #{bn}--#{@props.type}"
     if @state.editing
       topClasses += " #{bn}--editing"
@@ -68,7 +69,7 @@ BeatmapDiscussions.Post = React.createClass
         @messageEditor()
 
 
-  addEditorLink: (message) ->
+  addEditorLink: (message) =>
     _.chain message
       .escape()
       .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
@@ -76,18 +77,18 @@ BeatmapDiscussions.Post = React.createClass
       .value()
 
 
-  messageInput: (e) ->
+  messageInput: (e) =>
     @setState message: e.target.value
 
 
-  submitIfEnter: (e) ->
+  submitIfEnter: (e) =>
     return if e.keyCode != 13
 
     e.preventDefault()
     @throttledUpdatePost()
 
 
-  updatePost: ->
+  updatePost: =>
     return if @state.message == @props.post.message
 
     LoadingOverlay.show()
@@ -108,16 +109,16 @@ BeatmapDiscussions.Post = React.createClass
     .always LoadingOverlay.hide
 
 
-  editStart: ->
+  editStart: =>
     @setState editing: true, =>
       @refs.textarea.focus()
 
 
-  editEnd: ->
+  editEnd: =>
     @setState editing: false
 
 
-  messageViewer: ->
+  messageViewer: =>
     [controller, key, deleteModel] =
       if @props.type == 'reply'
         ['beatmap-discussion-posts', 'beatmap_discussion_post', @props.post]
@@ -217,7 +218,7 @@ BeatmapDiscussions.Post = React.createClass
 
 
 
-  messageEditor: ->
+  messageEditor: =>
     return if !@props.canBeEdited
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
@@ -243,5 +244,5 @@ BeatmapDiscussions.Post = React.createClass
               props: onClick: @throttledUpdatePost
 
 
-  permalink: (e) ->
+  permalink: (e) =>
     e.preventDefault()

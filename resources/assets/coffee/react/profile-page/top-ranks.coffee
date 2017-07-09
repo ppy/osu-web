@@ -16,24 +16,19 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3, ul, li, a, p, pre, span} = React.DOM
+{div, h2, h3, ul, li, a, p, pre, span} = ReactDOMFactories
 el = React.createElement
 
-ProfilePage.TopRanks = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class ProfilePage.TopRanks extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
-    showingBest: 5
-    showingFirst: 5
-
-
-  _showMore: (key, e) ->
-      e.preventDefault()
-
-      @setState "#{key}": (@state[key] + 5)
+    @state =
+      showingBest: 5
+      showingFirst: 5
 
 
-  render: ->
+  render: =>
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
@@ -46,7 +41,11 @@ ProfilePage.TopRanks = React.createClass
               el PlayDetail, key: i, score: score, shown: i <  @state.showingBest
             if @state.showingBest < @props.scoresBest.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_showMore.bind(@, 'showingBest'), osu.trans('common.buttons.show_more')
+                a
+                  href: '#'
+                  'data-show-more': 'showingBest'
+                  onClick: @_showMore
+                  osu.trans('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
@@ -58,6 +57,17 @@ ProfilePage.TopRanks = React.createClass
               el PlayDetail, key: i, score: score, shown: i < @state.showingFirst
             if @state.showingFirst < @props.scoresFirst.length
               li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
-                a href: '#', onClick: @_showMore.bind(@, 'showingFirst'), osu.trans('common.buttons.show_more')
+                a
+                  href: '#'
+                  'data-show-more': 'showingFirst'
+                  onClick: @_showMore
+                  osu.trans('common.buttons.show_more')
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
+
+
+  _showMore: (e) =>
+      e.preventDefault()
+
+      key = e.currentTarget.dataset.showMore
+      @setState "#{key}": (@state[key] + 5)

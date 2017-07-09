@@ -16,23 +16,81 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h2, h3, img, p, small, span} = React.DOM
+{a, div, h2, h3, img, p, small, span} = ReactDOMFactories
 el = React.createElement
 
-ProfilePage.Historical = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class ProfilePage.Historical extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-  getInitialState: ->
-    showingPlaycounts: 5
-    showingRecent: 5
-
-  _showMore: (key, e) ->
-    e.preventDefault() if e
-
-    @setState "#{key}": (@state[key] + 5)
+    @state =
+      showingPlaycounts: 5
+      showingRecent: 5
 
 
-  _beatmapRow: (bm, bmset, key, shown, details = []) ->
+  render: =>
+    div
+      className: 'page-extra'
+
+      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+
+      h3
+        className: 'page-extra__title page-extra__title--small'
+        osu.trans('users.show.extra.historical.most_played.title')
+
+      if @props.beatmapPlaycounts.length
+        [
+          @props.beatmapPlaycounts.map (pc, i) =>
+            @_beatmapRow pc.beatmap, pc.beatmapset, i, i < @state.showingPlaycounts, [
+              [
+                span
+                  key: 'name'
+                  className: 'beatmapset-row__info'
+                  osu.trans('users.show.extra.historical.most_played.count')
+                span
+                  key: 'value'
+                  className: 'beatmapset-row__info beatmapset-row__info--large'
+                  " #{pc.count.toLocaleString()}"
+              ]
+            ]
+
+          if @props.beatmapPlaycounts.length > @state.showingPlaycounts
+            a
+              key: 'more'
+              href: '#'
+              className: 'beatmapset-row beatmapset-row--more'
+              'data-show-more': 'showingPlaycounts'
+              onClick: @_showMore
+              osu.trans('common.buttons.show_more')
+        ]
+
+      else
+        p null, osu.trans('users.show.extra.historical.empty')
+
+      h3
+        className: 'page-extra__title page-extra__title--small'
+        osu.trans('users.show.extra.historical.recent_plays.title')
+
+      if @props.scores.length
+        [
+          @props.scores.map (score, i) =>
+            el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
+
+          if @props.scores.length > @state.showingRecent
+            a
+              key: 'more'
+              href: '#'
+              className: 'beatmapset-row beatmapset-row--more'
+              'data-show-more': 'showingRecent'
+              onClick: @_showMore
+              osu.trans('common.buttons.show_more')
+        ]
+
+      else
+        p null, osu.trans('users.show.extra.historical.empty')
+
+
+  _beatmapRow: (bm, bmset, key, shown, details = []) =>
     topClasses = 'beatmapset-row'
     topClasses += ' hidden' unless shown
 
@@ -74,61 +132,10 @@ ProfilePage.Historical = React.createClass
             className: 'beatmapset-row__detail-column'
             details[1]
 
-  render: ->
-    div
-      className: 'page-extra'
 
-      el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+  _showMore: (e) =>
+    e.preventDefault()
 
-      h3
-        className: 'page-extra__title page-extra__title--small'
-        osu.trans('users.show.extra.historical.most_played.title')
+    key = e.currentTarget.dataset.showMore
 
-      if @props.beatmapPlaycounts.length
-        [
-          @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap, pc.beatmapset, i, i < @state.showingPlaycounts, [
-              [
-                span
-                  key: 'name'
-                  className: 'beatmapset-row__info'
-                  osu.trans('users.show.extra.historical.most_played.count')
-                span
-                  key: 'value'
-                  className: 'beatmapset-row__info beatmapset-row__info--large'
-                  " #{pc.count.toLocaleString()}"
-              ]
-            ]
-
-          if @props.beatmapPlaycounts.length > @state.showingPlaycounts
-            a
-              key: 'more'
-              href: '#'
-              className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'showingPlaycounts')
-              osu.trans('common.buttons.show_more')
-        ]
-
-      else
-        p null, osu.trans('users.show.extra.historical.empty')
-
-      h3
-        className: 'page-extra__title page-extra__title--small'
-        osu.trans('users.show.extra.historical.recent_plays.title')
-
-      if @props.scores.length
-        [
-          @props.scores.map (score, i) =>
-            el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
-
-          if @props.scores.length > @state.showingRecent
-            a
-              key: 'more'
-              href: '#'
-              className: 'beatmapset-row beatmapset-row--more'
-              onClick: @_showMore.bind(@, 'showingRecent')
-              osu.trans('common.buttons.show_more')
-        ]
-
-      else
-        p null, osu.trans('users.show.extra.historical.empty')
+    @setState "#{key}": (@state[key] + 5)

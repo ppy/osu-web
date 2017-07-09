@@ -16,26 +16,22 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = React.DOM
+{div} = ReactDOMFactories
 
 bn = 'avatar'
 
-@UserAvatar = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+@UserAvatar = (props) ->
+  modifiers = props
+    .modifiers
+    .map (m) => "#{bn}--#{m}"
+    .join ' '
 
+  className = "#{bn} #{modifiers}"
 
-  render: ->
-    modifiers = @props
-      .modifiers
-      .map (m) => "#{bn}--#{m}"
-      .join ' '
-
-    className = "#{bn} #{modifiers}"
-
-    if @props.user.id?
-      div
-        className: className
-        style:
-          backgroundImage: "url('#{@props.user.avatar_url}')"
-    else
-      div className: "#{className} #{bn}--guest"
+  if props.user.id?
+    div
+      className: className
+      style:
+        backgroundImage: "url('#{props.user.avatar_url}')"
+  else
+    div className: "#{className} #{bn}--guest"

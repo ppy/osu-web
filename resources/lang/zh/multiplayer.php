@@ -42,7 +42,7 @@ return [
             'match-disbanded-no-user' => '游戏已经解散',   //需要协助
             'host-changed-no-user' => '房主已经变更',      //----------
         ],
-        'in-progress' => '(match in progress)',
+        'in-progress' => '(match in progress)', //TODO
         'score' => [
             'stats' => [
                 'accuracy' => '准确率',
