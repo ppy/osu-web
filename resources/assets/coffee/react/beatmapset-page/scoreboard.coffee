@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, p} = React.DOM
+{div, h2, p} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Scoreboard extends React.Component

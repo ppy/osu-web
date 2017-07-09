@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,span,i} = React.DOM
+{div,a,span,i} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.Paginator extends React.PureComponent

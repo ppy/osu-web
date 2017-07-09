@@ -67,8 +67,8 @@ return [
         ],
         'info' => [
             'no_scores' => 'Unranked 谱面',
-            'success-rate' => '成功率',
             'points-of-failure' => '失败位置',
+            'success-rate' => '成功率',
 
             'description' => '介绍',
 
@@ -95,6 +95,7 @@ return [
                 'friend' => '您的好友中还没有人在这张谱面上得分!',
                 'global' => '还没有人在这张谱面上得分,您或许可以试一试?',
                 'loading' => '加载分数中...',
+                'unranked' => 'Unranked谱面.',
             ],
             'score' => [
                 'first' => '领先者',

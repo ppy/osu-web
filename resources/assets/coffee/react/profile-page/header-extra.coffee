@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span} = React.DOM
+{a, div, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'profile-header-extra'

@@ -59,8 +59,8 @@ return [
             ],
 
             'upload_more' => [ //TODO 需要帮助
-                'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
+                'title' => '上传更多谱面',
+                'description' => '每个 Ranked 谱面集的 Pending 谱面上限增加到10张.',
             ],
 
             'early_access' => [
@@ -109,8 +109,8 @@ return [
             ],
 
             'feel_special' => [ //TODO 需要帮助
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+                'title' => '感到自豪',
+                'description' => '感到捐赠带来的自豪感!',
             ],
 
             'more_to_come' => [

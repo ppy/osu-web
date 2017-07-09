@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a, span} = React.DOM
+{div, a, span} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchSort extends React.PureComponent

@@ -55,7 +55,7 @@ return [
             'edit' => '编辑回复',
         ],
     ],
-    'search' => [ //相关内容似乎尚未完成 17.02.05
+    'search' => [ //搜索功能已经完成 17.06.25, 但是没有在搜索中看见字段使用
         'go_to_post' => 'Go to post',
         'post_number_input' => 'enter post number',
         'total_posts' => ':posts_count posts total',

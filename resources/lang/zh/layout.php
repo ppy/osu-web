@@ -30,11 +30,12 @@ return [
             'getChangelog' => '更新日志',
             'getDownload' => '下载',
             'getIcons' => '图标',
-            'getNews' => '新闻',
             'index' => 'osu!',
+            'legal-show' => '信息',
             'news-index' => '新闻',
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
+            'search' => '搜索',
             'supportTheGame' => '支持osu!',
         ],
         'help' => [
@@ -61,6 +62,7 @@ return [
             'index' => '表现',
             'performance' => '表现',
             'charts' => 'charts',
+            'score' => '得分',
             'country' => '国家',
             'kudosu' => 'kudosu', //mapping相关，暂时不翻译
         ],
@@ -246,5 +248,6 @@ return [
 
     'popup_search' => [
         'initial' => '输入以搜索!',
+        'retry' => '搜索失败. 点击以重试.',
     ],
 ];

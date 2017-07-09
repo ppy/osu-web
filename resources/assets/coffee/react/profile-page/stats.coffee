@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{br, dd, div, dl, dt, span} = React.DOM
+{br, dd, div, dl, dt, span} = ReactDOMFactories
 el = React.createElement
 
 

@@ -589,7 +589,7 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
+    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
         $curl = curl_init($url);
         curl_setopt_array($curl, [
             CURLOPT_HTTPHEADER => [
@@ -602,8 +602,18 @@ function fast_imagesize($url)
         $data = curl_exec($curl);
         curl_close($curl);
 
-        return read_image_properties_from_string($data);
+        $result = read_image_properties_from_string($data);
+
+        if ($result === null) {
+            return false;
+        } else {
+            return $result;
+        }
     });
+
+    if ($result !== false) {
+        return $result;
+    }
 }
 
 function get_arr($input, $callback)

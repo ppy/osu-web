@@ -20,7 +20,7 @@
 
 return [
     'header' => [
-        'title' => 'status',
+        'title' => '状态',
         'description' => 'whats going on mah dude?',
     ],
 
@@ -34,8 +34,8 @@ return [
             'users' => 'Online Users in the last 24 Hours',
             'score' => 'Score Submissions in the last 24 Hours',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => '当前在线用户',
+        'score' => '每秒提交得分量',
     ],
 
     'recent' => [
@@ -61,8 +61,8 @@ return [
             'week' => 'week',
             'month' => 'month',
             'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'last_week' => '上周',
+            'weeks_ago' => ':count 周前',
         ],
     ],
 ];
