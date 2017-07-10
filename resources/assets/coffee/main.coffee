@@ -19,6 +19,7 @@
 @polyfills ?= new Polyfills
 Lang.setLocale(currentLocale)
 Lang.setFallback(fallbackLocale)
+jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
 # fired from turbolinks
@@ -98,8 +99,6 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
-
-jQuery.timeago.settings.allowFuture = true
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->
