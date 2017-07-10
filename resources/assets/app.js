@@ -10,6 +10,7 @@ import './coffee/osu_common.coffee';
 import './coffee/navbar-mobile.coffee';
 import './coffee/spoilerbox.coffee';
 import './coffee/store.coffee';
+import './coffee/store-username-change.coffee';
 import './coffee/forum/post-box.coffee';
 import './coffee/forum/topic-ajax.coffee';
 import './coffee/ujs-common.coffee';
