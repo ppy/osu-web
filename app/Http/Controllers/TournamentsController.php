@@ -60,7 +60,7 @@ class TournamentsController extends Controller
 
         $tournament->unregister(Auth::user());
 
-        return ujs_redirect("/tournaments/$id");
+        return ujs_redirect(route('tournaments.show', $tournament));
     }
 
     public function register($id)
@@ -78,6 +78,6 @@ class TournamentsController extends Controller
 
         $tournament->register($user);
 
-        return ujs_redirect("/tournaments/$id");
+        return ujs_redirect(route('tournaments.show', $tournament));
     }
 }
