@@ -68,7 +68,7 @@ class Page
             ];
         }
 
-        $matchParams[] = ['query_string' => ['query' => $params['query']]];
+        $matchParams[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
 
         $searchParams['body']['query']['bool']['must'] = $matchParams;
 
@@ -107,7 +107,7 @@ class Page
 
     public static function searchParams($params)
     {
-        $params['query'] = es_query_and_words($params['query'] ?? null);
+        $params['query'] = presence($params['query'] ?? null);
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
         $params['locale'] = $params['locale'] ?? null;
