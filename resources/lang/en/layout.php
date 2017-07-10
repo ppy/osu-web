@@ -35,7 +35,7 @@ return [
             'news-index' => 'news',
             'news-show' => 'news',
             'password-reset-index' => 'reset password',
-            'search' => 'Search',
+            'search' => 'search',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
