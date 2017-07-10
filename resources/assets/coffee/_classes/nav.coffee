@@ -20,7 +20,7 @@ class @Nav
   constructor: ->
     $(document).on 'mouseenter', '.js-nav-popup', @showPopup
     $(document).on 'mouseleave', '.js-nav-popup', @gracefulHidePopup
-    $(document).on 'click', @hidePopupOnClick
+    $(document).on 'click', @hidePopup
 
     $(document).on 'click', '.js-nav-toggle', @toggleMenu
     $(document).on 'click', '.js-nav-switch', @switchMode
