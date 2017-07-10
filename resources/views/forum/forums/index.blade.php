@@ -27,7 +27,7 @@
         <div class="osu-page-header osu-page-header--forum-index">
             <div class="osu-page-header__title-box">
                 <h2 class="osu-page-header__title osu-page-header__title--small">
-                    it's dangerous to play alone.
+                    {{ trans("forum.slogan") }}
                 </h2>
 
                 <h1 class="osu-page-header__title">

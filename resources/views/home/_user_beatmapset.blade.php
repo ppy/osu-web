@@ -26,9 +26,9 @@
         <div class='user-home-beatmapset__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
         <div class='user-home-beatmapset__creator u-ellipsis-overflow'>
             @if ($type === 'new')
-                by {{$beatmapset->creator}}, <span class='user-home-beatmapset__playcount'>{!! timeago($beatmapset->approved_date) !!}</span>
+                {{ trans('home.user.beatmaps.by') }} {{$beatmapset->creator}}, <span class='user-home-beatmapset__playcount'>{!! timeago($beatmapset->approved_date) !!}</span>
             @elseif ($type === 'popular')
-                by {{$beatmapset->creator}}, <span class='user-home-beatmapset__playcount'>{{number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])}} plays</span>
+                {{ trans('home.user.beatmaps.by') }} {{$beatmapset->creator}}, <span class='user-home-beatmapset__playcount'>{{ trans('home.user.beatmaps.plays', ['count' => number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])]) }}</span>
             @endif
         </div>
     </div>
