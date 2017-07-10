@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h3, span} = React.DOM
+{a, div, h3, span} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Info extends React.Component

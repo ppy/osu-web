@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,i} = React.DOM
+{div,i} = ReactDOMFactories
 el = React.createElement
 
 class Contest.Voting.VoteSummary extends React.Component

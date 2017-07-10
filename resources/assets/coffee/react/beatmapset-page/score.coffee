@@ -16,43 +16,40 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, a} = React.DOM
+{div, a} = ReactDOMFactories
 el = React.createElement
 
-BeatmapsetPage.Score = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+BeatmapsetPage.Score = (props) ->
+  hits = Hits.generate score: props.score, playmode: props.playmode
 
-  render: ->
-    hits = Hits.generate score: @props.score, playmode: @props.playmode
+  div className: 'beatmapset-score',
+    div className: 'beatmapset-score__element beatmapset-score__element--position',
+      "##{props.position}"
 
-    div className: 'beatmapset-score',
-      div className: 'beatmapset-score__element beatmapset-score__element--position',
-        "##{@props.position}"
+    div className: 'beatmapset-score__element beatmapset-score__element--flag',
+      if props.score.user.country_code
+        el FlagCountry,
+          country: props.countries[props.score.user.country_code]
+          classModifiers: ['scoreboard']
 
-      div className: 'beatmapset-score__element beatmapset-score__element--flag',
-        if @props.score.user.country_code
-          el FlagCountry,
-            country: @props.countries[@props.score.user.country_code]
-            classModifiers: ['scoreboard']
+    div className: 'beatmapset-score__element beatmapset-score__element--player',
+      a
+        href: laroute.route 'users.show', user: props.score.user.id
+        props.score.user.username
 
-      div className: 'beatmapset-score__element beatmapset-score__element--player',
-        a
-          href: laroute.route 'users.show', user: @props.score.user.id
-          @props.score.user.username
+    div className: 'beatmapset-score__element beatmapset-score__element--mods',
+      el Mods,
+        mods: props.score.mods
+        modifiers: ['small', 'reversed']
 
-      div className: 'beatmapset-score__element beatmapset-score__element--mods',
-        el Mods,
-          mods: @props.score.mods
-          modifiers: ['small', 'reversed']
+    div className: 'beatmapset-score__element beatmapset-score__element--rank',
+      div className: "badge-rank badge-rank--#{props.score.rank}"
 
-      div className: 'beatmapset-score__element beatmapset-score__element--rank',
-        div className: "badge-rank badge-rank--#{@props.score.rank}"
+    div className: 'beatmapset-score__stat beatmapset-score__stat--score',
+      props.score.score.toLocaleString()
 
-      div className: 'beatmapset-score__stat beatmapset-score__stat--score',
-        @props.score.score.toLocaleString()
+    div className: 'beatmapset-score__stat beatmapset-score__stat--accuracy hidden-xs',
+      "#{_.round props.score.accuracy * 100, 2}%"
 
-      div className: 'beatmapset-score__stat beatmapset-score__stat--accuracy hidden-xs',
-        "#{_.round @props.score.accuracy * 100, 2}%"
-
-      div className: 'beatmapset-score__stat beatmapset-score__stat--hits hidden-xs',
-        hits.values
+    div className: 'beatmapset-score__stat beatmapset-score__stat--hits hidden-xs',
+      hits.values

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, li, span, ul} = React.DOM
+{a, li, span, ul} = ReactDOMFactories
 
 class @PlaymodeTabs extends React.Component
   render: =>

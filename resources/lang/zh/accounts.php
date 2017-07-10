@@ -71,4 +71,12 @@ return [
         'update' => '更新',
         'updated' => '密码已更新',
     ],
+
+    'playstyles' => [
+        'title' => '游戏风格',
+        'mouse' => '鼠标',
+        'keyboard' => '键盘',
+        'tablet' => '数位板',
+        'touch' => '触摸屏',
+    ],
 ];

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{form, input} = React.DOM
+{form, input} = ReactDOMFactories
 el = React.createElement
 
 
