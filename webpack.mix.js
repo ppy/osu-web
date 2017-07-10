@@ -30,8 +30,7 @@ if (mix.inProduction()) {
 // relative from root?
 const node_root = 'node_modules';
 
-mix
-.webpackConfig({
+let webpackConfig = {
   resolve: {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
@@ -51,7 +50,17 @@ mix
       }
     ]
   }
-})
+};
+
+// use polling if watcher is bugged.
+if (process.env.WEBPACK_POLL == 1) {
+  webpackConfig['watchOptions'] = {
+    poll: true
+  };
+}
+
+mix
+.webpackConfig(webpackConfig)
 .js([
   'resources/assets/app.js'
 ], 'js/app.js')
