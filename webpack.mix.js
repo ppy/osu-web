@@ -34,7 +34,7 @@ mix
 .webpackConfig({
   resolve: {
     modules: [
-      path.resolve('./resources/assets/coffee'),
+      path.resolve(__dirname, 'resources/assets/coffee'),
     ]
   },
   module: {
