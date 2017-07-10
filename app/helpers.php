@@ -398,7 +398,7 @@ function nav_links()
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),
         'getFaq' => wiki_url('FAQ'),
-        'getSupport' => osu_url('help.support'),
+        'getSupport' => wiki_url('Help_Center'),
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
