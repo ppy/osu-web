@@ -51,8 +51,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'пред',
-        'next' => 'след',
+        'previous' => 'назад',
+        'next' => 'вперёд',
     ],
 
     'score_count' => [
