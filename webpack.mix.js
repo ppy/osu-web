@@ -56,23 +56,23 @@ mix
 ], 'js/react/profile-page.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/beatmaps/*.coffee'),
-  'resources/assets/coffee/react/beatmaps.coffee'
+  'resources/assets/coffee/react/beatmaps.coffee',
 ], 'js/react/beatmaps.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/status-page/*.coffee'),
-  'resources/assets/coffee/react/status-page.coffee'
+  'resources/assets/coffee/react/status-page.coffee',
 ], 'js/react/status-page.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/beatmap-discussions/*.coffee'),
-  'resources/assets/coffee/react/beatmap-discussions.coffee'
+  'resources/assets/coffee/react/beatmap-discussions.coffee',
 ], 'js/react/beatmap-discussions.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/beatmapset-page/*.coffee'),
-  'resources/assets/coffee/react/beatmapset-page.coffee'
+  'resources/assets/coffee/react/beatmapset-page.coffee',
 ], 'js/react/beatmapset-page.js')
 .js([
   ...glob.sync('resources/assets/coffee/react/mp-history/*.coffee'),
-  'resources/assets/coffee/react/mp-history.coffee'
+  'resources/assets/coffee/react/mp-history.coffee',
 ], 'js/react/mp-history.js')
 .js([
   'resources/assets/coffee/react/artist-page.coffee',
