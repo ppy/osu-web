@@ -56,7 +56,7 @@ $(document).on 'turbolinks:load', ->
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
-@reactTurbolinks ||= new ReactTurbolinks
+@reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
 @search ?= new Search
