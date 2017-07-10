@@ -32,6 +32,11 @@ const node_root = 'node_modules';
 
 mix
 .webpackConfig({
+  resolve: {
+    modules: [
+      path.resolve('./resources/assets/coffee'),
+    ]
+  },
   module: {
     rules: [
       {
