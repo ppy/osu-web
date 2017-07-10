@@ -59,6 +59,7 @@ $(document).on 'turbolinks:load', ->
 @reactTurbolinks ||= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
+@search ?= new Search
 @stickyFooter ?= new StickyFooter
 @stickyHeader ?= new StickyHeader
 @syncHeight ?= new SyncHeight
