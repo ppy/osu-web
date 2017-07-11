@@ -108,11 +108,8 @@ class @BeatmapDiscussionsChart
       .append 'a'
       .attr 'xlink:href', (d) =>
         BeatmapDiscussionHelper.hash discussionId: d.id
-      .attr 'class', (d) =>
-        "#{bn}__point #{bn}__point--#{d.message_type}"
-      .on 'click', (d) =>
-        d3.event.preventDefault()
-        $.publish 'beatmapDiscussion:jump', id: d.id
+      .attr 'class', (d) ->
+        "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{d.message_type}"
 
     @svgPointsEnter
       .append 'line'

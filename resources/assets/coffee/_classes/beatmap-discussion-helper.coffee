@@ -38,8 +38,15 @@ class @BeatmapDiscussionHelper
 
 
   # see @hash
-  @hashParse: =>
-    hash = document.location.hash[1..]
+  @hashParse: (url = document.location.href) ->
+    hashStart = url.indexOf('#')
+
+    hash =
+      if hashStart == -1
+        ''
+      else
+        url.substr(hashStart + 1)
+
     id = parseInt(hash[1..], 10)
 
     if hash[0] == '/'

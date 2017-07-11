@@ -58,6 +58,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $.subscribe 'beatmapDiscussion:filter.beatmapDiscussions', @setFilter
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
+    $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
 
     @jumpByHash()
     @checkNewTimeout = Timeout.set @checkNewTimeoutDefault, @checkNew
@@ -216,6 +217,15 @@ class BeatmapDiscussions.Main extends React.PureComponent
           target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
           $(window).stop().scrollTo target, 500,
             offset: modeSwitcher[0].getBoundingClientRect().height * -1
+
+
+  jumpToClick: (e) =>
+    e.preventDefault()
+    url = e.currentTarget.getAttribute('href')
+
+    id = BeatmapDiscussionHelper.hashParse(url).discussionId
+
+    @jumpTo null, {id}
 
 
   markPostRead: (_e, {id}) =>
