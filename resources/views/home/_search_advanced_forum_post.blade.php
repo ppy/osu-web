@@ -35,7 +35,7 @@
 
         <select
             name="forum_id"
-            class="search-advanced-forum-post__input search-advanced-forum-post__input--dropdown"
+            class="search-advanced-forum-post__input"
         >
             <option value="">
                 {{ trans('home.search.forum_post.all') }}
@@ -55,6 +55,10 @@
                 </option>
             @endforeach
         </select>
+
+        <div class="search-advanced-forum-post__dropdown-arrow">
+            <span class="fa fa-chevron-down"></span>
+        </div>
     </label>
 
     <span class="search-advanced-forum-post__input-group">

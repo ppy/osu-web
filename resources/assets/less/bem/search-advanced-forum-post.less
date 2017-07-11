@@ -19,6 +19,18 @@
 .search-advanced-forum-post {
   margin: -10px 0;
   padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+
+  &__dropdown-arrow {
+    .center-content();
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    pointer-events: none;
+  }
 
   &__input {
     .reset-input();
@@ -37,8 +49,7 @@
 
   &__input-group {
     display: block;
-    margin: 0 auto;
-    padding: 10px;
+    margin: 10px auto;
     width: 100%;
 
     // reset global label style
@@ -69,7 +80,8 @@
       position: absolute;
       display: flex;
       align-items: center;
-      margin: 0;
+      margin-right: 10px;
+      margin-bottom: 0;
       top: 0;
       right: 100%;
       height: 100%;
