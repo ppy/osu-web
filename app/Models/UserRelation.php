@@ -46,7 +46,7 @@ class UserRelation extends Model
                 ), 0)';
 
         if (count(config('osu.user.super_friendly') > 0)) {
-            $friendlyIds = join(',', config('osu.user.super_friendly'));
+            $friendlyIds = implode(',', config('osu.user.super_friendly'));
             $raw = DB::raw(
                 "CASE WHEN phpbb_zebra.zebra_id IN ({$friendlyIds})
                     THEN 1
