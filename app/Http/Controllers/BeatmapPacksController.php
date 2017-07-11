@@ -30,8 +30,12 @@ class BeatmapPacksController extends Controller
 
     public function index()
     {
-        // array("S", "T", "A", "R")
-        $packs = BeatmapPack::where('tag', 'like', 'S%')->get();
+        $type = presence(strtoupper(Request::input('t'))) ?? 'S';
+        if (!in_array($type, ['S', 'T', 'A', 'R'], true)) {
+            abort(404);
+        }
+
+        $packs = BeatmapPack::where('tag', 'like', "{$type}%")->get();
         return view('beatmappacks.index')
             ->with('packs', $packs);
     }

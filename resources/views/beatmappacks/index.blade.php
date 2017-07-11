@@ -24,6 +24,12 @@
 
 @section("content")
   <div class="beatmap-packs">
+    <ul class="beatmap-packs__filters">
+      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
+      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
+      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
+      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
+    </ul>
     @foreach ($packs as $pack)
       <div class="js-beatmap-pack beatmap-pack" data-pack-id="{{ $pack['pack_id'] }}">
         <a class="js-beatmap-pack-link beatmap-pack__link" data-pack-id="{{ $pack['pack_id'] }}"
