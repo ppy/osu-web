@@ -47,6 +47,14 @@
 
   &--reversed {
     flex-direction: row-reverse;
+
+    @media @mobile{
+      flex-direction: row;
+
+      &:empty {
+        display: none;
+      }
+    }
   }
 
   &__mod {

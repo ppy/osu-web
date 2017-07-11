@@ -33,6 +33,10 @@
     background-size: cover;
 
     border-radius: @border-radius-base @border-radius-base 0 0;
+
+    @media @mobile{
+      height: 150px;
+    }
   }
 
   &__header-overlay {
@@ -51,6 +55,10 @@
     position: absolute;
     left: 10px;
     top: 10px;
+
+    @media @mobile{
+      flex-direction: column;
+    }
   }
 
   &__stat {
@@ -68,6 +76,10 @@
     position: absolute;
     left: 10px;
     bottom: 10px;
+
+    @media @mobile{
+      width: ~"calc(100% - 70px)";
+    }
   }
 
   &__metadata {
@@ -79,6 +91,10 @@
 
     &--title {
       font-size: 20px;
+
+      @media @mobile{
+        font-size: 16px;
+      }
     }
 
     &--artist {
@@ -201,6 +217,10 @@
     text-align: center;
 
     padding-right: 5px;
+
+    @media @mobile{
+      font-size: 18px;
+    }
 
     &--score {
       font-weight: 400;
