@@ -17,4 +17,35 @@
  */
 
 .beatmap-packs {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+
+  &__cell {
+    width: calc(33%);
+    flex-grow: 1;
+    flex-shrink: 0;
+    & + & {
+      padding-left: 20px;
+    }
+  }
+
+  &__filter {
+    display: inline-block;
+    & + & {
+      margin-left: 20px;
+    }
+  }
+
+  &__filters {
+    list-style: none;
+  }
+
+  &__row {
+    display: flex;
+    width: 100%;
+    &--header {
+      font-weight: 600;
+    }
+  }
 }

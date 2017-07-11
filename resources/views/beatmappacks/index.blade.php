@@ -30,15 +30,21 @@
       <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
       <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
     </ul>
+    <div class="beatmap-packs__row beatmap-packs__row--header">
+      <span class="beatmap-packs__cell beatmap-pack__name">Pack</span>
+      <span class="beatmap-packs__cell beatmap-pack__date">Date</span>
+      <span class="beatmap-packs__cell beatmap-pack__author">Author</span>
+    </div>
     @foreach ($packs as $pack)
       <div class="js-beatmap-pack beatmap-pack" data-pack-id="{{ $pack['pack_id'] }}">
-        <a class="js-beatmap-pack-link beatmap-pack__link" data-pack-id="{{ $pack['pack_id'] }}"
-          href="#">{{ $pack['name'] }}
-        </a>
-        <span class="beatmap-pack__date">{{ $pack['date'] }}</span>
-        <span class="beatmap-pack__author">{{ $pack['author'] }}</span>
+        <div class="beatmap-packs__row">
+          <a class="js-beatmap-pack-link beatmap-packs__cell beatmap-pack__name" data-pack-id="{{ $pack['pack_id'] }}"
+            href="#">{{ $pack['name'] }}
+          </a>
+          <span class="beatmap-packs__cell beatmap-pack__date">{{ $pack['date'] }}</span>
+          <span class="beatmap-packs__cell beatmap-pack__author">{{ $pack['author'] }}</span>
+        </div>
         <div class="js-beatmap-pack__items js-beatmap-pack__items--collapsed beatmap-pack__items"></div>
-        {{-- @include('beatmappacks._items', ['items' =>$pack->items()->get()]) --}}
       </div>
     @endforeach
   </div>
