@@ -21,7 +21,7 @@
             href="{{ route('home') }}"
             class="
                 page-mode-link
-                {{ $current_controller === 'Home' && $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
+                {{ $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('home.user.title') }}
@@ -35,7 +35,7 @@
             href="{{ route('friends.index') }}"
             class="
                 page-mode-link
-                {{ $current_controller === 'Friends' && $current_action === 'index' ? 'page-mode-link--is-active' : '' }}
+                {{ $current_action === 'friends-index' ? 'page-mode-link--is-active' : '' }}
             "
         >
             {{ trans('friends.title_compact') }}

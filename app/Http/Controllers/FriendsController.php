@@ -28,6 +28,7 @@ use Request;
 class FriendsController extends Controller
 {
     protected $section = 'home';
+    protected $actionPrefix = 'friends-';
 
     public function __construct()
     {
@@ -48,6 +49,7 @@ class FriendsController extends Controller
         $friends = Auth::user()
             ->friends()
             ->withMutual()
+            ->withOnline()
             ->with([
                 'target',
                 'target.userProfileCustomization',
@@ -55,7 +57,10 @@ class FriendsController extends Controller
             ])
             ->get();
 
-        return view('friends.index', compact('friends'));
+        $online = $friends->where('online', 1);
+        $offline = $friends->where('online', 0);
+
+        return view('friends.index', compact('online', 'offline'));
     }
 
     public function store()

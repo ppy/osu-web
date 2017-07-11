@@ -51,5 +51,8 @@ class UserRelation extends Model
         return $query->addSelect('*', $raw);
     }
 
+    public function scopeWithOnline($query)
+    {
+        return $query->addSelect(DB::raw('(SELECT phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 MINUTE)) FROM phpbb_users WHERE phpbb_users.user_id = phpbb_zebra.zebra_id) as online'));
     }
 }

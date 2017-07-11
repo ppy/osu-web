@@ -28,6 +28,7 @@ return [
             '_' => 'home',
             'account-edit' => 'settings',
             'friends' => 'friends',
+            'friends-index' => 'friends',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',

@@ -256,22 +256,6 @@ function current_action()
     }
 }
 
-function current_controller()
-{
-    $action = \Route::currentRouteAction();
-    if ($action !== null) {
-        return preg_replace(
-            '/Controller$/',
-            '',
-            str_replace(
-                'App\Http\Controllers\\',
-                '',
-                explode('@', $action, 2)[0]
-            )
-        );
-    }
-}
-
 function link_to_user($user_id, $user_name, $user_color)
 {
     $user_name = e($user_name);
