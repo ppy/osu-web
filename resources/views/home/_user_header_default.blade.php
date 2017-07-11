@@ -34,16 +34,25 @@
         </div>
 
         <div class="osu-page-header__box osu-page-header__box--status osu-page-header__box--graph">
-            <div class="osu-page-header__status osu-page-header__status--fade-in">
+            <div class="osu-page-header__status">
                 <div class="osu-page-header__status-label">
-                    Games
+                    {{ trans('home.user.header.stats.friends') }}
+                </div>
+                <div class="js-forum-topic-watch--unread osu-page-header__status-text">
+                    {{ number_format($stats->onlineFriends) }}
+                </div>
+            </div>
+
+            <div class="osu-page-header__status">
+                <div class="osu-page-header__status-label">
+                    {{ trans('home.user.header.stats.games') }}
                 </div>
                 <div class="js-forum-topic-watch--unread osu-page-header__status-text">
                     {{ number_format($stats->currentGames) }}
                 </div>
             </div>
 
-            <div class="osu-page-header__status osu-page-header__status--fade-in">
+            <div class="osu-page-header__status">
                 <div class="osu-page-header__status-label">
                     {{ trans('home.user.header.stats.online') }}
                 </div>

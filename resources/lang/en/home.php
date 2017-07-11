@@ -47,6 +47,8 @@ return [
             'welcome' => 'Hello, <strong>:username</strong>!',
             'messages' => 'You have 1 new message|You have :count new messages',
             'stats' => [
+                'friends' => 'Online Friends',
+                'games' => 'Games',
                 'online' => 'Online Users',
             ],
         ],

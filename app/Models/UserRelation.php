@@ -25,6 +25,16 @@ class UserRelation extends Model
         return $query->where('friend', true);
     }
 
+    public function scopeOnline($query)
+    {
+        return $query->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                ->from('phpbb_users')
+                ->whereRaw('phpbb_users.user_id = phpbb_zebra.zebra_id')
+                ->whereRaw('phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 MINUTE))');
+        });
+    }
+
     public function scopeWithMutual($query)
     {
         $selfJoin = 'COALESCE((
