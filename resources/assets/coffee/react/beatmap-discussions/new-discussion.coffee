@@ -89,15 +89,17 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   onClick: @post
 
 
-  setTimestamp: (e) =>
-    @setState timestamp: e.currentTarget.value
+  parseTimestamp: =>
+    timestampRe = @state.message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
 
+    @setState timestamp:
+      if timestampRe?
+        timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
 
-  setMessage: (e) =>
-    if @props.mode == 'timeline'
-      callback = @parseTimestamp
-
-    @setState message: e.currentTarget.value, callback
+        # this isn't all that smart
+        (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
+      else
+        null
 
 
   post: (e) =>
@@ -141,6 +143,17 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     .always LoadingOverlay.hide
 
 
+  setMessage: (e) =>
+    if @props.mode == 'timeline'
+      callback = @parseTimestamp
+
+    @setState message: e.currentTarget.value, callback
+
+
+  setTimestamp: (e) =>
+    @setState timestamp: e.currentTarget.value
+
+
   submitButton: (type) =>
     el BigButton,
       key: type
@@ -160,16 +173,3 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @state.timestamp?
     else
       true
-
-
-  parseTimestamp: =>
-    timestampRe = @state.message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
-
-    @setState timestamp:
-      if timestampRe?
-        timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
-
-        # this isn't all that smart
-        (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
-      else
-        null
