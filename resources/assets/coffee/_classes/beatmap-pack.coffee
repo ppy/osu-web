@@ -36,26 +36,35 @@ class @BeatmapPack
   open: =>
     return if @opened
     @opened = true
-    @getBeatmapPackItem(@packId)
-    .done (data) =>
-      @packItemsElement.innerHTML = data
-      $(@packItemsElement).slideDown(300, () =>
-        $(@packItemsElement).removeClass('js-beatmap-pack__items--collapsed')
-      )
-    .fail (xhr) =>
-      console.log(xhr)
+
+    if @packItemsElement.innerHTML?.length
+      @slideDown()
+    else
+      @getBeatmapPackItem(@packId)
+      .done (data) =>
+        @packItemsElement.innerHTML = data
+        @slideDown()
+      .fail (xhr) =>
+        console.log(xhr)
 
   close: =>
     return unless @opened
     @opened = false
-    $(@packItemsElement).slideUp(300, () =>
-      $(@packItemsElement).addClass('js-beatmap-pack__items--collapsed')
-    )
+    @slideUp()
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
     $.get laroute.route('beatmappacks.show', beatmappack: packId)
 
+  slideDown: =>
+    $(@packItemsElement).slideDown(300, () =>
+      $(@packItemsElement).removeClass('js-beatmap-pack__items--collapsed')
+    )
+
+  slideUp: =>
+    $(@packItemsElement).slideUp(300, () =>
+      $(@packItemsElement).addClass('js-beatmap-pack__items--collapsed')
+    )
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
