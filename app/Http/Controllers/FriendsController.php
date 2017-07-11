@@ -60,7 +60,9 @@ class FriendsController extends Controller
 
     public function store()
     {
-        //TODO: check user friend quota
+        if (Auth::user()->friends()->count() >= config('osu.user.max_friends')) {
+            return error_popup(trans('friends.too_many'));
+        }
 
         $target_id = get_int(Request::input('target'));
         $user = User::find($target_id)->firstOrFail();
@@ -78,11 +80,10 @@ class FriendsController extends Controller
             ]);
         }
 
-        if (Request::has('ujs')) {
-            return 'ok';
-        } else {
-            return Auth::user()->defaultJson();
-        }
+        return json_collection(
+            Auth::user()->friends()->withMutual()->get(),
+            'UserRelation'
+        );
     }
 
     public function destroy($id)
@@ -98,10 +99,9 @@ class FriendsController extends Controller
             'friend' => 1,
         ])->delete();
 
-        if (Request::has('ujs')) {
-            return js_view('friends.ujs-destroy', ['user_id' => $id]);
-        } else {
-            return Auth::user()->defaultJson();
-        }
+        return json_collection(
+            Auth::user()->friends()->withMutual()->get(),
+            'UserRelation'
+        );
     }
 }

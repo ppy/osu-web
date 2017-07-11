@@ -19,19 +19,18 @@
  */
 
 return [
-    'title' => 'Friends',
-    'title_compact' => 'friends',
+    'buttons' => [
+      'add' => 'add friend',
+      'remove' => 'remove friend',
+    ],
 
     'state' => [
       'friends' => 'friends',
       'mutual' => 'mutual',
     ],
 
-    'buttons' => [
-      'add' => 'add friend',
-      'remove' => 'remove',
-    ],
+    'title' => 'Friends',
+    'title_compact' => 'friends',
 
-    'confirm_add' => 'Are you sure you want to friend this user?',
-    'confirm_remove' => 'Are you sure you want to unfriend this user?',
+    'too_many' => 'Friend limit reached.',
 ];

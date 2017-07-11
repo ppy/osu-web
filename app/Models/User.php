@@ -305,7 +305,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function cover()
     {
-        return $this->profileCustomization()->cover()->url();
+        return $this->userProfileCustomization ? $this->userProfileCustomization->cover()->url() : null;
     }
 
     public function getUserTwitterAttribute($value)
@@ -752,7 +752,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        return $this->relations()->where('friend', true);
+        return $this->relations()->friends();
     }
 
     public function foes()

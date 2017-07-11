@@ -15,6 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<script data-turbolinks-eval="always">
+<script data-turbolinks-eval="always" id="js-currentUser">
     var currentUser = {!! Auth::check() ? json_encode(Auth::user()->defaultJson()) : '{}' !!};
 </script>

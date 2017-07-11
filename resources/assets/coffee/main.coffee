@@ -70,6 +70,7 @@ $(document).on 'turbolinks:load', ->
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
+@userCard ?= new UserCard
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
@@ -90,6 +91,10 @@ $(document).on 'keydown', (e) ->
 # Globally init countdown timers
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
+
+# Globally init friend buttons
+reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  user_id: parseInt(target.dataset.target)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

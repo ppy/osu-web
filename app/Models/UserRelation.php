@@ -20,17 +20,36 @@ class UserRelation extends Model
         return $this->belongsTo(User::class, 'zebra_id', 'user_id');
     }
 
+    public function scopeFriends($query)
+    {
+        return $query->where('friend', true);
+    }
+
     public function scopeWithMutual($query)
     {
-        return $query->addSelect(
-            '*',
-            DB::raw('COALESCE((
-                SELECT 1
-                FROM phpbb_zebra z
-                WHERE phpbb_zebra.zebra_id = z.user_id
-                AND z.zebra_id = phpbb_zebra.user_id
-                AND z.friend = 1
-            ), 0) as mutual')
-        );
+        $selfJoin = 'COALESCE((
+                    SELECT 1
+                    FROM phpbb_zebra z
+                    WHERE phpbb_zebra.zebra_id = z.user_id
+                    AND z.zebra_id = phpbb_zebra.user_id
+                    AND z.friend = 1
+                ), 0)';
+
+        if (count(config('osu.user.super_friendly') > 0)) {
+            $friendlyIds = join(',', config('osu.user.super_friendly'));
+            $raw = DB::raw(
+                "CASE WHEN phpbb_zebra.zebra_id IN ({$friendlyIds})
+                    THEN 1
+                ELSE
+                    {$selfJoin}
+                END as mutual"
+            );
+        } else {
+            $raw = DB::raw("{$selfJoin} as mutual");
+        }
+
+        return $query->addSelect('*', $raw);
+    }
+
     }
 }

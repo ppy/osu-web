@@ -21,75 +21,108 @@ el = React.createElement
 
 bn = 'friend-button'
 
-class @FriendButton extends React.Component
+class @FriendButton extends React.PureComponent
   constructor: (props) ->
     super props
 
     @state =
       hover: false
-      friends: currentUser.friends
+      friend: _.find(currentUser.friends, (o) -> o.target_id == props.user_id)
+
 
   hover: =>
     @setState
       hover: true
 
+
   unhover: =>
     @setState
       hover: false
 
+
+  requestDone: =>
+    @setState loading: false
+
+
+  updateFriends: (data) =>
+    @setState friend: _.find(data, (o) => o.target_id == @props.user_id), ->
+      currentUser.friends = data
+      # persist currentUser state to DOM (for turbolinks to restore later)
+      $('#js-currentUser').text "var currentUser = #{JSON.stringify(currentUser)};"
+      $.publish "friendButton:refresh"
+
+
   clicked: (e) =>
     e.preventDefault()
 
-    friend = _.find @state.friends, (o) => o.target_id == @props.user.id
-    if friend
-      #unfriend
+    @setState loading: true
+
+    if @state.friend
+      #un-friending
       $.ajax
         type: "DELETE"
-        url: laroute.route('friends.destroy', friend: @props.user.id)
-        success: (data) =>
-          console.log(data)
-          @setState
-            friends: data.friends
+        url: laroute.route 'friends.destroy', friend: @props.user_id
+        success: @updateFriends
+        error: osu.ajaxError
+        complete: @requestDone
     else
-      #friend
+      #friending
       $.ajax
         type: "POST"
-        url: laroute.route('friends.store', target: @props.user.id)
-        success: (data) =>
-          console.log(data)
-          @setState
-            friends: data.friends
+        url: laroute.route 'friends.store', target: @props.user_id
+        success: @updateFriends
+        error: osu.ajaxError
+        complete: @requestDone
+
+
+  refresh: (e) =>
+    @setState
+      friend: _.find(currentUser.friends, (o) => o.target_id == @props.user_id), =>
+      @forceUpdate()
+
+
+  componentDidMount: ->
+    @eventId = "friendButton-#{@props.user_id}"
+    $.subscribe "friendButton:refresh.#{@eventId}", @refresh
+
+
+  componentWillUnmount: ->
+    $.unsubscribe ".#{@eventId}"
+
 
   render: =>
-    user = @props.user
-    return span() if !user?
+    # hide button if component's user_id is missing or the button would be for ourself
+    return span() if !@props.user_id || @props.user_id == currentUser.id
+    # hide the add button if we have hit the max friends limit
+    return span() if !@state.friend && currentUser.friends.length >= 200
 
-    friend = _.find @state.friends, (o) => o.target_id == user.id
-    blockClass = "#{bn} btn-osu-lite btn-osu-lite--default"
+    blockClass = bn
 
-    if friend and friend.mutual
-      blockClass += ' btn-osu-lite--pink'
+    if @props.user_id != currentUser.id && @state.friend && !@state.loading
+      if @state.friend.mutual
+        blockClass += " #{bn}--mutual"
+      else
+        blockClass += " #{bn}--friend"
 
     button
       className: blockClass
       onMouseEnter: @hover
       onMouseLeave: @unhover
       onClick: @clicked
-      if friend
-        if @state.hover
-          div {},
-              el Icon, name: 'user-times', modifiers: ['fw']
-              " #{osu.trans('friends.buttons.remove')}"
-        else
-          if friend.mutual
-            div {},
-              el Icon, name: 'heart', modifiers: ['fw']
-              " #{osu.trans('friends.state.mutual')}"
-          else
-            div {},
-              el Icon, name: 'user', modifiers: ['fw']
-              " #{osu.trans('friends.state.friends')}"
+      title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
+      disabled: @state.loading
+      if @state.loading
+        el Icon, name: 'refresh', modifiers: ['fw', 'spin']
       else
-        div {},
+        if @state.friend
+          if @state.hover
+            el Icon, name: 'user-times', modifiers: ['fw']
+          else
+            if @state.friend.mutual
+              div {},
+                el Icon, name: 'user'
+                el Icon, name: 'user'
+            else
+              el Icon, name: 'user', modifiers: ['fw']
+        else
           el Icon, name: 'user-plus', modifiers: ['fw']
-          " #{osu.trans('friends.buttons.add')}"

@@ -177,6 +177,7 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/register', function () {
     return Redirect::to('https://osu.ppy.sh/p/register');
 })->name('users.register');
+Route::get('users/{id}/card', 'UsersController@card')->name('users.card');
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'help'], function () {
