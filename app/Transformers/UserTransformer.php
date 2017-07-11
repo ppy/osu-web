@@ -23,6 +23,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
+use App\Models\UserRelation;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -36,6 +37,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'allStatistics',
         'beatmapPlaycounts',
         'defaultStatistics',
+        'followerCount',
         'friends',
         'page',
         'recentActivities',
@@ -96,6 +98,13 @@ class UserTransformer extends Fractal\TransformerAbstract
         $stats = $user->statistics($user->playmode);
 
         return $this->item($stats, new UserStatisticsTransformer);
+    }
+
+    public function includeFollowerCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [UserRelation::where('zebra_id', $user->user_id)->where('friend', 1)->count()];
+        });
     }
 
     public function includeFriends(User $user)

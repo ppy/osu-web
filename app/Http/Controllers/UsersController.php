@@ -133,6 +133,7 @@ class UsersController extends Controller
                 'allScoresFirst',
                 'allStatistics',
                 'beatmapPlaycounts',
+                'followerCount',
                 'page',
                 'recentActivities',
                 'recentlyReceivedKudosu',

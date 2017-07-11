@@ -90,6 +90,7 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps',
             ],
+            'followers' => '1 follower|:count followers',
             'historical' => [
                 'empty' => 'No performance records. :(',
                 'most_played' => [
