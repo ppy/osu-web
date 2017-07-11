@@ -43,4 +43,18 @@ class BeatmapPack extends Model
             ->join($itemsTable, "{$itemsTable}.pack_id", '=', "{$thisTable}.pack_id")
             ->join($setsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id");
     }
+
+    public function downloadUrls()
+    {
+        $array = [];
+        foreach (explode(',', $this->url) as $url) {
+            preg_match('@^(?:http[s]?://)?([^/]+)@i', $url, $hosts);
+            $array[] = [
+                'url' => $url,
+                'host' => $hosts[1]
+            ];
+        }
+
+        return $array;
+    }
 }

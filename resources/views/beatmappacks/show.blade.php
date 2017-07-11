@@ -17,6 +17,16 @@
 --}}
 
 
+<div>
+    <ul class="beatmap-pack__downloads">
+        @foreach ($pack->downloadUrls() as $download)
+            <li class="beatmap-pack__download">
+                <a href="{{ $download['url'] }}"
+                   class="beatmap-pack__link">Download
+                </a> from {{ $download['host'] }}
+        @endforeach
+    </ul>
+</div>
 <div class="beatmap-pack-items">
     <div class="beatmap-pack-items__title">
         {{ $pack->name }}
