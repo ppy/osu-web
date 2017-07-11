@@ -20,6 +20,8 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> 解锁了 "<strong>:achievement</strong>" 成就!',
+    'beatmap_playcount' => ':beatmap 已经被玩了 :count 次!',
+    'beatmapset_approve' => '<strong>:user</strong> 制作的 :beatmapset 已经被 :approval!', //总感觉这个字段怪怪的
     'beatmapset_delete' => ':beatmapset 已经被删除.',
     'beatmapset_revive' => ':beatmapset 已经被 <strong>:user</strong> 恢复.',
     'beatmapset_update' => '<strong><em>:user</em></strong> 更新了谱面 "<em>:beatmapset</em>"',

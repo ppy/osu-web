@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, ol, li} = React.DOM
+{div, span, a, ol, li} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmapset-mapping'

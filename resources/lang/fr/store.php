@@ -25,11 +25,16 @@ return [
 
     'checkout' => [
         'pay' => 'Payer avec PayPal',
-        'delayed_shipping' => 'Nous sommes blindés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
+        'delayed_shipping' => 'Nous sommes surchargés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
     ],
+
+    'discount' => 'économisez :percent%',
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name pour :username (:duration)',
+            ],
             'quantity' => 'Quantité',
         ],
     ],
@@ -48,6 +53,19 @@ return [
         'notification_success' => 'vous serez notifié quand nous aurons du stock. cliquez :link pour annuler',
         'notification_remove_text' => 'ici',
 
-        'notification_in_stock' => 'Ce produit est déjà en stock!',
+        'notification_in_stock' => 'Ce produit est déjà en stock !',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => 'Vous devez être un :link pour obtenir a tag supporter !',
+            'link_text' => 'connecté',
+        ],
+    ],
+    'username_change' => [
+        'require_login' => [
+            '_' => 'Vous devez être :link pour changer votre nom !',
+            'link_text' => 'connecté',
+        ],
     ],
 ];

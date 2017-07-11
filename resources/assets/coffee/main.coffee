@@ -17,7 +17,8 @@
 ###
 
 @polyfills ?= new Polyfills
-
+Lang.setLocale(currentLocale)
+Lang.setFallback(fallbackLocale)
 
 # loading animation overlay
 # fired from turbolinks
@@ -50,8 +51,7 @@ $(document).on 'turbolinks:load', ->
 @landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
-# FIXME: enable later.
-#@navSearch ?= new NavSearch
+@navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus
@@ -95,6 +95,9 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
   user_id: parseInt(target.dataset.target)
+
+reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
+  JSON.parse(el.dataset.beatmapsetPanel)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a} = React.DOM
+{a} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.BeatmapSelection extends React.Component

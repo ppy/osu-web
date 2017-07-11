@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span} = React.DOM
+{div, span} = ReactDOMFactories
 
 bn = 'beatmap-basic-stats'
 

@@ -17,7 +17,7 @@
 ###
 
 el = React.createElement
-{img, div} = React.DOM
+{img, div} = ReactDOMFactories
 
 class BeatmapsetPage.ScoreboardMod extends React.Component
   onClick: =>

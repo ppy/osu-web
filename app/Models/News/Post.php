@@ -102,8 +102,6 @@ class Post
         return static::nameFile($this->id);
     }
 
-    // FIXME: the current news use html for first image and thus
-    //        not processed by markdown
     public function firstImage()
     {
         return $this->page()['firstImage'];

@@ -30,8 +30,12 @@ return [
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
-            'getNews' => 'nouvelles',
             'index' => 'osu!',
+            'legal-show' => 'information',
+            'news-index' => 'actualités',
+            'news-show' => 'actualités',
+            'password-reset-index' => 'réinitialiser le mot de passe',
+            'search' => 'Rechercher',
             'supportTheGame' => 'supporter le jeu',
             'password-reset-index' => 'réinitialiser le mot de passe',
         ],
@@ -108,7 +112,7 @@ return [
             'help' => 'Aide',
         ],
         'store' => [
-            '_' => 'Magasin',
+            '_' => 'magasin',
             'getListing' => 'liste',
             'getCart' => 'panier',
 
@@ -175,7 +179,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Page manquante',
-            'description' => "Désolé, mais la page demandée n'est pas ici!",
+            'description' => "Désolé, mais la page demandée n'est pas ici !",
             'link' => false,
         ],
         '403' => [
@@ -190,16 +194,16 @@ return [
         ],
         '405' => [
             'error' => 'Page manquante',
-            'description' => "Désolé, mais la page demandée n'est pas ici!",
+            'description' => "Désolé, mais la page demandée n'est pas ici !",
             'link' => false,
         ],
         '500' => [
-            'error' => 'Oh non! Quelque chose a cassé! ;_;',
+            'error' => "Oh non ! Quelque chose s'est cassé ! ;_;",
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh non! Quelque chose a cassé! (gravement) ;_;',
+            'error' => "Oh non ! Quelque chose s'est cassé ! (gravement) ;_;",
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
@@ -243,6 +247,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => 'Écrivez pour chercher!',
+        'initial' => 'Écrivez pour rechercher!',
+        'retry' => 'La recherche a échouée. Cliquez pour réessayer.',
     ],
 ];

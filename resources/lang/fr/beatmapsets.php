@@ -20,13 +20,13 @@
 
 return [
     'availability' => [
-        'disabled' => "Cette beatmap n'est actuellement pas disponible qu téléchargement.",
-        'parts-removed' => "Des portions de cette beatmpa ont été supprimées suite à la requête du créateur ou d'un titulaire des droits tiers",
-        'more-info' => "Regarder ici pour plus d'informations.",
+        'disabled' => "Cette beatmap n'est actuellement pas disponible au téléchargement.",
+        'parts-removed' => "Des parties de cette beatmap ont été supprimées suite à la requête du créateur ou d'un titulaire de droits tiers",
+        'more-info' => "Voir ici pour plus d'informations.",
     ],
 
     'index' => [
-        'title' => 'Liste des beatmap',
+        'title' => 'Liste des beatmaps',
         'guest_title' => 'Beatmaps',
     ],
 
@@ -34,12 +34,12 @@ return [
         'discussion' => 'Discussion',
 
         'details' => [
-            'made-by' => 'créé par ',
-            'submitted' => 'envoyé le ',
+            'made-by' => 'créée par ',
+            'submitted' => 'envoyée le ',
             'updated' => 'dernière mise à jour le ',
-            'ranked' => 'classifié le ',
-            'approved' => 'approuvé le ',
-            'qualified' => 'qualifié le ',
+            'ranked' => 'classifiée le ',
+            'approved' => 'approuvée le ',
+            'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
             'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps!',
             'download' => [
@@ -63,7 +63,7 @@ return [
             'count_circles' => 'Nombre de Cercles',
             'count_sliders' => 'Nombre de Sliders',
             'user-rating' => 'Évaluation des joueurs',
-            'rating-spread' => 'Rating Spread',
+            'rating-spread' => 'Propagation note',
         ],
         'info' => [
             'no_scores' => 'Beatmap non classifiée',
@@ -80,8 +80,8 @@ return [
             'country' => 'Classement national',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
-            'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenus avec!',
-            'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité!',
+            'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
+            'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité !',
             'title' => 'Tableaux des scores',
 
             'list' => [

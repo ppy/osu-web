@@ -22,6 +22,8 @@
   color: #fff;
   background-color: fade(#000, 15%);
   padding: 5px;
+  // let icon do its thing
+  padding-right: 0;
   display: flex;
   align-items: center;
 
@@ -32,9 +34,10 @@
   &__icon {
     .link-white();
     .link-plain();
-    margin-left: 5px;
     font-size: @font-size--title-small;
     flex: none;
+    width: @nav-search-icon-width;
+    text-align: center;
   }
 
   &__input {

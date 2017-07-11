@@ -16,22 +16,29 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="nav-popup js-nav-search--container">
-    <div>
+    <div class="nav-search">
         <div class="js-nav-search--result hidden">
             {{-- shall be replaced by the thing--}}
         </div>
         <div class="js-nav-search--initial">
-            {{ trans('layout.popup_search.initial') }}
+            <div class="nav-search__box">
+                {{ trans('layout.popup_search.initial') }}
+            </div>
         </div>
         <div class="js-nav-search--loading hidden">
-            <span class="fa fa-spin fa-refresh"></span>
+            <div class="nav-search__box">
+                <span class="fa fa-spin fa-refresh"></span>
+            </div>
         </div>
         <div class="js-nav-search--fail hidden">
-            <a href="#" class="js-nav-search--run-link">
-                {{ trans('layout.popup_search.retry') }}
-            </a>
+            <div class="nav-search__box">
+                <a href="#" class="js-nav-search--run-link nav-search__link">
+                    {{ trans('layout.popup_search.retry') }}
+                </a>
+            </div>
         </div>
     </div>
+
     <div class="nav-popup__bar">
         <span class="bar u-section-bg"></span>
     </div>

@@ -68,7 +68,7 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::where('username', $username)->first();
+        $user = User::default()->where('username', $username)->first();
         if ($user === null) {
             abort(404);
         }

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = React.DOM
+{div} = ReactDOMFactories
 
 BeatmapsetPage.ScoreboardTab = (props) ->
   className = 'page-tabs__tab'

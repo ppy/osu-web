@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, span} = React.DOM
+{a, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.ExtraTab extends React.Component

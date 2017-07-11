@@ -76,6 +76,20 @@ class Beatmapset extends Model
         'loved' => 4,
     ];
 
+    const SEARCH_DEFAULTS = [
+        'query' => null,
+        'mode' => null,
+        'sort_order' => 'desc',
+        'sort_field' => 'approved_date',
+        'rank' => '',
+        'status' => 0,
+        'genre' => null,
+        'language' => null,
+        'extra' => '',
+        'limit' => 20,
+        'page' => 1,
+    ];
+
     const NOMINATIONS_PER_DAY = 1;
     const QUALIFICATIONS_PER_DAY = 6;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
@@ -932,5 +946,12 @@ class Beatmapset extends Model
         $description = $split[1] ?? '';
 
         return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
+    }
+
+    public function toMetaDescription()
+    {
+        $section = trans('layout.menu.beatmaps._');
+
+        return "osu! » {$section} » {$this->artist} - {$this->title}";
     }
 }

@@ -22,12 +22,13 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
+use App\Libraries\Search;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Changelog;
 use App\Models\Forum\Post;
 use App\Models\News;
-use App\Models\Wiki;
+use App\Models\User;
 use Auth;
 use Request;
 use View;
@@ -35,6 +36,18 @@ use View;
 class HomeController extends Controller
 {
     protected $section = 'home';
+
+    public function __construct()
+    {
+        $this->middleware('auth', [
+            'only' => [
+                'search',
+                'quickSearch',
+            ],
+        ]);
+
+        return parent::__construct();
+    }
 
     public function bbcodePreview()
     {
@@ -129,22 +142,44 @@ class HomeController extends Controller
         }
     }
 
-    public function search()
+    public function quickSearch()
     {
-        $query = Request::input('q');
+        $query = Request::input('query');
         $limit = 5;
 
-        if (strlen($query) < 3) {
-            return [];
+        if (strlen($query) < config('osu.search.minimum_length')) {
+            return response([], 204);
         }
 
         $params = compact('query', 'limit');
 
         $beatmapsets = Beatmapset::search($params);
-        $posts = Post::search($params);
-        $wikiPages = Wiki\Page::search($params);
+        $users = User::search($params);
 
-        return view('home.nav_search_result', compact('beatmapsets', 'posts', 'wikiPages'));
+        return view('home.nav_search_result', compact(
+            'beatmapsets',
+            'users'
+        ));
+    }
+
+    public function search()
+    {
+        if (Request::input('mode') === 'beatmapset') {
+            return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
+        }
+
+        $params = array_merge(Request::all(), [
+            'user' => Auth::user(),
+        ]);
+
+        $search = new Search($params);
+        $missingQuery = strlen(trim(Request::input('query'))) < config('osu.search.minimum_length');
+
+        if ($search->mode === Search::DEFAULT_MODE) {
+            $search->params['limit'] = 8;
+        }
+
+        return view('home.search', compact('search', 'missingQuery'));
     }
 
     public function setLocale()

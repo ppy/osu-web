@@ -15,32 +15,84 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<ul>
-    @foreach ($beatmapsets as $beatmapset)
-        <li>
-            <a href="{{ route('beatmapsets.show', $beatmapset->getKey()) }}">
-                {{ $beatmapset->title }}
-            </a>
-        </li>
-    @endforeach
-</ul>
+<div class="nav-search-result">
+    @if (count($users['data']) > 0)
+        <div class="nav-search-result__title">
+            {{ trans('home.search.user.title') }}
+        </div>
 
-<ul>
-    @foreach ($posts as $post)
-        <li>
-            <a href="{{ post_url($post->topic_id, $post->getKey()) }}">
-                {{ $post->topic->topic_title }}
-            </a>
-        </li>
-    @endforeach
-</ul>
+        <div class="nav-search-result__results nav-search-result__results--horizontal">
+            @foreach ($users['data'] as $entry)
+                <div class="nav-search-result__result">
+                    @include('home._search_user', compact('entry'))
+                </div>
+            @endforeach
+        </div>
 
-<ul>
-    @foreach ($wikiPages as $page)
-        <li>
-            <a href="{{ wiki_url($page['_source']['path'], $page['_source']['locale']) }}">
-                {{ $page['_source']['path'] }}
+        @if (count($users['data']) < $users['total'])
+            <a
+                href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'user']) }}"
+                class="nav-search-result__more"
+            >
+                {!! trans('home.search.user.more', [
+                    'count' =>
+                        '<em class="nav-search-result__count">'.($users['total'] - count($users['data'])).'</em>'
+                ]) !!}
             </a>
-        </li>
-    @endforeach
-</ul>
+        @endif
+    @endif
+
+    @if (count($beatmapsets['data']) > 0)
+        <div class="nav-search-result__title">
+            {{ trans('home.search.beatmapset.title') }}
+        </div>
+
+        <div class="nav-search-result__results">
+            @foreach ($beatmapsets['data'] as $beatmapset)
+                <div class="nav-search-result__result">
+                    @include('home._nav_search_entry', [
+                        'url' => route('beatmapsets.show', $beatmapset->getKey()),
+                        'title' => $beatmapset->title,
+                        'modifier' => 'beatmapset',
+                    ])
+                </div>
+            @endforeach
+        </div>
+
+        @if (count($beatmapsets['data']) < $beatmapsets['total'])
+            <a
+                href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'beatmapset']) }}"
+                class="nav-search-result__more"
+            >
+                {!! trans('home.search.beatmapset.more', [
+                    'count' =>
+                        '<em class="nav-search-result__count">'.($beatmapsets['total'] - count($beatmapsets['data'])).'</em>'
+                ]) !!}
+            </a>
+        @endif
+    @endif
+
+    <div class="nav-search-result__link">
+        @include('home._nav_search_entry', [
+            'url' => route('search', ['query' => Request::input('query'), 'mode' => 'wiki_page']),
+            'title' => trans('home.search.wiki_page.link'),
+            'modifier' => 'extra',
+        ])
+    </div>
+
+    <div class="nav-search-result__link">
+        @include('home._nav_search_entry', [
+            'url' => route('search', ['query' => Request::input('query'), 'mode' => 'forum_post']),
+            'title' => trans('home.search.forum_post.link'),
+            'modifier' => 'extra',
+        ])
+    </div>
+
+    <div class="nav-search-result__link">
+        @include('home._nav_search_entry', [
+            'url' => route('search', ['query' => Request::input('query')]),
+            'title' => trans('home.search.advanced_link'),
+            'modifier' => 'extra',
+        ])
+    </div>
+</div>

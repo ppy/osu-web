@@ -54,6 +54,9 @@ return [
     'legacy' => [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
+    'search' => [
+        'minimum_length' => 3,
+    ],
     'store' => [
         'delayed_shipping_order_threshold' => env('DELAYED_SHIPPING_ORDER_THRESHOLD', 100),
         'delayed_shipping_order_message' => env('DELAYED_SHIPPING_ORDER_MESSAGE'),

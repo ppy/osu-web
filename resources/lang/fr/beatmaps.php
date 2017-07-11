@@ -94,7 +94,7 @@ return [
 
     'nominations' => [
         'disqualifed-at' => 'disqualifiée :time_ago (:reason).',
-        'disqualifed_no_reason' => 'aucune raison spcécifiée',
+        'disqualifed_no_reason' => 'aucune raison spécifiée',
         'disqualification-prompt' => 'Raison de la disqualification?',
         'disqualify' => 'Disqualifier',
         'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
