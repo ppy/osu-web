@@ -16,19 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<div class="beatmap-pack-items">
-  <div class="beatmap-pack-items__title">
-    {{ $pack->name }}
-  </div>
-  <div class="beatmap-pack-items__author">
-    {{ $pack->author }}
-  </div>
 
-  <div class="beatmap-pack-items__sets">
-    @foreach ($sets as $set)
-      <div class="beatmap-pack-items__set">
-        {{ $set->title }}
-      </div>
-    @endforeach
-  </div>
+<div class="beatmap-pack-items">
+    <div class="beatmap-pack-items__title">
+        {{ $pack->name }}
+    </div>
+    <div class="beatmap-pack-items__author">
+        {{ $pack->author }}
+    </div>
+
+    <div class="beatmap-pack-items__sets">
+        @foreach ($sets as $set)
+            <div class="beatmap-pack-items__set">
+                {{ $set->title }}
+            </div>
+        @endforeach
+    </div>
 </div>
