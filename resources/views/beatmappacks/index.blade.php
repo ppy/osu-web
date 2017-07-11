@@ -23,29 +23,37 @@
 ])
 
 @section("content")
-  <div class="beatmap-packs">
-    <ul class="beatmap-packs__filters">
-      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
-      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
-      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
-      <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
-    </ul>
-    <div class="beatmap-packs__row beatmap-packs__row--header">
-      <span class="beatmap-packs__cell beatmap-pack__name">Pack</span>
-      <span class="beatmap-packs__cell beatmap-pack__date">Date</span>
-      <span class="beatmap-packs__cell beatmap-pack__author">Author</span>
+  <div class="osu-layout__row">
+    <div class="osu-page-header-v2">
+      <div class="osu-page-header-v2__overlay"></div>
+      <div class="osu-page-header-v2__title">{{trans('beatmappacks.title')}}</div>
     </div>
-    @foreach ($packs as $pack)
-      <div class="js-beatmap-pack beatmap-pack" data-pack-id="{{ $pack['pack_id'] }}">
-        <div class="beatmap-packs__row">
-          <a class="js-beatmap-pack-link beatmap-packs__cell beatmap-pack__name" data-pack-id="{{ $pack['pack_id'] }}"
-            href="#">{{ $pack['name'] }}
-          </a>
-          <span class="beatmap-packs__cell beatmap-pack__date">{{ $pack['date'] }}</span>
-          <span class="beatmap-packs__cell beatmap-pack__author">{{ $pack['author'] }}</span>
-        </div>
-        <div class="js-beatmap-pack__items js-beatmap-pack__items--collapsed beatmap-pack__items"></div>
-      </div>
-    @endforeach
   </div>
+  <div class="osu-layout__row">
+    <div class="beatmap-packs">
+      <ul class="beatmap-packs__filters">
+        <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
+        <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
+        <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
+        <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
+      </ul>
+      <div class="beatmap-packs__row beatmap-packs__row--header">
+        <span class="beatmap-packs__cell beatmap-pack__name">Pack</span>
+        <span class="beatmap-packs__cell beatmap-pack__date">Date</span>
+        <span class="beatmap-packs__cell beatmap-pack__author">Author</span>
+      </div>
+      @foreach ($packs as $pack)
+        <div class="js-beatmap-pack beatmap-pack" data-pack-id="{{ $pack['pack_id'] }}">
+          <div class="beatmap-packs__row">
+            <a class="js-beatmap-pack-link beatmap-packs__cell beatmap-pack__name" data-pack-id="{{ $pack['pack_id'] }}"
+              href="#">{{ $pack['name'] }}
+            </a>
+            <span class="beatmap-packs__cell beatmap-pack__date">{{ $pack['date'] }}</span>
+            <span class="beatmap-packs__cell beatmap-pack__author">{{ $pack['author'] }}</span>
+          </div>
+          <div class="js-beatmap-pack__items js-beatmap-pack__items--collapsed beatmap-pack__items"></div>
+        </div>
+      @endforeach
+    </div>
+  <div class="osu-layout__row">
 @endsection
