@@ -35,7 +35,14 @@ class BeatmapPacksController extends Controller
             abort(404);
         }
 
-        $packs = BeatmapPack::where('tag', 'like', "{$type}%")->get();
+        $packs = BeatmapPack::where('tag', 'like', "{$type}%");
+        if (in_array($type, ['S', 'R'])) {
+            $packs = $packs->orderBy('pack_id', 'desc');
+        } else {
+            $packs = $packs->orderBy('name', 'asc');
+        }
+        $packs = $packs->get();
+
         return view('beatmappacks.index')
             ->with('packs', $packs);
     }
