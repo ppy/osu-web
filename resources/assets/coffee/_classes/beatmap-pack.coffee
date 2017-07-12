@@ -27,38 +27,50 @@ class @BeatmapPack
     @expander = @el.querySelector('.js-beatmap-pack-expander')
     @busy = false
 
+    $.subscribe 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
       event.preventDefault()
-      $('.js-beatmap-pack').not(@el).removeClass('accordion__item--expanded')
+      $.publish 'beatmappack:clicked', @packId
+
+  onClick: (_e, id) =>
+    if @packId == id
       @open()
+    else
+      @close()
 
   open: =>
     return if @busy
-    @slideDown()
-    if !@packItemsElement.innerHTML?.length
+    if @packItemsElement.innerHTML?.length
+      @slideDown()
+    else
       @busy = true
       @packItemsElement.innerHTML = 'Loading...'
-
       @getBeatmapPackItem(@packId)
       .done (data) =>
         @packItemsElement.innerHTML = data
-      .fail (xhr) =>
-        console.log(xhr)
+        @slideDown()
+      .fail (xhr) ->
+        console.error(xhr)
       .always =>
         @busy = false
 
   close: =>
-    $(@el).removeClass('accordion__item--expanded')
+    @slideUp()
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
     $.get laroute.route('beatmappacks.show', beatmappack: packId)
 
   slideDown: =>
+    # drop shadow should change _before_ slide down animation
     $(@el).addClass('accordion__item--expanded')
+    $(@el.querySelector('.accordion__item-body')).slideDown(300)
 
   slideUp: =>
-    $(@el).removeClass('accordion__item--expanded')
+    # drop shadow should change _after_ slide up animation
+    $(@el.querySelector('.accordion__item-body')).slideUp(300, () =>
+      $(@el).removeClass('accordion__item--expanded')
+    )
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
