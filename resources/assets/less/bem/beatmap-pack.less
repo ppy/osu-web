@@ -19,12 +19,7 @@
 .beatmap-pack {
   .default-box-shadow();
   width: 100%;
-  margin: 4px 0;
-
-
-  &--expanded {
-
-  }
+  margin: 2px 0;
 
   &__body {
     padding: 8px;
@@ -49,7 +44,8 @@
 
   &__items {
     &.js-beatmap-pack__items--collapsed {
-      display: none;
+      // display: none;
+      // flex: 0;
     }
   }
 
@@ -57,5 +53,10 @@
     &.beatmap-packs__cell {
       flex-grow: 5;
     }
+  }
+
+  &.accordion__item--expanded {
+    z-index: 1;
+    box-shadow: 0 4px 12px fade(#000, 50%);
   }
 }

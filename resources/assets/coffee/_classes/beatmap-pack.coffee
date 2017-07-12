@@ -24,47 +24,41 @@ class @BeatmapPack
     @el = rootElement
     @packId = rootElement.dataset.packId
     @packItemsElement = @el.querySelector('.js-beatmap-pack__items')
-    @linkElement = @el.querySelector('.js-beatmap-pack-link')
-    @opened = false
-    $(@linkElement).on 'click', (event) =>
-      event.preventDefault()
-      @toggle()
+    @expander = @el.querySelector('.js-beatmap-pack-expander')
+    @busy = false
 
-  toggle: =>
-    if @opened then @close() else @open()
+    $(@expander).on 'click', (event) =>
+      event.preventDefault()
+      $('.js-beatmap-pack').not(@el).removeClass('accordion__item--expanded')
+      @open()
 
   open: =>
-    return if @opened
-    @opened = true
+    return if @busy
+    @slideDown()
+    if !@packItemsElement.innerHTML?.length
+      @busy = true
+      @packItemsElement.innerHTML = 'Loading...'
 
-    if @packItemsElement.innerHTML?.length
-      @slideDown()
-    else
       @getBeatmapPackItem(@packId)
       .done (data) =>
         @packItemsElement.innerHTML = data
-        @slideDown()
       .fail (xhr) =>
         console.log(xhr)
+      .always =>
+        @busy = false
 
   close: =>
-    return unless @opened
-    @opened = false
-    @slideUp()
+    $(@el).removeClass('accordion__item--expanded')
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
     $.get laroute.route('beatmappacks.show', beatmappack: packId)
 
   slideDown: =>
-    $(@packItemsElement).slideDown(300, () =>
-      $(@packItemsElement).removeClass('js-beatmap-pack__items--collapsed')
-    )
+    $(@el).addClass('accordion__item--expanded')
 
   slideUp: =>
-    $(@packItemsElement).slideUp(300, () =>
-      $(@packItemsElement).addClass('js-beatmap-pack__items--collapsed')
-    )
+    $(@el).removeClass('accordion__item--expanded')
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()

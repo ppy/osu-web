@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="osu-layout__row">
-        <div class="beatmap-packs">
+        <div class="beatmap-packs accordion">
             <ul class="beatmap-packs__filters">
                 <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
                 <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
@@ -38,15 +38,16 @@
                 <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
             </ul>
             @foreach ($packs as $pack)
-                <div class="js-beatmap-pack beatmap-pack" data-pack-id="{{ $pack['pack_id'] }}">
-                    <div class="beatmap-packs__row beatmap-pack__header">
-                        <a class="js-beatmap-pack-link beatmap-packs__cell beatmap-pack__name" data-pack-id="{{ $pack['pack_id'] }}"
+                <div class="js-beatmap-pack beatmap-pack accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
+                    <div class="js-beatmap-pack-expander beatmap-packs__row beatmap-pack__header accordion__item-header"
+                         data-pack-id="{{ $pack['pack_id'] }}">
+                        <a class="beatmap-packs__cell beatmap-pack__name"
                             href="#">{{ $pack['name'] }}
                         </a>
                         <span class="beatmap-packs__cell beatmap-pack__date">{{ $pack['date'] }}</span>
                         <span class="beatmap-packs__cell beatmap-pack__author">{{ $pack['author'] }}</span>
                     </div>
-                    <div class="js-beatmap-pack__items js-beatmap-pack__items--collapsed beatmap-pack__body beatmap-pack__items"></div>
+                    <div class="js-beatmap-pack__items js-beatmap-pack__items--collapsed beatmap-pack__body beatmap-pack__items accordion__item-body"></div>
                 </div>
             @endforeach
         </div>

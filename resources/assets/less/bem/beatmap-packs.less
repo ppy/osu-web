@@ -17,9 +17,10 @@
  */
 
 .beatmap-packs {
-  display: flex;
-  flex-direction: column;
-  padding: 8px;
+  // display: flex;
+  // flex-direction: column;
+  padding: 20px;
+  background-color: #eee;
 
   &__cell {
     width: calc(33%);
@@ -38,10 +39,35 @@
   }
 
   &__filters {
+    padding: 20px;
+    margin: -20px;
+    background-color: #fff;
     list-style: none;
   }
 
   &__row {
     display: flex;
+  }
+}
+
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  &__item {
+    overflow: hidden;
+    height: 36px;
+    &--expanded {
+      height: auto;
+      flex: 1 1 auto;
+    }
+
+    &-header {
+
+    }
+
+    &-body {
+
+    }
   }
 }
