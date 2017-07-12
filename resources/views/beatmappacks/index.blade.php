@@ -20,23 +20,24 @@
     'current_action' => 'index',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.title'),
+    'body_additional_classes' => 'osu-layout--body-darker',
 ])
 
 @section("content")
-    <div class="osu-layout__row">
+    <div class="osu-page">
         <div class="osu-page-header-v2">
             <div class="osu-page-header-v2__overlay"></div>
             <div class="osu-page-header-v2__title">{{trans('beatmappacks.title')}}</div>
         </div>
+        <ul class="page-mode">
+            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
+            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
+            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
+            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
+        </ul>
     </div>
     <div class="osu-layout__row">
         <div class="beatmap-packs accordion">
-            <ul class="beatmap-packs__filters">
-                <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
-                <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
-                <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
-                <li class="beatmap-packs__filter"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
-            </ul>
             @foreach ($packs as $pack)
                 <div class="js-beatmap-pack beatmap-pack accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
                     <div class="js-beatmap-pack-expander beatmap-packs__row beatmap-pack__header accordion__item-header"
