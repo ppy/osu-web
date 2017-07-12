@@ -39,19 +39,30 @@ return [
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
+        'button' => 'Rechercher',
         'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'title' => 'Résultats de la Recherche',
+
         'beatmapset' => [
             'more' => ':count résultats de recherche de beatmap en plus',
             'more_simple' => 'Voir plus de résultats de la recherche de beatmaps',
             'title' => 'Beatmaps',
         ],
+
         'forum_post' => [
+            'all' => 'Tous les forums',
             'link' => 'Rechercher sur le forum',
             'more_simple' => 'Voir plus de résultats de la recherche du forum',
             'title' => 'Forum',
+
+            'label' => [
+                'forum' => 'Rechercher dans les forums',
+                'forum_children' => 'include les sous-forums',
+                'username' => 'auteur',
+            ],
         ],
+
         'mode' => [
             'all' => 'tout',
             'beatmapset' => 'beatmap',
@@ -59,11 +70,13 @@ return [
             'user' => 'joueur',
             'wiki_page' => 'wiki',
         ],
+
         'user' => [
             'more' => ':count résultats de la recherche de joueur',
             'more_simple' => 'Voir plus de résultats de la recherche de joueurs',
             'title' => 'Joueurs',
         ],
+
         'wiki_page' => [
             'link' => 'Rechercher sur le wiki',
             'more_simple' => 'Voir plus de résultats de la recherche sur le wiki',
@@ -105,12 +118,15 @@ return [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
             'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
+                'games' => 'Jeux',
                 'online' => 'Utilisateurs en ligne',
             ],
         ],
         'beatmaps' => [
             'new' => 'Nouvelles Beatmaps Approuvées',
             'popular' => 'Beatmaps Populaires',
+            'by' => 'par',
+            'plays' => ':count fois jouée',
         ],
         'buttons' => [
             'download' => 'Télécharger osu!',

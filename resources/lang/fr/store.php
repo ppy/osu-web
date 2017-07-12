@@ -62,6 +62,7 @@ return [
             'link_text' => 'connecté',
         ],
     ],
+
     'username_change' => [
         'require_login' => [
             '_' => 'Vous devez être :link pour changer votre nom !',
