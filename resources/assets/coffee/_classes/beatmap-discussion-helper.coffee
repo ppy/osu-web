@@ -68,3 +68,13 @@ class @BeatmapDiscussionHelper
       praise: '&#xf004;'
       suggestion: '&#xf10c;'
       problem: '&#xf06a;'
+
+
+  @moderationGroup: (user) =>
+    if user.groups?
+      _.intersection(user.groups, ['admin', 'qat', 'bng'])[0]
+    else
+      switch
+        when user.isAdmin then 'admin'
+        when user.isQAT then 'qat'
+        when user.isBNG then 'bng'

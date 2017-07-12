@@ -27,6 +27,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @xhr = {}
+    @cache = {}
 
     @state =
       editing: false
@@ -35,6 +36,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   componentDidMount: =>
     osu.pageChange()
+
+
+  componentWillUpdate: =>
+    @cache = {}
 
 
   componentDidUpdate: =>
@@ -62,8 +67,14 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        div className: "#{bn}__avatar",
-          el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+        div className: "#{bn}__avatar-container",
+          div className: "#{bn}__avatar",
+            el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+
+          if @isOwner()
+            div className: "#{bn}__user-badge #{bn}__user-badge--owner", osu.trans('beatmap_discussions.user.owner')
+          else if @userModerationGroup()?
+            div className: "#{bn}__user-badge #{bn}__user-badge--moderator", @userModerationGroup()
 
         @messageViewer()
         @messageEditor()
@@ -73,7 +84,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     _.chain message
       .escape()
       .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text)}"
+        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: ["#{bn}__timestamp"])}"
       .value()
 
 
@@ -118,6 +129,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @setState editing: false
 
 
+  isOwner: =>
+    @props.post.user_id == @props.beatmapset.user_id
+
+
   messageViewer: =>
     [controller, key, deleteModel] =
       if @props.type == 'reply'
@@ -125,23 +140,36 @@ class BeatmapDiscussions.Post extends React.PureComponent
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
+    userClass = "#{bn}__info-user"
+
+    if @isOwner()
+      userClassColor = 'owner'
+    else if @userModerationGroup()?
+      userClassColor = 'moderator'
+
+    if userClassColor?
+      userClass += " #{bn}__info-user--special #{bn}__info-user--#{userClassColor}"
+
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
       div
         className: "#{bn}__message"
-        dangerouslySetInnerHTML:
-          __html: osu.linkify(@addEditorLink @props.post.message)
+        a
+          href: laroute.route('users.show', user: @props.user.id)
+          className: userClass
+          @props.user.username
+        if userClassColor?
+          ' '
+        else
+          ': '
+        span
+          dangerouslySetInnerHTML:
+            __html: osu.linkify(@addEditorLink @props.post.message)
 
       div className: "#{bn}__info-container",
         span
           className: "#{bn}__info"
-          a
-            href: laroute.route('users.show', user: @props.user.id)
-            className: "#{bn}__info-user"
-            @props.user.username
-          ', '
-          span
-            dangerouslySetInnerHTML:
-              __html: osu.timeago(@props.post.created_at)
+          dangerouslySetInnerHTML:
+            __html: osu.timeago(@props.post.created_at)
 
         if @props.post.updated_at != @props.post.created_at
           span
@@ -246,3 +274,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   permalink: (e) =>
     e.preventDefault()
+
+
+  userModerationGroup: =>
+    if !@cache.hasOwnProperty('userModerationGroup')
+      @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
+
+    @cache.userModerationGroup

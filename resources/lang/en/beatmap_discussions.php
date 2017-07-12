@@ -33,4 +33,8 @@ return [
             'false' => 'Reopened by :user',
         ],
     ],
+
+    'user' => [
+        'owner' => 'mapper',
+    ],
 ];
