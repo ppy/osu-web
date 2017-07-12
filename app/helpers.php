@@ -394,6 +394,7 @@ function nav_links()
         'news-index' => route('news.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
+        'search' => route('search'),
     ];
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),

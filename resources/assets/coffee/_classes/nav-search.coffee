@@ -45,9 +45,12 @@ class @NavSearch
 
 
   padResult: =>
+    $inputContainer = $('.js-nav-search--input-container')
+
+    return if !$inputContainer[0]?
+
     $container = $('.js-nav-search--container')
     $reference = $('.js-nav-search--popup-width-reference')
-    $inputContainer = $('.js-nav-search--input-container')
 
     inputRight = $inputContainer[0].getBoundingClientRect().right
     containerRight = $reference[0].getBoundingClientRect().right

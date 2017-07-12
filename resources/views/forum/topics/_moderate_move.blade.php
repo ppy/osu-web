@@ -39,7 +39,7 @@
 
                         <p>
                             <select name="destination_forum_id" class="form-control">
-                                @foreach (App\Models\Forum\Forum::moveDestination()->get() as $dstForum)
+                                @foreach (App\Models\Forum\Forum::displayList()->get() as $dstForum)
                                     <option value="{{ $dstForum->getKey() }}"
                                         {{ $dstForum->isOpen() ? '' : 'disabled' }}
                                         {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}

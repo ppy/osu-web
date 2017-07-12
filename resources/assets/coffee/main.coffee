@@ -19,6 +19,7 @@
 @polyfills ?= new Polyfills
 Lang.setLocale(currentLocale)
 Lang.setFallback(fallbackLocale)
+jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
 # fired from turbolinks
@@ -56,9 +57,10 @@ $(document).on 'turbolinks:load', ->
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
-@reactTurbolinks ||= new ReactTurbolinks
+@reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
+@search ?= new Search
 @stickyFooter ?= new StickyFooter
 @stickyHeader ?= new StickyHeader
 @syncHeight ?= new SyncHeight
@@ -97,8 +99,6 @@ reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
-
-jQuery.timeago.settings.allowFuture = true
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->
