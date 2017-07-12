@@ -233,8 +233,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi n'en avez vous pas?",
-            'title' => "Vous n'avez pas de compte?",
+            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi n'en avez vous pas ?",
+            'title' => "Vous n'avez pas de compte ?",
         ],
     ],
 

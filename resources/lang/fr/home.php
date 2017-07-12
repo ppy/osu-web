@@ -58,7 +58,7 @@ return [
 
             'label' => [
                 'forum' => 'Rechercher dans les forums',
-                'forum_children' => 'include les sous-forums',
+                'forum_children' => 'inclure les sous-forums',
                 'username' => 'auteur',
             ],
         ],

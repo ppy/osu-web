@@ -75,7 +75,7 @@ return [
 
         'new' => [
             'timestamp' => 'Horodatage',
-            'timestamp_missing' => 'ctrl-c en mode édition et collez votre message pour ajouter un horodatage!',
+            'timestamp_missing' => 'ctrl-c en mode édition et collez votre message pour ajouter un horodatage !',
             'title' => 'Nouvelle Discussion',
         ],
 
