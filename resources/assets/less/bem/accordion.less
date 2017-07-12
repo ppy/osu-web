@@ -16,36 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-packs {
-  // display: flex;
-  // flex-direction: column;
-  padding: 20px;
-  background-color: #eee;
+.accordion {
+  display: flex;
+  flex-direction: column;
 
-  &__cell {
-    width: calc(33%);
-    flex-grow: 1;
-    flex-shrink: 0;
-    & + & {
-      padding-left: 20px;
+  &__item {
+    overflow: hidden;
+
+    &-body {
+      display: none;
     }
-  }
-
-  &__filter {
-    display: inline-block;
-    & + & {
-      margin-left: 20px;
-    }
-  }
-
-  &__filters {
-    padding: 20px;
-    margin: -20px;
-    background-color: #fff;
-    list-style: none;
-  }
-
-  &__row {
-    display: flex;
   }
 }
