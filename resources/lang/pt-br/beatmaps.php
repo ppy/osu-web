@@ -69,7 +69,8 @@ return [
 
         'mode' => [
             'general' => 'Geral',
-            'timeline' => 'Linha do tempo',
+            'general_all' => 'Geral (todas as dificuldades)',
+            'timeline' => 'Linha do Tempo',
         ],
 
         'new' => [
@@ -112,13 +113,21 @@ return [
             'options' => 'Mais opções de busca',
             'not-found' => 'sem resultados',
             'not-found-quote' => '... não, nada encontrado.',
-        ],
+            'filters' => [
+                'mode' => 'Modo',
+                'status' => 'Status de Rank',
+                'genre' => 'Genero',
+                'language' => 'Lingua',
+                'extra' => 'extra',
+                'rank' => 'Rank Conquistado',
+            ],
+		],
         'mode' => 'Modo',
         'status' => 'Estado de rank',
         'mapped-by' => 'mapeado por :mapper',
         'source' => 'de :source',
         'load-more' => 'Carregar mais...',
-    ],
+	],
     'mode' => [
         'any' => 'Qualquer',
         'osu' => 'osu!',
