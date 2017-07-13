@@ -28,6 +28,18 @@
   &__header {
     padding: @beatmappack-listing--gutter;
     background-color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(#fff, 5%);
+      .accordion__item--expanded & {
+        background-color: #fff;
+      }
+    }
+
+    .accordion__item--expanded & {
+      cursor: auto;
+    }
   }
 
   &__author {
