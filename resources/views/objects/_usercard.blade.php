@@ -15,11 +15,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+
 @if ($user)
-    <div class="usercard" style="background-image: url({{$user->cover()}});">
+    <div class="usercard{{isset($popup) && $popup ? ' usercard--popup' : ''}}" style="background-image: url(/images/layout/beatmaps/default-bg.png);">
+        <img class="usercard__background" src="{{$user->cover()}}">
+        <div class="usercard__background-overlay"></div>
         <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__link-wrapper">
             <div class="usercard__main-card">
-                <img class="usercard__avatar" src="{{$user->user_avatar}}">
+                <div class="usercard__avatar-space">
+                    <img class="usercard__avatar" src="{{$user->user_avatar}}">
+                </div>
                 <div class="usercard__metadata">
                     <div class="usercard__username">{{$user->username}}</div>
                     <div class="usercard__flags">

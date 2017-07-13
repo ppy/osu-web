@@ -45,18 +45,44 @@ class @UserCard
           $.ajax
             url: laroute.route 'users.card', id: userId
           .then (content) ->
-            api.set('content.text', content)
-            # manually init the friend-button react component
-            ReactDOM.render React.createElement(FriendButton, user_id: userId), api.tooltip.find('.js-react--friendButton')[0]
+            if content
+              api.set('content.text', content)
+
+              api.tooltip.find('.usercard')
+                .imagesLoaded({background: true})
+                .progress (instance, image) ->
+                  $(image.img).fadeTo(200, 1)
+                .always (instance) ->
+                  $(instance.elements[0]).find('.usercard__loader').fadeOut()
+
+              # manually init the friend-button react component
+              ReactDOM.render React.createElement(FriendButton, user_id: userId), api.tooltip.find('.js-react--friendButton')[0]
+            else
+              api.hide()
           , (xhr, status, error) ->
             api.set('content.text', status + ': ' + error)
 
           '<div class="usercard" style="background-image: url(/images/layout/beatmaps/default-bg.png);">
-            <div class="usercard__loader">
-              <div class="usercard__spinner">
-                <i class="fa fa-fw fa-refresh fa-spin"></i>
+              <div class="usercard__background-overlay"></div>
+              <div class="usercard__link-wrapper">
+                  <div class="usercard__main-card">
+                      <div class="usercard__avatar-space">
+                        <div class="usercard__loader">
+                          <i class="fa fa-fw fa-refresh fa-spin"></i>
+                        </div>
+                      </div>
+                      <div class="usercard__metadata">
+                          <div class="usercard__username">Loading...</div>
+                          <div class="usercard__flags">
+                            <span class="flag-country" style="background-image: url(/images/flags/XX.png);"></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="usercard__status-bar usercard__status-bar--offline">
+                      <span class="fa fa-fw fa-circle-o usercard__status-icon"></span>
+                      <span class="usercard__status-message">Offline</span>
+                  </div>
               </div>
-            </div>
           </div>'
       position:
         at: at
@@ -64,9 +90,11 @@ class @UserCard
         viewport: $(window)
       show:
         delay: 200
+        effect: -> $(this).fadeTo(100, 1)
+        ready: true
       hide:
         fixed: true
         delay: 200
+        effect: -> $(this).fadeTo(100, 0)
 
     $(el).qtip options
-    $(event.target).trigger('mouseover')

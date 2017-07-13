@@ -99,7 +99,10 @@ class UsersController extends Controller
             }
         }
 
-        return view('objects._usercard', compact('user', 'friend', 'mutual'));
+        // render usercard as popup (i.e. pretty fade-in elements on load)
+        $popup = true;
+
+        return view('objects._usercard', compact('user', 'friend', 'mutual', 'popup'));
     }
 
     public function show($id)

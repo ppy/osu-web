@@ -35,6 +35,9 @@
   background-position: center;
   margin: @card-item-spacing;
 
+  // to make broken cover images less ugly
+  overflow: hidden;
+
   .thick-box-shadow();
   .link-hover({
     .thicker-box-shadow();
@@ -43,7 +46,18 @@
   .default-border-radius();
   .own-layer();
 
-  &::before {
+  &__background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    border-radius: @border-radius-base;
+    .@{top}--popup & {
+      opacity: 0;
+    }
+  }
+
+  &__background-overlay  {
     .full-size();
     background: fade(#000, 80%);
     border-radius: @border-radius-base - 1;
@@ -67,11 +81,20 @@
     margin: @card-item-spacing 0px;
   }
 
-  &__avatar {
+  &__avatar-space {
     width: @avatar-size;
     height: @avatar-size;
     margin: @card-item-spacing;
     .default-border-radius();
+  }
+
+  &__avatar {
+    width: @avatar-size;
+    height: @avatar-size;
+    .default-border-radius();
+    .@{top}--popup & {
+      opacity: 0;
+    }
   }
 
   &__username {
@@ -104,6 +127,7 @@
     .center-content();
     width: 100%;
     height: 100%;
+    position: absolute;
   }
 
   &__friend-button {
