@@ -80,14 +80,6 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  addEditorLink: (message) =>
-    _.chain message
-      .escape()
-      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: ["#{bn}__timestamp"])}"
-      .value()
-
-
   messageInput: (e) =>
     @setState message: e.target.value
 
@@ -163,7 +155,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
           ': '
         span
           dangerouslySetInnerHTML:
-            __html: osu.linkify(@addEditorLink @props.post.message)
+            __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
 
       div className: "#{bn}__info-container",
         span

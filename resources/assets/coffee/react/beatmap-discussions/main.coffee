@@ -97,6 +97,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         el BeatmapDiscussions.NewDiscussion,
           currentUser: @state.currentUser
           currentBeatmap: @state.currentBeatmap
+          currentDiscussions: @currentDiscussions()
           mode: @state.mode
 
         el BeatmapDiscussions.Discussions,
@@ -271,9 +272,18 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   setMode: (_e, mode, callback) =>
-    return callback?() if mode == @state.mode
+    newState = mode: mode
 
-    @setState mode: mode, callback
+    if mode == 'timeline'
+      currentFilter = @state.currentFilter
+      filter = 'total'
+      newState.currentFilter = filter
+    else
+      currentFilter = filter = null
+
+    return callback?() if mode == @state.mode && filter == currentFilter
+
+    @setState newState, callback
 
 
   users: =>

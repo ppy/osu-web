@@ -27,6 +27,11 @@ return [
         ],
     ],
 
+    'nearby_posts' => [
+        'confirm' => 'None of the posts address my concern',
+        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marked as resolved by :user',

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, p, span, textarea} = ReactDOMFactories
+{button, div, input, label, p, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -26,10 +26,16 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     super props
 
     @throttledPost = _.throttle @post, 1000
+    @cache = {}
 
     @state =
       message: ''
       timestamp: null
+      timestampConfirmed: false
+
+
+  componentWillUpdate: =>
+    @cache = {}
 
 
   componentWillUnmount: =>
@@ -88,18 +94,61 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   disabled: !@validPost()
                   onClick: @post
 
+        if @nearbyPosts().length > 0
+          currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+          timestamps = @nearbyPosts().map (p) ->
+            osu.link BeatmapDiscussionHelper.hash(discussionId: p.id),
+              BeatmapDiscussionHelper.formatTimestamp(p.timestamp)
+              classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
+          timestampsString = osu.transArray(timestamps)
 
-  parseTimestamp: =>
-    timestampRe = @state.message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
+          div className: "#{bn}__notice",
+            div
+              className: "#{bn}__notice-text"
+              dangerouslySetInnerHTML:
+                __html: osu.trans 'beatmap_discussions.nearby_posts.notice',
+                  timestamp: currentTimestamp
+                  existing_timestamps: timestampsString
 
-    @setState timestamp:
-      if timestampRe?
-        timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
+            label className: 'osu-checkbox osu-checkbox--beatmap-discussion',
+              input
+                className: 'osu-checkbox__input'
+                type: 'checkbox'
+                checked: @state.timestampConfirmed
+                onChange: @toggleTimestampConfirmation
 
-        # this isn't all that smart
-        (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
-      else
-        null
+              span className: 'osu-checkbox__tick',
+                el Icon, name: 'check'
+
+              osu.trans('beatmap_discussions.nearby_posts.confirm')
+
+
+  nearbyPosts: =>
+    return [] if !@state.timestamp?
+
+    if !@cache.nearbyPosts? || @cache.nearbyPosts.timestamp != @state.timestamp
+      posts = []
+
+      for post in @props.currentDiscussions.timeline
+        continue if post.message_type not in ['suggestion', 'problem']
+        continue if Math.abs(post.timestamp - @state.timestamp) > 5000
+        posts.push(post)
+
+      @cache.nearbyPosts =
+        timestamp: @state.timestamp
+        posts: posts
+
+    @cache.nearbyPosts.posts
+
+
+  parseTimestamp: (message) =>
+    timestampRe = message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
+
+    if timestampRe?
+      timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
+
+      # this isn't all that smart
+      (timestamp[0] * 60 + timestamp[1]) * 1000 + timestamp[2]
 
 
   post: (e) =>
@@ -144,10 +193,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   setMessage: (e) =>
-    if @props.mode == 'timeline'
-      callback = @parseTimestamp
+    message = e.currentTarget.value
+    timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
 
-    @setState message: e.currentTarget.value, callback
+    @setState {message, timestamp}
 
 
   setTimestamp: (e) =>
@@ -166,10 +215,14 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         onClick: @post
 
 
+  toggleTimestampConfirmation: =>
+    @setState timestampConfirmed: !@state.timestampConfirmed
+
+
   validPost: =>
     return false if @state.message.length == 0
 
     if @props.mode == 'timeline'
-      @state.timestamp?
+      @state.timestamp? && (@nearbyPosts().length == 0 || @state.timestampConfirmed)
     else
       true
