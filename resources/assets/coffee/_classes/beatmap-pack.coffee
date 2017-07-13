@@ -23,7 +23,7 @@ class @BeatmapPack
   constructor: (rootElement) ->
     @el = rootElement
     @packId = rootElement.dataset.packId
-    @packItemsElement = @el.querySelector('.js-beatmap-pack__items')
+    @packBody = @el.querySelector('.js-beatmap-pack__body')
     @expander = @el.querySelector('.js-beatmap-pack-expander')
     @busy = false
 
@@ -42,13 +42,13 @@ class @BeatmapPack
     return if @busy
 
     $(@el).addClass('accordion__item--expanded')
-    if @packItemsElement.innerHTML?.length
+    if @packBody.innerHTML?.length
       @slideDown()
     else
       @busy = true
       @getBeatmapPackItem(@packId)
       .done (data) =>
-        @packItemsElement.innerHTML = data
+        @packBody.innerHTML = data
         @slideDown()
       .fail (xhr) ->
         console.error(xhr)

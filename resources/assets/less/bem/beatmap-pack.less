@@ -22,12 +22,11 @@
   margin: 2px 0;
 
   &__body {
-    padding: 20px;
     background-color: #eee;
   }
 
   &__header {
-    padding: 20px;
+    padding: @beatmappack-listing--gutter;
     background-color: #fff;
   }
 
@@ -41,6 +40,17 @@
 
   &__date {
     font-size: 90%;
+  }
+
+  &__downloads {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding: @beatmappack-listing--gutter;
+  }
+
+  &__link {
+    .link-default();
   }
 
   &__name {

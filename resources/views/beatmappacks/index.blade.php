@@ -49,9 +49,9 @@
                             <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack['author'] }}</span>
                         </div>
                     </div>
-                    <div class="js-beatmap-pack__items beatmap-pack__body beatmap-pack__items accordion__item-body"></div>
+                    <div class="js-beatmap-pack__body beatmap-pack__body accordion__item-body"></div>
                 </div>
             @endforeach
         </div>
-    <div class="osu-layout__row">
+    </div>
 @endsection

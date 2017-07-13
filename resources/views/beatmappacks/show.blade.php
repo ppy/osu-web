@@ -17,29 +17,18 @@
 --}}
 
 
-<div>
-    <ul class="beatmap-pack__downloads">
-        @foreach ($pack->downloadUrls() as $download)
-            <li class="beatmap-pack__download">
-                <a href="{{ $download['url'] }}"
-                   class="beatmap-pack__link">Download
-                </a> from {{ $download['host'] }}
-        @endforeach
-    </ul>
-</div>
-<div class="beatmap-pack-items">
-    <div class="beatmap-pack-items__title">
-        {{ $pack->name }}
-    </div>
-    <div class="beatmap-pack-items__author">
-        {{ $pack->author }}
-    </div>
-
-    <div class="beatmap-pack-items__sets">
-        @foreach ($sets as $set)
-            <div class="beatmap-pack-items__set">
-                {{ $set->title }}
-            </div>
-        @endforeach
-    </div>
-</div>
+<ul class="beatmap-pack__downloads">
+    @foreach ($pack->downloadUrls() as $download)
+        <li class="beatmap-pack__download">
+            <a href="{{ $download['url'] }}"
+                class="beatmap-pack__link">Download
+            </a> {{ $download['host'] }}
+    @endforeach
+</ul>
+<ul class="beatmap-pack-items">
+    @foreach ($sets as $set)
+        <li class="beatmap-pack-items__set">
+            <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
+            <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>
+    @endforeach
+</ul>
