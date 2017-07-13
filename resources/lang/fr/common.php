@@ -32,7 +32,7 @@ return [
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
         'show_more' => 'Plus de résultats',
-        'delete' => 'Supprimer',
+        'upload_image' => "mettre en ligne l'image",
     ],
 
     'count' => [

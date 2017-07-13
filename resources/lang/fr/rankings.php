@@ -25,7 +25,6 @@ return [
         'charts' => 'Charts',
         'score' => 'Score',
         'country' => 'Pays',
-        'kudosu' => 'Kudosu',
     ],
     'stat' => [
         'accuracy' => 'Précision',
