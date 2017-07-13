@@ -30,10 +30,14 @@
             <div class="osu-page-header-v2__title">{{trans('beatmappacks.title')}}</div>
         </div>
         <ul class="page-mode">
-            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 's']) }}">Standard</a>
-            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 'r']) }}">Chart</a>
-            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 't']) }}">Theme</a>
-            <li class="page-mode__item"><a href="{{ route('beatmappacks.index', ['t' => 'a']) }}">Artist/Album</a>
+            <li class="page-mode__item">
+                @include('beatmappacks._type', ['type' => 's', 'current' => $type, 'title' => 'Standard'])
+            <li class="page-mode__item">
+                @include('beatmappacks._type', ['type' => 'r', 'current' => $type, 'title' => 'Chart'])
+            <li class="page-mode__item">
+                @include('beatmappacks._type', ['type' => 't', 'current' => $type, 'title' => 'Theme'])
+            <li class="page-mode__item">
+                @include('beatmappacks._type', ['type' => 'a', 'current' => $type, 'title' => 'Artist/Album'])
         </ul>
     </div>
     <div class="osu-layout__row">

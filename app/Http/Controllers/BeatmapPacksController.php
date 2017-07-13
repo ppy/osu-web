@@ -44,7 +44,8 @@ class BeatmapPacksController extends Controller
         $packs = $packs->get();
 
         return view('beatmappacks.index')
-            ->with('packs', $packs);
+            ->with('packs', $packs)
+            ->with('type', $type);
     }
 
     public function show($id)
