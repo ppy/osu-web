@@ -80,7 +80,6 @@ class Contest.Voting.ArtEntry extends React.Component
               a
                 className: 'contest-art-entry__entrant js-usercard',
                 'data-user-id': @props.entry.results.user_id,
-                'data-tooltip-position': 'right center',
                 href: laroute.route('users.show', user: @props.entry.results.user_id),
                   @props.entry.results.username
             else

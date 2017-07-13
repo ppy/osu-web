@@ -58,7 +58,6 @@ class Contest.Voting.Entry extends React.Component
           a
             className: 'contest-voting-list__entrant js-usercard',
             'data-user-id': @props.entry.results.user_id,
-            'data-tooltip-position': 'right center',
             href: laroute.route('users.show', user: @props.entry.results.user_id),
               @props.entry.results.username
       else
