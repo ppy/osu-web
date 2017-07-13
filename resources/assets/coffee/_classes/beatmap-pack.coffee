@@ -40,6 +40,8 @@ class @BeatmapPack
 
   open: =>
     return if @busy
+
+    $(@el).addClass('accordion__item--expanded')
     if @packItemsElement.innerHTML?.length
       @slideDown()
     else
@@ -55,22 +57,17 @@ class @BeatmapPack
         @busy = false
 
   close: =>
-    @slideUp()
+    # drop shadow should change _after_ slide up animation
+    $(@el.querySelector('.accordion__item-body')).slideUp(300, () =>
+      $(@el).removeClass('accordion__item--expanded')
+    )
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
     $.get laroute.route('beatmappacks.show', beatmappack: packId)
 
   slideDown: =>
-    # drop shadow should change _before_ slide down animation
-    $(@el).addClass('accordion__item--expanded')
     $(@el.querySelector('.accordion__item-body')).slideDown(300)
-
-  slideUp: =>
-    # drop shadow should change _after_ slide up animation
-    $(@el.querySelector('.accordion__item-body')).slideUp(300, () =>
-      $(@el).removeClass('accordion__item--expanded')
-    )
 
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
