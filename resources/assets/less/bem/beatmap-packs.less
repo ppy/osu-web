@@ -23,11 +23,15 @@
   background-color: #eee;
 
   &__cell {
-    width: calc(33%);
     flex-grow: 1;
     flex-shrink: 0;
     & + & {
       padding-left: 20px;
+    }
+
+    &--right {
+      text-align: right;
+      justify-content: flex-end;
     }
   }
 

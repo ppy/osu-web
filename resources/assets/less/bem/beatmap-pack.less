@@ -23,7 +23,8 @@
 
   &__body {
     padding: 20px;
-    background-color: #eee;  }
+    background-color: #eee;
+  }
 
   &__header {
     padding: 20px;
@@ -31,25 +32,24 @@
   }
 
   &__author {
-    &.beatmap-packs__cell {
-      width: 120px;
-      text-align: right;
+    font-style: italic;
+
+    &--bold {
+      font-weight: 600;
     }
   }
 
   &__date {
-    &.beatmap-packs__cell {
-      width: 180px;
-      text-align: right;
-      flex: 0;
-    }
+    font-size: 90%;
   }
 
   &__name {
     color: #6645CC;
+
     &.beatmap-packs__cell {
       flex-grow: 4;
     }
+
     .accordion__item--expanded & {
       font-weight: 600;
     }

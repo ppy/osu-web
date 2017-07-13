@@ -42,9 +42,12 @@
                 <div class="js-beatmap-pack beatmap-pack accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
                     <div class="js-beatmap-pack-expander beatmap-packs__row beatmap-pack__header accordion__item-header"
                          data-pack-id="{{ $pack['pack_id'] }}">
-                        <span class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</span>
-                        <span class="beatmap-packs__cell beatmap-pack__date">{{ $pack['date'] }}</span>
-                        <span class="beatmap-packs__cell beatmap-pack__author">{{ $pack['author'] }}</span>
+                        <div class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</div>
+                        <div class="beatmap-packs__cell beatmap-packs__cell--right">
+                            <span class="beatmap-pack__date">{{ $pack['date']->formatLocalized('%Y-%m-%d') }}</span>
+                            <span class="beatmap-pack__author">by </span>
+                            <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack['author'] }}</span>
+                        </div>
                     </div>
                     <div class="js-beatmap-pack__items beatmap-pack__body beatmap-pack__items accordion__item-body"></div>
                 </div>
