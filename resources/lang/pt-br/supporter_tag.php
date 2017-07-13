@@ -24,7 +24,7 @@ return [
         'not_found' => "Esse usuário não existe!",
     ],
     'duration' => [
-        'months' => ':tamanho mês|:tamanho meses|{0}',
-        'years' => ':tamanho ano|:tamanho anos|{0}',
+        'months' => ':lenght mês|:lenght meses|{0}',
+        'years' => ':lenght ano|:lenght anos|{0}',
     ],
 ];
