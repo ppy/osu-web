@@ -68,6 +68,7 @@ class @BeatmapDiscussionHelper
       praise: '&#xf004;'
       suggestion: '&#xf10c;'
       problem: '&#xf06a;'
+      resolved: '&#xf05d;'
 
 
   @moderationGroup: (user) =>
