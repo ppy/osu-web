@@ -465,7 +465,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isOnline()
     {
-        return $this->user_lastvisit > Carbon::now()->subMinute();
+        return $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
     public function isPrivileged()

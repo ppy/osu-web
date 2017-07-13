@@ -101,6 +101,7 @@ return [
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
         'max_friends' => 250,
+        'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
