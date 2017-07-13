@@ -28,7 +28,7 @@ return [
         'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Posts Novas',
+            'newer' => 'Posts Novos',
             'older' => 'Posts Antigos',
         ],
     ],
