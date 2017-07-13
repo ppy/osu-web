@@ -28,9 +28,9 @@ class BeatmapPacksController extends Controller
 {
     protected $section = 'beatmaps';
 
-    public function index()
+    public function index($flag = '')
     {
-        $type = presence(strtoupper(Request::input('t'))) ?? 'S';
+        $type = presence(strtoupper($flag)) ?? 'S';
         if (!in_array($type, ['S', 'T', 'A', 'R'], true)) {
             abort(404);
         }

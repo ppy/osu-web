@@ -46,7 +46,6 @@ class @BeatmapPack
       @slideDown()
     else
       @busy = true
-      @packItemsElement.innerHTML = 'Loading...'
       @getBeatmapPackItem(@packId)
       .done (data) =>
         @packItemsElement.innerHTML = data

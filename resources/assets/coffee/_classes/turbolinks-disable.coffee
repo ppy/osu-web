@@ -19,6 +19,7 @@
 internal = [
   'admin'
   'api/v2'
+  'beatmappacks'
   'beatmaps'
   'beatmapsets'
   'community'

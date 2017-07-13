@@ -49,7 +49,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     });
 });
 
-Route::resource('beatmappacks', 'BeatmapPacksController', ['only' => ['index', 'show']]);
+Route::group(['prefix' => 'beatmappacks'], function () {
+    Route::get('listing/{t?}', 'BeatmappacksController@index')->name('beatmappacks.index');
+    Route::get('{beatmappack}', 'BeatmappacksController@show')->name('beatmappacks.show');
+});
 
 Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
