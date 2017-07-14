@@ -172,14 +172,14 @@ class ProfilePage.HeaderExtra extends React.Component
               div className: "#{bn}__rank-global",
                 if @state.hoverLine1?
                   @state.hoverLine1
-                else if @props.stats.rank.is_ranked
+                else if @props.stats.rank.global?
                   "##{Math.round(@props.stats.rank.global).toLocaleString()}"
                 else
                   '\u00A0'
               div className: "#{bn}__rank-country",
                 if @state.hoverLine2?
                   @state.hoverLine2
-                else if @props.stats.rank.is_ranked
+                else if @props.stats.rank.country?
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
                 else
                   '\u00A0'
@@ -188,7 +188,10 @@ class ProfilePage.HeaderExtra extends React.Component
             className: "#{bn}__rank-chart"
             ref: (el) => @rankChartArea = el
           div className: "#{bn}__rank-box",
-            "#{Math.round(@props.stats.pp).toLocaleString()}pp"
+            if @props.stats.is_ranked
+              "#{Math.round(@props.stats.pp).toLocaleString()}pp"
+            else
+              osu.trans('users.show.extra.unranked')
 
   fancyLink: ({key, url, icon, text, title}) =>
     return if !@props.user[key]?
@@ -238,7 +241,10 @@ class ProfilePage.HeaderExtra extends React.Component
       $.subscribe "fancy-chart:hover-#{options.hoverId}:refresh.#{@id}", @rankChartHover
       $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
 
-    data = (@props.rankHistories?.data ? [])
+    if @props.stats.is_ranked
+      data = (@props.rankHistories?.data ? [])
+    else
+      []
     data = data.map (rank, i) ->
       x: i - data.length + 1
       y: -rank

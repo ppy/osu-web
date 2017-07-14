@@ -63,7 +63,7 @@ class @FriendButton extends React.PureComponent
         type: "DELETE"
         url: laroute.route 'friends.destroy', friend: @props.user_id
         success: @updateFriends
-        error: osu.ajaxError
+        error: osu.emitAjaxError(@button)
         complete: @requestDone
     else
       #friending
@@ -71,7 +71,7 @@ class @FriendButton extends React.PureComponent
         type: "POST"
         url: laroute.route 'friends.store', target: @props.user_id
         success: @updateFriends
-        error: osu.ajaxError
+        error: osu.emitAjaxError(@button)
         complete: @requestDone
 
 
@@ -108,6 +108,7 @@ class @FriendButton extends React.PureComponent
       onMouseEnter: @hover
       onMouseLeave: @unhover
       onClick: @clicked
+      ref: (el) => @button = el
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
       disabled: @state.loading
       if @state.loading
