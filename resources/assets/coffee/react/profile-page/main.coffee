@@ -312,7 +312,7 @@ class ProfilePage.Main extends React.PureComponent
 
 
   userUpdate: (_e, user) =>
-    return if !user?
+    return if user?.id != @state.user.id
     @setState user: user
 
 
