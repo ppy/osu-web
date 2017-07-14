@@ -23,7 +23,26 @@ class @UserCard
   onMouseOver: (event) =>
     el = event.currentTarget
 
-    return if el._tooltip
+    # when qtip has already been init for current element
+    if el._tooltip
+      api = $(el).qtip('api')
+
+      # disable existing cards when entering 'mobile' mode
+      if osu.isMobile()
+        event.preventDefault()
+        api.disable()
+        el._disable_card = true
+      else
+        if el._disable_card
+          el._disable_card = false
+          api.enable()
+          $(el).trigger('mouseover')
+
+      return
+
+    # disable usercards on mobile
+    if osu.isMobile()
+      return
 
     el._tooltip = true
 
