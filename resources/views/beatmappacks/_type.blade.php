@@ -20,4 +20,5 @@
    class="page-mode-link {{ strtoupper($type) == $current ? 'page-mode-link--is-active' : '' }}"
 >
     {{ $title }}
+    <span class="page-mode-link__stripe"></span>
 </a>
