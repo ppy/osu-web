@@ -54,7 +54,7 @@ return [
         'notification_remove_text' => 'aqui',
 
         'notification_in_stock' => 'Este produto já está em estoque!',
-	],
+    ],
 
     'supporter_tag' => [
         'require_login' => [

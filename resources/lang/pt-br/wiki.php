@@ -23,7 +23,7 @@ return [
         'fallback_translation' => 'A página selecionada ainda não foi traduzida no idioma selecionado (:language). Exibindo a versão em inglês.',
         'languages' => 'Idiomas',
         'missing' => 'A página solicitada não pôde ser encontrada.',
-		'missing_title' => 'Não encontrado',
+        'missing_title' => 'Não encontrado',
         'missing_translation' => 'A página solicitada não foi encontrada no idioma selecionado atualmente.',
         'toc' => 'Índice',
 

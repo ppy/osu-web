@@ -86,7 +86,7 @@ return [
 
     'download' => [
       'header' => [
-          '1' => "vamos",
+          '1' => 'vamos',
           '2' => 'começar.',
           '3' => 'baixe o cliente do osu! para Windows',
       ],
@@ -118,7 +118,7 @@ return [
             'welcome' => 'Olá, <strong>:username</strong>!',
             'messages' => 'Você tem 1 nova mensagem|Você tem :count novas mensagens',
             'stats' => [
-				'games' => 'Partidas',
+                'games' => 'Partidas',
                 'online' => 'Usuários online',
             ],
         ],
