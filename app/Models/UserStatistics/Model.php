@@ -73,24 +73,6 @@ abstract class Model extends BaseModel
         return $this->count300 + $this->count100 + $this->count50;
     }
 
-    public function countryRank()
-    {
-        if ($this->country_acronym === null) {
-            return;
-        }
-
-        // Using $this->rank_score isn't accurate because it's a float value.
-        // Hence the raw sql query.
-        // There's this alternative
-        //   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
-        // but it is slower.
-        return static::where('country_acronym', $this->country_acronym)
-            ->where('rank_score', '>', function ($q) {
-                $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
-            })
-            ->count() + 1;
-    }
-
     public static function getClass($modeStr)
     {
         if ($modeStr === null) {
@@ -127,5 +109,41 @@ abstract class Model extends BaseModel
         }
 
         return parent::__construct($attributes);
+    }
+
+    public function countryRank()
+    {
+        if (!$this->isRanked()) {
+            return;
+        }
+
+        if ($this->country_acronym === null) {
+            return;
+        }
+
+        // Using $this->rank_score isn't accurate because it's a float value.
+        // Hence the raw sql query.
+        // There's this alternative
+        //   rank_score_index < $this->rank_score_index AND rank_score_index > 0 AND rank_score > 0
+        // but it is slower.
+        return static::where('country_acronym', $this->country_acronym)
+            ->where('rank_score', '>', function ($q) {
+                $q->from($this->table)->where('user_id', $this->user_id)->select('rank_score');
+            })
+            ->count() + 1;
+    }
+
+    public function globalRank()
+    {
+        if (!$this->isRanked()) {
+            return;
+        }
+
+        return $this->rank_score_index;
+    }
+
+    public function isRanked()
+    {
+        return $this->rank_score !== 0 && $this->rank_score_index !== 0;
     }
 }
