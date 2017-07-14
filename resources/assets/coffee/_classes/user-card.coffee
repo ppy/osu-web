@@ -51,7 +51,8 @@ class @UserCard
               api.tooltip.find('.usercard')
                 .imagesLoaded({background: true})
                 .progress (instance, image) ->
-                  $(image.img).fadeTo(200, 1)
+                  if image.isLoaded
+                    $(image.img).fadeTo(200, 1)
                 .always (instance) ->
                   $(instance.elements[0]).find('.usercard__loader').fadeOut()
 
