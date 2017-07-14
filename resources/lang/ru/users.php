@@ -90,6 +90,7 @@ return [
             'beatmaps' => [
                 'title' => 'Карты',
             ],
+            'followers' => '1 подписчик|:count подписчиков',
             'historical' => [
                 'empty' => 'Нет каких-либо записей. :(',
                 'most_played' => [
