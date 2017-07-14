@@ -48,8 +48,7 @@ class @FriendButton extends React.PureComponent
   updateFriends: (data) =>
     @setState friend: _.find(data, (o) => o.target_id == @props.user_id), ->
       currentUser.friends = data
-      # persist currentUser state to DOM (for turbolinks to restore later)
-      $('#js-currentUser').text "var currentUser = #{JSON.stringify(currentUser)};"
+      $.publish 'user:update', currentUser
       $.publish "friendButton:refresh"
 
 
