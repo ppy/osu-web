@@ -86,7 +86,7 @@ class @UserCard
           , (xhr, status, error) ->
             api.set('content.text', status + ': ' + error)
 
-          $('#js-usercard__loading-template').text()
+          $('#js-usercard__loading-template').children().clone()
       position:
         at: at
         my: my
