@@ -38,7 +38,7 @@ class @UserCard
         def: false
         tip: false
         width: 280
-        height: 100
+        height: 130
       content:
         text: (event, api) ->
           userId = parseInt(el.getAttribute('data-user-id'))
