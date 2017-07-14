@@ -39,11 +39,11 @@ return [
         'edit' => 'éditer',
         'edited' => 'Dernière édition par :editor :update_time',
         'message_placeholder' => 'Écrivez ici pour poster',
-        'message_type_select' => 'Select Comment Type',
-        'reply_placeholder' => 'Type your response here',
-        'require-login' => 'Please login to post or reply',
-        'resolved' => 'Resolved',
-        'restore' => 'restore',
+        'message_type_select' => 'Sélectionnez un Type de Commentaire',
+        'reply_placeholder' => 'Écrivez votre réponse ici',
+        'require-login' => 'Veuillez vous connecter pour poster ou répondre',
+        'resolved' => 'Résolu',
+        'restore' => 'restorer',
         'title' => 'Discussions',
 
         'collapse' => [
@@ -53,7 +53,7 @@ return [
 
         'empty' => [
             'empty' => 'Pas de discussion !',
-            'filtered' => 'Aucune discussion ne correspond à vos critères.',
+            'hidden' => 'Aucune discussion ne correspond à vos critères.',
         ],
 
         'message_hint' => [
@@ -61,29 +61,30 @@ return [
             'in_timeline' => 'Pour modder plusieurs temps, faites plusieurs posts (un post par temps).',
         ],
 
-        'message_placeholder' => 'Tapez ici pour poster',
-
         'message_type' => [
             'praise' => 'Hommage',
             'problem' => 'Problème',
             'suggestion' => 'Suggestion',
         ],
 
-        'message_type_select' => 'Sélectionner le type de commentaire',
-
         'mode' => [
             'general' => 'Général',
+            'general_all' => 'Générale (toutes difficultées)',
             'timeline' => 'Chronologie',
         ],
 
-        'require-login' => 'Connectez-vous pour poster ou répondre',
-        'resolved' => 'Résolu',
+        'new' => [
+            'timestamp' => 'Horodatage',
+            'timestamp_missing' => 'ctrl-c en mode édition et collez votre message pour ajouter un horodatage !',
+            'title' => 'Nouvelle Discussion',
+        ],
 
         'show' => [
             'title' => 'Discussion de la beatmap',
         ],
 
         'stats' => [
+            'deleted' => 'Supprimé',
             'mine' => 'Moi',
             'pending' => 'En attente',
             'praises' => 'Hommages',
@@ -112,6 +113,14 @@ return [
             'options' => 'Plus de critères de recherche',
             'not-found' => 'Aucun résultat',
             'not-found-quote' => '... non, rien trouvé.',
+            'filters' => [
+                'mode' => 'Mode',
+                'status' => 'Statut du Classement',
+                'genre' => 'Genre',
+                'language' => 'Langue',
+                'extra' => 'supplément',
+                'rank' => 'Rang Atteint',
+            ],
         ],
         'mode' => 'Mode',
         'status' => 'Classification',

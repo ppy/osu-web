@@ -888,7 +888,7 @@ function clamp($number, $min, $max)
 // e.g. 100634983048665 -> 100.63 trillion
 function suffixed_number_format($number)
 {
-    $suffixes = ['', 'k', 'millon', 'billion', 'trillion']; // TODO: localize
+    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
     $k = 1000;
 
     if ($number < $k) {
