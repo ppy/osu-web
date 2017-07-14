@@ -20,15 +20,14 @@
     'current_action' => 'index',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
-    'body_additional_classes' => 'osu-layout--body-darker',
+    'body_additional_classes' => 'osu-layout--body-555',
 ])
 
 @section("content")
     <div class="beatmap-packs">
         <div class="osu-page">
-            <div class="osu-page-header-v2">
-                <div class="osu-page-header-v2__overlay"></div>
-                <div class="osu-page-header-v2__title">{{trans('beatmappacks.index.title')}}</div>
+            <div class="osu-page-header osu-page-header--beatmappacks">
+                <div class="osu-page-header__title">{{trans('beatmappacks.index.title')}}</div>
             </div>
             <div class="beatmap-packs__blurb">
                 <p class="beatmap-packs__important">READ THIS BEFORE DOWNLOADING</p>
