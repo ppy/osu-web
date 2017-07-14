@@ -50,10 +50,9 @@ class ProfilePage.HeaderExtra extends React.Component
 
   render: =>
     if currentUser.id?
-      if currentUser.id == @props.user.id
-        ownProfile = true
-      else
-        friendState = currentUser.friends.find((o) => o.target_id == @props.user.id)
+      friendState = currentUser.friends.find((o) => o.target_id == @props.user.id)
+
+    friendButtonHidden = !currentUser.id || currentUser.id == @props.user.id
 
     originKeys = []
     originKeys.push 'country' if @props.user.country.name?
@@ -75,7 +74,7 @@ class ProfilePage.HeaderExtra extends React.Component
         if currentUser.id?
           el FriendButton, user_id: @props.user.id
 
-        div className: "#{bn}__follower-count#{if ownProfile then '--own' else ''}",
+        div className: "#{bn}__follower-count#{if friendButtonHidden then '--no-button' else ''}",
           osu.transChoice('users.show.extra.followers', @props.user.followerCount[0].toLocaleString())
 
         if friendState?.mutual
