@@ -31,7 +31,7 @@ class UserRelation extends Model
             $query->select(DB::raw(1))
                 ->from('phpbb_users')
                 ->whereRaw('phpbb_users.user_id = phpbb_zebra.zebra_id')
-                ->whereRaw('phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 MINUTE))');
+                ->whereRaw('phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
         });
     }
 
@@ -66,7 +66,7 @@ class UserRelation extends Model
     {
         return $query->addSelect(DB::raw(
             '(
-                SELECT phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 1 MINUTE))
+                SELECT phpbb_users.user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))
                 FROM phpbb_users
                 WHERE phpbb_users.user_id = phpbb_zebra.zebra_id
             ) as online'
