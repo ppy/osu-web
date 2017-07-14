@@ -22,18 +22,19 @@ namespace App\Models;
 
 class BeatmapPack extends Model
 {
-    protected $table = 'osu_beatmappacks';
-    protected $primaryKey = 'pack_id';
-
-    protected $dates = ['date'];
-    public $timestamps = false;
-
+    const DEFAULT_TYPE = 'standard';
     private static $tagMappings = [
         'standard' => 'S',
         'theme' => 'T',
         'artist' => 'A',
         'chart' => 'R',
     ];
+
+    protected $table = 'osu_beatmappacks';
+    protected $primaryKey = 'pack_id';
+
+    protected $dates = ['date'];
+    public $timestamps = false;
 
     public function items()
     {
