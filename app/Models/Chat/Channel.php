@@ -45,11 +45,12 @@ class Channel extends Model implements Messageable
         return strtolower($type);
     }
 
-    public function receiveMessage(User $sender, $body)
+    public function receiveMessage(User $sender, $body, $isAction = false)
     {
         $message = new Message();
         $message->user_id = $sender->user_id;
         $message->content = $body;
+        $message->is_action = $isAction;
         $message->channel()->associate($this);
         $message->save();
 
