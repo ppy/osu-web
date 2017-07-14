@@ -58,7 +58,7 @@ return [
                     'not_lazer' => '您当前只能在 #lazer 聊天。',
                 ],
 
-                'not_allowed' => '无法在限制模式发言。',
+                'not_allowed' => '无法在受限制时发言。',
             ],
         ],
     ],
@@ -93,7 +93,7 @@ return [
 
                 'user' => [
                     'require_login' => '回复前请先登录。',
-                    'restricted' => '账户受限时不能回复。',
+                    'restricted' => '账户受限制时不能回复。',
                     'silenced' => '被禁言时不能回复。',
                 ],
             ],
@@ -111,7 +111,7 @@ return [
 
                 'user' => [
                     'require_login' => '投票前请先登录。',
-                    'restricted' => '账户受限时不能投票。',
+                    'restricted' => '账户受限制时不能投票。',
                     'silenced' => '被禁言时不能回复。',
                 ],
             ],
@@ -139,7 +139,7 @@ return [
 
     'silenced' => '您已被禁言，无法进行该操作。',
 
-    'restricted' => '您已进入限制模式，无法进行该操作。',
+    'restricted' => '您已受限制，无法进行该操作。',
 
     'user' => [
         'page' => [

@@ -44,8 +44,8 @@ return [
             '_' => '帮助',
             'getFaq' => '常见问题',
             'getSupport' => '获取帮助',
-            'getWiki' => 'Wiki',
-            'wiki-show' => 'Wiki',
+            'getWiki' => 'wiki',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => '谱面',

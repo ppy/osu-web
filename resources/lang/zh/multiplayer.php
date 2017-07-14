@@ -21,7 +21,7 @@
 return [
     'match' => [
         'header' => '多人游戏',
-        'team-types' => [
+        'team-types' => [ //TODO 待翻译
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
@@ -42,7 +42,7 @@ return [
             'match-disbanded-no-user' => '房间关闭',
             'host-changed-no-user' => '房主已经变更',
         ],
-        'in-progress' => '（正在游戏中）', //TODO
+        'in-progress' => '（正在游戏中）',
         'score' => [
             'stats' => [
                 'accuracy' => '准确率',
@@ -56,7 +56,7 @@ return [
             'red' => '红队',
         ],
         'winner' => ':team 胜利',
-        'difference' => 'by :difference', //TODO 确认该字段的位置
+        'difference' => '，高出另一队 :difference 分', //鬼畜翻译方案
         'loading-events' => '加载事件...',
         'more-events' => '查看全部...',
         'beatmap-deleted' => '删除谱面',

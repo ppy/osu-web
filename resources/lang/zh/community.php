@@ -120,7 +120,7 @@ return [
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D', //TODO 需要帮助
+            'title' => '我被说服了！ :D',
             'support' => '支持 osu!',
             'gift' => '或者给其他玩家一份礼物',
             'instructions' => '点击爱心按钮前往 osu! 商店',

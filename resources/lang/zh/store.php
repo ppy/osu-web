@@ -33,7 +33,7 @@ return [
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
+                'supporter_tag' => ':name 给 :username （:duration）',
             ],
             'quantity' => '数量',
         ],

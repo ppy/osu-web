@@ -90,6 +90,7 @@ return [
             'beatmaps' => [
                 'title' => '谱面',
             ],
+            'followers' => '粉丝： :count',
             'historical' => [
                 'empty' => '没有游戏记录. :(',
                 'most_played' => [
@@ -103,16 +104,16 @@ return [
                 'title' => '历史记录',
             ],
             'kudosu' => [
-                'available' => '可用 Kudosu',
-                'available_info' => 'Kudosu 可以兑换为 Kudosu 星,它可以让你的谱面更引人注意. 这是你还没有兑换的 Kudosu 数量.',
+                'available' => '可用 kudosu',
+                'available_info' => 'kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意. 这是你还没有兑换的 kudosu 数量.',
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
-                'total' => '总共获得 Kudosu',
+                'total' => '总共获得 kudosu',
                 'total_info' => '取决于您对制谱的贡献如何. 查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => '该用户还没有收到过 Kudosu!',
+                    'empty' => '该用户还没有收到过 kudosu!',
 
                     'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
                         'allow_kudosu' => [

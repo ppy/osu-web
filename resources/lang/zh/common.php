@@ -25,7 +25,7 @@ return [
     'buttons' => [
         'cancel' => '取消',
         'delete' => '删除',
-        'permalink' => '静态连结',
+        'permalink' => '静态链接',
         'post' => '发送',
         'reply' => '回复',
         'reset' => '重置',

@@ -68,7 +68,7 @@ return [
             'beatmapset' => '谱面',
             'forum_post' => '论坛',
             'user' => '玩家',
-            'wiki_page' => 'Wiki',
+            'wiki_page' => 'wiki',
         ],
 
         'user' => [

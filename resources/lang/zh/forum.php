@@ -60,9 +60,9 @@ return [
         'post_number_input' => '输入楼层数',
         'total_posts' => '一共有 :posts_count 楼',
     ],
-    'subforums' => '子论坛',
+    'subforums' => '子版块',
     'title' => 'osu! 社区',
-    'slogan' => "it's dangerous to play alone.",
+    'slogan' => "一起来玩吧", //此处意译了
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -115,7 +115,7 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '取消对该主题的订阅？',
+                'confirmation' => '取消对订阅该主题？',
                 'title' => '取消订阅',
             ],
         ],
