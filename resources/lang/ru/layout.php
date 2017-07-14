@@ -27,6 +27,8 @@ return [
         'home' => [
             '_' => 'главная',
             'account-edit' => 'настройки',
+            'friends' => 'друзья',
+            'friends-index' => 'друзья',
             'getChangelog' => 'список изменений',
             'getDownload' => 'скачать',
             'getIcons' => 'иконки',
@@ -241,6 +243,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Настройки',
+            'friends' => 'Друзья',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',
         ],
