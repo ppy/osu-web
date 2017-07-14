@@ -66,7 +66,7 @@ class @UserCard
           userId = parseInt(el.getAttribute('data-user-id'))
           $.ajax
             url: laroute.route 'users.card', id: userId
-          .then (content) =>
+          .done (content) =>
             if content
               api.set('content.text', content)
 
@@ -83,8 +83,8 @@ class @UserCard
               reactTurbolinks.boot()
             else
               api.hide()
-          , (xhr, status, error) ->
-            api.set('content.text', status + ': ' + error)
+          .fail (xhr, status, error) ->
+            api.set('content.text', "#{status}: #{error}")
 
           $('#js-usercard__loading-template').children().clone()
       position:
