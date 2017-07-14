@@ -24,38 +24,49 @@
 ])
 
 @section("content")
-    <div class="osu-page">
-        <div class="osu-page-header-v2">
-            <div class="osu-page-header-v2__overlay"></div>
-            <div class="osu-page-header-v2__title">{{trans('beatmappacks.title')}}</div>
+    <div class="beatmap-packs">
+        <div class="osu-page">
+            <div class="osu-page-header-v2">
+                <div class="osu-page-header-v2__overlay"></div>
+                <div class="osu-page-header-v2__title">{{trans('beatmappacks.title')}}</div>
+            </div>
+            <div class="beatmap-packs__blurb">
+                <p class="beatmap-packs__important">READ THIS BEFORE DOWNLOADING</p>
+                <p>Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
+                   All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
+                   <span class="beatmap-packs__scary">Do NOT</span> extract the zip's/osz's yourself,
+                   or the beatmaps will display incorrectly in osu and will not function properly.
+                </p>
+                <p>Also note that it is highly recommended to <span class="beatmap-packs__scary">download the packs from latest to earliest</span>, since the oldest maps are of much lower quality than most recent maps.</p>
+            </div>
+            <ul class="page-mode">
+                <li class="page-mode__item">
+                    @include('beatmappacks._type', ['type' => 's', 'current' => $type, 'title' => 'Standard'])
+                <li class="page-mode__item">
+                    @include('beatmappacks._type', ['type' => 'r', 'current' => $type, 'title' => 'Chart'])
+                <li class="page-mode__item">
+                    @include('beatmappacks._type', ['type' => 't', 'current' => $type, 'title' => 'Theme'])
+                <li class="page-mode__item">
+                    @include('beatmappacks._type', ['type' => 'a', 'current' => $type, 'title' => 'Artist/Album'])
+            </ul>
         </div>
-        <ul class="page-mode">
-            <li class="page-mode__item">
-                @include('beatmappacks._type', ['type' => 's', 'current' => $type, 'title' => 'Standard'])
-            <li class="page-mode__item">
-                @include('beatmappacks._type', ['type' => 'r', 'current' => $type, 'title' => 'Chart'])
-            <li class="page-mode__item">
-                @include('beatmappacks._type', ['type' => 't', 'current' => $type, 'title' => 'Theme'])
-            <li class="page-mode__item">
-                @include('beatmappacks._type', ['type' => 'a', 'current' => $type, 'title' => 'Artist/Album'])
-        </ul>
-    </div>
-    <div class="osu-layout__row">
-        <div class="beatmap-packs accordion">
-            @foreach ($packs as $pack)
-                <div class="js-beatmap-pack beatmap-pack accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
-                    <div class="js-beatmap-pack-expander beatmap-packs__row beatmap-pack__header accordion__item-header"
-                         data-pack-id="{{ $pack['pack_id'] }}">
-                        <div class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</div>
-                        <div class="beatmap-packs__cell beatmap-packs__cell--right">
-                            <span class="beatmap-pack__date">{{ $pack['date']->formatLocalized('%Y-%m-%d') }}</span>
-                            <span class="beatmap-pack__author">by </span>
-                            <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack['author'] }}</span>
+        <div class="osu-layout__row">
+            <div class="beatmap-packs__list accordion">
+                @foreach ($packs as $pack)
+                    <div class="js-beatmap-pack beatmap-pack accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
+                        <div class="js-beatmap-pack-expander beatmap-packs__row beatmap-pack__header accordion__item-header"
+                            data-pack-id="{{ $pack['pack_id'] }}">
+                            <div class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</div>
+                            <div class="beatmap-packs__cell beatmap-packs__cell--right">
+                                <span class="beatmap-pack__date">{{ $pack['date']->formatLocalized('%Y-%m-%d') }}</span>
+                                <span class="beatmap-pack__author">by </span>
+                                <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack['author'] }}</span>
+                            </div>
                         </div>
+                        <div class="js-beatmap-pack__body beatmap-pack__body accordion__item-body"></div>
                     </div>
-                    <div class="js-beatmap-pack__body beatmap-pack__body accordion__item-body"></div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </div>
 @endsection
