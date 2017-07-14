@@ -74,7 +74,6 @@ class @UserCard
               api.tooltip.find('.usercard')
                 .imagesLoaded()
                 .progress (instance, image) =>
-                  console.log '@fadeLength', @fadeLength
                   if image.isLoaded
                     $(image.img).fadeTo(@fadeLength, 1)
                 .always (instance) ->
