@@ -51,7 +51,7 @@ return [
         ],
 
         'forum_post' => [
-		    'all' => '所有论坛',
+            'all' => '所有论坛',
             'link' => '在论坛中搜索',
             'more_simple' => '查看更多搜索结果',
             'title' => '论坛',

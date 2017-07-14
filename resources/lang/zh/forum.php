@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => '子版块',
     'title' => 'osu! 社区',
-    'slogan' => "一起来玩吧", //此处意译了
+    'slogan' => '一起来玩吧', //此处意译了
     'topic' => [
         'create' => [
             'placeholder' => [
