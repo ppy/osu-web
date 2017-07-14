@@ -46,10 +46,10 @@ class BeatmapPack extends Model
         $thisTable = $this->getTable();
         $setsTable = (new Beatmapset)->getTable();
         $itemsTable = (new BeatmapPackItem)->getTable();
-        return static::query()
-            ->where("{$thisTable}.pack_id", '=', $this->pack_id)
-            ->join($itemsTable, "{$itemsTable}.pack_id", '=', "{$thisTable}.pack_id")
-            ->join($setsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id");
+        return Beatmapset::query()
+            ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
+            ->join($thisTable, "{$itemsTable}.pack_id", '=', "{$thisTable}.pack_id")
+            ->where("{$thisTable}.pack_id", '=', $this->pack_id);
     }
 
     public function downloadUrls()
