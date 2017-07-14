@@ -27,6 +27,7 @@
     <div class="beatmap-packs">
         <div class="osu-page">
             <div class="osu-page-header osu-page-header--beatmappacks">
+                <div class="osu-page-header__icon osu-page-header__icon--beatmappacks"></div>
                 <div class="osu-page-header__title">{{trans('beatmappacks.index.title')}}</div>
             </div>
             <div class="beatmap-packs__blurb">
