@@ -28,21 +28,21 @@ return [
             'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
-            'player-left' => ':user 离开了游戏',
-            'player-joined' => ':user 加入了游戏',
-            'player-kicked' => ':user 被踢出游戏',
-            'match-created' => ':user 创建了一场游戏',
-            'match-disbanded' => '游戏已经解散',
+            'player-left' => ':user 离开了房间',
+            'player-joined' => ':user 加入了房间',
+            'player-kicked' => ':user 被踢出房间',
+            'match-created' => ':user 创建了一个房间',
+            'match-disbanded' => '房间关闭',
             'host-changed' => ':user 成为房主',
 
-            'player-left-no-user' => '有玩家离开了游戏',   //----------
-            'player-joined-no-user' => '有玩家加入了游戏', //这部分翻译
-            'player-kicked-no-user' => '有玩家被踢出游戏', //可能完全
-            'match-created-no-user' => '游戏已经创建',     //不准确
-            'match-disbanded-no-user' => '游戏已经解散',   //需要协助
-            'host-changed-no-user' => '房主已经变更',      //----------
+            'player-left-no-user' => '有玩家离开了房间',
+            'player-joined-no-user' => '有玩家加入了房间',
+            'player-kicked-no-user' => '有玩家被踢出房间',
+            'match-created-no-user' => '房间创建',
+            'match-disbanded-no-user' => '房间关闭',
+            'host-changed-no-user' => '房主已经变更',
         ],
-        'in-progress' => '(match in progress)', //TODO
+        'in-progress' => '（正在游戏中）', //TODO
         'score' => [
             'stats' => [
                 'accuracy' => '准确率',

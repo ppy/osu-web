@@ -20,9 +20,9 @@
 
 return [
     'availability' => [
-        'disabled' => '这张谱面现在不能下载',
-        'parts-removed' => '根据作者/第三方的要求,这张谱面已经被移除.', //可能不准确
-        'more-info' => '点击这里获得更多信息.',
+        'disabled' => '这张谱面现在不能下载。',
+        'parts-removed' => '由于作者/第三方版权持有者的要求，因此这张谱面已经被移除。', //可能不准确
+        'more-info' => '点击这里获得更多信息。',
     ],
 
     'index' => [
@@ -34,14 +34,14 @@ return [
         'discussion' => '讨论',
 
         'details' => [ //TODO 需要帮助
-            'made-by' => '制谱人: ',
+            'made-by' => '制作者: ',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
             'ranked' => 'ranked 于 ',
             'approved' => 'approved 于 ',
             'qualified' => 'qualified 于 ',
             'loved' => 'loved 于 ',
-            'logged-out' => '下载谱面前请先登录!',
+            'logged-out' => '下载谱面前请先登录！',
             'download' => [
                 '_' => '下载',
                 'video' => '带视频',
@@ -80,9 +80,9 @@ return [
             'country' => '国内排名',
             'friend' => '好友排名',
             'global' => '全球排名',
-            'supporter-link' => '点击 <a href=":link">这里</a> 查看你得到的所有特性吧!',
-            'supporter-only' => '你需要成为支持者才能查看国内/好友排名!',
-            'title' => '得分板',
+            'supporter-link' => '点击 <a href=":link">这里</a> 来查看你可以得到的精彩功能！',
+            'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
+            'title' => '成绩板',
 
             'list' => [
                 'accuracy' => '准确率',
@@ -91,11 +91,11 @@ return [
                 'score' => '得分',
             ],
             'no_scores' => [
-                'country' => '国内还没有人在这张谱面上得分!',
-                'friend' => '您的好友中还没有人在这张谱面上得分!',
-                'global' => '还没有人在这张谱面上得分,您或许可以试一试?',
+                'country' => '国内还没有人在这张谱面上得分！',
+                'friend' => '您的好友中还没有人在这张谱面上得分！',
+                'global' => '还没有人在这张谱面上得分，或许您可以试一试？',
                 'loading' => '加载分数中...',
-                'unranked' => 'Unranked谱面.',
+                'unranked' => 'Unranked谱面',
             ],
             'score' => [
                 'first' => '领先者',
