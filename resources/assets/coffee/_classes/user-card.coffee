@@ -80,7 +80,7 @@ class @UserCard
                   $(instance.elements[0]).find('.usercard__loader').fadeTo(@fadeLength, 0)
 
               # manually init the friend-button react component
-              ReactDOM.render React.createElement(FriendButton, user_id: userId), api.tooltip.find('.js-react--friendButton')[0]
+              reactTurbolinks.boot()
             else
               api.hide()
           , (xhr, status, error) ->
