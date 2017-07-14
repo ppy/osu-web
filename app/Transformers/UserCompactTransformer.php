@@ -27,6 +27,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'country',
+        'cover',
     ];
 
     public function transform(User $user)
@@ -38,11 +39,24 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
             'is_active' => $user->isActive(),
+            'is_supporter' => $user->isSupporter(),
+            'is_online' => $user->isOnline(),
         ];
     }
 
     public function includeCountry(User $user)
     {
         return $this->item($user->country, new CountryTransformer);
+    }
+
+    public function includeCover(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                'customUrl' => $user->cover()->fileUrl(),
+                'url' => $user->cover()->url(),
+                'id' => $user->cover()->id(),
+            ];
+        });
     }
 }

@@ -300,7 +300,7 @@ function link_to_user($user_id, $user_name, $user_color)
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
 
-        return "<a class='user-name' href='{$user_url}' style='{$style}'>{$user_name}</a>";
+        return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
     } else {
         return "<span class='user-name'>{$user_name}</span>";
     }
@@ -392,6 +392,7 @@ function nav_links()
 
     $links['home'] = [
         'news-index' => route('news.index'),
+        'friends' => route('friends.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
         'search' => route('search'),

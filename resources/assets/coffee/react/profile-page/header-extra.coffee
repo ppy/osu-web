@@ -49,6 +49,12 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   render: =>
+    if currentUser.id?
+      if currentUser.id == @props.user.id
+        ownProfile = true
+      else
+        friendState = currentUser.friends.find((o) => o.target_id == @props.user.id)
+
     originKeys = []
     originKeys.push 'country' if @props.user.country.name?
     originKeys.push 'age' if @props.user.age?
@@ -65,6 +71,18 @@ class ProfilePage.HeaderExtra extends React.Component
           js-switchable-mode-page--scrollspy js-switchable-mode-page--page
         """
       'data-page-id': 'main'
+      div className: "#{bn} #{bn}--follower-meta",
+        if currentUser.id?
+          el FriendButton, user_id: @props.user.id
+
+        div className: "#{bn}__follower-count#{if ownProfile then '--own' else ''}",
+          osu.transChoice('users.show.extra.followers', @props.user.followerCount[0].toLocaleString())
+
+        if friendState?.mutual
+          div className: "#{bn}__follower-mutual-divider", "|"
+        if friendState?.mutual
+          div className: "#{bn}__follower-mutual", osu.trans 'friends.state.mutual'
+
       div className: bn,
         div className: "#{bn}__column #{bn}__column--text",
           if originKeys.length != 0 || @props.user.title?

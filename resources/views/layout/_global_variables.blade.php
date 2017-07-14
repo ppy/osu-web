@@ -25,3 +25,7 @@
 </script>
 
 @include ('layout._current_user')
+
+<script id="js-usercard__loading-template" type="application/javascript">
+    @include('objects._usercard', ['loading' => true])
+</script>

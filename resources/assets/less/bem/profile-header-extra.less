@@ -18,7 +18,7 @@
 
 .profile-header-extra {
   background-color: #333;
-  padding: 15px 20px 0;
+  padding: 5px 20px 0;
   color: #fff;
   font-size: @font-size--normal;
 
@@ -31,6 +31,28 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
+  }
+
+  &--follower-meta {
+    font-size: 10px;
+    padding: 10px 30px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__follower-count {
+    padding-left: 10px;
+
+    &--own {
+      padding-left: 0px;
+    }
+  }
+
+  &__follower-mutual-divider {
+    padding: 0px 5px;
+    color: #777;
   }
 
   &__column {
@@ -103,8 +125,5 @@
       font-weight: bold;
       font-style: italic;
     }
-  }
-
-  &__text {
   }
 }
