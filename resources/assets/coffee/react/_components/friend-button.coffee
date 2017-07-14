@@ -25,6 +25,7 @@ class @FriendButton extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @eventId = "friendButton-#{@props.user_id}-#{osu.generateId()}"
     @state =
       hover: false
       friend: _.find(currentUser.friends, (o) -> o.target_id == props.user_id)
@@ -81,12 +82,11 @@ class @FriendButton extends React.PureComponent
       @forceUpdate()
 
 
-  componentDidMount: ->
-    @eventId = "friendButton-#{@props.user_id}"
+  componentDidMount: =>
     $.subscribe "friendButton:refresh.#{@eventId}", @refresh
 
 
-  componentWillUnmount: ->
+  componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
 
 
