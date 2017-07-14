@@ -28,6 +28,13 @@ class BeatmapPack extends Model
     protected $dates = ['date'];
     public $timestamps = false;
 
+    private static $tagMappings = [
+        'standard' => 'S',
+        'theme' => 'T',
+        'artist' => 'A',
+        'chart' => 'R',
+    ];
+
     public function items()
     {
         return $this->hasMany(BeatmapPackItem::class, 'pack_id');
@@ -56,5 +63,24 @@ class BeatmapPack extends Model
         }
 
         return $array;
+    }
+
+    public static function getPacks($type)
+    {
+        if (!in_array($type, array_keys(static::$tagMappings), true)) {
+            return null;
+        }
+
+        static $packIdSortable = ['standard', 'chart'];
+
+        $tag = static::$tagMappings[$type];
+        $packs = BeatmapPack::where('tag', 'like', "{$tag}%");
+        if (in_array($type, $packIdSortable)) {
+            $packs = $packs->orderBy('pack_id', 'desc');
+        } else {
+            $packs = $packs->orderBy('name', 'asc');
+        }
+
+        return $packs->get();
     }
 }
