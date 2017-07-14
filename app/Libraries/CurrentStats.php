@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Models\BanchoStats;
 use App\Models\Count;
+use Auth;
 use Cache;
 
 class CurrentStats
@@ -45,6 +46,7 @@ class CurrentStats
             ];
         });
 
+        $this->onlineFriends = Auth::user() ? Auth::user()->friends()->online()->count() : 0;
         $this->currentOnline = $data['currentOnline'];
         $this->currentGames = $data['currentGames'];
         $this->graphData = $data['graphData'];

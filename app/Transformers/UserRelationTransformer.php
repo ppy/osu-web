@@ -18,36 +18,29 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers\API\Chat;
+namespace App\Transformers;
 
-use App\Models\DeletedUser;
-use App\Transformers\UserCompactTransformer;
+use App\Models\UserRelation;
 use League\Fractal;
 
-class MessageTransformer extends Fractal\TransformerAbstract
+class UserRelationTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'sender',
+        'target',
     ];
 
-    public function transform($message)
+    public function transform(UserRelation $userRelation)
     {
         return [
-            'message_id' => $message->message_id,
-            'sender_id' => $message->user_id,
-            'target_type' => $message->target_type,
-            'target_id' => $message->target_id,
-            'timestamp' => json_time($message->timestamp),
-            'content' => $message->content,
-            'is_action' => $message->is_action,
+            'target_id' => $userRelation->zebra_id,
+            'relation_type' => $userRelation->friend ? 'friend' : 'block',
+            // mutual is a bit derpy, it only applies to friends
+            'mutual' => $userRelation->mutual,
         ];
     }
 
-    public function includeSender($message)
+    public function includeTarget(UserRelation $userRelation)
     {
-        return $this->item(
-            $message->sender ?? (new DeletedUser),
-            new UserCompactTransformer
-        );
+        return $this->item($userRelation->target, new UserCompactTransformer);
     }
 }

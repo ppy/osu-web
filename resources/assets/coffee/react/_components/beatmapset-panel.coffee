@@ -99,8 +99,10 @@ class @BeatmapsetPanel extends React.PureComponent
                     osu.trans 'beatmaps.listing.mapped-by',
                       mapper:
                         laroute.link_to_route 'users.show',
-                          beatmapset.creator
-                          user: beatmapset.user_id
+                            beatmapset.creator,
+                            user: beatmapset.user_id,
+                              'class': 'js-usercard'
+                              'data-user-id': beatmapset.user_id
               div
                 className: 'u-ellipsis-overflow'
                 beatmapset.source

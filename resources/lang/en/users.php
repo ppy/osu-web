@@ -90,6 +90,7 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps',
             ],
+            'followers' => '1 follower|:count followers',
             'historical' => [
                 'empty' => 'No performance records. :(',
                 'most_played' => [
@@ -198,6 +199,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
+    ],
+    'status' => [
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'verify' => [
         'title' => 'Account Verification',

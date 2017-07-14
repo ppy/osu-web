@@ -152,6 +152,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
 
+    Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
@@ -176,6 +177,7 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/register', function () {
     return Redirect::to('https://osu.ppy.sh/p/register');
 })->name('users.register');
+Route::get('users/{id}/card', 'UsersController@card')->name('users.card');
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'help'], function () {

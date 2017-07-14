@@ -137,6 +137,7 @@ mix
   path.join(node_root, 'd3/build/d3' + min + '.js'),
   path.join(node_root, 'moment/moment.js'),
   path.join(node_root, 'js-cookie/src/js.cookie.js'),
+  path.join(node_root, 'imagesloaded/imagesloaded.pkgd' + min + '.js'),
 
   path.join(node_root, 'react-height/build/react-height' + min + '.js'),
   path.join(node_root, 'react-motion/build/react-motion.js'),

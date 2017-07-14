@@ -28,7 +28,7 @@
                 </div>
             @endif
 
-            <a class="forum-post__username" href="{{ route("users.show", $user) }}">
+            <a class="forum-post__username js-usercard" data-user-id="{{$user->user_id}}" href="{{ route("users.show", $user) }}">
                 {{ $user->username }}
             </a>
         @else

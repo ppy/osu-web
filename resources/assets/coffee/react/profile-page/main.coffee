@@ -32,7 +32,8 @@ class ProfilePage.Main extends React.PureComponent
 
     savedStateString = document.body.dataset.profilePageState
     if savedStateString?
-      return JSON.parse(savedStateString)
+      @state = JSON.parse(savedStateString)
+      return
 
     optionsHash = ProfilePageHash.parse location.hash
     @initialPage = optionsHash.page

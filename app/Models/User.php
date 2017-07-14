@@ -331,6 +331,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_birthday->age ?? null;
     }
 
+    public function cover()
+    {
+        return $this->userProfileCustomization ? $this->userProfileCustomization->cover()->url() : null;
+    }
+
     public function getUserTwitterAttribute($value)
     {
         return presence(ltrim($value, '@'));
@@ -456,6 +461,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isActive()
     {
         return $this->user_lastvisit > Carbon::now()->subMonth();
+    }
+
+    public function isOnline()
+    {
+        return $this->user_lastvisit > Carbon::now()->subMinutes(config('osu.user.online_window'));
     }
 
     public function isPrivileged()
@@ -770,7 +780,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        return $this->relations()->where('friend', true);
+        return $this->relations()->friends();
     }
 
     public function foes()
@@ -897,7 +907,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function defaultJson()
     {
-        return json_item($this, 'User', 'disqus_auth');
+        return json_item($this, 'User', ['disqus_auth', 'friends']);
     }
 
     public function supportLength()
@@ -960,12 +970,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function receiveMessage(User $sender, $body)
+    public function receiveMessage(User $sender, $body, $isAction = false)
     {
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
         $message->target_id = $this->user_id;
         $message->content = $body;
+        $message->is_action = $isAction;
         $message->save();
 
         return $message->fresh();
