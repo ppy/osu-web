@@ -62,28 +62,7 @@ class @UserCard
           , (xhr, status, error) ->
             api.set('content.text', status + ': ' + error)
 
-          '<div class="usercard" style="background-image: url(/images/layout/beatmaps/default-bg.png);">
-              <div class="usercard__background-overlay"></div>
-              <div class="usercard__link-wrapper">
-                  <div class="usercard__main-card">
-                      <div class="usercard__avatar-space">
-                        <div class="usercard__loader">
-                          <i class="fa fa-fw fa-refresh fa-spin"></i>
-                        </div>
-                      </div>
-                      <div class="usercard__metadata">
-                          <div class="usercard__username">Loading...</div>
-                          <div class="usercard__flags">
-                            <span class="flag-country" style="background-image: url(/images/flags/XX.png);"></span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="usercard__status-bar usercard__status-bar--offline">
-                      <span class="fa fa-fw fa-circle-o usercard__status-icon"></span>
-                      <span class="usercard__status-message">Offline</span>
-                  </div>
-              </div>
-          </div>'
+          $('#js-usercard__loading-template').text()
       position:
         at: at
         my: my
