@@ -55,7 +55,11 @@ class Contest.Voting.Entry extends React.Component
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }
           div className: 'u-ellipsis-overflow', @props.entry.title
-          a href: laroute.route('users.show', user: @props.entry.results.user_id), className: 'contest-voting-list__entrant', @props.entry.results.username
+          a
+            className: 'contest-voting-list__entrant js-usercard',
+            'data-user-id': @props.entry.results.user_id,
+            href: laroute.route('users.show', user: @props.entry.results.user_id),
+              @props.entry.results.username
       else
         div className: 'contest-voting-list__title u-ellipsis-overflow', @props.entry.title
 

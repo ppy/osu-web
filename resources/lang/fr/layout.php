@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
 
     'menu' => [
@@ -37,7 +37,6 @@ return [
             'password-reset-index' => 'réinitialiser le mot de passe',
             'search' => 'Rechercher',
             'supportTheGame' => 'supporter le jeu',
-            'password-reset-index' => 'réinitialiser le mot de passe',
         ],
         'help' => [
             '_' => 'aide',
@@ -63,6 +62,7 @@ return [
             'index' => 'performance',
             'performance' => 'performance',
             'charts' => 'graphiques',
+            'score' => 'score',
             'country' => 'pays',
             'kudosu' => 'kudosu',
         ],
@@ -216,7 +216,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support!',
+        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support !',
     ],
 
     'popup_login' => [
@@ -227,22 +227,22 @@ return [
             'title' => 'Se connecter pour continuer',
 
             'error' => [
-                'email' => "Le nom d'utilisateur ou l'email ne correspond pas",
+                'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
                 'password' => 'Mot de passe incorrect',
             ],
         ],
 
         'register' => [
-            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi vous en avez pas?",
-            'title' => "Vous n'avez pas de compte?",
+            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi n'en avez vous pas ?",
+            'title' => "Vous n'avez pas de compte ?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Paramètres',
-            'profile' => 'Mon profil',
             'logout' => 'Se déconnecter',
+            'profile' => 'Mon profil',
         ],
     ],
 

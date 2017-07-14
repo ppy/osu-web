@@ -111,7 +111,7 @@ class Forum extends Model
         return $this->hasOne(ForumCover::class, 'forum_id');
     }
 
-    public function scopeMoveDestination($query)
+    public function scopeDisplayList($query)
     {
         $query->orderBy('left_id');
     }

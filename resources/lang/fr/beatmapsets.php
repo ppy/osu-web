@@ -41,7 +41,7 @@ return [
             'approved' => 'approuvée le ',
             'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps!',
+            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !',
             'download' => [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',
@@ -67,8 +67,8 @@ return [
         ],
         'info' => [
             'no_scores' => 'Beatmap non classifiée',
-            'success-rate' => 'Taux de réussite',
             'points-of-failure' => 'Points de ratés',
+            'success-rate' => 'Taux de réussite',
 
             'description' => 'Description',
 
@@ -91,9 +91,9 @@ return [
                 'score' => 'Score',
             ],
             'no_scores' => [
-                'country' => "Personne de votre pays n'a encore fait un score!",
-                'friend' => "Personnne de vos amis n'a encore fait un score!",
-                'global' => 'Pas de scores. Peut-être vous dans le classement?',
+                'country' => "Personne de votre pays n'a encore fait un score !",
+                'friend' => "Personnne de vos amis n'a encore fait un score !",
+                'global' => 'Pas de scores. Peut-être vous dans le classement ?',
                 'loading' => 'Chargement des scores...',
                 'unranked' => 'Beatmap non classifié.',
             ],

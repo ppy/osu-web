@@ -39,6 +39,7 @@ return [
 
     'search' => [
         'advanced_link' => 'Advanced search',
+        'button' => 'Search',
         'empty_result' => 'Nothing found!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
         'title' => 'Search Results',
@@ -50,9 +51,16 @@ return [
         ],
 
         'forum_post' => [
+            'all' => 'All forums',
             'link' => 'Search the forum',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
+
+            'label' => [
+                'forum' => 'search in forums',
+                'forum_children' => 'include subforums',
+                'username' => 'author',
+            ],
         ],
 
         'mode' => [
@@ -110,6 +118,7 @@ return [
             'welcome' => 'Hello, <strong>:username</strong>!',
             'messages' => 'You have 1 new message|You have :count new messages',
             'stats' => [
+                'friends' => 'Online Friends',
                 'games' => 'Games',
                 'online' => 'Online Users',
             ],

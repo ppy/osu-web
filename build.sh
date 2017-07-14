@@ -34,4 +34,4 @@ php artisan laroute:generate
 
 command -v yarn || npm install -g yarn
 yarn
-./node_modules/gulp/bin/gulp.js --production
+yarn run production

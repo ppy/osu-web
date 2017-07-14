@@ -58,7 +58,7 @@
                                 'country_name' => $score->user->country->name,
                                 'country_code' => $score->user->country->acronym,
                             ])
-                            <span class="ranking-page-table__user-link-text">
+                            <span class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
                                 {{ $score->user->username }}
                             </span>
                         </a>

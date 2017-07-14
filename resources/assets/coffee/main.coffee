@@ -19,6 +19,7 @@
 @polyfills ?= new Polyfills
 Lang.setLocale(currentLocale)
 Lang.setFallback(fallbackLocale)
+jQuery.timeago.settings.allowFuture = true
 
 # loading animation overlay
 # fired from turbolinks
@@ -56,9 +57,10 @@ $(document).on 'turbolinks:load', ->
 @osuLayzr ?= new OsuLayzr
 @parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
-@reactTurbolinks ||= new ReactTurbolinks
+@reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
 @scale ?= new Scale
+@search ?= new Search
 @stickyFooter ?= new StickyFooter
 @stickyHeader ?= new StickyHeader
 @syncHeight ?= new SyncHeight
@@ -70,6 +72,7 @@ $(document).on 'turbolinks:load', ->
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
+@userCard ?= new UserCard
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
@@ -91,14 +94,16 @@ $(document).on 'keydown', (e) ->
 reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
   deadline: e.dataset.deadline
 
+# Globally init friend buttons
+reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  user_id: parseInt(target.dataset.target)
+
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
   JSON.parse(el.dataset.beatmapsetPanel)
 
 rootUrl = "#{document.location.protocol}//#{document.location.host}"
 rootUrl += ":#{document.location.port}" if document.location.port
 rootUrl += '/'
-
-jQuery.timeago.settings.allowFuture = true
 
 # Internal Helper
 $.expr[':'].internal = (obj, index, meta, stack) ->

@@ -16,5 +16,5 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <script>
-    turbolinksReload.load('{{ elixir($src) }}')
+    turbolinksReload.load('{{ mix($src) }}')
 </script>

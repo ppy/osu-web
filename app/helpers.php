@@ -300,7 +300,7 @@ function link_to_user($user_id, $user_name, $user_color)
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
 
-        return "<a class='user-name' href='{$user_url}' style='{$style}'>{$user_name}</a>";
+        return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
     } else {
         return "<span class='user-name'>{$user_name}</span>";
     }
@@ -392,13 +392,15 @@ function nav_links()
 
     $links['home'] = [
         'news-index' => route('news.index'),
+        'friends' => route('friends.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
+        'search' => route('search'),
     ];
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),
         'getFaq' => wiki_url('FAQ'),
-        'getSupport' => osu_url('help.support'),
+        'getSupport' => wiki_url('Help_Center'),
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
@@ -886,7 +888,7 @@ function clamp($number, $min, $max)
 // e.g. 100634983048665 -> 100.63 trillion
 function suffixed_number_format($number)
 {
-    $suffixes = ['', 'k', 'millon', 'billion', 'trillion']; // TODO: localize
+    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
     $k = 1000;
 
     if ($number < $k) {

@@ -44,9 +44,15 @@
 
   &__input {
     .reset-input();
+    font-size: @font-size--iphone-input;
     flex: 1;
     padding: 20px 10px;
     font-weight: normal;
+    min-width: 0;
+
+    @media @desktop {
+      font-size: inherit;
+    }
   }
 
   &__title {
@@ -54,5 +60,6 @@
     align-self: center;
     margin-bottom: 10px;
     font-size: @font-size--large-2;
+    text-align: center;
   }
 }

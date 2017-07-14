@@ -34,7 +34,7 @@ return [
         'standard_converts_only' => "Seulement le mode osu! peut avoir des scores dans d'autres modes.",
     ],
     'beatmapsets' => [
-        'too-many-favourites' => 'Vous avez trop de beatmaps favoris! Merci de supprimer une beatmap de vos favoris.',
+        'too-many-favourites' => 'Vous avez trop de beatmaps favorites ! Merci de supprimer une beatmap de vos favoris.',
     ],
     'logged_out' => 'Vous avez été déconnecté. Merci de vous connecter et de réessayer.',
     'supporter_only' => 'Vous devez être un osu!supporter pour accéder à cela.',

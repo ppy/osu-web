@@ -37,37 +37,35 @@
                 </h1>
             </div>
 
-            @if (!empty($page->locales()))
-                <div class="osu-page-header__actions">
-                    <div class="forum-post-actions">
+            <div class="osu-page-header__actions">
+                <div class="forum-post-actions">
+                    <div class="forum-post-actions__action">
+                        <a
+                            class="btn-circle"
+                            href="{{ $page->editUrl() }}"
+                            title="{{ trans('wiki.show.edit.link') }}"
+                            data-tooltip-position="left center"
+                        >
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </div>
+
+                    @if (priv_check('WikiPageRefresh')->can())
                         <div class="forum-post-actions__action">
                             <a
                                 class="btn-circle"
-                                href="{{ $page->editUrl() }}"
-                                title="{{ trans('wiki.show.edit.link') }}"
+                                href="#"
+                                data-remote="true"
+                                data-method="PUT"
+                                title="{{ trans('wiki.show.edit.refresh') }}"
                                 data-tooltip-position="left center"
                             >
-                                <i class="fa fa-github"></i>
+                                <i class="fa fa-refresh"></i>
                             </a>
                         </div>
-
-                        @if (priv_check('WikiPageRefresh')->can())
-                            <div class="forum-post-actions__action">
-                                <a
-                                    class="btn-circle"
-                                    href="#"
-                                    data-remote="true"
-                                    data-method="PUT"
-                                    title="{{ trans('wiki.show.edit.refresh') }}"
-                                    data-tooltip-position="left center"
-                                >
-                                    <i class="fa fa-refresh"></i>
-                                </a>
-                            </div>
-                        @endif
-                    </div>
+                    @endif
                 </div>
-            @endif
+            </div>
         </div>
     </div>
 
