@@ -27,15 +27,22 @@ use Request;
 class BeatmapPacksController extends Controller
 {
     protected $section = 'beatmaps';
+    private static $magic = [
+        'standard' => 'S',
+        'theme' => 'T',
+        'artist' => 'A',
+        'chart' => 'R',
+    ];
 
     public function index($flag = '')
     {
-        $type = presence(strtoupper($flag)) ?? 'S';
-        if (!in_array($type, ['S', 'T', 'A', 'R'], true)) {
+        $type = presence($flag) ?? 'standard';
+        if (!in_array($type, array_keys(static::$magic), true)) {
             abort(404);
         }
 
-        $packs = BeatmapPack::where('tag', 'like', "{$type}%");
+        $tag = static::$magic[$type];
+        $packs = BeatmapPack::where('tag', 'like', "{$tag}%");
         if (in_array($type, ['S', 'R'])) {
             $packs = $packs->orderBy('pack_id', 'desc');
         } else {

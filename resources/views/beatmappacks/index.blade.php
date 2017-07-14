@@ -41,13 +41,13 @@
             </div>
             <ul class="page-mode">
                 <li class="page-mode__item">
-                    @include('beatmappacks._type', ['type' => 's', 'current' => $type, 'title' => 'Standard'])
+                    @include('beatmappacks._type', ['current' => $type, 'type' => 'standard', 'title' => 'Standard'])
                 <li class="page-mode__item">
-                    @include('beatmappacks._type', ['type' => 'r', 'current' => $type, 'title' => 'Chart'])
+                    @include('beatmappacks._type', ['current' => $type, 'type' => 'chart', 'title' => 'Chart'])
                 <li class="page-mode__item">
-                    @include('beatmappacks._type', ['type' => 't', 'current' => $type, 'title' => 'Theme'])
+                    @include('beatmappacks._type', ['current' => $type, 'type' => 'theme', 'title' => 'Theme'])
                 <li class="page-mode__item">
-                    @include('beatmappacks._type', ['type' => 'a', 'current' => $type, 'title' => 'Artist/Album'])
+                    @include('beatmappacks._type', ['current' => $type, 'type' => 'artist', 'title' => 'Artist/Album'])
             </ul>
         </div>
         <div class="osu-layout__row">

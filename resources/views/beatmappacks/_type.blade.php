@@ -16,8 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<a href="{{ route('beatmappacks.index', ['t' => $type]) }}"
    class="page-mode-link {{ strtoupper($type) == $current ? 'page-mode-link--is-active' : '' }}"
+<a href="{{ route('beatmappacks.index', ['type' => $type]) }}"
 >
     {{ $title }}
     <span class="page-mode-link__stripe"></span>
