@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Beatmap packs',
-        'description' => 'Beatmap packs',
+        'title' => 'Beatmap Packs',
+        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
     ],
 ];
