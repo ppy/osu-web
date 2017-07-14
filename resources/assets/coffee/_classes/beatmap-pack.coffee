@@ -26,6 +26,7 @@ class @BeatmapPack
     @packBody = @el.querySelector('.js-beatmap-pack__body')
     @expander = @el.querySelector('.js-beatmap-pack-expander')
     @busy = false
+    @isCurrent = false
 
     $.subscribe 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
@@ -39,23 +40,25 @@ class @BeatmapPack
       @close()
 
   open: =>
+    @isCurrent = true
     return if @busy
 
     $(@el).addClass('accordion__item--expanded')
     if @packBody.innerHTML?.length
-      @slideDown()
+      @slideDown() if @isCurrent
     else
       @busy = true
       @getBeatmapPackItem(@packId)
       .done (data) =>
         @packBody.innerHTML = data
-        @slideDown()
+        @slideDown() if @isCurrent
       .fail (xhr) ->
         console.error(xhr)
       .always =>
         @busy = false
 
   close: =>
+    @isCurrent = false
     # drop shadow should change _after_ slide up animation
     $(@el.querySelector('.accordion__item-body')).slideUp(300, () =>
       $(@el).removeClass('accordion__item--expanded')
