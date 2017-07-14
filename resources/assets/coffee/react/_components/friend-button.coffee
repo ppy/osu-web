@@ -17,7 +17,7 @@
 ###
 
 el = React.createElement
-{a,button,div,span} = React.DOM
+{a,button,div,span} = ReactDOMFactories
 
 bn = 'friend-button'
 
