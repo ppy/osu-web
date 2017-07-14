@@ -17,6 +17,9 @@
 ###
 
 class @UserCard
+  triggerDelay: 200
+  fadeLength: 220
+
   constructor: ->
     $(document).on 'mouseover', '.js-usercard', @onMouseOver
 
@@ -59,21 +62,23 @@ class @UserCard
         width: 280
         height: 130
       content:
-        text: (event, api) ->
+        text: (event, api) =>
           userId = parseInt(el.getAttribute('data-user-id'))
           $.ajax
             url: laroute.route 'users.card', id: userId
-          .then (content) ->
+          .then (content) =>
             if content
               api.set('content.text', content)
 
+              # make images fade-in nicely when loaded
               api.tooltip.find('.usercard')
-                .imagesLoaded({background: true})
-                .progress (instance, image) ->
+                .imagesLoaded()
+                .progress (instance, image) =>
+                  console.log '@fadeLength', @fadeLength
                   if image.isLoaded
-                    $(image.img).fadeTo(200, 1)
+                    $(image.img).fadeTo(@fadeLength, 1)
                 .always (instance) ->
-                  $(instance.elements[0]).find('.usercard__loader').fadeOut()
+                  $(instance.elements[0]).find('.usercard__loader').fadeTo(@fadeLength, 0)
 
               # manually init the friend-button react component
               ReactDOM.render React.createElement(FriendButton, user_id: userId), api.tooltip.find('.js-react--friendButton')[0]
@@ -88,12 +93,12 @@ class @UserCard
         my: my
         viewport: $(window)
       show:
-        delay: 200
-        effect: -> $(this).fadeTo(100, 1)
+        delay: @triggerDelay
         ready: true
+        effect: -> $(this).fadeTo(110, 1)
       hide:
         fixed: true
-        delay: 200
-        effect: -> $(this).fadeTo(100, 0)
+        delay: @triggerDelay
+        effect: -> $(this).fadeTo(110, 0)
 
     $(el).qtip options
