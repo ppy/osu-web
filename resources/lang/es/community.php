@@ -22,7 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '¿Amas osu!?<br/>
+            'big_description' => '¿¡Amas osu!?<br/>
                                 Ayuda a su desarrollo :D',
             'small_description' => '',
             'support_button' => '¡Quiero ayudar a osu!',
@@ -36,7 +36,7 @@ return [
             y también a aquellos que continúen apoyando este increíble juego y a la comunidad en el futuro :).',
 
         'why_support' => [
-            'title' => '¿Por qué debo apoyar osu!?',
+            'title' => '¿¡Por qué debo apoyar osu!?',
             'blocks' => [
                 'dev' => 'Desarollado y mantenido principalmente por un hombre en Australia',
                 'time' => 'Toma demasiado tiempo mantenerlo funcionando al punto de no poder llamarlo un "hobby".',

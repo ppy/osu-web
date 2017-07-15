@@ -19,25 +19,18 @@
  */
 
 return [
-    'header' => 'Clasificación por :type',
-    'type' => [
-        'performance' => 'Rendimiento',
-        'charts' => 'Gráficos',
-        'score' => 'Puntuación',
-        'country' => 'País',
+    'buttons' => [
+      'add' => 'Añadir amigo',
+      'remove' => 'Eliminar amigo',
     ],
-    'stat' => [
-        'accuracy' => 'Precisión',
-        'active_users' => 'Usuarios activos',
-        'country' => 'País',
-        'play_count' => 'Conteo de jugadas',
-        'performance' => 'Rendimiento',
-        'total_score' => 'Puntuación total',
-        'ranked_score' => 'Puntuación ranked',
-        'average_score' => 'Puntuación media',
-        'average_performance' => 'Rend. medio',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'state' => [
+      'friends' => 'amigos',
+      'mutual' => 'mutuo',
     ],
+
+    'title' => 'Amigos',
+    'title_compact' => 'amigos',
+
+    'too_many' => 'Límite de amigos alcanzado.',
 ];

@@ -37,22 +37,97 @@ return [
         ],
     ],
 
+    'search' => [
+        'advanced_link' => 'Búsqueda avanzada',
+        'button' => 'Buscar',
+        'empty_result' => '¡No se ha encontrado nada!',
+        'missing_query' => 'Cada palabra clave requiere de al menos :n carácteres',
+        'title' => 'Resultados de la búsqueda',
+
+        'beatmapset' => [
+            'more' => 'Hay :count beatmaps más en los resultados',
+            'more_simple' => 'Ver más resultados de beatmaps',
+            'title' => 'Beatmaps',
+        ],
+
+        'forum_post' => [
+            'all' => 'Todos los foros',
+            'link' => 'Busca en el foro',
+            'more_simple' => 'Ver más resultados de los foros',
+            'title' => 'Forum',
+
+            'label' => [
+                'forum' => 'buscar en los foros',
+                'forum_children' => 'incluir subforos',
+                'username' => 'autor',
+            ],
+        ],
+
+        'mode' => [
+            'all' => 'todos',
+            'beatmapset' => 'beatmap',
+            'forum_post' => 'foro',
+            'user' => 'jugador',
+            'wiki_page' => 'wiki',
+        ],
+
+        'user' => [
+            'more' => ':count jugadores más coinciden con la búsqueda',
+            'more_simple' => 'Ver más resultados de los jugadores',
+            'title' => 'Jugadores',
+        ],
+
+        'wiki_page' => [
+            'link' => 'Busca en la wiki',
+            'more_simple' => 'Ver más resultados de la wiki',
+            'title' => 'Wiki',
+        ],
+    ],
+
+    'download' => [
+      'header' => [
+          '1' => "Vamos",
+          '2' => 'a empezar',
+          '3' => 'descarga el cliente de osu! para Windows',
+      ],
+      'steps' => [
+          '1' => [
+              'name' => 'Paso 1',
+              'content' => 'Descarga el cliente de osu!',
+          ],
+          '2' => [
+              'name' => 'Paso 2',
+              'content' => 'Créate una cuenta de usuario de osu!',
+          ],
+          '3' => [
+              'name' => 'Paso 3',
+              'content' => '???',
+          ],
+      ],
+      'more' => '¿Quieres saber más?',
+      'more_text' => 'Accede al <a href="https://www.youtube.com/user/osuacademy/">canal de osu!academy en Youtube</a> para tutoriales actuales y consejos sobre como aprovechar al máximo osu!',
+    ],
+
     'user' => [
         'title' => 'novedades',
         'news' => [
             'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, intenta recargar la página?...',
+            'error' => 'Error al cargar las novedades, ¿intenta recargar la página?...',
         ],
         'header' => [
             'welcome' => 'Hola, <strong>:username</strong>!',
             'messages' => 'Tienes 1 nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
+                'friends' => 'Amigos en línea',
+                'games' => 'Partidas',
                 'online' => 'Usuarios en línea',
             ],
         ],
         'beatmaps' => [
             'new' => 'Nuevos Beatmaps Aprobados',
             'popular' => 'Beatmaps Populares',
+            'by' => 'por',
+            'plays' => ':count veces jugado',
         ],
         'buttons' => [
             'download' => 'Descarga osu!',

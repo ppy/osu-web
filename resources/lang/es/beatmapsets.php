@@ -54,7 +54,7 @@ return [
         'stats' => [
             'cs' => 'Tamaño de Círculo',
             'cs-mania' => 'Cantidad de Teclas',
-            'drain' => 'Drenado de HP',
+            'drain' => 'Drenado de PV',
             'accuracy' => 'Precisión',
             'ar' => 'Velocidad de aproximación',
             'stars' => 'Estrellas de Dificultad',
@@ -63,7 +63,7 @@ return [
             'count_circles' => 'Número de Círculos',
             'count_sliders' => 'Número de Deslizadores',
             'user-rating' => 'Valoración de los Usuarios',
-            'rating-spread' => 'Rating Spread', // I don't know the context for this, please provide a translation or context
+            'rating-spread' => 'Desglose de valoraciones',
         ],
         'info' => [
             'no_scores' => 'Beatmap no rankeado',
