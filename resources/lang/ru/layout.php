@@ -37,7 +37,7 @@ return [
             'news-index' => 'новости',
             'news-show' => 'новости',
             'password-reset-index' => 'восстановить пароль',
-            'search' => 'Поиск',
+            'search' => 'поиск',
             'supportTheGame' => 'поддержать игру',
         ],
         'help' => [
