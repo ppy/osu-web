@@ -83,6 +83,9 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '1 follower|:count followers',
+            'unranked' => 'No recent plays',
+
             'achievements' => [
                 'title' => 'Achievements',
                 'achieved-on' => 'Achieved on :date',
@@ -90,7 +93,6 @@ return [
             'beatmaps' => [
                 'title' => 'Beatmaps',
             ],
-            'followers' => '1 follower|:count followers',
             'historical' => [
                 'empty' => 'No performance records. :(',
                 'most_played' => [
