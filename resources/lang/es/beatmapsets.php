@@ -54,7 +54,7 @@ return [
         'stats' => [
             'cs' => 'Tamaño de Círculo',
             'cs-mania' => 'Cantidad de Teclas',
-            'drain' => 'Drenado de PV',
+            'drain' => 'Drenado de HP',
             'accuracy' => 'Precisión',
             'ar' => 'Velocidad de aproximación',
             'stars' => 'Estrellas de Dificultad',
