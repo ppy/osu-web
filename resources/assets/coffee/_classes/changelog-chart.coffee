@@ -36,10 +36,23 @@ class @ChangelogChart
     @svgWrapper = @svg
       .append 'g'
 
+    @areaFunction = d3.area()
+      .curve d3.curveMonotoneX
+      .x (d, i) => @options.scales.x i
+      .y1 (d) => @options.scales.y d.normalized
+      .y0 (d, i) => 0
+
+    @svgLines = {}
+
+    for el in @options.order
+      @svgLines[el] = @svgWrapper.append 'path'
+        .attr 'class', "changelog-chart__area changelog-chart__area--#{_.kebabCase el}"
+
   loadData: (data) ->
     @data = data
 
-    
+    for el in @options.order
+      @svgLines[el].datum @data[el]
 
     @resize()
 
@@ -60,9 +73,21 @@ class @ChangelogChart
 
   setScalesRange: ->
     @options.scales.x
-      .range []
+      .range [0, @width]
+      .domain [0, @data[_.first @options.order].length - 1]
+
+    @options.scales.y
+      .range [0, @height]
+      .domain [0, 1]
+
+  setLineSize: ->
+    for el in @options.order
+      @svgLines[el]
+       .attr 'd', @areaFunction
 
   resize: =>
     @setDimensions()
+    @setScalesRange()
     @setSvgSize()
     @setWrapperSize()
+    @setLineSize()

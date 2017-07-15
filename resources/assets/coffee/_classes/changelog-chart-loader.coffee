@@ -26,12 +26,30 @@ class @ChangelogChartLoader
   initialize: =>
     return if !@container[0]?
 
+    streams = osu.parseJson 'json-update-streams'
+    order = _.map streams, (d) ->
+      d.update_stream.pretty_name
+
+    data = osu.parseJson 'json-chart-data'
+    data = _.groupBy data, 'pretty_name'
+
+    # this assumes that all streams have an equal amount of data points
+    for point, i in data[order[0]]
+      sum = 0
+
+      for el in order
+        sum += data[el][i].user_count
+
+      for el, j in order
+        prev = if j == 0 then 0 else data[order[j - 1]][i].user_count
+        data[el][i].user_count += prev
+        data[el][i].normalized = (data[el][i].user_count) / sum
+
     options =
       scales:
         x: d3.scaleLinear()
         y: d3.scaleLinear()
-
-    data = _.groupBy osu.parseJson('json-chart-data'), 'created_at'
+      order: _.reverse order
 
     @container[0]._chart = new ChangelogChart @container[0], options
     @container[0]._chart.loadData data

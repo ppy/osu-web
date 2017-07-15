@@ -19,11 +19,6 @@
 
 
 .changelog-stream {
-  @changelog-stream--stable: @blue;
-  @changelog-stream--stable-fallback: @gray-light;
-  @changelog-stream--beta-ce: @yellow;
-  @changelog-stream--lazer: @red;
-
   .box-color(@radius, @color) {
     &::before {
       box-shadow: 0 0 0 @radius @color;

@@ -18,4 +18,22 @@
 
 .changelog-chart {
   height: 125px;
+
+  &__area {
+    &--stable {
+      fill: @changelog-stream--stable;
+    }
+
+    &--stable-fallback {
+      fill: @changelog-stream--stable-fallback;
+    }
+
+    &--cutting-edge, &--beta {
+      fill: @changelog-stream--beta-ce;
+    }
+
+    &--lazer, &--lazer-experimental {
+      fill: @changelog-stream--lazer
+    }
+  }
 }

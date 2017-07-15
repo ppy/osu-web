@@ -99,7 +99,11 @@ class HomeController extends Controller
         $propagationTable = with(new BuildPropagationHistory)->getTable();
         $buildHistory = BuildPropagationHistory::changelog()
             ->where('created_at', '>', Carbon::now()->subDays(config('osu.changelog.chart_days')))
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->user_count = get_int($item->user_count);
+                return $item;
+            });
 
         return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory'));
     }

@@ -132,4 +132,8 @@
     <script id="json-chart-data" type="application/json">
         {!! json_encode($buildHistory) !!}
     </script>
+
+    <script id="json-update-streams" type="application/json">
+        {!! json_encode(collect([$featuredStream])->merge($streams)) !!}
+    </script>
 @endsection
