@@ -120,7 +120,7 @@ return [
                 'language' => 'Lenguaje',
                 'extra' => 'Adicional',
                 'rank' => 'Rango conseguido',
-            ], 
+            ],
         ],
         'mode' => 'Modo',
         'status' => 'Estado de Rank',

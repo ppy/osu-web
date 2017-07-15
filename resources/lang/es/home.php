@@ -86,7 +86,7 @@ return [
 
     'download' => [
       'header' => [
-          '1' => "Vamos",
+          '1' => 'Vamos',
           '2' => 'a empezar',
           '3' => 'descarga el cliente de osu! para Windows',
       ],

@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => 'Subforos',
     'title' => 'osu!community',
-    'slogan' => "es peligroso jugar solo.",
+    'slogan' => 'es peligroso jugar solo.',
     'topic' => [
         'create' => [
             'placeholder' => [
