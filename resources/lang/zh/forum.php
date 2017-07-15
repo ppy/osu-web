@@ -115,7 +115,7 @@ return [
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => '取消对订阅该主题？',
+                'confirmation' => '取消订阅该主题？',
                 'title' => '取消订阅',
             ],
         ],
