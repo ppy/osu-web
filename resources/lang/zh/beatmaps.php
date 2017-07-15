@@ -129,14 +129,14 @@ return [
         'load-more' => '加载更多...',
     ],
     'mode' => [ //不翻译
-        'any' => '所有',
+        'any' => '任意',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
     'status' => [ //需要帮助
-        'any' => '所有',
+        'any' => '任意',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
         'loved' => 'Loved',

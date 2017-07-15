@@ -78,7 +78,7 @@ return [
 
             'edit' => [
                 'locked' => '此回复已被锁定。',
-                'no_forum_access' => '没有访问该板块的权限。',
+                'no_forum_access' => '没有权限进入该板块。',
                 'not_owner' => '只有发表此回复的人才能编辑此回复。',
                 'topic_locked' => '不能编辑被锁定主题的回复。',
             ],
@@ -88,7 +88,7 @@ return [
             'reply' => [
                 'double_post' => '您刚刚发表过回复了，请稍等一会，或者编辑您的上一条回复。',
                 'locked' => '不能回复被锁定的主题。',
-                'no_forum_access' => '没有访问该板块的权限。',
+                'no_forum_access' => '没有权限进入该板块。',
                 'no_permission' => '没有回复的权限。',
 
                 'user' => [
@@ -99,13 +99,13 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => '没有访问该板块的权限。',
+                'no_forum_access' => '没有权限进入该板块。',
                 'no_permission' => '没有创建新主题的权限。',
                 'forum_closed' => '该板块被关闭，不能发表新主题。',
             ],
 
             'vote' => [
-                'no_forum_access' => '没有访问该板块的权限。',
+                'no_forum_access' => '没有权限进入该板块。',
                 'over' => '投票已经结束，无法投票。',
                 'voted' => '不允许改变投票。',
 
@@ -117,7 +117,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => '没有访问该板块的权限。',
+                'no_forum_access' => '没有权限进入该板块。',
             ],
         ],
 

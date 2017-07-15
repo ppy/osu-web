@@ -43,7 +43,7 @@ return [
         ],
     ],
 
-    'pinned_topics' => '固定主题',
+    'pinned_topics' => '置顶主题',
     'post' => [
         'confirm_destroy' => '真的要删除这个回复吗？',
         'confirm_restore' => '真的要恢复这个回复吗？',
