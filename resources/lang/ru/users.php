@@ -83,6 +83,9 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '1 подписчик|:count подписчиков',
+            'unranked' => 'Нет недавних игр',
+
             'achievements' => [
                 'title' => 'Достижения',
                 'achieved-on' => 'Получено :date',
@@ -90,7 +93,6 @@ return [
             'beatmaps' => [
                 'title' => 'Карты',
             ],
-            'followers' => '1 подписчик|:count подписчиков',
             'historical' => [
                 'empty' => 'Нет каких-либо записей. :(',
                 'most_played' => [
