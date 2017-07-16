@@ -216,15 +216,14 @@
 
 
   trans: (key, replacements) ->
-    message = undefined
     try
-      message = Lang.get key, replacements
-      message == key and new Error 'need fallback'
-    catch e
+      Lang.get key, replacements
+    catch
       Lang.setLocale fallbackLocale
       message = Lang.get key, replacements
       Lang.setLocale currentLocale
-    message
+
+      message
 
 
   transChoice: (key, count, replacements) ->
