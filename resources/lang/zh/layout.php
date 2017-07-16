@@ -27,6 +27,8 @@ return [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
+            'friends' => '好友',
+            'friends-index' => '好友',
             'getChangelog' => '更新日志',
             'getDownload' => '下载',
             'getIcons' => '图标',
@@ -36,7 +38,7 @@ return [
             'news-show' => '新闻',
             'password-reset-index' => '重置密码',
             'search' => '搜索',
-            'supportTheGame' => '支持osu!',
+            'supportTheGame' => '支持 osu!',
         ],
         'help' => [
             '_' => '帮助',
@@ -61,14 +63,14 @@ return [
             '_' => '排名',
             'index' => '表现',
             'performance' => '表现',
-            'charts' => 'charts',
+            'charts' => '图表',
             'score' => '得分',
             'country' => '国家',
             'kudosu' => 'kudosu', //mapping相关，暂时不翻译
         ],
         'community' => [
             '_' => '社区',
-            'dev' => 'osu!开发',
+            'dev' => 'osu! 开发',
             'getForum' => '论坛',
             'getChat' => '聊天',
             'getSupport' => '获取帮助',
@@ -90,10 +92,10 @@ return [
         ],
         'error' => [
             '_' => '错误',
-            '404' => '找不到',
-            '403' => '禁止',
+            '404' => '无法找到网页',
+            '403' => '拒绝访问',
             '401' => '权限不足',
-            '405' => '找不到',
+            '405' => '资源被禁止',
             '500' => '发生了一些错误',
             '503' => '维护中',
         ],
@@ -136,12 +138,12 @@ return [
         ],
         'admin' => [
             '_' => '管理',
-            'root' => 'index', //TODO 需要上下文
+            'root' => '主页',
             'logs-index' => '日志',
             'beatmapsets' => [
                 '_' => '谱面',
                 'covers' => '封面',
-                'show' => '细节',
+                'show' => '详细',
             ],
         ],
     ],
@@ -152,7 +154,7 @@ return [
             'home' => '主页',
             'changelog' => '更新日志',
             'beatmaps' => '谱面列表',
-            'download' => '下载osu!',
+            'download' => '下载 osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
@@ -163,13 +165,13 @@ return [
             'report' => '报告问题',
         ],
         'support' => [
-            '_' => '支持osu!',
+            '_' => '支持 osu!',
             'tags' => '成为支持者',
             'merchandise' => '商店',
         ],
         'legal' => [
             '_' => '法律 & 状态',
-            'copyright' => 'Copyright (DMCA)',
+            'copyright' => '版权 (DMCA)',
             'osu_status' => '@osustatus',
             'server_status' => '服务器状态',
             'terms' => '服务条款',
@@ -178,76 +180,77 @@ return [
 
     'errors' => [
         '404' => [
-            'error' => '页面未找到',
-            'description' => '抱歉,您请求的界面不在这里!',
+            'error' => '无法找到网页',
+            'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
             'link' => false,
         ],
         '403' => [
-            'error' => '您不应该在这里.',
-            'description' => '您可以尝试返回.',
+            'error' => '没有权限',
+            'description' => '您没有权限访问该页面，建议您检查一下再试，或者返回到上一个页面',
             'link' => false,
         ],
         '401' => [
-            'error' => '您不应该在这里.',
-            'description' => '您可以尝试返回,或者先登录',
+            'error' => '没有权限',
+            'description' => '您没有权限访问该页面，建议您检查一下再试，或者返回到上一个页面（也许您还没登录呢）',
             'link' => false,
         ],
         '405' => [
-            'error' => '页面未找到',
-            'description' => '抱歉,您请求的界面不在这里!',
+            'error' => '无法找到网页',
+            'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
             'link' => false,
         ],
         '500' => [
-            'error' => '噢,发生了一些错误',
-            'description' => '我们会自动报告每一个错误.',
+            'error' => '哎呀，服务器崩溃了',
+            'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
             'link' => false,
         ],
         'fatal' => [
-            'error' => '噢,发生了一些严重的错误',
-            'description' => '我们会自动报告每一个错误.',
+            'error' => '哎呀，服务器被外星人带走了',
+            'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
             'link' => false,
         ],
         '503' => [
-            'error' => '维护中!',
-            'description' => '每次维护需要5秒到10分钟的时间.如果我们维护时间太长,查看 :link 以获得更多信息.',
+            'error' => '啊哦...服务器正在维护中',
+            'description' => '每次维护需要5秒到10分钟的时间。如果维护时间太长，查看 :link 以获得更多信息。',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '以防万一,您可以将这里的代码发给我们!',
+        'reference' => '以防万一，您可以将这里的代码发给我们！',
     ],
 
     'popup_login' => [
         'login' => [
-            'email' => 'email地址',
+            'email' => '用户名/邮箱',
             'forgot' => '我忘记了我的登录信息',
             'password' => '密码',
             'title' => '登录以继续',
 
             'error' => [
-                'email' => '用户名或email不存在',
+                'email' => '用户名或邮箱不存在',
                 'password' => '密码错误',
             ],
         ],
 
         'register' => [
-            'info' => '您需要一个帐号.为什么不现在注册一个呢?',
-            'title' => '没有帐号?',
+            'info' => '您需要一个帐号，为什么不现在注册一个呢？',
+            'title' => '没有帐号？',
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => '设置',
+            'friends' => '好友',
             'logout' => '退出',
             'profile' => '我的资料',
         ],
     ],
 
     'popup_search' => [
-        'initial' => '输入以搜索!',
-        'retry' => '搜索失败. 点击以重试.',
+        'initial' => '输入以搜索！',
+        'retry' => '搜索失败，点击以重试。',
     ],
 ];
