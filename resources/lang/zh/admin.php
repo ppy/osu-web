@@ -25,7 +25,7 @@ return [
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '启用',
-                'activate_confirm' => '确认要为这个谱面启用 modding v2 吗?',
+                'activate_confirm' => '确认要为这个谱面启用 Modding v2 吗?',
                 'active' => '已启用',
                 'inactive' => '未启用',
             ],
@@ -49,7 +49,7 @@ return [
                 'title' => '论坛封面列表',
 
                 'type-title' => [
-                    'default-topic' => '默认主题封面',
+                    'default-topic' => '默认话题封面',
                     'main' => '论坛封面',
                 ],
             ],

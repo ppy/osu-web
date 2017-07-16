@@ -216,12 +216,14 @@
 
 
   trans: (key, replacements) ->
-    message = Lang.get key, replacements, currentLocale
+    try
+      Lang.get key, replacements
+    catch
+      Lang.setLocale fallbackLocale
+      message = Lang.get key, replacements
+      Lang.setLocale currentLocale
 
-    if message == key
-      message = Lang.get key, replacements, fallbackLocale
-
-    message
+      message
 
 
   transChoice: (key, count, replacements) ->
