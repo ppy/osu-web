@@ -19,36 +19,18 @@
  */
 
 return [
-    'breadcrumbs' => [
-        'news-index' => '列表',
-        'news-show' => '新闻', //未使用字段
+    'buttons' => [
+      'add' => '添加好友',
+      'remove' => '删除好友',
     ],
 
-    'index' => [
-        'title' => 'osu! 新闻',
-
-        'nav' => [
-            'newer' => '下一条新闻',
-            'older' => '上一条新闻',
-        ],
+    'state' => [
+      'friends' => '已关注',
+      'mutual' => '互相关注',
     ],
 
-    'show' => [
-        'posted' => ':time 推送',
+    'title' => '好友列表',
+    'title_compact' => '好友列表',
 
-        'nav' => [
-            'newer' => '下一条新闻',
-            'older' => '上一条新闻',
-        ],
-    ],
-
-    'store' => [
-        'button' => '更新', //未使用字段
-        'ok' => '列表已更新.', //未使用字段
-    ],
-
-    'update' => [
-        'button' => '更新',
-        'ok' => '新闻已更新.', //未使用字段
-    ],
+    'too_many' => '好友数量达到最大限制。',
 ];
