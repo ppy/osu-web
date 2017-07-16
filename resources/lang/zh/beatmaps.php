@@ -129,14 +129,14 @@ return [
         'load-more' => '加载更多...',
     ],
     'mode' => [ //不翻译
-        'any' => '任意',
+        'any' => '所有',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
     'status' => [ //需要帮助
-        'any' => '任意',
+        'any' => '所有',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
         'loved' => 'Loved',
@@ -182,7 +182,7 @@ return [
         'NM' => 'No mods',
     ],
     'language' => [
-        'any' => '任意',
+        'any' => '所有',
         'english' => '英语',
         'chinese' => '汉语',
         'french' => '法语',
@@ -192,7 +192,7 @@ return [
         'korean' => '韩语',
         'spanish' => '西班牙语',
         'swedish' => '瑞典语',
-        'instrumental' => '伴奏',
+        'instrumental' => '器乐',
         'other' => '其他',
     ],
     'extra' => [
