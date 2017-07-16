@@ -54,7 +54,7 @@ return [
             'all' => 'Todos los foros',
             'link' => 'Busca en el foro',
             'more_simple' => 'Ver más resultados de los foros',
-            'title' => 'Forum',
+            'title' => 'Foro',
 
             'label' => [
                 'forum' => 'buscar en los foros',
