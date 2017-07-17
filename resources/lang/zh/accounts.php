@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '账户设置',
+        'title' => '<strong>账户</strong>设置',
         'title_compact' => '设置',
 
         'avatar' => [
@@ -30,14 +30,14 @@ return [
         'email' => [
             'current' => '当前邮箱地址',
             'new' => '新邮箱地址',
-            'new_confirmation' => '重复邮箱地址',
+            'new_confirmation' => '确认新邮箱地址',
             'title' => '邮箱',
         ],
 
         'password' => [
             'current' => '当前密码',
             'new' => '新密码',
-            'new_confirmation' => '重复密码',
+            'new_confirmation' => '确认新密码',
             'title' => '密码',
         ],
 
@@ -45,9 +45,9 @@ return [
             'title' => '编辑个人资料',
 
             'user' => [
-                'user_from' => '住址',
+                'user_from' => '当前位置',
                 'user_interests' => '兴趣爱好',
-                'user_msnm' => 'skype',
+                'user_msnm' => 'Skype',
                 'user_occ' => '职业',
                 'user_twitter' => '推特',
                 'user_website' => '个人主页',
@@ -73,7 +73,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => '游戏风格',
+        'title' => '游戏方式',
         'mouse' => '鼠标',
         'keyboard' => '键盘',
         'tablet' => '数位板',
