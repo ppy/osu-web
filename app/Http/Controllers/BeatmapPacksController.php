@@ -21,6 +21,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BeatmapPack;
+use App\Models\Beatmapset;
+use App\Models\Score\Best;
 use Auth;
 use Request;
 
@@ -44,14 +46,18 @@ class BeatmapPacksController extends Controller
     public function show($id)
     {
         $pack = BeatmapPack::findOrFail($id);
+
+        $beatmapsetTable = (new Beatmapset)->getTable();
+        $scoreBestTable = (new Best\Osu)->getTable();
+
         $sets = $pack
             ->beatmapsets()
-            ->leftJoin('osu_scores_high', function ($join) {
+            ->leftJoin("{$scoreBestTable}", function ($join) use ($beatmapsetTable, $scoreBestTable) {
                 $join
-                    ->on('osu_beatmapsets.beatmapset_id', '=', 'osu_scores_high.beatmapset_id')
-                    ->where('osu_scores_high.user_id', Auth::user()->user_id);
+                    ->on("{$beatmapsetTable}.beatmapset_id", '=', "{$scoreBestTable}.beatmapset_id")
+                    ->where("{$scoreBestTable}.user_id", Auth::user()->user_id);
             })
-            ->select('osu_beatmapsets.*', 'osu_scores_high.score')
+            ->select("{$beatmapsetTable}.*", "{$scoreBestTable}.score")
             ->get();
 
         return view('beatmappacks.show', compact('pack', 'sets'));
