@@ -69,7 +69,7 @@ class BeatmapPack extends Model
     public static function getPacks($type)
     {
         if (!in_array($type, array_keys(static::$tagMappings), true)) {
-            return null;
+            return;
         }
 
         static $packIdSortable = ['standard', 'chart'];
