@@ -15,9 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-
+@php
+    $blockClass = 'usercard';
+    if (isset($popup) && $popup) {
+        $blockClass += ' usercard--popup';
+    }
+    if (count($_modifiers ?? null) > 0) {
+        foreach ($_modifiers as $modifier) {
+            $blockClass .= ' usercard--'.$modifier;
+        }
+    }
+@endphp
 @if (isset($user) || isset($loading))
-    <div class="usercard{{isset($popup) && $popup ? ' usercard--popup' : ''}}" style="background-image: url(/images/layout/beatmaps/default-bg.png);">
+    <div
+        class="{{ $blockClass }}"
+        style="background-image: url(/images/layout/beatmaps/default-bg.png);"
+    >
         @if (!isset($loading)) <img class="usercard__background" src="{{$user->cover()}}"> @endif
         <div class="usercard__background-overlay"></div>
         @if (isset($loading)) <div class="usercard__link-wrapper"> @else <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__link-wrapper"> @endif
