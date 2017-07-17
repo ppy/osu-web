@@ -24,6 +24,17 @@
     font-weight: 600;
   }
 
+  &__cleared {
+    color: @blue-dark;
+    font-size: 80%;
+    font-style: italic;
+    font-variant: small-caps;
+    font-weight: 600;
+    line-height: 1; // prevent superscript from making line taller
+    margin-left: 4px;
+    vertical-align: super;
+  }
+
   &__link {
     .link-plain();
     color: #555;
