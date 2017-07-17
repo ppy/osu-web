@@ -46,6 +46,7 @@ class BeatmapPack extends Model
         $thisTable = $this->getTable();
         $setsTable = (new Beatmapset)->getTable();
         $itemsTable = (new BeatmapPackItem)->getTable();
+
         return Beatmapset::query()
             ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
             ->join($thisTable, "{$itemsTable}.pack_id", '=', "{$thisTable}.pack_id")
@@ -59,7 +60,7 @@ class BeatmapPack extends Model
             preg_match('@^(?:http[s]?://)?([^/]+)@i', $url, $hosts);
             $array[] = [
                 'url' => $url,
-                'host' => $hosts[1]
+                'host' => $hosts[1],
             ];
         }
 
@@ -75,7 +76,7 @@ class BeatmapPack extends Model
         static $packIdSortable = ['standard', 'chart'];
 
         $tag = static::$tagMappings[$type];
-        $packs = BeatmapPack::where('tag', 'like', "{$tag}%");
+        $packs = static::where('tag', 'like', "{$tag}%");
         if (in_array($type, $packIdSortable)) {
             $packs = $packs->orderBy('pack_id', 'desc');
         } else {
