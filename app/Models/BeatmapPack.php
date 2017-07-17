@@ -82,6 +82,6 @@ class BeatmapPack extends Model
             $packs = $packs->orderBy('name', 'asc');
         }
 
-        return $packs->get();
+        return $packs;
     }
 }
