@@ -21,6 +21,7 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Models\UserGroup;
 use League\Fractal;
 
 class UserCompactTransformer extends Fractal\TransformerAbstract
@@ -28,6 +29,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'country',
         'cover',
+        'groups',
     ];
 
     public function transform(User $user)
@@ -57,6 +59,21 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
                 'url' => $user->cover()->url(),
                 'id' => $user->cover()->id(),
             ];
+        });
+    }
+
+    public function includeGroups(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $groups = [];
+
+            foreach ($user->groupIds() as $id) {
+                if (($name = array_search_null($id, UserGroup::GROUPS)) !== null) {
+                    $groups[] = $name;
+                }
+            }
+
+            return $groups;
         });
     }
 }

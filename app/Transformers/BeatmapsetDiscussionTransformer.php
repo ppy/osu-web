@@ -72,7 +72,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         }
 
         $userIds = array_unique($userIds);
-        $users = User::whereIn('user_id', $userIds)->get();
+        $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
         return $this->collection($users, new UserCompactTransformer());
     }
