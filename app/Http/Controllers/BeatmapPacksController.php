@@ -24,7 +24,6 @@ use App\Models\BeatmapPack;
 use App\Models\Beatmapset;
 use App\Models\Score\Best;
 use Auth;
-use Request;
 
 class BeatmapPacksController extends Controller
 {
