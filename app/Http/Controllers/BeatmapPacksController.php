@@ -44,7 +44,15 @@ class BeatmapPacksController extends Controller
     public function show($id)
     {
         $pack = BeatmapPack::findOrFail($id);
-        $sets = $pack->beatmapsets()->get();
+        $sets = $pack
+            ->beatmapsets()
+            ->leftJoin('osu_scores_high', function ($join) {
+                $join
+                    ->on('osu_beatmapsets.beatmapset_id', '=', 'osu_scores_high.beatmapset_id')
+                    ->where('osu_scores_high.user_id', Auth::user()->user_id);
+            })
+            ->select('osu_beatmapsets.*', 'osu_scores_high.score')
+            ->get();
 
         return view('beatmappacks.show', compact('pack', 'sets'));
     }

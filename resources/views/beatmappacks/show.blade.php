@@ -31,6 +31,9 @@
             <a href="{{ route('beatmapsets.show', ['beatmapset' => $set->getKey()]) }}" class="beatmap-pack-items__link">
                 <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
                 <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>
+                @if ($set->score)
+                    <span class="beatmap-pack-items__title"> - {{ $set->score }}</span>
+                @endif
             </a>
     @endforeach
 </ul>
