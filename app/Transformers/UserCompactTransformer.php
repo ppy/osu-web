@@ -21,12 +21,15 @@
 namespace App\Transformers;
 
 use App\Models\User;
+use App\Models\UserGroup;
 use League\Fractal;
 
 class UserCompactTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'country',
+        'cover',
+        'groups',
     ];
 
     public function transform(User $user)
@@ -38,11 +41,39 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'country_code' => $user->country_acronym,
             'is_active' => $user->isActive(),
+            'is_supporter' => $user->isSupporter(),
+            'is_online' => $user->isOnline(),
         ];
     }
 
     public function includeCountry(User $user)
     {
         return $this->item($user->country, new CountryTransformer);
+    }
+
+    public function includeCover(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                'customUrl' => $user->cover()->fileUrl(),
+                'url' => $user->cover()->url(),
+                'id' => $user->cover()->id(),
+            ];
+        });
+    }
+
+    public function includeGroups(User $user)
+    {
+        return $this->item($user, function ($user) {
+            $groups = [];
+
+            foreach ($user->groupIds() as $id) {
+                if (($name = array_search_null($id, UserGroup::GROUPS)) !== null) {
+                    $groups[] = $name;
+                }
+            }
+
+            return $groups;
+        });
     }
 }

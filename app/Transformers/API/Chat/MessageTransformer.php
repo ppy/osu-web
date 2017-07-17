@@ -39,6 +39,7 @@ class MessageTransformer extends Fractal\TransformerAbstract
             'target_id' => $message->target_id,
             'timestamp' => json_time($message->timestamp),
             'content' => $message->content,
+            'is_action' => $message->is_action,
         ];
     }
 

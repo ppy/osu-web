@@ -27,6 +27,8 @@ return [
         'home' => [
             '_' => 'home',
             'account-edit' => 'settings',
+            'friends' => 'friends',
+            'friends-index' => 'friends',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
@@ -241,6 +243,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',
+            'friends' => 'Friends',
             'logout' => 'Log Out',
             'profile' => 'My Profile',
         ],

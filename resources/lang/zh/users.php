@@ -23,7 +23,7 @@ return [
 
     'login' => [
         '_' => '登录',
-        'locked_ip' => '您的IP已被锁定.请稍等几分钟.',
+        'locked_ip' => '您的IP已被锁定，请稍等几分钟',
         'username' => '用户名',
         'password' => '密码',
         'button' => '登录',
@@ -31,14 +31,14 @@ return [
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
-        'register' => '没有 osu! 账户? 现在注册一个吧',
-        'forgot' => '忘记密码?',
+        'register' => '没有 osu! 账户？现在注册一个吧',
+        'forgot' => '忘记密码？',
         'beta' => [ //已弃用(?)
-            'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'main' => 'Beta 仅限于特定用户访问',
+            'small' => '（捐赠玩家将在不久开放）',
         ],
 
-        'here' => '此处', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
+        'here' => '这里', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
     ],
     'signup' => [
         '_' => '注册',
@@ -46,19 +46,19 @@ return [
     'anonymous' => [
         'login_link' => '点击登录',
         'username' => '游客',
-        'error' => '请先登录.',
+        'error' => '请先登录',
     ],
-    'logout_confirm' => '你确定要退出吗? :(',
+    'logout_confirm' => '你确定要退出吗？(^·ω·^ )',
     'show' => [
         '404' => '找不到指定的用户',
         'age' => ':age 岁',
         'current_location' => '现在在 :location',
-        'first_members' => 'Here since the beginning', //TODO 需要上下文
-        'is_developer' => 'osu!开发者',
-        'is_supporter' => 'osu!支持者',
+        'first_members' => '最初的用户', //TODO 需要上下文
+        'is_developer' => 'osu! 开发者',
+        'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间: :date',
         'lastvisit' => '上次登录: :date',
-        'missingtext' => '您可能输错了! (或者该用户已经被ban)',
+        'missingtext' => '您可能输错了！（或者该用户已经被 ban）',
         'origin_age' => ':age 岁',
         'origin_country' => '来自 :country',
         'origin_country_age' => ':age,来自 :country',
@@ -75,7 +75,7 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义皮肤只有<a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a>可用",
+                    'restriction_info' => "自定义皮肤只有 <a href='".osu_url('support-the-game')."' target='_blank'>osu! 支持者</a> 可用",
                     'size_info' => '图片尺寸应为2000x500',
                     'too_large' => '上传的图片过大.',
                     'unsupported_format' => '不支持的格式.',
@@ -90,6 +90,7 @@ return [
             'beatmaps' => [
                 'title' => '谱面',
             ],
+            'followers' => '粉丝： :count',
             'historical' => [
                 'empty' => '没有游戏记录. :(',
                 'most_played' => [
@@ -103,11 +104,11 @@ return [
                 'title' => '历史记录',
             ],
             'kudosu' => [
-                'available' => '可用 Kudosu',
-                'available_info' => 'Kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意. 这是你还没有兑换的 kudosu 数量.',
+                'available' => '可用 kudosu',
+                'available_info' => 'kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意. 这是你还没有兑换的 kudosu 数量.',
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
-                'total' => '总共获得 Kudosu',
+                'total' => '总共获得 kudosu',
                 'total_info' => '取决于您对制谱的贡献如何. 查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息.',
 
                 'entry' => [
@@ -145,7 +146,7 @@ return [
                 ],
             ],
             'me' => [
-                'title' => 'me!', //不翻译
+                'title' => '关于我!',
             ],
             'medals' => [
                 'empty' => '该用户还没有获得奖牌. ;_;',
@@ -178,10 +179,10 @@ return [
             ],
         ],
         'page' => [
-            'description' => '<strong>me!</strong>是您可以自定义的展示区.',
-            'edit_big' => '编辑 me!',
-            'placeholder' => '在这里编辑您的me!',
-            'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
+            'description' => '<strong>关于我!</strong> 是您可以自定义的展示区.',
+            'edit_big' => '编辑',
+            'placeholder' => '在这里编辑',
+            'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu! 支持者</a> 以解锁该特性.",
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',
@@ -198,6 +199,10 @@ return [
             'total_hits' => '总命中次数', //或许不翻译hit更好
             'total_score' => '总分',
         ],
+    ],
+    'status' => [
+        'online' => '在线',
+        'offline' => '离线',
     ],
     'verify' => [
         'title' => '账户认证',

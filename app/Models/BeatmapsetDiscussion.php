@@ -47,6 +47,7 @@ class BeatmapsetDiscussion extends Model
             'beatmap_discussions.beatmap_discussion_posts',
             'beatmap_discussions.current_user_attributes',
             'users',
+            'users.groups',
         ];
 
         return json_item(

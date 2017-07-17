@@ -80,6 +80,31 @@ class UsersController extends Controller
         ];
     }
 
+    public function card($id)
+    {
+        $id = get_int($id);
+
+        $user = User::lookup($id, 'id');
+        $mutual = false;
+
+        if (Auth::user()) {
+            $friend = Auth::user()
+                ->friends()
+                ->withMutual()
+                ->where('zebra_id', $id)
+                ->first();
+
+            if ($friend) {
+                $mutual = $friend->mutual;
+            }
+        }
+
+        // render usercard as popup (i.e. pretty fade-in elements on load)
+        $popup = true;
+
+        return view('objects._usercard', compact('user', 'friend', 'mutual', 'popup'));
+    }
+
     public function show($id)
     {
         $user = User::lookup($id, null, true);
@@ -111,6 +136,7 @@ class UsersController extends Controller
                 'allScoresFirst',
                 'allStatistics',
                 'beatmapPlaycounts',
+                'followerCount',
                 'page',
                 'recentActivities',
                 'recentlyReceivedKudosu',

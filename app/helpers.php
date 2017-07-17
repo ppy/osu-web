@@ -196,6 +196,21 @@ function search_total_display($total)
 
     return (string) $total;
 }
+
+function to_sentence($array, $key = 'common.array_and')
+{
+    switch (count($array)) {
+        case 0:
+            return '';
+        case 1:
+            return (string) $array[0];
+        case 2:
+            return implode(trans("{$key}.two_words_connector"), $array);
+        default:
+            return implode(trans("{$key}.words_connector"), array_slice($array, 0, -1)).trans("{$key}.last_word_connector").array_last($array);
+    }
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -300,7 +315,7 @@ function link_to_user($user_id, $user_name, $user_color)
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
 
-        return "<a class='user-name' href='{$user_url}' style='{$style}'>{$user_name}</a>";
+        return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
     } else {
         return "<span class='user-name'>{$user_name}</span>";
     }
@@ -392,6 +407,7 @@ function nav_links()
 
     $links['home'] = [
         'news-index' => route('news.index'),
+        'friends' => route('friends.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
         'search' => route('search'),
