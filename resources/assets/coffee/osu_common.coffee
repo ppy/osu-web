@@ -226,6 +226,18 @@
       message
 
 
+  transArray: (array, key = 'common.array_and') ->
+    switch array.length
+      when 0
+        ''
+      when 1
+        "#{array[0]}"
+      when 2
+        array.join(osu.trans("#{key}.two_words_connector"))
+      else
+        "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
+
+
   transChoice: (key, count, replacements) ->
     message = Lang.choice key, count, replacements, currentLocale
 

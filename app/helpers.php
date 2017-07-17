@@ -196,6 +196,21 @@ function search_total_display($total)
 
     return (string) $total;
 }
+
+function to_sentence($array, $key = 'common.array_and')
+{
+    switch (count($array)) {
+        case 0:
+            return '';
+        case 1:
+            return (string) $array[0];
+        case 2:
+            return implode(trans("{$key}.two_words_connector"), $array);
+        default:
+            return implode(trans("{$key}.words_connector"), array_slice($array, 0, -1)).trans("{$key}.last_word_connector").array_last($array);
+    }
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);

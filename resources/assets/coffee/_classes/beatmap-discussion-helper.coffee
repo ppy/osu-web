@@ -38,8 +38,15 @@ class @BeatmapDiscussionHelper
 
 
   # see @hash
-  @hashParse: =>
-    hash = document.location.hash[1..]
+  @hashParse: (url = document.location.href) ->
+    hashStart = url.indexOf('#')
+
+    hash =
+      if hashStart == -1
+        ''
+      else
+        url.substr(hashStart + 1)
+
     id = parseInt(hash[1..], 10)
 
     if hash[0] == '/'
@@ -48,6 +55,12 @@ class @BeatmapDiscussionHelper
       beatmapId: id
     else
       {}
+
+
+  @linkTimestamp: (text, classNames = []) =>
+    text
+      .replace /(^|\s|\()((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?)(?=$|\s|\)|\.|,)/g, (_, prefix, text, m, s, ms, range) =>
+        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
 
 
   @messageType:
@@ -61,3 +74,14 @@ class @BeatmapDiscussionHelper
       praise: '&#xf004;'
       suggestion: '&#xf10c;'
       problem: '&#xf06a;'
+      resolved: '&#xf05d;'
+
+
+  @moderationGroup: (user) =>
+    if user.groups?
+      _.intersection(user.groups, ['admin', 'qat', 'bng'])[0]
+    else
+      switch
+        when user.isAdmin then 'admin'
+        when user.isQAT then 'qat'
+        when user.isBNG then 'bng'
