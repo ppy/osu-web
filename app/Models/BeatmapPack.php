@@ -77,7 +77,7 @@ class BeatmapPack extends Model
 
         $tag = static::$tagMappings[$type];
         $packs = static::where('tag', 'like', "{$tag}%");
-        if (in_array($type, $packIdSortable)) {
+        if (in_array($type, $packIdSortable, true)) {
             $packs = $packs->orderBy('pack_id', 'desc');
         } else {
             $packs = $packs->orderBy('name', 'asc');
