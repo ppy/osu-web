@@ -153,7 +153,7 @@ class Beatmaps.Main extends React.PureComponent
 
 
   saveState: =>
-    @props.container.dataset.reactState = JSON.stringify state: @state, url: @url
+    @props.container.dataset.reactState = JSON.stringify({@state, @url})
     @componentWillUnmount()
 
 
