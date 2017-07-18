@@ -111,6 +111,10 @@
   &__flag {
     margin: 0 @flag-gutter;
     display: flex;
+
+    &:empty {
+      display: none;
+    }
   }
 
   &__flags {
