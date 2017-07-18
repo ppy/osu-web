@@ -18,7 +18,7 @@
 @php
     $blockClass = 'usercard';
     if (isset($popup) && $popup) {
-        $blockClass += ' usercard--popup';
+        $blockClass .= ' usercard--popup';
     }
     if (count($_modifiers ?? null) > 0) {
         foreach ($_modifiers as $modifier) {
