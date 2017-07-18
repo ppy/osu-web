@@ -21,9 +21,9 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '编辑前请先登录.',
-            'system_generated' => '不能编辑系统的回复.',
-            'wrong_user' => '只有作者才能编辑.',
+            'null_user' => '编辑前请先登录。',
+            'system_generated' => '不能编辑系统的回复。',
+            'wrong_user' => '只有作者才能编辑。',
         ],
     ],
 

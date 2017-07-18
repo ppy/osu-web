@@ -33,23 +33,23 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '请联系客服以找回账户.',
-        'is_privileged' => '联系 peppy.', //原文的lulz几个意思?
-        'missing_key' => '必填.', //需要上下文
-        'too_many_tries' => '失败尝试次数过多.',
-        'user_not_found' => '请求的用户不存在.',
-        'wrong_key' => '不正确的验证码.',
+        'contact_support' => '请联系客服以找回账户',
+        'is_privileged' => '联系 peppy（笑）',
+        'missing_key' => '必填',
+        'too_many_tries' => '失败尝试次数过多',
+        'user_not_found' => '请求的用户不存在',
+        'wrong_key' => '不正确的验证码',
     ],
 
     'notice' => [
-        'sent' => '检查您邮箱中的验证码.',
-        'saved' => '新密码已经保存!',
+        'sent' => '检查您邮箱中的验证码',
+        'saved' => '新密码已经保存！',
     ],
 
     'started' => [
         'password' => '新密码',
         'password_confirmation' => '确认密码',
-        'title' => '为 <strong>:username</strong> 重置密码.',
+        'title' => '为 <strong>:username</strong> 重置密码',
         'verification_key' => '验证码',
     ],
 
