@@ -99,7 +99,7 @@ class @FriendButton extends React.PureComponent
 
     blockClass = bn
 
-    if @props.user_id != currentUser.id && @state.friend && !@state.loading
+    if @state.friend && !@state.loading
       if @state.friend.mutual
         blockClass += " #{bn}--mutual"
       else
