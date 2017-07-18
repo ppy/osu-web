@@ -23,11 +23,12 @@ class Beatmaps.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
+    @url = location.href
     @xhr = {}
 
     prevState = JSON.parse(props.container.dataset.reactState ? '{}')
 
-    @state = prevState.data if prevState.url == location.href
+    @state = prevState.state if prevState.url == location.href
     @state ?= _.extend
       beatmaps: @props.beatmaps
       paging:
@@ -46,6 +47,7 @@ class Beatmaps.Main extends React.PureComponent
     $(document).on 'beatmap:search:start.beatmaps', @search
     $(document).on 'beatmap:search:done.beatmaps', @hideLoader
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
+    $(document).on 'turbolinks:before-visit.beatmaps', @recordUrl
     $(document).on 'turbolinks:before-cache.beatmaps', @saveState
 
 
@@ -146,8 +148,12 @@ class Beatmaps.Main extends React.PureComponent
         loading: false
 
 
+  recordUrl: =>
+    @url = location.href
+
+
   saveState: =>
-    @props.container.dataset.reactState = JSON.stringify state: @state, url: location.href
+    @props.container.dataset.reactState = JSON.stringify state: @state, url: @url
     @componentWillUnmount()
 
 
