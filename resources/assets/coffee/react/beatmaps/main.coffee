@@ -130,7 +130,7 @@ class Beatmaps.Main extends React.PureComponent
 
     @setState paging: pagingState
 
-    $.ajax @state.paging.url,
+    @xhr.pagination = $.ajax @state.paging.url,
       method: 'get'
       dataType: 'json'
       data: _.extend @buildSearchQuery(), page: @state.paging.page + 1
