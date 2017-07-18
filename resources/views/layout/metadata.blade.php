@@ -44,6 +44,12 @@
 </script>
 
 <script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
+@if(config('services.sentry.public_dsn') !== '')
+    <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+    <script>Raven.config('{{ config('services.sentry.public_dsn') }}', {
+        release: '{{ config('osu.git-sha') }}'
+    }).install();</script>
+@endif
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>

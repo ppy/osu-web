@@ -18,6 +18,7 @@
 
 const { mix } = require('laravel-mix');
 const path = require('path');
+const SentryPlugin = require('webpack-sentry-plugin');
 
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
@@ -51,6 +52,25 @@ let webpackConfig = {
     ]
   }
 };
+
+if (process.env.SENTRY_RELEASE == 1) {
+  webpackConfig['plugins'] = [
+    new SentryPlugin({
+      organisation: process.env.SENTRY_ORG,
+      project: process.env.SENTRY_PROJ,
+      apiKey: process.env.SENTRY_API_KEY,
+
+      deleteAfterCompile: true,
+      exclude: /\.css(\.map)?$/,
+      release: function() {
+        return process.env.GIT_SHA
+      },
+      filenameTransform: function(filename) {
+        return '~' + filename
+      }
+    })
+  ]
+}
 
 // use polling if watcher is bugged.
 if (process.env.WEBPACK_POLL == 1) {
@@ -143,7 +163,7 @@ mix
   path.join(node_root, 'react-motion/build/react-motion.js'),
   path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
 ], 'public/js/vendor.js')
-.sourceMaps(!mix.inProduction());
+.sourceMaps(!mix.inProduction() || process.env.SENTRY_RELEASE == 1);
 
 if (mix.inProduction()) {
   mix.version();
