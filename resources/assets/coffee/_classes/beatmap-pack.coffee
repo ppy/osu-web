@@ -51,8 +51,9 @@ class @BeatmapPack
       .done (data) =>
         @packBody.innerHTML = data
         @slideDown() if @isCurrent
-      .fail (xhr) ->
-        console.error(xhr)
+
+      .fail osu.ajaxError
+
       .always =>
         @busy = false
 
