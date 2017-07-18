@@ -42,7 +42,7 @@ class @BeatmapPack
     @isCurrent = true
     return if @busy
 
-    $(@el).addClass('accordion__item--expanded')
+    $(@el).addClass('js-accordion__item--expanded')
     if @packBody.innerHTML?.length
       @slideDown() if @isCurrent
     else
@@ -59,8 +59,8 @@ class @BeatmapPack
   close: =>
     @isCurrent = false
     # drop shadow should change _after_ slide up animation
-    $(@el.querySelector('.accordion__item-body')).slideUp(300, () =>
-      $(@el).removeClass('accordion__item--expanded')
+    $(@el.querySelector('.js-accordion__item-body')).slideUp(300, () =>
+      $(@el).removeClass('js-accordion__item--expanded')
     )
 
   # TODO: move out.
@@ -68,4 +68,4 @@ class @BeatmapPack
     $.get laroute.route('beatmappacks.show', beatmappack: packId)
 
   slideDown: =>
-    $(@el.querySelector('.accordion__item-body')).slideDown(300)
+    $(@el.querySelector('.js-accordion__item-body')).slideDown(300)

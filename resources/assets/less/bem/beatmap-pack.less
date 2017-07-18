@@ -32,12 +32,12 @@
 
     &:hover {
       background-color: darken(#fff, 5%);
-      .accordion__item--expanded & {
+      .js-accordion__item--expanded & {
         background-color: #fff;
       }
     }
 
-    .accordion__item--expanded & {
+    .js-accordion__item--expanded & {
       cursor: auto;
     }
   }
@@ -73,12 +73,12 @@
       flex-grow: 4;
     }
 
-    .accordion__item--expanded & {
+    .js-accordion__item--expanded & {
       font-weight: 600;
     }
   }
 
-  &.accordion__item--expanded {
+  &.js-accordion__item--expanded {
     z-index: 1;
     box-shadow: 0 4px 12px fade(#000, 50%);
   }
