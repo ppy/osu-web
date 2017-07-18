@@ -51,14 +51,14 @@
                                 @include('objects._country_flag', ['country_code' => 'XX'])
                             </div>
                         @else
-                            <div class="usercard__flag">
-                                @if (isset($user->country))
-                                    @include('objects._country_flag', [
-                                        'country_code' => $user->country->acronym,
-                                        'country_name' => $user->country->name,
-                                    ])
-                                @endif
-                            </div>
+                            @if (isset($user->country))
+                                <div class="usercard__flag">
+                                        @include('objects._country_flag', [
+                                            'country_code' => $user->country->acronym,
+                                            'country_name' => $user->country->name,
+                                        ])
+                                </div>
+                            @endif
                             @if ($user->isSupporter())
                                 <div class="usercard__flag">
                                     <span class="usercard__supporter">
