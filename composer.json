@@ -35,7 +35,7 @@
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
     "predis/predis": "~1.0",
-    "sentry/sentry-laravel": "^0.6.0",
+    "sentry/sentry-laravel": "^0.7.0",
     "shift31/laravel-elasticsearch": "~1.0",
     "webuni/commonmark-table-extension": "dev-fix-escapes",
     "chaseconey/laravel-datadog-helper": "^0.6.0",

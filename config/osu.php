@@ -45,6 +45,7 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
+    'git-sha' => env('GIT_SHA', 'unknown-version'),
     'mp-history' => [
         'event-count' => 500,
     ],
