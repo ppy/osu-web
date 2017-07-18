@@ -32,7 +32,7 @@
                 <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
                 <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>
             </a>
-            @if ($set->score)
+            @if ($set->count > 0)
                 <span class="beatmap-pack-items__cleared">cleared</span>
             @endif
     @endforeach
