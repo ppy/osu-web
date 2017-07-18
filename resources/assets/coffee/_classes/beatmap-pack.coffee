@@ -24,7 +24,7 @@ class @BeatmapPack
     @el = rootElement
     @packId = rootElement.dataset.packId
     @packBody = @el.querySelector('.js-beatmap-pack__body')
-    @expander = @el.querySelector('.js-beatmap-pack-expander')
+    @expander = @el.querySelector('.js-accordion__item-header')
     @busy = false
     @isCurrent = false
 
