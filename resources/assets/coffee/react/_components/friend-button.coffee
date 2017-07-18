@@ -90,6 +90,8 @@ class @FriendButton extends React.PureComponent
 
 
   render: =>
+    # hide button if currentUser is empty
+    return span() if !currentUser.id?
     # hide button if component's user_id is missing or the button would be for ourself
     return span() if !@props.user_id || @props.user_id == currentUser.id
     # hide the add button if we have hit the max friends limit
