@@ -23,4 +23,9 @@ return [
         'title' => 'Beatmap Packs',
         'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
     ],
+
+    'require_login' => [
+        '_' => 'You need to be :link to download',
+        'link_text' => 'logged in',
+    ],
 ];
