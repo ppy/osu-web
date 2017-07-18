@@ -19,7 +19,7 @@
  */
 
 return [
-    'bold' => 'Negritas',
+    'bold' => 'Negrita',
     'heading' => 'Cabecera',
     'image' => 'Imagen',
     'italic' => 'Cursiva',
