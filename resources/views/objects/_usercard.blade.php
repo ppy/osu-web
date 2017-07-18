@@ -47,22 +47,26 @@
                     <div class="usercard__username">{{isset($user) ? $user->username : 'Loading...'}}</div>
                     <div class="usercard__flags">
                         @if (isset($loading))
-                            @include('objects._country_flag', ['country_code' => 'XX'])
-                        @else
-                            @if (isset($user->country))
-                                @include('objects._country_flag', [
-                                    'country_code' => $user->country->acronym,
-                                    'country_name' => $user->country->name,
-                                ])
-                            @endif
-                            @if ($user->isSupporter())
-                                <span class="usercard__supporter">
-                                    <span class="fa fa-fw fa-heart"></span>
-                                </span>
-                            @endif
-                            <div class="usercard__friend-button">
-                                <div class="js-react--friendButton" data-target="{{$user->user_id}}"></div>
+                            <div class="usercard__flag">
+                                @include('objects._country_flag', ['country_code' => 'XX'])
                             </div>
+                        @else
+                            <div class="usercard__flag">
+                                @if (isset($user->country))
+                                    @include('objects._country_flag', [
+                                        'country_code' => $user->country->acronym,
+                                        'country_name' => $user->country->name,
+                                    ])
+                                @endif
+                            </div>
+                            <div class="usercard__flag">
+                                @if ($user->isSupporter())
+                                    <span class="usercard__supporter">
+                                        <span class="fa fa-fw fa-heart"></span>
+                                    </span>
+                                @endif
+                            </div>
+                            <div class="usercard__flag js-react--friendButton" data-target="{{$user->user_id}}"></div>
                         @endif
                     </div>
                 </div>

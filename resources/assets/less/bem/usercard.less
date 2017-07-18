@@ -25,6 +25,7 @@
   @card-item-spacing: 10px;
   @offline-color: #000;
   @online-color: @green;
+  @flag-gutter: 2px; // more like half of it
 
   display: flex;
   flex-direction: column;
@@ -107,10 +108,14 @@
     .default-text-shadow();
   }
 
-  &__flags {
-    margin-top: @card-item-spacing;
+  &__flag {
+    margin: 0 @flag-gutter;
     display: flex;
-    align-items: center;
+  }
+
+  &__flags {
+    margin: @card-item-spacing (-@flag-gutter) 0;
+    display: flex;
   }
 
   &__supporter {
@@ -119,7 +124,6 @@
     .default-box-shadow();
     border: 2px solid #fff;
     font-size: 9px;
-    margin-left: 5px;
 
     .icon-bg();
     background-color: @pink;
@@ -135,10 +139,6 @@
     background: fade(white, 10%);
     opacity: 0.25;
     .default-border-radius();
-  }
-
-  &__friend-button {
-    margin-left: 5px;
   }
 
   &__status-bar {
