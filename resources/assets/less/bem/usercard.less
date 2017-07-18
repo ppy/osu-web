@@ -68,6 +68,20 @@
     border-radius: @border-radius-base - 1;
   }
 
+  &__icon {
+    margin: 0 @flag-gutter;
+    display: flex;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__icons {
+    margin: @card-item-spacing (-@flag-gutter) 0;
+    display: flex;
+  }
+
   &__link-wrapper {
     .link-white();
     .link-plain();
@@ -106,20 +120,6 @@
     font-weight: 100;
     font-style: italic;
     .default-text-shadow();
-  }
-
-  &__flag {
-    margin: 0 @flag-gutter;
-    display: flex;
-
-    &:empty {
-      display: none;
-    }
-  }
-
-  &__flags {
-    margin: @card-item-spacing (-@flag-gutter) 0;
-    display: flex;
   }
 
   &__supporter {

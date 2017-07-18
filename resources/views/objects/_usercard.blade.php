@@ -45,14 +45,14 @@
                 </div>
                 <div class="usercard__metadata">
                     <div class="usercard__username">{{isset($user) ? $user->username : 'Loading...'}}</div>
-                    <div class="usercard__flags">
+                    <div class="usercard__icons">
                         @if (isset($loading))
-                            <div class="usercard__flag">
+                            <div class="usercard__icon">
                                 @include('objects._country_flag', ['country_code' => 'XX'])
                             </div>
                         @else
                             @if (isset($user->country))
-                                <div class="usercard__flag">
+                                <div class="usercard__icon">
                                         @include('objects._country_flag', [
                                             'country_code' => $user->country->acronym,
                                             'country_name' => $user->country->name,
@@ -60,13 +60,13 @@
                                 </div>
                             @endif
                             @if ($user->isSupporter())
-                                <div class="usercard__flag">
+                                <div class="usercard__icon">
                                     <span class="usercard__supporter">
                                         <span class="fa fa-fw fa-heart"></span>
                                     </span>
                                 </div>
                             @endif
-                            <div class="usercard__flag js-react--friendButton" data-target="{{$user->user_id}}"></div>
+                            <div class="usercard__icon js-react--friendButton" data-target="{{$user->user_id}}"></div>
                         @endif
                     </div>
                 </div>
