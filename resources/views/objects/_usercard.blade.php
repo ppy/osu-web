@@ -36,10 +36,12 @@
                         @if (isset($loading))
                             @include('objects._country_flag', ['country_code' => 'XX'])
                         @else
-                            @include('objects._country_flag', [
-                                'country_code' => $user->country->acronym,
-                                'country_name' => $user->country->name,
-                            ])
+                            @if (isset($user->country))
+                                @include('objects._country_flag', [
+                                    'country_code' => $user->country->acronym,
+                                    'country_name' => $user->country->name,
+                                ])
+                            @endif
                             @if ($user->isSupporter())
                                 <span class="usercard__supporter">
                                     <span class="fa fa-fw fa-heart"></span>

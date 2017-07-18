@@ -71,4 +71,12 @@ return [
         'update' => 'actualizar',
         'updated' => 'Contraseña actualizada',
     ],
+
+    'playstyles' => [
+        'title' => 'Estilos de juego',
+        'mouse' => 'ratón',
+        'keyboard' => 'teclado',
+        'tablet' => 'tableta',
+        'touch' => 'táctil',
+    ],
 ];

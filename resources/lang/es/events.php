@@ -19,7 +19,9 @@
  */
 
 return [
-    'achievement' => '<strong><em>:user</em></strong> ha desbloqueado el logro "<strong>:achievement</strong>"!',
+    'achievement' => '¡<strong><em>:user</em></strong> ha desbloqueado el logro "<strong>:achievement</strong>"!',
+    'beatmap_playcount' => '¡:beatmap ha sido jugado :count veces!',
+    'beatmapset_approve' => '¡:beatmapset por <strong>:user</strong> ha sido :approval!',
     'beatmapset_delete' => ':beatmapset ha sido eliminado.',
     'beatmapset_revive' => ':beatmapset ha sido revivido del sueño eterno por <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> ha actualizado el beatmap "<em>:beatmapset</em>"',

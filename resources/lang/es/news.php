@@ -19,25 +19,36 @@
  */
 
 return [
-    'header' => 'Clasificación por :type',
-    'type' => [
-        'performance' => 'Rendimiento',
-        'charts' => 'Gráficos',
-        'score' => 'Puntuación',
-        'country' => 'País',
+    'breadcrumbs' => [
+        'news-index' => 'listado',
+        'news-show' => 'publicación',
     ],
-    'stat' => [
-        'accuracy' => 'Precisión',
-        'active_users' => 'Usuarios activos',
-        'country' => 'País',
-        'play_count' => 'Conteo de jugadas',
-        'performance' => 'Rendimiento',
-        'total_score' => 'Puntuación total',
-        'ranked_score' => 'Puntuación ranked',
-        'average_score' => 'Puntuación media',
-        'average_performance' => 'Rend. medio',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'index' => [
+        'title' => 'osu!news',
+
+        'nav' => [
+            'newer' => 'Publicaciones más recientes',
+            'older' => 'Publicaciones más antiguas',
+        ],
+    ],
+
+    'show' => [
+        'posted' => 'publicada :time',
+
+        'nav' => [
+            'newer' => 'Publicación más reciente',
+            'older' => 'Publicación más antigua',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Actualizar',
+        'ok' => 'Listado actualizado.',
+    ],
+
+    'update' => [
+        'button' => 'Actualizar',
+        'ok' => 'Publicación actualizada.',
     ],
 ];

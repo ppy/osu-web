@@ -27,13 +27,18 @@ return [
         'home' => [
             '_' => 'inicio',
             'account-edit' => 'ajustes',
+            'friends' => 'amigos',
+            'friends-index' => 'amigos',
             'getChangelog' => 'listado de cambios',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
-            'getNews' => 'novedades',
             'index' => 'osu!',
-            'supportTheGame' => 'apoya el juego',
+            'legal-show' => 'información',
+            'news-index' => 'novedades',
+            'news-show' => 'novedades',
             'password-reset-index' => 'reestablecer contraseña',
+            'search' => 'buscar',
+            'supportTheGame' => 'apoya el juego',
         ],
         'help' => [
             '_' => 'ayuda',
@@ -56,7 +61,12 @@ return [
         ],
         'rankings' => [
             '_' => 'rankings',
+            'index' => 'rendimiento',
+            'performance' => 'rendimiento',
             'charts' => 'charts',
+            'score' => 'puntuación',
+            'country' => 'país',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunidad',
@@ -208,7 +218,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar a soporte técnico!',
+        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar al soporte técnico!',
     ],
 
     'popup_login' => [
@@ -233,6 +243,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Ajustes',
+            'friends' => 'Amigos',
             'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',
         ],
@@ -240,5 +251,6 @@ return [
 
     'popup_search' => [
         'initial' => '¡Escribe para buscar!',
+        'retry' => 'Búsqueda fallida. Clic para reintentar.',
     ],
 ];
