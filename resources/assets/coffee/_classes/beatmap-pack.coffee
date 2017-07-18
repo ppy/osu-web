@@ -70,6 +70,3 @@ class @BeatmapPack
 
   slideDown: =>
     $(@el.querySelector('.accordion__item-body')).slideDown(300)
-
-$(document).on 'turbolinks:load', ->
-  BeatmapPack.initialize()
