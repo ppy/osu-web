@@ -30,7 +30,6 @@ class @BeatmapPack
 
     $.subscribe 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
-      event.preventDefault()
       $.publish 'beatmappack:clicked', @packId
 
   onClick: (_e, id) =>
