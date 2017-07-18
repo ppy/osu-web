@@ -91,9 +91,9 @@ class @FriendButton extends React.PureComponent
 
   render: =>
     if @isVisible()
-      @props.container.classList.remove 'hidden'
+      @props.container?.classList.remove 'hidden'
     else
-      @props.container.classList.add 'hidden'
+      @props.container?.classList.add 'hidden'
 
       return span()
 
