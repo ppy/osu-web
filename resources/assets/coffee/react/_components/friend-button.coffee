@@ -90,12 +90,12 @@ class @FriendButton extends React.PureComponent
 
 
   render: =>
-    # hide button if currentUser is empty
-    return span() if !currentUser.id?
-    # hide button if component's user_id is missing or the button would be for ourself
-    return span() if !@props.user_id || @props.user_id == currentUser.id
-    # hide the add button if we have hit the max friends limit
-    return span() if !@state.friend && currentUser.friends.length >= 200
+    if @isVisible()
+      @props.container.classList.remove 'hidden'
+    else
+      @props.container.classList.add 'hidden'
+
+      return span()
 
     blockClass = bn
 
@@ -128,3 +128,12 @@ class @FriendButton extends React.PureComponent
               el Icon, name: 'user', modifiers: ['fw']
         else
           el Icon, name: 'user-plus', modifiers: ['fw']
+
+
+  isVisible: =>
+    # - not a guest
+    # - not viewing own card
+    # - already a friend or can add more friends
+    currentUser.id? &&
+      @props.user_id != currentUser.id &&
+      (@state.friend || currentUser.friends.length < 200)
