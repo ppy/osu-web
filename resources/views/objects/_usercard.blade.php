@@ -59,13 +59,13 @@
                                     ])
                                 @endif
                             </div>
-                            <div class="usercard__flag">
-                                @if ($user->isSupporter())
+                            @if ($user->isSupporter())
+                                <div class="usercard__flag">
                                     <span class="usercard__supporter">
                                         <span class="fa fa-fw fa-heart"></span>
                                     </span>
-                                @endif
-                            </div>
+                                </div>
+                            @endif
                             <div class="usercard__flag js-react--friendButton" data-target="{{$user->user_id}}"></div>
                         @endif
                     </div>
