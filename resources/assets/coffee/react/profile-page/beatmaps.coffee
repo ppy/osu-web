@@ -48,7 +48,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
               for beatmapset in beatmapsets.slice(0, @state["visible_#{section}"])
                 div
                   key: beatmapset.id
-                  className: 'osu-layout__col osu-layout__col--sm-6'
+                  className: 'osu-layout__col osu-layout__col--sm-4'
                   el BeatmapsetPanel, beatmap: beatmapset
 
               if beatmapsets.length > @state["visible_#{section}"]
