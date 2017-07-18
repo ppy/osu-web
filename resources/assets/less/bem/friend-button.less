@@ -17,6 +17,8 @@
  */
 
 .friend-button {
+  .reset-input();
+  .center-content();
   border-radius: 10px;
   width: 50px;
   height: 20px;
@@ -28,12 +30,6 @@
   &:hover {
     background: fade(lighten(black, 5%), 70%);
   }
-
-  // reset button styles
-  border: none;
-  margin: 0px;
-  outline: none;
-  padding: 0px;
 
   &--mutual {
     background: fade(@pink, 70%);
