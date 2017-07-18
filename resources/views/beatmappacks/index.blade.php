@@ -53,8 +53,8 @@
         <div class="osu-layout__row">
             <div class="beatmap-packs__list js-accordion">
                 @foreach ($packs as $pack)
-                    <div class="js-beatmap-pack beatmap-pack js-accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
-                        <div class="js-beatmap-pack-expander beatmap-packs__row beatmap-pack__header js-accordion__item-header"
+                    <div class="beatmap-pack js-beatmap-pack js-accordion__item" data-pack-id="{{ $pack['pack_id'] }}">
+                        <div class="beatmap-packs__row beatmap-pack__header js-accordion__item-header"
                             data-pack-id="{{ $pack['pack_id'] }}">
                             <div class="beatmap-packs__cell beatmap-pack__name">{{ $pack['name'] }}</div>
                             <div class="beatmap-packs__cell beatmap-packs__cell--right">
@@ -63,7 +63,7 @@
                                 <span class="beatmap-pack__author beatmap-pack__author--bold">{{ $pack['author'] }}</span>
                             </div>
                         </div>
-                        <div class="js-beatmap-pack__body beatmap-pack__body js-accordion__item-body"></div>
+                        <div class="beatmap-pack__body js-accordion__item-body"></div>
                     </div>
                 @endforeach
             </div>

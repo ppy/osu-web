@@ -23,7 +23,7 @@ class @BeatmapPack
   constructor: (rootElement) ->
     @el = rootElement
     @packId = rootElement.dataset.packId
-    @packBody = @el.querySelector('.js-beatmap-pack__body')
+    @packBody = @el.querySelector('.js-accordion__item-body')
     @expander = @el.querySelector('.js-accordion__item-header')
     @busy = false
     @isCurrent = false
@@ -59,7 +59,7 @@ class @BeatmapPack
   close: =>
     @isCurrent = false
     # drop shadow should change _after_ slide up animation
-    $(@el.querySelector('.js-accordion__item-body')).slideUp(300, () =>
+    $(@packBody).slideUp(300, () =>
       $(@el).removeClass('js-accordion__item--expanded')
     )
 
@@ -68,4 +68,4 @@ class @BeatmapPack
     $.get laroute.route('beatmappacks.show', beatmappack: packId)
 
   slideDown: =>
-    $(@el.querySelector('.js-accordion__item-body')).slideDown(300)
+    $(@packBody).slideDown(300)
