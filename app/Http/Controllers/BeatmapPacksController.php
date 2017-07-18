@@ -51,16 +51,20 @@ class BeatmapPacksController extends Controller
         $beatmapsetTable = (new Beatmapset)->getTable();
         $beatmapsTable = (new Beatmap)->getTable();
         $scoreBestTable = (new Best\Osu)->getTable();
-        $user_id = Auth::user()->user_id;
+        $user_id = Auth::id();
 
-        $counts = DB::raw("(SELECT count(*)
-                            FROM {$scoreBestTable}
-                            WHERE {$scoreBestTable}.user_id = {$user_id}
-                            AND {$scoreBestTable}.beatmap_id IN (
-                                SELECT {$beatmapsTable}.beatmap_id
-                                FROM {$beatmapsTable}
-                                WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
-                            )) as count");
+        if (Auth::check()) {
+            $counts = DB::raw("(SELECT count(*)
+                                FROM {$scoreBestTable}
+                                WHERE {$scoreBestTable}.user_id = {$user_id}
+                                AND {$scoreBestTable}.beatmap_id IN (
+                                    SELECT {$beatmapsTable}.beatmap_id
+                                    FROM {$beatmapsTable}
+                                    WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                )) as count");
+        } else {
+            $counts = DB::raw('(SELECT 0) as count');
+        }
 
         $sets = $pack
             ->beatmapsets()
