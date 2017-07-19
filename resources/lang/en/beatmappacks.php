@@ -24,6 +24,10 @@ return [
         'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
     ],
 
+    'show' => [
+        'download' => 'Download',
+    ],
+
     'mode' => [
         'artist' => 'Artist/Album',
         'chart' => 'Chart',
