@@ -28,9 +28,10 @@ class @BeatmapPack
     @busy = false
     @isCurrent = false
 
-    $.subscribe 'beatmappack:clicked', @onClick
+    $('.js-accordion').on 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
-      $.publish 'beatmappack:clicked', @packId
+      return if @isCurrent
+      $(@el).trigger 'beatmappack:clicked', @packId
 
   onClick: (_e, id) =>
     if @packId == id
