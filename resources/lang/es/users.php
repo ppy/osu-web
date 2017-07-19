@@ -27,13 +27,14 @@ return [
         'username' => 'Nombre de usuario',
         'password' => 'Contraseña',
         'button' => 'Iniciar sesión',
+        'button_posting' => 'Iniciando sesión...',
         'remember' => 'Recordarme',
         'title' => 'Inicia sesión para continuar',
         'failed' => 'Nombre de usuario o contraseña incorrectos',
-        'register' => '¿No tienes una cuenta de osu!? Crea una',
+        'register' => '¿¡No tienes una cuenta de osu!? Crea una',
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
-            'main' => 'Acceso a la beta es actualmente restringido a usuarios privilegiados.',
+            'main' => 'El acceso a la beta está actualmente restringido a usuarios privilegiados.',
             'small' => '(supporters tendrán acceso pronto)',
         ],
 
@@ -82,6 +83,9 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '1 seguidor|:count seguidores',
+            'unranked' => 'No hay partidas recientes',
+
             'achievements' => [
                 'title' => 'Logros',
                 'achieved-on' => 'Obtenido el :date',
@@ -193,12 +197,16 @@ return [
             'play_count' => 'Conteo de jugadas',
             'ranked_score' => 'Puntuación rankeada',
             'replays_watched_by_others' => 'Replays observadas por otros',
-            'score_ranks' => 'Score Ranks', //?
+            'score_ranks' => 'Clasificación de las puntuaciones',
             'total_hits' => 'Aciertos totales',
             'total_score' => 'Puntuación total',
         ],
     ],
-     'verify' => [
+    'status' => [
+        'online' => 'En línea',
+        'offline' => 'Desconectado',
+    ],
+    'verify' => [
         'title' => 'Verificación de la Cuenta',
     ],
 ];

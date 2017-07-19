@@ -28,8 +28,13 @@ return [
         'delayed_shipping' => '¡Ahora mismo estamos sobresaturados de pedidos! Eres bienvenido a solicitar tu orden, pero considera un **retraso adicional de 1-2 semanas** mientras nos ponemos al día con órdenes ya existentes.',
     ],
 
+    'discount' => 'ahorra un :percent%',
+
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name para :username (:duration)',
+            ],
             'quantity' => 'Cantidad',
         ],
     ],
@@ -49,5 +54,19 @@ return [
         'notification_remove_text' => 'aquí',
 
         'notification_in_stock' => '¡Este producto ya tiene existencias!',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => '¡Tienes que :link para obtener un título de supporter!',
+            'link_text' => 'iniciar sesión',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
+            'link_text' => 'iniciar sesión',
+        ],
     ],
 ];

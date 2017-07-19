@@ -19,18 +19,23 @@
  */
 
 return [
-    'header' => ':type Ranking',
+    'header' => 'Clasificación por :type',
     'type' => [
         'performance' => 'Rendimiento',
         'charts' => 'Gráficos',
         'score' => 'Puntuación',
         'country' => 'País',
-        'kudosu' => 'Kudosu',
     ],
     'stat' => [
         'accuracy' => 'Precisión',
+        'active_users' => 'Usuarios activos',
+        'country' => 'País',
         'play_count' => 'Conteo de jugadas',
         'performance' => 'Rendimiento',
+        'total_score' => 'Puntuación total',
+        'ranked_score' => 'Puntuación ranked',
+        'average_score' => 'Puntuación media',
+        'average_performance' => 'Rend. medio',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

@@ -27,6 +27,8 @@ return [
         'home' => [
             '_' => 'главная',
             'account-edit' => 'настройки',
+            'friends' => 'друзья',
+            'friends-index' => 'друзья',
             'getChangelog' => 'список изменений',
             'getDownload' => 'скачать',
             'getIcons' => 'иконки',
@@ -35,7 +37,7 @@ return [
             'news-index' => 'новости',
             'news-show' => 'новости',
             'password-reset-index' => 'восстановить пароль',
-            'search' => 'Поиск',
+            'search' => 'поиск',
             'supportTheGame' => 'поддержать игру',
         ],
         'help' => [
@@ -241,6 +243,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Настройки',
+            'friends' => 'Друзья',
             'logout' => 'Выйти',
             'profile' => 'Мой профиль',
         ],

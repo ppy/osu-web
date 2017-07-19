@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => '列表',
-        'news-show' => '新闻', //未使用字段
+        'news-index' => 'listado',
+        'news-show' => 'publicación',
     ],
 
     'index' => [
-        'title' => 'osu! 新闻',
+        'title' => 'osu!news',
 
         'nav' => [
-            'newer' => '下一条新闻',
-            'older' => '上一条新闻',
+            'newer' => 'Publicaciones más recientes',
+            'older' => 'Publicaciones más antiguas',
         ],
     ],
 
     'show' => [
-        'posted' => ':time 推送',
+        'posted' => 'publicada :time',
 
         'nav' => [
-            'newer' => '下一条新闻',
-            'older' => '上一条新闻',
+            'newer' => 'Publicación más reciente',
+            'older' => 'Publicación más antigua',
         ],
     ],
 
     'store' => [
-        'button' => '更新', //未使用字段
-        'ok' => '列表已更新.', //未使用字段
+        'button' => 'Actualizar',
+        'ok' => 'Listado actualizado.',
     ],
 
     'update' => [
-        'button' => '更新',
-        'ok' => '新闻已更新.', //未使用字段
+        'button' => 'Actualizar',
+        'ok' => 'Publicación actualizada.',
     ],
 ];

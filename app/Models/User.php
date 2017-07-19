@@ -504,7 +504,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function groupIds()
     {
         if ($this->groupIds === null) {
-            $this->groupIds = model_pluck($this->userGroups(), 'group_id');
+            if (isset($this->relations['userGroups'])) {
+                $this->groupIds = $this->userGroups->pluck('group_id');
+            } else {
+                $this->groupIds = model_pluck($this->userGroups(), 'group_id');
+            }
         }
 
         return $this->groupIds;
