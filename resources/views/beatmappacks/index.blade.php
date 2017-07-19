@@ -40,14 +40,10 @@
                 <p>Also note that it is highly recommended to <span class="beatmap-packs__scary">download the packs from latest to earliest</span>, since the oldest maps are of much lower quality than most recent maps.</p>
             </div>
             <ul class="page-mode">
-                <li class="page-mode__item">
-                    @include('beatmappacks._type', ['current' => $type, 'type' => 'standard', 'title' => 'Standard'])
-                <li class="page-mode__item">
-                    @include('beatmappacks._type', ['current' => $type, 'type' => 'chart', 'title' => 'Chart'])
-                <li class="page-mode__item">
-                    @include('beatmappacks._type', ['current' => $type, 'type' => 'theme', 'title' => 'Theme'])
-                <li class="page-mode__item">
-                    @include('beatmappacks._type', ['current' => $type, 'type' => 'artist', 'title' => 'Artist/Album'])
+                @foreach(['standard', 'chart', 'theme', 'artist'] as $mode)
+                    <li class="page-mode__item">
+                        @include('beatmappacks._type', ['current' => $type, 'type' => $mode, 'title' => trans("beatmappacks.mode.{$mode}")])
+                @endforeach
             </ul>
         </div>
         <div class="osu-layout__row">

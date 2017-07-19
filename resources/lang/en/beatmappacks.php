@@ -24,6 +24,13 @@ return [
         'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
     ],
 
+    'mode' => [
+        'artist' => 'Artist/Album',
+        'chart' => 'Chart',
+        'standard' => 'Standard',
+        'theme' => 'Theme',
+    ],
+
     'require_login' => [
         '_' => 'You need to be :link to download',
         'link_text' => 'logged in',
