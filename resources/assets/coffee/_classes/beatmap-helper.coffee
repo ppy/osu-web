@@ -46,8 +46,10 @@ class @BeatmapHelper
       'hard'
     else if rating < 5.25
       'insane'
-    else
+    else if rating < 6.75
       'expert'
+    else
+      'expert-plus'
 
 
   @group: (beatmaps) =>
