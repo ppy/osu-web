@@ -24,7 +24,7 @@
         <div class="nav-search-result__results nav-search-result__results--horizontal">
             @foreach ($users['data'] as $entry)
                 <div class="nav-search-result__result">
-                    @include('home._search_user', compact('entry'))
+                    @include('home._search_user_quick', compact('entry'))
                 </div>
             @endforeach
         </div>
