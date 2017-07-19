@@ -50,16 +50,27 @@ class @BeatmapsetPanel extends React.PureComponent
     # arbitrary number
     maxDisplayedDifficulty = 10
 
-    difficulties =
-      for own _mode, beatmaps of BeatmapHelper.group beatmapset.beatmaps[..maxDisplayedDifficulty - 1]
-        for b in beatmaps
-          div
-            className: 'beatmapset-panel__difficulty-icon'
-            key: b.id
-            el BeatmapIcon, beatmap: b
+    condenseDifficulties = beatmapset.beatmaps.length > maxDisplayedDifficulty
 
-    if beatmapset.beatmaps.length > maxDisplayedDifficulty
-      difficulties.push span key: 'over', "+#{(beatmapset.beatmaps.length - maxDisplayedDifficulty)}"
+    beatmapIcon = (beatmap) ->
+      div
+        className: "#{'beatmapset-panel__difficulty-icon' if !condenseDifficulties}"
+        key: beatmap.id
+        el BeatmapIcon, beatmap: beatmap
+
+    difficulties =
+      for own _mode, beatmaps of BeatmapHelper.group beatmapset.beatmaps
+        if condenseDifficulties
+          [..., hardestDiff] = beatmaps
+          [ 
+            beatmapIcon hardestDiff
+            span 
+              className: 'beatmapset-panel__difficulty-count'
+              key: "#{(hardestDiff.id)}-count", "#{(beatmaps.length)}"
+          ]
+        else
+          for b in beatmaps
+            beatmapIcon b         
 
     div
       className: "beatmapset-panel #{'beatmapset-panel--previewing' if @state.preview != 'ended'}"
