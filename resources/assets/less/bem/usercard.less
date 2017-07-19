@@ -25,6 +25,7 @@
   @card-item-spacing: 10px;
   @offline-color: #000;
   @online-color: @green;
+  @flag-gutter: 2px; // more like half of it
 
   display: flex;
   flex-direction: column;
@@ -46,6 +47,10 @@
   .default-border-radius();
   .own-layer();
 
+  &--search {
+    margin: 0;
+  }
+
   &__background {
     width: 100%;
     height: 100%;
@@ -61,6 +66,20 @@
     .full-size();
     background: fade(#000, 80%);
     border-radius: @border-radius-base - 1;
+  }
+
+  &__icon {
+    margin: 0 @flag-gutter;
+    display: flex;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__icons {
+    margin: @card-item-spacing (-@flag-gutter) 0;
+    display: flex;
   }
 
   &__link-wrapper {
@@ -103,19 +122,12 @@
     .default-text-shadow();
   }
 
-  &__flags {
-    margin-top: @card-item-spacing;
-    display: flex;
-    align-items: center;
-  }
-
   &__supporter {
     .circle(20px);
     .center-content();
     .default-box-shadow();
     border: 2px solid #fff;
     font-size: 9px;
-    margin-left: 5px;
 
     .icon-bg();
     background-color: @pink;
@@ -131,10 +143,6 @@
     background: fade(white, 10%);
     opacity: 0.25;
     .default-border-radius();
-  }
-
-  &__friend-button {
-    margin-left: 5px;
   }
 
   &__status-bar {

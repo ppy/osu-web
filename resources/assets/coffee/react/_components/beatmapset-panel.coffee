@@ -38,6 +38,7 @@ class @BeatmapsetPanel extends React.PureComponent
 
 
   componentWillUnmount: =>
+    @previewStop()
     $.unsubscribe ".#{@eventId}"
     $(document).off ".#{@eventId}"
 
@@ -49,11 +50,13 @@ class @BeatmapsetPanel extends React.PureComponent
     # arbitrary number
     maxDisplayedDifficulty = 10
 
-    difficulties = beatmapset.beatmaps[..maxDisplayedDifficulty - 1].map (b) =>
-      div
-        className: 'beatmapset-panel__difficulty-icon'
-        key: b.id
-        el BeatmapIcon, beatmap: b
+    difficulties =
+      for own _mode, beatmaps of BeatmapHelper.group beatmapset.beatmaps[..maxDisplayedDifficulty - 1]
+        for b in beatmaps
+          div
+            className: 'beatmapset-panel__difficulty-icon'
+            key: b.id
+            el BeatmapIcon, beatmap: b
 
     if beatmapset.beatmaps.length > maxDisplayedDifficulty
       difficulties.push span key: 'over', "+#{(beatmapset.beatmaps.length - maxDisplayedDifficulty)}"

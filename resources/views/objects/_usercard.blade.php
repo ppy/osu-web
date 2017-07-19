@@ -15,9 +15,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-
+@php
+    $blockClass = 'usercard';
+    if (isset($popup) && $popup) {
+        $blockClass .= ' usercard--popup';
+    }
+    if (count($_modifiers ?? null) > 0) {
+        foreach ($_modifiers as $modifier) {
+            $blockClass .= ' usercard--'.$modifier;
+        }
+    }
+@endphp
 @if (isset($user) || isset($loading))
-    <div class="usercard{{isset($popup) && $popup ? ' usercard--popup' : ''}}" style="background-image: url(/images/layout/beatmaps/default-bg.png);">
+    <div
+        class="{{ $blockClass }}"
+        style="background-image: url(/images/layout/beatmaps/default-bg.png);"
+    >
         @if (!isset($loading)) <img class="usercard__background" src="{{$user->cover()}}"> @endif
         <div class="usercard__background-overlay"></div>
         @if (isset($loading)) <div class="usercard__link-wrapper"> @else <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__link-wrapper"> @endif
@@ -32,24 +45,28 @@
                 </div>
                 <div class="usercard__metadata">
                     <div class="usercard__username">{{isset($user) ? $user->username : 'Loading...'}}</div>
-                    <div class="usercard__flags">
+                    <div class="usercard__icons">
                         @if (isset($loading))
-                            @include('objects._country_flag', ['country_code' => 'XX'])
+                            <div class="usercard__icon">
+                                @include('objects._country_flag', ['country_code' => 'XX'])
+                            </div>
                         @else
                             @if (isset($user->country))
-                                @include('objects._country_flag', [
-                                    'country_code' => $user->country->acronym,
-                                    'country_name' => $user->country->name,
-                                ])
+                                <div class="usercard__icon">
+                                        @include('objects._country_flag', [
+                                            'country_code' => $user->country->acronym,
+                                            'country_name' => $user->country->name,
+                                        ])
+                                </div>
                             @endif
                             @if ($user->isSupporter())
-                                <span class="usercard__supporter">
-                                    <span class="fa fa-fw fa-heart"></span>
-                                </span>
+                                <div class="usercard__icon">
+                                    <span class="usercard__supporter">
+                                        <span class="fa fa-fw fa-heart"></span>
+                                    </span>
+                                </div>
                             @endif
-                            <div class="usercard__friend-button">
-                                <div class="js-react--friendButton" data-target="{{$user->user_id}}"></div>
-                            </div>
+                            <div class="usercard__icon js-react--friendButton" data-target="{{$user->user_id}}"></div>
                         @endif
                     </div>
                 </div>
