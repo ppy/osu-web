@@ -49,11 +49,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     });
 });
 
-Route::group(['prefix' => 'beatmappacks'], function () {
-    Route::get('listing/{type?}', 'BeatmapPacksController@index')->name('beatmappacks.index');
-    Route::get('{beatmappack}', 'BeatmapPacksController@show')->name('beatmappacks.show');
-});
-
 Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
@@ -70,6 +65,7 @@ Route::group(['prefix' => 'beatmapsets'], function () {
 
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'store', 'update']]);
+    Route::resource('beatmappacks', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');

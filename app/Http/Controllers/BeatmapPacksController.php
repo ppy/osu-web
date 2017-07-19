@@ -26,14 +26,15 @@ use App\Models\Beatmapset;
 use App\Models\Score\Best;
 use Auth;
 use DB;
+use Request;
 
 class BeatmapPacksController extends Controller
 {
     protected $section = 'beatmaps';
 
-    public function index($type = '')
+    public function index()
     {
-        $type = presence($type) ?? BeatmapPack::DEFAULT_TYPE;
+        $type = presence(Request::input('type')) ?? BeatmapPack::DEFAULT_TYPE;
         $packs = BeatmapPack::getPacks($type);
         if ($packs === null) {
             abort(404);
