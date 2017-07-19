@@ -38,6 +38,7 @@ class @BeatmapsetPanel extends React.PureComponent
 
 
   componentWillUnmount: =>
+    @previewStop()
     $.unsubscribe ".#{@eventId}"
     $(document).off ".#{@eventId}"
 
