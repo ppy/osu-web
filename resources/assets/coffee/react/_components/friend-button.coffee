@@ -105,8 +105,9 @@ class @FriendButton extends React.PureComponent
       else
         blockClass += " #{bn}--friend"
 
-    button
+    a
       className: blockClass
+      href: '#'
       onMouseEnter: @hover
       onMouseLeave: @unhover
       onClick: @clicked
@@ -114,11 +115,11 @@ class @FriendButton extends React.PureComponent
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
       disabled: @state.loading
       if @state.loading
-        el Icon, name: 'refresh', modifiers: ['fw', 'spin']
+        el Icon, name: 'refresh', modifiers: ['spin']
       else
         if @state.friend
           if @state.hover
-            el Icon, name: 'user-times', modifiers: ['fw']
+            el Icon, name: 'user-times'
           else
             if @state.friend.mutual
               [
@@ -126,9 +127,9 @@ class @FriendButton extends React.PureComponent
                 el Icon, name: 'user', key: 2
               ]
             else
-              el Icon, name: 'user', modifiers: ['fw']
+              el Icon, name: 'user'
         else
-          el Icon, name: 'user-plus', modifiers: ['fw']
+          el Icon, name: 'user-plus'
 
 
   isVisible: =>
