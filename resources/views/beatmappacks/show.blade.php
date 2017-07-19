@@ -17,24 +17,24 @@
 --}}
 
 
-@if(Auth::check())
-<ul class="beatmap-pack__downloads">
-    @foreach ($pack->downloadUrls() as $download)
-        <li class="beatmap-pack__download">
-            <a href="{{ $download['url'] }}"
-                class="beatmap-pack__link">Download</a> {{ $download['host'] }}
-    @endforeach
-</ul>
-@else
-<div class="beatmap-pack__downloads">
-    @php
-        $title = trans('users.anonymous.login_link');
-        $text = trans('beatmappacks.require_login.link_text');
-        $link = Html::link('#', $text, ['class' => 'js-user-link', 'title' => $title]);
-    @endphp
-    {!! trans('beatmappacks.require_login._', ['link' => $link]) !!}
+<div class="beatmap-pack-download">
+    @if(Auth::check())
+        <ul class="beatmap-pack-download__list">
+            @foreach ($pack->downloadUrls() as $download)
+                <li>
+                    <a href="{{ $download['url'] }}"
+                        class="beatmap-pack-download__link">Download</a> {{ $download['host'] }}
+            @endforeach
+        </ul>
+    @else
+        @php
+            $title = trans('users.anonymous.login_link');
+            $text = trans('beatmappacks.require_login.link_text');
+            $link = Html::link('#', $text, ['class' => 'js-user-link', 'title' => $title]);
+        @endphp
+        {!! trans('beatmappacks.require_login._', ['link' => $link]) !!}
+    @endif
 </div>
-@endif
 <ul class="beatmap-pack-items">
     @foreach ($sets as $set)
         <li class="beatmap-pack-items__set {{ $set->count > 0 ? 'beatmap-pack-items__set--cleared' : '' }}">
