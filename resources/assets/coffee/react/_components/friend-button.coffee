@@ -105,8 +105,9 @@ class @FriendButton extends React.PureComponent
       else
         blockClass += " #{bn}--friend"
 
-    button
+    a
       className: blockClass
+      href: '#'
       onMouseEnter: @hover
       onMouseLeave: @unhover
       onClick: @clicked
