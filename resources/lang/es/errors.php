@@ -30,9 +30,10 @@ return [
         ],
     ],
     'beatmaps' => [
+        'invalid_mode' => 'Se ha especificado un modo inválido.',
         'standard_converts_only' => 'Solo el modo osu!standard puede tener puntuaciones en otros modos.',
     ],
-     'beatmapsets' => [
+    'beatmapsets' => [
         'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
     ],
     'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.',
