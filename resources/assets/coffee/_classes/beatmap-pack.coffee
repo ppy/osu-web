@@ -33,7 +33,8 @@ class @BeatmapPack
       return if @isCurrent
       $(@el).trigger 'beatmappack:clicked', @packId
 
-  onClick: (_e, id) =>
+  onClick: (e, id) =>
+    e.stopPropagation()
     if @packId == id
       @open()
     else
