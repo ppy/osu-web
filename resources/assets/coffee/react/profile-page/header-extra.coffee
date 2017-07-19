@@ -50,7 +50,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
   render: =>
     if currentUser.id?
-      friendState = currentUser.friends.find((o) => o.target_id == @props.user.id)
+      friendState = _.find(currentUser.friends, (o) => o.target_id == @props.user.id)
 
     friendButtonHidden = !currentUser.id || currentUser.id == @props.user.id
 
