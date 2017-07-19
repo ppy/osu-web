@@ -40,7 +40,7 @@ class BeatmapPacksController extends Controller
             abort(404);
         }
 
-        return view('beatmappacks.index')
+        return view('packs.index')
             ->with('packs', $packs->get())
             ->with('type', $type);
     }
@@ -72,6 +72,6 @@ class BeatmapPacksController extends Controller
             ->select("{$beatmapsetTable}.*", $counts)
             ->get();
 
-        return view('beatmappacks.show', compact('pack', 'sets'));
+        return view('packs.show', compact('pack', 'sets'));
     }
 }

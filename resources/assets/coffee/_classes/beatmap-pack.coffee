@@ -66,7 +66,7 @@ class @BeatmapPack
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
-    $.get laroute.route('beatmappacks.show', beatmappack: packId)
+    $.get laroute.route('packs.show', pack: packId)
 
   slideDown: =>
     $(@packBody).slideDown(300)

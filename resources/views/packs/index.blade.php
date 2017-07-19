@@ -42,7 +42,7 @@
             <ul class="page-mode">
                 @foreach(['standard', 'chart', 'theme', 'artist'] as $mode)
                     <li class="page-mode__item">
-                        @include('beatmappacks._type', ['current' => $type, 'type' => $mode, 'title' => trans("beatmappacks.mode.{$mode}")])
+                        @include('packs._type', ['current' => $type, 'type' => $mode, 'title' => trans("beatmappacks.mode.{$mode}")])
                 @endforeach
             </ul>
         </div>
