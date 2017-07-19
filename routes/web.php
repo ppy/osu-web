@@ -50,8 +50,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 });
 
 Route::group(['prefix' => 'beatmappacks'], function () {
-    Route::get('listing/{type?}', 'BeatmappacksController@index')->name('beatmappacks.index');
-    Route::get('{beatmappack}', 'BeatmappacksController@show')->name('beatmappacks.show');
+    Route::get('listing/{type?}', 'BeatmapPacksController@index')->name('beatmappacks.index');
+    Route::get('{beatmappack}', 'BeatmapPacksController@show')->name('beatmappacks.show');
 });
 
 Route::group(['prefix' => 'beatmaps'], function () {
