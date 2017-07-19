@@ -121,9 +121,10 @@ class @FriendButton extends React.PureComponent
             el Icon, name: 'user-times', modifiers: ['fw']
           else
             if @state.friend.mutual
-              div {},
-                el Icon, name: 'user'
-                el Icon, name: 'user'
+              [
+                el Icon, name: 'user', key: 1
+                el Icon, name: 'user', key: 2
+              ]
             else
               el Icon, name: 'user', modifiers: ['fw']
         else
