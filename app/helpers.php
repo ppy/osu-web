@@ -72,7 +72,7 @@ function get_valid_locale($requestedLocale)
 
     return array_first(
         config('app.available_locales'),
-        function ($_key, $value) use ($requestedLocale) {
+        function ($value) use ($requestedLocale) {
             return starts_with($requestedLocale, $value);
         },
         config('app.fallback_locale')
