@@ -55,10 +55,10 @@ class BeatmapPack extends Model
     {
         $array = [];
         foreach (explode(',', $this->url) as $url) {
-            preg_match('@^(?:http[s]?://)?([^/]+)@i', $url, $hosts);
+            preg_match('@^https?://(?<host>[^/]+)@i', $url, $matches);
             $array[] = [
                 'url' => $url,
-                'host' => $hosts[1],
+                'host' => $matches['host'],
             ];
         }
 
@@ -76,9 +76,9 @@ class BeatmapPack extends Model
         $tag = static::$tagMappings[$type];
         $packs = static::where('tag', 'like', "{$tag}%");
         if (in_array($type, $packIdSortable, true)) {
-            $packs = $packs->orderBy('pack_id', 'desc');
+            $packs->orderBy('pack_id', 'desc');
         } else {
-            $packs = $packs->orderBy('name', 'asc');
+            $packs->orderBy('name', 'asc');
         }
 
         return $packs;
