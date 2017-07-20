@@ -64,8 +64,11 @@
 
   &__background-overlay  {
     .full-size();
-    background: fade(#000, 80%);
-    border-radius: @border-radius-base - 1;
+    background-color: fade(#000, 75%);
+
+    &--guest {
+      background-color: fade(#000, 60%);
+    }
   }
 
   &__icon {
