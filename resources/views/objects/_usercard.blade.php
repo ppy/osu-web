@@ -27,10 +27,7 @@
     }
 @endphp
 @if (isset($user) || isset($loading))
-    <div
-        class="{{ $blockClass }}"
-        style="background-image: url(/images/layout/beatmaps/default-bg.png);"
-    >
+    <div class="{{ $blockClass }}">
         @if (!isset($loading))
             @if ($user->cover() === null)
                 <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
@@ -42,7 +39,7 @@
         @if (isset($loading)) <div class="usercard__link-wrapper"> @else <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__link-wrapper"> @endif
             <div class="usercard__main-card">
                 <div class="usercard__avatar-space">
-                    <div class="usercard__loader">
+                    <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
                         <i class="fa fa-fw fa-refresh fa-spin"></i>
                     </div>
                     @if (!isset($loading))

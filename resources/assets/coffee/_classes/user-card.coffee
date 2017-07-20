@@ -77,7 +77,7 @@ class @UserCard
                   if image.isLoaded
                     $(image.img).fadeTo(@fadeLength, 1)
                 .always (instance) ->
-                  $(instance.elements[0]).find('.usercard__loader').fadeTo(@fadeLength, 0)
+                  $(instance.elements[0]).find('.js-usercard--avatar-loader').fadeTo(@fadeLength, 0)
 
               # manually init the friend-button react component
               reactTurbolinks.boot()
