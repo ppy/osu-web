@@ -52,25 +52,23 @@ class @BeatmapsetPanel extends React.PureComponent
 
     condenseDifficulties = beatmapset.beatmaps.length > maxDisplayedDifficulty
 
-    beatmapIcon = (beatmap) ->
-      div
-        className: "#{'beatmapset-panel__difficulty-icon' if !condenseDifficulties}"
-        key: beatmap.id
-        el BeatmapIcon, beatmap: beatmap
-
     difficulties =
-      for own _mode, beatmaps of BeatmapHelper.group beatmapset.beatmaps
+      for own mode, beatmaps of BeatmapHelper.group beatmapset.beatmaps
         if condenseDifficulties
           [..., hardestDiff] = beatmaps
-          [ 
-            beatmapIcon hardestDiff
-            span 
-              className: 'beatmapset-panel__difficulty-count'
-              key: "#{(hardestDiff.id)}-count", "#{(beatmaps.length)}"
-          ]
+          span
+            key: mode
+            style: 
+              display: "flex"
+              alignItems: "center"
+            el BeatmapIcon, beatmap: hardestDiff, showTitle: false
+            span className: 'beatmapset-panel__difficulty-count', beatmaps.length
         else
           for b in beatmaps
-            beatmapIcon b         
+            div
+              className: 'beatmapset-panel__difficulty-icon'
+              key: b.id
+              el BeatmapIcon, beatmap: b
 
     div
       className: "beatmapset-panel #{'beatmapset-panel--previewing' if @state.preview != 'ended'}"
