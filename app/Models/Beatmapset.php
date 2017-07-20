@@ -24,6 +24,8 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
+
+use Auth;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -125,6 +127,43 @@ class Beatmapset extends Model
             ->where('approved_date', '>', DB::raw('date_sub(now(), interval 30 day)'))
             ->get();
     }
+
+    /**
+     * Includes if player has completed the set in any difficulty
+     * Returns the count of beatmaps in the set completed as a {$mode}_count column
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $mode class of the game mode to include
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithHasCompleted($query, $mode)
+    {
+        if (!is_subclass_of($mode, Score\Best\Model::class)) {
+            throw new \Exception('invalid game mode');
+        }
+
+        $beatmapsetTable = $this->getTable();
+        $beatmapsTable = (new Beatmap)->getTable();
+        $scoreBestTable = (new $mode)->getTable();
+        $modeName = strtolower(get_class_basename($mode));
+        $user_id = Auth::id();
+
+        if (Auth::check()) {
+            $counts = DB::raw("(SELECT count(*)
+                                FROM {$scoreBestTable}
+                                WHERE {$scoreBestTable}.user_id = {$user_id}
+                                AND {$scoreBestTable}.beatmap_id IN (
+                                    SELECT {$beatmapsTable}.beatmap_id
+                                    FROM {$beatmapsTable}
+                                    WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                )) as {$modeName}_count");
+        } else {
+            $counts = DB::raw('(SELECT 0) as {$modeName}_count');
+        }
+
+        return $query->addSelect($counts);
+    }
+
 
     /*
     |--------------------------------------------------------------------------
