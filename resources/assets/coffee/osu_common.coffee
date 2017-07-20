@@ -64,8 +64,9 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  fileuploadFailCallback: ($el) =>
+  fileuploadFailCallback: ($elFunction) =>
     (_e, data) =>
+      $el = $elFunction()
       $el[0].dataset.isFileupload ?= '1'
 
       $el
