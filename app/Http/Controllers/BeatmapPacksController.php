@@ -20,12 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beatmap;
 use App\Models\BeatmapPack;
-use App\Models\Beatmapset;
-use App\Models\Score\Best;
-use Auth;
-use DB;
 use Request;
 
 class BeatmapPacksController extends Controller
@@ -48,29 +43,8 @@ class BeatmapPacksController extends Controller
     public function show($id)
     {
         $pack = BeatmapPack::findOrFail($id);
+        $sets = $pack->beatmapsetsWithBestOsuScores()->get();
 
-        $beatmapsetTable = (new Beatmapset)->getTable();
-        $beatmapsTable = (new Beatmap)->getTable();
-        $scoreBestTable = (new Best\Osu)->getTable();
-        $user_id = Auth::id();
-
-        if (Auth::check()) {
-            $counts = DB::raw("(SELECT count(*)
-                                FROM {$scoreBestTable}
-                                WHERE {$scoreBestTable}.user_id = {$user_id}
-                                AND {$scoreBestTable}.beatmap_id IN (
-                                    SELECT {$beatmapsTable}.beatmap_id
-                                    FROM {$beatmapsTable}
-                                    WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
-                                )) as count");
-        } else {
-            $counts = DB::raw('(SELECT 0) as count');
-        }
-
-        $sets = $pack
-            ->beatmapsets()
-            ->select("{$beatmapsetTable}.*", $counts)
-            ->get();
 
         return view('packs.show', compact('pack', 'sets'));
     }

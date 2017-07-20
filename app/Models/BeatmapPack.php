@@ -20,6 +20,12 @@
 
 namespace App\Models;
 
+use App\Models\Beatmap;
+use App\Models\Beatmapset;
+use App\Models\Score\Best;
+use Auth;
+use DB;
+
 class BeatmapPack extends Model
 {
     const DEFAULT_TYPE = 'standard';
@@ -49,6 +55,49 @@ class BeatmapPack extends Model
         return Beatmapset::query()
             ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
             ->where("{$itemsTable}.pack_id", '=', $this->pack_id);
+    }
+
+    public function beatmapsetsWithBestScores($mode)
+    {
+        $beatmapsetTable = (new Beatmapset)->getTable();
+        $beatmapsTable = (new Beatmap)->getTable();
+        $scoreBestTable = (new $mode)->getTable();
+        $user_id = Auth::id();
+
+        if (Auth::check()) {
+            $counts = DB::raw("(SELECT count(*)
+                                FROM {$scoreBestTable}
+                                WHERE {$scoreBestTable}.user_id = {$user_id}
+                                AND {$scoreBestTable}.beatmap_id IN (
+                                    SELECT {$beatmapsTable}.beatmap_id
+                                    FROM {$beatmapsTable}
+                                    WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                )) as count");
+        } else {
+            $counts = DB::raw('(SELECT 0) as count');
+        }
+
+        return $this->beatmapsets()->select("{$beatmapsetTable}.*", $counts);
+    }
+
+    public function beatmapsetsWithBestOsuScores()
+    {
+        return $this->beatmapsetsWithBestScores(Best\Osu::class);
+    }
+
+    public function beatmapsetsWithBestFruitsScores()
+    {
+        return $this->beatmapsetsWithBestScores(Best\Fruits::class);
+    }
+
+    public function beatmapsetsWithBestManiaScores()
+    {
+        return $this->beatmapsetsWithBestScores(Best\Mania::class);
+    }
+
+    public function beatmapsetsWithBestTaikoScores()
+    {
+        return $this->beatmapsetsWithBestScores(Best\Taiko::class);
     }
 
     public function downloadUrls()
