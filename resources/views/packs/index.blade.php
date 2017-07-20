@@ -16,8 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", [
-    'current_section' => 'beatmappacks',
-    'current_action' => 'index',
+    'current_section' => 'beatmaps',
+    'current_action' => 'packs',
     'title' => trans('beatmappacks.index.title'),
     'pageDescription' => trans('beatmappacks.index.description'),
     'body_additional_classes' => 'osu-layout--body-555',
