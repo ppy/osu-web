@@ -43,7 +43,7 @@
                         <i class="fa fa-fw fa-refresh fa-spin"></i>
                     </div>
                     @if (!isset($loading))
-                        <img class="usercard__avatar" src="{{$user->user_avatar}}">
+                        <img class="usercard__avatar usercard__avatar--main" src="{{$user->user_avatar}}">
                     @endif
                 </div>
                 <div class="usercard__metadata">
