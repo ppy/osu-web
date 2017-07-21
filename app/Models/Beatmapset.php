@@ -138,12 +138,11 @@ class Beatmapset extends Model
      */
     public function scopeWithHasCompleted($query, $mode, $fieldName = 'count')
     {
-        $modeInt = Beatmap::modeInt($mode);
-        if ($modeInt === null) {
+        if (Beatmap::modeStr($mode) === null) {
             throw new \Exception('invalid game mode');
         }
 
-        $scoreClass = Score\Best\Model::getClass($modeInt);
+        $scoreClass = Score\Best\Model::getClass($mode);
         $beatmapsetTable = $this->getTable();
         $scoreBestTable = (new $scoreClass)->getTable();
         $user_id = Auth::id();

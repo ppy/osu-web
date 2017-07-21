@@ -44,12 +44,11 @@ class BeatmapPacksController extends Controller
     public function show($id)
     {
         $pack = BeatmapPack::findOrFail($id);
-        $playmode = Beatmap::modeStr($pack->playmode) ?? 'osu';
 
         $sets = $pack
             ->beatmapsets()
             ->select()
-            ->withHasCompleted($playmode)
+            ->withHasCompleted($playmode ?? 0)
             ->get();
 
         return view('packs.show', compact('pack', 'sets'));
