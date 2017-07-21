@@ -59,6 +59,17 @@ class BeatmapDiscussions.Post extends React.PureComponent
       topClasses += " #{bn}--editing"
     topClasses += " #{bn}--deleted" if @props.post.deleted_at?
 
+    userBadge =
+      if @isOwner()
+        'owner'
+      else
+        @userModerationGroup()
+
+    topClasses += " #{bn}--#{userBadge}" if userBadge?
+
+    userColor = @props.user.profile_colour if !@isOwner()
+    userColor = "##{userColor}" if userColor?
+
     div
       className: topClasses
       key: "#{@props.type}-#{@props.post.id}"
@@ -67,14 +78,35 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        div className: "#{bn}__avatar-container",
+        a
+          className: "#{bn}__user-container"
+          href: laroute.route('users.show', user: @props.user.id)
+          style:
+            color: userColor
           div className: "#{bn}__avatar",
             el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+          div
+            className: "#{bn}__user"
+            span
+              className: "#{bn}__user-text u-ellipsis-overflow"
+              style:
+                color: userColor
+              @props.user.username
 
-          if @isOwner()
-            div className: "#{bn}__user-badge #{bn}__user-badge--owner", osu.trans('beatmap_discussions.user.owner')
-          else if @userModerationGroup()?
-            div className: "#{bn}__user-badge #{bn}__user-badge--moderator", @userModerationGroup()
+            div
+              className: "#{bn}__user-badge"
+              style:
+                backgroundColor: userColor
+                opacity: 0 if !userBadge?
+              if userBadge?
+                osu.trans("beatmap_discussions.user.#{userBadge}")
+              else
+                ':' # placeholder, not actually visible
+
+          div
+            className: "#{bn}__user-stripe"
+            style:
+              backgroundColor: userColor
 
         @messageViewer()
         @messageEditor()
@@ -132,30 +164,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
-    userClass = "#{bn}__info-user"
-
-    if @isOwner()
-      userClassColor = 'owner'
-    else if @userModerationGroup()?
-      userClassColor = 'moderator'
-
-    if userClassColor?
-      userClass += " #{bn}__info-user--special #{bn}__info-user--#{userClassColor}"
-
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
       div
         className: "#{bn}__message"
-        a
-          href: laroute.route('users.show', user: @props.user.id)
-          className: userClass
-          @props.user.username
-        if userClassColor?
-          ' '
-        else
-          ': '
-        span
-          dangerouslySetInnerHTML:
-            __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
+        dangerouslySetInnerHTML:
+          __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
 
       div className: "#{bn}__info-container",
         span
