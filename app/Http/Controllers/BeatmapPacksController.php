@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Beatmap;
 use App\Models\BeatmapPack;
 use Request;
 
@@ -48,7 +47,7 @@ class BeatmapPacksController extends Controller
         $sets = $pack
             ->beatmapsets()
             ->select()
-            ->withHasCompleted($playmode ?? 0)
+            ->withHasCompleted($pack->playmode ?? 0)
             ->get();
 
         return view('packs.show', compact('pack', 'sets'));
