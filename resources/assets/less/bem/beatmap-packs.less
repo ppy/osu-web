@@ -17,10 +17,30 @@
  */
 
 .beatmap-packs {
+  &__page-header {
+    padding: 40px 0 45px;
+  }
+
+  &__page-icon {
+    .at2x-simple("/images/headers/beatmappacks-icon.png");
+    width: @header-icon-size;
+    height: @header-icon-size;
+    margin: @header-icon-margin auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &__page-title {
+    font-weight: 300;
+    font-size: @font-size--header-title;
+    color: #fff;
+  }
+
   &__blurb {
     padding: 20px 40px;
     color: #fff;
-    background-color: #222C32;
+    background-color: rgba(0, 0, 0, 0.8);
     font-size: @font-size--title-small;
     font-weight: 300;
     line-height: 1.3;
