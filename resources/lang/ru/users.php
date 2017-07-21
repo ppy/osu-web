@@ -83,6 +83,9 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '{1} 1 подписчик|[2,3] :count подписчика|[5,*] :count подписчиков',
+            'unranked' => 'Нет недавних игр',
+
             'achievements' => [
                 'title' => 'Достижения',
                 'achieved-on' => 'Получено :date',
@@ -93,7 +96,7 @@ return [
             'historical' => [
                 'empty' => 'Нет каких-либо записей. :(',
                 'most_played' => [
-                    'count' => 'раз сыграно',
+                    'count' => 'количество игр',
                     'title' => 'Наибольше сыгранные карты',
                 ],
                 'recent_plays' => [
@@ -114,8 +117,32 @@ return [
                     'amount' => ':amount Кудосу',
                     'empty' => 'Этот пользователь не обменивался Кудосу!',
 
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Получено :amount за ответ в :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Отнято :amount за ответ в :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Потеряно :amount за удаление ответа в посте :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Получено :amount за восстановление ответа в посте :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Получено :amount за получение голосов в посте :post',
+                            'reset' => 'Потеряно :amount за потерю голосов в посте :post',
+                        ],
+                    ],
+
                     'forum_post' => [
-                        'give' => 'Получено :amount от :giver за публикацию в :post',
+                        'give' => ':giver дал :amount за ответ в посте :post',
+                        'revoke' => ':giver отнял Кудосу за ответ в посте :post',
                     ],
                 ],
             ],
@@ -173,6 +200,10 @@ return [
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
         ],
+    ],
+    'status' => [
+        'online' => 'В сети',
+        'offline' => 'Вне сети',
     ],
     'verify' => [
         'title' => 'Подтверждения аккаунта',

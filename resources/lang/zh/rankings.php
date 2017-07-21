@@ -22,17 +22,20 @@ return [
     'header' => ':type 排名',
     'type' => [
         'performance' => '表现',
-        'charts' => 'Charts', //暂时没有合适的翻译
+        'charts' => '图表', //暂时没有合适的翻译
         'score' => '总分',
         'country' => '国家',
-        'kudosu' => 'Kudosu', //mapping相关,暂不翻译
     ],
     'stat' => [
         'accuracy' => '准确率',
+        'active_users' => '活跃用户',
+        'country' => '国家',
         'play_count' => '游戏次数',
         'performance' => '表现',
         'total_score' => '总分',
         'ranked_score' => 'Ranked 总分',
+        'average_score' => '平均得分',
+        'average_performance' => '平均表现',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

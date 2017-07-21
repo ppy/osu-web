@@ -16,30 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = React.DOM
+{div} = ReactDOMFactories
 el = React.createElement
 
-@BeatmapIcon = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+@BeatmapIcon = (props) ->
+  beatmap = props.beatmap
 
-  getDefaultProps: ->
-    showTitle: true
+  difficultyRating = props.overrideVersion ? BeatmapHelper.getDiffRating(beatmap.difficulty_rating)
+  showTitle = (props.showTitle ? true) && !props.overrideVersion?
+  mode = if beatmap.convert then 'osu' else beatmap.mode
 
-  render: ->
-    beatmap = @props.beatmap
-
-    difficultyRating =
-      if @props.overrideVersion?
-        @props.overrideVersion
-      else
-        BeatmapHelper.getDiffRating beatmap.difficulty_rating
-
-    showTitle = @props.showTitle && !@props.overrideVersion?
-
-    mode = if beatmap.convert then 'osu' else beatmap.mode
-
-    div
-      className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{@props.modifier}"
-      title: beatmap.version if showTitle
-      div className: 'beatmap-icon__shadow'
-      el Icon, name: "extra-mode-#{mode}"
+  div
+    className: "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{props.modifier}"
+    title: beatmap.version if showTitle
+    div className: 'beatmap-icon__shadow'
+    el Icon, name: "extra-mode-#{mode}"

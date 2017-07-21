@@ -25,14 +25,14 @@ return [
     'buttons' => [
         'cancel' => 'Annuler',
         'delete' => 'Supprimer',
-        'permalink' => 'lien permanent',
+        'permalink' => 'permalien',
         'post' => 'Poster',
         'reply' => 'Répondre',
         'reset' => 'Réinitialiser',
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
         'show_more' => 'Plus de résultats',
-        'delete' => 'Supprimer',
+        'upload_image' => "mettre en ligne l'image",
     ],
 
     'count' => [
@@ -65,7 +65,7 @@ return [
     ],
 
     'time' => [
-        'days_ago' => 'il y a :count|il y a:count',
+        'days_ago' => 'il y a :count jour|il y a :count jours',
         'hours_ago' => 'il y a :count heure|il y a :count heures',
         'now' => 'Maintenant',
         'remaining' => 'Temps restant',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d5e64f57f24a13e7ae99668f5e6d2c8",
+    "content-hash": "776c7ee395a67b08c07f6c3f17ea6b6b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2471,9 +2471,9 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
-            "time": "2017-02-16T06:27:23+00:00"
+            "time": "2017-02-16 06:27:23"
         },
         {
             "name": "mariuzzo/laravel-js-localization",
@@ -3897,16 +3897,16 @@
         },
         {
             "name": "sentry/sentry-laravel",
-            "version": "0.6.1",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-laravel.git",
-                "reference": "21ea11e02da7a6ea344d4e69d1955d2624a00faa"
+                "reference": "c1471d1d7fff0fa5618ecfb936eb6a523c1ea8fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/21ea11e02da7a6ea344d4e69d1955d2624a00faa",
-                "reference": "21ea11e02da7a6ea344d4e69d1955d2624a00faa",
+                "url": "https://api.github.com/repos/getsentry/sentry-laravel/zipball/c1471d1d7fff0fa5618ecfb936eb6a523c1ea8fa",
+                "reference": "c1471d1d7fff0fa5618ecfb936eb6a523c1ea8fa",
                 "shasum": ""
             },
             "require": {
@@ -3921,7 +3921,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.6.x-dev"
+                    "dev-master": "0.7.x-dev"
                 }
             },
             "autoload": {
@@ -3947,7 +3947,7 @@
                 "logging",
                 "sentry"
             ],
-            "time": "2017-02-09T17:35:04+00:00"
+            "time": "2017-04-21T17:44:27+00:00"
         },
         {
             "name": "shift31/laravel-elasticsearch",
@@ -5362,12 +5362,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mockery/mockery.git",
+                "url": "https://github.com/padraic/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },

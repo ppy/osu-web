@@ -83,6 +83,9 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '1 follower|:count followers',
+            'unranked' => 'No recent plays',
+
             'achievements' => [
                 'title' => 'Achievements',
                 'achieved-on' => 'Achieved on :date',
@@ -198,6 +201,10 @@ return [
             'total_hits' => 'Total Hits',
             'total_score' => 'Total Score',
         ],
+    ],
+    'status' => [
+        'online' => 'Online',
+        'offline' => 'Offline',
     ],
     'verify' => [
         'title' => 'Account Verification',

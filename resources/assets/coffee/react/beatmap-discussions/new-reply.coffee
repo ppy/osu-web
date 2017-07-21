@@ -16,37 +16,36 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, form, input, label, span, textarea} = React.DOM
+{button, div, form, input, label, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-BeatmapDiscussions.NewReply = React.createClass
-  mixins: [React.addons.PureRenderMixin]
+class BeatmapDiscussions.NewReply extends React.PureComponent
+  constructor: (props) ->
+    super props
 
-
-  componentDidMount: ->
     @throttledPost = _.throttle @post, 1000
 
+    @state =
+      message: ''
+      resolveDiscussion: @props.discussion.resolved
 
-  componentWillUnmount: ->
+
+  componentWillUnmount: =>
     @throttledPost.cancel()
     @postXhr?.abort()
 
 
-  getInitialState: ->
-    message: ''
-    resolveDiscussion: @props.discussion.resolved
-
-
-  render: ->
+  render: =>
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply"
 
       div
         className: "#{bn}__content"
-        div className: "#{bn}__avatar",
-          el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
+        div className: "#{bn}__avatar-container",
+          div className: "#{bn}__avatar",
+            el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
         div className: "#{bn}__message-container",
           textarea
@@ -86,7 +85,7 @@ BeatmapDiscussions.NewReply = React.createClass
                   onClick: @throttledPost
 
 
-  canUpdate: ->
+  canUpdate: =>
     return false if !@props.currentUser.id?
 
     @props.currentUser.isAdmin ||
@@ -94,7 +93,7 @@ BeatmapDiscussions.NewReply = React.createClass
       @props.currentUser.id == @props.discussion.user_id
 
 
-  post: ->
+  post: =>
     return if !@validPost()
     LoadingOverlay.show()
 
@@ -119,20 +118,20 @@ BeatmapDiscussions.NewReply = React.createClass
     .always LoadingOverlay.hide
 
 
-  setMessage: (e) ->
+  setMessage: (e) =>
     @setState message: e.target.value
 
 
-  submitIfEnter: (e) ->
+  submitIfEnter: (e) =>
     return if e.keyCode != 13
 
     e.preventDefault()
     @throttledPost()
 
 
-  toggleResolveDiscussion: (e) ->
+  toggleResolveDiscussion: (e) =>
     @setState resolveDiscussion: e.target.checked
 
 
-  validPost: ->
+  validPost: =>
     @state.message.length != 0

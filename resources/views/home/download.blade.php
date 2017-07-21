@@ -19,9 +19,9 @@
 
 @section("content")
     <div id="download-header" class="osu-layout__row osu-layout__row--page">
-        <p>let's get</p>
-        <p>you started</p>
-        <p>download osu! game client for Windows</p>
+        <p>{{ trans('home.download.header.1') }}</p>
+        <p>{{ trans('home.download.header.2') }}</p>
+        <p>{{ trans('home.download.header.3') }}</p>
     </div>
 
     <div class="osu-layout__row" id="download-button">
@@ -32,25 +32,25 @@
 
     <div class="osu-layout__row osu-layout__row--page" id="download-steps">
         <div>
-            <h1>Step 1</h1>
-            <p>Download the osu! game client</p>
+            <h1>{{ trans('home.download.steps.1.name') }}</h1>
+            <p>{{ trans('home.download.steps.1.content') }}</p>
         </div>
         <div>
-            <h1>Step 2</h1>
-            <p>Create an osu! player account</p>
+            <h1>{{ trans('home.download.steps.2.name') }}</h1>
+            <p>{{ trans('home.download.steps.2.content') }}</p>
         </div>
         <div>
-            <h1>Step 3</h1>
-            <p>???</p>
+            <h1>{{ trans('home.download.steps.3.name') }}</h1>
+            <p>{{ trans('home.download.steps.3.content') }}</p>
         </div>
     </div>
 
     <div class="osu-layout__row osu-layout__row--page" id="download-guides">
         <div class="explanation">
-            <h4>Learn more?</h4>
+            <h4>{{ trans('home.download.more') }}</h4>
 
             <p>
-                Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!
+                {!! trans('home.download.more_text') !!}
             </p>
         </div>
 

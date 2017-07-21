@@ -27,6 +27,8 @@ return [
         'home' => [
             '_' => 'home',
             'account-edit' => 'settings',
+            'friends' => 'friends',
+            'friends-index' => 'friends',
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
@@ -35,7 +37,7 @@ return [
             'news-index' => 'news',
             'news-show' => 'news',
             'password-reset-index' => 'reset password',
-            'search' => 'Search',
+            'search' => 'search',
             'supportTheGame' => 'support the game',
         ],
         'help' => [
@@ -241,6 +243,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Settings',
+            'friends' => 'Friends',
             'logout' => 'Log Out',
             'profile' => 'My Profile',
         ],

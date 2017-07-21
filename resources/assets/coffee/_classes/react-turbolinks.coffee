@@ -26,25 +26,19 @@ class @ReactTurbolinks
 
   boot: =>
       for own _name, component of @components
-        continue if component.loaded
-
-        continue if component.targets.length == 0
-
-        component.loaded = true
         for target in component.targets
+          continue if target.dataset.reactTurbolinksLoaded == '1'
+          target.dataset.reactTurbolinksLoaded = '1'
           @targets.push target
           ReactDOM.render React.createElement(component.element, component.propsFunction(target)), target
 
 
   destroy: =>
       for own _name, component of @components
-        continue if !component.loaded
-
-        component.loaded = false
-
-        continue if component.persistent
         for target in component.targets
-          ReactDOM.unmountComponentAtNode target
+          continue if target.dataset.reactTurbolinksLoaded != '1'
+          target.dataset.reactTurbolinksLoaded = null
+          ReactDOM.unmountComponentAtNode target if !component.persistent
 
 
   destroyPersisted: =>

@@ -64,8 +64,9 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  fileuploadFailCallback: ($el) =>
+  fileuploadFailCallback: ($elFunction) =>
     (_e, data) =>
+      $el = $elFunction()
       $el[0].dataset.isFileupload ?= '1'
 
       $el
@@ -216,12 +217,26 @@
 
 
   trans: (key, replacements) ->
-    message = Lang.get key, replacements, currentLocale
+    try
+      Lang.get key, replacements
+    catch
+      Lang.setLocale fallbackLocale
+      message = Lang.get key, replacements
+      Lang.setLocale currentLocale
 
-    if message == key
-      message = Lang.get key, replacements, fallbackLocale
+      message
 
-    message
+
+  transArray: (array, key = 'common.array_and') ->
+    switch array.length
+      when 0
+        ''
+      when 1
+        "#{array[0]}"
+      when 2
+        array.join(osu.trans("#{key}.two_words_connector"))
+      else
+        "#{array[...-1].join(osu.trans("#{key}.words_connector"))}#{osu.trans("#{key}.last_word_connector")}#{_.last(array)}"
 
 
   transChoice: (key, count, replacements) ->

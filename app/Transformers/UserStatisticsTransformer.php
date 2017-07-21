@@ -53,6 +53,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'total_hits' => $stats->totalHits(),
             'maximum_combo' => $stats->max_combo,
             'replays_watched_by_others' => $stats->replay_popularity,
+            'is_ranked' => $stats->isRanked(),
             'grade_counts' => [
                 'ss' => $stats->x_rank_count,
                 's' => $stats->s_rank_count,
@@ -69,8 +70,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
 
         return $this->item($stats, function ($stats) {
             return [
-                'is_ranked' => $stats->rank_score_index > 0,
-                'global' => $stats->rank_score_index,
+                'global' => $stats->globalRank(),
                 'country' => $stats->countryRank(),
             ];
         });

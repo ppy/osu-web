@@ -22,6 +22,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
+use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -144,12 +145,23 @@ class Post extends Model
             $required[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
         }
 
-        foreach ($params['user_ids'] as $userId) {
-            $any[] = ['match' => ['poster_id' => $userId]];
+        if (present($params['username'])) {
+            $user = User::where('username', '=', $params['username'])->first();
+            $any[] = ['match' => ['poster_id' => $user === null ? -1 : $user->getKey()]];
         }
 
-        foreach ($params['forum_ids'] as $forumId) {
-            $any[] = ['match' => ['forum_id' => $forumId]];
+        if ($params['forum_id']) {
+            if ($params['forum_children']) {
+                $forum = Forum::where('forum_id', '=', $params['forum_id'])->first();
+
+                $forumIds = $forum === null ? [$params['forum_id']] : $forum->allSubForums();
+            } else {
+                $forumIds = [$params['forum_id']];
+            }
+
+            foreach ($forumIds as $forumId) {
+                $any[] = ['match' => ['forum_id' => $forumId]];
+            }
         }
 
         if ($params['topic_id'] !== null) {
@@ -191,8 +203,9 @@ class Post extends Model
         $params['query'] = $params['query'] ?? null;
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
-        $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int') ?? [];
-        $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int') ?? [];
+        $params['username'] = get_string($params['username'] ?? null);
+        $params['forum_children'] = get_bool($params['forum_children'] ?? false);
+        $params['forum_id'] = get_int($params['forum_id'] ?? null);
         $params['topic_id'] = get_int($params['topic_id'] ?? null);
 
         return $params;

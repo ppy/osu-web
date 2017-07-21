@@ -22,7 +22,11 @@ desktop.ini
 /node_modules
 /npm-debug.log
 
+# Mix manifest
+/public/mix-manifest.json
+
 # Compiled/copied assets
+/public/fonts/vendor
 /public/js
 /public/css
 /public/build

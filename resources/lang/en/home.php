@@ -39,6 +39,7 @@ return [
 
     'search' => [
         'advanced_link' => 'Advanced search',
+        'button' => 'Search',
         'empty_result' => 'Nothing found!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
         'title' => 'Search Results',
@@ -50,9 +51,16 @@ return [
         ],
 
         'forum_post' => [
+            'all' => 'All forums',
             'link' => 'Search the forum',
             'more_simple' => 'See more forum search results',
             'title' => 'Forum',
+
+            'label' => [
+                'forum' => 'search in forums',
+                'forum_children' => 'include subforums',
+                'username' => 'author',
+            ],
         ],
 
         'mode' => [
@@ -76,6 +84,30 @@ return [
         ],
     ],
 
+    'download' => [
+      'header' => [
+          '1' => "let's get",
+          '2' => 'you started',
+          '3' => 'download osu! game client for Windows',
+      ],
+      'steps' => [
+          '1' => [
+              'name' => 'Step 1',
+              'content' => 'Download the osu! game client',
+          ],
+          '2' => [
+              'name' => 'Step 2',
+              'content' => 'Create an osu! player account',
+          ],
+          '3' => [
+              'name' => 'Step 3',
+              'content' => '???',
+          ],
+      ],
+      'more' => 'Learn more?',
+      'more_text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+    ],
+
     'user' => [
         'title' => 'news',
         'news' => [
@@ -86,12 +118,16 @@ return [
             'welcome' => 'Hello, <strong>:username</strong>!',
             'messages' => 'You have 1 new message|You have :count new messages',
             'stats' => [
+                'friends' => 'Online Friends',
+                'games' => 'Games',
                 'online' => 'Online Users',
             ],
         ],
         'beatmaps' => [
             'new' => 'New Approved Beatmaps',
             'popular' => 'Popular Beatmaps',
+            'by' => 'by',
+            'plays' => ':count plays',
         ],
         'buttons' => [
             'download' => 'Download osu!',

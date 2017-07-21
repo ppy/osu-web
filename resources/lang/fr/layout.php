@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Le rythme est à un seul *clic*!  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
+        'page_description' => 'osu! - Le rythme est à un seul *clic* !  Avec Ouendan/EBA, Taiko et les modes originaux de gameplay, avec un éditeur de niveau complet.',
     ],
 
     'menu' => [
@@ -30,10 +30,13 @@ return [
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
-            'getNews' => 'nouvelles',
             'index' => 'osu!',
-            'supportTheGame' => 'supporter le jeu',
+            'legal-show' => 'information',
+            'news-index' => 'actualités',
+            'news-show' => 'actualités',
             'password-reset-index' => 'réinitialiser le mot de passe',
+            'search' => 'Rechercher',
+            'supportTheGame' => 'supporter le jeu',
         ],
         'help' => [
             '_' => 'aide',
@@ -59,6 +62,7 @@ return [
             'index' => 'performance',
             'performance' => 'performance',
             'charts' => 'graphiques',
+            'score' => 'score',
             'country' => 'pays',
             'kudosu' => 'kudosu',
         ],
@@ -108,7 +112,7 @@ return [
             'help' => 'Aide',
         ],
         'store' => [
-            '_' => 'Magasin',
+            '_' => 'magasin',
             'getListing' => 'liste',
             'getCart' => 'panier',
 
@@ -175,7 +179,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Page manquante',
-            'description' => "Désolé, mais la page demandée n'est pas ici!",
+            'description' => "Désolé, mais la page demandée n'est pas ici !",
             'link' => false,
         ],
         '403' => [
@@ -190,16 +194,16 @@ return [
         ],
         '405' => [
             'error' => 'Page manquante',
-            'description' => "Désolé, mais la page demandée n'est pas ici!",
+            'description' => "Désolé, mais la page demandée n'est pas ici !",
             'link' => false,
         ],
         '500' => [
-            'error' => 'Oh non! Quelque chose a cassé! ;_;',
+            'error' => "Oh non ! Quelque chose s'est cassé ! ;_;",
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh non! Quelque chose a cassé! (gravement) ;_;',
+            'error' => "Oh non ! Quelque chose s'est cassé ! (gravement) ;_;",
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
             'link' => false,
         ],
@@ -212,7 +216,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support!',
+        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support !',
     ],
 
     'popup_login' => [
@@ -223,26 +227,27 @@ return [
             'title' => 'Se connecter pour continuer',
 
             'error' => [
-                'email' => "Le nom d'utilisateur ou l'email ne correspond pas",
+                'email' => "Le nom d'utilisateur ou l'e-mail ne correspond pas",
                 'password' => 'Mot de passe incorrect',
             ],
         ],
 
         'register' => [
-            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi vous en avez pas?",
-            'title' => "Vous n'avez pas de compte?",
+            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi n'en avez vous pas ?",
+            'title' => "Vous n'avez pas de compte ?",
         ],
     ],
 
     'popup_user' => [
         'links' => [
             'account-edit' => 'Paramètres',
-            'profile' => 'Mon profil',
             'logout' => 'Se déconnecter',
+            'profile' => 'Mon profil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Écrivez pour chercher!',
+        'initial' => 'Écrivez pour rechercher!',
+        'retry' => 'La recherche a échouée. Cliquez pour réessayer.',
     ],
 ];

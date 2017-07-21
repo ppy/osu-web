@@ -830,9 +830,7 @@ class Beatmapset extends Model
 
     public function requiredNominationCount()
     {
-        $longest_map_duration = $this->beatmaps->max('total_length');
-
-        return $longest_map_duration > 315 ? 3 : 2;
+        return 2;
     }
 
     public function currentNominationCount()
@@ -946,5 +944,12 @@ class Beatmapset extends Model
         $description = $split[1] ?? '';
 
         return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
+    }
+
+    public function toMetaDescription()
+    {
+        $section = trans('layout.menu.beatmaps._');
+
+        return "osu! » {$section} » {$this->artist} - {$this->title}";
     }
 }

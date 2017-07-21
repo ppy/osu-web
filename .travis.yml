@@ -21,8 +21,8 @@ env:
 
 before_install:
   - sudo ./bin/mysql_debian_install
-  - nvm install 6.9
-  - nvm use 6.9
+  - nvm install 6.11
+  - nvm use 6.11
   - ./bin/db_setup.sh
   - ./build.sh
 

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span} = React.DOM
+{a, div, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'profile-header-extra'
@@ -49,6 +49,11 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   render: =>
+    if currentUser.id?
+      friendState = _.find(currentUser.friends, (o) => o.target_id == @props.user.id)
+
+    friendButtonHidden = !currentUser.id || currentUser.id == @props.user.id
+
     originKeys = []
     originKeys.push 'country' if @props.user.country.name?
     originKeys.push 'age' if @props.user.age?
@@ -65,6 +70,18 @@ class ProfilePage.HeaderExtra extends React.Component
           js-switchable-mode-page--scrollspy js-switchable-mode-page--page
         """
       'data-page-id': 'main'
+      div className: "#{bn} #{bn}--follower-meta",
+        if currentUser.id?
+          el FriendButton, user_id: @props.user.id
+
+        div className: "#{bn}__follower-count#{if friendButtonHidden then '--no-button' else ''}",
+          osu.transChoice('users.show.extra.followers', @props.user.followerCount[0].toLocaleString())
+
+        if friendState?.mutual
+          div className: "#{bn}__follower-mutual-divider", "|"
+        if friendState?.mutual
+          div className: "#{bn}__follower-mutual", osu.trans 'friends.state.mutual'
+
       div className: bn,
         div className: "#{bn}__column #{bn}__column--text",
           if originKeys.length != 0 || @props.user.title?
@@ -155,14 +172,14 @@ class ProfilePage.HeaderExtra extends React.Component
               div className: "#{bn}__rank-global",
                 if @state.hoverLine1?
                   @state.hoverLine1
-                else if @props.stats.rank.is_ranked
+                else if @props.stats.rank.global?
                   "##{Math.round(@props.stats.rank.global).toLocaleString()}"
                 else
                   '\u00A0'
               div className: "#{bn}__rank-country",
                 if @state.hoverLine2?
                   @state.hoverLine2
-                else if @props.stats.rank.is_ranked
+                else if @props.stats.rank.country?
                   "#{@props.user.country.name} ##{Math.round(@props.stats.rank.country).toLocaleString()}"
                 else
                   '\u00A0'
@@ -171,7 +188,10 @@ class ProfilePage.HeaderExtra extends React.Component
             className: "#{bn}__rank-chart"
             ref: (el) => @rankChartArea = el
           div className: "#{bn}__rank-box",
-            "#{Math.round(@props.stats.pp).toLocaleString()}pp"
+            if @props.stats.is_ranked
+              "#{Math.round(@props.stats.pp).toLocaleString()}pp"
+            else
+              osu.trans('users.show.extra.unranked')
 
   fancyLink: ({key, url, icon, text, title}) =>
     return if !@props.user[key]?
@@ -221,8 +241,9 @@ class ProfilePage.HeaderExtra extends React.Component
       $.subscribe "fancy-chart:hover-#{options.hoverId}:refresh.#{@id}", @rankChartHover
       $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
 
-    data = (@props.rankHistories?.data ? [])
-    data = data.map (rank, i) ->
+    data = @props.rankHistories?.data if @props.stats.is_ranked
+
+    data = (data ? []).map (rank, i) ->
       x: i - data.length + 1
       y: -rank
     .filter (point) -> point.y < 0

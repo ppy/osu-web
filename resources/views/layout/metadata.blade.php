@@ -35,7 +35,7 @@
 <link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" media="all" href="{{ elixir("css/app.css") }}" data-turbolinks-track="reload">
+<link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
 <link rel="stylesheet" media="all" href="/vendor/_photoswipe-default-skin/default-skin.css">
 
 <script>
@@ -43,8 +43,16 @@
     var fallbackLocale = {!! json_encode(config('app.fallback_locale')) !!};
 </script>
 
-<script src="{{ elixir("js/vendor.js") }}" data-turbolinks-track="reload"></script>
-<script src="{{ elixir("js/app.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
+@if(config('services.sentry.public_dsn') !== '')
+    <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
+    <script>
+        Raven.config('{{ config('services.sentry.public_dsn') }}', {release: '{{ config('osu.git-sha') }}'}).install();
+        Raven.setUserContext({lang: currentLocale});
+    </script>
+@endif
+<script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
+<script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
 
 @if (isset($rss))

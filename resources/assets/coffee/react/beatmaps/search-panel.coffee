@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div,a,i,input,h1,h2} = React.DOM
+{div,a,i,input,h1,h2} = ReactDOMFactories
 el = React.createElement
 
 class Beatmaps.SearchPanel extends React.PureComponent
@@ -84,14 +84,14 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
       el Beatmaps.SearchFilter,
         name: 'mode'
-        title: 'Mode'
+        title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes
         default: @props.filterDefaults.mode
         selected: @props.filters.mode
 
       el Beatmaps.SearchFilter,
         name:'status'
-        title: 'Rank Status'
+        title: osu.trans('beatmaps.listing.search.filters.status')
         options: filters.statuses
         default: @props.filterDefaults.status
         selected: @props.filters.status
@@ -106,21 +106,21 @@ class Beatmaps.SearchPanel extends React.PureComponent
       div className: 'beatmapsets-search__advanced',
         el Beatmaps.SearchFilter,
           name: 'genre'
-          title: 'Genre'
+          title: osu.trans('beatmaps.listing.search.filters.genre')
           options: filters.genres
           default: @props.filterDefaults.genre
           selected: @props.filters.genre
 
         el Beatmaps.SearchFilter,
           name: 'language'
-          title: 'Language'
+          title: osu.trans('beatmaps.listing.search.filters.language')
           options: filters.languages
           default: @props.filterDefaults.language
           selected: @props.filters.language
 
         el Beatmaps.SearchFilter,
           name: 'extra'
-          title: 'Extra'
+          title: osu.trans('beatmaps.listing.search.filters.extra')
           options: filters.extras
           multiselect: true
           selected: @props.filters.extra
@@ -128,7 +128,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         if currentUser.isSupporter
           el Beatmaps.SearchFilter,
             name: 'rank'
-            title: 'Rank Achieved'
+            title: osu.trans('beatmaps.listing.search.filters.rank')
             options: filters.ranks
             multiselect: true
             selected: @props.filters.rank

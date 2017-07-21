@@ -22,6 +22,12 @@ return [
     'confirmation' => 'Are you sure?',
     'saved' => 'Saved',
 
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' and ',
+        'last_word_connector' => ', and ',
+    ],
+
     'buttons' => [
         'cancel' => 'Cancel',
         'delete' => 'Delete',

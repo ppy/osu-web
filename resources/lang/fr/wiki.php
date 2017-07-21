@@ -23,12 +23,13 @@ return [
         'fallback_translation' => "La page demandée n'est pas encore traduite dans votre langue (:language). Affichage de la version anglaise",
         'languages' => 'Langues',
         'missing' => "La page demandée n'a pas pu être trouvée.",
+        'missing_title' => 'Non Trouvée',
         'missing_translation' => "La page demandée n'a pas pu être trouvée pour la langue sélectionnée actuellement",
         'toc' => 'Contenu',
 
         'edit' => [
-            'link' => 'Montrer sur GitHub',
-            'refresh' => 'Rafraîchir',
+            'link' => 'Afficher sur GitHub',
+            'refresh' => 'Actualiser',
         ],
     ],
 ];

@@ -21,28 +21,28 @@
 return [
     'match' => [
         'header' => '多人游戏',
-        'team-types' => [
+        'team-types' => [ //TODO 待翻译
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
             'team-vs' => 'Team VS',
             'tag-team-vs' => 'Tag Team VS',
         ],
         'events' => [
-            'player-left' => ':user 离开了游戏',
-            'player-joined' => ':user 加入了游戏',
-            'player-kicked' => ':user 被踢出游戏',
-            'match-created' => ':user 创建了一场游戏',
-            'match-disbanded' => '游戏已经解散',
+            'player-left' => ':user 离开了房间',
+            'player-joined' => ':user 加入了房间',
+            'player-kicked' => ':user 被踢出房间',
+            'match-created' => ':user 创建了一个房间',
+            'match-disbanded' => '房间关闭',
             'host-changed' => ':user 成为房主',
 
-            'player-left-no-user' => '有玩家离开了游戏',   //----------
-            'player-joined-no-user' => '有玩家加入了游戏', //这部分翻译
-            'player-kicked-no-user' => '有玩家被踢出游戏', //可能完全
-            'match-created-no-user' => '游戏已经创建',     //不准确
-            'match-disbanded-no-user' => '游戏已经解散',   //需要协助
-            'host-changed-no-user' => '房主已经变更',      //----------
+            'player-left-no-user' => '有玩家离开了房间',
+            'player-joined-no-user' => '有玩家加入了房间',
+            'player-kicked-no-user' => '有玩家被踢出房间',
+            'match-created-no-user' => '房间被创建',
+            'match-disbanded-no-user' => '房间被关闭',
+            'host-changed-no-user' => '房主已经变更',
         ],
-        'in-progress' => '(match in progress)',
+        'in-progress' => '（正在游戏中）',
         'score' => [
             'stats' => [
                 'accuracy' => '准确率',
@@ -56,7 +56,7 @@ return [
             'red' => '红队',
         ],
         'winner' => ':team 胜利',
-        'difference' => 'by :difference', //TODO 确认该字段的位置
+        'difference' => '，高出另一队 :difference 分', //鬼畜翻译方案
         'loading-events' => '加载事件...',
         'more-events' => '查看全部...',
         'beatmap-deleted' => '删除谱面',

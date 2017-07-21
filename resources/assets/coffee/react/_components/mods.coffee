@@ -17,7 +17,7 @@
 ###
 
 el = React.createElement
-{div, img} = React.DOM
+{div, img} = ReactDOMFactories
 
 @Mods = ({modifiers = [], mods = []}) ->
     blockClass = 'mods'

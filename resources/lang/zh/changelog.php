@@ -18,13 +18,13 @@
  */
 
 return [
-    'feed_title' => 'feed', //需要上下文
-    'generic' => '修复Bug并且做了小的改动.',
-    'users-online' => ':users 用户在线',
+    'feed_title' => '推送', //需要上下文
+    'generic' => '修复已知问题并做了小改动.',
+    'users-online' => ':users 在线',
 
     'prefixes' => [
         'add' => '添加',
         'fix' => '修复',
-        'misc' => 'miscellanous', //需要上下文,可能的翻译为"混合"
+        'misc' => '杂项',
     ],
 ];

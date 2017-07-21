@@ -16,54 +16,15 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, h3} = React.DOM
+{div, h2, h3} = ReactDOMFactories
 el = React.createElement
 
-ProfilePage.Medals = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  componentWillReceiveProps: ->
+class ProfilePage.Medals extends React.PureComponent
+  componentWillReceiveProps: =>
     @_userAchievements = null
 
 
-  _userAchievement: (id) ->
-    @_userAchievements ?= _.keyBy @props.userAchievements, 'achievement_id'
-
-    @_userAchievements[id]
-
-
-  _groupedAchievements: ->
-    isCurrentUser = currentUser.id == @props.user.id
-
-    _.chain(@props.achievements)
-      .values()
-      .filter (a) =>
-        isCurrentMode = !a.mode? || a.mode == @props.currentMode
-        isAchieved = @_userAchievement a.id
-
-        isCurrentMode && (isAchieved || isCurrentUser)
-      .groupBy (a) =>
-        a.grouping
-      .value()
-
-
-  _orderedAchievements: (achievements) ->
-      _.groupBy achievements, (achievement) =>
-        achievement.ordering
-
-
-  _medal: (achievement, i) ->
-    div
-      key: i
-      className: 'medals-group__medal'
-      el ProfilePage.AchievementBadge,
-        additionalClasses: 'badge-achievement--listing'
-        achievement: achievement
-        userAchievement: @_userAchievement achievement.id
-
-
-  render: ->
+  render: =>
     all =
         for own grouping, groupedAchievements of @_groupedAchievements()
           div
@@ -83,3 +44,39 @@ ProfilePage.Medals = React.createClass
         all
       if all.length == 0
         osu.trans('users.show.extra.medals.empty')
+
+
+  _groupedAchievements: =>
+    isCurrentUser = currentUser.id == @props.user.id
+
+    _.chain(@props.achievements)
+      .values()
+      .filter (a) =>
+        isCurrentMode = !a.mode? || a.mode == @props.currentMode
+        isAchieved = @_userAchievement a.id
+
+        isCurrentMode && (isAchieved || isCurrentUser)
+      .groupBy (a) =>
+        a.grouping
+      .value()
+
+
+  _medal: (achievement, i) =>
+    div
+      key: i
+      className: 'medals-group__medal'
+      el ProfilePage.AchievementBadge,
+        additionalClasses: 'badge-achievement--listing'
+        achievement: achievement
+        userAchievement: @_userAchievement achievement.id
+
+
+  _orderedAchievements: (achievements) =>
+      _.groupBy achievements, (achievement) =>
+        achievement.ordering
+
+
+  _userAchievement: (id) =>
+    @_userAchievements ?= _.keyBy @props.userAchievements, 'achievement_id'
+
+    @_userAchievements[id]

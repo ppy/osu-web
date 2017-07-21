@@ -45,6 +45,7 @@ return [
             'topic_ids' => array_map('intval', explode(' ', env('SLACK_WATCH_TOPIC_IDS', '259747'))),
         ],
     ],
+    'git-sha' => env('GIT_SHA', 'unknown-version'),
     'mp-history' => [
         'event-count' => 500,
     ],
@@ -100,12 +101,14 @@ return [
         'user_page_forum_id' => intval(env('USER_PAGE_FORUM_ID', 70)),
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
-
+        'max_friends' => 250,
+        'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
         'password_reset' => [
             'expires_hour' => 2,
             'key_length' => 8,
             'tries' => 8,
         ],
+        'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
     ],
     'changelog' => [
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),

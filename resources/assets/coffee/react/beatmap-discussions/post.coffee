@@ -16,38 +16,44 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = React.DOM
+{a, button, div, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
 
-BeatmapDiscussions.Post = React.createClass
-  mixins: [React.addons.PureRenderMixin]
-
-
-  getInitialState: ->
-    editing: false
-    message: @props.post.message
-
-
-  componentDidMount: ->
-    osu.pageChange()
+class BeatmapDiscussions.Post extends React.PureComponent
+  constructor: (props) ->
+    super props
 
     @throttledUpdatePost = _.throttle @updatePost, 1000
     @xhr = {}
+    @cache = {}
+
+    @state =
+      editing: false
+      message: @props.post.message
 
 
-  componentDidUpdate: ->
+  componentDidMount: =>
     osu.pageChange()
 
 
-  componentWillUnmount: ->
+  componentWillUpdate: =>
+    @cache = {}
+
+
+  componentDidUpdate: =>
+    osu.pageChange()
+
+
+  componentWillUnmount: =>
     @throttledUpdatePost.cancel()
+
     for own _id, xhr of @xhr
       xhr?.abort()
 
 
-  render: ->
+  render: =>
     topClasses = "#{bn} #{bn}--#{@props.type}"
     if @state.editing
       topClasses += " #{bn}--editing"
@@ -61,33 +67,31 @@ BeatmapDiscussions.Post = React.createClass
 
       div
         className: "#{bn}__content"
-        div className: "#{bn}__avatar",
-          el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+        div className: "#{bn}__avatar-container",
+          div className: "#{bn}__avatar",
+            el UserAvatar, user: @props.user, modifiers: ['full-rounded']
+
+          if @isOwner()
+            div className: "#{bn}__user-badge #{bn}__user-badge--owner", osu.trans('beatmap_discussions.user.owner')
+          else if @userModerationGroup()?
+            div className: "#{bn}__user-badge #{bn}__user-badge--moderator", @userModerationGroup()
 
         @messageViewer()
         @messageEditor()
 
 
-  addEditorLink: (message) ->
-    _.chain message
-      .escape()
-      .replace /(^|\s)((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?(?=\s))/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text)}"
-      .value()
-
-
-  messageInput: (e) ->
+  messageInput: (e) =>
     @setState message: e.target.value
 
 
-  submitIfEnter: (e) ->
+  submitIfEnter: (e) =>
     return if e.keyCode != 13
 
     e.preventDefault()
     @throttledUpdatePost()
 
 
-  updatePost: ->
+  updatePost: =>
     return if @state.message == @props.post.message
 
     LoadingOverlay.show()
@@ -108,39 +112,56 @@ BeatmapDiscussions.Post = React.createClass
     .always LoadingOverlay.hide
 
 
-  editStart: ->
+  editStart: =>
     @setState editing: true, =>
       @refs.textarea.focus()
 
 
-  editEnd: ->
+  editEnd: =>
     @setState editing: false
 
 
-  messageViewer: ->
+  isOwner: =>
+    @props.post.user_id == @props.beatmapset.user_id
+
+
+  messageViewer: =>
     [controller, key, deleteModel] =
       if @props.type == 'reply'
         ['beatmap-discussion-posts', 'beatmap_discussion_post', @props.post]
       else
         ['beatmap-discussions', 'beatmap_discussion', @props.discussion]
 
+    userClass = "#{bn}__info-user"
+
+    if @isOwner()
+      userClassColor = 'owner'
+    else if @userModerationGroup()?
+      userClassColor = 'moderator'
+
+    if userClassColor?
+      userClass += " #{bn}__info-user--special #{bn}__info-user--#{userClassColor}"
+
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
       div
         className: "#{bn}__message"
-        dangerouslySetInnerHTML:
-          __html: osu.linkify(@addEditorLink @props.post.message)
+        a
+          href: laroute.route('users.show', user: @props.user.id)
+          className: userClass
+          @props.user.username
+        if userClassColor?
+          ' '
+        else
+          ': '
+        span
+          dangerouslySetInnerHTML:
+            __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
 
       div className: "#{bn}__info-container",
         span
           className: "#{bn}__info"
-          a
-            href: laroute.route('users.show', user: @props.user.id)
-            className: "#{bn}__info-user"
-            @props.user.username
-          ', '
-          span
-            dangerouslySetInnerHTML:
-              __html: osu.timeago(@props.post.created_at)
+          dangerouslySetInnerHTML:
+            __html: osu.timeago(@props.post.created_at)
 
         if @props.post.updated_at != @props.post.created_at
           span
@@ -217,7 +238,7 @@ BeatmapDiscussions.Post = React.createClass
 
 
 
-  messageEditor: ->
+  messageEditor: =>
     return if !@props.canBeEdited
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
@@ -243,5 +264,12 @@ BeatmapDiscussions.Post = React.createClass
               props: onClick: @throttledUpdatePost
 
 
-  permalink: (e) ->
+  permalink: (e) =>
     e.preventDefault()
+
+
+  userModerationGroup: =>
+    if !@cache.hasOwnProperty('userModerationGroup')
+      @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
+
+    @cache.userModerationGroup

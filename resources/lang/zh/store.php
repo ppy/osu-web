@@ -24,12 +24,17 @@ return [
     ],
 
     'checkout' => [
-        'pay' => '使用Paypal支付',
-        'delayed_shipping' => '我们欢迎您下单,但是我们正在处理大量的订单,所以您的订单可能会有1-2天的延迟.',
+        'pay' => '使用 Paypal 支付',
+        'delayed_shipping' => '欢迎您购买，但是我们正在处理大量的订单，所以您的订单**可能会有1-2天的延迟**。',
     ],
+
+    'discount' => '节省 :percent%',
 
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name 给 :username （:duration）',
+            ],
             'quantity' => '数量',
         ],
     ],
@@ -38,16 +43,30 @@ return [
         'name' => '名称',
 
         'stock' => [
-            'out' => '卖完了呢:( ,过段时间再回来看看吧.',
-            'out_with_alternative' => '您选择的类型已经卖完了:( 试试另外几种或者过段时间再回来看看吧.',
+            'out' => '卖完了呢( ´_ゝ｀) 过段时间再回来看看吧。',
+            'out_with_alternative' => '您选择的类型已经卖完了(´；ω；`) 试试另外几种或者过段时间再回来看看吧。',
         ],
 
         'add_to_cart' => '添加到购物车',
-        'notify' => '当可以购买时提醒我!',
+        'notify' => '当可以购买时提醒我！',
 
-        'notification_success' => '当我们进货时您将收到提醒. 点击 :link 以取消该提醒',
+        'notification_success' => '当我们进货时您将收到提醒，点击 :link 以取消该提醒',
         'notification_remove_text' => '这里',
 
-        'notification_in_stock' => '这件商品已经进货!',
+        'notification_in_stock' => '这件商品已经进货！',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => '你需要 :link 以获得 Supporter 标签！',
+            'link_text' => '登录',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => '你需要 :link 才能改变你的用户名！',
+            'link_text' => '登录',
+        ],
     ],
 ];

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a} = React.DOM
+{div, span, a} = ReactDOMFactories
 el = React.createElement
 
 class MPHistory.Event extends React.Component

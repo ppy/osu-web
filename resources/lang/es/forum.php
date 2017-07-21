@@ -33,7 +33,7 @@ return [
         ],
     ],
 
-     'email' => [
+    'email' => [
         'new_reply' => '[osu!] Nueva respuesta en ":title"',
     ],
 
@@ -45,13 +45,13 @@ return [
 
     'pinned_topics' => 'Temas Fijos',
     'post' => [
-        'confirm_delete' => '¿Eliminar publicación?',
+        'confirm_destroy' => '¿Eliminar publicación?',
         'confirm_restore' => '¿Restaurar publicación?',
         'edited' => 'Última edición por :user el :when, editado :count veces en total.',
         'posted_at' => 'publicado :when',
         'actions' => [
-            'delete' => 'Eliminar publicación',
-             'restore' => 'Restaurar publicación',
+            'destroy' => 'Eliminar publicación',
+            'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
         ],
     ],
@@ -62,6 +62,7 @@ return [
     ],
     'subforums' => 'Subforos',
     'title' => 'osu!community',
+    'slogan' => 'es peligroso jugar solo.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -80,7 +81,7 @@ return [
             'first' => 'ir a la primera publicación',
             'last' => 'ir a la última publicación',
             'next' => 'saltarse las siguientes 10 publicaciones',
-            'previous' => 'regresar 10 publicaciones',
+            'previous' => 'ir 10 publicaciones atrás',
         ],
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',

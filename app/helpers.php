@@ -53,7 +53,7 @@ function es_query_and_words($words)
     $partsEscaped = [];
 
     foreach ($parts as $part) {
-        $partsEscaped[] = str_replace('-', '%2D', urlencode($part));
+        $partsEscaped[] = str_replace('-', '%2D', urlencode(strtolower($part)));
     }
 
     return implode(' AND ', $partsEscaped);
@@ -72,7 +72,7 @@ function get_valid_locale($requestedLocale)
 
     return array_first(
         config('app.available_locales'),
-        function ($_key, $value) use ($requestedLocale) {
+        function ($value) use ($requestedLocale) {
             return starts_with($requestedLocale, $value);
         },
         config('app.fallback_locale')
@@ -196,6 +196,21 @@ function search_total_display($total)
 
     return (string) $total;
 }
+
+function to_sentence($array, $key = 'common.array_and')
+{
+    switch (count($array)) {
+        case 0:
+            return '';
+        case 1:
+            return (string) $array[0];
+        case 2:
+            return implode(trans("{$key}.two_words_connector"), $array);
+        default:
+            return implode(trans("{$key}.words_connector"), array_slice($array, 0, -1)).trans("{$key}.last_word_connector").array_last($array);
+    }
+}
+
 function obscure_email($email)
 {
     $email = explode('@', $email);
@@ -300,7 +315,7 @@ function link_to_user($user_id, $user_name, $user_color)
     if ($user_id) {
         $user_url = e(route('users.show', $user_id));
 
-        return "<a class='user-name' href='{$user_url}' style='{$style}'>{$user_name}</a>";
+        return "<a class='user-name js-usercard' data-user-id='{$user_id}' href='{$user_url}' style='{$style}'>{$user_name}</a>";
     } else {
         return "<span class='user-name'>{$user_name}</span>";
     }
@@ -353,6 +368,15 @@ function bbcode_for_editor($text, $uid)
 
 function proxy_image($url)
 {
+    // turn relative urls into absolute urls
+    if (!preg_match('/^https?\:\/\//', $url)) {
+        // ensure url is relative to the site root
+        if ($url[0] !== '/') {
+            $url = "/{$url}";
+        }
+        $url = config('app.url').$url;
+    }
+
     $decoded = urldecode(html_entity_decode($url));
 
     if (config('osu.camo.key') === '') {
@@ -383,13 +407,15 @@ function nav_links()
 
     $links['home'] = [
         'news-index' => route('news.index'),
+        'friends' => route('friends.index'),
         'getChangelog' => route('changelog'),
         'getDownload' => route('download'),
+        'search' => route('search'),
     ];
     $links['help'] = [
         'getWiki' => wiki_url('Welcome'),
         'getFaq' => wiki_url('FAQ'),
-        'getSupport' => osu_url('help.support'),
+        'getSupport' => wiki_url('Help_Center'),
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
@@ -580,7 +606,7 @@ function json_item($model, $transformer, $includes = null)
 
 function fast_imagesize($url)
 {
-    return Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
+    $result = Cache::remember("imageSize:{$url}", Carbon\Carbon::now()->addMonth(1), function () use ($url) {
         $curl = curl_init($url);
         curl_setopt_array($curl, [
             CURLOPT_HTTPHEADER => [
@@ -593,8 +619,18 @@ function fast_imagesize($url)
         $data = curl_exec($curl);
         curl_close($curl);
 
-        return read_image_properties_from_string($data);
+        $result = read_image_properties_from_string($data);
+
+        if ($result === null) {
+            return false;
+        } else {
+            return $result;
+        }
     });
+
+    if ($result !== false) {
+        return $result;
+    }
 }
 
 function get_arr($input, $callback)
@@ -849,27 +885,6 @@ function first_paragraph($html, $split_on = "\n")
     return ($match_pos === false) ? $text : substr($text, 0, $match_pos);
 }
 
-function find_images($html)
-{
-    // regex based on answer in http://stackoverflow.com/questions/12933528/regular-expression-pattern-to-match-image-url-from-text
-    $regex = "/(?:https?\:\/\/[a-zA-Z](?:[\w\-]+\.)+(?:[\w]{2,5}))(?:\:[\d]{1,6})?\/(?:[^\s\/]+\/)*(?:[^\s]+\.(?:jpe?g|gif|png))(?:\?\w?(?:=\w)?(?:&\w?(?:=\w)?)*)?/";
-    $matches = [];
-    preg_match_all($regex, $html, $matches);
-
-    return $matches[0];
-}
-
-function find_first_image($html)
-{
-    $post_images = find_images($html);
-
-    if (!is_array($post_images) || count($post_images) < 1) {
-        return;
-    }
-
-    return $post_images[0];
-}
-
 function build_icon($prefix)
 {
     switch ($prefix) {
@@ -888,7 +903,7 @@ function clamp($number, $min, $max)
 // e.g. 100634983048665 -> 100.63 trillion
 function suffixed_number_format($number)
 {
-    $suffixes = ['', 'k', 'millon', 'billion', 'trillion']; // TODO: localize
+    $suffixes = ['', 'k', 'million', 'billion', 'trillion']; // TODO: localize
     $k = 1000;
 
     if ($number < $k) {

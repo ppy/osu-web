@@ -22,6 +22,12 @@ return [
     'confirmation' => 'Ты уверен?',
     'saved' => 'Сохранено',
 
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' и ',
+        'last_word_connector' => ', и ',
+    ],
+
     'buttons' => [
         'cancel' => 'Отмена',
         'delete' => 'Удалить',
@@ -32,7 +38,7 @@ return [
         'save' => 'Сохранить',
         'saving' => 'Сохранение...',
         'show_more' => 'показать больше',
-        'upload_image' => 'загрузить изображение',
+        'upload_image' => 'выбрать файл',
     ],
 
     'count' => [
@@ -51,8 +57,8 @@ return [
     ],
 
     'pagination' => [
-        'previous' => 'пред',
-        'next' => 'след',
+        'previous' => 'назад',
+        'next' => 'вперёд',
     ],
 
     'score_count' => [
