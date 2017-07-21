@@ -53,31 +53,6 @@ class BeatmapPack extends Model
             ->where("{$itemsTable}.pack_id", '=', $this->pack_id);
     }
 
-    public function beatmapsetsWithBestScores($mode)
-    {
-        return $this->beatmapsets()->select()->withHasCompleted($mode);
-    }
-
-    public function beatmapsetsWithBestOsuScores()
-    {
-        return $this->beatmapsetsWithBestScores(Best\Osu::class);
-    }
-
-    public function beatmapsetsWithBestFruitsScores()
-    {
-        return $this->beatmapsetsWithBestScores(Best\Fruits::class);
-    }
-
-    public function beatmapsetsWithBestManiaScores()
-    {
-        return $this->beatmapsetsWithBestScores(Best\Mania::class);
-    }
-
-    public function beatmapsetsWithBestTaikoScores()
-    {
-        return $this->beatmapsetsWithBestScores(Best\Taiko::class);
-    }
-
     public function downloadUrls()
     {
         $array = [];

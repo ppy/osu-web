@@ -43,8 +43,11 @@ class BeatmapPacksController extends Controller
     public function show($id)
     {
         $pack = BeatmapPack::findOrFail($id);
-        $sets = $pack->beatmapsetsWithBestOsuScores()->get();
-
+        $sets = $pack
+            ->beatmapsets()
+            ->select()
+            ->withHasCompleted('osu')
+            ->get();
 
         return view('packs.show', compact('pack', 'sets'));
     }

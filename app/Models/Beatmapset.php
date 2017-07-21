@@ -129,23 +129,23 @@ class Beatmapset extends Model
     }
 
     /**
-     * Includes if player has completed the set in any difficulty
+     * Includes if player has completed the set in a given playmode
      * Returns the count of beatmaps in the set completed as a {$mode}_count column
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $mode class of the game mode to include
+     * @param mixed $mode playmode to include
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithHasCompleted($query, $mode)
     {
-        if (!is_subclass_of($mode, Score\Best\Model::class)) {
+        if (Beatmap::modeInt($mode) === null) {
             throw new \Exception('invalid game mode');
         }
 
+        $scoreClass = "\App\Models\Score\Best\\{$mode}";
         $beatmapsetTable = $this->getTable();
         $beatmapsTable = (new Beatmap)->getTable();
-        $scoreBestTable = (new $mode)->getTable();
-        $modeName = strtolower(get_class_basename($mode));
+        $scoreBestTable = (new $scoreClass)->getTable();
         $user_id = Auth::id();
 
         if (Auth::check()) {
@@ -156,9 +156,9 @@ class Beatmapset extends Model
                                     SELECT {$beatmapsTable}.beatmap_id
                                     FROM {$beatmapsTable}
                                     WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
-                                )) as {$modeName}_count");
+                                )) as {$mode}_count");
         } else {
-            $counts = DB::raw('(SELECT 0) as {$modeName}_count');
+            $counts = DB::raw('(SELECT 0) as {$mode}_count');
         }
 
         return $query->addSelect($counts);
