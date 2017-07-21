@@ -37,7 +37,8 @@
 </div>
 <ul class="beatmap-pack-items">
     @foreach ($sets as $set)
-        <li class="beatmap-pack-items__set {{ $set->count > 0 ? 'beatmap-pack-items__set--cleared' : '' }}">
+        <li class="beatmap-pack-items__set">
+            <span class="fa fa-extra-mode-{{$mode}} beatmap-pack-items__icon {{ $set->count > 0 ? 'beatmap-pack-items__icon--cleared' : '' }}"></span>
             <a href="{{ route('beatmapsets.show', ['beatmapset' => $set->getKey()]) }}" class="beatmap-pack-items__link">
                 <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
                 <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>

@@ -22,7 +22,15 @@
   padding: @beatmappack-listing--gutter;
 
   &__artist {
+    margin-left: 5px;
     font-weight: 600;
+  }
+
+  &__icon {
+    opacity: 0.5;
+    &--cleared {
+      opacity: 1;
+    }
   }
 
   &__link {
@@ -33,17 +41,5 @@
   &__set {
     list-style: none;
     font-style: italic;
-    &--cleared {
-      &::after {
-        content: 'cleared';
-        color: @blue-dark;
-        font-size: 80%;
-        font-variant: small-caps;
-        font-weight: 600;
-        line-height: 1; // prevent superscript from making line taller
-        margin-left: 4px;
-        vertical-align: super;
-      }
-    }
   }
 }
