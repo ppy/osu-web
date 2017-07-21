@@ -24,7 +24,6 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
-
 use Auth;
 use Cache;
 use Carbon\Carbon;
@@ -130,7 +129,7 @@ class Beatmapset extends Model
 
     /**
      * Includes if player has completed the set in a given playmode
-     * Returns the count of beatmaps in the set completed as a {$mode}_count column
+     * Returns the count of beatmaps in the set completed as a {$mode}_count column.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param mixed $mode playmode to include.
@@ -165,7 +164,6 @@ class Beatmapset extends Model
 
         return $query->addSelect($counts);
     }
-
 
     /*
     |--------------------------------------------------------------------------

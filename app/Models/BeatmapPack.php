@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use App\Models\Score\Best;
-
 class BeatmapPack extends Model
 {
     const DEFAULT_TYPE = 'standard';
