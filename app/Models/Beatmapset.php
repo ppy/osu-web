@@ -136,7 +136,7 @@ class Beatmapset extends Model
      * @param mixed $mode playmode to include
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWithHasCompleted($query, $mode)
+    public function scopeWithHasCompleted($query, $mode, $fieldName = 'count')
     {
         if (Beatmap::modeInt($mode) === null) {
             throw new \Exception('invalid game mode');
@@ -156,9 +156,9 @@ class Beatmapset extends Model
                                     SELECT {$beatmapsTable}.beatmap_id
                                     FROM {$beatmapsTable}
                                     WHERE {$beatmapsTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
-                                )) as {$mode}_count");
+                                )) as {$fieldName}");
         } else {
-            $counts = DB::raw('(SELECT 0) as {$mode}_count');
+            $counts = DB::raw("(SELECT 0) as {$fieldName}");
         }
 
         return $query->addSelect($counts);
