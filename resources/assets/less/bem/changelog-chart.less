@@ -36,4 +36,77 @@
       fill: @changelog-stream--lazer
     }
   }
+
+  &__hover-area {
+    fill: none;
+    pointer-events: all;
+  }
+
+  &__tooltip-area {
+    display: flex;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    pointer-events: none;
+  }
+
+  &__tooltip-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__tooltip {
+    .default-border-radius;
+    background: fade(#000000, 50%);
+
+    padding: 5px 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    text-align: center;
+  }
+
+  &__text {
+    &--user-count {
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    &--stable {
+      color: @changelog-stream--stable;
+    }
+
+    &--stable-fallback {
+      color: @changelog-stream--stable-fallback
+    }
+
+    &--beta, &--cutting-edge {
+      color: @changelog-stream--beta-ce;
+    }
+
+    &--lazer, &--lazer-experimental {
+      color: @changelog-stream--lazer;
+    }
+
+    &--date {
+      font-weight: 700;
+      font-size: 10px;
+      color: #ffffff;
+    }
+  }
+
+  &__tooltip-line {
+    width: 1px;
+    flex-grow: 1;
+
+    background-color: #ffffff;
+  }
 }

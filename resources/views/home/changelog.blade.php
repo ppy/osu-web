@@ -134,6 +134,16 @@
     </script>
 
     <script id="json-update-streams" type="application/json">
-        {!! json_encode(collect([$featuredStream])->merge($streams)) !!}
+        {!! json_encode(collect([$featuredStream])->merge($streams)->map(function ($el) {
+            return $el->updateStream->pretty_name;
+        })) !!}
+    </script>
+
+    <script id="json-current-stream" type="application/json">
+        @if(isset($build))
+            {!! json_encode($build->updateStream->pretty_name); !!}
+        @else
+            {!! json_encode($featuredStream->updateStream->pretty_name); !!}
+        @endif
     </script>
 @endsection

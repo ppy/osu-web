@@ -20,15 +20,14 @@ class @ChangelogChartLoader
   container: document.getElementsByClassName('js-changelog-chart')
 
   constructor: ->
-    $(document).on 'throttled-resize', @resize
+    $(window).on 'throttled-resize', @resize
     $(document).on 'turbolinks:load', @initialize
 
   initialize: =>
     return if !@container[0]?
 
-    streams = osu.parseJson 'json-update-streams'
-    order = _.map streams, (d) ->
-      d.update_stream.pretty_name
+    order = osu.parseJson 'json-update-streams'
+    currentStream = osu.parseJson 'json-current-stream'
 
     data = osu.parseJson 'json-chart-data'
     data = _.groupBy data, 'pretty_name'
@@ -36,20 +35,21 @@ class @ChangelogChartLoader
     # this assumes that all streams have an equal amount of data points
     for point, i in data[order[0]]
       sum = 0
+      calc = 0
 
       for el in order
         sum += data[el][i].user_count
 
       for el, j in order
-        prev = if j == 0 then 0 else data[order[j - 1]][i].user_count
-        data[el][i].user_count += prev
-        data[el][i].normalized = (data[el][i].user_count) / sum
+        calc += data[el][i].user_count
+        data[el][i].normalized = calc / sum
 
     options =
       scales:
         x: d3.scaleLinear()
         y: d3.scaleLinear()
       order: _.reverse order
+      currentStream: currentStream
 
     @container[0]._chart = new ChangelogChart @container[0], options
     @container[0]._chart.loadData data

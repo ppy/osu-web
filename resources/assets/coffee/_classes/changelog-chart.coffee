@@ -22,11 +22,11 @@ class @ChangelogChart
     @options.scales.x ?= d3.scaleLinear()
     @options.scales.y ?= d3.scaleLinear()
 
-    @options.margins ?= {}
-    @options.margins.top ?= 0
-    @options.margins.right ?= 0
-    @options.margins.bottom ?= 0
-    @options.margins.left ?= 0
+    @margins =
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
 
     @area = d3.select area
 
@@ -46,7 +46,34 @@ class @ChangelogChart
 
     for el in @options.order
       @svgLines[el] = @svgWrapper.append 'path'
-        .attr 'class', "changelog-chart__area changelog-chart__area--#{_.kebabCase el}"
+        .classed "changelog-chart__area changelog-chart__area--#{_.kebabCase el}", true
+
+    @hoverArea = @svg.append 'rect'
+      .classed 'changelog-chart__hover-area', true
+      .on 'mouseout', @hideTooltip
+      .on 'mousemove', @positionTooltip
+
+    @tooltipArea = @area.append 'div'
+      .classed 'changelog-chart__tooltip-area', true
+
+    @tooltipContainer = @tooltipArea.append 'div'
+      .classed 'changelog-chart__tooltip-container', true
+      .attr 'data-visibility', 'hidden'
+
+    @lineTop = @tooltipContainer.append 'div'
+      .classed 'changelog-chart__tooltip-line', true
+
+    @tooltip = @tooltipContainer.append 'div'
+      .classed 'changelog-chart__tooltip', true
+
+    @tooltipUserCount = @tooltip.append 'div'
+      .classed "changelog-chart__text changelog-chart__text--user-count changelog-chart__text--#{_.kebabCase @options.currentStream}", true
+
+    @tooltipDate = @tooltip.append 'div'
+      .classed 'changelog-chart__text changelog-chart__text--date', true
+
+    @lineBottom = @tooltipContainer.append 'div'
+      .classed 'changelog-chart__tooltip-line', true
 
   loadData: (data) ->
     @data = data
@@ -59,17 +86,22 @@ class @ChangelogChart
   setDimensions: ->
     areaDims = @area.node().getBoundingClientRect()
 
-    @width = areaDims.width - (@options.margins.left + @options.margins.right)
-    @height = areaDims.height - (@options.margins.top + @options.margins.bottom)
+    @width = areaDims.width - (@margins.left + @margins.right)
+    @height = areaDims.height - (@margins.top + @margins.bottom)
 
   setSvgSize: ->
     @svg
-      .attr 'width', @width + (@options.margins.left + @options.margins.right)
-      .attr 'height', @height + (@options.margins.top + @options.margins.bottom)
+      .attr 'width', @width + (@margins.left + @margins.right)
+      .attr 'height', @height + (@margins.top + @margins.bottom)
 
   setWrapperSize: ->
     @svgWrapper
-      .attr 'transform', "translate(#{@options.margins.left}, #{@options.margins.top})"
+      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+
+  setHoverAreaSize: ->
+    @hoverArea
+      .attr 'width', @width + (@margins.left + @margins.right)
+      .attr 'height', @height + (@margins.top + @margins.bottom)
 
   setScalesRange: ->
     @options.scales.x
@@ -85,9 +117,39 @@ class @ChangelogChart
       @svgLines[el]
        .attr 'd', @areaFunction
 
+  showTooltip: =>
+    Fade.in @tooltipContainer.node()
+
+  hideTooltip: =>
+    Fade.out @tooltipContainer.node()
+
+  positionTooltip: =>
+    x = Math.round @options.scales.x.invert d3.mouse(@hoverArea.node())[0]
+
+    @showTooltip()
+
+    Timeout.clear @_autoHideTooltip
+    @_autoHideTooltip = Timeout.set 3000, @hideTooltip
+
+    coord = @options.scales.x(x) + @margins.left
+
+    @tooltipUserCount.text @data[@options.currentStream][x].user_count
+    @tooltipDate.html @getDate @data[@options.currentStream][x].created_at
+    @tooltipContainer
+      .style 'transform', "translate(#{coord}px) translateX(-50%)"
+
+  getDate: (date) ->
+    @dateStorage ?= {}
+
+    if !@dateStorage[date]?
+      @dateStorage[date] = moment(date).format 'YYYY/MM/DD'
+
+    @dateStorage[date]
+
   resize: =>
     @setDimensions()
     @setScalesRange()
     @setSvgSize()
     @setWrapperSize()
     @setLineSize()
+    @setHoverAreaSize()
