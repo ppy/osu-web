@@ -19,17 +19,36 @@
  */
 
 return [
-    'show' => [
-        'fallback_translation' => 'A página selecionada ainda não foi traduzida no idioma selecionado (:language). Exibindo a versão em inglês.',
-        'languages' => 'Idiomas',
-        'missing' => 'A página solicitada não pôde ser encontrada.',
-        'missing_title' => 'Não encontrado',
-        'missing_translation' => 'A página solicitada não foi encontrada no idioma selecionado atualmente.',
-        'toc' => 'Índice',
+    'breadcrumbs' => [
+        'news-index' => 'listagem',
+        'news-show' => 'post',
+    ],
 
-        'edit' => [
-            'link' => 'Exibir no GitHub',
-            'refresh' => 'Atualizar',
+    'index' => [
+        'title' => 'osu!news',
+
+        'nav' => [
+            'newer' => 'Posts Novos',
+            'older' => 'Posts Antigos',
         ],
+    ],
+
+    'show' => [
+        'posted' => 'postado :time',
+
+        'nav' => [
+            'newer' => 'Post novo',
+            'older' => 'Post antigo',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Atualizar',
+        'ok' => 'Listagem atualizada.',
+    ],
+
+    'update' => [
+        'button' => 'Atualizar',
+        'ok' => 'Post atualizado.',
     ],
 ];
