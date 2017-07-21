@@ -52,14 +52,14 @@ class Contest.Entry.Uploader extends React.Component
       accept: allowedExtensions.join(',')
       disabled: @props.disabled
 
-    $(@refs.uploadButtonContainer).append($uploadButton)
+    $(@uploadButtonContainer).append($uploadButton)
 
     $.subscribe 'dragenterGlobal.contest-upload', => @setOverlay('active')
     $.subscribe 'dragendGlobal.contest-upload', => @setOverlay('hidden')
     $(document).on 'dragenter.contest-upload', '.contest-userentry--uploader', => @setOverlay('hover')
     $(document).on 'dragleave.contest-upload', '.contest-userentry--uploader', => @setOverlay('active')
 
-    $uploadButton.fileupload
+    @$uploadButton().fileupload
       url: laroute.route 'contest-entries.store'
       dataType: 'json'
       dropZone: $dropzone
@@ -89,13 +89,13 @@ class Contest.Entry.Uploader extends React.Component
       done: (_e, data) ->
         $.publish 'contest:entries:update', data: data.result
 
-      fail: osu.fileuploadFailCallback($uploadButton)
+      fail: osu.fileuploadFailCallback(@$uploadButton)
 
   componentWillUnmount: =>
     $.unsubscribe '.contest-upload'
     $(document).off '.contest-upload'
 
-    $('.js-contest-entry-upload')
+    @$uploadButton()
       .fileupload 'destroy'
       .remove()
 
@@ -111,6 +111,12 @@ class Contest.Entry.Uploader extends React.Component
 
     div className: "contest-userentry contest-userentry--new#{if @props.disabled then ' contest-userentry--disabled' else ''}",
       div className: 'js-contest-entry-upload--dropzone',
-        el 'label', className: labelClass.join(' '), ref: 'uploadButtonContainer',
+        el 'label',
+          className: labelClass.join(' ')
+          ref: (el) => @uploadButtonContainer = el
           i className: 'fa fa-plus contest-userentry__icon'
           div {}, osu.trans('contest.entry.drop_here')
+
+
+  $uploadButton: =>
+    $(@uploadButtonContainer).find('.js-contest-entry-upload')
