@@ -42,5 +42,6 @@
                 <span class="beatmap-pack-items__artist">{{ $set->artist }}</span>
                 <span class="beatmap-pack-items__title"> - {{ $set->title }}</span>
             </a>
+            <span class="beatmap-pack-items__title"> - {{ $set->count }}</span>
     @endforeach
 </ul>
