@@ -133,7 +133,8 @@ class Beatmapset extends Model
      * Returns the count of beatmaps in the set completed as a {$mode}_count column
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
-     * @param mixed $mode playmode to include
+     * @param mixed $mode playmode to include.
+     * @param mixed $fieldName field name to return the count in.
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithHasCompleted($query, $mode, $fieldName = 'count')
