@@ -83,6 +83,8 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '1 abonné|:count abonnés',
+            'unranked' => 'Aucune partie récente',
             'achievements' => [
                 'title' => 'Succès',
                 'achieved-on' => 'Acquis le :date',
