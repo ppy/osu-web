@@ -32,5 +32,5 @@ return [
     'title' => 'Amis',
     'title_compact' => 'amis',
 
-    'too_many' => 'Limite d'amis atteinte.',
+    'too_many' => "Limite d'amis atteinte.",
 ];
