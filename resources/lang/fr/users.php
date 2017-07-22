@@ -201,6 +201,10 @@ return [
             'total_score' => 'Score total',
         ],
     ],
+    'status' => [
+        'online' => 'En ligne',
+        'offline' => 'Hors-ligne',
+    ],
     'verify' => [
         'title' => 'Vérification de compte',
     ],
