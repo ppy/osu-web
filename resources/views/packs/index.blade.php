@@ -31,13 +31,15 @@
                     <div class="beatmap-packs__page-title">{{trans('beatmappacks.index.title')}}</div>
                 </div>
                 <div class="beatmap-packs__blurb">
-                    <p class="beatmap-packs__important">READ THIS BEFORE DOWNLOADING</p>
-                    <p>Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
-                    All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
-                    <span class="beatmap-packs__scary">Do NOT</span> extract the zip's/osz's yourself,
-                    or the beatmaps will display incorrectly in osu and will not function properly.
-                    </p>
-                    <p>Also note that it is highly recommended to <span class="beatmap-packs__scary">download the packs from latest to earliest</span>, since the oldest maps are of much lower quality than most recent maps.</p>
+                    @php
+                        $scaryTexts = [
+                            '<span class="beatmap-packs__scary">' . trans('beatmappacks.index.blurb.instruction.scary') . '</span>',
+                            '<span class="beatmap-packs__scary">' . trans('beatmappacks.index.blurb.note.scary') . '</span>',
+                        ];
+                    @endphp
+                    <p class="beatmap-packs__important">@lang('beatmappacks.index.blurb.important')</p>
+                    <p>@lang('beatmappacks.index.blurb.instruction._', ['scary' => $scaryTexts[0]])</p>
+                    <p>@lang('beatmappacks.index.blurb.note._', ['scary' => $scaryTexts[1]])</p>
                 </div>
             </div>
             <ul class="page-mode">
