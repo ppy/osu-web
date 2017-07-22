@@ -21,7 +21,7 @@
 return [
     'buttons' => [
       'add' => 'ajouter aux amis',
-      'remove' => 'suppimer des amis',
+      'remove' => 'supprimer des amis',
     ],
 
     'state' => [
