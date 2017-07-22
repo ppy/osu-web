@@ -39,7 +39,7 @@ return [
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
-        'button' => 'Rechercher',
+        'button' => 'rechercher',
         'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'title' => 'Résultats de la Recherche',
