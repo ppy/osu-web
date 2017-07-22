@@ -40,7 +40,7 @@ class BuildPropagationHistory extends Model
     public function scopeChangelog($query)
     {
         $buildsTable = with(new Build)->getTable();
-        $propagationTable = with(new BuildPropagationHistory)->getTable();
+        $propagationTable = with(new self)->getTable();
         $streamsTable = 'osu_updates.'.with(new UpdateStream)->getTable();
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")

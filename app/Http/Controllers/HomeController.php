@@ -32,7 +32,6 @@ use App\Models\News;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
-use DB;
 use Request;
 use View;
 
@@ -102,6 +101,7 @@ class HomeController extends Controller
             ->get()
             ->map(function ($item) {
                 $item->user_count = get_int($item->user_count);
+
                 return $item;
             });
 
