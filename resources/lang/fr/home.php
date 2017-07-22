@@ -118,6 +118,7 @@ return [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
             'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
+                'friends' => 'Amis en ligne',
                 'games' => 'Jeux',
                 'online' => 'Utilisateurs en ligne',
             ],
