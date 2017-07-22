@@ -27,7 +27,7 @@ return [
                     All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
                     :scary extract the zip's/osz's yourself,
                     or the beatmaps will display incorrectly in osu and will not function properly.",
-                'scary' => 'Do NOT'
+                'scary' => 'Do NOT',
             ],
             'note' => [
                 '_' => 'Also note that it is highly recommended to :scary, since the oldest maps are of much lower quality than most recent maps.',
