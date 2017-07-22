@@ -201,9 +201,9 @@ return [
     ],
     'rank' => [
         'any' => "N'importe",
-        'XH' => "SS argenté",
+        'XH' => 'SS argenté',
         'X' => 'SS',
-        'SH' => "S argenté",
+        'SH' => 'S argenté',
         'S' => 'S',
         'A' => 'A',
         'B' => 'B',
