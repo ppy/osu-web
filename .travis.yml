@@ -5,7 +5,6 @@ cache:
     - $HOME/.yarn-cache
 
 sudo: true
-dist: precise
 
 language: php
 
@@ -19,11 +18,13 @@ env:
   global:
     - DB_USERNAME=root
     - SLACK_ENDPOINT=http://myconan.net/null/
+    - PATH=$HOME/.yarn/bin:$PATH
 
 before_install:
   - sudo ./bin/mysql_debian_install
   - nvm install 6.11
   - nvm use 6.11
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
   - ./bin/db_setup.sh
   - ./build.sh
 
