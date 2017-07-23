@@ -53,6 +53,10 @@ let webpackConfig = {
   }
 };
 
+if (!mix.inProduction() || process.env.SENTRY_RELEASE == 1) {
+  webpackConfig['devtool'] = '#source-map';
+}
+
 if (process.env.SENTRY_RELEASE == 1) {
   webpackConfig['plugins'] = [
     new SentryPlugin({
@@ -162,8 +166,7 @@ mix
   path.join(node_root, 'react-height/build/react-height' + min + '.js'),
   path.join(node_root, 'react-motion/build/react-motion.js'),
   path.join(node_root, 'react-collapse/build/react-collapse' + min + '.js'),
-], 'public/js/vendor.js')
-.sourceMaps(!mix.inProduction() || process.env.SENTRY_RELEASE == 1);
+], 'public/js/vendor.js');
 
 if (mix.inProduction()) {
   mix.version();

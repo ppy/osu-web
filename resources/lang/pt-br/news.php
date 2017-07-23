@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,32 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.friend-button {
-  .center-content();
-  .link-plain();
-  .link-white();
-  border-radius: 10px;
-  width: 50px;
-  height: 20px;
+return [
+    'breadcrumbs' => [
+        'news-index' => 'listagem',
+        'news-show' => 'post',
+    ],
 
-  font-size: 14px;
-  background: fade(black, 70%);
+    'index' => [
+        'title' => 'osu!news',
 
-  &:hover {
-    background: fade(lighten(black, 5%), 70%);
-  }
+        'nav' => [
+            'newer' => 'Posts Novos',
+            'older' => 'Posts Antigos',
+        ],
+    ],
 
-  &--mutual {
-    background: fade(@pink, 70%);
-    &:hover {
-      background: fade(lighten(@pink, 5%), 70%);
-    }
-  }
+    'show' => [
+        'posted' => 'postado :time',
 
-  &--friend {
-    background: fade(@green, 70%);
-    &:hover {
-      background: fade(lighten(@green, 5%), 70%);
-    }
-  }
-}
+        'nav' => [
+            'newer' => 'Post novo',
+            'older' => 'Post antigo',
+        ],
+    ],
+
+    'store' => [
+        'button' => 'Atualizar',
+        'ok' => 'Listagem atualizada.',
+    ],
+
+    'update' => [
+        'button' => 'Atualizar',
+        'ok' => 'Post atualizado.',
+    ],
+];

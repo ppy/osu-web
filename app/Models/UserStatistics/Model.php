@@ -144,6 +144,6 @@ abstract class Model extends BaseModel
 
     public function isRanked()
     {
-        return $this->rank_score !== 0 && $this->rank_score_index !== 0;
+        return $this->rank_score !== 0.0 && $this->rank_score_index !== 0;
     }
 }

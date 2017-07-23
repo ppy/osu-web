@@ -35,12 +35,10 @@ class @ReactTurbolinks
 
   destroy: =>
       for own _name, component of @components
-        continue if component.persistent
-
         for target in component.targets
           continue if target.dataset.reactTurbolinksLoaded != '1'
           target.dataset.reactTurbolinksLoaded = null
-          ReactDOM.unmountComponentAtNode target
+          ReactDOM.unmountComponentAtNode target if !component.persistent
 
 
   destroyPersisted: =>

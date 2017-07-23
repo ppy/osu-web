@@ -90,21 +90,24 @@ class @FriendButton extends React.PureComponent
 
 
   render: =>
-    # hide button if component's user_id is missing or the button would be for ourself
-    return span() if !@props.user_id || @props.user_id == currentUser.id
-    # hide the add button if we have hit the max friends limit
-    return span() if !@state.friend && currentUser.friends.length >= 200
+    if @isVisible()
+      @props.container?.classList.remove 'hidden'
+    else
+      @props.container?.classList.add 'hidden'
+
+      return span()
 
     blockClass = bn
 
-    if @props.user_id != currentUser.id && @state.friend && !@state.loading
+    if @state.friend && !@state.loading
       if @state.friend.mutual
         blockClass += " #{bn}--mutual"
       else
         blockClass += " #{bn}--friend"
 
-    button
+    a
       className: blockClass
+      href: '#'
       onMouseEnter: @hover
       onMouseLeave: @unhover
       onClick: @clicked
@@ -112,17 +115,27 @@ class @FriendButton extends React.PureComponent
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
       disabled: @state.loading
       if @state.loading
-        el Icon, name: 'refresh', modifiers: ['fw', 'spin']
+        el Icon, name: 'refresh', modifiers: ['spin']
       else
         if @state.friend
           if @state.hover
-            el Icon, name: 'user-times', modifiers: ['fw']
+            el Icon, name: 'user-times'
           else
             if @state.friend.mutual
-              div {},
-                el Icon, name: 'user'
-                el Icon, name: 'user'
+              [
+                el Icon, name: 'user', key: 1
+                el Icon, name: 'user', key: 2
+              ]
             else
-              el Icon, name: 'user', modifiers: ['fw']
+              el Icon, name: 'user'
         else
-          el Icon, name: 'user-plus', modifiers: ['fw']
+          el Icon, name: 'user-plus'
+
+
+  isVisible: =>
+    # - not a guest
+    # - not viewing own card
+    # - already a friend or can add more friends
+    currentUser.id? &&
+      @props.user_id != currentUser.id &&
+      (@state.friend || currentUser.friends.length < 200)

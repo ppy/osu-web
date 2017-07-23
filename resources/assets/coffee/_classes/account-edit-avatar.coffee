@@ -29,15 +29,18 @@ class @AccountEditAvatar
     @main = document.getElementsByClassName('js-account-edit-avatar')
 
 
+  $button: ->
+    $('.js-account-edit-avatar__button')
+
+
   initialize: =>
     return if !@main[0]?
 
     @isAvailable = true
 
-    @$button = $('.js-account-edit-avatar__button')
     @$main = $(@main)
 
-    @$button.fileupload
+    @$button().fileupload
       url: laroute.route('account.avatar')
       dataType: 'json'
       dropZone: @$main
@@ -90,4 +93,4 @@ class @AccountEditAvatar
     return if !@isAvailable
 
     @isAvailable = false
-    @$button.fileupload 'destroy'
+    @$button().fileupload 'destroy'

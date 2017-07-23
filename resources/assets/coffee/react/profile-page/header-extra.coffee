@@ -50,7 +50,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
   render: =>
     if currentUser.id?
-      friendState = currentUser.friends.find((o) => o.target_id == @props.user.id)
+      friendState = _.find(currentUser.friends, (o) => o.target_id == @props.user.id)
 
     friendButtonHidden = !currentUser.id || currentUser.id == @props.user.id
 
@@ -241,11 +241,9 @@ class ProfilePage.HeaderExtra extends React.Component
       $.subscribe "fancy-chart:hover-#{options.hoverId}:refresh.#{@id}", @rankChartHover
       $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
 
-    if @props.stats.is_ranked
-      data = (@props.rankHistories?.data ? [])
-    else
-      []
-    data = data.map (rank, i) ->
+    data = @props.rankHistories?.data if @props.stats.is_ranked
+
+    data = (data ? []).map (rank, i) ->
       x: i - data.length + 1
       y: -rank
     .filter (point) -> point.y < 0

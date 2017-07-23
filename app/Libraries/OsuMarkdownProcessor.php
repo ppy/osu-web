@@ -191,7 +191,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
 
         $src = $this->node->getUrl();
 
-        if (preg_match('#^(/|https?://)#', $src) !== 1) {
+        if (preg_match('#^(/|https?://|mailto:)#', $src) !== 1) {
             $this->node->setUrl($this->config->getConfig('path').'/'.$src);
         }
     }

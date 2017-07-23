@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,32 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.friend-button {
-  .center-content();
-  .link-plain();
-  .link-white();
-  border-radius: 10px;
-  width: 50px;
-  height: 20px;
-
-  font-size: 14px;
-  background: fade(black, 70%);
-
-  &:hover {
-    background: fade(lighten(black, 5%), 70%);
-  }
-
-  &--mutual {
-    background: fade(@pink, 70%);
-    &:hover {
-      background: fade(lighten(@pink, 5%), 70%);
-    }
-  }
-
-  &--friend {
-    background: fade(@green, 70%);
-    &:hover {
-      background: fade(lighten(@green, 5%), 70%);
-    }
-  }
-}
+return [
+    'user_search' => [
+        'searching' => 'procurando...',
+        'not_found' => 'Esse usuário não existe!',
+    ],
+    'duration' => [
+        'months' => ':length mês|:length meses|{0}',
+        'years' => ':length ano|:length anos|{0}',
+    ],
+];

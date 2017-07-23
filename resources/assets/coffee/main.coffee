@@ -97,6 +97,7 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  container: target
   user_id: parseInt(target.dataset.target)
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
