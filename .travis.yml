@@ -5,6 +5,7 @@ cache:
     - $HOME/.yarn-cache
 
 sudo: true
+dist: precise
 
 language: php
 
