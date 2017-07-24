@@ -45,7 +45,7 @@ class @TooltipDefault
 
     el._tooltip = true
 
-    at = el.getAttribute('data-tooltip-position') ? 'top center'
+    at = el.dataset.tooltipPosition ? 'top center'
 
     my = switch at
       when 'top center' then 'bottom center'
@@ -76,7 +76,7 @@ class @TooltipDefault
           width: 10
           height: 8
 
-    el.setAttribute 'data-orig-title', title
+    el.dataset.origTitle = title
 
     $(el).qtip options, event
 
@@ -100,7 +100,7 @@ class @TooltipDefault
     $('.qtip').remove()
 
     for el in document.querySelectorAll('[data-orig-title]')
-      el.setAttribute 'title', el.getAttribute('data-orig-title')
+      el.setAttribute 'title', el.dataset.origTitle
 
 
   timeagoTip: (el, title) =>
