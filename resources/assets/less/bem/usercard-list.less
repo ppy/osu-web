@@ -16,24 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.user-friends {
-  @title-height: 50px;
+.usercard-list {
+  max-width: @screen-sm-min;
+  margin: 0 auto;
 
-  &__title {
-    padding: 0 0 10px 20px;
-    font-size: @font-size--header-title;
-    font-weight: 100;
-    color: @pink-light;
-
+  &__cards {
     display: flex;
-    align-items: flex-end;
-
-    @media @desktop {
-      padding-left: 10px;
-    }
-
-    &--smaller {
-      font-size: @font-size--header-subtitle;
-    }
+    flex-wrap: wrap;
   }
 }

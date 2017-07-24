@@ -27,8 +27,8 @@
             <h2 class="user-friends__title">{{trans('friends.title')}}</h2>
             @foreach (['online', 'offline'] as $status)
                 <h2 class="user-friends__title user-friends__title--smaller">{{trans("users.status.$status")}} ({{$$status->count()}})</h2>
-                <div class="user-friends__list-wrapper">
-                    <div class="user-friends__list">
+                <div class="usercard-list">
+                    <div class="usercard-list__cards">
                         @foreach ($$status as $connection)
                             @include('objects._usercard', ['user' => $connection->target])
                         @endforeach
