@@ -5141,9 +5141,9 @@ qs@6.4.0, qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
 
-"qtip2@https://github.com/notbakaneko/qTip2#fe7eee2":
+"qtip2@https://github.com/notbakaneko/qTip2#5a9d3b8":
   version "3.0.3"
-  resolved "https://github.com/notbakaneko/qTip2#fe7eee2"
+  resolved "https://github.com/notbakaneko/qTip2#5a9d3b8"
   dependencies:
     imagesloaded ">=3.0.0"
     jquery ">=1.6.0"
