@@ -19,9 +19,17 @@
 .js-accordion {
   display: flex;
   flex-direction: column;
-  transform: translate3d(0, 0, 0); // turn gpu acceleration on in Safari for slideup/down
+  // turn gpu acceleration on in Safari for slideup/down.
+  // Firefox animates faster without forcing 3d translate.
+  // Chrome doesn't care
+  // Applying translateZ(0) onto &__item will cause too many layers in Safari.
+  transform: translateZ(0);
+  -moz-transform: none;
 
   &__item-body {
-    display: none; // slideDown is called on this element
+    // display: none; // slideDown is called on this element
+    // max-height: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
   }
 }

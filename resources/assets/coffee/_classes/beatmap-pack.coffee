@@ -44,15 +44,18 @@ class @BeatmapPack
     @isCurrent = true
     return if @busy
 
-    $(@el).addClass('js-accordion__item--expanded')
+    @nextFrame =>
+      $(@el).addClass('js-accordion__item--expanded')
+
     if @packBody.innerHTML?.length
       @slideDown() if @isCurrent
     else
       @busy = true
       @getBeatmapPackItem(@packId)
       .done (data) =>
-        @packBody.innerHTML = data
-        @slideDown() if @isCurrent
+        @nextFrame =>
+          @packBody.innerHTML = data
+          @slideDown() if @isCurrent
 
       .fail osu.ajaxError
 
@@ -63,8 +66,8 @@ class @BeatmapPack
     return if !@isCurrent
     @isCurrent = false
 
-    # drop shadow should change _after_ slide up animation
-    $(@packBody).slideUp 300, () =>
+    @nextFrame =>
+      @packBody.style.height = "0px"
       $(@el).removeClass('js-accordion__item--expanded')
 
   # TODO: move out.
@@ -72,4 +75,11 @@ class @BeatmapPack
     $.get laroute.route('packs.show', pack: packId)
 
   slideDown: =>
-    $(@packBody).slideDown 300
+    @packBody.style.height = ''
+    rect = @packBody.getBoundingClientRect()
+    @packBody.style.height = '0'
+    @nextFrame =>
+      @packBody.style.height = "#{rect.height}px"
+
+  nextFrame: (fn) ->
+    window.requestAnimationFrame fn
