@@ -60,7 +60,9 @@ class @BeatmapPack
         @busy = false
 
   close: =>
+    return if !@isCurrent
     @isCurrent = false
+
     # drop shadow should change _after_ slide up animation
     $(@packBody).slideUp 300, () =>
       $(@el).removeClass('js-accordion__item--expanded')
