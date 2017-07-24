@@ -29,11 +29,7 @@
                 <h2 class="user-friends__title user-friends__title--smaller">{{trans("users.status.$status")}} ({{$$status->count()}})</h2>
                 <div class="user-friends__list">
                     @foreach ($$status as $connection)
-                        @include('objects._usercard', [
-                            'user' => $connection->target,
-                            'friend' => true,
-                            'mutual' => $connection->mutual,
-                        ])
+                        @include('objects._usercard', ['user' => $connection->target])
                     @endforeach
                 </div>
             @endforeach
