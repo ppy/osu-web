@@ -54,7 +54,7 @@ class @AccountEdit
   saved: (el) =>
     el.dataset.accountEditState = 'saved'
 
-    Timeout.set 3000, =>
+    el.savedTimeout = Timeout.set 3000, =>
       @clearState el
 
 
