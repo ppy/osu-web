@@ -28,7 +28,7 @@ class @AccountEdit
   initializeUpdate: (e) =>
     form = e.currentTarget
 
-    return if form.dataset.accountEditAuto != '1'
+    return if form.dataset.accountEditAutoSubmit != '1'
 
     @abortUpdate form
     form.debouncedUpdate ?= _.debounce @update, 1000

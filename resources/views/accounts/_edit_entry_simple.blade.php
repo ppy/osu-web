@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus" data-account-edit-auto="1">
+<label class="account-edit-entry js-account-edit js-parent-focus" data-account-edit-auto-submit="1">
     <div class="account-edit-entry__label">
         {{ trans("accounts.edit.profile.user.{$field}") }}
     </div>
