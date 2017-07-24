@@ -31,7 +31,13 @@ class @TooltipDefault
 
     return if _.size(title) == 0
 
-    $content = $('<span>').text(title)
+    isTime = el.classList.contains 'timeago'
+
+    $content =
+      if isTime
+        @timeagoTip el, title
+      else
+        $('<span>').text(title)
 
     if el._tooltip
       $(el).qtip 'set', 'content.text': $content
@@ -47,8 +53,10 @@ class @TooltipDefault
       when 'right center' then 'left center'
 
     classes = 'qtip tooltip-default'
-    if el.getAttribute('data-tooltip-float') == 'fixed'
+    if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
+    if isTime
+      classes += ' tooltip-default--time'
 
     options =
       overwrite: false
@@ -93,3 +101,21 @@ class @TooltipDefault
 
     for el in document.querySelectorAll('[data-orig-title]')
       el.setAttribute 'title', el.getAttribute('data-orig-title')
+
+
+  timeagoTip: (el, title) =>
+    timeString = el.getAttribute('datetime') ? title ? el.textContent
+
+    time = moment(timeString)
+
+    $dateEl = $('<span>')
+      .addClass 'tooltip-default__date'
+      .text time.format('d MMM Y')
+    $timeEl = $('<span>')
+      .addClass 'tooltip-default__time'
+      .text time.format('HH:mm:ss')
+
+    $('<span>')
+      .append $dateEl
+      .append ' '
+      .append $timeEl
