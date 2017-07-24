@@ -129,7 +129,8 @@ class Beatmapset extends Model
 
     /**
      * Includes if player has completed the set in a given playmode
-     * Returns the count of beatmaps in the set completed as a {$mode}_count column.
+     * Returns the count of beatmaps in the set that were completed
+     * in a specified column, or 'count' by default.
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
      * @param mixed $mode playmode to include.
