@@ -26,7 +26,7 @@
     "lodash": "^4.0.0",
     "moment": "^2.11.1",
     "photoswipe": "^4.1.1",
-    "qtip2": "^3.0.3",
+    "qtip2": "https://github.com/notbakaneko/qTip2#fe7eee2",
     "react": "^15.1.0",
     "react-collapse": "^4.0.2",
     "react-dom": "^15.1.0",
