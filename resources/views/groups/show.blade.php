@@ -18,23 +18,26 @@
 @extends('master')
 
 @section('content')
-    @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
-    ])
-
-    <div class="osu-page osu-page--generic osu-page--dark-bg">
-        <div class="user-friends">
-            <h2 class="user-friends__title">{{trans('friends.title')}}</h2>
-            @foreach (['online', 'offline'] as $status)
-                <div class="page-title page-title--lighter">{{trans("users.status.$status")}} ({{$$status->count()}})</div>
-                <div class="usercard-list">
-                    <div class="usercard-list__cards">
-                        @foreach ($$status as $connection)
-                            @include('objects._usercard', ['user' => $connection->target])
-                        @endforeach
-                    </div>
-                </div>
-            @endforeach
+    <div class="osu-page osu-page--groups">
+        <div class="osu-page-header osu-page-header--groups">
+            <h1 class="osu-page-header__title">
+                {{ $group->group_name }}
+            </h1>
+            <div class="osu-page-header__title osu-page-header__title--small">
+                {{ $group->group_desc }}
+            </div>
         </div>
+    </div>
+    <div class="osu-page osu-page--generic osu-page--dark-bg">
+        @foreach (['online', 'offline'] as $status)
+            <div class="page-title page-title--lighter">{{trans("users.status.$status")}} ({{$$status->count()}})</div>
+            <div class="usercard-list">
+                <div class="usercard-list__cards">
+                    @foreach ($$status as $user)
+                        @include('objects._usercard', ['user' => $user])
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
     </div>
 @endsection

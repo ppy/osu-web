@@ -926,3 +926,24 @@ function format_percentage($number, $precision = 2)
 {
     return sprintf("%.{$precision}f%%", round($number, $precision));
 }
+
+function group_users_by_online_state(&$users)
+{
+    $online = $offline = [];
+
+    foreach ($users as $user) {
+        if ($user->isOnline()) {
+            $online[] = $user;
+        } else {
+            $offline[] = $user;
+        }
+    }
+
+    $online = collect($online);
+    $offline = collect($offline);
+
+    return [
+        'online' => $online,
+        'offline' => $offline,
+    ];
+}

@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,14 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-title {
-  color: @pink-darker;
-  font-style: italic;
-  font-size: @font-size--title-small-2;
-  padding: 20px;
+namespace App\Models;
 
-  &--lighter {
-    font-weight: 100;
-    color: @pink-light;
-  }
+class Group extends Model
+{
+    protected $table = 'phpbb_groups';
+    protected $primaryKey = 'group_id';
+    public $timestamps = false;
+
+    public function scopeVisible($query)
+    {
+        return $query->where('group_type', 1);
+    }
+
+    public function users()
+    {
+        // 'cuz hasManyThrough is derp
+        $userIds = UserGroup::where('group_id', $this->group_id)->pluck('user_id');
+
+        return User::whereIn('user_id', $userIds);
+    }
 }

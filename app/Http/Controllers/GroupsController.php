@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,14 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-title {
-  color: @pink-darker;
-  font-style: italic;
-  font-size: @font-size--title-small-2;
-  padding: 20px;
+namespace App\Http\Controllers;
 
-  &--lighter {
-    font-weight: 100;
-    color: @pink-light;
-  }
+use App\Models\Group;
+
+class GroupsController extends Controller
+{
+    protected $section = 'home';
+    protected $actionPrefix = 'groups-';
+
+    public function show($id)
+    {
+        $group = Group::visible()->findOrFail($id);
+
+        $users = $group->users()
+            ->with([
+                'country',
+                'userProfileCustomization',
+            ])
+            ->default()
+            ->orderBy('username', 'asc')
+            ->get();
+
+        $grouped = group_users_by_online_state($users);
+
+        foreach (['online', 'offline'] as $state) {
+            $$state = &$grouped[$state];
+        }
+
+        return view('groups.show', compact('group', 'online', 'offline'));
+    }
 }
