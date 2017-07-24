@@ -110,10 +110,10 @@ class @TooltipDefault
 
     $dateEl = $('<span>')
       .addClass 'tooltip-default__date'
-      .text time.format('d MMM Y')
+      .text time.format('LL')
     $timeEl = $('<span>')
       .addClass 'tooltip-default__time'
-      .text time.format('HH:mm:ss')
+      .text time.format('LT')
 
     $('<span>')
       .append $dateEl
