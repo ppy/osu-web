@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    php:
+        build:
+            context: ./docker/php
+            args:
+                _uid: ${_UID:-1000}
+                _gid: ${_GID:-1000}
+        container_name: osuweb-php
+        volumes:
+            - .:/data/osu!web
+            - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
+    nginx:
+        image: nginx:latest
+        container_name: osuweb-nginx
+        volumes:
+            - ./docker/nginx/nginx-osu-next:/etc/nginx/conf.d/default.conf
+            - .:/data/osu!web
+        ports:
+            - "8080:80"
