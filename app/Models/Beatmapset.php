@@ -24,7 +24,6 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
-use Auth;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -137,7 +136,7 @@ class Beatmapset extends Model
      * @param mixed $fieldName field name to return the count in.
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeWithHasCompleted($query, $mode, $fieldName = 'count')
+    public function scopeWithHasCompleted($query, $mode, $user, $fieldName = 'count')
     {
         if (Beatmap::modeStr($mode) === null) {
             throw new \Exception('invalid game mode');
@@ -146,12 +145,12 @@ class Beatmapset extends Model
         $scoreClass = Score\Best\Model::getClass($mode);
         $beatmapsetTable = $this->getTable();
         $scoreBestTable = (new $scoreClass)->getTable();
-        $user_id = Auth::id();
 
-        if (Auth::check()) {
+        if ($user) {
+            $userId = $user->user_id;
             $counts = DB::raw("(SELECT count(*)
                                     FROM {$scoreBestTable}
-                                    WHERE {$scoreBestTable}.user_id = {$user_id}
+                                    WHERE {$scoreBestTable}.user_id = {$userId}
                                     AND {$scoreBestTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
                                 ) as {$fieldName}");
         } else {
