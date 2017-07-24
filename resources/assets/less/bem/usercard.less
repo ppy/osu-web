@@ -60,6 +60,10 @@
     .@{top}--popup & {
       opacity: 0;
     }
+
+    // to prevent annoying white-pixel artefacts appearing due to
+    // browsers not handling 'overflow: hidden' properly
+    border-radius: 4px;
   }
 
   &__background-overlay  {
