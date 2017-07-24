@@ -62,13 +62,12 @@ class @BeatmapPack
   close: =>
     @isCurrent = false
     # drop shadow should change _after_ slide up animation
-    $(@packBody).slideUp(300, () =>
+    $(@packBody).slideUp 300, () =>
       $(@el).removeClass('js-accordion__item--expanded')
-    )
 
   # TODO: move out.
   getBeatmapPackItem: (packId) ->
     $.get laroute.route('packs.show', pack: packId)
 
   slideDown: =>
-    $(@packBody).slideDown(300)
+    $(@packBody).slideDown 300
