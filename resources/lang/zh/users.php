@@ -90,15 +90,15 @@ return [
             'beatmaps' => [
                 'title' => '谱面',
             ],
-            'followers' => '粉丝： :count',
+            'followers' => '粉丝：:count',
             'historical' => [
-                'empty' => '没有游戏记录. :(',
+                'empty' => '没有游戏记录。:(',
                 'most_played' => [
                     'count' => '游玩次数',
                     'title' => '玩得最多的谱面',
                 ],
                 'recent_plays' => [
-                    'accuracy' => '准确率: :percentage',
+                    'accuracy' => '准确率：:percentage',
                     'title' => '最近游玩',
                 ],
                 'title' => '历史记录',
@@ -113,7 +113,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => '该用户还没有收到过 kudosu!',
+                    'empty' => '该用户还没有收到过 kudosu ！',
 
                     'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
                         'allow_kudosu' => [
@@ -146,10 +146,10 @@ return [
                 ],
             ],
             'me' => [
-                'title' => '关于我!',
+                'title' => '关于我！',
             ],
             'medals' => [
-                'empty' => '该用户还没有获得奖牌. ;_;',
+                'empty' => '该用户还没有获得奖牌。;_;',
                 'title' => '奖牌',
             ],
             'recent_activities' => [
@@ -159,13 +159,13 @@ return [
                 'best' => [
                     'title' => '最佳表现',
                 ],
-                'empty' => '还没有最佳表现. :(',
+                'empty' => '还没有最佳表现。 :(',
                 'first' => [
                     'title' => '第一名',
                 ],
                 'pp' => ':amountpp',
                 'title' => '表现',
-                'weighted_pp' => '权重: :pp (:percentage)',
+                'weighted_pp' => '权重：:pp (:percentage)',
             ],
             'beatmaps' => [
                 'title' => '谱面',
@@ -179,7 +179,7 @@ return [
             ],
         ],
         'page' => [
-            'description' => '<strong>关于我!</strong> 是您可以自定义的展示区.',
+            'description' => '<strong>关于我！</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
             'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu! 支持者</a> 以解锁该特性.",
