@@ -39,7 +39,7 @@ return [
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
-        'button' => 'Rechercher',
+        'button' => 'rechercher',
         'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'title' => 'Résultats de la Recherche',
@@ -118,6 +118,7 @@ return [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
             'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
+                'friends' => 'Amis en ligne',
                 'games' => 'Jeux',
                 'online' => 'Utilisateurs en ligne',
             ],

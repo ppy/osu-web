@@ -90,8 +90,7 @@ class UsersController extends Controller
         if (Auth::user()) {
             $friend = Auth::user()
                 ->friends()
-                ->withMutual()
-                ->where('zebra_id', $id)
+                ->where('user_id', $id)
                 ->first();
 
             if ($friend) {
