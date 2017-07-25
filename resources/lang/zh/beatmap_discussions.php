@@ -27,10 +27,19 @@ return [
         ],
     ],
 
+    'nearby_posts' => [
+        'confirm' => '在这个时间点上没有相关的讨论记录。',
+        'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，在发表您的讨论前请检查一下。',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为已解决',
             'false' => '被 :user 重新打开',
         ],
+    ],
+
+    'user' => [
+        'owner' => '制谱人',
     ],
 ];

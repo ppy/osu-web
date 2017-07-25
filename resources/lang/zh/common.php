@@ -22,6 +22,12 @@ return [
     'confirmation' => '您确定要这样做吗？',
     'saved' => '已保存',
 
+    'array_and' => [
+        'words_connector' => '，',
+        'two_words_connector' => '和',
+        'last_word_connector' => '和',
+    ],
+
     'buttons' => [
         'cancel' => '取消',
         'delete' => '删除',
