@@ -15,17 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus" data-account-edit-auto-submit="1">
-    <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
+@extends('master')
+
+@section('content')
+    <div class="osu-page osu-page--groups">
+        <div class="osu-page-header osu-page-header--groups">
+            <h1 class="osu-page-header__title">
+                {{ $group->group_name }}
+            </h1>
+            <div class="osu-page-header__title osu-page-header__title--small">
+                {{ $group->group_desc }}
+            </div>
+        </div>
     </div>
-
-    <input
-        class="account-edit-entry__input js-account-edit__input"
-        name="user[{{ $field }}]"
-        data-last-value="{{ Auth::user()->$field }}"
-        value="{{ Auth::user()->$field }}"
-    >
-
-    @include('accounts._edit_entry_status')
-</label>
+    <div class="osu-page osu-page--generic osu-page--dark-bg">
+        @include('objects._userlist', ['userlist' => $userlist])
+    </div>
+@endsection

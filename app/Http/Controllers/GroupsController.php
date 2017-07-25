@@ -18,35 +18,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Http\Controllers;
 
-class UserGroup extends Model
+use App\Models\Group;
+
+class GroupsController extends Controller
 {
-    protected $table = 'phpbb_user_group';
-    protected $primaryKey = 'group_id';
-    public $timestamps = false;
-    protected $guarded = [];
+    protected $section = 'home';
+    protected $actionPrefix = 'groups-';
 
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
-
-    public function group()
+    public function show($id)
     {
-        return $this->belongsTo(Group::class, 'group_id');
-    }
+        $group = Group::visible()->findOrFail($id);
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+        $users = $group->users()
+            ->with([
+                'country',
+                'userProfileCustomization',
+            ])
+            ->default()
+            ->orderBy('username', 'asc')
+            ->get();
+
+        $userlist = group_users_by_online_state($users);
+
+        return view('groups.show', compact('group', 'userlist'));
     }
 }

@@ -110,7 +110,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->friends()->withMutual()->get(),
+            $user->relations()->friends()->withMutual()->get(),
             new UserRelationTransformer()
         );
     }

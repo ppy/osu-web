@@ -154,6 +154,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::put('password-reset', 'PasswordResetController@update');
 
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
+    Route::resource('groups', 'GroupsController', ['only' => ['show']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
