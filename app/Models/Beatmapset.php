@@ -619,13 +619,13 @@ class Beatmapset extends Model
             foreach ($this->beatmaps as $beatmap) {
                 $bgFilename = self::scanBMForBG("{$workingFolder}/{$beatmap->filename}");
 
-                if (!$bgFilename) {
+                if ($bgFilename === false) {
                     continue;
                 }
 
                 $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
 
-                if (!$bgFile) {
+                if ($bgFile === false) {
                     continue;
                 }
 
