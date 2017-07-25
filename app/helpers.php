@@ -709,7 +709,7 @@ function get_model_basename($model)
 function ci_file_search($fileName)
 {
     if (file_exists($fileName)) {
-        return $fileName;
+        return is_file($fileName) ? $fileName : false;
     }
 
     $directoryName = dirname($fileName);
@@ -717,7 +717,7 @@ function ci_file_search($fileName)
     $fileNameLowerCase = strtolower($fileName);
     foreach ($fileArray as $file) {
         if (strtolower($file) === $fileNameLowerCase) {
-            return $file;
+            return is_file($file) ? $file : false;
         }
     }
 
