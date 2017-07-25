@@ -1,0 +1,73 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-pack {
+  .default-box-shadow();
+  width: 100%;
+  margin: 2px 0;
+
+  &__body {
+    background-color: #eee;
+  }
+
+  &__header {
+    padding: @beatmappack-listing--gutter;
+    background-color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken(#fff, 5%);
+      .js-accordion__item--expanded & {
+        background-color: #fff;
+      }
+    }
+
+    .js-accordion__item--expanded & {
+      cursor: auto;
+    }
+  }
+
+  &__author {
+    font-style: italic;
+
+    &--bold {
+      font-weight: 600;
+    }
+  }
+
+  &__date {
+    font-size: 90%;
+  }
+
+  &__name {
+    color: @purple-dark;
+
+    &.beatmap-packs__cell {
+      flex-grow: 4;
+    }
+
+    .js-accordion__item--expanded & {
+      font-weight: 600;
+    }
+  }
+
+  &.js-accordion__item--expanded {
+    .thicker-box-shadow();
+    z-index: 1;
+  }
+}
