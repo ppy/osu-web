@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,35 +16,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+.usercard-list {
+  max-width: @screen-sm-min;
+  margin: 0 auto;
 
-class UserGroup extends Model
-{
-    protected $table = 'phpbb_user_group';
-    protected $primaryKey = 'group_id';
-    public $timestamps = false;
-    protected $guarded = [];
-
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
-
-    public function group()
-    {
-        return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

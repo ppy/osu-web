@@ -48,19 +48,16 @@ class FriendsController extends Controller
     {
         $friends = Auth::user()
             ->friends()
-            ->withMutual()
-            ->withOnline()
             ->with([
-                'target',
-                'target.userProfileCustomization',
-                'target.country',
+                'userProfileCustomization',
+                'country',
             ])
+            ->orderBy('username', 'asc')
             ->get();
 
-        $online = $friends->where('online', 1);
-        $offline = $friends->where('online', 0);
+        $userlist = group_users_by_online_state($friends);
 
-        return view('friends.index', compact('online', 'offline'));
+        return view('friends.index', compact('userlist'));
     }
 
     public function store()

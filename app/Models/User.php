@@ -784,7 +784,9 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        return $this->relations()->friends();
+        // 'cuz hasManyThrough is derp
+
+        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
     }
 
     public function foes()
@@ -992,6 +994,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public function scopeOnline($query)
+    {
+        return $query->where('user_lastvisit', '>', Carbon::now()->subMinutes(config('osu.user.online_window')));
     }
 
     public function updatePassword($password)

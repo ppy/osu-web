@@ -20,33 +20,22 @@
 
 namespace App\Models;
 
-class UserGroup extends Model
+class Group extends Model
 {
-    protected $table = 'phpbb_user_group';
+    protected $table = 'phpbb_groups';
     protected $primaryKey = 'group_id';
     public $timestamps = false;
-    protected $guarded = [];
 
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
-
-    public function group()
+    public function scopeVisible($query)
     {
-        return $this->belongsTo(Group::class, 'group_id');
+        return $query->where('group_type', 1);
     }
 
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        // 'cuz hasManyThrough is derp
+        $userIds = UserGroup::where('group_id', $this->group_id)->pluck('user_id');
+
+        return User::whereIn('user_id', $userIds);
     }
 }
