@@ -16,27 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @PostPreview
+class @TurbolinksUjs
   constructor: ->
-    @debouncedLoadPreview = _.debounce @loadPreview, 500
+    @xhr = []
 
-    $(document).on 'input', '.js-post-preview--auto', (e) =>
-      # get the target immediately because event object may change later.
-      @debouncedLoadPreview(e.currentTarget)
+    $(document).on 'ajax:beforeSend', @record
+    $(document).on 'turbolinks:before-cache', @abort
 
 
-  loadPreview: (target) =>
-    $form = $(target).closest('form')
-    url = laroute.route('bbcode-preview')
-    body = target.value
-    $preview = $form.find('.js-post-preview--body')
-    $previewBox = $form.find('.js-post-preview--box')
+  abort: =>
+    xhr?.abort() while xhr = @xhr.pop()
 
-    return if $preview.attr('data-raw') == body
 
-    $.post(url, text: body)
-    .done (data) =>
-      $preview.html data
-      $preview.attr 'data-raw', body
-      $previewBox.removeClass 'hidden'
-      osu.pageChange()
+  record: (_event, xhr) =>
+    @xhr.push xhr
