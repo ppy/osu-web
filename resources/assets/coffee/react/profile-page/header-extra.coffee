@@ -99,7 +99,7 @@ class ProfilePage.HeaderExtra extends React.Component
             if moment(@props.user.join_date).isBefore moment('2008-01-01')
               div
                 className: "#{bn}__row"
-                title: moment(@props.user.join_date).format('MMMM YYYY'),
+                title: moment(@props.user.join_date).format(osu.trans 'users.show.dateFormat'),
                   osu.trans 'users.show.first_members'
             else
               div
@@ -107,7 +107,7 @@ class ProfilePage.HeaderExtra extends React.Component
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue moment(@props.user.join_date).format('MMMM YYYY')
+                      date: rowValue moment(@props.user.join_date).format(osu.trans 'users.show.dateFormat')
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:

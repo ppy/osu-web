@@ -53,6 +53,7 @@ return [
         '404' => 'User not found! ;_;',
         'age' => ':age years old',
         'current_location' => 'Currently in :location',
+        'dateFormat' => 'MMMM YYYY',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
