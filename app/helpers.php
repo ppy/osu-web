@@ -113,6 +113,19 @@ function locale_name($locale)
     return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
+function locale_for_moment($locale)
+{
+    if ($locale === 'en') {
+        return;
+    }
+
+    if ($locale === 'zh') {
+        return 'zh-cn';
+    }
+
+    return $locale;
+}
+
 function locale_for_timeago($locale)
 {
     if ($locale === 'zh') {
