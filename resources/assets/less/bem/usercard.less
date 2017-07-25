@@ -25,7 +25,7 @@
   @card-item-spacing: 10px;
   @offline-color: #000;
   @online-color: @green;
-  @flag-gutter: 2px; // more like half of it
+  @flag-gutter: 3px; // more like half of it
 
   display: flex;
   flex-direction: column;
@@ -60,6 +60,10 @@
     .@{top}--popup & {
       opacity: 0;
     }
+
+    // to prevent annoying white-pixel artefacts appearing due to
+    // browsers not handling 'overflow: hidden' properly
+    .default-border-radius();
   }
 
   &__background-overlay  {
@@ -117,11 +121,15 @@
     object-fit: cover;
 
     &--loader {
-      .center-content();
-      color: #fff;
-      font-size: 14px;
-      background: fade(#fff, 10%);
-      opacity: 0.25;
+      opacity: 0;
+
+      .@{top}--popup & {
+        .center-content();
+        color: #fff;
+        font-size: 14px;
+        background: fade(#fff, 10%);
+        opacity: 0.25;
+      }
     }
 
     .@{top}--popup &--main {

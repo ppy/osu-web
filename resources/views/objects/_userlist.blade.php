@@ -15,17 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
 
-@section('content')
-    @include('home._user_header_default', [
-        'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
-    ])
-
-    <div class="osu-page osu-page--generic osu-page--dark-bg">
-        <div class="user-friends">
-            <h2 class="user-friends__title">{{trans('friends.title')}}</h2>
-            @include('objects._userlist', ['userlist' => $userlist])
+@foreach ($userlist as $status => $users)
+    <div class="page-title page-title--lighter">{{trans("users.status.$status")}} ({{count($users)}})</div>
+    <div class="usercard-list">
+        <div class="usercard-list__cards">
+            @foreach ($users as $user)
+                @include('objects._usercard', ['user' => $user])
+            @endforeach
         </div>
     </div>
-@endsection
+@endforeach
