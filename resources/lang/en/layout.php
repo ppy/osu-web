@@ -53,7 +53,7 @@ return [
             'show' => 'info',
             'index' => 'listing',
             'artists' => 'featured artists',
-            // 'getPacks' => 'packs',
+            'packs' => 'packs',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
