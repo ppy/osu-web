@@ -67,7 +67,7 @@ class @BeatmapPack
     @isCurrent = false
 
     @nextFrame =>
-      @packBody.style.height = "0px"
+      @packBody.style.height = '0'
       $(@el).removeClass('js-accordion__item--expanded')
 
   # TODO: move out.
