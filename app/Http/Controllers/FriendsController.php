@@ -71,7 +71,7 @@ class FriendsController extends Controller
 
         $friend = Auth::user()
             ->friends()
-            ->where(['zebra_id' => $target_id])
+            ->where(['user_id' => $target_id])
             ->first();
 
         if (!$friend) {
@@ -83,7 +83,7 @@ class FriendsController extends Controller
         }
 
         return json_collection(
-            Auth::user()->friends()->withMutual()->get(),
+            Auth::user()->relations()->friends()->withMutual()->get(),
             'UserRelation'
         );
     }
@@ -92,7 +92,7 @@ class FriendsController extends Controller
     {
         $friend = Auth::user()
             ->friends()
-            ->where(['zebra_id' => $id])
+            ->where(['user_id' => $id])
             ->firstOrFail();
 
         UserRelation::where([
@@ -102,7 +102,7 @@ class FriendsController extends Controller
         ])->delete();
 
         return json_collection(
-            Auth::user()->friends()->withMutual()->get(),
+            Auth::user()->relations()->friends()->withMutual()->get(),
             'UserRelation'
         );
     }
