@@ -29,15 +29,6 @@
         </div>
     </div>
     <div class="osu-page osu-page--generic osu-page--dark-bg">
-        @foreach (['online', 'offline'] as $status)
-            <div class="page-title page-title--lighter">{{trans("users.status.$status")}} ({{$$status->count()}})</div>
-            <div class="usercard-list">
-                <div class="usercard-list__cards">
-                    @foreach ($$status as $user)
-                        @include('objects._usercard', ['user' => $user])
-                    @endforeach
-                </div>
-            </div>
-        @endforeach
+        @include('objects._userlist', ['userlist' => $userlist])
     </div>
 @endsection

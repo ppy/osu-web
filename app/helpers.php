@@ -927,7 +927,7 @@ function format_percentage($number, $precision = 2)
     return sprintf("%.{$precision}f%%", round($number, $precision));
 }
 
-function group_users_by_online_state(&$users)
+function group_users_by_online_state($users)
 {
     $online = $offline = [];
 
@@ -938,9 +938,6 @@ function group_users_by_online_state(&$users)
             $offline[] = $user;
         }
     }
-
-    $online = collect($online);
-    $offline = collect($offline);
 
     return [
         'online' => $online,

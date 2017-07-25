@@ -40,12 +40,8 @@ class GroupsController extends Controller
             ->orderBy('username', 'asc')
             ->get();
 
-        $grouped = group_users_by_online_state($users);
+        $userlist = group_users_by_online_state($users);
 
-        foreach (['online', 'offline'] as $state) {
-            $$state = &$grouped[$state];
-        }
-
-        return view('groups.show', compact('group', 'online', 'offline'));
+        return view('groups.show', compact('group', 'userlist'));
     }
 }
