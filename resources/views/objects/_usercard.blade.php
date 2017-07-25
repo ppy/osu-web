@@ -78,7 +78,7 @@
             </div>
             <div class="usercard__status-bar usercard__status-bar--{{!isset($loading) && $user->isOnline() ? 'online' : 'offline'}}">
                 <span class="fa fa-fw fa-circle-o usercard__status-icon"></span>
-                <span class="usercard__status-message" title="{{isset($loading) || $user->isOnline() ? '' : $user->user_lastvisit ? 'last seen ' . $user->user_lastvisit->diffForHumans() : ''}}">
+                <span class="usercard__status-message" title="{{isset($loading) || $user->isOnline() ? '' : $user->user_lastvisit ? trans('users.show.lastvisit', ['date' => $user->user_lastvisit->diffForHumans()]) : ''}}">
                     {{!isset($loading) && $user->isOnline() ? trans('users.status.online') : trans('users.status.offline')}}
                 </span>
             </div>
