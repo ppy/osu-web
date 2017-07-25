@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="account-edit account-edit--first">
+<div class="account-edit">
     <div class="account-edit__section">
         <h2 class="account-edit__section-title">
             {{ trans('accounts.playstyles.title') }}
