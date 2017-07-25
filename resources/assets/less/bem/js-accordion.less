@@ -25,6 +25,7 @@
   // Applying translateZ(0) onto &__item will cause too many layers in Safari.
   transform: translateZ(0);
   -moz-transform: none;
+  -webkit-font-smoothing: antialiased; // fixes font flickering in Safari while animating
 
   &__item-body {
     // display: none; // slideDown is called on this element
