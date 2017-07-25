@@ -28,6 +28,15 @@ class @BeatmapPack
     @busy = false
     @isCurrent = false
 
+    # hacky reset for turbolinks for now.
+    if $(@el).hasClass('js-accordion__item--expanded')
+      @nextFrame =>
+        @packBody.style.transition = 'none'
+        @packBody.style.height = '0'
+        @nextFrame =>
+          $(@el).removeClass('js-accordion__item--expanded')
+          @packBody.style.transition = ''
+
     $('.js-accordion').on 'beatmappack:clicked', @onClick
     $(@expander).on 'click', (event) =>
       return if @isCurrent
