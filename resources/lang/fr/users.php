@@ -83,6 +83,8 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '1 abonné|:count abonnés',
+            'unranked' => 'Aucune partie récente',
             'achievements' => [
                 'title' => 'Succès',
                 'achieved-on' => 'Acquis le :date',
@@ -198,6 +200,10 @@ return [
             'total_hits' => 'Nombre de clics',
             'total_score' => 'Score total',
         ],
+    ],
+    'status' => [
+        'online' => 'En ligne',
+        'offline' => 'Hors-ligne',
     ],
     'verify' => [
         'title' => 'Vérification de compte',
