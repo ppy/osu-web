@@ -15,17 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus" data-account-edit-auto-submit="1">
-    <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
+
+@foreach ($userlist as $status => $users)
+    <div class="page-title page-title--lighter">{{trans("users.status.$status")}} ({{count($users)}})</div>
+    <div class="usercard-list">
+        <div class="usercard-list__cards">
+            @foreach ($users as $user)
+                @include('objects._usercard', ['user' => $user])
+            @endforeach
+        </div>
     </div>
-
-    <input
-        class="account-edit-entry__input js-account-edit__input"
-        name="user[{{ $field }}]"
-        data-last-value="{{ Auth::user()->$field }}"
-        value="{{ Auth::user()->$field }}"
-    >
-
-    @include('accounts._edit_entry_status')
-</label>
+@endforeach

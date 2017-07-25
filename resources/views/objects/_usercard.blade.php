@@ -28,7 +28,9 @@
 @endphp
 @if (isset($user) || isset($loading))
     <div class="{{ $blockClass }}">
-        @if (!isset($loading))
+        @if (isset($loading))
+            <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
+        @else
             @if ($user->cover() === null)
                 <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
             @else

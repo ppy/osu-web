@@ -55,6 +55,12 @@
     height: 200px;
   }
 
+  &--groups {
+    background-image: url('/images/headers/generic.jpg');
+    height: 200px;
+    text-align: center;
+  }
+
   &--home-user {
     color: #fff;
     flex-direction: column;
@@ -243,7 +249,7 @@
       font-size: @font-size--header-description;
     }
 
-    .@{top}--beatmapsets-header-guest {
+    .@{top}--beatmapsets-header-guest & {
       font-size: @font-size--large-3;
       font-style: normal;
       font-weight: 300;

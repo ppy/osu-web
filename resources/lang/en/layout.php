@@ -32,6 +32,7 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'groups-show' => 'groups',
             'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'news',
