@@ -601,29 +601,34 @@ class Beatmapset extends Model
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
-            $ok = copy($this->oszDownloadURL(), $osz);
-            if (!$ok) {
+            try {
+                $ok = copy($this->oszDownloadURL(), $osz);
+                if (!$ok) {
+                    throw new BeatmapProcessorException('Error retrieving beatmap');
+                }
+            } catch (\Exception $e) {
                 throw new BeatmapProcessorException('Error retrieving beatmap');
             }
+
             $zip = new \ZipArchive;
             $zip->open($osz);
             $zip->extractTo($workingFolder);
             $zip->close();
 
-            // grab the first beatmap (as per old implementation) and scan for background image
-            $beatmap = $this->beatmaps()->first();
-            $beatmapFilename = $beatmap->filename;
-            $bgFilename = self::scanBMForBG("$workingFolder/$beatmapFilename");
+            // scan through all the beatmaps in this set and find the first one with a valid background image
+            foreach ($this->beatmaps as $beatmap) {
+                $bgFilename = self::scanBMForBG("{$workingFolder}/{$beatmap->filename}");
 
-            if (!$bgFilename) {
-                $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+                if (!$bgFilename) {
+                    continue;
+                }
 
-                return;
-            }
+                $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
 
-            $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
+                if (!$bgFile) {
+                    continue;
+                }
 
-            if ($bgFile !== false) {
                 $processor = new ImageProcessorService($tmpBase);
 
                 // upload original image
@@ -638,6 +643,9 @@ class Beatmapset extends Model
                     $resized = $processor->resize($this->coverURL('fullsize'), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
+
+                // break after the first image has been successfully processed
+                break;
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
@@ -650,10 +658,15 @@ class Beatmapset extends Model
     // todo: maybe move this somewhere else (copypasta from old implementation)
     public function scanBMForBG($beatmapFilename)
     {
-        $content = file_get_contents($beatmapFilename);
-        if (!$content) {
+        try {
+            $content = file_get_contents($beatmapFilename);
+            if (!$content) {
+                return false;
+            }
+        } catch (\Exception $e) {
             return false;
         }
+
         $matching = false;
         $imageFilename = '';
         $lines = explode("\n", $content);
