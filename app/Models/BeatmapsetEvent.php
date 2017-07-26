@@ -30,6 +30,17 @@ class BeatmapsetEvent extends Model
     const APPROVE = 'approve';
     const RANK = 'rank';
 
+    const KUDOSU_ALLOW = 'kudosu_allow';
+    const KUDOSU_DENY = 'kudosu_deny';
+    const KUDOSU_GAIN = 'kudosu_gain';
+    const KUDOSU_LOST = 'kudosu_lost';
+
+    const ISSUE_RESOLVE = 'issue_resolve';
+    const ISSUE_REOPEN = 'issue_reopen';
+
+    const DISCUSSION_DELETE = 'discussion_delete';
+    const DISCUSSION_RESTORE = 'discussion_restore';
+
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
@@ -48,5 +59,33 @@ class BeatmapsetEvent extends Model
     public function scopeDisqualifications($query)
     {
         return $query->where('type', self::DISQUALIFY);
+    }
+
+    public function hasArrayComment()
+    {
+        return in_array($this->type, [
+            static::KUDOSU_ALLOW,
+            static::KUDOSU_DENY,
+            static::KUDOSU_GAIN,
+            static::KUDOSU_LOST,
+            static::ISSUE_RESOLVE,
+            static::ISSUE_REOPEN,
+            static::DISCUSSION_DELETE,
+            static::DISCUSSION_RESTORE,
+        ], true);
+    }
+
+    public function getCommentAttribute($value)
+    {
+        return $this->hasArrayComment() ? json_decode($value, true) : $value;
+    }
+
+    public function setCommentAttribute($value)
+    {
+        if ($this->hasArrayComment()) {
+            $value = json_encode($value);
+        }
+
+        $this->attributes['comment'] = $value;
     }
 }

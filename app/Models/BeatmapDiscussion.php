@@ -121,6 +121,22 @@ class BeatmapDiscussion extends Model
         }
 
         DB::transaction(function () use ($change, $event, $currentVotes) {
+            if ($event === 'vote') {
+                if ($change > 0) {
+                    $beatmapsetEventType = BeatmapsetEvent::KUDOSU_GAIN;
+                } else {
+                    $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
+                }
+
+                $this->beatmapsetDiscussion->beatmapset->events()->create([
+                    'type' => $beatmapsetEventType,
+                    'user_id' => $this->user_id,
+                    'comment' => [
+                        'beatmap_discussion_id' => $this->id,
+                    ],
+                ]);
+            }
+
             KudosuHistory::create([
                 'receiver_id' => $this->user->user_id,
                 'amount' => $change,
@@ -233,9 +249,16 @@ class BeatmapDiscussion extends Model
         return route('beatmap-discussions.show', $this->id);
     }
 
-    public function allowKudosu()
+    public function allowKudosu($allowedBy)
     {
         DB::transaction(function () {
+            $this->beatmapsetDiscussion->beatmapset->events()->create([
+                'type' => BeatmapsetEvent::KUDOSU_ALLOW,
+                'user_id' => $allowedBy->getKey(),
+                'comment' => [
+                    'beatmap_discussion_id' => $this->id,
+                ],
+            ]);
             $this->update(['kudosu_denied' => false]);
             $this->refreshKudosu('allow_kudosu');
         });
@@ -244,6 +267,13 @@ class BeatmapDiscussion extends Model
     public function denyKudosu($deniedBy)
     {
         DB::transaction(function () use ($deniedBy) {
+            $this->beatmapsetDiscussion->beatmapset->events()->create([
+                'type' => BeatmapsetEvent::KUDOSU_DENY,
+                'user_id' => $deniedBy->getKey(),
+                'comment' => [
+                    'beatmap_discussion_id' => $this->id,
+                ],
+            ]);
             $this->update([
                 'kudosu_denied_by_id' => $deniedBy->user_id ?? null,
                 'kudosu_denied' => true,

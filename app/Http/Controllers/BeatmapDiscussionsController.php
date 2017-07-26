@@ -40,7 +40,7 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->allowKudosu();
+        $error = $discussion->allowKudosu(Auth::user());
 
         if ($error === null) {
             return $discussion->beatmapsetDiscussion->defaultJson();

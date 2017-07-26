@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DB;
 
 class BeatmapDiscussionPost extends Model
 {
@@ -101,9 +102,19 @@ class BeatmapDiscussionPost extends Model
             ->where('id', '<', $this->id)->exists();
     }
 
-    public function restore()
+    public function restore($restoredBy)
     {
-        return $this->update(['deleted_at' => null]);
+        return DB::transaction(function () use ($restoredBy) {
+            $this->beatmapDiscussion->beatmapset->events()->create([
+                'type' => BeatmapsetEvent::DISCUSSION_RESTORE,
+                'user_id' => $restoredBy->user_id ?? null,
+                'comment' => [
+                    'beatmap_discussion_post_id' => $this->getKey(),
+                ],
+            ]);
+
+            return $this->update(['deleted_at' => null]);
+        });
     }
 
     public function softDelete($deletedBy)
@@ -112,13 +123,24 @@ class BeatmapDiscussionPost extends Model
             return trans('model_validation.beatmap_discussion_post.first_post');
         }
 
-        $time = Carbon::now();
+        DB::transaction(function () use ($deletedBy) {
+            if (isset($deletedBy->user_id) && $this->user_id !== $deletedBy->user_id) {
+                $this->beatmapDiscussion->beatmapset->events()->create([
+                    'type' => BeatmapsetEvent::DISCUSSION_DELETE,
+                    'user_id' => $deletedBy->user_id ?? null,
+                    'comment' => [
+                        'beatmap_discussion_post_id' => $this->getKey(),
+                    ],
+                ]);
+            }
 
-        $this->update([
-            'deleted_by_id' => $deletedBy->user_id ?? null,
-            'deleted_at' => $time,
-            'updated_at' => $time,
-        ]);
+            $time = Carbon::now();
+            $this->update([
+                'deleted_by_id' => $deletedBy->user_id ?? null,
+                'deleted_at' => $time,
+                'updated_at' => $time,
+            ]);
+        });
     }
 
     public function scopeWithoutDeleted($query)
