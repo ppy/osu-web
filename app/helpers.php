@@ -196,6 +196,15 @@ function read_image_properties_from_string($string)
     }
 }
 
+function require_login($text_key, $link_text_key)
+{
+    $title = trans('users.anonymous.login_link');
+    $link = Html::link('#', trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
+    $text = trans($text_key, ['link' => $link]);
+
+    return $text;
+}
+
 function render_to_string($view, $variables = [])
 {
     return view()->make($view, $variables)->render();
