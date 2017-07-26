@@ -17,6 +17,6 @@
 --}}
     @php
         $title = trans('users.anonymous.login_link');
-        $link = Html::link('#', trans($link_text), ['class' => 'js-user-link', 'title' => $title]);
+        $link = Html::link('#', $link_text, ['class' => 'js-user-link', 'title' => $title]);
     @endphp
     {!! trans($text, ['link' => $link]) !!}

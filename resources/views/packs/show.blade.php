@@ -27,10 +27,7 @@
             @endforeach
         </ul>
     @else
-        @include('layout._require_login', [
-            'text' => 'beatmappacks.require_login._',
-            'link_text' => 'beatmappacks.require_login.link_text',
-        ])
+        {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
     @endif
 </div>
 <ul class="beatmap-pack-items">

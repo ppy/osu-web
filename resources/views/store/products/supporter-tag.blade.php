@@ -18,10 +18,7 @@
 @if(!Auth::user())
 <div class="grid grid--gutters">
     <div class="grid-cell grid-cell--1of2">
-        @include('layout._require_login', [
-            'text' => 'store.supporter_tag.require_login._',
-            'link_text' => 'store.supporter_tag.require_login.link_text',
-        ])
+        {!! require_login('store.supporter_tag.require_login._', 'store.supporter_tag.require_login.link_text') !!}
     </div>
 </div>
 @else
