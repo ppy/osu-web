@@ -1,0 +1,91 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.notification-banner {
+  @top: notification-banner;
+
+  background-color: black;
+  padding: 10px 40px 5px 40px;
+  color: white;
+  text-align: center;
+
+  .default-box-shadow();
+  .default-text-shadow();
+
+  font-size: 12px;
+
+  &::before {
+    width: 100%;
+    height: 5px;
+    background-image: url(/images/layout/caution-bar.png);
+    background-position: top center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    content: "";
+  }
+
+  &--alert {
+    background-image: linear-gradient(to bottom, rgba(135, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  }
+
+  &--warning {
+    background-image: linear-gradient(to bottom, rgba(204, 102, 0, 0.25), rgba(0, 0, 0, 0.25));
+  }
+
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+
+    .@{top}--alert &,
+    .@{top}--warning & {
+      background-image: url(/images/layout/exclamation-icon.svg);
+    }
+  }
+
+  &__icon-label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  &__text {
+    margin-bottom: 5px;
+
+    a {
+      .link-yellow();
+    }
+  }
+
+  &__light-bar {
+    width: 250px;
+    height: 5px;
+    border-radius: 2.5px;
+    .center-content();
+
+    .@{top}--alert & {
+      background-color: #ED1221;
+    }
+
+    .@{top}--warning & {
+      background-color: #FFCC20;
+    }
+  }
+}

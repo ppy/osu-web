@@ -91,3 +91,13 @@
 @include('layout._popup')
 
 @include('layout.popup-container')
+
+@if (Auth::user() && Auth::user()->isRestricted())
+    <div class="osu-page">
+        @include('objects._notification-banner', [
+            'type' => 'alert',
+            'title' => trans('users.restricted-banner.title'),
+            'message' => trans('users.restricted-banner.message'),
+        ])
+    </div>
+@endif

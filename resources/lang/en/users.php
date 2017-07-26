@@ -49,6 +49,10 @@ return [
         'error' => 'You need to be logged in to do this.',
     ],
     'logout_confirm' => 'Are you sure you want to log out? :(',
+    'restricted-banner' => [
+        'title' => 'Your account has been restricted!',
+        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+    ],
     'show' => [
         '404' => 'User not found! ;_;',
         'age' => ':age years old',
