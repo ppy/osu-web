@@ -27,6 +27,8 @@ return [
         'home' => [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
+            'friends' => 'amis',
+            'friends-index' => 'amis',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
@@ -35,7 +37,7 @@ return [
             'news-index' => 'actualités',
             'news-show' => 'actualités',
             'password-reset-index' => 'réinitialiser le mot de passe',
-            'search' => 'Rechercher',
+            'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
         ],
         'help' => [
@@ -50,11 +52,11 @@ return [
             'show' => 'info',
             'index' => 'liste',
             'artists' => 'artistes plébiscités',
-            // 'getPacks' => 'packs',
+            'packs' => 'collections',
             // 'getCharts' => 'graphiques',
         ],
         'beatmapsets' => [
-            '_' => 'sets de beatmap',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'rankings' => [
@@ -222,7 +224,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'adresse e-mail',
-            'forgot' => "J'ai oublié mes détails de connexion",
+            'forgot' => "J'ai oublié mes identifiants de connexion",
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
 
