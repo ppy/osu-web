@@ -16,37 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tooltip-default {
-  .default-border-radius();
+.beatmap-pack-items {
+  line-height: 1.5;
+  margin: 0;
+  padding: @beatmappack-listing--gutter;
 
-  background-color: fade(#000, 70%);
-  border: 0 solid transparent;
-
-  color: #fff;
-
-  pointer-events: none;
-
-  &--fixed {
-    position: fixed;
+  &__artist {
+    margin-left: 8px;
+    font-weight: 600;
   }
 
-  &--time {
-    background-color: #333;
-    font-size: @font-size--normal;
-    line-height: 1.1;
-    padding: 2px 10px;
+  &__icon {
+    color: #999;
+    &--cleared {
+      color: mix(#999, @green-light, 33%);
+    }
   }
 
-  .qtip-content {
-    text-align: center;
+  &__link {
+    .link-plain();
+    color: #555;
   }
 
-  &__date {
-    font-weight: bold;
-    color: #fff;
-  }
-
-  &__time {
-    color: #ccc;
+  &__set {
+    list-style: none;
+    font-style: italic;
   }
 }

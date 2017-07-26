@@ -998,7 +998,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function scopeOnline($query)
     {
-        return $query->where('user_lastvisit', '>', Carbon::now()->subMinutes(config('osu.user.online_window')));
+        return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
     public function updatePassword($password)

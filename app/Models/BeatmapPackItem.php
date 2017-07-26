@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,37 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tooltip-default {
-  .default-border-radius();
+namespace App\Models;
 
-  background-color: fade(#000, 70%);
-  border: 0 solid transparent;
+class BeatmapPackItem extends Model
+{
+    protected $table = 'osu_beatmappacks_items';
+    protected $primaryKey = 'item_id';
+    public $timestamps = false;
 
-  color: #fff;
+    public function pack()
+    {
+        return $this->belongsTo(BeatmapPack::class, 'pack_id');
+    }
 
-  pointer-events: none;
-
-  &--fixed {
-    position: fixed;
-  }
-
-  &--time {
-    background-color: #333;
-    font-size: @font-size--normal;
-    line-height: 1.1;
-    padding: 2px 10px;
-  }
-
-  .qtip-content {
-    text-align: center;
-  }
-
-  &__date {
-    font-weight: bold;
-    color: #fff;
-  }
-
-  &__time {
-    color: #ccc;
-  }
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+    }
 }

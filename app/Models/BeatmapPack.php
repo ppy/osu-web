@@ -22,9 +22,65 @@ namespace App\Models;
 
 class BeatmapPack extends Model
 {
+    const DEFAULT_TYPE = 'standard';
+    private static $tagMappings = [
+        'standard' => 'S',
+        'theme' => 'T',
+        'artist' => 'A',
+        'chart' => 'R',
+    ];
+
     protected $table = 'osu_beatmappacks';
     protected $primaryKey = 'pack_id';
 
     protected $dates = ['date'];
     public $timestamps = false;
+
+    public function items()
+    {
+        return $this->hasMany(BeatmapPackItem::class, 'pack_id');
+    }
+
+    public function beatmapsets()
+    {
+        $setsTable = (new Beatmapset)->getTable();
+        $itemsTable = (new BeatmapPackItem)->getTable();
+
+        return Beatmapset::query()
+            ->join($itemsTable, "{$itemsTable}.beatmapset_id", '=', "{$setsTable}.beatmapset_id")
+            ->where("{$itemsTable}.pack_id", '=', $this->pack_id);
+    }
+
+    public function downloadUrls()
+    {
+        $array = [];
+        foreach (explode(',', $this->url) as $url) {
+            preg_match('@^https?://(?<host>[^/]+)@i', $url, $matches);
+            $array[] = [
+                'url' => $url,
+                'host' => $matches['host'],
+            ];
+        }
+
+        return $array;
+    }
+
+    public static function getPacks($type)
+    {
+        if (!in_array($type, array_keys(static::$tagMappings), true)) {
+            return;
+        }
+
+        static $packIdSortable = ['standard', 'chart'];
+
+        $tag = static::$tagMappings[$type];
+        $packs = static::where('tag', 'like', "{$tag}%");
+        if (in_array($type, $packIdSortable, true)) {
+            $packs->orderBy('pack_id', 'desc');
+        } else {
+            $packs->orderBy('name', 'asc');
+        }
+
+        return $packs;
+    }
 }

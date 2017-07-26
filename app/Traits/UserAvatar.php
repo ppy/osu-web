@@ -52,11 +52,12 @@ trait UserAvatar
             $this->avatarStorage()->delete($this->user_id);
         } else {
             $filePath = $file->getRealPath();
-            (new ImageProcessor($filePath, [256, 256], 100000))->process();
+            $processor = new ImageProcessor($filePath, [256, 256], 100000);
+            $processor->process();
 
             $this->avatarStorage()->put($this->user_id, file_get_contents($filePath), 'public');
 
-            $entry = $this->user_id.'_'.time();
+            $entry = $this->user_id.'_'.time().'.'.$processor->ext();
         }
 
         if (present(config('osu.avatar.cache_purge_prefix'))) {

@@ -16,37 +16,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tooltip-default {
-  .default-border-radius();
+.js-accordion {
+  display: flex;
+  flex-direction: column;
+  // turn gpu acceleration on in Safari for slideup/down.
+  // Firefox animates faster without forcing 3d translate.
+  // Chrome doesn't care
+  // Applying translateZ(0) onto &__item will cause too many layers in Safari.
+  transform: translateZ(0);
+  -moz-transform: none;
+  -webkit-font-smoothing: antialiased; // fixes font flickering in Safari while animating
 
-  background-color: fade(#000, 70%);
-  border: 0 solid transparent;
-
-  color: #fff;
-
-  pointer-events: none;
-
-  &--fixed {
-    position: fixed;
-  }
-
-  &--time {
-    background-color: #333;
-    font-size: @font-size--normal;
-    line-height: 1.1;
-    padding: 2px 10px;
-  }
-
-  .qtip-content {
-    text-align: center;
-  }
-
-  &__date {
-    font-weight: bold;
-    color: #fff;
-  }
-
-  &__time {
-    color: #ccc;
+  &__item-body {
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
   }
 }
