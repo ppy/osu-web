@@ -18,12 +18,10 @@
 @if(!Auth::user())
 <div class="grid grid--gutters">
     <div class="grid-cell grid-cell--1of2">
-        @php
-            $title = __('users.anonymous.login_link');
-            $text = __('store.username_change.require_login.link_text');
-            $link = Html::link('#', $text, ['class' => 'js-user-link', 'title' => $title]);
-        @endphp
-        {!! __('store.username_change.require_login._', ['link' => $link]) !!}
+        @include('layout._require_login', [
+            'text' => 'store.username_change.require_login._',
+            'link_text' => 'store.username_change.require_login.link_text',
+        ])
     </div>
 </div>
 @else
