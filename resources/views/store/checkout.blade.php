@@ -90,8 +90,14 @@
                     </div>
                 @endif
 
-                <div class="big-button">
-                    @if($order->getTotal() > 0)
+                @if($order->getTotal() > 0)
+                    <div class="big-button">
+                        <a href="/store/checkout" class="btn-osu btn-osu-danger another-button" id="checkout-with-something-else" data-method="post" data-remote="1">
+                            {{ trans("store.checkout.something") }}
+                        </a>
+                    </div>
+
+                    <div class="big-button">
                         <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_xclick">
                             <input type="hidden" name="business" value="5DD65FGXND4GS">
@@ -114,13 +120,15 @@
                             </a>
                             <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
                         </form>
-                    @else
+                    </div>
+                @else
+                    <div class="big-button">
                         {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
                             <input type="hidden" name="completed" value="1">
                             <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
                         {!! Form::close() !!}
+                    </div>
                     @endif
-                </div>
             </div>
         </div>
     @endif
