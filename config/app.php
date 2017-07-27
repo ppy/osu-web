@@ -78,6 +78,12 @@ return [
 
     'locale' => 'en',
 
+    /*
+     * Make sure to check locale name in timeago, momentjs, and carbon.
+     * Carbon is in Http\Middleware\SetLocale (no helper... yet?).
+     * momentjs and timeago are in helper (locale_for_*).
+     * Check respective packages for supported list of languages.
+     */
     'available_locales' => [
         // separate the default
         'en',

@@ -27,12 +27,7 @@
             @endforeach
         </ul>
     @else
-        @php
-            $title = trans('users.anonymous.login_link');
-            $text = trans('beatmappacks.require_login.link_text');
-            $link = Html::link('#', $text, ['class' => 'js-user-link', 'title' => $title]);
-        @endphp
-        {!! trans('beatmappacks.require_login._', ['link' => $link]) !!}
+        {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
     @endif
 </div>
 <ul class="beatmap-pack-items">
