@@ -23,8 +23,8 @@ return [
         'verifying' => 'Weryfikowanie...',
         'issuing' => 'Tworzenie nowego kodu...',
         'info' => [
-            'check_spam' => "Sprawdź folder spam jeśli nie możesz znaleść maila.",
-            'recover' => "Jeśli nie masz dostępu do maila, lub zapomniałeś jakiego użyłeś spróbuj :link.",
+            'check_spam' => 'Sprawdź folder spam jeśli nie możesz znaleść maila.',
+            'recover' => 'Jeśli nie masz dostępu do maila, lub zapomniałeś jakiego użyłeś spróbuj :link.',
             'recover_link' => 'odzyskać maila tutaj',
             'reissue' => 'Możesz także :reissue_link lub :logout_link.',
             'reissue_link' => 'poprosić o inny kod',
