@@ -21,10 +21,10 @@ return [
         'blurb' => [
             'important' => 'PRZECZYTAJ TO ZANIM POBIERZESZ',
             'instruction' => [
-                '_' => "Installation: Kiedy paczka się pobierze, wypakuj .rar do folderu z mapami
+                '_' => 'Installation: Kiedy paczka się pobierze, wypakuj .rar do folderu z mapami
                     Pliki map są nadal skompresowane, więc osu! rozpakuje pojedyńcze mapy zaraz po tym, jak wejdziesz w tryb gry.
                     :scary rozpakowywuj map sampodzielnie,
-                    bądź mapy nie będą dobrze działały w osu!.",
+                    bądź mapy nie będą dobrze działały w osu!.',
                 'scary' => 'NIE',
             ],
             'note' => [
