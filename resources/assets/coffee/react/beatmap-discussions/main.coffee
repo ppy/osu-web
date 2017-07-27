@@ -92,25 +92,32 @@ class BeatmapDiscussions.Main extends React.PureComponent
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
 
-      div
-        className: 'osu-layout__section osu-layout__section--extra'
-        el BeatmapDiscussions.NewDiscussion,
-          currentUser: @state.currentUser
-          currentBeatmap: @state.currentBeatmap
-          currentDiscussions: @currentDiscussions()
-          mode: @state.mode
+      if @state.mode == 'events'
+        div
+          className: 'osu-layout__section osu-layout__section--extra'
+          el BeatmapDiscussions.Events,
+            events: @state.beatmapsetDiscussion.beatmapset_events
 
-        el BeatmapDiscussions.Discussions,
-          beatmapset: @state.beatmapset
-          beatmapsetDiscussion: @state.beatmapsetDiscussion
-          currentBeatmap: @state.currentBeatmap
-          currentDiscussions: @currentDiscussions()
-          currentFilter: @state.currentFilter
-          currentUser: @state.currentUser
-          mode: @state.mode
-          readPostIds: @state.readPostIds
-          userPermissions: @state.userPermissions
-          users: @users()
+      else
+        div
+          className: 'osu-layout__section osu-layout__section--extra'
+          el BeatmapDiscussions.NewDiscussion,
+            currentUser: @state.currentUser
+            currentBeatmap: @state.currentBeatmap
+            currentDiscussions: @currentDiscussions()
+            mode: @state.mode
+
+          el BeatmapDiscussions.Discussions,
+            beatmapset: @state.beatmapset
+            beatmapsetDiscussion: @state.beatmapsetDiscussion
+            currentBeatmap: @state.currentBeatmap
+            currentDiscussions: @currentDiscussions()
+            currentFilter: @state.currentFilter
+            currentUser: @state.currentUser
+            mode: @state.mode
+            readPostIds: @state.readPostIds
+            userPermissions: @state.userPermissions
+            users: @users()
 
 
   checkNew: =>
@@ -197,6 +204,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     if target.discussionId?
       return $.publish 'beatmapDiscussion:jump', id: target.discussionId
+
+    if target.mode == 'events'
+      return @setMode null, 'events'
 
     target.beatmapId ?= @state.currentBeatmap.id
     $.publish 'beatmap:select', id: target.beatmapId

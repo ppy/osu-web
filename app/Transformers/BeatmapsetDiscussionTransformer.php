@@ -28,6 +28,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap_discussions',
+        'beatmapset_events',
         'users',
     ];
 
@@ -45,6 +46,14 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $discussion->beatmapDiscussions->all(),
             new BeatmapDiscussionTransformer()
+        );
+    }
+
+    public function includeBeatmapsetEvents(BeatmapsetDiscussion $discussion)
+    {
+        return $this->collection(
+            $discussion->beatmapset->events->all(),
+            new BeatmapsetEventTransformer()
         );
     }
 

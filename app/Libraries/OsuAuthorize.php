@@ -236,6 +236,11 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetEventViewUserId($user, $event)
+    {
+        return 'ok';
+    }
+
     public function checkChatMessageSend($user, $target)
     {
         $prefix = 'chat.message.send.';

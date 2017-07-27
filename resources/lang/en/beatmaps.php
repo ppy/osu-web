@@ -68,6 +68,7 @@ return [
         ],
 
         'mode' => [
+            'events' => 'Changelogs',
             'general' => 'General',
             'general_all' => 'General (all difficulties)',
             'timeline' => 'Timeline',
