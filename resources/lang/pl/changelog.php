@@ -18,7 +18,7 @@
  */
 return [
     'feed_title' => 'lista',
-    'generic' => 'Naprawiono bugi i dodano mniejsze poprawki.',
+    'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
     'users-online' => '1 użytkownik|:users użytkowników online',
     'prefixes' => [
         'add' => 'dodano',
