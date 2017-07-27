@@ -40,7 +40,7 @@ class MPHistory.Event extends React.Component
 
     div className: 'mp-history-event',
       div className: 'mp-history-event__time',
-        moment(@props.event.timestamp).format 'HH:mm:ss'
+        moment(@props.event.timestamp).format 'LT'
       div className: "mp-history-event__type mp-history-event__type--#{event_type}",
         @icons[event_type].map (m) ->
           el Icon, name: m, key: m
