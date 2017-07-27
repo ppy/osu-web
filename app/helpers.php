@@ -521,7 +521,7 @@ function user_color_style($color, $style)
         return '';
     }
 
-    return sprintf('%s: #%s', $style, e($color));
+    return sprintf('%s: %s', $style, e($color));
 }
 
 function base62_encode($input)
