@@ -22,7 +22,7 @@ return [
             'important' => 'LISEZ CECI AVANT DE TÉLÉCHARGER',
             'instruction' => [
                 '_' => "Installation: Une fois la collection téléchargée, extraire le .rar dans le dossier Songs d'osu!.
-                    Tous les sons sont encore en .zip'd et/ou en .osz'd dans la collection, donc osu! aura besoin d'extraire seul les beatmaps la prochaine fois que vous jouerez.
+                    Tous les sons sont encore en .zip et/ou en .osz dans la collection, donc osu! aura besoin d'extraire seul les beatmaps la prochaine fois que vous jouerez.
                     :scary extraire les zip/osz vous-même,
                     ou les beatmaps ne vont pas s'afficher correctement et osu! va mal fonctionner.",
                 'scary' => 'Ne PAS',
