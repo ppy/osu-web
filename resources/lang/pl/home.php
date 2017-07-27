@@ -23,6 +23,7 @@ return [
         'online' => '<strong>:players</strong> jest obecnie online w <strong>:games</strong> grach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
+        
         'download' => [
             '_' => 'Pobierz teraz',
             'soon' => 'osu! na inne systemy operacyjne pojawi się wkrótce',
@@ -34,8 +35,74 @@ return [
             'sub' => 'rytm jest tylko *kliknięcie* stąd!',
         ],
     ],
+    
+    
+    'search' => [
+        'advanced_link' => 'Zaawansowane wyszkukiwanie',
+        'button' => 'Szukaj',
+        'empty_result' => 'Nic nie znaleziono!',
+        'missing_query' => 'Wyszukiwane hasło musi mieć minimum :n znaki',
+        'title' => 'Wyniki Wyszukiwania',
+        'beatmapset' => [
+            'more' => ':count więcej rezultatów wyszukiwania',
+            'more_simple' => 'Zobacz więcej wyszukanych beatmap',
+            'title' => 'Beatmapy',
+        ],
+        'forum_post' => [
+            'all' => 'Wszystkie fora',
+            'link' => 'Przeszukaj forum',
+            'more_simple' => 'Zobacz więcej wyszukanych postów na forum',
+            'title' => 'Forum',
+            'label' => [
+                'forum' => 'przeszukaj forum',
+                'forum_children' => 'zawiera subforum',
+                'username' => 'autor',
+            ],
+        ],
+        'mode' => [
+            'all' => 'wszystkie',
+            'beatmapset' => 'beatmapa',
+            'forum_post' => 'forum',
+            'user' => 'użytkownik',
+            'wiki_page' => 'wiki',
+        ],
+        'user' => [
+            'more' => ':count więcej znalezionych użytkowników',
+            'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
+            'title' => 'Gracze',
+        ],
+        'wiki_page' => [
+            'link' => 'Przeszukaj wiki',
+            'more_simple' => 'Zobacz więcej wyszukanych artykułów na wiki',
+            'title' => 'Wiki',
+        ],
+    ],
+    'download' => [
+      'header' => [
+          '1' => "let's get",
+          '2' => 'you started',
+          '3' => 'pobierz grę osu! na system Windows',
+      ],
+      'steps' => [
+          '1' => [
+              'name' => 'Ktok 1',
+              'content' => 'Pobierz klienta gry osu!',
+          ],
+          '2' => [
+              'name' => 'Krok 2',
+              'content' => 'Załóż konto na osu!',
+          ],
+          '3' => [
+              'name' => 'Krok 3',
+              'content' => '???',
+          ],
+      ],
+      'more' => 'Dowiedz się więcej!',
+      'more_text' => 'Sprawdź kanał YouTube <a href="https://www.youtube.com/user/osuacademy/">osu!academy/a> po aktualne poradniki i wskazówki jak dowiedzieć się wszystkiego o świecie osu!',
+    ],
+
     'user' => [
-        'title' => 'news',
+        'title' => 'wiadomości',
         'news' => [
             'title' => 'Wiadomości',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
@@ -52,9 +119,9 @@ return [
             'popular' => 'Popularne mapy',
         ],
         'buttons' => [
-            'download' => 'pobierz osu!',
-            'support' => 'wesprzyj osu!',
-            'store' => 'sklep osu!',
+            'download' => 'Pobierz osu!',
+            'support' => 'Wesprzyj osu!',
+            'store' => 'Sklep osu!',
         ],
     ],
 ];
