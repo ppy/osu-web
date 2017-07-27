@@ -30,6 +30,21 @@ services:
             - ./docker/mariadb/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    composer:
+        build:
+            context: ./docker/php
+            args:
+                _uid: ${_UID:-1000}
+                _gid: ${_GID:-1000}
+        container_name: osuweb-composer
+        volumes:
+            - .:/data/osu!web
+            - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
+        environment:
+            DB_HOST: osuweb-mariadb
+        user: osuweb
+        working_dir: /data/osu!web
+        command: bash /data/osu!web/docker/php/build.sh
 
 volumes:
     database:
