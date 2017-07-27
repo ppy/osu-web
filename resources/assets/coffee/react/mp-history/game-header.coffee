@@ -20,7 +20,7 @@
 el = React.createElement
 
 class MPHistory.GameHeader extends React.Component
-  timeFormat: 'HH:mm:ss'
+  timeFormat: 'LT'
 
   render: ->
     timeStart = moment(@props.game.start_time).format @timeFormat
