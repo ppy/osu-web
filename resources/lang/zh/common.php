@@ -45,6 +45,12 @@ return [
         'item' => ':count 个', //参考翻译:件/份/个
     ],
 
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'YYYY年 MMMM',
+        ],
+    ],
+
     'device' => [
         'keyboard' => '键盘',
         'mouse' => '鼠标',
