@@ -34,7 +34,7 @@ return [
             'main' => 'darmowa gra rytmiczna',
             'sub' => 'rytm jest tylko *kliknięcie* stąd!',
         ],
-    ];
+    ],
     'search' => [
         'advanced_link' => 'Zaawansowane wyszkukiwanie',
         'button' => 'Szukaj',
