@@ -81,7 +81,6 @@ return [
         'hours_ago' => ':count 小时前',
         'now' => '现在',
         'remaining' => '剩余时间',
-        
     ],
 
     'title' => [
