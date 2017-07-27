@@ -19,7 +19,7 @@
 return [
     'user_search' => [
         'searching' => 'szukanie...',
-        'not_found' => "Ten użytkownik nie istnieje",
+        'not_found' => 'Ten użytkownik nie istnieje',
     ],
     'duration' => [
         'months' => ':length miesiąc|:length miesięcy|{0}',
