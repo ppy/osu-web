@@ -19,7 +19,25 @@
  */
 
 return [
+    'page_description' => 'Oficialni artyści w osu!',
+    'title' => 'Oficjani Artyści',
+    'admin' => [
+        'hidden' => 'ARTYSTA JEST AKTUALNIE SCHOWANY',
+    ],
+    'beatmaps' => [
+        '_' => 'Beatmapy',
+        'download' => 'Pobierz szablon beatmapy',
+        'download-na' => 'Szablon beatmapy nie jest jeszcze dostępny',
+    ],
+    'index' => [
+        'description' => 'Oficialni artyści to artyści, którzy pracują w zgodzie, żeby dostarczyć nową muzykę do osu! Artyści i ich utwory były ręcznie wybierane przes osu! team jako przystępne do zmapowania. Wielu z oficialnych artystów utworzyło także specjalne utwory do użytku w osu!<br><br>Wszystkie utwory w tej sekcji posiadają ztimingowane pliki .osz i są oficialnie licencjonowane do użytku w osu! i w twórczości osu!',
+    ],
+    'links' => [
+        'site' => 'Oficjalna strona internetowa',
+    ],
     'songs' => [
-        'count' => '1 song|:count songs|:count songs',
+        '_' => 'Utwory',
+        'count' => '1 utwór|:count utwory',
+        'exclusive' => 'ekskluzywny dla osu!',
     ],
 ];
