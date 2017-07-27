@@ -71,10 +71,6 @@ return [
     ],
 
     'time' => [
-        'date_format' => [
-            'M_Y' => 'MMMM YYYY',
-            'Do_M_Y' => 'Do MMM YYYY'
-        ],
         'days_ago' => ':count day ago|:count days ago',
         'hours_ago' => ':count hour ago|:count hours ago',
         'now' => 'now',
