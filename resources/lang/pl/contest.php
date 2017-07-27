@@ -25,13 +25,13 @@ return [
         'over' => 'Głosowanie w tym konkursie się zakończyło',
         'login_required' => 'Zaloguj się, żeby zagłosować.',
         'best_of' => [
-            'none_played' => "Wygląda na to, że nie grałeś żadnej z map kwalifikujących się do tego konkursu!",
+            'none_played' => 'Wygląda na to, że nie grałeś żadnej z map kwalifikujących się do tego konkursu!',
         ],
     ],
     'entry' => [
         '_' => 'zgłoszenie',
         'login_required' => 'Musisz się zalogować, żeby zgłosić się do konkursu.',
-        'silenced_or_restricted' => 'Nie możesz brać udziału w konkursach, jeśli jesteś uciszony, bądź jesteś w restricted mode.',
+        'silenced_or_restricted' => 'Nie możesz brać udziału w konkursach, jeśli jesteś uciszony, bądź jesteś zbanowany.',
         'preparation' => 'Aktualnie pracujemy nad tym konkursem. Czekaj cierpliwie!',
         'over' => 'Dziękujemy za zgłoszenia! Zgłoszenia zostały zamknięte, a wkrótce zacznie się głosowanie.',
         'limit_reached' => 'Przekroczyłeś limit zgłoszeń do tego konkursu',
