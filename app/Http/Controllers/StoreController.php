@@ -126,11 +126,13 @@ class StoreController extends Controller
             return ujs_redirect('/store/cart');
         }
 
+        $checkout = new \App\Libraries\CheckoutHelper($order);
+
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
         $delayedShipping = Store\Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
 
-        return view('store.checkout', compact('order', 'addresses', 'delayedShipping'));
+        return view('store.checkout', compact('order', 'addresses', 'delayedShipping', 'checkout'));
     }
 
     public function missingMethod($parameters = [])

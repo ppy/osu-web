@@ -264,6 +264,22 @@ class Order extends Model
         };
     }
 
+    public function getCustomExtraData($className)
+    {
+        $items = $this->items()->join('products', 'order_items.product_id', 'products.product_id')->where('products.custom_class', $className);
+
+        return $items;
+    }
+
+    public function derp()
+    {
+        $items = $this->items()
+            ->join('products', 'order_items.product_id', 'products.product_id')
+            ->where('products.custom_class', 'supoprter-tag');
+
+        return $items;
+    }
+
     private function removeOrderItem(array $params)
     {
         $itemId = $params['id'];

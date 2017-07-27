@@ -23,6 +23,7 @@ namespace App\Models;
 class SupporterTag
 {
     const MIN_DONATION = 4;
+    const PRODUCT_CUSTOM_CLASS = 'supporter-tag';
 
     /**
      * Gets the duration for a donated amount.

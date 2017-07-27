@@ -18,8 +18,6 @@
 @extends("master")
 
 @section("content")
-    <script src="{{ mix("js/paybar.js") }}" data-turbolinks-track="reload"></script>
-
     @include("store.header")
 
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
@@ -92,26 +90,10 @@
                     </div>
                 @endif
 
-                @if($order->getTotal() > 0)
-                    <div id="paybar" class="store-checkout__paybar"></div>
-                    <script type="text/javascript">
-                        XPBWidget.init({
-                            element_id   : 'paybar',
-                            type         : 'lightbox',
-                            project      : "{{ env('XSOLLA_PROJECT_ID') }}",
-                            v1           : 'nice name',
-                            v2           : 'order code?',
-                            out          : {{ $order->getTotal() }},
-                            email        : "{{ Auth::user()->user_email }}",
-                            scripthost   : 'https://secure.xsolla.com',
-                            itemTemplate : '<span><a href="%HREF%" target="_blank"><img src="%ICON_SRC%" /><b>%NAME%</b></a></span>',
-                            css          : 'example4.css',
-                            errorCallback: function(message, category) { alert('Error "' + message + '"	at ' + category); },
-                            doneCallback : function() {},
-                            template     : { id: 'inline', icon_count: 5, other: true }
-                        });
-                    </script>
-
+                @if ($order->getTotal() > 0)
+                    @if ($checkout->allowXsollaPayment())
+                        @include('store._xsolla_paybar', ['checkout' => $checkout])
+                    @endif
                     <div class="big-button">
                         <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_xclick">
