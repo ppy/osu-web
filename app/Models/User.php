@@ -174,8 +174,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
 
-        $query = static::where('username', 'LIKE', "{$params['query']}%")
-            ->where('username', 'NOT LIKE', '%_old')
+        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
+            ->where('username', 'NOT LIKE', '%\_old')
             ->default();
 
         return [

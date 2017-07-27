@@ -22,7 +22,7 @@ el = React.createElement
 bn = 'beatmapset-mapping'
 
 @BeatmapsetMapping = ({user, beatmapset}) ->
-  dateFormat = 'MMM D, YYYY'
+  dateFormat = 'LL'
   user ?= beatmapset.user
 
   div className: bn,
