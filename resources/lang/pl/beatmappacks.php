@@ -19,27 +19,27 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => 'PRZECZYTAJ TO ZANIM POBIERZESZ',
+            'important' => 'WAŻNE',
             'instruction' => [
-                '_' => 'Installation: Kiedy paczka się pobierze, wypakuj .rar do folderu z mapami
+                '_' => 'Instalacja: Kiedy paczka się pobierze, wypakuj .rar do folderu z mapami
                     Pliki map są nadal skompresowane, więc osu! rozpakuje pojedyńcze mapy zaraz po tym, jak wejdziesz w tryb gry.
                     :scary rozpakowywuj map sampodzielnie,
                     bądź mapy nie będą dobrze działały w osu!.',
                 'scary' => 'NIE',
             ],
             'note' => [
-                '_' => 'Jest wysoko zalecane :scary, ponieważ najstarsze mapy znacznie odstają jakością od nowszych.',
+                '_' => 'Pobieranie paczek beatmap od najnowszych do najstarszych jest wysoko zalecane :scary, ponieważ najstarsze mapy znacznie odstają jakością od nowszych.',
                 'scary' => 'pobierać paczki map od najnowszych do najstarszych',
             ],
         ],
         'title' => 'Paczki beatmap',
-        'description' => 'Spakowane kolekcje beatmap o wspólnym temacie.',
+        'description' => 'Kolekcje beatmap o wspólnej tematyce.',
     ],
     'show' => [
         'download' => 'Pobierz',
         'item' => [
-            'cleared' => 'pokonana',
-            'not_cleared' => 'niepokonana',
+            'cleared' => 'Ukończona',
+            'not_cleared' => 'Nieukończona',
         ],
     ],
     'mode' => [
@@ -49,7 +49,7 @@ return [
         'theme' => 'Tematyczne',
     ],
     'require_login' => [
-        '_' => 'Muszisz być :link ,żeby pobrać',
-        'link_text' => 'zalogowany',
+        '_' => 'Aby pobrać paczkę beatmap, musisz się :link',
+        'link_text' => 'zalogować',
     ],
 ];
