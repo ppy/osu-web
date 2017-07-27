@@ -53,7 +53,7 @@ return [
             'show' => '信息',
             'index' => '列表',
             'artists' => '杰出艺术家',
-            'packs' => '谱面包',
+            'packs' => '曲包',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [

@@ -155,8 +155,8 @@ return [
                 'title' => '关于我！',
             ],
             'medals' => [
-                'empty' => '该用户还没有获得奖牌。;_;',
-                'title' => '奖牌',
+                'empty' => '该用户还没有获得奖章。;_;',
+                'title' => '奖章',
             ],
             'recent_activities' => [
                 'title' => '最近活动',
