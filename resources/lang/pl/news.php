@@ -43,3 +43,4 @@ return [
         'button' => 'Zaktualizuj',
         'ok' => 'Post zaktualizowany.',
     ],
+];
