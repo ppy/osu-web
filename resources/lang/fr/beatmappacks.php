@@ -28,7 +28,7 @@ return [
                 'scary' => 'Ne PAS',
             ],
             'note' => [
-                '_' => 'Notez aussi qu'il est recommandé de :scary, car les anciennes beatmaps sont de moins bonne qualité que les nouvelles beatmaps.',
+                '_' => "Notez aussi qu'il est recommandé de :scary, car les anciennes beatmaps sont de moins bonne qualité que les nouvelles beatmaps."
                 'scary' => 'télécharger les collections de la plus récente à la plus ancienne',
             ],
         ],
@@ -44,7 +44,8 @@ return [
     ],
     'mode' => [
         'artist' => 'Artiste/Album',
-        // 'chart' => 'Chart',
+        // unsure for this
+        'chart' => 'Classement',
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],
