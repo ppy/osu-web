@@ -94,10 +94,10 @@
 
 @if (Auth::user() && Auth::user()->isRestricted())
     <div class="osu-page">
-        @include('objects._notification-banner', [
+        @include('objects._notification_banner', [
             'type' => 'alert',
-            'title' => trans('users.restricted-banner.title'),
-            'message' => trans('users.restricted-banner.message'),
+            'title' => trans('users.restricted_banner.title'),
+            'message' => trans('users.restricted_banner.message'),
         ])
     </div>
 @endif

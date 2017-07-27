@@ -27,25 +27,21 @@
   .default-box-shadow();
   .default-text-shadow();
 
-  font-size: 12px;
+  font-size: @font-size--normal;
 
   &::before {
-    width: 100%;
+    .full-size();
     height: 5px;
     background-image: url(/images/layout/caution-bar.png);
     background-position: top center;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    content: "";
   }
 
   &--alert {
-    background-image: linear-gradient(to bottom, rgba(135, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+    background-image: linear-gradient(to bottom, fade(@red-darker, 40%), fade(black, 40%));
   }
 
   &--warning {
-    background-image: linear-gradient(to bottom, rgba(204, 102, 0, 0.25), rgba(0, 0, 0, 0.25));
+    background-image: linear-gradient(to bottom, fade(@yellow-darker, 25%), fade(black, 25%));
   }
 
 
@@ -61,7 +57,6 @@
   }
 
   &__icon-label {
-    font-size: 12px;
     font-weight: bold;
     margin-bottom: 5px;
   }
@@ -78,14 +73,14 @@
     width: 250px;
     height: 5px;
     border-radius: 2.5px;
-    .center-content();
+    display: inline-flex;
 
     .@{top}--alert & {
-      background-color: #ED1221;
+      background-color: @red;
     }
 
     .@{top}--warning & {
-      background-color: #FFCC20;
+      background-color: @yellow;
     }
   }
 }

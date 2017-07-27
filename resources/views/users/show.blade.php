@@ -25,10 +25,10 @@
 @section("content")
     @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
         <div class="osu-page">
-            @include('objects._notification-banner', [
+            @include('objects._notification_banner', [
                 'type' => 'warning',
-                'title' => trans('admin.users.restricted-banner.title'),
-                'message' => trans('admin.users.restricted-banner.message'),
+                'title' => trans('admin.users.restricted_banner.title'),
+                'message' => trans('admin.users.restricted_banner.message'),
             ])
         </div>
     @endif
