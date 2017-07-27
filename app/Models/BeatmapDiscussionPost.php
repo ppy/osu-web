@@ -112,9 +112,12 @@ class BeatmapDiscussionPost extends Model
             return trans('model_validation.beatmap_discussion_post.first_post');
         }
 
+        $time = Carbon::now();
+
         $this->update([
             'deleted_by_id' => $deletedBy->user_id ?? null,
-            'deleted_at' => Carbon::now(),
+            'deleted_at' => $time,
+            'updated_at' => $time,
         ]);
     }
 
