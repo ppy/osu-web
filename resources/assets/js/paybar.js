@@ -95,7 +95,7 @@ if (typeof(XPBWidget) == 'undefined')
             loader.requireScript
             ([
                 this.__pluginUrl + 'js/jquery.mousewheel-3.0.4.pack.js',
-                this.__pluginUrl + 'js/jquery.fancybox-1.3.4.pack.js'
+                // this.__pluginUrl + 'js/jquery.fancybox-1.3.4.pack.js'
             ], function()
             {
                 self.initWidget();
