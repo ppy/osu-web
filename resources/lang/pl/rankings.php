@@ -16,25 +16,4 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-return [
-    'header' => 'Ranking :type',
-    'type' => [
-        'performance' => 'Globalny',
-        'charts' => 'Wyróżnionych',
-        'score' => 'Punktowy',
-        'country' => 'Krajowy',
-    ],
-    'stat' => [
-        'accuracy' => 'Celność',
-        'active_users' => 'Aktywnych użytkowników',
-        'country' => 'Kraj',
-        'play_count' => 'Ilość zagrań',
-        'performance' => 'Celność',
-        'total_score' => 'Ilość punktów',
-        'ranked_score' => 'Ilość punktów rankingowych',
-        'average_score' => 'Średni wynik',
-        'average_performance' => 'Avg. Perf.',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
-    ],
+return [];
