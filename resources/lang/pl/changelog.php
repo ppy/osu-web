@@ -17,12 +17,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 return [
-    'feed_title' => 'feed',
+    'feed_title' => 'lista',
     'generic' => 'Naprawiono bugi i dodano mniejsze poprawki.',
     'users-online' => '1 użytkownik|:users użytkowników online',
     'prefixes' => [
         'add' => 'dodano',
         'fix' => 'naprawiono',
-        'misc' => 'miscellanous',
+        'misc' => 'różne',
     ],
 ];
