@@ -77,6 +77,10 @@
     width: @beatmap-discussion--avatar-size;
     height: @beatmap-discussion--avatar-size;
     flex: none;
+
+    .@{_top}--new-reply & {
+      margin-right: 10px;
+    }
   }
 
   &__avatar-container {
@@ -136,33 +140,6 @@
 
   &__info-user {
     font-weight: 600;
-
-    &--moderator {
-      background-color: @_moderator-bg;
-
-      .link-hover({
-        background-color: @_moderator-bg-hover;
-      });
-    }
-
-    &--owner {
-      background-color: @_owner-bg;
-
-      .link-hover({
-        background-color: @_owner-bg-hover;
-      });
-    }
-
-    &--special {
-      .link-plain();
-      border-radius: @border-radius-large;
-      padding: 1px 5px;
-      color: #fff;
-
-      .link-hover({
-        color: #fff;
-      });
-    }
   }
 
   &__message {
@@ -215,22 +192,97 @@
     });
   }
 
+  &__user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 5px;
+    height: @beatmap-discussion--avatar-size;
+  }
+
   &__user-badge {
     border-radius: @border-radius-large;
     font-size: @font-size--small;
     color: #fff;
     padding: 1px 5px;
-    align-self: center;
     flex: none;
     margin-top: 5px;
     text-transform: uppercase;
 
-    &--moderator {
+    .@{_top}--admin & {
       background-color: @_moderator-bg;
     }
 
-    &--owner {
+    .@{_top}--bng & {
+      background-color: @_moderator-bg;
+    }
+
+    .@{_top}--owner & {
       background-color: @_owner-bg;
+    }
+
+    .@{_top}--qat & {
+      background-color: @_moderator-bg;
+    }
+  }
+
+  &__user-container {
+    display: flex;
+    align-items: flex-start;
+    margin-right: 10px;
+
+    .link-plain();
+    color: @user-color-default;
+
+    .link-hover({
+      color: @user-color-default;
+    });
+  }
+
+  &__user-stripe {
+    width: 2px;
+    align-self: stretch;
+    background-color: @user-color-default;
+    border-radius: 1px;
+
+    .@{_top}--admin & {
+      background-color: @_moderator-bg;
+    }
+
+    .@{_top}--bng & {
+      background-color: @_moderator-bg;
+    }
+
+    .@{_top}--owner & {
+      background-color: @_owner-bg;
+    }
+
+    .@{_top}--qat & {
+      background-color: @_moderator-bg;
+    }
+  }
+
+  &__user-text {
+    font-size: @font-size--normal-2;
+    font-weight: bold;
+    font-style: italic;
+    max-width: 120px;
+
+    .@{_top}--admin & {
+      color: @_moderator-bg;
+    }
+
+    .@{_top}--bng & {
+      color: @_moderator-bg;
+    }
+
+    .@{_top}--owner & {
+      color: @_owner-bg;
+    }
+
+    .@{_top}--qat & {
+      color: @_moderator-bg;
     }
   }
 }

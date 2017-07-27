@@ -43,9 +43,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        div className: "#{bn}__avatar-container",
-          div className: "#{bn}__avatar",
-            el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
         div className: "#{bn}__message-container",
           textarea
