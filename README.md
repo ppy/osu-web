@@ -26,6 +26,20 @@ There are a few different options to get started:
 - Create a fresh Ubuntu environment and run `sudo bootstrap.sh`. Note that this script is intended to be run on a *sandboxed environment*; do not run it on a shared development system without first understanding what it does.
 - Use the php built-in server (run `php -S 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
 - Use vagrant (`cd vagrant; vagrant up`). Note that this is not actively supported or tested, and it is known to be quite slow on some platforms.
+- Use Docker:
+  - First, [install](https://docs.docker.com/compose/install/) Docker and Docker Compose, then run `docker-compose up` in the main directory.
+  - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
+  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the `docker-compose build` command first, supplying your ids as env variables:
+
+  ```bash
+  _UID=1001 _GID=1001 docker-compose build
+  ```
+  This shouldn't be necessary during any further runs, unless you decide to rebuild your containers.
+
+  - Because of some bad database migrations, this command will currently fail. They are completely safe to ignore, as they nullify each other, so just simply delete those two files locally:
+    - `database/migrations/2016_08_25_055700_create_contest_vote_aggregates_view.php`
+    - `database/migrations/2017_02_13_013536_delete_contest_vote_aggregates_view.php`
+
 - Use your existing web dev environment.
 
 ### Creating user
