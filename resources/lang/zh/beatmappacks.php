@@ -35,7 +35,7 @@ return [
             ],
         ],
         'title' => '谱面包',
-        'description' => '以特定主题打包好的谱面包', //需要帮助
+        'description' => '围绕某个相同主题打包好的谱面包',
     ],
 
     'show' => [

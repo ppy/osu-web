@@ -84,8 +84,8 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => '该账户受限',
+            'message' => '（只有管理员能看到这条消息）',
         ],
     ],
 
