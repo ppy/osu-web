@@ -174,7 +174,11 @@ mix
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't
                             // work so well when versioning is used with webpack.
-.scripts(vendor, 'public/js/vendor.js');
+.scripts(vendor, 'public/js/vendor.js')
+.scripts([
+  'resources/assets/js/jquery.fancybox.js',
+  'resources/assets/js/paybar.js',
+], 'public/js/paybar.js');
 
 if (mix.inProduction()) {
   mix.version();
