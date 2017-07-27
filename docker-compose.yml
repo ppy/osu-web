@@ -45,6 +45,18 @@ services:
         user: osuweb
         working_dir: /data/osu!web
         command: bash /data/osu!web/docker/php/build.sh
+    yarn:
+        build:
+            context: ./docker/yarn
+            args:
+                _uid: ${_UID:-1000}
+                _gid: ${_GID:-1000}
+        container_name: osuweb-yarn
+        volumes:
+            - .:/data/osuweb
+        user: osuweb
+        working_dir: /data/osuweb
+        command: bash -c "yarn && yarn run watch"
 
 volumes:
     database:
