@@ -23,6 +23,16 @@
 ])
 
 @section("content")
+    @if (Auth::user() && Auth::user()->isAdmin() && $user->isRestricted())
+        <div class="osu-page">
+            @include('objects._notification_banner', [
+                'type' => 'warning',
+                'title' => trans('admin.users.restricted_banner.title'),
+                'message' => trans('admin.users.restricted_banner.message'),
+            ])
+        </div>
+    @endif
+
     <div class="js-react--profile-page"></div>
     {{--
         this should content a server side react.js render which doesn't exist in hhvm

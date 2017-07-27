@@ -176,16 +176,6 @@ class BeatmapDiscussions.Post extends React.PureComponent
           dangerouslySetInnerHTML:
             __html: osu.timeago(@props.post.created_at)
 
-        if @props.post.updated_at != @props.post.created_at
-          span
-            className: "#{bn}__info #{bn}__info--edited"
-            dangerouslySetInnerHTML:
-              __html: osu.trans 'beatmaps.discussions.edited',
-                editor: osu.link laroute.route('users.show', user: @props.lastEditor.id),
-                  @props.lastEditor.username
-                  classNames: ["#{bn}__info-user"]
-                update_time: osu.timeago @props.post.updated_at
-
         if deleteModel.deleted_at?
           span
             className: "#{bn}__info #{bn}__info--edited"
@@ -195,6 +185,16 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   @props.users[deleteModel.deleted_by_id].username
                   classNames: ["#{bn}__info-user"]
                 delete_time: osu.timeago @props.post.deleted_at
+
+        if @props.post.updated_at != @props.post.created_at && @props.post.updated_at != @props.post.deleted_at
+          span
+            className: "#{bn}__info #{bn}__info--edited"
+            dangerouslySetInnerHTML:
+              __html: osu.trans 'beatmaps.discussions.edited',
+                editor: osu.link laroute.route('users.show', user: @props.lastEditor.id),
+                  @props.lastEditor.username
+                  classNames: ["#{bn}__info-user"]
+                update_time: osu.timeago @props.post.updated_at
 
       div
         className: "#{bn}__actions"

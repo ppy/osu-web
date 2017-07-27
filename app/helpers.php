@@ -135,6 +135,11 @@ function locale_for_timeago($locale)
     return $locale;
 }
 
+function mysql_escape_like($string)
+{
+    return addcslashes($string, '%_\\');
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
