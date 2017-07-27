@@ -49,6 +49,7 @@ class SetLocale
         $locale = get_valid_locale($locale);
 
         App::setLocale($locale);
+        // Carbon setLocale normalizes the locale
         Carbon\Carbon::setLocale($locale);
 
         return $next($request);
