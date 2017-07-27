@@ -22,6 +22,7 @@ namespace App\Http\Middleware;
 
 use App;
 use Auth;
+use Carbon;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -48,6 +49,7 @@ class SetLocale
         $locale = get_valid_locale($locale);
 
         App::setLocale($locale);
+        Carbon\Carbon::setLocale($locale);
 
         return $next($request);
     }
