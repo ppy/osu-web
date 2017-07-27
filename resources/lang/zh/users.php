@@ -49,11 +49,14 @@ return [
         'error' => '请先登录',
     ],
     'logout_confirm' => '你确定要退出吗？(^·ω·^ )',
+    'restricted_banner' => [
+        'title' => '账户已受限！',
+        'message' => '在被限制时，不能与其他玩家互动，并且您的分数只有您自己可见。该限制通常由系统自动给予，并将在24小时内解除。如果您需要申诉，请<a href="mailto:accounts@ppy.sh">联系客服</a>.',
+    ],
     'show' => [
         '404' => '找不到指定的用户',
         'age' => ':age 岁',
         'current_location' => '现在在 :location',
-        'dateFormat' => 'YYYY年 MMMM',
         'first_members' => '最初的用户', //TODO 需要上下文
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
@@ -62,7 +65,7 @@ return [
         'missingtext' => '您可能输错了！（或者该用户已经被 ban）',
         'origin_age' => ':age 岁',
         'origin_country' => '来自 :country',
-        'origin_country_age' => ':age,来自 :country',
+        'origin_country_age' => ':age，来自 :country',
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'plays_with' => '惯用 :devices',
         'title' => ':username 的个人资料',
@@ -76,7 +79,7 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义皮肤只有 <a href='".osu_url('support-the-game')."' target='_blank'>osu! 支持者</a> 可用",
+                    'restriction_info' => "自定义皮肤只有 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 可用",
                     'size_info' => '图片尺寸应为2000x500',
                     'too_large' => '上传的图片过大.',
                     'unsupported_format' => '不支持的格式.',
@@ -84,6 +87,9 @@ return [
             ],
         ],
         'extra' => [
+            'followers' => '粉丝：:count',
+            'unranked' => '最近没有玩过',
+
             'achievements' => [
                 'title' => '成就',
                 'achieved-on' => '达成于 :date',
@@ -91,7 +97,6 @@ return [
             'beatmaps' => [
                 'title' => '谱面',
             ],
-            'followers' => '粉丝：:count',
             'historical' => [
                 'empty' => '没有游戏记录。:(',
                 'most_played' => [
@@ -106,11 +111,11 @@ return [
             ],
             'kudosu' => [
                 'available' => '可用 kudosu',
-                'available_info' => 'kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意. 这是你还没有兑换的 kudosu 数量.',
+                'available_info' => 'kudosu 可以兑换为 kudosu 星,它可以让你的谱面更引人注意。这是你还没有兑换的 kudosu 数。',
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
-                'total_info' => '取决于您对制谱的贡献如何. 查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息.',
+                'total_info' => '取决于您对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -183,7 +188,7 @@ return [
             'description' => '<strong>关于我！</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu! 支持者</a> 以解锁该特性.",
+            'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',

@@ -71,10 +71,15 @@ return [
     ],
 
     'time' => [
+        'date_format' => [
+            'M_Y' => 'YYYY年 MMMM',
+            'Do_M_Y' => 'YYYY年 MMM Do'
+        ],
         'days_ago' => ':count 天前',
         'hours_ago' => ':count 小时前',
         'now' => '现在',
         'remaining' => '剩余时间',
+        
     ],
 
     'title' => [

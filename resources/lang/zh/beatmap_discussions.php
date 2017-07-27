@@ -40,6 +40,9 @@ return [
     ],
 
     'user' => [
-        'owner' => '制谱人',
+        'admin' => 'admin',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 ];
