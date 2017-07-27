@@ -22,8 +22,7 @@ return [
     'landing' => [
         'online' => '<strong>:players</strong> jest obecnie online w <strong>:games</strong> grach',
         'peak' => ':count użytkowników online',
-        'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
-        
+        'players' => '<strong>:count</strong> zarejestrowanych użytkowników'
         'download' => [
             '_' => 'Pobierz teraz',
             'soon' => 'osu! na inne systemy operacyjne pojawi się wkrótce',
@@ -34,9 +33,7 @@ return [
             'main' => 'darmowa gra rytmiczna',
             'sub' => 'rytm jest tylko *kliknięcie* stąd!',
         ],
-    ],
-    
-    
+    ].
     'search' => [
         'advanced_link' => 'Zaawansowane wyszkukiwanie',
         'button' => 'Szukaj',
