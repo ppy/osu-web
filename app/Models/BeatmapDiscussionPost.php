@@ -110,6 +110,7 @@ class BeatmapDiscussionPost extends Model
                 'user_id' => $restoredBy->user_id ?? null,
                 'comment' => [
                     'beatmap_discussion_post_id' => $this->getKey(),
+                    'beatmap_discussion_id' => $this->beatmapDiscussion->getKey(),
                 ],
             ]);
 
@@ -130,6 +131,7 @@ class BeatmapDiscussionPost extends Model
                     'user_id' => $deletedBy->user_id ?? null,
                     'comment' => [
                         'beatmap_discussion_post_id' => $this->getKey(),
+                        'beatmap_discussion_id' => $this->beatmapDiscussion->getKey(),
                     ],
                 ]);
             }

@@ -30,6 +30,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
         $userId = priv_check('BeatmapsetEventViewUserId')->can() ? $event->user_id : null;
 
         return [
+            'id' => $event->id,
             'type' => $event->type,
             'comment' => $event->comment,
             'created_at' => json_time($event->created_at),
