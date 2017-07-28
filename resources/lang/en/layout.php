@@ -32,6 +32,7 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icons',
+            'groups-show' => 'groups',
             'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'news',
@@ -52,7 +53,7 @@ return [
             'show' => 'info',
             'index' => 'listing',
             'artists' => 'featured artists',
-            // 'getPacks' => 'packs',
+            'packs' => 'packs',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [

@@ -28,6 +28,8 @@ class @AccountEdit
   initializeUpdate: (e) =>
     form = e.currentTarget
 
+    return if form.dataset.accountEditAutoSubmit != '1'
+
     @abortUpdate form
     form.debouncedUpdate ?= _.debounce @update, 1000
     form.debouncedUpdate form
@@ -52,7 +54,7 @@ class @AccountEdit
   saved: (el) =>
     el.dataset.accountEditState = 'saved'
 
-    Timeout.set 3000, =>
+    el.savedTimeout = Timeout.set 3000, =>
       @clearState el
 
 
@@ -62,7 +64,6 @@ class @AccountEdit
 
   abortUpdate: (form) =>
     Timeout.clear form.savedTimeout
-    Timeout.clear form.savingTimeout
     form.updating?.abort()
     @clearState form
 
@@ -76,8 +77,7 @@ class @AccountEdit
 
     form.dataset.lastValue = value
 
-    form.savingTimeout = Timeout.set 1000, =>
-      @saving form
+    @saving form
 
     form.updating = $.ajax laroute.route('account.update'),
       method: 'PUT'
@@ -92,6 +92,3 @@ class @AccountEdit
 
       form.lastValue = prevValue
       osu.ajaxError xhr
-
-    .always =>
-      Timeout.clear form.savingTimeout

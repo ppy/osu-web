@@ -18,13 +18,17 @@
 
 class @PostPreview
   constructor: ->
-    $(document).on 'input', '.js-post-preview--auto', _.debounce(@loadPreview, 500)
+    @debouncedLoadPreview = _.debounce @loadPreview, 500
+
+    $(document).on 'input', '.js-post-preview--auto', (e) =>
+      # get the target immediately because event object may change later.
+      @debouncedLoadPreview(e.currentTarget)
 
 
-  loadPreview: (e) =>
-    $form = $(e.target).closest('form')
+  loadPreview: (target) =>
+    $form = $(target).closest('form')
     url = laroute.route('bbcode-preview')
-    body = e.currentTarget.value
+    body = target.value
     $preview = $form.find('.js-post-preview--body')
     $previewBox = $form.find('.js-post-preview--box')
 

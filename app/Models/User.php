@@ -174,8 +174,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
 
-        $query = static::where('username', 'LIKE', "{$params['query']}%")
-            ->where('username', 'NOT LIKE', '%_old')
+        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
+            ->where('username', 'NOT LIKE', '%\_old')
             ->default();
 
         return [
@@ -784,7 +784,9 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        return $this->relations()->friends();
+        // 'cuz hasManyThrough is derp
+
+        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
     }
 
     public function foes()
@@ -992,6 +994,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public function scopeOnline($query)
+    {
+        return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
     public function updatePassword($password)

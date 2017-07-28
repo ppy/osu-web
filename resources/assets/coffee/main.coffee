@@ -30,6 +30,7 @@ $(document).on 'submit', 'form', (e) ->
   LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
 $(document).on 'turbolinks:load', ->
+  BeatmapPack.initialize()
   StoreSupporterTag.initialize()
 
 @accountEdit ?= new AccountEdit

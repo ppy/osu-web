@@ -40,6 +40,9 @@ return [
     ],
 
     'user' => [
+        'admin' => 'admin',
+        'bng' => 'nominator',
         'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 ];

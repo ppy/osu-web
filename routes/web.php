@@ -52,6 +52,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 Route::group(['prefix' => 'beatmaps'], function () {
     // featured artists
     Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
+    Route::resource('packs', 'BeatmapPacksController', ['only' => ['index', 'show']]);
 });
 Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beatmaps.scores');
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
@@ -153,6 +154,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::put('password-reset', 'PasswordResetController@update');
 
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
+    Route::resource('groups', 'GroupsController', ['only' => ['show']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 

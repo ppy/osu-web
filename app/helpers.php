@@ -113,6 +113,19 @@ function locale_name($locale)
     return App\Libraries\LocaleMeta::nameFor($locale);
 }
 
+function locale_for_moment($locale)
+{
+    if ($locale === 'en') {
+        return;
+    }
+
+    if ($locale === 'zh') {
+        return 'zh-cn';
+    }
+
+    return $locale;
+}
+
 function locale_for_timeago($locale)
 {
     if ($locale === 'zh') {
@@ -120,6 +133,11 @@ function locale_for_timeago($locale)
     }
 
     return $locale;
+}
+
+function mysql_escape_like($string)
+{
+    return addcslashes($string, '%_\\');
 }
 
 function osu_url($key)
@@ -181,6 +199,15 @@ function read_image_properties_from_string($string)
     if ($data !== false) {
         return $data;
     }
+}
+
+function require_login($text_key, $link_text_key)
+{
+    $title = trans('users.anonymous.login_link');
+    $link = Html::link('#', trans($link_text_key), ['class' => 'js-user-link', 'title' => $title]);
+    $text = trans($text_key, ['link' => $link]);
+
+    return $text;
 }
 
 function render_to_string($view, $variables = [])
@@ -427,6 +454,7 @@ function nav_links()
     $links['beatmaps'] = [
         'index' => route('beatmapsets.index'),
         'artists' => route('artists.index'),
+        'packs' => route('packs.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
@@ -518,7 +546,7 @@ function display_regdate($user)
         return;
     }
 
-    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
@@ -529,13 +557,17 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
 {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
         $format,
         IntlDateFormatter::NONE
     );
+
+    if ($pattern !== null) {
+        $formatter->setPattern(trans("common.datetime.{$pattern}.php"));
+    }
 
     return $formatter->format($datetime);
 }
@@ -709,7 +741,7 @@ function get_model_basename($model)
 function ci_file_search($fileName)
 {
     if (file_exists($fileName)) {
-        return $fileName;
+        return is_file($fileName) ? $fileName : false;
     }
 
     $directoryName = dirname($fileName);
@@ -717,7 +749,7 @@ function ci_file_search($fileName)
     $fileNameLowerCase = strtolower($fileName);
     foreach ($fileArray as $file) {
         if (strtolower($file) === $fileNameLowerCase) {
-            return $file;
+            return is_file($file) ? $file : false;
         }
     }
 
@@ -925,4 +957,22 @@ function suffixed_number_format_tag($number)
 function format_percentage($number, $precision = 2)
 {
     return sprintf("%.{$precision}f%%", round($number, $precision));
+}
+
+function group_users_by_online_state($users)
+{
+    $online = $offline = [];
+
+    foreach ($users as $user) {
+        if ($user->isOnline()) {
+            $online[] = $user;
+        } else {
+            $offline[] = $user;
+        }
+    }
+
+    return [
+        'online' => $online,
+        'offline' => $offline,
+    ];
 }

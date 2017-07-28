@@ -40,6 +40,13 @@
     }
   }
 
+  &--beatmappacks {
+    .at2x-simple('/images/headers/beatmappacks.jpg');
+    padding: 0;
+    text-align: center;
+    justify-content: center;
+  }
+
   &--beatmapsets-header-guest {
     .default-box-shadow();
     height: 200px;
@@ -53,6 +60,12 @@
     background-size: cover;
     background-position: 0 0;
     height: 200px;
+  }
+
+  &--groups {
+    background-image: url('/images/headers/generic.jpg');
+    height: 200px;
+    text-align: center;
   }
 
   &--home-user {
@@ -243,7 +256,7 @@
       font-size: @font-size--header-description;
     }
 
-    .@{top}--beatmapsets-header-guest {
+    .@{top}--beatmapsets-header-guest & {
       font-size: @font-size--large-3;
       font-style: normal;
       font-weight: 300;
