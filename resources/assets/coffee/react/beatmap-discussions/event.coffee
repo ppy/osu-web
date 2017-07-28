@@ -19,31 +19,30 @@
 {a, div, li, span, ul} = ReactDOMFactories
 el = React.createElement
 
-class BeatmapDiscussions.Events extends React.PureComponent
+class BeatmapDiscussions.Event extends React.PureComponent
   constructor: (props) ->
     super props
 
 
   render: =>
-    lastCreatedAtString = null
+    time = @props.time ? moment(@props.event.created_at)
 
-    div className: 'osu-page osu-page--small',
-      div className: 'beatmapset-events',
-        for event in @props.events
-          createdAt = moment(event.created_at)
-          createdAtString = createdAt.format 'LL'
+    div className: 'beatmapset-event',
+      div
+        className: 'beatmapset-event__time'
+        time.format 'LT'
+      div
+        className: 'beatmapset-event__content'
+        dangerouslySetInnerHTML:
+          __html: @contentText()
 
-          [
-            if lastCreatedAtString != createdAtString
-              lastCreatedAtString = createdAtString
-              div
-                key: "date-#{lastCreatedAtString}"
-                className: 'beatmapset-events__title'
-                lastCreatedAtString
-            div
-              key: event.id
-              className: 'beatmapset-events__event'
-              el BeatmapDiscussions.Event,
-                event: event
-                time: createdAt
-          ]
+
+  contentText: =>
+    discussionId = @props.event.comment?.beatmap_discussion_id
+
+    if discussionId?
+      discussion = osu.link(BeatmapDiscussionHelper.hash({discussionId}), "##{discussionId}", ['js-beatmap-discussion--jump'])
+    else
+      text = @props.event.comment
+
+    osu.trans "beatmapset_events.event.#{@props.event.type}", {discussion, text}
