@@ -224,7 +224,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'adresse e-mail',
-            'forgot' => "J'ai oublié mes identifiants de connexion",
+            'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
 
