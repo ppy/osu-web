@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "22426c03c833c3a606191ec3a75ff144",
+    "content-hash": "09309b7671fecf30ad72e1b28f3e3b36",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2549,7 +2549,7 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
             "time": "2017-02-16T06:27:23+00:00"
         },
@@ -5288,6 +5288,54 @@
                 "source": "https://github.com/nanaya/commonmark-table-extension-php/tree/fix-escapes"
             },
             "time": "2017-02-27T06:40:41+00:00"
+        },
+        {
+            "name": "xsolla/xsolla-sdk-php",
+            "version": "v2.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xsolla/xsolla-sdk-php.git",
+                "reference": "f7f58d417ff9df3c479cdae937c7b80123519cbf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xsolla/xsolla-sdk-php/zipball/f7f58d417ff9df3c479cdae937c7b80123519cbf",
+                "reference": "f7f58d417ff9df3c479cdae937c7b80123519cbf",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "guzzle/guzzle": "~3.8",
+                "php": ">=5.3.9",
+                "symfony/http-foundation": "~2.3 || ~3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~1.10",
+                "mtdowling/burgomaster": "^0.0.2",
+                "phpunit/phpunit": "~4.0 || ~5.0",
+                "symfony/process": "~2.3 || ~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Xsolla\\SDK\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Xsolla SDK for PHP. Xsolla is the authorized reseller and merchant providing e-commerce services for online games.",
+            "homepage": "http://xsolla.com",
+            "keywords": [
+                "api",
+                "games",
+                "payment",
+                "sdk",
+                "xsolla"
+            ],
+            "time": "2017-07-21T08:58:30+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
