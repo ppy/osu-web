@@ -76,21 +76,21 @@ class SupporterTag
     {
         switch (true) {
             case $duration >= 12:
-                 return ceil($duration / 12.0 * 26);
+                return ceil($duration / 12.0 * 26);
             case $duration === 10:
-                 return 24;
+                return 24;
             case $duration === 9:
-                 return 22;
+                return 22;
             case $duration === 8:
-                 return 20;
+                return 20;
             case $duration === 6:
-                 return 16;
+                return 16;
             case $duration === 4:
-                 return 12;
+                return 12;
             case $duration === 2:
-                 return 8;
+                return 8;
             case $duration === 1:
-                 return 4;
+                return 4;
         }
 
         throw new \Exception('not a valid duration.');
