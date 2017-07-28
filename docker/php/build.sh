@@ -3,6 +3,8 @@
 set -u
 set -e
 
+cp .env.example .env
+
 # the user when provisioning is `osuweb`, but files are created by `www-data`
 # don't fail if permissions don't get set on all files (useful when reloading the container)
 chmod -R 777 storage bootstrap/cache || true
