@@ -76,7 +76,7 @@ return [
     ],
     'download' => [
       'header' => [
-          '1' => "a więc",
+          '1' => 'a więc',
           '2' => 'zapoznajemy się z',
           '3' => 'pobieraniem osu! na system Windows',
       ],
