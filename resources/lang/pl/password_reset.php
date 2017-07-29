@@ -28,7 +28,7 @@ return [
         'subject' => 'odzyskiwanie konta osu!',
     ],
     'error' => [
-        'contact_support' => 'Skontaktuj się z supportem, żeby odsyskać konto.',
+        'contact_support' => 'Skontaktuj się z pomocą techniczną, żeby odsyskać konto.',
         'is_privileged' => 'Skontaktuj się z peppym.',
         'missing_key' => 'Wymagane.',
         'too_many_tries' => 'Za dużo błędnych prób.',
@@ -46,6 +46,6 @@ return [
         'verification_key' => 'Kod weryfikacyjny',
     ],
     'starting' => [
-        'username' => 'Wpisz email lub nazwę użytkownika',
+        'username' => 'Wprowadź email lub nazwę użytkownika',
     ],
 ];
