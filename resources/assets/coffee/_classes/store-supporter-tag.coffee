@@ -114,13 +114,13 @@ class @StoreSupporterTag
 
   updateSearchResult: =>
     if @searching
-      @inputFeedback.textContent = Lang.get('supporter_tag.user_search.searching')
+      @inputFeedback.textContent = osu.trans('supporter_tag.user_search.searching')
       return @setUserInteraction(false)
 
     [avatarUrl, text] = if @user
                           [@user.avatarUrl, '']
                         else
-                          ['', Lang.get("supporter_tag.user_search.not_found")]
+                          ['', osu.trans("supporter_tag.user_search.not_found")]
 
     @inputFeedback.textContent = text
     # Avoid setting value to undefined
