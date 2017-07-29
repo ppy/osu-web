@@ -37,9 +37,9 @@ return [
     'search' => [
         'advanced_link' => 'Zaawansowane wyszkukiwanie',
         'button' => 'Szukaj',
-        'empty_result' => 'Nic nie znaleziono!',
-        'missing_query' => 'Wyszukiwane hasło musi mieć minimum :n znaki',
-        'title' => 'Wyniki Wyszukiwania',
+        'empty_result' => 'Niczego nie znaleziono!',
+        'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
+        'title' => 'Wyniki wyszukiwania',
         'beatmapset' => [
             'more' => ':count więcej rezultatów wyszukiwania',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
@@ -66,7 +66,7 @@ return [
         'user' => [
             'more' => ':count więcej znalezionych użytkowników',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
-            'title' => 'Gracze',
+            'title' => 'Użytkownicy',
         ],
         'wiki_page' => [
             'link' => 'Przeszukaj wiki',
@@ -76,13 +76,13 @@ return [
     ],
     'download' => [
       'header' => [
-          '1' => "let's get",
-          '2' => 'you started',
-          '3' => 'pobierz grę osu! na system Windows',
+          '1' => "a więc",
+          '2' => 'zapoznajemy się z',
+          '3' => 'pobieraniem osu! na system Windows',
       ],
       'steps' => [
           '1' => [
-              'name' => 'Ktok 1',
+              'name' => 'Krok 1',
               'content' => 'Pobierz klienta gry osu!',
           ],
           '2' => [
@@ -95,7 +95,7 @@ return [
           ],
       ],
       'more' => 'Dowiedz się więcej!',
-      'more_text' => 'Sprawdź kanał YouTube <a href="https://www.youtube.com/user/osuacademy/">osu!academy/a> po aktualne poradniki i wskazówki jak dowiedzieć się wszystkiego o świecie osu!',
+      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy/a> po poradniki i wskazówki dotyczące całego świata osu!',
     ],
 
     'user' => [
@@ -113,12 +113,12 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Nowe rankingowe mapy',
-            'popular' => 'Popularne mapy',
+            'popular' => 'Popularne beatmapy',
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',
             'support' => 'Wesprzyj osu!',
-            'store' => 'Sklep osu!',
+            'store' => 'sklep osu!',
         ],
     ],
 ];
