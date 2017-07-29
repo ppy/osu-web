@@ -28,8 +28,8 @@ return [
                 'scary' => 'NIE',
             ],
             'note' => [
-                '_' => 'Pobieranie paczek beatmap od najnowszych do najstarszych jest wysoko zalecane :scary, ponieważ najstarsze mapy znacznie odstają jakością od nowszych.',
-                'scary' => 'pobierać paczki map od najnowszych do najstarszych',
+                '_' => ':scary jest wysoko zalecane, ponieważ najstarsze mapy znacznie odstają jakością od nowszych.',
+                'scary' => 'pobieranie paczek beatmap od najnowszych do najstarszych',
             ],
         ],
         'title' => 'Paczki beatmap',
