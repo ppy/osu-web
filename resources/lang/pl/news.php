@@ -19,20 +19,20 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'lista',
-        'news-show' => 'post',
+        'news-show' => 'wiadomość',
     ],
     'index' => [
         'title' => 'Wiadomości',
         'nav' => [
-            'newer' => 'Nowsze posty',
-            'older' => 'Starsze posts',
+            'newer' => 'Nowsze wiadomości',
+            'older' => 'Starsze starsze wiadomości',
         ],
     ],
     'show' => [
         'posted' => 'wrzucone :time',
         'nav' => [
-            'newer' => 'Poprzedni post',
-            'older' => 'Następny post',
+            'newer' => 'Poprzednia wiadomość',
+            'older' => 'Następna wiadomość',
         ],
     ],
     'store' => [
