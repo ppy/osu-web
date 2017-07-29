@@ -35,7 +35,7 @@ return [
         'total_score' => 'Ilość punktów',
         'ranked_score' => 'Ilość punktów rankingowych',
         'average_score' => 'Średni wynik',
-        'average_performance' => 'Średnia wydajność',
+        'average_performance' => 'Średnia ilość pp',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',
