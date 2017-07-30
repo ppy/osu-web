@@ -32,6 +32,7 @@ return [
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
+            'groups-show' => 'groupes',
             'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'actualités',
@@ -235,7 +236,7 @@ return [
         ],
 
         'register' => [
-            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi n'en avez vous pas ?",
+            'info' => "Vous avez besoin d'un compte, mon cher. Pourquoi n'en avez vous pas ?",
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],
@@ -243,6 +244,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Paramètres',
+            'friends' => 'Amis',
             'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',
         ],

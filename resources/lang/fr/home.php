@@ -32,8 +32,8 @@ return [
         ],
 
         'slogan' => [
-            'main' => 'jeu de rythme gratuit',
-            'sub' => 'Le rythme est à un seul clic',
+            'main' => 'jeu de rythme free-to-play',
+            'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
 
