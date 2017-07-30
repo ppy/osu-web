@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => "Temps de fonctionnement",
+            'title' => 'Temps de fonctionnement',
             'graphs' => [
                 'server' => 'serveur',
                 'web' => 'web',

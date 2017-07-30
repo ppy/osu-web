@@ -36,7 +36,7 @@ return [
         'contact_support' => 'Veuillez contacter le support pour récupérer votre compte.',
         'is_privileged' => 'Contacter peppy lulz.',
         'missing_key' => 'Requis.',
-        'too_many_tries' => "Trop de tentatives ratées.",
+        'too_many_tries' => 'Trop de tentatives ratées.',
         'user_not_found' => "L'utilisateur demandé n'existe pas.",
         'wrong_key' => 'Code incorrect.',
     ],
