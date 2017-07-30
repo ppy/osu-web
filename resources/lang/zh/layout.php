@@ -32,6 +32,7 @@ return [
             'getChangelog' => '更新日志',
             'getDownload' => '下载',
             'getIcons' => '图标',
+            'groups-show' => '用户组',
             'index' => 'osu!',
             'legal-show' => '信息',
             'news-index' => '新闻',
@@ -52,7 +53,7 @@ return [
             'show' => '信息',
             'index' => '列表',
             'artists' => '杰出艺术家',
-            // 'getPacks' => 'packs',
+            'packs' => '曲包',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
