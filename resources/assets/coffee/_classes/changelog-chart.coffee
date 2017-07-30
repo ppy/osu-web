@@ -67,7 +67,6 @@ class @ChangelogChart
       .classed 'changelog-chart__tooltip', true
 
     @tooltipName = @tooltip.append 'div'
-      .classed "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{_.kebabCase @options.currentStream}", true
 
     @tooltipUserCount = @tooltip.append 'div'
       .classed 'changelog-chart__text changelog-chart__text--user-count', true
@@ -127,7 +126,13 @@ class @ChangelogChart
     Fade.out @tooltipContainer.node()
 
   positionTooltip: =>
-    x = Math.round @options.scales.x.invert d3.mouse(@hoverArea.node())[0]
+    mousePos = d3.mouse @hoverArea.node()
+    x = Math.round @options.scales.x.invert mousePos[0]
+    y = mousePos[1] / @height
+
+    for el in @options.order
+      if y <= @data[el][x].normalized
+        currentStream = el
 
     @showTooltip()
 
@@ -136,9 +141,11 @@ class @ChangelogChart
 
     coord = @options.scales.x(x) + @margins.left
 
-    @tooltipName.text @options.currentStream
-    @tooltipUserCount.text @data[@options.currentStream][x].user_count
-    @tooltipDate.html @getDate @data[@options.currentStream][x].created_at
+    @tooltipName
+      .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{_.kebabCase currentStream}"
+      .text currentStream
+    @tooltipUserCount.text @data[currentStream][x].user_count
+    @tooltipDate.html @getDate @data[currentStream][x].created_at
     @tooltipContainer
       .style 'transform', "translate(#{coord}px) translateX(-50%)"
 
