@@ -40,7 +40,7 @@ class @ChangelogChart
       .curve d3.curveMonotoneX
       .x (d, i) => @options.scales.x i
       .y1 (d) => @options.scales.y d.normalized
-      .y0 (d, i) => 0
+      .y0 (d, i) => @options.scales.y d.baseline
 
     @svgLines = {}
 

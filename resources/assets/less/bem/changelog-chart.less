@@ -22,18 +22,22 @@
   &__area {
     &--stable {
       fill: @changelog-stream--stable;
+      stroke: @changelog-stream--stable;
     }
 
     &--stable-fallback {
       fill: @changelog-stream--stable-fallback;
+      stroke: @changelog-stream--stable-fallback;
     }
 
     &--cutting-edge, &--beta {
       fill: @changelog-stream--beta-ce;
+      stroke: @changelog-stream--beta-ce;
     }
 
     &--lazer, &--lazer-experimental {
-      fill: @changelog-stream--lazer
+      fill: @changelog-stream--lazer;
+      stroke: @changelog-stream--lazer;
     }
   }
 
@@ -91,7 +95,7 @@
     }
 
     &--stable-fallback {
-      color: @changelog-stream--stable-fallback
+      color: @changelog-stream--stable-fallback;
     }
 
     &--beta, &--cutting-edge {

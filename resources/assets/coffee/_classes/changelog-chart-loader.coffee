@@ -42,6 +42,7 @@ class @ChangelogChartLoader
 
       for el, j in order
         calc += data[el][i].user_count
+        data[el][i].baseline = (calc - data[el][i].user_count) / sum
         data[el][i].normalized = calc / sum
 
     options =
