@@ -8,6 +8,7 @@ services:
                 _uid: ${_UID:-1000}
                 _gid: ${_GID:-1000}
         container_name: osuweb-php
+        working_dir: /data/osu!web
         volumes:
             - .:/data/osu!web
             - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
@@ -53,6 +54,8 @@ services:
                 _gid: ${_GID:-1000}
         container_name: osuweb-yarn
         volumes:
+            # for some reason webpack doesn't like the exclamation mark in
+            # the path so we just omit it for the time being
             - .:/data/osuweb
         user: osuweb
         working_dir: /data/osuweb
