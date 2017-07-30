@@ -3,7 +3,9 @@
 set -u
 set -e
 
-cp .env.example .env
+if [ ! -f .env ]
+  cp .env.example .env
+fi
 
 # the user when provisioning is `osuweb`, but files are created by `www-data`
 # don't fail if permissions don't get set on all files (useful when reloading the container)
