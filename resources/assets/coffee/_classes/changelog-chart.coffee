@@ -66,8 +66,11 @@ class @ChangelogChart
     @tooltip = @tooltipContainer.append 'div'
       .classed 'changelog-chart__tooltip', true
 
+    @tooltipName = @tooltip.append 'div'
+      .classed "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{_.kebabCase @options.currentStream}", true
+
     @tooltipUserCount = @tooltip.append 'div'
-      .classed "changelog-chart__text changelog-chart__text--user-count changelog-chart__text--#{_.kebabCase @options.currentStream}", true
+      .classed 'changelog-chart__text changelog-chart__text--user-count', true
 
     @tooltipDate = @tooltip.append 'div'
       .classed 'changelog-chart__text changelog-chart__text--date', true
@@ -133,6 +136,7 @@ class @ChangelogChart
 
     coord = @options.scales.x(x) + @margins.left
 
+    @tooltipName.text @options.currentStream
     @tooltipUserCount.text @data[@options.currentStream][x].user_count
     @tooltipDate.html @getDate @data[@options.currentStream][x].created_at
     @tooltipContainer
