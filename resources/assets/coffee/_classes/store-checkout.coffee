@@ -33,6 +33,10 @@ class @StoreCheckout
       access_token: token,
       sandbox: true
 
+    StoreCheckout.initButton(options)
+    # StoreCheckout.initIframe(options)
+
+  @initButton: (options) ->
     s = document.createElement('script')
     s.type = "text/javascript"
     s.async = true
@@ -42,13 +46,33 @@ class @StoreCheckout
       paybar = document.querySelector('#paybar')
       console.log(paybar)
 
-      button = document.createElement('button')
-      button.setAttribute('data-xpaystation-widget-open', '')
-      paybar.appendChild(button)
+      element = StoreCheckout.createPaymentButton()
+      paybar.appendChild(element)
       XPayStationWidget.init(options)
     , false
     head = document.getElementsByTagName('head')[0]
     head.appendChild(s)
+
+  @initIframe: (options) ->
+    paybar = document.querySelector('#paybar')
+    element = StoreCheckout.createPaymentIframe(options)
+    paybar.appendChild(element)
+
+  @createPaymentButton: ->
+    element = document.createElement('button')
+    element.setAttribute('data-xpaystation-widget-open', '')
+
+    element
+
+  @createPaymentIframe: (options) ->
+    element = document.createElement('iframe')
+    element.frameborder = '0'
+    element.style.height = '100vh'
+    element.style.width = '100vw'
+    element.style.border = 'none'
+    element.src = "https://sandbox-secure.xsolla.com/paystation3/?access_token=#{options.access_token}"
+
+    element
 
   @getXsollaToken: ->
     $.get laroute.route('store.payments.xsolla-token')
