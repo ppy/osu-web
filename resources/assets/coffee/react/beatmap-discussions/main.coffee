@@ -97,6 +97,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
           className: 'osu-layout__section osu-layout__section--extra'
           el BeatmapDiscussions.Events,
             events: @state.beatmapsetDiscussion.beatmapset_events
+            users: @users()
 
       else
         div

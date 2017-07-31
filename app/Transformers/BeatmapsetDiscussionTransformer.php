@@ -80,6 +80,12 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
             }
         }
 
+        foreach ($discussion->beatmapset->events as $event) {
+            if (priv_check('BeatmapsetEventViewUserId', $event)->can()) {
+                $userIds[] = $event->user_id;
+            }
+        }
+
         $userIds = array_unique($userIds);
         $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
 
