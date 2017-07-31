@@ -238,7 +238,7 @@ class OsuAuthorize
 
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
-        return 'ok';
+        // no one but admin (not covered here) =D
     }
 
     public function checkChatMessageSend($user, $target)

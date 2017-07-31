@@ -46,4 +46,5 @@ class BeatmapDiscussions.Events extends React.PureComponent
               el BeatmapDiscussions.Event,
                 event: event
                 time: createdAt
+                users: @props.users
           ]

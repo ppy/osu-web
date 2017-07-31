@@ -46,4 +46,9 @@ class BeatmapDiscussions.Event extends React.PureComponent
     else
       text = @props.event.comment
 
-    osu.trans "beatmapset_events.event.#{@props.event.type}", {discussion, text}
+    message = osu.trans "beatmapset_events.event.#{@props.event.type}", {discussion, text}
+
+    if @props.event.user_id?
+      message += " (#{osu.link(laroute.route('users.show', user: @props.event.user_id), @props.users[@props.event.user_id].username)})"
+
+    message
