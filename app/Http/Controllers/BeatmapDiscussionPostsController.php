@@ -20,13 +20,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
 use App\Models\BeatmapsetEvent;
 use Auth;
 use DB;
-use Exception;
 use Request;
 
 class BeatmapDiscussionPostsController extends Controller
@@ -99,28 +99,21 @@ class BeatmapDiscussionPostsController extends Controller
 
         try {
             $saved = DB::transaction(function () use ($posts, $discussion, $events) {
-                if ($discussion->save() === false) {
-                    throw new Exception('failed');
-                }
+                $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
                     // done here since discussion may or may not previously exist
                     $post->beatmap_discussion_id = $discussion->id;
-
-                    if ($post->save() === false) {
-                        throw new Exception('failed');
-                    }
+                    $post->saveOrExplode();
                 }
 
                 foreach ($events as $event) {
-                    if ($event->save() === false) {
-                        throw new Exception('failed');
-                    }
+                    $event->saveOrExplode();
                 }
 
                 return true;
             });
-        } catch (Exception $_e) {
+        } catch (ModelNotSavedException $_e) {
             $saved = false;
         }
 
