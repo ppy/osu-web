@@ -27,7 +27,7 @@ class BeatmapDiscussions.Events extends React.PureComponent
   render: =>
     lastCreatedAtString = null
 
-    div className: 'osu-page osu-page--small',
+    div className: 'osu-page osu-page--small osu-page--generic osu-page--full',
       div className: 'beatmapset-events',
         for event in @props.events
           createdAt = moment(event.created_at)

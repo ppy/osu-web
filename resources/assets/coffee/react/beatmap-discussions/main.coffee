@@ -77,7 +77,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   render: =>
-    div null,
+    div className: 'osu-layout osu-layout--full',
       el BeatmapDiscussions.Header,
         beatmapset: @state.beatmapset
         beatmaps: @state.beatmaps
