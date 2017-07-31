@@ -52,7 +52,7 @@ return [
             'show' => 'информация',
             'index' => 'список',
             'artists' => 'избранные исполнители',
-            // 'getPacks' => 'packs',
+            'packs' => 'паки',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
@@ -66,7 +66,7 @@ return [
             'charts' => 'по месяцам',
             'score' => 'по очкам',
             'country' => 'по странам',
-            'kudosu' => 'кудос',
+            'kudosu' => 'кудосу',
         ],
         'community' => [
             '_' => 'сообщество',
