@@ -1,0 +1,55 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmapset-event {
+  font-size: @font-size--normal;
+  display: flex;
+  margin: 2px 0;
+  align-items: center;
+
+  &__icon {
+    border-radius: 3px;
+    width: 8px;
+    align-self: stretch;
+
+    .type(@name, @bg-color) {
+      &--@{name} {
+        background-color: @bg-color;
+      }
+    }
+
+    .type(approve, @blue);
+    .type(discussion_delete, @yellow);
+    .type(discussion_restore, @blue);
+    .type(disqualify, @red);
+    .type(issue_reopen, @yellow);
+    .type(issue_resolve, @green);
+    .type(kudosu_allow, @blue);
+    .type(kudosu_deny, @red);
+    .type(kudosu_gain, @blue);
+    .type(kudosu_lost, @red);
+    .type(nominate, @blue);
+    .type(qualify, @blue);
+    .type(rank, @green);
+  }
+
+  &__time {
+    width: 80px;
+    padding: 0 10px;
+  }
+}
