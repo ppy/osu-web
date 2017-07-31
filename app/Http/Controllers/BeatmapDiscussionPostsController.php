@@ -92,7 +92,7 @@ class BeatmapDiscussionPostsController extends Controller
                 'type' => $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN,
                 'user_id' => Auth::user()->getKey(),
                 'comment' => [
-                    'beatmapset_discussion_id' => $discussion->getKey(),
+                    'beatmap_discussion_id' => $discussion->getKey(),
                 ],
             ]);
         }

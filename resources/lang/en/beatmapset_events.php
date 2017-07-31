@@ -20,18 +20,18 @@
 
 return [
     'event' => [
-        'nominate' => 'Nominated.',
-        'qualify' => 'Qualified.',
-        'disqualify' => 'Disqualified. Reason: :text.',
         'approve' => 'Approved.',
-        'rank' => 'Ranked.',
+        'discussion_delete' => 'Moderator deleted post from discussion :discussion.',
+        'discussion_restore' => 'Moderator restored post from discussion :discussion.',
+        'disqualify' => 'Disqualified. Reason: :text.',
+        'issue_reopen' => 'Resolved issue :discussion reopened.',
+        'issue_resolve' => 'Issue :discussion marked as resolved.',
         'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
         'kudosu_deny' => 'Discussion :discussion denied for kudosu.',
         'kudosu_gain' => 'Discussion :discussion obtained enough votes for kudosu.',
         'kudosu_lost' => 'Discussion :discussion lost votes and granted kudosu has been removed.',
-        'issue_resolve' => 'Issue :discussion marked as resolved.',
-        'issue_reopen' => 'Resolved issue :discussion reopened.',
-        'discussion_delete' => 'Moderator deleted post from discussion :discussion.',
-        'discussion_restore' => 'Moderator restored post from discussion :discussion.',
+        'nominate' => 'Nominated.',
+        'qualify' => 'Qualified.',
+        'rank' => 'Ranked.',
     ],
 ];

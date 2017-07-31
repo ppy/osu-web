@@ -28,6 +28,7 @@ class BeatmapDiscussions.Event extends React.PureComponent
     time = @props.time ? moment(@props.event.created_at)
 
     div className: 'beatmapset-event',
+      div className: "beatmapset-event__icon beatmapset-event__icon--#{@props.event.type}"
       div
         className: 'beatmapset-event__time'
         time.format 'LT'
