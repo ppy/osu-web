@@ -92,7 +92,8 @@
 
                 @if ($order->getTotal() > 0)
                     @if ($checkout->allowXsollaPayment())
-                        @include('store._xsolla_paybar', ['checkout' => $checkout])
+                        <div id="paybar" class="store-checkout__paybar"></div>
+                        {{-- @include('store._xsolla_paybar', ['checkout' => $checkout]) --}}
                     @endif
                     <div class="big-button">
                         <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
