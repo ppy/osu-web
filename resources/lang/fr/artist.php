@@ -23,7 +23,7 @@ return [
     'title' => 'Artistes plébiscités',
 
     'admin' => [
-        'hidden' => "L'ARTISTE EST ACTUELLEMENT CACHÉ",
+        'hidden' => "L'ARTISTE EST ACTUELLEMENT MASQUÉ",
     ],
 
     'beatmaps' => [

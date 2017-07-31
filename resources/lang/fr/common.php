@@ -22,6 +22,12 @@ return [
     'confirmation' => 'Êtes-vous sûr?',
     'saved' => 'Sauvegardé',
 
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' et ',
+        'last_word_connector' => ' et ',
+    ],
+
     'buttons' => [
         'cancel' => 'Annuler',
         'delete' => 'Supprimer',
@@ -37,6 +43,13 @@ return [
 
     'count' => [
         'item' => ':count objet|:count objets',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
     ],
 
     'device' => [

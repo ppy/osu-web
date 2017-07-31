@@ -32,8 +32,8 @@ return [
         ],
 
         'slogan' => [
-            'main' => 'simulateur de cercles free-to-win',
-            'sub' => 'Le rythme est à un seul clic',
+            'main' => 'jeu de rythme free-to-play',
+            'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
 

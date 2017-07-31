@@ -49,6 +49,10 @@ return [
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
     'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(',
+    'restricted_banner' => [
+        'title' => 'Votre compte a été restreint !',
+        'message' => "Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueur et vos scores ne seront visibles qu'à vous. Cette restriction est souvent le résultat d'un processus automatique et sera levée en général dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href=\"mailto:accounts@ppy.sh\">contacter le support</a>.",
+    ],
     'show' => [
         '404' => 'Utilisateur non trouvé! ;_;',
         'age' => 'Âgé de :age',
@@ -85,6 +89,7 @@ return [
         'extra' => [
             'followers' => '1 abonné|:count abonnés',
             'unranked' => 'Aucune partie récente',
+
             'achievements' => [
                 'title' => 'Succès',
                 'achieved-on' => 'Acquis le :date',
@@ -105,7 +110,7 @@ return [
                 'title' => 'Historique',
             ],
             'kudosu' => [
-                'available' => 'Kudosu disponibles',
+                'available' => 'Kudosu disponible',
                 'available_info' => "Les Kudosu peuvent être échangés pour des étoiles kudosu, qui aideront à ce que votre beatmap ait plus d'attention. C'est le nombre de kudosu non échangés.",
                 'recent_entries' => 'Hitorique de Kudosu récents',
                 'title' => 'Kudosu!',
