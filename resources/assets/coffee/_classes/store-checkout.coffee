@@ -20,31 +20,34 @@ class @StoreCheckout
   @initialize: ->
     return unless document.querySelector('#js-xsolla-pay')
     document.querySelector('#js-xsolla-pay').disabled = true
+    # load script
+    deferredScript = $.Deferred()
+    script = document.createElement('script')
+    script.type = "text/javascript"
+    script.async = true
+    script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
+    script.addEventListener 'load', ->
+      deferredScript.resolve()
+    , false
+    head = document.getElementsByTagName('head')[0]
+    head.appendChild(script)
+
+    deferredToken = $.Deferred()
+    # get token
     xhr = @getXsollaToken()
     xhr.done (data) ->
-      console.log(data)
-      StoreCheckout.initializeXsollaCheckout(data)
+      deferredToken.resolve(data)
 
-  @initializeXsollaCheckout: (token) ->
+    $.when(deferredScript, deferredToken).done (_, token) =>
+      options = @optionsWithToken(token)
+      XPayStationWidget.init(options)
+      document.querySelector('#js-xsolla-pay').disabled = false
+
+  @optionsWithToken: (token) ->
     options =
       access_token: token,
       sandbox: true
 
-    StoreCheckout.initButton(options)
-
-  @initButton: (options) ->
-    s = document.createElement('script')
-    s.type = "text/javascript"
-    s.async = true
-    s.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
-    s.addEventListener 'load', ->
-      console.debug 'xsolla widget loaded'
-      console.log(options)
-      XPayStationWidget.init(options)
-      document.querySelector('#js-xsolla-pay').disabled = false
-    , false
-    head = document.getElementsByTagName('head')[0]
-    head.appendChild(s)
-
   @getXsollaToken: ->
     $.get laroute.route('store.payments.xsolla-token')
+
