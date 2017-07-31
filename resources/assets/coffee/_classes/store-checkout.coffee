@@ -18,11 +18,8 @@
 
 class @StoreCheckout
   @initialize: ->
-    paybar = document.querySelector('#paybar')
-    console.log(paybar)
-    return unless paybar?
-
-    console.log 'xsolla'
+    return unless document.querySelector('#js-xsolla-pay')
+    document.querySelector('#js-xsolla-pay').disabled = true
     xhr = @getXsollaToken()
     xhr.done (data) ->
       console.log(data)
@@ -34,7 +31,6 @@ class @StoreCheckout
       sandbox: true
 
     StoreCheckout.initButton(options)
-    # StoreCheckout.initIframe(options)
 
   @initButton: (options) ->
     s = document.createElement('script')
@@ -43,36 +39,12 @@ class @StoreCheckout
     s.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
     s.addEventListener 'load', ->
       console.debug 'xsolla widget loaded'
-      paybar = document.querySelector('#paybar')
-      console.log(paybar)
-
-      element = StoreCheckout.createPaymentButton()
-      paybar.appendChild(element)
+      console.log(options)
       XPayStationWidget.init(options)
+      document.querySelector('#js-xsolla-pay').disabled = false
     , false
     head = document.getElementsByTagName('head')[0]
     head.appendChild(s)
-
-  @initIframe: (options) ->
-    paybar = document.querySelector('#paybar')
-    element = StoreCheckout.createPaymentIframe(options)
-    paybar.appendChild(element)
-
-  @createPaymentButton: ->
-    element = document.createElement('button')
-    element.setAttribute('data-xpaystation-widget-open', '')
-
-    element
-
-  @createPaymentIframe: (options) ->
-    element = document.createElement('iframe')
-    element.frameborder = '0'
-    element.style.height = '100vh'
-    element.style.width = '100vw'
-    element.style.border = 'none'
-    element.src = "https://sandbox-secure.xsolla.com/paystation3/?access_token=#{options.access_token}"
-
-    element
 
   @getXsollaToken: ->
     $.get laroute.route('store.payments.xsolla-token')
