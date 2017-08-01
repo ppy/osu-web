@@ -219,7 +219,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'adres email',
-            'forgot' => "Zapomniałem danych logowania",
+            'forgot' => 'Zapomniałem danych logowania',
             'password' => 'hasło',
             'title' => 'Zaloguj się, aby zyskać dostęp',
 
@@ -230,8 +230,8 @@ return [
         ],
 
         'register' => [
-            'info' => "Potrzebujesz konta. Dlaczego go jeszcze nie masz?",
-            'title' => "Nie masz konta?",
+            'info' =>'Potrzebujesz konta. Dlaczego go jeszcze nie masz?',
+            'title' => 'Nie masz konta?',
         ],
     ],
 
