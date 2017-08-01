@@ -17,22 +17,31 @@
 --}}
 @extends("master")
 
+@php
+    $keyPrefix = 'layout.errors.'.Route::currentRouteAction().'.'.$current_action;
+    if (!Lang::has($keyPrefix)) {
+        $keyPrefix = "layout.errors.{$current_action}";
+    }
+@endphp
+
 @section("content")
+    <div class="osu-layout__row osu-layout__row--page">
+        <h1 class="text-center">{{{ trans("$keyPrefix.error") }}}</h1>
 
-<div class="osu-layout__row osu-layout__row--page">
-    <h1 class="text-center">{{{ trans("layout.errors.$current_action.error") }}}</h1>
+        @if (Lang::has("{$keyPrefix}.link.href"))
+            {!! trans("{$keyPrefix}.description", ["link" =>
+                '<a href="'.trans("{$keyPrefix}.link.href").'">'.trans("{$keyPrefix}.link.text").'</a>'
+            ]) !!}
+        @else
+            <div class="text-center">{{ trans("{$keyPrefix}.description") }}</div>
+        @endif
 
-    @if (Lang::get("layout.errors.$current_action.link") and Lang::get("layout.errors.$current_action.link.href") != "layout.errors.$current_action.link.href")
-        {!! trans("layout.errors.$current_action.description",
-                ["link" => '<a class="blue_normal" href="' . trans("layout.errors.$current_action.link.href") . '">' . trans("layout.errors.$current_action.link.text") . '</a>']
-            )!!}
-    @else
-        <div class="text-center">{{{ trans("layout.errors.$current_action.description") }}}</div>
-    @endif
-
-    @if (isset($ref))
-        <h4 class="text-center">{{{ trans("layout.errors.reference") }}}<br><small>{{{ $ref }}}</small> </h4>
-    @endif
-</div>
-
-@stop
+        @if (isset($ref))
+            <h4 class="text-center">
+                {{ trans("layout.errors.reference") }}
+                <br>
+                <small>{{ $ref }}</small>
+            </h4>
+        @endif
+    </div>
+@endsection
