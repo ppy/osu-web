@@ -180,35 +180,28 @@ return [
     ],
 
     'errors' => [
+        // used by sentry if it returns an error
+        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support !',
+
         '404' => [
             'error' => 'Page manquante',
             'description' => "Désolé, mais la page demandée n'est pas ici !",
-            'link' => false,
         ],
         '403' => [
             'error' => 'Vous ne devriez pas être ici',
             'description' => 'Vous pouvez essayer de revenir en arrière.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Vous ne devriez pas être ici',
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Page manquante',
             'description' => "Désolé, mais la page demandée n'est pas ici !",
-            'link' => false,
         ],
         '500' => [
             'error' => "Oh non ! Quelque chose s'est cassé ! ;_;",
             'description' => 'Nous avons été notifié automatiquement de cette erreur.',
-            'link' => false,
-        ],
-        'fatal' => [
-            'error' => "Oh non ! Quelque chose s'est cassé ! (gravement) ;_;",
-            'description' => 'Nous avons été notifié automatiquement de cette erreur.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Maitenance en cours!',
@@ -218,8 +211,10 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
-        'reference' => 'Juste au cas où, voici un code que vous pourrez retourner au support !',
+        'fatal' => [
+            'error' => "Oh non ! Quelque chose s'est cassé ! (gravement) ;_;",
+            'description' => 'Nous avons été notifié automatiquement de cette erreur.',
+        ],
     ],
 
     'popup_login' => [

@@ -163,35 +163,28 @@ return [
     ],
 
     'errors' => [
+        // used by sentry if it returns an error
+        'reference' => 'Nel caso, ecco un codice che puoi dare al supporto!',
+
         '404' => [
             'error' => 'Pagina Mancante',
             'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Non dovresti essere qui.',
             'description' => 'Potresti comunque provare tornando indietro.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Non dovresti essere qui.',
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mancante',
             'description' => 'Mi spiace, ma la pagina che hai richiesto non è qui!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Qualcosa si è rotto! ;_;',
             'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
-        ],
-        'fatal' => [
-            'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
-            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Chiuso per manutenzione!',
@@ -201,8 +194,10 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
-        'reference' => 'Nel caso, ecco un codice che puoi dare al supporto!',
+        'fatal' => [
+            'error' => 'Oh no! Qualcosa si è rotto (gravemente)! ;_;',
+            'description' => 'Siamo notificati automaticamente di qualsiasi errore.',
+        ],
     ],
 
     'popup_login' => [

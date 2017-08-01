@@ -125,35 +125,28 @@ return [
         ],
     ],
     'errors' => [
+        // used by sentry if it returns an error
+        'reference' => 'Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!',
+
         '404' => [
             'error' => 'Pagina Mist',
             'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
-            'link' => false,
         ],
         '403' => [
             'error' => 'Jij hoort hier niet te zijn.',
             'description' => 'Je zou kunnen proberen terug te gaan.',
-            'link' => false,
         ],
         '401' => [
             'error' => 'Jij hoort hier niet.',
             'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.',
-            'link' => false,
         ],
         '405' => [
             'error' => 'Pagina Mist',
             'description' => 'Sorry, de pagina die je hebt opgevraagd is er niet!',
-            'link' => false,
         ],
         '500' => [
             'error' => 'Oh nee! Iets brak! ;_;',
             'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
-            'link' => false,
-        ],
-        'fatal' => [
-            'error' => 'Oh nee! Iets brak (heel erg)! ;_;',
-            'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
-            'link' => false,
         ],
         '503' => [
             'error' => 'Offline voor onderhoud!',
@@ -163,7 +156,9 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
-        'reference' => 'Voor de zekerheid is hier een code die je aan het ondersteuningsteam kan geven!',
+        'fatal' => [
+            'error' => 'Oh nee! Iets brak (heel erg)! ;_;',
+            'description' => 'We worden automatisch op de hoogte gesteld van alle fouten.',
+        ],
     ],
 ];
