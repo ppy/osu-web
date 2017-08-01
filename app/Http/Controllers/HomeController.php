@@ -70,7 +70,7 @@ class HomeController extends Controller
                 ->firstOrFail();
 
             $changelogs = [
-                $build->date->format('F j, Y') => $changelogs
+                i18n_date($build->date) => $changelogs
                     ->where('build', $build->version)
                     ->visibleOnBuilds()
                     ->get(),
@@ -81,7 +81,7 @@ class HomeController extends Controller
                 ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
                 ->get()
                 ->groupBy(function ($item) {
-                    return $item->date->format('F j, Y');
+                    return i18n_date($item->date);
                 });
         }
 
