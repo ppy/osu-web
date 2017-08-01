@@ -32,6 +32,11 @@ class CheckoutHelper
         $this->order = $order;
     }
 
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
     public function allowXsollaPayment()
     {
         return true;

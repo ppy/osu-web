@@ -110,8 +110,8 @@
                             <input type="hidden" name="cancel_return" value="{{{ action("StoreController@getCheckout") }}}">
                             <input type="hidden" name="currency_code" value="USD">
                             <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
-                            <input type="hidden" id="paypal_name" name="item_name" value="osu!store order #{{{$order->order_id}}}">
-                            <input type="hidden" id="paypal_code" name="item_number" value="store-{{{$order->user_id}}}-{{{$order->order_id}}}">
+                            <input type="hidden" id="paypal_name" name="item_name" value="{{ $order->getOrderName() }}">
+                            <input type="hidden" id="paypal_code" name="item_number" value="{{ $order->getOrderNumber() }}">
                             <input type="hidden" id="paypal_amount" name="amount" value="{{{$order->getSubtotal()}}}">
                             <input type="hidden" id="paypal_shipping" name="shipping" value="{{{$order->getShipping()}}}">
                             <a href="/store/checkout" class="btn-osu btn-osu-danger paypal-button" id="checkout-with-paypal" data-method="post" data-remote="1">

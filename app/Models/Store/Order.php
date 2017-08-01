@@ -63,6 +63,16 @@ class Order extends Model
         return $total;
     }
 
+    public function getOrderName()
+    {
+        return "osu!store order #{$this->order_id}";
+    }
+
+    public function getOrderNumber()
+    {
+        return "store-{$this->user_id}-{$this->order_id}";
+    }
+
     public function getSubtotal()
     {
         $total = 0;
