@@ -20,6 +20,8 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Libraries\CheckoutHelper;
+use App\Models\Store\Order;
 use Auth;
 use Illuminate\Database\QueryException;
 use Xsolla\SDK\API\XsollaClient;
@@ -44,11 +46,21 @@ class PaymentsController extends Controller
     {
         $projectId = config('xsolla.project_id');
         $user = Auth::user();
+        $cart = Order::cart($user);
+
+        if ($cart === null) {
+            return;
+        }
+
+        $checkout = new CheckoutHelper($cart);
+
         $tokenRequest = new TokenRequest($projectId, (string)$user->user_id);
-        $tokenRequest->setUserEmail($user->user_email)
+        $tokenRequest
             ->setSandboxMode(true)
+            ->setExternalPaymentId($checkout->getXsollaCheckoutCode())
+            ->setUserEmail($user->user_email)
             ->setUserName($user->username)
-            ->setPurchase(9.99, 'USD')
+            ->setPurchase($cart->getTotal(), 'USD')
             ->setCustomParameters(array('key1' => 'value1', 'key2' => 'value2'));
 
         $xsollaClient = XsollaClient::factory(array(

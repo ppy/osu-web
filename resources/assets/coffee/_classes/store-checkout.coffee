@@ -33,14 +33,20 @@ class @StoreCheckout
 
     deferredToken = $.Deferred()
     # get token
-    xhr = @getXsollaToken()
-    xhr.done (data) ->
+    @getXsollaToken()
+    .done (data) ->
       deferredToken.resolve(data)
+    .fail (xhr, error) ->
+      console.error xhr
+      deferredToken.reject(xhr)
 
-    $.when(deferredScript, deferredToken).done (_, token) =>
+    $.when(deferredScript, deferredToken)
+    .done (_, token) =>
       options = @optionsWithToken(token)
       XPayStationWidget.init(options)
       document.querySelector('#js-xsolla-pay').disabled = false
+    .fail (error) ->
+      console.error error
 
   @optionsWithToken: (token) ->
     options =
