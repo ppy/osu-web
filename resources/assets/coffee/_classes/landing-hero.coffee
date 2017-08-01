@@ -30,5 +30,5 @@ class @LandingHero
 
     os = osu.getOS()
     others = osu.otherOS os
-    @el.platformCurrent[0].innerText = Lang.get('home.landing.download.for', os: os)
-    @el.platformOther[0].innerText = Lang.get('home.landing.download.other', os1: others[0], os2: others[1])
+    @el.platformCurrent[0].innerText = osu.trans 'home.landing.download.for', os: os
+    @el.platformOther[0].innerText = osu.trans 'home.landing.download.other', os1: others[0], os2: others[1]
