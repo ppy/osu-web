@@ -1,5 +1,4 @@
-﻿<?php
-
+<?php
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,13 +16,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'top-headers' => [
-        'headline' => 'Streamy na żywo',
-        'description' => 'Dane są pobierane z twitcha co 5 minut. Nie wachaj się zacząć streamować i pojawić się na tej liście! Na wiki możesz znaleźć poradnik nt. streamowania.',
-    ],
-    'headers' => [
-        'regular' => 'Obecnie streamują',
+    'show' => [
+        'fallback_translation' => 'Ta strona nie jest przetłumaczona na wybrany język (:language). Pokazuję angielską stonę.',
+        'languages' => 'Języki',
+        'missing' => 'Wybrana strona nie istnieje.',
+        'missing_title' => 'Nie Znaleziono',
+        'missing_translation' => 'Wybrana strona nie istnieje dla aktualnie wybranego języka.',
+        'toc' => 'Zawartość',
+        'edit' => [
+            'link' => 'Pokaż na GitHubie',
+            'refresh' => 'Odśwież',
+        ],
     ],
 ];

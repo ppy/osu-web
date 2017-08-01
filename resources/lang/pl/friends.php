@@ -1,5 +1,4 @@
-﻿<?php
-
+<?php
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,13 +16,16 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'top-headers' => [
-        'headline' => 'Streamy na żywo',
-        'description' => 'Dane są pobierane z twitcha co 5 minut. Nie wachaj się zacząć streamować i pojawić się na tej liście! Na wiki możesz znaleźć poradnik nt. streamowania.',
+    'buttons' => [
+      'add' => 'dodaj znajomego',
+      'remove' => 'usuń znajomego',
     ],
-    'headers' => [
-        'regular' => 'Obecnie streamują',
+    'state' => [
+      'friends' => 'znajomi',
+      'mutual' => 'wzajemni',
     ],
+    'title' => 'Znajomi',
+    'title_compact' => 'znajomi',
+    'too_many' => 'Przekroczono limit znajomych.',
 ];

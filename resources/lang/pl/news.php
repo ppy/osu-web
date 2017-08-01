@@ -1,5 +1,4 @@
-﻿<?php
-
+<?php
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,13 +16,31 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'top-headers' => [
-        'headline' => 'Streamy na żywo',
-        'description' => 'Dane są pobierane z twitcha co 5 minut. Nie wachaj się zacząć streamować i pojawić się na tej liście! Na wiki możesz znaleźć poradnik nt. streamowania.',
+    'breadcrumbs' => [
+        'news-index' => 'lista',
+        'news-show' => 'wiadomość',
     ],
-    'headers' => [
-        'regular' => 'Obecnie streamują',
+    'index' => [
+        'title' => 'Wiadomości',
+        'nav' => [
+            'newer' => 'Nowsze wiadomości',
+            'older' => 'Starsze starsze wiadomości',
+        ],
+    ],
+    'show' => [
+        'posted' => 'wrzucone :time',
+        'nav' => [
+            'newer' => 'Poprzednia wiadomość',
+            'older' => 'Następna wiadomość',
+        ],
+    ],
+    'store' => [
+        'button' => 'Zaktualizuj',
+        'ok' => 'Lista zaktualizowana.',
+    ],
+    'update' => [
+        'button' => 'Zaktualizuj',
+        'ok' => 'Post zaktualizowany.',
     ],
 ];
