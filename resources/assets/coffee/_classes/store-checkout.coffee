@@ -29,8 +29,7 @@ class @StoreCheckout
     script.addEventListener 'load', ->
       deferredScript.resolve()
     , false
-    head = document.getElementsByTagName('head')[0]
-    head.appendChild(script)
+    document.head.appendChild(script)
 
     deferredToken = $.Deferred()
     # get token
