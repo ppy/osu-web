@@ -77,7 +77,7 @@ class @UserVerification
 
   prepareForRequest: (type) =>
     @request?.abort()
-    @setMessage Lang.get("user_verification.box.#{type}"), true
+    @setMessage osu.trans("user_verification.box.#{type}"), true
 
 
   reissue: (e) =>
