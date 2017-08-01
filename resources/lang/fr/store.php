@@ -20,7 +20,7 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Magasin',
+        'warehouse' => 'Stock',
     ],
 
     'checkout' => [

@@ -56,12 +56,12 @@ class MPHistory.Game extends React.Component
           div className: 'mp-history-game__team-scores',
             ['blue', 'red'].map (m) =>
               div className: "mp-history-game__team-score mp-history-game__team-score--#{m}", key: m,
-                span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', Lang.get "multiplayer.match.teams.#{m}"
+                span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', osu.trans "multiplayer.match.teams.#{m}"
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--score', @props.teamScores[m].toLocaleString()
 
           div className: 'mp-history-game__results',
-            span className: 'mp-history-game__results-text', Lang.get 'multiplayer.match.winner', team: Lang.get "multiplayer.match.teams.#{winningTeam}"
-            span className: 'mp-history-game__results-text mp-history-game__results-text--score', Lang.get 'multiplayer.match.difference', difference: difference.toLocaleString()
+            span className: 'mp-history-game__results-text', osu.trans 'multiplayer.match.winner', team: osu.trans "multiplayer.match.teams.#{winningTeam}"
+            span className: 'mp-history-game__results-text mp-history-game__results-text--score', osu.trans 'multiplayer.match.difference', difference: difference.toLocaleString()
 
   deletedBeatmap:
     id: null
