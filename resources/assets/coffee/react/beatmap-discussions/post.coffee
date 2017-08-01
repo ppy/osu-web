@@ -58,6 +58,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     if @state.editing
       topClasses += " #{bn}--editing"
     topClasses += " #{bn}--deleted" if @props.post.deleted_at?
+    topClasses += " #{bn}--unread" if !@props.read
 
     userBadge =
       if @isOwner()
