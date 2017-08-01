@@ -105,14 +105,9 @@ class BeatmapDiscussionPost extends Model
     public function restore($restoredBy)
     {
         return DB::transaction(function () use ($restoredBy) {
-            $this->beatmapDiscussion->beatmapset->events()->create([
-                'type' => BeatmapsetEvent::DISCUSSION_RESTORE,
-                'user_id' => $restoredBy->user_id ?? null,
-                'comment' => [
-                    'beatmap_discussion_post_id' => $this->getKey(),
-                    'beatmap_discussion_id' => $this->beatmapDiscussion->getKey(),
-                ],
-            ]);
+            if ($deletedBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_RESTORE, $restoredBy, $this)->saveOrExplode();
+            }
 
             return $this->update(['deleted_at' => null]);
         });
@@ -125,20 +120,14 @@ class BeatmapDiscussionPost extends Model
         }
 
         DB::transaction(function () use ($deletedBy) {
-            if (isset($deletedBy->user_id) && $this->user_id !== $deletedBy->user_id) {
-                $this->beatmapDiscussion->beatmapset->events()->create([
-                    'type' => BeatmapsetEvent::DISCUSSION_DELETE,
-                    'user_id' => $deletedBy->user_id ?? null,
-                    'comment' => [
-                        'beatmap_discussion_post_id' => $this->getKey(),
-                        'beatmap_discussion_id' => $this->beatmapDiscussion->getKey(),
-                    ],
-                ]);
+            if ($deletedBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
             $time = Carbon::now();
-            $this->update([
-                'deleted_by_id' => $deletedBy->user_id ?? null,
+
+            return $this->update([
+                'deleted_by_id' => $deletedBy->user_id,
                 'deleted_at' => $time,
                 'updated_at' => $time,
             ]);

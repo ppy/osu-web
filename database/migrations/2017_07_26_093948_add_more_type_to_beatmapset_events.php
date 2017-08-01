@@ -24,7 +24,9 @@ class AddMoreTypeToBeatmapsetEvents extends Migration
                 'issue_resolve',
                 'issue_reopen',
                 'discussion_delete',
-                'discussion_restore'
+                'discussion_restore',
+                'discussion_post_delete',
+                'discussion_post_restore'
         )");
     }
 
