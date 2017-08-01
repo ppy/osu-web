@@ -88,13 +88,11 @@ class BeatmapDiscussionPostsController extends Controller
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
-            $events[] = $discussion->beatmapset->events()->make([
-                'type' => $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN,
-                'user_id' => Auth::user()->getKey(),
-                'comment' => [
-                    'beatmap_discussion_id' => $discussion->getKey(),
-                ],
-            ]);
+            $events[] = BeatmapsetEvent::log(
+                $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN,
+                Auth::user(),
+                $discussion
+            );
         }
 
         try {

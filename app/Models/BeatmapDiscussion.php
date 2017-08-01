@@ -128,13 +128,7 @@ class BeatmapDiscussion extends Model
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
                 }
 
-                $this->beatmapsetDiscussion->beatmapset->events()->create([
-                    'type' => $beatmapsetEventType,
-                    'user_id' => $this->user_id,
-                    'comment' => [
-                        'beatmap_discussion_id' => $this->id,
-                    ],
-                ]);
+                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this)->saveOrExplode();
             }
 
             KudosuHistory::create([
@@ -252,13 +246,7 @@ class BeatmapDiscussion extends Model
     public function allowKudosu($allowedBy)
     {
         DB::transaction(function () {
-            $this->beatmapsetDiscussion->beatmapset->events()->create([
-                'type' => BeatmapsetEvent::KUDOSU_ALLOW,
-                'user_id' => $allowedBy->getKey(),
-                'comment' => [
-                    'beatmap_discussion_id' => $this->id,
-                ],
-            ]);
+            BeatmapsetEvent::log(BeatmapsetEvent::KUDOSU_ALLOW, $allowedBy, $this)->saveOrExplode();
             $this->update(['kudosu_denied' => false]);
             $this->refreshKudosu('allow_kudosu');
         });
@@ -267,13 +255,7 @@ class BeatmapDiscussion extends Model
     public function denyKudosu($deniedBy)
     {
         DB::transaction(function () use ($deniedBy) {
-            $this->beatmapsetDiscussion->beatmapset->events()->create([
-                'type' => BeatmapsetEvent::KUDOSU_DENY,
-                'user_id' => $deniedBy->getKey(),
-                'comment' => [
-                    'beatmap_discussion_id' => $this->id,
-                ],
-            ]);
+            BeatmapsetEvent::log(BeatmapsetEvent::KUDOSU_DENY, $deniedBy, $this)->saveOrExplode();
             $this->update([
                 'kudosu_denied_by_id' => $deniedBy->user_id ?? null,
                 'kudosu_denied' => true,
@@ -287,9 +269,12 @@ class BeatmapDiscussion extends Model
         return $this->deleted_at !== null;
     }
 
-    public function restore()
+    public function restore($restoredBy)
     {
-        DB::transaction(function () {
+        DB::transaction(function () use ($restoredBy) {
+            if ($restoredBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_RESTORE, $restoredBy, $this)->saveOrExplode();
+            }
             $this->update(['deleted_at' => null]);
             $this->refreshKudosu('restore');
         });
@@ -298,6 +283,9 @@ class BeatmapDiscussion extends Model
     public function softDelete($deletedBy)
     {
         DB::transaction(function () use ($deletedBy) {
+            if ($deletedBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
+            }
             $this->update([
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
