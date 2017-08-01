@@ -46,27 +46,29 @@ class PaymentsController extends Controller
     {
         $projectId = config('xsolla.project_id');
         $user = Auth::user();
-        $cart = Order::cart($user);
+        $order = Order::cart($user);
 
-        if ($cart === null) {
+        if ($order === null) {
             return;
         }
-
-        $checkout = new CheckoutHelper($cart);
 
         $tokenRequest = new TokenRequest($projectId, (string)$user->user_id);
         $tokenRequest
             ->setSandboxMode(true)
-            ->setExternalPaymentId($checkout->getXsollaCheckoutCode())
+            ->setExternalPaymentId($order->getOrderNumber())
             ->setUserEmail($user->user_email)
             ->setUserName($user->username)
-            ->setPurchase($cart->getTotal(), 'USD')
-            ->setCustomParameters(array('key1' => 'value1', 'key2' => 'value2'));
+            ->setPurchase($order->getTotal(), 'USD')
+            ->setCustomParameters([
+                'subtotal' => $order->getSubtotal(),
+                'shipping' => $order->getShipping(),
+            ]);
 
         $xsollaClient = XsollaClient::factory(array(
             'merchant_id' => config('xsolla.merchant_id'),
             'api_key' => config('xsolla.api_key'),
         ));
+
         $token = $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
 
         return $token;
