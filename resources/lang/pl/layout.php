@@ -1,5 +1,4 @@
 ﻿<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -230,7 +229,7 @@ return [
         ],
 
         'register' => [
-            'info' =>'Potrzebujesz konta. Dlaczego go jeszcze nie masz?',
+            'info' => 'Potrzebujesz konta. Dlaczego go jeszcze nie masz?',
             'title' => 'Nie masz konta?',
         ],
     ],

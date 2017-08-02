@@ -1,5 +1,4 @@
 ﻿<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -123,7 +122,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "Ten użytkownik jescze nie otrzymał żadnego medalu. ;_;",
+                'empty' => 'Ten użytkownik jescze nie otrzymał żadnego medalu. ;_;',
                 'title' => 'Medale',
             ],
             'recent_activities' => [
