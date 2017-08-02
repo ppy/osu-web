@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
@@ -21,13 +21,15 @@
 return [
     'login' => [
         '_' => 'Zaloguj się',
+        'locked_ip' => 'Twój adres IP jest zablokowany. Poczekaj kilka minut.',
         'username' => 'Nazwa użytkownika',
         'password' => 'Hasło',
         'button' => 'Zaloguj się',
+        'button_posting' => 'Logowanie...',
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Niepoprawny login/hasło',
-        'register' => 'Nie posiadasz konta osu!? Stwórz nowe',
+        'register' => 'Nie posiadasz konta osu! ? Stwórz nowe',
         'forgot' => 'Zapomniałeś hasła?',
         'beta' => [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
@@ -47,7 +49,7 @@ return [
         'age' => 'Ma :age lat',
         'current_location' => 'Obecnie w :location',
         'first_members' => 'Od samego początku',
-        'is_developer' => 'osu!programista',
+        'is_developer' => 'programista osu!',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Dołączył :date',
         'lastvisit' => 'Ostatnio widziany :date',
@@ -56,6 +58,7 @@ return [
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
         'page_description' => 'osu! - Wszystko co chciałbyś wiedzieć o :username!',
+        'plays_with' => 'Gra za pomocą :devices',
         'title' => 'Profil :username',
 
         'edit' => [
@@ -68,13 +71,16 @@ return [
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
                     'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
-                    'size_info' => 'Rozmiary nagłówka powinny mieć rozmiar przynajmniej 2000x700',
+                    'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x700',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
             ],
         ],
         'extra' => [
+            'followers' => '1 śledzący|:count śledzących|:count śledzących',
+            'unranked' => 'Ostatnio nie grał',
+
             'achievements' => [
                 'title' => 'Osiągnięcia',
                 'achieved-on' => 'Odblokowane dnia :date',
@@ -108,7 +114,8 @@ return [
 
                     'forum_post' => [
                         'give' => 'Otrzymano :amount od :giver za post na :post',
-                        'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
+                        'reset' => 'Zresetowano kudosu przez :giver za post na :post',
+                        'revoke' => 'Odebrano kudosu przez :giver za post na :post',
                     ],
                 ],
             ],
@@ -116,6 +123,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
+                'empty' => "Ten użytkownik jescze nie otrzymał żadnego medalu. ;_;",
                 'title' => 'Medale',
             ],
             'recent_activities' => [
@@ -173,4 +181,5 @@ return [
     'verify' => [
         'title' => 'Weryfikacja Konta',
     ],
+
 ];
