@@ -21,8 +21,10 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\Payments\XsollaNotificationProcessor;
 use App\Models\Store\Order;
 use Auth;
+use Request;
 use Xsolla\SDK\API\XsollaClient;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 
@@ -70,5 +72,14 @@ class XsollaController extends Controller
     }
     public function callback()
     {
+        $processor = new XsollaNotificationProcessor(Request::json()->all());
+
+        try {
+            $processor->validateTransaction();
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+
+        return 'whee';
     }
 }
