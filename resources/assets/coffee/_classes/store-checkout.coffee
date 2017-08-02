@@ -54,5 +54,5 @@ class @StoreCheckout
       sandbox: true
 
   @getXsollaToken: ->
-    $.get laroute.route('store.payments.xsolla-token')
+    $.get laroute.route('payments.xsolla.token')
 

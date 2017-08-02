@@ -198,8 +198,11 @@ Route::post('store/add-to-cart', 'StoreController@postAddToCart');
 Route::post('store/checkout', 'StoreController@postCheckout');
 Route::post('store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
 Route::delete('store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
-Route::get('store/xsolla-pay', 'Store\PaymentsController@xsolla')->name('store.payments.xsolla');
-Route::get('store/xsolla-token', 'Store\PaymentsController@xsollaToken')->name('store.payments.xsolla-token');
+
+Route::group(['prefix' => 'payments'], function () {
+    Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
+    Route::post('xsolla/callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
+});
 
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {

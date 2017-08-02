@@ -18,31 +18,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Store;
+namespace App\Http\Controllers\Payments;
 
-use App\Libraries\CheckoutHelper;
+use App\Http\Controllers\Controller;
 use App\Models\Store\Order;
 use Auth;
-use Illuminate\Database\QueryException;
 use Xsolla\SDK\API\XsollaClient;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 
-class PaymentsController extends Controller
+class XsollaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('check-user-restricted');
-        $this->middleware('verify-user');
+        $this->middleware('auth', ['only' => ['token']]);
+        $this->middleware('check-user-restricted', ['only' => ['token']]);
+        $this->middleware('verify-user', ['only' => ['token']]);
 
         return parent::__construct();
     }
 
-    public function xsolla()
-    {
-    }
-
-    public function xsollaToken()
+    public function token()
     {
         $projectId = config('xsolla.project_id');
         $user = Auth::user();
@@ -72,5 +67,8 @@ class PaymentsController extends Controller
         $token = $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
 
         return $token;
+    }
+    public function callback()
+    {
     }
 }
