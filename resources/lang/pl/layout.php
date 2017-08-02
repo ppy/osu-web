@@ -52,7 +52,7 @@ return [
             '_' => 'beatmapy',
             'show' => 'informacje',
             'index' => 'lista',
-            'artists' => 'wyróżnieni artyści'
+            'artists' => 'wyróżnieni artyści',
             'packs' => 'paczki',
             // 'getCharts' => 'charty',
         ],
