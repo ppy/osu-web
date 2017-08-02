@@ -19,12 +19,12 @@
  */
 return [
     'show' => [
-        'fallback_translation' => 'Ta strona nie jest przetłumaczona na wybrany język (:language). Pokazuję angielską stonę.',
+        'fallback_translation' => 'Żądana strona nie została jeszcze przetłumaczona na wybrany język (:language). Pokazuję w języku angielskim.',
         'languages' => 'Języki',
-        'missing' => 'Wybrana strona nie istnieje.',
-        'missing_title' => 'Nie Znaleziono',
-        'missing_translation' => 'Wybrana strona nie istnieje dla aktualnie wybranego języka.',
-        'toc' => 'Zawartość',
+        'missing' => 'Żądana strona nie została odnaleziona.',
+        'missing_title' => 'Nie znaleziono',
+        'missing_translation' => 'Żądana strona nie została odnaleziona dla obecnie ustawionego języka.',
+        'toc' => 'Spis treści',
         'edit' => [
             'link' => 'Pokaż na GitHubie',
             'refresh' => 'Odśwież',

@@ -24,9 +24,9 @@ return [
     ],
     'state' => [
       'friends' => 'znajomi',
-      'mutual' => 'wzajemni',
+      'mutual' => 'przyjaciele',
     ],
     'title' => 'Znajomi',
     'title_compact' => 'znajomi',
-    'too_many' => 'Przekroczono limit znajomych.',
+    'too_many' => 'Limit znajomych został osiągnięty.',
 ];

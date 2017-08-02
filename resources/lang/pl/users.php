@@ -123,7 +123,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => 'Ten użytkownik jescze nie otrzymał żadnego medalu. ;_;',
+                'empty' => 'Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;',
                 'title' => 'Medale',
             ],
             'recent_activities' => [

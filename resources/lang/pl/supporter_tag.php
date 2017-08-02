@@ -24,6 +24,6 @@ return [
     ],
     'duration' => [
         'months' => ':length miesiąc|:length miesięcy|{0}',
-        'years' => ':length rok|:length lata|{0}',
+        'years' => ':length rok|:length lata|:length lat|{0}',
     ],
 ];

@@ -22,25 +22,28 @@ return [
         'blurb' => [
             'important' => 'WAŻNE',
             'instruction' => [
-                '_' => 'Instalacja: Kiedy paczka się pobierze, wypakuj .rar do folderu z mapami
-                    Pliki map są nadal skompresowane, więc osu! rozpakuje pojedyńcze mapy zaraz po tym, jak wejdziesz w tryb gry.
-                    :scary rozpakowywuj map sampodzielnie,
-                    bądź mapy nie będą dobrze działały w osu!.',
-                'scary' => 'NIE',
+                '_' => 'Instalacja: Gdy paczka zostanie pobrana, 
+                wypakuj plik .rar w folderze z beatmapami (Songs).
+                Wszystkie beatmapy w paczce będą nadal miały
+                rozszerzenie .zip czy .osz, dlatego osu! rozpakuje je
+                po wejściu do listy beatmap.
+                :scary wypakowuj tych plików samodzielnie, inaczej nie
+                będą one funkcjonowały prawidłowo.',
+                'scary' => 'Nie',
             ],
             'note' => [
-                '_' => ':scary jest wysoko zalecane, ponieważ najstarsze mapy znacznie odstają jakością od nowszych.',
-                'scary' => 'pobieranie paczek beatmap od najnowszych do najstarszych',
+                '_' => ':scary jest wysoko zalecane, ponieważ starsze mapy znacznie odstają jakością od nowszych.',
+                'scary' => 'Pobieranie paczek beatmap od najnowszych do najstarszych',
             ],
         ],
         'title' => 'Paczki beatmap',
         'description' => 'Kolekcje beatmap o wspólnej tematyce.',
     ],
     'show' => [
-        'download' => 'Pobierz',
+        'download' => 'pobierz',
         'item' => [
-            'cleared' => 'Ukończona',
-            'not_cleared' => 'Nieukończona',
+            'cleared' => 'ukończona',
+            'not_cleared' => 'nieukończona',
         ],
     ],
     'mode' => [
@@ -50,7 +53,7 @@ return [
         'theme' => 'Tematyczne',
     ],
     'require_login' => [
-        '_' => 'Aby pobrać paczkę beatmap, musisz się :link',
+        '_' => 'Aby pobrać tę paczkę, musisz się :link',
         'link_text' => 'zalogować',
     ],
 ];

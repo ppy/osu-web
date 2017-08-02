@@ -18,18 +18,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 return [
-    'title' => 'Zresetuj Hasło',
+    'title' => 'Zresetuj hasło',
     'button' => [
         'cancel' => 'Anuluj',
         'resend' => 'Wyślij ponownie email weryfikacyjny',
         'set' => 'Ustaw hasło',
-        'start' => 'Start',
+        'start' => 'Rozpocznij',
     ],
     'email' => [
         'subject' => 'odzyskiwanie konta osu!',
     ],
     'error' => [
-        'contact_support' => 'Skontaktuj się z pomocą techniczną, żeby odsyskać konto.',
+        'contact_support' => 'Skontaktuj się z pomocą techniczną, aby odsyskać konto.',
         'is_privileged' => 'Skontaktuj się z peppym.',
         'missing_key' => 'Wymagane.',
         'too_many_tries' => 'Za dużo błędnych prób.',
@@ -37,8 +37,8 @@ return [
         'wrong_key' => 'Nieprawidłowy kod.',
     ],
     'notice' => [
-        'sent' => 'Sprawdź email żeby uzyskać kod.',
-        'saved' => 'Nowe hasło zapisane!',
+        'sent' => 'Sprawdź email, aby uzyskać kod.',
+        'saved' => 'Nowe hasło zostało zapisane!',
     ],
     'started' => [
         'password' => 'Nowe hasło',

@@ -29,16 +29,16 @@ return [
             'account-edit' => 'ustawienia',
             'friends' => 'znajomi',
             'friends-index' => 'znajomi',
-            'getChangelog' => 'lista zmian',
+            'getChangelog' => 'zmiany',
             'getDownload' => 'pobieranie',
             'getIcons' => 'ikony',
-            'groups-show' => 'groups',
+            'groups-show' => 'grupy',
             'index' => 'osu!',
             'legal-show' => 'information',
-            'news-index' => 'news',
-            'news-show' => 'news',
+            'news-index' => 'wiadomości',
+            'news-show' => 'wiadomości',
             'password-reset-index' => 'zresetuj hasło',
-            'search' => 'wyszukaj',
+            'search' => 'wyszukiwanie',
             'supportTheGame' => 'wspomóż grę',
         ],
         'help' => [
@@ -50,8 +50,9 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
-            'show' => 'info',
+            'show' => 'informacje',
             'index' => 'lista',
+            'artists' => 'wyróżnieni artyści'
             'packs' => 'paczki',
             // 'getCharts' => 'charty',
         ],
@@ -61,8 +62,8 @@ return [
         ],
         'rankings' => [
             '_' => 'rankingi',
-            'index' => 'pp',
-            'performance' => 'pp',
+            'index' => 'globalny',
+            'performance' => 'globalny',
             'charts' => 'charty',
             'score' => 'punktowy',
             'country' => 'krajowy',
@@ -84,7 +85,7 @@ return [
             'forum-forums-show' => 'forum',
         ],
         'multiplayer' => [
-            '_' => 'multiplayer',
+            '_' => 'tryb wieloosobowy',
             'show' => 'mecz',
         ],
         'error' => [
@@ -146,9 +147,9 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => 'General',
-            'home' => 'Strona Główna',
-            'changelog' => 'Lista Zmian',
+            '_' => 'Główne',
+            'home' => 'Strona główna',
+            'changelog' => 'Zmiany',
             'beatmaps' => 'Beatmapy',
             'download' => 'Pobierz osu!',
             'wiki' => 'Wiki',
@@ -156,21 +157,21 @@ return [
         'help' => [
             '_' => 'Pomoc i Społeczność',
             'faq' => 'Często zadawane pytania',
-            'forum' => 'CommunityForums',
+            'forum' => 'Forum',
             'livestreams' => 'Na żywo',
-            'report' => 'Zgłoś błąd',
+            'report' => 'Zgłoś problem',
         ],
         'support' => [
-            '_' => 'wspomóż osu!',
-            'tags' => 'Supporter Tags',
-            'merchandise' => 'Merchandise',
+            '_' => 'Wspomóż osu!',
+            'tags' => 'Status donatora',
+            'merchandise' => 'Sklep',
         ],
         'legal' => [
-            '_' => 'Legal & Status',
+            '_' => 'Prawne i status',
             'copyright' => 'Prawa Autorskie (DMCA)',
             'osu_status' => '@osustatus',
-            'server_status' => 'Status Serwera',
-            'terms' => 'Zasady użytkowania',
+            'server_status' => 'Status serwera',
+            'terms' => 'Warunki świadczenia usług',
         ],
     ],
     'errors' => [
@@ -219,18 +220,18 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'adres email',
-            'forgot' => 'Zapomniałem danych logowania',
+            'forgot' => 'Nie pamiętam moich danych logowania!',
             'password' => 'hasło',
-            'title' => 'Zaloguj się, aby zyskać dostęp',
+            'title' => 'Zaloguj się, aby przejść dalej',
 
             'error' => [
                 'email' => 'Nazwa użytkownika bądź email nie istnieją',
-                'password' => 'Nieprawidłowe hasło',
+                'password' => 'Niepoprawne hasło',
             ],
         ],
 
         'register' => [
-            'info' => 'Potrzebujesz konta. Dlaczego go jeszcze nie masz?',
+            'info' => 'Potrzebujesz konta. Dlaczego by takiego nie stworzyć?',
             'title' => 'Nie masz konta?',
         ],
     ],
@@ -240,12 +241,12 @@ return [
             'account-edit' => 'Ustawienia',
             'friends' => 'Znajomi',
             'logout' => 'Wyloguj się',
-            'profile' => 'Mój Profil',
+            'profile' => 'Mój profil',
         ],
     ],
 
     'popup_search' => [
-        'initial' => 'Wpisz aby wyszukać!',
-        'retry' => 'Wyszukiwanie nieudane. Kliknij aby ponowić próbę.',
+        'initial' => 'Napisz, aby wyszukać!',
+        'retry' => 'Wyszukiwanie nieudane. Naciśnij tutaj, aby spróbować ponownie.',
     ],
 ];

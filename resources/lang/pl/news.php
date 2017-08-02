@@ -23,17 +23,17 @@ return [
         'news-show' => 'wiadomość',
     ],
     'index' => [
-        'title' => 'Wiadomości',
+        'title' => 'Wiadomości ze świata osu!',
         'nav' => [
             'newer' => 'Nowsze wiadomości',
-            'older' => 'Starsze starsze wiadomości',
+            'older' => 'Starsze wiadomości',
         ],
     ],
     'show' => [
-        'posted' => 'wrzucone :time',
+        'posted' => 'napisane :time',
         'nav' => [
-            'newer' => 'Poprzednia wiadomość',
-            'older' => 'Następna wiadomość',
+            'newer' => 'Nowsza wiadomość',
+            'older' => 'Starsza wiadomość',
         ],
     ],
     'store' => [
@@ -42,6 +42,6 @@ return [
     ],
     'update' => [
         'button' => 'Zaktualizuj',
-        'ok' => 'Post zaktualizowany.',
+        'ok' => 'Wiadomość zaktualizowana.',
     ],
 ];

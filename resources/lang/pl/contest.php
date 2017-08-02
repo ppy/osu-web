@@ -19,33 +19,33 @@
  */
 return [
     'header' => [
-        'small' => 'Konkurencja na więcej sposobów niż tylko klikanie kółek.',
-        'large' => 'Konkursy Społecznościowe w osu!',
+        'small' => 'Rywalizacja na więcej sposobów niż tylko klikanie w kółka.',
+        'large' => 'Konkursy Społecznościowe',
     ],
     'voting' => [
-        'over' => 'Głosowanie w tym konkursie się zakończyło',
-        'login_required' => 'Zaloguj się, aby zagłosować.',
+        'over' => 'Głosowanie dla tego konkursu zostało zakończone',
+        'login_required' => 'Zaloguj się, aby zagłosować!',
         'best_of' => [
             'none_played' => 'Wygląda na to, że żadna z beatmap kwalifikujących się do tego konkursu nie została przez ciebie ukończona.',
         ],
     ],
     'entry' => [
         '_' => 'zgłoszenie',
-        'login_required' => 'Musisz się zalogować, aby zgłosić się do konkursu.',
-        'silenced_or_restricted' => 'Nie możesz brać udziału w konkursach, jeżeli na twoje konto jest nałożone uciszenie albo blokada.',
-        'preparation' => 'Aktualnie pracujemy nad tym konkursem. Czekaj cierpliwie!',
+        'login_required' => 'Zaloguj się, aby uczestniczyć w tym konkursie.',
+        'silenced_or_restricted' => 'Nie możesz uczestniczyć w konkursach podczas uciszenia bądź blokady konta.',
+        'preparation' => 'Ten konkurs jest obecnie przygotowywany. Czekaj cierpliwie!',
         'over' => 'Dziękujemy za zgłoszenia! Przesyłanie prac zostało zakończone i wkrótce zacznie się głosowanie.',
         'limit_reached' => 'Limit zgłoszeń do tego konkursu został przez ciebie przekroczony.',
         'drop_here' => 'Tutaj umieść swoje zgłoszenie',
         'wrong_type' => [
-            'art' => 'Tylko pliki z rozszerzeniami .jpg i .png są dozwolone w tym konkursie.',
-            'beatmap' => 'Tylko pliki z rozszerzeniem .osu zą dozwolone w tym konkursie.',
-            'music' => 'Tylko pliki z rozszerzeniem .mp3 są dozwolone w tym konkursie.',
+            'art' => 'Jedynie pliki o rozszerzeniach .jpg czy .png są dozwolone w tym konkursie.',
+            'beatmap' => 'Jedynie pliki o rozszerzeniu .osu są dozwolone w tym konkursie.',
+            'music' => 'Jedynie pliki o rozszerzeniu .mp3 są dozwolone w tym konkursie.',
         ],
-        'too_big' => 'Maksymalna ilość zgłoszeń to :limit.',
+        'too_big' => 'Maksymalna wielkość zgłoszeń dla tego konkursu to :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Pobierz próbkę',
+        'download' => 'Pobierz zgłoszenie',
     ],
     'vote' => [
         'list' => 'głosy',
@@ -54,13 +54,13 @@ return [
     'dates' => [
         'ended' => 'Zakończony :date',
         'starts' => [
-            '_' => 'Zaczyna się :date',
+            '_' => 'Data rozpoczęcia: :date',
             'soon' => 'niedługo™',
         ],
     ],
     'states' => [
         'entry' => 'Otwarty na zgłoszenia',
-        'voting' => 'Głosowanie rozpoczęte',
+        'voting' => 'Głosowanie',
         'results' => 'Wyniki',
     ],
 ];

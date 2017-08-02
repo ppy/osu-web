@@ -37,18 +37,18 @@ return [
     'search' => [
         'advanced_link' => 'Zaawansowane wyszkukiwanie',
         'button' => 'Szukaj',
-        'empty_result' => 'Niczego nie znaleziono!',
+        'empty_result' => 'Nie znaleziono!',
         'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
         'title' => 'Wyniki wyszukiwania',
         'beatmapset' => [
-            'more' => ':count więcej rezultatów wyszukiwania',
+            'more' => 'Zobacz więcej wyszukanych beatmap: :count',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',
             'title' => 'Beatmapy',
         ],
         'forum_post' => [
             'all' => 'Wszystkie fora',
             'link' => 'Przeszukaj forum',
-            'more_simple' => 'Zobacz więcej wyszukanych postów na forum',
+            'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
             'title' => 'Forum',
             'label' => [
                 'forum' => 'przeszukaj forum',
@@ -64,7 +64,7 @@ return [
             'wiki_page' => 'wiki',
         ],
         'user' => [
-            'more' => ':count więcej znalezionych użytkowników',
+            'more' => 'Zobacz więcej znalezionych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'title' => 'Użytkownicy',
         ],
@@ -118,7 +118,7 @@ return [
         'buttons' => [
             'download' => 'Pobierz osu!',
             'support' => 'Wesprzyj osu!',
-            'store' => 'sklep osu!',
+            'store' => 'Sklep osu!',
         ],
     ],
 ];
