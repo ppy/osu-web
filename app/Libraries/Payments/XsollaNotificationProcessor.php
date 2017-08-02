@@ -3,18 +3,20 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
-use Symfony\Component\HttpFoundation\ParameterBag;
 
 class XsollaNotificationProcessor implements \ArrayAccess
 {
-    protected $json;
-    protected $order;
+    private $json;
+    private $order;
+    private $request;
 
 
-    public function __construct(array $json)
+    // TODO: accept request instead?
+    public function __construct(\Illuminate\Http\Request $request)
     {
-        $this->json = $json;
-        $this->order = Order::find($this->getOrderId());
+        $this->request = $request;
+        $this->json = $request->json()->all();
+        $this->order = Order::find($this->getOrderId()); // remove query from constructor
     }
 
     public function getOrderId()
@@ -27,8 +29,40 @@ class XsollaNotificationProcessor implements \ArrayAccess
         return $this['transaction.external_id'];
     }
 
+    public function apply()
+    {
+    }
+
+    public function receivedSignature()
+    {
+        $matches = [];
+        preg_match('~^Signature (?<signature>[0-9a-f]{40})$~', $this->request->header('Authorization'), $matches);
+
+        return $matches['signature'];
+    }
+
+    public function calculatedSignature()
+    {
+        return sha1($this->request->getContent() . config('xsolla.secret_key'));
+    }
+
+    public function isValidSignature()
+    {
+        return hash_equals($this->calculatedSignature(), $this->receivedSignature());
+    }
+
+    public function validateSignature()
+    {
+        // TODO: post many warnings
+        if (!$this->isValidSignature()) {
+            throw new \Exception('Invalid signature');
+        }
+    }
+
     public function validateTransaction()
     {
+        $this->validateSignature();
+
         // order should exist
         if ($this->order === null) {
             $this->addError('order is not valid');
@@ -43,6 +77,10 @@ class XsollaNotificationProcessor implements \ArrayAccess
         // id in order number should be correct
         $orderNumber = $this->getOrderNumber();
         $exploded = explode('-', $orderNumber, 3);
+        if (count($exploded) !== 3) {
+            $this->addError('order number is busted');
+        }
+
         if (intval($exploded[1]) !== $this->order['user_id']) {
             $this->addError('mismatching user_id');
         }

@@ -70,12 +70,13 @@ class XsollaController extends Controller
 
         return $token;
     }
-    public function callback()
+    public function callback(Request $request)
     {
-        $processor = new XsollaNotificationProcessor(Request::json()->all());
+        $processor = new XsollaNotificationProcessor($request->getFacadeRoot());
 
         try {
             $processor->validateTransaction();
+            $processor->apply();
         } catch (\Exception $e) {
             return $e->getMessage();
         }
