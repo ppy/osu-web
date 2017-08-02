@@ -105,7 +105,7 @@ class BeatmapDiscussionPost extends Model
     public function restore($restoredBy)
     {
         return DB::transaction(function () use ($restoredBy) {
-            if ($deletedBy->getKey() !== $this->user_id) {
+            if ($restoredBy->getKey() !== $this->user_id) {
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
