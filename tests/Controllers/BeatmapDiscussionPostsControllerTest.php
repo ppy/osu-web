@@ -66,6 +66,8 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         // changing resolve status adds two posts
         $currentDiscussionPosts = BeatmapDiscussionPost::count();
+        // make sure discussion type is problem/suggestion so it can be resolved
+        $this->beatmapDiscussion->update(['message_type' => 'problem']);
 
         $this
             ->actingAs($this->user)
