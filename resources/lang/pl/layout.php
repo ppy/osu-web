@@ -30,7 +30,7 @@ return [
             'friends' => 'znajomi',
             'friends-index' => 'znajomi',
             'getChangelog' => 'zmiany',
-            'getDownload' => 'pobieranie',
+            'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
             'index' => 'osu!',
