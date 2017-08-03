@@ -37,18 +37,18 @@ return [
         'posted' => 'posté le :time',
 
         'nav' => [
-            'newer' => 'Nouveaux posts',
-            'older' => 'Anciens posts',
+            'newer' => 'Post le plus récent',
+            'older' => 'Post le plus ancien',
         ],
     ],
 
     'store' => [
-        'button' => 'Mettre à jouer',
-        'ok' => 'Liste mise à jour.',
+        'button' => 'Modifiée',
+        'ok' => 'Liste modifiée.',
     ],
 
     'update' => [
-        'button' => 'Mettre à jour',
-        'ok' => 'Post mis à jour.',
+        'button' => 'Modifier',
+        'ok' => 'Post modifié.',
     ],
 ];

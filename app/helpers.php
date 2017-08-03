@@ -135,6 +135,11 @@ function locale_for_timeago($locale)
     return $locale;
 }
 
+function mysql_escape_like($string)
+{
+    return addcslashes($string, '%_\\');
+}
+
 function osu_url($key)
 {
     $url = config("osu.urls.{$key}");
@@ -541,7 +546,7 @@ function display_regdate($user)
         return;
     }
 
-    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
@@ -552,13 +557,17 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
 {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
         $format,
         IntlDateFormatter::NONE
     );
+
+    if ($pattern !== null) {
+        $formatter->setPattern(trans("common.datetime.{$pattern}.php"));
+    }
 
     return $formatter->format($datetime);
 }

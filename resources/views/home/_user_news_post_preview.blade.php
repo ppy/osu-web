@@ -40,7 +40,7 @@
                 {{ $post->title() }}
             </a>
             <div class="news-post-preview__post-content">
-                <p>{!! first_paragraph($post->bodyHtml()) !!}</p>
+                <p>{!! $post->previewText() !!}</p>
             </div>
         </div>
     </div>

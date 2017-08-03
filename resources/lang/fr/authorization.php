@@ -55,7 +55,7 @@ return [
                 'channel' => [
                     'no_access' => "L'accès au canal cible est requis.",
                     'moderated' => 'Ce canal est modéré.',
-                    'not_lazer' => 'Vous ne pouvez parler que dans lazer pour le moment.',
+                    'not_lazer' => 'Vous ne pouvez parler que dans #lazer pour le moment.',
                 ],
 
                 'not_allowed' => 'Vous ne pouvez pas envoyer de messages si vous êtes banni/restreint/réduit au silence.',

@@ -28,7 +28,7 @@ return [
     ],
     'stat' => [
         'accuracy' => 'Précision',
-        'active_users' => 'Utilisateurs Actifs',
+        'active_users' => 'Utilisateurs actifs',
         'country' => 'Pays',
         'play_count' => 'Nombre de Fois Jouées',
         'performance' => 'Performance',

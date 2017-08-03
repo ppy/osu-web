@@ -89,7 +89,6 @@ return [
             'pending' => 'Ожидающий',
             'praises' => 'Похвалы',
             'resolved' => 'Решено',
-            'total' => 'Всего',
         ],
     ],
 
