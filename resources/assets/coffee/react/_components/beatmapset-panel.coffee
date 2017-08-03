@@ -131,13 +131,13 @@ class @BeatmapsetPanel extends React.PureComponent
       a
         href: '#'
         className: 'beatmapset-panel__play js-audio--play'
-        'data-audio-url': beatmapset.previewUrl
+        'data-audio-url': beatmapset.preview_url
         el Icon, name: if @state.preview == 'ended' then 'play' else 'stop'
       div className: 'beatmapset-panel__shadow'
 
 
   previewInitializing: (_e, {url, player}) =>
-    if url != @props.beatmap.previewUrl
+    if url != @props.beatmap.preview_url
       return @previewStop()
 
     @setState
@@ -146,7 +146,7 @@ class @BeatmapsetPanel extends React.PureComponent
 
 
   previewStart: (_e, {url, player}) =>
-    if url != @props.beatmap.previewUrl
+    if url != @props.beatmap.preview_url
       return @previewStop()
 
     @setState
