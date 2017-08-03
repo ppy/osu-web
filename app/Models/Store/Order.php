@@ -153,6 +153,14 @@ class Order extends Model
         });
     }
 
+    public function paid($transactionId, $date)
+    {
+        $this->transaction_id = $transactionId;
+        $this->paid_at = $date;
+        $this->status = 'paid';
+        $this->save();
+    }
+
     /**
      * Updates the Order with form parameters.
      *

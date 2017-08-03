@@ -3,6 +3,8 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
+use Carbon\Carbon;
+use DB;
 
 class XsollaNotificationProcessor implements \ArrayAccess
 {
@@ -30,11 +32,20 @@ class XsollaNotificationProcessor implements \ArrayAccess
         return $this['transaction.external_id'];
     }
 
+    private function getTransactionId()
+    {
+        return "xsolla-{$this['transaction.payment_method_order_id']}";
+    }
+
     public function apply()
     {
-        $commands = $this->getCommands();
-        \Log::debug('commands');
-        \Log::debug($commands);
+        $commands = null;
+        DB::transaction(function () use ($commands) {
+            $this->order->paid($this->getTransactionId(), Carbon::parse($this['transaction.payment_date']));
+            $commands = $this->getCommands();
+            \Log::debug('commands');
+            \Log::debug($commands);
+        });
 
         return $commands;
     }

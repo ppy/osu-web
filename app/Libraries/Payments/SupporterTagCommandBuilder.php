@@ -2,6 +2,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Libraries\Commands\ApplySupporterTag;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
@@ -38,13 +39,13 @@ class SupporterTagCommandBuilder
     public function getCommands()
     {
         $commands = [];
-        foreach ($this->changes as $userId => $duration) {
-            // TODO: this is temporary
-            $commands[] = [
-                'command' => 'ApplySupporterTag',
-                'userId' => $userId,
+        foreach ($this->changes as $targetId => $duration) {
+            $params = [
+                'donorId' => $this->order['user_id'],
+                'targetId' => $targetId,
                 'duration' => $duration,
             ];
+            $commands[] = new ApplySupporterTag($this->order['transaction_id'], $params);
         }
 
         return $commands;
