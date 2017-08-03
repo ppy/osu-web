@@ -27,10 +27,22 @@ return [
         ],
     ],
 
+    'nearby_posts' => [
+        'confirm' => 'Aucun des posts ne parle de mon problème',
+        'notice' => 'Il y a des posts :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marqué comme résolu par :user',
             'false' => 'Réouvert par :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'administrateur',
+        'bng' => 'nominateur',
+        'owner' => 'mappeur',
+        'qat' => 'qat',
     ],
 ];

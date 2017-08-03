@@ -34,8 +34,72 @@ return [
             'sub' => 'rytm jest tylko *kliknięcie* stąd!',
         ],
     ],
+    'search' => [
+        'advanced_link' => 'Zaawansowane wyszkukiwanie',
+        'button' => 'Szukaj',
+        'empty_result' => 'Nie znaleziono!',
+        'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
+        'title' => 'Wyniki wyszukiwania',
+        'beatmapset' => [
+            'more' => 'Zobacz więcej wyszukanych beatmap: :count',
+            'more_simple' => 'Zobacz więcej wyszukanych beatmap',
+            'title' => 'Beatmapy',
+        ],
+        'forum_post' => [
+            'all' => 'Wszystkie fora',
+            'link' => 'Przeszukaj forum',
+            'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
+            'title' => 'Forum',
+            'label' => [
+                'forum' => 'przeszukaj forum',
+                'forum_children' => 'zawiera subforum',
+                'username' => 'autor',
+            ],
+        ],
+        'mode' => [
+            'all' => 'wszystkie',
+            'beatmapset' => 'beatmapa',
+            'forum_post' => 'forum',
+            'user' => 'użytkownik',
+            'wiki_page' => 'wiki',
+        ],
+        'user' => [
+            'more' => 'Zobacz więcej znalezionych użytkowników: :count',
+            'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
+            'title' => 'Użytkownicy',
+        ],
+        'wiki_page' => [
+            'link' => 'Przeszukaj wiki',
+            'more_simple' => 'Zobacz więcej wyszukanych artykułów na wiki',
+            'title' => 'Wiki',
+        ],
+    ],
+    'download' => [
+      'header' => [
+          '1' => 'a więc',
+          '2' => 'zapoznajemy się z',
+          '3' => 'pobieraniem osu! na system Windows',
+      ],
+      'steps' => [
+          '1' => [
+              'name' => 'Krok 1',
+              'content' => 'Pobierz klienta gry osu!',
+          ],
+          '2' => [
+              'name' => 'Krok 2',
+              'content' => 'Załóż konto na osu!',
+          ],
+          '3' => [
+              'name' => 'Krok 3',
+              'content' => '???',
+          ],
+      ],
+      'more' => 'Dowiedz się więcej!',
+      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy/a> po poradniki i wskazówki dotyczące całego świata osu!',
+    ],
+
     'user' => [
-        'title' => 'news',
+        'title' => 'wiadomości',
         'news' => [
             'title' => 'Wiadomości',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',
@@ -49,12 +113,12 @@ return [
         ],
         'beatmaps' => [
             'new' => 'Nowe rankingowe mapy',
-            'popular' => 'Popularne mapy',
+            'popular' => 'Popularne beatmapy',
         ],
         'buttons' => [
-            'download' => 'pobierz osu!',
-            'support' => 'wesprzyj osu!',
-            'store' => 'sklep osu!',
+            'download' => 'Pobierz osu!',
+            'support' => 'Wesprzyj osu!',
+            'store' => 'Sklep osu!',
         ],
     ],
 ];

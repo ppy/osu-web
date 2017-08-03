@@ -32,7 +32,7 @@ class Index
     public static function all($page = null, $limit = null)
     {
         $page = max(1, $page ?? 1);
-        $limit = clamp($limit ?? 10, 10, 50);
+        $limit = clamp($limit ?? 10, 1, 50);
 
         $start = ($page - 1) * $limit;
         $end = $limit + $start;

@@ -40,9 +40,9 @@ return [
             'blocks' => [
                 'dev' => 'Développé et maitenu par une seule personne en Australie',
                 'time' => "Prend tellement de temps pour le maitenir que ce n'est plus possible d'appeler ça un \"hobby\".",
-                'ads' => "Aucune pub, nullepart. <br/><br/>
+                'ads' => "Aucune pub, nulle part. <br/><br/>
                         Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l'argent.",
-                'goodies' => 'Vous obtiendrez des goodies!',
+                'goodies' => 'Vous obtiendrez des goodies !',
             ],
         ],
 
@@ -75,7 +75,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtres de beatmaps',
-                'description' => 'Filtrez les recherches de beatmaps par les jouées et les non-jouées et les notes obtenus (si une).',
+                'description' => 'Filtrez les recherches de beatmaps par les jouées et les non-jouées et les notes obtenues (si une).',
             ],
 
             'yellow_fellow' => [

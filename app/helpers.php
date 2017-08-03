@@ -88,7 +88,7 @@ function html_excerpt($body, $limit = 300)
         return $body;
     }
 
-    return substr($body, 0, $limit).'...';
+    return mb_substr($body, 0, $limit).'...';
 }
 
 function json_date($date)

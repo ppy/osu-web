@@ -158,6 +158,7 @@ class BeatmapsetsController extends Controller
 
         return [
             'beatmapset' => $beatmapset->defaultJson(),
+            'beatmapsetDiscussion' => $beatmapset->beatmapsetDiscussion->defaultJson(),
         ];
     }
 
@@ -173,6 +174,7 @@ class BeatmapsetsController extends Controller
 
         return [
             'beatmapset' => $beatmapset->defaultJson(),
+            'beatmapsetDiscussion' => $beatmapset->beatmapsetDiscussion->defaultJson(),
         ];
     }
 

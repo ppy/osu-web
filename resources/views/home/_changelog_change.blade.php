@@ -31,6 +31,8 @@
         @if(present($log->category) === true)
             {{ $log->category }}:
         @endif
-        {{ $log->message }}
+        @if (present($log->url)) <a href="{{$log->url}}"> @endif
+            {{ $log->message }}
+        @if (present($log->url)) </a> @endif
     </div>
 </div>

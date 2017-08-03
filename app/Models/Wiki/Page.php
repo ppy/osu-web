@@ -281,13 +281,19 @@ class Page
         Cache::forget($this->cacheKeyLocales());
     }
 
-    public function title()
+    public function title($withSubtitle = false)
     {
         if ($this->page() === null) {
             return trans('wiki.show.missing_title');
         }
 
-        return presence($this->page()['header']['title'] ?? null) ?? $this->defaultTitle;
+        $title = presence($this->page()['header']['title'] ?? null) ?? $this->defaultTitle;
+
+        if ($withSubtitle && present($this->subtitle())) {
+            $title = $this->subtitle().' / '.$title;
+        }
+
+        return $title;
     }
 
     public function subtitle()
