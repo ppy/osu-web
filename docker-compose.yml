@@ -8,9 +8,9 @@ services:
                 _uid: ${_UID:-1000}
                 _gid: ${_GID:-1000}
         container_name: osuweb-php
-        working_dir: /data/osu!web
+        working_dir: /data/osuweb
         volumes:
-            - .:/data/osu!web
+            - .:/data/osuweb
             - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
         environment:
             DB_HOST: osuweb-mariadb
@@ -19,7 +19,7 @@ services:
         container_name: osuweb-nginx
         volumes:
             - ./docker/nginx/nginx-osu-next:/etc/nginx/conf.d/default.conf
-            - .:/data/osu!web
+            - .:/data/osuweb
         ports:
             - "8080:80"
     db:
@@ -39,13 +39,13 @@ services:
                 _gid: ${_GID:-1000}
         container_name: osuweb-composer
         volumes:
-            - .:/data/osu!web
+            - .:/data/osuweb
             - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
         environment:
             DB_HOST: osuweb-mariadb
         user: osuweb
-        working_dir: /data/osu!web
-        command: bash /data/osu!web/docker/php/build.sh
+        working_dir: /data/osuweb
+        command: bash /data/osuweb/docker/php/build.sh
     yarn:
         build:
             context: ./docker/yarn
@@ -54,8 +54,6 @@ services:
                 _gid: ${_GID:-1000}
         container_name: osuweb-yarn
         volumes:
-            # for some reason webpack doesn't like the exclamation mark in
-            # the path so we just omit it for the time being
             - .:/data/osuweb
         user: osuweb
         working_dir: /data/osuweb

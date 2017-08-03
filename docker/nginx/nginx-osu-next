@@ -7,7 +7,7 @@ server {
 
         # error_log /vagrant/logs/nginx.log;
 
-        root /data/osu!web/public;
+        root /data/osuweb/public;
         index index.php index.hh index.html;
 
         location / {
