@@ -89,7 +89,6 @@ return [
             'pending' => 'Pending',
             'praises' => '赞',
             'resolved' => '已解决',
-            'total' => '总计', //(总计/总数)需要上下文
         ],
     ],
 
