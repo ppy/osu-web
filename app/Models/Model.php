@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Traits\MacroableModel;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -46,5 +47,16 @@ abstract class Model extends BaseModel
         $values = array_map('strval', $ids);
 
         $query->orderByRaw($string, $values);
+    }
+
+    public function saveOrExplode($options = [])
+    {
+        $result = $this->save($options);
+
+        if ($result === false) {
+            throw new ModelNotSavedException('failed saving model');
+        }
+
+        return $result;
     }
 }

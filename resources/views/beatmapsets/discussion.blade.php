@@ -24,7 +24,7 @@
 ])
 
 @section('content')
-    <div class="js-react--beatmap-discussions"></div>
+    <div class="js-react--beatmap-discussions osu-layout osu-layout--full"></div>
 @endsection
 
 @section ("script")

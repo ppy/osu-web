@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,23 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+.beatmapset-events {
+  margin-top: -20px;
+  display: flex;
+  flex-direction: column;
 
-use App\Models\BeatmapsetEvent;
-use League\Fractal;
-
-class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
-{
-    public function transform(BeatmapsetEvent $event = null)
-    {
-        $userId = priv_check('BeatmapsetEventViewUserId')->can() ? $event->user_id : null;
-
-        return [
-            'id' => $event->id,
-            'type' => $event->type,
-            'comment' => $event->comment,
-            'created_at' => json_time($event->created_at),
-            'user_id' => $userId,
-        ];
-    }
+  &__title {
+    font-size: @font-size--title-small-2;
+    color: @pink-darker;
+    margin: 20px 0 5px;
+  }
 }

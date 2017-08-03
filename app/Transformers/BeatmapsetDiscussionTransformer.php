@@ -28,6 +28,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap_discussions',
+        'beatmapset_events',
         'users',
     ];
 
@@ -45,6 +46,14 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $discussion->beatmapDiscussions->all(),
             new BeatmapDiscussionTransformer()
+        );
+    }
+
+    public function includeBeatmapsetEvents(BeatmapsetDiscussion $discussion)
+    {
+        return $this->collection(
+            $discussion->beatmapset->events->all(),
+            new BeatmapsetEventTransformer()
         );
     }
 
@@ -68,6 +77,12 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
                 $userIds[] = $post->user_id;
                 $userIds[] = $post->last_editor_id;
                 $userIds[] = $post->deleted_by_id;
+            }
+        }
+
+        foreach ($discussion->beatmapset->events as $event) {
+            if (priv_check('BeatmapsetEventViewUserId', $event)->can()) {
+                $userIds[] = $event->user_id;
             }
         }
 

@@ -18,23 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace App\Exceptions;
 
-use App\Models\BeatmapsetEvent;
-use League\Fractal;
+use Exception;
 
-class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
+class ModelNotSavedException extends Exception
 {
-    public function transform(BeatmapsetEvent $event = null)
-    {
-        $userId = priv_check('BeatmapsetEventViewUserId')->can() ? $event->user_id : null;
-
-        return [
-            'id' => $event->id,
-            'type' => $event->type,
-            'comment' => $event->comment,
-            'created_at' => json_time($event->created_at),
-            'user_id' => $userId,
-        ];
-    }
+    // This is used for model's saveOrExplode
 }

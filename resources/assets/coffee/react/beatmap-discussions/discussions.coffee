@@ -26,7 +26,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
   render: =>
     discussions = @props.currentDiscussions[@props.mode]
 
-    div className: 'osu-page osu-page--small',
+    div className: 'osu-page osu-page--small osu-page--full',
       div
         className: bn
 

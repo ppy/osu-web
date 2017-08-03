@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DB;
 
 class BeatmapDiscussionPost extends Model
 {
@@ -101,9 +102,15 @@ class BeatmapDiscussionPost extends Model
             ->where('id', '<', $this->id)->exists();
     }
 
-    public function restore()
+    public function restore($restoredBy)
     {
-        return $this->update(['deleted_at' => null]);
+        return DB::transaction(function () use ($restoredBy) {
+            if ($restoredBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_RESTORE, $restoredBy, $this)->saveOrExplode();
+            }
+
+            return $this->update(['deleted_at' => null]);
+        });
     }
 
     public function softDelete($deletedBy)
@@ -112,13 +119,19 @@ class BeatmapDiscussionPost extends Model
             return trans('model_validation.beatmap_discussion_post.first_post');
         }
 
-        $time = Carbon::now();
+        DB::transaction(function () use ($deletedBy) {
+            if ($deletedBy->getKey() !== $this->user_id) {
+                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
+            }
 
-        $this->update([
-            'deleted_by_id' => $deletedBy->user_id ?? null,
-            'deleted_at' => $time,
-            'updated_at' => $time,
-        ]);
+            $time = Carbon::now();
+
+            return $this->update([
+                'deleted_by_id' => $deletedBy->user_id,
+                'deleted_at' => $time,
+                'updated_at' => $time,
+            ]);
+        });
     }
 
     public function scopeWithoutDeleted($query)

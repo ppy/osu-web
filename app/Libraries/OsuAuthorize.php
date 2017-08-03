@@ -197,11 +197,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkBeatmapsetNominatorsView($user, $beatmapset)
-    {
-        // no one but admin (not covered here) =D
-    }
-
     public function checkBeatmapsetNominate($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
@@ -234,6 +229,11 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapsetEventViewUserId($user, $event)
+    {
+        // no one but admin (not covered here) =D
     }
 
     public function checkChatMessageSend($user, $target)
