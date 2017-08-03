@@ -69,7 +69,7 @@ class @BeatmapsetPanel extends React.PureComponent
               el BeatmapIcon, beatmap: b
 
     div
-      className: "beatmapset-panel #{'beatmapset-panel--previewing' if @state.preview != 'ended'}"
+      className: "beatmapset-panel#{if @state.preview != 'ended' then ' beatmapset-panel--previewing' else ''}"
       div className: 'beatmapset-panel__panel',
         div className: 'beatmapset-panel__header',
           a
@@ -77,6 +77,10 @@ class @BeatmapsetPanel extends React.PureComponent
             className: 'beatmapset-panel__thumb'
             style:
               backgroundImage: "url(#{beatmapset.covers.card})"
+
+            if beatmapset.video or beatmapset.storyboard
+              div className: 'beatmapset-panel__video-icon',
+                el Icon, name: 'film', modifiers: ['fw']
 
             div className: 'beatmapset-panel__title-artist-box',
               div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',

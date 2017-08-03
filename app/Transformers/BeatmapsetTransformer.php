@@ -64,6 +64,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'previewUrl' => $beatmapset->previewURL(),
             'tags' => $beatmapset->tags,
             'video' => $beatmapset->video,
+            'storyboard' => $beatmapset->storyboard,
             'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
