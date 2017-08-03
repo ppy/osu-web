@@ -85,11 +85,21 @@ class BeatmapDiscussion extends Model
 
     public function getResolvedAttribute($value)
     {
-        if (in_array($this->message_type, ['suggestion', 'problem'], true)) {
-            return (bool) $value;
+        return $this->canBeResolved() ? (bool) $value : false;
+    }
+
+    public function setResolvedAttribute($value)
+    {
+        if (!$this->canBeResolved()) {
+            $value = false;
         }
 
-        return false;
+        $this->attributes['resolved'] = $value;
+    }
+
+    public function canBeResolved()
+    {
+        return in_array($this->message_type, ['suggestion', 'problem'], true);
     }
 
     public function refreshKudosu($event)
