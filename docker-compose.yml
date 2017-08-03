@@ -37,6 +37,8 @@ services:
             args:
                 _uid: ${_UID:-1000}
                 _gid: ${_GID:-1000}
+        depends_on:
+          - db
         container_name: osuweb-composer
         volumes:
             - .:/data/osuweb

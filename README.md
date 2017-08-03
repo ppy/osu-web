@@ -34,11 +34,6 @@ There are a few different options to get started:
   ```bash
   _UID=$(id -u) _GID=$(id -g) docker-compose up
   ```
-
-  - Because of some bad database migrations, this command will currently fail. They are completely safe to ignore, as they nullify each other, so just simply delete those two files locally:
-    - `database/migrations/2016_08_25_055700_create_contest_vote_aggregates_view.php`
-    - `database/migrations/2017_02_13_013536_delete_contest_vote_aggregates_view.php`
-
 - Use your existing web dev environment.
 
 ### Creating user
