@@ -10,6 +10,7 @@ class XsollaNotificationProcessor implements \ArrayAccess
     private $order;
     private $request;
 
+    private $builders = [];
 
     // TODO: accept request instead?
     public function __construct(\Illuminate\Http\Request $request)
@@ -31,6 +32,43 @@ class XsollaNotificationProcessor implements \ArrayAccess
 
     public function apply()
     {
+        $commands = $this->getCommands();
+        \Log::debug('commands');
+        \Log::debug($commands);
+
+        return $commands;
+    }
+
+    public function getCommands()
+    {
+        $supporterTags = [];
+        $items = $this->order->items()->get();
+        foreach ($items as $item) {
+            $builder = $this->getBuilder($item->product['custom_class']);
+            $builder->addOrderItem($item);
+        }
+
+        return array_map(function ($builder) {
+            $builder->isValid(); // printing \Log::debug atm...
+            return $builder->getCommands();
+        }, $this->builders);
+    }
+
+    private function getBuilder($type)
+    {
+        if ($type === null) {
+            return;
+        }
+
+        if (isset($this->builders[$type])) {
+            return $this->builders[$type];
+        }
+
+        $className = '\\App\\Libraries\\Payments\\' . studly_case($type) . 'CommandBuilder';
+        $this->builders[$type] = new $className($this->order);
+        // throw if not found
+
+        return $this->builders[$type];
     }
 
     public function receivedSignature()

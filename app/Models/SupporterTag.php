@@ -72,7 +72,7 @@ class SupporterTag
      * @return int Minimum donation required.
      * @throws Exception
      **/
-    private static function getMinimumDonation(int $duration)
+    public static function getMinimumDonation(int $duration)
     {
         switch (true) {
             case $duration >= 12:
