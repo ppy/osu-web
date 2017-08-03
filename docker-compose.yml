@@ -45,7 +45,7 @@ services:
             DB_HOST: osuweb-mariadb
         user: osuweb
         working_dir: /data/osuweb
-        command: bash /data/osuweb/docker/php/build.sh
+        command: bash -c "cp -n .env.example .env && ./build.sh"
     yarn:
         build:
             context: ./docker/yarn
