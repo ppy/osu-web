@@ -17,27 +17,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'header' => 'Ranking :type',
-    'type' => [
-        'performance' => 'globalny',
-        'charts' => 'chartów',
-        'score' => 'punktowy',
-        'country' => 'krajowy',
-    ],
-    'stat' => [
-        'accuracy' => 'Celność',
-        'active_users' => 'Aktywnych użytkowników',
-        'country' => 'Kraj',
-        'play_count' => 'Ilość zagrań',
-        'performance' => 'Ilość pp',
-        'total_score' => 'Łączna ilość punktów',
-        'ranked_score' => 'Ilość punktów rankingowych',
-        'average_score' => 'Średni wynik',
-        'average_performance' => 'Średnia ilość pp',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'show' => [
+        'fallback_translation' => 'Żądana strona nie została jeszcze przetłumaczona na wybrany język (:language). Pokazuję w języku angielskim.',
+        'languages' => 'Języki',
+        'missing' => 'Żądana strona nie została odnaleziona.',
+        'missing_title' => 'Nie znaleziono',
+        'missing_translation' => 'Żądana strona nie została odnaleziona dla obecnie ustawionego języka.',
+        'toc' => 'Spis treści',
+        'edit' => [
+            'link' => 'Pokaż na GitHubie',
+            'refresh' => 'Odśwież',
+        ],
     ],
 ];

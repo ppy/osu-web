@@ -90,7 +90,7 @@ return [
             'pending' => 'Pending',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
-            'total' => 'Total',
+            'total' => 'All',
         ],
     ],
 
