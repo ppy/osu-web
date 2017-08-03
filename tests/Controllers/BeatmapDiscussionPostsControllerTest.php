@@ -63,18 +63,21 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
 
         $this->assertSame($currentDiscussions, BeatmapDiscussion::count());
         $this->assertSame($currentDiscussionPosts + 1, BeatmapDiscussionPost::count());
+    }
 
-        // changing resolve status adds two posts
-        $currentDiscussionPosts = BeatmapDiscussionPost::count();
-        // make sure discussion type is problem/suggestion so it can be resolved
-        $this->beatmapDiscussion->update(['message_type' => 'problem']);
+    public function testPostStoreNewReplyResolve()
+    {
+        // can't change resolve status for praise
+        $this->beatmapDiscussion->update(['message_type' => 'praise']);
+        $lastDiscussionPosts = BeatmapDiscussionPost::count();
+        $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
 
         $this
             ->actingAs($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmap_discussion_id' => $this->beatmapDiscussion->id,
                 'beatmap_discussion' => [
-                    'resolved' => !$this->beatmapDiscussion->fresh()->resolved,
+                    'resolved' => !$lastResolved,
                 ],
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
@@ -82,7 +85,32 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ])
             ->assertStatus(200);
 
-        $this->assertSame($currentDiscussionPosts + 2, BeatmapDiscussionPost::count());
+        // just add single post and no resolved state change
+        $this->assertSame($lastDiscussionPosts + 1, BeatmapDiscussionPost::count());
+        $this->assertSame($lastResolved, $this->beatmapDiscussion->fresh()->resolved);
+
+        foreach (['problem', 'suggestion'] as $type) {
+            $this->beatmapDiscussion->update(['message_type' => $type]);
+            $lastDiscussionPosts = BeatmapDiscussionPost::count();
+            $lastResolved = $this->beatmapDiscussion->fresh()->resolved;
+
+            $this
+                ->actingAs($this->user)
+                ->post(route('beatmap-discussion-posts.store'), [
+                    'beatmap_discussion_id' => $this->beatmapDiscussion->id,
+                    'beatmap_discussion' => [
+                        'resolved' => !$lastResolved,
+                    ],
+                    'beatmap_discussion_post' => [
+                        'message' => 'Hello',
+                    ],
+                ])
+                ->assertStatus(200);
+
+            // each resolve adds system post
+            $this->assertSame($lastDiscussionPosts + 2, BeatmapDiscussionPost::count());
+            $this->assertSame(!$lastResolved, $this->beatmapDiscussion->fresh()->resolved);
+        }
     }
 
     public function testPostStoreNewDiscussionRequestBeatmapsetDiscussion()
