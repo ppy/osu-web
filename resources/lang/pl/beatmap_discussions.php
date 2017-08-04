@@ -44,4 +44,5 @@ return [
         'bng' => 'nominator',
         'owner' => 'mapper',
         'qat' => 'qat',
+    ],
 ];
