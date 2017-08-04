@@ -19,35 +19,56 @@
  */
 
 return [
+    'availability' => [
+        'disabled' => 'Nie można pobrać tej beatmapy.',
+        'parts-removed' => 'Ta beatmapa została usunięta za prośbą twórcy materiałów w niej użytych.',
+        'more-info' => 'Kliknij tutaj, aby dowiedzieć się więcej.',
+    ],
+
+    'index' => [
+        'title' => 'Lista beatmap',
+        'guest_title' => 'Beatmapy',
+    ],
+
     'show' => [
+        'discussion' => 'Dyskusja',
+
         'details' => [
-            'made-by' => 'stworzony przez ',
+            'made-by' => 'stworzona przez ',
             'submitted' => 'dodana ',
+            'updated' => 'ostatnio aktualizowana ',
             'ranked' => 'rankingowa od ',
-            'logged-out' => 'Musisz się zalogować, aby pobierać beatmapy!',
+            'approved' => 'zatwierdzona od ',
+            'qualified' => 'zakwalifikowana od ',
+            'loved' => 'ulubiona społeczności od ',
+            'logged-out' => 'Zaloguj się, aby móc pobierać beatmapy!',
             'download' => [
-                '_' => 'pobierz',
+                '_' => 'Pobierz',
                 'video' => 'z wideo',
                 'no-video' => 'bez wideo',
                 'direct' => 'osu!direct',
             ],
+            'favourite' => 'Dodaj tę beatmapę do ulubionych',
+            'unfavourite' => 'Usuń tę beatmapę z ulubionych',
         ],
         'stats' => [
-            //this is left intentionally in english, you can't translate these so it sounds normal
-            'cs' => 'Circle Size',
-            'cs-mania' => 'Key Amount',
-            'drain' => 'HP Drain',
-            'accuracy' => 'Accuracy',
-            'ar' => 'Approach Rate',
+            'cs' => 'Wielkość kółek',
+            'cs-mania' => 'Ilość klawiszy',
+            'drain' => 'Spadek HP',
+            'accuracy' => 'Celność',
+            'ar' => 'Approach Rate',/** Leave for now **/
             'stars' => 'Trudność',
             'total_length' => 'Długość',
             'bpm' => 'BPM',
             'count_circles' => 'Ilość kółek',
             'count_sliders' => 'Ilość sliderów',
+            'user-rating' => 'Oceny użytkowników',
+            'rating-spread' => 'Wykres ocen',
         ],
         'info' => [
+            'no_scores' => 'Nierankingowa beatmapa',
+            'points-of-failure' => 'Wykres porażek',
             'success-rate' => 'Wskaźnik sukcesu',
-            'points-of-failure' => 'Wykres',
 
             'description' => 'Opis',
 
@@ -55,25 +76,30 @@ return [
             'tags' => 'Tagi',
         ],
         'scoreboard' => [
-            'achieved' => 'osiągnięty :when',
+            'achieved' => 'osiągnięte :when',
             'country' => 'Ranking krajowy',
             'friend' => 'Ranking znajomych',
             'global' => 'Ranking globalny',
-            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za bycie supporterem!',
-            'supporter-only' => 'Musisz być supporterem, aby uzyskać dostęp do rankingu krajowego i znajomych!',
-            'title' => 'Tablica wyników',
+            'supporter-link' => 'Kliknij <a href=":link">tutaj</a>, aby zobaczyć, co jeszcze otrzymujesz w zamian za posiadanie statusu donatora!',
+            'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
+            'title' => 'Tabela wyników',
 
             'list' => [
                 'accuracy' => 'Celność',
                 'player-header' => 'Gracz',
-                'rank-header' => 'Miejsce',
+                'rank-header' => 'Pozycja',
                 'score' => 'Wynik',
             ],
             'no_scores' => [
-                'country' => 'Nikt z twojego kraju nie ustanowił tutaj wyniku!',
-                'friend' => 'Żaden z twoich znajomych nie ma tutaj wyniku!',
-                'global' => 'Brak wyników. Może powinieneś jakieś zdobyć?',
+                'country' => 'Nikt z twojego kraju nie ustanowił jeszcze wyniku na tej beatmapie!',
+                'friend' => 'Żaden z twoich znajomych nie ustanowił jeszcze wyniku na tej beatmapie!',
+                'global' => 'Brak wyników. Może czas jakieś ustanowić?',
                 'loading' => 'Ładowanie wyników...',
+                'unranked' => 'Nierankingowa beatmapa.',
+            ],
+            'score' => [
+                'first' => 'Najlepszy wynik',
+                'own' => 'Twój wynik',
             ],
             'stats' => [
                 'accuracy' => 'Celność',
