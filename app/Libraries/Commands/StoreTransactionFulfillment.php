@@ -20,8 +20,27 @@
 
 namespace App\Libraries\Commands;
 
-interface CommandInterface
+abstract class StoreTransactionFulfillment implements Fulfillable
 {
-    public function run();
-    public function cancel();
+    protected $transactionId;
+
+    private $params;
+
+    public function __construct($transactionId, $params)
+    {
+        if (!present($transactionId)) {
+            throw new MissingTransactionIdException();
+        }
+
+        $this->transactionId = $transactionId;
+        $this->params = $params;
+    }
+
+    /**
+     * Wrapper around $this->params
+     */
+    public function __get($key)
+    {
+        return $this->params[$key];
+    }
 }

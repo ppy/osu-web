@@ -22,7 +22,7 @@ namespace App\Libraries\Commands;
 
 use App\Models\User;
 
-class ApplySupporterTag extends StoreTransactionCommand
+class ApplySupporterTag extends StoreTransactionFulfillment
 {
     public function run()
     {

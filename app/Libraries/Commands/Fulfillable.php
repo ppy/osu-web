@@ -20,27 +20,8 @@
 
 namespace App\Libraries\Commands;
 
-abstract class StoreTransactionCommand implements CommandInterface
+interface Fulfillable
 {
-    protected $transactionId;
-
-    private $params;
-
-    public function __construct($transactionId, $params)
-    {
-        if (!present($transactionId)) {
-            throw new MissingTransactionIdException();
-        }
-
-        $this->transactionId = $transactionId;
-        $this->params = $params;
-    }
-
-    /**
-     * Wrapper around $this->params
-     */
-    public function __get($key)
-    {
-        return $this->params[$key];
-    }
+    public function run();
+    public function cancel();
 }
