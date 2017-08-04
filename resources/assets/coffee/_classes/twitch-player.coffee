@@ -19,15 +19,9 @@
 class @TwitchPlayer
   constructor: ->
     @playerDivs = document.getElementsByClassName('js-twitch-player')
-    @players = {}
     @embedInitialized = false
 
     addEventListener 'turbolinks:load', @startAll
-    addEventListener 'turbolinks:before-cache', @clearPlayers
-
-
-  clearPlayers: =>
-    @players = {}
 
 
   initializeEmbed: =>
@@ -46,8 +40,7 @@ class @TwitchPlayer
       Timeout.set 500, @startAll
       return
 
-    for div in @playerDivs
-      @players[div.id] ?= @start(div)
+    @start(div) for div in @playerDivs
 
 
   start: (div) =>
