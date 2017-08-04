@@ -27,7 +27,7 @@ class SupporterTagCommandBuilder
         $minimum = SupporterTag::getMinimumDonation($duration);
 
         $this->minimumRequired += $minimum;
-        $this->addChange($targetId, $duration);
+        $this->addChange($targetId, $duration, $item['cost']);
     }
 
     public function isValid()
@@ -39,11 +39,12 @@ class SupporterTagCommandBuilder
     public function getCommands()
     {
         $commands = [];
-        foreach ($this->changes as $targetId => $duration) {
+        foreach ($this->changes as $change) {
             $params = [
                 'donorId' => $this->order['user_id'],
-                'targetId' => $targetId,
-                'duration' => $duration,
+                'targetId' => $change['targetId'],
+                'duration' => $change['duration'],
+                'amount' => $change['amount'],
             ];
             $commands[] = new ApplySupporterTag($this->order['transaction_id'], $params);
         }
@@ -53,17 +54,14 @@ class SupporterTagCommandBuilder
 
     /**
      * Stages supporter tag changes.
-     *
-     * @param int $userId id of the user to apply a supporter tag to.
-     * @param int $duration duration of the supporter tag in months.
      */
-    private function addChange(int $userId, int $duration)
+    private function addChange(int $targetId, int $duration, int $amount)
     {
-        \Log::debug(__CLASS__."::addChange({$userId}, ${duration})");
-        if (isset($this->changes[$userId])) {
-            $this->changes[$userId] += $duration;
-        } else {
-            $this->changes[$userId] = $duration;
-        }
+        \Log::debug(__CLASS__."::addChange({$targetId}, ${duration}, {$amount})");
+        $this->changes[] = [
+            'targetId' => $targetId,
+            'duration' => $duration,
+            'amount' => $amount
+        ];
     }
 }
