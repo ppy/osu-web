@@ -53,7 +53,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Dostęp do tego kanału jest wymagany.',
+                    'no_access' => ' Nie posiadasz dostępu do tego kanału.',
                     'moderated' => 'Kanał jest obecnie w trybie tylko dla moderatorów.',
                     'not_lazer' => 'Obecnie możesz pisać tylko na kanale #lazer.',
                 ],
@@ -72,13 +72,13 @@ return [
             'delete' => [
                 'only_last_post' => 'Tylko ostatnia odpowiedź może zostać usunięta.',
                 'locked' => 'Nie możesz odpowiadać w zablokowanym wątku.',
-                'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
-                'not_owner' => 'Tylko autor może edytować wątek.',
+                'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
+                'not_owner' => 'Tylko autor wątka może go usunąć.',
             ],
 
             'edit' => [
                 'locked' => 'Ten wątek jest chroniony przed edycją.',
-                'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
+                'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'not_owner' => 'Tylko autor może edytować wątek.',
                 'topic_locked' => 'Nie możesz odpowiadać w zablokowanym wątku.',
             ],
@@ -88,7 +88,7 @@ return [
             'reply' => [
                 'double_post' => 'Odpowiedź została już stworzony. Poczekaj chwilę albo edytuj swoją poprzednią odpowiedź.',
                 'locked' => 'Nie możesz odpowiedzieć w zablokowanym wątku.',
-                'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
+                'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do odpowiadania.',
 
                 'user' => [
@@ -99,13 +99,13 @@ return [
             ],
 
             'store' => [
-                'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
+                'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do stworzenia nowego wątku.',
                 'forum_closed' => 'Forum jest zamknięte i nie można w nim odpowiadać.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
+                'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'over' => 'Ankieta została zakończona i nie można już w niej głosować.',
                 'voted' => 'Zmiana głosów jest niemożliwa.',
 
@@ -117,7 +117,7 @@ return [
             ],
 
             'watch' => [
-                'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
+                'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
             ],
         ],
 

@@ -64,7 +64,7 @@ return [
             'wiki_page' => 'wiki',
         ],
         'user' => [
-            'more' => 'Zobacz więcej eyszukanych użytkowników: :count',
+            'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'title' => 'Użytkownicy',
         ],

@@ -53,10 +53,10 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Klawiatura',
-        'mouse' => 'Myszka',
-        'tablet' => 'Tablet',
-        'touch' => 'Ekran dotykowy',
+        'keyboard' => 'klawiatury',
+        'mouse' => 'myszki',
+        'tablet' => 'tableta',
+        'touch' => 'ekranu dotykowego',
     ],
 
     'dropzone' => [

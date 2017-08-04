@@ -35,7 +35,7 @@ return [
             'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość ustanowionych wyników na sekundę',
+        'score' => 'Ilość ustanawianych wyników na sekundę',
     ],
 
     'recent' => [

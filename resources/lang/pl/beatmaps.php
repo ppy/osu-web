@@ -113,7 +113,7 @@ return [
             'prompt' => 'wpisz poszukiwane wyrażenie...',
             'options' => 'Więcej opcji wyszukiwania',
             'not-found' => 'brak wyników',
-            'not-found-quote' => '... niczego, nie znaleziono.',
+            'not-found-quote' => '... niczego nie znaleziono.',
             'filters' => [
                 'mode' => 'Tryb gry',
                 'status' => 'Status beatmapy',
@@ -142,7 +142,7 @@ return [
         'approved' => 'Zatwierdzone',
         'loved' => 'Ulubione społeczności',
         'faves' => 'Ulubione',
-        'modreqs' => 'Wymagające poprawek',
+        'modreqs' => 'Wymagające modów',
         'pending' => 'Oczekujące',
         'graveyard' => 'Cmentarz',
         'my-maps' => 'Moje beatmapy',

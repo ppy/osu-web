@@ -60,7 +60,7 @@ return [
         'post_number_input' => 'wprowadź numer wątku',
         'total_posts' => 'łącznie :posts_count wątków',
     ],
-    'subforums' => 'Podforum',
+    'subforums' => 'Podfora',
     'title' => 'Społeczność osu!',
     'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
     'topic' => [

@@ -87,7 +87,7 @@ return [
             'list' => [
                 'accuracy' => 'Celność',
                 'player-header' => 'Gracz',
-                'rank-header' => 'Pozycja',
+                'rank-header' => 'Miejsce',
                 'score' => 'Wynik',
             ],
             'no_scores' => [
