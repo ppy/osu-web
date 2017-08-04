@@ -29,7 +29,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Żadna z tych odpowiedzi nie jest istotna',
-        'notice' => 'Istnieją odpowiedzi dotyczące :timestamp (:existing_timestamps). Sprawdź je przed zapostowaniem.',
+        'notice' => 'Istnieją odpowiedzi dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem.',
     ],
 
     'system' => [

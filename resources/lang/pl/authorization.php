@@ -101,7 +101,7 @@ return [
             'store' => [
                 'no_forum_access' => 'Dostęp do tego forum jest wymagany.',
                 'no_permission' => 'Nie posiadasz uprawnień do stworzenia nowego wątku.',
-                'forum_closed' => 'Forum jest zamknięte i nie można w nim postować.',
+                'forum_closed' => 'Forum jest zamknięte i nie można w nim odpowiadać.',
             ],
 
             'vote' => [
