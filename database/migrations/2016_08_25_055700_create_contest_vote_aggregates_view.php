@@ -11,7 +11,7 @@ class CreateContestVoteAggregatesView extends Migration
      */
     public function up()
     {
-        DB::statement('CREATE VIEW contest_vote_aggregates AS SELECT contest_id, contest_entry_id, count(*) as votes FROM contest_votes GROUP BY contest_entry_id');
+        DB::statement('CREATE VIEW contest_vote_aggregates AS SELECT MIN(contest_id) AS contest_id, contest_entry_id, count(*) as votes FROM contest_votes GROUP BY contest_entry_id');
     }
 
     /**

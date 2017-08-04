@@ -1,0 +1,29 @@
+# osu!web
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server ipv6only=on;
+
+        server_name next.ppy.sh beta.osu.hiroto.eu chi.ppy.sh localhost;
+
+        # error_log /vagrant/logs/nginx.log;
+
+        root /data/osuweb/public;
+        index index.php index.hh index.html;
+
+        location / {
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location /images/flags/ {
+                error_page 404 /images/flags/__.png;
+        }
+
+        location ~ \.(hh|php)$ {
+            fastcgi_keep_conn on;
+            fastcgi_pass   osuweb-php:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+
+}
