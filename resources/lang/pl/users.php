@@ -190,7 +190,7 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => 'Musisz posiadać <a href='".osu_url('support-the-game')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.',
+            'restriction_info' => 'Musisz posiadać <a href='".osu_url('support-the-game')."' target='"_blank"'>status donatora</a>, aby odblokować tę funkcję.',
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
