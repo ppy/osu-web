@@ -24,94 +24,233 @@ return [
         'create' => [
             '_' => 'Ustaw tło nagłówka',
             'button' => 'Dodaj tło',
-            'info' => 'Nagłówek powinien być w rozdzielczości :dimensions. Możesz także upuścić swoje tło tutaj, aby je dodać.',
+            'info' => 'Nagłówek powinien mieć rozdzielczość :dimensions. Możesz upuścić tutaj swoje tło, aby je dodać.',
         ],
 
         'destroy' => [
             '_' => 'Usuń tło nagłówka',
-            'confirm' => 'Czy jesteś pewien, że chcesz usunąć tło nagłówka?',
+            'confirm' => 'Na pewno chcesz usunąć tło nagłówka?',
         ],
     ],
-    'pinned_topics' => 'Przypięte tematy',
+
+    'email' => [
+        'new_reply' => '[osu!] Nowa odpowiedź dla wątku ":title"',
+    ],
+
+    'forums' => [
+        'topics' => [
+            'empty' => 'Brak wątków!',
+        ],
+    ],
+
+    'pinned_topics' => 'Przypięte wątki',
     'post' => [
-        'confirm_delete' => 'Na pewno usunąć post?',
-        'edited' => 'Ostatnio edytowane przez :user o :when, edytowane :count razy łącznie.',
-        'posted_at' => 'dodane :when',
+        'confirm_destroy' => 'Na pewno usunąć wątek?',
+        'confirm_restore' => 'Na pewno przewrócić wątek?',
+        'edited' => 'Ostatnio edytowe przez :user :when, łącznie edytowane :count razy.',
+        'posted_at' => 'opublikowane :when',
         'actions' => [
-            'delete' => 'Usuń post',
-            'edit' => 'Edytuj post',
+            'destroy' => 'Usuń wątek',
+            'restore' => 'Przywróć wątek',
+            'edit' => 'Edytuj wątek',
         ],
     ],
     'search' => [
-        'go_to_post' => 'Przejdź do posta',
-        'post_number_input' => 'wpisz numer posta',
-        'total_posts' => 'Łączna ilość postów: :posts_count',
+        'go_to_post' => 'Przejdź do wątku',
+        'post_number_input' => 'wprowadź numer wątku',
+        'total_posts' => 'łącznie :posts_count wątków',
     ],
-    'subforums' => 'Podfora',
+    'subforums' => 'Podforum',
     'title' => 'Społeczność osu!',
+    'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Pisz tutaj',
-                'title' => 'Kliknij tutaj, aby ustawić tytuł',
+                'body' => 'Tutaj wpisz zawartość wątku',
+                'title' => 'Naciśnij, aby wprowadzić tytuł',
             ],
             'preview' => 'Podgląd',
-            'submit' => 'Publikuj',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Napisz',
+            'submit' => 'Opublikuj',
         ],
-        'go_to_latest' => 'zobacz najnowszy post',
+        'go_to_latest' => 'pokaż najnowszy wątek',
         'jump' => [
-            'enter' => 'kliknij aby wpisać numer posta',
-            'first' => 'idź do pierwszego posta',
-            'last' => 'idź do ostatniego posta',
-            'next' => 'omiń kolejne 10 postów',
-            'previous' => 'wróć się o 10 postów',
+            'enter' => 'kliknij, aby przejść do specyficznego numeru wątku',
+            'first' => 'przejdź do pierwszego wątku',
+            'last' => 'przejdź do ostatniego wątku',
+            'next' => 'pomiń następne 10 wątków',
+            'previous' => 'cofnij się o 10 wątków',
         ],
-        'latest_post' => ':user o :when',
-        'latest_reply_by' => 'ostatnia odpowiedź przez :user',
-        'move' => 'Przejdź do innego forum',
-        'new_topic' => 'Stwórz nowy temat',
+        'latest_post' => ':when przez :user',
+        'latest_reply_by' => 'ostatnia odpowiedź od :user',
+        'new_topic' => 'Stwórz nowy wątek',
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',
             'zoom' => [
-                'start' => 'Pełny ekran',
-                'end' => 'Zamknij pełny ekran',
+                'start' => 'Tryb pełnoekranowy',
+                'end' => 'Wyjdź z trybu pełnoekranowego',
             ],
         ],
-        'post_reply' => 'Odpowiedz',
-        'reply_box_placeholder' => 'Pisz tutaj, aby odpowiedzieć',
+        'post_reply' => 'Opublikuj',
+        'reply_box_placeholder' => 'Tutaj napisz swoją odpowiedź',
         'started_by' => 'przez :user',
     ],
+
+    'topic_watches' => [
+        'index' => [
+            'title' => 'Subskrybcje wątków',
+            'title_compact' => 'subskrybcje',
+            'title_main' => '<strong>Subskrybcje</strong> wątków',
+
+            'box' => [
+                'total' => 'Zasubskrybowane wątki',
+                'unread' => 'Wątki z nowymi odpowiedziami',
+            ],
+            'info' => [
+                'total' => 'Łącznie zasubskrybowano do :total wątków.',
+                'unread' => 'Masz :unread nieprzeczytanych odpowiedzi w zasubskrybowanych wątkach.',
+            ],
+        ],
+
+        'topic_buttons' => [
+            'remove' => [
+                'confirmation' => 'Cofnąć subskrybcję wątku?',
+                'title' => 'Cofnij subskrybcję',
+            ],
+        ],
+    ],
+
     'topics' => [
-        '_' => 'Tematy',
+        '_' => 'Wątki',
 
         'actions' => [
             'reply' => 'Pokaż okno odpowiedzi',
-            'reply_with_quote' => 'Cytuj post w odpowiedzi',
+            'reply_with_quote' => 'Zacytuj we własnej odpowiedzi',
+        ],
+
+        'create' => [
+            'create_poll' => 'Tworzenie ankiety',
+
+            'create_poll_button' => [
+                'add' => 'Stwórz ankietę',
+                'remove' => 'Anuluj tworzenie ankiety',
+            ],
+
+            'poll' => [
+                'length' => 'Przeprowadź ankietę przez',
+                'length_days_prefix' => '',
+                'length_days_suffix' => 'dni',
+                'length_info' => 'Zostaw puste dla niekończącej się ankiety',
+                'max_options' => 'Możliwości wyboru na każdego użytkownika',
+                'max_options_info' => 'Ilość możliwości, które każdy użytkownik może wybrać podczas głosowania.',
+                'options' => 'Możliwości wyboru',
+                'options_info' => 'Umieszczaj każdą możliwość wyboru na nowej linii. Możesz wprowadzić maksymalnie 10 możliwości.',
+                'title' => 'Pytanie',
+                'vote_change' => 'Zezwól na zmianę głosów.',
+                'vote_change_info' => 'Jeżeli ta opcja będzie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
+            ],
         ],
 
         'index' => [
-            'views' => 'wyświetleń',
+            'views' => 'wyświetlenia',
             'replies' => 'odpowiedzi',
         ],
 
+        'issue_tag_added' => [
+            'action-0' => 'Usuń tag "dodane"',
+            'action-1' => 'Dodaj tag "dodane"',
+            'state-0' => 'Usunięto tag "dodane"',
+            'state-1' => 'Dodano tag "dodane"',
+        ],
+
+        'issue_tag_assigned' => [
+            'action-0' => 'Usuń tag "przypisane"',
+            'action-1' => 'Dodaj tag "przypisane"',
+            'state-0' => 'Usunięto tag "przypisane"',
+            'state-1' => 'Dodano tag "przypisane"',
+        ],
+
+        'issue_tag_confirmed' => [
+            'action-0' => 'Usuń tag "potwierdzone"',
+            'action-1' => 'Dodaj tag "potwierdzone"',
+            'state-0' => 'Usunięto tag "potwierdzone"',
+            'state-1' => 'Dodano tag "potwierdzone"',
+        ],
+
+        'issue_tag_duplicate' => [
+            'action-0' => 'Usuń tag "duplikat"',
+            'action-1' => 'Dodaj tag "duplikat"',
+            'state-0' => 'Usunięto tag "duplikat"',
+            'state-1' => 'Dodano tag "duplikat"',
+        ],
+
+        'issue_tag_invalid' => [
+            'action-0' => 'Usuń tag "nieprawidłowe"',
+            'action-1' => 'Dodaj tag "nieprawidłowe"',
+            'state-0' => 'Usunięto tag "nieprawidłowe"',
+            'state-1' => 'Dodano tag "nieprawidłowe"',
+        ],
+
+        'issue_tag_resolved' => [
+            'action-0' => 'Usuń tag "rozwiązane"',
+            'action-1' => 'Dodaj tag "rozwiązane"',
+            'state-0' => 'Usunięto tag "rozwiązane"',
+            'state-1' => 'Dodano tag "rozwiązane"',
+        ],
+
         'lock' => [
-            'locked-0' => 'Temat został odblokowany',
-            'locked-1' => 'Temat został zablokowany',
-            'is_locked' => 'Ten temat jest zablokowany i nie można na niego odpowiadać',
+            'is_locked' => 'Ten wątek jest został zablokowany nie można w nim odpowiadać',
+            'lock-0' => 'Odblokuj wątek',
+            'lock-1' => 'Zablokuj wątek',
+            'state-0' => 'Wątek został odblokowany',
+            'state-1' => 'Wątek został zablokowany',
+        ],
+
+        'moderate_move' => [
+            'title' => 'Przenieś do innego forum',
+        ],
+
+        'moderate_pin' => [
+            'pin-0' => 'Odepnij ten wątek',
+            'pin-1' => 'Przypnij ten wątek',
+            'state-0' => 'Wątek został odpięty',
+            'state-1' => 'Wątek został przypięty',
         ],
 
         'show' => [
+            'total_posts' => 'Wszystkie odpowiedzi',
+            'deleted-posts' => 'Usunięte odpowiedzi',
+
             'feature_vote' => [
-                'current' => 'Obecny priorytet: +:count',
-                'do' => 'Poprzyj tę prośbę',
+                'current' => 'Priorytet: +:count',
+                'do' => 'Wspomóż tę prośbę',
 
                 'user' => [
                     'current' => 'Pozostało ci :votes głosów.',
-                    'count' => '{0} brak głosów|{1} :count głos|[2,4] :count głosy|[5,*] :count głosów',
-                    'not_enough' => 'Wykorzystałeś już wszystkie głosy.',
+                    'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
+                    'not_enough' => "Nie posiadasz żadnych głosów",
                 ],
             ],
+
+            'poll' => [
+                'vote' => 'Zagłosuj',
+
+                'detail' => [
+                    'total' => 'Wszystkich głosów: :count',
+                    'ended' => 'Ankieta zakończona :time',
+                    'end_time' => 'Ankieta zakończy się :time',
+                ],
+            ],
+        ],
+
+        'watch' => [
+            'state-0' => 'Usunięto subskrybcję tego wątku',
+            'state-1' => 'Zasubskrybowano ten wątek',
+            'watch-0' => 'Usuń subskrybcję tego wątku',
+            'watch-1' => 'Subskrybuj ten wątek',
         ],
     ],
 
