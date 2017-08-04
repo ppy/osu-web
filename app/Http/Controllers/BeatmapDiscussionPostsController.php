@@ -166,10 +166,11 @@ class BeatmapDiscussionPostsController extends Controller
     private function postParams($isNew = true)
     {
         $params = get_params(Request::all(), 'beatmap_discussion_post', ['message']);
-        $params['last_editor_id'] = Auth::user()->user_id;
 
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;
+        } else {
+            $params['last_editor_id'] = Auth::user()->user_id;
         }
 
         return $params;
