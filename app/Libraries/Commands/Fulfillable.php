@@ -23,5 +23,5 @@ namespace App\Libraries\Commands;
 interface Fulfillable
 {
     public function run();
-    public function cancel();
+    public function revoke();
 }

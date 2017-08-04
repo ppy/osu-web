@@ -21,15 +21,66 @@
 namespace App\Libraries\Commands;
 
 use App\Models\User;
+use App\Models\UserDonation;
+use DB;
 
 class ApplySupporterTag extends StoreTransactionFulfillment
 {
     public function run()
     {
-        $user = User::findOrFail($this->targetId);
+        DB::transaction(function () {
+            // check if transaction was already applied.
+            if (UserDonation::where('transaction_id', $this->transactionId)->count() > 0) {
+                \Log::info("{$this->transactionId} already exists in UserDonations!");
+                return;
+            }
+
+            $user = User::findOrFail($this->targetId);
+            $userDonation = new UserDonation();
+            $userDonation['transaction_id'] = $this->transactionId;
+            $userDonation['user_id'] = $this->donorId;
+            $userDonation['target_user_id'] = $this->targetId;
+            $userDonation['length'] = $this->duration;
+            $userDonation['amount'] = $this->amount;
+
+            \Log::debug($userDonation);
+
+            $user->supports()->save($userDonation);
+        });
     }
 
-    public function cancel()
+    public function revoke()
     {
+        DB::transaction(function () {
+            // cancel only if applied.
+            if (UserDonation::where('transaction_id', $this->cancelledTransactionId())->count() > 0) {
+                \Log::info("{$this->transactionId} already exists in UserDonations!");
+                return;
+            }
+
+            $donations = UserDonation::where('transaction_id', $this->transactionId)->get();
+            if ($donations->count() === 0) {
+                \Log::info("{$this->transactionId} nothing to revoke!");
+                return;
+            }
+
+            foreach ($donations as $donation) {
+                $reverse = new UserDonation();
+                $reverse['transaction_id'] = $this->cancelledTransactionId();
+                $reverse['user_id'] = $donation['user_id'];
+                $reverse['target_user_id'] = $donation['target_user_id'];
+                $reverse['length'] = $donation['length'];
+                $amount = $donation['amount'];
+                $reverse['amount'] = $amount > 0 ? -$amount : $amount;
+                $reverse['cancel'] = true;
+
+                $reverse->save();
+            }
+        });
+    }
+
+    public function cancelledTransactionId()
+    {
+        return "{$this->transactionId}-cancel";
     }
 }

@@ -46,13 +46,18 @@ abstract class PaymentFulfillment implements \ArrayAccess
 
     public function apply()
     {
-        $commands = null;
-        DB::connection('mysql-store')->transaction(function () {
+        $commands = [];
+        DB::connection('mysql-store')->transaction(function () use (&$commands) {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
-            $commands = $this->getCommands();
+            $commands += $this->getCommands();
             \Log::debug('commands');
             \Log::debug($commands);
         });
+
+        // This should probably be shoved off into a queue processor somewhere...
+        foreach ($commands as $command) {
+            $command->run();
+        }
 
         return $commands;
     }
@@ -66,10 +71,13 @@ abstract class PaymentFulfillment implements \ArrayAccess
             $builder->addOrderItem($item);
         }
 
-        return array_map(function ($builder) {
+        $fulfillers = [];
+        foreach ($this->builders as $type => $builder) {
             $builder->isValid(); // printing \Log::debug atm...
-            return $builder->getCommands();
-        }, $this->builders);
+            $fulfillers += $builder->getCommands();
+        }
+
+        return $fulfillers;
     }
 
     /**

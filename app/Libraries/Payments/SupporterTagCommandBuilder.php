@@ -11,7 +11,7 @@ class SupporterTagCommandBuilder
 {
     private $order;
     private $minimumRequired = 0;
-    private $changes = [];
+    private $commands = [];
 
     public function __construct(Order $order)
     {
@@ -22,12 +22,19 @@ class SupporterTagCommandBuilder
     {
         \Log::debug('addOrderItem');
         $extraData = $item['extra_data'];
-        $targetId = intval($extraData['target_id']);
-        $duration = intval($extraData['duration']);
+        $targetId = (int) $extraData['target_id'];
+        $duration = (int) $extraData['duration'];
         $minimum = SupporterTag::getMinimumDonation($duration);
 
         $this->minimumRequired += $minimum;
-        $this->addChange($targetId, $duration, $item['cost']);
+
+        $params = [
+            'donorId' => $this->order['user_id'],
+            'targetId' => $targetId,
+            'duration' => $duration,
+            'amount' => $item['cost'],
+        ];
+        $this->commands[] = new ApplySupporterTag("{$this->order['transaction_id']}-{$item['id']}", $params);
     }
 
     public function isValid()
@@ -38,18 +45,11 @@ class SupporterTagCommandBuilder
 
     public function getCommands()
     {
-        $commands = [];
-        foreach ($this->changes as $change) {
-            $params = [
-                'donorId' => $this->order['user_id'],
-                'targetId' => $change['targetId'],
-                'duration' => $change['duration'],
-                'amount' => $change['amount'],
-            ];
-            $commands[] = new ApplySupporterTag($this->order['transaction_id'], $params);
+        if (!$this->isValid()) {
+            throw new \Exception('not valid');
         }
 
-        return $commands;
+        return $this->commands;
     }
 
     /**
