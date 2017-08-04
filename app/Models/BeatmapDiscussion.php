@@ -83,6 +83,25 @@ class BeatmapDiscussion extends Model
         return $this->attributes['message_type'] = static::MESSAGE_TYPES[$value] ?? null;
     }
 
+    public function getResolvedAttribute($value)
+    {
+        return $this->canBeResolved() ? (bool) $value : false;
+    }
+
+    public function setResolvedAttribute($value)
+    {
+        if (!$this->canBeResolved()) {
+            $value = false;
+        }
+
+        $this->attributes['resolved'] = $value;
+    }
+
+    public function canBeResolved()
+    {
+        return in_array($this->message_type, ['suggestion', 'problem'], true);
+    }
+
     public function refreshKudosu($event)
     {
         // no kudosu for praises...?
