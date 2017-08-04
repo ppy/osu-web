@@ -91,6 +91,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
+        currentDiscussions: @currentDiscussions()
+        currentFilter: @state.currentFilter
 
       if @state.mode == 'events'
         div
@@ -148,54 +150,66 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   currentDiscussions: =>
     if !@cache.currentDiscussions?
-      general = []
-      timeline = []
-      generalAll = []
 
-      timelineByFilter =
+      byMode =
+        timeline: []
+        general: []
+        generalAll: []
+      byFilter =
+        total: {}
         deleted: {}
-        mine: {}
-        pending: {}
         praises: {}
         resolved: {}
-        total: {}
+        pending: {}
+        mine: {}
+      for own mode, _items of byMode
+        for own filter, modes of byFilter
+          modes[mode] = {}
+
 
       for d in @state.beatmapsetDiscussion.beatmap_discussions
-        if d.timestamp?
-          continue if d.beatmap_id != @state.currentBeatmap.id
-
-          timeline.push d
-          timelineByFilter.total[d.id] = d
-
-          if d.deleted_at?
-            timelineByFilter.deleted[d.id] = d
-          else if d.message_type == 'praise'
-            timelineByFilter.praises[d.id] = d
-          else
-            if d.resolved
-              timelineByFilter.resolved[d.id] = d
-            else
-              timelineByFilter.pending[d.id] = d
-
-          if d.user_id == @state.currentUser.id
-            timelineByFilter.mine[d.id] = d
-
-        else
+        mode =
           if d.beatmap_id?
             if d.beatmap_id == @state.currentBeatmap.id
-              general.push d
+              if d.timestamp?
+                'timeline'
+              else
+                'general'
           else
-            generalAll.push d
+            'generalAll'
 
-      timeline = _.orderBy timeline, ['timestamp', 'id']
-      general = _.orderBy general, 'id'
-      generalAll = _.orderBy generalAll, 'id'
+        # belongs to different beatmap, excluded
+        continue unless mode?
+
+        filters = ['total']
+
+        if d.deleted_at?
+          filters.push 'deleted'
+        else if d.message_type == 'praise'
+          filters.push 'praises'
+        else
+          if d.resolved
+            filters.push 'resolved'
+          else
+            filters.push 'pending'
+
+        if d.user_id == @state.currentUser.id
+          filters.push 'mine'
+
+        for filter in filters
+          byFilter[filter][mode][d.id] = d
+
+        byMode[mode].push d
+
+      timeline = _.orderBy byMode.timeline, ['timestamp', 'id']
+      general = _.orderBy byMode.general, 'id'
+      generalAll = _.orderBy byMode.generalAll, 'id'
 
       @cache.currentDiscussions =
         general: general
         generalAll: generalAll
         timeline: timeline
-        timelineByFilter: timelineByFilter
+        byFilter: byFilter
 
     @cache.currentDiscussions
 
@@ -275,26 +289,21 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   setFilter: (_e, {filter}) =>
-    return if @state.mode == 'timeline' && filter == @state.currentFilter
+    return if filter == @state.currentFilter && @state.mode != 'events'
 
-    @setState
-      mode: 'timeline'
-      currentFilter: filter
+    callback =
+      if @state.mode == 'events'
+        @setMode null, (@lastMode ? 'timeline')
+
+    @setState currentFilter: filter, callback
 
 
   setMode: (_e, mode, callback) =>
-    newState = mode: mode
+    return callback?() if mode == @state.mode
 
-    if mode == 'timeline'
-      currentFilter = @state.currentFilter
-      filter = 'total'
-      newState.currentFilter = filter
-    else
-      currentFilter = filter = null
+    @lastMode = @state.mode if mode == 'events'
 
-    return callback?() if mode == @state.mode && filter == currentFilter
-
-    @setState newState, callback
+    @setState mode: mode, callback
 
 
   users: =>

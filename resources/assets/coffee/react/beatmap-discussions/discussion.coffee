@@ -48,6 +48,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
     topClasses += " #{bn}--deleted" if @props.discussion.deleted_at?
+    topClasses += " #{bn}--timeline" if @props.discussion.timestamp?
 
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
@@ -58,7 +59,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       onClick: @emitSetHighlight
 
       div className: "#{bn}__timestamp hidden-xs",
-        @timestamp() if @props.discussion.timestamp?
+        @timestamp()
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
@@ -187,7 +188,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     tbn = 'beatmap-discussion-timestamp'
 
     div className: tbn,
-      div className: "#{tbn}__point"
+      div(className: "#{tbn}__point") if @props.discussion.timestamp?
       div className: "#{tbn}__icons-container",
         div className: "#{tbn}__icons",
           div className: "#{tbn}__icon",

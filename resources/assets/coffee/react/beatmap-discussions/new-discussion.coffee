@@ -84,15 +84,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
-            if @props.mode == 'timeline'
-              ['praise', 'suggestion', 'problem'].map @submitButton
-            else
-              el BigButton,
-                modifiers: ['beatmap-discussion']
-                text: osu.trans('common.buttons.post')
-                props:
-                  disabled: !@validPost()
-                  onClick: @post
+            @submitButton 'praise'
+            @submitButton 'suggestion'
+            @submitButton 'problem'
 
         if @nearbyPosts().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
@@ -158,19 +152,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     LoadingOverlay.show()
 
     data =
-        beatmapset_id: @props.currentBeatmap.beatmapset_id
-        beatmap_discussion_post:
-          message: @state.message
-
-    switch @props.mode
-      when 'general'
-        data.beatmap_discussion =
-          beatmap_id: @props.currentBeatmap.id
-      when 'timeline'
-        data.beatmap_discussion =
-          message_type: e.currentTarget.dataset.type
-          timestamp: @state.timestamp
-          beatmap_id: @props.currentBeatmap.id
+      beatmapset_id: @props.currentBeatmap.beatmapset_id
+      beatmap_discussion:
+        message_type: e.currentTarget.dataset.type
+        timestamp: @state.timestamp
+        beatmap_id: @props.currentBeatmap.id
+      beatmap_discussion_post:
+        message: @state.message
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
@@ -205,7 +193,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
   submitButton: (type) =>
     el BigButton,
-      key: type
       modifiers: ['beatmap-discussion']
       icon: BeatmapDiscussionHelper.messageType.icon[type]
       text: osu.trans("beatmaps.discussions.message_type.#{type}")

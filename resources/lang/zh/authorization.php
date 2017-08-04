@@ -27,7 +27,6 @@ return [
             'exhausted' => '您今天的提名次数已达上限，请明天再试。',
         ],
         'resolve' => [
-            'general_discussion' => '常规讨论不能被标记为已解决。',
             'not_owner' => '只有楼主和谱面所有者才能标记为已解决。',
         ],
 

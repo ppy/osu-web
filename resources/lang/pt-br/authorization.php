@@ -27,7 +27,6 @@ return [
             'exhausted' => 'Você atingiu o limite de nomeações diárias, tente novamente amanhã.',
         ],
         'resolve' => [
-            'general_discussion' => 'A discussão geral não pode ser resolvida.',
             'not_owner' => 'Somente o autor da discussão e o dono do beatmap podem resolver uma discussão.',
         ],
 

@@ -53,26 +53,27 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               span className: 'btn-osu-lite__right',
                 osu.trans('beatmaps.discussions.collapse.all-expand')
 
-        div
-          className: "#{bn}__discussions"
 
-          @timelineCircle()
+        if discussions.length == 0
+          div className: "#{bn}__discussions #{bn}__discussions--empty",
+            osu.trans 'beatmaps.discussions.empty.empty'
 
-          if @props.mode == 'timeline'
-            div className: "#{bn}__timeline-line hidden-xs"
+        else if _.size(@props.currentDiscussions.byFilter[@props.currentFilter][@props.mode]) == 0
+          div className: "#{bn}__discussions #{bn}__discussions--empty",
+            osu.trans 'beatmaps.discussions.empty.hidden'
 
-          div null,
-            discussions.map @discussionPage
+        else
+          div
+            className: "#{bn}__discussions"
+            @timelineCircle()
 
-            if discussions.length == 0
-              div className: "#{bn}__discussion #{bn}__discussion--empty",
-                osu.trans 'beatmaps.discussions.empty.empty'
-            else if @props.mode == 'timeline' &&
-            _.size(@props.currentDiscussions.timelineByFilter[@props.currentFilter]) == 0
-              div className: "#{bn}__discussion #{bn}__discussion--empty",
-                osu.trans 'beatmaps.discussions.empty.hidden'
+            if @props.mode == 'timeline'
+              div className: "#{bn}__timeline-line hidden-xs"
 
-          @timelineCircle()
+            div null,
+              discussions.map @discussionPage
+
+            @timelineCircle()
 
 
   discussionPage: (discussion) =>
@@ -80,11 +81,8 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
     className = "#{bn}__discussion"
 
-    if @props.mode == 'timeline' &&
-    !@props.currentDiscussions.timelineByFilter[@props.currentFilter][discussion.id]?
+    if !@props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
       className += ' u-hide-by-height'
-    else
-      visible = true
 
     div
       key: discussion.id
