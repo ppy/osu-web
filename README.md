@@ -26,6 +26,14 @@ There are a few different options to get started:
 - Create a fresh Ubuntu environment and run `sudo bootstrap.sh`. Note that this script is intended to be run on a *sandboxed environment*; do not run it on a shared development system without first understanding what it does.
 - Use the php built-in server (run `php -S 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
 - Use vagrant (`cd vagrant; vagrant up`). Note that this is not actively supported or tested, and it is known to be quite slow on some platforms.
+- Use Docker:
+  - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/), then run `docker-compose up` in the main directory.
+  - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
+  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers:
+
+  ```bash
+  _UID=$(id -u) _GID=$(id -g) docker-compose up
+  ```
 - Use your existing web dev environment.
 
 ### Creating user
