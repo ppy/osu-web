@@ -20,32 +20,56 @@ class @TwitchPlayer
   constructor: ->
     @playerDivs = document.getElementsByClassName('js-twitch-player')
     @players = {}
+    @embedInitialized = false
 
-    $(document).on 'turbolinks:load', @startAll
+    addEventListener 'turbolinks:load', @startAll
+    addEventListener 'turbolinks:before-cache', @clearPlayers
+
+
+  clearPlayers: =>
+    @players = {}
+
+
+  initializeEmbed: =>
+    return if @embedInitialized
+
+    @embedInitialized = true
+    $embed = $('<script src="https://player.twitch.tv/js/embed/v1.js">')
+    $(document.body).append $embed
+    Timeout.set 0, -> $embed.remove()
 
 
   startAll: =>
+    # wait until the twitch embed js is loaded
+    if !Twitch? && @playerDivs[0]?
+      @initializeEmbed()
+      Timeout.set 500, @startAll
+      return
+
     for div in @playerDivs
       @players[div.id] ?= @start(div)
 
 
   start: (div) =>
+    return if div.dataset.twitchPlayerStarted
+
+    div.dataset.twitchPlayerStarted = true
     options =
       width: '100%'
       height: '100%'
       channel: div.dataset.channel
 
     player = new Twitch.Player(div.id, options)
-    player.addEventListener 'playing', => @openPlayer(div)
-    player
+    player.addEventListener Twitch.Player.PLAY, @openPlayer
 
 
   noCookieDiv: (playerDivId) =>
     document.querySelector(".js-twitch-player--no-cookie[data-player-id='#{playerDivId}']")
 
 
-  openPlayer: (div) =>
-    return if !div.classList.contains 'hidden'
+  openPlayer: =>
+    for div in @playerDivs
+      return unless div.classList.contains 'hidden'
 
-    div.classList.remove 'hidden' for div in @playerDivs
-    Fade.out @noCookieDiv(div.id)
+      div.classList.remove 'hidden'
+      Fade.out @noCookieDiv(div.id)
