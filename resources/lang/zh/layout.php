@@ -180,35 +180,28 @@ return [
     ],
 
     'errors' => [
+        // used by sentry if it returns an error
+        'reference' => '以防万一，您可以将这里的代码发给我们！',
+
         '404' => [
             'error' => '无法找到网页',
             'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
-            'link' => false,
         ],
         '403' => [
             'error' => '没有权限',
             'description' => '您没有权限访问该页面，建议您检查一下再试，或者返回到上一个页面',
-            'link' => false,
         ],
         '401' => [
             'error' => '没有权限',
             'description' => '您没有权限访问该页面，建议您检查一下再试，或者返回到上一个页面（也许您还没登录呢）',
-            'link' => false,
         ],
         '405' => [
             'error' => '无法找到网页',
             'description' => '很抱歉，您访问的页面不存在...请返回到上一个页面',
-            'link' => false,
         ],
         '500' => [
             'error' => '哎呀，服务器崩溃了',
             'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
-            'link' => false,
-        ],
-        'fatal' => [
-            'error' => '哎呀，服务器被外星人带走了',
-            'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
-            'link' => false,
         ],
         '503' => [
             'error' => '啊哦...服务器正在维护中',
@@ -218,8 +211,10 @@ return [
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
-        // used by sentry if it returns an error
-        'reference' => '以防万一，您可以将这里的代码发给我们！',
+        'fatal' => [
+            'error' => '哎呀，服务器被外星人带走了',
+            'description' => '我们会自动报告每一个错误，请返回到上一个页面。',
+        ],
     ],
 
     'popup_login' => [
