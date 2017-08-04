@@ -6,22 +6,9 @@ use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
 
-class XsollaNotificationProcessor implements \ArrayAccess
+// FIXME: rename?
+class XsollaNotificationProcessor extends PaymentFulfillment
 {
-    private $json;
-    private $order;
-    private $request;
-
-    private $builders = [];
-
-    // TODO: accept request instead?
-    public function __construct(\Illuminate\Http\Request $request)
-    {
-        $this->request = $request;
-        $this->json = $request->json()->all();
-        $this->order = Order::find($this->getOrderId()); // remove query from constructor
-    }
-
     public function getOrderId()
     {
         return $this['custom_parameters.order_id'];
@@ -32,54 +19,14 @@ class XsollaNotificationProcessor implements \ArrayAccess
         return $this['transaction.external_id'];
     }
 
-    private function getTransactionId()
+    public function getTransactionId()
     {
         return "xsolla-{$this['transaction.payment_method_order_id']}";
     }
 
-    public function apply()
+    public function getPaymentDate()
     {
-        $commands = null;
-        DB::transaction(function () use ($commands) {
-            $this->order->paid($this->getTransactionId(), Carbon::parse($this['transaction.payment_date']));
-            $commands = $this->getCommands();
-            \Log::debug('commands');
-            \Log::debug($commands);
-        });
-
-        return $commands;
-    }
-
-    public function getCommands()
-    {
-        $supporterTags = [];
-        $items = $this->order->items()->get();
-        foreach ($items as $item) {
-            $builder = $this->getBuilder($item->product['custom_class']);
-            $builder->addOrderItem($item);
-        }
-
-        return array_map(function ($builder) {
-            $builder->isValid(); // printing \Log::debug atm...
-            return $builder->getCommands();
-        }, $this->builders);
-    }
-
-    private function getBuilder($type)
-    {
-        if ($type === null) {
-            return;
-        }
-
-        if (isset($this->builders[$type])) {
-            return $this->builders[$type];
-        }
-
-        $className = '\\App\\Libraries\\Payments\\' . studly_case($type) . 'CommandBuilder';
-        $this->builders[$type] = new $className($this->order);
-        // throw if not found
-
-        return $this->builders[$type];
+        return Carbon::parse($this['transaction.payment_date']);
     }
 
     public function receivedSignature()
@@ -140,9 +87,9 @@ class XsollaNotificationProcessor implements \ArrayAccess
         }
 
         // order should be in the correct state
-        if ($this->order->status !== 'checkout') {
-            $this->addError('Order must be checked out first.');
-        }
+        // if ($this->order->status !== 'checkout') {
+        //     $this->addError('Order must be checked out first.');
+        // }
 
         if ($this['purchase.checkout.currency'] !== 'USD') {
             $this->addError('payment received should be USD.');
@@ -157,27 +104,5 @@ class XsollaNotificationProcessor implements \ArrayAccess
     {
         // TODO: add to dictionary?
         throw new \Exception($message);
-    }
-
-    /**
-     * implements ArrayAccess
-     */
-    public function offsetExists($key)
-    {
-        return array_has($this->json, $key);
-    }
-
-    public function offsetGet($key)
-    {
-        return data_get($this->json, $key);
-    }
-    public function offsetSet($key, $value)
-    {
-        throw new \Exception('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new \Exception('not supported');
     }
 }
