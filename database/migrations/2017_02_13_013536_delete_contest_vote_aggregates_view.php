@@ -11,7 +11,7 @@ class DeleteContestVoteAggregatesView extends Migration
      */
     public function up()
     {
-        DB::statement('DROP VIEW contest_vote_aggregates');
+        (new CreateContestVoteAggregatesView)->down();
     }
 
     /**
@@ -21,6 +21,6 @@ class DeleteContestVoteAggregatesView extends Migration
      */
     public function down()
     {
-        DB::statement('CREATE VIEW contest_vote_aggregates AS SELECT contest_id, contest_entry_id, count(*) as votes FROM contest_votes GROUP BY contest_entry_id');
+        (new CreateContestVoteAggregatesView)->up();
     }
 }
