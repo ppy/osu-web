@@ -125,7 +125,9 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   updatePost: =>
-    return if @state.message == @props.post.message
+    if @state.message == @props.post.message
+      @setState editing: false
+      return
 
     LoadingOverlay.show()
 
