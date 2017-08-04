@@ -50,7 +50,7 @@ return [
     ],
 
     'user_email' => [
-        'invalid' => "To nie wygląda na adres email.",
+        'invalid' => 'To nie wygląda na adres email.',
         'already_used' => 'Ten adres email jest już w użyciu.',
         'wrong_confirmation' => 'Email potwierdzający się nie zgadza.',
         'wrong_current_password' => 'Obecne hasło jest niepoprawne.',

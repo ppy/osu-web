@@ -93,8 +93,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
-                    'restricted' => "Nie można odpowiadać podczas blokady konta.",
-                    'silenced' => "Nie można odpowiadać podczas uciszenia.",
+                    'restricted' => 'Nie można odpowiadać podczas blokady konta.',
+                    'silenced' => 'Nie można odpowiadać podczas uciszenia.',
                 ],
             ],
 
@@ -111,8 +111,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
-                    'restricted' => "Nie można głosować podczas blokady konta.",
-                    'silenced' => "Nie można głosować podczas uciszenia.",
+                    'restricted' => 'Nie można głosować podczas blokady konta.',
+                    'silenced' => 'Nie można głosować podczas uciszenia.',
                 ],
             ],
 
@@ -137,9 +137,9 @@ return [
 
     'unauthorized' => 'Odmowa dostępu.',
 
-    'silenced' => "Nie możesz tego zrobić podczas uciszenia.",
+    'silenced' => 'Nie możesz tego zrobić podczas uciszenia.',
 
-    'restricted' => "Nie możesz tego zrobić podczas blokady konta.",
+    'restricted' => 'Nie możesz tego zrobić podczas blokady konta.',
 
     'user' => [
         'page' => [

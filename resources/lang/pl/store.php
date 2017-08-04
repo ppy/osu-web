@@ -29,7 +29,7 @@ return [
     ],
 
     'discount' => 'zaoszczędź :percent%',
-   
+
     'order' => [
         'item' => [
             'display_name' => [

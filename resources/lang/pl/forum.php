@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => 'Podforum',
     'title' => 'Społeczność osu!',
-    'slogan' => "samodzielna rozgrywka jest niebezpieczna.",
+    'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -231,7 +231,7 @@ return [
                 'user' => [
                     'current' => 'Pozostało ci :votes głosów.',
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
-                    'not_enough' => "Nie posiadasz żadnych głosów",
+                    'not_enough' => 'Nie posiadasz żadnych głosów',
                 ],
             ],
 
@@ -253,5 +253,4 @@ return [
             'watch-1' => 'Subskrybuj ten wątek',
         ],
     ],
-
 ];

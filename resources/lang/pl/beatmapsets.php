@@ -56,7 +56,7 @@ return [
             'cs-mania' => 'Ilość klawiszy',
             'drain' => 'Spadek HP',
             'accuracy' => 'Celność',
-            'ar' => 'Approach Rate',/** Leave for now **/
+            'ar' => 'Approach Rate',
             'stars' => 'Trudność',
             'total_length' => 'Długość',
             'bpm' => 'BPM',
