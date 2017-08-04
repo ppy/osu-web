@@ -66,16 +66,24 @@ class HomeController extends Controller
             ->with('user');
 
         if ($buildId !== null) {
-            $build = Build::default()->with('updateStream')->where('version', $buildId)->firstOrFail();
+            $build = Build::default()
+                ->with('updateStream')
+                ->where('version', $buildId)
+                ->firstOrFail();
 
-            $changelogs = [$build->date->format('F j, Y') => $changelogs->where('build', $build->version)->get()];
+            $changelogs = [
+                i18n_date($build->date) => $changelogs
+                    ->where('build', $build->version)
+                    ->visibleOnBuilds()
+                    ->get(),
+            ];
         } else {
             $from = Changelog::default()->first();
             $changelogs = $changelogs
                 ->where('date', '>', $from->date->subWeeks(config('osu.changelog.recent_weeks')))
                 ->get()
                 ->groupBy(function ($item) {
-                    return $item->date->format('F j, Y');
+                    return i18n_date($item->date);
                 });
         }
 

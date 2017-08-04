@@ -69,15 +69,15 @@
     margin-bottom: 10px;
   }
 
+  &--full {
+    flex: 1 0 auto;
+  }
+
   &--generic {
     .default-box-shadow();
     background-color: #fff;
     padding: 20px;
     margin-bottom: 10px;
-  }
-
-  &--dark-bg {
-    background-color: #333;
   }
 
   &--header {
@@ -152,5 +152,10 @@
       padding-left: @padding-wiki-desktop;
       padding-right: @padding-wiki-desktop;
     }
+  }
+
+  // color overrides goes here
+  &--dark-bg {
+    background-color: #333;
   }
 }

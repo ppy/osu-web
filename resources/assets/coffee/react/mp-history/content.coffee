@@ -43,7 +43,7 @@ class MPHistory.Content extends React.Component
   render: ->
     if _.isEmpty @props.events
       div className: 'osu-layout__row osu-layout__row--page-mp-history',
-        Lang.get 'multiplayer.match.loading-events'
+        osu.trans 'multiplayer.match.loading-events'
     else
       div className: 'osu-layout__row osu-layout__row--page-mp-history js-mp-history--event-box',
         if !@props.full && @props.allEventsCount > 500
@@ -51,7 +51,7 @@ class MPHistory.Content extends React.Component
             a
               className: 'mp-history-content__show-more'
               href: laroute.route('matches.show', match: @props.id, full: true)
-              Lang.get 'multiplayer.match.more-events'
+              osu.trans 'multiplayer.match.more-events'
 
         div className: 'mp-history-events',
           for event, i in @props.events

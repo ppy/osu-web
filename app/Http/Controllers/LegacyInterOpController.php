@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\RegenerateBeatmapsetCover;
 use App\Models\Beatmapset;
+use App\Models\News;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class LegacyInterOpController extends Controller
@@ -36,5 +37,22 @@ class LegacyInterOpController extends Controller
         $this->dispatch($job);
 
         return ['success' => true];
+    }
+
+    public function news()
+    {
+        $news = News\Index::all(null, 5);
+        $posts = [];
+
+        foreach ($news as $post) {
+            $posts[] = [
+                  'timestamp' => $post->createdAt()->timestamp,
+                  'permalink' => route('news.show', $post->getKey()),
+                  'title' => $post->title(),
+                  'body' => $post->previewText(),
+            ];
+        }
+
+        return $posts;
     }
 }

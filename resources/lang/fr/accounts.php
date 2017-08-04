@@ -63,13 +63,13 @@ return [
     'update_email' => [
         'email_subject' => "Confirmation du changement d'email d'osu!",
         'update' => 'mettre à jour',
-        'updated' => 'Email mise à jour',
+        'updated' => 'Email modifié',
     ],
 
     'update_password' => [
         'email_subject' => "Confirmation du changement de mot de passe d'osu!",
         'update' => 'mettre à jour',
-        'updated' => 'Mot de passe mis à jour',
+        'updated' => 'Mot de passe modifié',
     ],
 
     'playstyles' => [
@@ -77,6 +77,6 @@ return [
         'mouse' => 'souris',
         'keyboard' => 'clavier',
         'tablet' => 'tablette',
-        'touch' => 'touché',
+        'touch' => 'tactile',
     ],
 ];

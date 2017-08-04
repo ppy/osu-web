@@ -26,10 +26,19 @@ return [
     'menu' => [
         'home' => [
             '_' => 'strona główna',
+            'account-edit' => 'ustawienia',
+            'friends' => 'znajomi',
+            'friends-index' => 'znajomi',
             'getChangelog' => 'zmiany',
-            'getDownload' => 'pobieranie',
+            'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
-            'getNews' => 'aktualności',
+            'groups-show' => 'grupy',
+            'index' => 'osu!',
+            'legal-show' => 'information',
+            'news-index' => 'wiadomości',
+            'news-show' => 'wiadomości',
+            'password-reset-index' => 'zresetuj hasło',
+            'search' => 'wyszukiwanie',
             'supportTheGame' => 'wspomóż grę',
         ],
         'help' => [
@@ -37,12 +46,14 @@ return [
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
             'getSupport' => 'pomoc techniczna',
+            'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
-            'show' => 'info',
+            'show' => 'informacje',
             'index' => 'lista',
-            // 'getPacks' => 'paczki',
+            'artists' => 'wyróżnieni artyści',
+            'packs' => 'paczki',
             // 'getCharts' => 'charty',
         ],
         'beatmapsets' => [
@@ -50,8 +61,13 @@ return [
             'discussion' => 'modowanie',
         ],
         'rankings' => [
-            '_' => 'rankings',
+            '_' => 'rankingi',
+            'index' => 'globalny',
+            'performance' => 'globalny',
             'charts' => 'charty',
+            'score' => 'punktowy',
+            'country' => 'krajowy',
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'społeczność',
@@ -67,6 +83,10 @@ return [
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
             'forum-forums-show' => 'forum',
+        ],
+        'multiplayer' => [
+            '_' => 'tryb wieloosobowy',
+            'show' => 'mecz',
         ],
         'error' => [
             '_' => 'błąd',
@@ -124,6 +144,36 @@ return [
             ],
         ],
     ],
+
+    'footer' => [
+        'general' => [
+            '_' => 'Główne',
+            'home' => 'Strona główna',
+            'changelog' => 'Zmiany',
+            'beatmaps' => 'Beatmapy',
+            'download' => 'Pobierz osu!',
+            'wiki' => 'Wiki',
+        ],
+        'help' => [
+            '_' => 'Pomoc i Społeczność',
+            'faq' => 'Często zadawane pytania',
+            'forum' => 'Forum',
+            'livestreams' => 'Na żywo',
+            'report' => 'Zgłoś problem',
+        ],
+        'support' => [
+            '_' => 'Wspomóż osu!',
+            'tags' => 'Status donatora',
+            'merchandise' => 'Sklep',
+        ],
+        'legal' => [
+            '_' => 'Prawne i status',
+            'copyright' => 'Prawa Autorskie (DMCA)',
+            'osu_status' => '@osustatus',
+            'server_status' => 'Status serwera',
+            'terms' => 'Warunki świadczenia usług',
+        ],
+    ],
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
@@ -165,5 +215,38 @@ return [
         ],
         // used by sentry if it returns an error
         'reference' => 'Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!',
+    ],
+
+    'popup_login' => [
+        'login' => [
+            'email' => 'adres email',
+            'forgot' => 'Nie pamiętam moich danych logowania!',
+            'password' => 'hasło',
+            'title' => 'Zaloguj się, aby przejść dalej',
+
+            'error' => [
+                'email' => 'Nazwa użytkownika bądź email nie istnieją',
+                'password' => 'Niepoprawne hasło',
+            ],
+        ],
+
+        'register' => [
+            'info' => 'Potrzebujesz konta. Dlaczego by takiego nie stworzyć?',
+            'title' => 'Nie masz konta?',
+        ],
+    ],
+
+    'popup_user' => [
+        'links' => [
+            'account-edit' => 'Ustawienia',
+            'friends' => 'Znajomi',
+            'logout' => 'Wyloguj się',
+            'profile' => 'Mój profil',
+        ],
+    ],
+
+    'popup_search' => [
+        'initial' => 'Napisz, aby wyszukać!',
+        'retry' => 'Wyszukiwanie nieudane. Naciśnij tutaj, aby spróbować ponownie.',
     ],
 ];

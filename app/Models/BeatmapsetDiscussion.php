@@ -46,6 +46,7 @@ class BeatmapsetDiscussion extends Model
         $includes = [
             'beatmap_discussions.beatmap_discussion_posts',
             'beatmap_discussions.current_user_attributes',
+            'beatmapset_events',
             'users',
             'users.groups',
         ];

@@ -28,11 +28,13 @@ class @BeatmapDiscussionHelper
 
   # don't forget to update BeatmapDiscussionsController@show
   # when changing this.
-  @hash: ({beatmapId, discussionId} = {}) =>
+  @hash: ({beatmapId, discussionId, isEvents} = {}) =>
     if discussionId?
       "#/#{discussionId}"
     else if beatmapId?
       "#:#{beatmapId}"
+    else if isEvents
+      '#events'
     else
       ''
 
@@ -53,6 +55,8 @@ class @BeatmapDiscussionHelper
       discussionId: id
     else if hash[0] == ':'
       beatmapId: id
+    else if hash == 'events'
+      mode: 'events'
     else
       {}
 

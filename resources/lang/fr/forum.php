@@ -46,12 +46,12 @@ return [
     'pinned_topics' => 'Sujets épinglés',
     'post' => [
         'confirm_destroy' => 'Vraiment supprimer ce post?',
-        'confirm_restore' => 'Vraiment restorer ce post?',
+        'confirm_restore' => 'Vraiment restaurer ce post?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
         'actions' => [
             'destroy' => 'Supprimer le post',
-            'restore' => 'Restorer le post',
+            'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
         ],
     ],
