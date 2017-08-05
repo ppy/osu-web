@@ -81,7 +81,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title zmapowany przez :mapper',
+            'title' => ':title zmapowana przez :mapper',
         ],
 
         'stats' => [
@@ -125,7 +125,7 @@ return [
         ],
         'mode' => 'Tryb gry',
         'status' => 'Status beatmapy',
-        'mapped-by' => 'zmapowane przez :mapper',
+        'mapped-by' => 'zmapowana przez :mapper',
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
     ],

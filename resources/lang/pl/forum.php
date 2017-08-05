@@ -24,7 +24,7 @@ return [
         'create' => [
             '_' => 'Ustaw tło nagłówka',
             'button' => 'Dodaj tło',
-            'info' => 'Nagłówek powinien mieć rozdzielczość :dimensions. Możesz upuścić tutaj swoje tło, aby je dodać.',
+            'info' => 'Nagłówek powinien mieć rozdzielczość :dimensions. Możesz także upuścić tutaj swoje tło, aby je dodać.',
         ],
 
         'destroy' => [
@@ -39,7 +39,7 @@ return [
 
     'forums' => [
         'topics' => [
-            'empty' => 'Brak odpowiedzi!',
+            'empty' => 'Brak wątków!',
         ],
     ],
 
@@ -155,7 +155,7 @@ return [
         ],
 
         'index' => [
-            'views' => 'wyświetlenia',
+            'views' => 'wyświetleń',
             'replies' => 'odpowiedzi',
         ],
 
