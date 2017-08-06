@@ -36,4 +36,4 @@ ProfilePage.HeaderInfo = ({user}) ->
     div
       className: 'profile-info__bar hidden-xs'
       style:
-        backgroundColor: "##{user.profile_colour}" if user.profile_colour?
+        backgroundColor: user.profile_colour
