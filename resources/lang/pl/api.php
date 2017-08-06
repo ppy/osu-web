@@ -19,8 +19,9 @@
  */
 
 return [
-    'errors' => [
-        'csrf' => 'Brak dostępu',
-        'missing' => 'Nie znaleziono',
+    'error' => [
+        'chat' => [
+            'limit_exceeded' => 'Wysyłasz wiadomości zbyt szybko, poczekaj chwilę zanim zaczniesz wysyłać kolejne.',
+        ],
     ],
 ];

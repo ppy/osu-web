@@ -28,8 +28,13 @@ return [
         'delayed_shipping' => 'Jesteśmy obecnie przeciążeni zamówieniami! Możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia 1-2 tygodni** dopóki nie uporamy się z obecnymi zamówieniami.',
     ],
 
+    'discount' => 'zaoszczędź :percent%',
+
     'order' => [
         'item' => [
+            'display_name' => [
+                'supporter_tag' => ':name dla :username (:duration)',
+            ],
             'quantity' => 'Ilość',
         ],
     ],
@@ -50,4 +55,19 @@ return [
 
         'notification_in_stock' => 'Produkt jest dostępny!',
     ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => 'Aby zdobyć status donatora, musisz się :link!',
+            'link_text' => 'zalogować',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => 'Aby zmienić swój pseudonim, musisz się :link!',
+            'link_text' => 'zalogować',
+        ],
+    ],
+
 ];

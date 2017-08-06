@@ -196,7 +196,7 @@ class BeatmapsetPage.Main extends React.Component
           beatmap: @state.currentBeatmap
 
       div className: 'osu-layout__section osu-layout__section--extra',
-        div className: 'osu-page',
+        div className: 'osu-page osu-page--generic',
           el BeatmapsetPage.Scoreboard,
             type: @state.currentScoreboardType
             beatmap: @state.currentBeatmap
@@ -210,7 +210,7 @@ class BeatmapsetPage.Main extends React.Component
 
         if @props.beatmapset.ranked > 0
           div
-            className: 'osu-page osu-page--comments js-turbolinks-disqus'
+            className: 'osu-page osu-page--generic js-turbolinks-disqus'
             'data-turbolinks-disqus': JSON.stringify
               identifier: "beatmapset_#{@props.beatmapset.id}"
               title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"

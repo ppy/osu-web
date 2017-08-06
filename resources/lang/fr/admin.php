@@ -82,4 +82,11 @@ return [
         ],
     ],
 
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Cet utilisateur est actuellement restreint.',
+            'message' => '(uniquement les admins peuvent voir ça)',
+        ],
+    ],
+
 ];

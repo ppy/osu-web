@@ -45,6 +45,13 @@ return [
         'item' => ':count unit|:count units',
     ],
 
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+    ],
+
     'device' => [
         'keyboard' => 'Keyboard',
         'mouse' => 'Mouse',

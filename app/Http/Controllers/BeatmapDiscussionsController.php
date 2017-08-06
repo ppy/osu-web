@@ -40,7 +40,7 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->allowKudosu();
+        $error = $discussion->allowKudosu(Auth::user());
 
         if ($error === null) {
             return $discussion->beatmapsetDiscussion->defaultJson();
@@ -82,7 +82,7 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionRestore', $discussion)->ensureCan();
 
-        $discussion->restore();
+        $discussion->restore(Auth::user());
 
         return $discussion->beatmapsetDiscussion->defaultJson();
     }

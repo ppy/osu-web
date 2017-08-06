@@ -20,7 +20,7 @@
 el = React.createElement
 
 class MPHistory.GameHeader extends React.Component
-  timeFormat: 'HH:mm:ss'
+  timeFormat: 'LT'
 
   render: ->
     timeStart = moment(@props.game.start_time).format @timeFormat
@@ -34,7 +34,7 @@ class MPHistory.GameHeader extends React.Component
     if @props.game.end_time
       timeString += "- #{timeEnd}"
     else
-      timeString += Lang.get 'multiplayer.match.in-progress'
+      timeString += osu.trans 'multiplayer.match.in-progress'
 
     a
       className: 'mp-history-game__header'
@@ -47,8 +47,8 @@ class MPHistory.GameHeader extends React.Component
 
       div className: 'mp-history-game__stats-box',
         span className: 'mp-history-game__stat', timeString
-        span className: 'mp-history-game__stat', Lang.get "beatmaps.mode.#{@props.game.mode}"
-        span className: 'mp-history-game__stat', Lang.get "multiplayer.game.scoring-type.#{@props.game.scoring_type}"
+        span className: 'mp-history-game__stat', osu.trans "beatmaps.mode.#{@props.game.mode}"
+        span className: 'mp-history-game__stat', osu.trans "multiplayer.game.scoring-type.#{@props.game.scoring_type}"
 
       div className: 'mp-history-game__metadata-box',
         h1 className: 'mp-history-game__metadata mp-history-game__metadata--title',
@@ -62,6 +62,6 @@ class MPHistory.GameHeader extends React.Component
 
       div
         className: 'mp-history-game__team-type'
-        title: Lang.get "multiplayer.match.team-types.#{@props.game.team_type}"
+        title: osu.trans "multiplayer.match.team-types.#{@props.game.team_type}"
         style:
           backgroundImage: "url(/images/badges/team-types/#{@props.game.team_type}.svg)"

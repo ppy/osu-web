@@ -19,11 +19,15 @@
  */
 
 return [
+    'deleted' => '[usunięty użytkownik]',
+
     'login' => [
         '_' => 'Zaloguj się',
+        'locked_ip' => 'Twój adres IP jest zablokowany. Poczekaj kilka minut.',
         'username' => 'Nazwa użytkownika',
         'password' => 'Hasło',
         'button' => 'Zaloguj się',
+        'button_posting' => 'Logowanie...',
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Niepoprawny login/hasło',
@@ -36,26 +40,36 @@ return [
 
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'signup' => [
+        '_' => 'Zarejestruj się',
+    ],
+
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
         'username' => 'Gość',
-        'error' => 'Musisz być zalogowany.',
+        'error' => 'Musisz się zalogować.',
     ],
     'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
+    'restricted_banner' => [
+        'title' => 'Twoje konto zostało zablokowane!',
+        'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',
+    ],
     'show' => [
         '404' => 'Nie znaleziono gracza! ;_;',
         'age' => 'Ma :age lat',
         'current_location' => 'Obecnie w :location',
         'first_members' => 'Od samego początku',
-        'is_developer' => 'osu!programista',
-        'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Dołączył :date',
+        'is_developer' => 'programista osu!',
+        'is_supporter' => 'donator osu!',
+        'joined_at' => 'Dołączono :date',
         'lastvisit' => 'Ostatnio widziany :date',
-        'missingtext' => 'Zrobiłeś literówkę! (albo ten gracz jest zbanowany)',
+        'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik jest zablokowany)',
         'origin_age' => ':age',
         'origin_country' => 'Pochodzi z :country',
         'origin_country_age' => ':age i pochodzi z :country',
-        'page_description' => 'osu! - Wszystko co chciałbyś wiedzieć o :username!',
+        'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
+        'plays_with' => 'Gra za pomocą :devices',
         'title' => 'Profil :username',
 
         'edit' => [
@@ -67,14 +81,17 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Dodawanie jest dostępne tylko dla <a href='".osu_url('support-the-game')."' target='_blank'>supporterów</a> ",
-                    'size_info' => 'Rozmiary nagłówka powinny być przynajmniej 2000x700',
+                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".osu_url('support-the-game')."' target='_blank'>statusu donatora</a>, aby odblokować tę funkcję.",
+                    'size_info' => 'Rozmiary nagłówka powinny wynosić przynajmniej 2000x700',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
             ],
         ],
         'extra' => [
+            'followers' => '1 śledzący|:count śledzących|:count śledzących',
+            'unranked' => 'Brak nowych wyników',
+
             'achievements' => [
                 'title' => 'Osiągnięcia',
                 'achieved-on' => 'Odblokowane dnia :date',
@@ -86,7 +103,7 @@ return [
                 'empty' => 'Brak wyników. :(',
                 'most_played' => [
                     'count' => 'ilość zagrań',
-                    'title' => 'Najczęściej grane mapy',
+                    'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'celność: :percentage',
@@ -106,16 +123,41 @@ return [
                     'amount' => ':amount kudosu',
                     'empty' => 'Ten gracz nie otrzymał żadnego kudosu!',
 
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Otrzymano :amount za uchylenie odmowy otrzymania kudosu w wątku :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Odmówiono :amount za wątek :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Stracono :amount za usunięcie wątku :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Otrzymano :amount za przywrócenie wątku :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Otrzymano :amount za zdobycie głosów w wątku :post',
+                            'reset' => 'Stracono :amount za utratę głosów w wątku :post',
+                        ],
+                    ],
+
                     'forum_post' => [
                         'give' => 'Otrzymano :amount od :giver za post na :post',
-                        'revoke' => 'Odebrano kudosu przezDenied kudosu by :giver for the post :post',
+                        'reset' => 'Zresetowano kudosu przez :giver za post na :post',
+                        'revoke' => 'Odebrano kudosu przez :giver za post na :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => 'ja!',
             ],
             'medals' => [
+                'empty' => 'Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;',
                 'title' => 'Medale',
             ],
             'recent_activities' => [
@@ -148,11 +190,11 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => "Musisz być <a href='".osu_url('support-the-game')."' target='_blank'>supporterem</a>, aby odblokować tę funkcję.",
+            'restriction_info' => "Musisz posiadać <a href='".osu_url('support-the-game')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
-            'global' => 'Pozycja w rankingu świadowym dla :mode',
+            'global' => 'Pozycja w rankingu światowym dla :mode',
         ],
         'stats' => [
             'hit_accuracy' => 'Celność',
@@ -165,6 +207,13 @@ return [
             'total_hits' => 'Łączna ilość uderzeń',
             'total_score' => 'Łączny wynik',
         ],
+    ],
+    'status' => [
+        'online' => 'Online',
+        'offline' => 'Offline',
+    ],
+    'verify' => [
+        'title' => 'Weryfikacja Konta',
     ],
 
 ];

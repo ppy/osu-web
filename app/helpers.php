@@ -88,7 +88,7 @@ function html_excerpt($body, $limit = 300)
         return $body;
     }
 
-    return substr($body, 0, $limit).'...';
+    return mb_substr($body, 0, $limit).'...';
 }
 
 function json_date($date)
@@ -546,7 +546,7 @@ function display_regdate($user)
         return;
     }
 
-    $formattedDate = $user->user_regdate->formatLocalized('%B %Y');
+    $formattedDate = i18n_date($user->user_regdate, null, 'year_month');
 
     if ($user->user_regdate < Carbon\Carbon::createFromDate(2008, 1, 1)) {
         return "<div title='{$formattedDate}'>".trans('users.show.first_members').'</div>';
@@ -557,13 +557,17 @@ function display_regdate($user)
     ]);
 }
 
-function i18n_date($datetime, $format = IntlDateFormatter::LONG)
+function i18n_date($datetime, $format = IntlDateFormatter::LONG, $pattern = null)
 {
     $formatter = IntlDateFormatter::create(
         App::getLocale(),
         $format,
         IntlDateFormatter::NONE
     );
+
+    if ($pattern !== null) {
+        $formatter->setPattern(trans("common.datetime.{$pattern}.php"));
+    }
 
     return $formatter->format($datetime);
 }

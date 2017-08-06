@@ -56,4 +56,4 @@ class @FormConfirmation
     if inputMain == inputConfirmation
       return @formError.setOneError fields.confirmation, []
 
-    @formError.setOneError fields.confirmation, [Lang.get('model_validation.wrong_confirmation')]
+    @formError.setOneError fields.confirmation, [osu.trans 'model_validation.wrong_confirmation']
