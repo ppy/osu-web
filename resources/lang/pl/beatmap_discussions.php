@@ -21,10 +21,15 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Musisz być zalogowany, aby edytować post.',
-            'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
-            'wrong_user' => 'Musisz być autorem posta, aby go edytować.',
+            'null_user' => 'Musisz się zalogować, aby edytować wątek.',
+            'system_generated' => 'Automatycznie generowane wątki nie mogą być edytowane.',
+            'wrong_user' => 'Tylko autor może edytować ten wątek.',
         ],
+    ],
+
+    'nearby_posts' => [
+        'confirm' => 'Żadna z tych odpowiedzi nie jest istotna',
+        'notice' => 'Istnieją odpowiedzi dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem.',
     ],
 
     'system' => [
@@ -32,5 +37,12 @@ return [
             'true' => 'Oznaczone jako gotowe przez :user',
             'false' => 'Otworzone ponownie przez :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'admin',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 ];

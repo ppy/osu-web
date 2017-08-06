@@ -20,7 +20,7 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> jest obecnie online w <strong>:games</strong> grach',
+        'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
         'download' => [
@@ -35,7 +35,7 @@ return [
         ],
     ],
     'search' => [
-        'advanced_link' => 'Zaawansowane wyszkukiwanie',
+        'advanced_link' => 'Zaawansowane wyszukiwanie',
         'button' => 'Szukaj',
         'empty_result' => 'Nie znaleziono!',
         'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
@@ -51,8 +51,8 @@ return [
             'more_simple' => 'Zobacz więcej znalezionych wątków na forum',
             'title' => 'Forum',
             'label' => [
-                'forum' => 'przeszukaj forum',
-                'forum_children' => 'zawiera subforum',
+                'forum' => 'przeszukaj fora',
+                'forum_children' => 'uwzględnij subfora',
                 'username' => 'autor',
             ],
         ],
@@ -64,7 +64,7 @@ return [
             'wiki_page' => 'wiki',
         ],
         'user' => [
-            'more' => 'Zobacz więcej znalezionych użytkowników: :count',
+            'more' => 'Zobacz więcej wyszukanych użytkowników: :count',
             'more_simple' => 'Zobacz więcej wyszukanych użytkowników',
             'title' => 'Użytkownicy',
         ],
@@ -77,7 +77,7 @@ return [
     'download' => [
       'header' => [
           '1' => 'a więc',
-          '2' => 'zapoznajemy się z',
+          '2' => 'zapoznajmy się z',
           '3' => 'pobieraniem osu! na system Windows',
       ],
       'steps' => [
@@ -95,7 +95,7 @@ return [
           ],
       ],
       'more' => 'Dowiedz się więcej!',
-      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy/a> po poradniki i wskazówki dotyczące całego świata osu!',
+      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy</a> po poradniki i wskazówki dotyczące całego świata osu!',
     ],
 
     'user' => [
@@ -106,13 +106,15 @@ return [
         ],
         'header' => [
             'welcome' => 'Witaj, <strong>:username</strong>!',
-            'messages' => 'Masz 1 nową wiadomość|Masz :count nowych wiadomości',
+            'messages' => 'Masz 1 nową wiadomość|Masz :count nowe wiadomości|Masz :count nowych wiadomości',
             'stats' => [
+                'friends' => 'Znajomi online',
+                'games' => 'Mecze',
                 'online' => 'Użytkownicy online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Nowe rankingowe mapy',
+            'new' => 'Nowe rankingowe beatmapy',
             'popular' => 'Popularne beatmapy',
         ],
         'buttons' => [
