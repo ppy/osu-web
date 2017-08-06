@@ -30,7 +30,7 @@ return [
         ],
     ],
     'show' => [
-        'posted' => 'napisane :time',
+        'posted' => 'opublikowane :time',
         'nav' => [
             'newer' => 'Nowsza wiadomość',
             'older' => 'Starsza wiadomość',
