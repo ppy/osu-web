@@ -47,7 +47,7 @@ services:
       DB_HOST: osuweb-mariadb
     user: osuweb
     working_dir: /data/osuweb
-    command: bash -c "mkdir node_modules && cp -n .env.example .env && ./build.sh"
+    command: bash -c "mkdir -p node_modules && cp -n .env.example .env && ./build.sh"
   yarn:
     build:
       context: ./docker/yarn
