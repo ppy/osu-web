@@ -221,7 +221,7 @@ class Post extends Model
             } elseif ($user->isRestricted()) {
                 $normalizedUser = new DeletedUser();
                 $normalizedUser->username = $user->username;
-                $normalizedUser->user_colour = 'ccc';
+                $normalizedUser->user_colour = '#ccc';
             } else {
                 $normalizedUser = $user;
             }

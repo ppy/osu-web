@@ -67,9 +67,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @userModerationGroup()
 
     topClasses += " #{bn}--#{userBadge}" if userBadge?
-
     userColor = @props.user.profile_colour if !@isOwner()
-    userColor = "##{userColor}" if userColor?
 
     div
       className: topClasses

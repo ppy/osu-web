@@ -375,6 +375,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $styles;
     }
 
+    public function getUserColourAttribute($value)
+    {
+        if (present($value)) {
+            return "#{$value}";
+        }
+    }
+
+    public function setUserColourAttribute($value)
+    {
+        // also functions for casting null to string
+        $this->attributes['user_colour'] = ltrim($value, '#');
+    }
+
     // return a user's API details
 
     public function getApiDetails($user = null)

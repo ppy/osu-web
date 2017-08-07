@@ -155,6 +155,19 @@ class Forum extends Model
         }
     }
 
+    public function getForumLastPosterColourAttribute($value)
+    {
+        if (present($value)) {
+            return "#{$value}";
+        }
+    }
+
+    public function setForumLastPosterColourAttribute($value)
+    {
+        // also functions for casting null to string
+        $this->attributes['forum_last_poster_colour'] = ltrim($value, '#');
+    }
+
     // feature forum shall have extra features like sorting and voting
     public function isFeatureForum()
     {

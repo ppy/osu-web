@@ -293,6 +293,32 @@ class Topic extends Model
         $this->attributes['topic_time'] = $value->timestamp;
     }
 
+    public function getTopicFirstPosterColourAttribute($value)
+    {
+        if (present($value)) {
+            return "#{$value}";
+        }
+    }
+
+    public function setTopicFirstPosterColourAttribute($value)
+    {
+        // also functions for casting null to string
+        $this->attributes['topic_first_poster_colour'] = ltrim($value, '#');
+    }
+
+    public function getTopicLastPosterColourAttribute($value)
+    {
+        if (present($value)) {
+            return "#{$value}";
+        }
+    }
+
+    public function setTopicLastPosterColourAttribute($value)
+    {
+        // also functions for casting null to string
+        $this->attributes['topic_last_poster_colour'] = ltrim($value, '#');
+    }
+
     public function titleNormalized()
     {
         if (!$this->isIssue()) {
