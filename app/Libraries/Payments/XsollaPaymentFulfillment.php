@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use DB;
 
 // FIXME: rename?
-class XsollaNotificationProcessor extends PaymentFulfillment
+class XsollaPaymentFulfillment extends PaymentFulfillment
 {
     public function getOrderId()
     {

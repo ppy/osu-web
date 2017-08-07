@@ -21,7 +21,7 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Http\Controllers\Controller;
-use App\Libraries\Payments\XsollaNotificationProcessor;
+use App\Libraries\Payments\XsollaPaymentFulfillment;
 use App\Models\Store\Order;
 use Auth;
 use Request;
@@ -72,13 +72,13 @@ class XsollaController extends Controller
     }
     public function callback(Request $request)
     {
-        $processor = new XsollaNotificationProcessor($request->getFacadeRoot());
+        $processor = new XsollaPaymentFulfillment($request->getFacadeRoot());
 
         try {
             $processor->validateTransaction();
             $processor->apply();
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return $e;
         }
 
         return 'whee';
