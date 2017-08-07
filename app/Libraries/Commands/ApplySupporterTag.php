@@ -51,19 +51,11 @@ class ApplySupporterTag extends StoreTransactionFulfillment
 
             $this->assignUsers();
 
-            $userDonation = new UserDonation();
-            $userDonation['transaction_id'] = $this->transactionId;
-            $userDonation['user_id'] = $this->donorId;
-            $userDonation['target_user_id'] = $this->targetId;
-            $userDonation['length'] = $this->duration;
-            $userDonation['amount'] = $this->amount;
-
-            \Log::debug($userDonation);
-
+            $donation = $this->applyDonation();
             $this->updateVotes();
             $this->applySubscription();
 
-            $this->donor->supports()->save($userDonation);
+            $this->donor->supports()->save($donation);
             $this->donor->save();
             $this->target->save();
         });
@@ -87,19 +79,11 @@ class ApplySupporterTag extends StoreTransactionFulfillment
             $this->assignUsers();
 
             foreach ($donations as $donation) { // loop, but there should only be one.
-                $reverse = new UserDonation();
-                $reverse['transaction_id'] = $this->cancelledTransactionId();
-                $reverse['user_id'] = $donation['user_id'];
-                $reverse['target_user_id'] = $donation['target_user_id'];
-                $reverse['length'] = $donation['length'];
-                $amount = $donation['amount'];
-                $reverse['amount'] = $amount > 0 ? -$amount : $amount;
-                $reverse['cancel'] = true;
-
+                $donation = $this->revokeDonation($donation);
                 $this->updateVotes();
                 $this->revokeSubscription();
 
-                $reverse->save();
+                $donation->save();
                 $this->donor->save();
                 $this->target->save();
             }
@@ -109,6 +93,36 @@ class ApplySupporterTag extends StoreTransactionFulfillment
     private function updateVotes()
     {
         $this->donor['osu_featurevotes'] += $this->duration * 2;
+    }
+
+    private function applyDonation()
+    {
+        $donation = new UserDonation();
+        $donation['transaction_id'] = $this->transactionId;
+        $donation['user_id'] = $this->donorId;
+        $donation['target_user_id'] = $this->targetId;
+        $donation['length'] = $this->duration;
+        $donation['amount'] = $this->amount;
+
+        \Log::debug($donation);
+
+        return $donation;
+    }
+
+    private function revokeDonation($donation)
+    {
+        $reverse = new UserDonation();
+        $reverse['transaction_id'] = $this->cancelledTransactionId();
+        $reverse['user_id'] = $donation['user_id'];
+        $reverse['target_user_id'] = $donation['target_user_id'];
+        $reverse['length'] = $donation['length'];
+        $amount = $donation['amount'];
+        $reverse['amount'] = $amount > 0 ? -$amount : $amount;
+        $reverse['cancel'] = true;
+
+        \Log::debug($reverse);
+
+        return $reverse;
     }
 
     private function applySubscription()
