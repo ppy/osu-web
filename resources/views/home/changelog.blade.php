@@ -133,10 +133,8 @@
         {!! json_encode($buildHistory) !!}
     </script>
 
-    <script id="json-update-streams" type="application/json">
-        {!! json_encode(collect([$featuredStream])->merge($streams)->map(function ($el) {
-            return $el->updateStream->pretty_name;
-        })) !!}
+    <script id="json-chart-order" type="application/json">
+        {!! json_encode($chartOrder) !!}
     </script>
 
     <script id="json-current-stream" type="application/json">

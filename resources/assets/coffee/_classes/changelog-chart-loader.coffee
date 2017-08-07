@@ -26,11 +26,11 @@ class @ChangelogChartLoader
   initialize: =>
     return if !@container[0]?
 
-    order = osu.parseJson 'json-update-streams'
+    order = osu.parseJson 'json-chart-order'
     currentStream = osu.parseJson 'json-current-stream'
 
     data = osu.parseJson 'json-chart-data'
-    data = _.groupBy data, 'pretty_name'
+    data = _.groupBy data, 'label'
 
     # this assumes that all streams have an equal amount of data points
     for point, i in data[order[0]]

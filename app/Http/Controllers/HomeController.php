@@ -32,6 +32,7 @@ use App\Models\News;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
+use DB;
 use Request;
 use View;
 
@@ -93,19 +94,22 @@ class HomeController extends Controller
             ->get();
 
         $featuredStream = null;
+        $activeStream = null;
 
         foreach ($streams as $index => $stream) {
+            if ($stream->version === $buildId) {
+                $activeStream = $stream->stream_id;
+            }
+
             if ($stream->stream_id === config('osu.changelog.featured_stream')) {
                 $featuredStream = $stream;
                 unset($streams[$index]);
-                break;
             }
         }
 
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new BuildPropagationHistory)->getTable();
-        $buildHistory = BuildPropagationHistory::changelog()
-            ->where('created_at', '>', Carbon::now()->subDays(config('osu.changelog.chart_days')))
+        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))
             ->get()
             ->map(function ($item) {
                 $item->user_count = get_int($item->user_count);
@@ -113,7 +117,25 @@ class HomeController extends Controller
                 return $item;
             });
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory'));
+        $chartOrder = null;
+
+        if ($buildId === null) {
+            $chartOrder = collect([$featuredStream])->merge($streams)->map(function ($el) {
+                return $el->updateStream->pretty_name;
+            });
+        } else {
+            $chartOrder = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))
+                ->select(DB::raw('DISTINCT(version) as version'))
+                ->get()
+                ->sortByDesc(function ($el) {
+                    $date = explode('.', $el->version)[0];
+                    return Carbon::parse($date);
+                })->map(function ($el) {
+                    return $el->version;
+                })->values();
+        }
+
+        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
     }
 
     public function getDownload()

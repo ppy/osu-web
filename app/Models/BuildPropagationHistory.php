@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -37,7 +38,7 @@ class BuildPropagationHistory extends Model
         return $this->belongsTo(Build::class, 'build_id');
     }
 
-    public function scopeChangelog($query)
+    public function scopeChangelog($query, $streamId = null, $days)
     {
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new self)->getTable();
@@ -45,8 +46,18 @@ class BuildPropagationHistory extends Model
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
             ->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
-            ->select(DB::raw('created_at, pretty_name, sum(user_count) as user_count'))
-            ->groupBy(['created_at', 'pretty_name'])
-            ->orderBy('created_at', 'asc');
+            ->select(DB::raw('created_at, sum(user_count) as user_count'))
+            ->where('created_at', '>', Carbon::now()->subDays($days));
+
+        if ($streamId !== null) {
+            $query->addSelect(DB::raw("{$buildsTable}.version as label"))
+                ->where("{$buildsTable}.stream_id", $streamId)
+                ->groupBy(['created_at', 'version']);
+        } else {
+            $query->addSelect(DB::raw('pretty_name as label'))
+                ->groupBy(['created_at', 'pretty_name']);
+        }
+
+        $query->orderBy('created_at', 'asc');
     }
 }
