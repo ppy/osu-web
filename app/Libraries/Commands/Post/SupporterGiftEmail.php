@@ -18,10 +18,26 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Commands;
+namespace App\Libraries\Commands\Post;
 
-interface Fulfillable
+class SupporterGiftEmail implements PostFulfillmentTask
 {
-    public function run($context);
-    public function revoke($context);
+    private $donor;
+    private $target;
+
+    public function __construct($donor, $target)
+    {
+        $this->donor = $donor;
+        $this->target = $target;
+    }
+
+    public function key()
+    {
+        return "supporter-giftuser-{$this->donor->user_id}-{$this->target->user_id}";
+    }
+
+    public function run()
+    {
+        \Log::debug("send supporter gift to {$this->target->user_email}");
+    }
 }

@@ -20,8 +20,27 @@
 
 namespace App\Libraries\Commands;
 
-interface Fulfillable
+use App\Libraries\Commands\Post\PostFulfillmentTask;
+
+class FulfillmentContext
 {
-    public function run($context);
-    public function revoke($context);
+    private $post = [];
+
+    public function getPostFulfillmentTasks()
+    {
+        return $this->post;
+    }
+
+    /**
+     * Adds a post fulfillment task.
+     *
+     * Adds a post fulfillment task. The task's uniqueness is defined by its key().
+     * The current implementation is last-added wins; future implementations may use a
+     * combiner instead.
+     * Tasks are currently only considered unique within a FulfillmentContext.
+     */
+    public function addPostFulfillmentTask(PostFulfillmentTask $task)
+    {
+        $this->post[$task->key()] = $task;
+    }
 }

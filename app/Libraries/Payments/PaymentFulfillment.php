@@ -2,6 +2,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Libraries\Commands\FulfillmentContext;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -54,9 +55,14 @@ abstract class PaymentFulfillment implements \ArrayAccess
             \Log::debug($commands);
         });
 
+        $context = new FulfillmentContext();
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($commands as $command) {
-            $command->run();
+            $command->run($context);
+        }
+
+        foreach ($context->getPostFulfillmentTasks() as $task) {
+            $task->run();
         }
 
         return $commands;

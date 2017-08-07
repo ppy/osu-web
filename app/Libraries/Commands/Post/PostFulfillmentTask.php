@@ -18,10 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Commands;
+namespace App\Libraries\Commands\Post;
 
-interface Fulfillable
+interface PostFulfillmentTask
 {
-    public function run($context);
-    public function revoke($context);
+    public function key();
+    public function run();
 }
