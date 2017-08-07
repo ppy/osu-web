@@ -22,10 +22,24 @@ namespace App\Libraries\Commands;
 
 use App\Models\User;
 use App\Models\UserDonation;
+use Carbon\Carbon;
 use DB;
 
 class ApplySupporterTag extends StoreTransactionFulfillment
 {
+    private $donor;
+    private $target;
+
+    private function assignUsers()
+    {
+        $this->donor = User::findOrFail($this->donorId);
+        $this->target = User::findOrFail($this->targetId);
+    }
+    public function cancelledTransactionId()
+    {
+        return "{$this->transactionId}-cancel";
+    }
+
     public function run()
     {
         DB::transaction(function () {
@@ -35,7 +49,8 @@ class ApplySupporterTag extends StoreTransactionFulfillment
                 return;
             }
 
-            $user = User::findOrFail($this->targetId);
+            $this->assignUsers();
+
             $userDonation = new UserDonation();
             $userDonation['transaction_id'] = $this->transactionId;
             $userDonation['user_id'] = $this->donorId;
@@ -45,7 +60,12 @@ class ApplySupporterTag extends StoreTransactionFulfillment
 
             \Log::debug($userDonation);
 
-            $user->supports()->save($userDonation);
+            $this->updateVotes();
+            $this->applySubscription();
+
+            $this->donor->supports()->save($userDonation);
+            $this->donor->save();
+            $this->target->save();
         });
     }
 
@@ -64,7 +84,9 @@ class ApplySupporterTag extends StoreTransactionFulfillment
                 return;
             }
 
-            foreach ($donations as $donation) {
+            $this->assignUsers();
+
+            foreach ($donations as $donation) { // loop, but there should only be one.
                 $reverse = new UserDonation();
                 $reverse['transaction_id'] = $this->cancelledTransactionId();
                 $reverse['user_id'] = $donation['user_id'];
@@ -74,13 +96,32 @@ class ApplySupporterTag extends StoreTransactionFulfillment
                 $reverse['amount'] = $amount > 0 ? -$amount : $amount;
                 $reverse['cancel'] = true;
 
+                $this->updateVotes();
+                $this->revokeSubscription();
+
                 $reverse->save();
+                $this->donor->save();
+                $this->target->save();
             }
         });
     }
 
-    public function cancelledTransactionId()
+    private function updateVotes()
     {
-        return "{$this->transactionId}-cancel";
+        $this->donor['osu_featurevotes'] += $this->duration * 2;
+    }
+
+    private function applySubscription()
+    {
+        $old = $this->target['osu_subscriptionexpiry'] === null ? Carbon::now() : Carbon::parse($this->target['osu_subscriptionexpiry']);
+        $this->target['osu_subscriptionexpiry'] = $old->addMonths($this->duration);
+        $this->target['osu_subscriber'] = true;
+    }
+
+    private function revokeSubscription()
+    {
+        $old = Carbon::parse($this->target['osu_subscriptionexpiry']);
+        $this->target['osu_subscriptionexpiry'] = $old->subMonths($this->duration);
+        $this->target['osu_subscriber'] = Carbon::now()->diffInMonths($old, false) > 0;
     }
 }
