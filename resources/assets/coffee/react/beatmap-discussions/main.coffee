@@ -232,7 +232,11 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     return if !discussion?
 
-    mode = if discussion.timestamp? then 'timeline' else 'general'
+    mode =
+      if discussion.beatmap_id?
+        if discussion.timestamp? then 'timeline' else 'general'
+      else
+        'generalAll'
 
     @setMode null, mode, =>
       @setCurrentBeatmapId null,
