@@ -61,7 +61,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
     {
-        if ($user->isQAT()) {
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -117,7 +117,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        if ($user->isQAT()) {
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -128,7 +128,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isQAT()) {
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -203,7 +203,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        if ($user->isQAT()) {
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -214,7 +214,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isQAT()) {
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -263,7 +263,7 @@ class OsuAuthorize
 
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
-        if ($user->isQAT()) {
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
