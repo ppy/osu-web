@@ -28,14 +28,14 @@ return [
             'support_button' => 'Chcę wspomóc osu!',
         ],
 
-        'dev_quote' => 'osu! jest kompletnie darmową grą, ale utrzymanie jej nie jest już darmowe. Oprócz kosztów utrzymania serwerów i wysokiej jakości internetu, czasu spędzonego na zarządzanie systemem i społecznością, ustanawianiem nagród za konkursy, odpowiadaniem na pytania dotyczące pomocy technicznej i ogólnego uszczęsliwiania społeczności, osu! wymaga dość sporej sumy pieniędzy. I nie zapominajmy, że robimy to bez żadnych reklam ani partnerstw z denerwującymi toolbarami!
+        'dev_quote' => 'osu! jest kompletnie darmową grą, ale utrzymanie jej nie jest już darmowe. Oprócz kosztów utrzymania serwerów i wysokiej jakości internetu, czasu spędzonego na zarządzanie systemem i społecznością, ustanawiania nagród za konkursy, odpowiadania na pytania dotyczące pomocy technicznej i ogólnego uszczęsliwiania społeczności, osu! wymaga dość sporej sumy pieniędzy. I nie zapominajmy, że robimy to bez żadnych reklam ani partnerstw z denerwującymi toolbarami!
             <br/><br/>osu! jest w większości utrzymwane przeze mnie, którego możecie znać jako "peppy".
             Musiałem opuścić normalną pracę, aby wyrabiać się czasowo z osu! i czasami zdarza się, że mam problem z utrzymaniem standardów, o które się staram.
             Chciałbym zaoferować osobiste podziękowania dla każdego, który wspomógł osu! do tej pory,
             tak samo jak tych, którzy ciągle wspierają tę wspaniałą grę i społeczność :).',
 
         'why_support' => [
-            'title' => 'Dlaczego powinienem wspomóc osu!?',
+            'title' => 'Dlaczego mam wspomóc osu!?',
             'blocks' => [
                 'dev' => 'Stworzone i utrzymywane głównie przez jedną osobę z Australii.',
                 'time' => 'Zajmuje tyle czasu, że nie można tego już nazwać "hobby".',

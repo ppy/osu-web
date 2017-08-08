@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd!  Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
+        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
 
     'menu' => [
@@ -54,7 +54,7 @@ return [
             'index' => 'lista',
             'artists' => 'wyróżnieni artyści',
             'packs' => 'paczki',
-            // 'getCharts' => 'charty',
+            // 'getCharts' => 'wyróżnione',
         ],
         'beatmapsets' => [
             '_' => 'mapsety',
@@ -181,7 +181,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
+            'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
             'link' => false,
         ],
         '403' => [
@@ -196,7 +196,7 @@ return [
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
+            'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
             'link' => false,
         ],
         '500' => [
