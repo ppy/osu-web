@@ -60,11 +60,6 @@ class ApplySupporterTag extends StoreTransactionFulfillment
             $this->donor->supports()->save($donation);
             $this->donor->save();
             $this->target->save();
-
-            $context->addPostFulfillmentTask(new DonationThanksEmail($this->donor));
-            if ($this->donor->getKey() !== $this->target->getKey()) {
-                $context->addPostFulfillmentTask(new SupporterGiftEmail($this->donor, $this->target));
-            }
         });
     }
 

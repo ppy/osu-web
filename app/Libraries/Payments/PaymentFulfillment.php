@@ -61,8 +61,9 @@ abstract class PaymentFulfillment implements \ArrayAccess
             $fulfiller->revoke($context);
         }
 
-        foreach ($context->getPostFulfillmentTasks() as $task) {
-            $task->run();
+        foreach ($this->builders as $type => $fulfiller) {
+            $fulfiller->afterRun($context);
+            $fulfiller->afterRevoke($context);
         }
     }
 
