@@ -129,6 +129,7 @@ class HomeController extends Controller
                 ->get()
                 ->sortByDesc(function ($el) {
                     $date = explode('.', $el->version)[0];
+
                     return Carbon::parse($date);
                 })->map(function ($el) {
                     return $el->version;

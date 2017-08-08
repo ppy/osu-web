@@ -38,7 +38,7 @@ class BuildPropagationHistory extends Model
         return $this->belongsTo(Build::class, 'build_id');
     }
 
-    public function scopeChangelog($query, $streamId = null, $days)
+    public function scopeChangelog($query, $streamId, $days)
     {
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new self)->getTable();
