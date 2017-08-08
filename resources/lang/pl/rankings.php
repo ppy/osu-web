@@ -21,14 +21,14 @@
 return [
     'header' => 'Ranking :type',
     'type' => [
-        'performance' => 'globalny',
-        'charts' => 'chartów',
-        'score' => 'punktowy',
-        'country' => 'krajowy',
+        'performance' => 'Globalny',
+        'charts' => 'Wyróżnionych',
+        'score' => 'Punktowy',
+        'country' => 'Krajowy',
     ],
     'stat' => [
         'accuracy' => 'Celność',
-        'active_users' => 'Aktywnych użytkowników',
+        'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
         'play_count' => 'Ilość zagrań',
         'performance' => 'Ilość pp',

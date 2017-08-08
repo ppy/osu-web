@@ -21,7 +21,7 @@
 return [
     'top-headers' => [
         'headline' => 'Transmisje na żywo',
-        'description' => 'Dane są pobierane z Twitcha co 5 minut. Nie wahaj się zacząć streamować i pojawić się na tej liście! Na wiki możesz znaleźć poradnik dot. streamowania.',
+        'description' => 'Dane są pobierane z Twitcha co 5 minut. Nie wahaj się zacząć transmitować na żywo i pojawić się na tej liście! Na wiki możesz znaleźć poradnik dot. streamowania.',
     ],
     'headers' => [
         'regular' => 'Obecnie na żywo',
