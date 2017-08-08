@@ -10,26 +10,7 @@ use App\Models\SupporterTag;
 class SupporterTagFulfillment extends OrderFulfiller
 {
     private $minimumRequired = 0;
-    private $commands = [];
-
-    private function addOrderItem(OrderItem $item)
-    {
-        \Log::debug('addOrderItem');
-        $extraData = $item['extra_data'];
-        $targetId = (int) $extraData['target_id'];
-        $duration = (int) $extraData['duration'];
-        $minimum = SupporterTag::getMinimumDonation($duration);
-
-        $this->minimumRequired += $minimum;
-
-        $params = [
-            'donorId' => $this->order['user_id'],
-            'targetId' => $targetId,
-            'duration' => $duration,
-            'amount' => $item['cost'],
-        ];
-        $this->commands[] = new ApplySupporterTag("{$this->order['transaction_id']}-{$item['id']}", $params);
-    }
+    private $commands;
 
     public function run($context)
     {
@@ -58,14 +39,41 @@ class SupporterTagFulfillment extends OrderFulfiller
         return $this->order->getTotal() >= $this->minimumRequired;
     }
 
-    public function getCommands()
+    private function getCommands()
     {
-        $items = $this->order->items()->customClass('supporter-tag')->get();
-        \Log::debug($items);
-        foreach ($items as $item) {
-            $this->addOrderItem($item);
+        if (isset($this->commands)) {
+            return $this->commands;
         }
 
+        $items = $this->order->items()->customClass('supporter-tag')->get();
+        \Log::debug($items);
+        $commands = [];
+        foreach ($items as $item) {
+            $commands[] = $this->createCommand($item);
+        }
+
+        $this->commands = $commands;
+
         return $this->commands;
+    }
+
+    private function createCommand(OrderItem $item)
+    {
+        \Log::debug('createCommand');
+        $extraData = $item['extra_data'];
+        $targetId = (int) $extraData['target_id'];
+        $duration = (int) $extraData['duration'];
+        $minimum = SupporterTag::getMinimumDonation($duration);
+
+        $this->minimumRequired += $minimum;
+
+        $params = [
+            'donorId' => $this->order['user_id'],
+            'targetId' => $targetId,
+            'duration' => $duration,
+            'amount' => $item['cost'],
+        ];
+
+        return new ApplySupporterTag("{$this->order['transaction_id']}-{$item['id']}", $params);
     }
 }
