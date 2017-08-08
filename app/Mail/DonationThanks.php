@@ -29,20 +29,22 @@ class DonationThanks extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private $donor;
-    private $length;
-    private $amount;
-
+    private $params = [];
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($donor, $length, $amount)
+    public function __construct($donor, $length, $amount, $isGift = false)
     {
-        $this->donor = $donor;
-        $this->length = $length;
-        $this->amount = $amount;
+        $this->params = [
+            'donor' => $donor,
+            'length' => $length,
+            'amount' => $amount,
+            'isGift' => $isGift,
+            'minutes' => 'placeholder',
+            'tidbit' => 'placeholder',
+        ];
     }
 
     /**
@@ -52,11 +54,6 @@ class DonationThanks extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.store.donation_thanks')
-            ->with('user', $this->donor)
-            ->with('length', $this->length)
-            ->with('minutes', 'placeholder')
-            ->with('wasSubscriber', 'placeholder')
-            ->with('tidbit', 'placeholder');
+        return $this->view('emails.store.donation_thanks')->with($this->params);
     }
 }
