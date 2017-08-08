@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd!  Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
+        'page_description' => 'osu! - Rytm jest tylko *kliknięcie* stąd! Z Ouendanem/EBA, Taiko i oryginalnymi trybami gry, a także w pełni funkcjonalnym edytorem!',
     ],
 
     'menu' => [
@@ -34,11 +34,11 @@ return [
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
             'index' => 'osu!',
-            'legal-show' => 'information',
+            'legal-show' => 'informacje',
             'news-index' => 'wiadomości',
             'news-show' => 'wiadomości',
             'password-reset-index' => 'zresetuj hasło',
-            'search' => 'wyszukiwanie',
+            'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
         ],
         'help' => [
@@ -54,7 +54,7 @@ return [
             'index' => 'lista',
             'artists' => 'wyróżnieni artyści',
             'packs' => 'paczki',
-            // 'getCharts' => 'charty',
+            // 'getCharts' => 'wyróżnione',
         ],
         'beatmapsets' => [
             '_' => 'mapsety',
@@ -64,21 +64,24 @@ return [
             '_' => 'rankingi',
             'index' => 'globalny',
             'performance' => 'globalny',
-            'charts' => 'charty',
+            'charts' => 'wyróżnionych',
             'score' => 'punktowy',
             'country' => 'krajowy',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'społeczność',
+            'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'czat',
             'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
+            'contests' => 'konkursy',
             'profile' => 'profil',
             'tournaments' => 'turnieje',
             'tournaments-index' => 'turnieje',
-            'tournaments-show' => 'informacje o turniejach',
+            'tournaments-show' => 'informacje o turnieju',
+            'forum-topic-watches-index' => 'subskrybcje',
             'forum-topics-create' => 'forum',
             'forum-topics-show' => 'forum',
             'forum-forums-index' => 'forum',
@@ -136,6 +139,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'root' => 'strona główna',
             'logs-index' => 'logi',
             'beatmapsets' => [
                 '_' => 'mapsety',
@@ -177,7 +181,7 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
+            'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
             'link' => false,
         ],
         '403' => [
@@ -192,7 +196,7 @@ return [
         ],
         '405' => [
             'error' => 'Nie znaleziono strony',
-            'description' => 'Przepraszamy, ale strona, jaką chciałeś ujrzeć, nie istnieje!',
+            'description' => 'Przepraszamy, ale żądana strona nie istnieje!',
             'link' => false,
         ],
         '500' => [
@@ -214,7 +218,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Na wszelki wypadek, tutaj jest kod który możesz dać osobom z pomocy technicznej!',
+        'reference' => 'Na wszelki wypadek, tutaj jest kod, który możesz przekazać osobom z pomocy technicznej!',
     ],
 
     'popup_login' => [

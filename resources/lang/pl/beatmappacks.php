@@ -40,7 +40,7 @@ return [
         'description' => 'Kolekcje beatmap o wspólnej tematyce.',
     ],
     'show' => [
-        'download' => 'pobierz',
+        'download' => 'Pobierz',
         'item' => [
             'cleared' => 'ukończona',
             'not_cleared' => 'nieukończona',

@@ -67,9 +67,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @userModerationGroup()
 
     topClasses += " #{bn}--#{userBadge}" if userBadge?
-
     userColor = @props.user.profile_colour if !@isOwner()
-    userColor = "##{userColor}" if userColor?
 
     div
       className: topClasses
@@ -148,8 +146,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   editStart: =>
+    @textarea.style.minHeight = "#{@messageBody.getBoundingClientRect().height + 50}px"
+
     @setState editing: true, =>
-      @refs.textarea.focus()
+      @textarea.focus()
 
 
   editEnd: =>
@@ -170,6 +170,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     div className: "#{bn}__message-container #{'hidden' if @state.editing}",
       div
         className: "#{bn}__message"
+        ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
           __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
 
@@ -259,7 +260,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
       textarea
-        ref: 'textarea'
+        ref: (el) => @textarea = el
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @messageInput
         onKeyDown: @submitIfEnter

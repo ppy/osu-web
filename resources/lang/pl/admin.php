@@ -43,13 +43,13 @@ return [
 
                 'submit' => [
                     'save' => 'Zapisz',
-                    'update' => 'Aktualizuj',
+                    'update' => 'Zaktualizuj',
                 ],
 
                 'title' => 'Lista nagłówków forum',
 
                 'type-title' => [
-                    'default-topic' => 'Domyślny nagłówek tematu',
+                    'default-topic' => 'Domyślny nagłówek wątku',
                     'main' => 'Nagłówek forum',
                 ],
             ],
@@ -77,8 +77,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Koszyk',
+                'title' => 'Lista zamówień',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Konto tego użytkownika jest obecnie zablokowane.',
+            'message' => '(tylko administracja widzi tę wiadomość)',
         ],
     ],
 
