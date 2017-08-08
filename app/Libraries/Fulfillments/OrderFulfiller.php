@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,10 +17,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Libraries\Commands;
+namespace App\Libraries\Fulfillments;
 
-use Exception;
+use App\Models\Store\Order;
 
-class MissingTransactionIdException extends Exception
+abstract class OrderFulfiller implements Fulfillable
 {
+    protected $order;
+
+    public function __construct(Order $order)
+    {
+        $this->order = $order;
+    }
 }

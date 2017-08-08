@@ -78,6 +78,13 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
+    public function scopeCustomClass($query, $name)
+    {
+        return $query->whereHas('product', function ($q) use ($name) {
+            $q->customClass($name);
+        });
+    }
+
     public function refreshCost()
     {
         if ($this->product->cost === null) {

@@ -136,6 +136,12 @@ class Product extends Model
             ->orderBy('display_order', 'desc');
     }
 
+    public function scopeCustomClass($query, $name)
+    {
+        return $query
+            ->where('custom_class', $name);
+    }
+
     public function productsInRange()
     {
         if (!($mappings = $this->typeMappings())) {

@@ -18,10 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Commands;
+namespace App\Libraries\Fulfillments\Subcommands;
 
-use App\Libraries\Commands\Post\SupporterGiftEmail;
-use App\Libraries\Commands\Post\DonationThanksEmail;
+use App\Libraries\Fulfillments\Post\SupporterGiftEmail;
+use App\Libraries\Fulfillments\Post\DonationThanksEmail;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;

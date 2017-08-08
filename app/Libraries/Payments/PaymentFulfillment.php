@@ -2,7 +2,7 @@
 
 namespace App\Libraries\Payments;
 
-use App\Libraries\Commands\FulfillmentContext;
+use App\Libraries\Fulfillments\FulfillmentContext;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -38,7 +38,7 @@ abstract class PaymentFulfillment implements \ArrayAccess
             return $this->builders[$type];
         }
 
-        $className = '\\App\\Libraries\\Payments\\' . studly_case($type) . 'CommandBuilder';
+        $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
         $this->builders[$type] = new $className($this->order);
         // throw if not found
 
@@ -47,43 +47,31 @@ abstract class PaymentFulfillment implements \ArrayAccess
 
     public function apply()
     {
-        $commands = [];
-        DB::connection('mysql-store')->transaction(function () use (&$commands) {
+        DB::connection('mysql-store')->transaction(function () use (&$fulfillments) {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
-            $commands += $this->getCommands();
+            $this->createFulfillers();
             \Log::debug('commands');
-            \Log::debug($commands);
+            \Log::debug(array_keys($this->builders));
         });
 
         $context = new FulfillmentContext();
         // This should probably be shoved off into a queue processor somewhere...
-        foreach ($commands as $command) {
-            $command->run($context);
+        foreach ($this->builders as $type => $fulfiller) {
+            $fulfiller->run($context);
+            $fulfiller->revoke($context);
         }
 
         foreach ($context->getPostFulfillmentTasks() as $task) {
             $task->run();
         }
-
-        return $commands;
     }
 
-    public function getCommands()
+    private function createFulfillers()
     {
-        $supporterTags = [];
         $items = $this->order->items()->get();
         foreach ($items as $item) {
-            $builder = $this->getBuilder($item->product['custom_class']);
-            $builder->addOrderItem($item);
+            $this->getBuilder($item->product['custom_class']);
         }
-
-        $fulfillers = [];
-        foreach ($this->builders as $type => $builder) {
-            $builder->isValid(); // printing \Log::debug atm...
-            $fulfillers += $builder->getCommands();
-        }
-
-        return $fulfillers;
     }
 
     /**

@@ -18,9 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Commands;
+namespace App\Libraries\Fulfillments;
 
-use App\Libraries\Commands\Post\PostFulfillmentTask;
+use App\Libraries\Fulfillments\Post\PostFulfillmentTask;
 
 class FulfillmentContext
 {

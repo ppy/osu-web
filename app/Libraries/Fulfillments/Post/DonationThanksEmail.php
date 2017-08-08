@@ -18,29 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Commands;
+namespace App\Libraries\Fulfillments\Post;
 
-abstract class StoreTransactionFulfillment implements Fulfillable
+class DonationThanksEmail implements PostFulfillmentTask
 {
-    protected $transactionId;
+    private $donor;
 
-    private $params;
-
-    public function __construct($transactionId, $params)
+    public function __construct($donor)
     {
-        if (!present($transactionId)) {
-            throw new MissingTransactionIdException();
-        }
-
-        $this->transactionId = $transactionId;
-        $this->params = $params;
+        $this->donor = $donor;
     }
 
-    /**
-     * Wrapper around $this->params
-     */
-    public function __get($key)
+    public function key()
     {
-        return $this->params[$key];
+        return "donation-user-{$this->donor->user_id}";
+    }
+
+    public function run()
+    {
+        \Log::debug("send donation thanks to {$this->donor->user_email}");
     }
 }
