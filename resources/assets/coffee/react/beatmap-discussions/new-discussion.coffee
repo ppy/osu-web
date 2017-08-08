@@ -156,7 +156,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       beatmap_discussion:
         message_type: e.currentTarget.dataset.type
         timestamp: @state.timestamp
-        beatmap_id: @props.currentBeatmap.id
+        beatmap_id: @props.currentBeatmap.id unless @props.mode == 'generalAll'
       beatmap_discussion_post:
         message: @state.message
 
