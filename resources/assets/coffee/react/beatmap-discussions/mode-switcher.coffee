@@ -78,4 +78,4 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
   switch: (e) =>
     e.preventDefault()
 
-    $.publish 'beatmapDiscussion:setMode', e.currentTarget.dataset.mode
+    $.publish 'beatmapDiscussion:setMode', mode: e.currentTarget.dataset.mode

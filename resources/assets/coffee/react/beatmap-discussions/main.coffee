@@ -221,7 +221,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       return $.publish 'beatmapDiscussion:jump', id: target.discussionId
 
     if target.mode == 'events'
-      return @setMode null, 'events'
+      return @setMode null, mode: 'events'
 
     target.beatmapId ?= @state.currentBeatmap.id
     $.publish 'beatmap:select', id: target.beatmapId
@@ -238,15 +238,17 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         'generalAll'
 
-    @setMode null, mode, =>
-      @setCurrentBeatmapId null,
-        id: discussion.beatmap_id
-        callback: =>
-          $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+    @setMode null,
+      mode: mode
+      callback: =>
+        @setCurrentBeatmapId null,
+          id: discussion.beatmap_id
+          callback: =>
+            $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
-          target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-          $(window).stop().scrollTo target, 500,
-            offset: modeSwitcher[0].getBoundingClientRect().height * -1
+            target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+            $(window).stop().scrollTo target, 500,
+              offset: modeSwitcher[0].getBoundingClientRect().height * -1
 
 
   jumpToClick: (e) =>
@@ -302,7 +304,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @setState newState
 
 
-  setMode: (_e, mode, callback) =>
+  setMode: (_e, {mode, callback}) =>
     return callback?() if mode == @state.mode
 
     newState = {mode}
