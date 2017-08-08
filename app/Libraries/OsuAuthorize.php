@@ -61,7 +61,9 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
     {
-        // no one but admin (not covered here) =D
+        if ($user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionDestroy($user, $discussion)
@@ -70,6 +72,10 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($user->isQAT()) {
+            return 'ok';
+        }
 
         if ($user->user_id !== $discussion->user_id) {
             return;
@@ -102,17 +108,27 @@ class OsuAuthorize
             return 'ok';
         }
 
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
         return $prefix.'not_owner';
     }
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        // no one but admin (not covered here) =D
+        if ($user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionShow($user, $discussion)
     {
         if ($discussion->deleted_at === null) {
+            return 'ok';
+        }
+
+        if ($user->isQAT()) {
             return 'ok';
         }
     }
@@ -156,6 +172,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
         return 'ok';
     }
 
@@ -174,17 +194,27 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
         return 'ok';
     }
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        // no one but admin (not covered here) =D
+        if ($user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionPostShow($user, $post)
     {
         if ($post->deleted_at === null) {
+            return 'ok';
+        }
+
+        if ($user->isQAT()) {
             return 'ok';
         }
     }
@@ -233,7 +263,9 @@ class OsuAuthorize
 
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
-        // no one but admin (not covered here) =D
+        if ($user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkChatMessageSend($user, $target)
