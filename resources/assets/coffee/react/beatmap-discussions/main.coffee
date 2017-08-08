@@ -295,19 +295,32 @@ class BeatmapDiscussions.Main extends React.PureComponent
   setFilter: (_e, {filter}) =>
     return if filter == @state.currentFilter && @state.mode != 'events'
 
-    callback =
-      if @state.mode == 'events'
-        @setMode null, (@lastMode ? 'timeline')
+    newState = currentFilter: filter
+    # restore last mode on clicking filter when viewing events
+    newState.mode = @lastMode ? 'timeline' if @state.mode == 'events'
 
-    @setState currentFilter: filter, callback
+    @setState newState
 
 
   setMode: (_e, mode, callback) =>
     return callback?() if mode == @state.mode
 
-    @lastMode = @state.mode if mode == 'events'
+    newState = {mode}
 
-    @setState mode: mode, callback
+    # switching to events:
+    # - record last filter, to be restored when setMode is called
+    # - record last mode, to be restored when setFilter is called
+    # - set filter to total
+    if mode == 'events'
+      @lastMode = @state.mode
+      @lastFilter = @state.currentFilter
+      newState.currentFilter = 'total'
+    # switching from events:
+    # - restore whatever last filter set or default to total
+    else if @state.mode == 'events'
+      newState.currentFilter = @lastFilter ? 'total'
+
+    @setState newState, callback
 
 
   users: =>
