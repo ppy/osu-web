@@ -133,8 +133,11 @@
         {!! json_encode($buildHistory) !!}
     </script>
 
-    <script id="json-chart-order" type="application/json">
-        {!! json_encode($chartOrder) !!}
+    <script id="json-chart-config" type="application/json">
+        {
+            "order": {!! json_encode($chartOrder) !!},
+            "isBuild": {!! json_encode(isset($build)) !!}
+        }
     </script>
 
     <script id="json-current-stream" type="application/json">

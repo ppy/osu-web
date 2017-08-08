@@ -26,34 +26,59 @@ class @ChangelogChartLoader
   initialize: =>
     return if !@container[0]?
 
-    order = osu.parseJson 'json-chart-order'
+    config = osu.parseJson 'json-chart-config'
+    order = config.order
+
     currentStream = osu.parseJson 'json-current-stream'
 
     data = osu.parseJson 'json-chart-data'
-    data = _.groupBy data, 'label'
+    data = _.groupBy data, 'created_at'
 
-    # this assumes that all streams have an equal amount of data points
-    for point, i in data[order[0]]
+    parsedData = {}
+
+    for el in order
+      parsedData[el] = []
+
+    console.log parsedData
+
+    # group data points by label (stream name/version) while
+    # adding points with user_count = 0 whenever there is no
+    # data point for a given label
+    for own timestamp, values of data
+      points = _.keyBy values, 'label'
+
+      for el in order
+        if points[el]?
+          parsedData[el].push points[el]
+        else
+          parsedData[el].push
+            created_at: timestamp
+            label: el
+            user_count: 0
+
+    # normalize the user count values so we can have a nice chart
+    for point, i in parsedData[order[0]]
       sum = 0
       calc = 0
 
       for el in order
-        sum += data[el][i].user_count
+        sum += parsedData[el][i].user_count
 
       for el, j in order
-        calc += data[el][i].user_count
-        data[el][i].baseline = (calc - data[el][i].user_count) / sum
-        data[el][i].normalized = calc / sum
+        calc += parsedData[el][i].user_count
+        parsedData[el][i].baseline = (calc - parsedData[el][i].user_count) / sum
+        parsedData[el][i].normalized = calc / sum
 
     options =
       scales:
         x: d3.scaleLinear()
         y: d3.scaleLinear()
       order: _.reverse order
+      isBuild: config.isBuild
       currentStream: currentStream
 
     @container[0]._chart = new ChangelogChart @container[0], options
-    @container[0]._chart.loadData data
+    @container[0]._chart.loadData parsedData
 
   resize: =>
     @container[0]._chart?.resize()

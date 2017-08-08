@@ -17,28 +17,39 @@
  */
 
 .changelog-chart {
+  .area(@label) {
+    &--@{label} {
+      @color: "changelog-stream--@{label}";
+      fill: @@color;
+      stroke: @@color;
+    }
+  }
+
+  .text(@label) {
+    &--@{label} {
+      @color: "changelog-stream--@{label}";
+      color: @@color;
+    }
+  }
+
   height: 125px;
 
   &__area {
-    &--stable {
-      fill: @changelog-stream--stable;
-      stroke: @changelog-stream--stable;
-    }
+    .area(stable);
+    .area(stable-fallback);
+    .area(cutting-edge);
+    .area(beta);
+    .area(lazer);
+    .area(lazer-experimental);
 
-    &--stable-fallback {
-      fill: @changelog-stream--stable-fallback;
-      stroke: @changelog-stream--stable-fallback;
-    }
-
-    &--cutting-edge, &--beta {
-      fill: @changelog-stream--beta-ce;
-      stroke: @changelog-stream--beta-ce;
-    }
-
-    &--lazer, &--lazer-experimental {
-      fill: @changelog-stream--lazer;
-      stroke: @changelog-stream--lazer;
-    }
+    .area(build-0);
+    .area(build-1);
+    .area(build-2);
+    .area(build-3);
+    .area(build-4);
+    .area(build-5);
+    .area(build-6);
+    .area(build-7);
   }
 
   &__hover-area {
@@ -90,27 +101,27 @@
       color: #ffffff;
     }
 
-    &--stable {
-      color: @changelog-stream--stable;
-    }
-
-    &--stable-fallback {
-      color: @changelog-stream--stable-fallback;
-    }
-
-    &--beta, &--cutting-edge {
-      color: @changelog-stream--beta-ce;
-    }
-
-    &--lazer, &--lazer-experimental {
-      color: @changelog-stream--lazer;
-    }
-
     &--date {
       font-weight: 700;
       font-size: 10px;
       color: #ffffff;
     }
+
+    .text(stable);
+    .text(stable-fallback);
+    .text(beta);
+    .text(cutting-edge);
+    .text(lazer);
+    .text(lazer-experimental);
+
+    .text(build-0);
+    .text(build-1);
+    .text(build-2);
+    .text(build-3);
+    .text(build-4);
+    .text(build-5);
+    .text(build-6);
+    .text(build-7);
   }
 
   &__tooltip-line {

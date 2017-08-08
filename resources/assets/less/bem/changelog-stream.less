@@ -16,8 +16,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
 .changelog-stream {
   .box-color(@radius, @color) {
     &::before {
@@ -62,8 +60,12 @@
     }
   }
 
-  &--beta, &--cutting-edge {
-    .box-color(3px, @changelog-stream--beta-ce);
+  &--beta {
+    .box-color(3px, @changelog-stream--beta);
+  }
+
+  &--cutting-edge {
+    .box-color(3px, @changelog-stream--cutting-edge);
   }
 
   &--lazer {
@@ -112,8 +114,12 @@
 
     .default-border-radius;
 
-    .@{_top}--beta &, .@{_top}--cutting-edge & {
-      background-color: @changelog-stream--beta-ce;
+    .@{_top}--beta &, {
+      background-color: @changelog-stream--beta;
+    }
+
+    .@{_top}--cutting-edge & {
+      background-color: @changelog-stream--cutting-edge;
     }
 
     .@{_top}--lazer & {
@@ -121,7 +127,7 @@
     }
 
     .@{_top}--lazer-experimental & {
-      background-color: @changelog-stream--lazer;
+      background-color: @changelog-stream--lazer-experimental;
     }
 
     .@{_top}--stable & {

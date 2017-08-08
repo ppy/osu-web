@@ -44,9 +44,12 @@ class @ChangelogChart
 
     @svgLines = {}
 
-    for el in @options.order
+    for el, i in @options.order
+      className = "changelog-chart__area changelog-chart__area--"
+      className += if @options.isBuild then "build-#{i}" else _.kebabCase el
+
       @svgLines[el] = @svgWrapper.append 'path'
-        .classed "changelog-chart__area changelog-chart__area--#{_.kebabCase el}", true
+        .classed className, true
 
     @hoverArea = @svg.append 'rect'
       .classed 'changelog-chart__hover-area', true
@@ -130,9 +133,10 @@ class @ChangelogChart
     x = Math.round @options.scales.x.invert mousePos[0]
     y = mousePos[1] / @height
 
-    for el in @options.order
+    for el, i in @options.order
       if y <= @data[el][x].normalized
-        currentStream = el
+        currentLabel = el
+        labelModifier = if @options.isBuild then "build-#{i}" else _.kebabCase el
 
     @showTooltip()
 
@@ -142,10 +146,10 @@ class @ChangelogChart
     coord = @options.scales.x(x) + @margins.left
 
     @tooltipName
-      .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{_.kebabCase currentStream}"
-      .text currentStream
-    @tooltipUserCount.text @data[currentStream][x].user_count
-    @tooltipDate.html @getDate @data[currentStream][x].created_at
+      .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
+      .text currentLabel
+    @tooltipUserCount.text @data[currentLabel][x].user_count
+    @tooltipDate.html @getDate @data[currentLabel][x].created_at
     @tooltipContainer
       .style 'transform', "translate(#{coord}px) translateX(-50%)"
 
