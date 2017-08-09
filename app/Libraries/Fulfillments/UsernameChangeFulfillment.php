@@ -21,6 +21,7 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Models\User;
+use App\Exceptions\UsernameChangeException;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {
@@ -37,6 +38,15 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
     public function revoke($context)
     {
+        $user = $this->order->user;
+        $item = $this->getOrderItems()->first();
+        if ($user['username'] !== $this->getNewUsername()) {
+            throw new UsernameChangeException(
+                "Current username ({$user['username']}) is not the same as change to revoke: {$this->getNewUsername()}"
+            );
+        }
+
+        $user->revertUsername();
     }
 
     public function isValid()
