@@ -97,6 +97,22 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
+    public function revertUsername()
+    {
+        if ($this->user_id <= 1) {
+            throw ChangeUsernameException::errors(['user_id is not valid']);
+        }
+
+        if (!presence($this->username_previous)) {
+            throw ChangeUsernameException::errors(['username_previous is blank.']);
+        }
+
+        DB::transaction(function () {
+            $this->updateUsername($this->username_previous);
+            $this->save();
+        });
+    }
+
     public function changeUsername($newUsername)
     {
         if ($this->user_id <= 1) {
@@ -109,25 +125,25 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         DB::transaction(function () use ($newUsername) {
-            $this->username_previous = $this->username;
-            $this->username_clean = strtolower($newUsername);
-            $this->username = $newUsername;
-
-            // forum
-            Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
-            // moderator_cache
-            // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
-            // posts
-            Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
-            // topics
-            Forum\Topic::where('topic_last_poster_id', $this->user_id)
-                ->update([
-                    'topic_first_poster_name' => $newUsername,
-                    'topic_last_poster_name' => $newUsername,
-                ]);
-
+            $this->updateUsername($newUsername, $this->username);
             $this->save();
         });
+    }
+
+    private function updateUsername($newUsername, $oldUsername = null)
+    {
+        $this->username_previous = $oldUsername;
+        $this->username_clean = strtolower($newUsername);
+        $this->username = $newUsername;
+
+        Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
+        // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
+        Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+        Forum\Topic::where('topic_last_poster_id', $this->user_id)
+            ->update([
+                'topic_first_poster_name' => $newUsername,
+                'topic_last_poster_name' => $newUsername,
+            ]);
     }
 
     public static function checkWhenUsernameAvailable($username)
