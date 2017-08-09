@@ -107,10 +107,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw ChangeUsernameException::errors(['username_previous is blank.']);
         }
 
-        DB::transaction(function () {
-            $this->updateUsername($this->username_previous);
-            $this->save();
-        });
+        $this->updateUsername($this->username_previous);
         \Log::debug("username reverted: {$this->username}");
     }
 
@@ -125,10 +122,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw ChangeUsernameException::errors($errors);
         }
 
-        DB::transaction(function () use ($newUsername) {
-            $this->updateUsername($newUsername, $this->username);
-            $this->save();
-        });
+        $this->updateUsername($newUsername, $this->username);
         \Log::debug("username changed: {$this->username}");
     }
 
@@ -138,14 +132,18 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->username_clean = strtolower($newUsername);
         $this->username = $newUsername;
 
-        Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
-        // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
-        Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
-        Forum\Topic::where('topic_last_poster_id', $this->user_id)
-            ->update([
-                'topic_first_poster_name' => $newUsername,
-                'topic_last_poster_name' => $newUsername,
-            ]);
+        DB::transaction(function () use ($newUsername) {
+            Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
+            // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
+            Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+            Forum\Topic::where('topic_last_poster_id', $this->user_id)
+                ->update([
+                    'topic_first_poster_name' => $newUsername,
+                    'topic_last_poster_name' => $newUsername,
+                ]);
+
+            $this->save();
+        });
     }
 
     public static function checkWhenUsernameAvailable($username)
