@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\ChangeUsernameException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
@@ -94,6 +95,39 @@ class User extends Model implements AuthenticatableContract, Messageable
             case 4: return 64;
             default: return 100;
         }
+    }
+
+    public function changeUsername($newUsername)
+    {
+        if ($this->user_id <= 1) {
+            throw ChangeUsernameException::errors(['user_id is not valid']);
+        }
+
+        $errors = static::validateUsername($newUsername);
+        if (count($errors) > 0) {
+            throw ChangeUsernameException::errors($errors);
+        }
+
+        DB::transaction(function () use ($newUsername) {
+            $this->username_previous = $this->username;
+            $this->username_clean = strtolower($newUsername);
+            $this->username = $newUsername;
+
+            // forum
+            Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
+            // moderator_cache
+            // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
+            // posts
+            Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+            // topics
+            Forum\Topic::where('topic_last_poster_id', $this->user_id)
+                ->update([
+                    'topic_first_poster_name' => $newUsername,
+                    'topic_last_poster_name' => $newUsername,
+                ]);
+
+            $this->save();
+        });
     }
 
     public static function checkWhenUsernameAvailable($username)
