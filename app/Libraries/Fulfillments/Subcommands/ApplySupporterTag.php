@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Fulfillments\Subcommands;
 
-use App\Libraries\Fulfillments\Post\SupporterGiftEmail;
-use App\Libraries\Fulfillments\Post\DonationThanksEmail;
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
