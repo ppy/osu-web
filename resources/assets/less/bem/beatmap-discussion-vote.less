@@ -17,6 +17,7 @@
  */
 
 .beatmap-discussion-vote {
+  @_default-color: #999;
   .reset-input();
   .default-box-shadow();
   .default-border-radius();
@@ -50,10 +51,22 @@
   }
 
   &--inactive {
-    color: #999;
+    color: @_default-color;
+  }
+
+  // overrides the other stuff
+  &--disabled {
+    color: @_default-color;
+    background-color: #eee;
+    cursor: default;
+
+    &:hover {
+      .default-box-shadow();
+      color: @_default-color;
+    }
   }
 
   &__count {
-    color: #999;
+    color: @_default-color;
   }
 }

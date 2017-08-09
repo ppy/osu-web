@@ -110,7 +110,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     score = if currentVote == baseScore then 0 else baseScore
 
     topClasses = "#{vbn} #{vbn}--#{type}"
-    topClasses += " #{vbn}--#{'inactive' if score != 0}"
+    topClasses += " #{vbn}--inactive" if score != 0
+    topClasses += " #{vbn}--disabled" if @isOwner()
 
     button
       className: topClasses
@@ -122,6 +123,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   doVote: (e) =>
+    return if @isOwner()
+
     LoadingOverlay.show()
 
     @voteXhr?.abort()
@@ -144,6 +147,10 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     $.publish 'beatmapDiscussionEntry:highlight', id: @props.discussion.id
 
 
+  isOwner: (object = @props.discussion) =>
+    @props.currentUser.id? && object.user_id == @props.currentUser.id
+
+
   post: (post, type) =>
     return if !post.id?
 
@@ -155,12 +162,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       discussion: @props.discussion
       post: post
       type: type
-      read: _.includes(@props.readPostIds, post.id) || (@props.currentUser.id == post.user_id)
+      read: _.includes(@props.readPostIds, post.id) || @isOwner(post)
       users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
-      canBeEdited: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
-      canBeDeleted: @props.currentUser.isAdmin || (@props.currentUser.id == post.user_id)
+      canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
+      canBeDeleted: @props.currentUser.isAdmin || @isOwner(post)
       canBeRestored: @props.currentUser.isAdmin
       currentUser: @props.currentUser
 
