@@ -36,6 +36,9 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             ->actingAs($this->user)
             ->post(route('beatmap-discussion-posts.store'), [
                 'beatmapset_id' => $this->beatmapset->beatmapset_id,
+                'beatmap_discussion' => [
+                    'message_type' => 'praise',
+                ],
                 'beatmap_discussion_post' => [
                     'message' => 'Hello',
                 ],

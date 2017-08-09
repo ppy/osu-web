@@ -95,11 +95,6 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        // no point resolving general discussion?
-        if ($discussion->timestamp === null) {
-            return $prefix.'general_discussion';
-        }
-
         if ($user->user_id === $discussion->user_id) {
             return 'ok';
         }

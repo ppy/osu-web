@@ -21,7 +21,6 @@
 return [
     'beatmap_discussion' => [
         'resolve' => [
-            'general_discussion' => 'Algemene discussie kan niet worden opgelost.',
             'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
         ],
     ],

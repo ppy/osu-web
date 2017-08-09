@@ -86,7 +86,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
   canBeResolved: =>
     @props.discussion.message_type in ['suggestion', 'problem'] &&
-      @props.discussion.timestamp? &&
       @canUpdate()
 
 
