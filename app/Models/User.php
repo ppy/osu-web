@@ -97,7 +97,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
-    public function revertUsername()
+    public function revertUsername($type = 'revert')
     {
         if ($this->user_id <= 1) {
             throw ChangeUsernameException::errors(['user_id is not valid']);
@@ -107,11 +107,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw ChangeUsernameException::errors(['username_previous is blank.']);
         }
 
-        $this->updateUsername($this->username_previous);
+        $this->updateUsername($this->username_previous, null, $type);
         \Log::debug("username reverted: {$this->username}");
     }
 
-    public function changeUsername($newUsername)
+    public function changeUsername($newUsername, $type = 'support')
     {
         if ($this->user_id <= 1) {
             throw ChangeUsernameException::errors(['user_id is not valid']);
@@ -122,17 +122,17 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw ChangeUsernameException::errors($errors);
         }
 
-        $this->updateUsername($newUsername, $this->username);
+        $this->updateUsername($newUsername, $this->username, $type);
         \Log::debug("username changed: {$this->username}");
     }
 
-    private function updateUsername($newUsername, $oldUsername = null)
+    private function updateUsername($newUsername, $oldUsername, $type)
     {
         $this->username_previous = $oldUsername;
         $this->username_clean = strtolower($newUsername);
         $this->username = $newUsername;
 
-        DB::transaction(function () use ($newUsername) {
+        DB::transaction(function () use ($newUsername, $oldUsername, $type) {
             Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
             // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
             Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
@@ -142,6 +142,12 @@ class User extends Model implements AuthenticatableContract, Messageable
                     'topic_last_poster_name' => $newUsername,
                 ]);
 
+            $history = new UsernameChangeHistory();
+            $history->username = $newUsername;
+            $history->username_last = $oldUsername;
+            $history->type = $type;
+
+            $this->usernameChangeHistory()->save($history);
             $this->save();
         });
     }
