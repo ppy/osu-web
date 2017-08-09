@@ -80,9 +80,8 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
     return if !discussion.id?
 
     className = "#{bn}__discussion"
-
-    if !@props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
-      className += ' u-hide-by-height'
+    visible = @props.currentDiscussions.byFilter[@props.currentFilter][@props.mode][discussion.id]?
+    className += ' u-hide-by-height' unless visible
 
     div
       key: discussion.id
@@ -95,7 +94,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
         currentBeatmap: @props.currentBeatmap
         userPermissions: @props.userPermissions
         readPostIds: @props.readPostIds
-        visible: visible?
+        visible: visible
 
 
   expand: (e) =>
