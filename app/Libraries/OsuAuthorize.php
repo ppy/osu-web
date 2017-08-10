@@ -263,6 +263,14 @@ class OsuAuthorize
         }
     }
 
+
+    public function checkBeatmapsetDownload($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
     public function checkChatMessageSend($user, $target)
     {
         $prefix = 'chat.message.send.';
