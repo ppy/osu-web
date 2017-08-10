@@ -175,13 +175,6 @@ class BeatmapsetsController extends Controller
         return redirect($url);
     }
 
-    public function downloadCheck()
-    {
-        return [
-            'quota_used' => BeatmapDownload::where('user_id', Auth::user()->user_id)->count(),
-        ];
-    }
-
     public function nominate($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

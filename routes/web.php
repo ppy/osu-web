@@ -154,6 +154,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
 
+    Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
+    Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
+
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('groups', 'GroupsController', ['only' => ['show']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);

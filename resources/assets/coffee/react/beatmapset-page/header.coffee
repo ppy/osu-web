@@ -133,6 +133,7 @@ class BeatmapsetPage.Header extends React.Component
                     @downloadButton
                       key: 'direct'
                       topTextKey: 'direct'
+                      osuDirect: true
                       href:
                         if currentUser.isSupporter
                           Url.beatmapDownloadDirect @props.beatmapset.id
@@ -158,7 +159,7 @@ class BeatmapsetPage.Header extends React.Component
             timeElapsed: @props.timeElapsed
 
 
-  downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey}) =>
+  downloadButton: ({key, href, icon = 'download', topTextKey = '_', bottomTextKey, osuDirect = false}) =>
     el BigButton,
       key: key
       modifiers: ['beatmapset-header']
@@ -166,6 +167,7 @@ class BeatmapsetPage.Header extends React.Component
         top: osu.trans "beatmapsets.show.details.download.#{topTextKey}"
         bottom: if bottomTextKey? then osu.trans "beatmapsets.show.details.download.#{bottomTextKey}"
       icon: icon
+      extraClasses: if !osuDirect then ['js-beatmapset-download-link']
       props:
         href: href
         'data-turbolinks': 'false'
