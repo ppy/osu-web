@@ -22,20 +22,14 @@ namespace App\Libraries\Fulfillments;
 
 use App\Models\User;
 use App\Exceptions\UsernameChangeException;
-use App\Traits\Validatable;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {
-    use Validatable;
-
     private $orderItems;
 
     public function run($context)
     {
-        if (!$this->validateRun()) {
-            throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
-        }
-        \Log::debug($this->validationErrors()->allMessages());
+        $this->throwOnFail($this->validateRun());
 
         $user = $this->order->user;
         $user->changeUsername($this->getNewUserName());
@@ -43,15 +37,13 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
     public function revoke($context)
     {
-        if (!$this->validateRevoke()) {
-            throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
-        }
+        $this->throwOnFail($this->validateRevoke());
 
         $user = $this->order->user;
         $user->revertUsername();
     }
 
-    public function validateRun()
+    private function validateRun()
     {
         $user = $this->order->user;
         $items = $this->getOrderItems();
@@ -75,7 +67,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
         return $this->validationErrors()->isEmpty();
     }
 
-    public function validateRevoke()
+    private function validateRevoke()
     {
         $user = $this->order->user;
 

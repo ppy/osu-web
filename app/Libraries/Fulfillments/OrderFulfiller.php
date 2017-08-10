@@ -20,9 +20,12 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Models\Store\Order;
+use App\Traits\Validatable;
 
 abstract class OrderFulfiller implements Fulfillable
 {
+    use Validatable;
+
     protected $order;
 
     public function __construct(Order $order)
@@ -41,5 +44,13 @@ abstract class OrderFulfiller implements Fulfillable
     public function afterRevoke($context)
     {
         // default implementation does nothing.
+    }
+
+    protected function throwOnFail($valid)
+    {
+        if (!$valid) {
+            \Log::debug($this->validationErrors()->allMessages());
+            throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
+        }
     }
 }

@@ -20,9 +20,7 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $commands = $this->getCommands();
 
-        if (!$this->isValid()) {
-            throw new \Exception('not valid');
-        }
+        $this->throwOnFail($this->validateRun());
 
         foreach ($commands as $command) {
             $command->run($context);
@@ -32,6 +30,7 @@ class SupporterTagFulfillment extends OrderFulfiller
     public function revoke($context)
     {
         $commands = $this->getCommands();
+
         foreach ($commands as $command) {
             $command->revoke($context);
         }
@@ -65,10 +64,17 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
     }
 
-    public function isValid()
+    private function validateRun()
     {
         \Log::debug("total: {$this->order->getTotal()}, required: {$this->minimumRequired}");
-        return $this->order->getTotal() >= $this->minimumRequired;
+        if ($this->order->getTotal() < $this->minimumRequired) {
+            $this->validationErrors()->addError(
+                'order_total',
+                '.insufficient_paid'
+            );
+        };
+
+        return $this->validationErrors()->isEmpty();
     }
 
     private function getOrderItems()
@@ -114,5 +120,13 @@ class SupporterTagFulfillment extends OrderFulfiller
         ];
 
         return new ApplySupporterTag("{$this->order['transaction_id']}-{$item['id']}", $params);
+    }
+
+    //================
+    // Validatable
+    //================
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'fulfillments.supporter_tag';
     }
 }
