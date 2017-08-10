@@ -117,18 +117,18 @@ class BeatmapsetPage.Header extends React.Component
                       [
                         @downloadButton
                           key: 'video'
-                          href: Url.beatmapDownload @props.beatmapset.id, true
+                          href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
                           bottomTextKey: 'video'
 
                         @downloadButton
                           key: 'no-video'
-                          href: Url.beatmapDownload @props.beatmapset.id, false
+                          href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
                           bottomTextKey: 'no-video'
                       ]
                     else
                       @downloadButton
                         key: 'default'
-                        href: Url.beatmapDownload @props.beatmapset.id, false
+                        href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
 
                     @downloadButton
                       key: 'direct'
@@ -168,6 +168,7 @@ class BeatmapsetPage.Header extends React.Component
       icon: icon
       props:
         href: href
+        'data-turbolinks': 'false'
 
 
   tabHrefFunc: (mode) ->

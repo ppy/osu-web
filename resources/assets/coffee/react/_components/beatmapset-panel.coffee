@@ -122,10 +122,12 @@ class @BeatmapsetPanel extends React.PureComponent
                 beatmapset.source
 
             div className: 'beatmapset-panel__icons-box',
-              a
-                href: Url.beatmapDownload(beatmapset.id)
-                className: 'beatmapset-panel__icon'
-                el Icon, name: 'download'
+              if currentUser?.id
+                a
+                  href: laroute.route 'beatmapsets.download', beatmapset: beatmapset.id
+                  className: 'beatmapset-panel__icon js-beatmapset-download-link'
+                  'data-turbolinks': 'false'
+                  el Icon, name: 'download'
 
           div className: 'beatmapset-panel__difficulties', difficulties
       a
