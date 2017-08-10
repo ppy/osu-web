@@ -50,7 +50,7 @@ class BeatmapDiscussion extends Model
 
     public function beatmapset()
     {
-        return $this->beatmap->beatmapset();
+        return $this->beatmapsetDiscussion->beatmapset();
     }
 
     public function beatmapDiscussionPosts()
