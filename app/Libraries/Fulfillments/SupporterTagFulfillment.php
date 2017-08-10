@@ -11,16 +11,16 @@ use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
 {
-    private $minimumRequired = 0;
+    private $minimumRequired = 0; // do not read this field outside of minimumRequired()
     private $commands;
 
     private $orderItems;
 
     public function run($context)
     {
-        $commands = $this->getCommands();
-
         $this->throwOnFail($this->validateRun());
+
+        $commands = $this->getCommands();
 
         foreach ($commands as $command) {
             $command->run($context);
@@ -66,8 +66,8 @@ class SupporterTagFulfillment extends OrderFulfiller
 
     private function validateRun()
     {
-        \Log::debug("total: {$this->order->getTotal()}, required: {$this->minimumRequired}");
-        if ($this->order->getTotal() < $this->minimumRequired) {
+        \Log::debug("total: {$this->order->getTotal()}, required: {$this->minimumRequired()}");
+        if ($this->order->getTotal() < $this->minimumRequired()) {
             $this->validationErrors()->addError(
                 'order_total',
                 '.insufficient_paid'
@@ -100,6 +100,13 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
 
         return $this->commands;
+    }
+
+    private function minimumRequired()
+    {
+        $this->getCommands();
+
+        return $this->minimumRequired;
     }
 
     private function createCommand(OrderItem $item)
