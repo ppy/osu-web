@@ -53,4 +53,6 @@ abstract class OrderFulfiller implements Fulfillable
             throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
         }
     }
+
+    abstract public function validationErrorsTranslationPrefix();
 }
