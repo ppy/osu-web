@@ -97,7 +97,7 @@ class FeatureVote extends Model
         $this->validateUser();
         $this->validateTopic();
 
-        return $this->validationErrors()->isAny();
+        return $this->validationErrors()->isEmpty();
     }
 
     public static function createNew($params)
