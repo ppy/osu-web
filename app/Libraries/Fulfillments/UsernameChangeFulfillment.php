@@ -22,44 +22,75 @@ namespace App\Libraries\Fulfillments;
 
 use App\Models\User;
 use App\Exceptions\UsernameChangeException;
+use App\Traits\Validatable;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {
+    use Validatable;
+
     private $orderItems;
 
     public function run($context)
     {
-        $this->isValid();
+        if (!$this->validateRun()) {
+            throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
+        }
+        \Log::debug($this->validationErrors()->allMessages());
 
         $user = $this->order->user;
-        $item = $this->getOrderItems()->first();
         $user->changeUsername($this->getNewUserName());
     }
 
     public function revoke($context)
     {
-        $user = $this->order->user;
-        $item = $this->getOrderItems()->first();
-        if ($user['username'] !== $this->getNewUsername()) {
-            throw new UsernameChangeException(
-                "Current username ({$user['username']}) is not the same as change to revoke: {$this->getNewUsername()}"
-            );
+        if (!$this->validateRevoke()) {
+            throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
         }
 
+        $user = $this->order->user;
         $user->revertUsername();
     }
 
-    public function isValid()
+    public function validateRun()
     {
         $user = $this->order->user;
         $items = $this->getOrderItems();
         if ($items->count() !== 1) {
-            throw new \Exception('only 1 username change allowed per order fulfillment.');
+            $this->validationErrors()->add('count', 'only_one');
         }
 
         $item = $items->first();
         \Log::debug("{$item->cost}, {$user->usernameChangeCost()}");
-        return $item['cost'] >= $user->usernameChangeCost();
+        if ($item['cost'] < $user->usernameChangeCost()) {
+            $this->validationErrors()->add(
+                'cost',
+                '.insufficient_paid',
+                [
+                    'required' => $user->usernameChangeCost(),
+                    'received' => $item['cost'],
+                ]
+            );
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validateRevoke()
+    {
+        $user = $this->order->user;
+
+        if ($user['username'] !== $this->getNewUsername()) {
+            $this->validationErrors()->add(
+                'username',
+                '.reverting_username_mismatch',
+                [
+                    'current' => $user['username'],
+                    'username' => $this->getNewUsername(),
+                ]
+            );
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     private function getOrderItems()
@@ -74,5 +105,13 @@ class UsernameChangeFulfillment extends OrderFulfiller
     private function getNewUsername()
     {
         return $this->getOrderItems()->first()['extra_info'];
+    }
+
+    //================
+    // Validatable
+    //================
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'fulfillments.username_change';
     }
 }
