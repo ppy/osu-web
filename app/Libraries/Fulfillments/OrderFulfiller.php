@@ -50,7 +50,7 @@ abstract class OrderFulfiller implements Fulfillable
     {
         if (!$valid) {
             \Log::debug($this->validationErrors()->allMessages());
-            throw new \Exception(implode($this->validationErrors()->allMessages(), "\n"));
+            throw new FulfillmentException(implode($this->validationErrors()->allMessages(), "\n"));
         }
     }
 

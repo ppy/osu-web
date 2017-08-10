@@ -2,6 +2,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -44,6 +45,7 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
 
     public function isValidSignature()
     {
+        \Log::debug("isValidSignature calc: {$this->calculatedSignature()}, signed: {$this->receivedSignature()}");
         return hash_equals($this->calculatedSignature(), $this->receivedSignature());
     }
 
@@ -51,7 +53,7 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
     {
         // TODO: post many warnings
         if (!$this->isValidSignature()) {
-            throw new \Exception('Invalid signature');
+            throw new InvalidSignatureException();
         }
     }
 

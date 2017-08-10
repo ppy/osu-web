@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Http\Controllers\Controller;
+use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Payments\XsollaPaymentFulfillment;
 use App\Models\Store\Order;
 use Auth;
@@ -77,8 +78,13 @@ class XsollaController extends Controller
         try {
             $processor->validateTransaction();
             $processor->apply();
+        } catch (FulfillmentException $e) {
+            \Log::error($e->getMessage());
+            // So I can see things with curl :D
+            return response($e->getMessage(), 422);
         } catch (\Exception $e) {
-            return $e;
+            \Log::error($e);
+            return 'rip';
         }
 
         return 'whee';
