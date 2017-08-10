@@ -55,9 +55,14 @@ class ValidationErrors
         $this->errors = [];
     }
 
-    public function isAny()
+    public function isEmpty()
     {
         return count($this->errors) === 0;
+    }
+
+    public function isAny()
+    {
+        return count($this->errors) !== 0;
     }
 
     public function all()
