@@ -13,7 +13,7 @@ abstract class PaymentFulfillment implements \ArrayAccess
     protected $order;
     protected $request;
 
-    protected $builders = [];
+    protected $fulfillers = [];
 
     public function __construct(\Illuminate\Http\Request $request)
     {
@@ -28,40 +28,23 @@ abstract class PaymentFulfillment implements \ArrayAccess
     abstract public function getPaymentDate();
     abstract public function validateTransaction();
 
-    private function getBuilder($type)
-    {
-        if ($type === null) {
-            return;
-        }
-
-        if (isset($this->builders[$type])) {
-            return $this->builders[$type];
-        }
-
-        $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
-        $this->builders[$type] = new $className($this->order);
-        // throw if not found
-
-        return $this->builders[$type];
-    }
-
     public function apply()
     {
         DB::connection('mysql-store')->transaction(function () use (&$fulfillments) {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
             $this->createFulfillers();
             \Log::debug('commands');
-            \Log::debug(array_keys($this->builders));
+            \Log::debug(array_keys($this->fulfillers));
         });
 
         $context = new FulfillmentContext();
         // This should probably be shoved off into a queue processor somewhere...
-        foreach ($this->builders as $type => $fulfiller) {
+        foreach ($this->fulfillers as $type => $fulfiller) {
             $fulfiller->run($context);
             $fulfiller->revoke($context);
         }
 
-        foreach ($this->builders as $type => $fulfiller) {
+        foreach ($this->fulfillers as $type => $fulfiller) {
             $fulfiller->afterRun($context);
             $fulfiller->afterRevoke($context);
         }
@@ -71,8 +54,25 @@ abstract class PaymentFulfillment implements \ArrayAccess
     {
         $items = $this->order->items()->get();
         foreach ($items as $item) {
-            $this->getBuilder($item->product['custom_class']);
+            $this->findOrCreateFulfiller($item->product['custom_class']);
         }
+    }
+
+    private function findOrCreateFulfiller($type)
+    {
+        if ($type === null) {
+            return;
+        }
+
+        if (isset($this->fulfillers[$type])) {
+            return $this->fulfillers[$type];
+        }
+
+        $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
+        $this->fulfillers[$type] = new $className($this->order);
+        // should throw if not found
+
+        return $this->fulfillers[$type];
     }
 
     /**
