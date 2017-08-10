@@ -276,6 +276,50 @@
     }
   }
 
+  &__social {
+    .circle(39px);
+    .center-content();
+    .link-plain();
+    border: 2px solid #333;
+    font-size: 18px;
+    color: #fff;
+    margin-left: 10px;
+
+    .link-hover({
+      background-color: #fff;
+      border-color: #fff;
+    });
+
+    &--facebook {
+      .link-hover({
+        color: @facebook-colour;
+      });
+    }
+
+    &--support {
+      .link-hover({
+        color: @pink;
+      });
+    }
+
+    &--twitter {
+      .link-hover({
+        color: @twitter-colour;
+      });
+    }
+  }
+
+  &__socials {
+    position: absolute;
+    bottom: @bar-size;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #111;
+  }
+
   &__submenu-container {
     width: 0;
     flex: 1;
