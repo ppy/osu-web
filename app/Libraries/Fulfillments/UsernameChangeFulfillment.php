@@ -27,7 +27,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 {
     private $orderItems;
 
-    public function run($context)
+    public function run()
     {
         $this->throwOnFail($this->validateRun());
 
@@ -35,7 +35,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
         $user->changeUsername($this->getNewUserName());
     }
 
-    public function revoke($context)
+    public function revoke()
     {
         $this->throwOnFail($this->validateRevoke());
 

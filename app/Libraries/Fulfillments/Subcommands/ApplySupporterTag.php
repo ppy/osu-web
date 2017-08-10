@@ -40,9 +40,9 @@ class ApplySupporterTag extends StoreTransactionFulfillment
         return "{$this->transactionId}-cancel";
     }
 
-    public function run($context)
+    public function run()
     {
-        DB::transaction(function () use ($context) {
+        DB::transaction(function () {
             // check if transaction was already applied.
             if (UserDonation::where('transaction_id', $this->transactionId)->count() > 0) {
                 \Log::info("{$this->transactionId} already exists in UserDonations!");
@@ -61,7 +61,7 @@ class ApplySupporterTag extends StoreTransactionFulfillment
         });
     }
 
-    public function revoke($context)
+    public function revoke()
     {
         DB::transaction(function () {
             // cancel only if applied.

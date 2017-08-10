@@ -16,27 +16,27 @@ class SupporterTagFulfillment extends OrderFulfiller
 
     private $orderItems;
 
-    public function run($context)
+    public function run()
     {
         $this->throwOnFail($this->validateRun());
 
         $commands = $this->getCommands();
 
         foreach ($commands as $command) {
-            $command->run($context);
+            $command->run();
         }
     }
 
-    public function revoke($context)
+    public function revoke()
     {
         $commands = $this->getCommands();
 
         foreach ($commands as $command) {
-            $command->revoke($context);
+            $command->revoke();
         }
     }
 
-    public function afterRun($context)
+    public function afterRun()
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;

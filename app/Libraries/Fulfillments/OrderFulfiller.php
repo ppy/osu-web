@@ -33,15 +33,15 @@ abstract class OrderFulfiller implements Fulfillable
         $this->order = $order;
     }
 
-    abstract public function run($context);
-    abstract public function revoke($context);
+    abstract public function run();
+    abstract public function revoke();
 
-    public function afterRun($context)
+    public function afterRun()
     {
         // default implementation does nothing.
     }
 
-    public function afterRevoke($context)
+    public function afterRevoke()
     {
         // default implementation does nothing.
     }

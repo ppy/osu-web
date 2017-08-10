@@ -2,7 +2,6 @@
 
 namespace App\Libraries\Payments;
 
-use App\Libraries\Fulfillments\FulfillmentContext;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -37,16 +36,15 @@ abstract class PaymentFulfillment implements \ArrayAccess
             \Log::debug(array_keys($this->fulfillers));
         });
 
-        $context = new FulfillmentContext();
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($this->fulfillers as $type => $fulfiller) {
-            $fulfiller->run($context);
-            $fulfiller->revoke($context);
+            $fulfiller->run();
+            $fulfiller->revoke();
         }
 
         foreach ($this->fulfillers as $type => $fulfiller) {
-            $fulfiller->afterRun($context);
-            $fulfiller->afterRevoke($context);
+            $fulfiller->afterRun();
+            $fulfiller->afterRevoke();
         }
     }
 

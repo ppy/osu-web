@@ -22,6 +22,6 @@ namespace App\Libraries\Fulfillments;
 
 interface Fulfillable
 {
-    public function run($context);
-    public function revoke($context);
+    public function run();
+    public function revoke();
 }
