@@ -59,7 +59,7 @@ class TopicVote
             }
         }
 
-        return $this->validationErrors()->isAny();
+        return $this->validationErrors()->isEmpty();
     }
 
     public function save()

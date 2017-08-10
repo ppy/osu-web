@@ -50,7 +50,7 @@ class BeatmapDiscussion extends Model
 
     public function beatmapset()
     {
-        return $this->beatmap->beatmapset();
+        return $this->beatmapsetDiscussion->beatmapset();
     }
 
     public function beatmapDiscussionPosts()
@@ -187,9 +187,7 @@ class BeatmapDiscussion extends Model
 
     public function hasValidMessageType()
     {
-        // either has no message type (a general message) or attached to a beatmap
-        return
-            $this->message_type === null || $this->beatmap_id !== null;
+        return $this->message_type !== null;
     }
 
     public function hasValidTimestamp()

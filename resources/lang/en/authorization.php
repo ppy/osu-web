@@ -27,7 +27,6 @@ return [
             'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
         ],
         'resolve' => [
-            'general_discussion' => 'General discussion can not be resolved.',
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
         ],
 

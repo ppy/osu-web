@@ -27,7 +27,6 @@ return [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réessayer demain.',
         ],
         'resolve' => [
-            'general_discussion' => 'La discussion générale ne peut être lue.',
             'not_owner' => 'Uniquement le rédacteur du post et le créateur de la beatmap peut voir ce sujet.',
         ],
 

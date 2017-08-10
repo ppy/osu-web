@@ -18,6 +18,8 @@
 
 class @BeatmapDiscussionHelper
   @formatTimestamp: (value) =>
+    return unless value?
+
     ms = value % 1000
     s = Math.floor(value / 1000) % 60
     # remaning duration goes here even if it's over an hour

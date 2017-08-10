@@ -110,7 +110,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
       continue if type == 'deleted' && !@props.currentUser.isAdmin
 
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"
-      topClasses += ' js-active' if @props.mode == 'timeline' && @props.currentFilter == type
+      topClasses += ' js-active' if @props.mode != 'events' && @props.currentFilter == type
+
+      total = 0
+      for own _mode, discussions of @props.currentDiscussions.byFilter[type]
+        total += _.size(discussions)
 
       a
         key: type
@@ -126,7 +130,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
             osu.trans("beatmaps.discussions.stats.#{type}")
           div
             className: "#{bn}__count"
-            _.size(@props.currentDiscussions.timelineByFilter[type])
+            total
 
         div className: "#{bn}__line"
 
@@ -140,7 +144,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
-    @_chart.loadData _.values(@props.currentDiscussions.timelineByFilter[@props.currentFilter])
+    @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)
 
 
   setFilter: (e) =>

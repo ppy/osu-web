@@ -27,7 +27,6 @@ return [
             'exhausted' => 'Dzienny limit nominacji został osiągnięty, spróbuj ponownie jutro.',
         ],
         'resolve' => [
-            'general_discussion' => 'Nie można zamknąć generalnej dyskusji.',
             'not_owner' => 'Tylko autor wątku i autor beatmapy mogą zamknąć tę dyskusję.',
         ],
 

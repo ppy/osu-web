@@ -56,6 +56,6 @@ class PollVote extends Model
             $this->validationErrors()->add('poll_option_id', '.invalid');
         }
 
-        return $this->validationErrors()->isAny();
+        return $this->validationErrors()->isEmpty();
     }
 }
