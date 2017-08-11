@@ -145,5 +145,5 @@ return [
         ],
         'find-out-more' => 'Click here to find out more!',
         'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
-    ]
+    ],
 ];

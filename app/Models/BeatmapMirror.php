@@ -20,8 +20,6 @@
 
 namespace App\Models;
 
-use App\Models\Beatmapset;
-
 class BeatmapMirror extends Model
 {
     protected $table = 'osu_mirrors';

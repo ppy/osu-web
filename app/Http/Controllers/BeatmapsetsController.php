@@ -174,9 +174,7 @@ class BeatmapsetsController extends Controller
             'mirror_id' => $mirror->mirror_id,
         ]);
 
-        $url = $mirror->generateUrl($beatmapset, $noVideo);
-
-        return redirect($url);
+        return redirect($mirror->generateUrl($beatmapset, $noVideo));
     }
 
     public function nominate($id)
