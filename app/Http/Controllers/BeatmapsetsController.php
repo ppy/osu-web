@@ -102,12 +102,16 @@ class BeatmapsetsController extends Controller
             ]
         );
 
-        $countries = json_collection(Country::all(), new CountryTransformer);
-        $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
+        if (Request::is('api/*')) {
+            return $set;
+        } else {
+            $countries = json_collection(Country::all(), new CountryTransformer);
+            $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
 
-        $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
+            $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
-        return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
+        }
     }
 
     public function search()
@@ -163,7 +167,7 @@ class BeatmapsetsController extends Controller
         $mirror = BeatmapMirror::getRandomForRegion(Request::header('CF_IPCOUNTRY'));
 
         BeatmapDownload::create([
-            'user_id' => $user_id,
+            'user_id' => Auth::user()->user_id,
             'timestamp' => Carbon::now()->getTimestamp(),
             'beatmapset_id' => $beatmapset->beatmapset_id,
             'fulfilled' => 1,

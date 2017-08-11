@@ -248,8 +248,16 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
+        // Beatmapsets
+        //   GET /api/v2/beatmapsets/:beatmap_id/download
+        Route::get('beatmapsets/{beatmapset}/download', ['uses' => '\App\Http\Controllers\BeatmapsetsController@download']);
+        //   GET /api/v2/beatmapsets/:beatmapset_id
+        Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
+
         //  GET /api/v2/me
-        Route::get('me', ['uses' => 'UsersController@me']);
+        Route::get('me', 'UsersController@me');
+        //  GET /api/v2/me/download-quota-check
+        Route::get('me/download-quota-check', '\App\Http\Controllers\HomeController@downloadQuotaCheck');
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
         //  GET /api/v2/users/:user_id
