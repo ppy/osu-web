@@ -326,7 +326,9 @@ class TopicsController extends Controller
         $topic = Topic::createNew($forum, $params, $poll ?? null);
 
         if ($topic->topic_id !== null) {
-            Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+            if (!app()->runningUnitTests()) {
+                Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+            }
 
             return ujs_redirect(route('forum.topics.show', $topic));
         } else {
