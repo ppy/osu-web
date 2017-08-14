@@ -60,6 +60,7 @@ class XsollaController extends Controller
             ->setCustomParameters([
                 'subtotal' => $order->getSubtotal(),
                 'shipping' => $order->getShipping(),
+                'order_id' => $order['order_id'],
             ]);
 
         $xsollaClient = XsollaClient::factory(array(
