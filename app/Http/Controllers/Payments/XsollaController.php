@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use App\Http\Controllers\Controller;
 use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Payments\XsollaPaymentFulfillment;
@@ -82,6 +83,8 @@ class XsollaController extends Controller
         } catch (FulfillmentException $e) {
             \Log::error($e->getMessage());
             // So I can see things with curl :D
+            return response($e->getMessage(), 422);
+        } catch (InvalidSignatureException $e) {
             return response($e->getMessage(), 422);
         } catch (\Exception $e) {
             \Log::error($e);
