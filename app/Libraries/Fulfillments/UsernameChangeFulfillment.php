@@ -106,4 +106,9 @@ class UsernameChangeFulfillment extends OrderFulfiller
     {
         return 'fulfillments.username_change';
     }
+
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation/';
+    }
 }

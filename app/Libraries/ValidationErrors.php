@@ -24,9 +24,10 @@ class ValidationErrors
 {
     private $errors = [];
 
-    public function __construct($prefix)
+    public function __construct($prefix, $keyBase = 'model_validation.')
     {
         $this->prefix = $prefix;
+        $this->keyBase = $keyBase;
     }
 
     public function add($column, $rawMessage)
@@ -43,7 +44,7 @@ class ValidationErrors
         if ($rawMessage[0] === '.') {
             $rawMessage = $this->prefix.$rawMessage;
         }
-        $rawMessage = 'model_validation.'.$rawMessage;
+        $rawMessage = $this->keyBase.$rawMessage;
 
         $params['attribute'] = $column;
 

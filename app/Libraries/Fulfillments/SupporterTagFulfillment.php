@@ -136,4 +136,9 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         return 'fulfillments.supporter_tag';
     }
+
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation/';
+    }
 }
