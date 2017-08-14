@@ -53,6 +53,8 @@ class DonationThanks extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.store.donation_thanks')->with($this->params);
+        return $this->view(i18n_view('emails.store.donation_thanks'))
+            ->with($this->params)
+            ->subject(trans('fulfillments.mail.donation_thanks.subject'));
     }
 }

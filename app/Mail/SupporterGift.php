@@ -34,6 +34,8 @@ class SupporterGift extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.store.supporter_gift')->with($this->params);
+        return $this->view(i18n_view('emails.store.supporter_gift'))
+            ->with($this->params)
+            ->subject(trans('fulfillments.mail.supporter_gift.subject'));
     }
 }
