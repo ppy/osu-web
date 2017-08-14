@@ -40,7 +40,7 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
 
     public function getTransactionId()
     {
-        return "xsolla-{$this['transaction.payment_method_order_id']}";
+        return "xsolla-{$this['transaction.id']}";
     }
 
     public function getPaymentDate()
