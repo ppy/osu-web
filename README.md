@@ -25,7 +25,6 @@ There are a few different options to get started:
 
 - Create a fresh Ubuntu environment and run `sudo bootstrap.sh`. Note that this script is intended to be run on a *sandboxed environment*; do not run it on a shared development system without first understanding what it does.
 - Use the php built-in server (run `php -S 127.0.0.1:8080` from the `public` folder). You will still need a database backend.
-- Use vagrant (`cd vagrant; vagrant up`). Note that this is not actively supported or tested, and it is known to be quite slow on some platforms.
 - Use Docker:
   - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/), then run `docker-compose up` in the main directory.
   - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
@@ -38,8 +37,7 @@ There are a few different options to get started:
 
 ### Creating user
 
-    C:\osu-web\vagrant> vagrant ssh
-    $ cd /data/osu\!web
+    $ docker exec -it osuweb-php bash
     $ php artisan tinker
     >>> App\Models\User::create(["username" => "yourusername", "user_password" => password_hash(md5("yourpassword"), PASSWORD_BCRYPT)]);
 
@@ -47,15 +45,15 @@ There are a few different options to get started:
 
 Using Laravel's [Mix](https://laravel.com/docs/5.4/mix).
 
-    C:\osu-web\vagrant> vagrant ssh
-    $ cd /data/osu\!web
+    $ docker exec -it osuweb-php bash
     $ php artisan lang:js resources/assets/js/messages.js
     $ yarn run development
 
+Notice that if you use the bundled Docker Compose setup, Yarn/Webpack will be already run in watch mode, and you will only need to run the `lang:js` Artisan command whenever you need to regenerate the JS language helper.
+
 ### Reset the database + Seeding sample data
 
-    C:\osu-web\vagrant> vagrant ssh
-    $ cd /data/osu\!web
+    $ docker exec -it osuweb-php bash
     $ php artisan migrate:refresh --seed
 
 Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key into your .env configuration file as it obtains beatmap data from the osu! API.
