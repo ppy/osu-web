@@ -30,36 +30,18 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
         return Carbon::parse($this['transaction.payment_date']);
     }
 
-    public function receivedSignature()
+    public function ensureValidSignature()
     {
-        $matches = [];
-        preg_match('~^Signature (?<signature>[0-9a-f]{40})$~', $this->request->header('Authorization'), $matches);
-
-        return $matches['signature'];
-    }
-
-    public function calculatedSignature()
-    {
-        return sha1($this->request->getContent() . config('payments.xsolla.secret_key'));
-    }
-
-    public function isValidSignature()
-    {
-        \Log::debug("isValidSignature calc: {$this->calculatedSignature()}, signed: {$this->receivedSignature()}");
-        return hash_equals($this->calculatedSignature(), $this->receivedSignature());
-    }
-
-    public function validateSignature()
-    {
+        $signature = new XsollaHeaderSignature($this->request);
         // TODO: post many warnings
-        if (!$this->isValidSignature()) {
+        if (!$signature->isValid()) {
             throw new InvalidSignatureException();
         }
     }
 
     public function validateTransaction()
     {
-        $this->validateSignature();
+        $this->ensureValidSignature();
 
         // order should exist
         if ($this->order === null) {
