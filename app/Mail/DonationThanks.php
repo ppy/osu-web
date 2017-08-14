@@ -42,7 +42,7 @@ class DonationThanks extends Mailable
             'length' => $length,
             'amount' => $amount,
             'isGift' => $isGift,
-            'minutes' => round($amount / config('xsolla.running_cost') * 525949, 1), // 365.2425 days
+            'minutes' => round($amount / config('payments.running_cost') * 525949, 1), // 365.2425 days
         ];
     }
 

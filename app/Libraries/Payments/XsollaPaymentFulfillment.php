@@ -40,7 +40,7 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
 
     public function calculatedSignature()
     {
-        return sha1($this->request->getContent() . config('xsolla.secret_key'));
+        return sha1($this->request->getContent() . config('payments.xsolla.secret_key'));
     }
 
     public function isValidSignature()

@@ -42,7 +42,7 @@ class XsollaController extends Controller
 
     public function token()
     {
-        $projectId = config('xsolla.project_id');
+        $projectId = config('payments.xsolla.project_id');
         $user = Auth::user();
         $order = Order::cart($user);
 
@@ -63,8 +63,8 @@ class XsollaController extends Controller
             ]);
 
         $xsollaClient = XsollaClient::factory(array(
-            'merchant_id' => config('xsolla.merchant_id'),
-            'api_key' => config('xsolla.api_key'),
+            'merchant_id' => config('payments.xsolla.merchant_id'),
+            'api_key' => config('payments.xsolla.api_key'),
         ));
 
         $token = $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
