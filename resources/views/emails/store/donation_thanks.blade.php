@@ -25,7 +25,7 @@ for {{ trans_choice('months', $length) }}
 @endif
 More new supporter benefits will appear over time, as well!
 
-Your support keeps osu! running for around {{ $minutes }} minutes! It may not seem like much, but it all adds up :). Also, did you know that {{ $tidbit }}
+Your support keeps osu! running for around {{ $minutes }} minutes! It may not seem like much, but it all adds up :).
 
 If you have any questions or feedback, don't hesitate to reply to this mail; I'll get back to you as soon as possible!
 
