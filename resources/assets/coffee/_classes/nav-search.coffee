@@ -45,15 +45,15 @@ class @NavSearch
 
 
   padResult: =>
-    $inputContainer = $('.js-nav-search--input-container')
+    inputContainer = document.querySelector('.js-nav-search--input-container')
 
-    return if !$inputContainer[0]?
+    return unless inputContainer?
 
-    $container = $('.js-nav-search--container')
-    $reference = $('.js-nav-search--popup-width-reference')
+    $container = $('.js-nav-search--right-padded')
+    reference = document.querySelector('.js-nav-search--popup-width-reference')
 
-    inputRight = $inputContainer[0].getBoundingClientRect().right
-    containerRight = $reference[0].getBoundingClientRect().right
+    inputRight = inputContainer.getBoundingClientRect().right
+    containerRight = reference.getBoundingClientRect().right
 
     $container
       .css 'padding-right', containerRight - inputRight
