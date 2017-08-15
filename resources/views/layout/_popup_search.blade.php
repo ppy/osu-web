@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav-popup js-nav-search--container js-nav--hide">
+<div class="nav-popup js-nav-search--right-padded js-nav--hide">
     <div class="nav-search">
         <div class="js-nav-search--result hidden">
             {{-- shall be replaced by the thing--}}

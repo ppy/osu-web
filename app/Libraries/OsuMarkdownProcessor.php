@@ -53,6 +53,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             'block_name' => 'osu-md',
         ], $config);
 
+        $rawInput = strip_utf8_bom($rawInput);
         $input = static::parseYamlHeader($rawInput);
         $header = $input['header'] ?? [];
 
