@@ -120,7 +120,7 @@
     </div>
 
     <div class="nav-popup__socials">
-        <a href="{{ route('support-the-game') }}" class="nav-popup__social nav-popup__social--support">
+        <a href="{{ route('support-the-game') }}" class="nav-popup__social nav-popup__social--support" title="{{ trans('layout.menu.home.supportTheGame') }}">
             <span class="fa fa-heart"></span>
         </a>
         <a href="{{ osu_url("social.twitter") }}" class="nav-popup__social nav-popup__social--twitter">
