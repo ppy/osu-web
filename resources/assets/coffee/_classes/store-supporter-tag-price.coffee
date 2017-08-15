@@ -70,12 +70,12 @@ class @StoreSupporterTagPrice
                 when 0
                   ''
                 else
-                  osu.transChoice('supporter_tag.duration.years', duration.years, length: duration.years)
+                  Lang.choice('supporter_tag.duration.years', duration.years, length: duration.years)
 
     monthsText = switch duration.months
                  when 0
                    ''
                  else
-                   osu.transChoice('supporter_tag.duration.months', duration.months, length: duration.months)
+                   Lang.choice('supporter_tag.duration.months', duration.months, length: duration.months)
 
     _.compact([yearsText, monthsText]).join(', ')

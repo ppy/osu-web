@@ -240,14 +240,12 @@
 
 
   transChoice: (key, count, replacements) ->
-    try
-      Lang.choice key, count, replacements
-    catch
-      Lang.setLocale fallbackLocale
-      message = Lang.choice key, count, replacements
-      Lang.setLocale currentLocale
+    message = Lang.choice key, count, replacements, currentLocale
 
-      message
+    if message == key
+      message = Lang.choice key, count, replacements, fallbackLocale
+
+    message
 
 
   xhrErrorMessage: (xhr) ->
