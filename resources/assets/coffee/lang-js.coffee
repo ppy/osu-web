@@ -18,12 +18,12 @@
 
 # Lang.js monkey patch
 Lang.origGet = Lang.get
-Lang.get = ->
+Lang.get = (key, replacements) ->
   try
     Lang.origGet.apply @, arguments
   catch
     Lang.setLocale fallbackLocale
-    message = Lang.origGet.apply @, arguments
+    message = Lang.origGet(key, replacements, fallbackLocale)
     Lang.setLocale currentLocale
 
     message
