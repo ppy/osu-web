@@ -28,16 +28,16 @@ There are a few different options to get started:
 - Use Docker:
   - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/), then run `docker-compose up` in the main directory.
   - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
-  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers:
-
-  ```bash
+  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers: 
+  ```
+  bash
   _UID=$(id -u) _GID=$(id -g) docker-compose up
   ```
+  - To run any of the below commands, make sure you are in the docker container: `$ docker exec -it osuweb-php bash`
 - Use your existing web dev environment.
 
 ### Creating user
 
-    $ docker exec -it osuweb-php bash
     $ php artisan tinker
     >>> App\Models\User::create(["username" => "yourusername", "user_password" => password_hash(md5("yourpassword"), PASSWORD_BCRYPT)]);
 
@@ -45,7 +45,6 @@ There are a few different options to get started:
 
 Using Laravel's [Mix](https://laravel.com/docs/5.4/mix).
 
-    $ docker exec -it osuweb-php bash
     $ php artisan lang:js resources/assets/js/messages.js
     $ yarn run development
 
@@ -53,7 +52,6 @@ Notice that if you use the bundled Docker Compose setup, Yarn/Webpack will be al
 
 ### Reset the database + Seeding sample data
 
-    $ docker exec -it osuweb-php bash
     $ php artisan migrate:refresh --seed
 
 Run the above command to rebuild the database and seed with sample data. In order for the seeder to seed beatmaps, you must enter a valid osu! API key into your .env configuration file as it obtains beatmap data from the osu! API.
