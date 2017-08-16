@@ -69,6 +69,7 @@ Route::group(['prefix' => 'beatmapsets'], function () {
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
+Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::put('beatmapsets/{beatmapset}/disqualify', 'BeatmapsetsController@disqualify')->name('beatmapsets.disqualify');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
@@ -152,6 +153,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('password-reset', 'PasswordResetController@index')->name('password-reset');
     Route::post('password-reset', 'PasswordResetController@create');
     Route::put('password-reset', 'PasswordResetController@update');
+
+    Route::get('support-osu-popup', 'HomeController@osuSupportPopup')->name('support-osu-popup');
+    Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('groups', 'GroupsController', ['only' => ['show']]);
@@ -244,8 +248,16 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmapsets/search/:filters
         Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
+        // Beatmapsets
+        //   GET /api/v2/beatmapsets/:beatmap_id/download
+        Route::get('beatmapsets/{beatmapset}/download', ['uses' => '\App\Http\Controllers\BeatmapsetsController@download']);
+        //   GET /api/v2/beatmapsets/:beatmapset_id
+        Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
+
         //  GET /api/v2/me
-        Route::get('me', ['uses' => 'UsersController@me']);
+        Route::get('me', 'UsersController@me');
+        //  GET /api/v2/me/download-quota-check
+        Route::get('me/download-quota-check', '\App\Http\Controllers\HomeController@downloadQuotaCheck');
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
         //  GET /api/v2/users/:user_id

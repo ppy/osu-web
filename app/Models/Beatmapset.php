@@ -603,21 +603,6 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
-    // todo: generalize method
-    public function oszDownloadURL($noVideo = 1)
-    {
-        $mirrors = config('osu.beatmap_processor.mirrors_to_use');
-        $mirror = BeatmapMirror::find($mirrors[array_rand($mirrors)]);
-
-        $diskFilename = $serveFilename = $this->filename;
-        $time = time();
-        $checksum = md5("{$this->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$mirror->secret_key}");
-
-        $url = "{$mirror->base_url}d/{$this->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=0&nv=$noVideo";
-
-        return $url;
-    }
-
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -636,7 +621,8 @@ class Beatmapset extends Model
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
             try {
-                $ok = copy($this->oszDownloadURL(), $osz);
+                $url = BeatmapMirror::getRandom()->generateUrl($this, true);
+                $ok = copy($url, $osz);
                 if (!$ok) {
                     throw new BeatmapProcessorException('Error retrieving beatmap');
                 }

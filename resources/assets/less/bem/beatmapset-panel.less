@@ -116,7 +116,7 @@
     .fade-element(@hover-transition-duration);
     position: absolute;
     left: @padding;
-    top: @padding;
+    top: @padding / 2;
     font-size: 40px;
     opacity: 0;
     line-height: 1;
@@ -184,5 +184,14 @@
     left: @padding;
     bottom: @padding;
     width: calc(100% ~'-' (@padding * 2));
+  }
+
+  &__video-icon {
+    padding: @padding;
+    .fade-element(@hover-transition-duration);
+
+    .@{top}:hover & {
+      opacity: 0;
+    }
   }
 }
