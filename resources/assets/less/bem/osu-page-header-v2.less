@@ -43,7 +43,9 @@
   &--artist {
     height: 200px;
     .at2x-simple("/images/headers/artist.png");
-    flex-direction: row;
+    @media @mobile {
+      justify-content: start;
+    }
   }
 
   &--contests {
