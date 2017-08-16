@@ -21,6 +21,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Beatmap;
+use App\Models\BeatmapDownload;
+use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
 use App\Models\Country;
 use App\Models\Genre;
@@ -28,6 +30,7 @@ use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use Auth;
+use Carbon\Carbon;
 use Request;
 
 class BeatmapsetsController extends Controller
@@ -99,12 +102,16 @@ class BeatmapsetsController extends Controller
             ]
         );
 
-        $countries = json_collection(Country::all(), new CountryTransformer);
-        $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
+        if (Request::is('api/*')) {
+            return $set;
+        } else {
+            $countries = json_collection(Country::all(), new CountryTransformer);
+            $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
 
-        $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
+            $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
-        return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
+        }
     }
 
     public function search()
@@ -144,6 +151,30 @@ class BeatmapsetsController extends Controller
         } else {
             return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
         }
+    }
+
+    public function download($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        if ($beatmapset->download_disabled) {
+            abort(404);
+        }
+
+        priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
+
+        $noVideo = get_bool(Request::input('noVideo', false));
+        $mirror = BeatmapMirror::getRandomForRegion(Request::header('CF_IPCOUNTRY'));
+
+        BeatmapDownload::create([
+            'user_id' => Auth::user()->user_id,
+            'timestamp' => Carbon::now()->getTimestamp(),
+            'beatmapset_id' => $beatmapset->beatmapset_id,
+            'fulfilled' => 1,
+            'mirror_id' => $mirror->mirror_id,
+        ]);
+
+        return redirect($mirror->generateUrl($beatmapset, $noVideo));
     }
 
     public function nominate($id)

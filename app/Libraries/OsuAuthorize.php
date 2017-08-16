@@ -263,6 +263,14 @@ class OsuAuthorize
         }
     }
 
+    public function checkBeatmapsetDownload($user, $beatmapset)
+    {
+        // restricted users are still allowed to download
+        $this->ensureLoggedIn($user);
+
+        return 'ok';
+    }
+
     public function checkChatMessageSend($user, $target)
     {
         $prefix = 'chat.message.send.';

@@ -19,9 +19,10 @@
 {a, button, div, span} = ReactDOMFactories
 el = React.createElement
 
-@BigButton = ({modifiers = [], text, icon, props = {}}) ->
+@BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
   props.className = 'btn-osu-big'
   props.className += " btn-osu-big--#{mod}" for mod in modifiers
+  props.className += " #{klass}" for klass in extraClasses
 
   blockElement = if props.href? then a else button
 

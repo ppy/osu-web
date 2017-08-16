@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Libraries\CurrentStats;
 use App\Libraries\Search;
+use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Build;
 use App\Models\Changelog;
@@ -54,6 +55,13 @@ class HomeController extends Controller
         $post = new Post(['post_text' => Request::input('text')]);
 
         return $post->bodyHTML;
+    }
+
+    public function downloadQuotaCheck()
+    {
+        return [
+            'quota_used' => BeatmapDownload::where('user_id', Auth::user()->user_id)->count(),
+        ];
     }
 
     public function getChangelog()
@@ -148,6 +156,11 @@ class HomeController extends Controller
         } else {
             return view('home.landing', ['stats' => new CurrentStats()]);
         }
+    }
+
+    public function osuSupportPopup()
+    {
+        return view('objects._popup_support_osu');
     }
 
     public function quickSearch()
