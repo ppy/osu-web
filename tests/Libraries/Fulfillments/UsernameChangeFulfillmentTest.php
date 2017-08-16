@@ -22,6 +22,7 @@ namespace Tests;
 
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
 use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
@@ -117,6 +118,29 @@ class UsernameChangeFulfillmentTest extends TestCase
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
         $fulfiller->revoke();
+    }
+
+    /**
+     * @expectedException \App\Libraries\Fulfillments\FulfillmentException
+     */
+    public function testRunWhenInsuffientPaid()
+    {
+        $orderItem = factory(OrderItem::class)->create([
+            'order_id' => $this->order->order_id,
+            'product_id' => $this->product->product_id,
+            'cost' => 1,
+            'extra_info' => 'new_username',
+        ]);
+
+        // TODO: factory?
+        $history = new UsernameChangeHistory();
+        $history->user_id = $this->user->user_id;
+        $history->type = 'paid';
+        $history->username = $this->user->username;
+        $history->save();
+
+        $fulfiller = new UsernameChangeFulfillment($this->order);
+        $fulfiller->run();
     }
 
     private function product()
