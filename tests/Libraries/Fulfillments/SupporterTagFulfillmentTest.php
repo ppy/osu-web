@@ -22,6 +22,7 @@ namespace Tests;
 
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Models\User;
+use App\Models\UserDonation;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
@@ -111,11 +112,36 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->markTestIncomplete();
     }
 
-    public function testRevoke()
+    public function testRevokeDonateSupporterTagToSelf()
     {
-        $this->markTestIncomplete();
-    }
+        $now = Carbon::now();
 
+        // TODO: This is crap
+        $donor = $this->user;
+        $donor->osu_featurevotes = 2;
+        $donor->osu_subscriber = true;
+        $donor->osu_subscriptionexpiry = $now->copy()->addMonths(1);
+        $donor->save();
+
+        $orderItem = $this->createOrderItem($this->user, 1, 4);
+
+        $donation = new UserDonation();
+        $donation['transaction_id'] = "{$this->order->transaction_id}-{$orderItem->id}";
+        $donation['user_id'] = $donor->user_id;
+        $donation['target_user_id'] = $donor->user_id;
+        $donation['length'] = 1;
+        $donation['amount'] = 4;
+        $donation->save();
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->revoke();
+
+        $donor->refresh();
+
+        $this->assertEquals($now->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals(0, $donor->osu_featurevotes);
+        $this->assertFalse($donor->osu_subscriber);
+    }
     public function testPartiallyRevokedOrder()
     {
         $this->markTestIncomplete();
