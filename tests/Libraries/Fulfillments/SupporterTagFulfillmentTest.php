@@ -52,7 +52,7 @@ class SupporterTagFulfillmentTest extends TestCase
     public function testDonateSupporterTagToSelf()
     {
         $donor = $this->user;
-        $expectedExpiry = $donor->osu_subscriptionexpiry->addMonths(1);
+        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonths(1);
         $this->createOrderItem($this->user, 1, 4);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
@@ -60,14 +60,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
         $this->assertTrue($donor->osu_subscriber);
-        $this->assertEquals(
-            $expectedExpiry->format('Y-m-d'),
-            $donor->osu_subscriptionexpiry
-        );
-        $this->assertEquals(
-            2,
-            $donor->osu_featurevotes
-        );
+        $this->assertEquals($expectedExpiry->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals(2, $donor->osu_featurevotes);
     }
 
     public function testDonateSupporterTagToOthers()
@@ -79,7 +73,7 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => $now->copy(),
         ]);
-        $expectedExpiry = $giftee->osu_subscriptionexpiry->addMonths(1);
+        $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonths(1);
 
         $this->createOrderItem($giftee, 1, 4);
 
@@ -104,12 +98,61 @@ class SupporterTagFulfillmentTest extends TestCase
 
     public function testPartiallyFulfilledOrder()
     {
-        $this->markTestIncomplete();
+        $donor = $this->user;
+        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonths(1);
+
+        $orderItems = [
+            $this->createOrderItem($this->user, 1, 4),
+            $this->createOrderItem($this->user, 1, 4),
+        ];
+
+        // consider the first item as processed
+        $donation = new UserDonation();
+        $donation['transaction_id'] = "{$this->order->transaction_id}-{$orderItems[0]->id}";
+        $donation['user_id'] = $donor->user_id;
+        $donation['target_user_id'] = $donor->user_id;
+        $donation['length'] = 1;
+        $donation['amount'] = 4;
+        $donation->save();
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+
+        $donor->refresh();
+        // Should only apply one supporter tag.
+        $this->assertTrue($donor->osu_subscriber);
+        $this->assertEquals($expectedExpiry->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals(2, $donor->osu_featurevotes);
     }
 
     public function testAlreadyFulfilledOrder()
     {
-        $this->markTestIncomplete();
+        $donor = $this->user;
+        $expectedExpiry = $donor->osu_subscriptionexpiry->copy();
+
+        $orderItems = [
+            $this->createOrderItem($this->user, 1, 4),
+            $this->createOrderItem($this->user, 1, 4),
+        ];
+
+        foreach ($orderItems as $orderItem) {
+            $donation = new UserDonation();
+            $donation['transaction_id'] = "{$this->order->transaction_id}-{$orderItem->id}";
+            $donation['user_id'] = $donor->user_id;
+            $donation['target_user_id'] = $donor->user_id;
+            $donation['length'] = 1;
+            $donation['amount'] = 4;
+            $donation->save();
+        }
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+
+        $donor->refresh();
+        // Should not apply any supporter tags
+        $this->assertFalse($donor->osu_subscriber);
+        $this->assertEquals($expectedExpiry->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals(0, $donor->osu_featurevotes);
     }
 
     public function testRevokeDonateSupporterTagToSelf()
