@@ -3,4 +3,7 @@
         <button type="button" data-dismiss="alert" class="close"><i class="fa fa-close"></i></button>
         <span class="popup-text"></span>
     </div>
+    <div class="empty-popup empty-popup--clone" style="display: none">
+        <div class="popup-content"></div>
+    </div>
 </div>
