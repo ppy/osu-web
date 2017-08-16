@@ -52,7 +52,7 @@ class ApplySupporterTag extends StoreTransactionFulfillment
             $this->assignUsers();
 
             $donation = $this->applyDonation();
-            $this->updateVotes();
+            $this->updateVotes($this->duration);
             $this->applySubscription();
 
             $this->donor->supports()->save($donation);
@@ -80,7 +80,7 @@ class ApplySupporterTag extends StoreTransactionFulfillment
 
             foreach ($donations as $donation) { // loop, but there should only be one.
                 $donation = $this->revokeDonation($donation);
-                $this->updateVotes();
+                $this->updateVotes(-$this->duration);
                 $this->revokeSubscription();
 
                 $donation->save();
@@ -90,9 +90,9 @@ class ApplySupporterTag extends StoreTransactionFulfillment
         });
     }
 
-    private function updateVotes()
+    private function updateVotes($duration)
     {
-        $this->donor['osu_featurevotes'] += $this->duration * 2;
+        $this->donor->osu_featurevotes += $duration * 2;
     }
 
     private function applyDonation()
