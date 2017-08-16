@@ -56,7 +56,7 @@ return [
             'red' => 'Équipe rouge',
         ],
         'winner' => ':team gagne',
-        'difference' => 'par :difference',
+        'difference' => 'de :difference points',
         'loading-events' => 'Chargement des évènements...',
         'more-events' => 'voir tout...',
         'beatmap-deleted' => 'beatmap supprimée',

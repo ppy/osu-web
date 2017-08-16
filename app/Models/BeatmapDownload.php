@@ -18,21 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace App\Models;
 
-use App\Models\Event;
-use League\Fractal;
-
-class EventTransformer extends Fractal\TransformerAbstract
+class BeatmapDownload extends Model
 {
-    public function transform(Event $event)
-    {
-        $event->parse();
+    protected $table = 'osu_downloads';
+    protected $primaryKey = 'user_id';
+    protected $guarded = [];
 
-        return array_merge([
-            'id' => $event->getKey(),
-            'createdAt' => json_time($event->date),
-            'type' => $event->type,
-        ], $event->details);
+    public $timestamps = false;
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
+    }
+
+    public function mirror()
+    {
+        return $this->belongsTo(BeatmapMirror::class, 'mirror_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

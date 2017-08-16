@@ -224,6 +224,15 @@ function search_total_display($total)
     return (string) $total;
 }
 
+function strip_utf8_bom($input)
+{
+    if (substr($input, 0, 3) === "\xEF\xBB\xBF") {
+        return substr($input, 3);
+    }
+
+    return $input;
+}
+
 function to_sentence($array, $key = 'common.array_and')
 {
     switch (count($array)) {

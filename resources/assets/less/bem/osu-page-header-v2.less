@@ -24,25 +24,23 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
 
   font-weight: 300;
   color: white;
   height: 100px;
-
-  @media @mobile {
-    justify-content: center;
-  }
+  justify-content: center;
 
   @media @desktop {
     padding-left: 40px;
     padding-right: @padding-big;
     height: 150px;
-  }
+    justify-content: flex-start;
+}
 
   &--artist {
     height: 200px;
     .at2x-simple("/images/headers/artist.png");
+    justify-content: flex-start;
   }
 
   &--contests {
@@ -91,6 +89,7 @@
       margin-top: 60px;
       @media @mobile {
         margin-top: 0;
+        text-align: center;
       }
     }
   }

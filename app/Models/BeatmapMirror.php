@@ -28,4 +28,46 @@ class BeatmapMirror extends Model
     public $timestamps = false;
 
     protected $hidden = ['secret_key'];
+
+    const MIN_VERSION_TO_USE = 2;
+
+    public function scopeForRegion($query, $region = null)
+    {
+        return $query
+            ->where('regions', 'like', "%$region%");
+    }
+
+    public function scopeRandomUsable($query)
+    {
+        return $query
+            ->where('enabled', 1)
+            ->where('version', '>=', self::MIN_VERSION_TO_USE)
+            ->inRandomOrder();
+    }
+
+    public static function getRandom()
+    {
+        return self::randomUsable()->first();
+    }
+
+    public static function getRandomForRegion($region = null)
+    {
+        if (presence($region)) {
+            $regionalMirror = self::forRegion($region)->randomUsable()->first();
+        }
+
+        return isset($regionalMirror) ? $regionalMirror : self::getRandom();
+    }
+
+    public function generateURL(Beatmapset $beatmapset, $skipVideo = false)
+    {
+        $noVideo = $skipVideo ? '1' : '0';
+        $diskFilename = $serveFilename = $beatmapset->filename;
+        $time = time();
+        $checksum = md5("{$beatmapset->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$this->secret_key}");
+
+        $url = "{$this->base_url}d/{$beatmapset->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=0&nv=$noVideo";
+
+        return $url;
+    }
 }

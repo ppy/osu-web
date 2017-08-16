@@ -16,8 +16,14 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @Url
-  @beatmapDownloadDirect: (id) -> "osu://dl/#{id}"
+# Lang.js monkey patch
+Lang.origGet = Lang.get
+Lang.get = (key, replacements) ->
+  try
+    Lang.origGet.apply @, arguments
+  catch
+    Lang.setLocale fallbackLocale
+    message = Lang.origGet(key, replacements, fallbackLocale)
+    Lang.setLocale currentLocale
 
-  # external link
-  @openBeatmapEditor: (timestampWithRange) => "osu://edit/#{timestampWithRange}"
+    message
