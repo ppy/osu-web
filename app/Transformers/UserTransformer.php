@@ -23,7 +23,6 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
-use App\Models\UserRelation;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract

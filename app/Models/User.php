@@ -806,6 +806,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function cachedFollowerCount()
     {
         $user_id = $this->user_id;
+
         return Cache::remember("friendCount:{$this->user_id}", Carbon::now()->addDay(1), function () use ($user_id) {
             return UserRelation::where('zebra_id', $user_id)->where('friend', 1)->count();
         });
