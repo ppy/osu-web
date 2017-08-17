@@ -21,8 +21,6 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use Cache;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -49,13 +47,6 @@ class UpdateUserFollowerCountCache implements ShouldQueue
      */
     public function handle()
     {
-        $key = User::CACHING['follower_count']['key'];
-        $duration = User::CACHING['follower_count']['duration'];
-
-        Cache::put(
-            "{$key}:{$this->user_id}",
-            User::find($this->user_id)->uncachedFollowerCount(),
-            Carbon::now()->addHours($duration)
-        );
+        User::find($this->user_id)->cacheFollowerCount();
     }
 }

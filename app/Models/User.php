@@ -815,18 +815,23 @@ class User extends Model implements AuthenticatableContract, Messageable
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
     }
 
-    public function followerCount()
+    public function cacheFollowerCount()
     {
-        $key = self::CACHING['follower_count']['key'];
+        $count = User::find($this->user_id)->uncachedFollowerCount();
         $duration = self::CACHING['follower_count']['duration'];
 
-        return Cache::remember(
-            "{$key}:{$this->user_id}",
-            Carbon::now()->addHours($duration),
-            function () {
-                return $this->uncachedFollowerCount();
-            }
+        Cache::put(
+            self::CACHING['follower_count']['key'].":{$this->user_id}",
+            $count,
+            Carbon::now()->addHours($duration)
         );
+
+        return $count;
+    }
+
+    public function followerCount()
+    {
+        return Cache::get(self::CACHING['follower_count']['key'].":{$this->user_id}") ?? $this->cacheFollowerCount();
     }
 
     public function foes()
