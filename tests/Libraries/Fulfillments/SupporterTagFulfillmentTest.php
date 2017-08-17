@@ -38,11 +38,13 @@ class SupporterTagFulfillmentTest extends TestCase
     {
         parent::setup();
 
-        $this->product = $this->product();
+        $this->product = Product::customClass('supporter-tag')->first(); // should already exist from migrations
+
         $this->user = factory(User::class)->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => Carbon::now(),
         ]);
+
         $this->order = factory(Order::class)->create([
             'user_id' => $this->user->user_id,
             'transaction_id' => 'test-'.time(),
@@ -137,12 +139,12 @@ class SupporterTagFulfillmentTest extends TestCase
     {
         $now = Carbon::now();
 
-        // TODO: This is crap
         $donor = $this->user;
-        $donor->osu_featurevotes = 2;
-        $donor->osu_subscriber = true;
-        $donor->osu_subscriptionexpiry = $now->copy()->addMonths(1);
-        $donor->save();
+        $donor->update([
+            'osu_featurevotes' => 2,
+            'osu_subscriber' => true,
+            'osu_subscriptionexpiry' => $now->copy()->addMonths(1),
+        ]);
 
         $this->createDonationOrderItem($this->order, $this->user, false, true);
 
@@ -161,10 +163,11 @@ class SupporterTagFulfillmentTest extends TestCase
         $now = Carbon::now();
 
         $donor = $this->user;
-        $donor->osu_featurevotes = 4;
-        $donor->osu_subscriber = true;
-        $donor->osu_subscriptionexpiry = $now->copy()->addMonths(2);
-        $donor->save();
+        $donor->update([
+            'osu_featurevotes' => 4,
+            'osu_subscriber' => true,
+            'osu_subscriptionexpiry' => $now->copy()->addMonths(2),
+        ]);
 
         $this->createDonationOrderItem($this->order, $this->user, true, true);
         $this->createDonationOrderItem($this->order, $this->user, true, false);
@@ -185,10 +188,11 @@ class SupporterTagFulfillmentTest extends TestCase
         $now = Carbon::now();
 
         $donor = $this->user;
-        $donor->osu_featurevotes = 4;
-        $donor->osu_subscriber = true;
-        $donor->osu_subscriptionexpiry = $now->copy()->addMonths(2);
-        $donor->save();
+        $donor->update([
+            'osu_featurevotes' => 4,
+            'osu_subscriber' => true,
+            'osu_subscriptionexpiry' => $now->copy()->addMonths(2),
+        ]);
 
         $this->createDonationOrderItem($this->order, $this->user, true, true);
         $this->createDonationOrderItem($this->order, $this->user, true, true);
@@ -201,11 +205,6 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertEquals($now->copy()->addMonths(2)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
         $this->assertEquals(4, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
-    }
-
-    private function product()
-    {
-        return Product::customClass('supporter-tag')->first(); // should already exist from migrations
     }
 
     private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)
