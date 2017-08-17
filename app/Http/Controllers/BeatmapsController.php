@@ -64,15 +64,7 @@ class BeatmapsController extends Controller
         }
 
         $query->withMods($mods);
-
-        switch ($type) {
-            case 'country':
-                $query->fromCountry($user->country_acronym);
-                break;
-            case 'friend':
-                $query->friendsOf($user);
-                break;
-        }
+        $query->withType($type, compact('user'));
 
         $results = [
             'scores' => json_collection($query->forListing(), 'Score', ['user', 'user.country']),
@@ -83,7 +75,7 @@ class BeatmapsController extends Controller
 
             if ($score !== null) {
                 $results['userScore'] = [
-                    'position' => $query->userRank($score),
+                    'position' => $score->userRank(compact('type', 'mods')),
                     'score' => json_item($score, 'Score', ['user', 'user.country']),
                 ];
             }
