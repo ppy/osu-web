@@ -25,7 +25,6 @@ use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use App\Models\Store\Product;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use TestCase;
 
@@ -42,7 +41,6 @@ class UsernameChangeFulfillmentTest extends TestCase
     {
         parent::setUp();
 
-        $this->product = $this->product();
         $this->user = factory(User::class)->create();
         $this->order = factory(Order::class)->create(['user_id' => $this->user->user_id]);
     }
@@ -51,10 +49,8 @@ class UsernameChangeFulfillmentTest extends TestCase
     {
         $oldUsername = $this->user->username;
         $newUsername = 'new_username';
-        $orderItem = factory(OrderItem::class)->create([
+        $orderItem = factory(OrderItem::class, 'username_change')->create([
             'order_id' => $this->order->order_id,
-            'product_id' => $this->product->product_id,
-            'cost' => 0,
             'extra_info' => $newUsername,
         ]);
 
@@ -73,10 +69,8 @@ class UsernameChangeFulfillmentTest extends TestCase
 
         $oldUsername = $this->user->username_previous;
         $newUsername = $this->user->username;
-        $orderItem = factory(OrderItem::class)->create([
+        $orderItem = factory(OrderItem::class, 'username_change')->create([
             'order_id' => $this->order->order_id,
-            'product_id' => $this->product->product_id,
-            'cost' => 0,
             'extra_info' => $newUsername,
         ]);
 
@@ -93,10 +87,8 @@ class UsernameChangeFulfillmentTest extends TestCase
      */
     public function testRevokeWhenNameDoesNotMatch()
     {
-        $orderItem = factory(OrderItem::class)->create([
+        $orderItem = factory(OrderItem::class, 'username_change')->create([
             'order_id' => $this->order->order_id,
-            'product_id' => $this->product->product_id,
-            'cost' => 0,
             'extra_info' => 'herpderp',
         ]);
 
@@ -109,10 +101,8 @@ class UsernameChangeFulfillmentTest extends TestCase
      */
     public function testRevokeWhenPreviousUsernameIsNull()
     {
-        $orderItem = factory(OrderItem::class)->create([
+        $orderItem = factory(OrderItem::class, 'username_change')->create([
             'order_id' => $this->order->order_id,
-            'product_id' => $this->product->product_id,
-            'cost' => 0,
             'extra_info' => $this->user->username,
         ]);
 
@@ -125,9 +115,8 @@ class UsernameChangeFulfillmentTest extends TestCase
      */
     public function testRunWhenInsuffientPaid()
     {
-        $orderItem = factory(OrderItem::class)->create([
+        $orderItem = factory(OrderItem::class, 'username_change')->create([
             'order_id' => $this->order->order_id,
-            'product_id' => $this->product->product_id,
             'cost' => 1,
             'extra_info' => 'new_username',
         ]);
@@ -141,10 +130,5 @@ class UsernameChangeFulfillmentTest extends TestCase
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
         $fulfiller->run();
-    }
-
-    private function product()
-    {
-        return Product::customClass('username-change')->first(); // should already exist from migrations
     }
 }

@@ -32,14 +32,12 @@ $factory->defineAs(App\Models\Store\OrderItem::class, 'supporter_tag', function 
     ];
 });
 
-$factory->defineAs(App\Models\Store\OrderItem::class, 'username_change', function (Faker\Generator $faker) {
-    return  [
-        'order_id' => function () {
-            return factory(App\Models\Store\Order::class)->create()->id;
-        },
-        'product_id' => 1,
-        'quantity' => 1,
+$factory->defineAs(App\Models\Store\OrderItem::class, 'username_change', function (Faker\Generator $faker) use ($factory) {
+    $raw = $factory->raw(App\Models\Store\OrderItem::class);
+
+    return array_merge($raw, [
+        'product_id' => App\Models\Store\Product::customClass('username-change')->first(),
         'cost' => 0,
         'extra_info' => 'new_username',
-    ];
+    ]);
 });
