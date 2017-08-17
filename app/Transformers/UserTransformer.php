@@ -250,7 +250,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $user->beatmapsets()->rankedOrApproved()->active()->with('beatmaps')->get(),
-            new BeatmapsetTransformer()
+            new BeatmapsetCompactTransformer()
         );
     }
 
