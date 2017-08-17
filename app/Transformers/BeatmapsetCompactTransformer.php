@@ -25,13 +25,27 @@ use League\Fractal;
 
 class BeatmapsetCompactTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'beatmaps',
+    ];
+
     public function transform(Beatmapset $beatmapset)
     {
         return [
             'id' => $beatmapset->beatmapset_id,
             'title' => $beatmapset->title,
             'artist' => $beatmapset->artist,
+            'creator' => $beatmapset->creator,
+            'user_id' => $beatmapset->user_id,
             'covers' => $beatmapset->allCoverURLs(),
         ];
+    }
+
+    public function includeBeatmaps(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->beatmaps,
+            new BeatmapCompactTransformer()
+        );
     }
 }
