@@ -166,14 +166,68 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertEquals(0, $donor->osu_featurevotes);
         $this->assertFalse($donor->osu_subscriber);
     }
+
     public function testPartiallyRevokedOrder()
     {
-        $this->markTestIncomplete();
+        $now = Carbon::now();
+
+        $donor = $this->user;
+        $donor->osu_featurevotes = 4;
+        $donor->osu_subscriber = true;
+        $donor->osu_subscriptionexpiry = $now->copy()->addMonths(2);
+        $donor->save();
+
+        $orderItems = [
+            $this->createOrderItem($this->user, 1, 4),
+            $this->createOrderItem($this->user, 1, 4),
+        ];
+
+        foreach ($orderItems as $orderItem) {
+            $this->createUserDonation($orderItem, $donor, $donor);
+        }
+        $this->createUserDonation($orderItems[0], $donor, $donor, true);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->revoke();
+
+        $donor->refresh();
+
+        // there should be 1 month left.
+        $this->assertEquals($now->copy()->addMonths(1)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals(2, $donor->osu_featurevotes);
+        $this->assertTrue($donor->osu_subscriber);
     }
 
     public function testAlreadyRevokedOrder()
     {
-        $this->markTestIncomplete();
+        $now = Carbon::now();
+
+        $donor = $this->user;
+        $donor->osu_featurevotes = 4;
+        $donor->osu_subscriber = true;
+        $donor->osu_subscriptionexpiry = $now->copy()->addMonths(2);
+        $donor->save();
+
+        $orderItems = [
+            $this->createOrderItem($this->user, 1, 4),
+            $this->createOrderItem($this->user, 1, 4),
+        ];
+
+        foreach ($orderItems as $orderItem) {
+            $this->createUserDonation($orderItem, $donor, $donor);
+        }
+        foreach ($orderItems as $orderItem) {
+            $this->createUserDonation($orderItem, $donor, $donor, true);
+        }
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->revoke();
+
+        $donor->refresh();
+
+        $this->assertEquals($now->copy()->addMonths(2)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals(4, $donor->osu_featurevotes);
+        $this->assertTrue($donor->osu_subscriber);
     }
 
     private function product()
@@ -181,10 +235,10 @@ class SupporterTagFulfillmentTest extends TestCase
         return Product::customClass('supporter-tag')->first(); // should already exist from migrations
     }
 
-    private function createUserDonation($orderItem, $donor, $giftee)
+    private function createUserDonation($orderItem, $donor, $giftee, $cancelled = false)
     {
         return factory(UserDonation::class)->create([
-            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}",
+            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}". ($cancelled ? '-cancel' : ''),
             'user_id' => $donor->user_id,
             'target_user_id' => $giftee->user_id,
         ]);
