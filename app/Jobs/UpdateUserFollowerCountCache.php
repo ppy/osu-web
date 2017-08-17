@@ -28,16 +28,16 @@ use Illuminate\Queue\InteractsWithQueue;
 class UpdateUserFollowerCountCache implements ShouldQueue
 {
     use InteractsWithQueue, Queueable;
-    protected $user_id;
+    protected $userId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($user_id)
+    public function __construct($userId)
     {
-        $this->user_id = $user_id;
+        $this->userId = $userId;
     }
 
     /**
@@ -47,6 +47,6 @@ class UpdateUserFollowerCountCache implements ShouldQueue
      */
     public function handle()
     {
-        User::find($this->user_id)->cacheFollowerCount();
+        User::find($this->userId)->cacheFollowerCount();
     }
 }
