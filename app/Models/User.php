@@ -66,8 +66,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         'page' => 1,
     ];
 
-    const CACHE_KEYS = [
-        'follower_count' => 'followerCount',
+    const CACHING = [
+        'follower_count' => [
+            'key' => 'followerCount',
+            'duration' => 12,
+        ],
     ];
 
     public $flags;
@@ -807,13 +810,23 @@ class User extends Model implements AuthenticatableContract, Messageable
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
     }
 
-    public function cachedFollowerCount()
+    public function uncachedFollowerCount()
     {
-        $user_id = $this->user_id;
+        return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
+    }
 
-        return Cache::remember(self::CACHE_KEYS['follower_count'].":{$this->user_id}", Carbon::now()->addDay(1), function () use ($user_id) {
-            return UserRelation::where('zebra_id', $user_id)->where('friend', 1)->count();
-        });
+    public function followerCount()
+    {
+        $key = self::CACHING['follower_count']['key'];
+        $duration = self::CACHING['follower_count']['duration'];
+
+        return Cache::remember(
+            "{$key}:{$this->user_id}",
+            Carbon::now()->addHours($duration),
+            function () {
+                return $this->uncachedFollowerCount();
+            }
+        );
     }
 
     public function foes()

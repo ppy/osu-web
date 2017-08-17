@@ -102,7 +102,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFollowerCount(User $user)
     {
         return $this->item($user, function ($user) {
-            return [$user->cachedFollowerCount()];
+            return [$user->followerCount()];
         });
     }
 

@@ -18,20 +18,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
- namespace App\Jobs;
+namespace App\Jobs;
 
 use App\Models\User;
-use App\Models\UserRelation;
 use Cache;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class UpdateUserFollowerCountCache implements ShouldQueue
 {
-    use InteractsWithQueue, Queueable, SerializesModels;
+    use InteractsWithQueue, Queueable;
     protected $user_id;
 
     /**
@@ -51,7 +49,13 @@ class UpdateUserFollowerCountCache implements ShouldQueue
      */
     public function handle()
     {
-        $count = UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
-        Cache::put(User::CACHE_KEYS['follower_count'].":{$this->user_id}", $count, Carbon::now()->addDay(1));
+        $key = User::CACHING['follower_count']['key'];
+        $duration = User::CACHING['follower_count']['duration'];
+
+        Cache::put(
+            "{$key}:{$this->user_id}",
+            User::find($this->user_id)->uncachedFollowerCount(),
+            Carbon::now()->addDay($duration)
+        );
     }
 }
