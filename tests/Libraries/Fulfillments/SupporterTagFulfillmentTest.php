@@ -53,7 +53,7 @@ class SupporterTagFulfillmentTest extends TestCase
     {
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonths(1);
-        $this->createOrderItem($this->user, 1, 4);
+        $this->createDonationOrderItem($this->order, $this->user, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -75,7 +75,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ]);
         $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonths(1);
 
-        $this->createOrderItem($giftee, 1, 4);
+        $this->createDonationOrderItem($this->order, $giftee, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -101,13 +101,9 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonths(1);
 
-        $orderItems = [
-            $this->createOrderItem($this->user, 1, 4),
-            $this->createOrderItem($this->user, 1, 4),
-        ];
-
         // consider the first item as processed
-        $this->createUserDonation($orderItems[0], $donor, $donor);
+        $this->createDonationOrderItem($this->order, $this->user, false, true);
+        $this->createDonationOrderItem($this->order, $this->user, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -124,14 +120,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor = $this->user;
         $expectedExpiry = $donor->osu_subscriptionexpiry->copy();
 
-        $orderItems = [
-            $this->createOrderItem($this->user, 1, 4),
-            $this->createOrderItem($this->user, 1, 4),
-        ];
-
-        foreach ($orderItems as $orderItem) {
-            $this->createUserDonation($orderItem, $donor, $donor);
-        }
+        $this->createDonationOrderItem($this->order, $this->user, false, true);
+        $this->createDonationOrderItem($this->order, $this->user, false, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -154,8 +144,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->osu_subscriptionexpiry = $now->copy()->addMonths(1);
         $donor->save();
 
-        $orderItem = $this->createOrderItem($this->user, 1, 4);
-        $this->createUserDonation($orderItem, $donor, $donor);
+        $this->createDonationOrderItem($this->order, $this->user, false, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -177,15 +166,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->osu_subscriptionexpiry = $now->copy()->addMonths(2);
         $donor->save();
 
-        $orderItems = [
-            $this->createOrderItem($this->user, 1, 4),
-            $this->createOrderItem($this->user, 1, 4),
-        ];
-
-        foreach ($orderItems as $orderItem) {
-            $this->createUserDonation($orderItem, $donor, $donor);
-        }
-        $this->createUserDonation($orderItems[0], $donor, $donor, true);
+        $this->createDonationOrderItem($this->order, $this->user, true, true);
+        $this->createDonationOrderItem($this->order, $this->user, true, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -208,17 +190,8 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->osu_subscriptionexpiry = $now->copy()->addMonths(2);
         $donor->save();
 
-        $orderItems = [
-            $this->createOrderItem($this->user, 1, 4),
-            $this->createOrderItem($this->user, 1, 4),
-        ];
-
-        foreach ($orderItems as $orderItem) {
-            $this->createUserDonation($orderItem, $donor, $donor);
-        }
-        foreach ($orderItems as $orderItem) {
-            $this->createUserDonation($orderItem, $donor, $donor, true);
-        }
+        $this->createDonationOrderItem($this->order, $this->user, true, true);
+        $this->createDonationOrderItem($this->order, $this->user, true, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -235,10 +208,28 @@ class SupporterTagFulfillmentTest extends TestCase
         return Product::customClass('supporter-tag')->first(); // should already exist from migrations
     }
 
-    private function createUserDonation($orderItem, $donor, $giftee, $cancelled = false)
+    private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)
     {
+        $orderItem = $this->createOrderItem($giftee, 1, 4);
+
+        if ($cancelled) {
+            $this->createUserDonation($orderItem, $giftee, false);
+            if ($run) {
+                $this->createUserDonation($orderItem, $giftee, true);
+            }
+        } else {
+            if ($run) {
+                $this->createUserDonation($orderItem, $giftee, false);
+            }
+        }
+    }
+
+    private function createUserDonation($orderItem, $giftee, $cancelled = false)
+    {
+        $donor = $orderItem->order->user;
+
         return factory(UserDonation::class)->create([
-            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}". ($cancelled ? '-cancel' : ''),
+            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}" . ($cancelled ? '-cancel' : ''),
             'user_id' => $donor->user_id,
             'target_user_id' => $giftee->user_id,
         ]);
