@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
 use Auth;
@@ -80,6 +81,8 @@ class FriendsController extends Controller
                 'zebra_id' => $target_id,
                 'friend' => 1,
             ]);
+
+            dispatch(new UpdateUserFollowerCountCache($target_id));
         }
 
         return json_collection(
@@ -100,6 +103,8 @@ class FriendsController extends Controller
             'zebra_id' => $id,
             'friend' => 1,
         ])->delete();
+
+        dispatch(new UpdateUserFollowerCountCache($id));
 
         return json_collection(
             Auth::user()->relations()->friends()->withMutual()->get(),

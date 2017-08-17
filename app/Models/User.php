@@ -24,6 +24,7 @@ use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
+use Cache;
 use Carbon\Carbon;
 use DB;
 use Exception;
@@ -800,6 +801,14 @@ class User extends Model implements AuthenticatableContract, Messageable
         // 'cuz hasManyThrough is derp
 
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    }
+
+    public function cachedFollowerCount()
+    {
+        $user_id = $this->user_id;
+        return Cache::remember("friendCount:{$this->user_id}", Carbon::now()->addDay(1), function () use ($user_id) {
+            return UserRelation::where('zebra_id', $user_id)->where('friend', 1)->count();
+        });
     }
 
     public function foes()

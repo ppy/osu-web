@@ -103,7 +103,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFollowerCount(User $user)
     {
         return $this->item($user, function ($user) {
-            return [UserRelation::where('zebra_id', $user->user_id)->where('friend', 1)->count()];
+            return [$user->cachedFollowerCount()];
         });
     }
 
