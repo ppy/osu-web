@@ -107,13 +107,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ];
 
         // consider the first item as processed
-        $donation = new UserDonation();
-        $donation['transaction_id'] = "{$this->order->transaction_id}-{$orderItems[0]->id}";
-        $donation['user_id'] = $donor->user_id;
-        $donation['target_user_id'] = $donor->user_id;
-        $donation['length'] = 1;
-        $donation['amount'] = 4;
-        $donation->save();
+        $this->createUserDonation($orderItems[0], $donor, $donor);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->run();
@@ -136,13 +130,7 @@ class SupporterTagFulfillmentTest extends TestCase
         ];
 
         foreach ($orderItems as $orderItem) {
-            $donation = new UserDonation();
-            $donation['transaction_id'] = "{$this->order->transaction_id}-{$orderItem->id}";
-            $donation['user_id'] = $donor->user_id;
-            $donation['target_user_id'] = $donor->user_id;
-            $donation['length'] = 1;
-            $donation['amount'] = 4;
-            $donation->save();
+            $this->createUserDonation($orderItem, $donor, $donor);
         }
 
         $fulfiller = new SupporterTagFulfillment($this->order);
@@ -167,14 +155,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->save();
 
         $orderItem = $this->createOrderItem($this->user, 1, 4);
-
-        $donation = new UserDonation();
-        $donation['transaction_id'] = "{$this->order->transaction_id}-{$orderItem->id}";
-        $donation['user_id'] = $donor->user_id;
-        $donation['target_user_id'] = $donor->user_id;
-        $donation['length'] = 1;
-        $donation['amount'] = 4;
-        $donation->save();
+        $this->createUserDonation($orderItem, $donor, $donor);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
         $fulfiller->revoke();
@@ -198,6 +179,15 @@ class SupporterTagFulfillmentTest extends TestCase
     private function product()
     {
         return Product::customClass('supporter-tag')->first(); // should already exist from migrations
+    }
+
+    private function createUserDonation($orderItem, $donor, $giftee)
+    {
+        return factory(UserDonation::class)->create([
+            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}",
+            'user_id' => $donor->user_id,
+            'target_user_id' => $giftee->user_id,
+        ]);
     }
 
     private function createOrderItem($user, $duration, $amount)
