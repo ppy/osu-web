@@ -69,7 +69,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     const CACHING = [
         'follower_count' => [
             'key' => 'followerCount',
-            'duration' => 12,
+            'duration' => 720, // 12 hours
         ],
     ];
 
@@ -817,13 +817,12 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function cacheFollowerCount()
     {
-        $count = User::find($this->user_id)->uncachedFollowerCount();
-        $duration = self::CACHING['follower_count']['duration'];
+        $count = $this->uncachedFollowerCount();
 
         Cache::put(
-            self::CACHING['follower_count']['key'].":{$this->user_id}",
+            self::CACHING['follower_count']['key'].':'.$this->user_id,
             $count,
-            Carbon::now()->addHours($duration)
+            self::CACHING['follower_count']['duration']
         );
 
         return $count;
@@ -831,7 +830,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function followerCount()
     {
-        return Cache::get(self::CACHING['follower_count']['key'].":{$this->user_id}") ?? $this->cacheFollowerCount();
+        return Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id) ?? $this->cacheFollowerCount();
     }
 
     public function foes()
