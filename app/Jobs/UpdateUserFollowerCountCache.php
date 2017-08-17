@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\User;
 use App\Models\UserRelation;
 use Cache;
 use Carbon\Carbon;
@@ -33,6 +34,6 @@ class UpdateUserFollowerCountCache implements ShouldQueue
     public function handle()
     {
         $count = UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
-        Cache::put("friendCount:{$this->user_id}", $count, Carbon::now()->addDay(1));
+        Cache::put(User::CACHE_KEYS['follower_count'].":{$this->user_id}", $count, Carbon::now()->addDay(1));
     }
 }

@@ -66,6 +66,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         'page' => 1,
     ];
 
+    const CACHE_KEYS = [
+        'follower_count' => 'followerCount',
+    ];
+
     public $flags;
     private $groupIds;
     private $supportLength;
@@ -807,7 +811,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $user_id = $this->user_id;
 
-        return Cache::remember("friendCount:{$this->user_id}", Carbon::now()->addDay(1), function () use ($user_id) {
+        return Cache::remember(self::CACHE_KEYS['follower_count'].":{$this->user_id}", Carbon::now()->addDay(1), function () use ($user_id) {
             return UserRelation::where('zebra_id', $user_id)->where('friend', 1)->count();
         });
     }
