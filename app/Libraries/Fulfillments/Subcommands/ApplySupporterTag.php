@@ -136,6 +136,6 @@ class ApplySupporterTag extends StoreTransactionFulfillment
     {
         $old = Carbon::parse($this->target['osu_subscriptionexpiry']);
         $this->target['osu_subscriptionexpiry'] = $old->subMonths($this->duration);
-        $this->target['osu_subscriber'] = Carbon::now()->diffInMonths($old, false) > 0;
+        $this->target['osu_subscriber'] = Carbon::now()->diffInMinutes($old, false) > 0;
     }
 }
