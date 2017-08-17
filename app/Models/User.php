@@ -24,6 +24,7 @@ use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
+use Cache;
 use Carbon\Carbon;
 use DB;
 use Exception;
@@ -63,6 +64,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         'query' => null,
         'limit' => 20,
         'page' => 1,
+    ];
+
+    const CACHING = [
+        'follower_count' => [
+            'key' => 'followerCount',
+            'duration' => 720, // 12 hours
+        ],
     ];
 
     public $flags;
@@ -800,6 +808,29 @@ class User extends Model implements AuthenticatableContract, Messageable
         // 'cuz hasManyThrough is derp
 
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    }
+
+    public function uncachedFollowerCount()
+    {
+        return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
+    }
+
+    public function cacheFollowerCount()
+    {
+        $count = $this->uncachedFollowerCount();
+
+        Cache::put(
+            self::CACHING['follower_count']['key'].':'.$this->user_id,
+            $count,
+            self::CACHING['follower_count']['duration']
+        );
+
+        return $count;
+    }
+
+    public function followerCount()
+    {
+        return Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id) ?? $this->cacheFollowerCount();
     }
 
     public function foes()

@@ -18,34 +18,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Transformers;
+namespace App\Jobs;
 
-use App\Models\Beatmapset;
-use League\Fractal;
+use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
-class BeatmapsetCompactTransformer extends Fractal\TransformerAbstract
+class UpdateUserFollowerCountCache implements ShouldQueue
 {
-    protected $availableIncludes = [
-        'beatmaps',
-    ];
+    use InteractsWithQueue, Queueable;
+    protected $userId;
 
-    public function transform(Beatmapset $beatmapset)
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($userId)
     {
-        return [
-            'id' => $beatmapset->beatmapset_id,
-            'title' => $beatmapset->title,
-            'artist' => $beatmapset->artist,
-            'creator' => $beatmapset->creator,
-            'user_id' => $beatmapset->user_id,
-            'covers' => $beatmapset->allCoverURLs(),
-        ];
+        $this->userId = $userId;
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapset)
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
     {
-        return $this->collection(
-            $beatmapset->beatmaps,
-            new BeatmapCompactTransformer()
-        );
+        User::find($this->userId)->cacheFollowerCount();
     }
 }
