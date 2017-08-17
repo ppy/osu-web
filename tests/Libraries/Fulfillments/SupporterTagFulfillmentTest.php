@@ -25,7 +25,6 @@ use App\Models\User;
 use App\Models\UserDonation;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use App\Models\Store\Product;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Carbon\Carbon;
 use TestCase;
@@ -37,8 +36,6 @@ class SupporterTagFulfillmentTest extends TestCase
     public function setup()
     {
         parent::setup();
-
-        $this->product = Product::customClass('supporter-tag')->first(); // should already exist from migrations
 
         $this->user = factory(User::class)->create([
             'osu_featurevotes' => 0,
@@ -236,9 +233,8 @@ class SupporterTagFulfillmentTest extends TestCase
 
     private function createOrderItem($user, $duration, $amount)
     {
-        return factory(OrderItem::class)->create([
+        return factory(OrderItem::class, 'supporter_tag')->create([
             'order_id' => $this->order->order_id,
-            'product_id' => $this->product->product_id,
             'cost' => $amount,
             'extra_data' => [
                 'target_id' => $user->user_id,

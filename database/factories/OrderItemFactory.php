@@ -13,23 +13,23 @@ $factory->define(App\Models\Store\OrderItem::class, function (Faker\Generator $f
     ];
 });
 
-$factory->defineAs(App\Models\Store\OrderItem::class, 'supporter_tag', function (Faker\Generator $faker) {
-    return  [
-        'order_id' => function () {
-            return factory(App\Models\Store\Order::class)->create()->id;
-        },
-        'product_id' => 10,
-        'quantity' => 1,
-        'cost' => 12.0,
-        'extra_data' => function () {
-            $user = factory(App\Models\User::class)->create();
+$factory->defineAs(App\Models\Store\OrderItem::class, 'supporter_tag', function (Faker\Generator $faker) use ($factory) {
+    $raw = $factory->raw(App\Models\Store\OrderItem::class);
+
+    return array_merge($raw, [
+        'product_id' => App\Models\Store\Product::customClass('supporter-tag')->first(),
+        'cost' => 4,
+        'extra_data' => function (array $self) {
+            // find the user for the generated item's order
+            $order = App\Models\Store\Order::find($self['order_id']);
+            $user = $order->user;
             return [
-                'target_id' => (string) $user->id,
+                'target_id' => (string) $user->user_id,
                 'username' => $user->username,
-                'duration' => 4,
+                'duration' => 1,
             ];
-        },
-    ];
+        }
+    ]);
 });
 
 $factory->defineAs(App\Models\Store\OrderItem::class, 'username_change', function (Faker\Generator $faker) use ($factory) {
