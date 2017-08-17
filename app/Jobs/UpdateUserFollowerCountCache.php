@@ -55,7 +55,7 @@ class UpdateUserFollowerCountCache implements ShouldQueue
         Cache::put(
             "{$key}:{$this->user_id}",
             User::find($this->user_id)->uncachedFollowerCount(),
-            Carbon::now()->addDay($duration)
+            Carbon::now()->addHours($duration)
         );
     }
 }
