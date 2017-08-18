@@ -126,6 +126,8 @@ Route::group(['prefix' => 'community'], function () {
     });
 });
 
+Route::resource('groups', 'GroupsController', ['only' => ['show']]);
+
 Route::group(['prefix' => 'home'], function () {
     Route::get('account/edit', 'AccountController@edit')->name('account.edit');
     // Uploading file doesn't quite work with PUT/PATCH.
@@ -158,7 +160,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('download-quota-check', 'HomeController@downloadQuotaCheck')->name('download-quota-check');
 
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
-    Route::resource('groups', 'GroupsController', ['only' => ['show']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
 });
 
