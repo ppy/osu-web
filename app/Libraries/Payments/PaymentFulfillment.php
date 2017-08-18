@@ -33,8 +33,6 @@ abstract class PaymentFulfillment implements \ArrayAccess
     protected $order;
     protected $request;
 
-    protected $fulfillers = [];
-
     public function __construct(\Illuminate\Http\Request $request)
     {
         $this->request = $request;
