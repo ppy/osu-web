@@ -61,13 +61,13 @@ abstract class PaymentFulfillment implements \ArrayAccess
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $type => $fulfiller) {
             $fulfiller->run();
-            $fulfiller->revoke();
+            $fulfiller->afterRun();
         }
 
-        foreach ($fulfillers as $type => $fulfiller) {
-            $fulfiller->afterRun();
-            $fulfiller->afterRevoke();
-        }
+        // foreach ($fulfillers as $type => $fulfiller) {
+        //     $fulfiller->revoke();
+        //     $fulfiller->afterRevoke();
+        // }
     }
 
     /**
