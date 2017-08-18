@@ -79,7 +79,17 @@ class XsollaController extends Controller
 
         try {
             $processor->validateTransaction();
-            $processor->apply();
+            switch ($processor->getNotificationType()) {
+                case 'payment':
+                    $processor->apply();
+                    break;
+                case 'cancel':
+                    $processor->cancel();
+                    break;
+                default:
+                    abort(500);
+            }
+
         } catch (FulfillmentException $e) {
             \Log::error($e->getMessage());
             // So I can see things with curl :D

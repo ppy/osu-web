@@ -45,6 +45,7 @@ abstract class PaymentFulfillment implements \ArrayAccess
     abstract public function getTransactionId();
     abstract public function getPaymentDate();
     abstract public function validateTransaction();
+    abstract public function getNotificationType();
 
     public function apply()
     {

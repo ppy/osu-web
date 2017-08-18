@@ -28,6 +28,8 @@ use DB;
 // FIXME: rename?
 class XsollaPaymentFulfillment extends PaymentFulfillment
 {
+    const VALID_NOTIFICATION_TYPES = ['payment', 'cancel'];
+
     public function getOrderId()
     {
         return $this['custom_parameters.order_id'];
@@ -46,6 +48,11 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
     public function getPaymentDate()
     {
         return Carbon::parse($this['transaction.payment_date']);
+    }
+
+    public function getNotificationType()
+    {
+        return $this['notification_type'];
     }
 
     public function ensureValidSignature()
@@ -68,8 +75,8 @@ class XsollaPaymentFulfillment extends PaymentFulfillment
         }
 
         // received notification_type should be payment
-        if ($this['notification_type'] !== 'payment') {
-            $this->addError('notification_type must be payment');
+        if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
+            $this->addError("notification_type is not valid: '{$this['notification_type']}'");
         }
 
         // id in order number should be correct
