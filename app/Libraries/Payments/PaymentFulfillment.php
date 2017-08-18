@@ -21,6 +21,7 @@
 namespace App\Libraries\Payments;
 
 use App\Events\Fulfillment\PaymentCompleted;
+use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -51,46 +52,22 @@ abstract class PaymentFulfillment implements \ArrayAccess
         DB::connection('mysql-store')->transaction(function () use (&$fulfillments) {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
             event(new PaymentCompleted($this->order));
-            $this->createFulfillers();
-            \Log::debug('commands');
-            \Log::debug(array_keys($this->fulfillers));
         });
 
+        $fulfillers = Fulfillment::createFulfillersFor($this->order);
+        \Log::debug('commands');
+        \Log::debug(array_keys($fulfillers));
+
         // This should probably be shoved off into a queue processor somewhere...
-        foreach ($this->fulfillers as $type => $fulfiller) {
+        foreach ($fulfillers as $type => $fulfiller) {
             $fulfiller->run();
             $fulfiller->revoke();
         }
 
-        foreach ($this->fulfillers as $type => $fulfiller) {
+        foreach ($fulfillers as $type => $fulfiller) {
             $fulfiller->afterRun();
             $fulfiller->afterRevoke();
         }
-    }
-
-    private function createFulfillers()
-    {
-        $items = $this->order->items()->get();
-        foreach ($items as $item) {
-            $this->findOrCreateFulfiller($item->product['custom_class']);
-        }
-    }
-
-    private function findOrCreateFulfiller($type)
-    {
-        if ($type === null) {
-            return;
-        }
-
-        if (isset($this->fulfillers[$type])) {
-            return $this->fulfillers[$type];
-        }
-
-        $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
-        $this->fulfillers[$type] = new $className($this->order);
-        // should throw if not found
-
-        return $this->fulfillers[$type];
     }
 
     /**

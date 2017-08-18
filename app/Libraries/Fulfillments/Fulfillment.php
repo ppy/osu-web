@@ -1,0 +1,67 @@
+<?php
+
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+namespace App\Libraries\Fulfillments;
+
+use App\Models\Store\Order;
+
+class Fulfillment
+{
+    private $order;
+
+    private function __construct(Order $order)
+    {
+        $this->order = $order;
+    }
+
+    private function createFulfillers()
+    {
+        $items = $this->order->items()->get();
+        foreach ($items as $item) {
+            $this->findOrCreateFulfiller($item->product['custom_class']);
+        }
+
+        return $this->fulfillers;
+    }
+
+    private function findOrCreateFulfiller($type)
+    {
+        if ($type === null) {
+            return;
+        }
+
+        if (isset($this->fulfillers[$type])) {
+            return $this->fulfillers[$type];
+        }
+
+        $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
+        $this->fulfillers[$type] = new $className($this->order);
+        // should throw if not found
+
+        return $this->fulfillers[$type];
+    }
+
+    public static function createFulfillersFor(Order $order)
+    {
+        $builder = new static($order);
+
+        return $builder->createFulfillers();
+    }
+}
