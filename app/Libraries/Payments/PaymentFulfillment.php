@@ -49,7 +49,7 @@ abstract class PaymentFulfillment implements \ArrayAccess
 
     public function apply()
     {
-        DB::connection('mysql-store')->transaction(function () use (&$fulfillments) {
+        DB::connection('mysql-store')->transaction(function () {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
             event(new PaymentCompleted($this->order));
         });
