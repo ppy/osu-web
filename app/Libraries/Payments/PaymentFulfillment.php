@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Events\Fulfillment\PaymentCompleted;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -49,6 +50,7 @@ abstract class PaymentFulfillment implements \ArrayAccess
     {
         DB::connection('mysql-store')->transaction(function () use (&$fulfillments) {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
+            event(new PaymentCompleted($this->order));
             $this->createFulfillers();
             \Log::debug('commands');
             \Log::debug(array_keys($this->fulfillers));

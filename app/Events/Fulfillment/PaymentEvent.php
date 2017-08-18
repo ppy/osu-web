@@ -18,14 +18,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Fulfillments;
+namespace App\Events\Fulfillment;
 
 use App\Models\Store\Order;
-use App\Traits\Validatable;
+use Illuminate\Queue\SerializesModels;
 
-abstract class OrderFulfiller implements Fulfillable
+abstract class PaymentEvent
 {
-    use Validatable;
+    use SerializesModels;
 
     protected $order;
 
@@ -33,29 +33,4 @@ abstract class OrderFulfiller implements Fulfillable
     {
         $this->order = $order;
     }
-
-    abstract public function run();
-    abstract public function revoke();
-
-    public function afterRun()
-    {
-        // default implementation does nothing.
-    }
-
-    public function afterRevoke()
-    {
-        // default implementation does nothing.
-    }
-
-    protected function throwOnFail($valid)
-    {
-        if (!$valid) {
-            event($this->eventForValidationError());
-            throw new FulfillmentException(implode($this->validationErrors()->allMessages(), "\n"));
-        }
-    }
-
-    abstract public function validationErrorsTranslationPrefix();
-
-    abstract protected function eventForValidationError();
 }

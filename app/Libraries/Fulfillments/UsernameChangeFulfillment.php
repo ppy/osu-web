@@ -20,6 +20,9 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Events\Fulfillment\UsernameChanged;
+use App\Events\Fulfillment\UsernameReverted;
+use App\Events\Fulfillment\ValidationFailedEvent;
 use App\Models\User;
 use App\Exceptions\UsernameChangeException;
 
@@ -33,6 +36,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->changeUsername($this->getNewUserName());
+        event(new UsernameChanged($user));
     }
 
     public function revoke()
@@ -41,6 +45,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->revertUsername();
+        event(new UsernameReverted($user));
     }
 
     private function validateRun()
@@ -52,7 +57,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
         }
 
         $item = $items->first();
-        \Log::debug("{$item->cost}, {$user->usernameChangeCost()}");
+
         if ($item['cost'] < $user->usernameChangeCost()) {
             $this->validationErrors()->add(
                 'cost',
@@ -110,5 +115,13 @@ class UsernameChangeFulfillment extends OrderFulfiller
     public function validationErrorsKeyBase()
     {
         return 'model_validation/';
+    }
+
+    //================
+    // OrderFulfiller
+    //================
+    protected function eventForValidationError()
+    {
+        return new ValidationFailedEvent($this->validationErrors(), 'username-change');
     }
 }

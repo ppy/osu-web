@@ -129,7 +129,6 @@ class SupporterTagFulfillment extends OrderFulfiller
 
     private function createCommand(OrderItem $item)
     {
-        \Log::debug('createCommand');
         $extraData = $item['extra_data'];
         $targetId = (int) $extraData['target_id'];
         $duration = (int) $extraData['duration'];
@@ -158,5 +157,13 @@ class SupporterTagFulfillment extends OrderFulfiller
     public function validationErrorsKeyBase()
     {
         return 'model_validation/';
+    }
+
+    //================
+    // OrderFulfiller
+    //================
+    protected function eventForValidationError()
+    {
+        return new ValidationFailedEvent($this->validationErrors(), 'supporter-tag');
     }
 }
