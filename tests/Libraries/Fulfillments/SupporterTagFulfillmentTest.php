@@ -40,6 +40,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->user = factory(User::class)->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => Carbon::now(),
+            'user_sig' => '',
         ]);
 
         $this->order = factory(Order::class)->create([
@@ -68,9 +69,10 @@ class SupporterTagFulfillmentTest extends TestCase
         $now = Carbon::now();
 
         $donor = $this->user;
-        $giftee = factory(\App\Models\User::class)->create([
+        $giftee = factory(User::class)->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => $now->copy(),
+            'user_sig' => '',
         ]);
         $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonths(1);
 
