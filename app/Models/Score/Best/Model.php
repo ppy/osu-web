@@ -145,7 +145,8 @@ abstract class Model extends BaseModel
     {
         $alwaysAccurate = false;
 
-        $query = static::where('beatmap_id', '=', $this->beatmap_id)
+        $query = static::on('mysql-readonly')
+            ->where('beatmap_id', '=', $this->beatmap_id)
             ->where(function ($query) {
                 $query
                     ->where('score', '>', $this->score)
