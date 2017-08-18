@@ -301,6 +301,10 @@ Route::get('forum/{forum}', function ($forum) {
 // in having an another redirect on top of that
 Route::get('b/{beatmap}', ['uses' => 'BeatmapsController@show']);
 
+Route::get('g/{group}', function ($group) {
+    return ujs_redirect(route('groups.show', compact('group')));
+});
+
 Route::get('s/{beatmapset}', function ($beatmapset) {
     return ujs_redirect(route('beatmapsets.show', compact('beatmapset')));
 });
