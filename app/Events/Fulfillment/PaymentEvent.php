@@ -27,7 +27,7 @@ abstract class PaymentEvent
 {
     use SerializesModels;
 
-    protected $order;
+    public $order;
 
     public function __construct(Order $order)
     {

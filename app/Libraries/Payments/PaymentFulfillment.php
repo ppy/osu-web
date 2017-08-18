@@ -53,21 +53,6 @@ abstract class PaymentFulfillment implements \ArrayAccess
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
             event(new PaymentCompleted($this->order));
         });
-
-        $fulfillers = Fulfillment::createFulfillersFor($this->order);
-        \Log::debug('commands');
-        \Log::debug(array_keys($fulfillers));
-
-        // This should probably be shoved off into a queue processor somewhere...
-        foreach ($fulfillers as $type => $fulfiller) {
-            $fulfiller->run();
-            $fulfiller->afterRun();
-        }
-
-        // foreach ($fulfillers as $type => $fulfiller) {
-        //     $fulfiller->revoke();
-        //     $fulfiller->afterRevoke();
-        // }
     }
 
     /**
