@@ -37,11 +37,16 @@ class UsernameChangeFulfillmentTest extends TestCase
         'mysql-store',
     ];
 
+    public static function tearDownAfterClass()
+    {
+        gc_collect_cycles();
+    }
+
     public function setUp()
     {
         parent::setUp();
 
-        $this->user = factory(User::class)->create(['user_sig' => '']);
+        $this->user = factory(User::class)->create();
         $this->order = factory(Order::class)->create(['user_id' => $this->user->user_id]);
     }
 

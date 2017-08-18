@@ -33,6 +33,11 @@ class SupporterTagFulfillmentTest extends TestCase
 {
     use DatabaseTransactions;
 
+    public static function tearDownAfterClass()
+    {
+        gc_collect_cycles();
+    }
+
     public function setup()
     {
         parent::setup();
@@ -40,7 +45,6 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->user = factory(User::class)->create([
             'osu_featurevotes' => 0,
             'osu_subscriptionexpiry' => Carbon::now(),
-            'user_sig' => '',
         ]);
 
         $this->order = factory(Order::class)->create([
