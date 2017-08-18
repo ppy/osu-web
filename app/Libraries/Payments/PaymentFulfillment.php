@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
@@ -52,6 +53,14 @@ abstract class PaymentFulfillment implements \ArrayAccess
         DB::connection('mysql-store')->transaction(function () {
             $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
             event(new PaymentCompleted($this->order));
+        });
+    }
+
+    public function cancel()
+    {
+        DB::connection('mysql-store')->transaction(function () {
+            $this->order->cancel();
+            event(new PaymentCancelled($this->order));
         });
     }
 

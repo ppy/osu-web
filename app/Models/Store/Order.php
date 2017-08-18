@@ -153,6 +153,12 @@ class Order extends Model
         });
     }
 
+    public function cancel()
+    {
+        $this->status = 'cancelled';
+        $this->save();
+    }
+
     public function paid($transactionId, $date)
     {
         $this->transaction_id = $transactionId;

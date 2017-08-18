@@ -20,21 +20,17 @@
 
 namespace App\Listeners\Fulfillment;
 
+use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\PaymentFailed;
 use App\Libraries\Fulfillments\Fulfillment;
 
 class PaymentsSubscriber
 {
-    public function onPaymentFailed($event)
-    {
-        \Log::debug($event->order);
-    }
-
     public function onPaymentCompleted($event)
     {
         $fulfillers = Fulfillment::createFulfillersFor($event->order);
-        \Log::debug('commands');
+        \Log::debug('onPaymentCompleted:');
         \Log::debug(array_keys($fulfillers));
 
         // This should probably be shoved off into a queue processor somewhere...
@@ -42,23 +38,41 @@ class PaymentsSubscriber
             $fulfiller->run();
             $fulfiller->afterRun();
         }
+    }
 
-        // foreach ($fulfillers as $type => $fulfiller) {
-        //     $fulfiller->revoke();
-        //     $fulfiller->afterRevoke();
-        // }
+    public function onPaymentCancelled($event)
+    {
+        $fulfillers = Fulfillment::createFulfillersFor($event->order);
+        \Log::debug('onPaymentCancelled');
+        \Log::debug(array_keys($fulfillers));
+
+        // This should probably be shoved off into a queue processor somewhere...
+        foreach ($fulfillers as $type => $fulfiller) {
+            $fulfiller->revoke();
+            $fulfiller->afterRevoke();
+        }
+    }
+
+    public function onPaymentFailed($event)
+    {
+        \Log::debug($event->order);
     }
 
     public function subscribe($events)
     {
         $events->listen(
-            PaymentFailed::class,
-            static::class.'@onPaymentFailed'
+            PaymentCancelled::class,
+            static::class.'@onPaymentCancelled'
         );
 
         $events->listen(
             PaymentCompleted::class,
             static::class.'@onPaymentCompleted'
         );
+
+        // $events->listen(
+        //     PaymentFailed::class,
+        //     static::class.'@onPaymentFailed'
+        // );
     }
 }
