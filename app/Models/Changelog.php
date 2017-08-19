@@ -37,28 +37,28 @@ class Changelog extends Model
         'misc' => '?',
     ];
 
-    // Changelog::all()->listing($offset)->get();
-    // Changelog::with('user', function($changelog) {
-    //
-    // }
-
-    public function scopeListing($query, $offset = 20)
-    {
-        $limit = config('osu.changelog.max', 20);
-
-        return $query
-            ->where('private', '=', 0)
-            ->take($limit)
-            ->skip($offset)
-            ->orderBy('changelog_id', 'desc');
-    }
-
     public function scopeDefault($query)
     {
         return $query
             ->where('private', 0)
             ->orderBy('date', 'desc')
             ->orderBy('major', 'desc');
+    }
+
+    public function scopeListing($query, $offset = 20)
+    {
+        $limit = config('osu.changelog.max', 20);
+
+        return $query
+            ->where('private', 0)
+            ->take($limit)
+            ->skip($offset)
+            ->orderBy('changelog_id', 'desc');
+    }
+
+    public function scopeVisibleOnBuilds($query)
+    {
+        return $query->whereNotIn('category', ['Code', 'Web']);
     }
 
     public function user()

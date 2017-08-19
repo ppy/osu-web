@@ -20,12 +20,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\BeatmapsetDiscussion;
+use App\Models\BeatmapsetEvent;
 use Auth;
 use DB;
-use Exception;
 use Request;
 
 class BeatmapDiscussionPostsController extends Controller
@@ -58,7 +59,7 @@ class BeatmapDiscussionPostsController extends Controller
         $post = BeatmapDiscussionPost::whereNotNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionPostRestore', $post)->ensureCan();
 
-        $post->restore();
+        $post->restore(Auth::user());
 
         return $post->beatmapsetDiscussion->defaultJson();
     }
@@ -82,30 +83,35 @@ class BeatmapDiscussionPostsController extends Controller
         priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
         $posts = [new BeatmapDiscussionPost($this->postParams())];
+        $events = [];
 
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
+            $events[] = BeatmapsetEvent::log(
+                $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN,
+                Auth::user(),
+                $discussion
+            );
         }
 
         try {
-            $saved = DB::transaction(function () use ($posts, $discussion) {
-                if ($discussion->save() === false) {
-                    throw new Exception('failed');
-                }
+            $saved = DB::transaction(function () use ($posts, $discussion, $events) {
+                $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
                     // done here since discussion may or may not previously exist
                     $post->beatmap_discussion_id = $discussion->id;
+                    $post->saveOrExplode();
+                }
 
-                    if ($post->save() === false) {
-                        throw new Exception('failed');
-                    }
+                foreach ($events as $event) {
+                    $event->saveOrExplode();
                 }
 
                 return true;
             });
-        } catch (Exception $_e) {
+        } catch (ModelNotSavedException $_e) {
             $saved = false;
         }
 
@@ -160,10 +166,11 @@ class BeatmapDiscussionPostsController extends Controller
     private function postParams($isNew = true)
     {
         $params = get_params(Request::all(), 'beatmap_discussion_post', ['message']);
-        $params['last_editor_id'] = Auth::user()->user_id;
 
         if ($isNew) {
             $params['user_id'] = Auth::user()->user_id;
+        } else {
+            $params['last_editor_id'] = Auth::user()->user_id;
         }
 
         return $params;

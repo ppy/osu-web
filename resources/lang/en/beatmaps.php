@@ -68,6 +68,7 @@ return [
         ],
 
         'mode' => [
+            'events' => 'History',
             'general' => 'General',
             'general_all' => 'General (all difficulties)',
             'timeline' => 'Timeline',
@@ -89,7 +90,7 @@ return [
             'pending' => 'Pending',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
-            'total' => 'Total',
+            'total' => 'All',
         ],
     ],
 

@@ -69,6 +69,10 @@
     margin-bottom: 10px;
   }
 
+  &--full {
+    flex: 1 0 auto;
+  }
+
   &--generic {
     .default-box-shadow();
     background-color: #fff;
@@ -76,16 +80,12 @@
     margin-bottom: 10px;
   }
 
-  &--dark-bg {
-    background-color: #333;
-  }
-
   &--header {
     .default-box-shadow();
     background-color: #333;
   }
 
-  &--header-news {
+  &--header-news, &--groups {
     .default-box-shadow();
     background-color: #333;
     margin-bottom: 10px;
@@ -152,5 +152,10 @@
       padding-left: @padding-wiki-desktop;
       padding-right: @padding-wiki-desktop;
     }
+  }
+
+  // color overrides goes here
+  &--dark-bg {
+    background-color: #333;
   }
 }

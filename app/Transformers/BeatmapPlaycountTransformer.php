@@ -38,6 +38,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
     public function transform(BeatmapPlaycount $playcount)
     {
         return [
+            'beatmap_id' => $playcount->beatmap_id,
             'count' => $playcount->playcount,
         ];
     }
@@ -50,7 +51,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
 
         return $this->item(
             $playcount->beatmap,
-            new BeatmapTransformer()
+            new BeatmapCompactTransformer()
         );
     }
 
@@ -62,7 +63,7 @@ class BeatmapPlaycountTransformer extends Fractal\TransformerAbstract
 
         return $this->item(
             $playcount->beatmap->beatmapset,
-            new BeatmapsetTransformer()
+            new BeatmapsetCompactTransformer()
         );
     }
 }

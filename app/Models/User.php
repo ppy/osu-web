@@ -24,6 +24,7 @@ use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
+use Cache;
 use Carbon\Carbon;
 use DB;
 use Exception;
@@ -63,6 +64,13 @@ class User extends Model implements AuthenticatableContract, Messageable
         'query' => null,
         'limit' => 20,
         'page' => 1,
+    ];
+
+    const CACHING = [
+        'follower_count' => [
+            'key' => 'followerCount',
+            'duration' => 720, // 12 hours
+        ],
     ];
 
     public $flags;
@@ -174,8 +182,8 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
 
-        $query = static::where('username', 'LIKE', "{$params['query']}%")
-            ->where('username', 'NOT LIKE', '%_old')
+        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
+            ->where('username', 'NOT LIKE', '%\_old')
             ->default();
 
         return [
@@ -373,6 +381,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return $styles;
+    }
+
+    public function getUserColourAttribute($value)
+    {
+        if (present($value)) {
+            return "#{$value}";
+        }
+    }
+
+    public function setUserColourAttribute($value)
+    {
+        // also functions for casting null to string
+        $this->attributes['user_colour'] = ltrim($value, '#');
     }
 
     // return a user's API details
@@ -784,7 +805,32 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function friends()
     {
-        return $this->relations()->friends();
+        // 'cuz hasManyThrough is derp
+
+        return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
+    }
+
+    public function uncachedFollowerCount()
+    {
+        return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
+    }
+
+    public function cacheFollowerCount()
+    {
+        $count = $this->uncachedFollowerCount();
+
+        Cache::put(
+            self::CACHING['follower_count']['key'].':'.$this->user_id,
+            $count,
+            self::CACHING['follower_count']['duration']
+        );
+
+        return $count;
+    }
+
+    public function followerCount()
+    {
+        return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
     }
 
     public function foes()
@@ -992,6 +1038,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             'user_warnings' => 0,
             'user_type' => 0,
         ]);
+    }
+
+    public function scopeOnline($query)
+    {
+        return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
     public function updatePassword($password)

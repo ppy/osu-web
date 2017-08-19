@@ -60,9 +60,3 @@
         </div>
     @endif
 </div>
-
-@section('script')
-    @parent
-
-    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-@endsection

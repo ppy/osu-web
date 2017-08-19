@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateUserFollowerCountCache;
 use App\Models\User;
 use App\Models\UserRelation;
 use Auth;
@@ -48,19 +49,16 @@ class FriendsController extends Controller
     {
         $friends = Auth::user()
             ->friends()
-            ->withMutual()
-            ->withOnline()
             ->with([
-                'target',
-                'target.userProfileCustomization',
-                'target.country',
+                'userProfileCustomization',
+                'country',
             ])
+            ->orderBy('username', 'asc')
             ->get();
 
-        $online = $friends->where('online', 1);
-        $offline = $friends->where('online', 0);
+        $userlist = group_users_by_online_state($friends);
 
-        return view('friends.index', compact('online', 'offline'));
+        return view('friends.index', compact('userlist'));
     }
 
     public function store()
@@ -74,7 +72,7 @@ class FriendsController extends Controller
 
         $friend = Auth::user()
             ->friends()
-            ->where(['zebra_id' => $target_id])
+            ->where(['user_id' => $target_id])
             ->first();
 
         if (!$friend) {
@@ -83,10 +81,12 @@ class FriendsController extends Controller
                 'zebra_id' => $target_id,
                 'friend' => 1,
             ]);
+
+            dispatch(new UpdateUserFollowerCountCache($target_id));
         }
 
         return json_collection(
-            Auth::user()->friends()->withMutual()->get(),
+            Auth::user()->relations()->friends()->withMutual()->get(),
             'UserRelation'
         );
     }
@@ -95,7 +95,7 @@ class FriendsController extends Controller
     {
         $friend = Auth::user()
             ->friends()
-            ->where(['zebra_id' => $id])
+            ->where(['user_id' => $id])
             ->firstOrFail();
 
         UserRelation::where([
@@ -104,8 +104,10 @@ class FriendsController extends Controller
             'friend' => 1,
         ])->delete();
 
+        dispatch(new UpdateUserFollowerCountCache($id));
+
         return json_collection(
-            Auth::user()->friends()->withMutual()->get(),
+            Auth::user()->relations()->friends()->withMutual()->get(),
             'UserRelation'
         );
     }

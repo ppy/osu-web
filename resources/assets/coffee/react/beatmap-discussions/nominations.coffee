@@ -136,6 +136,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     .done (response) =>
       $.publish 'beatmapset:update', beatmapset: response.beatmapset
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response.beatmapsetDiscussion
 
     .fail osu.ajaxError
     .always LoadingOverlay.hide

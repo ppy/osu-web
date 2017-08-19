@@ -37,35 +37,37 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
 
 
   render: =>
-    div null,
+    div
+      className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+
       div
-        className: "page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
+        className: 'js-sticky-header'
+        'data-sticky-header-target': 'page-extra-tabs'
 
-        div
-          className: 'js-sticky-header'
-          'data-sticky-header-target': 'page-extra-tabs'
+      div
+        className: 'page-extra-tabs__padding js-sync-height--target'
+        'data-sync-height-id': 'page-extra-tabs'
+        'data-sticky-header-target': 'page-extra-tabs'
 
-        div
-          className: 'page-extra-tabs__padding js-sync-height--target'
-          'data-sync-height-id': 'page-extra-tabs'
-          'data-sticky-header-target': 'page-extra-tabs'
-
-        div
-          className: 'page-extra-tabs__floatable js-sync-height--reference js-mode-switcher'
-          'data-sync-height-target': 'page-extra-tabs'
-          div className: 'osu-page',
-            ul className: 'page-mode page-mode--page-extra-tabs',
-              for mode in ['generalAll', 'general', 'timeline']
-                li
-                  key: mode
-                  className: 'page-mode__item'
-                  a
-                    className: "page-mode-link #{'page-mode-link--is-active' if @props.mode == mode}"
-                    onClick: @switch
-                    href: '#'
-                    'data-mode': mode
-                    osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
-                    span className: 'page-mode-link__stripe'
+      div
+        className: 'page-extra-tabs__floatable js-sync-height--reference js-mode-switcher'
+        'data-sync-height-target': 'page-extra-tabs'
+        div className: 'osu-page',
+          ul className: 'page-mode page-mode--page-extra-tabs',
+            for mode in ['generalAll', 'general', 'timeline', 'events']
+              li
+                key: mode
+                className: 'page-mode__item'
+                a
+                  className: "page-mode-link #{'page-mode-link--is-active' if @props.mode == mode}"
+                  onClick: @switch
+                  href: '#'
+                  'data-mode': mode
+                  osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
+                  if mode != 'events'
+                    span className: 'page-mode-link__badge',
+                      _.size(@props.currentDiscussions.byFilter[@props.currentFilter][mode])
+                  span className: 'page-mode-link__stripe'
 
 
   tabsStick: (_e, target) =>
@@ -76,4 +78,4 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
   switch: (e) =>
     e.preventDefault()
 
-    $.publish 'beatmapDiscussion:setMode', e.currentTarget.dataset.mode
+    $.publish 'beatmapDiscussion:setMode', mode: e.currentTarget.dataset.mode

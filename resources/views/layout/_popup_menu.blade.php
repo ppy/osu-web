@@ -119,6 +119,17 @@
         </div>
     </div>
 
+    <div class="nav-popup__socials">
+        <a href="{{ route('support-the-game') }}" class="nav-popup__social nav-popup__social--support" title="{{ trans('layout.menu.home.supportTheGame') }}">
+            <span class="fa fa-heart"></span>
+        </a>
+        <a href="{{ wiki_url('Twitter') }}" class="nav-popup__social nav-popup__social--twitter">
+            <span class="fa fa-twitter"></span>
+        </a>
+        <a href="{{ osu_url("social.facebook") }}" class="nav-popup__social nav-popup__social--facebook">
+            <span class="fa fa-facebook-official"></span>
+        </a>
+    </div>
     <div class="nav-popup__bar">
         <span class="bar u-section-bg"></span>
     </div>

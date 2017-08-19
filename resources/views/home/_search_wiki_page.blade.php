@@ -20,7 +20,7 @@
     href="{{ wiki_url($entry->path, $entry->locale) }}"
 >
     <h1 class="search-entry__row search-entry__row--title">
-        {{ $entry->title() }}
+        {{ $entry->title(true) }}
     </h1>
 
     <p class="search-entry__row search-entry__row--excerpt">

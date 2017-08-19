@@ -27,7 +27,6 @@ return [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réessayer demain.',
         ],
         'resolve' => [
-            'general_discussion' => 'La discussion générale ne peut être lue.',
             'not_owner' => 'Uniquement le rédacteur du post et le créateur de la beatmap peut voir ce sujet.',
         ],
 
@@ -55,7 +54,7 @@ return [
                 'channel' => [
                     'no_access' => "L'accès au canal cible est requis.",
                     'moderated' => 'Ce canal est modéré.',
-                    'not_lazer' => 'Vous ne pouvez parler que dans lazer pour le moment.',
+                    'not_lazer' => 'Vous ne pouvez parler que dans #lazer pour le moment.',
                 ],
 
                 'not_allowed' => 'Vous ne pouvez pas envoyer de messages si vous êtes banni/restreint/réduit au silence.',

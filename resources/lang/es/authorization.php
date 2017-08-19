@@ -27,7 +27,6 @@ return [
             'exhausted' => 'Has alcanzado tu límite de nominaciones diarias, inténtalo de nuevo mañana.',
         ],
         'resolve' => [
-            'general_discussion' => 'No se pueden resolver discusiones generales.',
             'not_owner' => 'Solo el creador del tema y el dueño del beatmap pueden resolver una discusión.',
         ],
 

@@ -15,13 +15,4 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a class="user-quick" href="{{ route('users.show', $entry->getKey()) }}">
-    <div class="user-quick__avatar">
-        <div class="avatar avatar--full" {!! background_image($entry->user_avatar, false) !!}>
-        </div>
-    </div>
-
-    <div class="user-quick__name u-ellipsis-overflow">
-        {{ $entry->username }}
-    </div>
-</a>
+@include('objects._usercard', ['user' => $entry, '_modifiers' => ['search']])

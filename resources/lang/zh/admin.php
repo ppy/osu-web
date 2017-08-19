@@ -82,4 +82,11 @@ return [
         ],
     ],
 
+    'users' => [
+        'restricted_banner' => [
+            'title' => '该账户受限',
+            'message' => '（只有管理员能看到这条消息）',
+        ],
+    ],
+
 ];

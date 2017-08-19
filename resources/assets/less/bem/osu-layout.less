@@ -66,10 +66,21 @@
     }
   }
 
+  &--body-555 {
+    &::before {
+      .at2x("/images/backgrounds/page-555.png", 500px, 500px);
+    }
+  }
+
   &--body-ddd {
     &::before {
       .at2x("/images/backgrounds/page-ddd.png", 500px, 500px);
     }
+  }
+
+  &--full {
+    flex: 1 0 auto;
+    width: 100%;
   }
 
   &__col {
@@ -237,7 +248,7 @@
       .inner-shadow-top();
       flex: 1 0 auto;
       background-color: fade(#000, 75%);
-      padding-bottom: 10px;
+      padding: 10px 0;
     }
 
     &--full {

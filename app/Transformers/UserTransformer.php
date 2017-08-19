@@ -23,7 +23,6 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
-use App\Models\UserRelation;
 use League\Fractal;
 
 class UserTransformer extends Fractal\TransformerAbstract
@@ -103,14 +102,14 @@ class UserTransformer extends Fractal\TransformerAbstract
     public function includeFollowerCount(User $user)
     {
         return $this->item($user, function ($user) {
-            return [UserRelation::where('zebra_id', $user->user_id)->where('friend', 1)->count()];
+            return [$user->followerCount()];
         });
     }
 
     public function includeFriends(User $user)
     {
         return $this->collection(
-            $user->friends()->withMutual()->get(),
+            $user->relations()->friends()->withMutual()->get(),
             new UserRelationTransformer()
         );
     }
@@ -147,7 +146,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
-                    ->userBest(100, ['beatmapset', 'beatmap']);
+                    ->userBest(50, ['beatmapset', 'beatmap']);
 
                 $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
@@ -165,7 +164,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                     ->scoresBest($mode, true)
                     ->default()
                     ->orderBy('pp', 'DESC')
-                    ->userBest(100, ['beatmapset', 'beatmap']);
+                    ->userBest(50, ['beatmapset', 'beatmap']);
 
                 ScoreBestModel::fillInPosition($scores);
 
@@ -226,7 +225,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         $beatmapPlaycounts = $user->beatmapPlaycounts()
             ->with('beatmap', 'beatmap.beatmapset')
             ->orderBy('playcount', 'desc')
-            ->limit(100)
+            ->limit(50)
             ->get()
             ->filter(function ($pc) {
                 return $pc->beatmap !== null && $pc->beatmap->beatmapset !== null;
@@ -251,15 +250,18 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $user->beatmapsets()->rankedOrApproved()->active()->with('beatmaps')->get(),
-            new BeatmapsetTransformer()
+            new BeatmapsetCompactTransformer()
         );
     }
 
     public function includeFavouriteBeatmapsets(User $user)
     {
         return $this->collection(
-            $user->favouriteBeatmapsets()->with('beatmaps')->get(),
-            new BeatmapsetTransformer()
+            $user->favouriteBeatmapsets()
+                ->with('beatmaps')
+                ->limit(50)
+                ->get(),
+            new BeatmapsetCompactTransformer()
         );
     }
 

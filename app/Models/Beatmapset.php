@@ -126,6 +126,40 @@ class Beatmapset extends Model
             ->get();
     }
 
+    /**
+     * Includes if player has completed the set in a given playmode
+     * Returns the count of beatmaps in the set that were completed
+     * in a specified column, or 'count' by default.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param mixed $mode playmode to include.
+     * @param mixed $fieldName field name to return the count in.
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWithHasCompleted($query, $mode, $user, $fieldName = 'count')
+    {
+        if (Beatmap::modeStr($mode) === null) {
+            throw new \Exception('invalid game mode');
+        }
+
+        $scoreClass = Score\Best\Model::getClass($mode);
+        $beatmapsetTable = $this->getTable();
+        $scoreBestTable = (new $scoreClass)->getTable();
+
+        if ($user) {
+            $userId = $user->user_id;
+            $counts = DB::raw("(SELECT count(*)
+                                    FROM {$scoreBestTable}
+                                    WHERE {$scoreBestTable}.user_id = {$userId}
+                                    AND {$scoreBestTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                ) as {$fieldName}");
+        } else {
+            $counts = DB::raw("(SELECT 0) as {$fieldName}");
+        }
+
+        return $query->addSelect($counts);
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Scope Checker Functions
@@ -569,21 +603,6 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
-    // todo: generalize method
-    public function oszDownloadURL($noVideo = 1)
-    {
-        $mirrors = config('osu.beatmap_processor.mirrors_to_use');
-        $mirror = BeatmapMirror::find($mirrors[array_rand($mirrors)]);
-
-        $diskFilename = $serveFilename = $this->filename;
-        $time = time();
-        $checksum = md5("{$this->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$mirror->secret_key}");
-
-        $url = "{$mirror->base_url}d/{$this->beatmapset_id}?fs=".rawurlencode($serveFilename).'&fd='.rawurlencode($diskFilename)."&ts=$time&cs=$checksum&u=0&nv=$noVideo";
-
-        return $url;
-    }
-
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -601,29 +620,35 @@ class Beatmapset extends Model
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
-            $ok = copy($this->oszDownloadURL(), $osz);
-            if (!$ok) {
+            try {
+                $url = BeatmapMirror::getRandom()->generateUrl($this, true);
+                $ok = copy($url, $osz);
+                if (!$ok) {
+                    throw new BeatmapProcessorException('Error retrieving beatmap');
+                }
+            } catch (\Exception $e) {
                 throw new BeatmapProcessorException('Error retrieving beatmap');
             }
+
             $zip = new \ZipArchive;
             $zip->open($osz);
             $zip->extractTo($workingFolder);
             $zip->close();
 
-            // grab the first beatmap (as per old implementation) and scan for background image
-            $beatmap = $this->beatmaps()->first();
-            $beatmapFilename = $beatmap->filename;
-            $bgFilename = self::scanBMForBG("$workingFolder/$beatmapFilename");
+            // scan through all the beatmaps in this set and find the first one with a valid background image
+            foreach ($this->beatmaps as $beatmap) {
+                $bgFilename = self::scanBMForBG("{$workingFolder}/{$beatmap->filename}");
 
-            if (!$bgFilename) {
-                $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+                if ($bgFilename === false) {
+                    continue;
+                }
 
-                return;
-            }
+                $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
 
-            $bgFile = ci_file_search("{$workingFolder}/{$bgFilename}");
+                if ($bgFile === false) {
+                    continue;
+                }
 
-            if ($bgFile !== false) {
                 $processor = new ImageProcessorService($tmpBase);
 
                 // upload original image
@@ -638,6 +663,9 @@ class Beatmapset extends Model
                     $resized = $processor->resize($this->coverURL('fullsize'), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
+
+                // break after the first image has been successfully processed
+                break;
             }
 
             $this->update(['cover_updated_at' => $this->freshTimestamp()]);
@@ -650,10 +678,15 @@ class Beatmapset extends Model
     // todo: maybe move this somewhere else (copypasta from old implementation)
     public function scanBMForBG($beatmapFilename)
     {
-        $content = file_get_contents($beatmapFilename);
-        if (!$content) {
+        try {
+            $content = file_get_contents($beatmapFilename);
+            if (!$content) {
+                return false;
+            }
+        } catch (\Exception $e) {
             return false;
         }
+
         $matching = false;
         $imageFilename = '';
         $lines = explode("\n", $content);

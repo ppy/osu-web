@@ -17,31 +17,28 @@
  */
 
 .beatmap-discussions {
-  @_mode-text-size: 10px;
-  @_empty-text-size: 12px;
   @_mode-circle-diameter: 15px;
   @_timeline-line-width: 3px;
   @_discussions-vertical-padding: 10px;
   @_discussions-horizontal-padding: 20px;
 
   .default-box-shadow();
-  margin: 10px 0;
+  margin-bottom: 10px;
   background-color: #fff;
   display: flex;
   flex-direction: column;
 
   &__discussion {
     .own-layer();
-
-    &--empty {
-      padding-left: @beatmap-discussion--timestamp-width;
-      font-size: @_empty-text-size;
-    }
   }
 
   &__discussions {
     padding: @_discussions-vertical-padding @_discussions-horizontal-padding;
     background-color: #eee;
+
+    &--empty {
+      font-size: @font-size--normal;
+    }
   }
 
   &__mode {
@@ -61,7 +58,7 @@
   }
 
   &__mode-text {
-    font-size: @_mode-text-size;
+    font-size: @font-size--small;
   }
 
   &__timeline-line {

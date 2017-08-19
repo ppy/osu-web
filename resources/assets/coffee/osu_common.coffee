@@ -64,8 +64,9 @@
       $(element).trigger 'ajax:error', [xhr, status, error]
 
 
-  fileuploadFailCallback: ($el) =>
+  fileuploadFailCallback: ($elFunction) =>
     (_e, data) =>
+      $el = $elFunction()
       $el[0].dataset.isFileupload ?= '1'
 
       $el
@@ -216,14 +217,7 @@
 
 
   trans: (key, replacements) ->
-    try
-      Lang.get key, replacements
-    catch
-      Lang.setLocale fallbackLocale
-      message = Lang.get key, replacements
-      Lang.setLocale currentLocale
-
-      message
+    Lang.get key, replacements
 
 
   transArray: (array, key = 'common.array_and') ->
@@ -240,11 +234,6 @@
 
   transChoice: (key, count, replacements) ->
     message = Lang.choice key, count, replacements, currentLocale
-
-    if message == key
-      message = Lang.choice key, count, replacements, fallbackLocale
-
-    message
 
 
   xhrErrorMessage: (xhr) ->

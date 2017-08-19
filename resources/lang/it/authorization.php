@@ -24,7 +24,6 @@ return [
             'exhausted' => 'Hai raggiunto il limite di nominazioni per questa giornata, per favore riprova domani.',
         ],
         'resolve' => [
-            'general_discussion' => 'Le discussioni generali non possono essere risolte.',
             'not_owner' => 'Solo l\'autore del topic e il creatore della mappa possono rispolvere una discussione.',
         ],
     ],

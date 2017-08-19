@@ -28,14 +28,14 @@ return [
             'support_button' => 'Chcę wspomóc osu!',
         ],
 
-        'dev_quote' => 'osu! jest kompletnie darmową grą, ale utrzymanie jej nie jest już darmowe. Oprócz kosztów utrzymania serwerów i wysokiej jakości Internetu, czasu spędzonego na zarządzanie systemem i społecznością, ustanawianiem nagród za konkursy, odpowiadaniem na pytanie dotyczące pomocy technicznej i ogólnego utrzymania społeczności szczęśliwej, osu! wymaga dość sporej sumy pieniędzy. I nie zapominajmy, że robimy to bez żadnych reklam ani partnerstwa z denerwującymi toolbarami!
+        'dev_quote' => 'osu! jest kompletnie darmową grą, ale utrzymanie jej nie jest już darmowe. Oprócz kosztów utrzymania serwerów i wysokiej jakości internetu, czasu spędzonego na zarządzanie systemem i społecznością, ustanawiania nagród za konkursy, odpowiadania na pytania dotyczące pomocy technicznej i ogólnego uszczęsliwiania społeczności, osu! wymaga dość sporej sumy pieniędzy. I nie zapominajmy, że robimy to bez żadnych reklam ani partnerstw z denerwującymi toolbarami!
             <br/><br/>osu! jest w większości utrzymwane przeze mnie, którego możecie znać jako "peppy".
             Musiałem opuścić normalną pracę, aby wyrabiać się czasowo z osu! i czasami zdarza się, że mam problem z utrzymaniem standardów, o które się staram.
-            Chciałbym zaoferować personalne podziękowania dla każdego, który wspomógł osu! do tej pory,
+            Chciałbym zaoferować osobiste podziękowania dla każdego, który wspomógł osu! do tej pory,
             tak samo jak tych, którzy ciągle wspierają tę wspaniałą grę i społeczność :).',
 
         'why_support' => [
-            'title' => 'Dlaczego powinienem wspomóc osu! ?',
+            'title' => 'Dlaczego mam wspomóc osu!?',
             'blocks' => [
                 'dev' => 'Stworzone i utrzymywane głównie przez jedną osobę z Australii.',
                 'time' => 'Zajmuje tyle czasu, że nie można tego już nazwać "hobby".',
@@ -54,17 +54,17 @@ return [
 
             'auto_downloads' => [
                 'title' => 'Automatyczne pobieranie',
-                'description' => 'Automatyczne pobieranie podczas grania multiplayer, oglądania kogoś lub klikania linków w czacie!',
+                'description' => 'Automatyczne pobieranie podczas grania w trybie wieloosobowym, oglądania kogoś czy klikania linków w czacie!',
             ],
 
             'upload_more' => [
                 'title' => 'Dodawaj więcej',
-                'description' => 'Więcej slotów na nowe mapy (za każdą ranked mapę) ograniczone do 10.',
+                'description' => 'Więcej slotów na nowe beatmapy (za każdą rankingową beatmapę) ograniczone do 10.',
             ],
 
             'early_access' => [
                 'title' => 'Wczesny dostęp',
-                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje zanim będą dostępne publicznie!',
+                'description' => 'Dostęp do wczesnych wersji, gdzie możesz wypróbować nowe opcje, zanim zostaną one upublicznione!',
             ],
 
             'customisation' => [
@@ -89,7 +89,7 @@ return [
 
             'change_username' => [
                 'title' => 'Zmiana nicku',
-                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (tylko raz)',
+                'description' => 'Możliwość zmiany nicku bez dodatkowych kosztów (jednorazowo)',
             ],
 
             'skinnables' => [
@@ -104,7 +104,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortowanie',
-                'description' => 'NOWE: Możliwość przeglądania rankingu krajowego / znajomych / poszczególnego moda w grze.',
+                'description' => 'Możliwość przeglądania rankingu krajowego / znajomych / poszczególnego moda w grze.',
             ],
 
             'feel_special' => [
@@ -121,7 +121,7 @@ return [
         'convinced' => [
             'title' => 'Zachęciłeś mnie! :D',
             'support' => 'wspomóż osu!',
-            'gift' => 'albo podaruj supportera innemu graczowi',
+            'gift' => 'albo podaruj status donatora innemu graczowi',
             'instructions' => 'kliknij ikonę serca, aby przejść do sklepu osu!',
         ],
     ],

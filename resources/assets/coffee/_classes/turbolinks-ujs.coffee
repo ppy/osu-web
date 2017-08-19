@@ -16,14 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-el = React.createElement
+class @TurbolinksUjs
+  constructor: ->
+    @xhr = []
 
-class ProfilePage.HeaderFlags extends React.Component
-  render: =>
-    if @props.user.profile_colour
-      style = backgroundColor: "##{@props.user.profile_colour}"
+    $(document).on 'ajax:beforeSend', @record
+    $(document).on 'turbolinks:before-cache', @abort
 
-    el 'div',
-      className: 'user-profile-header__basic user-profile-header__basic--flags'
-      style: style
-      el FlagCountry, country: @props.user.country
+
+  abort: =>
+    xhr?.abort() while xhr = @xhr.pop()
+
+
+  record: (_event, xhr) =>
+    @xhr.push xhr

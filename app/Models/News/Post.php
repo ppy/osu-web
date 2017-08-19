@@ -190,6 +190,11 @@ class Post
         return $this->cache['page'];
     }
 
+    public function previewText()
+    {
+        return first_paragraph($this->bodyHtml());
+    }
+
     public function title()
     {
         return $this->page()['header']['title'];

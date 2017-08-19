@@ -33,6 +33,8 @@ class BeatmapCompactTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $beatmap->beatmap_id,
+            'mode' => $beatmap->mode,
+            'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
         ];
     }

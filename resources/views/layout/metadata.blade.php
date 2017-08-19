@@ -46,13 +46,18 @@
 <script src="{{ mix("js/vendor.js") }}" data-turbolinks-track="reload"></script>
 @if(config('services.sentry.public_dsn') !== '')
     <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
-    <script>Raven.config('{{ config('services.sentry.public_dsn') }}', {
-        release: '{{ config('osu.git-sha') }}'
-    }).install();</script>
+    <script>
+        Raven.config('{{ config('services.sentry.public_dsn') }}', {release: '{{ config('osu.git-sha') }}'}).install();
+        Raven.setUserContext({lang: currentLocale});
+    </script>
 @endif
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
+
+@if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
+    <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
+@endif
 
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">

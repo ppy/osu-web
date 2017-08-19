@@ -77,7 +77,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   render: =>
-    div null,
+    div className: 'osu-layout osu-layout--full',
       el BeatmapDiscussions.Header,
         beatmapset: @state.beatmapset
         beatmaps: @state.beatmaps
@@ -91,26 +91,36 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
+        currentDiscussions: @currentDiscussions()
+        currentFilter: @state.currentFilter
 
-      div
-        className: 'osu-layout__section osu-layout__section--extra'
-        el BeatmapDiscussions.NewDiscussion,
-          currentUser: @state.currentUser
-          currentBeatmap: @state.currentBeatmap
-          currentDiscussions: @currentDiscussions()
-          mode: @state.mode
+      if @state.mode == 'events'
+        div
+          className: 'osu-layout__section osu-layout__section--extra'
+          el BeatmapDiscussions.Events,
+            events: @state.beatmapsetDiscussion.beatmapset_events
+            users: @users()
 
-        el BeatmapDiscussions.Discussions,
-          beatmapset: @state.beatmapset
-          beatmapsetDiscussion: @state.beatmapsetDiscussion
-          currentBeatmap: @state.currentBeatmap
-          currentDiscussions: @currentDiscussions()
-          currentFilter: @state.currentFilter
-          currentUser: @state.currentUser
-          mode: @state.mode
-          readPostIds: @state.readPostIds
-          userPermissions: @state.userPermissions
-          users: @users()
+      else
+        div
+          className: 'osu-layout__section osu-layout__section--extra'
+          el BeatmapDiscussions.NewDiscussion,
+            currentUser: @state.currentUser
+            currentBeatmap: @state.currentBeatmap
+            currentDiscussions: @currentDiscussions()
+            mode: @state.mode
+
+          el BeatmapDiscussions.Discussions,
+            beatmapset: @state.beatmapset
+            beatmapsetDiscussion: @state.beatmapsetDiscussion
+            currentBeatmap: @state.currentBeatmap
+            currentDiscussions: @currentDiscussions()
+            currentFilter: @state.currentFilter
+            currentUser: @state.currentUser
+            mode: @state.mode
+            readPostIds: @state.readPostIds
+            userPermissions: @state.userPermissions
+            users: @users()
 
 
   checkNew: =>
@@ -140,54 +150,66 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   currentDiscussions: =>
     if !@cache.currentDiscussions?
-      general = []
-      timeline = []
-      generalAll = []
 
-      timelineByFilter =
+      byMode =
+        timeline: []
+        general: []
+        generalAll: []
+      byFilter =
+        total: {}
         deleted: {}
-        mine: {}
-        pending: {}
         praises: {}
         resolved: {}
-        total: {}
+        pending: {}
+        mine: {}
+      for own mode, _items of byMode
+        for own filter, modes of byFilter
+          modes[mode] = {}
+
 
       for d in @state.beatmapsetDiscussion.beatmap_discussions
-        if d.timestamp?
-          continue if d.beatmap_id != @state.currentBeatmap.id
-
-          timeline.push d
-          timelineByFilter.total[d.id] = d
-
-          if d.deleted_at?
-            timelineByFilter.deleted[d.id] = d
-          else if d.message_type == 'praise'
-            timelineByFilter.praises[d.id] = d
-          else
-            if d.resolved
-              timelineByFilter.resolved[d.id] = d
-            else
-              timelineByFilter.pending[d.id] = d
-
-          if d.user_id == @state.currentUser.id
-            timelineByFilter.mine[d.id] = d
-
-        else
+        mode =
           if d.beatmap_id?
             if d.beatmap_id == @state.currentBeatmap.id
-              general.push d
+              if d.timestamp?
+                'timeline'
+              else
+                'general'
           else
-            generalAll.push d
+            'generalAll'
 
-      timeline = _.orderBy timeline, ['timestamp', 'id']
-      general = _.orderBy general, 'id'
-      generalAll = _.orderBy generalAll, 'id'
+        # belongs to different beatmap, excluded
+        continue unless mode?
+
+        filters = ['total']
+
+        if d.deleted_at?
+          filters.push 'deleted'
+        else if d.message_type == 'praise'
+          filters.push 'praises'
+        else
+          if d.resolved
+            filters.push 'resolved'
+          else
+            filters.push 'pending'
+
+        if d.user_id == @state.currentUser.id
+          filters.push 'mine'
+
+        for filter in filters
+          byFilter[filter][mode][d.id] = d
+
+        byMode[mode].push d
+
+      timeline = _.orderBy byMode.timeline, ['timestamp', 'id']
+      general = _.orderBy byMode.general, 'id'
+      generalAll = _.orderBy byMode.generalAll, 'id'
 
       @cache.currentDiscussions =
         general: general
         generalAll: generalAll
         timeline: timeline
-        timelineByFilter: timelineByFilter
+        byFilter: byFilter
 
     @cache.currentDiscussions
 
@@ -198,6 +220,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     if target.discussionId?
       return $.publish 'beatmapDiscussion:jump', id: target.discussionId
 
+    if target.mode == 'events'
+      return @setMode null, mode: 'events'
+
     target.beatmapId ?= @state.currentBeatmap.id
     $.publish 'beatmap:select', id: target.beatmapId
 
@@ -207,17 +232,23 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     return if !discussion?
 
-    mode = if discussion.timestamp? then 'timeline' else 'general'
+    mode =
+      if discussion.beatmap_id?
+        if discussion.timestamp? then 'timeline' else 'general'
+      else
+        'generalAll'
 
-    @setMode null, mode, =>
-      @setCurrentBeatmapId null,
-        id: discussion.beatmap_id
-        callback: =>
-          $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+    @setMode null,
+      mode: mode
+      callback: =>
+        @setCurrentBeatmapId null,
+          id: discussion.beatmap_id
+          callback: =>
+            $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
-          target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-          $(window).stop().scrollTo target, 500,
-            offset: modeSwitcher[0].getBoundingClientRect().height * -1
+            target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+            $(window).stop().scrollTo target, 500,
+              offset: modeSwitcher[0].getBoundingClientRect().height * -1
 
 
   jumpToClick: (e) =>
@@ -264,24 +295,32 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   setFilter: (_e, {filter}) =>
-    return if @state.mode == 'timeline' && filter == @state.currentFilter
+    return if filter == @state.currentFilter && @state.mode != 'events'
 
-    @setState
-      mode: 'timeline'
-      currentFilter: filter
+    newState = currentFilter: filter
+    # restore last mode on clicking filter when viewing events
+    newState.mode = @lastMode ? 'timeline' if @state.mode == 'events'
+
+    @setState newState
 
 
-  setMode: (_e, mode, callback) =>
-    newState = mode: mode
+  setMode: (_e, {mode, callback}) =>
+    return callback?() if mode == @state.mode
 
-    if mode == 'timeline'
-      currentFilter = @state.currentFilter
-      filter = 'total'
-      newState.currentFilter = filter
-    else
-      currentFilter = filter = null
+    newState = {mode}
 
-    return callback?() if mode == @state.mode && filter == currentFilter
+    # switching to events:
+    # - record last filter, to be restored when setMode is called
+    # - record last mode, to be restored when setFilter is called
+    # - set filter to total
+    if mode == 'events'
+      @lastMode = @state.mode
+      @lastFilter = @state.currentFilter
+      newState.currentFilter = 'total'
+    # switching from events:
+    # - restore whatever last filter set or default to total
+    else if @state.mode == 'events'
+      newState.currentFilter = @lastFilter ? 'total'
 
     @setState newState, callback
 

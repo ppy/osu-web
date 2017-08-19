@@ -21,7 +21,7 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'co się dzieje?',
+        'description' => 'co się dzieje, ziomek?',
     ],
 
     'incidents' => [
@@ -31,11 +31,11 @@ return [
 
     'online' => [
         'title' => [
-            'users' => 'Ilość online graczy w ciągu ostatnich 24 godzin',
+            'users' => 'Ilość użytkoników online w ciągu ostatnich 24 godzin',
             'score' => 'Ilość ustanowionych wyników w ciągu ostatnich 24 godzin',
         ],
         'current' => 'Obecnie online',
-        'score' => 'Ilość ustanowianych wyników na sekundę',
+        'score' => 'Ilość ustanawianych wyników na sekundę',
     ],
 
     'recent' => [
@@ -49,7 +49,7 @@ return [
         ],
 
         'uptime' => [
-            'title' => 'Niezawodność',
+            'title' => 'Czas pracy',
             'graphs' => [
                 'server' => 'serwer',
                 'web' => 'strona',

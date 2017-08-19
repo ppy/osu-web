@@ -61,7 +61,9 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
     {
-        // no one but admin (not covered here) =D
+        if ($user !== null && $user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionDestroy($user, $discussion)
@@ -70,6 +72,10 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        if ($user->isQAT()) {
+            return 'ok';
+        }
 
         if ($user->user_id !== $discussion->user_id) {
             return;
@@ -89,11 +95,6 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        // no point resolving general discussion?
-        if ($discussion->timestamp === null) {
-            return $prefix.'general_discussion';
-        }
-
         if ($user->user_id === $discussion->user_id) {
             return 'ok';
         }
@@ -102,17 +103,27 @@ class OsuAuthorize
             return 'ok';
         }
 
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
         return $prefix.'not_owner';
     }
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        // no one but admin (not covered here) =D
+        if ($user !== null && $user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionShow($user, $discussion)
     {
         if ($discussion->deleted_at === null) {
+            return 'ok';
+        }
+
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -156,6 +167,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
         return 'ok';
     }
 
@@ -174,17 +189,27 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($user->isQAT()) {
+            return 'ok';
+        }
+
         return 'ok';
     }
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        // no one but admin (not covered here) =D
+        if ($user !== null && $user->isQAT()) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionPostShow($user, $post)
     {
         if ($post->deleted_at === null) {
+            return 'ok';
+        }
+
+        if ($user !== null && $user->isQAT()) {
             return 'ok';
         }
     }
@@ -195,11 +220,6 @@ class OsuAuthorize
         $this->ensureCleanRecord($user);
 
         return 'ok';
-    }
-
-    public function checkBeatmapsetNominatorsView($user, $beatmapset)
-    {
-        // no one but admin (not covered here) =D
     }
 
     public function checkBeatmapsetNominate($user, $beatmapset)
@@ -232,6 +252,21 @@ class OsuAuthorize
         if ($beatmapset->approved !== Beatmapset::STATES['qualified']) {
             return 'beatmap_discussion.disqualify.incorrect-state';
         }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetEventViewUserId($user, $event)
+    {
+        if ($user !== null && $user->isQAT()) {
+            return 'ok';
+        }
+    }
+
+    public function checkBeatmapsetDownload($user, $beatmapset)
+    {
+        // restricted users are still allowed to download
+        $this->ensureLoggedIn($user);
 
         return 'ok';
     }

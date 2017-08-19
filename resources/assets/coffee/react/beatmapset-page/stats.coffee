@@ -59,7 +59,7 @@ class BeatmapsetPage.Stats extends React.Component
       a
         href: '#'
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play"
-        'data-audio-url': @props.beatmapset.previewUrl
+        'data-audio-url': @props.beatmapset.preview_url
         el Icon,
           name: if @state.preview == 'ended' then 'play' else 'stop'
           parentClass: 'beatmapset-stats__preview-icon'
@@ -126,7 +126,7 @@ class BeatmapsetPage.Stats extends React.Component
 
 
   previewInitializing: (_e, {url, player}) =>
-    if url != @props.beatmapset.previewUrl
+    if url != @props.beatmapset.preview_url
       return @previewStop()
 
     @setState
@@ -135,7 +135,7 @@ class BeatmapsetPage.Stats extends React.Component
 
 
   previewStart: (_e, {url, player}) =>
-    if url != @props.beatmapset.previewUrl
+    if url != @props.beatmapset.preview_url
       return @previewStop()
 
     @setState

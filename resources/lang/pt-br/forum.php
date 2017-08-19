@@ -62,6 +62,7 @@ return [
     ],
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
+    'slogan' => 'é perigoso jogar sozinho.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -69,6 +70,8 @@ return [
                 'title' => 'Clique aqui para definir o título',
             ],
             'preview' => 'Pré-visualizar',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
         ],

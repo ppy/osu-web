@@ -20,26 +20,26 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> joueurs en ligne en ce moment dans <strong>:games</strong> parties',
-        'peak' => 'Pic, :count joueurs en ligne',
+        'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
+        'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
 
         'download' => [
-            '_' => 'Télécharger maitenant',
-            'soon' => "osu! pour d'autres systèmes d'exploitations à venir",
+            '_' => 'Télécharger maintenant',
+            'soon' => "osu! sera bientôt disponible sur d'autres plateformes",
             'for' => 'pour :os',
             'other' => 'cliquez ici pour :os1 ou :os2',
         ],
 
         'slogan' => [
-            'main' => 'simulateur de cercles free-to-win',
-            'sub' => 'Le rythme est à un seul clic',
+            'main' => 'jeu de rythme free-to-play',
+            'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
 
     'search' => [
         'advanced_link' => 'Recherche avancée',
-        'button' => 'Rechercher',
+        'button' => 'rechercher',
         'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
         'title' => 'Résultats de la Recherche',
@@ -118,6 +118,7 @@ return [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
             'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
+                'friends' => 'Amis en ligne',
                 'games' => 'Jeux',
                 'online' => 'Utilisateurs en ligne',
             ],

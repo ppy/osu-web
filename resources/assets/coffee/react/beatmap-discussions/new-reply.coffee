@@ -43,9 +43,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
       div
         className: "#{bn}__content"
-        div className: "#{bn}__avatar-container",
-          div className: "#{bn}__avatar",
-            el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
+        div className: "#{bn}__avatar",
+          el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
         div className: "#{bn}__message-container",
           textarea
@@ -61,7 +60,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @props.discussion.timestamp? && @canUpdate()
+            if @canBeResolved()
               div className: "#{bn}__action",
                 label
                   className: 'osu-checkbox'
@@ -83,6 +82,11 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
                 props:
                   disabled: !@validPost()
                   onClick: @throttledPost
+
+
+  canBeResolved: =>
+    @props.discussion.message_type in ['suggestion', 'problem'] &&
+      @canUpdate()
 
 
   canUpdate: =>

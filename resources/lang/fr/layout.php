@@ -27,15 +27,18 @@ return [
         'home' => [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
+            'friends' => 'amis',
+            'friends-index' => 'amis',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
+            'groups-show' => 'groupes',
             'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'actualités',
             'news-show' => 'actualités',
             'password-reset-index' => 'réinitialiser le mot de passe',
-            'search' => 'Rechercher',
+            'search' => 'rechercher',
             'supportTheGame' => 'supporter le jeu',
         ],
         'help' => [
@@ -50,11 +53,11 @@ return [
             'show' => 'info',
             'index' => 'liste',
             'artists' => 'artistes plébiscités',
-            // 'getPacks' => 'packs',
+            'packs' => 'collections',
             // 'getCharts' => 'graphiques',
         ],
         'beatmapsets' => [
-            '_' => 'sets de beatmap',
+            '_' => 'beatmaps',
             'discussion' => 'modding',
         ],
         'rankings' => [
@@ -222,7 +225,7 @@ return [
     'popup_login' => [
         'login' => [
             'email' => 'adresse e-mail',
-            'forgot' => "J'ai oublié mes détails de connexion",
+            'forgot' => "J'ai oublié mes identifiants",
             'password' => 'mot de passe',
             'title' => 'Se connecter pour continuer',
 
@@ -233,7 +236,7 @@ return [
         ],
 
         'register' => [
-            'info' => "Vous avez besoin d'un compte, monsieur. Pourquoi n'en avez vous pas ?",
+            'info' => "Vous avez besoin d'un compte, mon cher. Pourquoi n'en avez vous pas ?",
             'title' => "Vous n'avez pas de compte ?",
         ],
     ],
@@ -241,6 +244,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Paramètres',
+            'friends' => 'Amis',
             'logout' => 'Se déconnecter',
             'profile' => 'Mon profil',
         ],

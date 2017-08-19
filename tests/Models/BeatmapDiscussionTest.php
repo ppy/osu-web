@@ -36,13 +36,26 @@ class BeatmapDiscussionTest extends TestCase
 
         $invalidTimestamp = $beatmap->total_length * 1000 + 1;
 
-        // blank everything is fine (general)
+        // blank everything not fine
         $discussion = $this->newDiscussion($beatmapsetDiscussion);
+        $this->assertFalse($discussion->isValid());
+
+        // is valid with message_type
+        $discussion = $this->newDiscussion($beatmapsetDiscussion);
+        $discussion->fill(['message_type' => 'problem']);
         $this->assertTrue($discussion->isValid());
 
-        // just beatmap_id is fine (per-beatmap general)
+        // just beatmap_id is not fine (per-beatmap general)
         $discussion = $this->newDiscussion($beatmapsetDiscussion);
         $discussion->fill(['beatmap_id' => $beatmap->beatmap_id]);
+        $this->assertFalse($discussion->isValid());
+
+        // just beatmap_id is not fine (per-beatmap general)
+        $discussion = $this->newDiscussion($beatmapsetDiscussion);
+        $discussion->fill([
+            'beatmap_id' => $beatmap->beatmap_id,
+            'message_type' => 'problem',
+        ]);
         $this->assertTrue($discussion->isValid());
 
         // complete data is fine as well
@@ -53,11 +66,6 @@ class BeatmapDiscussionTest extends TestCase
         // just timestamp is not valid
         $discussion = $this->newDiscussion($beatmapsetDiscussion);
         $discussion->fill(['timestamp' => 0]);
-        $this->assertFalse($discussion->isValid());
-
-        // nor is just message_type
-        $discussion = $this->newDiscussion($beatmapsetDiscussion);
-        $discussion->fill(['message_type' => 'praise']);
         $this->assertFalse($discussion->isValid());
 
         // nor is wrong beatmap_id

@@ -25,7 +25,7 @@ return [
             'head-to-head' => 'Chacun pour soi',
             'tag-coop' => 'Tag en coopération',
             'team-vs' => 'Équipes en versus',
-            'tag-team-vs' => "Tag en versus d'équipe",
+            'tag-team-vs' => 'Tag en versus (2 équipes)',
         ],
         'events' => [
             'player-left' => ':user a quitté le match',
@@ -56,7 +56,7 @@ return [
             'red' => 'Équipe rouge',
         ],
         'winner' => ':team gagne',
-        'difference' => 'par :difference',
+        'difference' => 'de :difference points',
         'loading-events' => 'Chargement des évènements...',
         'more-events' => 'voir tout...',
         'beatmap-deleted' => 'beatmap supprimée',

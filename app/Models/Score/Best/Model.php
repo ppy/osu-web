@@ -22,6 +22,7 @@ namespace App\Models\Score\Best;
 
 use App\Libraries\ModsHelper;
 use App\Models\Score\Model as BaseModel;
+use App\Models\User;
 use Aws\S3\S3Client;
 use DB;
 use League\Flysystem\AwsS3v2\AwsS3Adapter;
@@ -35,7 +36,6 @@ abstract class Model extends BaseModel
         'forListing',
         'rankCounts',
         'userBest',
-        'userRank',
     ];
 
     public function getReplay()
@@ -141,18 +141,47 @@ abstract class Model extends BaseModel
         };
     }
 
-    public function macroUserRank()
+    public function userRank($options)
     {
-        return function ($query, $userScore) {
-            $newQuery = clone $query;
-            // FIXME: mysql 5.6 compat
-            $newQuery->getQuery()->orders = null;
+        $alwaysAccurate = false;
 
-            return 1 + $newQuery
-                ->limit(null)
-                ->where('score', '>', $userScore->score)
-                ->count(DB::raw('DISTINCT user_id'));
-        };
+        $query = static::on('mysql-readonly')
+            ->where('beatmap_id', '=', $this->beatmap_id)
+            ->where(function ($query) {
+                $query
+                    ->where('score', '>', $this->score)
+                    ->orWhere(function ($query2) {
+                        $query2
+                            ->where('score', '=', $this->score)
+                            ->where('score_id', '<', $this->getKey());
+                    });
+            });
+
+        if (isset($options['type'])) {
+            $query->withType($options['type'], ['user' => $this->user]);
+
+            if ($options['type'] === 'country') {
+                $alwaysAccurate = true;
+            }
+        }
+
+        if (isset($options['mods'])) {
+            $query->withMods($options['mods']);
+        }
+
+        $countQuery = DB::raw('DISTINCT user_id');
+
+        if ($alwaysAccurate) {
+            return 1 + $query->default()->count($countQuery);
+        }
+
+        $rank = 1 + $query->count($countQuery);
+
+        if ($rank < config('osu.beatmaps.max-scores') * 3) {
+            return 1 + $query->default()->count($countQuery);
+        } else {
+            return $rank;
+        }
     }
 
     public function macroUserBest()
@@ -254,6 +283,18 @@ abstract class Model extends BaseModel
         });
     }
 
+    public function scopeWithType($query, $type, $options)
+    {
+        switch ($type) {
+            case 'country':
+                $countryAcronym = $options['countryAcronym'] ?? $options['user']->country_acronym;
+
+                return $query->fromCountry($countryAcronym);
+            case 'friend':
+                return $query->friendsOf($options['user']);
+        }
+    }
+
     public function scopeFromCountry($query, $countryAcronym)
     {
         return $query->whereHas('user', function ($q) use ($countryAcronym) {
@@ -263,9 +304,11 @@ abstract class Model extends BaseModel
 
     public function scopeFriendsOf($query, $user)
     {
-        $userIds = model_pluck($user->friends(), 'zebra_id');
-        $userIds[] = $user->user_id;
+        return $query->whereIn('user_id', $user->friends()->pluck('user_id'));
+    }
 
-        return $query->whereIn('user_id', $userIds);
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

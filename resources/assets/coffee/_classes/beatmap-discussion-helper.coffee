@@ -18,6 +18,8 @@
 
 class @BeatmapDiscussionHelper
   @formatTimestamp: (value) =>
+    return unless value?
+
     ms = value % 1000
     s = Math.floor(value / 1000) % 60
     # remaning duration goes here even if it's over an hour
@@ -28,11 +30,13 @@ class @BeatmapDiscussionHelper
 
   # don't forget to update BeatmapDiscussionsController@show
   # when changing this.
-  @hash: ({beatmapId, discussionId} = {}) =>
+  @hash: ({beatmapId, discussionId, isEvents} = {}) =>
     if discussionId?
       "#/#{discussionId}"
     else if beatmapId?
       "#:#{beatmapId}"
+    else if isEvents
+      '#events'
     else
       ''
 
@@ -53,6 +57,8 @@ class @BeatmapDiscussionHelper
       discussionId: id
     else if hash[0] == ':'
       beatmapId: id
+    else if hash == 'events'
+      mode: 'events'
     else
       {}
 

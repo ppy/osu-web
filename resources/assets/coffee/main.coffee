@@ -30,11 +30,13 @@ $(document).on 'submit', 'form', (e) ->
   LoadingOverlay.show() if e.currentTarget.dataset.loadingOverlay != '0'
 
 $(document).on 'turbolinks:load', ->
+  BeatmapPack.initialize()
   StoreSupporterTag.initialize()
 
 @accountEdit ?= new AccountEdit
 @accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
+@beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
 @editorZoom ?= new EditorZoom
@@ -96,6 +98,7 @@ reactTurbolinks.register 'countdownTimer', CountdownTimer, (e) ->
 
 # Globally init friend buttons
 reactTurbolinks.register 'friendButton', FriendButton, (target) ->
+  container: target
   user_id: parseInt(target.dataset.target)
 
 reactTurbolinks.register 'beatmapset-panel', BeatmapsetPanel, (el) ->
