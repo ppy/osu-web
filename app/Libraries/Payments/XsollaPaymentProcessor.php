@@ -68,15 +68,16 @@ class XsollaPaymentProcessor extends PaymentProcessor
     {
         $this->ensureValidSignature();
 
-        // order should exist
-        if ($this->order === null) {
-            $this->addError('order is not valid');
-            return;
-        }
-
         // received notification_type should be payment
         if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
             $this->addError("notification_type is not valid: '{$this['notification_type']}'");
+        }
+
+        $order = $this->getOrder();
+        // order should exist
+        if ($order === null) {
+            $this->addError('order is not valid');
+            return;
         }
 
         // id in order number should be correct
@@ -86,17 +87,18 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->addError('order number is busted');
         }
 
-        if (intval($exploded[1]) !== $this->order['user_id']) {
+        if ((int) $exploded[1] !== $order['user_id']) {
             $this->addError('mismatching user_id');
         }
 
         // order_id in order number should be correct
-        if (intval($exploded[2]) !== $this->order['order_id']) {
-            $this->addError('mismatching order_id');
-        }
+        // this can't be used if using the xsolla api tester
+        // if ((int) $exploded[2] !== $order['order_id']) {
+        //     $this->addError('mismatching order_id');
+        // }
 
         // order should be in the correct state
-        // if ($this->order->status !== 'checkout') {
+        // if ($order->status !== 'checkout') {
         //     $this->addError('Order must be checked out first.');
         // }
 
@@ -104,7 +106,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->addError('payment received should be USD.');
         }
 
-        if ($this['purchase.checkout.amount'] < $this->order->getTotal()) {
+        if ($this['purchase.checkout.amount'] < $order->getTotal()) {
             $this->addError('payment amount is too low');
         }
     }

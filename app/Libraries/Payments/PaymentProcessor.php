@@ -37,7 +37,6 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         $this->request = $request;
         $this->json = $request->json()->all();
-        $this->order = Order::find($this->getOrderId()); // remove query from constructor
     }
 
     abstract public function getOrderId();
@@ -50,16 +49,18 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function apply()
     {
         DB::connection('mysql-store')->transaction(function () {
-            $this->order->paid($this->getTransactionId(), $this->getPaymentDate());
-            event(new PaymentCompleted($this->order));
+            $order = $this->getOrder();
+            $order->paid($this->getTransactionId(), $this->getPaymentDate());
+            event(new PaymentCompleted($order));
         });
     }
 
     public function cancel()
     {
         DB::connection('mysql-store')->transaction(function () {
-            $this->order->cancel();
-            event(new PaymentCancelled($this->order));
+            $order = $this->getOrder();
+            $order->cancel();
+            event(new PaymentCancelled($order));
         });
     }
 
@@ -83,5 +84,14 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function offsetUnset($key)
     {
         throw new \Exception('not supported');
+    }
+
+    protected function getOrder()
+    {
+        if (!isset($this->order)) {
+            $this->order = Order::find($this->getOrderId());
+        }
+
+        return $this->order;
     }
 }
