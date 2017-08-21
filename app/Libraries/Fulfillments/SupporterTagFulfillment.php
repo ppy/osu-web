@@ -28,10 +28,9 @@ use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
 {
-    private $minimumRequired = 0; // do not read this field outside of minimumRequired()
     private $fulfillers;
-
     private $orderItems;
+    private $minimumRequired = 0; // do not read this field outside of minimumRequired()
 
     public function run()
     {
@@ -62,6 +61,7 @@ class SupporterTagFulfillment extends OrderFulfiller
         $giftees = [];
         $donationTotal = $items->sum('cost');
         $length = 0;
+
         foreach ($items as $item) {
             $length += (int) $item['extra_data']['duration'];
             $targetId = $item['extra_data']['target_id'];
