@@ -35,16 +35,23 @@ class FulfillmentFactory
     {
         $items = $this->order->items()->get();
         foreach ($items as $item) {
-            $this->findOrCreateFulfiller($item->product['custom_class']);
+            $this->findOrCreateFulfiller(presence($item->product['custom_class']));
         }
 
         return $this->fulfillers;
     }
 
+    /**
+     * Creates or finds a matching OrderFilfiller implementation.
+     *
+     * @param string $type The custom-class of the OrderItem to find a fulfiller for.
+     * 'generic' and null are considered to be the same.
+     * @return OrderFulfiller
+     */
     private function findOrCreateFulfiller($type)
     {
         if ($type === null) {
-            return;
+            $type = 'generic';
         }
 
         if (isset($this->fulfillers[$type])) {
@@ -52,8 +59,11 @@ class FulfillmentFactory
         }
 
         $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
+        if (!class_exists($className)) {
+            throw new InvalidFulfillerException($className);
+        }
+
         $this->fulfillers[$type] = new $className($this->order);
-        // should throw if not found
 
         return $this->fulfillers[$type];
     }

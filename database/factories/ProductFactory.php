@@ -12,6 +12,18 @@
 |
 */
 
+$factory->define(App\Models\Store\Product::class, function (Faker\Generator $faker) {
+    return  [
+        'name' => 'Imagination / '.$faker->colorName,
+        'cost' => 16.00,
+        'weight' => 100,
+        'base_shipping' => 5.00,
+        'next_shipping' => 4.00,
+        'stock' => rand(1, 100),
+        'max_quantity' => 1,
+    ];
+});
+
 $factory->defineAs(App\Models\Store\Product::class, 'master_tshirt', function (Faker\Generator $faker) {
     return  [
         'name' => 'osu! t-shirt (triangles) / '.$faker->colorName,
