@@ -181,9 +181,6 @@ Route::delete('session', 'SessionsController@destroy')->name('logout');
 Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
 Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
-Route::get('users/register', function () {
-    return Redirect::to('https://osu.ppy.sh/p/register');
-})->name('users.register');
 Route::get('users/{id}/card', 'UsersController@card')->name('users.card');
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
@@ -326,11 +323,6 @@ Route::get('news/{id}', function ($id) {
 Route::get('mp/{match}', function ($match) {
     return ujs_redirect(route('matches.show', compact('match')));
 });
-
-// soon-to-be notifications
-Route::get('notifications', ['as' => 'notifications.index', function () {
-    return Redirect::to('https://osu.ppy.sh/forum/ucp.php?i=pm&folder=inbox');
-}]);
 
 Route::get('wiki', function () {
     return ujs_redirect(route('wiki'));

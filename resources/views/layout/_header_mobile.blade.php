@@ -38,7 +38,7 @@
                 <div class="navbar-mobile__header-section">
                     @if (Auth::check())
                         <a
-                            href="{{ route('notifications.index') }}"
+                            href="{{ osu_url('user.inbox') }}"
                             class="notification-icon notification-icon--mobile{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                         >
                             <i class="fa fa-lg fa-fw fa-inbox notification-icon__inbox"></i>

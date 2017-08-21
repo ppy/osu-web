@@ -67,7 +67,7 @@
         @if (Auth::check())
             <div class="osu-nav__col">
                 <a
-                    href="{{ route('notifications.index') }}"
+                    href="{{ osu_url('user.inbox') }}"
                     class="notification-icon{{Auth::user()->notificationCount() > 0 ? ' notification-icon--glow' : ''}}"
                 >
                     @if (Auth::user()->notificationCount() > 0)
