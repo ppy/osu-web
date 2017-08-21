@@ -42,6 +42,8 @@ class SupporterTagFulfillment extends OrderFulfiller
         foreach ($fulfillers as $fulfiller) {
             $fulfiller->run();
         }
+
+        $this->afterRun();
     }
 
     public function revoke()
@@ -53,7 +55,7 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
     }
 
-    public function afterRun()
+    private function afterRun()
     {
         $items = $this->getOrderItems();
         $donor = $this->order->user;

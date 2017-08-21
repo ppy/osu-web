@@ -37,16 +37,6 @@ abstract class OrderFulfiller implements Fulfillable
     abstract public function run();
     abstract public function revoke();
 
-    public function afterRun()
-    {
-        // default implementation does nothing.
-    }
-
-    public function afterRevoke()
-    {
-        // default implementation does nothing.
-    }
-
     protected function throwOnFail($valid)
     {
         if (!$valid) {
