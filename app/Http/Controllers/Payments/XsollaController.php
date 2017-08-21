@@ -76,7 +76,8 @@ class XsollaController extends Controller
     public function callback(Request $request)
     {
         $processor = new XsollaPaymentProcessor($request->getFacadeRoot());
-        if ($processor->getNotificationType() === 'user_search') {
+        \Log::debug($processor->getNotificationType());
+        if ($processor->isSkipped()) {
             // skip user_search notification
             return '';
         }
@@ -93,16 +94,15 @@ class XsollaController extends Controller
                 default:
                     abort(500);
             }
-
         } catch (FulfillmentException $e) {
             \Log::error($e->getMessage());
             // So I can see things with curl :D
             return response($e->getMessage(), 422);
         } catch (InvalidSignatureException $e) {
-            return response($e->getMessage(), 422);
+            return response('INVALID_SIGNATURE', 422);
         } catch (\Exception $e) {
             \Log::error($e);
-            return 'rip';
+            return response($e->getMessage(), 500);
         }
 
         return 'whee';

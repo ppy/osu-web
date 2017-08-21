@@ -29,10 +29,28 @@ use DB;
 class XsollaPaymentProcessor extends PaymentProcessor
 {
     const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
+    const SKIP_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
+
+    private $explodedOrderNumber;
+    private $orderId;
+
+    public function __construct(\Illuminate\Http\Request $request)
+    {
+        parent::__construct($request);
+        $this->explodedOrderNumber = explode('-', $this['transaction.external_id'], 3);
+        if (count($this->explodedOrderNumber) > 2) {
+            $this->orderId = (int) $this->explodedOrderNumber[2];
+        }
+    }
+
+    public function isSkipped()
+    {
+        return in_array($this->getNotificationType(), static::SKIP_NOTIFICATION_TYPES, true);
+    }
 
     public function getOrderId()
     {
-        return $this['custom_parameters.order_id'];
+        return $this->orderId;
     }
 
     public function getOrderNumber()
@@ -81,19 +99,17 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         // id in order number should be correct
-        $orderNumber = $this->getOrderNumber();
-        $exploded = explode('-', $orderNumber, 3);
-        if (count($exploded) !== 3) {
+        if (count($this->explodedOrderNumber) !== 3) {
             $this->addError('order number is busted');
         }
 
-        if ((int) $exploded[1] !== $order['user_id']) {
+        if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
             $this->addError('mismatching user_id');
         }
 
         // order_id in order number should be correct
         // this can't be used if using the xsolla api tester
-        // if ((int) $exploded[2] !== $order['order_id']) {
+        // if ((int) $this->explodedOrderNumber[2] !== $order['order_id']) {
         //     $this->addError('mismatching order_id');
         // }
 

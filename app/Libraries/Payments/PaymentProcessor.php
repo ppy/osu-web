@@ -46,6 +46,14 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function validateTransaction();
     abstract public function getNotificationType();
 
+    /**
+     * Tells callers to ignore this notification
+     */
+    public function isSkipped()
+    {
+        return false;
+    }
+
     public function apply()
     {
         DB::connection('mysql-store')->transaction(function () {
