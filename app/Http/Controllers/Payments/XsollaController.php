@@ -23,7 +23,7 @@ namespace App\Http\Controllers\Payments;
 use App\Exceptions\InvalidSignatureException;
 use App\Http\Controllers\Controller;
 use App\Libraries\Fulfillments\FulfillmentException;
-use App\Libraries\Payments\XsollaPaymentFulfillment;
+use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
 use Auth;
 use Request;
@@ -75,7 +75,7 @@ class XsollaController extends Controller
     }
     public function callback(Request $request)
     {
-        $processor = new XsollaPaymentFulfillment($request->getFacadeRoot());
+        $processor = new XsollaPaymentProcessor($request->getFacadeRoot());
 
         try {
             $processor->validateTransaction();
@@ -83,7 +83,7 @@ class XsollaController extends Controller
                 case 'payment':
                     $processor->apply();
                     break;
-                case 'cancel':
+                case 'refund':
                     $processor->cancel();
                     break;
                 default:

@@ -27,7 +27,7 @@ use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
 
-abstract class PaymentFulfillment implements \ArrayAccess
+abstract class PaymentProcessor implements \ArrayAccess
 {
     private $json;
     protected $order;

@@ -23,7 +23,7 @@ namespace Tests;
 use Config;
 use TestCase;
 
-class XsollaPaymentFulfillmentTest extends TestCase
+class XsollaPaymentProcessorTest extends TestCase
 {
     public function setUp()
     {

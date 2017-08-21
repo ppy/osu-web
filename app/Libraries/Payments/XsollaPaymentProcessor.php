@@ -26,7 +26,7 @@ use Carbon\Carbon;
 use DB;
 
 // FIXME: rename?
-class XsollaPaymentFulfillment extends PaymentFulfillment
+class XsollaPaymentProcessor extends PaymentProcessor
 {
     const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
 
