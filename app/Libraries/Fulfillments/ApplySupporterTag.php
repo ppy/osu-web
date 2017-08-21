@@ -18,17 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Fulfillments\Subcommands;
+namespace App\Libraries\Fulfillments;
 
 use App\Models\User;
 use App\Models\UserDonation;
 use Carbon\Carbon;
 use DB;
 
-class ApplySupporterTag extends StoreTransactionFulfillment
+/**
+ * Applies a Supporter Tag donation from a store transaction.
+ */
+class ApplySupporterTag extends OrderItemFulfillment
 {
     private $donor;
     private $target;
+
+    private $donorId;
+    private $targetId;
+    private $duration;
+    private $amount;
+
+    public function __construct($orderItem)
+    {
+        parent::__construct($orderItem);
+        $this->donorId = $orderItem->order->user_id;
+        $this->targetId = $orderItem->extra_data['target_id'];
+        $this->duration = (int) $orderItem->extra_data['duration'];
+        $this->amount = $orderItem->cost;
+    }
 
     private function assignUsers()
     {
@@ -37,15 +54,20 @@ class ApplySupporterTag extends StoreTransactionFulfillment
     }
     public function cancelledTransactionId()
     {
-        return "{$this->transactionId}-cancel";
+        return "{$this->getTransactionId()}-cancel";
     }
 
+    /**
+     * Performs the opration.
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the donor or target could not be found.
+     */
     public function run()
     {
         DB::transaction(function () {
             // check if transaction was already applied.
-            if (UserDonation::where('transaction_id', $this->transactionId)->count() > 0) {
-                \Log::info("{$this->transactionId} already exists in UserDonations!");
+            if (UserDonation::where('transaction_id', $this->getTransactionId())->count() > 0) {
+                \Log::info("{$this->getTransactionId()} already exists in UserDonations!");
                 return;
             }
 
@@ -61,6 +83,11 @@ class ApplySupporterTag extends StoreTransactionFulfillment
         });
     }
 
+    /**
+     * Revokes the operation.
+     *
+     * @throws Illuminate\Database\Eloquent\ModelNotFoundException If the donor or target could not be found.
+     */
     public function revoke()
     {
         DB::transaction(function () {
@@ -70,9 +97,9 @@ class ApplySupporterTag extends StoreTransactionFulfillment
                 return;
             }
 
-            $donations = UserDonation::where('transaction_id', $this->transactionId)->get();
+            $donations = UserDonation::where('transaction_id', $this->getTransactionId())->get();
             if ($donations->count() === 0) {
-                \Log::info("{$this->transactionId} nothing to revoke!");
+                \Log::info("{$this->getTransactionId()} nothing to revoke!");
                 return;
             }
 
@@ -98,7 +125,7 @@ class ApplySupporterTag extends StoreTransactionFulfillment
     private function applyDonation()
     {
         $donation = new UserDonation();
-        $donation['transaction_id'] = $this->transactionId;
+        $donation['transaction_id'] = $this->getTransactionId();
         $donation['user_id'] = $this->donorId;
         $donation['target_user_id'] = $this->targetId;
         $donation['length'] = $this->duration;

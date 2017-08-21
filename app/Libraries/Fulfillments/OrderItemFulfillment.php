@@ -18,31 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Fulfillments\Subcommands;
+namespace App\Libraries\Fulfillments;
 
 use App\Libraries\Fulfillments\Fulfillable;
 
-abstract class StoreTransactionFulfillment implements Fulfillable
+abstract class OrderItemFulfillment implements Fulfillable
 {
-    protected $transactionId;
+    protected $orderItem;
 
-    private $params;
-
-    public function __construct($transactionId, $params)
+    public function __construct($orderItem)
     {
-        if (!present($transactionId)) {
-            throw new MissingTransactionIdException();
-        }
-
-        $this->transactionId = $transactionId;
-        $this->params = $params;
+        $this->orderItem = $orderItem;
     }
 
-    /**
-     * Wrapper around $this->params
-     */
-    public function __get($key)
+    public function getTransactionId()
     {
-        return $this->params[$key];
+        return "{$this->orderItem->order->transaction_id}-{$this->orderItem->id}";
     }
 }

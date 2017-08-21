@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Libraries\Fulfillments\Subcommands\ApplySupporterTag;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
@@ -30,7 +29,7 @@ use Mail;
 class SupporterTagFulfillment extends OrderFulfiller
 {
     private $minimumRequired = 0; // do not read this field outside of minimumRequired()
-    private $commands;
+    private $fulfillers;
 
     private $orderItems;
 
@@ -38,19 +37,19 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $this->throwOnFail($this->validateRun());
 
-        $commands = $this->getCommands();
+        $fulfillers = $this->getOrderItemFulfillers();
 
-        foreach ($commands as $command) {
-            $command->run();
+        foreach ($fulfillers as $fulfiller) {
+            $fulfiller->run();
         }
     }
 
     public function revoke()
     {
-        $commands = $this->getCommands();
+        $fulfillers = $this->getOrderItemFulfillers();
 
-        foreach ($commands as $command) {
-            $command->revoke();
+        foreach ($fulfillers as $fulfiller) {
+            $fulfiller->revoke();
         }
     }
 
@@ -65,7 +64,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             $length += (int) $item['extra_data']['duration'];
             $targetId = $item['extra_data']['target_id'];
             $target = User::find($targetId);
-            // TODO: warn is user doesn't exist, but don't explode.
+            // TODO: warn if user doesn't exist, but don't explode.
             if ($donor->getKey() != $target->getKey()) {
                 $giftees[$targetId] = $target;
             }
@@ -106,30 +105,30 @@ class SupporterTagFulfillment extends OrderFulfiller
         return $this->orderItems;
     }
 
-    private function getCommands()
+    private function getOrderItemFulfillers()
     {
-        if (!isset($this->commands)) {
+        if (!isset($this->fulfillers)) {
             $items = $this->getOrderItems();
             \Log::debug($items);
-            $commands = [];
+            $fulfillers = [];
             foreach ($items as $item) {
-                $commands[] = $this->createCommand($item);
+                $fulfillers[] = $this->createFulfiller($item);
             }
 
-            $this->commands = $commands;
+            $this->fulfillers = $fulfillers;
         }
 
-        return $this->commands;
+        return $this->fulfillers;
     }
 
     private function minimumRequired()
     {
-        $this->getCommands();
+        $this->getOrderItemFulfillers();
 
         return $this->minimumRequired;
     }
 
-    private function createCommand(OrderItem $item)
+    private function createFulfiller(OrderItem $item)
     {
         $extraData = $item['extra_data'];
         $targetId = (int) $extraData['target_id'];
@@ -145,7 +144,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             'amount' => $item['cost'],
         ];
 
-        return new ApplySupporterTag("{$this->order['transaction_id']}-{$item['id']}", $params);
+        return new ApplySupporterTag($item);
     }
 
     //================
