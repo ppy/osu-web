@@ -28,7 +28,7 @@ use DB;
 // FIXME: rename?
 class XsollaPaymentFulfillment extends PaymentFulfillment
 {
-    const VALID_NOTIFICATION_TYPES = ['payment', 'cancel'];
+    const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
 
     public function getOrderId()
     {

@@ -23,13 +23,13 @@ namespace App\Listeners\Fulfillment;
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\PaymentFailed;
-use App\Libraries\Fulfillments\Fulfillment;
+use App\Libraries\Fulfillments\FulfillmentFactory;
 
 class PaymentsSubscriber
 {
     public function onPaymentCompleted($event)
     {
-        $fulfillers = Fulfillment::createFulfillersFor($event->order);
+        $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         \Log::debug('onPaymentCompleted:');
         \Log::debug(array_keys($fulfillers));
 
@@ -42,7 +42,7 @@ class PaymentsSubscriber
 
     public function onPaymentCancelled($event)
     {
-        $fulfillers = Fulfillment::createFulfillersFor($event->order);
+        $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         \Log::debug('onPaymentCancelled');
         \Log::debug(array_keys($fulfillers));
 

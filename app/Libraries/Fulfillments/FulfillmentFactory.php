@@ -22,7 +22,7 @@ namespace App\Libraries\Fulfillments;
 
 use App\Models\Store\Order;
 
-class Fulfillment
+class FulfillmentFactory
 {
     private $order;
 
