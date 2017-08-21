@@ -182,18 +182,12 @@ Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
-    Route::get('wiki/{page}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
+    Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
-    Route::get('wiki', function () {
-        return ujs_redirect(wiki_url());
-    })->name('wiki');
+    Route::get('/', 'RedirectController')->name('redirect.wiki.show');
 
     Route::get('support', 'HelpController@getSupport')->name('support');
     Route::get('faq', 'HelpController@getFaq')->name('faq');
-
-    Route::get('/', function () {
-        return ujs_redirect(wiki_url());
-    });
 });
 
 // FIXME: someone split this crap up into proper controllers
@@ -285,19 +279,13 @@ Route::get('forum/t/{topic}', 'RedirectController')->name('redirect.forum.topics
 Route::get('forum/{forum}', 'RedirectController')->name('redirect.forum.forums.show');
 // redirects to beatmapset anyways so there's no point
 // in having an another redirect on top of that
-Route::get('wiki', function () {
-    return ujs_redirect(route('wiki'));
-})->where('page', '.+');
-
-Route::get('wiki/{page}', function ($page) {
-    return ujs_redirect(route('wiki.show', compact('page')));
-})->where('page', '.+');
 Route::get('b/{beatmap}', 'BeatmapsController@show');
 Route::get('g/{group}', 'RedirectController')->name('redirect.groups.show');
 Route::get('s/{beatmapset}', 'RedirectController')->name('redirect.beatmapsets.show');
 Route::get('u/{user}', 'RedirectController')->name('redirect.users.show');
 Route::get('forum', 'RedirectController')->name('redirect.forum.forums.index');
 Route::get('mp/{match}', 'RedirectController')->name('redirect.matches.show');
+Route::get('wiki/{page?}', 'RedirectController')->name('redirect.wiki.show');
 
 // status
 if (Config::get('app.debug')) {

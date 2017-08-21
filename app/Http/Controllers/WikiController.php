@@ -30,8 +30,12 @@ class WikiController extends Controller
     protected $section = 'help';
     protected $actionPrefix = 'wiki-';
 
-    public function show($path)
+    public function show($path = null)
     {
+        if ($path === null) {
+            return ujs_redirect(route('wiki.show', 'Welcome'));
+        }
+
         $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
         $imageExtensions = ['gif', 'jpeg', 'jpg', 'png'];
 
