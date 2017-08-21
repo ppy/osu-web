@@ -133,18 +133,10 @@ class SupporterTagFulfillment extends OrderFulfiller
     private function createFulfiller(OrderItem $item)
     {
         $extraData = $item['extra_data'];
-        $targetId = (int) $extraData['target_id'];
         $duration = (int) $extraData['duration'];
         $minimum = SupporterTag::getMinimumDonation($duration);
 
         $this->minimumRequired += $minimum;
-
-        $params = [
-            'donorId' => $this->order['user_id'],
-            'targetId' => $targetId,
-            'duration' => $duration,
-            'amount' => $item['cost'],
-        ];
 
         return new ApplySupporterTag($item);
     }
