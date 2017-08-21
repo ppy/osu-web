@@ -43,9 +43,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 
         Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
 
-        Route::get('/', function () {
-            return ujs_redirect(route('admin.store.orders.index'));
-        });
+        Route::get('/', '\App\Http\Controllers\RedirectController')->name('redirect.admin.store.orders.index');
     });
 });
 
@@ -93,9 +91,7 @@ Route::group(['prefix' => 'community'], function () {
     Route::post('tournaments/{tournament}/register', 'TournamentsController@register')->name('tournaments.register');
     Route::resource('tournaments', 'TournamentsController');
 
-    Route::get('profile/{id}', function ($id) {
-        return ujs_redirect(route('users.show', $id));
-    });
+    Route::get('profile/{id}', 'RedirectController')->name('redirect.users.show');
 
     Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
         Route::group(['prefix' => 'forums'], function () {
@@ -281,44 +277,14 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return ujs_redirect(route('home'));
-});
+Route::get('/', 'RedirectController')->name('redirect.home');
 
 // redirects go here
-Route::get('forum/p/{post}', function ($post) {
-    return ujs_redirect(route('forum.posts.show', compact('post')));
-});
-Route::get('forum/t/{topic}', function ($topic) {
-    return ujs_redirect(route('forum.topics.show', compact('topic')));
-});
-Route::get('forum/{forum}', function ($forum) {
-    return ujs_redirect(route('forum.forums.show', compact('forum')));
-});
+Route::get('forum/p/{post}', 'RedirectController')->name('redirect.forum.posts.show');
+Route::get('forum/t/{topic}', 'RedirectController')->name('redirect.forum.topics.show');
+Route::get('forum/{forum}', 'RedirectController')->name('redirect.forum.forums.show');
 // redirects to beatmapset anyways so there's no point
 // in having an another redirect on top of that
-Route::get('b/{beatmap}', ['uses' => 'BeatmapsController@show']);
-
-Route::get('g/{group}', function ($group) {
-    return ujs_redirect(route('groups.show', compact('group')));
-});
-
-Route::get('s/{beatmapset}', function ($beatmapset) {
-    return ujs_redirect(route('beatmapsets.show', compact('beatmapset')));
-});
-
-Route::get('u/{user}', function ($user) {
-    return ujs_redirect(route('users.show', compact('user')));
-});
-
-Route::get('forum', function () {
-    return ujs_redirect(route('forum.forums.index'));
-});
-
-Route::get('mp/{match}', function ($match) {
-    return ujs_redirect(route('matches.show', compact('match')));
-});
-
 Route::get('wiki', function () {
     return ujs_redirect(route('wiki'));
 })->where('page', '.+');
@@ -326,6 +292,12 @@ Route::get('wiki', function () {
 Route::get('wiki/{page}', function ($page) {
     return ujs_redirect(route('wiki.show', compact('page')));
 })->where('page', '.+');
+Route::get('b/{beatmap}', 'BeatmapsController@show');
+Route::get('g/{group}', 'RedirectController')->name('redirect.groups.show');
+Route::get('s/{beatmapset}', 'RedirectController')->name('redirect.beatmapsets.show');
+Route::get('u/{user}', 'RedirectController')->name('redirect.users.show');
+Route::get('forum', 'RedirectController')->name('redirect.forum.forums.index');
+Route::get('mp/{match}', 'RedirectController')->name('redirect.matches.show');
 
 // status
 if (Config::get('app.debug')) {
