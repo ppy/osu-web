@@ -76,6 +76,10 @@ class XsollaController extends Controller
     public function callback(Request $request)
     {
         $processor = new XsollaPaymentProcessor($request->getFacadeRoot());
+        if ($processor->getNotificationType() === 'user_search') {
+            // skip user_search notification
+            return '';
+        }
 
         try {
             $processor->validateTransaction();
