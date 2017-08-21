@@ -315,11 +315,6 @@ Route::get('forum', function () {
     return ujs_redirect(route('forum.forums.index'));
 });
 
-// temporary news redirect
-Route::get('news/{id}', function ($id) {
-    return Redirect::to("https://osu.ppy.sh/news/{$id}");
-});
-
 Route::get('mp/{match}', function ($match) {
     return ujs_redirect(route('matches.show', compact('match')));
 });
