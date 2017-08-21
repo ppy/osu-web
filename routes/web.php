@@ -161,15 +161,7 @@ Route::group(['prefix' => 'home'], function () {
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
-// ranking section
-Route::get('/rankings/{mode?}', function ($mode = 'osu') {
-    if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
-        abort(404);
-    }
-
-    return Redirect::route('rankings', ['mode' => $mode, 'type' => 'performance']);
-});
-Route::get('/rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
+Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
