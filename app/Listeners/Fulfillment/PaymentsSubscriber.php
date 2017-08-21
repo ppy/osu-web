@@ -34,7 +34,7 @@ class PaymentsSubscriber
         \Log::debug(array_keys($fulfillers));
 
         // This should probably be shoved off into a queue processor somewhere...
-        foreach ($fulfillers as $type => $fulfiller) {
+        foreach ($fulfillers as $fulfiller) {
             $fulfiller->run();
         }
     }
@@ -46,7 +46,7 @@ class PaymentsSubscriber
         \Log::debug(array_keys($fulfillers));
 
         // This should probably be shoved off into a queue processor somewhere...
-        foreach ($fulfillers as $type => $fulfiller) {
+        foreach ($fulfillers as $fulfiller) {
             $fulfiller->revoke();
         }
     }

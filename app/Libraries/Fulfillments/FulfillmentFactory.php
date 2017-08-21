@@ -62,6 +62,7 @@ class FulfillmentFactory
     {
         $builder = new static($order);
 
-        return $builder->createFulfillers();
+        $fulfillerMap =  $builder->createFulfillers();
+        return array_values($fulfillerMap);
     }
 }
