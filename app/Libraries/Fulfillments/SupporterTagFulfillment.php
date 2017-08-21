@@ -84,6 +84,8 @@ class SupporterTagFulfillment extends OrderFulfiller
 
     private function validateRun()
     {
+        $this->validationErrors()->reset();
+
         \Log::debug("total: {$this->order->getTotal()}, required: {$this->minimumRequired()}");
         if ($this->order->getTotal() < $this->minimumRequired()) {
             $this->validationErrors()->addError(

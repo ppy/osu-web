@@ -50,8 +50,11 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
     private function validateRun()
     {
+        $this->validationErrors()->reset();
+
         $user = $this->order->user;
         $items = $this->getOrderItems();
+
         if ($items->count() !== 1) {
             $this->validationErrors()->add('count', 'only_one');
         }
@@ -74,6 +77,8 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
     private function validateRevoke()
     {
+        $this->validationErrors()->reset();
+
         $user = $this->order->user;
 
         if ($user['username'] !== $this->getNewUsername()) {
