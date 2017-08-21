@@ -83,7 +83,11 @@ class XsollaController extends Controller
         }
 
         try {
-            $processor->validateTransaction();
+            if (!$processor->validateTransaction()) {
+                \Log::error(implode($processor->validationErrors()->allMessages(), "\n"));
+                return response('validation failed', 422);
+            }
+
             switch ($processor->getNotificationType()) {
                 case 'payment':
                     $processor->apply();

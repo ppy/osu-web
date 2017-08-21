@@ -22,12 +22,15 @@ namespace App\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
 // FIXME: rename?
 class XsollaPaymentProcessor extends PaymentProcessor
 {
+    use Validatable;
+
     const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
     const SKIP_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
@@ -122,14 +125,35 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->addError('payment received should be USD.');
         }
 
+        \Log::debug("purchase.checkout.amount: {$this['purchase.checkout.amount']}, {$order->getTotal()}");
         if ($this['purchase.checkout.amount'] < $order->getTotal()) {
             $this->addError('payment amount is too low');
         }
+
+        return $this->validationErrors()->isEmpty();
     }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'payments';
+    }
+
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation/';
+    }
+
+    protected function eventForValidationError()
+    {
+        return null;
+    }
+
 
     private function addError($message)
     {
-        // TODO: add to dictionary?
-        throw new \Exception($message);
+        $this->validationErrors()->add(
+            $message,
+            $message
+        );
     }
 }
