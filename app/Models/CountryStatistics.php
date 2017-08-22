@@ -38,9 +38,6 @@ class CountryStatistics extends Model
             ->select(DB::raw('sum(ranked_score) AS ranked_score, sum(playcount) AS playcount, count(*) AS usercount, sum(rank_score) AS rank_score'))
             ->first();
 
-        $statQuery = static::where('country_code', $countryAcronym)->where('mode', $modeInt);
-        $currentStats = $statQuery->get();
-
         if ($stats->ranked_score > 0) {
             self::updateOrCreate([
                 'country_code' => $countryAcronym,
