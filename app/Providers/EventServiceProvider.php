@@ -37,6 +37,7 @@ class EventServiceProvider extends ServiceProvider
         Listeners\Forum\MarkTopicRead::class,
         Listeners\Forum\NotifyEmail::class,
         Listeners\Forum\NotifySlack::class,
+        Listeners\Fulfillment\GenericSubscriber::class,
         Listeners\Fulfillment\PaymentsSubscriber::class,
         Listeners\Fulfillment\ValidationSubscribers::class,
     ];

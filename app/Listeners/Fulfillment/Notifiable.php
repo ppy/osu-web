@@ -28,4 +28,9 @@ trait Notifiable
     {
         Slack::to('test-hooks')->send($text);
     }
+
+    public function notifyOrder($order, $text)
+    {
+        Slack::to('test-hooks')->send("`Order {$order->order_id}:` {$text}");
+    }
 }

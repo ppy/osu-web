@@ -36,7 +36,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->changeUsername($this->getNewUserName());
-        event(new UsernameChanged($user));
+        event(new UsernameChanged($user, $this->order));
     }
 
     public function revoke()
@@ -45,7 +45,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->revertUsername();
-        event(new UsernameReverted($user));
+        event(new UsernameReverted($user, $this->order));
     }
 
     private function validateRun()

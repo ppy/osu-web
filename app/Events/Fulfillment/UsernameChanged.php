@@ -20,13 +20,15 @@
 
 namespace App\Events\Fulfillment;
 
+use App\Models\Store\Order;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 
 class UsernameChanged
 {
-    public function __construct(User $user)
+    public function __construct(User $user, Order $order)
     {
         $this->user = $user;
+        $this->order = $order;
     }
 }
