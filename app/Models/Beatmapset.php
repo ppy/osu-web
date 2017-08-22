@@ -90,7 +90,7 @@ class Beatmapset extends Model
         'page' => 1,
     ];
 
-    const NOMINATIONS_PER_DAY = 1;
+    const NOMINATIONS_PER_DAY = 3;
     const QUALIFICATIONS_PER_DAY = 6;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
