@@ -38,6 +38,7 @@ class EventServiceProvider extends ServiceProvider
         Listeners\Forum\NotifyEmail::class,
         Listeners\Forum\NotifySlack::class,
         Listeners\Fulfillment\PaymentsSubscriber::class,
+        Listeners\Fulfillment\ValidationSubscribers::class,
     ];
 
     /**

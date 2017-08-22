@@ -18,23 +18,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillment;
+namespace App\Listeners\Fulfillment;
 
-use App\Libraries\ValidationErrors;
+use App\Events\Fulfillment\ValidationFailedEvent;
+use Slack;
 
-class ValidationFailedEvent
+class ValidationSubscribers
 {
-    protected $errors;
-
-    public function __construct(ValidationErrors $errors, string $key)
+    public function onValidationFailed($event)
     {
-        $this->errors = $errors;
-        \Log::debug("ValidationFailedEvent: '{$key}'");
-        \Log::debug($this->errors->allMessages());
+        $text = implode("\n", $event->getErrors()->allMessages());
+        Slack::to('test-hooks')->send($text);
     }
 
-    public function getErrors()
+    public function subscribe($events)
     {
-        return $this->errors;
+        $events->listen(
+            ValidationFailedEvent::class,
+            static::class.'@onValidationFailed'
+        );
     }
 }

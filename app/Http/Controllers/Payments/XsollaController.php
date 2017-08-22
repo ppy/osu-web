@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers\Payments;
 
+use App\Events\Fulfillment\ValidationFailedEvent;
 use App\Exceptions\InvalidSignatureException;
 use App\Http\Controllers\Controller;
 use App\Libraries\Fulfillments\FulfillmentException;
@@ -84,7 +85,13 @@ class XsollaController extends Controller
 
         try {
             if (!$processor->validateTransaction()) {
-                \Log::error(implode($processor->validationErrors()->allMessages(), "\n"));
+                event(
+                    new ValidationFailedEvent(
+                        $processor->validationErrors(),
+                        get_class_basename(get_class($processor))
+                    )
+                );
+
                 // Not sure we should care about sending messages back to xsolla...
                 return response()->json([
                     'error' => [
@@ -109,6 +116,12 @@ class XsollaController extends Controller
             // So I can see things with curl :D
             return $this->exceptionResponse($e, 422, 'INVALID');
         } catch (InvalidSignatureException $e) {
+            event(
+                new ValidationFailedEvent(
+                    $processor->validationErrors(),
+                    get_class_basename(get_class($processor))
+                )
+            );
             // xsolla expects INVALID_SIGNATURE
             return $this->exceptionResponse($e, 422, 'INVALID_SIGNATURE');
         } catch (\Exception $e) {
