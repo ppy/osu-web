@@ -160,7 +160,7 @@
                                 </div>
                                 <div class="js-forum-reply-preview hidden forum-post__body">
                                     <div class="forum-post__content forum-post__content--main">
-                                        <div class="forum-post-content js-forum-reply-preview--content">
+                                        <div class="forum-post-content forum-post-content--reply-preview js-forum-reply-preview--content">
                                         </div>
                                     </div>
                                 </div>
