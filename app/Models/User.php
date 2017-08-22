@@ -830,7 +830,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function followerCount()
     {
-        return Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id) ?? $this->cacheFollowerCount();
+        return get_int(Cache::get(self::CACHING['follower_count']['key'].':'.$this->user_id)) ?? $this->cacheFollowerCount();
     }
 
     public function foes()

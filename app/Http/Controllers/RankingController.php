@@ -78,6 +78,7 @@ class RankingController extends Controller
             $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
 
             $stats = UserStatistics\Model::getClass($mode)
+                ->on('mysql-readonly')
                 ->with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();

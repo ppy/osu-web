@@ -223,4 +223,7 @@ class Beatmaps.Main extends React.PureComponent
       @setState filters: newFilters, ->
         $(document).trigger 'beatmap:search:start'
         # copied from https://github.com/turbolinks/turbolinks/pull/61
-        Turbolinks.controller.pushHistoryWithLocationAndRestorationIdentifier laroute.route('beatmapsets.index', @buildSearchQuery()), Turbolinks.uuid()
+        url = encodeURI laroute.route('beatmapsets.index', @buildSearchQuery())
+        Turbolinks
+          .controller
+          .pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
