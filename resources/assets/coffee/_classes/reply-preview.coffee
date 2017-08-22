@@ -69,13 +69,13 @@ class @ReplyPreview
     osu.pageChange()
 
   hidePreview: (e) =>
-    e.preventDefault()
+    e?.preventDefault()
+
     $(@editBox).removeClass 'hidden'
     $(@previewBox).addClass 'hidden'
 
     $(@previewButton).removeClass 'js-is-active'
     $(@writeButton).addClass 'js-is-active'
-
 
     osu.pageChange()
 
