@@ -32,12 +32,17 @@ class XsollaHeaderSignature
     public function isValid()
     {
         $received = $this->receivedSignature();
-        \Log::debug("isValidSignature calc: {$this->calculatedSignature()}, signed: {$received}");
+        \Log::debug("XsollaHeaderSignature::isValidSignature calc: {$this->calculatedSignature()}, signed: {$received}");
         if ($received === null) {
             return false;
         }
 
         return hash_equals($this->calculatedSignature(), $received);
+    }
+
+    public static function calculateSignature(string $content)
+    {
+        return sha1($content . config('payments.xsolla.secret_key'));
     }
 
     private function receivedSignature()
@@ -50,6 +55,6 @@ class XsollaHeaderSignature
 
     private function calculatedSignature()
     {
-        return sha1($this->request->getContent() . config('payments.xsolla.secret_key'));
+        return static::calculateSignature($this->request->getContent());
     }
 }
