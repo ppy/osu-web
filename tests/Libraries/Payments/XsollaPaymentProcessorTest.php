@@ -20,15 +20,25 @@
 
 namespace Tests;
 
+use App\Models\Store\Order;
 use Config;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use TestCase;
 
 class XsollaPaymentProcessorTest extends TestCase
 {
+    use DatabaseTransactions;
+
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-store',
+    ];
+
     public function setUp()
     {
         parent::setUp();
         Config::set('payments.xsolla.secret_key', 'magic');
+        $this->order = factory(Order::class)->states('checkout')->create();
     }
 
     public function testSignatureIsValid()
@@ -36,8 +46,8 @@ class XsollaPaymentProcessorTest extends TestCase
         $response = $this->json(
             'POST',
             route('payments.xsolla.callback'),
-            ['nothing' => 'to see'],
-            ['HTTP_Authorization' => 'Signature b527cd6f6dac87f9abadf39d0120813125d6b460']
+            $this->getPostData(),
+            ['HTTP_Authorization' => 'Signature 563986f8dd0fe7b1637a43fd71e9cf4bfb8338f1']
         );
 
         $response->assertStatus(200);
@@ -48,7 +58,7 @@ class XsollaPaymentProcessorTest extends TestCase
         $response = $this->json(
             'POST',
             route('payments.xsolla.callback'),
-            ['nothing' => 'to see']
+            $this->getPostData()
         );
 
         $response->assertStatus(422);
@@ -59,6 +69,7 @@ class XsollaPaymentProcessorTest extends TestCase
         $response = $this->json(
             'POST',
             route('payments.xsolla.callback'),
+            $this->getPostData(),
             ['HTTP_Authorization' => 'Sig 1234']
         );
 
@@ -70,10 +81,26 @@ class XsollaPaymentProcessorTest extends TestCase
         $response = $this->json(
             'POST',
             route('payments.xsolla.callback'),
-            ['nothing' => 'to see'],
-            ['HTTP_Authorization' => 'Signature 1234']
+            $this->getPostData(),
+            ['HTTP_Authorization' => 'Signature 9999000011112222333344445555666677778888']
         );
 
         $response->assertStatus(422);
+    }
+
+    private function getPostData()
+    {
+        static $base = [
+            'notification_type' => 'payment',
+            'nothing' => 'to see',
+        ];
+        $order = $this->order;
+        $user = $order->user;
+
+        return array_merge($base, [
+            'transaction' => [
+                'external_id' => "test-{$user->user_id}-{$order->order_id}",
+            ],
+        ]);
     }
 }

@@ -7,3 +7,9 @@ $factory->define(App\Models\Store\Order::class, function (Faker\Generator $faker
         }
     ];
 });
+
+$factory->state(App\Models\Store\Order::class, 'checkout', function (Faker\Generator $faker) {
+    return [
+        'status' => 'checkout',
+    ];
+});
