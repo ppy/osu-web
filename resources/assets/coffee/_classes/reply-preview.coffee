@@ -34,7 +34,8 @@ class @ReplyPreview
     $(document).on 'turbolinks:load', @resetPreview
 
 
-  fetchPreview: =>
+  fetchPreview: (e) =>
+    e.preventDefault()
     $preview = $(@previewBox).find('.js-forum-reply-preview--content')
     url = laroute.route 'bbcode-preview'
     body = $(@input).val()
@@ -62,17 +63,19 @@ class @ReplyPreview
     $(@editBox).addClass 'hidden'
     $(@previewBox).removeClass 'hidden'
 
-    $(@previewButton).addClass 'active'
-    $(@writeButton).removeClass 'active'
+    $(@previewButton).addClass 'js-is-active'
+    $(@writeButton).removeClass 'js-is-active'
 
     osu.pageChange()
 
-  hidePreview: =>
+  hidePreview: (e) =>
+    e.preventDefault()
     $(@editBox).removeClass 'hidden'
     $(@previewBox).addClass 'hidden'
 
-    $(@previewButton).removeClass 'active'
-    $(@writeButton).addClass 'active'
+    $(@previewButton).removeClass 'js-is-active'
+    $(@writeButton).addClass 'js-is-active'
+
 
     osu.pageChange()
 

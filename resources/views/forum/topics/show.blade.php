@@ -135,13 +135,21 @@
                             </div>
 
                             <div class="forum-post__reply-body">
-                                <div class="forum-post__content forum-post__content--edit-bar">
-                                    <div class="post-editor__actions post-editor__actions--preview">
-                                        <a class="js-forum-reply-preview--hide btn-osu btn-osu--small btn-osu-default active post-editor__action post-editor__action--preview">{{ trans('forum.topic.create.preview_hide') }}</a>
-                                        <a class="js-forum-reply-preview--show btn-osu btn-osu--small btn-osu-default post-editor__action post-editor__action--preview">
-                                            {{ trans('forum.topic.create.preview') }}
-                                        </a>
-                                    </div>
+                                <div class="forum-post__content forum-post__content--reply-tabs">
+                                    <ul class="page-mode page-mode--post-reply">
+                                        <li class="page-mode__item">
+                                            <a href="#" class="js-forum-reply-preview--hide page-mode-link page-mode-link--post-reply js-is-active">
+                                                {{ trans('forum.topic.create.preview_hide') }}
+                                                <span class="page-mode-link__stripe"></span>
+                                            </a>
+                                        </li>
+                                        <li class="page-mode__item">
+                                            <a href="#" class="js-forum-reply-preview--show page-mode-link page-mode-link--post-reply">
+                                                {{ trans('forum.topic.create.preview') }}
+                                                <span class="page-mode-link__stripe"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
                                 <div class="js-forum-reply-write forum-post__body forum-post__body--reply-form">
                                     <div class="forum-post__content forum-post__content--edit-body">
