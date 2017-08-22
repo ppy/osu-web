@@ -27,11 +27,13 @@ use App\Libraries\Fulfillments\FulfillmentFactory;
 
 class PaymentsSubscriber
 {
+    use Notifiable;
+
     public function onPaymentCompleted($event)
     {
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         \Log::debug('onPaymentCompleted:');
-        \Log::debug(array_keys($fulfillers));
+        $this->notify("onPaymentCompleted: {$event->order->order_id}");
 
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $fulfiller) {
@@ -43,7 +45,7 @@ class PaymentsSubscriber
     {
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         \Log::debug('onPaymentCancelled');
-        \Log::debug(array_keys($fulfillers));
+        $this->notify("onPaymentCancelled: {$event->order->order_id}");
 
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $fulfiller) {
@@ -54,6 +56,7 @@ class PaymentsSubscriber
     public function onPaymentFailed($event)
     {
         \Log::debug($event->order);
+        $this->notify("onPaymentFailed: {$event->order->order_id}");
     }
 
     public function subscribe($events)

@@ -20,23 +20,12 @@
 
 namespace App\Listeners\Fulfillment;
 
-use App\Events\Fulfillment\ValidationFailedEvent;
+use Slack;
 
-class ValidationSubscribers
+trait Notifiable
 {
-    use Notifiable;
-
-    public function onValidationFailed($event)
+    public function notify($text)
     {
-        $text = implode("\n", $event->getErrors()->allMessages());
-        $this->notify($text);
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            ValidationFailedEvent::class,
-            static::class.'@onValidationFailed'
-        );
+        Slack::to('test-hooks')->send($text);
     }
 }
