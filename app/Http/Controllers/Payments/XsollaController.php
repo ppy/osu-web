@@ -79,13 +79,19 @@ class XsollaController extends Controller
         \Log::debug($processor->getNotificationType());
         if ($processor->isSkipped()) {
             // skip user_search notification
-            return '';
+            return response()->json();
         }
 
         try {
             if (!$processor->validateTransaction()) {
                 \Log::error(implode($processor->validationErrors()->allMessages(), "\n"));
-                return response('validation failed', 422);
+                // Not sure we should care about sending messages back to xsolla...
+                return response()->json([
+                    'error' => [
+                        'code' => 'INVALID',
+                        'message' => 'validation failed',
+                    ],
+                ], 422);
             }
 
             switch ($processor->getNotificationType()) {
@@ -101,14 +107,25 @@ class XsollaController extends Controller
         } catch (FulfillmentException $e) {
             \Log::error($e->getMessage());
             // So I can see things with curl :D
-            return response($e->getMessage(), 422);
+            return $this->exceptionResponse($e, 422, 'INVALID');
         } catch (InvalidSignatureException $e) {
-            return response('INVALID_SIGNATURE', 422);
+            // xsolla expects INVALID_SIGNATURE
+            return $this->exceptionResponse($e, 422, 'INVALID_SIGNATURE');
         } catch (\Exception $e) {
             \Log::error($e);
-            return response($e->getMessage(), 500);
+            return $this->exceptionResponse($e, 500, '');
         }
 
-        return 'whee';
+        return response()->json(['ok']);
+    }
+
+    private function exceptionResponse($exception, int $status, string $code)
+    {
+        return response()->json([
+            'error' => [
+                'code' => $code,
+                'message' => $exception->getMessage(),
+            ],
+        ], $status);
     }
 }
