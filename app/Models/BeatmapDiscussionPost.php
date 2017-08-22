@@ -138,4 +138,9 @@ class BeatmapDiscussionPost extends Model
     {
         $query->whereNull('deleted_at');
     }
+
+    public function scopeWithoutSystem($query)
+    {
+        $query->where('system', '=', false);
+    }
 }
