@@ -174,7 +174,7 @@ Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
-    Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show');
+    Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
     route_redirect('/', 'wiki.show');
 
