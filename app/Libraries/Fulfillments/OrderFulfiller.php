@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Libraries\ValidationFailable;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
@@ -53,10 +54,8 @@ abstract class OrderFulfiller implements Fulfillable, ValidationFailable
 
     abstract public function validationErrorsTranslationPrefix();
 
-    abstract protected function eventForValidationError();
-
     public function dispatchValidationFailed()
     {
-        event($this->eventForValidationError());
+        event(new FulfillmentValidationFailed($this, $this->validationErrors()));
     }
 }

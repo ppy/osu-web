@@ -46,9 +46,4 @@ class GenericFulfillment extends OrderFulfiller
     {
         throw new NotImplementedException();
     }
-
-    protected function eventForValidationError()
-    {
-        throw new NotImplementedException();
-    }
 }
