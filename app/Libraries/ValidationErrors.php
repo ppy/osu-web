@@ -30,14 +30,9 @@ class ValidationErrors
         $this->keyBase = $keyBase;
     }
 
-    public function add($column, $rawMessage)
+    public function add($column, $rawMessage, $params = null)
     {
         $this->errors[$column] ?? ($this->errors[$column] = []);
-
-        if (is_array($rawMessage)) {
-            $params = $rawMessage[1] ?? null;
-            $rawMessage = $rawMessage[0];
-        }
 
         $params ?? ($params = []);
 
