@@ -329,7 +329,7 @@ function ujs_redirect($url)
 
 function route_redirect($path, $target)
 {
-    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect.{$target}");
+    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
 }
 
 function timeago($date)

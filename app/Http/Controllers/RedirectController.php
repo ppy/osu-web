@@ -24,7 +24,7 @@ class RedirectController extends Controller
 {
     public function __invoke()
     {
-        // Redirect routes should be named 'redirect.<target>'
-        return ujs_redirect(route(explode('redirect.', \Route::currentRouteName(), 2)[1], func_get_args()));
+        // Redirect routes should be named 'redirect:<target>'
+        return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], func_get_args()));
     }
 }
