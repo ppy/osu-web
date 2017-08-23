@@ -20,31 +20,18 @@
 
 namespace App\Events\Fulfillment;
 
+use App\Libraries\Fulfillments\OrderFulfiller;
 use App\Libraries\ValidationErrors;
 
-class ValidationFailedEvent
+class FulfillmentValidationFailed extends ValidationFailedEvent
 {
-    protected $sender;
-    private $errors;
-    private $customMessage;
-
-    public function __construct($sender, ValidationErrors $errors, string $customMessage = null)
+    public function __construct(OrderFulfiller $sender, ValidationErrors $errors)
     {
-        $this->customMessage = $customMessage;
-        $this->sender = $sender;
-        $this->errors = $errors;
-    }
-
-    public function getErrors()
-    {
-        return $this->errors;
+        parent::__construct($sender, $errors);
     }
 
     public function toMessage()
     {
-        $senderText = get_class_basename(get_class($this->sender));
-        $customText = presence($this->customMessage) ? "`{$this->customMessage}`" : '';
-        $className = get_class_basename(static::class);
-        return "`{$className}` from `{$senderText}` {$customText}\n\t" . implode("\n\t", $this->getErrors()->allMessages());
+        return "`Order {$this->sender->getOrder()->order_id}` | " . parent::toMessage();
     }
 }

@@ -20,8 +20,9 @@
 
 namespace App\Listeners\Fulfillment;
 
-use App\Events\Fulfillment\ValidationFailedEvent;
+use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Events\Fulfillment\ProcessorValidationFailed;
+use App\Events\Fulfillment\ValidationFailedEvent;
 
 class ValidationSubscribers
 {
@@ -38,6 +39,11 @@ class ValidationSubscribers
     {
         $events->listen(
             ValidationFailedEvent::class,
+            static::class.'@onValidationFailed'
+        );
+
+        $events->listen(
+            FulfillmentValidationFailed::class,
             static::class.'@onValidationFailed'
         );
 

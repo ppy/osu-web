@@ -85,12 +85,7 @@ class XsollaController extends Controller
 
         try {
             if (!$processor->validateTransaction()) {
-                event(
-                    new ProcessorValidationFailed(
-                        $processor,
-                        $processor->validationErrors()
-                    )
-                );
+                $processor->dispatchValidationFailed();
 
                 // Not sure we should care about sending messages back to xsolla...
                 return response()->json([
@@ -116,12 +111,7 @@ class XsollaController extends Controller
             // So I can see things with curl :D
             return $this->exceptionResponse($e, 422, 'INVALID');
         } catch (InvalidSignatureException $e) {
-            event(
-                new ProcessorValidationFailed(
-                    $processor,
-                    $processor->validationErrors()
-                )
-            );
+            $processor->dispatchValidationFailed();
             // xsolla expects INVALID_SIGNATURE
             return $this->exceptionResponse($e, 422, 'INVALID_SIGNATURE');
         } catch (\Exception $e) {

@@ -152,11 +152,6 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return 'model_validation/';
     }
 
-    protected function eventForValidationError()
-    {
-        return new ValidationFailedEvent($this, $this->validationErrors(), 'xsolla-payment-processor');
-    }
-
     private function addError(...$args)
     {
         $this->validationErrors()->add(...$args);

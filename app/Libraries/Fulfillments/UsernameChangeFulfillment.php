@@ -22,7 +22,7 @@ namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillment\UsernameChanged;
 use App\Events\Fulfillment\UsernameReverted;
-use App\Events\Fulfillment\ValidationFailedEvent;
+use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Models\User;
 use App\Exceptions\UsernameChangeException;
 
@@ -127,6 +127,6 @@ class UsernameChangeFulfillment extends OrderFulfiller
     //================
     protected function eventForValidationError()
     {
-        return new ValidationFailedEvent($this, $this->validationErrors(), 'username-change');
+        return new FulfillmentValidationFailed($this, $this->validationErrors(), 'username-change');
     }
 }

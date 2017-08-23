@@ -22,12 +22,14 @@ namespace App\Libraries\Payments;
 
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
+use App\Events\Fulfillment\ProcessorValidationFailed;
+use App\Libraries\ValidationFailable;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
 
-abstract class PaymentProcessor implements \ArrayAccess
+abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
 {
     private $json;
     protected $order;
@@ -89,6 +91,14 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->cancel();
             event(new PaymentCancelled($order));
         });
+    }
+
+    public function dispatchValidationFailed()
+    {
+        event(new ProcessorValidationFailed(
+            $this,
+            $this->validationErrors()
+        ));
     }
 
     /**

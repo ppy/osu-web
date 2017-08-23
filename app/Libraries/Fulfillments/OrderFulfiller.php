@@ -20,10 +20,11 @@
 
 namespace App\Libraries\Fulfillments;
 
+use App\Libraries\ValidationFailable;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
 
-abstract class OrderFulfiller implements Fulfillable
+abstract class OrderFulfiller implements Fulfillable, ValidationFailable
 {
     use Validatable;
 
@@ -37,10 +38,15 @@ abstract class OrderFulfiller implements Fulfillable
     abstract public function run();
     abstract public function revoke();
 
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
     protected function throwOnFail($valid)
     {
         if (!$valid) {
-            event($this->eventForValidationError());
+            $this->dispatchValidationFailed();
             throw new FulfillmentException(implode($this->validationErrors()->allMessages(), "\n"));
         }
     }
@@ -48,4 +54,9 @@ abstract class OrderFulfiller implements Fulfillable
     abstract public function validationErrorsTranslationPrefix();
 
     abstract protected function eventForValidationError();
+
+    public function dispatchValidationFailed()
+    {
+        event($this->eventForValidationError());
+    }
 }
