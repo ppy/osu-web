@@ -111,12 +111,6 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('transaction.external_id', '.transaction.user_id_mismatch');
         }
 
-        // order_id in order number should be correct
-        // this can't be used if using the xsolla api tester
-        // if ((int) $this->explodedOrderNumber[2] !== $order['order_id']) {
-        //     $this->validationErrors()->add('mismatching order_id');
-        // }
-
         // order should be in the correct state
         if ($order->status !== 'checkout') {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout');
