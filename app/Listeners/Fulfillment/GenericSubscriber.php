@@ -32,7 +32,7 @@ class GenericSubscriber
         $user = $event->user;
         $this->notifyOrder(
             $event->order,
-            "User (`{$user->user_id}`) Changed username from `{$user->username_previous}` to `{$user->username}`."
+            "`User {$user->user_id}` Changed username from `{$user->username_previous}` to `{$user->username}`."
         );
     }
 
@@ -41,7 +41,7 @@ class GenericSubscriber
         $user = $event->user;
         $this->notifyOrder(
             $event->order,
-            "User (`{$user->user_id}`) Reverted username to `{$user->username}`."
+            "`User {$user->user_id}` Reverted username to `{$user->username}`."
         );
     }
 
