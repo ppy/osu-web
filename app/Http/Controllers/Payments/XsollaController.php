@@ -87,8 +87,8 @@ class XsollaController extends Controller
             if (!$processor->validateTransaction()) {
                 event(
                     new ValidationFailedEvent(
-                        $processor->validationErrors(),
-                        get_class_basename(get_class($processor))
+                        $processor,
+                        $processor->validationErrors()
                     )
                 );
 
@@ -118,8 +118,8 @@ class XsollaController extends Controller
         } catch (InvalidSignatureException $e) {
             event(
                 new ValidationFailedEvent(
-                    $processor->validationErrors(),
-                    get_class_basename(get_class($processor))
+                    $processor,
+                    $processor->validationErrors()
                 )
             );
             // xsolla expects INVALID_SIGNATURE

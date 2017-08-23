@@ -127,6 +127,6 @@ class UsernameChangeFulfillment extends OrderFulfiller
     //================
     protected function eventForValidationError()
     {
-        return new ValidationFailedEvent($this->validationErrors(), 'username-change');
+        return new ValidationFailedEvent($this, $this->validationErrors(), 'username-change');
     }
 }

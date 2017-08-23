@@ -28,8 +28,9 @@ class ValidationSubscribers
 
     public function onValidationFailed($event)
     {
-        $text = implode("\n", $event->getErrors()->allMessages());
-        $this->notify($text);
+        \Log::debug('ValidationFailedEvent:');
+        \Log::debug($event->getErrors()->allMessages());
+        $this->notify($event->toMessage());
     }
 
     public function subscribe($events)

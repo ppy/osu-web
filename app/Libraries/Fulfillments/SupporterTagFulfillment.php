@@ -159,6 +159,6 @@ class SupporterTagFulfillment extends OrderFulfiller
     //================
     protected function eventForValidationError()
     {
-        return new ValidationFailedEvent($this->validationErrors(), 'supporter-tag');
+        return new ValidationFailedEvent($this, $this->validationErrors(), 'supporter-tag');
     }
 }

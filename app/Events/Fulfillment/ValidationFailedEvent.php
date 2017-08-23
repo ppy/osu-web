@@ -21,20 +21,30 @@
 namespace App\Events\Fulfillment;
 
 use App\Libraries\ValidationErrors;
+use App\Traits\Validatable;
 
 class ValidationFailedEvent
 {
-    protected $errors;
+    private $sender;
+    private $errors;
+    private $customMessage;
 
-    public function __construct(ValidationErrors $errors, string $key)
+    public function __construct($sender, ValidationErrors $errors, string $customMessage = null)
     {
+        $this->customMessage = $customMessage;
+        $this->sender = $sender;
         $this->errors = $errors;
-        \Log::debug("ValidationFailedEvent: '{$key}'");
-        \Log::debug($this->errors->allMessages());
     }
 
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    public function toMessage()
+    {
+        $senderText = get_class_basename(get_class($this->sender));
+        $customText = presence($this->customMessage) ? "`{$this->customMessage}`" : '';
+        return "ValidationFailedEvent from `{$senderText}` {$customText}\n\t" . implode("\n\t", $this->getErrors()->allMessages());
     }
 }
