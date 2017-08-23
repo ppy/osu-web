@@ -43,7 +43,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 
         Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
 
-        Route::get('/', '\App\Http\Controllers\RedirectController')->name('redirect.admin.store.orders.index');
+        route_redirect('/', 'admin.store.orders.index');
     });
 });
 
@@ -91,7 +91,7 @@ Route::group(['prefix' => 'community'], function () {
     Route::post('tournaments/{tournament}/register', 'TournamentsController@register')->name('tournaments.register');
     Route::resource('tournaments', 'TournamentsController');
 
-    Route::get('profile/{id}', 'RedirectController')->name('redirect.users.show');
+    route_redirect('profile/{id}', 'users.show');
 
     Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
         Route::group(['prefix' => 'forums'], function () {
@@ -176,7 +176,7 @@ Route::group(['prefix' => 'help'], function () {
     // help section
     Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
-    Route::get('/', 'RedirectController')->name('redirect.wiki.show');
+    route_redirect('/', 'wiki.show');
 
     Route::get('support', 'HelpController@getSupport')->name('support');
     Route::get('faq', 'HelpController@getFaq')->name('faq');
@@ -263,21 +263,21 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', 'RedirectController')->name('redirect.home');
+route_redirect('/', 'home');
 
 // redirects go here
-Route::get('forum/p/{post}', 'RedirectController')->name('redirect.forum.posts.show');
-Route::get('forum/t/{topic}', 'RedirectController')->name('redirect.forum.topics.show');
-Route::get('forum/{forum}', 'RedirectController')->name('redirect.forum.forums.show');
+route_redirect('forum/p/{post}', 'forum.posts.show');
+route_redirect('forum/t/{topic}', 'forum.topics.show');
+route_redirect('forum/{forum}', 'forum.forums.show');
 // redirects to beatmapset anyways so there's no point
 // in having an another redirect on top of that
 Route::get('b/{beatmap}', 'BeatmapsController@show');
-Route::get('g/{group}', 'RedirectController')->name('redirect.groups.show');
-Route::get('s/{beatmapset}', 'RedirectController')->name('redirect.beatmapsets.show');
-Route::get('u/{user}', 'RedirectController')->name('redirect.users.show');
-Route::get('forum', 'RedirectController')->name('redirect.forum.forums.index');
-Route::get('mp/{match}', 'RedirectController')->name('redirect.matches.show');
-Route::get('wiki/{page?}', 'RedirectController')->name('redirect.wiki.show');
+route_redirect('g/{group}', 'groups.show');
+route_redirect('s/{beatmapset}', 'beatmapsets.show');
+route_redirect('u/{user}', 'users.show');
+route_redirect('forum', 'forum.forums.index');
+route_redirect('mp/{match}', 'matches.show');
+route_redirect('wiki/{page?}', 'wiki.show');
 
 // status
 if (Config::get('app.debug')) {
