@@ -135,7 +135,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->addError(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',
-                ['expected' => $order->getTotal(), 'received' => $this['purchase.checkout.amount']]
+                ['expected' => $order->getTotal(), 'actual' => $this['purchase.checkout.amount']]
             );
         }
 

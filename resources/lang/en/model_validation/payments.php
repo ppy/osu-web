@@ -28,7 +28,7 @@ return [
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Payment is insufficient: :expected < :received',
+            'amount' => 'Payment is insufficient: :actual < :expected',
             'currency' => 'Payment is not in USD. (:type)',
         ],
     ],

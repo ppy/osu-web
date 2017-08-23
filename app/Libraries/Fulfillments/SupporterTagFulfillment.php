@@ -92,7 +92,8 @@ class SupporterTagFulfillment extends OrderFulfiller
         if ($this->order->getTotal() < $this->minimumRequired()) {
             $this->validationErrors()->addError(
                 'order_total',
-                '.insufficient_paid'
+                '.insufficient_paid',
+                ['expected' => $this->minimumRequired(), 'actual' => $this->order->getTotal()]
             );
         };
 

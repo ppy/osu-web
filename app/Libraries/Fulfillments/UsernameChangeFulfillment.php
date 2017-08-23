@@ -65,10 +65,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
             $this->validationErrors()->add(
                 'cost',
                 '.insufficient_paid',
-                [
-                    'required' => $user->usernameChangeCost(),
-                    'received' => $item['cost'],
-                ]
+                ['expected' => $user->usernameChangeCost(), 'actual' => $item['cost']]
             );
         }
 
