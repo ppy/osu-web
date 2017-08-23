@@ -18,32 +18,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Fulfillment;
+namespace App\Events\Fulfillment;
 
-use App\Events\Fulfillment\ValidationFailedEvent;
-use App\Events\Fulfillment\ProcessorValidationFailed;
+use App\Libraries\Payments\PaymentProcessor;
+use App\Libraries\ValidationErrors;
 
-class ValidationSubscribers
+class ProcessorValidationFailed extends ValidationFailedEvent
 {
-    use Notifiable;
-
-    public function onValidationFailed($event)
+    public function __construct(PaymentProcessor $sender, ValidationErrors $errors)
     {
-        \Log::debug('ValidationFailedEvent:');
-        \Log::debug($event->getErrors()->allMessages());
-        $this->notify($event->toMessage());
+        parent::__construct($sender, $errors);
     }
 
-    public function subscribe($events)
+    public function toMessage()
     {
-        $events->listen(
-            ValidationFailedEvent::class,
-            static::class.'@onValidationFailed'
-        );
-
-        $events->listen(
-            ProcessorValidationFailed::class,
-            static::class.'@onValidationFailed'
-        );
+        return "`{$this->sender->getOrderNumber()}` | `{$this->sender->getTransactionId()}` | " . parent::toMessage();
     }
 }

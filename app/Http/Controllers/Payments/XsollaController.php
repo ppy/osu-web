@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Events\Fulfillment\ValidationFailedEvent;
+use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Http\Controllers\Controller;
 use App\Libraries\Fulfillments\FulfillmentException;
@@ -86,7 +86,7 @@ class XsollaController extends Controller
         try {
             if (!$processor->validateTransaction()) {
                 event(
-                    new ValidationFailedEvent(
+                    new ProcessorValidationFailed(
                         $processor,
                         $processor->validationErrors()
                     )
@@ -117,7 +117,7 @@ class XsollaController extends Controller
             return $this->exceptionResponse($e, 422, 'INVALID');
         } catch (InvalidSignatureException $e) {
             event(
-                new ValidationFailedEvent(
+                new ProcessorValidationFailed(
                     $processor,
                     $processor->validationErrors()
                 )

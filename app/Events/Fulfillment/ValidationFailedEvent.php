@@ -21,11 +21,10 @@
 namespace App\Events\Fulfillment;
 
 use App\Libraries\ValidationErrors;
-use App\Traits\Validatable;
 
 class ValidationFailedEvent
 {
-    private $sender;
+    protected $sender;
     private $errors;
     private $customMessage;
 
@@ -45,6 +44,6 @@ class ValidationFailedEvent
     {
         $senderText = get_class_basename(get_class($this->sender));
         $customText = presence($this->customMessage) ? "`{$this->customMessage}`" : '';
-        return "ValidationFailedEvent from `{$senderText}` {$customText}\n\t" . implode("\n\t", $this->getErrors()->allMessages());
+        return "`ValidationFailedEvent` from `{$senderText}` {$customText}\n\t" . implode("\n\t", $this->getErrors()->allMessages());
     }
 }

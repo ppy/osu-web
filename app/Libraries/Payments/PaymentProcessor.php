@@ -39,9 +39,28 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->json = $request->json()->all();
     }
 
+    /**
+     * Gets the string that corresponds to an internal Order id.
+     *
+     * @return string
+     */
     abstract public function getOrderId();
+
+    /**
+     * Gets a more friendly identifying order number string that represents an Order.
+     *
+     * @return string
+     */
     abstract public function getOrderNumber();
+
+    /**
+     * Gets the transaction ID for the payment.
+     * Transaction IDs should be unique to the payment processor.
+     *
+     * @return string
+     */
     abstract public function getTransactionId();
+
     abstract public function getPaymentDate();
     abstract public function validateTransaction();
     abstract public function getNotificationType();
