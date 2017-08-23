@@ -342,7 +342,7 @@ function timeago($date)
 
 function current_action()
 {
-    return explode('@', \Route::currentRouteAction(), 2)[1] ?? null;
+    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($user_id, $user_name, $user_color)
