@@ -39,6 +39,12 @@
     border-radius: 0 0 @border-radius-base @border-radius-base;
   }
 
+  &--new-reply-placeholder {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &--unread {
     &::before {
       .full-size();
@@ -104,6 +110,12 @@
 
   &__footer {
     padding: 10px;
+
+    &--notice {
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: @font-size--normal;
+    }
 
     .@{_top}--reply & {
       padding-left: @beatmap-discussion--reply-padding;
