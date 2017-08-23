@@ -21,9 +21,10 @@
 namespace App\Events\Fulfillment;
 
 use App\Models\Store\Order;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 
-abstract class PaymentEvent
+abstract class PaymentEvent implements ShouldQueue
 {
     use SerializesModels;
 
