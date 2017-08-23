@@ -112,8 +112,12 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         // order should be in the correct state
-        if ($order->status !== 'checkout') {
-            $this->validationErrors()->add('order.status', '.order.status.not_checkout');
+        if ($this->getNotificationType() === 'payment' && $order->status !== 'checkout') {
+            $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
+        }
+
+        if ($this->getNotificationType() === 'refund' && $order->status !== 'paid') {
+            $this->validationErrors()->add('order.status', '.order.status.not_paid', ['state' => $order->status]);
         }
 
         if ($this['purchase.checkout.currency'] !== 'USD') {

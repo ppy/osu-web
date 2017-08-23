@@ -23,7 +23,8 @@ return [
     'order' => [
         'invalid' => 'Order is not valid',
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order that is not in checkout state.',
+            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
+            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',
         ],
     ],
     'purchase' => [
