@@ -92,12 +92,14 @@
       }
     }
 
+    margin: 2px;
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
+    flex-direction: column;
 
-    @media @mobile{
-      flex-direction: column;
+    @media @desktop{
+      flex-direction: row;
     }
   }
 
@@ -164,11 +166,11 @@
     }
 
     &--large {
-      font-size: 25px;
+      font-size: 20px;
       color: @pink-darker;
 
-      @media @mobile{
-        font-size: 20px;
+      @media @desktop{
+        font-size: 25px;
       }
     }
   }
