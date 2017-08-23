@@ -92,23 +92,23 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         // received notification_type should be payment
         if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
-            $this->addError("notification_type is not valid: '{$this['notification_type']}'");
+            $this->addError('notification_type', '.notification_type', ['type' => $this['notification_type']]);
         }
 
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
-            $this->addError('order is not valid');
-            return;
+            $this->addError('order', '.order');
+            return false;
         }
 
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
-            $this->addError('order number is busted');
+            $this->addError('transaction.external_id', '.transaction.external_id');
         }
 
         if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
-            $this->addError('mismatching user_id');
+            $this->addError('transaction.external_id', '.transaction.user_id_mismatch');
         }
 
         // order_id in order number should be correct
@@ -118,17 +118,25 @@ class XsollaPaymentProcessor extends PaymentProcessor
         // }
 
         // order should be in the correct state
-        // if ($order->status !== 'checkout') {
-        //     $this->addError('Order must be checked out first.');
-        // }
+        if ($order->status !== 'checkout') {
+            $this->addError('order.status', '.order.status.not_checkout');
+        }
 
         if ($this['purchase.checkout.currency'] !== 'USD') {
-            $this->addError('payment received should be USD.');
+            $this->addError(
+                'purchase.checkout.currency',
+                '.purchase.checkout.currency',
+                ['type' => $this['purchase.checkout.currency']]
+            );
         }
 
         \Log::debug("purchase.checkout.amount: {$this['purchase.checkout.amount']}, {$order->getTotal()}");
         if ($this['purchase.checkout.amount'] < $order->getTotal()) {
-            $this->addError('payment amount is too low');
+            $this->addError(
+                'purchase.checkout.amount',
+                '.purchase.checkout.amount',
+                ['expected' => $order->getTotal(), 'received' => $this['purchase.checkout.amount']]
+            );
         }
 
         return $this->validationErrors()->isEmpty();
@@ -149,11 +157,8 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return new ValidationFailedEvent($this->validationErrors(), 'xsolla-payment-processor');
     }
 
-    private function addError($message)
+    private function addError(...$args)
     {
-        $this->validationErrors()->add(
-            $message,
-            $message
-        );
+        $this->validationErrors()->add(...$args);
     }
 }
