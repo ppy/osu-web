@@ -92,38 +92,38 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         // received notification_type should be payment
         if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
-            $this->addError('notification_type', '.notification_type', ['type' => $this['notification_type']]);
+            $this->validationErrors()->add('notification_type', '.notification_type', ['type' => $this['notification_type']]);
         }
 
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
-            $this->addError('order', '.order');
+            $this->validationErrors()->add('order', '.order');
             return false;
         }
 
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
-            $this->addError('transaction.external_id', '.transaction.external_id');
+            $this->validationErrors()->add('transaction.external_id', '.transaction.external_id');
         }
 
         if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
-            $this->addError('transaction.external_id', '.transaction.user_id_mismatch');
+            $this->validationErrors()->add('transaction.external_id', '.transaction.user_id_mismatch');
         }
 
         // order_id in order number should be correct
         // this can't be used if using the xsolla api tester
         // if ((int) $this->explodedOrderNumber[2] !== $order['order_id']) {
-        //     $this->addError('mismatching order_id');
+        //     $this->validationErrors()->add('mismatching order_id');
         // }
 
         // order should be in the correct state
         if ($order->status !== 'checkout') {
-            $this->addError('order.status', '.order.status.not_checkout');
+            $this->validationErrors()->add('order.status', '.order.status.not_checkout');
         }
 
         if ($this['purchase.checkout.currency'] !== 'USD') {
-            $this->addError(
+            $this->validationErrors()->add(
                 'purchase.checkout.currency',
                 '.purchase.checkout.currency',
                 ['type' => $this['purchase.checkout.currency']]
@@ -132,7 +132,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         \Log::debug("purchase.checkout.amount: {$this['purchase.checkout.amount']}, {$order->getTotal()}");
         if ($this['purchase.checkout.amount'] < $order->getTotal()) {
-            $this->addError(
+            $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',
                 ['expected' => $order->getTotal(), 'actual' => $this['purchase.checkout.amount']]
@@ -150,10 +150,5 @@ class XsollaPaymentProcessor extends PaymentProcessor
     public function validationErrorsKeyBase()
     {
         return 'model_validation/';
-    }
-
-    private function addError(...$args)
-    {
-        $this->validationErrors()->add(...$args);
     }
 }
