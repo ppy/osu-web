@@ -25,7 +25,7 @@ use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\PaymentFailed;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 
-class PaymentsSubscriber
+class PaymentSubscribers
 {
     use Notifiable;
 

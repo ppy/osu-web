@@ -23,7 +23,7 @@ namespace App\Listeners\Fulfillment;
 use App\Events\Fulfillment\UsernameChanged;
 use App\Events\Fulfillment\UsernameReverted;
 
-class GenericSubscriber
+class GenericSubscribers
 {
     use Notifiable;
 
