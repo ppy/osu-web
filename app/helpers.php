@@ -327,6 +327,11 @@ function ujs_redirect($url)
     }
 }
 
+function route_redirect($path, $target)
+{
+    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+}
+
 function timeago($date)
 {
     $display_date = i18n_time($date);
@@ -337,10 +342,7 @@ function timeago($date)
 
 function current_action()
 {
-    $currentAction = \Route::currentRouteAction();
-    if ($currentAction !== null) {
-        return explode('@', $currentAction, 2)[1];
-    }
+    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($user_id, $user_name, $user_color)

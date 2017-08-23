@@ -89,7 +89,7 @@
                 </a>
 
                 <a
-                    href="{{ route("users.register") }}"
+                    href="{{ osu_url('user.signup') }}"
                     class="landing-nav__link js-nav-toggle"
                     data-nav-mode="user"
                     data-nav-sub-mode="signup"

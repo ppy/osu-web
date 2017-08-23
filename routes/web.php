@@ -43,9 +43,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
 
         Route::resource('orders.items', 'OrderItemsController', ['only' => ['update']]);
 
-        Route::get('/', function () {
-            return ujs_redirect(route('admin.store.orders.index'));
-        });
+        route_redirect('/', 'admin.store.orders.index');
     });
 });
 
@@ -93,9 +91,7 @@ Route::group(['prefix' => 'community'], function () {
     Route::post('tournaments/{tournament}/register', 'TournamentsController@register')->name('tournaments.register');
     Route::resource('tournaments', 'TournamentsController');
 
-    Route::get('profile/{id}', function ($id) {
-        return ujs_redirect(route('users.show', $id));
-    });
+    route_redirect('profile/{id}', 'users.show');
 
     Route::group(['as' => 'forum.', 'namespace' => 'Forum'], function () {
         Route::group(['prefix' => 'forums'], function () {
@@ -165,15 +161,7 @@ Route::group(['prefix' => 'home'], function () {
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');
 
-// ranking section
-Route::get('/rankings/{mode?}', function ($mode = 'osu') {
-    if (!array_key_exists($mode, App\Models\Beatmap::MODES)) {
-        abort(404);
-    }
-
-    return Redirect::route('rankings', ['mode' => $mode, 'type' => 'performance']);
-});
-Route::get('/rankings/{mode}/{type}', 'RankingController@index')->name('rankings');
+Route::get('rankings/{mode?}/{type?}', 'RankingController@index')->name('rankings');
 
 Route::post('session', 'SessionsController@store')->name('login');
 Route::delete('session', 'SessionsController@destroy')->name('logout');
@@ -181,26 +169,17 @@ Route::delete('session', 'SessionsController@destroy')->name('logout');
 Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
 Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
-Route::get('users/register', function () {
-    return Redirect::to('https://osu.ppy.sh/p/register');
-})->name('users.register');
 Route::get('users/{id}/card', 'UsersController@card')->name('users.card');
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
-    Route::get('wiki/{page}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
+    Route::get('wiki/{page?}', 'WikiController@show')->name('wiki.show')->where('page', '.+');
     Route::put('wiki/{page}', 'WikiController@update')->where('page', '.+');
-    Route::get('wiki', function () {
-        return ujs_redirect(wiki_url());
-    })->name('wiki');
+    route_redirect('/', 'wiki.show');
 
     Route::get('support', 'HelpController@getSupport')->name('support');
     Route::get('faq', 'HelpController@getFaq')->name('faq');
-
-    Route::get('/', function () {
-        return ujs_redirect(wiki_url());
-    });
 });
 
 // FIXME: someone split this crap up into proper controllers
@@ -284,61 +263,21 @@ Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/', function () {
-    return ujs_redirect(route('home'));
-});
+route_redirect('/', 'home');
 
 // redirects go here
-Route::get('forum/p/{post}', function ($post) {
-    return ujs_redirect(route('forum.posts.show', compact('post')));
-});
-Route::get('forum/t/{topic}', function ($topic) {
-    return ujs_redirect(route('forum.topics.show', compact('topic')));
-});
-Route::get('forum/{forum}', function ($forum) {
-    return ujs_redirect(route('forum.forums.show', compact('forum')));
-});
+route_redirect('forum/p/{post}', 'forum.posts.show');
+route_redirect('forum/t/{topic}', 'forum.topics.show');
+route_redirect('forum/{forum}', 'forum.forums.show');
 // redirects to beatmapset anyways so there's no point
 // in having an another redirect on top of that
-Route::get('b/{beatmap}', ['uses' => 'BeatmapsController@show']);
-
-Route::get('g/{group}', function ($group) {
-    return ujs_redirect(route('groups.show', compact('group')));
-});
-
-Route::get('s/{beatmapset}', function ($beatmapset) {
-    return ujs_redirect(route('beatmapsets.show', compact('beatmapset')));
-});
-
-Route::get('u/{user}', function ($user) {
-    return ujs_redirect(route('users.show', compact('user')));
-});
-
-Route::get('forum', function () {
-    return ujs_redirect(route('forum.forums.index'));
-});
-
-// temporary news redirect
-Route::get('news/{id}', function ($id) {
-    return Redirect::to("https://osu.ppy.sh/news/{$id}");
-});
-
-Route::get('mp/{match}', function ($match) {
-    return ujs_redirect(route('matches.show', compact('match')));
-});
-
-// soon-to-be notifications
-Route::get('notifications', ['as' => 'notifications.index', function () {
-    return Redirect::to('https://osu.ppy.sh/forum/ucp.php?i=pm&folder=inbox');
-}]);
-
-Route::get('wiki', function () {
-    return ujs_redirect(route('wiki'));
-})->where('page', '.+');
-
-Route::get('wiki/{page}', function ($page) {
-    return ujs_redirect(route('wiki.show', compact('page')));
-})->where('page', '.+');
+Route::get('b/{beatmap}', 'BeatmapsController@show');
+route_redirect('g/{group}', 'groups.show');
+route_redirect('s/{beatmapset}', 'beatmapsets.show');
+route_redirect('u/{user}', 'users.show');
+route_redirect('forum', 'forum.forums.index');
+route_redirect('mp/{match}', 'matches.show');
+route_redirect('wiki/{page?}', 'wiki.show');
 
 // status
 if (Config::get('app.debug')) {
