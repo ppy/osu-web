@@ -229,7 +229,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
         // Beatmapsets
-        //   GET /api/v2/beatmapsets/:beatmap_id/download
+        //   GET /api/v2/beatmapsets/:beatmapset/download
         Route::get('beatmapsets/{beatmapset}/download', ['uses' => '\App\Http\Controllers\BeatmapsetsController@download']);
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
