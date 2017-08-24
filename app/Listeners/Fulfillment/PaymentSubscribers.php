@@ -22,7 +22,6 @@ namespace App\Listeners\Fulfillment;
 
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
-use App\Events\Fulfillment\PaymentFailed;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 
 class PaymentSubscribers
@@ -53,12 +52,6 @@ class PaymentSubscribers
         }
     }
 
-    public function onPaymentFailed($event)
-    {
-        \Log::debug($event->order);
-        $this->notify("onPaymentFailed: {$event->order->order_id}");
-    }
-
     public function subscribe($events)
     {
         $events->listen(
@@ -70,10 +63,5 @@ class PaymentSubscribers
             PaymentCompleted::class,
             static::class.'@onPaymentCompleted'
         );
-
-        // $events->listen(
-        //     PaymentFailed::class,
-        //     static::class.'@onPaymentFailed'
-        // );
     }
 }

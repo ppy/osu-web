@@ -23,14 +23,13 @@ namespace App\Libraries\Payments;
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\ProcessorValidationFailed;
-use App\Libraries\ValidationFailable;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
-abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
+abstract class PaymentProcessor implements \ArrayAccess
 {
     use Validatable;
 
@@ -139,7 +138,7 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
      *
      * @return void
      */
-    public function dispatchValidationFailed()
+    protected function dispatchValidationFailed()
     {
         event(new ProcessorValidationFailed(
             $this,

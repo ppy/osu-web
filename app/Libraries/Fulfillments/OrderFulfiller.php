@@ -25,7 +25,7 @@ use App\Libraries\ValidationFailable;
 use App\Models\Store\Order;
 use App\Traits\Validatable;
 
-abstract class OrderFulfiller implements Fulfillable, ValidationFailable
+abstract class OrderFulfiller implements Fulfillable
 {
     use Validatable;
 
@@ -54,7 +54,7 @@ abstract class OrderFulfiller implements Fulfillable, ValidationFailable
 
     abstract public function validationErrorsTranslationPrefix();
 
-    public function dispatchValidationFailed()
+    protected function dispatchValidationFailed()
     {
         event(new FulfillmentValidationFailed($this, $this->validationErrors()));
     }
