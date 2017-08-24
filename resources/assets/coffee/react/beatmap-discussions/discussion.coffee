@@ -78,21 +78,19 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
               div
                 className: "beatmap-discussion-expand #{'beatmap-discussion-expand--expanded' if !@state.collapsed}"
                 el Icon, name: 'chevron-down'
-        el ReactCollapse,
-          isOpened: !@state.collapsed
-          className: "#{bn}__expanded"
+        div
+          className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
           div
             className: "#{bn}__replies"
             @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
               @post reply, 'reply'
 
-          if @props.currentUser.id?
-            el BeatmapDiscussions.NewReply,
-              currentUser: @props.currentUser
-              beatmapset: @props.beatmapset
-              currentBeatmap: @props.currentBeatmap
-              discussion: @props.discussion
-              userPermissions: @props.userPermissions
+          el BeatmapDiscussions.NewReply,
+            currentUser: @props.currentUser
+            beatmapset: @props.beatmapset
+            currentBeatmap: @props.currentBeatmap
+            discussion: @props.discussion
+            userPermissions: @props.userPermissions
 
         div className: lineClasses
 
