@@ -17,7 +17,6 @@
  */
 
 .navbar-mobile {
-  @content-height: @navbar-mobile--content-height;
   border-width: 0;
   margin-bottom: 0;
 
@@ -44,24 +43,14 @@
     align-items: center;
   }
 
-  &__locale-flag {
-    display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 20px;
-    align-self: stretch;
-    margin-right: 5px;
-  }
-
   &__logo {
     display: inline-block;
     background-image: url('/images/layout/osu-logo.png');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
-    width: @content-height;
-    height: @content-height;
+    width: @navbar-mobile--content-height;
+    height: @navbar-mobile--content-height;
   }
 
   &__menu {
@@ -80,101 +69,14 @@
     }
   }
 
-  &__menu-item {
-    // to win over bootstrap's selector
-    && {
-      color: fade(#fff, 50%);
-      display: flex;
-      align-items: center;
-
-      &:focus,
-      &:hover,
-      &:active,
-      .open > & {
-        color: #fff;
-      }
-
-      &--user {
-        flex: 1 0 auto;
-        color: #fff;
-      }
-
-      &--logout {
-        .default-border-radius();
-        width: @content-height;
-        height: @content-height;
-        border: 2px solid fade(#fff, 50%);
-        color: #fff;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        margin-right: @navbar-padding-horizontal;
-
-        &:focus,
-        &:hover,
-        &:active {
-          background-color: fade(#fff, 50%);
-          color: #333;
-          border-color: transparent;
-        }
-      }
-    }
-  }
-
-  &__menu-item-icon {
-    width: @content-height;
-    margin-right: 10px;
-    text-align: center;
-
-    &--closed {
-      display: inline-block;
-
-      .open > a > & {
-        display: none;
-      }
-    }
-
-    &--opened {
-      display: none;
-
-      .open > a > & {
-        display: inline-block;
-      }
-    }
-  }
-
   &__menu-items {
     margin-top: 0;
   }
 
-  &__menu-subitem {
-    // to win over bootstrap's selector
-    &&&& {
-      color: #fff;
-      display: flex;
-      align-items: center;
-      padding-left: (@content-height + 20px);
-
-      &:focus,
-      &:hover,
-      &:active {
-        color: #fff;
-        background-color: #333;
-      }
-    }
-  }
-
-  &__menu-subitem-icon {
-    width: @content-height;
-    margin-right: 10px;
-  }
-
   &__toggle {
     float: none;
-    width: @content-height;
-    height: @content-height;
+    width: @navbar-mobile--content-height;
+    height: @navbar-mobile--content-height;
     padding: 0;
     margin: 0;
 
@@ -194,13 +96,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  &__user {
-    && {
-      display: flex;
-      align-items: center;
-      background-color: #333;
-    }
   }
 }
