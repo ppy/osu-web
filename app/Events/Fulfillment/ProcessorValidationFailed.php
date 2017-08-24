@@ -32,6 +32,8 @@ class ProcessorValidationFailed extends ValidationFailedEvent
 
     public function toMessage()
     {
-        return "`{$this->sender->getOrderNumber()}` | `{$this->sender->getTransactionId()}` | " . parent::toMessage();
+        return "`{$this->sender->getOrderNumber()}`"
+            ." | notification `{$this->sender->getNotificationType()}` `{$this->sender->getTransactionId()}` | "
+            . parent::toMessage();
     }
 }
