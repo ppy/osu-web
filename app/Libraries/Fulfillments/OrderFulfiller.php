@@ -48,7 +48,7 @@ abstract class OrderFulfiller implements Fulfillable, ValidationFailable
     {
         if (!$valid) {
             $this->dispatchValidationFailed();
-            throw new FulfillmentException(implode($this->validationErrors()->allMessages(), "\n"));
+            throw new FulfillmentException($this->validationErrors());
         }
     }
 
