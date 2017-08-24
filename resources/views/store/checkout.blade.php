@@ -96,6 +96,11 @@
                             <button type="button" id="js-xsolla-pay" class="btn-osu btn-osu-danger" disabled data-xpaystation-widget-open>Checkout with Xsolla</button>
                         </div>
                     @endif
+
+                    <div class="big-button">
+                        <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}">coins</a>
+                    </div>
+
                     <div class="big-button">
                         <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_xclick">
