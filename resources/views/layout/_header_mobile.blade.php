@@ -128,6 +128,51 @@
                 </ul>
             </li>
             @endforeach
+
+            <li class="dropdown">
+                <a data-toggle="dropdown" id="expand-locale" class="navbar-mobile__menu-item dropdown-toggle" href="#">
+                    <span class="navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed">
+                        <i class="fa fa-chevron-right"></i>
+                    </span>
+
+                    <span class="navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--opened">
+                        <i class="fa fa-chevron-down"></i>
+                    </span>
+
+                    <span
+                        class="navbar-mobile__locale-flag"
+                        style="background-image: url('{{ flag_path(locale_flag(App::getLocale())) }}')"
+                    ></span>
+
+                    {{ locale_name(App::getLocale()) }}
+                </a>
+
+                <ul class="dropdown-menu">
+                    @foreach (config('app.available_locales') as $locale)
+                        <li>
+                            <a
+                                class="navbar-mobile__menu-subitem"
+                                href="{{ route('set-locale', compact('locale')) }}"
+                                data-remote="1"
+                                data-method="POST"
+                                data-toggle="collapse"
+                                data-target="#xs-navbar"
+                            >
+                                <span class="navbar-mobile__menu-subitem-icon">
+                                    <i class="fa fa-chevron-right"></i>
+                                </span>
+
+                                <span
+                                    class="navbar-mobile__locale-flag"
+                                    style="background-image: url('{{ flag_path(locale_flag($locale)) }}')"
+                                ></span>
+
+                                {{ locale_name($locale) }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </li>
         </ul>
     </div>
 </div>
