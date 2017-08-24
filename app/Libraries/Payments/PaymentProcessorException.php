@@ -18,10 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Fulfillments;
+namespace App\Libraries\Payments;
 
 use App\Exceptions\ValidationException;
 
-class FulfillmentException extends ValidationException
+class PaymentProcessorException extends ValidationException
 {
 }

@@ -22,8 +22,8 @@ namespace App\Http\Controllers\Payments;
 
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
+use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
-use App\Libraries\Fulfillments\FulfillmentException;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
 use Auth;
@@ -82,18 +82,6 @@ class XsollaController extends Controller
         }
 
         try {
-            if (!$processor->validateTransaction()) {
-                $processor->dispatchValidationFailed();
-
-                // Send boring json messages back to xsolla.
-                return response()->json([
-                    'error' => [
-                        'code' => 'INVALID',
-                        'message' => 'validation failed',
-                    ],
-                ], 422);
-            }
-
             switch ($processor->getNotificationType()) {
                 case 'payment':
                     $processor->apply();
@@ -104,10 +92,14 @@ class XsollaController extends Controller
                 default:
                     abort(500);
             }
-        } catch (FulfillmentException $e) {
+        } catch (ValidationException $e) {
             \Log::error($e->getMessage());
-            // So I can see things with curl :D
-            return $this->exceptionResponse($e, 422, 'INVALID');
+            return response()->json([
+                'error' => [
+                    'code' => 'INVALID',
+                    'message' => 'A validation error occured while running the transaction',
+                ],
+            ], 422);
         } catch (InvalidSignatureException $e) {
             // xsolla expects INVALID_SIGNATURE
             return $this->exceptionResponse($e, 422, 'INVALID_SIGNATURE');
