@@ -85,13 +85,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
             @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
               @post reply, 'reply'
 
-          if @props.currentUser.id?
-            el BeatmapDiscussions.NewReply,
-              currentUser: @props.currentUser
-              beatmapset: @props.beatmapset
-              currentBeatmap: @props.currentBeatmap
-              discussion: @props.discussion
-              userPermissions: @props.userPermissions
+          el BeatmapDiscussions.NewReply,
+            currentUser: @props.currentUser
+            beatmapset: @props.beatmapset
+            currentBeatmap: @props.currentBeatmap
+            discussion: @props.discussion
+            userPermissions: @props.userPermissions
 
         div className: lineClasses
 

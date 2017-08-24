@@ -33,7 +33,10 @@ return [
     ],
 
     'reply' => [
-        'open' => 'Respond',
+        'open' => [
+            'guest' => 'Login to Respond',
+            'user' => 'Respond',
+        ],
     ],
 
     'system' => [

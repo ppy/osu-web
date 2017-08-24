@@ -98,11 +98,17 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   renderPlaceholder: =>
+    [text, icon] =
+      if @props.currentUser.id?
+        [osu.trans('beatmap_discussions.reply.open.user'), 'reply']
+      else
+        [osu.trans('beatmap_discussions.reply.open.guest'), 'sign-in']
+
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
       el BigButton,
-        text: osu.trans('beatmap_discussions.reply.open')
-        icon: 'reply'
+        text: text
+        icon: icon
         props:
           onClick: @editStart
 
@@ -121,6 +127,10 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   editStart: =>
+    if !@props.currentUser.id?
+      userLogin.show()
+      return
+
     @setState editing: true, =>
       @box?.focus()
 
