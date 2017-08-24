@@ -101,13 +101,11 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
      *
      * @return void
      */
-    public function apply($validate = true)
+    public function apply()
     {
-        if ($validate) {
-            if (!$this->validateTransaction()) {
-                $this->dispatchValidationFailed();
-                throw new PaymentProcessorException($this->validationErrors());
-            }
+        if (!$this->validateTransaction()) {
+            $this->dispatchValidationFailed();
+            throw new PaymentProcessorException($this->validationErrors());
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -122,13 +120,11 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
      *
      * @return void
      */
-    public function cancel($validate = true)
+    public function cancel()
     {
-        if ($validate) {
-            if (!$this->validateTransaction()) {
-                $this->dispatchValidationFailed();
-                throw new PaymentProcessorException($this->validationErrors());
-            }
+        if (!$this->validateTransaction()) {
+            $this->dispatchValidationFailed();
+            throw new PaymentProcessorException($this->validationErrors());
         }
 
         DB::connection('mysql-store')->transaction(function () {
