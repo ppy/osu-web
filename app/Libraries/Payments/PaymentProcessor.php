@@ -63,8 +63,26 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
      */
     abstract public function getTransactionId();
 
+    /**
+     * Gets the payment date given by the payment provider.
+     *
+     * @return Carbon\Carbon
+     */
     abstract public function getPaymentDate();
+
+    /**
+     * Validates the transaction.
+     * Returns true if the transaction is valid; false, otherwise.
+     *
+     * @return boolean
+     */
     abstract public function validateTransaction();
+
+    /**
+     * Gets the type of payment notification.
+     *
+     * @return string
+     */
     abstract public function getNotificationType();
 
     /**
@@ -75,6 +93,11 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
         return false;
     }
 
+    /**
+     * Processes the payment transaction
+     *
+     * @return void
+     */
     public function apply()
     {
         DB::connection('mysql-store')->transaction(function () {
@@ -84,6 +107,11 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
         });
     }
 
+    /**
+     * Cancels the payment transaction
+     *
+     * @return void
+     */
     public function cancel()
     {
         DB::connection('mysql-store')->transaction(function () {
@@ -93,6 +121,11 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
         });
     }
 
+    /**
+     * Sends a ValidationFailedEvent with the validation errors
+     *
+     * @return void
+     */
     public function dispatchValidationFailed()
     {
         event(new ProcessorValidationFailed(
