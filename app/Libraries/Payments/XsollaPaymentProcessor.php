@@ -63,6 +63,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return "xsolla-{$this['transaction.id']}";
     }
 
+    public function getPaymentAmount()
+    {
+        return $this['purchase.checkout.amount'];
+    }
+
     public function getPaymentDate()
     {
         return Carbon::parse($this['transaction.payment_date']);
@@ -126,12 +131,12 @@ class XsollaPaymentProcessor extends PaymentProcessor
             );
         }
 
-        \Log::debug("purchase.checkout.amount: {$this['purchase.checkout.amount']}, {$order->getTotal()}");
-        if ($this['purchase.checkout.amount'] < $order->getTotal()) {
+        \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
+        if ($this->getPaymentAmount() < $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',
-                ['expected' => $order->getTotal(), 'actual' => $this['purchase.checkout.amount']]
+                ['expected' => $order->getTotal(), 'actual' => $this->getPaymentAmount()]
             );
         }
 

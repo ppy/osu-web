@@ -66,6 +66,13 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getTransactionId();
 
     /**
+     * Gets the payment amount given by the payment provider.
+     *
+     * @return float
+     */
+    abstract public function getPaymentAmount();
+
+    /**
      * Gets the payment date given by the payment provider.
      *
      * @return Carbon\Carbon
