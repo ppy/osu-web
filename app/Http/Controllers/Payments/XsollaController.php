@@ -70,9 +70,7 @@ class XsollaController extends Controller
             'api_key' => config('payments.xsolla.api_key'),
         ));
 
-        $token = $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
-
-        return $token;
+        return $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
     }
     public function callback(Request $request)
     {
@@ -87,7 +85,7 @@ class XsollaController extends Controller
             if (!$processor->validateTransaction()) {
                 $processor->dispatchValidationFailed();
 
-                // Not sure we should care about sending messages back to xsolla...
+                // Send boring json messages back to xsolla.
                 return response()->json([
                     'error' => [
                         'code' => 'INVALID',
