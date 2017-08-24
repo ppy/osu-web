@@ -81,7 +81,8 @@ class XsollaPaymentProcessor extends PaymentProcessor
         $signature = new XsollaHeaderSignature($this->request);
         // TODO: post many warnings
         if (!$signature->isValid()) {
-            $this->validationErrors()->add('signature', 'Signatures do not match');
+            $this->validationErrors()->add('header.signature', '.signature.not_match');
+            $this->dispatchValidationFailed();
             throw new InvalidSignatureException();
         }
     }

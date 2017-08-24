@@ -19,6 +19,9 @@
  */
 
 return [
+    'signature' => [
+        'not_match' => 'Signatures do not match',
+    ],
     'notification_type' => 'notification_type is not valid :type',
     'order' => [
         'invalid' => 'Order is not valid',

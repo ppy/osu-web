@@ -111,7 +111,6 @@ class XsollaController extends Controller
             // So I can see things with curl :D
             return $this->exceptionResponse($e, 422, 'INVALID');
         } catch (InvalidSignatureException $e) {
-            $processor->dispatchValidationFailed();
             // xsolla expects INVALID_SIGNATURE
             return $this->exceptionResponse($e, 422, 'INVALID_SIGNATURE');
         } catch (\Exception $e) {
