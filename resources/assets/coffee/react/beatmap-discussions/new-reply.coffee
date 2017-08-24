@@ -109,6 +109,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       el BigButton,
         text: text
         icon: icon
+        modifiers: ['beatmap-discussion-reply-open']
         props:
           onClick: @editStart
 
