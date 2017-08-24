@@ -26,11 +26,14 @@ use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Libraries\ValidationFailable;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
 abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
 {
+    use Validatable;
+
     private $json;
     protected $order;
     protected $request;
@@ -163,5 +166,15 @@ abstract class PaymentProcessor implements \ArrayAccess, ValidationFailable
         }
 
         return $this->order;
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'payments';
+    }
+
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation/';
     }
 }

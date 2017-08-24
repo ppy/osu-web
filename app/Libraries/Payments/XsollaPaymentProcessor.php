@@ -22,15 +22,12 @@ namespace App\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
-use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
 // FIXME: rename?
 class XsollaPaymentProcessor extends PaymentProcessor
 {
-    use Validatable;
-
     const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
     const SKIP_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
@@ -139,15 +136,5 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         return $this->validationErrors()->isEmpty();
-    }
-
-    public function validationErrorsTranslationPrefix()
-    {
-        return 'payments';
-    }
-
-    public function validationErrorsKeyBase()
-    {
-        return 'model_validation/';
     }
 }
