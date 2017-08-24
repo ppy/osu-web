@@ -18,15 +18,20 @@
 
 .page-mode-link {
   @top: page-mode-link;
+  @_post-reply-active: @pink-darker;
   .link-plain();
   .link-gray-light();
   font-weight: 300;
   padding: 5px 0 10px;
   display: flex;
 
-  &--is-active {
+  &.js-is-active, &--is-active {
     font-weight: 600;
     color: #fff;
+
+    &.@{top}--post-reply {
+      color: @_post-reply-active;
+    }
   }
 
   &--white {
@@ -41,6 +46,17 @@
       .link-white();
       opacity: 0.5;
     }
+  }
+
+  &--post-reply {
+    padding-left: 0;
+    padding-right: 0;
+    color: #555;
+    font-weight: 500;
+
+    .link-hover({
+      color: @_post-reply-active;
+    });
   }
 
   &__badge {
@@ -72,6 +88,11 @@
       background-color: #000;
     }
 
+    .@{top}--post-reply & {
+      background-color: @_post-reply-active;
+    }
+
+    .@{top}.js-is-active &,
     .@{top}--is-active &,
     .@{top}:hover & {
       transform: translateY(0) scaleY(1);

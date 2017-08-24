@@ -18,6 +18,7 @@
 
 .page-mode {
   @_top: page-mode;
+  @_gutter: 10px;
 
   background-color: #333;
   color: #ccc;
@@ -35,6 +36,14 @@
 
   &--page-extra-tabs {
     background-color: transparent;
+  }
+
+  &--post-reply {
+    background-color: transparent;
+    font-size: @font-size--normal;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 (-@_gutter);
   }
 
   &--ranking-page-mode-tabs {
@@ -55,7 +64,7 @@
     display: flex;
     line-height: 1;
 
-    margin: 0 10px;
+    margin: 0 @_gutter;
 
     .@{_top}--breadcrumb & {
       margin-left: 5px;
