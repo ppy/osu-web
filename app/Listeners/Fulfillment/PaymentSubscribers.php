@@ -32,8 +32,8 @@ class PaymentSubscribers
     public function onPaymentCompleted($event)
     {
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
-        \Log::debug('onPaymentCompleted:');
-        $this->notify("onPaymentCompleted: `Order {$event->order->order_id}`");
+        $count = count($fulfillers);
+        $this->notify("onPaymentCompleted: `Order {$event->order->order_id}`, dispatching `{$count}` fulfillers");
 
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $fulfiller) {
@@ -44,8 +44,8 @@ class PaymentSubscribers
     public function onPaymentCancelled($event)
     {
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
-        \Log::debug('onPaymentCancelled');
-        $this->notify("onPaymentCancelled: `Order {$event->order->order_id}`");
+        $count = count($fulfillers);
+        $this->notify("onPaymentCancelled: `Order {$event->order->order_id}`, dispatching `{$count}` fulfillers");
 
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $fulfiller) {
