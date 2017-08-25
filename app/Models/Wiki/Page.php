@@ -74,10 +74,7 @@ class Page
                         ],
                     ]],
                     ['match' => [
-                        'locale' => [
-                            'query' => config('app.fallback_locale'),
-                            'boost' => 1,
-                        ],
+                        'locale' => config('app.fallback_locale'),
                     ]],
                 ],
             ],
