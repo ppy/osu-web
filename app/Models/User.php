@@ -23,7 +23,6 @@ namespace App\Models;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
-use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Traits\UserAvatar;
 use Cache;
 use Carbon\Carbon;
@@ -1135,55 +1134,5 @@ class User extends Model implements AuthenticatableContract, Messageable
         } else {
             return $query->get();
         }
-    }
-
-    public function profileBeatmapsetsMostPlayed($limit = 5, $offset = 0)
-    {
-        return $this->beatmapPlaycounts()
-            ->with('beatmap', 'beatmap.beatmapset')
-            ->orderBy('playcount', 'desc')
-            ->orderBy('beatmap_id', 'desc') // for consistent sorting
-            ->limit($limit)
-            ->offset($offset)
-            ->get()
-            ->filter(function ($pc) {
-                return $pc->beatmap !== null && $pc->beatmap->beatmapset !== null;
-            });
-    }
-
-    public function profileScoresBest($mode = 'osu', $limit = 5, $offset = 0)
-    {
-        $scores = $this->scoresBest($mode, true)
-            ->orderBy('pp', 'DESC')
-            ->userBest($limit, ['beatmapset', 'beatmap'], $offset);
-
-        ScoreBestModel::fillInPosition($scores);
-
-        return $scores;
-    }
-
-    public function profileScoresFirsts($mode = 'osu', $limit = 5, $offset = 0)
-    {
-        $scores = $this->scoresFirst($mode, true)
-            ->orderBy('score_id', 'desc')
-            ->with('beatmapset', 'beatmap')
-            ->limit($limit)
-            ->offset($offset)
-            ->get();
-
-        ScoreBestModel::fillInPosition($scores);
-
-        return $scores;
-    }
-
-    public function profileScoresRecent($mode = 'osu', $limit = 5, $offset = 0)
-    {
-        $scores = $this->scores($mode, true)
-            ->with('beatmapset', 'beatmap')
-            ->limit($limit)
-            ->offset($offset)
-            ->get();
-
-        return $scores;
     }
 }

@@ -40,4 +40,4 @@ class ProfilePage.ShowMoreLink extends React.Component
 
   showMore: (e) ->
     e.preventDefault()
-    $.publish 'showMore', showMoreLink: e.currentTarget
+    $.publish 'profile:showMore', showMoreLink: e.currentTarget

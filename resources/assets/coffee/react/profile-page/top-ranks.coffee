@@ -35,11 +35,10 @@ class ProfilePage.TopRanks extends React.PureComponent
               el ProfilePage.ShowMoreLink,
                 propertyName: 'scoresBest'
                 pagination: @props.pagination
-                route: laroute.route('users.scores',
-                  id: @props.user.id
+                route: laroute.route 'users.scores',
+                  user: @props.user.id
                   type: 'best'
                   mode: @props.currentMode
-                )
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')
 
@@ -53,10 +52,9 @@ class ProfilePage.TopRanks extends React.PureComponent
               el ProfilePage.ShowMoreLink,
                 propertyName: 'scoresFirst'
                 pagination: @props.pagination
-                route: laroute.route('users.scores',
-                  id: @props.user.id
+                route: laroute.route 'users.scores',
+                  user: @props.user.id
                   type: 'firsts'
                   mode: @props.currentMode
-                )
         else
           p className: 'profile-extra-entries', osu.trans('users.show.extra.top_ranks.empty')

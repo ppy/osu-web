@@ -189,7 +189,7 @@ abstract class Model extends BaseModel
         return function ($query, $limit, $includes = [], $offset = 0) {
             $baseResult = (clone $query)
                 ->with($includes)
-                ->limit(($limit+$offset) * 2)
+                ->limit(($limit + $offset) * 2)
                 ->get();
 
             $results = [];

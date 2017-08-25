@@ -51,10 +51,9 @@ class ProfilePage.Historical extends React.PureComponent
             el ProfilePage.ShowMoreLink,
               propertyName: 'beatmapPlaycounts'
               pagination: @props.pagination
-              route: laroute.route('users.beatmapsets'
-                  id: @props.user.id
+              route: laroute.route 'users.beatmapsets',
+                  user: @props.user.id
                   type: 'most_played'
-                )
         ]
 
       else
@@ -75,11 +74,10 @@ class ProfilePage.Historical extends React.PureComponent
             el ProfilePage.ShowMoreLink,
               propertyName: 'scoresRecent'
               pagination: @props.pagination
-              route: laroute.route('users.scores'
-                  id: @props.user.id
+              route: laroute.route 'users.scores',
+                  user: @props.user.id
                   type: 'recent'
                   mode: @props.currentMode
-                )
         ]
 
       else

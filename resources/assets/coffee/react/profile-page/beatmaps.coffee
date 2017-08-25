@@ -29,11 +29,12 @@ class ProfilePage.Beatmaps extends React.PureComponent
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
       for own section, beatmapsets of allBeatmapsets
+        sectionSnaked = _.replace(_.snakeCase(section), '_beatmapsets', '')
         div
           key: section
           h3
             className: 'page-extra__title page-extra__title--small'
-            osu.trans("users.show.extra.beatmaps." + _.replace(_.snakeCase(section), '_beatmapsets', '') + ".title", count: @props.counts[section])
+            osu.trans("users.show.extra.beatmaps." + sectionSnaked + ".title", count: @props.counts[section])
 
           if beatmapsets.length > 0
             div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',
@@ -48,10 +49,9 @@ class ProfilePage.Beatmaps extends React.PureComponent
                 el ProfilePage.ShowMoreLink,
                   propertyName: section
                   pagination: @props.pagination
-                  route: laroute.route('users.beatmapsets',
-                    id: @props.user.id
-                    type: _.snakeCase _.replace(section, 'Beatmapsets', '')
-                  )
+                  route: laroute.route 'users.beatmapsets',
+                    user: @props.user.id
+                    type: sectionSnaked
 
           else
             p className: 'page-extra-entries', osu.trans('users.show.extra.beatmaps.none')

@@ -67,7 +67,7 @@ class ProfilePage.Main extends React.PureComponent
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'showMore.profilePage', @loadMore
+    $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
@@ -232,7 +232,7 @@ class ProfilePage.Main extends React.PureComponent
       el component, props
 
 
-  loadMore: (e, {showMoreLink}) =>
+  showMore: (e, {showMoreLink}) =>
     type = showMoreLink.dataset.showMore
     endpoint = showMoreLink.dataset.showMoreUrl
     offset = @state[type].length

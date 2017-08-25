@@ -72,7 +72,7 @@ class ProfilePage.Kudosu extends React.Component
               el ProfilePage.ShowMoreLink,
                 propertyName: 'recentlyReceivedKudosu'
                 pagination: @props.pagination
-                route: laroute.route 'users.kudosu', id: @props.user.id
+                route: laroute.route 'users.kudosu', user: @props.user.id
 
         else
           div className: 'profile-extra-entries', osu.trans('users.show.extra.kudosu.entry.empty')
