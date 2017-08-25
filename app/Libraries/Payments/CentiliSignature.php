@@ -45,6 +45,14 @@ class CentiliSignature
         return hash_hmac('sha1', $content, config('payments.centili.secret_key'), false);
     }
 
+    public static function stringifyInput(array $input)
+    {
+        ksort($input);
+        unset($input['sign']);
+
+        return implode('', array_values($input)); // array_values might not be needed.
+    }
+
     private function receivedSignature()
     {
         return $this->request->input('sign');
@@ -53,11 +61,7 @@ class CentiliSignature
     private function calculatedSignature()
     {
         // Centili signature is a HMAC of the concatenation of all params values sorted alphabetically by key name.
-        $input = $this->request->input();
-        ksort($input);
-        unset($input['sign']);
-
-        $string = implode('', array_values($input)); // array_values might not be needed.
+        $string = static::stringifyInput($this->request->input());
 
         return static::calculateSignature($string);
     }
