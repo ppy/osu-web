@@ -77,57 +77,9 @@
 
     <div class="collapse navbar-collapse navbar-mobile__menu js-navbar-mobile--menu" id="xs-navbar">
         <ul class="nav navbar-nav navbar-mobile__menu-items">
-            <li class="navbar-mobile__user">
-                @if (Auth::check())
-                    <a class="navbar-mobile__menu-item navbar-mobile__menu-item--user" href="{{ route('users.show', Auth::user()) }}">
-                        <span
-                            class="avatar avatar--navbar-mobile"
-                            style="background-image: url('{{ Auth::user()->user_avatar }}');">
-                        </span>
-
-                        {{ Auth::user()->username }}
-                    </a>
-
-                    <a
-                        class="navbar-mobile__menu-item navbar-mobile__menu-item--logout js-logout-link"
-                        href="{{ route('logout') }}"
-                        data-method="delete"
-                        data-confirm="{{ trans('users.logout_confirm') }}"
-                        data-remote="1"
-                    >
-                        <i class="fa fa-sign-out"></i>
-                    </a>
-                @else
-                    <a
-                        class="js-user-link navbar-mobile__menu-item navbar-mobile__menu-item--user"
-                        href="#"
-                        title="{{ trans('users.anonymous.login_link') }}"
-                    >
-                        <span class="avatar avatar--guest avatar--navbar-mobile"></span>
-
-                        {{ trans('users.anonymous.username') }}
-                    </a>
-                @endif
-            </li>
-            @foreach (nav_links() as $section => $links)
-            <li class="dropdown">
-                <a data-toggle="dropdown" role="button" data-target="#" id="expand-{{ $section }}" class="navbar-mobile__menu-item dropdown-toggle" href="{{ array_values($links)[0] }}">
-                    <i class="fa fa-chevron-right navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--closed"></i>
-                    <i class="fa fa-chevron-down navbar-mobile__menu-item-icon navbar-mobile__menu-item-icon--opened"></i>
-                    {{ trans("layout.menu.$section._") }}
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="expand-{{ $section }}">
-                    @foreach ($links as $action => $link)
-                    <li>
-                        <a class="navbar-mobile__menu-subitem" href="{{ $link }}" data-toggle="collapse" data-target="#xs-navbar">
-                            <i class="fa fa-chevron-right navbar-mobile__menu-subitem-icon"></i>
-                            {{ trans("layout.menu.$section.$action") }}
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
-            </li>
-            @endforeach
+            @include('layout.header_mobile.user')
+            @include('layout.header_mobile.nav')
+            @include('layout.header_mobile.locale')
         </ul>
     </div>
 </div>
