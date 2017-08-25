@@ -57,6 +57,7 @@ class ProfilePage.Main extends React.PureComponent
       beatmapPlaycounts: @props.beatmapsets.most_played
       favouriteBeatmapsets: @props.beatmapsets.favourite
       rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
+      recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       pagination:
         favouriteBeatmapsets:
           perPage: 6
@@ -129,7 +130,8 @@ class ProfilePage.Main extends React.PureComponent
       kudosu:
         props:
           user: @state.user
-          recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
+          pagination: @state.pagination
         component: ProfilePage.Kudosu
 
       top_ranks:

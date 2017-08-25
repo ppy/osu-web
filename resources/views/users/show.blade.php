@@ -60,6 +60,10 @@
         {!! json_encode($currentMode) !!}
     </script>
 
+    <script id="json-kudosu" type="application/json">
+        {!! json_encode($kudosu) !!}
+    </script>
+
     <script id="json-scores" type="application/json">
         {!! json_encode($scores) !!}
     </script>

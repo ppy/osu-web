@@ -16,34 +16,33 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
+{div, h3, ul, li, p, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.Kudosu extends React.Component
   render: =>
-    el 'div',
-      className: 'page-extra'
-
+    div className: 'page-extra',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
-      el 'div', className: 'kudosu-box',
-        el 'div', className: 'kudosu-box__content',
-          el 'h3', className: 'kudosu-box__title',
+      div className: 'kudosu-box',
+        div className: 'kudosu-box__content',
+          h3 className: 'kudosu-box__title',
             "#{osu.trans('users.show.extra.kudosu.total')}: "
-            el 'span', className: 'kudosu-box__count', @props.user.kudosu.total
-          el 'p', dangerouslySetInnerHTML:
+            span className: 'kudosu-box__count', @props.user.kudosu.total
+          p dangerouslySetInnerHTML:
             __html: osu.trans('users.show.extra.kudosu.total_info')
-        el 'div', className: 'kudosu-box__content',
-          el 'h3', className: 'kudosu-box__title',
+        div className: 'kudosu-box__content',
+          h3 className: 'kudosu-box__title',
             "#{osu.trans('users.show.extra.kudosu.available')}: "
-            el 'span', className: 'kudosu-box__count', @props.user.kudosu.available
-          el 'p', null, osu.trans('users.show.extra.kudosu.available_info')
+            span className: 'kudosu-box__count', @props.user.kudosu.available
+          p null, osu.trans('users.show.extra.kudosu.available_info')
 
-      el 'div', className: 'kudosu-entries',
-        el 'h3', className: 'kudosu-entries__title',
+      div className: 'kudosu-entries',
+        h3 className: 'kudosu-entries__title',
           osu.trans('users.show.extra.kudosu.recent_entries')
 
-        if @props.recentlyReceivedKudosu.length
-          el 'ul', className: 'profile-extra-entries',
+        if @props.recentlyReceivedKudosu?.length
+          ul className: 'profile-extra-entries',
             for kudosu in @props.recentlyReceivedKudosu
               continue if !kudosu.id?
 
@@ -59,17 +58,21 @@ class ProfilePage.Kudosu extends React.Component
                 kudosu.post?.title
                 classNames: ['kudosu-entries__link']
 
-              el 'li', key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
-                el 'div', className: 'profile-extra-entries__detail',
-                  el 'div',
-                    className: 'profile-extra-entries__text'
-                    dangerouslySetInnerHTML:
-                      __html: osu.trans "users.show.extra.kudosu.entry.#{kudosu.model}.#{kudosu.action}",
-                        amount: "<strong class='kudosu-entries__amount'>#{osu.trans 'users.show.extra.kudosu.entry.amount', amount: Math.abs(kudosu.amount)}</strong>"
-                        giver: giver
-                        post: post
-                el 'div',
-                  className: 'profile-extra-entries__time'
-                  dangerouslySetInnerHTML: { __html: osu.timeago(kudosu.created_at) }
+              li key: "kudosu-#{kudosu.id}", className: 'profile-extra-entries__item',
+                div className: 'profile-extra-entries__detail',
+                  div className: 'profile-extra-entries__text', dangerouslySetInnerHTML:
+                    __html: osu.trans "users.show.extra.kudosu.entry.#{kudosu.model}.#{kudosu.action}",
+                      amount: "<strong class='kudosu-entries__amount'>#{osu.trans 'users.show.extra.kudosu.entry.amount', amount: Math.abs(kudosu.amount)}</strong>"
+                      giver: giver
+                      post: post
+                div className: 'profile-extra-entries__time', dangerouslySetInnerHTML:
+                  __html: osu.timeago(kudosu.created_at)
+
+            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+              el ProfilePage.ShowMoreLink,
+                propertyName: 'recentlyReceivedKudosu'
+                pagination: @props.pagination
+                route: laroute.route 'users.kudosu', id: @props.user.id
+
         else
-          el 'div', className: 'profile-extra-entries', osu.trans('users.show.extra.kudosu.entry.empty')
+          div className: 'profile-extra-entries', osu.trans('users.show.extra.kudosu.entry.empty')

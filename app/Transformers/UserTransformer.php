@@ -36,7 +36,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         'friends',
         'page',
         'recentActivities',
-        'recentlyReceivedKudosu',
         'rankedAndApprovedBeatmapsetCount',
         'favouriteBeatmapsetCount',
         'disqus_auth',
@@ -161,18 +160,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user->events()->recent()->get(),
             new EventTransformer()
-        );
-    }
-
-    public function includeRecentlyReceivedKudosu(User $user)
-    {
-        return $this->collection(
-            $user->receivedKudosu()
-                ->with('post', 'post.topic', 'giver', 'kudosuable')
-                ->orderBy('exchange_id', 'desc')
-                ->limit(5)
-                ->get(),
-            new KudosuHistoryTransformer()
         );
     }
 

@@ -29,5 +29,5 @@ reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
   beatmapsets: osu.parseJson('json-beatmapsets')
   withEdit: user.id == window.currentUser.id
   recentActivities: user.recentActivities
-  recentlyReceivedKudosu: user.recentlyReceivedKudosu
+  recentlyReceivedKudosu: osu.parseJson('json-kudosu')
   achievements: _.keyBy osu.parseJson('json-achievements'), 'id'

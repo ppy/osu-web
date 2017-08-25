@@ -162,6 +162,22 @@ class UsersController extends Controller
         }
     }
 
+    public function kudosu($id)
+    {
+        $maxLimit = 100;
+        $perPage = 5;
+
+        $user = User::findOrFail($id);
+        $offset = get_int(Request::input('offset'));
+
+        // TODO: FIX
+        if ($offset > $maxLimit - $perPage) {
+            return [];
+        }
+
+        return $this->recentKudosu($user, $perPage, $offset);
+    }
+
     public function show($id, $mode = null)
     {
         $user = User::lookup($id, null, true);
@@ -194,7 +210,6 @@ class UsersController extends Controller
                 'followerCount',
                 'page',
                 'recentActivities',
-                'recentlyReceivedKudosu',
                 'rankedAndApprovedBeatmapsetCount',
                 'favouriteBeatmapsetCount',
             ]
@@ -212,14 +227,31 @@ class UsersController extends Controller
             'recent' => $this->scoresRecent($user, $currentMode),
         ];
 
+        $kudosu = $this->recentKudosu($user);
+
         return view('users.show', compact(
             'user',
             'userArray',
             'achievements',
             'beatmapsets',
             'scores',
-            'currentMode'
+            'currentMode',
+            'kudosu'
         ));
+    }
+
+
+    private function recentKudosu($user, $perPage = 5, $offset = 0)
+    {
+        return json_collection(
+            $user->receivedKudosu()
+                ->with('post', 'post.topic', 'giver', 'kudosuable')
+                ->orderBy('exchange_id', 'desc')
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
+            'KudosuHistory'
+        );
     }
 
     private function mostPlayedBeatmapsets($user, $perPage = 5, $offset = 0)
