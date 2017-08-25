@@ -81,8 +81,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         // TODO: post many warnings
         if (!$signature->isValid()) {
             $this->validationErrors()->add('sign', '.signature.not_match');
-            $this->dispatchValidationFailed();
-            throw new InvalidSignatureException();
+            $this->throwValidationFailed(new InvalidSignatureException());
         }
     }
 

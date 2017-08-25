@@ -114,8 +114,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function apply()
     {
         if (!$this->validateTransaction()) {
-            $this->dispatchValidationFailed();
-            throw new PaymentProcessorException($this->validationErrors());
+            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -133,8 +132,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function cancel()
     {
         if (!$this->validateTransaction()) {
-            $this->dispatchValidationFailed();
-            throw new PaymentProcessorException($this->validationErrors());
+            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
         }
 
         DB::connection('mysql-store')->transaction(function () {
@@ -155,6 +153,18 @@ abstract class PaymentProcessor implements \ArrayAccess
             $this,
             $this->validationErrors()
         ));
+    }
+
+    /**
+     * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
+     *
+     * @param Exception $exception
+     * @return void
+     */
+    protected function throwValidationFailed(\Exception $exception)
+    {
+        $this->dispatchValidationFailed();
+        throw $exception;
     }
 
     /**
