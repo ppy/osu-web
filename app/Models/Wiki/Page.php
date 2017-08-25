@@ -61,31 +61,50 @@ class Page
             'size' => $params['limit'],
             'from' => ($params['page'] - 1) * $params['limit'],
         ]);
+        $searchParams['body']['query']['bool']['must'] = [];
 
-        $matchParams[] = [
-            'match' => ['locale' => $params['locale'] ?? App::getLocale()],
+        $searchParams['body']['query']['bool']['must'][] = [
+            'bool' => [
+                'minimum_should_match' => 1,
+                'should' => [
+                    ['match' => [
+                        'locale' => [
+                            'query' => $params['locale'] ?? App::getLocale(),
+                            'boost' => 1000,
+                        ],
+                    ]],
+                    ['match' => [
+                        'locale' => [
+                            'query' => config('app.fallback_locale'),
+                            'boost' => 1,
+                        ],
+                    ]],
+                ],
+            ],
         ];
 
-        $searchParams['body']['query']['bool']['must'] = $matchParams;
-
         $query = es_query_and_words($params['query']);
-        $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
-        $searchParams['body']['query']['bool']['should'] = [
-            ['match' => [
-                'title' => [
-                    'query' => $query,
-                    'boost' => 10,
+        $searchParams['body']['query']['bool']['must'][] = [
+            'bool' => [
+                'minimum_should_match' => 1,
+                'should' => [
+                    ['match' => [
+                        'title' => [
+                            'query' => $query,
+                            'boost' => 10,
+                        ],
+                    ]],
+                    ['match' => [
+                        'path_clean' => [
+                            'query' => $query,
+                            'boost' => 9,
+                        ],
+                    ]],
+                    ['match' => [
+                        'page_text' => $query,
+                    ]],
                 ],
-            ]],
-            ['match' => [
-                'path_clean' => [
-                    'query' => $query,
-                    'boost' => 9,
-                ],
-            ]],
-            ['match' => [
-                'page_text' => $query,
-            ]],
+            ],
         ];
 
         $results = Es::search($searchParams);
