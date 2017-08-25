@@ -387,7 +387,7 @@ function wiki_url($page = 'Welcome', $locale = null)
 {
     $url = route('wiki.show', ['page' => $page]);
 
-    if (present($locale) && $locale !== App::getLocale()) {
+    if (present($locale) && $locale !== App::getLocale() && $locale !== config('app.fallback_locale')) {
         $url .= '?locale='.$locale;
     }
 
