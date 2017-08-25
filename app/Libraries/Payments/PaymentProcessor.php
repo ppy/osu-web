@@ -33,14 +33,18 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Validatable;
 
-    private $json;
+
     protected $order;
     protected $request;
+    protected $params;
 
     public function __construct(\Illuminate\Http\Request $request)
     {
         $this->request = $request;
-        $this->json = $request->json()->all();
+        $this->params = $this->request->input();
+        if ($request->isJson()) {
+            $this->params = array_merge($this->params, $request->json()->all());
+        }
     }
 
     /**
@@ -158,13 +162,14 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     public function offsetExists($key)
     {
-        return array_has($this->json, $key);
+        return array_has($this->params, $key);
     }
 
     public function offsetGet($key)
     {
-        return data_get($this->json, $key);
+        return data_get($this->params, $key);
     }
+
     public function offsetSet($key, $value)
     {
         throw new \Exception('not supported');

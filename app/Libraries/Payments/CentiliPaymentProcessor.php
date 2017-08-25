@@ -118,17 +118,4 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
         return $this->validationErrors()->isEmpty();
     }
-
-    /**
-     * implements ArrayAccess
-     */
-    public function offsetExists($key)
-    {
-        return $this->request->exists($key);
-    }
-
-    public function offsetGet($key)
-    {
-        return $this->request->input($key);
-    }
 }
