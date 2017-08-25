@@ -15,30 +15,29 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-
-{a, span} = ReactDOMFactories
+{a} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.ExtraTab extends React.Component
-  pageSwitch: (e) =>
-    e.preventDefault()
-
-    $.publish 'profile:page:jump', @props.page
-
-
+class ProfilePage.ShowMoreLink extends React.Component
   render: =>
-    className = 'page-mode-link'
+    if @props.pagination[@props.propertyName]?.loading && @props.pagination[@props.propertyName].loading
+      el Icon, key: 'more-loader', name: 'refresh', modifiers: ['spin']
 
-    if @props.page == @props.currentPage
-      className += ' page-mode-link--is-active'
+    else
+      hasMore = !@props.pagination[@props.propertyName]? || !@props.pagination[@props.propertyName]?.hasMore? || @props.pagination[@props.propertyName].hasMore
 
-    a
-      href: "##{@props.page}"
-      className: className
-      onClick: @pageSwitch
-      'data-page-id': @props.page
-      span
-        className: 'fake-bold'
-        'data-content': osu.trans("users.show.extra.#{@props.page}.title")
-        osu.trans("users.show.extra.#{@props.page}.title")
-      span className: 'page-mode-link__stripe'
+      if hasMore
+        a
+          href: '#'
+          'data-show-more': @props.propertyName
+          'data-show-more-url': @props.route
+          onClick: @showMore
+          osu.trans('common.buttons.show_more')
+
+      else
+        null
+
+
+  showMore: (e) ->
+    e.preventDefault()
+    $.publish 'showMore', showMoreLink: e.currentTarget

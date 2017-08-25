@@ -30,19 +30,15 @@ class UserTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'userAchievements',
         'allRankHistories',
-        'allScores',
-        'allScoresBest',
-        'allScoresFirst',
         'allStatistics',
-        'beatmapPlaycounts',
         'defaultStatistics',
         'followerCount',
         'friends',
         'page',
         'recentActivities',
         'recentlyReceivedKudosu',
-        'rankedAndApprovedBeatmapsets',
-        'favouriteBeatmapsets',
+        'rankedAndApprovedBeatmapsetCount',
+        'favouriteBeatmapsetCount',
         'disqus_auth',
     ];
 
@@ -138,58 +134,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         });
     }
 
-    public function includeAllScoresFirst(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $all = [];
-            foreach (array_keys(Beatmap::MODES) as $mode) {
-                $scores = $user
-                    ->scoresFirst($mode, true)
-                    ->default()
-                    ->userBest(50, ['beatmapset', 'beatmap']);
-
-                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
-            }
-
-            return $all;
-        });
-    }
-
-    public function includeAllScoresBest(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $all = [];
-            foreach (array_keys(Beatmap::MODES) as $mode) {
-                $scores = $user
-                    ->scoresBest($mode, true)
-                    ->default()
-                    ->orderBy('pp', 'DESC')
-                    ->userBest(50, ['beatmapset', 'beatmap']);
-
-                ScoreBestModel::fillInPosition($scores);
-
-                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset,weight');
-            }
-
-            return $all;
-        });
-    }
-
-    public function includeAllScores(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $all = [];
-
-            foreach (array_keys(Beatmap::MODES) as $mode) {
-                $scores = $user->scores($mode, true)->default()->with('beatmapset', 'beatmap')->get();
-
-                $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
-            }
-
-            return $all;
-        });
-    }
-
     public function includePage(User $user)
     {
         return $this->item($user, function ($user) {
@@ -220,49 +164,34 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeBeatmapPlaycounts(User $user)
-    {
-        $beatmapPlaycounts = $user->beatmapPlaycounts()
-            ->with('beatmap', 'beatmap.beatmapset')
-            ->orderBy('playcount', 'desc')
-            ->limit(50)
-            ->get()
-            ->filter(function ($pc) {
-                return $pc->beatmap !== null && $pc->beatmap->beatmapset !== null;
-            });
-
-        return $this->collection($beatmapPlaycounts, new BeatmapPlaycountTransformer());
-    }
-
     public function includeRecentlyReceivedKudosu(User $user)
     {
         return $this->collection(
             $user->receivedKudosu()
                 ->with('post', 'post.topic', 'giver', 'kudosuable')
                 ->orderBy('exchange_id', 'desc')
-                ->limit(15)
+                ->limit(5)
                 ->get(),
             new KudosuHistoryTransformer()
         );
     }
 
-    public function includeRankedAndApprovedBeatmapsets(User $user)
+    public function includeRankedAndApprovedBeatmapsetCount(User $user)
     {
-        return $this->collection(
-            $user->beatmapsets()->rankedOrApproved()->active()->with('beatmaps')->get(),
-            new BeatmapsetCompactTransformer()
-        );
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsRankedAndApproved(6, 0, true)->count()
+            ];
+        });
     }
 
-    public function includeFavouriteBeatmapsets(User $user)
+    public function includeFavouriteBeatmapsetCount(User $user)
     {
-        return $this->collection(
-            $user->favouriteBeatmapsets()
-                ->with('beatmaps')
-                ->limit(50)
-                ->get(),
-            new BeatmapsetCompactTransformer()
-        );
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsFavourite(6, 0, true)->count()
+            ];
+        });
     }
 
     public function includeDisqusAuth(User $user)

@@ -170,7 +170,9 @@ Route::post('users/check-username-availability', 'UsersController@checkUsernameA
 Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
 Route::get('users/{id}/card', 'UsersController@card')->name('users.card');
-Route::resource('users', 'UsersController', ['only' => ['show']]);
+Route::get('users/{id}/{mode?}', 'UsersController@show')->name('users.show');
+Route::get('users/{id}/scores/{type}', 'UsersController@scores')->name('users.scores');
+Route::get('users/{id}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::group(['prefix' => 'help'], function () {
     // help section

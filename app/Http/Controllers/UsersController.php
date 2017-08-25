@@ -41,6 +41,30 @@ class UsersController extends Controller
         return parent::__construct();
     }
 
+    public function card($id)
+    {
+        $id = get_int($id);
+
+        $user = User::lookup($id, 'id');
+        $mutual = false;
+
+        if (Auth::user()) {
+            $friend = Auth::user()
+                ->friends()
+                ->where('user_id', $id)
+                ->first();
+
+            if ($friend) {
+                $mutual = $friend->mutual;
+            }
+        }
+
+        // render usercard as popup (i.e. pretty fade-in elements on load)
+        $popup = true;
+
+        return view('objects._usercard', compact('user', 'friend', 'mutual', 'popup'));
+    }
+
     public function disabled()
     {
         return view('users.disabled');
@@ -80,31 +104,65 @@ class UsersController extends Controller
         ];
     }
 
-    public function card($id)
+    public function scores($id, $type)
     {
-        $id = get_int($id);
+        $maxLimit = 100;
+        $perPage = 5;
 
-        $user = User::lookup($id, 'id');
-        $mutual = false;
+        $user = User::findOrFail($id);
+        $mode = Request::input('mode');
+        $offset = get_int(Request::input('offset'));
 
-        if (Auth::user()) {
-            $friend = Auth::user()
-                ->friends()
-                ->where('user_id', $id)
-                ->first();
-
-            if ($friend) {
-                $mutual = $friend->mutual;
-            }
+        // TODO: FIX
+        if ($offset > $maxLimit - $perPage) {
+            return [];
         }
 
-        // render usercard as popup (i.e. pretty fade-in elements on load)
-        $popup = true;
+        switch ($type) {
+            case 'best':
+                return $this->scoresBest($user, $mode, $perPage, $offset);
 
-        return view('objects._usercard', compact('user', 'friend', 'mutual', 'popup'));
+            case 'firsts':
+                return $this->scoresFirsts($user, $mode, $perPage, $offset);
+
+            case 'recent':
+                return $this->scoresRecent($user, $mode, $perPage, $offset);
+
+            default:
+                return [];
+        }
     }
 
-    public function show($id)
+    public function beatmapsets($id, $type)
+    {
+        $maxLimit = 100;
+        $perPage = 6;
+
+        $user = User::findOrFail($id);
+        $mode = Request::input('mode');
+        $offset = get_int(Request::input('offset'));
+
+        // TODO: FIX
+        if ($offset > $maxLimit - $perPage) {
+            return [];
+        }
+
+        switch ($type) {
+            case 'most_played':
+                return $this->mostPlayedBeatmapsets($user, 5, $offset);
+
+            case 'favourite':
+                return $this->favouriteBeatmapsets($user, $perPage, $offset);
+
+            case 'ranked_and_approved':
+                return $this->rankedAndApprovedBeatmapsets($user, $perPage, $offset);
+
+            default:
+                return [];
+        }
+    }
+
+    public function show($id, $mode = null)
     {
         $user = User::lookup($id, null, true);
 
@@ -115,6 +173,8 @@ class UsersController extends Controller
         if ((string) $user->user_id !== $id) {
             return ujs_redirect(route('users.show', $user));
         }
+
+        $currentMode = $mode ?? $user->playmode;
 
         $achievements = json_collection(
             Achievement::achievable()
@@ -130,20 +190,88 @@ class UsersController extends Controller
             new UserTransformer(), [
                 'userAchievements',
                 'allRankHistories',
-                'allScores',
-                'allScoresBest',
-                'allScoresFirst',
                 'allStatistics',
-                'beatmapPlaycounts',
                 'followerCount',
                 'page',
                 'recentActivities',
                 'recentlyReceivedKudosu',
-                'rankedAndApprovedBeatmapsets.beatmaps',
-                'favouriteBeatmapsets.beatmaps',
+                'rankedAndApprovedBeatmapsetCount',
+                'favouriteBeatmapsetCount',
             ]
         );
 
-        return view('users.show', compact('user', 'userArray', 'achievements'));
+        $beatmapsets =[
+            'most_played' => $this->mostPlayedBeatmapsets($user),
+            'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
+            'favourite' => $this->favouriteBeatmapsets($user)
+        ];
+
+        $scores = [
+            'best' => $this->scoresBest($user, $currentMode),
+            'firsts' => $this->scoresFirsts($user, $currentMode),
+            'recent' => $this->scoresRecent($user, $currentMode),
+        ];
+
+        return view('users.show', compact(
+            'user',
+            'userArray',
+            'achievements',
+            'beatmapsets',
+            'scores',
+            'currentMode'
+        ));
+    }
+
+    private function mostPlayedBeatmapsets($user, $perPage = 5, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsMostPlayed($perPage, $offset),
+            'BeatmapPlaycount'
+        );
+    }
+
+    private function rankedAndApprovedBeatmapsets($user, $perPage = 6, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsRankedAndApproved($perPage, $offset),
+            'BeatmapsetCompact',
+            ['beatmaps']
+        );
+    }
+
+    private function favouriteBeatmapsets($user, $perPage = 6, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsFavourite($perPage, $offset),
+            'BeatmapsetCompact',
+            ['beatmaps']
+        );
+    }
+
+    private function scoresBest($user, $mode, $perPage = 5, $offset = 0)
+    {
+        return json_collection(
+            $user->profileScoresBest($mode, $perPage, $offset),
+            'Score',
+            ['beatmap', 'beatmapset', 'weight']
+        );
+    }
+
+    private function scoresFirsts($user, $mode, $perPage = 5, $offset = 0)
+    {
+        return json_collection(
+            $user->profileScoresFirsts($mode, $perPage, $offset),
+            'Score',
+            ['beatmap', 'beatmapset']
+        );
+    }
+
+    private function scoresRecent($user, $mode, $perPage = 5, $offset = 0)
+    {
+        return json_collection(
+            $user->profileScoresRecent($mode, $perPage, $offset),
+            'Score',
+            ['beatmap', 'beatmapset']
+        );
     }
 }

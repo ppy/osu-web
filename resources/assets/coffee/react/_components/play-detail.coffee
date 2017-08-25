@@ -19,17 +19,15 @@
 {a, div, img, small, span} = ReactDOMFactories
 el = React.createElement
 
-@PlayDetail = ({score, shown}) ->
+@PlayDetail = ({score}) ->
   modsText =
     if score.mods.length
       " +#{(mod.shortName for mod in score.mods).join(',')} "
     else
       ' '
-  topClasses = 'detail-row'
-  topClasses += ' hidden' unless shown
 
   div
-    className: topClasses
+    className: 'detail-row'
     div
       className: 'detail-row__icon'
       div className: "badge-rank badge-rank--full badge-rank--#{score.rank}"

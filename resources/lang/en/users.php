@@ -105,7 +105,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays',
+                    'title' => 'Recent Plays (24h)',
                 ],
                 'title' => 'Historical',
             ],

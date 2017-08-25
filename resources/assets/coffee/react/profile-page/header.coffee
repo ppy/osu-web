@@ -16,21 +16,29 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+{div, ul, li, a, span} = ReactDOMFactories
 el = React.createElement
-
-
-playmodeTabsHrefFunc = (mode) ->
-  ProfilePageHash.generate mode: mode
-
 
 ProfilePage.Header = (props) ->
   div null,
     div className: 'osu-page osu-page--users-show-header',
-      el PlaymodeTabs,
-        enableAll: true
-        currentMode: props.currentMode
-        hrefFunc: playmodeTabsHrefFunc
+      ul className: 'page-mode',
+        for mode in BeatmapHelper.modes
+          active = mode == props.currentMode
+
+          linkClass = 'page-mode-link'
+          linkClass += ' page-mode-link--is-active' if active
+
+          li
+            className: 'page-mode__item'
+            key: mode
+            a
+              className: linkClass
+              href: laroute.route 'users.show',
+                id: props.user.id
+                mode: mode
+              osu.trans "beatmaps.mode.#{mode}"
+              span className: 'page-mode-link__stripe'
 
       el ProfilePage.HeaderMain, props
     el ProfilePage.HeaderExtra, props
