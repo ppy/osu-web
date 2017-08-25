@@ -47,13 +47,13 @@ class CentiliSignature
 
     private function receivedSignature()
     {
-        return $request->input('sign');
+        return $this->request->input('sign');
     }
 
     private function calculatedSignature()
     {
+        // Centili signature is a HMAC of the concatenation of all params values sorted alphabetically by key name.
         $input = $this->request->input();
-        // sort input
         ksort($input);
         unset($input['sign']);
         $string = array_reduce($input, function ($carry, $item) {

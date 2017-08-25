@@ -77,10 +77,10 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function ensureValidSignature()
     {
-        $signature = $this['sign'];
+        $signature = new CentiliSignature($this->request);
         // TODO: post many warnings
         if (!$signature->isValid()) {
-            $this->validationErrors()->add('header.signature', '.signature.not_match');
+            $this->validationErrors()->add('sign', '.signature.not_match');
             $this->dispatchValidationFailed();
             throw new InvalidSignatureException();
         }
@@ -117,5 +117,18 @@ class CentiliPaymentProcessor extends PaymentProcessor
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    /**
+     * implements ArrayAccess
+     */
+    public function offsetExists($key)
+    {
+        return $this->request->exists($key);
+    }
+
+    public function offsetGet($key)
+    {
+        return $this->request->input($key);
     }
 }
