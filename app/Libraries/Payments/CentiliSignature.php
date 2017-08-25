@@ -42,7 +42,7 @@ class CentiliSignature
 
     public static function calculateSignature(string $content)
     {
-        return sha1($content . config('payments.centili.secret_key'));
+        return hash_hmac('sha1', $content, config('payments.centili.secret_key'), false);
     }
 
     private function receivedSignature()
@@ -56,9 +56,8 @@ class CentiliSignature
         $input = $this->request->input();
         ksort($input);
         unset($input['sign']);
-        $string = array_reduce($input, function ($carry, $item) {
-            return $carry.$item;
-        }, '');
+
+        $string = implode('', array_values($input)); // array_values might not be needed.
 
         return static::calculateSignature($string);
     }

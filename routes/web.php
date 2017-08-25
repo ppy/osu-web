@@ -202,7 +202,7 @@ Route::delete('store/products/{product}/notification-request', 'Store\Notificati
 Route::group(['prefix' => 'payments'], function () {
     Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
     Route::post('xsolla/callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
-    Route::get('centili/callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');
+    Route::match(['post', 'get'], 'centili/callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');
 });
 
 // API
