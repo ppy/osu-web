@@ -33,7 +33,7 @@ class WikiController extends Controller
     public function show($path = null)
     {
         if ($path === null) {
-            return ujs_redirect(route('wiki.show', 'Welcome'));
+            return ujs_redirect(wiki_url());
         }
 
         $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
@@ -46,9 +46,9 @@ class WikiController extends Controller
         $page = new Wiki\Page($path, $this->locale());
 
         if ($page->page() === null) {
-            $redirect = new Wiki\Redirect($path);
-            if ($redirect->target() !== null) {
-                return ujs_redirect(route('wiki.show', $redirect->target()));
+            $redirectTarget = (new Wiki\Redirect($path))->target();
+            if ($redirectTarget !== null) {
+                return ujs_redirect(wiki_url($redirectTarget));
             } else {
                 $status = 404;
             }
