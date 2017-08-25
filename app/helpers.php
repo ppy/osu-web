@@ -385,13 +385,13 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($page = 'Welcome', $locale = null)
 {
-    $url = route('wiki.show', ['page' => $page]);
+    $params = compact('page');
 
-    if (present($locale) && $locale !== App::getLocale()) {
-        $url .= '?locale='.$locale;
+    if (present($locale) && $locale !== App::getLocale() && $locale !== config('app.fallback_locale')) {
+        $params['locale'] = $locale;
     }
 
-    return $url;
+    return route('wiki.show', $params);
 }
 
 function bbcode($text, $uid, $withGallery = false)
