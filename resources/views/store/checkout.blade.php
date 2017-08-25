@@ -102,9 +102,9 @@
                     </div>
 
                     <div class="big-button">
-                        <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <form class="text-center noajax" id="paypal-form" action="{{ config('payments.paypal.url') }}" method="post" target="_top">
                             <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="business" value="5DD65FGXND4GS">
+                            <input type="hidden" name="business" value="{{ config('payments.paypal.merchant_id') }}">
                             <input type="hidden" name="lc" value="AU">
                             <input type="hidden" name="button_subtype" value="services">
                             <input type="hidden" name="no_note" value="0">
