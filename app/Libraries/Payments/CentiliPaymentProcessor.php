@@ -92,7 +92,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
-            $this->validationErrors()->add('order', '.order.not_valid');
+            $this->validationErrors()->add('order', '.order.invalid');
             return false;
         }
 

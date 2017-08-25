@@ -100,7 +100,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
-            $this->validationErrors()->add('order', '.order');
+            $this->validationErrors()->add('order', '.order.invalid');
             return false;
         }
 
