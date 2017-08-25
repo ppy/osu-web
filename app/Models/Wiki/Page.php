@@ -62,36 +62,45 @@ class Page
             'from' => ($params['page'] - 1) * $params['limit'],
         ]);
 
-        if ($params['locale'] !== null) {
-            $matchParams[] = [
-                'match' => ['locale' => $params['locale']],
-            ];
-        }
-
-        $matchParams[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
+        $matchParams[] = [
+            'match' => ['locale' => $params['locale'] ?? App::getLocale()],
+        ];
 
         $searchParams['body']['query']['bool']['must'] = $matchParams;
 
+        $query = es_query_and_words($params['query']);
+        $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
+        $searchParams['body']['query']['bool']['should'] = [
+            ['match' => [
+                'title' => [
+                    'query' => $query,
+                    'boost' => 10,
+                ],
+            ]],
+            ['match' => [
+                'path_clean' => [
+                    'query' => $query,
+                    'boost' => 9,
+                ],
+            ]],
+            ['match' => [
+                'page_text' => $query,
+            ]],
+        ];
+
         $results = Es::search($searchParams);
 
-        $pages = [
-            'appLocale' => [],
-            'otherLocale' => [],
-        ];
+        $pages = [];
 
         foreach ($results['hits']['hits'] as $hit) {
             $document = $hit['_source'];
             $page = new static(null, null, $document);
 
-            if ($params['locale'] !== null || $document['locale'] === App::getLocale()) {
-                $pages['appLocale'][] = $page;
-            } else {
-                $pages['otherLocale'][] = $page;
-            }
+            $pages[] = $page;
         }
 
         return [
-            'data' => array_merge(...array_values($pages)),
+            'data' => $pages,
             'total' => $results['hits']['total'],
             'params' => $params,
         ];
@@ -191,6 +200,7 @@ class Page
             'body' => [
                 'locale' => $this->locale,
                 'path' => $this->path,
+                'path_clean' => str_replace(['-', '/', '_'], ' ', $this->path),
                 'title' => $page['header']['title'],
                 'page_text' => strip_tags($page['output']),
                 'page' => $page,
