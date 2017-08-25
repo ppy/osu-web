@@ -36,8 +36,8 @@ return [
             'currency' => 'Payment is not in USD. (:type)',
         ],
     ],
-    'transaction' => [
-        'external_id' => 'Received order transaction id is malformed',
+    'order_number' => [
+        'malformed' => 'Received order transaction id is malformed',
         'user_id_mismatch' => 'external_id contains wrong user id',
     ],
 ];

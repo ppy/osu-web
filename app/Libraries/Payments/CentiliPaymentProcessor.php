@@ -99,11 +99,11 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
-            $this->validationErrors()->add('reference', '.transaction.external_id');
+            $this->validationErrors()->add('reference', '.order_number.malformed');
         }
 
         if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
-            $this->validationErrors()->add('reference', '.transaction.user_id_mismatch');
+            $this->validationErrors()->add('reference', '.order_number.user_id_mismatch');
         }
 
 

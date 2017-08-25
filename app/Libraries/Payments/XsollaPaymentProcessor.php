@@ -107,11 +107,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
-            $this->validationErrors()->add('transaction.external_id', '.transaction.external_id');
+            $this->validationErrors()->add('transaction.external_id', '.order_number.malformed');
         }
 
         if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
-            $this->validationErrors()->add('transaction.external_id', '.transaction.user_id_mismatch');
+            $this->validationErrors()->add('transaction.external_id', '.order_number.user_id_mismatch');
         }
 
         // order should be in the correct state
