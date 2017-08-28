@@ -143,7 +143,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('search', 'HomeController@search')->name('search');
     Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
-    Route::get('changelog', 'HomeController@getChangelog')->name('changelog');
+    Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::get('icons', 'HomeController@getIcons');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');

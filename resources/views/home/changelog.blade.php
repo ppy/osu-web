@@ -22,7 +22,7 @@
         <div class="osu-layout__row osu-layout__row--changelog-header">
             <ol class="page-mode page-mode--breadcrumb">
                 <li class="page-mode__item">
-                    <a class="page-mode-link" href="{{ route('changelog') }}">
+                    <a class="page-mode-link" href="{{ route('changelog.index') }}">
                         {{ trans("layout.menu.{$current_section}.{$current_action}") }}
 
                         <span class="page-mode-link__stripe">
@@ -32,14 +32,14 @@
 
                 <li class="page-mode__item">
                     @if (isset($build))
-                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog', ['build' => $build->version]) }}">
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.show', ['build' => $build->version]) }}">
                             {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
 
                             <span class="page-mode-link__stripe">
                             </span>
                         </a>
                     @else
-                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog') }}">
+                        <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.index') }}">
                             {{ trans('changelog.feed_title') }}
 
                             <span class="page-mode-link__stripe">
@@ -74,7 +74,7 @@
                             @if ($build->versionPrevious() !== null)
                                 <a
                                     class="changelog__build-link"
-                                    href="{{ route('changelog', ['build' => $build->versionPrevious()->version]) }}"
+                                    href="{{ route('changelog.show', ['build' => $build->versionPrevious()->version]) }}"
                                     title="{{ $build->versionPrevious()->displayVersion() }}"
                                 >
                                     <i class="fa fa-angle-double-left"></i>
@@ -90,7 +90,7 @@
                             @if ($build->versionNext() !== null)
                                 <a
                                     class="changelog__build-link"
-                                    href="{{ route('changelog', ['build' => $build->versionNext()->version]) }}"
+                                    href="{{ route('changelog.show', ['build' => $build->versionNext()->version]) }}"
                                     title="{{ $build->versionNext()->displayVersion() }}"
                                 >
                                     <i class="fa fa-angle-double-right"></i>
