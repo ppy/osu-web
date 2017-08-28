@@ -35,14 +35,14 @@ class BeatmapDiscussionPost extends Model
 
     protected $dates = ['deleted_at'];
 
+    public function beatmapset()
+    {
+        return $this->beatmapDiscussion->beatmapset();
+    }
+
     public function beatmapDiscussion()
     {
         return $this->belongsTo(BeatmapDiscussion::class);
-    }
-
-    public function beatmapsetDiscussion()
-    {
-        return $this->beatmapDiscussion->beatmapsetDiscussion();
     }
 
     public function user()
@@ -137,5 +137,10 @@ class BeatmapDiscussionPost extends Model
     public function scopeWithoutDeleted($query)
     {
         $query->whereNull('deleted_at');
+    }
+
+    public function scopeWithoutSystem($query)
+    {
+        $query->where('system', '=', false);
     }
 }

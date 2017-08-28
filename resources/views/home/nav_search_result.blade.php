@@ -17,62 +17,66 @@
 --}}
 <div class="nav-search-result">
     @if (count($users['data']) > 0)
-        <div class="nav-search-result__title">
-            {{ trans('home.search.user.title') }}
-        </div>
-
-        <div class="nav-search-result__results nav-search-result__results--horizontal">
-            @foreach ($users['data'] as $entry)
-                <div class="nav-search-result__result">
-                    @include('home._search_user_quick', compact('entry'))
+        <div class="nav-search-result__results-container">
+            <div class="nav-search-result__results nav-search-result__results--horizontal">
+                <div class="nav-search-result__title">
+                    {{ trans('home.search.user.title') }}
                 </div>
-            @endforeach
-        </div>
 
-        @if (count($users['data']) < $users['total'])
-            <a
-                href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'user']) }}"
-                class="nav-search-result__more"
-            >
-                {!! trans('home.search.user.more', [
-                    'count' =>
-                        '<em class="nav-search-result__count">'.($users['total'] - count($users['data'])).'</em>'
-                ]) !!}
-            </a>
-        @endif
+                @foreach ($users['data'] as $entry)
+                    <div class="nav-search-result__result">
+                        @include('home._search_user_quick', compact('entry'))
+                    </div>
+                @endforeach
+            </div>
+
+            @if (count($users['data']) < $users['total'])
+                <a
+                    href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'user']) }}"
+                    class="nav-search-result__more"
+                >
+                    {!! trans('home.search.user.more', [
+                        'count' =>
+                            '<em class="nav-search-result__count">'.($users['total'] - count($users['data'])).'</em>'
+                    ]) !!}
+                </a>
+            @endif
+        </div>
     @endif
 
     @if (count($beatmapsets['data']) > 0)
-        <div class="nav-search-result__title">
-            {{ trans('home.search.beatmapset.title') }}
-        </div>
-
-        <div class="nav-search-result__results">
-            @foreach ($beatmapsets['data'] as $beatmapset)
-                <div class="nav-search-result__result">
-                    @include('home._nav_search_entry', [
-                        'url' => route('beatmapsets.show', $beatmapset->getKey()),
-                        'title' => $beatmapset->title,
-                        'modifier' => 'beatmapset',
-                    ])
+        <div class="nav-search-result__results-container">
+            <div class="nav-search-result__results">
+                <div class="nav-search-result__title">
+                    {{ trans('home.search.beatmapset.title') }}
                 </div>
-            @endforeach
-        </div>
 
-        @if (count($beatmapsets['data']) < $beatmapsets['total'])
-            <a
-                href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'beatmapset']) }}"
-                class="nav-search-result__more"
-            >
-                {!! trans('home.search.beatmapset.more', [
-                    'count' =>
-                        '<em class="nav-search-result__count">'.($beatmapsets['total'] - count($beatmapsets['data'])).'</em>'
-                ]) !!}
-            </a>
-        @endif
+                @foreach ($beatmapsets['data'] as $beatmapset)
+                    <div class="nav-search-result__result">
+                        @include('home._nav_search_entry', [
+                            'url' => route('beatmapsets.show', $beatmapset->getKey()),
+                            'title' => $beatmapset->title,
+                            'modifier' => 'beatmapset',
+                        ])
+                    </div>
+                @endforeach
+            </div>
+
+            @if (count($beatmapsets['data']) < $beatmapsets['total'])
+                <a
+                    href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'beatmapset']) }}"
+                    class="nav-search-result__more"
+                >
+                    {!! trans('home.search.beatmapset.more', [
+                        'count' =>
+                            '<em class="nav-search-result__count">'.($beatmapsets['total'] - count($beatmapsets['data'])).'</em>'
+                    ]) !!}
+                </a>
+            @endif
+        </div>
     @endif
 
-    <div class="nav-search-result__link">
+    <div class="nav-search-result__results-container">
         @include('home._nav_search_entry', [
             'url' => route('search', ['query' => Request::input('query'), 'mode' => 'wiki_page']),
             'title' => trans('home.search.wiki_page.link'),
@@ -80,7 +84,7 @@
         ])
     </div>
 
-    <div class="nav-search-result__link">
+    <div class="nav-search-result__results-container">
         @include('home._nav_search_entry', [
             'url' => route('search', ['query' => Request::input('query'), 'mode' => 'forum_post']),
             'title' => trans('home.search.forum_post.link'),
@@ -88,7 +92,7 @@
         ])
     </div>
 
-    <div class="nav-search-result__link">
+    <div class="nav-search-result__results-container">
         @include('home._nav_search_entry', [
             'url' => route('search', ['query' => Request::input('query')]),
             'title' => trans('home.search.advanced_link'),

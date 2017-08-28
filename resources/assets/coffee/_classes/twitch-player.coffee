@@ -53,16 +53,15 @@ class @TwitchPlayer
       channel: div.dataset.channel
 
     player = new Twitch.Player(div.id, options)
-    player.addEventListener Twitch.Player.PLAY, @openPlayer
+    player.addEventListener Twitch.Player.PLAY, => @openPlayer(div)
 
 
   noCookieDiv: (playerDivId) =>
     document.querySelector(".js-twitch-player--no-cookie[data-player-id='#{playerDivId}']")
 
 
-  openPlayer: =>
-    for div in @playerDivs
-      return unless div.classList.contains 'hidden'
+  openPlayer: (div) =>
+    return unless div.classList.contains 'hidden'
 
-      div.classList.remove 'hidden'
-      Fade.out @noCookieDiv(div.id)
+    div.classList.remove 'hidden'
+    Fade.out @noCookieDiv(div.id)

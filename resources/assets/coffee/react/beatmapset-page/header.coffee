@@ -141,7 +141,7 @@ class BeatmapsetPage.Header extends React.Component
                           laroute.route 'support-the-game'
                   ]
 
-                if @props.beatmapset.discussion_status.enabled
+                if @props.beatmapset.discussion_enabled
                   el BigButton,
                     key: 'discussion'
                     modifiers: ['beatmapset-header']

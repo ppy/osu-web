@@ -327,6 +327,11 @@ function ujs_redirect($url)
     }
 }
 
+function route_redirect($path, $target)
+{
+    return Route::get($path, '\App\Http\Controllers\RedirectController')->name("redirect:{$target}");
+}
+
 function timeago($date)
 {
     $display_date = i18n_time($date);
@@ -337,10 +342,7 @@ function timeago($date)
 
 function current_action()
 {
-    $currentAction = \Route::currentRouteAction();
-    if ($currentAction !== null) {
-        return explode('@', $currentAction, 2)[1];
-    }
+    return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
 function link_to_user($user_id, $user_name, $user_color)
@@ -383,13 +385,13 @@ function post_url($topicId, $postId, $jumpHash = true, $tail = false)
 
 function wiki_url($page = 'Welcome', $locale = null)
 {
-    $url = route('wiki.show', ['page' => $page]);
+    $params = compact('page');
 
-    if (present($locale) && $locale !== App::getLocale()) {
-        $url .= '?locale='.$locale;
+    if (present($locale) && $locale !== App::getLocale() && $locale !== config('app.fallback_locale')) {
+        $params['locale'] = $locale;
     }
 
-    return $url;
+    return route('wiki.show', $params);
 }
 
 function bbcode($text, $uid, $withGallery = false)

@@ -28,6 +28,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     @throttledPost = _.throttle @post, 1000
 
     @state =
+      editing: false
       message: ''
       resolveDiscussion: @props.discussion.resolved
 
@@ -38,6 +39,13 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   render: =>
+    if @state.editing
+      @renderBox()
+    else
+      @renderPlaceholder()
+
+
+  renderBox: =>
     div
       className: "#{bn} #{bn}--reply #{bn}--new-reply"
 
@@ -49,12 +57,17 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__message-container",
           textarea
             className: "#{bn}__message #{bn}__message--editor"
+            ref: (el) => @box = el
             type: 'text'
             rows: 2
             value: @state.message
             onChange: @setMessage
             onKeyDown: @submitIfEnter
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
+
+      div
+        className: "#{bn}__footer #{bn}__footer--notice"
+        osu.trans 'beatmaps.discussions.reply_notice'
 
       div
         className: "#{bn}__footer"
@@ -84,6 +97,23 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
                   onClick: @throttledPost
 
 
+  renderPlaceholder: =>
+    [text, icon] =
+      if @props.currentUser.id?
+        [osu.trans('beatmap_discussions.reply.open.user'), 'reply']
+      else
+        [osu.trans('beatmap_discussions.reply.open.guest'), 'sign-in']
+
+    div
+      className: "#{bn} #{bn}--reply #{bn}--new-reply #{bn}--new-reply-placeholder"
+      el BigButton,
+        text: text
+        icon: icon
+        modifiers: ['beatmap-discussion-reply-open']
+        props:
+          onClick: @editStart
+
+
   canBeResolved: =>
     @props.discussion.message_type in ['suggestion', 'problem'] &&
       @canUpdate()
@@ -95,6 +125,15 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     @props.currentUser.isAdmin ||
       @props.currentUser.id == @props.beatmapset.user_id ||
       @props.currentUser.id == @props.discussion.user_id
+
+
+  editStart: =>
+    if !@props.currentUser.id?
+      userLogin.show()
+      return
+
+    @setState editing: true, =>
+      @box?.focus()
 
 
   post: =>
@@ -113,7 +152,9 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           message: @state.message
 
     .done (data) =>
-      @setState message: ''
+      @setState
+        message: ''
+        editing: false
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
       $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 

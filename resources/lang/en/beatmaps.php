@@ -40,6 +40,7 @@ return [
         'edited' => 'Last edited by :editor :update_time',
         'message_placeholder' => 'Type here to post',
         'message_type_select' => 'Select Comment Type',
+        'reply_notice' => 'Press enter to submit.',
         'reply_placeholder' => 'Type your response here',
         'require-login' => 'Please login to post or reply',
         'resolved' => 'Resolved',

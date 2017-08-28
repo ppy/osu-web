@@ -35,7 +35,6 @@ use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
-use Event;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
@@ -161,8 +160,8 @@ class TopicsController extends Controller
             $posts = collect([$post]);
             $firstPostPosition = $topic->postPosition($post->post_id);
 
-            Event::fire(new TopicWasReplied($topic, $post, Auth::user()));
-            Event::fire(new TopicWasViewed($topic, $post, Auth::user()));
+            event(new TopicWasReplied($topic, $post, Auth::user()));
+            event(new TopicWasViewed($topic, $post, Auth::user()));
 
             return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
@@ -259,7 +258,7 @@ class TopicsController extends Controller
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
-        Event::fire(new TopicWasViewed(
+        event(new TopicWasViewed(
             $topic,
             $posts->last(),
             Auth::user()
@@ -327,7 +326,7 @@ class TopicsController extends Controller
 
         if ($topic->topic_id !== null) {
             if (!app()->runningUnitTests()) {
-                Event::fire(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+                event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
             }
 
             return ujs_redirect(route('forum.topics.show', $topic));

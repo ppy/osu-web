@@ -36,9 +36,17 @@ class RankingController extends Controller
     const MAX_RESULTS = 10000;
     const RANKING_TYPES = ['performance', 'score', 'country'];
 
-    public function index($mode, $type)
+    public function index($mode = 'osu', $type = null)
     {
-        if (!array_key_exists($mode, Beatmap::MODES) || !in_array($type, static::RANKING_TYPES, true)) {
+        if (!array_key_exists($mode, Beatmap::MODES)) {
+            abort(404);
+        }
+
+        if ($type === null) {
+            return ujs_redirect(route('rankings', ['mode' => $mode, 'type' => 'performance']));
+        }
+
+        if (!in_array($type, static::RANKING_TYPES, true)) {
             abort(404);
         }
 
@@ -70,6 +78,7 @@ class RankingController extends Controller
             $maxResults = min(isset($country) ? $country->usercount : static::MAX_RESULTS, static::MAX_RESULTS);
 
             $stats = UserStatistics\Model::getClass($mode)
+                ->on('mysql-readonly')
                 ->with(['user', 'user.country'])
                 ->whereHas('user', function ($userQuery) {
                     $userQuery->default();

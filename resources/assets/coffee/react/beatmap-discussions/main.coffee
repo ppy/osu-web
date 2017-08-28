@@ -128,11 +128,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     Timeout.clear @checkNewTimeout
 
-    @checkNewAjax = $.ajax document.location.pathname,
-      data:
-        format: 'json'
-        last_updated: moment(@state.beatmapsetDiscussion.updated_at).unix()
+    params = format: 'json'
 
+    if @state.beatmapsetDiscussion.updated_at?
+      params.last_updated = moment(@state.beatmapsetDiscussion.updated_at).unix()
+
+    @checkNewAjax = $.get document.location.pathname, params
     .done (data, _textStatus, xhr) =>
       if xhr.status == 304
         @nextTimeout *= 2

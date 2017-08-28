@@ -18,20 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\Beatmapset;
-use Request;
-
-class BeatmapsetDiscussionsController extends Controller
+class RedirectController extends Controller
 {
-    protected $section = 'admin-beatmapset-discussions';
-
-    public function store()
+    public function __invoke()
     {
-        $beatmapset = Beatmapset::findOrFail(Request::input('beatmapset_id'));
-        $discussion = $beatmapset->beatmapsetDiscussion()->firstOrCreate([]);
-
-        return redirect(route('admin.beatmapsets.show', $beatmapset));
+        // Redirect routes should be named 'redirect:<target>'
+        return ujs_redirect(route(explode('redirect:', \Route::currentRouteName(), 2)[1], func_get_args()));
     }
 }

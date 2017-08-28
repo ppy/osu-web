@@ -87,6 +87,7 @@ return [
             'recover' => '/p/forgot-email',
             'rules' => '/wiki/Osu!:Rules',
             'signup' => '/p/register',
+            'inbox' => '/forum/ucp.php?i=pm&folder=inbox',
         ],
         'rankings' => [
             'charts' => '/p/chart',

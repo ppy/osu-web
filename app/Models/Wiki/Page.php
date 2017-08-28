@@ -22,7 +22,6 @@ namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
-use App\Exceptions\GitHubTooLargeException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Cache;
@@ -61,37 +60,62 @@ class Page
             'size' => $params['limit'],
             'from' => ($params['page'] - 1) * $params['limit'],
         ]);
+        $searchParams['body']['query']['bool']['must'] = [];
 
-        if ($params['locale'] !== null) {
-            $matchParams[] = [
-                'match' => ['locale' => $params['locale']],
-            ];
-        }
+        $searchParams['body']['query']['bool']['must'][] = [
+            'bool' => [
+                'minimum_should_match' => 1,
+                'should' => [
+                    ['match' => [
+                        'locale' => [
+                            'query' => $params['locale'] ?? App::getLocale(),
+                            'boost' => 1000,
+                        ],
+                    ]],
+                    ['match' => [
+                        'locale' => config('app.fallback_locale'),
+                    ]],
+                ],
+            ],
+        ];
 
-        $matchParams[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
-
-        $searchParams['body']['query']['bool']['must'] = $matchParams;
+        $query = es_query_and_words($params['query']);
+        $searchParams['body']['query']['bool']['must'][] = [
+            'bool' => [
+                'minimum_should_match' => 1,
+                'should' => [
+                    ['match' => [
+                        'title' => [
+                            'query' => $query,
+                            'boost' => 10,
+                        ],
+                    ]],
+                    ['match' => [
+                        'path_clean' => [
+                            'query' => $query,
+                            'boost' => 9,
+                        ],
+                    ]],
+                    ['match' => [
+                        'page_text' => $query,
+                    ]],
+                ],
+            ],
+        ];
 
         $results = Es::search($searchParams);
 
-        $pages = [
-            'appLocale' => [],
-            'otherLocale' => [],
-        ];
+        $pages = [];
 
         foreach ($results['hits']['hits'] as $hit) {
             $document = $hit['_source'];
             $page = new static(null, null, $document);
 
-            if ($params['locale'] !== null || $document['locale'] === App::getLocale()) {
-                $pages['appLocale'][] = $page;
-            } else {
-                $pages['otherLocale'][] = $page;
-            }
+            $pages[] = $page;
         }
 
         return [
-            'data' => array_merge(...array_values($pages)),
+            'data' => $pages,
             'total' => $results['hits']['total'],
             'params' => $params,
         ];
@@ -135,11 +159,6 @@ class Page
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
-    public function cacheKeyLocales()
-    {
-        return 'wiki:page:locales:'.$this->path;
-    }
-
     public function cacheKeyPage()
     {
         return 'wiki:page:page:'.static::cacheVersionPage().':'.$this->pagePath();
@@ -148,38 +167,6 @@ class Page
     public function editUrl()
     {
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
-    }
-
-    public function fetchLocales()
-    {
-        $locales = [];
-
-        try {
-            $data = OsuWiki::fetch('wiki/'.$this->path);
-        } catch (GitHubNotFoundException $e) {
-            return $locales;
-        } catch (GitHubTooLargeException $e) {
-            return $locales;
-        }
-
-        // check if it's a file, not a directory.
-        if (isset($data['name'])) {
-            return $locales;
-        }
-
-        foreach ($data as $entry) {
-            $hasMatch = preg_match(
-                '/^(\w{2}(?:-\w{2})?)\.md$/',
-                $entry['name'],
-                $matches
-            );
-
-            if ($hasMatch === 1) {
-                $locales[] = $matches[1];
-            }
-        }
-
-        return $locales;
     }
 
     public function indexAdd($page = null)
@@ -191,6 +178,7 @@ class Page
             'body' => [
                 'locale' => $this->locale,
                 'path' => $this->path,
+                'path_clean' => str_replace(['-', '/', '_'], ' ', $this->path),
                 'title' => $page['header']['title'],
                 'page_text' => strip_tags($page['output']),
                 'page' => $page,
@@ -209,21 +197,6 @@ class Page
         } catch (Missing404Exception $_e) {
             // do nothing
         }
-    }
-
-    public function locales()
-    {
-        if (!array_key_exists('locales', $this->cache)) {
-            $this->cache['locales'] = Cache::remember(
-                $this->cacheKeyLocales(),
-                static::CACHE_DURATION,
-                function () {
-                    return $this->fetchLocales();
-                }
-            );
-        }
-
-        return $this->cache['locales'];
     }
 
     public function page()
@@ -278,7 +251,6 @@ class Page
     public function refresh()
     {
         Cache::forget($this->cacheKeyPage());
-        Cache::forget($this->cacheKeyLocales());
     }
 
     public function title($withSubtitle = false)

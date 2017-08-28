@@ -96,7 +96,6 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 'description',
-                'discussion_status',
                 'ratings',
                 'user',
             ]
@@ -106,7 +105,7 @@ class BeatmapsetsController extends Controller
             return $set;
         } else {
             $countries = json_collection(Country::all(), new CountryTransformer);
-            $hasDiscussion = $beatmapset->beatmapsetDiscussion()->exists();
+            $hasDiscussion = $beatmapset->discussion_enabled;
 
             $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
 
@@ -131,19 +130,21 @@ class BeatmapsetsController extends Controller
     public function discussion($id)
     {
         $returnJson = Request::input('format') === 'json';
-        $lastUpdated = get_int(Request::input('last_updated'));
+        $requestLastUpdated = get_int(Request::input('last_updated'));
 
-        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
+        $lastUpdated = $beatmapset->lastDiscussionTime();
 
-        $discussion = $beatmapset->beatmapsetDiscussion()->firstOrFail();
-
-        if ($returnJson && $lastUpdated !== null && $lastUpdated >= $discussion->updated_at->timestamp) {
+        if ($returnJson && (
+            $lastUpdated === null ||
+            ($requestLastUpdated !== null && $requestLastUpdated >= $lastUpdated->timestamp)
+        )) {
             return response([], 304);
         }
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $discussion->defaultJson(),
+            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
 
         if ($returnJson) {
@@ -155,6 +156,10 @@ class BeatmapsetsController extends Controller
 
     public function download($id)
     {
+        if (Request::is('api/*') && !Auth::user()->isSupporter()) {
+            abort(403);
+        }
+
         $beatmapset = Beatmapset::findOrFail($id);
 
         if ($beatmapset->download_disabled) {
@@ -189,7 +194,7 @@ class BeatmapsetsController extends Controller
 
         return [
             'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->beatmapsetDiscussion->defaultJson(),
+            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
     }
 
@@ -205,7 +210,7 @@ class BeatmapsetsController extends Controller
 
         return [
             'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->beatmapsetDiscussion->defaultJson(),
+            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
     }
 

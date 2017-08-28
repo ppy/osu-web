@@ -81,7 +81,7 @@ class OsuAuthorize
             return;
         }
 
-        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->count() > 1) {
+        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 

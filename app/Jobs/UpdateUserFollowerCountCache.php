@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,26 +18,35 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.wiki-language-list {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+namespace App\Jobs;
 
-  font-style: italic;
+use App\Models\User;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\InteractsWithQueue;
 
-  &__header {
-    padding-right: 10px;
-  }
+class UpdateUserFollowerCountCache implements ShouldQueue
+{
+    use InteractsWithQueue, Queueable;
+    protected $userId;
 
-  &__item {
-    padding: 0 10px;
-
-    &--current {
-      font-weight: bold;
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($userId)
+    {
+        $this->userId = $userId;
     }
 
-    &--link {
-      .link-yellow();
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        User::find($this->userId)->cacheFollowerCount();
     }
-  }
 }
