@@ -20,6 +20,7 @@
 
 namespace Tests;
 
+use App\Libraries\Payments\XsollaHeaderSignature;
 use App\Models\Store\Order;
 use Config;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -41,18 +42,19 @@ class XsollaPaymentProcessorTest extends TestCase
         $this->order = factory(Order::class)->states('checkout')->create();
     }
 
-    public function testSignatureIsValid()
+    public function testWhenEverythingIsFine()
     {
-        $this->markTestIncomplete('signature validation test needs to be fixed.');
-        // $response = $this->json(
-        //     'POST',
-        //     route('payments.xsolla.callback'),
-        //     $this->getPostData(),
-        //     ['HTTP_Authorization' => 'Signature 563986f8dd0fe7b1637a43fd71e9cf4bfb8338f1']
-        // );
+        $data = $this->getPostData();
+        // fake a valid signature, we only want to test if the response is working.
+        $trollSignature = XsollaHeaderSignature::calculateSignature(json_encode($data));
+        $response = $this->json(
+            'POST',
+            route('payments.xsolla.callback'),
+            $data,
+            ['HTTP_Authorization' => "Signature {$trollSignature}"]
+        );
 
-        // $response->assertStatus(200);
-
+        $response->assertStatus(200);
     }
 
     public function testValidationSignatureMissing()
@@ -90,19 +92,25 @@ class XsollaPaymentProcessorTest extends TestCase
         $response->assertStatus(422);
     }
 
-    private function getPostData()
+    private function getPostData(array $overrides = [])
     {
-        static $base = [
-            'notification_type' => 'payment',
-            'nothing' => 'to see',
-        ];
         $order = $this->order;
         $user = $order->user;
 
-        return array_merge($base, [
+        $base = [
+            'notification_type' => 'payment',
+            'nothing' => 'to see',
             'transaction' => [
-                'external_id' => "test-{$user->user_id}-{$order->order_id}",
+                'external_id' => $order->getOrderNumber(),
             ],
-        ]);
+            'purchase' => [
+                'checkout' => [
+                    'currency' => 'USD',
+                    'amount' => $order->getTotal(),
+                ],
+            ],
+        ];
+
+        return array_merge($base, $overrides);
     }
 }

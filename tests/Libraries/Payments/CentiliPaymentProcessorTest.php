@@ -45,7 +45,7 @@ class CentiliPaymentProcessorTest extends TestCase
         $this->order = factory(Order::class)->states('checkout')->create();
     }
 
-    public function testWhenSignatureIsValid()
+    public function testWhenEverythingIsFine()
     {
         $data = $this->getPostData();
 
