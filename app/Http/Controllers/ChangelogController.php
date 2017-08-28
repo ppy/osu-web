@@ -30,7 +30,13 @@ use Request;
 class ChangelogController extends Controller
 {
     protected $section = 'home';
-    protected $actionPrefix = 'changelog-';
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        view()->share('current_action', 'changelog');
+    }
 
     public function index()
     {
