@@ -89,7 +89,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($beatmapset, function ($beatmapset) {
             return [
-                'enabled' => $beatmapset->beatmapsetDiscussion()->exists(),
+                'enabled' => $beatmapset->discussion_enabled,
             ];
         });
     }
