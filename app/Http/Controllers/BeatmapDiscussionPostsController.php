@@ -23,7 +23,7 @@ namespace App\Http\Controllers;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
-use App\Models\BeatmapsetDiscussion;
+use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use Auth;
 use DB;
@@ -48,7 +48,7 @@ class BeatmapDiscussionPostsController extends Controller
         $error = $post->softDelete(Auth::user());
 
         if ($error === null) {
-            return $post->beatmapsetDiscussion->defaultJson();
+            return $post->beatmapset->defaultDiscussionJson();
         } else {
             return error_popup($error);
         }
@@ -61,7 +61,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         $post->restore(Auth::user());
 
-        return $post->beatmapsetDiscussion->defaultJson();
+        return $post->beatmapset->defaultDiscussionJson();
     }
 
     public function store()
@@ -70,11 +70,11 @@ class BeatmapDiscussionPostsController extends Controller
         $isNewDiscussion = ($discussion->id === null);
 
         if ($isNewDiscussion) {
-            $beatmapsetDiscussion = BeatmapsetDiscussion
-                ::where('beatmapset_id', Request::input('beatmapset_id'))
-                ->firstOrFail();
+            $beatmapset = Beatmapset
+                ::where('discussion_enabled', true)
+                ->findOrFail(Request::input('beatmapset_id'));
 
-            $discussion->beatmapset_discussion_id = $beatmapsetDiscussion->id;
+            $discussion->beatmapset_id = $beatmapset->getKey();
         }
 
         $previousDiscussionResolved = $discussion->resolved;
@@ -119,7 +119,7 @@ class BeatmapDiscussionPostsController extends Controller
 
         if ($saved === true) {
             return [
-                'beatmapset_discussion' => $posts[0]->beatmapsetDiscussion->defaultJson(Auth::user()),
+                'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,
             ];
@@ -137,7 +137,7 @@ class BeatmapDiscussionPostsController extends Controller
         $post->update($this->postParams(false));
 
         return [
-            'beatmapset_discussion' => $post->beatmapsetDiscussion->defaultJson(),
+            'beatmapset_discussion' => $post->beatmapset->defaultDiscussionJson(),
         ];
     }
 

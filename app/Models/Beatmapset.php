@@ -43,6 +43,7 @@ class Beatmapset extends Model
         'epilepsy' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
+        'discussion_enabled' => 'boolean',
     ];
 
     protected $dates = [
@@ -112,12 +113,21 @@ class Beatmapset extends Model
 
     // ranking functions for the set
 
-    public function beatmapsetDiscussion()
+    public function beatmapDiscussions()
     {
-        return $this->hasOne(BeatmapsetDiscussion::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
     // Beatmapset::rankable();
+
+    public function lastDiscussionTime()
+    {
+        $time = $this->beatmapDiscussions()->max('updated_at');
+
+        if ($time !== null) {
+            return Carbon::parse($time);
+        }
+    }
 
     public function scopeRankable($query)
     {
@@ -910,6 +920,24 @@ class Beatmapset extends Model
         $includes = ['beatmaps', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
+    }
+
+    public function defaultDiscussionJson()
+    {
+        return json_item(
+            static::with([
+                'beatmapDiscussions.beatmapDiscussionPosts',
+                'beatmapDiscussions.beatmapDiscussionVotes',
+            ])->find($this->getKey()),
+            'BeatmapsetDiscussion',
+            [
+                'beatmap_discussions.beatmap_discussion_posts',
+                'beatmap_discussions.current_user_attributes',
+                'beatmapset_events',
+                'users',
+                'users.groups',
+            ]
+        );
     }
 
     public function defaultBeatmaps()
