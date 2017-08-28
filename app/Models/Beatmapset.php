@@ -28,10 +28,13 @@ use Cache;
 use Carbon\Carbon;
 use DB;
 use Es;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
+    use SoftDeletes;
+
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
