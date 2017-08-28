@@ -30,13 +30,6 @@ use TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase
 {
-    use DatabaseTransactions;
-
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public static function tearDownAfterClass()
     {
         gc_collect_cycles();

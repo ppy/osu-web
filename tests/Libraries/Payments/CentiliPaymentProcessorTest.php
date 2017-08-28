@@ -24,18 +24,10 @@ use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use TestCase;
 
 class CentiliPaymentProcessorTest extends TestCase
 {
-    use DatabaseTransactions;
-
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();

@@ -23,18 +23,10 @@ namespace Tests;
 use App\Libraries\Payments\XsollaHeaderSignature;
 use App\Models\Store\Order;
 use Config;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use TestCase;
 
 class XsollaPaymentProcessorTest extends TestCase
 {
-    use DatabaseTransactions;
-
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();
