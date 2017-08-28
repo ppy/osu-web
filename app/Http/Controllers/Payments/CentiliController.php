@@ -54,6 +54,6 @@ class CentiliController extends Controller
             return response(['message' => $e->getMessage()], 406);
         }
 
-        return response();
+        return 'ok';
     }
 }

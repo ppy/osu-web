@@ -40,4 +40,7 @@ return [
         'malformed' => 'Received order transaction id is malformed',
         'user_id_mismatch' => 'external_id contains wrong user id',
     ],
+    'service' => [
+        'invalid' => '`service` param does not match',
+    ]
 ];

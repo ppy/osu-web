@@ -4,6 +4,7 @@ return [
     'centili' => [
         'api_key' => env('CENTILI_API_KEY'),
         'secret_key' => env('CENTILI_SECRET_KEY'),
+        'conversion_rate' => (float) (presence(env('CENTILI_CONVERSION_RATE')) ?? 100),
     ],
     'paypal' => [
         'url' => env('PAYPAL_URL'),

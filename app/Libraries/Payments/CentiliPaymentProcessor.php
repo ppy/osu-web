@@ -52,7 +52,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber()
     {
-        return $this['reference']; // or clientid?
+        return $this['clientid']; // or reference?
     }
 
     public function getTransactionId()
@@ -62,7 +62,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getPaymentAmount()
     {
-        return $this['enduserprice'];
+        return $this['enduserprice'] / config('payments.centili.conversion_rate');
     }
 
     public function getPaymentDate()
@@ -98,20 +98,23 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
-            $this->validationErrors()->add('reference', '.order_number.malformed');
+            $this->validationErrors()->add('clientid', '.order_number.malformed');
         }
 
         if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
-            $this->validationErrors()->add('reference', '.order_number.user_id_mismatch');
+            $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
         }
 
+        if ($this['service'] !== config('payments.centili.api_key')) {
+            $this->validationErrors()->add('service', '.service.invalid');
+        }
 
-        \Log::debug("purchase.checkout.amount: {$this['enduserprice']}, {$order->getTotal()}");
-        if ($this['enduserprice'] < $order->getTotal()) {
+        \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
+        if ($this->getPaymentAmount() < $order->getTotal()) {
             $this->validationErrors()->add(
-                'enduserprice',
+                'purchase.checkout.amount',
                 '.purchase.checkout.amount',
-                ['expected' => $order->getTotal(), 'actual' => $this['enduserprice']]
+                ['expected' => $order->getTotal(), 'actual' => $this->getPaymentAmount()]
             );
         }
 
