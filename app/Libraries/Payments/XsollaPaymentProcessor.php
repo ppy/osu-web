@@ -34,14 +34,22 @@ class XsollaPaymentProcessor extends PaymentProcessor
     private $explodedOrderNumber;
     private $orderId;
 
-    public function __construct(array $params, $request)
+    public function __construct(array $params, $signature)
     {
-        parent::__construct($params, $request);
+        parent::__construct($params, $signature);
         $this->explodedOrderNumber = explode('-', $this['transaction.external_id'], 3);
         if (count($this->explodedOrderNumber) > 2) {
             $this->orderId = (int) $this->explodedOrderNumber[2];
         }
     }
+
+    public static function createFromRequest(\Illuminate\Http\Request $request)
+    {
+        $signature = new XsollaHeaderSignature($request);
+
+        return new static(static::extractParams($request), $signature);
+    }
+
 
     public function isSkipped()
     {
@@ -80,9 +88,8 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function ensureValidSignature()
     {
-        $signature = new XsollaHeaderSignature($this->request);
         // TODO: post many warnings
-        if (!$signature->isValid()) {
+        if (!$this->signature->isValid()) {
             $this->validationErrors()->add('header.signature', '.signature.not_match');
             $this->throwValidationFailed(new InvalidSignatureException());
         }

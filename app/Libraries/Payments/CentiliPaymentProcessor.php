@@ -31,13 +31,20 @@ class CentiliPaymentProcessor extends PaymentProcessor
     private $explodedOrderNumber;
     private $orderId;
 
-    public function __construct(array $params, $request)
+    public function __construct(array $params, $signature)
     {
-        parent::__construct($params, $request);
+        parent::__construct($params, $signature);
         $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 3);
         if (count($this->explodedOrderNumber) > 2) {
             $this->orderId = (int) $this->explodedOrderNumber[2];
         }
+    }
+
+    public static function createFromRequest(\Illuminate\Http\Request $request)
+    {
+        $signature = new CentiliSignature($request);
+
+        return new static(static::extractParams($request), $signature);
     }
 
     public function isSkipped()
@@ -77,9 +84,9 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function ensureValidSignature()
     {
-        $signature = new CentiliSignature($this->request);
+        // $signature = new CentiliSignature($this->request);
         // TODO: post many warnings
-        if (!$signature->isValid()) {
+        if (!$this->signature->isValid()) {
             $this->validationErrors()->add('sign', '.signature.not_match');
             $this->throwValidationFailed(new InvalidSignatureException());
         }

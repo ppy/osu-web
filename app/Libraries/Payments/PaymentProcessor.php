@@ -34,23 +34,22 @@ abstract class PaymentProcessor implements \ArrayAccess
     use Validatable;
 
     protected $order;
-    protected $request;
     protected $params;
+    protected $signature;
 
-    public function __construct(array $params, $request)
+    public function __construct(array $params, $signature)
     {
         $this->params = $params;
-        $this->request = $request;
+        $this->signature = $signature;
     }
 
     public static function createFromRequest(\Illuminate\Http\Request $request)
     {
-        // TODO: figure out how to get rid of the request.
-        // being used for xsolla header signature.
-        return new static(static::extractParams($request), $request);
+        // FIXME: ugly interface :(
+        return new static(static::extractParams($request), null);
     }
 
-    private static function extractParams(\Illuminate\Http\Request $request)
+    protected static function extractParams(\Illuminate\Http\Request $request)
     {
         $params = $request->input();
         if ($request->isJson()) {
