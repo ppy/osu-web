@@ -31,11 +31,6 @@ use TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
 {
-    public static function tearDownAfterClass()
-    {
-        gc_collect_cycles();
-    }
-
     public function setup()
     {
         parent::setup();

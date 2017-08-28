@@ -6,11 +6,6 @@ use App\Models\UserGroup;
 
 class ForumTopicsControllerTest extends TestCase
 {
-    public static function tearDownAfterClass()
-    {
-        gc_collect_cycles();
-    }
-
     public function setUp()
     {
         parent::setUp();

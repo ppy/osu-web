@@ -22,11 +22,6 @@ use App\Models\User;
 
 class RouteTest extends TestCase
 {
-    public static function tearDownAfterClass()
-    {
-        gc_collect_cycles();
-    }
-
     /**
      * Test the homepage don't error.
      *

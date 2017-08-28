@@ -22,11 +22,6 @@ use App\Models\User;
 
 class BeatmapControllerTest extends TestCase
 {
-    public static function tearDownAfterClass()
-    {
-        gc_collect_cycles();
-    }
-
     public function setUp()
     {
         parent::setUp();

@@ -31,11 +31,6 @@ use TestCase;
 
 class FulfillmentFactoryTests extends TestCase
 {
-    public static function tearDownAfterClass()
-    {
-        gc_collect_cycles();
-    }
-
     /**
      * @expectedException \App\Exceptions\NotImplementedException
      */

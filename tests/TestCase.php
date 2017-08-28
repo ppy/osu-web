@@ -30,6 +30,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected $baseUrl = 'http://localhost';
 
+    public static function tearDownAfterClass()
+    {
+        gc_collect_cycles();
+    }
+
     /**
      * Creates the application.
      *
