@@ -27,8 +27,6 @@ class BeatmapDiscussion extends Model
 {
     protected $guarded = [];
 
-    protected $touches = ['beatmapsetDiscussion'];
-
     protected $casts = [
         'resolved' => 'boolean',
     ];
@@ -50,7 +48,7 @@ class BeatmapDiscussion extends Model
 
     public function beatmapset()
     {
-        return $this->beatmapsetDiscussion->beatmapset();
+        return $this->belongsTo(Beatmapset::class, 'beatmapset_id', 'beatmapset_id');
     }
 
     public function beatmapDiscussionPosts()
@@ -61,11 +59,6 @@ class BeatmapDiscussion extends Model
     public function beatmapDiscussionVotes()
     {
         return $this->hasMany(BeatmapDiscussionVote::class);
-    }
-
-    public function beatmapsetDiscussion()
-    {
-        return $this->belongsTo(BeatmapsetDiscussion::class);
     }
 
     public function user()
@@ -182,7 +175,7 @@ class BeatmapDiscussion extends Model
     {
         return
             $this->beatmap_id === null ||
-            ($this->beatmap && $this->beatmap->beatmapset_id === $this->beatmapsetDiscussion->beatmapset_id);
+            ($this->beatmap && $this->beatmap->beatmapset_id === $this->beatmapset_id);
     }
 
     public function hasValidMessageType()
@@ -262,7 +255,7 @@ class BeatmapDiscussion extends Model
 
     public function allowKudosu($allowedBy)
     {
-        DB::transaction(function () {
+        DB::transaction(function () use ($allowedBy) {
             BeatmapsetEvent::log(BeatmapsetEvent::KUDOSU_ALLOW, $allowedBy, $this)->saveOrExplode();
             $this->update(['kudosu_denied' => false]);
             $this->refreshKudosu('allow_kudosu');
