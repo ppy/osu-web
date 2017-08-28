@@ -262,7 +262,7 @@ class BeatmapDiscussion extends Model
 
     public function allowKudosu($allowedBy)
     {
-        DB::transaction(function () {
+        DB::transaction(function () use ($allowedBy) {
             BeatmapsetEvent::log(BeatmapsetEvent::KUDOSU_ALLOW, $allowedBy, $this)->saveOrExplode();
             $this->update(['kudosu_denied' => false]);
             $this->refreshKudosu('allow_kudosu');
