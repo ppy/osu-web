@@ -25,7 +25,6 @@ use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
 use Carbon\Carbon;
 use DB;
-use Request;
 
 class ChangelogController extends Controller
 {
