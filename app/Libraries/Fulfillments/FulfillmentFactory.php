@@ -24,6 +24,7 @@ use App\Models\Store\Order;
 
 class FulfillmentFactory
 {
+    private $fulfillers = [];
     private $order;
 
     private function __construct(Order $order)
