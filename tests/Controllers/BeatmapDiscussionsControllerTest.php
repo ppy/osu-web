@@ -16,7 +16,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->anotherUser = factory(User::class)->create();
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->user->user_id,
-            'discussion_enabled' => true
+            'discussion_enabled' => true,
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
             'user_id' => $this->user->user_id,
