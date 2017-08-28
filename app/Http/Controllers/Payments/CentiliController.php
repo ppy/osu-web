@@ -33,7 +33,7 @@ class CentiliController extends Controller
 {
     public function callback(Request $request)
     {
-        $processor = new CentiliPaymentProcessor($request->getFacadeRoot());
+        $processor = CentiliPaymentProcessor::createFromRequest($request->getFacadeRoot());
         if ($processor->isSkipped()) {
             // skip user_search notification
             return '';
