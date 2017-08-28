@@ -107,6 +107,27 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
+     * Auto run apply() or cancel() depending on the notification type.
+     *
+     * @return void
+     * @throws UnsupportedNotificationTypeException thrown if the notification type is unsupported.
+     */
+    public function run()
+    {
+        $type = $this->getNotificationType();
+        switch ($type) {
+            case 'payment':
+                $this->apply();
+                break;
+            case 'refund':
+                $this->cancel();
+                break;
+            default:
+                throw new UnsupportedNotificationTypeException($type);
+        }
+    }
+
+    /**
      * Processes the payment transaction
      *
      * @return void

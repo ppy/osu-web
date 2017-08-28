@@ -40,13 +40,7 @@ class CentiliController extends Controller
         }
 
         try {
-            switch ($processor->getNotificationType()) {
-                case 'payment':
-                    $processor->apply();
-                    break;
-                default:
-                    abort(500);
-            }
+            $processor->run();
         } catch (ValidationException $e) {
             \Log::error($e->getMessage());
             return response(['message' => 'A validation error occured while running the transaction'], 406);

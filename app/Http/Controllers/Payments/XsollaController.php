@@ -82,16 +82,7 @@ class XsollaController extends Controller
         }
 
         try {
-            switch ($processor->getNotificationType()) {
-                case 'payment':
-                    $processor->apply();
-                    break;
-                case 'refund':
-                    $processor->cancel();
-                    break;
-                default:
-                    abort(500);
-            }
+            $processor->run();
         } catch (ValidationException $e) {
             \Log::error($e->getMessage());
             return response()->json([
