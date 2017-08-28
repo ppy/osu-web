@@ -146,7 +146,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 $scores = $user
                     ->scoresFirst($mode, true)
                     ->default()
-                    ->userBest(50, ['beatmapset', 'beatmap']);
+                    ->userBest(50, ['beatmap', 'beatmap.beatmapset']);
 
                 $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
@@ -164,7 +164,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                     ->scoresBest($mode, true)
                     ->default()
                     ->orderBy('pp', 'DESC')
-                    ->userBest(50, ['beatmapset', 'beatmap']);
+                    ->userBest(50, ['beatmap', 'beatmap.beatmapset']);
 
                 ScoreBestModel::fillInPosition($scores);
 
@@ -181,7 +181,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             $all = [];
 
             foreach (array_keys(Beatmap::MODES) as $mode) {
-                $scores = $user->scores($mode, true)->default()->with('beatmapset', 'beatmap')->get();
+                $scores = $user->scores($mode, true)->default()->with('beatmap', 'beatmap.beatmapset')->get();
 
                 $all[$mode] = json_collection($scores, new ScoreTransformer(), 'beatmap,beatmapset');
             }
