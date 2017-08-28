@@ -46,7 +46,7 @@ class BuildPropagationHistory extends Model
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
             ->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
-            ->select(DB::raw('created_at, sum(user_count) as user_count'))
+            ->select(DB::raw('created_at, cast(sum(user_count) as signed) as user_count'))
             ->where('created_at', '>', Carbon::now()->subDays($days));
 
         if ($streamId !== null) {

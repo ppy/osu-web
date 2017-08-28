@@ -61,7 +61,9 @@ class Build extends Model
             ->groupBy('stream_id')
             ->pluck('latest_build_id');
 
-        $query->whereIn('build_id', $latestBuildIds);
+        $query->whereIn('build_id', $latestBuildIds)
+            ->orderByField('stream_id', $streamIds)
+            ->with('updateStream');
     }
 
     public function scopePropagationHistory($query)

@@ -44,8 +44,6 @@ class ChangelogController extends Controller
             });
 
         $streams = Build::latestByStream(config('osu.changelog.update_streams'))
-            ->orderByField('stream_id', config('osu.changelog.update_streams'))
-            ->with('updateStream')
             ->get();
 
         $featuredStream = null;
@@ -60,16 +58,9 @@ class ChangelogController extends Controller
 
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new BuildPropagationHistory)->getTable();
-        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))
-            ->get()
-            ->map(function ($item) {
-                $item->user_count = get_int($item->user_count);
-
-                return $item;
-            });
+        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
 
         $chartOrder = null;
-
 
         $chartOrder = collect([$featuredStream])->merge($streams)->map(function ($el) {
             return $el->updateStream->pretty_name;
@@ -96,8 +87,6 @@ class ChangelogController extends Controller
         ];
 
         $streams = Build::latestByStream(config('osu.changelog.update_streams'))
-            ->orderByField('stream_id', config('osu.changelog.update_streams'))
-            ->with('updateStream')
             ->get();
 
         $featuredStream = null;
@@ -116,13 +105,7 @@ class ChangelogController extends Controller
 
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new BuildPropagationHistory)->getTable();
-        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))
-            ->get()
-            ->map(function ($item) {
-                $item->user_count = get_int($item->user_count);
-
-                return $item;
-            });
+        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
 
         $chartOrder = null;
 
