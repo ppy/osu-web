@@ -37,7 +37,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
     public function __construct(array $params, PaymentSignature $signature)
     {
         parent::__construct($params, $signature);
-        $this->explodedOrderNumber = explode('-', $this['transaction.external_id'], 3);
+        $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 4);
         if (count($this->explodedOrderNumber) > 2) {
             $this->orderId = (int) $this->explodedOrderNumber[2];
         }

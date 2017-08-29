@@ -21,7 +21,7 @@
 namespace Tests;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Libraries\Payments\CentiliPaymentProcessor;
+use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\PaymentProcessorException;
 use App\Models\Store\Order;
@@ -29,13 +29,12 @@ use App\Models\Store\OrderItem;
 use Config;
 use TestCase;
 
-class CentiliPaymentProcessorTest extends TestCase
+class XsollaPaymentProcessorTest extends TestCase
 {
     public function setUp()
     {
         parent::setUp();
-        Config::set('payments.centili.api_key', 'api_key');
-        Config::set('payments.centili.conversion_rate', 120.00);
+        Config::set('payments.xsolla.api_key', 'api_key');
         $this->order = factory(Order::class)->states('checkout')->create();
     }
 
@@ -64,7 +63,7 @@ class CentiliPaymentProcessorTest extends TestCase
     public function testWhenEverythingIsFine()
     {
         $params = $this->getTestParams();
-        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $subject = new XsollaPaymentProcessor($params, $this->validSignature());
         $subject->run();
 
         $this->assertTrue($subject->validationErrors()->isEmpty());
@@ -74,8 +73,15 @@ class CentiliPaymentProcessorTest extends TestCase
     {
         $orderItem = factory(OrderItem::class, 'supporter_tag')->create(['order_id' => $this->order->order_id]);
 
-        $params = $this->getTestParams(['enduserprice' => '479.000']);
-        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $params = $this->getTestParams([
+            'purchase' => [
+                'checkout' => [
+                    'currency' => 'USD',
+                    'amount' => $orderItem->cost - 1,
+                ],
+            ],
+        ]);
+        $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
         // want to examine the contents of validationErrors
         $thrown = $this->runSubject($subject);
@@ -85,19 +91,6 @@ class CentiliPaymentProcessorTest extends TestCase
         $this->assertArrayHasKey('purchase.checkout.amount', $errors);
     }
 
-    public function testWhenApiKeyIsInvalid()
-    {
-        $params = $this->getTestParams(['service' => 'not_magic']);
-        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
-
-        // want to examine the contents of validationErrors
-        $thrown = $this->runSubject($subject);
-
-        $errors = $subject->validationErrors()->all();
-        $this->assertTrue($thrown);
-        $this->assertArrayHasKey('service', $errors);
-    }
-
     public function testWhenUserIdMismatch()
     {
         $orderNumber = 'test-'
@@ -105,34 +98,43 @@ class CentiliPaymentProcessorTest extends TestCase
                            .'-'
                            .$this->order->order_id;
 
-        $params = $this->getTestParams(['clientid' => $orderNumber]);
-        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $params = $this->getTestParams([
+            'transaction' => [
+                'external_id' => $orderNumber,
+            ],
+        ]);
+        $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
         $thrown = $this->runSubject($subject);
 
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
-        $this->assertArrayHasKey('clientid', $errors);
+        $this->assertArrayHasKey('transaction.external_id', $errors);
     }
 
     public function testWhenOrderNumberMalformed()
     {
         $orderNumber = "{$this->order->getOrderNumber()}-oops";
 
-        $params = $this->getTestParams(['clientid' => $orderNumber]);
-        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $params = $this->getTestParams([
+            'transaction' => [
+                'external_id' => $orderNumber,
+            ],
+        ]);
+        \Log::debug($params);
+        $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
         $thrown = $this->runSubject($subject);
 
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
-        $this->assertArrayHasKey('clientid', $errors);
+        $this->assertArrayHasKey('transaction.external_id', $errors);
     }
 
     public function testWhenSignatureInvalid()
     {
         $params = $this->getTestParams();
-        $subject = new CentiliPaymentProcessor($params, $this->invalidSignature());
+        $subject = new XsollaPaymentProcessor($params, $this->invalidSignature());
 
         $this->expectException(InvalidSignatureException::class);
         $this->runSubject($subject);
@@ -140,26 +142,23 @@ class CentiliPaymentProcessorTest extends TestCase
 
     private function getTestParams(array $overrides = [])
     {
+        $order = $this->order;
+
         $base = [
-            'clientid' => $this->order->getOrderNumber(),
-            'country' => 'jp',
-            'enduserprice' => '480.000',
-            'event_type' => 'one_off',
-            'mnocode' => 'BADDOG',
-            'phone' => 'test@example.org',
-            'revenue' => '4.34',
-            'revenuecurrency' => 'MONOPOLY',
-            'service' => config('payments.centili.api_key'),
-            'status' => 'success',
-            'transactionid' => '111222333',
+            'notification_type' => 'payment',
+            'nothing' => 'to see',
+            'transaction' => [
+                'external_id' => $order->getOrderNumber(),
+            ],
+            'purchase' => [
+                'checkout' => [
+                    'currency' => 'USD',
+                    'amount' => $order->getTotal(),
+                ],
+            ],
         ];
 
-        $data = array_merge($base, $overrides);
-
-        // Generate a fake correct signature :trollface:
-        $data['sign'] = CentiliSignature::calculateSignature(CentiliSignature::stringifyInput($data));
-
-        return $data;
+        return array_merge($base, $overrides);
     }
 
     // wrapper to catch the exception
