@@ -37,7 +37,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     protected $params;
     protected $signature;
 
-    public function __construct(array $params, $signature)
+    public function __construct(array $params, PaymentSignature $signature)
     {
         $this->params = $params;
         $this->signature = $signature;
