@@ -143,8 +143,6 @@ abstract class Model extends BaseModel
 
     public function userRank($options)
     {
-        $alwaysAccurate = false;
-
         $query = static::on('mysql-readonly')
             ->where('beatmap_id', '=', $this->beatmap_id)
             ->where(function ($query) {
@@ -159,10 +157,6 @@ abstract class Model extends BaseModel
 
         if (isset($options['type'])) {
             $query->withType($options['type'], ['user' => $this->user]);
-
-            if ($options['type'] === 'country') {
-                $alwaysAccurate = true;
-            }
         }
 
         if (isset($options['mods'])) {
@@ -171,17 +165,7 @@ abstract class Model extends BaseModel
 
         $countQuery = DB::raw('DISTINCT user_id');
 
-        if ($alwaysAccurate) {
-            return 1 + $query->default()->count($countQuery);
-        }
-
-        $rank = 1 + $query->count($countQuery);
-
-        if ($rank < config('osu.beatmaps.max-scores') * 3) {
-            return 1 + $query->default()->count($countQuery);
-        } else {
-            return $rank;
-        }
+        return 1 + $query->default()->count($countQuery);
     }
 
     public function macroUserBest()
@@ -257,10 +241,7 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query
-            ->whereHas('user', function ($userQuery) {
-                $userQuery->default();
-            });
+        return $query->where('hidden', '=', false);
     }
 
     public function scopeDefaultListing($query)
@@ -300,9 +281,7 @@ abstract class Model extends BaseModel
 
     public function scopeFromCountry($query, $countryAcronym)
     {
-        return $query->whereHas('user', function ($q) use ($countryAcronym) {
-            $q->where('country_acronym', $countryAcronym);
-        });
+        return $query->where('country_acronym', $countryAcronym);
     }
 
     public function scopeFriendsOf($query, $user)
