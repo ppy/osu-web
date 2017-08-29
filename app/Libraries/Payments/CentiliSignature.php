@@ -22,7 +22,7 @@ namespace App\Libraries\Payments;
 
 use Illuminate\Http\Request;
 
-class CentiliSignature
+class CentiliSignature implements PaymentSignature
 {
     public function __construct(Request $request)
     {
