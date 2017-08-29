@@ -31,6 +31,11 @@ use TestCase;
 
 class SupporterTagFulfillmentTest extends TestCase
 {
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-store',
+    ];
+
     public function setup()
     {
         parent::setup();

@@ -31,6 +31,11 @@ use TestCase;
 
 class CentiliPaymentProcessorTest extends TestCase
 {
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-store',
+    ];
+
     public function setUp()
     {
         parent::setUp();

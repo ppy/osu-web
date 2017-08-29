@@ -31,6 +31,11 @@ use TestCase;
 
 class FulfillmentFactoryTests extends TestCase
 {
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-store',
+    ];
+
     /**
      * @expectedException \App\Exceptions\NotImplementedException
      */
