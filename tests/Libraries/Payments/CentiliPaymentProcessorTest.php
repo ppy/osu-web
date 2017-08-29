@@ -154,12 +154,7 @@ class CentiliPaymentProcessorTest extends TestCase
             'transactionid' => '111222333',
         ];
 
-        $data = array_merge($base, $overrides);
-
-        // Generate a fake correct signature :trollface:
-        $data['sign'] = CentiliSignature::calculateSignature(CentiliSignature::stringifyInput($data));
-
-        return $data;
+        return array_merge($base, $overrides);
     }
 
     // wrapper to catch the exception
