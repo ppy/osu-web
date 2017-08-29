@@ -30,8 +30,6 @@
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-dom-factories": "^1.0.0",
-    "react-height": "^2.1.1",
-    "react-motion": "^0.4.5",
     "require-dir": "^0.3.2",
     "retina.js": "^1.1.0",
     "timeago": "^1.5.0",
