@@ -34,7 +34,8 @@ class CentiliPaymentProcessor extends PaymentProcessor
     public function __construct(array $params, PaymentSignature $signature)
     {
         parent::__construct($params, $signature);
-        $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 3);
+        // limiting to 3 means it won't pick up if the format is too long.
+        $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 4);
         if (count($this->explodedOrderNumber) > 2) {
             $this->orderId = (int) $this->explodedOrderNumber[2];
         }
@@ -106,9 +107,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
             $this->validationErrors()->add('clientid', '.order_number.malformed');
-        }
-
-        if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
+        } elseif ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
             $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
         }
 
