@@ -16,6 +16,9 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="nav-search-result">
+    @php
+        $users = $search->search('user');
+    @endphp
     @if (count($users['data']) > 0)
         <div class="nav-search-result__results-container">
             <div class="nav-search-result__results nav-search-result__results--horizontal">
@@ -44,6 +47,9 @@
         </div>
     @endif
 
+    @php
+        $beatmapsets = $search->search('beatmapset');
+    @endphp
     @if (count($beatmapsets['data']) > 0)
         <div class="nav-search-result__results-container">
             <div class="nav-search-result__results">
