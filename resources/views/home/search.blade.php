@@ -52,7 +52,11 @@
 
                                 @if ($search->hasQuery() && isset($search->search($mode)['total']))
                                     <span class="page-mode-link__badge">
-                                        {{ search_total_display($search->search($mode)['total']) }}
+                                        @if ($search->search($mode)['total'] < 100)
+                                            {{ $search->search($mode)['total'] }}
+                                        @else
+                                            99+
+                                        @endif
                                     </span>
                                 @endif
 
