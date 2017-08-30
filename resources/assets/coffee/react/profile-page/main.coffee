@@ -52,17 +52,13 @@ class ProfilePage.Main extends React.PureComponent
       tabsSticky: false
       profileOrder: props.user.profileOrder[..]
       scoresBest: @props.scores.best
-      scoresFirst: @props.scores.first
+      scoresFirsts: @props.scores.firsts
       scoresRecent: @props.scores.recent
       beatmapPlaycounts: @props.beatmapsets.most_played
       favouriteBeatmapsets: @props.beatmapsets.favourite
       rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
-      pagination:
-        favouriteBeatmapsets:
-          perPage: 6
-        rankedAndApprovedBeatmapsets:
-          perPage: 6
+      showMorePagination: {}
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
@@ -131,16 +127,16 @@ class ProfilePage.Main extends React.PureComponent
         props:
           user: @state.user
           recentlyReceivedKudosu: @state.recentlyReceivedKudosu
-          pagination: @state.pagination
+          pagination: @state.showMorePagination
         component: ProfilePage.Kudosu
 
       top_ranks:
         props:
           user: @state.user
           scoresBest: @state.scoresBest
-          scoresFirst: @state.scoresFirst
+          scoresFirsts: @state.scoresFirsts
           currentMode: @state.currentMode
-          pagination: @state.pagination
+          pagination: @state.showMorePagination
         component: ProfilePage.TopRanks
 
       beatmaps:
@@ -151,7 +147,7 @@ class ProfilePage.Main extends React.PureComponent
           counts:
             favouriteBeatmapsets: @state.user.favouriteBeatmapsetCount[0]
             rankedAndApprovedBeatmapsets: @state.user.rankedAndApprovedBeatmapsetCount[0]
-          pagination: @state.pagination
+          pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 
       medals:
@@ -168,7 +164,7 @@ class ProfilePage.Main extends React.PureComponent
           scoresRecent: @state.scoresRecent
           user: @state.user
           currentMode: @state.currentMode
-          pagination: @state.pagination
+          pagination: @state.showMorePagination
         component: ProfilePage.Historical
 
     div className: 'osu-layout__section',
@@ -233,29 +229,31 @@ class ProfilePage.Main extends React.PureComponent
 
 
   showMore: (e, {showMoreLink}) =>
-    type = showMoreLink.dataset.showMore
-    endpoint = showMoreLink.dataset.showMoreUrl
-    offset = @state[type].length
+    propertyName = showMoreLink.dataset.showMore
+    url = showMoreLink.dataset.showMoreUrl
+    offset = @state[propertyName].length
+    perPage = parseInt(showMoreLink.dataset.showMorePerPage)
+    maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
 
-    paginationState = _.cloneDeep @state.pagination
-    if paginationState[type]?
-      paginationState[type].loading = true
+    paginationState = _.cloneDeep @state.showMorePagination
+    if paginationState[propertyName]?
+      paginationState[propertyName].loading = true
     else
-      paginationState[type] = {}
-      paginationState[type].loading = true
+      paginationState[propertyName] = {}
+      paginationState[propertyName].loading = true
 
-    @setState pagination: paginationState, ->
-      $.get osu.updateQueryString('offset', offset, endpoint), (data) =>
-        state = _.cloneDeep @state[type]
+    @setState showMorePagination: paginationState, ->
+      $.get osu.updateQueryString('offset', offset, url), (data) =>
+        state = _.cloneDeep @state[propertyName]
         state = state.concat(data)
 
-        paginationState[type].loading = false
-        maxResults = paginationState[type].maxResults || 100
-        paginationState[type].hasMore = data.length == (paginationState[type].perPage ? 5) && state.length < maxResults
+        paginationState[propertyName].loading = false
+        paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
 
         @setState
-          "#{type}": state
-          pagination: paginationState
+          "#{propertyName}": state
+          showMorePagination: paginationState
+
 
   pageJump: (_e, page) =>
     if page == 'main'

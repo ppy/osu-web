@@ -49,8 +49,9 @@ class ProfilePage.Historical extends React.PureComponent
             key: 'show-more-row'
             className: 'beatmapset-row beatmapset-row--more'
             el ProfilePage.ShowMoreLink,
+              collection: @props.beatmapPlaycounts
               propertyName: 'beatmapPlaycounts'
-              pagination: @props.pagination
+              pagination: @props.pagination['beatmapPlaycounts']
               route: laroute.route 'users.beatmapsets',
                   user: @props.user.id
                   type: 'most_played'
@@ -72,8 +73,9 @@ class ProfilePage.Historical extends React.PureComponent
             key: 'show-more-row'
             className: 'beatmapset-row beatmapset-row--more'
             el ProfilePage.ShowMoreLink,
+              collection: @props.scoresRecent
               propertyName: 'scoresRecent'
-              pagination: @props.pagination
+              pagination: @props.pagination['scoresRecent']
               route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'recent'

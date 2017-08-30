@@ -18,18 +18,23 @@
 {a} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.ShowMoreLink extends React.Component
+class ProfilePage.ShowMoreLink extends React.PureComponent
   render: =>
-    if @props.pagination[@props.propertyName]?.loading && @props.pagination[@props.propertyName].loading
+    if @props.pagination?.loading
       el Icon, key: 'more-loader', name: 'refresh', modifiers: ['spin']
 
     else
-      hasMore = !@props.pagination[@props.propertyName]? || !@props.pagination[@props.propertyName]?.hasMore? || @props.pagination[@props.propertyName].hasMore
+      firstLoad = !@props.pagination
+      perPage = @props.perPage ? 5
+      maxResults = @props.maxResults ? 100
+      hasMore = (firstLoad && (!@props.collection? || @props.collection.length == perPage)) || @props.pagination?.hasMore
 
       if hasMore
         a
           href: '#'
           'data-show-more': @props.propertyName
+          'data-show-more-max-results': maxResults
+          'data-show-more-per-page': perPage
           'data-show-more-url': @props.route
           onClick: @showMore
           osu.trans('common.buttons.show_more')

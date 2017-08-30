@@ -47,8 +47,10 @@ class ProfilePage.Beatmaps extends React.PureComponent
               div
                 className: 'osu-layout__col text-center',
                 el ProfilePage.ShowMoreLink,
+                  collection: beatmapsets
                   propertyName: section
-                  pagination: @props.pagination
+                  pagination: @props.pagination[section]
+                  perPage: 6
                   route: laroute.route 'users.beatmapsets',
                     user: @props.user.id
                     type: sectionSnaked

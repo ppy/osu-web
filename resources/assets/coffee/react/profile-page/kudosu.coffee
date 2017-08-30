@@ -70,8 +70,9 @@ class ProfilePage.Kudosu extends React.Component
 
             li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
               el ProfilePage.ShowMoreLink,
+                collection: @props.recentlyReceivedKudosu
                 propertyName: 'recentlyReceivedKudosu'
-                pagination: @props.pagination
+                pagination: @props.pagination['recentlyReceivedKudosu']
                 route: laroute.route 'users.kudosu', user: @props.user.id
 
         else

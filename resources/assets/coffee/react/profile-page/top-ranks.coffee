@@ -33,8 +33,9 @@ class ProfilePage.TopRanks extends React.PureComponent
               el PlayDetail, key: i, score: score
             li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
               el ProfilePage.ShowMoreLink,
+                collection: @props.scoresBest
                 propertyName: 'scoresBest'
-                pagination: @props.pagination
+                pagination: @props.pagination['scoresBest']
                 route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'best'
@@ -44,14 +45,15 @@ class ProfilePage.TopRanks extends React.PureComponent
 
       div null,
         h3 className: 'page-extra__title page-extra__title--small', osu.trans('users.show.extra.top_ranks.first.title')
-        if @props.scoresFirst?.length
+        if @props.scoresFirsts?.length
           div className: 'profile-extra-entries',
-            @props.scoresFirst.map (score, i) =>
+            @props.scoresFirsts.map (score, i) =>
               el PlayDetail, key: i, score: score
             li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
               el ProfilePage.ShowMoreLink,
-                propertyName: 'scoresFirst'
-                pagination: @props.pagination
+                collection: @props.scoresFirsts
+                propertyName: 'scoresFirsts'
+                pagination: @props.pagination['scoresFirsts']
                 route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'firsts'
