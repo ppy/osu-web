@@ -126,7 +126,6 @@ class XsollaPaymentProcessorTest extends TestCase
                 'external_id' => $orderNumber,
             ],
         ]);
-        \Log::debug($params);
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
 
         $thrown = $this->runSubject($subject);
