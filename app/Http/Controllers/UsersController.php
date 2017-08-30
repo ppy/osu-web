@@ -109,18 +109,17 @@ class UsersController extends Controller
 
     public function scores($id, $type)
     {
-        $perPage = 5;
-        $this->parseParams($perPage);
+        $this->parsePaginationParams(5);
 
         switch ($type) {
             case 'best':
-                return $this->scoresBest($this->user, $this->mode, $perPage, $this->offset);
+                return $this->scoresBest($this->user, $this->mode, $this->perPage, $this->offset);
 
             case 'firsts':
-                return $this->scoresFirsts($this->user, $this->mode, $perPage, $this->offset);
+                return $this->scoresFirsts($this->user, $this->mode, $this->perPage, $this->offset);
 
             case 'recent':
-                return $this->scoresRecent($this->user, $this->mode, $perPage, $this->offset);
+                return $this->scoresRecent($this->user, $this->mode, $this->perPage, $this->offset);
 
             default:
                 return [];
@@ -129,21 +128,19 @@ class UsersController extends Controller
 
     public function beatmapsets($id, $type)
     {
-        $perPage = 6;
-        $this->parseParams($perPage);
+        $this->parsePaginationParams(6);
 
         switch ($type) {
             case 'most_played':
-                $perPage = 5;
-                $this->parseParams($perPage);
+                $this->parsePaginationParams(5);
 
-                return $this->mostPlayedBeatmapsets($this->user, $perPage, $this->offset);
+                return $this->mostPlayedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             case 'favourite':
-                return $this->favouriteBeatmapsets($this->user, $perPage, $this->offset);
+                return $this->favouriteBeatmapsets($this->user, $this->perPage, $this->offset);
 
             case 'ranked_and_approved':
-                return $this->rankedAndApprovedBeatmapsets($this->user, $perPage, $this->offset);
+                return $this->rankedAndApprovedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             default:
                 return [];
@@ -152,10 +149,9 @@ class UsersController extends Controller
 
     public function kudosu($id)
     {
-        $perPage = 5;
-        $this->parseParams($perPage);
+        $this->parsePaginationParams(5);
 
-        return $this->recentKudosu($this->user, $perPage, $this->offset);
+        return $this->recentKudosu($this->user, $this->perPage, $this->offset);
     }
 
     public function show($id, $mode = null)
@@ -224,7 +220,7 @@ class UsersController extends Controller
         ));
     }
 
-    private function parseParams($perPage)
+    private function parsePaginationParams($perPage)
     {
         $this->user = User::lookup(Request::route('user'), 'id');
         $this->mode = Request::route('mode') ?? 'osu';
@@ -235,9 +231,11 @@ class UsersController extends Controller
         }
 
         if ($this->offset >= $this->maxResults) {
-            return [];
+            $this->perPage = 0;
         } elseif ($this->offset > $this->maxResults - $perPage) {
-            $this->perPage = $this->maxResults - $perPage;
+            $this->perPage = $this->maxResults - $this->offset;
+        } else {
+            $this->perPage = $perPage;
         }
     }
 
