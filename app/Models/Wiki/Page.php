@@ -22,7 +22,6 @@ namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
-use App\Exceptions\GitHubTooLargeException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Cache;
@@ -74,10 +73,7 @@ class Page
                         ],
                     ]],
                     ['match' => [
-                        'locale' => [
-                            'query' => config('app.fallback_locale'),
-                            'boost' => 1,
-                        ],
+                        'locale' => config('app.fallback_locale'),
                     ]],
                 ],
             ],
@@ -163,11 +159,6 @@ class Page
         $this->defaultSubtitle = array_pop($defaultTitles);
     }
 
-    public function cacheKeyLocales()
-    {
-        return 'wiki:page:locales:'.$this->path;
-    }
-
     public function cacheKeyPage()
     {
         return 'wiki:page:page:'.static::cacheVersionPage().':'.$this->pagePath();
@@ -176,38 +167,6 @@ class Page
     public function editUrl()
     {
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
-    }
-
-    public function fetchLocales()
-    {
-        $locales = [];
-
-        try {
-            $data = OsuWiki::fetch('wiki/'.$this->path);
-        } catch (GitHubNotFoundException $e) {
-            return $locales;
-        } catch (GitHubTooLargeException $e) {
-            return $locales;
-        }
-
-        // check if it's a file, not a directory.
-        if (isset($data['name'])) {
-            return $locales;
-        }
-
-        foreach ($data as $entry) {
-            $hasMatch = preg_match(
-                '/^(\w{2}(?:-\w{2})?)\.md$/',
-                $entry['name'],
-                $matches
-            );
-
-            if ($hasMatch === 1) {
-                $locales[] = $matches[1];
-            }
-        }
-
-        return $locales;
     }
 
     public function indexAdd($page = null)
@@ -238,21 +197,6 @@ class Page
         } catch (Missing404Exception $_e) {
             // do nothing
         }
-    }
-
-    public function locales()
-    {
-        if (!array_key_exists('locales', $this->cache)) {
-            $this->cache['locales'] = Cache::remember(
-                $this->cacheKeyLocales(),
-                static::CACHE_DURATION,
-                function () {
-                    return $this->fetchLocales();
-                }
-            );
-        }
-
-        return $this->cache['locales'];
     }
 
     public function page()
@@ -307,7 +251,6 @@ class Page
     public function refresh()
     {
         Cache::forget($this->cacheKeyPage());
-        Cache::forget($this->cacheKeyLocales());
     }
 
     public function title($withSubtitle = false)

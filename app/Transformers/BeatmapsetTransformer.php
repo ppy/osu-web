@@ -34,7 +34,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
         'converts',
         'description',
-        'discussion_status',
         'nominations',
         'ratings',
         'user',
@@ -68,6 +67,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'ranked' => $beatmapset->approved,
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
+            'discussion_enabled' => $beatmapset->discussion_enabled,
         ];
     }
 
@@ -81,15 +81,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             return [
                 'download_disabled' => $beatmapset->download_disabled,
                 'more_information' => $beatmapset->download_disabled_url,
-            ];
-        });
-    }
-
-    public function includeDiscussionStatus($beatmapset)
-    {
-        return $this->item($beatmapset, function ($beatmapset) {
-            return [
-                'enabled' => $beatmapset->beatmapsetDiscussion()->exists(),
             ];
         });
     }

@@ -292,7 +292,7 @@ class UsersController extends Controller
     {
         $scores = $user->scoresBest($mode, true)
             ->orderBy('pp', 'DESC')
-            ->userBest($perPage, ['beatmapset', 'beatmap'], $offset);
+            ->userBest($perPage, ['beatmap', 'beatmap.beatmapset'], $offset);
 
         ScoreBestModel::fillInPosition($scores);
 
@@ -303,7 +303,7 @@ class UsersController extends Controller
     {
         $scores = $user->scoresFirst($mode, true)
             ->orderBy('score_id', 'desc')
-            ->with('beatmapset', 'beatmap')
+            ->with('beatmap', 'beatmap.beatmapset')
             ->limit($perPage)
             ->offset($offset)
             ->get();
@@ -316,7 +316,7 @@ class UsersController extends Controller
     private function scoresRecent($user, $mode, $perPage = 5, $offset = 0)
     {
         $scores = $user->scores($mode, true)
-            ->with('beatmapset', 'beatmap')
+            ->with('beatmap', 'beatmap.beatmapset')
             ->limit($perPage)
             ->offset($offset)
             ->get();

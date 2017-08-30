@@ -4,7 +4,6 @@ use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetDiscussion;
 use App\Models\User;
 
 class BeatmapDiscussionsControllerTest extends TestCase
@@ -17,15 +16,13 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->anotherUser = factory(User::class)->create();
         $this->beatmapset = factory(Beatmapset::class)->create([
             'user_id' => $this->user->user_id,
+            'discussion_enabled' => true,
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
             'user_id' => $this->user->user_id,
         ]));
-        $this->beatmapsetDiscussion = BeatmapsetDiscussion::create([
-            'beatmapset_id' => $this->beatmapset->beatmapset_id,
-        ]);
         $this->beatmapDiscussion = BeatmapDiscussion::create([
-            'beatmapset_discussion_id' => $this->beatmapsetDiscussion->id,
+            'beatmapset_id' => $this->beatmapset->getKey(),
             'timestamp' => 0,
             'message_type' => 'praise',
             'beatmap_id' => $this->beatmap->beatmap_id,
