@@ -35,7 +35,7 @@ ProfilePage.Header = (props) ->
             a
               className: linkClass
               href: laroute.route 'users.show',
-                id: props.user.id
+                user: props.user.id
                 mode: mode
               osu.trans "beatmaps.mode.#{mode}"
               span className: 'page-mode-link__stripe'
