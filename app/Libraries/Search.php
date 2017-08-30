@@ -71,6 +71,11 @@ class Search
         return $all;
     }
 
+    public function hasQuery()
+    {
+        return mb_strlen(trim($this->params['query'] ?? null)) >= config('osu.search.minimum_length');
+    }
+
     public function paginate($mode)
     {
         return new LengthAwarePaginator(
