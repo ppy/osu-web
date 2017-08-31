@@ -122,7 +122,7 @@ class UsersController extends Controller
                 return $this->scoresRecent($this->user, $this->mode, $this->perPage, $this->offset);
 
             default:
-                return [];
+                abort(404);
         }
     }
 
@@ -143,7 +143,7 @@ class UsersController extends Controller
                 return $this->rankedAndApprovedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             default:
-                return [];
+                abort(404);
         }
     }
 
