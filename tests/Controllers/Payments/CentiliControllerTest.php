@@ -28,6 +28,11 @@ use TestCase;
 
 class CentiliControllerTest extends TestCase
 {
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-store',
+    ];
+
     public function setUp()
     {
         parent::setUp();
