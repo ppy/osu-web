@@ -125,9 +125,7 @@ class Search
             $newParams['limit'] = null;
         }
 
-        $currentParams = $this->search($this->mode)['params'] ?? $this->params;
-
-        return array_merge($currentParams, $newParams);
+        return array_merge($this->params, $newParams);
     }
 
     public function url($newParams = [])
