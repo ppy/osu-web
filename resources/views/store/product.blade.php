@@ -97,19 +97,24 @@
                     </div>
 
                     @if($product->types())
-                    @foreach($product->types() as $type => $values)
-                    <div class="form-group">
-                        <label for="select-product-{{ $type }}">{{ $type }}</label>
+                        @foreach($product->types() as $type => $values)
+                            @if (count($values) === 1)
+                                {{-- magic property --}}
+                                <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ $values[1] }}" />
+                            @else
+                                <div class="form-group">
+                                    <label for="select-product-{{ $type }}">{{ $type }}</label>
 
-                        <select id="select-product-{{ $type }}" class="form-control js-url-selector" data-keep-scroll="1">
-                            @foreach($values as $value => $product_id)
-                            <option {{ $product_id === $product->product_id ? "selected" : "" }} value="{{ action("StoreController@getProduct", $product_id) }}">
-                                {{ $value }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @endforeach
+                                    <select id="select-product-{{ $type }}" class="form-control js-url-selector" data-keep-scroll="1">
+                                        @foreach($values as $value => $product_id)
+                                            <option {{ $product_id === $product->product_id ? "selected" : "" }} value="{{ action("StoreController@getProduct", $product_id) }}">
+                                                {{ $value }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
+                        @endforeach
                     @endif
 
                     @if($product->inStock())
