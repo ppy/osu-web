@@ -271,7 +271,7 @@ class UsersController extends Controller
     private function rankedAndApprovedBeatmapsets($user, $perPage = 6, $offset = 0)
     {
         return json_collection(
-            $user->profileBeatmapsetsRankedAndApproved($perPage, $offset),
+            $user->profileBeatmapsetsRankedAndApproved()->limit($perPage)->offset($offset)->get(),
             'BeatmapsetCompact',
             ['beatmaps']
         );
@@ -280,7 +280,7 @@ class UsersController extends Controller
     private function favouriteBeatmapsets($user, $perPage = 6, $offset = 0)
     {
         return json_collection(
-            $user->profileBeatmapsetsFavourite($perPage, $offset),
+            $user->profileBeatmapsetsFavourite()->limit($perPage)->offset($offset)->get(),
             'BeatmapsetCompact',
             ['beatmaps']
         );
@@ -290,7 +290,7 @@ class UsersController extends Controller
     {
         $scores = $user->scoresBest($mode, true)
             ->orderBy('pp', 'DESC')
-            ->userBest($perPage, ['beatmap', 'beatmap.beatmapset'], $offset);
+            ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
 
         ScoreBestModel::fillInPosition($scores);
 

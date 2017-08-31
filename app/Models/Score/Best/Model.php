@@ -186,7 +186,7 @@ abstract class Model extends BaseModel
 
     public function macroUserBest()
     {
-        return function ($query, $limit, $includes = [], $offset = 0) {
+        return function ($query, $limit, $offset = 0, $includes = []) {
             $baseResult = (clone $query)
                 ->with($includes)
                 ->limit(($limit + $offset) * 2)

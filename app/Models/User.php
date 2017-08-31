@@ -1106,33 +1106,17 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->profileCustomization;
     }
 
-    public function profileBeatmapsetsRankedAndApproved($limit = 6, $offset = 0, $returnQuery = false)
+    public function profileBeatmapsetsRankedAndApproved()
     {
-        $query = $this->beatmapsets()
+        return $this->beatmapsets()
             ->rankedOrApproved()
             ->active()
-            ->limit($limit)
-            ->offset($offset)
             ->with('beatmaps');
-
-        if ($returnQuery) {
-            return $query;
-        } else {
-            return $query->get();
-        }
     }
 
-    public function profileBeatmapsetsFavourite($limit = 6, $offset = 0, $returnQuery = false)
+    public function profileBeatmapsetsFavourite()
     {
-        $query = $this->favouriteBeatmapsets()
-            ->limit($limit)
-            ->offset($offset)
+        return $this->favouriteBeatmapsets()
             ->with('beatmaps');
-
-        if ($returnQuery) {
-            return $query;
-        } else {
-            return $query->get();
-        }
     }
 }

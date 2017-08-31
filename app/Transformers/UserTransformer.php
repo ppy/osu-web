@@ -166,7 +166,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             return [
-                $user->profileBeatmapsetsRankedAndApproved(6, 0, true)->count(),
+                $user->profileBeatmapsetsRankedAndApproved()->count(),
             ];
         });
     }
@@ -175,7 +175,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     {
         return $this->item($user, function ($user) {
             return [
-                $user->profileBeatmapsetsFavourite(6, 0, true)->count(),
+                $user->profileBeatmapsetsFavourite()->count(),
             ];
         });
     }
