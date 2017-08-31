@@ -162,14 +162,14 @@ class UsersController extends Controller
             abort(404);
         }
 
+        if ((string) $user->user_id !== $id) {
+            return ujs_redirect(route('users.show', ['user' => $user, 'mode' => $mode]));
+        }
+
         $currentMode = $mode ?? $user->playmode;
 
         if (!array_key_exists($currentMode, Beatmap::MODES)) {
             abort(404);
-        }
-
-        if ((string) $user->user_id !== $id) {
-            return ujs_redirect(route('users.show', $user));
         }
 
         $achievements = json_collection(
