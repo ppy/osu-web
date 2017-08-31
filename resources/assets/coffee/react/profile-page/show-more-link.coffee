@@ -24,23 +24,21 @@ class ProfilePage.ShowMoreLink extends React.PureComponent
       el Icon, key: 'more-loader', name: 'refresh', modifiers: ['spin']
 
     else
-      firstLoad = !@props.pagination
+      firstLoad = !@props.pagination?
       perPage = @props.perPage ? 5
       maxResults = @props.maxResults ? 100
       hasMore = (firstLoad && (!@props.collection? || @props.collection.length == perPage)) || @props.pagination?.hasMore
 
-      if hasMore
-        a
-          href: '#'
-          'data-show-more': @props.propertyName
-          'data-show-more-max-results': maxResults
-          'data-show-more-per-page': perPage
-          'data-show-more-url': @props.route
-          onClick: @showMore
-          osu.trans('common.buttons.show_more')
+      return null unless hasMore
 
-      else
-        null
+      a
+        href: '#'
+        'data-show-more': @props.propertyName
+        'data-show-more-max-results': maxResults
+        'data-show-more-per-page': perPage
+        'data-show-more-url': @props.route
+        onClick: @showMore
+        osu.trans('common.buttons.show_more')
 
 
   showMore: (e) ->

@@ -236,17 +236,15 @@ class ProfilePage.Main extends React.PureComponent
     maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
 
     paginationState = _.cloneDeep @state.showMorePagination
-    if paginationState[propertyName]?
-      paginationState[propertyName].loading = true
-    else
-      paginationState[propertyName] = {}
-      paginationState[propertyName].loading = true
+    paginationState[propertyName] ?= {}
+    paginationState[propertyName].loading = true
 
     @setState showMorePagination: paginationState, ->
       $.get osu.updateQueryString('offset', offset, url), (data) =>
         state = _.cloneDeep @state[propertyName]
         state = state.concat(data)
 
+        paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
         paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
 

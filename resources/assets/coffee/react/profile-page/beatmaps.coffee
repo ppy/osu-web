@@ -34,7 +34,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
           key: section
           h3
             className: 'page-extra__title page-extra__title--small'
-            osu.trans("users.show.extra.beatmaps." + sectionSnaked + ".title", count: @props.counts[section])
+            osu.trans("users.show.extra.beatmaps.#{sectionSnaked}.title", count: @props.counts[section])
 
           if beatmapsets.length > 0
             div className: 'osu-layout__col-container osu-layout__col-container--with-gutter',

@@ -24,10 +24,8 @@ ProfilePage.Header = (props) ->
     div className: 'osu-page osu-page--users-show-header',
       ul className: 'page-mode',
         for mode in BeatmapHelper.modes
-          active = mode == props.currentMode
-
           linkClass = 'page-mode-link'
-          linkClass += ' page-mode-link--is-active' if active
+          linkClass += ' page-mode-link--is-active' if mode == props.currentMode
 
           li
             className: 'page-mode__item'
