@@ -38,10 +38,6 @@
       element.click()
 
 
-  generateId: ->
-    Math.floor(Math.random() * 100000)
-
-
   setHash: (newHash) ->
     newUrl = location.href.replace /#.*/, ''
     newUrl += newHash

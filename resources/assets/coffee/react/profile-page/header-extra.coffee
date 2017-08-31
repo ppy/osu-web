@@ -32,7 +32,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   componentWillMount: =>
-    @id = "profile-page-header-extra-#{osu.generateId()}"
+    @id = "profile-page-header-extra-#{osu.uuid()}"
 
 
   componentDidMount: =>
@@ -228,7 +228,7 @@ class ProfilePage.HeaderExtra extends React.Component
       options =
         scales:
           y: d3.scaleLog()
-        hoverId: "rank-chart-#{osu.generateId()}"
+        hoverId: "rank-chart-#{osu.uuid()}"
 
       @rankChart = new FancyChart(@rankChartArea, options)
       @rankChart.margins =
