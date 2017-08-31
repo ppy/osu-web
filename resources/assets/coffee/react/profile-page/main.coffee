@@ -241,8 +241,7 @@ class ProfilePage.Main extends React.PureComponent
 
     @setState showMorePagination: paginationState, ->
       $.get osu.updateQueryString('offset', offset, url), (data) =>
-        state = _.cloneDeep @state[propertyName]
-        state = state.concat(data)
+        state = _.cloneDeep(@state[propertyName]).concat(data)
 
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
