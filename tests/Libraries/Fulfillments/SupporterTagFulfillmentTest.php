@@ -54,7 +54,7 @@ class SupporterTagFulfillmentTest extends TestCase
     public function testDonateSupporterTagToSelf()
     {
         $donor = $this->user;
-        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonths(1);
+        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
         $this->createDonationOrderItem($this->order, $this->user, false, false);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
@@ -76,7 +76,7 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $now->copy(),
             'user_sig' => '',
         ]);
-        $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonths(1);
+        $expectedExpiry = $giftee->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
         $this->createDonationOrderItem($this->order, $giftee, false, false);
 
@@ -102,7 +102,7 @@ class SupporterTagFulfillmentTest extends TestCase
     public function testPartiallyFulfilledOrder()
     {
         $donor = $this->user;
-        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonths(1);
+        $expectedExpiry = $donor->osu_subscriptionexpiry->copy()->addMonthsNoOverflow(1);
 
         // consider the first item as processed
         $this->createDonationOrderItem($this->order, $this->user, false, true);
@@ -144,7 +144,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->update([
             'osu_featurevotes' => 2,
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $now->copy()->addMonths(1),
+            'osu_subscriptionexpiry' => $now->copy()->addMonthsNoOverflow(1),
         ]);
 
         $this->createDonationOrderItem($this->order, $this->user, false, true);
@@ -167,7 +167,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->update([
             'osu_featurevotes' => 4,
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $now->copy()->addMonths(2),
+            'osu_subscriptionexpiry' => $now->copy()->addMonthsNoOverflow(2),
         ]);
 
         $this->createDonationOrderItem($this->order, $this->user, true, true);
@@ -179,7 +179,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->refresh();
 
         // there should be 1 month left.
-        $this->assertEquals($now->copy()->addMonths(1)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals($now->copy()->addMonthsNoOverflow(1)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
         $this->assertEquals(2, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
@@ -192,7 +192,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor->update([
             'osu_featurevotes' => 4,
             'osu_subscriber' => true,
-            'osu_subscriptionexpiry' => $now->copy()->addMonths(2),
+            'osu_subscriptionexpiry' => $now->copy()->addMonthsNoOverflow(2),
         ]);
 
         $this->createDonationOrderItem($this->order, $this->user, true, true);
@@ -203,7 +203,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertEquals($now->copy()->addMonths(2)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals($now->copy()->addMonthsNoOverflow(2)->format('Y-m-d'), $donor->osu_subscriptionexpiry);
         $this->assertEquals(4, $donor->osu_featurevotes);
         $this->assertTrue($donor->osu_subscriber);
     }
