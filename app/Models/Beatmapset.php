@@ -26,6 +26,7 @@ use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
+use Datadog;
 use DB;
 use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -485,6 +486,7 @@ class Beatmapset extends Model
 
     public static function search(array $params = [])
     {
+        $startTime = microtime(true);
         $params = static::searchParams($params);
 
         if (empty(config('elasticsearch.hosts'))) {
@@ -500,6 +502,11 @@ class Beatmapset extends Model
                 ->orderByField('beatmapset_id', $result['ids'])
                 ->get()
             : [];
+
+        if (config('datadog-helper.enabled', false)) {
+            $searchDuration = microtime(true) - $startTime;
+            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, ['type' => 'beatmapset']);
+        }
 
         return [
             'data' => $data,
