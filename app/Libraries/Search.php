@@ -102,7 +102,7 @@ class Search
         $key = __FUNCTION__.':'.$mode;
 
         if (!array_key_exists($key, $this->cache)) {
-            $this->cache[$key] = $class::search($this->params);
+            $this->cache[$key] = $this->hasQuery() ? $class::search($this->params) : [];
         }
 
         return $this->cache[$key];
