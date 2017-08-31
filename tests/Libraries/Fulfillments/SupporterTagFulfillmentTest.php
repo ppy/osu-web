@@ -147,6 +147,13 @@ class SupporterTagFulfillmentTest extends TestCase
             'osu_subscriptionexpiry' => $now->copy()->addMonthsNoOverflow(1),
         ]);
 
+        // workaround date insanity during testing
+        $expectedExpiry = $now->copy();
+        $insane = $now->day > $donor->osu_subscriptionexpiry->endOfMonth()->day;
+        if ($insane) {
+            $expectedExpiry = $now->day($donor->osu_subscriptionexpiry->endOfMonth()->day);
+        }
+
         $this->createDonationOrderItem($this->order, $this->user, false, true);
 
         $fulfiller = new SupporterTagFulfillment($this->order);
@@ -154,7 +161,7 @@ class SupporterTagFulfillmentTest extends TestCase
 
         $donor->refresh();
 
-        $this->assertEquals($now->format('Y-m-d'), $donor->osu_subscriptionexpiry);
+        $this->assertEquals($expectedExpiry->format('Y-m-d'), $donor->osu_subscriptionexpiry);
         $this->assertEquals(0, $donor->osu_featurevotes);
         $this->assertFalse($donor->osu_subscriber);
     }
