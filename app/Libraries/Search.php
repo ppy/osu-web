@@ -107,7 +107,7 @@ class Search
 
             $this->cache[$key] = $class::search($this->params);
 
-            if (config('datadog-helper.enabled')) {
+            if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;
                 Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, ['type' => $mode]);
             }
