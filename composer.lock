@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "776c7ee395a67b08c07f6c3f17ea6b6b",
+    "content-hash": "22426c03c833c3a606191ec3a75ff144",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.35.0",
+            "version": "3.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "e9691180888d2679b24cbad1f805e48aadd1a346"
+                "reference": "b4391177bda332c226afcde73a12068547834535"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/e9691180888d2679b24cbad1f805e48aadd1a346",
-                "reference": "e9691180888d2679b24cbad1f805e48aadd1a346",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/b4391177bda332c226afcde73a12068547834535",
+                "reference": "b4391177bda332c226afcde73a12068547834535",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-08-25T23:24:46+00:00"
+            "time": "2017-08-29T15:23:50+00:00"
         },
         {
             "name": "chaseconey/laravel-datadog-helper",
@@ -1700,16 +1700,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.4.35",
+            "version": "v5.4.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "54aa18a4e8495c4b6902d9665ec9fa4d3a1f3d2e"
+                "reference": "1062a22232071c3e8636487c86ec1ae75681bbf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/54aa18a4e8495c4b6902d9665ec9fa4d3a1f3d2e",
-                "reference": "54aa18a4e8495c4b6902d9665ec9fa4d3a1f3d2e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/1062a22232071c3e8636487c86ec1ae75681bbf9",
+                "reference": "1062a22232071c3e8636487c86ec1ae75681bbf9",
                 "shasum": ""
             },
             "require": {
@@ -1825,20 +1825,20 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-08-24T12:30:18+00:00"
+            "time": "2017-08-30T09:26:16+00:00"
         },
         {
             "name": "laravel/passport",
-            "version": "v2.0.11",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/passport.git",
-                "reference": "1e6f56ccf42255e8479d0dcd695619dab6613313"
+                "reference": "9d7bb2a830fd4adbd46d44b8174b674894e15efd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/passport/zipball/1e6f56ccf42255e8479d0dcd695619dab6613313",
-                "reference": "1e6f56ccf42255e8479d0dcd695619dab6613313",
+                "url": "https://api.github.com/repos/laravel/passport/zipball/9d7bb2a830fd4adbd46d44b8174b674894e15efd",
+                "reference": "9d7bb2a830fd4adbd46d44b8174b674894e15efd",
                 "shasum": ""
             },
             "require": {
@@ -1852,7 +1852,7 @@
                 "illuminate/encryption": "~5.4",
                 "illuminate/http": "~5.4",
                 "illuminate/support": "~5.4",
-                "league/oauth2-server": "~5.0",
+                "league/oauth2-server": "^6.0",
                 "php": ">=5.6.4",
                 "phpseclib/phpseclib": "^2.0",
                 "symfony/psr-http-message-bridge": "~1.0",
@@ -1865,7 +1865,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "4.0-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -1894,7 +1894,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2017-06-14T21:58:27+00:00"
+            "time": "2017-08-28T21:36:09+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2385,16 +2385,16 @@
         },
         {
             "name": "league/oauth2-server",
-            "version": "5.1.5",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/oauth2-server.git",
-                "reference": "8e5df6d6286d0010861a708b70f00345d074bce9"
+                "reference": "925776958fc3f5278e74363663c20147af32b668"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/8e5df6d6286d0010861a708b70f00345d074bce9",
-                "reference": "8e5df6d6286d0010861a708b70f00345d074bce9",
+                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/925776958fc3f5278e74363663c20147af32b668",
+                "reference": "925776958fc3f5278e74363663c20147af32b668",
                 "shasum": ""
             },
             "require": {
@@ -2403,7 +2403,7 @@
                 "lcobucci/jwt": "^3.1",
                 "league/event": "^2.1",
                 "paragonie/random_compat": "^2.0",
-                "php": ">=5.5.9",
+                "php": ">=5.6.0",
                 "psr/http-message": "^1.0"
             },
             "replace": {
@@ -2411,19 +2411,10 @@
                 "lncd/oauth2": "*"
             },
             "require-dev": {
-                "indigophp/hash-compat": "^1.1",
                 "phpunit/phpunit": "^4.8 || ^5.0",
                 "zendframework/zend-diactoros": "^1.0"
             },
-            "suggest": {
-                "indigophp/hash-compat": "Polyfill for hash_equals function for PHP 5.5"
-            },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-V5-WIP": "5.0-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "League\\OAuth2\\Server\\": "src/"
@@ -2458,7 +2449,7 @@
                 "secure",
                 "server"
             ],
-            "time": "2017-07-11T06:31:36+00:00"
+            "time": "2017-08-03T15:09:23+00:00"
         },
         {
             "name": "lord/laroute",
