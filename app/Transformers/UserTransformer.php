@@ -20,7 +20,6 @@
 
 namespace App\Transformers;
 
-use App\Models\Beatmap;
 use App\Models\User;
 use League\Fractal;
 
