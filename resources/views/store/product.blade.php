@@ -100,7 +100,7 @@
                         @foreach($product->types() as $type => $values)
                             @if (count($values) === 1)
                                 {{-- magic property --}}
-                                <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ $values[1] }}" />
+                                <input type="hidden" name="item[extra_data][{{ $type }}]" value="{{ array_keys($values)[0] }}" />
                             @else
                                 <div class="form-group">
                                     <label for="select-product-{{ $type }}">{{ $type }}</label>
