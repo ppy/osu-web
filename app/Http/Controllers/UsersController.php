@@ -199,12 +199,17 @@ class UsersController extends Controller
             'recent' => $this->scoresRecent($user, $currentMode),
         ];
 
+        $statistics = json_item(
+            $user->statistics($mode),
+            'UserStatistics',
+            ['rank', 'scoreRanks']
+        );
+
         $userArray = json_item(
             $user,
             'User',
             [
                 'userAchievements',
-                'allStatistics',
                 'followerCount',
                 'page',
                 'recentActivities',
@@ -220,6 +225,7 @@ class UsersController extends Controller
             'kudosu' => $kudosu,
             'rankHistory' => $rankHistory,
             'scores' => $scores,
+            'statistics' => $statistics,
             'user' => $userArray,
         ];
 

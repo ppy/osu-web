@@ -28,7 +28,6 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'userAchievements',
-        'allStatistics',
         'defaultStatistics',
         'followerCount',
         'friends',
@@ -105,18 +104,6 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->relations()->friends()->withMutual()->get(),
             new UserRelationTransformer()
         );
-    }
-
-    public function includeAllStatistics(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $all = [];
-            foreach (array_keys(Beatmap::MODES) as $mode) {
-                $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer, ['rank', 'scoreRanks']);
-            }
-
-            return $all;
-        });
     }
 
     public function includePage(User $user)

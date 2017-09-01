@@ -106,7 +106,6 @@ class ProfilePage.Main extends React.PureComponent
 
 
   render: =>
-    stats = @props.allStats[@state.currentMode]
     withMePage = @state.userPage.html != '' || @props.withEdit
 
     extraPageParams =
@@ -169,7 +168,7 @@ class ProfilePage.Main extends React.PureComponent
     div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user
-        stats: stats
+        stats: @props.statistics
         currentMode: @state.currentMode
         withEdit: @props.withEdit
         rankHistory: @props.rankHistory
