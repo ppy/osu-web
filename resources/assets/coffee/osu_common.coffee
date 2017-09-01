@@ -235,21 +235,10 @@
     Turbolinks.uuid() # no point rolling our own
 
   updateQueryString: (key, value, url = window.location.href) ->
-    regExp = new RegExp("([?&])" + key + "=.*?(&|#|$)(.*)", "gi")
-    hash = url.split('#')
+    urlObj = new URL(url, document.location.origin)
+    urlObj.searchParams.set(key, value)
 
-    if (regExp.test(url))
-      if (value?)
-        return url.replace(regExp, '$1' + key + "=" + value + '$2$3')
-      else
-        url = hash[0].replace(regExp, '$1$3').replace(/(&|\?)$/, '')
-    else
-      if (value?)
-        separator = if url.indexOf('?') != -1 then '&' else '?'
-        url = hash[0] + separator + key + '=' + value
-
-    url += '#' + hash[1] if (hash[1]?)
-    return url
+    return urlObj.href
 
 
   xhrErrorMessage: (xhr) ->
