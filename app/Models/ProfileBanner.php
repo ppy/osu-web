@@ -20,24 +20,28 @@
 
 namespace App\Models;
 
-class Country extends Model
-{
-    protected $table = 'osu_countries';
-    protected $primaryKey = 'acronym';
-    public $incrementing = false;
+use App\Models\Country;
+use App\Models\Tournament;
+use App\Models\User;
 
+class ProfileBanner extends Model
+{
+    protected $table = 'osu_profile_banners';
+    protected $primaryKey = 'banner_id';
     public $timestamps = false;
 
-    public function profileBanners()
+    public function user()
     {
-        return $this->hasMany(ProfileBanner::class, 'country_acronym');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeForStore($query)
+    public function tournament()
     {
-        return $query->select('acronym', 'name', 'display')
-            ->where('display', '>', 0)
-            ->orderBy('display', 'desc')
-            ->orderBy('name');
+        return $this->belongsTo(Tournament::class, 'tournament_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_acronym');
     }
 }

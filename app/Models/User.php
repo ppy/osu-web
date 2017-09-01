@@ -677,6 +677,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasOne(ApiKey::class, 'user_id');
     }
 
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'user_id');
+    }
+
     public function storeAddresses()
     {
         return $this->hasMany(Store\Address::class, 'user_id');
