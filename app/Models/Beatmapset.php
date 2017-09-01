@@ -505,7 +505,7 @@ class Beatmapset extends Model
 
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
-            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, ['type' => 'beatmapset']);
+            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
         }
 
         return [
