@@ -24,8 +24,6 @@ use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
-use App\Transformers\AchievementTransformer;
-use App\Transformers\UserTransformer;
 use Auth;
 use Request;
 
@@ -178,12 +176,13 @@ class UsersController extends Controller
                 ->orderBy('ordering')
                 ->orderBy('progression')
                 ->get(),
-            new AchievementTransformer()
+            'Achievement'
         );
 
         $userArray = json_item(
             $user,
-            new UserTransformer(), [
+            'User',
+            [
                 'userAchievements',
                 'allRankHistories',
                 'allStatistics',
@@ -232,10 +231,8 @@ class UsersController extends Controller
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
-        } elseif ($this->offset > $this->maxResults - $perPage) {
-            $this->perPage = $this->maxResults - $this->offset;
         } else {
-            $this->perPage = $perPage;
+            $this->perPage = min($perPage, $this->maxResults - $this->offset);
         }
     }
 
@@ -271,7 +268,10 @@ class UsersController extends Controller
     private function rankedAndApprovedBeatmapsets($user, $perPage = 6, $offset = 0)
     {
         return json_collection(
-            $user->profileBeatmapsetsRankedAndApproved()->limit($perPage)->offset($offset)->get(),
+            $user->profileBeatmapsetsRankedAndApproved()
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
             'BeatmapsetCompact',
             ['beatmaps']
         );
@@ -280,7 +280,10 @@ class UsersController extends Controller
     private function favouriteBeatmapsets($user, $perPage = 6, $offset = 0)
     {
         return json_collection(
-            $user->profileBeatmapsetsFavourite()->limit($perPage)->offset($offset)->get(),
+            $user->profileBeatmapsetsFavourite()
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
             'BeatmapsetCompact',
             ['beatmaps']
         );

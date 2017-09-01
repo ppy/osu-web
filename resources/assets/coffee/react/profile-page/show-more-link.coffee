@@ -21,7 +21,7 @@ el = React.createElement
 class ProfilePage.ShowMoreLink extends React.PureComponent
   render: =>
     if @props.pagination?.loading
-      el Icon, key: 'more-loader', name: 'refresh', modifiers: ['spin']
+      el Icon, name: 'refresh', modifiers: ['spin']
 
     else
       firstLoad = !@props.pagination?
