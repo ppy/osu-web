@@ -186,26 +186,29 @@ abstract class Model extends BaseModel
 
     public function macroUserBest()
     {
-        return function ($query, $limit, $includes = []) {
-            $baseResult = (clone $query)->with($includes)->limit($limit * 3)->get();
+        return function ($query, $limit, $offset = 0, $includes = []) {
+            $baseResult = (clone $query)
+                ->with($includes)
+                ->limit(($limit + $offset) * 2)
+                ->get();
 
-            $result = [];
+            $results = [];
             $beatmaps = [];
 
             foreach ($baseResult as $entry) {
+                if (count($results) >= $limit + $offset) {
+                    break;
+                }
+
                 if (isset($beatmaps[$entry->beatmap_id])) {
                     continue;
                 }
 
-                if (count($result) >= $limit) {
-                    break;
-                }
-
                 $beatmaps[$entry->beatmap_id] = true;
-                $result[] = $entry;
+                $results[] = $entry;
             }
 
-            return $result;
+            return array_slice($results, $offset);
         };
     }
 

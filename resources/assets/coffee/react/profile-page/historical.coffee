@@ -20,14 +20,6 @@
 el = React.createElement
 
 class ProfilePage.Historical extends React.PureComponent
-  constructor: (props) ->
-    super props
-
-    @state =
-      showingPlaycounts: 5
-      showingRecent: 5
-
-
   render: =>
     div
       className: 'page-extra'
@@ -38,10 +30,10 @@ class ProfilePage.Historical extends React.PureComponent
         className: 'page-extra__title page-extra__title--small'
         osu.trans('users.show.extra.historical.most_played.title')
 
-      if @props.beatmapPlaycounts.length
+      if @props.beatmapPlaycounts?.length
         [
           @props.beatmapPlaycounts.map (pc, i) =>
-            @_beatmapRow pc.beatmap, pc.beatmapset, i, i < @state.showingPlaycounts, [
+            @_beatmapRow pc.beatmap, pc.beatmapset, i, [
               [
                 span
                   key: 'name'
@@ -53,15 +45,16 @@ class ProfilePage.Historical extends React.PureComponent
                   " #{pc.count.toLocaleString()}"
               ]
             ]
-
-          if @props.beatmapPlaycounts.length > @state.showingPlaycounts
-            a
-              key: 'more'
-              href: '#'
-              className: 'beatmapset-row beatmapset-row--more'
-              'data-show-more': 'showingPlaycounts'
-              onClick: @_showMore
-              osu.trans('common.buttons.show_more')
+          span
+            key: 'show-more-row'
+            className: 'beatmapset-row beatmapset-row--more'
+            el ProfilePage.ShowMoreLink,
+              collection: @props.beatmapPlaycounts
+              propertyName: 'beatmapPlaycounts'
+              pagination: @props.pagination['beatmapPlaycounts']
+              route: laroute.route 'users.beatmapsets',
+                  user: @props.user.id
+                  type: 'most_played'
         ]
 
       else
@@ -71,32 +64,32 @@ class ProfilePage.Historical extends React.PureComponent
         className: 'page-extra__title page-extra__title--small'
         osu.trans('users.show.extra.historical.recent_plays.title')
 
-      if @props.scores.length
+      if @props.scoresRecent?.length
         [
-          @props.scores.map (score, i) =>
-            el PlayDetail, key: i, score: score, shown: i < @state.showingRecent
+          @props.scoresRecent.map (score, i) =>
+            el PlayDetail, key: i, score: score
 
-          if @props.scores.length > @state.showingRecent
-            a
-              key: 'more'
-              href: '#'
-              className: 'beatmapset-row beatmapset-row--more'
-              'data-show-more': 'showingRecent'
-              onClick: @_showMore
-              osu.trans('common.buttons.show_more')
+          span
+            key: 'show-more-row'
+            className: 'beatmapset-row beatmapset-row--more'
+            el ProfilePage.ShowMoreLink,
+              collection: @props.scoresRecent
+              propertyName: 'scoresRecent'
+              pagination: @props.pagination['scoresRecent']
+              route: laroute.route 'users.scores',
+                  user: @props.user.id
+                  type: 'recent'
+                  mode: @props.currentMode
         ]
 
       else
         p null, osu.trans('users.show.extra.historical.empty')
 
 
-  _beatmapRow: (bm, bmset, key, shown, details = []) =>
-    topClasses = 'beatmapset-row'
-    topClasses += ' hidden' unless shown
-
+  _beatmapRow: (bm, bmset, key, details = []) =>
     div
       key: key
-      className: topClasses
+      className: 'beatmapset-row'
       div
         className: 'beatmapset-row__cover'
         style:
@@ -131,11 +124,3 @@ class ProfilePage.Historical extends React.PureComponent
           div
             className: 'beatmapset-row__detail-column'
             details[1]
-
-
-  _showMore: (e) =>
-    e.preventDefault()
-
-    key = e.currentTarget.dataset.showMore
-
-    @setState "#{key}": (@state[key] + 5)

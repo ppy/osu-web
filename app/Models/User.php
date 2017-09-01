@@ -689,7 +689,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $mode = studly_case($mode);
 
         if ($returnQuery === true) {
-            return $this->hasMany("App\Models\Score\\{$mode}", 'user_id');
+            return $this->hasMany("App\Models\Score\\{$mode}", 'user_id')->default();
         } else {
             $relation = "scores{$mode}";
 
@@ -1104,5 +1104,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return $this->profileCustomization;
+    }
+
+    public function profileBeatmapsetsRankedAndApproved()
+    {
+        return $this->beatmapsets()
+            ->rankedOrApproved()
+            ->active()
+            ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetsFavourite()
+    {
+        return $this->favouriteBeatmapsets()
+            ->with('beatmaps');
     }
 }

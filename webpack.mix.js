@@ -137,6 +137,7 @@ mix
                             // compiling coffee and then concating together doesn't
                             // work so well when versioning is used with webpack.
 .scripts([
+  path.join(node_root, 'url-polyfill/url-polyfill' + min + '.js'),
   path.join(node_root, 'turbolinks/dist/turbolinks.js'),
   path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
   path.join(node_root, 'jquery-ujs/src/rails.js'),
