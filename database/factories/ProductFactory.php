@@ -71,3 +71,19 @@ $factory->defineAs(App\Models\Store\Product::class, 'child_tshirt', function (Fa
         'max_quantity' => 5,
     ];
 });
+
+$factory->defineAs(App\Models\Store\Product::class, 'child_banners', function (Faker\Generator $faker) {
+    $params = [
+        // 'name' => 'supply your own name',
+        'cost' => 5.00,
+        'weight' => null,
+        'stock' => null,
+        'base_shipping' => 0.00,
+        'next_shipping' => 0.00,
+        'max_quantity' => 1,
+        'display_order' => -10,
+        'custom_class' => 'mwc7-supporter',
+    ];
+
+    return $params;
+});
