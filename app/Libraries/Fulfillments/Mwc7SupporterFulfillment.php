@@ -18,32 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Libraries\Fulfillments;
 
 use App\Models\Country;
-use App\Models\Tournament;
-use App\Models\User;
+use App\Models\Store\OrderItem;
 
-class ProfileBanner extends Model
+class Mwc7SupporterFulfillment extends BannerFulfillment
 {
-    protected $table = 'osu_profile_banners';
-    protected $primaryKey = 'banner_id';
-    public $timestamps = false;
+    protected $orderItems;
 
-    protected $fillable = ['tournament_id', 'country_acronym'];
-
-    public function user()
+    protected function getOrderItems()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+        if (!isset($this->orderItems)) {
+            $this->orderItems = $this->getOrder()->items->customClass('mwc7-supporter')->get();
+        }
 
-    public function tournament()
-    {
-        return $this->belongsTo(Tournament::class, 'tournament_id');
-    }
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class, 'country_acronym');
+        return $this->orderItems;
     }
 }

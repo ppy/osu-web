@@ -24,11 +24,12 @@ use App\Models\Country;
 use App\Models\Store\OrderItem;
 
 /**
- * Placeholder class for handling non-custom class order item fulfillment.
+ * Base class for Tournament supporter banner order item fulfillment.
  */
 abstract class BannerFulfillment extends OrderFulfiller
 {
-    abstract public function getTournamentId();
+    // abstract public function getTournamentId();
+    abstract protected function getOrderItems();
 
     public function run()
     {
@@ -40,13 +41,26 @@ abstract class BannerFulfillment extends OrderFulfiller
 
     public function revoke()
     {
+        $orderItems = $this->getOrderItems;
+        foreach ($orderItems as $orderItem) {
+            $this->revokeBanner($orderItem);
+        }
     }
-
-    abstract protected function getOrderItems();
 
     private function applyBanner(OrderItem $orderItem)
     {
-        \Log::debug('applying banner');
+        $extraData = $orderItem->extra_data;
+        $user = $orderItem->order->user;
+        $user->profileBanners()->create([
+            'tournament_id' => $extraData['tournament_id'],
+            'country_acronym' => $extraData['cc'],
+        ]);
+    }
+
+    private function revokeBanner(OrderItem $orderItem)
+    {
+        throw new \App\Exceptions\NotImplementedException();
+        \Log::debug('revoking banner');
         \Log::debug($orderItem);
     }
 
