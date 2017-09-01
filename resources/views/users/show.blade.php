@@ -48,29 +48,11 @@
         var postEditorToolbar = {!! json_encode(["html" => render_to_string('forum._post_toolbar')]) !!};
     </script>
 
-    <script id="json-achievements" type="application/json">
-        {!! json_encode($achievements) !!}
-    </script>
-
-    <script id="json-beatmapsets" type="application/json">
-        {!! json_encode($beatmapsets) !!}
-    </script>
-
-    <script id="json-currentMode" type="application/json">
-        {!! json_encode($currentMode) !!}
-    </script>
-
-    <script id="json-kudosu" type="application/json">
-        {!! json_encode($kudosu) !!}
-    </script>
-
-    <script id="json-scores" type="application/json">
-        {!! json_encode($scores) !!}
-    </script>
-
-    <script id="json-user" type="application/json">
-        {!! json_encode($userArray) !!}
-    </script>
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
 
     @include('layout._extra_js', ['src' => 'js/react/profile-page.js'])
 @endsection

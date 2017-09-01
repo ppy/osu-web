@@ -241,7 +241,7 @@ class ProfilePage.HeaderExtra extends React.Component
       $.subscribe "fancy-chart:hover-#{options.hoverId}:refresh.#{@id}", @rankChartHover
       $.subscribe "fancy-chart:hover-#{options.hoverId}:end.#{@id}", @rankChartHover
 
-    data = @props.rankHistories?.data if @props.stats.is_ranked
+    data = @props.rankHistory?.data if @props.stats.is_ranked
 
     data = (data ? []).map (rank, i) ->
       x: i - data.length + 1

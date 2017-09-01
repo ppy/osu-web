@@ -179,12 +179,31 @@ class UsersController extends Controller
             'Achievement'
         );
 
+        $beatmapsets = [
+            'most_played' => $this->mostPlayedBeatmapsets($user),
+            'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
+            'favourite' => $this->favouriteBeatmapsets($user),
+        ];
+
+        $kudosu = $this->recentKudosu($user);
+
+        $rankHistoryData = $user->rankHistories()
+            ->where('mode', Beatmap::modeInt($currentMode))
+            ->first();
+
+        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : [];
+
+        $scores = [
+            'best' => $this->scoresBest($user, $currentMode),
+            'firsts' => $this->scoresFirsts($user, $currentMode),
+            'recent' => $this->scoresRecent($user, $currentMode),
+        ];
+
         $userArray = json_item(
             $user,
             'User',
             [
                 'userAchievements',
-                'allRankHistories',
                 'allStatistics',
                 'followerCount',
                 'page',
@@ -194,28 +213,19 @@ class UsersController extends Controller
             ]
         );
 
-        $beatmapsets = [
-            'most_played' => $this->mostPlayedBeatmapsets($user),
-            'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
-            'favourite' => $this->favouriteBeatmapsets($user),
+        $jsonChunks = [
+            'achievements' => $achievements,
+            'beatmapsets' => $beatmapsets,
+            'currentMode' => $currentMode,
+            'kudosu' => $kudosu,
+            'rankHistory' => $rankHistory,
+            'scores' => $scores,
+            'user' => $userArray,
         ];
-
-        $scores = [
-            'best' => $this->scoresBest($user, $currentMode),
-            'firsts' => $this->scoresFirsts($user, $currentMode),
-            'recent' => $this->scoresRecent($user, $currentMode),
-        ];
-
-        $kudosu = $this->recentKudosu($user);
 
         return view('users.show', compact(
             'user',
-            'userArray',
-            'achievements',
-            'beatmapsets',
-            'scores',
-            'currentMode',
-            'kudosu'
+            'jsonChunks'
         ));
     }
 

@@ -28,7 +28,6 @@ class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'userAchievements',
-        'allRankHistories',
         'allStatistics',
         'defaultStatistics',
         'followerCount',
@@ -114,18 +113,6 @@ class UserTransformer extends Fractal\TransformerAbstract
             $all = [];
             foreach (array_keys(Beatmap::MODES) as $mode) {
                 $all[$mode] = json_item($user->statistics($mode), new UserStatisticsTransformer, ['rank', 'scoreRanks']);
-            }
-
-            return $all;
-        });
-    }
-
-    public function includeAllRankHistories(User $user)
-    {
-        return $this->item($user, function ($user) {
-            $all = [];
-            foreach ($user->rankHistories as $history) {
-                $all[$history->mode] = json_item($history, new RankHistoryTransformer());
             }
 
             return $all;

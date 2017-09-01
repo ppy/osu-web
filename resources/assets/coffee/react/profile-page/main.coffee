@@ -106,7 +106,6 @@ class ProfilePage.Main extends React.PureComponent
 
 
   render: =>
-    rankHistories = @props.allRankHistories[@state.currentMode]
     stats = @props.allStats[@state.currentMode]
     withMePage = @state.userPage.html != '' || @props.withEdit
 
@@ -173,7 +172,7 @@ class ProfilePage.Main extends React.PureComponent
         stats: stats
         currentMode: @state.currentMode
         withEdit: @props.withEdit
-        rankHistories: rankHistories
+        rankHistory: @props.rankHistory
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
