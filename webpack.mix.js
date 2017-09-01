@@ -33,11 +33,11 @@ if (mix.inProduction()) {
 const node_root = 'node_modules';
 
 const vendor = [
-  path.join(node_root, 'url-polyfill/url-polyfill' + min + '.js'),
+  path.join(node_root, `url-polyfill/url-polyfill${min}.js`),
   path.join(node_root, 'turbolinks/dist/turbolinks.js'),
-  path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
+  path.join(node_root, `jquery/dist/jquery${min}.js`),
   path.join(node_root, 'jquery-ujs/src/rails.js'),
-  path.join(node_root, 'qtip2/dist/jquery.qtip' + min + '.js'),
+  path.join(node_root, `qtip2/dist/jquery.qtip${min}.js`),
   path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
   path.join(node_root, 'jquery-ui/ui/data.js'),
   path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
@@ -51,15 +51,15 @@ const vendor = [
   path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
   path.join(node_root, 'lodash/lodash.js'),
   path.join(node_root, 'layzr.js/dist/layzr.js'),
-  path.join(node_root, 'react/dist/react' + min + '.js'),
+  path.join(node_root, `react/dist/react${min}.js`),
   path.join(node_root, 'react-dom-factories/index.js'),
-  path.join(node_root, 'react-dom/dist/react-dom' + min + '.js'),
+  path.join(node_root, `react-dom/dist/react-dom${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(node_root, 'd3/build/d3' + min + '.js'),
+  path.join(node_root, `d3/build/d3${min}.js`),
   path.join(node_root, 'moment/moment.js'),
   path.join(node_root, 'js-cookie/src/js.cookie.js'),
-  path.join(node_root, 'imagesloaded/imagesloaded.pkgd' + min + '.js'),
+  path.join(node_root, `imagesloaded/imagesloaded.pkgd${min}.js`),
 ];
 
 vendor.forEach(function (script) {
