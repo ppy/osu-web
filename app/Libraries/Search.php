@@ -109,7 +109,7 @@ class Search
 
             if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;
-                Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, ['type' => $mode]);
+                Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => $mode]);
             }
         }
 
