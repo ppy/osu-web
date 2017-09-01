@@ -24,6 +24,7 @@ use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
 use App\Models\User;
 use App\Models\Wiki\Page as WikiPage;
+use Datadog;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class Search
@@ -102,7 +103,14 @@ class Search
         $key = __FUNCTION__.':'.$mode;
 
         if (!array_key_exists($key, $this->cache)) {
+            $startTime = microtime(true);
+
             $this->cache[$key] = $class::search($this->params);
+
+            if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
+                $searchDuration = microtime(true) - $startTime;
+                Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => $mode]);
+            }
         }
 
         return $this->cache[$key];
@@ -117,9 +125,7 @@ class Search
             $newParams['limit'] = null;
         }
 
-        $currentParams = $this->search($this->mode)['params'] ?? $this->params;
-
-        return array_merge($currentParams, $newParams);
+        return array_merge($this->params, $newParams);
     }
 
     public function url($newParams = [])

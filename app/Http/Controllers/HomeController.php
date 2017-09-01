@@ -166,7 +166,7 @@ class HomeController extends Controller
     public function quickSearch()
     {
         $search = new Search([
-            'query' => trim(Request::input('query')),
+            'query' => Request::input('query'),
             'limit' => 5,
         ]);
 
