@@ -33,7 +33,7 @@ abstract class BannerFulfillment extends OrderFulfiller
 
     public function run()
     {
-        $orderItems = $this->getOrderItems;
+        $orderItems = $this->getOrderItems();
         foreach ($orderItems as $orderItem) {
             $this->applyBanner($orderItem);
         }
@@ -41,7 +41,7 @@ abstract class BannerFulfillment extends OrderFulfiller
 
     public function revoke()
     {
-        $orderItems = $this->getOrderItems;
+        $orderItems = $this->getOrderItems();
         foreach ($orderItems as $orderItem) {
             $this->revokeBanner($orderItem);
         }

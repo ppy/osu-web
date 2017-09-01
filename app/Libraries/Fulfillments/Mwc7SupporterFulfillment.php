@@ -30,7 +30,7 @@ class Mwc7SupporterFulfillment extends BannerFulfillment
     protected function getOrderItems()
     {
         if (!isset($this->orderItems)) {
-            $this->orderItems = $this->getOrder()->items->customClass('mwc7-supporter')->get();
+            $this->orderItems = $this->getOrder()->items()->customClass('mwc7-supporter')->get();
         }
 
         return $this->orderItems;

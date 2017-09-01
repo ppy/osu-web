@@ -21,6 +21,7 @@
 namespace Tests;
 
 use App\Libraries\Fulfillments\FulfillmentFactory;
+use App\Libraries\Fulfillments\Mwc7SupporterFulfillment;
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
 use App\Models\Store\OrderItem;
@@ -67,6 +68,18 @@ class FulfillmentFactoryTests extends TestCase
         $fulfillers = FulfillmentFactory::createFulfillersFor($order);
         $this->assertSame(1, count($fulfillers));
         $this->assertSame(UsernameChangeFulfillment::class, get_class($fulfillers[0]));
+    }
+
+    public function testCustomClassBanner()
+    {
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => factory(Product::class)->create(['custom_class' => 'mwc7-supporter'])->product_id,
+        ]);
+        $order = $orderItem->order;
+
+        $fulfillers = FulfillmentFactory::createFulfillersFor($order);
+        $this->assertSame(1, count($fulfillers));
+        $this->assertSame(Mwc7SupporterFulfillment::class, get_class($fulfillers[0]));
     }
 
     /**
