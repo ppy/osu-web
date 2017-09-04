@@ -28,19 +28,38 @@
 }
 
 .store-payment-button {
+  @button-height: 150px;
+  @logo-width: 100px;
+
   .default-box-shadow();
   .default-border-radius();
   display: flex;
   align-items: center;
   text-align: center;
-  height: 150px;
+  height: @button-height;
 
   &:hover {
     border: 3px solid @blue-darker;
   }
 
-  &__content {
-    width: 100%;
-    background-color: #abc;
+  &--centili {
+    background-image: url(/images/store/ycoins.png);
+    background-position: center center;
+    background-size: @logo-width;
+    background-repeat: no-repeat;
+  }
+
+  &--paypal {
+    background-image: url(/images/store/PP_logo_h_200x51.png);
+    background-position: center center;
+    background-size: @logo-width;
+    background-repeat: no-repeat;
+  }
+
+  &--xsolla {
+    background-image: url(/images/store/Xsolla-main.png);
+    background-position: center center;
+    background-size: @logo-width;
+    background-repeat: no-repeat;
   }
 }

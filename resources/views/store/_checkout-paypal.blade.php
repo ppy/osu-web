@@ -17,7 +17,7 @@
 --}}
 
 <div class="store-payment-method">
-    <div class="store-payment-method__cell store-payment-button">
+    <div class="store-payment-method__cell store-payment-button store-payment-button--paypal">
         <form class="text-center noajax" id="paypal-form" action="{{ config('payments.paypal.url') }}" method="post" target="_top">
             <input type="hidden" name="cmd" value="_xclick">
             <input type="hidden" name="business" value="{{ config('payments.paypal.merchant_id') }}">
@@ -38,10 +38,6 @@
             {{-- <a href="/store/checkout" id="checkout-with-paypal" data-method="post" data-remote="1"> --}}
             {{-- </a> --}}
         </form>
-        <div class="store-payment-button__content">
-            {{ trans("store.checkout.pay") }}
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-        </div>
     </div>
 
     <div class="store-payment-method__cell">

@@ -18,11 +18,8 @@
 
 <div class="store-payment-method">
     <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}"
-       class="store-payment-method__cell store-payment-button"
+       class="store-payment-method__cell store-payment-button store-payment-button--centili"
     >
-        <div class="store-payment-button__content">
-            Centili
-        </div>
     </a>
 
     <div class="store-payment-method__cell">

@@ -19,14 +19,11 @@
 @if ($checkout->allowXsollaPayment())
     <div class="store-payment-method">
         <div type="button"
-                class="store-payment-method__cell store-payment-button"
+                class="store-payment-method__cell store-payment-button store-payment-button--xsolla"
                 id="js-xsolla-pay"
                 disabled
                 data-xpaystation-widget-open
         >
-            <div class="store-payment-button__content">
-                Xsolla
-            </div>
         </div>
 
         <div class="store-payment-method__cell">
