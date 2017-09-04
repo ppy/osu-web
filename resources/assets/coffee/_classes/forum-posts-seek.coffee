@@ -57,10 +57,20 @@ class @ForumPostsSeek
     jumpTarget = $target.attr('data-jump-target')
 
     n = switch jumpTarget
-      when 'first' then 1
-      when 'last' then totalPosts
-      when 'previous' then currentPost - 10
-      when 'next' then currentPost + 10
+      when 'first'
+        1
+      when 'last'
+        totalPosts
+      when 'previous'
+        defaultN = currentPost - 10
+        # avoid jumping beyond loaded posts
+        minLoadedN = @forum.postPosition @forum.posts[0]
+        Math.max(defaultN, minLoadedN)
+      when 'next'
+        defaultN = currentPost + 10
+        # avoid jumping beyond loaded posts
+        maxLoadedN = @forum.postPosition @forum.endPost()
+        Math.min(defaultN, maxLoadedN)
 
     $target.blur()
     @forum.jumpTo n
