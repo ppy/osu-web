@@ -362,7 +362,7 @@ class Beatmapset extends Model
                     Score\Best\Model::getClass($mode)
                     ->forUser($params['user'])
                     ->whereIn('rank', $params['rank'])
-                    ->select('beatmapset_id');
+                    ->select('beatmap_id');
 
                 if ($unionQuery === null) {
                     $unionQuery = $newQuery;
@@ -371,9 +371,10 @@ class Beatmapset extends Model
                 }
             }
 
-            $scores = model_pluck($unionQuery, 'beatmapset_id');
+            $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
+            $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
 
-            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
+            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]];
         }
 
         switch ($params['status']) {
