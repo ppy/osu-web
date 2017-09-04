@@ -238,12 +238,16 @@ class UsersController extends Controller
     private function parsePaginationParams($perPage)
     {
         $this->user = User::lookup(Request::route('user'), 'id');
-        $this->mode = Request::route('mode') ?? Request::input('mode') ?? $this->user->playmode;
-        $this->offset = get_int(Request::input('offset'));
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
 
+        $this->mode = Request::route('mode') ?? Request::input('mode') ?? $this->user->playmode;
         if (!array_key_exists($this->mode, Beatmap::MODES)) {
             abort(404);
         }
+
+        $this->offset = get_int(Request::input('offset'));
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
