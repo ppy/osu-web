@@ -16,6 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<div class="big-button">
-    <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}">coins</a>
+<div class="store-payment-method">
+    <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}">
+        <div class="store-payment-method__button">
+            Centili
+        </div>
+    </a>
+
+    <div class="store-payment-method__description">
+        <div class="store-text store-text--header">Pay with ¥COINS</div>
+
+        <div class="store-text store-text--block">You can complete your transactions using ¥COINS</div>
+
+        <div class="store-text store-text--block store-text--emphasis">Optionssss.</div>
+    </div>
 </div>
