@@ -64,7 +64,7 @@ class BannerFulfillmentTest extends TestCase
     public function testAddBanner()
     {
         $orderItem = $this->createOrderItem($this->product);
-        // BannerFulfillment is abstract
+        // BannerFulfillment is abstract, so can't new directly.
         $subjects = FulfillmentFactory::createFulfillersFor($this->order);
         $beforeCount = ProfileBanner::where('user_id', $this->user->user_id)
             ->where('tournament_id', $this->tournament->tournament_id)
@@ -81,6 +81,37 @@ class BannerFulfillmentTest extends TestCase
             ->count();
 
         $this->assertSame($beforeCount + 1, $afterCount);
+    }
+
+    public function testBannerCustomClasses()
+    {
+        static $customClasses = BannerFulfillment::ALLOWED_CUSTOM_CLASS_NAMES;
+        foreach ($customClasses as $customClass) {
+            // only need the custom_class
+            $product = factory(Product::class)->create(['custom_class' => $customClass]);
+            $orderItem = factory(OrderItem::class)->create([
+                'product_id' => $product->product_id,
+                'order_id' => $this->order->order_id,
+                'cost' => $product->cost,
+            ]);
+        }
+
+        $subjects = FulfillmentFactory::createFulfillersFor($this->order);
+
+        $this->assertSame(count($customClasses), count($subjects));
+    }
+
+    public function testInvalidBannerCustomClasss()
+    {
+        $product = factory(Product::class)->create(['custom_class' => 'invalid-supporter']);
+        $orderItem = factory(OrderItem::class)->create([
+            'product_id' => $product->product_id,
+            'order_id' => $this->order->order_id,
+            'cost' => $product->cost,
+        ]);
+
+        $this->expectException(\App\Libraries\Fulfillments\InvalidFulfillerException::class);
+        $subjects = FulfillmentFactory::createFulfillersFor($this->order);
     }
 
     private function createOrderItem($product)

@@ -29,6 +29,13 @@ use App\Models\Store\OrderItem;
 abstract class BannerFulfillment extends OrderFulfiller
 {
     protected $orderItems;
+    const ALLOWED_CUSTOM_CLASS_NAMES = [
+        'owc-supporter',
+        'mwc7-supporter',
+        'twc-supporter',
+        'cwc-supporter',
+        'mwc4-supporter'
+    ];
     const CUSTOM_CLASS_NAME = null;
 
     public function run()
@@ -50,8 +57,9 @@ abstract class BannerFulfillment extends OrderFulfiller
     protected function getOrderItems()
     {
         if (!isset($this->orderItems)) {
-            if (!present(static::CUSTOM_CLASS_NAME)) {
-                throw new InvalidFulfillerException('Banner customClass is empty');
+            if (!in_array(static::CUSTOM_CLASS_NAME, self::ALLOWED_CUSTOM_CLASS_NAMES, true)) {
+                $customClassName = static::CUSTOM_CLASS_NAME;
+                throw new InvalidFulfillerException("customClass {$customClassName} is not allowed");
             }
 
             $this->orderItems = $this->getOrder()->items()->customClass(static::CUSTOM_CLASS_NAME)->get();
