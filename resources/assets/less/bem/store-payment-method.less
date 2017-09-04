@@ -19,26 +19,28 @@
 .store-payment-method {
   display: flex;
   justify-content: space-between;
+  padding: 12px;
 
-  &__button {
-    .default-box-shadow();
-    .default-border-radius();
-
-    flex: 1 1 50%;
-    height: 150px;
-
-    &:hover {
-      border: 3px solid @blue-darker;
-    }
-  }
-
-  &__description {
-    flex: 1 1 50%;
+  &__cell {
+    margin: 12px;
+    width: 50%;
   }
 }
 
-.store-payment-method-button {
+.store-payment-button {
+  .default-box-shadow();
+  .default-border-radius();
+  display: flex;
+  align-items: center;
+  text-align: center;
+  height: 150px;
+
+  &:hover {
+    border: 3px solid @blue-darker;
+  }
+
   &__content {
-    height: 150px;
+    width: 100%;
+    background-color: #abc;
   }
 }

@@ -17,13 +17,15 @@
 --}}
 
 <div class="store-payment-method">
-    <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}">
-        <div class="store-payment-method__button">
+    <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}"
+       class="store-payment-method__cell store-payment-button"
+    >
+        <div class="store-payment-button__content">
             Centili
         </div>
     </a>
 
-    <div class="store-payment-method__description">
+    <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with ¥COINS</div>
 
         <div class="store-text store-text--block">You can complete your transactions using ¥COINS</div>
