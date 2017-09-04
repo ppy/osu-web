@@ -238,7 +238,7 @@ class UsersController extends Controller
     private function parsePaginationParams($perPage)
     {
         $this->user = User::lookup(Request::route('user'), 'id');
-        if ($user === null || !priv_check('UserShow', $user)->can()) {
+        if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
             abort(404);
         }
 
