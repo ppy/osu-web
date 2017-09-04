@@ -60,7 +60,7 @@
     @if(!$order->requiresShipping() || $order->getShipping())
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1">
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
-                <h1>Payment</h1>
+                <h1>Select Payment Method</h1>
 
                 @if($delayedShipping && $order->requiresShipping())
                 <div class="alert alert-warning">
@@ -91,40 +91,9 @@
                 @endif
 
                 @if ($order->getTotal() > 0)
-                    @if ($checkout->allowXsollaPayment())
-                        <div class="big-button">
-                            <button type="button" id="js-xsolla-pay" class="btn-osu btn-osu-danger" disabled data-xpaystation-widget-open>Checkout with Xsolla</button>
-                        </div>
-                    @endif
-
-                    <div class="big-button">
-                        <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}">coins</a>
-                    </div>
-
-                    <div class="big-button">
-                        <form class="text-center noajax" id="paypal-form" action="{{ config('payments.paypal.url') }}" method="post" target="_top">
-                            <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="business" value="{{ config('payments.paypal.merchant_id') }}">
-                            <input type="hidden" name="lc" value="AU">
-                            <input type="hidden" name="button_subtype" value="services">
-                            <input type="hidden" name="no_note" value="0">
-                            <input type="hidden" name="cn" value="Add special instructions to the seller:">
-                            <input type="hidden" name="no_shipping" value="2">
-                            <input type="hidden" name="rm" value="1">
-                            <input type="hidden" name="return" value="{{{ action("StoreController@getInvoice", [$order->order_id]) }}}?thanks=1">
-                            <input type="hidden" name="cancel_return" value="{{{ action("StoreController@getCheckout") }}}">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
-                            <input type="hidden" id="paypal_name" name="item_name" value="{{ $order->getOrderName() }}">
-                            <input type="hidden" id="paypal_code" name="item_number" value="{{ $order->getOrderNumber() }}">
-                            <input type="hidden" id="paypal_amount" name="amount" value="{{{$order->getSubtotal()}}}">
-                            <input type="hidden" id="paypal_shipping" name="shipping" value="{{{$order->getShipping()}}}">
-                            <a href="/store/checkout" class="btn-osu btn-osu-danger paypal-button" id="checkout-with-paypal" data-method="post" data-remote="1">
-                                {{ trans("store.checkout.pay") }}
-                            </a>
-                            <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-                        </form>
-                    </div>
+                    @include('store._checkout-paypal')
+                    @include('store._checkout-centili')
+                    @include('store._checkout-xsolla')
                 @else
                     <div class="big-button">
                         {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
@@ -132,7 +101,7 @@
                             <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
                         {!! Form::close() !!}
                     </div>
-                    @endif
+                @endif
             </div>
         </div>
     @endif
