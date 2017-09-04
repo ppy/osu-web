@@ -28,8 +28,8 @@ use App\Models\Store\OrderItem;
  */
 abstract class BannerFulfillment extends OrderFulfiller
 {
-    // abstract public function getTournamentId();
-    abstract protected function getOrderItems();
+    protected $orderItems;
+    const CUSTOM_CLASS_NAME = null;
 
     public function run()
     {
@@ -45,6 +45,19 @@ abstract class BannerFulfillment extends OrderFulfiller
         foreach ($orderItems as $orderItem) {
             $this->revokeBanner($orderItem);
         }
+    }
+
+    protected function getOrderItems()
+    {
+        if (!isset($this->orderItems)) {
+            if (!present(static::CUSTOM_CLASS_NAME)) {
+                throw new InvalidFulfillerException('Banner customClass is empty');
+            }
+
+            $this->orderItems = $this->getOrder()->items()->customClass(static::CUSTOM_CLASS_NAME)->get();
+        }
+
+        return $this->orderItems;
     }
 
     private function applyBanner(OrderItem $orderItem)

@@ -20,19 +20,7 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Models\Country;
-use App\Models\Store\OrderItem;
-
 class Mwc7SupporterFulfillment extends BannerFulfillment
 {
-    protected $orderItems;
-
-    protected function getOrderItems()
-    {
-        if (!isset($this->orderItems)) {
-            $this->orderItems = $this->getOrder()->items()->customClass('mwc7-supporter')->get();
-        }
-
-        return $this->orderItems;
-    }
+    const CUSTOM_CLASS_NAME = 'mwc7-supporter';
 }
