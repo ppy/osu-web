@@ -432,7 +432,7 @@ class Beatmapset extends Model
         }
 
         $results = Es::search($searchParams);
-        $beatmapIds = array_map(
+        $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
             },
@@ -440,7 +440,7 @@ class Beatmapset extends Model
         );
 
         return [
-            'ids' => $beatmapIds,
+            'ids' => $beatmapsetIds,
             'total' => $results['hits']['total'],
         ];
     }
