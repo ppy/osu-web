@@ -21,46 +21,38 @@ class @StoreCheckout
     return unless document.querySelector('#js-xsolla-pay')
     document.querySelector('#js-xsolla-pay').disabled = true
     # load script
-    deferredScript = @loadScript()
-    deferredToken = $.Deferred()
-
-    # get token
-    @getXsollaToken()
-    .done (data) ->
-      deferredToken.resolve(data)
-      console.debug('token get')
-    .fail (xhr, error) ->
-      console.error xhr
-      deferredToken.reject(xhr)
-
-    $.when(deferredScript)
-    .done (_, token) =>
-      console.debug 'when done'
+    promises = [@loadXsollaToken(), @loadXsollaScript()]
+    Promise.all(promises)
+    .then (values) =>
+      token = values[0]
       options = @optionsWithToken(token)
       XPayStationWidget.init(options)
       document.querySelector('#js-xsolla-pay').disabled = false
-    .fail (error) ->
+    .catch (error) ->
       console.error error
 
-  @loadScript: ->
-    deferred = $.Deferred()
-    script = document.createElement('script')
-    script.type = "text/javascript"
-    script.async = true
-    script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
-    script.addEventListener 'load', ->
-      console.debug('script loaded')
-      deferred.resolve()
-    , false
-    document.head.appendChild(script)
+  @loadXsollaScript: ->
+    new Promise (resolve, reject) ->
+      script = document.createElement('script')
+      script.type = "text/javascript"
+      script.async = true
+      script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
+      script.addEventListener 'load', ->
+        resolve()
+      , false
 
-    deferred
+      document.head.appendChild(script)
+
+  @loadXsollaToken: ->
+    new Promise (resolve, reject) ->
+      $.get laroute.route('payments.xsolla.token')
+      .done (data) ->
+        resolve(data)
+      .fail (xhr, error) ->
+        console.error xhr
+        reject(xhr)
 
   @optionsWithToken: (token) ->
     options =
       access_token: token,
       sandbox: true
-
-  @getXsollaToken: ->
-    $.get laroute.route('payments.xsolla.token')
-
