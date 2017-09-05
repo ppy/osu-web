@@ -21,8 +21,6 @@
         <div type="button"
                 class="store-payment-method__cell store-payment-button store-payment-button--xsolla"
                 id="js-xsolla-pay"
-                disabled
-                data-xpaystation-widget-open
         >
         </div>
 

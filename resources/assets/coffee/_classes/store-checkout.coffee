@@ -17,19 +17,32 @@
 ###
 
 class @StoreCheckout
+
   @initialize: ->
     return unless document.querySelector('#js-xsolla-pay')
-    document.querySelector('#js-xsolla-pay').disabled = true
-    # load script
-    promises = [@loadXsollaToken(), @loadXsollaScript()]
-    Promise.all(promises)
+    button = document.querySelector('#js-xsolla-pay')
+
+    # load scripts
+    init = Promise.all([@loadXsollaToken(), @loadXsollaScript()])
     .then (values) =>
+      console.debug('resolved all')
       token = values[0]
       options = @optionsWithToken(token)
       XPayStationWidget.init(options)
-      document.querySelector('#js-xsolla-pay').disabled = false
+
     .catch (error) ->
       console.error error
+
+    click = DeferrablePromise()
+
+    $(button).on 'click', ->
+      button.classList.add('store-payment-button--waiting')
+      click.resolve()
+
+    $(button).on 'click', ->
+      Promise.all([init, click]).then (values) ->
+        console.log(values)
+        XPayStationWidget.open()
 
   @loadXsollaScript: ->
     new Promise (resolve, reject) ->
@@ -38,7 +51,10 @@ class @StoreCheckout
       script.async = true
       script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
       script.addEventListener 'load', ->
-        resolve()
+        console.debug('script loaded')
+        # TODO: remove after testing
+        Timeout.set 5000, ->
+          resolve()
       , false
 
       document.head.appendChild(script)
@@ -47,6 +63,7 @@ class @StoreCheckout
     new Promise (resolve, reject) ->
       $.get laroute.route('payments.xsolla.token')
       .done (data) ->
+        console.debug('token loaded')
         resolve(data)
       .fail (xhr, error) ->
         console.error xhr

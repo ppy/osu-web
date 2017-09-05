@@ -1,3 +1,5 @@
+
+import 'deferrable-promise.coffee';
 // import-glob-loader doesn't seem to work with resolve: {}?
 import './coffee/_classes/*.coffee';
 
