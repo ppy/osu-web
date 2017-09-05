@@ -18,16 +18,14 @@
 <div class="forum-post-actions forum-post-actions--header">
     <div>
         <div class="forum-post-actions__action">
-            <a
-                href="#"
-                class="js-forum-cover--open-modal
-                    btn-circle
-                "
+            <button
+                type="button"
+                class="js-forum-cover--open-modal btn-circle"
                 title="{{ trans('forum.covers.create._') }}"
                 data-tooltip-position="left center"
             >
                 <i class="fa fa-pencil"></i>
-            </a>
+            </button>
         </div>
 
         <div class="forum-category-header__cover-uploader js-forum-cover--modal">
@@ -60,16 +58,14 @@
     </div>
 
     <div class="forum-post-actions__action">
-        <a
-            href="#"
-            class="js-forum-cover--remove
-                btn-circle
-            "
+        <button
+            type="button"
+            class="js-forum-cover--remove btn-circle"
             data-destroy-confirm="{{ trans('forum.covers.destroy.confirm') }}"
             title="{{ trans('forum.covers.destroy._') }}"
             data-tooltip-position="left center"
         >
             <i class="fa fa-trash"></i>
-        </a>
+        </button>
     </div>
 </div>

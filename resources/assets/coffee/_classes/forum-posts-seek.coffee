@@ -28,9 +28,12 @@ class @ForumPostsSeek
 
     $(document).on 'click', '.js-forum-posts-seek--jump', @jump
 
+    addEventListener 'turbolinks:before-cache', @reset
+
 
   hideTooltip: =>
     Fade.out @tooltip[0]
+
 
   move: (e) =>
     e.preventDefault()
@@ -74,6 +77,11 @@ class @ForumPostsSeek
 
     $target.blur()
     @forum.jumpTo n
+
+
+  reset: =>
+    Timeout.clear @_autohide
+    @hideTooltip()
 
 
   setPostPosition: (x) =>
