@@ -158,6 +158,7 @@ class Beatmapset extends Model
 
         $scoreClass = Score\Best\Model::getClass($mode);
         $beatmapsetTable = $this->getTable();
+        $beatmapTable = (new Beatmap)->getTable();
         $scoreBestTable = (new $scoreClass)->getTable();
 
         if ($user) {
@@ -165,7 +166,9 @@ class Beatmapset extends Model
             $counts = DB::raw("(SELECT count(*)
                                     FROM {$scoreBestTable}
                                     WHERE {$scoreBestTable}.user_id = {$userId}
-                                    AND {$scoreBestTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                    AND {$scoreBestTable}.beatmap_id IN (SELECT beatmap_id
+                                        FROM {$beatmapTable} WHERE {$beatmapTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                    )
                                 ) as {$fieldName}");
         } else {
             $counts = DB::raw("(SELECT 0) as {$fieldName}");
