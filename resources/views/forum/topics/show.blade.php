@@ -341,6 +341,15 @@
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right">
+                <a
+                    href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
+                    class="btn-circle btn-circle--topic-nav"
+                    data-tooltip-float="fixed"
+                    title="{{ trans('forum.topics.actions.search') }}"
+                >
+                    <i class="fa fa-search"></i>
+                </a>
+
                 @if (priv_check('ForumTopicReply', $topic)->can())
                     <button
                         type="button"

@@ -59,6 +59,7 @@ return [
             'label' => [
                 'forum' => 'search in forums',
                 'forum_children' => 'include subforums',
+                'topic_id' => 'topic #',
                 'username' => 'author',
             ],
         ],
