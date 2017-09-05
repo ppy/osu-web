@@ -24,8 +24,8 @@ class @StoreCheckout
 
     trap = DeferrablePromise()
     $(button).on 'click.trap', ->
+      LoadingOverlay.showImmediate()
       $(button).off 'click.trap'
-      button.classList.add('store-payment-button--waiting')
       trap.resolve()
 
     # load scripts
@@ -40,7 +40,10 @@ class @StoreCheckout
 
     $(button).on 'click.xsolla', ->
       Promise.all([init, trap]).then (values) ->
-        XPayStationWidget.open()
+        window.requestAnimationFrame ->
+          # FIXME: flickering when transitioning to widget
+          XPayStationWidget.open()
+          LoadingOverlay.hide()
 
   @loadXsollaScript: ->
     new Promise (resolve, reject) ->
@@ -50,7 +53,7 @@ class @StoreCheckout
       script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
       script.addEventListener 'load', ->
         # TODO: remove after testing
-        Timeout.set 5000, ->
+        Timeout.set 3000, ->
           resolve()
       , false
 
