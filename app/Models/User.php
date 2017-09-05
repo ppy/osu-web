@@ -73,10 +73,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         ],
     ];
 
-    public $flags;
-    private $groupIds;
-    private $supportLength;
-    private $profileCustomization;
+    private $memoized = [];
 
     public function getAuthPassword()
     {
@@ -511,28 +508,32 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isSilenced()
     {
-        if ($this->isRestricted()) {
-            return true;
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            if ($this->isRestricted()) {
+                return true;
+            }
+
+            $lastBan = $this->banHistories()->bans()->first();
+
+            $this->memoized[__FUNCTION__] = $lastBan !== null &&
+                $lastBan->period !== 0 &&
+                $lastBan->endTime()->isFuture();
         }
 
-        $lastBan = $this->banHistories()->bans()->first();
-
-        return $lastBan !== null &&
-            $lastBan->period !== 0 &&
-            $lastBan->endTime()->isFuture();
+        return $this->memoized[__FUNCTION__];
     }
 
     public function groupIds()
     {
-        if ($this->groupIds === null) {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             if (isset($this->relations['userGroups'])) {
-                $this->groupIds = $this->userGroups->pluck('group_id');
+                $this->memoized[__FUNCTION__] = $this->userGroups->pluck('group_id');
             } else {
-                $this->groupIds = model_pluck($this->userGroups(), 'group_id');
+                $this->memoized[__FUNCTION__] = model_pluck($this->userGroups(), 'group_id');
             }
         }
 
-        return $this->groupIds;
+        return $this->memoized[__FUNCTION__];
     }
 
     // check if a user is in a specific group, by ID
@@ -895,15 +896,17 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function flags()
     {
-        if ($this->flags === null) {
-            $this->flags = [];
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $flags = [];
 
             if ($this->country_acronym !== null) {
-                $this->flags['country'] = [$this->country_acronym, $this->country->name];
+                $flags['country'] = [$this->country_acronym, $this->country->name];
             }
+
+            $this->memoized[__FUNCTION__] = $flags;
         }
 
-        return $this->flags;
+        return $this->memoized[__FUNCTION__];
     }
 
     public function title()
@@ -962,19 +965,21 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function supportLength()
     {
-        if ($this->supportLength === null) {
-            $this->supportLength = 0;
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $supportLength = 0;
 
             foreach ($this->supports as $support) {
                 if ($support->cancel === true) {
-                    $this->supportLength -= $support->length;
+                    $supportLength -= $support->length;
                 } else {
-                    $this->supportLength += $support->length;
+                    $supportLength += $support->length;
                 }
             }
+
+            $this->memoized[__FUNCTION__] = $supportLength;
         }
 
-        return $this->supportLength;
+        return $this->memoized[__FUNCTION__];
     }
 
     public function supportLevel()
@@ -1088,9 +1093,9 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function profileCustomization()
     {
-        if ($this->profileCustomization === null) {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             try {
-                $this->profileCustomization = $this
+                $this->memoized[__FUNCTION__] = $this
                     ->userProfileCustomization()
                     ->firstOrCreate([]);
             } catch (Exception $ex) {
@@ -1103,7 +1108,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        return $this->profileCustomization;
+        return $this->memoized[__FUNCTION__];
     }
 
     public function profileBeatmapsetsRankedAndApproved()
