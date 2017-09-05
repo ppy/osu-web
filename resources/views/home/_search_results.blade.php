@@ -18,9 +18,11 @@
 <div>
     @foreach ($search->all() as $mode => $result)
         <div class="search-result search-result--{{ $mode }}">
-            <h2 class="search-result__row search-result__row--title">
-                @lang("home.search.{$mode}.title")
-            </h2>
+            @if (request('mode') !== $mode)
+                <h2 class="search-result__row search-result__row--title">
+                    @lang("home.search.{$mode}.title")
+                </h2>
+            @endif
 
             {{-- `empty(collect())` is false :D --}}
             @if (count($result['data']) === 0)
