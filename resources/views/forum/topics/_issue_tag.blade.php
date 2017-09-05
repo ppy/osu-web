@@ -18,22 +18,23 @@
 <?php
     $state = $topic->hasIssueTag($issueTag);
 ?>
-<a
+<button
+    type="button"
     class="
         js-forum-topic-issue_tag_{{ $issueTag }}
         btn-circle
         btn-circle--topic-nav
         {{ $state ? 'btn-circle--activated' : '' }}
     "
-    href="{{ route('forum.topics.issue-tag', [
+    data-topic-id="{{ $topic->topic_id }}"
+    title="{{ trans('forum.topics.issue_tag_'.$issueTag.'.action-'.(int) !$state) }}"
+    data-url="{{ route('forum.topics.issue-tag', [
         $topic,
         'state' => !$state,
         'issue_tag' => $issueTag,
     ]) }}"
     data-remote="1"
     data-method="post"
-    data-topic-id="{{ $topic->topic_id }}"
-    title="{{ trans('forum.topics.issue_tag_'.$issueTag.'.action-'.(int) !$state) }}"
 >
     <i class="fa {{ issue_icon($issueTag) }}"></i>
-</a>
+</button>
