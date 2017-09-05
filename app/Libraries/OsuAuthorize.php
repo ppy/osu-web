@@ -383,7 +383,7 @@ class OsuAuthorize
 
     public function checkForumView($user, $forum)
     {
-        if ($user !== null && $user->isGMT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
 
