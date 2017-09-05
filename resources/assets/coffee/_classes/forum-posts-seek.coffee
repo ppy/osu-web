@@ -32,6 +32,8 @@ class @ForumPostsSeek
 
 
   hideTooltip: =>
+    return if @tooltip.length == 0
+
     Fade.out @tooltip[0]
 
 
