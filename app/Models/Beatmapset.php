@@ -158,6 +158,7 @@ class Beatmapset extends Model
 
         $scoreClass = Score\Best\Model::getClass($mode);
         $beatmapsetTable = $this->getTable();
+        $beatmapTable = (new Beatmap)->getTable();
         $scoreBestTable = (new $scoreClass)->getTable();
 
         if ($user) {
@@ -165,7 +166,9 @@ class Beatmapset extends Model
             $counts = DB::raw("(SELECT count(*)
                                     FROM {$scoreBestTable}
                                     WHERE {$scoreBestTable}.user_id = {$userId}
-                                    AND {$scoreBestTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                    AND {$scoreBestTable}.beatmap_id IN (SELECT beatmap_id
+                                        FROM {$beatmapTable} WHERE {$beatmapTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                    )
                                 ) as {$fieldName}");
         } else {
             $counts = DB::raw("(SELECT 0) as {$fieldName}");
@@ -362,7 +365,7 @@ class Beatmapset extends Model
                     Score\Best\Model::getClass($mode)
                     ->forUser($params['user'])
                     ->whereIn('rank', $params['rank'])
-                    ->select('beatmapset_id');
+                    ->select('beatmap_id');
 
                 if ($unionQuery === null) {
                     $unionQuery = $newQuery;
@@ -371,9 +374,10 @@ class Beatmapset extends Model
                 }
             }
 
-            $scores = model_pluck($unionQuery, 'beatmapset_id');
+            $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
+            $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
 
-            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
+            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]];
         }
 
         switch ($params['status']) {
@@ -431,7 +435,7 @@ class Beatmapset extends Model
         }
 
         $results = Es::search($searchParams);
-        $beatmapIds = array_map(
+        $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
             },
@@ -439,7 +443,7 @@ class Beatmapset extends Model
         );
 
         return [
-            'ids' => $beatmapIds,
+            'ids' => $beatmapsetIds,
             'total' => $results['hits']['total'],
         ];
     }
