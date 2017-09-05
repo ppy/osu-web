@@ -16,14 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.store-payment-method {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px;
+// TODO: will need to update with new store styles
+.store-text {
+  &--block {
+    margin: 1em 0;
+    font-size: @font-size--normal;
+  }
 
-  &__cell {
-    margin: 8px;
-    padding: 8px;
-    width: 50%;
+  &--emphasis {
+    font-weight: bold;
+  }
+
+  &--header {
+    color: @pink-dark;
   }
 }
