@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div} = ReactDOMFactories
+{button, div, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.HeaderMain extends React.Component
@@ -87,10 +87,12 @@ class ProfilePage.HeaderMain extends React.Component
           div
             ref: (el) =>
               @coverSelector = el
-            a
+            button
+              type: 'button'
               className: 'btn-circle'
               onClick: @toggleEdit
-              el Icon, name: 'pencil'
+              span className: 'btn-circle__container',
+                el Icon, name: 'pencil'
             if @state.editing
               el ProfilePage.CoverSelector,
                 canUpload: @props.user.isSupporter
@@ -130,9 +132,7 @@ class ProfilePage.HeaderMain extends React.Component
     @setState editing: true
 
 
-  toggleEdit: (e) =>
-    e.preventDefault()
-
+  toggleEdit: =>
     if @state.editing
       @closeEdit()
     else

@@ -176,7 +176,9 @@
 
                             <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
                                 <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <i class="fa fa-close"></i>
+                                    <span class="btn-circle__container">
+                                        <i class="fa fa-close"></i>
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -347,7 +349,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topics.actions.search') }}"
                 >
-                    <i class="fa fa-search"></i>
+                    <span class="btn-circle__container">
+                        <i class="fa fa-search"></i>
+                    </span>
                 </a>
 
                 @if (priv_check('ForumTopicReply', $topic)->can())
@@ -357,7 +361,9 @@
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.actions.reply') }}"
                     >
-                        <i class="fa fa-plus"></i>
+                        <span class="btn-circle__container">
+                            <i class="fa fa-plus"></i>
+                        </span>
                     </button>
                 @endif
             </div>

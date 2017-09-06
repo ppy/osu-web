@@ -21,7 +21,9 @@
         title="{{ trans("bbcode.bold") }}"
         type="button"
     >
-        <strong>B</strong>
+        <span class="btn-circle__container">
+            <strong>B</strong>
+        </span>
     </button>
 
     <button
@@ -29,7 +31,9 @@
         title="{{ trans("bbcode.italic") }}"
         type="button"
     >
-        <em>I</em>
+        <span class="btn-circle__container">
+            <em>I</em>
+        </span>
     </button>
 
     <button
@@ -37,7 +41,9 @@
         title="{{ trans("bbcode.strikethrough") }}"
         type="button"
     >
-        <i class="fa fa-strikethrough"></i>
+        <span class="btn-circle__container">
+            <i class="fa fa-strikethrough"></i>
+        </span>
     </button>
 
     <button
@@ -45,7 +51,9 @@
         title="{{ trans("bbcode.heading") }}"
         type="button"
     >
-        H
+        <span class="btn-circle__container">
+            <span>H</span>
+        </span>
     </button>
 
     <button
@@ -53,7 +61,9 @@
         title="{{ trans("bbcode.link") }}"
         type="button"
     >
-        <i class="fa fa-link"></i>
+        <span class="btn-circle__container">
+            <i class="fa fa-link"></i>
+        </span>
     </button>
 
     <button
@@ -69,7 +79,9 @@
         title="{{ trans("bbcode.list_numbered") }}"
         type="button"
     >
-        <i class="fa fa-list-ol"></i>
+        <span class="btn-circle__container">
+            <i class="fa fa-list-ol"></i>
+        </span>
     </button>
 
     <button
@@ -77,7 +89,9 @@
         title="{{ trans("bbcode.list") }}"
         type="button"
     >
-        <i class="fa fa-list"></i>
+        <span class="btn-circle__container">
+            <i class="fa fa-list"></i>
+        </span>
     </button>
 
     <button
@@ -85,7 +99,9 @@
         title="{{ trans("bbcode.image") }}"
         type="button"
     >
-        <i class="fa fa-image"></i>
+        <span class="btn-circle__container">
+            <i class="fa fa-image"></i>
+        </span>
     </button>
 
     <label class="bbcode-size-select" title="{{ trans("bbcode.size._") }}">

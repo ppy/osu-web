@@ -36,5 +36,7 @@
     data-remote="1"
     data-method="post"
 >
-    <i class="fa {{ issue_icon($issueTag) }}"></i>
+    <span class="btn-circle__container">
+        <i class="fa {{ issue_icon($issueTag) }}"></i>
+    </span>
 </button>

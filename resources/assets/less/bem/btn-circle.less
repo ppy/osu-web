@@ -18,7 +18,6 @@
 
 .btn-circle {
   .reset-input();
-  .center-content();
   .circle(@btn-circle-diameter);
   .default-box-shadow();
   cursor: pointer;
@@ -101,5 +100,12 @@
 
   &--topic-nav {
     margin: 0 5px;
+  }
+
+  // <button> can't have display flex in some browsers
+  &__container {
+    .center-content();
+    height: 100%;
+    width: 100%;
   }
 }

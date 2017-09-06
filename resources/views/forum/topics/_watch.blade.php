@@ -32,5 +32,7 @@
     data-topic-id="{{ $topic->topic_id }}"
     title="{{ trans('forum.topics.watch.watch-'.(int) !$state) }}"
 >
-    <i class="fa fa-eye"></i>
+    <span class="btn-circle__container">
+        <i class="fa fa-eye"></i>
+    </span>
 </button>

@@ -49,14 +49,17 @@
 
     @if (priv_check('LivestreamPromote')->can())
         <div class="livestream-featured__actions">
-            <a
+            <button
+                type="button"
                 data-remote="1"
                 data-method="POST"
                 class="btn-circle"
                 href="{{ route('livestreams.promote') }}"
             >
-                <i class="fa fa-thumbs-down"></i>
-            </a>
+                <span class="btn-circle__container">
+                    <i class="fa fa-thumbs-down"></i>
+                </span>
+            </button>
         </div>
     @endif
 </div>

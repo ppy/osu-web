@@ -23,17 +23,19 @@
             <div class="forum-post-actions">
                 @if (priv_check('NewsIndexUpdate')->can())
                     <div class="forum-post-actions__action">
-                        <a
+                        <button
+                            type="button"
                             class="btn-circle"
-                            href="{{ Request::url() }}"
                             data-remote="true"
                             data-method="POST"
                             data-reload-on-success="1"
                             title="{{ trans('news.store.button') }}"
                             data-tooltip-position="left center"
                         >
-                            <i class="fa fa-refresh"></i>
-                        </a>
+                            <span class="btn-circle__container">
+                                <i class="fa fa-refresh"></i>
+                            </span>
+                        </button>
                     </div>
                 @endif
             </div>

@@ -33,14 +33,17 @@
 
     @if (priv_check('LivestreamPromote')->can())
         <div class="livestream-item__actions">
-            <a
+            <button
+                type="button"
+                class="btn-circle"
                 data-remote="1"
                 data-method="POST"
-                class="btn-circle"
-                href="{{ route('livestreams.promote', ['id' => $stream['_id']]) }}"
+                data-url="{{ route('livestreams.promote', ['id' => $stream['_id']]) }}"
             >
-                <i class="fa fa-thumbs-up"></i>
-            </a>
+                <span class="btn-circle__container">
+                    <i class="fa fa-thumbs-up"></i>
+                </span>
+            </button>
         </div>
     @endif
 </div>
