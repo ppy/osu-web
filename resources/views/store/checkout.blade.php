@@ -67,17 +67,7 @@
                 @endif
 
                 @if($order->address !== null && $order->address->country_code === 'DE')
-                    <div class="alert alert-warning">
-                        <p><strong>NOTE TO GERMAN CUSTOMERS</strong></p>
-
-                        <p>
-                            We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases have been reported where packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <strong>please take this into account when placing your order</strong>.
-                        </p>
-
-                        <p>
-                            <input type='checkbox' class='js-checkout-confirmation-step' id='german-warning'/> <label for='german-warning'>I have read and understand this message</label>
-                        </p>
-                    </div>
+                    @include('store._shipping_germany_warning')
                 @endif
 
                 @if ($order->getTotal() > 0)
