@@ -15,14 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a
+<button
+    type="button"
     class="
         btn-circle
         btn-circle--topic-nav
         {{ $state ? 'btn-circle--activated' : '' }}
         js-forum-topic-watch
     "
-    href="{{ route('forum.topics.watch', [
+    data-url="{{ route('forum.topics.watch', [
         $topic,
         'watch' => !$state,
     ]) }}"
@@ -32,4 +33,4 @@
     title="{{ trans('forum.topics.watch.watch-'.(int) !$state) }}"
 >
     <i class="fa fa-eye"></i>
-</a>
+</button>
