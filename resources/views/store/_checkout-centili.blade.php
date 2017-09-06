@@ -16,18 +16,20 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<div class="store-payment-method">
-    <a id="c-mobile-payment-widget"
-       href="{{ $checkout->getCentiliPaymentLink() }}"
-       class="store-payment-method__cell store-payment-button store-payment-button--centili"
-    >
-    </a>
+@if ($checkout->allowCentiliPayment())
+    <div class="store-payment-method">
+        <a id="c-mobile-payment-widget"
+        href="{{ $checkout->getCentiliPaymentLink() }}"
+        class="store-payment-method__cell store-payment-button store-payment-button--centili"
+        >
+        </a>
 
-    <div class="store-payment-method__cell">
-        <div class="store-text store-text--header">Pay with ¥COINS</div>
+        <div class="store-payment-method__cell">
+            <div class="store-text store-text--header">Pay with ¥COINS</div>
 
-        <div class="store-text store-text--block">You can complete your transactions using ¥COINS</div>
+            <div class="store-text store-text--block">You can complete your transactions using ¥COINS</div>
 
-        <div class="store-text store-text--block store-text--emphasis">Optionssss.</div>
+            <div class="store-text store-text--block store-text--emphasis">Optionssss.</div>
+        </div>
     </div>
-</div>
+@endif

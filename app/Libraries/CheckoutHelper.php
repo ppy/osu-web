@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Models\Store\Order;
 use App\Models\SupporterTag;
+use Request;
 
 class CheckoutHelper
 {
@@ -40,6 +41,14 @@ class CheckoutHelper
     public function allowXsollaPayment()
     {
         return true;
+    }
+
+    public function allowCentiliPayment()
+    {
+        # Geolocation header from Cloudflare
+        $isJapan = strcasecmp(Request::header('Cf-Ipcountry'), 'JP') === 0;
+
+        return $isJapan && Request::input('intl') !== '1';
     }
 
     public function getXsollaCheckoutCode()
