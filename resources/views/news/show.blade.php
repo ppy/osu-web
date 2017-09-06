@@ -40,6 +40,7 @@
                             type="button"
                             class="btn-circle"
                             data-remote="true"
+                            data-url="{{ route('news.show', [$post->getKey()])}}"
                             data-method="PUT"
                             data-reload-on-success="1"
                             title="{{ trans('news.update.button') }}"

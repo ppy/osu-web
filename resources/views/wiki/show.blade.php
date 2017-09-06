@@ -58,6 +58,7 @@
                                 type="button"
                                 class="btn-circle"
                                 data-remote="true"
+                                data-url="{{ route('wiki.show', [$page->path]) }}"
                                 data-method="PUT"
                                 title="{{ trans('wiki.show.edit.refresh') }}"
                                 data-tooltip-position="left center"

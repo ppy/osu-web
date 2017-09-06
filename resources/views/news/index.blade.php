@@ -27,6 +27,7 @@
                             type="button"
                             class="btn-circle"
                             data-remote="true"
+                            data-url="{{ route('news.store') }}"
                             data-method="POST"
                             data-reload-on-success="1"
                             title="{{ trans('news.store.button') }}"
