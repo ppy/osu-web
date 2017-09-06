@@ -21,8 +21,8 @@ import { StoreXsolla } from 'store-xsolla'
 
 export class StoreCheckout
   @initialize: ->
-    # can't side-load?
-    StoreCentili.fetchScript()
+    # Centili script relies on document write, so can't side-load :(
+    # StoreCentili.fetchScript()
     return unless document.querySelector('#js-xsolla-pay')
     button = document.querySelector('#js-xsolla-pay')
 
