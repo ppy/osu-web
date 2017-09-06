@@ -63,17 +63,7 @@
                 <h1>Select Payment Method</h1>
 
                 @if($checkout->isShippingDelayed() && $order->requiresShipping())
-                <div class="alert alert-warning">
-                    <p><strong>IMPORTANT: SHIPPING DELAYS</strong></p>
-
-                    <p>
-                        {!! Markdown::convertToHtml(config('store.delayed_shipping_order_message') ?: trans('store.checkout.delayed_shipping')) !!}
-                    </p>
-
-                    <p>
-                        <input type='checkbox' class='js-checkout-confirmation-step' id='delay-warning'/> <label for='delay-warning'>I have read and understand this message</label>
-                    </p>
-                </div>
+                    @include('store._shipping_delay_warning')
                 @endif
 
                 @if($order->address !== null && $order->address->country_code === 'DE')
