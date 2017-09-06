@@ -257,7 +257,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.first') }}"
                 >
-                    <i class="fa fa-angle-double-left"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-double-left"></i>
+                    </span>
                 </a>
 
                 <button
@@ -270,7 +272,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.previous') }}"
                 >
-                    <i class="fa fa-angle-left"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
                 </button>
 
                 <div class="
@@ -324,7 +328,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.next') }}"
                 >
-                    <i class="fa fa-angle-right"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
                 </button>
 
 
@@ -338,7 +344,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.last') }}"
                 >
-                    <i class="fa fa-angle-double-right"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
                 </a>
             </div>
 
