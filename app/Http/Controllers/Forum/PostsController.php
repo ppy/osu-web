@@ -125,7 +125,9 @@ class PostsController extends Controller
 
     public function raw($id)
     {
-        $post = Post::findOrFail($id);
+        $showDeleted = priv_check('ForumTopicModerate')->can();
+
+        $post = Post::showDeleted($showDeleted)->findOrFail($id);
 
         if ($post->forum === null) {
             abort(404);
@@ -144,7 +146,9 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $post = Post::findOrFail($id);
+        $showDeleted = priv_check('ForumTopicModerate')->can();
+
+        $post = Post::showDeleted($showDeleted)->findOrFail($id);
 
         if ($post->forum === null) {
             abort(404);
