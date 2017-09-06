@@ -51,10 +51,10 @@
         <div class="livestream-featured__actions">
             <button
                 type="button"
+                class="btn-circle"
                 data-remote="1"
                 data-method="POST"
-                class="btn-circle"
-                href="{{ route('livestreams.promote') }}"
+                data-url="{{ route('livestreams.promote') }}"
             >
                 <span class="btn-circle__content">
                     <i class="fa fa-thumbs-down"></i>
