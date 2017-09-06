@@ -16,23 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-propsFunction = =>
+reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
   user = osu.parseJson('json-user')
 
   user: user
   userPage: user.page
   userAchievements: user.userAchievements
-  allRankHistories: user.allRankHistories
-  allStats: user.allStatistics
-  allScores: user.allScores
-  allScoresBest: user.allScoresBest
-  allScoresFirst: user.allScoresFirst
-  favouriteBeatmapsets: user.favouriteBeatmapsets
-  rankedAndApprovedBeatmapsets: user.rankedAndApprovedBeatmapsets
-  beatmapPlaycounts: user.beatmapPlaycounts
+  currentMode: osu.parseJson('json-currentMode')
+  rankHistory: osu.parseJson('json-rankHistory')
+  scores: osu.parseJson('json-scores')
+  statistics: osu.parseJson('json-statistics')
+  beatmapsets: osu.parseJson('json-beatmapsets')
   withEdit: user.id == window.currentUser.id
   recentActivities: user.recentActivities
-  recentlyReceivedKudosu: user.recentlyReceivedKudosu
+  recentlyReceivedKudosu: osu.parseJson('json-kudosu')
   achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
-
-reactTurbolinks.register 'profile-page', ProfilePage.Main, propsFunction

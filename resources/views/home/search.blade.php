@@ -50,9 +50,13 @@
                                     {{ trans("home.search.mode.{$mode}") }}
                                 </span>
 
-                                @if (!$missingQuery && isset($search->search($mode)['total']))
+                                @if ($search->hasQuery() && isset($search->search($mode)['total']))
                                     <span class="page-mode-link__badge">
-                                        {{ search_total_display($search->search($mode)['total']) }}
+                                        @if ($search->search($mode)['total'] < 100)
+                                            {{ $search->search($mode)['total'] }}
+                                        @else
+                                            99+
+                                        @endif
                                     </span>
                                 @endif
 
@@ -66,12 +70,12 @@
                     @include('home._search_advanced_forum_post')
                 @endif
 
-                @if ($missingQuery)
+                @if ($search->hasQuery())
+                    @include('home._search_results')
+                @else
                     <div class="search__notice">
                         @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
                     </div>
-                @else
-                    @include('home._search_results')
                 @endif
             </div>
         </div>

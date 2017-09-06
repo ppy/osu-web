@@ -120,19 +120,31 @@ class BBCodeForDB
         return $text;
     }
 
+    public function parseImage($text)
+    {
+        preg_match_all("#\[img\](?<url>.*?)\[/img\]#", $text, $images, PREG_SET_ORDER);
+
+        foreach ($images as $i) {
+            $escapedUrl = $this->extraEscapes($i['url']);
+
+            $imageTag = "[img:{$this->uid}]{$escapedUrl}[/img:{$this->uid}]";
+            $text = str_replace($i[0], $imageTag, $text);
+        }
+
+        return $text;
+    }
+
     /*
     * Handles:
     * - Bold (b)
     * - Italic (i)
-    * - Image (img)
     * - Strike (strike, s)
     * - Underline (u)
     * - Heading (heading)
     */
-
     public function parseInlineSimple($text)
     {
-        foreach (['b', 'i', 'img', 'strike', 's', 'u', 'heading'] as $tag) {
+        foreach (['b', 'i', 'strike', 's', 'u', 'heading'] as $tag) {
             $text = preg_replace(
                 "#\[{$tag}](.*?)\[/{$tag}\]#",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
@@ -304,6 +316,7 @@ class BBCodeForDB
         $text = $this->parseList($text);
 
         $text = $this->parseBlockSimple($text);
+        $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);

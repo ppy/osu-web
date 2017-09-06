@@ -21,9 +21,12 @@
 namespace App\Models;
 
 use App\Exceptions\ScoreRetrievalException;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Beatmap extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'osu_beatmaps';
     protected $primaryKey = 'beatmap_id';
     protected $guarded = [];

@@ -15,14 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a
+<button
+    type="button"
     class="
         js-forum-topic-moderate_pin
         btn-circle
         btn-circle--topic-nav
         {{ $topic->isPinned() ? 'btn-circle--activated' : '' }}
     "
-    href="{{ route('forum.topics.pin', [
+    data-url="{{ route('forum.topics.pin', [
         $topic,
         'pin' => !$topic->isPinned(),
     ]) }}"
@@ -32,4 +33,4 @@
     title="{{ trans('forum.topics.moderate_pin.pin-'.(int) !$topic->isPinned()) }}"
 >
     <i class="fa fa-thumb-tack"></i>
-</a>
+</button>

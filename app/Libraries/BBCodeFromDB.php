@@ -146,7 +146,7 @@ class BBCodeFromDB
         $index = 0;
 
         foreach ($images as $i) {
-            $proxiedSrc = proxy_image($i['url']);
+            $proxiedSrc = proxy_image(html_entity_decode($i['url']));
 
             $imageTag = '';
 

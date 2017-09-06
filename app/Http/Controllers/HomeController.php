@@ -116,22 +116,16 @@ class HomeController extends Controller
 
     public function quickSearch()
     {
-        $query = Request::input('query');
-        $limit = 5;
+        $search = new Search([
+            'query' => Request::input('query'),
+            'limit' => 5,
+        ]);
 
-        if (strlen($query) < config('osu.search.minimum_length')) {
+        if (!$search->hasQuery()) {
             return response([], 204);
         }
 
-        $params = compact('query', 'limit');
-
-        $beatmapsets = Beatmapset::search($params);
-        $users = User::search($params);
-
-        return view('home.nav_search_result', compact(
-            'beatmapsets',
-            'users'
-        ));
+        return view('home.nav_search_result', compact('search'));
     }
 
     public function search()
@@ -145,13 +139,12 @@ class HomeController extends Controller
         ]);
 
         $search = new Search($params);
-        $missingQuery = strlen(trim(Request::input('query'))) < config('osu.search.minimum_length');
 
         if ($search->mode === Search::DEFAULT_MODE) {
             $search->params['limit'] = 8;
         }
 
-        return view('home.search', compact('search', 'missingQuery'));
+        return view('home.search', compact('search'));
     }
 
     public function setLocale()

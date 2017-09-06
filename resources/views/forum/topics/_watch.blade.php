@@ -16,7 +16,12 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <a
-    class="btn-circle btn-circle--topic-nav js-forum-topic-watch"
+    class="
+        btn-circle
+        btn-circle--topic-nav
+        {{ $state ? 'btn-circle--activated' : '' }}
+        js-forum-topic-watch
+    "
     href="{{ route('forum.topics.watch', [
         $topic,
         'watch' => !$state,
@@ -26,9 +31,5 @@
     data-topic-id="{{ $topic->topic_id }}"
     title="{{ trans('forum.topics.watch.watch-'.(int) !$state) }}"
 >
-    @if ($state)
-        <i class="fa fa-eye-slash"></i>
-    @else
-        <i class="fa fa-eye"></i>
-    @endif
+    <i class="fa fa-eye"></i>
 </a>

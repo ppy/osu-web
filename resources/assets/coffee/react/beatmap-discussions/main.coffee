@@ -169,6 +169,11 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
       for d in @state.beatmapsetDiscussion.beatmap_discussions
+        # skipped discussion
+        # - not privileged (deleted discussion)
+        # - deleted beatmap
+        continue if _.isEmpty(d)
+
         mode =
           if d.beatmap_id?
             if d.beatmap_id == @state.currentBeatmap.id

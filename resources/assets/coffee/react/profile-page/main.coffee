@@ -31,15 +31,17 @@ class ProfilePage.Main extends React.PureComponent
     super props
 
     savedStateString = document.body.dataset.profilePageState
+
     if savedStateString?
       @state = JSON.parse(savedStateString)
+      delete document.body.dataset.profilePageState
       return
 
-    optionsHash = ProfilePageHash.parse location.hash
-    @initialPage = optionsHash.page
+    page = location.hash.slice(1)
+    @initialPage = page if page?
 
     @state =
-      currentMode: @validMode(optionsHash.mode ? props.user.playmode)
+      currentMode: props.currentMode
       user: props.user
       userPage:
         html: props.userPage.html
@@ -49,12 +51,19 @@ class ProfilePage.Main extends React.PureComponent
         selection: [0, 0]
       tabsSticky: false
       profileOrder: props.user.profileOrder[..]
-
+      scoresBest: @props.scores.best
+      scoresFirsts: @props.scores.firsts
+      scoresRecent: @props.scores.recent
+      beatmapPlaycounts: @props.beatmapsets.most_played
+      favouriteBeatmapsets: @props.beatmapsets.favourite
+      rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
+      recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+      showMorePagination: {}
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
-    $.subscribe 'playmode:set.profilePage', @setCurrentMode
+    $.subscribe 'profile:showMore.profilePage', @showMore
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
@@ -97,11 +106,6 @@ class ProfilePage.Main extends React.PureComponent
 
 
   render: =>
-    rankHistories = @props.allRankHistories[@state.currentMode]
-    stats = @props.allStats[@state.currentMode]
-    scores = @props.allScores[@state.currentMode]
-    scoresBest = @props.allScoresBest[@state.currentMode]
-    scoresFirst = @props.allScoresFirst[@state.currentMode]
     withMePage = @state.userPage.html != '' || @props.withEdit
 
     extraPageParams =
@@ -120,20 +124,28 @@ class ProfilePage.Main extends React.PureComponent
       kudosu:
         props:
           user: @state.user
-          recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+          recentlyReceivedKudosu: @state.recentlyReceivedKudosu
+          pagination: @state.showMorePagination
         component: ProfilePage.Kudosu
 
       top_ranks:
         props:
           user: @state.user
-          scoresBest: scoresBest
-          scoresFirst: scoresFirst
+          scoresBest: @state.scoresBest
+          scoresFirsts: @state.scoresFirsts
+          currentMode: @state.currentMode
+          pagination: @state.showMorePagination
         component: ProfilePage.TopRanks
 
       beatmaps:
         props:
-          favouriteBeatmapsets: @props.favouriteBeatmapsets
-          rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
+          user: @state.user
+          favouriteBeatmapsets: @state.favouriteBeatmapsets
+          rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          counts:
+            favouriteBeatmapsets: @state.user.favouriteBeatmapsetCount[0]
+            rankedAndApprovedBeatmapsets: @state.user.rankedAndApprovedBeatmapsetCount[0]
+          pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 
       medals:
@@ -146,18 +158,20 @@ class ProfilePage.Main extends React.PureComponent
 
       historical:
         props:
-          beatmapPlaycounts: @props.beatmapPlaycounts
-          rankHistories: rankHistories
-          scores: scores
+          beatmapPlaycounts: @state.beatmapPlaycounts
+          scoresRecent: @state.scoresRecent
+          user: @state.user
+          currentMode: @state.currentMode
+          pagination: @state.showMorePagination
         component: ProfilePage.Historical
 
     div className: 'osu-layout__section',
       el ProfilePage.Header,
         user: @state.user
-        stats: stats
+        stats: @props.statistics
         currentMode: @state.currentMode
         withEdit: @props.withEdit
-        rankHistories: rankHistories
+        rankHistory: @props.rankHistory
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
@@ -210,6 +224,30 @@ class ProfilePage.Main extends React.PureComponent
       'data-page-id': name
       className: "#{topClassName} #{extraClass}"
       el component, props
+
+
+  showMore: (e, {showMoreLink}) =>
+    propertyName = showMoreLink.dataset.showMore
+    url = showMoreLink.dataset.showMoreUrl
+    offset = @state[propertyName].length
+    perPage = parseInt(showMoreLink.dataset.showMorePerPage)
+    maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
+
+    paginationState = _.cloneDeep @state.showMorePagination
+    paginationState[propertyName] ?= {}
+    paginationState[propertyName].loading = true
+
+    @setState showMorePagination: paginationState, ->
+      $.get osu.updateQueryString('offset', offset, url), (data) =>
+        state = _.cloneDeep(@state[propertyName]).concat(data)
+
+        paginationState = _.cloneDeep @state.showMorePagination
+        paginationState[propertyName].loading = false
+        paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
+
+        @setState
+          "#{propertyName}": state
+          showMorePagination: paginationState
 
 
   pageJump: (_e, page) =>
@@ -265,11 +303,6 @@ class ProfilePage.Main extends React.PureComponent
       return
 
     @setCurrentPage null, page.dataset.pageId
-
-
-  setCurrentMode: (_e, {mode}) =>
-    return if @state.currentMode == mode
-    @setState currentMode: @validMode(mode)
 
 
   setCurrentPage: (_e, page, extraCallback) =>

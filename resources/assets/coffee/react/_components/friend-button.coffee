@@ -25,7 +25,7 @@ class @FriendButton extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "friendButton-#{@props.user_id}-#{osu.generateId()}"
+    @eventId = "friendButton-#{@props.user_id}-#{osu.uuid()}"
     @state =
       hover: false
       friend: _.find(currentUser.friends, (o) -> o.target_id == props.user_id)

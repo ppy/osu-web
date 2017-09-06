@@ -142,7 +142,7 @@ class OsuAuthorize
         // rate limit
         $recentVotesCount = $user
             ->beatmapDiscussionVotes()
-            ->where('created_at', '<', Carbon::now()->subHour())
+            ->where('created_at', '>', Carbon::now()->subHour())
             ->count();
 
         if ($recentVotesCount > 10) {
@@ -286,10 +286,6 @@ class OsuAuthorize
             if ($target->moderated) {
                 return $prefix.'channel.moderated';
             }
-
-            if ($target->name !== '#lazer') {
-                return $prefix.'channel.not_lazer';
-            }
         } elseif ($target instanceof User) {
             // TODO: blocklist/ignore, etc
         }
@@ -383,7 +379,7 @@ class OsuAuthorize
 
     public function checkForumView($user, $forum)
     {
-        if ($user !== null && $user->isGMT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
 

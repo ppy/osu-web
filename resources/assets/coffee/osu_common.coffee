@@ -38,10 +38,6 @@
       element.click()
 
 
-  generateId: ->
-    Math.floor(Math.random() * 100000)
-
-
   setHash: (newHash) ->
     newUrl = location.href.replace /#.*/, ''
     newUrl += newHash
@@ -234,6 +230,15 @@
 
   transChoice: (key, count, replacements) ->
     message = Lang.choice key, count, replacements, currentLocale
+
+  uuid: ->
+    Turbolinks.uuid() # no point rolling our own
+
+  updateQueryString: (key, value, url = window.location.href) ->
+    urlObj = new URL(url, document.location.origin)
+    urlObj.searchParams.set(key, value)
+
+    return urlObj.href
 
 
   xhrErrorMessage: (xhr) ->

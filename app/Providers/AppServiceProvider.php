@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Queue::after(function (JobProcessed $event) {
-            if (config('datadog-helper.enabled', false)) {
+            if (config('datadog-helper.enabled')) {
                 Datadog::increment(config('datadog-helper.prefix').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
             }
         });
