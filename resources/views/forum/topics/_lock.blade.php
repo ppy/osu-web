@@ -33,7 +33,7 @@
         ]) }}"
         data-method="post"
     >
-        <span class="btn-circle__container">
+        <span class="btn-circle__content">
             <i class="fa fa-lock"></i>
         </span>
     </button>
@@ -44,7 +44,7 @@
             data-tooltip-float="fixed"
             title="{{ trans('forum.topics.lock.is_locked') }}"
         >
-            <span class="btn-circle__container">
+            <span class="btn-circle__content">
                 <i class="fa fa-lock"></i>
             </span>
         </div>

@@ -91,7 +91,7 @@ class ProfilePage.HeaderMain extends React.Component
               type: 'button'
               className: 'btn-circle'
               onClick: @toggleEdit
-              span className: 'btn-circle__container',
+              span className: 'btn-circle__content',
                 el Icon, name: 'pencil'
             if @state.editing
               el ProfilePage.CoverSelector,

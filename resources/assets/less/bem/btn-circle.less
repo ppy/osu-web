@@ -73,12 +73,6 @@
     }
   }
 
-  // because button doesn't quite work as flex container
-  &--button {
-    display: inline-block;
-    text-align: center;
-  }
-
   &.js-disabled,
   &--disabled {
     background-color: #333;
@@ -103,7 +97,7 @@
   }
 
   // <button> can't have display flex in some browsers
-  &__container {
+  &__content {
     .center-content();
     height: 100%;
     width: 100%;

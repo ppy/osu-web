@@ -28,9 +28,9 @@ class ProfilePage.UserPage extends React.Component
         div className: 'page-extra__actions',
           button
             type: 'button'
-            className: 'btn-circle btn-circle--button'
+            className: 'btn-circle'
             onClick: @editStart
-            span className: 'btn-circle__container',
+            span className: 'btn-circle__content',
               el Icon, name: 'edit'
 
       if @props.userPage.editing

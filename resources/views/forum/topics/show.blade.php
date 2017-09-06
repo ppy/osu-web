@@ -176,7 +176,7 @@
 
                             <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
                                 <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <span class="btn-circle__container">
+                                    <span class="btn-circle__content">
                                         <i class="fa fa-close"></i>
                                     </span>
                                 </button>
@@ -349,7 +349,7 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topics.actions.search') }}"
                 >
-                    <span class="btn-circle__container">
+                    <span class="btn-circle__content">
                         <i class="fa fa-search"></i>
                     </span>
                 </a>
@@ -361,7 +361,7 @@
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.actions.reply') }}"
                     >
-                        <span class="btn-circle__container">
+                        <span class="btn-circle__content">
                             <i class="fa fa-plus"></i>
                         </span>
                     </button>

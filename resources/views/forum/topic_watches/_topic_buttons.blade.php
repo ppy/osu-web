@@ -41,7 +41,7 @@
     data-method="POST"
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
-    <span class="btn-circle__container">
+    <span class="btn-circle__content">
         <i class="fa fa-trash"></i>
     </span>
 </button>

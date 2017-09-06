@@ -56,7 +56,7 @@
                 class="btn-circle"
                 href="{{ route('livestreams.promote') }}"
             >
-                <span class="btn-circle__container">
+                <span class="btn-circle__content">
                     <i class="fa fa-thumbs-down"></i>
                 </span>
             </button>

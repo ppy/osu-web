@@ -32,7 +32,7 @@
                             title="{{ trans('news.store.button') }}"
                             data-tooltip-position="left center"
                         >
-                            <span class="btn-circle__container">
+                            <span class="btn-circle__content">
                                 <i class="fa fa-refresh"></i>
                             </span>
                         </button>

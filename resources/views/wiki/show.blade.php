@@ -46,7 +46,7 @@
                             title="{{ trans('wiki.show.edit.link') }}"
                             data-tooltip-position="left center"
                         >
-                            <span class="btn-circle__container">
+                            <span class="btn-circle__content">
                                 <i class="fa fa-github"></i>
                             </span>
                         </a>
@@ -62,7 +62,7 @@
                                 title="{{ trans('wiki.show.edit.refresh') }}"
                                 data-tooltip-position="left center"
                             >
-                                <span class="btn-circle__container">
+                                <span class="btn-circle__content">
                                     <i class="fa fa-refresh"></i>
                                 </span>
                             </button>

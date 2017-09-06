@@ -36,7 +36,7 @@
     data-method="{{ $method }}"
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
 >
-    <span class="btn-circle__container">
+    <span class="btn-circle__content">
         <i class="fa {{ $iconClass }}"></i>
     </span>
 </button>

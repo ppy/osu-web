@@ -32,7 +32,7 @@
     data-topic-id="{{ $topic->topic_id }}"
     title="{{ trans('forum.topics.moderate_pin.pin-'.(int) !$topic->isPinned()) }}"
 >
-    <span class="btn-circle__container">
+    <span class="btn-circle__content">
         <i class="fa fa-thumb-tack"></i>
     </span>
 </button>

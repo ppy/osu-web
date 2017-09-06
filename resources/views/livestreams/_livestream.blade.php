@@ -40,7 +40,7 @@
                 data-method="POST"
                 data-url="{{ route('livestreams.promote', ['id' => $stream['_id']]) }}"
             >
-                <span class="btn-circle__container">
+                <span class="btn-circle__content">
                     <i class="fa fa-thumbs-up"></i>
                 </span>
             </button>
