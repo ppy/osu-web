@@ -40,7 +40,7 @@ class CheckoutHelper
 
     public function allowXsollaPayment()
     {
-        return true;
+        return !$this->order->requiresShipping();
     }
 
     public function allowCentiliPayment()
