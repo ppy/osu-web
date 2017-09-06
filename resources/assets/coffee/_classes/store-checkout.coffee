@@ -17,8 +17,9 @@
 ###
 
 class @StoreCheckout
-
   @initialize: ->
+    # can't side-load?
+    # StoreCentili.fetchScript()
     return unless document.querySelector('#js-xsolla-pay')
     button = document.querySelector('#js-xsolla-pay')
 
@@ -29,10 +30,10 @@ class @StoreCheckout
       trap.resolve()
 
     # load scripts
-    init = Promise.all([@loadXsollaToken(), @loadXsollaScript()])
-    .then (values) =>
+    init = Promise.all([StoreXsolla.fetchToken(), StoreXsolla.fetchScript()])
+    .then (values) ->
       token = values[0]
-      options = @optionsWithToken(token)
+      options = StoreXsolla.optionsWithToken(token)
       XPayStationWidget.init(options)
 
     .catch (error) ->
@@ -44,31 +45,3 @@ class @StoreCheckout
           # FIXME: flickering when transitioning to widget
           XPayStationWidget.open()
           LoadingOverlay.hide()
-
-  @loadXsollaScript: ->
-    new Promise (resolve, reject) ->
-      script = document.createElement('script')
-      script.type = "text/javascript"
-      script.async = true
-      script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
-      script.addEventListener 'load', ->
-        # TODO: remove after testing
-        Timeout.set 3000, ->
-          resolve()
-      , false
-
-      document.head.appendChild(script)
-
-  @loadXsollaToken: ->
-    new Promise (resolve, reject) ->
-      $.get laroute.route('payments.xsolla.token')
-      .done (data) ->
-        resolve(data)
-      .fail (xhr, error) ->
-        console.error xhr
-        reject(xhr)
-
-  @optionsWithToken: (token) ->
-    options =
-      access_token: token,
-      sandbox: true
