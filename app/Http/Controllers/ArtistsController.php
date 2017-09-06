@@ -66,10 +66,10 @@ class ArtistsController extends Controller
 
         // should probably move services to a separate model if the number increases further
         $links = [];
-        foreach (['soundcloud', 'twitter', 'facebook', 'bandcamp', 'patreon'] as $service) {
+        foreach (['soundcloud', 'twitter', 'youtube', 'facebook', 'bandcamp', 'patreon'] as $service) {
             if ($artist->$service) {
                 $links[] = [
-                    'title' => ucwords($service),
+                    'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
                     'url' => $artist->$service,
                     'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
                     'class' => $service,
