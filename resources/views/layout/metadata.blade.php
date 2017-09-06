@@ -59,6 +59,12 @@
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
 @endif
 
+@if (isset($additionalScripts))
+    @foreach ($additionalScripts as $script)
+        <script src="{{ $script }}" data-turbolinks-track="reload"></script>
+    @endforeach
+@endif
+
 @if (isset($rss))
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="{{ $rss }}">
 @endif
