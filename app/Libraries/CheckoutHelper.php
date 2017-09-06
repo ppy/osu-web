@@ -88,6 +88,11 @@ class CheckoutHelper
         return "https://widget.centili.com/widget/WidgetModule?{$queryString}";
     }
 
+    public function isShippingDelayed()
+    {
+        return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
+    }
+
     private function supporterTagItems()
     {
         return $this->order->items()

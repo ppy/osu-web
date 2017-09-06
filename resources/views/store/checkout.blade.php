@@ -62,7 +62,7 @@
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Select Payment Method</h1>
 
-                @if($delayedShipping && $order->requiresShipping())
+                @if($checkout->isShippingDelayed() && $order->requiresShipping())
                 <div class="alert alert-warning">
                     <p><strong>IMPORTANT: SHIPPING DELAYS</strong></p>
 
