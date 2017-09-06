@@ -39,8 +39,6 @@ class @ChangelogChartLoader
     for el in order
       parsedData[el] = []
 
-    console.log parsedData
-
     # group data points by label (stream name/version) while
     # adding points with user_count = 0 whenever there is no
     # data point for a given label
