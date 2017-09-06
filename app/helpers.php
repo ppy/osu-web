@@ -487,7 +487,7 @@ function footer_landing_links()
     return [
         'general' => [
             'home' => route('home'),
-            'changelog' => route('changelog'),
+            'changelog' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => osu_url('home.download'),
             'wiki' => wiki_url('Welcome'),
