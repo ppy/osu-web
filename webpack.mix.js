@@ -73,7 +73,9 @@ let webpackConfig = {
   resolve: {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
-    ]
+      path.resolve(__dirname, 'resources/assets/lib'),
+    ],
+    extensions: ['*', '.js', '.coffee']
   },
   module: {
     rules: [
@@ -84,8 +86,23 @@ let webpackConfig = {
         exclude: /(node_modules)/,
       },
       {
+        // loader for preexisting global coffeescript
         test: /\.coffee$/,
+        include: [
+          path.resolve(__dirname, "resources/assets/coffee"),
+        ],
         use: ['imports-loader?this=>window', 'coffee-loader']
+      },
+      {
+        // loader for import-based coffeescript
+        test: /\.coffee$/,
+        include: [
+          path.resolve(__dirname, "resources/assets/lib"),
+        ],
+        exclude: [
+          path.resolve(__dirname, "resources/assets/coffee"),
+        ],
+        use: ['coffee-loader']
       }
     ]
   }

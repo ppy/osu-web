@@ -16,31 +16,11 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @StoreXsolla
+export class StoreCentili
   @fetchScript: ->
-    new Promise (resolve, reject) ->
-      script = document.createElement('script')
-      script.type = "text/javascript"
-      script.async = true
-      script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
-      script.addEventListener 'load', ->
-        # TODO: remove after testing
-        # Timeout.set 3000, ->
-        resolve()
-      , false
+    script = document.createElement('script')
+    script.type = "text/javascript"
+    script.async = true
+    script.src = "https://www.centili.com/widget/js/c-mobile-payment-scripts.js"
 
-      document.head.appendChild(script)
-
-  @fetchToken: ->
-    new Promise (resolve, reject) ->
-      $.get laroute.route('payments.xsolla.token')
-      .done (data) ->
-        resolve(data)
-      .fail (xhr, error) ->
-        console.error xhr
-        reject(xhr)
-
-  @optionsWithToken: (token) ->
-    options =
-      access_token: token,
-      sandbox: true
+    document.head.appendChild(script)

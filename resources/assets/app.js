@@ -22,4 +22,5 @@ import 'shared.coffee';
 import 'turbolinks-overrides.coffee';
 
 import 'lang-js.coffee'; // Monkey patch for Lang.js bug
+import 'import-shims';  // shim imports to window
 import 'main.coffee';
