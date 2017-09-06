@@ -195,7 +195,7 @@ Route::post('store/update-cart', 'StoreController@postUpdateCart');
 Route::post('store/update-address', 'StoreController@postUpdateAddress');
 Route::post('store/new-address', 'StoreController@postNewAddress');
 Route::post('store/add-to-cart', 'StoreController@postAddToCart');
-Route::post('store/checkout', 'StoreController@postCheckout');
+Route::post('store/checkout', 'StoreController@postCheckout')->name('store.checkout');
 Route::post('store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
 Route::delete('store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
 
