@@ -64,6 +64,21 @@ class CheckoutHelper
         return "osu! supporter tags for " . implode(array_unique($mapped), ', ');
     }
 
+    public function getCentiliPaymentLink()
+    {
+        $params = [
+            'api=' . config('payments.centili.api_key'),
+            'country=jp',
+            'countrylock=true',
+            'clientid=' . $this->order->getOrderNumber(),
+            'amount=' . $this->order->getTotal() * config('payments.centili.conversion_rate'),
+        ];
+
+        $queryString = implode('&', $params);
+
+        return "https://widget.centili.com/widget/WidgetModule?{$queryString}";
+    }
+
     private function supporterTagItems()
     {
         return $this->order->items()

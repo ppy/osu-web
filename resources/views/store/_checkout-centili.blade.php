@@ -17,7 +17,8 @@
 --}}
 
 <div class="store-payment-method">
-    <a href="https://api.centili.com/payment/widget?apikey={{ config('payments.centili.api_key') }}"
+    <a id="c-mobile-payment-widget"
+       href="{{ $checkout->getCentiliPaymentLink() }}"
        class="store-payment-method__cell store-payment-button store-payment-button--centili"
     >
     </a>
