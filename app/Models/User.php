@@ -911,7 +911,9 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function title()
     {
-        return $this->rank->rank_title ?? null;
+        if ($this->user_rank !== 0 && $this->user_rank !== null) {
+            $this->rank->rank_title ?? null;
+        }
     }
 
     public function hasProfile()
