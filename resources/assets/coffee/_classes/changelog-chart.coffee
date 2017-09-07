@@ -135,7 +135,7 @@ class @ChangelogChart
       if y <= el[x][1]
         dataRow = i
         currentLabel = el.key
-        labelModifier = if @options.isBuild then "build-#{i}" else _.kebabCase currentLabel
+        labelModifier = @classScale currentLabel
         break
 
     @showTooltip()
