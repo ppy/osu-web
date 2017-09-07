@@ -139,7 +139,7 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function parseImage($text)
+    public function parseImage($text, $withImageDimensions = true)
     {
         preg_match_all("#\[img:{$this->uid}\](?<url>[^[]+)\[/img:{$this->uid}\]#", $text, $images, PREG_SET_ORDER);
 
@@ -150,9 +150,11 @@ class BBCodeFromDB
 
             $imageTag = '';
 
-            $imageSize = fast_imagesize($proxiedSrc);
-            // FIXME: remove in May after current cache expires
-            if ($imageSize !== false && $imageSize !== null && $imageSize[0] !== 0) {
+            if ($withImageDimensions) {
+                $imageSize = fast_imagesize($proxiedSrc);
+            }
+
+            if ($withImageDimensions && $imageSize !== null && $imageSize[0] !== 0) {
                 $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
 
                 $topClass = 'proportional-container';
@@ -282,7 +284,7 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function toHTML($ignoreLineHeight = false)
+    public function toHTML($ignoreLineHeight = false, $withImageDimensions = true)
     {
         $text = $this->text;
 
@@ -301,7 +303,7 @@ class BBCodeFromDB
         $text = $this->parseCentre($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
-        $text = $this->parseImage($text);
+        $text = $this->parseImage($text, $withImageDimensions);
         $text = $this->parseItalic($text);
         $text = $this->parseSize($text);
         $text = $this->parseSmilies($text);

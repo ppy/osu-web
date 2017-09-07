@@ -271,6 +271,11 @@ class Post extends Model
         return bbcode($this->post_text, $this->bbcode_uid, true);
     }
 
+    public function getBodyHTMLWithoutImageDimensionsAttribute()
+    {
+        return bbcode($this->post_text, $this->bbcode_uid, true, false);
+    }
+
     public function getBodyRawAttribute()
     {
         return bbcode_for_editor($this->post_text, $this->bbcode_uid);
