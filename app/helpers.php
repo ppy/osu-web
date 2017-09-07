@@ -385,9 +385,9 @@ function wiki_url($page = 'Welcome', $locale = null)
     return route('wiki.show', $params);
 }
 
-function bbcode($text, $uid, $withGallery = false)
+function bbcode($text, $uid, $options = [])
 {
-    return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
+    return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
 
 function bbcode_for_editor($text, $uid)

@@ -110,7 +110,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             if ($user->userPage !== null) {
                 return [
-                    'html' => $user->userPage->bodyHTML,
+                    'html' => $user->userPage->bodyHTMLWithoutImageDimensions,
                     'raw' => $user->userPage->bodyRaw,
                 ];
             } else {
