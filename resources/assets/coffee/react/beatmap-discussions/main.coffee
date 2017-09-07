@@ -133,7 +133,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     if @state.beatmapsetDiscussion.updated_at?
       params.last_updated = moment(@state.beatmapsetDiscussion.updated_at).unix()
 
-    @checkNewAjax = $.get document.location.pathname, params
+    @checkNewAjax = $.get laroute.route('beatmapsets.discussion', beatmapset: @state.beatmapset.id), params
     .done (data, _textStatus, xhr) =>
       if xhr.status == 304
         @nextTimeout *= 2
