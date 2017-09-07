@@ -19,8 +19,8 @@
 @if ($checkout->allowCentiliPayment())
     <div class="store-payment-method">
         <a id="c-mobile-payment-widget"
-        href="{{ $checkout->getCentiliPaymentLink() }}"
-        class="store-payment-method__cell store-payment-button store-payment-button--centili"
+           href="{{ $checkout->getCentiliPaymentLink() }}"
+           class="store-payment-method__cell store-payment-button store-payment-button--centili"
         >
         </a>
 
@@ -30,6 +30,11 @@
             <div class="store-text store-text--block">You can complete your transactions using ¥COINS</div>
 
             <div class="store-text store-text--block store-text--emphasis">Optionssss.</div>
+            <div class="store-payment-method__provider-list">
+                <img class="store-payment-method__provider" src="/images/store/providers/softbank.png" alt="Softbank">
+                <img class="store-payment-method__provider" src="/images/store/providers/docomo.png" alt="Docomo">
+                <img class="store-payment-method__provider" src="/images/store/providers/au.png" alt="au">
+            </div>
         </div>
     </div>
 @endif
