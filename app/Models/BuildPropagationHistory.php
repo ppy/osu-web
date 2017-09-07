@@ -38,7 +38,7 @@ class BuildPropagationHistory extends Model
         return $this->belongsTo(Build::class, 'build_id');
     }
 
-    public function scopeChangelog($query, $streamId, $days)
+    public function scopeBaseChangelog($query, $streamId, $days)
     {
         $buildsTable = with(new Build)->getTable();
         $propagationTable = with(new self)->getTable();
@@ -50,8 +50,18 @@ class BuildPropagationHistory extends Model
             ->where('created_at', '>', Carbon::now()->subDays($days));
 
         if ($streamId !== null) {
+            $query->where("{$buildsTable}.stream_id", $streamId);
+        }
+    }
+
+    public function scopeChangelog($query, $streamId, $days)
+    {
+        $buildsTable = with(new Build)->getTable();
+
+        $query->baseChangelog($streamId, $days);
+
+        if ($streamId !== null) {
             $query->addSelect(DB::raw("{$buildsTable}.version as label"))
-                ->where("{$buildsTable}.stream_id", $streamId)
                 ->groupBy(['created_at', 'version']);
         } else {
             $query->addSelect(DB::raw('pretty_name as label'))

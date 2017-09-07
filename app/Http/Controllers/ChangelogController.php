@@ -114,7 +114,7 @@ class ChangelogController extends Controller
 
         $chartOrder = null;
 
-        $chartOrder = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))
+        $chartOrder = BuildPropagationHistory::baseChangelog($activeStream, config('osu.changelog.chart_days'))
             ->select(DB::raw('DISTINCT(version) as version'))
             ->get()
             ->sortByDesc(function ($el) {
