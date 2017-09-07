@@ -90,9 +90,7 @@
     .reset-input();
     .default-border-radius();
     color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: inline-block;
     margin: 0 5px;
     border: 2px solid transparent;
 
@@ -132,6 +130,12 @@
     &--focus {
       border-color: @yellow-darker;
     }
+  }
+
+  &__item-content {
+    .center-content();
+    width: 100%;
+    height: 100%;
   }
 
   &__seek-bar {

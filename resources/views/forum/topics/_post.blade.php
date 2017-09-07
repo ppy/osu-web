@@ -85,7 +85,9 @@
                             data-url="{{ route('forum.posts.edit', $post) }}"
                             data-remote="1"
                         >
-                            <i class="fa fa-edit"></i>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-edit"></i>
+                            </span>
                         </button>
                     </div>
                 @endif
@@ -106,7 +108,9 @@
                             data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
                             data-remote="1"
                         >
-                            <i class="fa fa-reply"></i>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-reply"></i>
+                            </span>
                         </button>
                     </div>
                 @endif
