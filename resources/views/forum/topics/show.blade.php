@@ -29,7 +29,7 @@
 ])
 
 @section("content")
-    <div class="js-forum__topic-first-post-id hidden" data-first-post-id={{ $firstPostId }}></div>
+    <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
     <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             u-forum--bg-link
@@ -99,14 +99,14 @@
         </div>
     @endif
 
-    <div class="forum-posts-load-link js-header--alt">
+    <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 === $topic->postsCount() ? 'hidden' : '' }}">
+    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>

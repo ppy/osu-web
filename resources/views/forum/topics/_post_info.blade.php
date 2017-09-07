@@ -102,9 +102,9 @@
                 @endif
             </div>
 
-            @if($user->rank)
+            @if($user->title())
                 <div class="forum-post__info-panel-xs-title">
-                    {{ $user->rank->rank_title }}
+                    {{ $user->title() }}
                 </div>
             @endif
         </div>
