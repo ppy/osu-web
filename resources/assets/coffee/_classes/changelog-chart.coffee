@@ -39,17 +39,12 @@ class @ChangelogChart
     @areaFunction = d3.area()
       .curve d3.curveMonotoneX
       .x (d, i) => @options.scales.x i
-      .y1 (d) => @options.scales.y d.normalized
-      .y0 (d, i) => @options.scales.y d.baseline
+      .y1 (d) => @options.scales.y d[1]
+      .y0 (d, i) => @options.scales.y d[0]
 
-    @svgLines = {}
-
-    for el, i in @options.order
-      className = "changelog-chart__area changelog-chart__area--"
-      className += if @options.isBuild then "build-#{i}" else _.kebabCase el
-
-      @svgLines[el] = @svgWrapper.append 'path'
-        .classed className, true
+    @classScale = d3.scaleOrdinal (_.map @options.order, (d, i) =>
+        if @options.isBuild then "build-#{i}" else _.kebabCase d)
+      .domain(@options.order)
 
     @hoverArea = @svg.append 'rect'
       .classed 'changelog-chart__hover-area', true
@@ -83,9 +78,6 @@ class @ChangelogChart
   loadData: (data) ->
     @data = data
 
-    for el in @options.order
-      @svgLines[el].datum @data[el]
-
     @resize()
 
   setDimensions: ->
@@ -111,16 +103,22 @@ class @ChangelogChart
   setScalesRange: ->
     @options.scales.x
       .range [0, @width]
-      .domain [0, @data[_.first @options.order].length - 1]
+      .domain [0, @data[0].length - 1]
 
     @options.scales.y
       .range [0, @height]
       .domain [0, 1]
 
-  setLineSize: ->
-    for el in @options.order
-      @svgLines[el]
-       .attr 'd', @areaFunction
+  drawLines: ->
+    layer = @svgWrapper
+      .selectAll 'g'
+      .data @data
+      .enter()
+
+    layer
+      .append 'path'
+      .attr 'class', (d) => "changelog-chart__area changelog-chart__area--#{@classScale d.key}"
+      .attr 'd', @areaFunction
 
   showTooltip: =>
     Fade.in @tooltipContainer.node()
@@ -133,10 +131,12 @@ class @ChangelogChart
     x = Math.round @options.scales.x.invert mousePos[0]
     y = mousePos[1] / @height
 
-    for el, i in @options.order
-      if y <= @data[el][x].normalized
-        currentLabel = el
-        labelModifier = if @options.isBuild then "build-#{i}" else _.kebabCase el
+    for el, i in @data
+      if y <= el[x][1]
+        dataRow = i
+        currentLabel = el.key
+        labelModifier = if @options.isBuild then "build-#{i}" else _.kebabCase currentLabel
+        break
 
     @showTooltip()
 
@@ -148,8 +148,8 @@ class @ChangelogChart
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
-    @tooltipUserCount.text @data[currentLabel][x].user_count
-    @tooltipDate.html @getDate @data[currentLabel][x].created_at
+    @tooltipUserCount.text @data[dataRow][x].data[currentLabel].user_count
+    @tooltipDate.html @getDate @data[dataRow][x].created_at
     @tooltipContainer
       .style 'transform', "translate(#{coord}px) translateX(-50%)"
 
@@ -166,5 +166,5 @@ class @ChangelogChart
     @setScalesRange()
     @setSvgSize()
     @setWrapperSize()
-    @setLineSize()
     @setHoverAreaSize()
+    @drawLines()

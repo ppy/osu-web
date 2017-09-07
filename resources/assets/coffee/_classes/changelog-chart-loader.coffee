@@ -34,38 +34,33 @@ class @ChangelogChartLoader
     data = osu.parseJson 'json-chart-data'
     data = _.groupBy data, 'created_at'
 
-    parsedData = {}
+    parsedData = []
 
-    for el in order
-      parsedData[el] = []
-
-    # group data points by label (stream name/version) while
-    # adding points with user_count = 0 whenever there is no
-    # data point for a given label
+    # normalize the user count values
+    # and parse data into a form digestible by d3.stack()
     for own timestamp, values of data
-      points = _.keyBy values, 'label'
-
-      for el in order
-        if points[el]?
-          parsedData[el].push points[el]
-        else
-          parsedData[el].push
-            created_at: timestamp
-            label: el
-            user_count: 0
-
-    # normalize the user count values so we can have a nice chart
-    for point, i in parsedData[order[0]]
       sum = 0
-      calc = 0
 
-      for el in order
-        sum += parsedData[el][i].user_count
+      for val in values
+        sum += val.user_count
 
-      for el, j in order
-        calc += parsedData[el][i].user_count
-        parsedData[el][i].baseline = (calc - parsedData[el][i].user_count) / sum
-        parsedData[el][i].normalized = calc / sum
+      for val in values
+        val.normalized = val.user_count / sum
+
+      obj =
+        created_at: timestamp
+
+      for val in values
+        obj[val.label] = val
+
+      parsedData.push obj
+
+    stack = d3.stack()
+      .keys order
+      .value (d, val) ->
+        if d[val]? then d[val].normalized else 0
+
+    parsedData = stack parsedData
 
     options =
       scales:
