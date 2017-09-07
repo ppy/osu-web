@@ -176,7 +176,9 @@
 
                             <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
                                 <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <i class="fa fa-close"></i>
+                                    <span class="btn-circle__content">
+                                        <i class="fa fa-close"></i>
+                                    </span>
                                 </button>
                             </div>
                         </div>
@@ -255,7 +257,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.first') }}"
                 >
-                    <i class="fa fa-angle-double-left"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-double-left"></i>
+                    </span>
                 </a>
 
                 <button
@@ -268,7 +272,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.previous') }}"
                 >
-                    <i class="fa fa-angle-left"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
                 </button>
 
                 <div class="
@@ -322,7 +328,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.next') }}"
                 >
-                    <i class="fa fa-angle-right"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
                 </button>
 
 
@@ -336,7 +344,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.last') }}"
                 >
-                    <i class="fa fa-angle-double-right"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
                 </a>
             </div>
 
@@ -347,7 +357,9 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topics.actions.search') }}"
                 >
-                    <i class="fa fa-search"></i>
+                    <span class="btn-circle__content">
+                        <i class="fa fa-search"></i>
+                    </span>
                 </a>
 
                 @if (priv_check('ForumTopicReply', $topic)->can())
@@ -357,7 +369,9 @@
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.actions.reply') }}"
                     >
-                        <i class="fa fa-plus"></i>
+                        <span class="btn-circle__content">
+                            <i class="fa fa-plus"></i>
+                        </span>
                     </button>
                 @endif
             </div>
