@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { StoreCentili } from 'store-centili'
+# import { StoreCentili } from 'store-centili'
 import { StoreXsolla } from 'store-xsolla'
 
 export class StoreCheckout
