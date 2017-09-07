@@ -17,47 +17,57 @@
 --}}
 <div class="post-box-toolbar">
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--bold"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--bold"
         title="{{ trans("bbcode.bold") }}"
         type="button"
     >
-        <strong>B</strong>
+        <span class="btn-circle__content">
+            <strong>B</strong>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--italic"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--italic"
         title="{{ trans("bbcode.italic") }}"
         type="button"
     >
-        <em>I</em>
+        <span class="btn-circle__content">
+            <em>I</em>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--strikethrough"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough"
         title="{{ trans("bbcode.strikethrough") }}"
         type="button"
     >
-        <i class="fa fa-strikethrough"></i>
+        <span class="btn-circle__content">
+            <i class="fa fa-strikethrough"></i>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--heading"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--heading"
         title="{{ trans("bbcode.heading") }}"
         type="button"
     >
-        H
+        <span class="btn-circle__content">
+            <span>H</span>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--link"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--link"
         title="{{ trans("bbcode.link") }}"
         type="button"
     >
-        <i class="fa fa-link"></i>
+        <span class="btn-circle__content">
+            <i class="fa fa-link"></i>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--spoilerbox"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox"
         title="{{ trans("bbcode.spoilerbox") }}"
         type="button"
     >
@@ -65,27 +75,33 @@
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--list-numbered"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered"
         title="{{ trans("bbcode.list_numbered") }}"
         type="button"
     >
-        <i class="fa fa-list-ol"></i>
+        <span class="btn-circle__content">
+            <i class="fa fa-list-ol"></i>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--list"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--list"
         title="{{ trans("bbcode.list") }}"
         type="button"
     >
-        <i class="fa fa-list"></i>
+        <span class="btn-circle__content">
+            <i class="fa fa-list"></i>
+        </span>
     </button>
 
     <button
-        class="btn-circle btn-circle--button btn-circle--bbcode js-bbcode-btn--image"
+        class="btn-circle btn-circle--bbcode js-bbcode-btn--image"
         title="{{ trans("bbcode.image") }}"
         type="button"
     >
-        <i class="fa fa-image"></i>
+        <span class="btn-circle__content">
+            <i class="fa fa-image"></i>
+        </span>
     </button>
 
     <label class="bbcode-size-select" title="{{ trans("bbcode.size._") }}">

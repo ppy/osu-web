@@ -19,7 +19,7 @@
 .artist {
   @_top: artist;
   &__index {
-    background-color: #293336;
+    background-color: @gray-blue-dark;
     padding: 10px;
     font-weight: 300;
     .default-box-shadow();
@@ -147,7 +147,7 @@
   }
 
   &__description {
-    background-color: #293336;
+    background-color: @gray-blue-dark;
     color: white;
     font-size: 14px;
     font-weight: 300;
@@ -234,86 +234,5 @@
   &__white-link {
     .link-white();
     .link-plain();
-  }
-
-  &__button {
-    align-items: center;
-    background: #181f21;
-    border-radius: 4px;
-    color: white;
-    display: flex;
-    font-size: 16px;
-    height: 40px;
-    margin-bottom: 5px;
-    padding: 5px 10px;
-    user-select: none;
-
-    .default-text-shadow();
-    .default-box-shadow();
-
-    transition: 0.1s;
-
-    &:hover, &:focus {
-      color: white;
-      text-decoration: none;
-    }
-
-    &:hover {
-      background: lighten(#181f21, 2%);
-    }
-
-    &--twitter {
-      background: @twitter-colour;
-      &:hover {
-        background: lighten(@twitter-colour, 5%);
-      }
-    }
-
-    &--facebook {
-      background: @facebook-colour;
-      &:hover {
-        background: lighten(@facebook-colour, 5%);
-      }
-    }
-
-    &--soundcloud {
-      background: @soundcloud-colour;
-      &:hover {
-        background: lighten(@soundcloud-colour, 5%);
-      }
-    }
-
-    &--bandcamp {
-      background: @bandcamp-colour;
-      &:hover {
-        background: lighten(@bandcamp-colour, 5%);
-      }
-    }
-
-    &--patreon {
-      background: @patreon-colour;
-      &:hover {
-        background: lighten(@patreon-colour, 5%);
-      }
-    }
-
-    &--youtube {
-      background: darken(@youtube-colour, 5%);
-      &:hover {
-        background: @youtube-colour;
-      }
-    }
-
-  }
-
-  &__link-text {
-    font-weight: 200;
-    flex-basis: 100%;
-    text-align: left;
-    padding-left: 20px;
-  }
-
-  &__chevron {
-    right: 0;
   }
 }

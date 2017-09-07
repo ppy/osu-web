@@ -19,6 +19,10 @@ env:
     - DB_USERNAME=root
     - SLACK_ENDPOINT=http://myconan.net/null/
     - PATH=$HOME/.yarn/bin:$PATH
+    - APP_ENV=testing
+    - SESSION_DRIVER=array
+    - CACHE_DRIVER=array
+    - CAMO_KEY=""
 
 before_install:
   - sudo ./bin/mysql_debian_install

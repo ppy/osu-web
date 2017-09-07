@@ -24,7 +24,9 @@
                 title="{{ trans('forum.covers.create._') }}"
                 data-tooltip-position="left center"
             >
-                <i class="fa fa-pencil"></i>
+                <span class="btn-circle__content">
+                    <i class="fa fa-pencil"></i>
+                </span>
             </button>
         </div>
 
@@ -65,7 +67,9 @@
             title="{{ trans('forum.covers.destroy._') }}"
             data-tooltip-position="left center"
         >
-            <i class="fa fa-trash"></i>
+            <span class="btn-circle__content">
+                <i class="fa fa-trash"></i>
+            </span>
         </button>
     </div>
 </div>

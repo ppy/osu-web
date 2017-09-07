@@ -33,7 +33,9 @@
         ]) }}"
         data-method="post"
     >
-        <i class="fa fa-lock"></i>
+        <span class="btn-circle__content">
+            <i class="fa fa-lock"></i>
+        </span>
     </button>
 @else
     @if ($topic->isLocked())
@@ -42,7 +44,9 @@
             data-tooltip-float="fixed"
             title="{{ trans('forum.topics.lock.is_locked') }}"
         >
-            <i class="fa fa-lock"></i>
+            <span class="btn-circle__content">
+                <i class="fa fa-lock"></i>
+            </span>
         </div>
     @endif
 @endif

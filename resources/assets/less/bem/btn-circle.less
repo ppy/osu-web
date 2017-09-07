@@ -18,10 +18,10 @@
 
 .btn-circle {
   .reset-input();
-  .center-content();
   .circle(@btn-circle-diameter);
   .default-box-shadow();
   cursor: pointer;
+  display: inline-block;
   text-shadow: inherit;
 
   flex: none;
@@ -74,12 +74,6 @@
     }
   }
 
-  // because button doesn't quite work as flex container
-  &--button {
-    display: inline-block;
-    text-align: center;
-  }
-
   &.js-disabled,
   &--disabled {
     background-color: #333;
@@ -101,5 +95,12 @@
 
   &--topic-nav {
     margin: 0 5px;
+  }
+
+  // some browsers can't display flex for <button>
+  &__content {
+    .center-content();
+    height: 100%;
+    width: 100%;
   }
 }
