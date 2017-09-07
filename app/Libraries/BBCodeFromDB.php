@@ -33,13 +33,19 @@ class BBCodeFromDB
     public $refId;
     public $withGallery;
 
-    public function __construct($text, $uid = '', $withGallery = false)
+    public function __construct($text, $uid = '', $options = [])
     {
+        $defaultOptions = [
+            'withGallery' => false,
+            'ignoreLineHeight' => false,
+            'withoutImageDimensions' => false,
+        ];
+
         $this->text = $text;
         $this->uid = $uid;
-        $this->withGallery = $withGallery;
+        $this->options = array_merge($defaultOptions, $options);
 
-        if ($withGallery) {
+        if ($this->options['withGallery']) {
             $this->refId = rand();
         }
     }
@@ -139,7 +145,7 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function parseImage($text, $withImageDimensions = true)
+    public function parseImage($text)
     {
         preg_match_all("#\[img:{$this->uid}\](?<url>[^[]+)\[/img:{$this->uid}\]#", $text, $images, PREG_SET_ORDER);
 
@@ -148,21 +154,22 @@ class BBCodeFromDB
         foreach ($images as $i) {
             $proxiedSrc = proxy_image(html_entity_decode($i['url']));
 
-            $imageTag = '';
+            $imageTag = $galleryAttributes = '';
 
-            if ($withImageDimensions) {
+            if (!$this->options['withoutImageDimensions']) {
                 $imageSize = fast_imagesize($proxiedSrc);
             }
 
-            if ($withImageDimensions && $imageSize !== null && $imageSize[0] !== 0) {
+            if (!$this->options['withoutImageDimensions'] && $imageSize !== null && $imageSize[0] !== 0) {
                 $heightPercentage = ($imageSize[1] / $imageSize[0]) * 100;
 
                 $topClass = 'proportional-container';
-                if ($this->withGallery) {
+                if ($this->options['withGallery']) {
                     $topClass .= ' js-gallery';
+                    $galleryAttributes = " data-width='{$imageSize[0]}' data-height='{$imageSize[1]}' data-index='{$index}' data-gallery-id='{$this->refId}' data-src='{$proxiedSrc}'";
                 }
 
-                $imageTag .= "<span class='{$topClass}' style='width: {$imageSize[0]}px;' data-width='{$imageSize[0]}' data-height='{$imageSize[1]}' data-index='{$index}' data-gallery-id='{$this->refId}' data-src='{$proxiedSrc}'>";
+                $imageTag .= "<span class='{$topClass}' style='width: {$imageSize[0]}px;'$galleryAttributes>";
                 $imageTag .= "<span class='proportional-container__height' style='padding-bottom: {$heightPercentage}%;'>";
                 $imageTag .= lazy_load_image($proxiedSrc, 'proportional-container__content');
                 $imageTag .= '</span>';
@@ -284,7 +291,7 @@ class BBCodeFromDB
         return $text;
     }
 
-    public function toHTML($ignoreLineHeight = false, $withImageDimensions = true)
+    public function toHTML()
     {
         $text = $this->text;
 
@@ -303,7 +310,7 @@ class BBCodeFromDB
         $text = $this->parseCentre($text);
         $text = $this->parseColour($text);
         $text = $this->parseEmail($text);
-        $text = $this->parseImage($text, $withImageDimensions);
+        $text = $this->parseImage($text);
         $text = $this->parseItalic($text);
         $text = $this->parseSize($text);
         $text = $this->parseSmilies($text);
@@ -319,7 +326,7 @@ class BBCodeFromDB
 
         $className = 'bbcode';
 
-        if ($ignoreLineHeight) {
+        if ($this->options['ignoreLineHeight']) {
             $className .= ' bbcode--normal-line-height';
         }
 

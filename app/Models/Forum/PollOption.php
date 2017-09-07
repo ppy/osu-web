@@ -114,7 +114,7 @@ class PollOption extends Model
 
     public function optionTextHTML()
     {
-        return bbcode($this->poll_option_text, $this->post->bbcode_uid, true);
+        return bbcode($this->poll_option_text, $this->post->bbcode_uid, ['withGallery' => true]);
     }
 
     public function optionTextRaw()
