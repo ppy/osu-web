@@ -64,18 +64,8 @@ class ArtistsController extends Controller
             'cover_url' => $artist->cover_url,
         ];
 
-        // should probably move services to a separate model if the number increases further
+        // should probably move services to a separate model if the number increases further (HA HA HA)
         $links = [];
-        foreach (['soundcloud', 'twitter', 'youtube', 'facebook', 'bandcamp', 'patreon'] as $service) {
-            if ($artist->$service) {
-                $links[] = [
-                    'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
-                    'url' => $artist->$service,
-                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
-                    'class' => $service,
-                ];
-            }
-        }
 
         if ($artist->website) {
             $links[] = [
@@ -84,6 +74,17 @@ class ArtistsController extends Controller
                 'icon' => 'globe',
                 'class' => 'website',
             ];
+        }
+
+        foreach (['twitter', 'facebook', 'bandcamp', 'patreon', 'soundcloud', 'youtube'] as $service) {
+            if ($artist->$service) {
+                $links[] = [
+                    'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
+                    'url' => $artist->$service,
+                    'icon' => $service === 'patreon' ? "extra-social-$service" : $service,
+                    'class' => $service,
+                ];
+            }
         }
 
         return view('artists.show')
