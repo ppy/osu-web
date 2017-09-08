@@ -220,6 +220,8 @@ Route::group(['prefix' => 'payments'], function () {
     Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
     Route::post('xsolla/callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
     Route::match(['post', 'get'], 'centili/callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');
+    Route::get('centili/completed', 'Payments\CentiliController@completed')->name('payments.centili.completed');
+    Route::get('centili/failed', 'Payments\CentiliController@failed')->name('payments.centili.failed');
 });
 
 // API

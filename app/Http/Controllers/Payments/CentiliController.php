@@ -50,4 +50,34 @@ class CentiliController extends Controller
 
         return 'ok';
     }
+
+    public function completed()
+    {
+        $orderNumber = Request::input('clientid') ?? '';
+
+        $order = Order::findOrderNumber($orderNumber);
+        if (!$order) {
+            abort(404);
+        }
+
+        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+    }
+
+    public function failed()
+    {
+        $orderNumber = Request::input('clientid') ?? '';
+
+        $order = Order::findOrderNumber($orderNumber);
+        if (!$order) {
+            abort(404);
+        }
+
+        if ($order->status === 'checkout') {
+            $order->status = 'incart';
+            $order->save();
+        }
+
+        # FIXME: need a payments failed page.
+        return redirect(route('payments.failed'));
+    }
 }
