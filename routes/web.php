@@ -207,10 +207,10 @@ Route::group(['prefix' => 'store'], function () {
         [
             'names' => [
                 'index' => 'store.checkout.index',
-                'create' => 'store.checkout.create',
+                'store' => 'store.checkout.store',
             ],
         ],
-        ['only' => ['index', 'create']]
+        ['only' => ['index', 'store']]
     );
 });
 

@@ -17,7 +17,7 @@
 --}}
 
 <div class="store-payment-method">
-    <a href="{{ route('store.checkout.create') }}" id="checkout-with-paypal" data-method="post" data-remote="1"
+    <a href="{{ route('store.checkout.store') }}" id="checkout-with-paypal" data-method="post" data-remote="1"
        class="store-payment-method__cell store-payment-button store-payment-button--paypal">
         <form class="text-center noajax" id="paypal-form" action="{{ config('payments.paypal.url') }}" method="post" target="_top">
             <input type="hidden" name="cmd" value="_xclick">

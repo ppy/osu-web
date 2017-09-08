@@ -35,11 +35,11 @@ class CheckoutController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
-            'create',
+            'store',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
-            'create',
+            'store',
         ]]);
 
         $this->middleware('verify-user');
@@ -60,7 +60,7 @@ class CheckoutController extends Controller
         return view('store.checkout', compact('order', 'addresses', 'checkout'));
     }
 
-    public function create()
+    public function store()
     {
         $order = $this->userCart();
 

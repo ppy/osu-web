@@ -41,7 +41,6 @@ class StoreController extends Controller
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
-            'postCheckout',
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
@@ -51,7 +50,6 @@ class StoreController extends Controller
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
-            'postCheckout',
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
@@ -59,8 +57,6 @@ class StoreController extends Controller
 
         $this->middleware('verify-user', ['only' => [
             'getInvoice',
-            'getCheckout',
-            'postCheckout',
             'postUpdateAddress',
         ]]);
 
