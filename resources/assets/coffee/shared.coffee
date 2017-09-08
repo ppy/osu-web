@@ -112,21 +112,17 @@ $(document).on 'keydown', '.js-quick-submit', (e) ->
   return unless (e.ctrlKey || e.metaKey) && e.keyCode == 13
 
   e.preventDefault()
-  $form = $(e.target).closest('form')
-  form = $form[0]
-
-  if !form._submit?
-    submit = -> $form.submit()
-    form._submit = _.throttle submit, 500
-    $(document).one 'turbolinks:before-cache', ->
-      form._submit.cancel()
-
-  form._submit()
+  $(e.target).closest('form').submit()
 
 
 $(document).on 'ajax:beforeSend', (e) ->
   # currentTarget is document
   form = e.target
+
+  return false if form._submitting
+
+  form._submitting = true
+
   form._ujsSubmitDisabled = []
   for el in form.querySelectorAll('.js-ujs-submit-disable')
     continue if el.disabled
@@ -136,7 +132,7 @@ $(document).on 'ajax:beforeSend', (e) ->
 
 
 $(document).on 'ajax:complete', (e) ->
-  for el in e.target._ujsSubmitDisabled
-    el.disabled = false
+  form = e.target
 
-  delete e.target._ujsSubmitDisabled
+  form._submitting = false
+  el.disabled = false while el = form._ujsSubmitDisabled.pop()
