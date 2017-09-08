@@ -912,7 +912,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function title()
     {
         if ($this->user_rank !== 0 && $this->user_rank !== null) {
-            $this->rank->rank_title ?? null;
+            return $this->rank->rank_title ?? null;
         }
     }
 
