@@ -184,20 +184,22 @@ Route::group(['prefix' => 'help'], function () {
 });
 
 // FIXME: someone split this crap up into proper controllers
-Route::get('store', 'StoreController@getIndex');
-Route::get('store/listing', 'StoreController@getListing')->name('store.products.index');
-Route::get('store/invoice', 'StoreController@getInvoice');
-Route::get('store/invoice/{invoice}', 'StoreController@getInvoice');
-Route::get('store/product/{product}', 'StoreController@getProduct')->name('store.product');
-Route::get('store/cart', 'StoreController@getCart');
-Route::get('store/checkout', 'StoreController@getCheckout');
-Route::post('store/update-cart', 'StoreController@postUpdateCart');
-Route::post('store/update-address', 'StoreController@postUpdateAddress');
-Route::post('store/new-address', 'StoreController@postNewAddress');
-Route::post('store/add-to-cart', 'StoreController@postAddToCart');
-Route::post('store/checkout', 'StoreController@postCheckout')->name('store.checkout');
-Route::post('store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
-Route::delete('store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
+Route::group(['prefix' => 'store'], function () {
+    Route::get('/', 'StoreController@getIndex');
+    Route::get('listing', 'StoreController@getListing')->name('store.products.index');
+    Route::get('invoice', 'StoreController@getInvoice');
+    Route::get('invoice/{invoice}', 'StoreController@getInvoice');
+    Route::get('product/{product}', 'StoreController@getProduct')->name('store.product');
+    Route::get('cart', 'StoreController@getCart');
+    Route::get('checkout', 'StoreController@getCheckout');
+    Route::post('update-cart', 'StoreController@postUpdateCart');
+    Route::post('update-address', 'StoreController@postUpdateAddress');
+    Route::post('new-address', 'StoreController@postNewAddress');
+    Route::post('add-to-cart', 'StoreController@postAddToCart');
+    Route::post('checkout', 'StoreController@postCheckout')->name('store.checkout');
+    Route::post('products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
+    Route::delete('products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
+});
 
 Route::group(['prefix' => 'payments'], function () {
     Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
