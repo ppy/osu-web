@@ -74,13 +74,11 @@ class PostsController extends Controller
         $post = Post::withTrashed()->findOrFail($id);
         $topic = $post->topic()->withTrashed()->first();
 
-        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-            $this->logModerate(
-                'LOG_RESTORE_POST',
-                [$topic->topic_title],
-                $post
-            );
-        }
+        $this->logModerate(
+            'LOG_RESTORE_POST',
+            [$topic->topic_title],
+            $post
+        );
 
         $topic->restorePost($post, Auth::user());
 
