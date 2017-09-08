@@ -28,24 +28,20 @@ export class StoreCheckout
 
     trap = DeferrablePromise()
     $(button).on 'click.trap', ->
-      # FIXME: don't display overall if other promises get rejected.
+      # FIXME: don't display overlay if other promises get rejected.
       # FIXME: this is a good use case for rxjs....
-      LoadingOverlay.showImmediate()
       $(button).off 'click.trap'
+      LoadingOverlay.showImmediate()
+
       trap.resolve()
 
     # load scripts
-    init = Promise.all([StoreXsolla.fetchToken(), StoreXsolla.fetchScript()])
-    .then (values) ->
+    init = Promise.all([
+      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
+    ]).then (values) ->
       token = values[0]
       options = StoreXsolla.optionsWithToken(token)
       XPayStationWidget.init(options)
-
-    .catch (error) ->
-      console.error error
-      # TODO: less unknown error, disable button
-      # FIXME: error should should only if button has been clicked, not before.
-      osu.ajaxError error.xhr if error.xhr
 
     $(button).on 'click.xsolla', ->
       Promise.all([init, trap]).then (values) ->
@@ -53,3 +49,9 @@ export class StoreCheckout
           # FIXME: flickering when transitioning to widget
           XPayStationWidget.open()
           LoadingOverlay.hide()
+      .catch (error) ->
+        LoadingOverlay.hide()
+        # TODO: less unknown error, disable button
+        # FIXME: error should should only if button has been clicked, not before.
+        osu.ajaxError error.xhr if error.xhr
+

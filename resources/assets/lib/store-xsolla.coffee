@@ -38,7 +38,6 @@ export class StoreXsolla
         # FIXME: add basic length check for token, otherwise reject
         resolve(data)
       .fail (xhr, error) ->
-        console.error xhr
         reject(xhr: xhr, error: error)
 
   @optionsWithToken: (token) ->
