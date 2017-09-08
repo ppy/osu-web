@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Store\Controller as Controller;
 use App\Models\Country;
 use App\Models\Store;
 use Auth;
@@ -248,14 +249,5 @@ class StoreController extends Controller
         }
 
         return js_view('store.order-create');
-    }
-
-    private function userCart()
-    {
-        if (Auth::check()) {
-            return Store\Order::cart(Auth::user());
-        } else {
-            return new Store\Order();
-        }
     }
 }
