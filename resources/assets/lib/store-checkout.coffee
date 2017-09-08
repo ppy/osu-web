@@ -20,6 +20,8 @@
 import { StoreXsolla } from 'store-xsolla'
 
 export class StoreCheckout
+  CHECKOUT_SELECTOR: '.js-store-checkout-button'
+
   @initialize: ->
     # Centili script relies on document write, so can't side-load :(
     # StoreCentili.fetchScript()
@@ -43,16 +45,15 @@ export class StoreCheckout
       options = StoreXsolla.optionsWithToken(token)
       XPayStationWidget.init(options)
 
-    $(button).on 'click.xsolla', ->
-      checkout = new Promise (resolve, reject) ->
-        # send cart to checkout state
-        # TODO: this checkout/incart state needs to be handled better.
+    checkout = DeferrablePromise()
+    $(StoreCheckout::CHECKOUT_SELECTOR).on 'click.checkout', ->
         $.post laroute.route('store.checkout.store'), {}
         .done (data) ->
-          resolve()
+          checkout.resolve()
         .fail (xhr) ->
-          reject(xhr: xhr)
+          checkout.reject(xhr: xhr)
 
+    $(button).on 'click.xsolla', ->
       Promise.all([init, trap, checkout]).then (values) ->
         window.requestAnimationFrame ->
           # FIXME: flickering when transitioning to widget

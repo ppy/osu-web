@@ -20,7 +20,7 @@
     <div class="store-payment-method">
         <a id="c-mobile-payment-widget"
            href="{{ $checkout->getCentiliPaymentLink() }}"
-           class="store-payment-method__cell store-payment-button store-payment-button--centili"
+           class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--centili"
         >
         </a>
 
