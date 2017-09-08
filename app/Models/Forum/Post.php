@@ -52,7 +52,7 @@ class Post extends Model
 
     public function topic()
     {
-        return $this->belongsTo("App\Models\Forum\Topic", 'topic_id', 'topic_id');
+        return $this->belongsTo(Topic::class, 'topic_id', 'topic_id');
     }
 
     public function user()

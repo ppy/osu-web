@@ -46,18 +46,20 @@ class PostsController extends Controller
 
         priv_check('ForumPostDelete', $post)->ensureCan();
 
+        $topic = $post->topic()->withTrashed()->first();
+
         if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
             $this->logModerate(
                 'LOG_DELETE_POST',
-                [$post->topic->topic_title],
+                [$topic->topic_title],
                 $post
             );
         }
 
-        $post->topic->removePost($post, Auth::user());
+        $topic->removePost($post, Auth::user());
 
-        if ($post->topic->trashed()) {
-            $redirect = route('forum.forums.show', $post->forum);
+        if ($topic->trashed()) {
+            $redirect = route('forum.forums.show', $topic->forum);
 
             return ujs_redirect($redirect);
         }
