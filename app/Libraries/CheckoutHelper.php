@@ -85,7 +85,7 @@ class CheckoutHelper
 
         $queryString = implode('&', $params);
 
-        return "https://widget.centili.com/widget/WidgetModule?{$queryString}";
+        return config('payments.centili.widget_url') . '?' . $queryString;
     }
 
     public function isShippingDelayed()
