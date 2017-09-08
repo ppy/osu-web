@@ -120,19 +120,6 @@ class StoreController extends Controller
             ->with('order', $this->userCart());
     }
 
-    public function getCheckout()
-    {
-        $order = $this->userCart();
-        if (!$order->items()->exists()) {
-            return ujs_redirect('/store/cart');
-        }
-
-        $checkout = new \App\Libraries\CheckoutHelper($order);
-        $addresses = Auth::user()->storeAddresses()->with('country')->get();
-
-        return view('store.checkout', compact('order', 'addresses', 'checkout'));
-    }
-
     public function missingMethod($parameters = [])
     {
         abort(404);
@@ -230,24 +217,5 @@ class StoreController extends Controller
         } else {
             return error_popup($result[1]);
         }
-    }
-
-    public function postCheckout()
-    {
-        $order = $this->userCart();
-
-        if ($order->items()->count() === 0) {
-            return error_popup('cart is empty');
-        }
-
-        $order->checkout();
-
-        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
-
-            return ujs_redirect(action('StoreController@getInvoice', [$order->order_id]).'?thanks=1');
-        }
-
-        return js_view('store.order-create');
     }
 }
