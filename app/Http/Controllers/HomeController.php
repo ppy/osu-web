@@ -42,6 +42,7 @@ class HomeController extends Controller
     {
         $this->middleware('auth', [
             'only' => [
+                'downloadQuotaCheck',
                 'search',
                 'quickSearch',
             ],

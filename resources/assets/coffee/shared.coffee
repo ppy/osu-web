@@ -107,9 +107,36 @@ $(document).on 'click', '.clickable-row', (e) ->
     row.getElementsByClassName('clickable-row-link')[0]?.click()
 
 
-# submit form on ctrl-enter.
+# submit form on ctrl-enter (or cmd-enter).
 $(document).on 'keydown', '.js-quick-submit', (e) ->
-  return unless e.ctrlKey && e.keyCode == 13
+  return unless (e.ctrlKey || e.metaKey) && e.keyCode == 13
 
   e.preventDefault()
-  $(e.target).closest('form').submit()
+  $form = $(e.target).closest('form')
+  form = $form[0]
+
+  if !form._submit?
+    submit = -> $form.submit()
+    form._submit = _.throttle submit, 500
+    $(document).one 'turbolinks:before-cache', ->
+      form._submit.cancel()
+
+  form._submit()
+
+
+$(document).on 'ajax:beforeSend', (e) ->
+  # currentTarget is document
+  form = e.target
+  form._ujsSubmitDisabled = []
+  for el in form.querySelectorAll('.js-ujs-submit-disable')
+    continue if el.disabled
+
+    el.disabled = true
+    form._ujsSubmitDisabled.push el
+
+
+$(document).on 'ajax:complete', (e) ->
+  for el in e.target._ujsSubmitDisabled
+    el.disabled = false
+
+  delete e.target._ujsSubmitDisabled

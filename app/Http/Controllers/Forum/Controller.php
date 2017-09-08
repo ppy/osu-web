@@ -36,7 +36,7 @@ abstract class Controller extends BaseController
             $forumId = $object->forum_id;
             $topicId = $object->getKey();
         } elseif ($object instanceof Post) {
-            $forumId = $object->topic->forum_id;
+            $forumId = $object->topic()->withTrashed()->value('forum_id');
             $topicId = $object->topic_id;
         }
 
