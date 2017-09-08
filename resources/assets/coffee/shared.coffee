@@ -107,9 +107,9 @@ $(document).on 'click', '.clickable-row', (e) ->
     row.getElementsByClassName('clickable-row-link')[0]?.click()
 
 
-# submit form on ctrl-enter.
+# submit form on ctrl-enter (or cmd-enter).
 $(document).on 'keydown', '.js-quick-submit', (e) ->
-  return unless e.ctrlKey && e.keyCode == 13
+  return unless (e.ctrlKey || e.metaKey) && e.keyCode == 13
 
   e.preventDefault()
   $(e.target).closest('form').submit()
