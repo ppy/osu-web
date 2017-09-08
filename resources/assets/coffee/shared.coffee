@@ -122,3 +122,21 @@ $(document).on 'keydown', '.js-quick-submit', (e) ->
       form._submit.cancel()
 
   form._submit()
+
+
+$(document).on 'ajax:beforeSend', (e) ->
+  # currentTarget is document
+  form = e.target
+  form._ujsSubmitDisabled = []
+  for el in form.querySelectorAll('.js-ujs-submit-disable')
+    continue if el.disabled
+
+    el.disabled = true
+    form._ujsSubmitDisabled.push el
+
+
+$(document).on 'ajax:complete', (e) ->
+  for el in e.target._ujsSubmitDisabled
+    el.disabled = false
+
+  delete e.target._ujsSubmitDisabled

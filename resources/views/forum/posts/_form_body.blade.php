@@ -18,7 +18,14 @@
 <textarea
     {{ $postBody['focus'] ? 'autofocus' : '' }}
     required
-    class="js-quick-submit js-editor-zoom--box forum-post-content forum-post-content--editor {{ $postBody['extraClasses'] or '' }}"
+    class="
+        js-ujs-submit-disable
+        js-quick-submit
+        js-editor-zoom--box
+        forum-post-content
+        forum-post-content--editor
+        {{ $postBody['extraClasses'] or '' }}
+    "
     name="body"
     placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
     {!! $postBody['extraAttrs'] or '' !!}
