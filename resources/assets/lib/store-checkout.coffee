@@ -52,6 +52,9 @@ export class StoreCheckout
       .catch (error) ->
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
-        # FIXME: error should should only if button has been clicked, not before.
-        osu.ajaxError error.xhr if error.xhr
+        # TODO: handle error.message
+        if error.xhr
+          osu.ajaxError(error.xhr)
+        else
+          osu.ajaxError()
 

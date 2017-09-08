@@ -35,10 +35,11 @@ export class StoreXsolla
     new Promise (resolve, reject) ->
       $.get laroute.route('payments.xsolla.token')
       .done (data) ->
-        # FIXME: add basic length check for token, otherwise reject
+        # Make sure laroute hasn't trolled us.
+        reject(message: 'wrong token length') unless data.length == 32
         resolve(data)
-      .fail (xhr, error) ->
-        reject(xhr: xhr, error: error)
+      .fail (xhr) ->
+        reject(xhr: xhr)
 
   @optionsWithToken: (token) ->
     options =
