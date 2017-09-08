@@ -37,5 +37,17 @@
         <button class="js-editor-zoom--hidden btn-osu btn-osu--small btn-osu-default js-edit-post-cancel post-editor__action" type="button">{{ trans("forum.topic.post_edit.cancel") }}</button>
     @endif
 
-    <button class="js-editor-zoom--hidden btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">{{ $submitText }}</button>
+    <button
+        class="
+            js-editor-zoom--hidden
+            btn-osu
+            btn-osu--small
+            btn-osu-default
+            post-editor__action
+        "
+        type="submit"
+        data-disable-with="{{ trans('common.buttons.saving') }}"
+    >
+        {{ $submitText }}
+    </button>
 </div>
