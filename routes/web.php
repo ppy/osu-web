@@ -191,14 +191,27 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('invoice/{invoice}', 'StoreController@getInvoice');
     Route::get('product/{product}', 'StoreController@getProduct')->name('store.product');
     Route::get('cart', 'StoreController@getCart');
-    Route::get('checkout', 'StoreController@getCheckout');
+
     Route::post('update-cart', 'StoreController@postUpdateCart');
     Route::post('update-address', 'StoreController@postUpdateAddress');
     Route::post('new-address', 'StoreController@postNewAddress');
     Route::post('add-to-cart', 'StoreController@postAddToCart');
-    Route::post('checkout', 'StoreController@postCheckout')->name('store.checkout');
+
     Route::post('products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
     Route::delete('products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
+
+    # Store splitting starts here
+    Route::resource(
+        'checkout',
+        'Store\CheckoutController',
+        [
+            'names' => [
+                'index' => 'store.checkout.index',
+                'create' => 'store.checkout.create',
+            ],
+        ],
+        ['only' => ['index', 'create']]
+    );
 });
 
 Route::group(['prefix' => 'payments'], function () {

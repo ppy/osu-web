@@ -21,8 +21,19 @@
 namespace App\Http\Controllers\Store;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Models\Store\Order;
+use Auth;
 
 abstract class Controller extends BaseController
 {
     protected $section = 'store';
+
+    protected function userCart()
+    {
+        if (Auth::check()) {
+            return Order::cart(Auth::user());
+        } else {
+            return new Order();
+        }
+    }
 }

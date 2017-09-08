@@ -17,7 +17,7 @@
 --}}
 
 <div class="store-payment-method">
-    <a href="{{ route('store.checkout') }}" id="checkout-with-paypal" data-method="post" data-remote="1"
+    <a href="{{ route('store.checkout.create') }}" id="checkout-with-paypal" data-method="post" data-remote="1"
        class="store-payment-method__cell store-payment-button store-payment-button--paypal">
         <form class="text-center noajax" id="paypal-form" action="{{ config('payments.paypal.url') }}" method="post" target="_top">
             <input type="hidden" name="cmd" value="_xclick">
@@ -29,7 +29,7 @@
             <input type="hidden" name="no_shipping" value="2">
             <input type="hidden" name="rm" value="1">
             <input type="hidden" name="return" value="{{ action("StoreController@getInvoice", [$order->order_id]) }}?thanks=1">
-            <input type="hidden" name="cancel_return" value="{{ action("StoreController@getCheckout") }}">
+            <input type="hidden" name="cancel_return" value="{{ route('store.checkout.index') }}">
             <input type="hidden" name="currency_code" value="USD">
             <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
             <input type="hidden" id="paypal_name" name="item_name" value="{{ $order->getOrderName() }}">
