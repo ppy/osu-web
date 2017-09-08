@@ -21,11 +21,8 @@
 namespace App\Http\Controllers\Store;
 
 use App\Libraries\CheckoutHelper;
-use App\Models\Country;
-use App\Models\Store;
 use Auth;
 use Request;
-use Validator;
 
 class CheckoutController extends Controller
 {
@@ -76,6 +73,11 @@ class CheckoutController extends Controller
             return ujs_redirect(action('StoreController@getInvoice', [$order->order_id]).'?thanks=1');
         }
 
-        return js_view('store.order-create');
+        $provider = Request::input('provider');
+        if ($provider === 'paypal') {
+            return js_view('store.order-create');
+        } else {
+            return response()->json(['ok']);
+        }
     }
 }

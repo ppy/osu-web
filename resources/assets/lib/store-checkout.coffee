@@ -44,7 +44,16 @@ export class StoreCheckout
       XPayStationWidget.init(options)
 
     $(button).on 'click.xsolla', ->
-      Promise.all([init, trap]).then (values) ->
+      checkout = new Promise (resolve, reject) ->
+        # send cart to checkout state
+        # TODO: this checkout/incart state needs to be handled better.
+        $.post laroute.route('store.checkout.store'), {}
+        .done (data) ->
+          resolve()
+        .fail (xhr) ->
+          reject(xhr: xhr)
+
+      Promise.all([init, trap, checkout]).then (values) ->
         window.requestAnimationFrame ->
           # FIXME: flickering when transitioning to widget
           XPayStationWidget.open()
