@@ -22,28 +22,14 @@ import { StoreXsolla } from 'store-xsolla'
 export class StoreCheckout
   CHECKOUT_SELECTOR: '.js-store-checkout-button'
 
-  @initialize: ->
+  @initialize: =>
     # Centili script relies on document write, so can't side-load :(
     # StoreCentili.fetchScript()
-    return unless document.querySelector('#js-xsolla-pay')
-    button = document.querySelector('#js-xsolla-pay')
+    button = document.querySelector('.js-store-checkout-button--xsolla')
 
-    trap = DeferrablePromise()
-    $(button).on 'click.trap', ->
-      # FIXME: don't display overlay if other promises get rejected.
-      # FIXME: this is a good use case for rxjs....
-      $(button).off 'click.trap'
-      LoadingOverlay.showImmediate()
-
-      trap.resolve()
-
+    trap = @xsollaTrap()
     # load scripts
-    init = Promise.all([
-      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
-    ]).then (values) ->
-      token = values[0]
-      options = StoreXsolla.optionsWithToken(token)
-      XPayStationWidget.init(options)
+    init = @xsollaInit()
 
     checkout = DeferrablePromise()
     $(StoreCheckout::CHECKOUT_SELECTOR).on 'click.checkout', ->
@@ -68,3 +54,22 @@ export class StoreCheckout
         else
           osu.ajaxError()
 
+  @xsollaTrap: ->
+    trap = DeferrablePromise()
+    $('.js-store-checkout-button--xsolla').on 'click.trap', ->
+      # FIXME: don't display overlay if other promises get rejected.
+      # FIXME: this is a good use case for rxjs....
+      $('.js-store-checkout-button--xsolla').off 'click.trap'
+      LoadingOverlay.showImmediate()
+
+      trap.resolve()
+
+    trap
+
+  @xsollaInit: ->
+    Promise.all([
+      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
+    ]).then (values) ->
+      token = values[0]
+      options = StoreXsolla.optionsWithToken(token)
+      XPayStationWidget.init(options)
