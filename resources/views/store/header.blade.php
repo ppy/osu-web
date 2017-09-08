@@ -18,7 +18,7 @@
 <div class="osu-layout__row osu-layout__row--page-compact header-row no-print">
     <div class="store-header">
         <div class="store-header__main">
-            <a href="{{ action("StoreController@getListing") }}" class="store-logo">
+            <a href="{{ route('store.products.index') }}" class="store-logo">
                 @include("store._logo")
             </a>
 
