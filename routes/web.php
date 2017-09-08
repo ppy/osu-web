@@ -186,9 +186,10 @@ Route::group(['prefix' => 'help'], function () {
 // FIXME: someone split this crap up into proper controllers
 Route::group(['prefix' => 'store'], function () {
     Route::get('/', 'StoreController@getIndex');
+
     Route::get('listing', 'StoreController@getListing')->name('store.products.index');
     Route::get('invoice', 'StoreController@getInvoice');
-    Route::get('invoice/{invoice}', 'StoreController@getInvoice');
+    Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('store.invoice.show');
     Route::get('product/{product}', 'StoreController@getProduct')->name('store.product');
     Route::get('cart', 'StoreController@getCart');
 
@@ -215,6 +216,7 @@ Route::group(['prefix' => 'store'], function () {
 });
 
 Route::group(['prefix' => 'payments'], function () {
+    Route::get('xsolla/completed', 'Payments\XsollaController@completed')->name('payments.xsolla.completed');
     Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
     Route::post('xsolla/callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
     Route::match(['post', 'get'], 'centili/callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');

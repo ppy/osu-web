@@ -35,9 +35,9 @@ class XsollaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['token']]);
-        $this->middleware('check-user-restricted', ['only' => ['token']]);
-        $this->middleware('verify-user', ['only' => ['token']]);
+        $this->middleware('auth', ['only' => ['token', 'completed']]);
+        $this->middleware('check-user-restricted', ['only' => ['token', 'completed']]);
+        $this->middleware('verify-user', ['only' => ['token', 'completed']]);
 
         return parent::__construct();
     }
@@ -100,6 +100,18 @@ class XsollaController extends Controller
         }
 
         return response()->json(['ok']);
+    }
+
+    public function completed()
+    {
+        $orderNumber = Request::input('foreignInvoice') ?? '';
+
+        $order = Order::findOrderNumber($orderNumber);
+        if (!$order) {
+            abort(404);
+        }
+
+        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
     private function exceptionResponse($exception, int $status, string $code)

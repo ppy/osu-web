@@ -84,6 +84,16 @@ class Order extends Model
         return $total;
     }
 
+    public static function findOrderNumber($orderNumber)
+    {
+        $exploded = explode('-', $orderNumber, 3);
+        if (count($exploded) !== 3) {
+            return;
+        }
+
+        return static::find($exploded[2]);
+    }
+
     public function requiresShipping()
     {
         foreach ($this->items as $i) {
