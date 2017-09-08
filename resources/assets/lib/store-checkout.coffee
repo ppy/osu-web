@@ -28,6 +28,8 @@ export class StoreCheckout
 
     trap = DeferrablePromise()
     $(button).on 'click.trap', ->
+      # FIXME: don't display overall if other promises get rejected.
+      # FIXME: this is a good use case for rxjs....
       LoadingOverlay.showImmediate()
       $(button).off 'click.trap'
       trap.resolve()
@@ -41,6 +43,9 @@ export class StoreCheckout
 
     .catch (error) ->
       console.error error
+      # TODO: less unknown error, disable button
+      # FIXME: error should should only if button has been clicked, not before.
+      osu.ajaxError error.xhr if error.xhr
 
     $(button).on 'click.xsolla', ->
       Promise.all([init, trap]).then (values) ->
