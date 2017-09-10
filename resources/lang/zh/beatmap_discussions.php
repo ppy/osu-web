@@ -32,6 +32,13 @@ return [
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，在发表您的讨论前请检查一下。',
     ],
 
+    'reply' => [
+        'open' => [
+            'guest' => '登录以回复',
+            'user' => '回复',
+        ],
+    ],
+    
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为已解决',
