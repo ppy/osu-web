@@ -40,6 +40,7 @@ return [
         'edited' => '最后由 :editor 于 :update_time 编辑',
         'message_placeholder' => '在这里输入您的内容',
         'message_type_select' => '选择回复类型',
+        'reply_notice' => '按下回车以提交',
         'reply_placeholder' => '在这里输入您的回复',
         'require-login' => '请先登录再发表',
         'resolved' => '已解决',
@@ -68,8 +69,9 @@ return [
         ],
 
         'mode' => [
-            'general' => 'General', //不好翻译
-            'general_all' => 'General (all difficulties)', //不好翻译
+            'events' => '历史',
+            'general' => '常规',
+            'general_all' => '常规（全难度）',
             'timeline' => '时间线',
         ],
 
@@ -89,6 +91,7 @@ return [
             'pending' => 'Pending',
             'praises' => '赞',
             'resolved' => '已解决',
+            'total' => '所有',
         ],
     ],
 
