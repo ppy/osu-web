@@ -38,7 +38,7 @@ return [
             'user' => '回复',
         ],
     ],
-    
+
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为已解决',
