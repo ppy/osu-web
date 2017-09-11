@@ -16,13 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master", ['additionalScripts' => [
-        'https://www.centili.com/widget/js/c-mobile-payment-scripts.js',
     ]
 ])
 
 @section("content")
     @include("store.header")
-
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
             <h1>Checkout</h1>
