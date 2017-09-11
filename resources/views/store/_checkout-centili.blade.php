@@ -19,8 +19,10 @@
 @if ($checkout->allowCentiliPayment())
     <div class="store-payment-method">
         {{-- Centili widget needs href; centili init is also slow --}}
-        <div id="c-mobile-payment-widget"
-             href="{{ $checkout->getCentiliPaymentLink() }}"
+        <input id="c-mobile-payment-widget"
+               href="{{ $checkout->getCentiliPaymentLink() }}"
+               type="hidden">
+        <div
              class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--centili"
              data-provider="centili"
         >

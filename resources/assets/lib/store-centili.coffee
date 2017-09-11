@@ -17,10 +17,36 @@
 ###
 
 export class StoreCentili
-  @fetchScript: ->
-    script = document.createElement('script')
-    script.type = "text/javascript"
-    script.async = true
-    script.src = "https://www.centili.com/widget/js/c-mobile-payment-scripts.js"
+  @promiseInit: ->
+    # Load Centili scripts and css async.
+    Promise.all([
+      StoreCentili.fetchScript('w_o-0.4.js'),
+      StoreCentili.fetchScript('postmessage2.js'),
+      StoreCentili.fetchStyle('fancybox/jquery.fancybox-1.3.4.css'),
+    ])
 
-    document.head.appendChild(script)
+  @fetchScript: (name) ->
+    new Promise (resolve, reject) ->
+      script = document.createElement('script')
+      script.type = "text/javascript"
+      script.async = true
+      script.src = "https://www.centili.com/widget/js/#{name}"
+      script.addEventListener 'load', ->
+        Timeout.set 3000, ->
+          resolve()
+      , false
+
+      document.head.appendChild(script)
+
+  @fetchStyle: (name) ->
+    new Promise (resolve, reject) ->
+      link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.type = 'text/css'
+      link.href = "https://www.centili.com/widget/#{name}"
+      link.media = 'screen'
+      link.addEventListener 'load', ->
+        resolve()
+      , false
+
+      document.head.appendChild(link)

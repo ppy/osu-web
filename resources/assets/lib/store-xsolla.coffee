@@ -17,6 +17,14 @@
 ###
 
 export class StoreXsolla
+  @promiseInit: ->
+    Promise.all([
+      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
+    ]).then (values) ->
+      token = values[0]
+      options = StoreXsolla.optionsWithToken(token)
+      XPayStationWidget.init(options)
+
   @fetchScript: ->
     new Promise (resolve, reject) ->
       script = document.createElement('script')

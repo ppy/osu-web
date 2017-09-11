@@ -16,36 +16,44 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# import { StoreCentili } from 'store-centili'
+import { StoreCentili } from 'store-centili'
 import { StoreXsolla } from 'store-xsolla'
 
 export class StoreCheckout
   CHECKOUT_SELECTOR: '.js-store-checkout-button'
 
   @initialize: =>
-    # Centili script relies on document write, so can't side-load :(
-    # StoreCentili.fetchScript()
-    button = document.querySelector('.js-store-checkout-button--xsolla')
-
-    trap = @xsollaTrap()
+    traps = @allTraps()
     # load scripts
-    init = @xsollaInit()
-
+    init = StoreXsolla.promiseInit()
+    centili = StoreCentili.promiseInit()
     checkout = DeferrablePromise()
-    $(StoreCheckout::CHECKOUT_SELECTOR).on 'click.checkout', ->
-        $.post laroute.route('store.checkout.store'), {}
-        .done (data) ->
-          checkout.resolve()
-        .fail (xhr) ->
-          checkout.reject(xhr: xhr)
 
-    $(button).on 'click.xsolla', ->
-      Promise.all([init, trap, checkout]).then (values) ->
-        window.requestAnimationFrame ->
-          # FIXME: flickering when transitioning to widget
-          XPayStationWidget.open()
+    $(StoreCheckout::CHECKOUT_SELECTOR).on 'click.checkout', ->
+      $.post laroute.route('store.checkout.store'), {}
+      .done (data) ->
+        checkout.resolve()
+      .fail (xhr) ->
+        checkout.reject(xhr: xhr)
+
+    $(document.querySelectorAll('.js-store-checkout-button')).on 'click.xsolla', (event) ->
+      dataset = event.target.dataset
+
+      if dataset.provider == 'xsolla'
+        promise = Promise.all([init, traps['xsolla'], checkout]).then (values) ->
+          window.requestAnimationFrame ->
+            # FIXME: flickering when transitioning to widget
+            XPayStationWidget.open()
+            LoadingOverlay.hide()
+      else if dataset.provider == 'centili'
+        promise = Promise.all([centili, traps['centili'], checkout]).then (values) ->
           LoadingOverlay.hide()
-      .catch (error) ->
+          # fake a click for Centili
+          $('#c-mobile-payment-widget').click()
+      else
+        promise = Promise.resolve()
+
+      promise.catch (error) ->
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
         # TODO: handle error.message
@@ -54,22 +62,14 @@ export class StoreCheckout
         else
           osu.ajaxError()
 
-  @xsollaTrap: ->
-    trap = DeferrablePromise()
-    $('.js-store-checkout-button--xsolla').on 'click.trap', ->
-      # FIXME: don't display overlay if other promises get rejected.
-      # FIXME: this is a good use case for rxjs....
-      $('.js-store-checkout-button--xsolla').off 'click.trap'
+  @allTraps: ->
+    traps = {}
+    buttons = document.querySelectorAll('.js-store-checkout-button')
+    for button in buttons
+      traps[button.dataset.provider] = DeferrablePromise()
+
+    $(buttons).on 'click.trap', (event) ->
       LoadingOverlay.showImmediate()
+      traps[event.target.dataset.provider].resolve()
 
-      trap.resolve()
-
-    trap
-
-  @xsollaInit: ->
-    Promise.all([
-      StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
-    ]).then (values) ->
-      token = values[0]
-      options = StoreXsolla.optionsWithToken(token)
-      XPayStationWidget.init(options)
+    traps
