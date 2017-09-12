@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\GitHubNotFoundException;
 use App\Exceptions\GitHubTooLargeException;
+use App\Libraries\WikiRedirect;
 use App\Models\Wiki;
 use Request;
 
@@ -46,7 +47,7 @@ class WikiController extends Controller
         $page = new Wiki\Page($path, $this->locale());
 
         if ($page->page() === null) {
-            $redirectTarget = (new Wiki\Redirect($path))->target();
+            $redirectTarget = (new WikiRedirect())->resolve($path);
             if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url($redirectTarget));
             } else {

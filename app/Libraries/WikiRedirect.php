@@ -18,24 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Wiki;
+namespace App\Libraries;
 
-use App\Libraries\OsuWiki;
 use Cache;
 use Symfony\Component\Yaml\Yaml;
 
-class Redirect
+class WikiRedirect
 {
-    public $path;
-
     private $cache = [];
 
-    public function __construct($path)
+    public function normalizePath($path)
     {
-        $this->path = str_replace(' ', '_', strtolower($path));
+        return str_replace(' ', '_', strtolower($path));
     }
 
-    public function target()
+    public function resolve($path)
     {
         if (!array_key_exists('redirect', $this->cache)) {
             $this->cache['redirect'] = Cache::remember(
@@ -51,6 +48,6 @@ class Redirect
             );
         }
 
-        return $this->cache['redirect'][$this->path] ?? null;
+        return $this->cache['redirect'][$this->normalizePath($path)] ?? null;
     }
 }
