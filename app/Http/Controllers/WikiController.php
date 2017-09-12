@@ -47,7 +47,7 @@ class WikiController extends Controller
 
         if ($page->page() === null) {
             $redirectTarget = (new Wiki\Redirect($path))->target();
-            if ($redirectTarget !== null) {
+            if ($redirectTarget !== null && $redirectTarget !== $path) {
                 return ujs_redirect(wiki_url($redirectTarget));
             } else {
                 $status = 404;
