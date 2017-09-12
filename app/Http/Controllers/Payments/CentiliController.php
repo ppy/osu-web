@@ -27,6 +27,7 @@ use App\Http\Controllers\Controller;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Models\Store\Order;
 use Auth;
+use DB;
 use Request;
 
 class CentiliController extends Controller
@@ -55,20 +56,24 @@ class CentiliController extends Controller
     {
         $orderNumber = Request::input('clientid') ?? '';
 
-        $order = Order::findOrderNumber($orderNumber);
-        if (!$order) {
-            abort(404);
-        }
+        DB::connection('mysql-store')->transaction(function () use (&$order, $orderNumber) {
+            $order = Order::findOrderNumber($orderNumber);
+            if (!$order) {
+                abort(404);
+            }
 
-        // cart should only be in:
-        // incart -> if user hits this endpoint first.
-        // processing -> if payment provider hits the callback first.
-        // any other state should be considered invalid.
-        if ($order->state === 'incart') {
-            $order->state === 'checkout';
-        } elseif ($order->state !== 'processing') {
-            abort(500);
-        }
+            // cart should only be in:
+            // incart -> if user hits this endpoint first.
+            // paid -> if payment provider hits the callback first.
+            // any other state should be considered invalid.
+            if ($order->status === 'incart') {
+                $order->status === 'checkout';
+                $order->save();
+            } elseif ($order->status !== 'paid') {
+                dd($order->status);
+                abort(500);
+            }
+        });
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
