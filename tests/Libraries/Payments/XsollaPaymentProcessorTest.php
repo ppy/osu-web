@@ -144,6 +144,16 @@ class XsollaPaymentProcessorTest extends TestCase
         $this->runSubject($subject);
     }
 
+    public function testWhenOrderIncartState()
+    {
+        $this->order = factory(Order::class)->states('incart')->create();
+        $params = $this->getTestParams();
+        $subject = new XsollaPaymentProcessor($params, $this->validSignature());
+        $subject->run();
+
+        $this->assertTrue($subject->validationErrors()->isEmpty());
+    }
+
     private function getTestParams(array $overrides = [])
     {
         $order = $this->order;
