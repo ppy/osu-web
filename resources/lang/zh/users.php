@@ -105,7 +105,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => '准确率：:percentage',
-                    'title' => '最近游玩',
+                    'title' => '最近24小时游玩',
                 ],
                 'title' => '历史记录',
             ],
