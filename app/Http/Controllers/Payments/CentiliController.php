@@ -60,6 +60,16 @@ class CentiliController extends Controller
             abort(404);
         }
 
+        // cart should only be in:
+        // incart -> if user hits this endpoint first.
+        // processing -> if payment provider hits the callback first.
+        // any other state should be considered invalid.
+        if ($order->state === 'incart') {
+            $order->state === 'checkout';
+        } elseif ($order->state !== 'processing') {
+            abort(500);
+        }
+
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 

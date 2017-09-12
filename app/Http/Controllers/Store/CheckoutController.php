@@ -65,8 +65,6 @@ class CheckoutController extends Controller
             return error_popup('cart is empty');
         }
 
-        $order->checkout();
-
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
             file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
 

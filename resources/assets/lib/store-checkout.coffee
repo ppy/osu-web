@@ -30,18 +30,9 @@ export class StoreCheckout
       centili: StoreCentili.promiseInit()
     }
 
-    checkout = DeferrablePromise()
-
-    $(StoreCheckout::CHECKOUT_SELECTOR).on 'click.checkout', ->
-      $.post laroute.route('store.checkout.store'), {}
-      .done (data) ->
-        checkout.resolve()
-      .fail (xhr) ->
-        checkout.reject(xhr: xhr)
-
     $(document.querySelectorAll('.js-store-checkout-button')).on 'click.xsolla', (event) ->
       promiseAll = (provider) ->
-                     Promise.all([init[provider], traps[provider], checkout])
+                     Promise.all([init[provider], traps[provider]])
 
       provider = event.target.dataset.provider
       promise = switch provider

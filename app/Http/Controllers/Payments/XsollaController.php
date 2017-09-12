@@ -111,6 +111,19 @@ class XsollaController extends Controller
             abort(404);
         }
 
+        DB::connection('mysql-store')->transaction(function () {
+            // cart should only be in:
+            // incart -> if user hits this endpoint first.
+            // paid -> if payment provider hits the callback first.
+            // any other state should be considered invalid.
+            if ($order->state === 'incart') {
+                $order->state === 'checkout';
+                $order->save();
+            } elseif ($order->state !== 'paid') {
+                abort(500);
+            }
+        });
+
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
