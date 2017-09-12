@@ -25,8 +25,11 @@ export class StoreCheckout
   @initialize: =>
     traps = @allTraps()
     # load scripts
-    init = StoreXsolla.promiseInit()
-    centili = StoreCentili.promiseInit()
+    init = {
+      xsolla: StoreXsolla.promiseInit()
+      centili: StoreCentili.promiseInit()
+    }
+
     checkout = DeferrablePromise()
 
     $(StoreCheckout::CHECKOUT_SELECTOR).on 'click.checkout', ->
@@ -37,21 +40,23 @@ export class StoreCheckout
         checkout.reject(xhr: xhr)
 
     $(document.querySelectorAll('.js-store-checkout-button')).on 'click.xsolla', (event) ->
-      dataset = event.target.dataset
+      promiseAll = (provider) ->
+                     Promise.all([init[provider], traps[provider], checkout])
 
-      if dataset.provider == 'xsolla'
-        promise = Promise.all([init, traps['xsolla'], checkout]).then (values) ->
-          window.requestAnimationFrame ->
-            # FIXME: flickering when transitioning to widget
-            XPayStationWidget.open()
-            LoadingOverlay.hide()
-      else if dataset.provider == 'centili'
-        promise = Promise.all([centili, traps['centili'], checkout]).then (values) ->
-          LoadingOverlay.hide()
-          # fake a click for Centili
-          $('#c-mobile-payment-widget').click()
-      else
-        promise = Promise.resolve()
+      provider = event.target.dataset.provider
+      promise = switch provider
+                when 'xsolla'
+                  promiseAll(provider).then (values) ->
+                    # FIXME: flickering when transitioning to widget
+                    XPayStationWidget.open()
+                    LoadingOverlay.hide()
+                when 'centili'
+                  promiseAll(provider).then (values) ->
+                    LoadingOverlay.hide()
+                    # fake a click for Centili
+                    $('#c-mobile-payment-widget').click()
+                else
+                  Promise.resolve()
 
       promise.catch (error) ->
         LoadingOverlay.hide()
@@ -64,9 +69,11 @@ export class StoreCheckout
 
   @allTraps: ->
     traps = {}
+
     buttons = document.querySelectorAll('.js-store-checkout-button')
     for button in buttons
-      traps[button.dataset.provider] = DeferrablePromise()
+      provider = button.dataset.provider
+      traps[provider] = DeferrablePromise() if provider?
 
     $(buttons).on 'click.trap', (event) ->
       LoadingOverlay.showImmediate()
