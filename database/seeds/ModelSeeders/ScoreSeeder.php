@@ -68,7 +68,6 @@ class ScoreSeeder extends Seeder
                 $sc2 = App\Models\Score\Best\Osu::create([
                     'user_id' => $u->user_id,
                     'beatmap_id' => $bm->beatmap_id,
-                    'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
                     'count300' => round($maxcombo * 0.8),
@@ -111,7 +110,6 @@ class ScoreSeeder extends Seeder
                 $sc4 = App\Models\Score\Best\Taiko::create([
                     'user_id' => $u->user_id,
                     'beatmap_id' => $bm->beatmap_id,
-                    'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
                     'rank' => array_rand_val($possible_ranks),
@@ -154,7 +152,6 @@ class ScoreSeeder extends Seeder
                 $sc6 = App\Models\Score\Best\Fruits::create([
                     'user_id' => $u->user_id,
                     'beatmap_id' => $bm->beatmap_id,
-                    'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
                     'rank' => array_rand_val($possible_ranks),
@@ -197,7 +194,6 @@ class ScoreSeeder extends Seeder
                 $sc8 = App\Models\Score\Best\Mania::create([
                     'user_id' => $u->user_id,
                     'beatmap_id' => $bm->beatmap_id,
-                    'beatmapset_id' => $bm->beatmapset_id,
                     'score' => rand(50000, 100000000),
                     'maxcombo' => $maxcombo,
                     'rank' => array_rand_val($possible_ranks),
