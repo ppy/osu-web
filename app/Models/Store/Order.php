@@ -151,10 +151,10 @@ class Order extends Model
      * and a message.
      *
      * @param array $itemForm form parameters.
-     * @param bool $addNew whether the quantity should be added or replaced.
+     * @param bool $addToExisting whether the quantity should be added or replaced.
      * @return array [success, message]
      **/
-    public function updateItem(array $itemForm, $addNew = false)
+    public function updateItem(array $itemForm, $addToExisting = false)
     {
         $params = [
             'id' => array_get($itemForm, 'id'),
@@ -177,7 +177,7 @@ class Order extends Model
             if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
-                $item = $this->updateOrderItem($params, $addNew);
+                $item = $this->updateOrderItem($params, $addToExisting);
             }
 
             $result = $this->validateBeforeSave($params['product'], $item);
@@ -313,7 +313,7 @@ class Order extends Model
         return $item;
     }
 
-    private function updateOrderItem(array $params, $addNew = false)
+    private function updateOrderItem(array $params, $addToExisting = false)
     {
         $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
@@ -321,7 +321,7 @@ class Order extends Model
             return $this->newOrderItem($params);
         }
 
-        if ($addNew) {
+        if ($addToExisting) {
             $item->quantity += $params['quantity'];
         } else {
             $item->quantity = $params['quantity'];
