@@ -19,6 +19,7 @@
  */
 
 return [
+    'not_negative' => ':attribute cannot be negative.',
     'required' => ':attribute is required.',
     'wrong_confirmation' => 'Confirmation does not match.',
 
