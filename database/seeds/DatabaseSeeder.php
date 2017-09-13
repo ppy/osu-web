@@ -36,8 +36,11 @@ class DatabaseSeeder extends Seeder
             // Users Profile Data (Favourite maps, First place ranks, Playcounts)
             $this->call(UserProfileSeeder::class);
 
-            //Store Products
+            // Store Products
             $this->call(ProductSeeder::class);
+
+            // Build propagation history (user count data for each build in 30min intervals)
+            $this->call(BuildPropagationHistorySeeder::class);
         } catch (ErrorException $er) {
             $this->command->error($er->getMessage());
         } catch (Exception $ex) {
