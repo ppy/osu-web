@@ -280,6 +280,10 @@ class Order extends Model
 
     private function newOrderItem(array $params)
     {
+        if ($params['cost'] < 0) {
+            throw new \Exception('cute.');
+        }
+
         $product = $params['product'];
 
         // FIXME: custom class stuff should probably not go in Order...
