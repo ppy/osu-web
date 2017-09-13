@@ -281,7 +281,7 @@ class Order extends Model
     private function newOrderItem(array $params)
     {
         if ($params['cost'] < 0) {
-            throw new \Exception('cute.');
+            $params['cost'] = 0;
         }
 
         $product = $params['product'];
@@ -299,16 +299,16 @@ class Order extends Model
                 // ignore received cost
                 $params['cost'] = $this->user->usernameChangeCost();
                 break;
+            default:
+                $params['cost'] = $product->cost ?? 0;
         }
 
         $item = new OrderItem();
         $item->quantity = $params['quantity'];
         $item->extra_info = $params['extraInfo'];
         $item->extra_data = $params['extraData'];
+        $item->cost = $params['cost'];
         $item->product()->associate($product);
-        if ($product->cost === null) {
-            $item->cost = $params['cost'];
-        }
 
         return $item;
     }
@@ -326,6 +326,8 @@ class Order extends Model
         } else {
             $item->quantity = $params['quantity'];
         }
+
+        $item->cost = $item->quantity * $product->cost;
 
         return $item;
     }
