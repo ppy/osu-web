@@ -152,6 +152,11 @@ class UsersController extends Controller
         return $this->recentKudosu($this->user, $this->perPage, $this->offset);
     }
 
+    public function me()
+    {
+        return self::show(Auth::user()->user_id);
+    }
+
     public function show($id, $mode = null)
     {
         $user = User::lookup($id, null, true);
@@ -160,7 +165,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        if ((string) $user->user_id !== $id) {
+        if ((string) $user->user_id !== (string) $id) {
             return ujs_redirect(route('users.show', ['user' => $user, 'mode' => $mode]));
         }
 
@@ -169,41 +174,6 @@ class UsersController extends Controller
         if (!array_key_exists($currentMode, Beatmap::MODES)) {
             abort(404);
         }
-
-        $achievements = json_collection(
-            Achievement::achievable()
-                ->orderBy('grouping')
-                ->orderBy('ordering')
-                ->orderBy('progression')
-                ->get(),
-            'Achievement'
-        );
-
-        $beatmapsets = [
-            'most_played' => $this->mostPlayedBeatmapsets($user),
-            'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
-            'favourite' => $this->favouriteBeatmapsets($user),
-        ];
-
-        $kudosu = $this->recentKudosu($user);
-
-        $rankHistoryData = $user->rankHistories()
-            ->where('mode', Beatmap::modeInt($currentMode))
-            ->first();
-
-        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : [];
-
-        $scores = [
-            'best' => $this->scoresBest($user, $currentMode),
-            'firsts' => $this->scoresFirsts($user, $currentMode),
-            'recent' => $this->scoresRecent($user, $currentMode),
-        ];
-
-        $statistics = json_item(
-            $user->statistics($currentMode),
-            'UserStatistics',
-            ['rank', 'scoreRanks']
-        );
 
         $userArray = json_item(
             $user,
@@ -218,21 +188,63 @@ class UsersController extends Controller
             ]
         );
 
-        $jsonChunks = [
-            'achievements' => $achievements,
-            'beatmapsets' => $beatmapsets,
-            'currentMode' => $currentMode,
-            'kudosu' => $kudosu,
-            'rankHistory' => $rankHistory,
-            'scores' => $scores,
-            'statistics' => $statistics,
-            'user' => $userArray,
-        ];
+        $statistics = json_item(
+            $user->statistics($currentMode),
+            'UserStatistics',
+            ['rank', 'scoreRanks']
+        );
 
-        return view('users.show', compact(
-            'user',
-            'jsonChunks'
-        ));
+        $rankHistoryData = $user->rankHistories()
+            ->where('mode', Beatmap::modeInt($currentMode))
+            ->first();
+
+        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : [];
+
+        if (Request::is('api/*')) {
+            $userArray['statistics'] = $statistics;
+            $userArray['rankHistory'] = $rankHistory;
+
+            return $userArray;
+        } else {
+            $achievements = json_collection(
+                Achievement::achievable()
+                    ->orderBy('grouping')
+                    ->orderBy('ordering')
+                    ->orderBy('progression')
+                    ->get(),
+                'Achievement'
+            );
+
+            $beatmapsets = [
+                'most_played' => $this->mostPlayedBeatmapsets($user),
+                'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
+                'favourite' => $this->favouriteBeatmapsets($user),
+            ];
+
+            $kudosu = $this->recentKudosu($user);
+
+            $scores = [
+                'best' => $this->scoresBest($user, $currentMode),
+                'firsts' => $this->scoresFirsts($user, $currentMode),
+                'recent' => $this->scoresRecent($user, $currentMode),
+            ];
+
+            $jsonChunks = [
+                'achievements' => $achievements,
+                'beatmapsets' => $beatmapsets,
+                'currentMode' => $currentMode,
+                'kudosu' => $kudosu,
+                'rankHistory' => $rankHistory,
+                'scores' => $scores,
+                'statistics' => $statistics,
+                'user' => $userArray,
+            ];
+
+            return view('users.show', compact(
+                'user',
+                'jsonChunks'
+            ));
+        }
     }
 
     private function parsePaginationParams($perPage)
