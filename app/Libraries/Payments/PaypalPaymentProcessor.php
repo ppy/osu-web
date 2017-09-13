@@ -25,8 +25,7 @@ use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
 
-// FIXME: rename?
-class CentiliPaymentProcessor extends PaymentProcessor
+class PaypalPaymentProcessor extends PaymentProcessor
 {
     private $explodedOrderNumber;
     private $orderId;
@@ -43,7 +42,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public static function createFromRequest(\Illuminate\Http\Request $request)
     {
-        $signature = new CentiliSignature($request);
+        $signature = new PaypalSignature($request);
 
         return new static(static::extractParams($request), $signature);
     }
@@ -60,33 +59,32 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber()
     {
-        return $this['clientid']; // or reference?
+        return $this['item_number'];
     }
 
     public function getTransactionId()
     {
-        return "centili-{$this['transactionid']}";
+        return "paypal-{$this['txn_id']}";
     }
 
     public function getPaymentAmount()
     {
-        return $this['enduserprice'] / config('payments.centili.conversion_rate');
+        return $this['payment_gross'];
     }
 
     public function getPaymentDate()
     {
-        return Carbon::now();
+        return Carbon::parse($this['payment_date']);
     }
 
     public function getNotificationType()
     {
-        return 'payment';
+        # FIXME: ?
+        return $this['txn_type'] === 'web_accept' ? 'payment' : $this['txn_type'];
     }
 
     public function ensureValidSignature()
     {
-        // $signature = new CentiliSignature($this->request);
-        // TODO: post many warnings
         if (!$this->signature->isValid()) {
             $this->validationErrors()->add('sign', '.signature.not_match');
             $this->throwValidationFailed(new InvalidSignatureException());
@@ -106,13 +104,13 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
         // id in order number should be correct
         if (count($this->explodedOrderNumber) !== 3) {
-            $this->validationErrors()->add('clientid', '.order_number.malformed');
+            $this->validationErrors()->add('item_number', '.order_number.malformed');
         } elseif ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
-            $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
+            $this->validationErrors()->add('item_number', '.order_number.user_id_mismatch');
         }
 
-        if ($this['service'] !== config('payments.centili.api_key')) {
-            $this->validationErrors()->add('service', '.param.invalid', ['param' => 'service']);
+        if ($this['receiver_id'] !== config('payments.paypal.merchant_id')) {
+            $this->validationErrors()->add('receiver_id', '.param.invalid', ['param' => 'receiver_id']);
         }
 
         // order should be in the correct state
