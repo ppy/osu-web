@@ -300,8 +300,6 @@ class Order extends Model
                 $params['cost'] = $this->user->usernameChangeCost();
                 break;
         }
-        if ($product->custom_class === 'supporter-tag') {
-        }
 
         $item = new OrderItem();
         $item->quantity = $params['quantity'];
