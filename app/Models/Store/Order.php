@@ -327,8 +327,6 @@ class Order extends Model
             $item->quantity = $params['quantity'];
         }
 
-        $item->cost = $product->cost;
-
         return $item;
     }
 
