@@ -28,7 +28,7 @@
             <input type="hidden" name="cn" value="Add special instructions to the seller:">
             <input type="hidden" name="no_shipping" value="2">
             <input type="hidden" name="rm" value="1">
-            <input type="hidden" name="return" value="{{ action("StoreController@getInvoice", [$order->order_id]) }}?thanks=1">
+            <input type="hidden" name="return" value="{{ route('payments.paypal.completed', ['item_number' => $order->getOrderNumber()]) }}">
             <input type="hidden" name="cancel_return" value="{{ route('store.checkout.index') }}">
             <input type="hidden" name="currency_code" value="USD">
             <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">

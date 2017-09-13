@@ -216,6 +216,7 @@ Route::group(['prefix' => 'store'], function () {
 });
 
 Route::group(['prefix' => 'payments'], function () {
+    Route::get('paypal/completed', 'Payments\PaypalController@completed')->name('payments.paypal.completed');
     Route::post('paypal/ipn', 'Payments\PaypalController@ipn')->name('payments.paypal.ipn');
     Route::get('xsolla/completed', 'Payments\XsollaController@completed')->name('payments.xsolla.completed');
     Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
