@@ -55,8 +55,6 @@ class ChangelogController extends Controller
             }
         }
 
-        $buildsTable = with(new Build)->getTable();
-        $propagationTable = with(new BuildPropagationHistory)->getTable();
         $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
 
         $chartOrder = collect([$featuredStream])->merge($streams)->map(function ($el) {
@@ -102,8 +100,6 @@ class ChangelogController extends Controller
             }
         }
 
-        $buildsTable = with(new Build)->getTable();
-        $propagationTable = with(new BuildPropagationHistory)->getTable();
         $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
 
         $chartOrder = $buildHistory
