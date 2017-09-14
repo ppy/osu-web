@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use DateTimeInterface;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
@@ -69,5 +70,10 @@ class BuildPropagationHistory extends Model
         }
 
         $query->orderBy('created_at', 'asc');
+    }
+
+    protected function serializeDate(DateTimeInterface $date) 
+    {
+        return $date->toIso8601String();
     }
 }
