@@ -23,7 +23,7 @@
             <ol class="page-mode page-mode--breadcrumb">
                 <li class="page-mode__item">
                     <a class="page-mode-link" href="{{ route('changelog.index') }}">
-                        {{ trans("layout.menu.home.changelog") }}
+                        {{ trans("layout.menu.home.changelog-index") }}
 
                         <span class="page-mode-link__stripe">
                         </span>

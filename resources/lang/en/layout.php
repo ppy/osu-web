@@ -29,7 +29,6 @@ return [
             'account-edit' => 'settings',
             'friends' => 'friends',
             'friends-index' => 'friends',
-            'changelog' => 'changelog',
             'changelog-index' => 'changelog',
             'changelog-show' => 'build',
             'getDownload' => 'download',
