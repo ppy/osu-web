@@ -33,9 +33,15 @@ class @ChangelogChartLoader
 
     data = osu.parseJson 'json-chart-data'
 
+    for el in data
+      m = moment el.created_at
+
+      el.date_formatted = m.format 'YYYY/MM/DD'
+      el.date = m.toDate()
+
     options =
       scales:
-        x: d3.scaleLinear()
+        x: d3.scaleTime()
         y: d3.scaleLinear()
       order: order
       isBuild: config.isBuild

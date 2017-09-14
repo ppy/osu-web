@@ -28,7 +28,7 @@ class @ChangelogChart
 
     @areaFunction = d3.area()
       .curve d3.curveMonotoneX
-      .x (d, i) => @options.scales.x i
+      .x (d, i) => @options.scales.x d.data.date
       .y1 (d) => @options.scales.y d[1]
       .y0 (d, i) => @options.scales.y d[0]
 
@@ -96,7 +96,7 @@ class @ChangelogChart
   setScalesRange: ->
     @options.scales.x
       .range [0, @width]
-      .domain [0, @data[0].length - 1]
+      .domain [_.first(@data[0]).data.date, _.last(@data[0]).data.date]
 
     @options.scales.y
       .range [0, @height]
@@ -119,11 +119,15 @@ class @ChangelogChart
 
   positionTooltip: =>
     mousePos = d3.mouse @hoverArea.node()
-    x = Math.round @options.scales.x.invert mousePos[0]
+    x = @options.scales.x.invert mousePos[0]
     y = mousePos[1] / @height
 
+    pos = d3.bisector((d) -> d.data.date).left @data[0], x
+
+    return unless pos
+
     for el, i in @data
-      if y <= el[x][1]
+      if y <= el[pos][1]
         dataRow = i
         currentLabel = el.key
         labelModifier = @classScale currentLabel
@@ -134,23 +138,15 @@ class @ChangelogChart
     Timeout.clear @_autoHideTooltip
     @_autoHideTooltip = Timeout.set 3000, @hideTooltip
 
-    coord = @options.scales.x(x)
+    coord = @options.scales.x x
 
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
-    @tooltipUserCount.text @data[dataRow][x].data[currentLabel].user_count
-    @tooltipDate.html @getDate @data[dataRow][x].data.created_at
+    @tooltipUserCount.text @data[dataRow][pos].data[currentLabel].user_count
+    @tooltipDate.html @data[dataRow][pos].data.date_formatted
     @tooltipContainer
       .style 'transform', "translate(#{coord}px) translateX(-50%)"
-
-  getDate: (date) ->
-    @dateStorage ?= {}
-
-    if !@dateStorage[date]?
-      @dateStorage[date] = moment(date).format 'YYYY/MM/DD'
-
-    @dateStorage[date]
 
   resize: =>
     @setDimensions()
@@ -166,7 +162,10 @@ class @ChangelogChart
     parsedData = for own timestamp, values of data
       sum = _.sumBy values, 'user_count'
 
-      obj = created_at: timestamp
+      obj =
+        created_at: timestamp
+        date: values[0].date
+        date_formatted: values[0].date_formatted
 
       for val in values
         val.normalized = val.user_count / sum
