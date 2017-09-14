@@ -46,20 +46,20 @@ class BuildPropagationHistory extends Model
         $streamsTable = config('database.connections.mysql-updates.database').'.'.(new UpdateStream)->getTable();
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
-            ->select(DB::raw('created_at'))
-            ->where('created_at', '>', Carbon::now()->subDays($days));
+            ->select('created_at')
+            ->where('created_at', '>', Carbon::now()->subDays($days))
+            ->orderBy('created_at', 'asc');
 
         if ($streamId !== null) {
             $query->addSelect(DB::raw("user_count, {$buildsTable}.version as label"))
                 ->where("{$buildsTable}.stream_id", $streamId);
         } else {
             $query->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
+                // casting to integer here as the sum aggregate returns a string
                 ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, pretty_name as label'))
                 ->whereIn("{$buildsTable}.stream_id", config('osu.changelog.update_streams'))
                 ->groupBy(['created_at', 'pretty_name']);
         }
-
-        $query->orderBy('created_at', 'asc');
     }
 
     protected function serializeDate(DateTimeInterface $date)
