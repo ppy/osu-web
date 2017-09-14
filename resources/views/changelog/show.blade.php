@@ -19,7 +19,10 @@
 
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
-        @include('changelog._changelog_header')
+        @include('changelog._changelog_header', [
+            'url' => route('changelog.show', ['build' => $activeBuild->version]),
+            'breadcrumb' => $activeBuild->displayVersion().' ('.$activeBuild->updateStream->pretty_name.')'
+        ])
 
         <div class="osu-layout__row osu-layout__row--page-compact">
             <div class="changelog">
