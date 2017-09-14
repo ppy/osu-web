@@ -24,6 +24,7 @@ use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
 use Carbon\Carbon;
+use Cache;
 use DB;
 
 class ChangelogController extends Controller
@@ -62,7 +63,9 @@ class ChangelogController extends Controller
                 return i18n_date($item->date);
             });
 
-        $buildHistory = BuildPropagationHistory::changelog(null, config('osu.changelog.chart_days'))->get();
+        $buildHistory = Cache::remember('build_propagation_history_global', config('osu.changelog.build_history_interval'), function () {
+            return BuildPropagationHistory::changelog(null, config('osu.changelog.chart_days'))->get();
+        });
 
         $chartOrder = collect([$this->featuredBuild])->merge($this->builds)->map(function ($el) {
             return $el->updateStream->pretty_name;
@@ -90,7 +93,9 @@ class ChangelogController extends Controller
             $changelogs = [Changelog::placeholder()];
         }
 
-        $buildHistory = BuildPropagationHistory::changelog($activeBuild->stream_id, config('osu.changelog.chart_days'))->get();
+        $buildHistory = Cache::remember("build_propagation_history_{$activeBuild->stream_id}", config('osu.changelog.build_history_interval'), function () use ($activeBuild) {
+            return BuildPropagationHistory::changelog($activeBuild->stream_id, config('osu.changelog.chart_days'))->get();
+        });
 
         $chartOrder = $buildHistory
             ->unique('label')
