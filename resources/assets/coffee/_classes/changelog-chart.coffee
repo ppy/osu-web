@@ -18,9 +18,6 @@
 
 class @ChangelogChart
   constructor: (area, @options = {}) ->
-    @options.scales.x ?= d3.scaleLinear()
-    @options.scales.y ?= d3.scaleLinear()
-
     @area = d3.select area
 
     @svg = @area
