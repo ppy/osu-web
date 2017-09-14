@@ -55,6 +55,7 @@ class BuildPropagationHistory extends Model
         } else {
             $query->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
                 ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, pretty_name as label'))
+                ->whereIn("{$buildsTable}.stream_id", config('osu.changelog.update_streams'))
                 ->groupBy(['created_at', 'pretty_name']);
         }
 
