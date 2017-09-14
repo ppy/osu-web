@@ -46,7 +46,6 @@ class ChangelogController extends Controller
             ->get();
 
         $featuredStream = null;
-        $activeStream = null;
 
         foreach ($streams as $index => $stream) {
             if ($stream->stream_id === config('osu.changelog.featured_stream')) {
@@ -55,7 +54,7 @@ class ChangelogController extends Controller
             }
         }
 
-        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
+        $buildHistory = BuildPropagationHistory::changelog(null, config('osu.changelog.chart_days'))->get();
 
         $chartOrder = collect([$featuredStream])->merge($streams)->map(function ($el) {
             return $el->updateStream->pretty_name;
@@ -87,20 +86,15 @@ class ChangelogController extends Controller
             ->get();
 
         $featuredStream = null;
-        $activeStream = null;
 
         foreach ($streams as $index => $stream) {
-            if ($stream->version === $buildId) {
-                $activeStream = $stream->stream_id;
-            }
-
             if ($stream->stream_id === config('osu.changelog.featured_stream')) {
                 $featuredStream = $stream;
                 unset($streams[$index]);
             }
         }
 
-        $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
+        $buildHistory = BuildPropagationHistory::changelog($build->stream_id, config('osu.changelog.chart_days'))->get();
 
         $chartOrder = $buildHistory
             ->unique('label')
