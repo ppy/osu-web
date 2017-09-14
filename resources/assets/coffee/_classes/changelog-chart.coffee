@@ -156,7 +156,7 @@ class @ChangelogChart
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
     @tooltipUserCount.text @data[dataRow][x].data[currentLabel].user_count
-    @tooltipDate.html @getDate @data[dataRow][x].created_at
+    @tooltipDate.html @getDate @data[dataRow][x].data.created_at
     @tooltipContainer
       .style 'transform', "translate(#{coord}px) translateX(-50%)"
 
