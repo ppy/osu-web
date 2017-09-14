@@ -32,46 +32,17 @@ class @ChangelogChartLoader
     currentStream = osu.parseJson 'json-current-stream'
 
     data = osu.parseJson 'json-chart-data'
-    data = _.groupBy data, 'created_at'
-
-    parsedData = []
-
-    # normalize the user count values
-    # and parse data into a form digestible by d3.stack()
-    for own timestamp, values of data
-      sum = 0
-
-      for val in values
-        sum += val.user_count
-
-      for val in values
-        val.normalized = val.user_count / sum
-
-      obj =
-        created_at: timestamp
-
-      for val in values
-        obj[val.label] = val
-
-      parsedData.push obj
-
-    stack = d3.stack()
-      .keys order
-      .value (d, val) ->
-        if d[val]? then d[val].normalized else 0
-
-    parsedData = stack parsedData
 
     options =
       scales:
         x: d3.scaleLinear()
         y: d3.scaleLinear()
-      order: _.reverse order
+      order: order
       isBuild: config.isBuild
       currentStream: currentStream
 
     @container[0]._chart = new ChangelogChart @container[0], options
-    @container[0]._chart.loadData parsedData
+    @container[0]._chart.loadData data
 
   resize: =>
     @container[0]._chart?.resize()

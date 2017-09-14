@@ -76,7 +76,14 @@ class @ChangelogChart
       .classed 'changelog-chart__tooltip-line', true
 
   loadData: (data) ->
-    @data = data
+    data = @normalizeData _.groupBy data, 'created_at'
+
+    stack = d3.stack()
+      .keys @options.order
+      .value (d, val) ->
+        if d[val]? then d[val].normalized else 0
+
+    @data = stack data
 
     @resize()
 
@@ -168,3 +175,20 @@ class @ChangelogChart
     @setWrapperSize()
     @setHoverAreaSize()
     @drawLines()
+
+  normalizeData: (data) ->
+    # normalize the user count values
+    # and parse data into a form digestible by d3.stack()
+
+    parsedData = for own timestamp, values of data
+      sum = _.sumBy values, 'user_count'
+
+      obj = created_at: timestamp
+
+      for val in values
+        val.normalized = val.user_count / sum
+        obj[val.label] = val
+
+      obj
+
+    parsedData
