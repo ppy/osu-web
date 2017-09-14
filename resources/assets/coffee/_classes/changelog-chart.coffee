@@ -18,15 +18,8 @@
 
 class @ChangelogChart
   constructor: (area, @options = {}) ->
-    @options.scales ?= {}
     @options.scales.x ?= d3.scaleLinear()
     @options.scales.y ?= d3.scaleLinear()
-
-    @margins =
-      top: 0
-      right: 0
-      bottom: 0
-      left: 0
 
     @area = d3.select area
 
@@ -90,22 +83,18 @@ class @ChangelogChart
   setDimensions: ->
     areaDims = @area.node().getBoundingClientRect()
 
-    @width = areaDims.width - (@margins.left + @margins.right)
-    @height = areaDims.height - (@margins.top + @margins.bottom)
+    @width = areaDims.width
+    @height = areaDims.height
 
   setSvgSize: ->
     @svg
-      .attr 'width', @width + (@margins.left + @margins.right)
-      .attr 'height', @height + (@margins.top + @margins.bottom)
-
-  setWrapperSize: ->
-    @svgWrapper
-      .attr 'transform', "translate(#{@margins.left}, #{@margins.top})"
+      .attr 'width', @width
+      .attr 'height', @height
 
   setHoverAreaSize: ->
     @hoverArea
-      .attr 'width', @width + (@margins.left + @margins.right)
-      .attr 'height', @height + (@margins.top + @margins.bottom)
+      .attr 'width', @width
+      .attr 'height', @height
 
   setScalesRange: ->
     @options.scales.x
@@ -150,7 +139,7 @@ class @ChangelogChart
     Timeout.clear @_autoHideTooltip
     @_autoHideTooltip = Timeout.set 3000, @hideTooltip
 
-    coord = @options.scales.x(x) + @margins.left
+    coord = @options.scales.x(x)
 
     @tooltipName
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
@@ -172,7 +161,6 @@ class @ChangelogChart
     @setDimensions()
     @setScalesRange()
     @setSvgSize()
-    @setWrapperSize()
     @setHoverAreaSize()
     @drawLines()
 
