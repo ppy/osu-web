@@ -236,13 +236,20 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
 
         //  GET /api/v2/me
-        Route::get('me', 'UsersController@me');
+        Route::get('me', '\App\Http\Controllers\UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', '\App\Http\Controllers\HomeController@downloadQuotaCheck');
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
-        //  GET /api/v2/users/:user_id
-        Route::get('users/{user}', ['uses' => 'UsersController@show']);
+
+        //  GET /api/v2/users/:user_id/kudosu
+        Route::get('users/{user}/kudosu', '\App\Http\Controllers\UsersController@kudosu');
+        //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
+        Route::get('users/{user}/scores/{type}', '\App\Http\Controllers\UsersController@scores');
+        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved]
+        Route::get('users/{user}/beatmapsets/{type}', '\App\Http\Controllers\UsersController@beatmapsets');
+        //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
+        Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {

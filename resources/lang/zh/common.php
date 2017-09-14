@@ -48,6 +48,7 @@ return [
     'datetime' => [
         'year_month' => [
             'moment' => 'YYYY年 MMMM',
+            'php' => 'y年 MMMM',
         ],
     ],
 

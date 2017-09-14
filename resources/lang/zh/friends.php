@@ -29,8 +29,8 @@ return [
       'mutual' => '互相关注',
     ],
 
-    'title' => '好友列表',
-    'title_compact' => '好友列表',
+    'title' => '好友',
+    'title_compact' => '好友',
 
     'too_many' => '好友数量达到最大限制。',
 ];

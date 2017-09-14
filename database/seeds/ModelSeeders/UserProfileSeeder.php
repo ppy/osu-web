@@ -34,9 +34,10 @@ class UserProfileSeeder extends Seeder
                 $usr_id = $usr->user_id;
 
                 foreach ($bms as $bm) {
-                    DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $bm['beatmapset_id'])->delete();
+                    $beatmapset = $bm->beatmap->beatmapset;
+                    DB::table('osu_favouritemaps')->where('user_id', $usr_id)->where('beatmapset_id', $beatmapset->beatmapset_id)->delete();
                     $fav = new App\Models\FavouriteBeatmapset;
-                    $fav->beatmapset_id = $bm['beatmapset_id'];
+                    $fav->beatmapset_id = $beatmapset->beatmapset_id;
                     $fav->user_id = $usr_id;
                     $fav->save();
 

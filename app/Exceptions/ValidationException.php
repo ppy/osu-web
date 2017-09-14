@@ -18,30 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Exceptions;
 
-use App\Models\User;
-use App\Transformers\UserTransformer;
-use Auth;
+use App\Libraries\ValidationErrors;
+use Exception;
 
-class UsersController extends Controller
+class ValidationException extends Exception
 {
-    public function show($user_id)
+    private $errors;
+
+    public function __construct(ValidationErrors $errors = null, Exception $previous = null)
     {
-        return $this->showUser(User::findOrFail($user_id));
+        $message = null;
+        if ($errors !== null) {
+            $message = implode("\n", $errors->allMessages());
+        }
+
+        parent::__construct($message, 0, $previous);
+        $this->errors = $errors;
     }
 
-    public function me()
+    public function getValidationErrors()
     {
-        return $this->showUser(Auth::user());
-    }
-
-    private function showUser($user)
-    {
-        return json_item(
-            $user,
-            new UserTransformer(),
-            'defaultStatistics'
-        );
+        return $this->errors;
     }
 }

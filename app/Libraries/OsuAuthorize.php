@@ -397,7 +397,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -430,7 +430,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -460,7 +460,7 @@ class OsuAuthorize
 
     public function checkForumTopicModerate($user, $topic)
     {
-        if ($user !== null && $user->isGMT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -472,7 +472,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user, $prefix.'user.');
         $this->ensureCleanRecord($user, $prefix.'user.');
 
-        if ($user->isGMT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -502,7 +502,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -547,7 +547,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isGMT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
