@@ -59,8 +59,6 @@ class ChangelogController extends Controller
         $propagationTable = with(new BuildPropagationHistory)->getTable();
         $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
 
-        $chartOrder = null;
-
         $chartOrder = collect([$featuredStream])->merge($streams)->map(function ($el) {
             return $el->updateStream->pretty_name;
         });
@@ -108,17 +106,13 @@ class ChangelogController extends Controller
         $propagationTable = with(new BuildPropagationHistory)->getTable();
         $buildHistory = BuildPropagationHistory::changelog($activeStream, config('osu.changelog.chart_days'))->get();
 
-        $chartOrder = null;
-
-        $chartOrder = BuildPropagationHistory::baseChangelog($activeStream, config('osu.changelog.chart_days'))
-            ->select(DB::raw('DISTINCT(version) as version'))
-            ->get()
+        $chartOrder = $buildHistory
+            ->unique('label')
+            ->pluck('label')
             ->sortByDesc(function ($el) {
-                $date = explode('.', $el->version)[0];
-
+                $date = explode('.', $el)[0];
+                
                 return Carbon::parse($date);
-            })->map(function ($el) {
-                return $el->version;
             })->values();
 
         return view('changelog.show', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
