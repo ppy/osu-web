@@ -216,14 +216,22 @@ Route::group(['prefix' => 'store'], function () {
 });
 
 Route::group(['prefix' => 'payments'], function () {
-    Route::get('paypal/completed', 'Payments\PaypalController@completed')->name('payments.paypal.completed');
-    Route::post('paypal/ipn', 'Payments\PaypalController@ipn')->name('payments.paypal.ipn');
-    Route::get('xsolla/completed', 'Payments\XsollaController@completed')->name('payments.xsolla.completed');
-    Route::get('xsolla/token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
-    Route::post('xsolla/callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
-    Route::match(['post', 'get'], 'centili/callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');
-    Route::get('centili/completed', 'Payments\CentiliController@completed')->name('payments.centili.completed');
-    Route::get('centili/failed', 'Payments\CentiliController@failed')->name('payments.centili.failed');
+    Route::group(['prefix' => 'paypal'], function () {
+        Route::get('completed', 'Payments\PaypalController@completed')->name('payments.paypal.completed');
+        Route::post('ipn', 'Payments\PaypalController@ipn')->name('payments.paypal.ipn');
+    });
+
+    Route::group(['prefix' => 'xsolla'], function () {
+        Route::get('completed', 'Payments\XsollaController@completed')->name('payments.xsolla.completed');
+        Route::get('token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
+        Route::post('callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
+    });
+
+    Route::group(['prefix' => 'centili'], function () {
+        Route::match(['post', 'get'], 'callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');
+        Route::get('completed', 'Payments\CentiliController@completed')->name('payments.centili.completed');
+        Route::get('failed', 'Payments\CentiliController@failed')->name('payments.centili.failed');
+    });
 });
 
 // API
