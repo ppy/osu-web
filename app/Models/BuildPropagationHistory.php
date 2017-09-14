@@ -39,33 +39,22 @@ class BuildPropagationHistory extends Model
         return $this->belongsTo(Build::class, 'build_id');
     }
 
-    public function scopeBaseChangelog($query, $streamId, $days)
+    public function scopeChangelog($query, $streamId, $days)
     {
-        $buildsTable = with(new Build)->getTable();
-        $propagationTable = with(new self)->getTable();
-        $streamsTable = 'osu_updates.'.with(new UpdateStream)->getTable();
+        $buildsTable = (new Build)->getTable();
+        $propagationTable = (new self)->getTable();
+        $streamsTable =  config('database.connections.mysql-updates.database').'.'.(new UpdateStream)->getTable();
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
-            ->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
-            ->select(DB::raw('created_at, cast(sum(user_count) as signed) as user_count'))
+            ->select(DB::raw('created_at'))
             ->where('created_at', '>', Carbon::now()->subDays($days));
 
         if ($streamId !== null) {
-            $query->where("{$buildsTable}.stream_id", $streamId);
-        }
-    }
-
-    public function scopeChangelog($query, $streamId, $days)
-    {
-        $buildsTable = with(new Build)->getTable();
-
-        $query->baseChangelog($streamId, $days);
-
-        if ($streamId !== null) {
-            $query->addSelect(DB::raw("{$buildsTable}.version as label"))
-                ->groupBy(['created_at', 'version']);
+            $query->addSelect(DB::raw("user_count, {$buildsTable}.version as label"))
+                ->where("{$buildsTable}.stream_id", $streamId);
         } else {
-            $query->addSelect(DB::raw('pretty_name as label'))
+            $query->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
+                ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, pretty_name as label'))
                 ->groupBy(['created_at', 'pretty_name']);
         }
 
