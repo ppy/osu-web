@@ -31,6 +31,26 @@ class ChangelogController extends Controller
     protected $section = 'home';
     protected $actionPrefix = 'changelog-';
 
+    public function __construct()
+    {
+        $this->streams = Build::latestByStream(config('osu.changelog.update_streams'))
+            ->get();
+        
+        $this->featuredStream = null;
+
+        foreach ($this->streams as $index => $stream) {
+            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
+                $this->featuredStream = $stream;
+                unset($this->streams[$index]);
+            }
+        }
+
+        view()->share('streams', $this->streams);
+        view()->share('featuredStream', $this->featuredStream);
+
+        return parent::__construct();
+    }
+
     public function index()
     {
         $from = Changelog::default()->first();
@@ -42,25 +62,13 @@ class ChangelogController extends Controller
                 return i18n_date($item->date);
             });
 
-        $streams = Build::latestByStream(config('osu.changelog.update_streams'))
-            ->get();
-
-        $featuredStream = null;
-
-        foreach ($streams as $index => $stream) {
-            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
-                $featuredStream = $stream;
-                unset($streams[$index]);
-            }
-        }
-
         $buildHistory = BuildPropagationHistory::changelog(null, config('osu.changelog.chart_days'))->get();
 
-        $chartOrder = collect([$featuredStream])->merge($streams)->map(function ($el) {
+        $chartOrder = collect([$this->featuredStream])->merge($this->streams)->map(function ($el) {
             return $el->updateStream->pretty_name;
         });
 
-        return view('changelog.index', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
+        return view('changelog.index', compact('changelogs', 'build', 'buildHistory', 'chartOrder'));
     }
 
     public function show($buildId)
@@ -81,18 +89,6 @@ class ChangelogController extends Controller
         if (count($changelogs) === 0) {
             $changelogs = [Changelog::placeholder()];
         }
-                
-        $streams = Build::latestByStream(config('osu.changelog.update_streams'))
-            ->get();
-
-        $featuredStream = null;
-
-        foreach ($streams as $index => $stream) {
-            if ($stream->stream_id === config('osu.changelog.featured_stream')) {
-                $featuredStream = $stream;
-                unset($streams[$index]);
-            }
-        }
 
         $buildHistory = BuildPropagationHistory::changelog($build->stream_id, config('osu.changelog.chart_days'))->get();
 
@@ -105,6 +101,6 @@ class ChangelogController extends Controller
                 return Carbon::parse($date);
             })->values();
 
-        return view('changelog.show', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
+        return view('changelog.show', compact('changelogs', 'build', 'buildHistory', 'chartOrder'));
     }
 }
