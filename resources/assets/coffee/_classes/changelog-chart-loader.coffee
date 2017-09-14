@@ -45,4 +45,4 @@ class @ChangelogChartLoader
     @container[0]._chart.loadData data
 
   resize: =>
-    @container[0]._chart?.resize()
+    @container[0]?._chart.resize()
