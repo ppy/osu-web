@@ -29,13 +29,7 @@ use DB;
 class ChangelogController extends Controller
 {
     protected $section = 'home';
-
-    public function __construct()
-    {
-        parent::__construct();
-
-        view()->share('current_action', 'changelog');
-    }
+    protected $actionPrefix = 'changelog-';
 
     public function index()
     {
@@ -71,7 +65,7 @@ class ChangelogController extends Controller
             return $el->updateStream->pretty_name;
         });
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
+        return view('changelog.index', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
     }
 
     public function show($buildId)
@@ -84,13 +78,15 @@ class ChangelogController extends Controller
             ->where('version', $buildId)
             ->firstOrFail();
 
-        $changelogs = [
-            i18n_date($build->date) => $changelogs
-                ->where('build', $build->version)
-                ->visibleOnBuilds()
-                ->get(),
-        ];
+        $changelogs =  $changelogs
+            ->where('build', $build->version)
+            ->visibleOnBuilds()
+            ->get();
 
+        if (count($changelogs) === 0) {
+            $changelogs = [Changelog::placeholder()];
+        }
+                
         $streams = Build::latestByStream(config('osu.changelog.update_streams'))
             ->get();
 
@@ -125,6 +121,6 @@ class ChangelogController extends Controller
                 return $el->version;
             })->values();
 
-        return view('home.changelog', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
+        return view('changelog.show', compact('changelogs', 'streams', 'featuredStream', 'build', 'buildHistory', 'chartOrder'));
     }
 }

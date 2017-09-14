@@ -30,6 +30,8 @@ return [
             'friends' => 'friends',
             'friends-index' => 'friends',
             'changelog' => 'changelog',
+            'changelog-index' => 'changelog',
+            'changelog-show' => 'build',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
