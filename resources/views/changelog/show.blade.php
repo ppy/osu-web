@@ -20,29 +20,8 @@
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
         <div class="osu-layout__row osu-layout__row--changelog-header">
-            <ol class="page-mode page-mode--breadcrumb">
-                <li class="page-mode__item">
-                    <a class="page-mode-link" href="{{ route('changelog.index') }}">
-                        {{ trans("layout.menu.home.changelog-index") }}
+            @include('changelog._changelog_header')
 
-                        <span class="page-mode-link__stripe">
-                        </span>
-                    </a>
-                </li>
-
-                <li class="page-mode__item">
-                    <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.show', ['build' => $activeBuild->version]) }}">
-                        {{ $activeBuild->displayVersion() }} ({{ $activeBuild->updateStream->pretty_name }})
-
-                        <span class="page-mode-link__stripe">
-                        </span>
-                    </a>
-                </li>
-            </ol>
-
-            <div class="changelog-header">
-                @include('changelog._changelog_builds')
-            </div>
             <div class="changelog-chart js-changelog-chart"></div>
         </div>
 
