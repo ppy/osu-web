@@ -31,24 +31,6 @@ class ChangelogController extends Controller
     protected $section = 'home';
     protected $actionPrefix = 'changelog-';
 
-    private function getBuilds()
-    {
-        $this->builds = Build::latestByStream(config('osu.changelog.update_streams'))
-            ->get();
-
-        $this->featuredBuild = null;
-
-        foreach ($this->builds as $index => $build) {
-            if ($build->stream_id === config('osu.changelog.featured_stream')) {
-                $this->featuredBuild = $build;
-                unset($this->builds[$index]);
-            }
-        }
-
-        view()->share('builds', $this->builds);
-        view()->share('featuredBuild', $this->featuredBuild);
-    }
-
     public function index()
     {
         $from = Changelog::default()->first();
@@ -108,5 +90,23 @@ class ChangelogController extends Controller
             })->values();
 
         return view('changelog.show', compact('changelogs', 'activeBuild', 'buildHistory', 'chartOrder'));
+    }
+
+    private function getBuilds()
+    {
+        $this->builds = Build::latestByStream(config('osu.changelog.update_streams'))
+            ->get();
+
+        $this->featuredBuild = null;
+
+        foreach ($this->builds as $index => $build) {
+            if ($build->stream_id === config('osu.changelog.featured_stream')) {
+                $this->featuredBuild = $build;
+                unset($this->builds[$index]);
+            }
+        }
+
+        view()->share('builds', $this->builds);
+        view()->share('featuredBuild', $this->featuredBuild);
     }
 }
