@@ -16,44 +16,47 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<ol class="page-mode page-mode--breadcrumb">
-    <li class="page-mode__item">
-        <a class="page-mode-link" href="{{ route('changelog.index') }}">
-            {{ trans("layout.menu.home.changelog-index") }}
-
-            <span class="page-mode-link__stripe">
-            </span>
-        </a>
-    </li>
-
-    <li class="page-mode__item">
-        @if(isset($activeBuild))
-            <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.show', ['build' => $activeBuild->version]) }}">
-                {{ $activeBuild->displayVersion() }} ({{ $activeBuild->updateStream->pretty_name }})
+<div class="osu-layout__row osu-layout__row--changelog-header">
+    <ol class="page-mode page-mode--breadcrumb">
+        <li class="page-mode__item">
+            <a class="page-mode-link" href="{{ route('changelog.index') }}">
+                {{ trans("layout.menu.home.changelog-index") }}
 
                 <span class="page-mode-link__stripe">
                 </span>
             </a>
-        @else
-            <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.index') }}">
-                {{ trans('changelog.feed_title') }}
+        </li>
 
-                <span class="page-mode-link__stripe">
-                </span>
-            </a>
-        @endif
-    </li>
-</ol>
+        <li class="page-mode__item">
+            @if(isset($activeBuild))
+                <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.show', ['build' => $activeBuild->version]) }}">
+                    {{ $activeBuild->displayVersion() }} ({{ $activeBuild->updateStream->pretty_name }})
 
-<div class="changelog-header">
-    <div class="changelog-header__builds-box">
-        <div class="changelog-header__builds">
-            @include('changelog._changelog_build', ['build' => $featuredBuild, 'featured' => true])
-        </div>
-        <div class="changelog-header__builds">
-            @foreach($builds as $build)
-                @include('changelog._changelog_build', ['build' => $build, 'featured' => false])
-            @endforeach
+                    <span class="page-mode-link__stripe">
+                    </span>
+                </a>
+            @else
+                <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.index') }}">
+                    {{ trans('changelog.feed_title') }}
+
+                    <span class="page-mode-link__stripe">
+                    </span>
+                </a>
+            @endif
+        </li>
+    </ol>
+
+    <div class="changelog-header">
+        <div class="changelog-header__builds-box">
+            <div class="changelog-header__builds">
+                @include('changelog._changelog_build', ['build' => $featuredBuild, 'featured' => true])
+            </div>
+            <div class="changelog-header__builds">
+                @foreach($builds as $build)
+                    @include('changelog._changelog_build', ['build' => $build, 'featured' => false])
+                @endforeach
+            </div>
         </div>
     </div>
+    <div class="changelog-chart js-changelog-chart"></div>
 </div>

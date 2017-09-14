@@ -19,11 +19,7 @@
 
 @section('content')
     <div class="osu-layout__section osu-layout__section--full">
-        <div class="osu-layout__row osu-layout__row--changelog-header">
-            @include('changelog._changelog_header')
-
-            <div class="changelog-chart js-changelog-chart"></div>
-        </div>
+        @include('changelog._changelog_header')
 
         <div class="osu-layout__row osu-layout__row--page-compact">
             <div class="changelog">
