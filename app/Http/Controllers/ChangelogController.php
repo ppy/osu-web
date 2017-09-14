@@ -31,7 +31,7 @@ class ChangelogController extends Controller
     protected $section = 'home';
     protected $actionPrefix = 'changelog-';
 
-    public function __construct()
+    private function getBuilds()
     {
         $this->builds = Build::latestByStream(config('osu.changelog.update_streams'))
             ->get();
@@ -47,8 +47,6 @@ class ChangelogController extends Controller
 
         view()->share('builds', $this->builds);
         view()->share('featuredBuild', $this->featuredBuild);
-
-        return parent::__construct();
     }
 
     public function index()
@@ -61,6 +59,8 @@ class ChangelogController extends Controller
             ->groupBy(function ($item) {
                 return i18n_date($item->date);
             });
+
+        $this->getBuilds();
 
         $buildHistory = Cache::remember('build_propagation_history_global', config('osu.changelog.build_history_interval'), function () {
             return BuildPropagationHistory::changelog(null, config('osu.changelog.chart_days'))->get();
@@ -91,6 +91,8 @@ class ChangelogController extends Controller
         if (count($changelogs) === 0) {
             $changelogs = [Changelog::placeholder()];
         }
+
+        $this->getBuilds();
 
         $buildHistory = Cache::remember("build_propagation_history_{$activeBuild->stream_id}", config('osu.changelog.build_history_interval'), function () use ($activeBuild) {
             return BuildPropagationHistory::changelog($activeBuild->stream_id, config('osu.changelog.chart_days'))->get();
