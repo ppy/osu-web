@@ -43,7 +43,7 @@ class BuildPropagationHistory extends Model
     {
         $buildsTable = (new Build)->getTable();
         $propagationTable = (new self)->getTable();
-        $streamsTable =  config('database.connections.mysql-updates.database').'.'.(new UpdateStream)->getTable();
+        $streamsTable = config('database.connections.mysql-updates.database').'.'.(new UpdateStream)->getTable();
 
         $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
             ->select(DB::raw('created_at'))
@@ -62,7 +62,7 @@ class BuildPropagationHistory extends Model
         $query->orderBy('created_at', 'asc');
     }
 
-    protected function serializeDate(DateTimeInterface $date) 
+    protected function serializeDate(DateTimeInterface $date)
     {
         return $date->toIso8601String();
     }

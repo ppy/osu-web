@@ -23,9 +23,8 @@ namespace App\Http\Controllers;
 use App\Models\Build;
 use App\Models\BuildPropagationHistory;
 use App\Models\Changelog;
-use Carbon\Carbon;
 use Cache;
-use DB;
+use Carbon\Carbon;
 
 class ChangelogController extends Controller
 {
@@ -36,7 +35,7 @@ class ChangelogController extends Controller
     {
         $this->builds = Build::latestByStream(config('osu.changelog.update_streams'))
             ->get();
-        
+
         $this->featuredBuild = null;
 
         foreach ($this->builds as $index => $build) {
@@ -84,7 +83,7 @@ class ChangelogController extends Controller
             ->where('version', $buildId)
             ->firstOrFail();
 
-        $changelogs =  $changelogs
+        $changelogs = $changelogs
             ->where('build', $activeBuild->version)
             ->visibleOnBuilds()
             ->get();
@@ -102,7 +101,7 @@ class ChangelogController extends Controller
             ->pluck('label')
             ->sortByDesc(function ($el) {
                 $date = explode('.', $el)[0];
-                
+
                 return Carbon::parse($date);
             })->values();
 
