@@ -79,10 +79,6 @@
 @section('script')
     @parent
 
-    <script id="json-chart-data" type="application/json">
-        {!! json_encode($buildHistory) !!}
-    </script>
-
     <script id="json-chart-config" type="application/json">
         {
             "order": {!! json_encode($chartOrder) !!},
