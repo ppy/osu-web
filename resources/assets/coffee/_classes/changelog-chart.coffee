@@ -148,6 +148,20 @@ class @ChangelogChart
     @tooltipContainer
       .style 'transform', "translate(#{coord}px) translateX(-50%)"
 
+    tooltipWidth = @tooltip.node().getBoundingClientRect().width / 2
+
+    # shift the main tooltip box when near to the left/right edge
+    # of the chart, so that the tooltip doesn't extend outside of it
+    if coord < tooltipWidth
+      translation = (-coord + tooltipWidth) / tooltipWidth * 50
+    else if @width - coord < tooltipWidth
+      translation = (@width - coord - tooltipWidth) / tooltipWidth * 50
+    else
+      translation = 0
+
+    @tooltip
+      .style 'transform', "translateX(#{translation}%)"
+
   resize: =>
     @setDimensions()
     @setScalesRange()
