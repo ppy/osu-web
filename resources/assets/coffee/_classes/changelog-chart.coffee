@@ -106,12 +106,10 @@ class @ChangelogChart
       .domain [0, 1]
 
   drawLines: ->
-    layer = @svgWrapper
+    @svgWrapper
       .selectAll 'g'
       .data @data
       .enter()
-
-    layer
       .append 'path'
       .attr 'class', (d) => "changelog-chart__area changelog-chart__area--#{@classScale d.key}"
       .attr 'd', @areaFunction
