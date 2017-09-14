@@ -17,6 +17,14 @@
 --}}
 
 <div class="store-payment-method">
+    <div type="button"
+            class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--paypal"
+            data-provider="paypal"
+            data-order-id="{{ $order->order_id }}"
+    >
+    </div>
+
+{{--
     <a href="{{ route('store.checkout.store', ['provider' => 'paypal']) }}" id="checkout-with-paypal" data-method="post" data-remote="1"
        class="store-payment-method__cell store-payment-button store-payment-button--paypal">
         <form class="text-center noajax" id="paypal-form" action="{{ config('payments.paypal.url') }}" method="post" target="_top">
@@ -38,7 +46,7 @@
             <input type="hidden" id="paypal_shipping" name="shipping" value="{{ $order->getShipping() }}">
         </form>
     </a>
-
+--}}
     <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with PayPal / Credit Card</div>
 

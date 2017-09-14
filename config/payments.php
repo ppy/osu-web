@@ -8,6 +8,8 @@ return [
         'widget_url' => env('CENTILI_WIDGET_URL'),
     ],
     'paypal' => [
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'client_secret' => env('PAYPAL_CLIENT_SECRET'),
         'url' => env('PAYPAL_URL'),
         'merchant_id' => env('PAYPAL_MERCHANT_ID'),
     ],

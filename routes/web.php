@@ -217,6 +217,8 @@ Route::group(['prefix' => 'store'], function () {
 
 Route::group(['prefix' => 'payments'], function () {
     Route::group(['prefix' => 'paypal'], function () {
+        Route::get('approve', 'Payments\PaypalController@approve')->name('payments.paypal.approve');
+        Route::get('create', 'Payments\PaypalController@create')->name('payments.paypal.create');
         Route::get('completed', 'Payments\PaypalController@completed')->name('payments.paypal.completed');
         Route::post('ipn', 'Payments\PaypalController@ipn')->name('payments.paypal.ipn');
     });

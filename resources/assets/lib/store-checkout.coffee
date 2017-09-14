@@ -17,6 +17,7 @@
 ###
 
 import { StoreCentili } from 'store-centili'
+import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
 
 export class StoreCheckout
@@ -26,6 +27,7 @@ export class StoreCheckout
     traps = @allTraps()
     # load scripts
     init = {
+      paypal: Promise.resolve()
       xsolla: StoreXsolla.promiseInit()
       centili: StoreCentili.promiseInit()
     }
@@ -36,6 +38,10 @@ export class StoreCheckout
 
       provider = event.target.dataset.provider
       promise = switch provider
+                when 'paypal'
+                  promiseAll(provider).then (values) ->
+                    StorePaypal.fetchApprovalLink(event.target.dataset.orderId).then (link) ->
+                      window.location = link
                 when 'xsolla'
                   promiseAll(provider).then (values) ->
                     # FIXME: flickering when transitioning to widget
