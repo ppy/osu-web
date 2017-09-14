@@ -16,13 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<div class="changelog-header__streams-box">
-    <div class="changelog-header__streams">
-        @include('changelog._changelog_stream', ['stream' => $featuredStream, 'featured' => true])
+<div class="changelog-header__builds-box">
+    <div class="changelog-header__builds">
+        @include('changelog._changelog_build', ['build' => $featuredBuild, 'featured' => true])
     </div>
-    <div class="changelog-header__streams">
-        @foreach($streams as $stream)
-            @include('changelog._changelog_stream', ['stream' => $stream, 'featured' => false])
+    <div class="changelog-header__builds">
+        @foreach($builds as $build)
+            @include('changelog._changelog_build', ['build' => $build, 'featured' => false])
         @endforeach
     </div>
 </div>

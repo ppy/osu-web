@@ -31,8 +31,8 @@
                 </li>
 
                 <li class="page-mode__item">
-                    <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.show', ['build' => $build->version]) }}">
-                        {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+                    <a class="page-mode-link page-mode-link--is-active" href="{{ route('changelog.show', ['build' => $activeBuild->version]) }}">
+                        {{ $activeBuild->displayVersion() }} ({{ $activeBuild->updateStream->pretty_name }})
 
                         <span class="page-mode-link__stripe">
                         </span>
@@ -41,21 +41,21 @@
             </ol>
 
             <div class="changelog-header">
-                @include('changelog._changelog_streams')
+                @include('changelog._changelog_builds')
             </div>
             <div class="changelog-chart js-changelog-chart"></div>
         </div>
 
         <div class="osu-layout__row osu-layout__row--page-compact">
             <div class="changelog">
-                <p class="changelog__text changelog__text--date">{{ i18n_date($build->date) }}</p>
+                <p class="changelog__text changelog__text--date">{{ i18n_date($activeBuild->date) }}</p>
 
                 <p class="changelog__text changelog__text--build">
-                    @if ($build->versionPrevious() !== null)
+                    @if ($activeBuild->versionPrevious() !== null)
                         <a
                             class="changelog__build-link"
-                            href="{{ route('changelog.show', ['build' => $build->versionPrevious()->version]) }}"
-                            title="{{ $build->versionPrevious()->displayVersion() }}"
+                            href="{{ route('changelog.show', ['build' => $activeBuild->versionPrevious()->version]) }}"
+                            title="{{ $activeBuild->versionPrevious()->displayVersion() }}"
                         >
                             <i class="fa fa-angle-double-left"></i>
                         </a>
@@ -65,13 +65,13 @@
                         </span>
                     @endif
 
-                    {{ $build->displayVersion() }} ({{ $build->updateStream->pretty_name }})
+                    {{ $activeBuild->displayVersion() }} ({{ $activeBuild->updateStream->pretty_name }})
 
-                    @if ($build->versionNext() !== null)
+                    @if ($activeBuild->versionNext() !== null)
                         <a
                             class="changelog__build-link"
-                            href="{{ route('changelog.show', ['build' => $build->versionNext()->version]) }}"
-                            title="{{ $build->versionNext()->displayVersion() }}"
+                            href="{{ route('changelog.show', ['build' => $activeBuild->versionNext()->version]) }}"
+                            title="{{ $activeBuild->versionNext()->displayVersion() }}"
                         >
                             <i class="fa fa-angle-double-right"></i>
                         </a>
@@ -89,8 +89,8 @@
                 <div
                     class="changelog__disqus js-turbolinks-disqus"
                     data-turbolinks-disqus="{{ json_encode([
-                        'identifier' => $build->disqusId(),
-                        'title' => $build->disqusTitle(),
+                        'identifier' => $activeBuild->disqusId(),
+                        'title' => $activeBuild->disqusTitle(),
                     ]) }}"
                 ></div>
             </div>
@@ -113,6 +113,6 @@
     </script>
 
     <script id="json-current-stream" type="application/json">
-        {!! json_encode($build->updateStream->pretty_name); !!}
+        {!! json_encode($activeBuild->updateStream->pretty_name); !!}
     </script>
 @endsection

@@ -41,7 +41,7 @@
             </ol>
 
             <div class="changelog-header">
-                @include('changelog._changelog_streams')
+                @include('changelog._changelog_builds')
             </div>
             <div class="changelog-chart js-changelog-chart"></div>
         </div>
@@ -75,6 +75,6 @@
     </script>
 
     <script id="json-current-stream" type="application/json">
-        {!! json_encode($featuredStream->updateStream->pretty_name); !!}
+        {!! json_encode($featuredBuild->updateStream->pretty_name); !!}
     </script>
 @endsection
