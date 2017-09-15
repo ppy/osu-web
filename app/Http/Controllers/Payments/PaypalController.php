@@ -73,6 +73,12 @@ class PaypalController extends Controller
         return $link;
     }
 
+    public function declined()
+    {
+        // FIXME: show a message to the user
+        return redirect(route('store.checkout.index'));
+    }
+
     public function ipn(Request $request)
     {
         $processor = PaypalPaymentProcessor::createFromRequest($request->getFacadeRoot());
