@@ -53,10 +53,7 @@ class PaypalCreatePayment
 
     public function getApprovalLink()
     {
-        $context = PaypalApiContext::get(
-            config('payments.paypal.client_id'),
-            config('payments.paypal.client_secret')
-        );
+        $context = PaypalApiContext::get();
 
         try {
             $this->payment->create($context);

@@ -49,10 +49,7 @@ class PaypalExecutePayment
     public function run()
     {
         DB::connection('mysql-store')->transaction(function () use (&$context) {
-            $context = PaypalApiContext::get(
-                config('payments.paypal.client_id'),
-                config('payments.paypal.client_secret')
-            );
+            $context = PaypalApiContext::get();
 
             // prevent concurrent updates
             $order = Order::lockForUpdate()->find($this->order->order_id);

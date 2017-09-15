@@ -25,13 +25,13 @@ use PayPal\Rest\ApiContext;
 
 class PaypalApiContext
 {
-    public static function get($clientId, $clientSecret)
+    public static function get($clientId = null, $clientSecret = null)
     {
+        $clientId = $clientId ?? config('payments.paypal.client_id');
+        $clientSecret = $clientSecret ?? config('payments.paypal.client_secret');
+
         $context = new ApiContext(
-            new OAuthTokenCredential(
-                $clientId,
-                $clientSecret
-            )
+            new OAuthTokenCredential($clientId, $clientSecret)
         );
 
         $context->setConfig(
