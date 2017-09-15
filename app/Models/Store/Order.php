@@ -74,6 +74,15 @@ class Order extends Model
         return "store-{$this->user_id}-{$this->order_id}";
     }
 
+    public function getPaymentProvider()
+    {
+        if (!present($this->transaction_id)) {
+            return;
+        }
+
+        return studly_case(explode('-', $this->transaction_id)[0]);
+    }
+
     public function getSubtotal()
     {
         $total = 0;

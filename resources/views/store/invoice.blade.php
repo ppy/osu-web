@@ -125,7 +125,7 @@
                 @endif
                 </td>
                 <td>FOB Japan</td>
-                <td>Paypal (paid)</td>
+                <td>{{ $order->getPaymentProvider() }} (paid)</td>
             </tr>
         </table>
         @endif
