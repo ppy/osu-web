@@ -21,6 +21,7 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
+use DB;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\ExecutePayment;
@@ -47,18 +48,25 @@ class PaypalExecutePayment
 
     public function run()
     {
-        $this->order->status = 'checkout';
-        $this->order->save();
+        DB::connection('mysql-store')->transaction(function () use (&$context) {
+            $context = PaypalApiContext::get(
+                config('payments.paypal.client_id'),
+                config('payments.paypal.client_secret')
+            );
 
-        $context = PaypalApiContext::get(
-            config('payments.paypal.client_id'),
-            config('payments.paypal.client_secret')
-        );
+            // prevent concurrent updates
+            $order = Order::lockForUpdate()->find($this->order->order_id);
+            if ($order->status !== 'incart') {
+                throw new \Exception("cart in wrong state: {$order->status}");
+            }
 
-        $payment = Payment::get($this->params['paymentId'], $context);
+            $payment = Payment::get($this->params['paymentId'], $context);
+            $result = $payment->execute($this->execution, $context);
+            \Log::debug($result);
 
-        $result = $payment->execute($this->execution, $context);
-        \Log::debug($result);
+            $order->status = 'checkout';
+            $order->save();
+        });
 
         return Payment::get($this->params['paymentId'], $context);
     }

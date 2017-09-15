@@ -29,7 +29,6 @@ use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Models\Store\Order;
 use Auth;
-use DB;
 use Request;
 
 class PaypalController extends Controller
@@ -47,16 +46,17 @@ class PaypalController extends Controller
     {
         $paymentId = Request::input('paymentId');
         $payerId = Request::input('PayerID');
-        $token = Request::input('token');
+        $orderId = Request::input('order_id');
 
-        DB::connection('mysql-store')->transaction(function () use ($paymentId, $payerId, $token) {
-            $orderId = Request::input('order_id');
-            $order = Order::where('user_id', Auth::user()->user_id)->where('status', 'incart')->findOrFail($orderId);
-            $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId', 'token'));
-            $payment = $command->run();
+        $order = Order::where('user_id', Auth::user()->user_id)
+            ->where('status', 'incart')
+            ->findOrFail($orderId);
 
-            dd($payment);
-        });
+
+        $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId'));
+        $payment = $command->run();
+
+        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
     public function create()
