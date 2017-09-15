@@ -84,14 +84,20 @@ class Order extends Model
         return $total;
     }
 
-    public static function findOrderNumber($orderNumber)
+    /**
+     * Gets the orderId from the orderNumber
+     *
+     * @param string $orderNumber
+     * @return string|null
+     */
+    public static function getOrderId($orderNumber)
     {
         $exploded = explode('-', $orderNumber, 3);
         if (count($exploded) !== 3) {
             return;
         }
 
-        return static::find($exploded[2]);
+        return $exploded[2];
     }
 
     public function requiresShipping()
