@@ -30,9 +30,6 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 
-use PayPal\Auth\OAuthTokenCredential;
-use PayPal\Rest\ApiContext;
-
 class PaypalCreatePayment
 {
     private $order;
@@ -56,7 +53,7 @@ class PaypalCreatePayment
 
     public function getApprovalLink()
     {
-        $context = $this->getApiContext(
+        $context = PaypalApiContext::get(
             config('payments.paypal.client_id'),
             config('payments.paypal.client_secret')
         );
@@ -73,28 +70,6 @@ class PaypalCreatePayment
     public function getPayment()
     {
         return $this->payment;
-    }
-
-    private function getApiContext($clientId, $clientSecret)
-    {
-        $context = new ApiContext(
-            new OAuthTokenCredential(
-                $clientId,
-                $clientSecret
-            )
-        );
-
-        $context->setConfig(
-            [
-                'mode' => 'sandbox',
-                'log.LogEnabled' => true,
-                'log.FileName' => 'PayPal.log',
-                'log.LogLevel' => 'DEBUG',
-                'cache.enabled' => true,
-            ]
-        );
-
-        return $context;
     }
 
     private function getAmount()
@@ -128,8 +103,8 @@ class PaypalCreatePayment
     private function getRedirectUrls()
     {
         $urls = new RedirectUrls();
-        $urls->setReturnUrl(route('payments.paypal.completed'))
-            ->setCancelUrl(route('payments.paypal.completed'));
+        $urls->setReturnUrl(route('payments.paypal.approved', ['order_id' => $this->order->order_id]))
+            ->setCancelUrl(route('payments.paypal.declined', ['order_id' => $this->order->order_id]));
 
         return $urls;
     }

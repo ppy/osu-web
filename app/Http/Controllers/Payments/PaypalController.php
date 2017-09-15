@@ -25,6 +25,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
 use App\Libraries\Payments\PaypalCreatePayment;
+use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Models\Store\Order;
 use Auth;
@@ -35,21 +36,27 @@ class PaypalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create']]);
-        $this->middleware('check-user-restricted', ['only' => ['create']]);
-        $this->middleware('verify-user', ['only' => ['create']]);
+        $this->middleware('auth', ['only' => ['approved', 'create']]);
+        $this->middleware('check-user-restricted', ['only' => ['approved', 'create']]);
+        $this->middleware('verify-user', ['only' => ['approved', 'create']]);
 
         return parent::__construct();
     }
 
-    public function approve()
+    public function approved()
     {
         $paymentId = Request::input('paymentId');
-        $payerId = Request::input('payerid');
+        $payerId = Request::input('PayerID');
         $token = Request::input('token');
 
-        $approval = new PaypalApproval(compact('paymentId', 'payerId', 'token'));
-        $approval->run();
+        DB::connection('mysql-store')->transaction(function () use ($paymentId, $payerId, $token) {
+            $orderId = Request::input('order_id');
+            $order = Order::where('user_id', Auth::user()->user_id)->where('status', 'incart')->findOrFail($orderId);
+            $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId', 'token'));
+            $payment = $command->run();
+
+            dd($payment);
+        });
     }
 
     public function create()
@@ -84,31 +91,5 @@ class PaypalController extends Controller
         }
 
         return 'ok';
-    }
-
-    public function completed()
-    {
-        $orderNumber = Request::input('item_number') ?? '';
-
-        DB::connection('mysql-store')->transaction(function () use (&$order, $orderNumber) {
-            $order = Order::findOrderNumber($orderNumber);
-            if (!$order) {
-                abort(404);
-            }
-
-            // cart should only be in:
-            // incart -> if user hits this endpoint first.
-            // paid -> if payment provider hits the callback first.
-            // any other state should be considered invalid.
-            if ($order->status === 'incart') {
-                $order->status === 'checkout';
-                $order->save();
-            } elseif ($order->status !== 'paid') {
-                dd($order->status);
-                abort(500);
-            }
-        });
-
-        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 }

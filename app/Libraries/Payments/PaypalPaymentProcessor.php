@@ -32,6 +32,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function __construct(array $params, PaymentSignature $signature)
     {
+        \Log::debug($params);
         parent::__construct($params, $signature);
         // limiting to 3 means it won't pick up if the format is too long.
         $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 4);
@@ -59,6 +60,10 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber()
     {
+        if ($this['txn_type'] === 'cart') {
+            return $this['item_number1'];
+        }
+
         return $this['item_number'];
     }
 
@@ -80,7 +85,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
     public function getNotificationType()
     {
         # FIXME: ?
-        return $this['txn_type'] === 'web_accept' ? 'payment' : $this['txn_type'];
+        return in_array($this['txn_type'], ['web_accept', 'cart'], false) ? 'payment' : $this['txn_type'];
     }
 
     public function ensureValidSignature()
