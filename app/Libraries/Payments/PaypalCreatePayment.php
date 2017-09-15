@@ -30,6 +30,12 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 
+/**
+ * Creates a Paypal Payment for a store Order.
+ *
+ * Using the Paypal REST API for payments is a 2-phase process;
+ * This class handles the creation of a payment for the user to approve.
+ */
 class PaypalCreatePayment
 {
     private $order;
@@ -54,12 +60,7 @@ class PaypalCreatePayment
     public function getApprovalLink()
     {
         $context = PaypalApiContext::get();
-
-        try {
-            $this->payment->create($context);
-        } catch (\PayPal\Exception\PayPalConnectionException $e) {
-            \Log::error($e->getData()); // testing
-        }
+        $this->payment->create($context);
 
         return $this->payment->getApprovalLink();
     }

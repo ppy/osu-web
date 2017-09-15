@@ -29,6 +29,13 @@ use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 
+/**
+ * Executes an approved Paypal Payment for a store Order.
+ *
+ * Using the Paypal REST API for payments is a 2-phase process;
+ * This class handles the 2nd phase of a payment that the user has already approved
+ * through Paypal. Executing the payment will tell paypal to complete the transaction.
+ */
 class PaypalExecutePayment
 {
     private $execution;
@@ -59,6 +66,7 @@ class PaypalExecutePayment
                 );
             }
 
+            // Tell Paypal to complete the transaction so we can finally clear the cart.
             $payment = Payment::get($this->params['paymentId'], $context);
             $result = $payment->execute($this->execution, $context);
             \Log::debug($result);
@@ -67,6 +75,7 @@ class PaypalExecutePayment
             $order->save();
         });
 
+        // FIXME: return $result instead of fetching again?
         return Payment::get($this->params['paymentId'], $context);
     }
 
