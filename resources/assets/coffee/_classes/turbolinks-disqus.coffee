@@ -17,7 +17,7 @@
 ###
 
 class @TurbolinksDisqus
-  constructor: ->
+  constructor: (@turbolinksReload) ->
     @el = document.getElementsByClassName('js-turbolinks-disqus')
 
     addEventListener 'turbolinks:load', @initialize
@@ -53,27 +53,22 @@ class @TurbolinksDisqus
 
 
   initialize: =>
-    return if !@el[0]?
+    return if @el.length == 0
 
-    return @reboot() if DISQUS?
+    @prepareContainer()
 
+    if !DISQUS?
+      @initializeEmbed()
+    else
+      @reload()
+
+
+  initializeEmbed: =>
     window.disqus_config = @buildConfig()
-    @prepareContainer()
-    @loadEmbed()
+    @turbolinksReload.load "https://#{disqusShortName}.disqus.com/embed.js"
 
 
-  loadEmbed: =>
-    el = document.createElement('script')
-    el.type = 'text/javascript'
-    el.async = true
-    el.src = "https://#{disqusShortName}.disqus.com/embed.js"
-
-    document.getElementsByTagName('body')[0].appendChild(el)
-
-
-  reboot: =>
-    @prepareContainer()
-
+  reload: =>
     DISQUS.reset
       reload: true
       config: @buildConfig()
