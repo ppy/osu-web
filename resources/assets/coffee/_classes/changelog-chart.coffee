@@ -104,7 +104,7 @@ class @ChangelogChart
   setScalesRange: ->
     @options.scales.x
       .range [0, @width]
-      .domain [_.first(@data[0]).data.date, _.last(@data[0]).data.date]
+      .domain [_.first(@data[0])?.data.date, _.last(@data[0])?.data.date]
 
     @options.scales.y
       .range [0, @height]
