@@ -26,12 +26,8 @@ class @ChangelogChartLoader
   initialize: =>
     return if !@container[0]?
 
-    config = osu.parseJson 'json-chart-config'
-    order = config.order
-
-    currentStream = osu.parseJson 'json-current-stream'
-
-    data = osu.parseJson 'json-chart-data'
+    chartConfig = osu.parseJson 'json-chart-config'
+    data = chartConfig.buildHistory
 
     for el in data
       m = moment el.created_at
@@ -43,9 +39,8 @@ class @ChangelogChartLoader
       scales:
         x: d3.scaleTime()
         y: d3.scaleLinear()
-      order: order
-      isBuild: config.isBuild
-      currentStream: currentStream
+      order: chartConfig.order
+      isBuild: chartConfig.isBuild
 
     @container[0]._chart = new ChangelogChart @container[0], options
     @container[0]._chart.loadData data

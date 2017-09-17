@@ -52,6 +52,10 @@
     <div class="changelog-chart js-changelog-chart"></div>
 </div>
 
-<script id="json-chart-data" type="application/json">
-    {!! json_encode($buildHistory) !!}
+<script id="json-chart-config" type="application/json">
+{
+    "buildHistory": {!! json_encode($buildHistory) !!},
+    "order": {!! json_encode($chartOrder) !!},
+    "isBuild": {!! json_encode(isset($activeBuild)) !!}
+}
 </script>

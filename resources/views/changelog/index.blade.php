@@ -37,18 +37,3 @@
         </div>
     </div>
 @endsection
-
-@section('script')
-    @parent
-
-    <script id="json-chart-config" type="application/json">
-        {
-            "order": {!! json_encode($chartOrder) !!},
-            "isBuild": false
-        }
-    </script>
-
-    <script id="json-current-stream" type="application/json">
-        {!! json_encode($featuredBuild->updateStream->pretty_name); !!}
-    </script>
-@endsection
