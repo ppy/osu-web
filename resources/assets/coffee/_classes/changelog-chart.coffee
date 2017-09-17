@@ -159,22 +159,24 @@ class @ChangelogChart
     @tooltipUserCount.text @data[dataRow][pos].data[currentLabel].user_count
     @tooltipDate.html @data[dataRow][pos].data.date_formatted
 
-    tooltipWidth = @tooltip.node().getBoundingClientRect().width / 2
+    tooltipWidth = @tooltip.node().getBoundingClientRect().width
+    tooltipXBase = coord - (tooltipWidth / 2)
 
-    # shift the tooltip container when near to the left/right edge
-    # of the chart, so that the tooltip doesn't extend outside of it
-    if coord < tooltipWidth
-      translation = (-coord + tooltipWidth) / tooltipWidth * 50
-    else if @width - coord < tooltipWidth
-      translation = (@width - coord - tooltipWidth) / tooltipWidth * 50
-    else
-      translation = 0
+    # shift the toltip container when near to the left/right edge
+    # of the chart, so that the tooltip doesn't extend outside of ito
+    tooltipX =
+      if tooltipXBase < 0
+        0
+      else if tooltipXBase + tooltipWidth > @width
+        @width - tooltipWidth
+      else
+        tooltipXBase
 
-    @tooltipContainer
-      .style 'transform', "translate(#{coord}px) translateX(-#{50 - translation}%)"
+    @tooltip
+      .style 'transform', "translateX(#{tooltipX}px)"
 
-    # shift the line guide so it keeps being in line with the tooltip
-    @tooltipLine.style 'left', "#{-translation * tooltipWidth / 50}px"
+    @tooltipLine
+      .style 'transform', "translateX(#{coord}px)"
 
   resize: =>
     @setDimensions()
