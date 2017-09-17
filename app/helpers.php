@@ -437,7 +437,7 @@ function nav_links()
     $links['home'] = [
         'news-index' => route('news.index'),
         'friends' => route('friends.index'),
-        'changelog' => route('changelog.index'),
+        'changelog-index' => route('changelog.index'),
         'getDownload' => route('download'),
         'search' => route('search'),
     ];
@@ -478,7 +478,7 @@ function footer_landing_links()
     return [
         'general' => [
             'home' => route('home'),
-            'changelog' => route('changelog.index'),
+            'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => osu_url('home.download'),
             'wiki' => wiki_url('Welcome'),
