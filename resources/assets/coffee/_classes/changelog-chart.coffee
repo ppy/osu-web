@@ -50,7 +50,7 @@ class @ChangelogChart
       .classed 'changelog-chart__tooltip-container', true
       .attr 'data-visibility', 'hidden'
 
-    @lineTop = @tooltipContainer.append 'div'
+    @tooltipContainer.append 'div'
       .classed 'changelog-chart__tooltip-line', true
 
     @tooltip = @tooltipContainer.append 'div'
@@ -64,8 +64,10 @@ class @ChangelogChart
     @tooltipDate = @tooltip.append 'div'
       .classed 'changelog-chart__text changelog-chart__text--date', true
 
-    @lineBottom = @tooltipContainer.append 'div'
+    @tooltipContainer.append 'div'
       .classed 'changelog-chart__tooltip-line', true
+
+    @tooltipLine = @tooltipContainer.selectAll '.changelog-chart__tooltip-line'
 
   loadData: ->
     chartConfig = osu.parseJson 'json-chart-config'
@@ -172,8 +174,7 @@ class @ChangelogChart
       .style 'transform', "translate(#{coord}px) translateX(-#{50 - translation}%)"
 
     # shift the line guide so it keeps being in line with the tooltip
-    @tooltipContainer.selectAll '.changelog-chart__tooltip-line'
-      .style 'left', "#{-translation * tooltipWidth / 50}px"
+    @tooltipLine.style 'left', "#{-translation * tooltipWidth / 50}px"
 
   resize: =>
     @setDimensions()
