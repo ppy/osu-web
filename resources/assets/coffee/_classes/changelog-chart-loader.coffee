@@ -26,24 +26,8 @@ class @ChangelogChartLoader
   initialize: =>
     return if !@container[0]?
 
-    chartConfig = osu.parseJson 'json-chart-config'
-    data = chartConfig.buildHistory
-
-    for el in data
-      m = moment el.created_at
-
-      el.date_formatted = m.format 'YYYY/MM/DD'
-      el.date = m.toDate()
-
-    options =
-      scales:
-        x: d3.scaleTime()
-        y: d3.scaleLinear()
-      order: chartConfig.order
-      isBuild: chartConfig.isBuild
-
-    @container[0]._chart = new ChangelogChart @container[0], options
-    @container[0]._chart.loadData data
+    @container[0]._chart = new ChangelogChart @container[0]
+    @container[0]._chart.loadData()
 
   resize: =>
     @container[0]?._chart.resize()

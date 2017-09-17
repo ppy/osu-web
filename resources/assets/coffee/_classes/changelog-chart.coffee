@@ -17,7 +17,13 @@
 ###
 
 class @ChangelogChart
-  constructor: (area, @options = {}) ->
+  constructor: (area) ->
+    @options =
+      scales:
+        x: d3.scaleTime()
+        y: d3.scaleLinear()
+        class: d3.scaleOrdinal()
+
     @area = d3.select area
 
     @svg = @area
@@ -28,13 +34,9 @@ class @ChangelogChart
 
     @areaFunction = d3.area()
       .curve d3.curveMonotoneX
-      .x (d, i) => @options.scales.x d.data.date
+      .x (d) => @options.scales.x d.data.date
       .y1 (d) => @options.scales.y d[1]
       .y0 (d, i) => @options.scales.y d[0]
-
-    @classScale = d3.scaleOrdinal (_.map @options.order, (d, i) =>
-        if @options.isBuild then "build-#{i}" else _.kebabCase d)
-      .domain(@options.order)
 
     @hoverArea = @svg.append 'rect'
       .classed 'changelog-chart__hover-area', true
@@ -65,8 +67,12 @@ class @ChangelogChart
     @lineBottom = @tooltipContainer.append 'div'
       .classed 'changelog-chart__tooltip-line', true
 
-  loadData: (data) ->
-    data = @normalizeData _.groupBy data, 'created_at'
+  loadData: ->
+    chartConfig = osu.parseJson 'json-chart-config'
+    @options.order = chartConfig.order
+    @options.isBuild = chartConfig.isBuild
+
+    data = @normalizeData _.groupBy chartConfig.buildHistory, 'created_at'
 
     stack = d3.stack()
       .keys @options.order
@@ -102,13 +108,18 @@ class @ChangelogChart
       .range [0, @height]
       .domain [0, 1]
 
+    @options.scales.class
+      .range _.map @options.order, (d, i) =>
+        if @options.isBuild then "build-#{i}" else _.kebabCase d
+      .domain @options.order
+
   drawLines: ->
     @svgWrapper
       .selectAll 'g'
       .data @data
       .enter()
       .append 'path'
-      .attr 'class', (d) => "changelog-chart__area changelog-chart__area--#{@classScale d.key}"
+      .attr 'class', (d) => "changelog-chart__area changelog-chart__area--#{@options.scales.class d.key}"
       .attr 'd', @areaFunction
 
   showTooltip: =>
@@ -130,7 +141,7 @@ class @ChangelogChart
       if y <= el[pos][1]
         dataRow = i
         currentLabel = el.key
-        labelModifier = @classScale currentLabel
+        labelModifier = @options.scales.class currentLabel
         break
 
     @showTooltip()
@@ -175,18 +186,20 @@ class @ChangelogChart
     # normalize the user count values
     # and parse data into a form digestible by d3.stack()
 
-    parsedData = for own timestamp, values of data
+    for own timestamp, values of data
       sum = _.sumBy values, 'user_count'
+
+      # parse date stored in strings to JS Date object for use by
+      # d3 domains, and format it into a string shown on the tooltip
+      m = moment values[0].created_at
 
       obj =
         created_at: timestamp
-        date: values[0].date
-        date_formatted: values[0].date_formatted
+        date: m.toDate()
+        date_formatted: m.format 'YYYY/MM/DD'
 
       for val in values
         val.normalized = val.user_count / sum
         obj[val.label] = val
 
       obj
-
-    parsedData
