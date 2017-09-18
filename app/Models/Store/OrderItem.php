@@ -107,7 +107,8 @@ class OrderItem extends Model
 
                 return __('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,
-                    'username' => $this->extra_data['username'],
+                    // test data didn't include username, so ?? ''
+                    'username' => $this->extra_data['username'] ?? '',
                     'duration' => $text,
                 ]);
             default:
