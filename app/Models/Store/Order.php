@@ -187,25 +187,22 @@ class Order extends Model
         return $modified;
     }
 
-    public function refreshCost($save = false)
+    public function refreshCost()
     {
         foreach ($this->items as $i) {
             $i->refreshCost();
-            if ($save) {
-                $i->save();
-            }
+            $i->saveOrExplode();
         }
+
         $this->shipping = $this->getShipping();
-        if ($save) {
-            $this->save();
-        }
+        $this->save();
     }
 
     public function checkout()
     {
         DB::connection('mysql-store')->transaction(function () {
             $this->status = 'checkout';
-            $this->refreshCost(true);
+            $this->refreshCost();
         });
     }
 
@@ -286,11 +283,11 @@ class Order extends Model
             return $cart;
         }
 
+        // TODO: maybe should show a notification and only remove
+        // when beginning the checkout process?
         if ($cart->removeInvalidItems()) {
             $cart = $cart->fresh();
         }
-
-        $cart->refreshCost();
 
         return $cart;
     }

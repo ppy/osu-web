@@ -95,7 +95,7 @@ class CheckoutHelper
 
     public function refreshCost()
     {
-        $this->order->refreshCost(true);
+        $this->order->refreshCost();
     }
 
     private function supporterTagItems()

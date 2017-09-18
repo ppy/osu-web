@@ -48,6 +48,7 @@ class XsollaController extends Controller
     {
         $projectId = config('payments.xsolla.project_id');
         $user = Auth::user();
+        // FIXME: use a different method?
         $order = Order::cart($user);
 
         if ($order === null) {
