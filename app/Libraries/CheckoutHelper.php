@@ -93,6 +93,11 @@ class CheckoutHelper
         return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
     }
 
+    public function refreshCost()
+    {
+        $this->order->refreshCost(true);
+    }
+
     private function supporterTagItems()
     {
         return $this->order->items()

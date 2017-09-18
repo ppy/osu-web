@@ -52,6 +52,8 @@ class CheckoutController extends Controller
         }
 
         $checkout = new CheckoutHelper($order);
+        // TODO: should be able to notify user that items were changed due to stock/price changes.
+        $checkout->refreshCost();
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
         return view('store.checkout', compact('order', 'addresses', 'checkout'));
