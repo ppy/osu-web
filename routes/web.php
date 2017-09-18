@@ -188,7 +188,6 @@ Route::group(['prefix' => 'store'], function () {
     Route::get('/', 'StoreController@getIndex');
 
     Route::get('listing', 'StoreController@getListing')->name('store.products.index');
-    Route::get('invoice', 'StoreController@getInvoice');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('store.invoice.show');
     Route::get('product/{product}', 'StoreController@getProduct')->name('store.product');
     Route::get('cart', 'StoreController@getCart');
