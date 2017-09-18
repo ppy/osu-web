@@ -87,3 +87,9 @@ $factory->defineAs(App\Models\Store\Product::class, 'child_banners', function (F
 
     return $params;
 });
+
+$factory->state(App\Models\Store\Product::class, 'disabled', function (Faker\Generator $faker) {
+    return [
+        'enabled' => false,
+    ];
+});
