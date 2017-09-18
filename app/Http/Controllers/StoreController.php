@@ -80,10 +80,6 @@ class StoreController extends Controller
     public function getInvoice($id = null)
     {
         $order = Store\Order::findOrFail($id);
-        if ($order->shipping === null) {
-            $order->refreshCost(true);
-        }
-
         if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
