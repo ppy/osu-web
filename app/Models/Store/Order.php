@@ -201,7 +201,12 @@ class Order extends Model
             $i->saveOrExplode();
         }
 
-        $this->shipping = $this->getShipping();
+        if ($this->requiresShipping()) {
+            $this->shipping = $this->getShipping();
+        } else {
+            $this->shipping = null;
+        }
+
         $this->saveOrExplode();
     }
 
