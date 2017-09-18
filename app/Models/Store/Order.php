@@ -187,6 +187,13 @@ class Order extends Model
         return $modified;
     }
 
+    /**
+     * Updates the cost of the order for checkout.
+     * Don't call this anywhere except beginning checkout.
+     * Do not call it once the payment process has stated.
+     *
+     * @return void
+     */
     public function refreshCost()
     {
         foreach ($this->items as $i) {
@@ -195,7 +202,7 @@ class Order extends Model
         }
 
         $this->shipping = $this->getShipping();
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function checkout()
