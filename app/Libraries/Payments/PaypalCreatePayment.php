@@ -84,7 +84,7 @@ class PaypalCreatePayment
     private function getAmount()
     {
         $details = new Details();
-        $details->setShipping($this->order->getShipping())
+        $details->setShipping($this->order->shipping)
             ->setSubtotal($this->order->getSubTotal());
 
         $amount = new Amount();

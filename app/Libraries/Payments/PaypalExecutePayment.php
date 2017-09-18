@@ -101,7 +101,7 @@ class PaypalExecutePayment
     private function getDetails()
     {
         return (new Details())
-            ->setShipping($this->order->getShipping())
+            ->setShipping($this->order->shipping)
             ->setSubtotal($this->order->getSubTotal());
     }
 

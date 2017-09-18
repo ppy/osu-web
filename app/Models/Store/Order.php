@@ -120,7 +120,13 @@ class Order extends Model
         return false;
     }
 
-    public function getShipping()
+    /**
+     * Gets the cost of shipping ignoring whether shipping is required or not.
+     * Returns 0 if shipping is not required.
+     *
+     * @return float Shipping cost.
+     */
+    private function getShipping()
     {
         if (!$this->address) {
             return 0;

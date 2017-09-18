@@ -30,7 +30,7 @@
                     <p class="store-cart-footer__text">total</p>
                     <p class="store-cart-footer__text store-cart-footer__text--amount">{{{ currency($order->getTotal()) }}}</p>
 
-                    @if($order->requiresShipping() && !$order->getShipping())
+                    @if($order->requiresShipping() && !$order->shipping)
                         <p class="store-cart-footer__text store-cart-footer__text--shipping">+ shipping fees</p>
                     @endif
                 </div>
@@ -56,7 +56,7 @@
         @endif
     </div>
 
-    @if(!$order->requiresShipping() || $order->getShipping())
+    @if(!$order->requiresShipping() || $order->shipping)
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1">
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
                 <h1>Select Payment Method</h1>

@@ -64,7 +64,7 @@ class XsollaController extends Controller
             ->setPurchase($order->getTotal(), 'USD')
             ->setCustomParameters([
                 'subtotal' => $order->getSubtotal(),
-                'shipping' => $order->getShipping(),
+                'shipping' => $order->shipping,
                 'order_id' => $order['order_id'],
             ]);
 
