@@ -51,9 +51,9 @@ class CheckoutController extends Controller
             return ujs_redirect('/store/cart');
         }
 
-        $checkout = new CheckoutHelper($order);
         // TODO: should be able to notify user that items were changed due to stock/price changes.
-        $checkout->refreshCost();
+        $order->refreshCost();
+        $checkout = new CheckoutHelper($order);
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
         return view('store.checkout', compact('order', 'addresses', 'checkout'));
