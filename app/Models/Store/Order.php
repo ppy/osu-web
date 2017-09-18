@@ -262,12 +262,7 @@ class Order extends Model
         $deleteItems = [];
 
         foreach ($cart->items as $i) {
-            if ($i->product === null) {
-                $deleteItems[] = $i;
-                continue;
-            }
-
-            if (!$i->product->enabled) {
+            if ($i->product === null || !$i->product->enabled) {
                 $deleteItems[] = $i;
                 continue;
             }
