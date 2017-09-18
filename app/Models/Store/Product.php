@@ -142,6 +142,11 @@ class Product extends Model
             ->where('custom_class', $name);
     }
 
+    public function scopeEnabled($query)
+    {
+        return $query->where('enabled', true);
+    }
+
     public function productsInRange()
     {
         if (!($mappings = $this->typeMappings())) {

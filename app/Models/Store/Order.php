@@ -239,7 +239,7 @@ class Order extends Model
         $params = [
             'id' => array_get($itemForm, 'id'),
             'quantity' => array_get($itemForm, 'quantity'),
-            'product' => Product::find(array_get($itemForm, 'product_id')),
+            'product' => Product::enabled()->find(array_get($itemForm, 'product_id')),
             'cost' => intval(array_get($itemForm, 'cost')),
             'extraInfo' => array_get($itemForm, 'extra_info'),
             'extraData' => array_get($itemForm, 'extra_data'),
