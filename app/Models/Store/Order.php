@@ -157,6 +157,36 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function removeInvalidItems()
+    {
+        $modified = false;
+
+        //check to make sure we don't have any invalid products in our cart.
+        $deleteItems = [];
+
+        foreach ($this->items as $i) {
+            if ($i->product === null || !$i->product->enabled) {
+                $deleteItems[] = $i;
+                continue;
+            }
+
+            if (!$i->product->inStock($i->quantity)) {
+                $this->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
+                $modified = true;
+            }
+        }
+
+        if (count($deleteItems)) {
+            foreach ($deleteItems as $i) {
+                $i->delete();
+            }
+
+            $modified = true;
+        }
+
+        return $modified;
+    }
+
     public function refreshCost($save = false)
     {
         foreach ($this->items as $i) {
@@ -256,32 +286,7 @@ class Order extends Model
             return $cart;
         }
 
-        $requireFresh = false;
-
-        //check to make sure we don't have any invalid products in our cart.
-        $deleteItems = [];
-
-        foreach ($cart->items as $i) {
-            if ($i->product === null || !$i->product->enabled) {
-                $deleteItems[] = $i;
-                continue;
-            }
-
-            if (!$i->product->inStock($i->quantity)) {
-                $cart->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
-                $requireFresh = true;
-            }
-        }
-
-        if (count($deleteItems)) {
-            foreach ($deleteItems as $i) {
-                $i->delete();
-            }
-
-            $requireFresh = true;
-        }
-
-        if ($requireFresh) {
+        if ($cart->removeInvalidItems()) {
             $cart = $cart->fresh();
         }
 
