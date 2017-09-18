@@ -248,48 +248,48 @@ class Order extends Model
             ->with('items.product')
             ->first();
 
-        if ($cart) {
-            $requireFresh = false;
+        if (!$cart) {
+            $cart = new static();
+            $cart->user_id = $user->user_id;
 
-            //check to make sure we don't have any invalid products in our cart.
-            $deleteItems = [];
+            return $cart;
+        }
 
-            foreach ($cart->items as $i) {
-                if ($i->product === null) {
-                    $deleteItems[] = $i;
-                    continue;
-                }
+        $requireFresh = false;
 
-                if (!$i->product->enabled) {
-                    $deleteItems[] = $i;
-                    continue;
-                }
+        //check to make sure we don't have any invalid products in our cart.
+        $deleteItems = [];
 
-                if (!$i->product->inStock($i->quantity)) {
-                    $cart->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
-                    $requireFresh = true;
-                }
+        foreach ($cart->items as $i) {
+            if ($i->product === null) {
+                $deleteItems[] = $i;
+                continue;
             }
 
-            if (count($deleteItems)) {
-                foreach ($deleteItems as $i) {
-                    $i->delete();
-                }
+            if (!$i->product->enabled) {
+                $deleteItems[] = $i;
+                continue;
+            }
 
+            if (!$i->product->inStock($i->quantity)) {
+                $cart->updateItem(['product_id' => $i->product_id, 'quantity' => $i->product->stock]);
                 $requireFresh = true;
             }
+        }
 
-            if ($requireFresh) {
-                $cart = $cart->fresh();
+        if (count($deleteItems)) {
+            foreach ($deleteItems as $i) {
+                $i->delete();
             }
+
+            $requireFresh = true;
         }
 
-        if ($cart) {
-            $cart->refreshCost();
-        } else {
-            $cart = new self();
-            $cart->user_id = $user->user_id;
+        if ($requireFresh) {
+            $cart = $cart->fresh();
         }
+
+        $cart->refreshCost();
 
         return $cart;
     }
