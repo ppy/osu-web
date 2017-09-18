@@ -29,21 +29,21 @@ class GenericFulfillment extends OrderFulfiller
 {
     public function __construct($order)
     {
-        throw new NotImplementedException();
+        // noop
     }
 
     public function run()
     {
-        throw new NotImplementedException();
+        // noop
     }
 
     public function revoke()
     {
-        throw new NotImplementedException();
+        // noop
     }
 
     public function validationErrorsTranslationPrefix()
     {
-        throw new NotImplementedException();
+        // noop
     }
 }
