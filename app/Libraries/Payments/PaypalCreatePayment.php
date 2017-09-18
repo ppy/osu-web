@@ -113,7 +113,7 @@ class PaypalCreatePayment
         $transaction->setAmount($this->getAmount())
             ->setItemList($this->getItemList())
             ->setDescription($this->order->getOrderName())
-            ->setInvoiceNumber($this->order->order_id);
+            ->setInvoiceNumber($this->order->getOrderNumber());
 
         return $transaction;
     }
