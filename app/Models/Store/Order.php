@@ -173,7 +173,7 @@ class Order extends Model
 
     public function checkout()
     {
-        DB::transaction(function () {
+        DB::connection('mysql-store')->transaction(function () {
             $this->status = 'checkout';
             $this->refreshCost(true);
         });
