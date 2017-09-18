@@ -68,7 +68,6 @@ class PaypalController extends Controller
         $order = Order::where('user_id', Auth::user()->user_id)->where('status', 'incart')->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
         $link = $command->getApprovalLink();
-        \Log::debug($link);
 
         return $link;
     }

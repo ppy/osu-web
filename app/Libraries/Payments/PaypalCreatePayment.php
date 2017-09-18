@@ -29,6 +29,7 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
+use PayPal\Exception\PayPalConnectionException;
 
 /**
  * Creates a Paypal Payment for a store Order.
@@ -59,10 +60,15 @@ class PaypalCreatePayment
 
     public function getApprovalLink()
     {
-        $context = PaypalApiContext::get();
-        $this->payment->create($context);
+        try {
+            $context = PaypalApiContext::get();
+            $this->payment->create($context);
 
-        return $this->payment->getApprovalLink();
+            return $this->payment->getApprovalLink();
+        } catch (PayPalConnectionException $e) {
+            \Log::error($e->getData());
+            throw $e;
+        }
     }
 
     public function getPayment()

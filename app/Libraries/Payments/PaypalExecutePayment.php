@@ -28,6 +28,7 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
+use PayPal\Exception\PayPalConnectionException;
 
 /**
  * Executes an approved Paypal Payment for a store Order.
@@ -56,23 +57,28 @@ class PaypalExecutePayment
     public function run()
     {
         DB::connection('mysql-store')->transaction(function () use (&$context) {
-            $context = PaypalApiContext::get();
+            try {
+                $context = PaypalApiContext::get();
 
-            // prevent concurrent updates
-            $order = Order::lockForUpdate()->find($this->order->order_id);
-            if ($order->status !== 'incart') {
-                throw new InvalidOrderStateException(
-                    "`Order {$order->order_id}` in wrong state: `{$order->status}`"
-                );
+                // prevent concurrent updates
+                $order = Order::lockForUpdate()->find($this->order->order_id);
+                if ($order->status !== 'incart') {
+                    throw new InvalidOrderStateException(
+                        "`Order {$order->order_id}` in wrong state: `{$order->status}`"
+                    );
+                }
+
+                // Tell Paypal to complete the transaction so we can finally clear the cart.
+                $payment = Payment::get($this->params['paymentId'], $context);
+                $result = $payment->execute($this->execution, $context);
+                \Log::debug($result);
+
+                $order->status = 'checkout';
+                $order->save();
+            } catch (PayPalConnectionException $e) {
+                \Log::error($e->getData());
+                throw $e;
             }
-
-            // Tell Paypal to complete the transaction so we can finally clear the cart.
-            $payment = Payment::get($this->params['paymentId'], $context);
-            $result = $payment->execute($this->execution, $context);
-            \Log::debug($result);
-
-            $order->status = 'checkout';
-            $order->save();
         });
 
         // FIXME: return $result instead of fetching again?
