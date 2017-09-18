@@ -21,20 +21,22 @@ import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
 
 export class StoreCheckout
-  CHECKOUT_SELECTOR: '.js-store-checkout-button'
+  @CHECKOUT_SELECTOR: '.js-store-checkout-button'
 
   @initialize: =>
     traps = @allTraps()
     # load scripts
-    init = {
-      paypal: Promise.resolve()
-      xsolla: StoreXsolla.promiseInit()
-      centili: StoreCentili.promiseInit()
-    }
+    init = {}
+    document.querySelectorAll(@CHECKOUT_SELECTOR).forEach (element) ->
+      provider = element.dataset.provider
+      switch provider
+        when 'paypal' then init['paypal'] = Promise.resolve()
+        when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit()
+        when 'centili' then  init['centili'] = StoreCentili.promiseInit()
 
-    $(document.querySelectorAll('.js-store-checkout-button')).on 'click.xsolla', (event) ->
+    $(document.querySelectorAll(@CHECKOUT_SELECTOR)).on 'click.checkout', (event) ->
       promiseAll = (provider) ->
-                     Promise.all([init[provider], traps[provider]])
+                     Promise.all([init[provider] || Promise.reject(), traps[provider]])
 
       provider = event.target.dataset.provider
       promise = switch provider
@@ -67,7 +69,7 @@ export class StoreCheckout
   @allTraps: ->
     traps = {}
 
-    buttons = document.querySelectorAll('.js-store-checkout-button')
+    buttons = document.querySelectorAll(@CHECKOUT_SELECTOR)
     for button in buttons
       provider = button.dataset.provider
       traps[provider] = DeferrablePromise() if provider?
