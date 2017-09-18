@@ -32,8 +32,6 @@ abstract class Controller extends BaseController
     {
         if (Auth::check()) {
             return Order::cart(Auth::user());
-        } else {
-            return new Order();
         }
     }
 }

@@ -249,6 +249,7 @@ class Order extends Model
             ->first();
 
         if (!$cart) {
+            // still stuff that relies on cart not returning null.
             $cart = new static();
             $cart->user_id = $user->user_id;
 
