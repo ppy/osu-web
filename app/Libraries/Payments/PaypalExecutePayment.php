@@ -21,6 +21,7 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
+use App\Traits\StoreNotifiable;
 use DB;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
@@ -39,6 +40,8 @@ use PayPal\Exception\PayPalConnectionException;
  */
 class PaypalExecutePayment
 {
+    use StoreNotifiable;
+
     private $execution;
     private $order;
     private $params;
@@ -74,9 +77,11 @@ class PaypalExecutePayment
                 \Log::debug($result);
 
                 $order->status = 'checkout';
-                $order->save();
+                $order->saveOrExplode();
             } catch (PayPalConnectionException $e) {
                 \Log::error($e->getData());
+                // TODO: get more context data
+                $this->notifyOrder($this->order, $e->getData());
                 throw $e;
             }
         });

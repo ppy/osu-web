@@ -18,11 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Fulfillment;
+namespace App\Traits;
 
 use Slack;
 
-trait Notifiable
+trait StoreNotifiable
 {
     public function notify($text)
     {

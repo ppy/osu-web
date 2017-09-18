@@ -21,6 +21,7 @@
 namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
+use App\Traits\StoreNotifiable;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
@@ -39,6 +40,8 @@ use PayPal\Exception\PayPalConnectionException;
  */
 class PaypalCreatePayment
 {
+    use StoreNotifiable;
+
     private $order;
     private $payment;
 
@@ -67,6 +70,8 @@ class PaypalCreatePayment
             return $this->payment->getApprovalLink();
         } catch (PayPalConnectionException $e) {
             \Log::error($e->getData());
+            // TODO: get more context data
+            $this->notifyOrder($this->order, $e->getData());
             throw $e;
         }
     }

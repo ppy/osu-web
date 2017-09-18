@@ -22,10 +22,11 @@ namespace App\Listeners\Fulfillment;
 
 use App\Events\Fulfillment\UsernameChanged;
 use App\Events\Fulfillment\UsernameReverted;
+use App\Traits\StoreNotifiable;
 
 class GenericSubscribers
 {
-    use Notifiable;
+    use StoreNotifiable;
 
     public function onUsernameChanged($event)
     {

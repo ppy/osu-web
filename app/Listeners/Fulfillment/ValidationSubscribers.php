@@ -23,10 +23,11 @@ namespace App\Listeners\Fulfillment;
 use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Events\Fulfillment\ValidationFailedEvent;
+use App\Traits\StoreNotifiable;
 
 class ValidationSubscribers
 {
-    use Notifiable;
+    use StoreNotifiable;
 
     public function onValidationFailed($event)
     {

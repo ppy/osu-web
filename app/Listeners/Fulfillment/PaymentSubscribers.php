@@ -23,10 +23,11 @@ namespace App\Listeners\Fulfillment;
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Libraries\Fulfillments\FulfillmentFactory;
+use App\Traits\StoreNotifiable;
 
 class PaymentSubscribers
 {
-    use Notifiable;
+    use StoreNotifiable;
 
     public function onPaymentCompleted($event)
     {
