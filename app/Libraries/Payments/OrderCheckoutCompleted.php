@@ -30,7 +30,10 @@ class OrderCheckoutCompleted
         $orderId = Order::getOrderId($orderNumber);
 
         DB::connection('mysql-store')->transaction(function () use (&$order, $orderId) {
-            $order = Order::lockForUpdate()->findOrFail($orderId);
+            // select for update will lock the table if the row doesn't exist,
+            // so do a double select.
+            $order = Order::findOrFail($orderId);
+            $order = Order::lockForUpdate()->find($orderId);
 
             // cart should only be in:
             // incart -> if user hits this endpoint first.
