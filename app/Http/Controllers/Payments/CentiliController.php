@@ -70,11 +70,6 @@ class CentiliController extends Controller
             abort(404);
         }
 
-        if ($order->status === 'checkout') {
-            $order->status = 'incart';
-            $order->save();
-        }
-
         # FIXME: need a payments failed page.
         return redirect(route('payments.failed'));
     }
