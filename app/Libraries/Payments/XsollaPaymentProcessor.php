@@ -138,7 +138,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
-        if ($this->getPaymentAmount() < $order->getTotal()) {
+        if ($this->getPaymentAmount() != $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',
