@@ -216,14 +216,6 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function checkout()
-    {
-        DB::connection('mysql-store')->transaction(function () {
-            $this->status = 'checkout';
-            $this->refreshCost();
-        });
-    }
-
     public function cancel()
     {
         $this->status = 'cancelled';
