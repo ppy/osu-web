@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Exceptions\AuthorizationException;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\Chat\Channel as ChatChannel;
 use App\Models\Forum\Authorize as ForumAuthorize;
 use App\Models\Multiplayer\Match as MultiplayerMatch;
@@ -258,7 +259,19 @@ class OsuAuthorize
 
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
+        static $publicEvents = [
+            BeatmapsetEvent::NOMINATE,
+            BeatmapsetEvent::QUALIFY,
+            BeatmapsetEvent::DISQUALIFY,
+            BeatmapsetEvent::APPROVE,
+            BeatmapsetEvent::RANK,
+        ];
+
         if ($user !== null && $user->isQAT()) {
+            return 'ok';
+        }
+
+        if (in_array($event->type, $publicEvents, true)) {
             return 'ok';
         }
     }
@@ -440,6 +453,10 @@ class OsuAuthorize
 
         if ($post->poster_id !== $user->user_id) {
             return $prefix.'not_owner';
+        }
+
+        if ($post->trashed()) {
+            return $prefix.'deleted';
         }
 
         if ($post->topic->isLocked()) {

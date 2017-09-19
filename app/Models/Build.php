@@ -61,9 +61,7 @@ class Build extends Model
 
     public function scopePropagationHistory($query)
     {
-        $query->default()
-            ->where('allow_bancho', true)
-            ->where('test_build', false);
+        $query->default()->where('allow_bancho', true);
     }
 
     public function versionNext()

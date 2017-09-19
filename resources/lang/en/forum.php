@@ -217,8 +217,10 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Unpin topic',
             'pin-1' => 'Pin topic',
+            'pin-2' => 'Pin topic and mark as announcement',
             'state-0' => 'Topic has been unpinned',
             'state-1' => 'Topic has been pinned',
+            'state-2' => 'Topic has been pinned and marked as announcement',
         ],
 
         'show' => [

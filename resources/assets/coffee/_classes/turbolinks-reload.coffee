@@ -17,24 +17,31 @@
 ###
 
 class @TurbolinksReload
+  className = 'js-extra-script'
+
   constructor: ->
     @loaded = {}
-    @scripts = document.getElementsByClassName('js-extra-script')
 
     addEventListener 'turbolinks:before-cache', @unload
 
 
-  load: (src) =>
+  load: (src, onload) =>
     return if @loaded[src]?
 
     el = document.createElement('script')
-    el.classList.add 'js-extra-script'
+    el.classList.add className
+    el.onload = ->
+      # abort if the element has been removed (on navigation etc)
+      return if !el.parentElement?
+
+      el.parentElement.removeChild el
+      onload?()
     el.src = src
 
-    document.body.appendChild(el)
+    document.body.appendChild el
 
     @loaded[src] = true
 
 
   unload: =>
-     document.body.removeChild(@scripts[0]) while @scripts[0]?
+     document.body.removeChild(el) for el in document.querySelectorAll(".#{className}")

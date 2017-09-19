@@ -49,19 +49,25 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       nominations = @props.beatmapset.nominations
       disqualification = nominations.disqualification
 
+    nominators = []
+    for event in @props.events by -1
+      switch event.type
+        when 'disqualify' then break
+        when 'nominate' then nominators.push(@props.users[event.user_id])
+
     div className: bn,
       div className: "#{bn}__header",
         span
           className: "#{bn}__title"
           osu.trans 'beatmaps.nominations.title'
         span null,
-          if @props.beatmapset.nominations?.nominators?.length > 0
+          if nominators.length > 0
             span null,
               '['
               span
                 dangerouslySetInnerHTML:
                   __html:
-                    @props.beatmapset.nominations.nominators
+                    nominators
                       .map (user) ->
                         osu.link(laroute.route('users.show', user: user.id), user.username)
                       .join(', ')
