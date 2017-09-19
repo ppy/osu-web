@@ -75,10 +75,11 @@ class XsollaController extends Controller
 
         return $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
     }
+
+    // Called by xsolla after payment is approved by user.
     public function callback(Request $request)
     {
         $processor = XsollaPaymentProcessor::createFromRequest($request->getFacadeRoot());
-        \Log::debug($processor->getNotificationType());
         if ($processor->isSkipped()) {
             // skip user_search notification
             return response()->json();
@@ -105,6 +106,7 @@ class XsollaController extends Controller
         return response()->json(['ok']);
     }
 
+    // After user has approved payment and redirected here by xsolla
     public function completed()
     {
         $orderNumber = Request::input('foreignInvoice') ?? '';

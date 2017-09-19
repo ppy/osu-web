@@ -42,6 +42,7 @@ class PaypalController extends Controller
         return parent::__construct();
     }
 
+    // When user has approved a payment at Paypal and is redirected back here.
     public function approved()
     {
         $paymentId = Request::input('paymentId');
@@ -58,6 +59,7 @@ class PaypalController extends Controller
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
+    // Begin process of approving a payment.
     public function create()
     {
         $orderId = presence(Request::input('order_id'));
@@ -72,12 +74,14 @@ class PaypalController extends Controller
         return $link;
     }
 
+    // Payment declined by user.
     public function declined()
     {
         // FIXME: show a message to the user
         return redirect(route('store.checkout.index'));
     }
 
+    // Called by Paypal.
     public function ipn(Request $request)
     {
         $processor = PaypalPaymentProcessor::createFromRequest($request->getFacadeRoot());
