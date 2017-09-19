@@ -809,26 +809,6 @@ class Beatmapset extends Model
         return true;
     }
 
-    public function nominators()
-    {
-        $events = $this
-            ->recentEvents()
-            ->with('user')
-            ->where(['type' => BeatmapsetEvent::NOMINATE])
-            ->select('user_id')
-            ->get()
-            ->all();
-
-        return array_map(function ($event) {
-            if ($event->user !== null) {
-                return [
-                    'id' => $event->user_id,
-                    'username' => $event->user->username,
-                ];
-            }
-        }, $events);
-    }
-
     public function favourite($user)
     {
         DB::transaction(function () use ($user) {

@@ -91,10 +91,12 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $currentUser = Auth::user();
 
             $nominations = $beatmapset->recentEvents()->get();
+
             foreach ($nominations as $nomination) {
                 if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
                     $disqualifyEvent = $nomination;
                 }
+
                 if ($currentUser !== null &&
                     $nomination->user_id === $currentUser->user_id &&
                     $nomination->type === BeatmapsetEvent::NOMINATE) {
@@ -106,9 +108,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 'required' => $beatmapset->requiredNominationCount(),
                 'current' => $beatmapset->currentNominationCount(),
             ];
-            if (priv_check('BeatmapsetEventViewUserId')->can()) {
-                $result['nominators'] = $beatmapset->nominators();
-            }
 
             if (isset($disqualifyEvent)) {
                 $result['disqualification'] = [
@@ -119,25 +118,17 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             if ($currentUser !== null) {
                 $result['nominated'] = $alreadyNominated ?? false;
             }
-
-            return $this->item($beatmapset, function ($beatmapset) use ($result) {
-                return $result;
-            });
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
             $result = [
                 'ranking_eta' => json_time($eta),
             ];
+        }
 
-            if (priv_check('BeatmapsetEventViewUserId')->can()) {
-                $result['nominators'] = $beatmapset->nominators();
-            }
-
+        if (isset($result)) {
             return $this->item($beatmapset, function ($beatmapset) use ($result) {
                 return $result;
             });
-        } else {
-            return;
         }
     }
 

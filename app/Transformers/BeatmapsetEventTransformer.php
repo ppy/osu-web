@@ -27,7 +27,7 @@ class BeatmapsetEventTransformer extends Fractal\TransformerAbstract
 {
     public function transform(BeatmapsetEvent $event = null)
     {
-        $userId = priv_check('BeatmapsetEventViewUserId')->can() ? $event->user_id : null;
+        $userId = priv_check('BeatmapsetEventViewUserId', $event)->can() ? $event->user_id : null;
 
         return [
             'id' => $event->id,
