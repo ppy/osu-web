@@ -17,30 +17,23 @@
 ###
 
 class @TwitchPlayer
-  constructor: ->
+  constructor: (@turbolinksReload) ->
     @playerDivs = document.getElementsByClassName('js-twitch-player')
-    @embedInitialized = false
 
     addEventListener 'turbolinks:load', @startAll
 
 
   initializeEmbed: =>
-    return if @embedInitialized
-
-    @embedInitialized = true
-    $embed = $('<script src="https://player.twitch.tv/js/embed/v1.js">')
-    $(document.body).append $embed
-    Timeout.set 0, -> $embed.remove()
+    @turbolinksReload.load 'https://player.twitch.tv/js/embed/v1.js', @startAll
 
 
   startAll: =>
-    # wait until the twitch embed js is loaded
-    if !Twitch? && @playerDivs[0]?
-      @initializeEmbed()
-      Timeout.set 500, @startAll
-      return
+    return if @playerDivs.length == 0
 
-    @start(div) for div in @playerDivs
+    if !Twitch?
+      @initializeEmbed()
+    else
+      @start(div) for div in @playerDivs
 
 
   start: (div) =>
