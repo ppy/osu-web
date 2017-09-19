@@ -68,16 +68,12 @@ class CheckoutController extends Controller
         }
 
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
+            OrderCheckoutCompleted::run($order->getOrderNumber());
+            // TODO: fulfill order
 
-            return ujs_redirect(action('StoreController@getInvoice', [$order->order_id]).'?thanks=1');
+            return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
         }
 
-        $provider = Request::input('provider');
-        if ($provider === 'paypal') {
-            return js_view('store.order-create');
-        } else {
-            return response()->json(['ok']);
-        }
+        return response()->json(['ok']);
     }
 }
