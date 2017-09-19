@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
             // Store Products
             $this->call(ProductSeeder::class);
 
-            // Build propagation history (user count data for each build in 30min intervals)
-            $this->call(BuildPropagationHistorySeeder::class);
+            // Changelog data (base update streams, builds, changes, build histories)
+            $this->call(ChangelogSeeder::class);
         } catch (ErrorException $er) {
             $this->command->error($er->getMessage());
         } catch (Exception $ex) {
