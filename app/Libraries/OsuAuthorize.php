@@ -442,6 +442,10 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
+        if ($post->trashed()) {
+            return $prefix.'deleted';
+        }
+
         if ($post->topic->isLocked()) {
             return $prefix.'topic_locked';
         }
