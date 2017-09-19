@@ -37,19 +37,6 @@ class FulfillmentFactoryTests extends TestCase
         'mysql-store',
     ];
 
-    /**
-     * @expectedException \App\Exceptions\NotImplementedException
-     */
-    public function testGenericFulfillerIsNotImplementedYet()
-    {
-        $orderItem = factory(OrderItem::class)->create([
-            'product_id' => factory(Product::class, 'master_tshirt')->create()->product_id,
-        ]);
-        $order = $orderItem->order;
-
-        FulfillmentFactory::createFulfillersFor($order);
-    }
-
     public function testCustomClassSupporterTag()
     {
         $orderItem = factory(OrderItem::class, 'supporter_tag')->create();
