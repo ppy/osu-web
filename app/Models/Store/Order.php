@@ -219,7 +219,7 @@ class Order extends Model
     public function cancel()
     {
         $this->status = 'cancelled';
-        $this->save();
+        $this->saveOrExplode();
     }
 
     public function paid($transactionId, $date)
@@ -227,7 +227,7 @@ class Order extends Model
         $this->transaction_id = $transactionId;
         $this->paid_at = $date;
         $this->status = 'paid';
-        $this->save();
+        $this->saveOrExplode();
     }
 
     /**
