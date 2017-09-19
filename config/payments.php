@@ -12,6 +12,7 @@ return [
         'client_secret' => env('PAYPAL_CLIENT_SECRET'),
         'url' => env('PAYPAL_URL'),
         'merchant_id' => env('PAYPAL_MERCHANT_ID'),
+        'sandbox' => presence(env('PAYPAL_SANDBOX'), false),
     ],
     'xsolla' => [
         'api_key' => env('XSOLLA_API_KEY'),

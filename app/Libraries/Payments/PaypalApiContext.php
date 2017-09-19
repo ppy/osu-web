@@ -34,15 +34,21 @@ class PaypalApiContext
             new OAuthTokenCredential($clientId, $clientSecret)
         );
 
-        $context->setConfig(
-            [
+        $config = [
+            'log.LogEnabled' => true,
+            'log.FileName' => storage_path('logs/paypal.log'),
+            'log.LogLevel' => 'DEBUG',
+            'cache.enabled' => true,
+        ];
+
+        if (config('payments.paypal.sandbox') === true) {
+            $config = array_merge($config, [
                 'mode' => 'sandbox',
-                'log.LogEnabled' => true,
-                'log.FileName' => 'PayPal.log',
-                'log.LogLevel' => 'DEBUG',
-                'cache.enabled' => true,
-            ]
-        );
+                'http.CURLOPT_SSLVERSION' => CURL_SSLVERSION_TLSv1,
+            ]);
+        }
+
+        $context->setConfig($config);
 
         return $context;
     }
