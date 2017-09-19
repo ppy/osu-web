@@ -87,7 +87,7 @@ class PostsController extends Controller
 
     public function edit($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::withTrashed()->findOrFail($id);
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
@@ -96,7 +96,7 @@ class PostsController extends Controller
 
     public function update($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::withTrashed()->findOrFail($id);
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
