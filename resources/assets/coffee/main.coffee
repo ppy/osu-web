@@ -70,8 +70,6 @@ $(document).on 'turbolinks:load', ->
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
-@turbolinksDisable ?= new TurbolinksDisable
-@turbolinksDisqus ?= new TurbolinksDisqus
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
@@ -82,6 +80,8 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
+@turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
+@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
 @userLogin ?= new UserLogin(@nav)
 @userVerification ?= new UserVerification(@nav)
 

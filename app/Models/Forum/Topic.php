@@ -37,8 +37,12 @@ class Topic extends Model
     const STATUS_LOCKED = 1;
     const STATUS_UNLOCKED = 0;
 
-    const TYPE_NORMAL = 0;
-    const TYPE_PINNED = 1;
+    const TYPES = [
+        'normal' => 0,
+        'sticky' => 1,
+        'announcement' => 2,
+    ];
+
     const ISSUE_TAGS = [
         'added',
         'assigned',
@@ -203,6 +207,22 @@ class Topic extends Model
         });
     }
 
+    public static function typeStr($typeInt)
+    {
+        return array_search_null($typeInt, static::TYPES) ?? null;
+    }
+
+    public static function typeInt($typeIntOrStr)
+    {
+        if (is_int($typeIntOrStr)) {
+            if (in_array($typeIntOrStr, static::TYPES, true)) {
+                return $typeIntOrStr;
+            }
+        } else {
+            return static::TYPES[$typeIntOrStr] ?? null;
+        }
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class, 'topic_id');
@@ -354,12 +374,12 @@ class Topic extends Model
 
     public function scopePinned($query)
     {
-        return $query->where('topic_type', '<>', 0);
+        return $query->where('topic_type', '<>', static::typeInt('normal'));
     }
 
     public function scopeNormal($query)
     {
-        return $query->where('topic_type', 0);
+        return $query->where('topic_type', '=', static::typeInt('normal'));
     }
 
     public function scopeShowDeleted($query, $showDeleted)
@@ -479,11 +499,6 @@ class Topic extends Model
         // not checking STATUS_LOCK because there's another
         // state (STATUS_MOVED) which isn't handled yet.
         return $this->topic_status !== static::STATUS_UNLOCKED;
-    }
-
-    public function isPinned()
-    {
-        return $this->topic_type !== static::TYPE_NORMAL;
     }
 
     public function markRead($user, $markTime)
@@ -630,7 +645,7 @@ class Topic extends Model
     public function pin($pin)
     {
         $this->update([
-            'topic_type' => $pin ? static::TYPE_PINNED : static::TYPE_NORMAL,
+            'topic_type' => static::typeInt($pin) ?? static::typeInt('normal'),
         ]);
     }
 
@@ -699,7 +714,7 @@ class Topic extends Model
 
     public function setIssueTag($tag)
     {
-        $this->topic_type = $tag === 'confirmed' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $this->topic_type = static::typeInt($tag === 'confirmed' ? 'sticky' : 'normal');
 
         if (!$this->hasIssueTag($tag)) {
             $this->topic_title = "[{$tag}] {$this->topic_title}";
@@ -710,7 +725,8 @@ class Topic extends Model
 
     public function unsetIssueTag($tag)
     {
-        $this->topic_type = $tag === 'resolved' ? static::TYPE_PINNED : static::TYPE_NORMAL;
+        $this->topic_type = static::typeInt($tag === 'resolved' ? 'sticky' : 'normal');
+
         $this->topic_title = preg_replace(
             '/  +/',
             ' ',
