@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\PasswordReset;
 use App\Models\User;
-use App\Models\UserPassword;
+use App\Libraries\UserPassword;
 use Carbon\Carbon;
 use Mail;
 use Request;

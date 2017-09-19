@@ -18,8 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Libraries;
 
+use App\Models\WeakPassword;
 use App\Traits\Validatable;
 use Hash;
 
