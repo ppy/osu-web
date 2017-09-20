@@ -28,6 +28,7 @@ use App\Models\Store\Order;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
@@ -43,13 +44,13 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->signature = $signature;
     }
 
-    public static function createFromRequest(\Illuminate\Http\Request $request)
+    public static function createFromRequest(Request $request)
     {
         // FIXME: ugly interface :(
         return new static(static::extractParams($request), null);
     }
 
-    protected static function extractParams(\Illuminate\Http\Request $request)
+    protected static function extractParams(Request $request)
     {
         $params = $request->input();
         if ($request->isJson()) {
