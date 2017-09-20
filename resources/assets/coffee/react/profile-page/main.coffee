@@ -219,10 +219,13 @@ class ProfilePage.Main extends React.PureComponent
     props.withEdit = @props.withEdit
     props.name = name
 
+    @extraPages ?= {}
+
     div
       key: name
       'data-page-id': name
       className: "#{topClassName} #{extraClass}"
+      ref: (el) => @extraPages[name] = el
       el component, props
 
 
@@ -255,7 +258,7 @@ class ProfilePage.Main extends React.PureComponent
       @setCurrentPage null, page
       return
 
-    target = $(".js-switchable-mode-page--page[data-page-id='#{page}']")
+    target = $(@extraPages[page])
 
     # if invalid page is specified, scan current position
     if target.length == 0
