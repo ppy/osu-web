@@ -46,31 +46,33 @@
                 {{ trans('home.search.forum_post.label.forum') }}
             </div>
 
-            <select
-                name="forum_id"
-                class="search-advanced-forum-post__input"
-            >
-                <option value="">
-                    {{ trans('home.search.forum_post.all') }}
-                </option>
-
-                @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
-                    @if (!priv_check('ForumView', $forum)->can())
-                        @continue
-                    @endif
-
-                    <option
-                        value="{{ $forum->getKey() }}"
-                        {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
-                    >
-                        {{ str_repeat('&ndash;', $forum->currentDepth()) }}
-                        {{ $forum->forum_name }}
+            <div class="search-advanced-forum-post__input-container">
+                <select
+                    name="forum_id"
+                    class="search-advanced-forum-post__input"
+                >
+                    <option value="">
+                        {{ trans('home.search.forum_post.all') }}
                     </option>
-                @endforeach
-            </select>
 
-            <div class="search-advanced-forum-post__dropdown-arrow">
-                <span class="fa fa-chevron-down"></span>
+                    @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
+                        @if (!priv_check('ForumView', $forum)->can())
+                            @continue
+                        @endif
+
+                        <option
+                            value="{{ $forum->getKey() }}"
+                            {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
+                        >
+                            {{ str_repeat('&ndash;', $forum->currentDepth()) }}
+                            {{ $forum->forum_name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                <div class="search-advanced-forum-post__dropdown-arrow">
+                    <span class="fa fa-chevron-down"></span>
+                </div>
             </div>
         </label>
 
