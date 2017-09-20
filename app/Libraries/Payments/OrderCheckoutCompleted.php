@@ -33,7 +33,7 @@ class OrderCheckoutCompleted
             // select for update will lock the table if the row doesn't exist,
             // so do a double select.
             $order = Order::findOrFail($orderId);
-            $order = Order::lockForUpdate()->find($orderId);
+            $order = $order->lockSelf();
 
             // cart should only be in:
             // incart -> if user hits this endpoint first.

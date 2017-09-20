@@ -64,7 +64,7 @@ class PaypalExecutePayment
                 $context = PaypalApiContext::get();
 
                 // prevent concurrent updates
-                $order = Order::lockForUpdate()->find($this->order->order_id);
+                $order = $this->order->lockSelf();
                 if ($order->status !== 'incart') {
                     throw new InvalidOrderStateException(
                         "`Order {$order->order_id}` in wrong state: `{$order->status}`"
