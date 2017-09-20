@@ -68,14 +68,14 @@ class ProfilePage.Main extends React.PureComponent
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
 
-    $(@refs.pages).sortable
+    $(@pages).sortable
       cursor: 'move'
       handle: '.js-profile-page-extra--sortable-handle'
       revert: 150
       scrollSpeed: 10
       update: @updateOrder
 
-    $(@refs.tabs).sortable
+    $(@tabs).sortable
       items: '[data-page-id]'
       tolerance: 'pointer'
       cursor: 'move'
@@ -96,8 +96,8 @@ class ProfilePage.Main extends React.PureComponent
     $.unsubscribe '.profilePage'
     $(window).off '.profilePage'
 
-    for sortable in ['pages', 'tabs']
-      $(@refs[sortable]).sortable 'destroy'
+    for sortable in [@pages, @tabs]
+      $(sortable).sortable 'destroy'
 
     document.body.dataset.profilePageState = JSON.stringify(@state)
 
@@ -175,7 +175,7 @@ class ProfilePage.Main extends React.PureComponent
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
-        ref: 'tabs'
+        ref: (el) => @tabs = el
 
         div
           className: 'js-sticky-header'
@@ -204,7 +204,9 @@ class ProfilePage.Main extends React.PureComponent
 
       div
         className: 'osu-layout__section osu-layout__section--extra'
-        div className: 'osu-layout__row', ref: 'pages',
+        div
+          className: 'osu-layout__row'
+          ref: (el) => @pages = el
           for name in @state.profileOrder
             @extraPage name, extraPageParams[name]
 
