@@ -51,11 +51,17 @@
                 </div>
 
                 @if ($search->mode === $mode)
-                    @include('objects._pagination', [
-                        'object' => $search
-                            ->paginate($mode)
-                            ->appends($search->urlParams()),
-                    ])
+                    @php
+                        $pagination = $search->paginate($mode)->appends($search->urlParams());
+                    @endphp
+
+                    @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))
+                        <div class="search-result__notice">
+                            {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
+                        </div>
+                    @endif
+
+                    @include('objects._pagination', ['object' => $pagination])
                 @else
                     <a
                         class="search-result__row search-result__row--more"
