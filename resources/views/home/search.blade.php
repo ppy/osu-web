@@ -73,8 +73,10 @@
                 @if ($search->hasQuery())
                     @include('home._search_results')
                 @else
-                    <div class="search__notice">
-                        @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
+                    <div class="search-result">
+                        <div class="search-result__notice search-result__notice--empty">
+                            @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
+                        </div>
                     </div>
                 @endif
             </div>
