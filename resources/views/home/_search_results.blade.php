@@ -26,7 +26,7 @@
 
             {{-- `empty(collect())` is false :D --}}
             @if (count($result['data']) === 0)
-                <div class="search-result__row search-result__row--empty">
+                <div class="search-result__row search-result__row--notice">
                     @lang('home.search.empty_result')
                 </div>
             @else
@@ -56,12 +56,14 @@
                     @endphp
 
                     @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))
-                        <div class="search-result__notice">
+                        <div class="search-result__row search-result__row--notice">
                             {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
                         </div>
                     @endif
 
-                    @include('objects._pagination', ['object' => $pagination])
+                    <div class="search-result__row search-result__row--paginator">
+                        @include('objects._pagination', ['object' => $pagination])
+                    </div>
                 @else
                     <a
                         class="search-result__row search-result__row--more"

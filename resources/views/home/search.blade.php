@@ -74,7 +74,7 @@
                     @include('home._search_results')
                 @else
                     <div class="search-result">
-                        <div class="search-result__notice search-result__notice--empty">
+                        <div class="search-result__row search-result__row--notice">
                             @lang('home.search.missing_query', ['n' => config('osu.search.minimum_length')])
                         </div>
                     </div>

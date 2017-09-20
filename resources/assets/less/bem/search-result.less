@@ -88,21 +88,16 @@
     }
   }
 
-  &__notice {
-    padding-top: 10px;
-    font-size: @font-size--title-small;
-    text-align: center;
-
-    &--empty {
-      padding-bottom: 10px;
-    }
-  }
-
   &__row {
     padding: 5px 0;
 
-    &--empty {
-      font-size: @font-size--normal;
+    &--entries-container {
+      display: flex;
+    }
+
+    &--notice {
+      font-size: @font-size--title-small;
+      text-align: center;
       color: #ccc;
     }
 
@@ -113,8 +108,8 @@
       text-align: center;
     }
 
-    &--entries-container {
-      display: flex;
+    &--paginator {
+      margin: -@padding-paginator 0;
     }
 
     &--title {
