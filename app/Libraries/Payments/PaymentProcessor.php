@@ -23,6 +23,7 @@ namespace App\Libraries\Payments;
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\ProcessorValidationFailed;
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
@@ -175,11 +176,13 @@ abstract class PaymentProcessor implements \ArrayAccess
 
             // Using a unique constraint, so we don't need to lock any rows.
             $payment = new Payment();
-            $payment->order_id = $order->order_id;
             $payment->provider = $this->getPaymentProvider();
             $payment->transaction_id = $this->getPaymentTransactionId();
             $payment->paid_at = $this->getPaymentDate();
-            $payment->saveOrExplode();
+
+            if (!$order->payments()->save($payment)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
 
             $order->paid($payment);
             event(new PaymentCompleted($order));
@@ -199,8 +202,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->getOrder();
-
-            $payment = Payment::where('order_id', $order->order_id)->where('cancelled', false)->firstOrFail();
+            $payment = $order->payments->where('cancelled', false)->first();
             $payment->cancel();
 
             $order->cancel();
@@ -259,7 +261,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     protected function getOrder()
     {
         if (!isset($this->order)) {
-            $this->order = Order::find($this->getOrderId());
+            $this->order = Order::withPayments()->find($this->getOrderId());
         }
 
         return $this->order;
