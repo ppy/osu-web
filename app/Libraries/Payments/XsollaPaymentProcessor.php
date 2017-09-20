@@ -83,7 +83,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getPaymentDate()
     {
-        return Carbon::parse($this['transaction.payment_date']);
+        return Carbon::parse($this['transaction.payment_date'])->setTimezone('UTC');
     }
 
     public function getNotificationType()
