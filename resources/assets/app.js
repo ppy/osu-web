@@ -3,7 +3,6 @@ import './coffee/_classes/*.coffee';
 
 import 'react-namespaces.coffee';
 import './coffee/react/_components/*.coffee';
-import './coffee/react/_mixins/*.coffee';
 
 import 'jquery-pubsub.coffee';
 import 'osu_common.coffee';
