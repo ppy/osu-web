@@ -56,17 +56,15 @@
                     </option>
 
                     @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
-                        @if (!priv_check('ForumView', $forum)->can())
-                            @continue
+                        @if (priv_check('ForumView', $forum)->can())
+                            <option
+                                value="{{ $forum->getKey() }}"
+                                {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
+                            >
+                                {{ str_repeat('&ndash;', $forum->currentDepth()) }}
+                                {{ $forum->forum_name }}
+                            </option>
                         @endif
-
-                        <option
-                            value="{{ $forum->getKey() }}"
-                            {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
-                        >
-                            {{ str_repeat('&ndash;', $forum->currentDepth()) }}
-                            {{ $forum->forum_name }}
-                        </option>
                     @endforeach
                 </select>
 
