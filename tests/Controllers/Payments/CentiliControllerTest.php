@@ -75,7 +75,7 @@ class CentiliControllerTest extends TestCase
         $base = [
             'clientid' => $this->order->getOrderNumber(),
             'country' => 'jp',
-            'enduserprice' => '480.000',
+            'enduserprice' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
             'event_type' => 'one_off',
             'mnocode' => 'BADDOG',
             'phone' => 'test@example.org',

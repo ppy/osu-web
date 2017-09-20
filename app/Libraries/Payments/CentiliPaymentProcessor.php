@@ -120,7 +120,6 @@ class CentiliPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
-        \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
         if ($this->getPaymentAmount() != $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
