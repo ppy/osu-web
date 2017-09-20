@@ -67,9 +67,14 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return $this['item_number'];
     }
 
-    public function getTransactionId()
+    public function getPaymentProvider()
     {
-        return "paypal-{$this['txn_id']}";
+        return 'paypal';
+    }
+
+    public function getPaymentTransactionId()
+    {
+        return $this['txn_id'];
     }
 
     public function getPaymentAmount()

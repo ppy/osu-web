@@ -162,6 +162,7 @@ class XsollaPaymentProcessorTest extends TestCase
             'notification_type' => 'payment',
             'nothing' => 'to see',
             'transaction' => [
+                'id' => '123456789',
                 'external_id' => $order->getOrderNumber(),
             ],
             'purchase' => [

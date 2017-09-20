@@ -66,9 +66,14 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return $this['transaction.external_id'];
     }
 
-    public function getTransactionId()
+    public function getPaymentProvider()
     {
-        return "xsolla-{$this['transaction.id']}";
+        return 'xsolla';
+    }
+
+    public function getPaymentTransactionId()
+    {
+        return $this['transaction.id'];
     }
 
     public function getPaymentAmount()

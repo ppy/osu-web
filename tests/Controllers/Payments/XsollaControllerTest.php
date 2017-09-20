@@ -98,6 +98,7 @@ class XsollaControllerTest extends TestCase
             'notification_type' => 'payment',
             'nothing' => 'to see',
             'transaction' => [
+                'id' => '12344523',
                 'external_id' => $order->getOrderNumber(),
             ],
             'purchase' => [

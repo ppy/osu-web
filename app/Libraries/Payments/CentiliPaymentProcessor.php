@@ -63,9 +63,14 @@ class CentiliPaymentProcessor extends PaymentProcessor
         return $this['clientid']; // or reference?
     }
 
-    public function getTransactionId()
+    public function getPaymentProvider()
     {
-        return "centili-{$this['transactionid']}";
+        return 'centili';
+    }
+
+    public function getPaymentTransactionId()
+    {
+        return $this['transactionid'];
     }
 
     public function getPaymentAmount()

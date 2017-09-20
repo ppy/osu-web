@@ -25,6 +25,7 @@ use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
+use App\Models\Store\Payment;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -74,13 +75,31 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     abstract public function getOrderNumber();
 
+
+    /**
+     * string representing the payment provider.
+     *
+     * @return string
+     */
+    abstract public function getPaymentProvider();
+
+    /**
+     * Transaction ID returned by the payment provider.
+     *
+     * @return string
+     */
+    abstract public function getPaymentTransactionId();
+
     /**
      * Gets the transaction ID for the payment.
      * Transaction IDs should be unique to the payment processor.
      *
      * @return string
      */
-    abstract public function getTransactionId();
+    public function getTransactionId()
+    {
+        return "{$this->getPaymentProvider()}-{$this->getPaymentTransactionId()}";
+    }
 
     /**
      * Gets the payment amount given by the payment provider.
@@ -153,7 +172,16 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->getOrder();
-            $order->paid($this->getTransactionId(), $this->getPaymentDate());
+
+            // Using a unique constraint, so we don't need to lock any rows.
+            $payment = new Payment();
+            $payment->order_id = $order->order_id;
+            $payment->provider = $this->getPaymentProvider();
+            $payment->transaction_id = $this->getPaymentTransactionId();
+            $payment->paid_at = $this->getPaymentDate();
+            $payment->saveOrExplode();
+
+            $order->paid($payment);
             event(new PaymentCompleted($order));
         });
     }
@@ -171,6 +199,10 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->getOrder();
+
+            $payment = Payment::where('order_id', $order->order_id)->where('cancelled', false)->firstOrFail();
+            $payment->cancel();
+
             $order->cancel();
             event(new PaymentCancelled($order));
         });
