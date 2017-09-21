@@ -44,10 +44,9 @@ class CentiliController extends Controller
         try {
             $processor->run();
         } catch (ValidationException $e) {
-            \Log::error($e->getMessage());
-            return response(['message' => 'A validation error occured while running the transaction'], 406);
+            return $this->validationExceptionResponse($e);
         } catch (InvalidSignatureException $e) {
-            return response(['message' => $e->getMessage()], 406);
+            return $this->invalidSignatureExceptionResponse($e);
         }
 
         return 'ok';
@@ -73,5 +72,16 @@ class CentiliController extends Controller
 
         # FIXME: need a payments failed page.
         return redirect(route('payments.failed'));
+    }
+
+    protected function validationExceptionResponse($exception)
+    {
+        \Log::error($exception->getMessage());
+        return response(['message' => 'A validation error occured while running the transaction'], 406);
+    }
+
+    protected function invalidSignatureExceptionResponse($exception)
+    {
+        return response(['message' => $e->getMessage()], 406);
     }
 }
