@@ -56,7 +56,7 @@ class UserEmail
                 }
             }
 
-            if (!Hash::check($this->params['current_password'], $this->user->user_password)) {
+            if (!$this->user->checkPassword($this->params['current_password'])) {
                 $this->validationErrors()->add('current_password', '.wrong_current_password');
             }
 

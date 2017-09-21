@@ -1069,6 +1069,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $query->whereRaw('user_lastvisit > UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL '.config('osu.user.online_window').' MINUTE))');
     }
 
+    public function checkPassword($password)
+    {
+        return Hash::check($password, $this->user_password);
+    }
+
     public function updatePassword($password)
     {
         return $this->update(['user_password' => Hash::make($password)]);
@@ -1084,7 +1089,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
         $validAuth = $user === null
             ? false
-            : Hash::check($password, $user->user_password);
+            : $user->checkPassword($password);
 
         if (!$validAuth) {
             LoginAttempt::failedAttempt($ip, $user);
