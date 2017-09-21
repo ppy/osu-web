@@ -20,6 +20,7 @@
 
 namespace App\Traits;
 
+use PayPal\Exception\PayPalConnectionException;
 use Slack;
 
 trait StoreNotifiable
@@ -32,5 +33,31 @@ trait StoreNotifiable
     public function notifyOrder($order, $text)
     {
         Slack::to('test-hooks')->send("`Order {$order->order_id}:` {$text}");
+    }
+
+    public function notifyError($order = null, $exception = null, $text = null)
+    {
+        $message = 'ERROR:';
+
+        if ($order) {
+            $message .= " `Order {$order->order_id}`";
+        }
+
+        if ($text) {
+            $message .= '; ';
+            $message .= $text;
+        }
+
+        if ($exception) {
+            $className = get_class($exception);
+            $message .= "; `{$className}`";
+
+            if ($exception instanceof PayPalConnectionException) {
+                $message .= "\n";
+                $message .= $exception->getData();
+            }
+        }
+
+        Slack::to('test-hooks')->send($message);
     }
 }

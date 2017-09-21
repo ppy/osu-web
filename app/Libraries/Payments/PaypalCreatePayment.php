@@ -71,7 +71,7 @@ class PaypalCreatePayment
         } catch (PayPalConnectionException $e) {
             \Log::error($e->getData());
             // TODO: get more context data
-            $this->notifyOrder($this->order, $e->getData());
+            $this->notifyError($this->order, $e);
             throw $e;
         }
     }
