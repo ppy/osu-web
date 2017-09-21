@@ -232,12 +232,16 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function paid(Payment $payment)
+    public function paid(Payment $payment = null)
     {
-        // Duplicate to existing fields.
-        // TODO: remove/migrate duplicated fields.
-        $this->transaction_id = $payment->getOrderTransactionId();
-        $this->paid_at = $payment->paid_at;
+        // TODO: use a no payment object instead?
+        if ($payment) {
+            // Duplicate to existing fields.
+            // TODO: remove/migrate duplicated fields.
+            $this->transaction_id = $payment->getOrderTransactionId();
+            $this->paid_at = $payment->paid_at;
+        }
+
         $this->status = 'paid';
         $this->saveOrExplode();
     }

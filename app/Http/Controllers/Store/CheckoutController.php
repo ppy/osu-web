@@ -20,8 +20,11 @@
 
 namespace App\Http\Controllers\Store;
 
+use App\Events\Fulfillment\PaymentCompleted;
 use App\Libraries\CheckoutHelper;
+use App\Libraries\Payments\OrderCheckoutCompleted;
 use Auth;
+use DB;
 use Request;
 
 class CheckoutController extends Controller
@@ -68,8 +71,11 @@ class CheckoutController extends Controller
         }
 
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            OrderCheckoutCompleted::run($order->getOrderNumber());
-            // TODO: fulfill order
+            DB::connection('mysql-store')->transaction(function () use ($order) {
+                OrderCheckoutCompleted::run($order->getOrderNumber());
+                $order->paid(null);
+                event(new PaymentCompleted($order));
+            });
 
             return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
         }
