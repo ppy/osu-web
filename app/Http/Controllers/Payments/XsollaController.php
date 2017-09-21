@@ -23,7 +23,6 @@ namespace App\Http\Controllers\Payments;
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
-use App\Http\Controllers\Controller;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
@@ -85,16 +84,7 @@ class XsollaController extends Controller
             return response()->json();
         }
 
-        try {
-            $processor->run();
-        } catch (ValidationException $e) {
-            return $this->validationExceptionResponse($e);
-        } catch (InvalidSignatureException $e) {
-            return $this->invalidSignatureExceptionResponse($e);
-        } catch (\Exception $e) {
-            \Log::error($e);
-            return $this->exceptionResponse($e, 500, '');
-        }
+        $processor->run();
 
         return response()->json(['ok']);
     }
@@ -109,23 +99,6 @@ class XsollaController extends Controller
         return redirect(route('store.invoice.show', ['invoice' => $orderId, 'thanks' => 1]));
     }
 
-    protected function validationExceptionResponse($exception)
-    {
-        \Log::error($exception->getMessage());
-        return response()->json([
-            'error' => [
-                'code' => 'INVALID',
-                'message' => 'A validation error occured while running the transaction',
-            ],
-        ], 422);
-    }
-
-    protected function invalidSignatureExceptionResponse($exception)
-    {
-        // xsolla expects INVALID_SIGNATURE
-        return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
-    }
-
     private function exceptionResponse($exception, int $status, string $code)
     {
         return response()->json([
@@ -134,5 +107,26 @@ class XsollaController extends Controller
                 'message' => $exception->getMessage(),
             ],
         ], $status);
+    }
+
+    protected function exceptionHandler($exception)
+    {
+        switch (true) {
+            case $exception instanceof ValidationException:
+                \Log::error($exception->getMessage());
+
+                return response()->json([
+                    'error' => [
+                        'code' => 'INVALID',
+                        'message' => 'A validation error occured while running the transaction',
+                    ],
+                ], 422);
+            case $exception instanceof InvalidSignatureException:
+                // xsolla expects INVALID_SIGNATURE
+                return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
+        }
+
+        \Log::error($exception);
+        return $this->exceptionResponse($exception, 500, '');
     }
 }

@@ -23,7 +23,6 @@ namespace App\Http\Controllers\Payments;
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
-use App\Http\Controllers\Controller;
 use App\Libraries\Payments\PaypalCreatePayment;
 use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
@@ -90,25 +89,20 @@ class PaypalController extends Controller
             return '';
         }
 
-        try {
-            $processor->run();
-        } catch (ValidationException $e) {
-            return $this->validationExceptionResponse($e);
-        } catch (InvalidSignatureException $e) {
-            return $this->invalidSignatureExceptionResponse($e);
-        }
+        $processor->run();
 
         return 'ok';
     }
 
-    protected function validationExceptionResponse($exception)
+    protected function exceptionHandler($exception)
     {
-        \Log::error($exception->getMessage());
-        return response(['message' => 'A validation error occured while running the transaction'], 406);
-    }
+        switch (true) {
+            case $exception instanceof ValidationException:
+                \Log::error($exception->getMessage());
 
-    protected function invalidSignatureExceptionResponse($exception)
-    {
-        return response(['message' => $exception->getMessage()], 406);
+                return response(['message' => 'A validation error occured while running the transaction'], 406);
+            case $exception instanceof InvalidSignatureException:
+                return response(['message' => $exception->getMessage()], 406);
+        }
     }
 }
