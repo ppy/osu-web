@@ -74,7 +74,7 @@ class @ChangelogChart
     @options.order = chartConfig.order
     @options.isBuild = chartConfig.isBuild
 
-    data = @normalizeData _.groupBy chartConfig.buildHistory, 'created_at'
+    data = @normalizeData chartConfig.buildHistory
 
     stack = d3.stack()
       .keys @options.order
@@ -189,7 +189,7 @@ class @ChangelogChart
     # normalize the user count values
     # and parse data into a form digestible by d3.stack()
 
-    for own timestamp, values of data
+    for own timestamp, values of _.groupBy data, 'created_at'
       sum = _.sumBy values, 'user_count'
 
       # parse date stored in strings to JS Date object for use by
