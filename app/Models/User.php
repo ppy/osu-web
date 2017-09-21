@@ -174,6 +174,8 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public static function search($rawParams)
     {
+        $max = config('osu.search.max.user');
+
         $params = [];
         $params['query'] = presence($rawParams['query'] ?? null);
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
@@ -183,12 +185,27 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->where('username', 'NOT LIKE', '%\_old')
             ->default();
 
+        $overLimit = (clone $query)->limit(1)->offset($max)->exists();
+        $total = $overLimit ? $max : $query->count();
+        $end = $params['page'] * $params['limit'];
+        // Actual limit for query.
+        // Don't change the params because it's used for pagination.
+        $limit = $params['limit'];
+        if ($end > $max) {
+            // Ensure $max is honored.
+            $limit -= ($end - $max);
+            // Avoid negative limit.
+            $limit = max(0, $limit);
+        }
+        $offset = $end - $limit;
+
         return [
-            'total' => $query->count(),
+            'total' => $total,
+            'over_limit' => $overLimit,
             'data' => $query
                 ->orderBy('user_id', 'ASC')
-                ->limit($params['limit'])
-                ->offset(($params['page'] - 1) * $params['limit'])
+                ->limit($limit)
+                ->offset($offset)
                 ->get(),
             'params' => $params,
         ];
