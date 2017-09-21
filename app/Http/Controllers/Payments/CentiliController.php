@@ -24,8 +24,8 @@ use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Http\Controllers\Controller;
+use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
-use App\Libraries\Payments\OrderCheckoutCompleted;
 use App\Models\Store\Order;
 use Auth;
 use DB;
@@ -56,9 +56,10 @@ class CentiliController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('clientid') ?? '';
-        $order = OrderCheckoutCompleted::run($orderNumber);
+        $orderId = Order::getOrderId($orderNumber);
+        OrderCheckout::complete($orderId);
 
-        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+        return redirect(route('store.invoice.show', ['invoice' => $orderId, 'thanks' => 1]));
     }
 
     public function failed()

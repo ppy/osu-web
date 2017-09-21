@@ -232,22 +232,6 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function completeCheckout()
-    {
-        // cart should only be in:
-        // incart -> if user hits the callback first.
-        // paid -> if payment provider hits the callback first.
-        // any other state should be considered invalid.
-        if ($this->status === 'incart') {
-            $this->status == 'checkout';
-            $this->saveorExplode();
-        } elseif ($order->status !== 'paid') {
-            throw new \App\Libraries\Payments\InvalidOrderStateException(
-                "`Order {$order->order_id}` in wrong state: `{$order->status}`"
-            );
-        }
-    }
-
     public function paid(Payment $payment = null)
     {
         // TODO: use a no payment object instead?

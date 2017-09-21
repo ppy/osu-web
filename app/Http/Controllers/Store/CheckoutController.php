@@ -22,7 +22,6 @@ namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Libraries\OrderCheckout;
-use App\Libraries\Payments\OrderCheckoutCompleted;
 use Auth;
 use DB;
 use Request;
@@ -72,8 +71,11 @@ class CheckoutController extends Controller
 
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
             DB::connection('mysql-store')->transaction(function () use ($order) {
-                OrderCheckoutCompleted::run($order->getOrderNumber());
+                $checkout = new OrderCheckout($order);
+                $checkout->completeCheckout();
+                OrderCheckout::complete($order->order_id);
                 $order->paid(null);
+
                 event(new PaymentCompleted($order));
             });
 

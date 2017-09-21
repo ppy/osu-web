@@ -20,8 +20,10 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
 use App\Models\SupporterTag;
+use DB;
 use Request;
 
 class OrderCheckout
@@ -91,6 +93,44 @@ class OrderCheckout
     public function isShippingDelayed()
     {
         return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
+    }
+
+    public function completeCheckout()
+    {
+        DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
+
+            // cart should only be in:
+            // incart -> if user hits the callback first.
+            // paid -> if payment provider hits the callback first.
+            // any other state should be considered invalid.
+            if ($order->status === 'incart') {
+                $order->status = 'checkout';
+                $order->saveorExplode();
+            } elseif ($order->status !== 'paid') {
+                // TODO: use validation errors instead?
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` in wrong state: `{$order->status}`"
+                );
+            }
+        });
+    }
+
+    /**
+     * Helper method for completing checkout with just the order id
+     *
+     * @param string|int $orderId
+     * @return Order
+     */
+    public static function complete($orderId)
+    {
+        // select for update will lock the table if the row doesn't exist,
+        // so do a double select.
+        $order = Order::findOrFail($orderId);
+        $checkout = new static($order);
+        $checkout->completeCheckout();
+
+        return $order;
     }
 
     private function supporterTagItems()
