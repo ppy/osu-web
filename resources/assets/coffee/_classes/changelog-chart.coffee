@@ -157,7 +157,7 @@ class @ChangelogChart
       .attr 'class', "changelog-chart__text changelog-chart__text--name changelog-chart__text--#{labelModifier}"
       .text currentLabel
     @tooltipUserCount.text @data[dataRow][pos].data[currentLabel].user_count.toLocaleString()
-    @tooltipDate.html @data[dataRow][pos].data.date_formatted
+    @tooltipDate.text @data[dataRow][pos].data.date_formatted
 
     tooltipWidth = @tooltip.node().getBoundingClientRect().width
     tooltipXBase = coord - (tooltipWidth / 2)
