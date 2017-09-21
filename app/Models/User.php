@@ -1074,9 +1074,9 @@ class User extends Model implements AuthenticatableContract, Messageable
         return Hash::check($password, $this->user_password);
     }
 
-    public function updatePassword($password)
+    public function setPasswordAttribute($value)
     {
-        return $this->update(['user_password' => Hash::make($password)]);
+        return $this->attributes['user_password'] = Hash::make($password);
     }
 
     public static function attemptLogin($user, $password, $ip = null)

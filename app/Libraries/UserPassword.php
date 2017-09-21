@@ -93,7 +93,7 @@ class UserPassword
             return false;
         }
 
-        return $this->user->updatePassword($this->params['password']);
+        return $this->user->update(['password' => $this->params['password']]);
     }
 
     public function validationErrorsTranslationPrefix()
