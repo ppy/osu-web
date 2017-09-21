@@ -31,8 +31,8 @@ class ValidationSubscribers
 
     public function onValidationFailed($event)
     {
-        \Log::debug('ValidationFailedEvent:');
-        \Log::debug($event->getErrors()->allMessages());
+        \Log::warning('ValidationFailedEvent:');
+        \Log::warning($event->getErrors()->allMessages());
         $this->notify($event->toMessage());
     }
 

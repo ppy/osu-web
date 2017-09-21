@@ -32,7 +32,7 @@ trait StoreNotifiable
 
     public function notifyOrder($order, $text)
     {
-        Slack::to('test-hooks')->send("`Order {$order->order_id}:` {$text}");
+        Slack::to('test-hooks')->send("`Order {$order->order_id}`: {$text}");
     }
 
     public function notifyError($order = null, $exception = null, $text = null)
