@@ -21,7 +21,7 @@
 namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillment\PaymentCompleted;
-use App\Libraries\CheckoutHelper;
+use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\OrderCheckoutCompleted;
 use Auth;
 use DB;
@@ -56,7 +56,7 @@ class CheckoutController extends Controller
 
         // TODO: should be able to notify user that items were changed due to stock/price changes.
         $order->refreshCost();
-        $checkout = new CheckoutHelper($order);
+        $checkout = new OrderCheckout($order);
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
         return view('store.checkout', compact('order', 'addresses', 'checkout'));

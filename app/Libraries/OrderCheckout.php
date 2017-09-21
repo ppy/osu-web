@@ -24,7 +24,7 @@ use App\Models\Store\Order;
 use App\Models\SupporterTag;
 use Request;
 
-class CheckoutHelper
+class OrderCheckout
 {
     private $order;
 
