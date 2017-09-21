@@ -28,25 +28,12 @@ class OrderCheckoutCompleted
     public static function run($orderNumber)
     {
         $orderId = Order::getOrderId($orderNumber);
-
         DB::connection('mysql-store')->transaction(function () use (&$order, $orderId) {
             // select for update will lock the table if the row doesn't exist,
             // so do a double select.
             $order = Order::findOrFail($orderId);
             $order = $order->lockSelf();
-
-            // cart should only be in:
-            // incart -> if user hits this endpoint first.
-            // paid -> if payment provider hits the callback first.
-            // any other state should be considered invalid.
-            if ($order->status === 'incart') {
-                $order->status == 'checkout';
-                $order->save();
-            } elseif ($order->status !== 'paid') {
-                throw new InvalidOrderStateException(
-                    "`Order {$order->order_id}` in wrong state: `{$order->status}`"
-                );
-            }
+            $order->completeCheckout();
         });
 
         return $order;
