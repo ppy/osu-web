@@ -59,7 +59,7 @@ class PaypalExecutePayment
 
     public function run()
     {
-        DB::connection('mysql-store')->transaction(function () use (&$context) {
+        DB::connection('mysql-store')->transaction(function () use (&$result) {
             try {
                 $context = PaypalApiContext::get();
 
@@ -74,7 +74,6 @@ class PaypalExecutePayment
                 // Tell Paypal to complete the transaction so we can finally clear the cart.
                 $payment = Payment::get($this->params['paymentId'], $context);
                 $result = $payment->execute($this->execution, $context);
-                \Log::debug($result);
 
                 $order->status = 'checkout';
                 $order->saveOrExplode();
@@ -86,8 +85,7 @@ class PaypalExecutePayment
             }
         });
 
-        // FIXME: return $result instead of fetching again?
-        return Payment::get($this->params['paymentId'], $context);
+        return $result;
     }
 
     private function getAmount()
