@@ -84,7 +84,8 @@ class ChangelogController extends Controller
             ->unique('label')
             ->pluck('label')
             ->sortByDesc(function ($el) {
-                $date = explode('.', $el)[0];
+                // 4 characters for year, 2 for month, 2 for day
+                $date = substr($el, 0, 8);
 
                 return Carbon::parse($date);
             })->values();
