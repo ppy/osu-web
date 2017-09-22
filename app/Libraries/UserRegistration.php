@@ -22,7 +22,6 @@ namespace App\Libraries;
 
 use App\Models\User;
 use App\Traits\Validatable;
-use Hash;
 
 class UserRegistration
 {

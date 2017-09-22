@@ -24,6 +24,7 @@ use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
 use App\Traits\UserAvatar;
+use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
@@ -36,7 +37,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use HasApiTokens, Authenticatable, UserAvatar;
+    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -74,6 +75,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     ];
 
     private $memoized = [];
+    private $validateCurrentPassword = false;
+    private $validatePassword = false;
+    private $validatePasswordConfirmation = false;
+    private $password = null;
+    private $passwordConfirmation = null;
+    private $currentPassword = null;
+
+    private $emailConfirmation = null;
+    private $validateEmailConfirmation = false;
+    private $validateEmail = false;
 
     public function getAuthPassword()
     {
@@ -1071,12 +1082,57 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function checkPassword($password)
     {
-        return Hash::check($password, $this->user_password);
+        return Hash::check($password, $this->getAuthPassword());
+    }
+
+    public function validatePasswordConfirmation()
+    {
+        $this->validatePasswordConfirmation = true;
+
+        return $this;
+    }
+
+    public function setPasswordConfirmationAttribute($value)
+    {
+        $this->passwordConfirmation = $value;
     }
 
     public function setPasswordAttribute($value)
     {
-        return $this->attributes['user_password'] = Hash::make($password);
+        // actual user_password assignment is after validation
+        $this->validatePassword = true;
+        $this->password = $value;
+    }
+
+    public function validateCurrentPassword()
+    {
+        $this->validateCurrentPassword = true;
+
+        return $this;
+    }
+
+    public function setCurrentPasswordAttribute($value)
+    {
+        $this->currentPassword = $value;
+    }
+
+    public function validateEmailConfirmation()
+    {
+        $this->validateEmailConfirmation = true;
+
+        return $this;
+    }
+
+    public function setUserEmailConfirmationAttribute($value)
+    {
+        $this->emailConfirmation = $value;
+    }
+
+    public function setUserEmailAttribute($value)
+    {
+        $this->validateEmail = true;
+
+        return $this->attributes['user_email'] = $value;
     }
 
     public static function attemptLogin($user, $password, $ip = null)
@@ -1147,5 +1203,63 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->favouriteBeatmapsets()
             ->with('beatmaps');
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if ($this->validateCurrentPassword) {
+            if (!$this->checkPassword($this->currentPassword)) {
+                $this->validationErrors()->add('current_password', '.wrong_current_password');
+            }
+        }
+
+        if ($this->validatePassword) {
+            if ($this->validatePasswordConfirmation) {
+                if ($this->password !== $this->passwordConfirmation) {
+                    $this->validationErrors()->add('password_confirmation', '.wrong_password_confirmation');
+                }
+            }
+
+            if (strpos(strtolower($this->password), strtolower($this->username)) !== false) {
+                $this->validationErrors()->add('password', '.contains_username');
+            }
+
+            if (strlen($this->password) < 8) {
+                $this->validationErrors()->add('password', '.too_short');
+            }
+
+            if (WeakPassword::check($this->password)) {
+                $this->validationErrors()->add('password', '.weak');
+            }
+
+            if ($this->validationErrors()->isEmpty()) {
+                $this->user_password = Hash::make($this->password);
+            }
+        }
+
+        if ($this->validateEmailConfirmation) {
+            if ($this->user_email !== $this->emailConfirmation) {
+                $this->validationErrors()->add('user_email_confirmation', '.wrong_email_confirmation');
+            }
+        }
+
+        if ($this->validateEmail) {
+            if (strpos($this->user_email, '@') === false) {
+                $this->validationErrors()->add('user_email', '.invalid_email');
+            }
+
+            if (static::where('user_email', '=', $this->user_email)->exists()) {
+                $this->validationErrors()->add('user_email', '.email_already_used');
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'user';
     }
 }

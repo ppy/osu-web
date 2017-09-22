@@ -49,18 +49,14 @@ return [
         ],
     ],
 
-    'user_email' => [
-        'invalid' => 'Ça ne semble pas être une adresse email.',
-        'already_used' => 'Adresse email déjà utilisée.',
-        'wrong_confirmation' => "La confirmation de l'email ne correspond pas.",
-        'wrong_current_password' => "Le mot de passe actuel n'est pas correct.",
-    ],
-
-    'user_password' => [
+    'user' => [
         'contains_username' => "Le mot de passe ne doit pas contenir de nom d'utilisateur.",
+        'email_already_used' => 'Adresse email déjà utilisée.',
+        'invalid_email' => 'Ça ne semble pas être une adresse email.',
         'too_short' => 'Le nouveau mot de passe est trop court.',
         'weak' => 'Mot de passe interdits.',
-        'wrong_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
         'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
+        'wrong_email_confirmation' => "La confirmation de l'email ne correspond pas.",
+        'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
     ],
 ];

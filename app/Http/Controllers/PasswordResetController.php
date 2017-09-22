@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App\Mail\PasswordReset;
 use App\Models\User;
-use App\Libraries\UserPassword;
 use Carbon\Carbon;
 use Mail;
 use Request;
@@ -101,17 +100,17 @@ class PasswordResetController extends Controller
             ]], 422);
         }
 
-        $userPassword = (new UserPassword($user, true))
-            ->fill(Request::input('user_password'));
+        $params = get_params(request(), 'user', ['password', 'password_confirmation']);
+        $user->validatePasswordConfirmation();
 
-        if ($userPassword->save()) {
+        if ($user->update($params)) {
             $this->clear();
             $this->login($user);
 
             return ['message' => trans('password_reset.notice.saved')];
         } else {
             return response(['form_error' => [
-                'user_password' => $userPassword->validationErrors()->all(),
+                'user' => $userPassword->validationErrors()->all(),
             ]], 422);
         }
     }
