@@ -80,9 +80,19 @@ abstract class BannerFulfillment extends OrderFulfiller
 
     private function revokeBanner(OrderItem $orderItem)
     {
-        throw new \App\Exceptions\NotImplementedException();
-        \Log::debug('revoking banner');
-        \Log::debug($orderItem);
+        $extraData = $orderItem->extra_data;
+        $user = $orderItem->order->user;
+
+        // just any matching banner
+        $banner = $user
+            ->profileBanners()
+            ->where('tournament_id', $extraData['tournament_id'])
+            ->where('country_acronym', $extraData['cc'])
+            ->first();
+
+        if ($banner) {
+            $banner->delete();
+        }
     }
 
     private function getCountryName(OrderItem $orderItem)
