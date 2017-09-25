@@ -60,11 +60,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber()
     {
-        if ($this['txn_type'] === 'cart') {
-            return $this['item_number1'];
-        }
-
-        return $this['item_number'];
+        return $this['invoice'];
     }
 
     public function getPaymentProvider()
@@ -89,8 +85,16 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
-        # FIXME: ?
-        return in_array($this['txn_type'], ['web_accept', 'cart'], false) ? 'payment' : $this['txn_type'];
+        static $payment_statuses = ['Completed'];
+        static $cancel_statuses = ['Expired', 'Failed', 'Refunded', 'Reversed', 'Voided', 'Canceled_Reversal', 'Denied'];
+
+        if (in_array($this['payment_status'], $payment_statuses, false)) {
+            return 'payment';
+        } elseif (in_array($this['payment_status'], $cancel_statuses, false)) {
+            return 'refund';
+        } else {
+            return $this['payment_status'];
+        }
     }
 
     public function ensureValidSignature()
@@ -129,7 +133,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
 
         \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
-        if ($this->getPaymentAmount() != $order->getTotal()) {
+        if ($this->getNotificationType() === 'payment' && $this->getPaymentAmount() != $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',
