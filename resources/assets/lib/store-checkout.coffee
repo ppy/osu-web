@@ -29,9 +29,10 @@ export class StoreCheckout
     init = {}
     document.querySelectorAll(@CHECKOUT_SELECTOR).forEach (element) ->
       provider = element.dataset.provider
+      orderNumber = element.dataset.orderNumber
       switch provider
         when 'paypal' then init['paypal'] = Promise.resolve()
-        when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit()
+        when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
         when 'centili' then  init['centili'] = StoreCentili.promiseInit()
 
     $(document.querySelectorAll(@CHECKOUT_SELECTOR)).on 'click.checkout', (event) ->
@@ -46,7 +47,6 @@ export class StoreCheckout
                       window.location = link
                 when 'xsolla'
                   promiseAll(provider).then (values) ->
-                    StoreCheckout.onXsollaComplete(event.target.dataset.orderNumber)
                     # FIXME: flickering when transitioning to widget
                     XPayStationWidget.open()
                     LoadingOverlay.hide()
@@ -77,16 +77,7 @@ export class StoreCheckout
 
     $(buttons).on 'click.trap', (event) ->
       LoadingOverlay.showImmediate()
-      traps[event.target.dataset.provider].resolve()
+      dataset = event.target.dataset
+      traps[dataset.provider].resolve(dataset)
 
     traps
-
-  @onXsollaComplete: (orderNumber) ->
-    done = false
-
-    XPayStationWidget.on XPayStationWidget.eventTypes.STATUS_DONE, (event, info) ->
-      done = true
-
-    XPayStationWidget.on XPayStationWidget.eventTypes.CLOSE, ->
-      if done
-        window.location = laroute.route('payments.xsolla.completed', 'foreignInvoice': orderNumber)

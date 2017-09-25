@@ -17,12 +17,13 @@
 ###
 
 export class StoreXsolla
-  @promiseInit: ->
+  @promiseInit: (orderNumber) ->
     Promise.all([
       StoreXsolla.fetchToken(), StoreXsolla.fetchScript()
     ]).then (values) ->
       token = values[0]
       options = StoreXsolla.optionsWithToken(token)
+      StoreXsolla.onXsollaComplete(orderNumber)
       XPayStationWidget.init(options)
 
   @fetchScript: ->
@@ -53,3 +54,14 @@ export class StoreXsolla
     options =
       access_token: token,
       sandbox: true
+
+  @onXsollaComplete: (orderNumber) ->
+    done = false
+
+    XPayStationWidget.on XPayStationWidget.eventTypes.STATUS_DONE, ->
+      done = true
+
+    XPayStationWidget.on XPayStationWidget.eventTypes.CLOSE, ->
+      if done
+        LoadingOverlay.showImmediate()
+        window.location = laroute.route('payments.xsolla.completed', 'foreignInvoice': orderNumber)
