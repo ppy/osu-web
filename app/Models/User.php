@@ -84,7 +84,6 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
-    private $validateEmail = false;
 
     public function getAuthPassword()
     {
