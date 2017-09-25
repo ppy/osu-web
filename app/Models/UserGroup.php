@@ -23,7 +23,6 @@ namespace App\Models;
 class UserGroup extends Model
 {
     protected $table = 'phpbb_user_group';
-    protected $primaryKey = 'group_id';
     public $timestamps = false;
     protected $guarded = [];
 
