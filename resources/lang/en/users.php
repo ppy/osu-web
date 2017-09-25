@@ -210,6 +210,9 @@ return [
         'online' => 'Online',
         'offline' => 'Offline',
     ],
+    'store' => [
+        'saved' => 'User created',
+    ],
     'verify' => [
         'title' => 'Account Verification',
     ],

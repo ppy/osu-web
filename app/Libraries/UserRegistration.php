@@ -20,65 +20,53 @@
 
 namespace App\Libraries;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\User;
-use App\Traits\Validatable;
+use App\Models\UserGroup;
+use Carbon\Carbon;
+use DB;
 
 class UserRegistration
 {
-    use Validatable;
-
     private $user;
-    private $validated = false;
 
-    public function __construct()
+    public function __construct($params)
     {
-        $this->user = new User();
-    }
-
-    public function fill($params)
-    {
-        $this->params = $params;
-        $this->validated = false;
-
-        return $this;
-    }
-
-    public function isValid($revalidate = false)
-    {
-        if (!$this->validated || $revalidate) {
-            $usernameValidationErrors = User::validateUsername($this->params['username']);
-            if (count($usernameValidationErrors) !== 0) {
-                foreach ($usernameValidationErrors as $error) {
-                    $this->validationErrors()->addTranslated('username', $error);
-                }
-            }
-
-            $userPassword = (new UserPassword($this->user, false))
-                ->fill($this->params);
-
-            if (!$userPassword->isValid()) {
-                foreach ($userPassword->all() as $column => $messages) {
-                    foreach ($messages as $message) {
-                        $this->validationErrors()->addTranslated($column, $message);
-                    }
-                }
-            }
-        }
-
-        return $this->validationErrors()->isEmpty();
+        $this->user = new User(array_merge([
+            'username_clean' => $params['username'],
+            'user_permissions' => '',
+            'user_interests' => '',
+            'user_occ' => '',
+            'user_sig' => '',
+            'user_regdate' => Carbon::now(),
+        ], $params));
     }
 
     public function save()
     {
-        if (!$this->isValid()) {
-            return false;
+        try {
+            $ok = DB::transaction(function () {
+                $this->user->saveOrExplode();
+
+                $ok = $this->user->userGroups()->create([
+                    'group_id' => UserGroup::GROUPS['default'],
+                ]);
+
+                if ($ok === false) {
+                    throw new ModelNotSavedException('failed saving model');
+                }
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
+            $ok = false;
         }
 
-        // return $this->user->updatePassword($this->params['password']);
+        return $ok;
     }
 
-    public function validationErrorsTranslationPrefix()
+    public function user()
     {
-        return 'user_registration';
+        return $this->user;
     }
 }
