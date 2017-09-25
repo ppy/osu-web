@@ -1128,13 +1128,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->emailConfirmation = $value;
     }
 
-    public function setUserEmailAttribute($value)
-    {
-        $this->validateEmail = true;
-
-        return $this->attributes['user_email'] = $value;
-    }
-
     public static function attemptLogin($user, $password, $ip = null)
     {
         $ip = $ip ?? Request::getClientIp() ?? '0.0.0.0';
@@ -1245,12 +1238,12 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if ($this->validateEmail) {
+        if (present($this->user_email)) {
             if (strpos($this->user_email, '@') === false) {
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 
-            if (static::where('user_email', '=', $this->user_email)->exists()) {
+            if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
                 $this->validationErrors()->add('user_email', '.email_already_used');
             }
         }
