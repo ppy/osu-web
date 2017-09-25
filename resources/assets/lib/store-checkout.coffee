@@ -46,6 +46,7 @@ export class StoreCheckout
                       window.location = link
                 when 'xsolla'
                   promiseAll(provider).then (values) ->
+                    StoreCheckout.onXsollaComplete(event.target.dataset.orderNumber)
                     # FIXME: flickering when transitioning to widget
                     XPayStationWidget.open()
                     LoadingOverlay.hide()
@@ -79,3 +80,13 @@ export class StoreCheckout
       traps[event.target.dataset.provider].resolve()
 
     traps
+
+  @onXsollaComplete: (orderNumber) ->
+    done = false
+
+    XPayStationWidget.on XPayStationWidget.eventTypes.STATUS_DONE, (event, info) ->
+      done = true
+
+    XPayStationWidget.on XPayStationWidget.eventTypes.CLOSE, ->
+      if done
+        window.location = laroute.route('payments.xsolla.completed', 'foreignInvoice': orderNumber)

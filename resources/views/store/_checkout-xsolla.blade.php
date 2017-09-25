@@ -21,6 +21,7 @@
         <div type="button"
                 class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--xsolla"
                 data-provider="xsolla"
+                data-order-number="{{ $order->getOrderNumber() }}"
         >
         </div>
 
