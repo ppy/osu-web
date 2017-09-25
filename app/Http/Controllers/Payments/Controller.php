@@ -21,12 +21,19 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Http\Controllers\Controller as BaseController;
+use App\Libraries\ControllerExceptionHandler;
 
 abstract class Controller extends BaseController
 {
     public function __construct()
     {
         if (method_exists($this, 'exceptionHandler')) {
+            // Have to resolve this before setting middleware or else
+            // default exception handler will fire first and we won't be able to tell it
+            // to shut up.
+            $handler = resolve(ControllerExceptionHandler::class);
+            $handler->shouldntReport = true;
+
             $this->middleware(function ($request, $next) {
                 $response = $next($request);
                 if ($response->exception !== null) {

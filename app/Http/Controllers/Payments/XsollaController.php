@@ -126,7 +126,6 @@ class XsollaController extends Controller
                 return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
         }
 
-        \Log::error($exception);
         return $this->exceptionResponse($exception, 500, '');
     }
 }

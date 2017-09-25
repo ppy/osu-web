@@ -21,6 +21,7 @@
 namespace App\Exceptions;
 
 use App;
+use App\Libraries\ControllerExceptionHandler;
 use Auth;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
@@ -71,6 +72,11 @@ class Handler extends ExceptionHandler
 
         // immediately done if the error should not be reported
         if ($this->shouldntReport($e)) {
+            return;
+        }
+
+        $handler = resolve(ControllerExceptionHandler::class);
+        if ($handler->shouldntReport) {
             return;
         }
 

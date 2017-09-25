@@ -211,6 +211,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
 
+        App\Providers\ControllerExceptionHandlerServiceProvider::class,
+
         /* Datadog Metrics */
         ChaseConey\LaravelDatadogHelper\LaravelDatadogHelperServiceProvider::class,
     ],
