@@ -104,5 +104,9 @@ class PaypalController extends Controller
             case $exception instanceof InvalidSignatureException:
                 return response(['message' => $exception->getMessage()], 406);
         }
+
+        // manually report
+        $this->setShouldntReport(false);
+        throw $exception;
     }
 }

@@ -77,5 +77,9 @@ class CentiliController extends Controller
             case $exception instanceof InvalidSignatureException:
                 return response(['message' => $e->getMessage()], 406);
         }
+
+        // manually report
+        $this->setShouldntReport(false);
+        throw $exception;
     }
 }

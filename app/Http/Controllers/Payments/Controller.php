@@ -31,8 +31,7 @@ abstract class Controller extends BaseController
             // Have to resolve this before setting middleware or else
             // default exception handler will fire first and we won't be able to tell it
             // to shut up.
-            $handler = resolve(ControllerExceptionHandler::class);
-            $handler->shouldntReport = true;
+            $this->setShouldntReport(true);
 
             $this->middleware(function ($request, $next) {
                 $response = $next($request);
@@ -45,5 +44,11 @@ abstract class Controller extends BaseController
         }
 
         return parent::__construct();
+    }
+
+    protected function setShouldntReport(bool $flag)
+    {
+        $handler = resolve(ControllerExceptionHandler::class);
+        $handler->shouldntReport = $flag;
     }
 }
