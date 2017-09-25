@@ -136,8 +136,13 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->addDays($playCount * 0.75);  //bonus based on playcount
     }
 
-    public static function validateUsername($username)
+    public static function validateUsername($username, $previousUsername = null)
     {
+        if (present($previousUsername) && $previousUsername === $username) {
+            // no change
+            return [];
+        }
+
         if ($username !== trim($username)) {
             return ["Username can't start or end with spaces!"];
         }
@@ -1200,6 +1205,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isValid()
     {
         $this->validationErrors()->reset();
+
+        if ($this->isDirty('username')) {
+            $errors = static::validateUsername($this->username, $this->getOriginal('username'));
+
+            if (count($errors) > 0) {
+                foreach ($errors as $error) {
+                    $this->validationErrors()->addTranslated('username', $error);
+                }
+            }
+        }
 
         if ($this->validateCurrentPassword) {
             if (!$this->checkPassword($this->currentPassword)) {
