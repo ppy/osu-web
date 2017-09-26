@@ -1220,13 +1220,13 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if (present($this->password)) {
-            if ($this->validatePasswordConfirmation) {
-                if ($this->password !== $this->passwordConfirmation) {
-                    $this->validationErrors()->add('password_confirmation', '.wrong_password_confirmation');
-                }
+        if ($this->validatePasswordConfirmation) {
+            if ($this->password !== $this->passwordConfirmation) {
+                $this->validationErrors()->add('password_confirmation', '.wrong_password_confirmation');
             }
+        }
 
+        if (present($this->password)) {
             if (strpos(strtolower($this->password), strtolower($this->username)) !== false) {
                 $this->validationErrors()->add('password', '.contains_username');
             }
