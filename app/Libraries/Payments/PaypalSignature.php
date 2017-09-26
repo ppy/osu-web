@@ -39,7 +39,7 @@ class PaypalSignature implements PaymentSignature
         }
 
         $client = new Client();
-        $response = $client->request('POST', 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr', [
+        $response = $client->request('POST', config('payments.paypal.url'), [
             'allow_redirects' => false,
             'form_params' => $this->calculatedSignature(),
         ]);
