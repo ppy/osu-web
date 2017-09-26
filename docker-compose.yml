@@ -13,7 +13,7 @@ services:
       - .:/data/osuweb
       - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
     environment:
-      DB_HOST: osuweb-mariadb
+      DB_HOST: osuweb-mysql
   nginx:
     image: nginx:latest
     container_name: osuweb-nginx
@@ -23,12 +23,12 @@ services:
     ports:
       - "8080:80"
   db:
-    image: mariadb:latest
-    container_name: osuweb-mariadb
+    image: mysql:latest
+    container_name: osuweb-mysql
     volumes:
       - database:/var/lib/mysql
       - ./bin/db_setup.sh:/docker-entrypoint-initdb.d/db_setup.sh
-      - ./docker/mariadb/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
+      - ./docker/mysql/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   composer:
@@ -44,7 +44,7 @@ services:
       - .:/data/osuweb
       - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
     environment:
-      DB_HOST: osuweb-mariadb
+      DB_HOST: osuweb-mysql
     user: osuweb
     working_dir: /data/osuweb
     command: bash -c "mkdir -p node_modules && cp -n .env.example .env && ./build.sh"

@@ -16,17 +16,17 @@
 --}}
 <a
     class="
-        changelog-stream
-        {{ $featured ? 'changelog-stream--featured' : '' }}
-        {{ isset($build) && $build->version === $stream->version ? 'changelog-stream--active' : '' }}
-        changelog-stream--{{ str_slug($stream->updateStream->pretty_name) }}
+        changelog-build
+        {{ $featured ? 'changelog-build--featured' : '' }}
+        {{ isset($activeBuild) && $activeBuild->version === $build->version ? 'changelog-build--active' : '' }}
+        changelog-build--{{ str_slug($build->updateStream->pretty_name) }}
     "
-    href={{ route('changelog', ['build' => $stream->version]) }}
+    href={{ route('changelog.show', ['build' => $build->version]) }}
   >
-    <div class="changelog-stream__content">
-        <span class="changelog-stream__name u-ellipsis-overflow">{{ $stream->updateStream->pretty_name }}</span>
-        <span class="changelog-stream__build u-ellipsis-overflow">{{ $stream->displayVersion() }}</span>
-        <span class="changelog-stream__users">{{ trans_choice('changelog.users-online', $stream->users, ['users' => $stream->users]) }}</span>
+    <div class="changelog-build__content">
+        <span class="changelog-build__name u-ellipsis-overflow">{{ $build->updateStream->pretty_name }}</span>
+        <span class="changelog-build__build u-ellipsis-overflow">{{ $build->displayVersion() }}</span>
+        <span class="changelog-build__users">{{ trans_choice('changelog.users-online', $build->users, ['users' => $build->users]) }}</span>
     </div>
-    <div class="changelog-stream__indicator"></div>
+    <div class="changelog-build__indicator"></div>
 </a>

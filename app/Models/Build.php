@@ -48,6 +48,11 @@ class Build extends Model
         $query->whereNotNull('stream_id');
     }
 
+    public function propagationHistories()
+    {
+        return $this->hasMany(BuildPropagationHistory::class, 'build_id');
+    }
+
     public function scopeLatestByStream($query, $streamIds)
     {
         $latestBuildIds = static::default()
@@ -56,7 +61,9 @@ class Build extends Model
             ->groupBy('stream_id')
             ->pluck('latest_build_id');
 
-        $query->whereIn('build_id', $latestBuildIds);
+        $query->whereIn('build_id', $latestBuildIds)
+            ->orderByField('stream_id', $streamIds)
+            ->with('updateStream');
     }
 
     public function scopePropagationHistory($query)

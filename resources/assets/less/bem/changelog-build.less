@@ -16,21 +16,14 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-
-.changelog-stream {
-  @changelog-stream--stable: @blue;
-  @changelog-stream--stable-fallback: @gray-light;
-  @changelog-stream--beta-ce: @yellow;
-  @changelog-stream--lazer: @red;
-
+.changelog-build {
   .box-color(@radius, @color) {
     &::before {
       box-shadow: 0 0 0 @radius @color;
     }
   }
 
-  @_top: changelog-stream;
+  @_top: changelog-build;
 
   width: 125px;
   min-width: 125px;
@@ -67,8 +60,12 @@
     }
   }
 
-  &--beta, &--cutting-edge {
-    .box-color(3px, @changelog-stream--beta-ce);
+  &--beta {
+    .box-color(3px, @changelog-stream--beta);
+  }
+
+  &--cutting-edge {
+    .box-color(3px, @changelog-stream--cutting-edge);
   }
 
   &--lazer {
@@ -117,8 +114,12 @@
 
     .default-border-radius;
 
-    .@{_top}--beta &, .@{_top}--cutting-edge & {
-      background-color: @changelog-stream--beta-ce;
+    .@{_top}--beta &, {
+      background-color: @changelog-stream--beta;
+    }
+
+    .@{_top}--cutting-edge & {
+      background-color: @changelog-stream--cutting-edge;
     }
 
     .@{_top}--lazer & {
@@ -126,7 +127,7 @@
     }
 
     .@{_top}--lazer-experimental & {
-      background-color: @changelog-stream--lazer;
+      background-color: @changelog-stream--lazer-experimental;
     }
 
     .@{_top}--stable & {
