@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Payments;
 
-use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -88,16 +87,6 @@ class CentiliPaymentProcessor extends PaymentProcessor
     public function getNotificationType()
     {
         return NotificationType::PAYMENT;
-    }
-
-    public function ensureValidSignature()
-    {
-        // $signature = new CentiliSignature($this->request);
-        // TODO: post many warnings
-        if (!$this->signature->isValid()) {
-            $this->validationErrors()->add('sign', '.signature.not_match');
-            $this->throwValidationFailed(new InvalidSignatureException());
-        }
     }
 
     public function validateTransaction()

@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Payments;
 
-use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -91,15 +90,6 @@ class XsollaPaymentProcessor extends PaymentProcessor
     public function getNotificationType()
     {
         return $this['notification_type'];
-    }
-
-    public function ensureValidSignature()
-    {
-        // TODO: post many warnings
-        if (!$this->signature->isValid()) {
-            $this->validationErrors()->add('header.signature', '.signature.not_match');
-            $this->throwValidationFailed(new InvalidSignatureException());
-        }
     }
 
     public function validateTransaction()

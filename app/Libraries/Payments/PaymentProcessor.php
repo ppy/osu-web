@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Payments;
 
+use App\Exceptions\InvalidSignatureException;
 use App\Events\Fulfillment\PaymentCancelled;
 use App\Events\Fulfillment\PaymentCompleted;
 use App\Events\Fulfillment\ProcessorValidationFailed;
@@ -210,6 +211,15 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->cancel();
             event(new PaymentCancelled($order));
         });
+    }
+
+    public function ensureValidSignature()
+    {
+        // TODO: post many warnings
+        if (!$this->signature->isValid()) {
+            $this->validationErrors()->add('header.signature', '.signature.not_match');
+            $this->throwValidationFailed(new InvalidSignatureException());
+        }
     }
 
     /**

@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Payments;
 
-use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
@@ -95,14 +94,6 @@ class PaypalPaymentProcessor extends PaymentProcessor
             return NotificationType::REFUND;
         } else {
             return $this['payment_status'];
-        }
-    }
-
-    public function ensureValidSignature()
-    {
-        if (!$this->signature->isValid()) {
-            $this->validationErrors()->add('sign', '.signature.not_match');
-            $this->throwValidationFailed(new InvalidSignatureException());
         }
     }
 
