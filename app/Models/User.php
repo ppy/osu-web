@@ -76,7 +76,6 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     private $memoized = [];
     private $validateCurrentPassword = false;
-    private $validatePassword = false;
     private $validatePasswordConfirmation = false;
     private $password = null;
     private $passwordConfirmation = null;
@@ -1104,7 +1103,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setPasswordAttribute($value)
     {
         // actual user_password assignment is after validation
-        $this->validatePassword = true;
         $this->password = $value;
     }
 
@@ -1222,7 +1220,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if ($this->validatePassword) {
+        if (present($this->password)) {
             if ($this->validatePasswordConfirmation) {
                 if ($this->password !== $this->passwordConfirmation) {
                     $this->validationErrors()->add('password_confirmation', '.wrong_password_confirmation');
