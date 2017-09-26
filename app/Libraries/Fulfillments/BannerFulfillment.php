@@ -105,7 +105,6 @@ abstract class BannerFulfillment extends OrderFulfiller
     private function getCountryAcronym(OrderItem $orderItem)
     {
         $countryName = $this->getCountryName($orderItem);
-        \Log::debug($countryName);
 
         return Country::where('name', $countryName)->first->acronym;
     }

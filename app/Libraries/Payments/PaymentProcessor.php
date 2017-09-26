@@ -42,6 +42,8 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     public function __construct(array $params, PaymentSignature $signature)
     {
+        \Log::debug($params);
+
         $this->params = $params;
         $this->signature = $signature;
     }
@@ -224,6 +226,20 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
+     * Fetches the Order corresponding to this payment and memoizes it.
+     *
+     * @return Order
+     */
+    protected function getOrder()
+    {
+        if (!isset($this->order)) {
+            $this->order = Order::withPayments()->find($this->getOrderId());
+        }
+
+        return $this->order;
+    }
+
+    /**
      * Convenience method that calls dispatchValidationFailed() and then throws the supplied exception.
      *
      * @param Exception $exception
@@ -258,15 +274,9 @@ abstract class PaymentProcessor implements \ArrayAccess
         throw new \Exception('not supported');
     }
 
-    protected function getOrder()
-    {
-        if (!isset($this->order)) {
-            $this->order = Order::withPayments()->find($this->getOrderId());
-        }
-
-        return $this->order;
-    }
-
+    /**
+     * Validatable
+     */
     public function validationErrorsTranslationPrefix()
     {
         return 'payments';

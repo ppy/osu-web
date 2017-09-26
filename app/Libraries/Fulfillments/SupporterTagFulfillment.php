@@ -73,12 +73,10 @@ class SupporterTagFulfillment extends OrderFulfiller
             }
         }
 
-        \Log::debug("send donation thanks to {$donor->user_email}");
         Mail::to($donor->user_email)
             ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal));
 
         foreach ($giftees as $giftee) {
-            \Log::debug("send gift thanks to {$giftee->user_email}");
             Mail::to($giftee->user_email)
                 ->queue(new \App\Mail\SupporterGift($donor, $giftee, $length));
         }
@@ -113,7 +111,6 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         if (!isset($this->fulfillers)) {
             $items = $this->getOrderItems();
-            \Log::debug($items);
             $fulfillers = [];
             foreach ($items as $item) {
                 $fulfillers[] = $this->createFulfiller($item);

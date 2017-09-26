@@ -24,6 +24,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
@@ -32,7 +33,6 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function __construct(array $params, PaymentSignature $signature)
     {
-        \Log::debug($params);
         parent::__construct($params, $signature);
         // limiting to 3 means it won't pick up if the format is too long.
         $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 4);
@@ -41,7 +41,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public static function createFromRequest(\Illuminate\Http\Request $request)
+    public static function createFromRequest(Request $request)
     {
         $signature = new PaypalSignature($request);
 

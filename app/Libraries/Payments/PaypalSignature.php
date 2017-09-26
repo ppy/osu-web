@@ -44,7 +44,7 @@ class PaypalSignature implements PaymentSignature
             'form_params' => $this->calculatedSignature(),
         ]);
 
-        if ($response->getStatusCode() === 200 && trim($response->getBody()) === 'VERIFIED') {
+        if ($response->getStatusCode() === 200 && trim($response->getBody()) === static::VERIFIED_RESPONSE) {
             return true;
         }
 

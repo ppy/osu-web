@@ -24,6 +24,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
 
 // FIXME: rename?
 class XsollaPaymentProcessor extends PaymentProcessor
@@ -43,7 +44,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public static function createFromRequest(\Illuminate\Http\Request $request)
+    public static function createFromRequest(Request $request)
     {
         $signature = new XsollaHeaderSignature($request);
 

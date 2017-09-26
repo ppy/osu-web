@@ -24,6 +24,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Http\Request;
 
 // FIXME: rename?
 class CentiliPaymentProcessor extends PaymentProcessor
@@ -41,7 +42,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         }
     }
 
-    public static function createFromRequest(\Illuminate\Http\Request $request)
+    public static function createFromRequest(Request $request)
     {
         $signature = new CentiliSignature($request);
 
