@@ -89,9 +89,9 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $cancel_statuses = ['Expired', 'Failed', 'Refunded', 'Reversed', 'Voided', 'Canceled_Reversal', 'Denied'];
 
         if (in_array($this['payment_status'], $payment_statuses, false)) {
-            return 'payment';
+            return NotificationType::PAYMENT;
         } elseif (in_array($this['payment_status'], $cancel_statuses, false)) {
-            return 'refund';
+            return NotificationType::REFUND;
         } else {
             return $this['payment_status'];
         }
@@ -128,12 +128,14 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
 
         // order should be in the correct state
-        if ($this->getNotificationType() === 'payment' && !in_array($order->status, ['incart', 'checkout'], true)) {
+        if ($this->getNotificationType() === NotificationType::PAYMENT
+            && !in_array($order->status, ['incart', 'checkout'], true)) {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
         \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
-        if ($this->getNotificationType() === 'payment' && $this->getPaymentAmount() != $order->getTotal()) {
+        if ($this->getNotificationType() === NotificationType::PAYMENT
+            && $this->getPaymentAmount() != $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',

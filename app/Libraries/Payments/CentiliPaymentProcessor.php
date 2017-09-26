@@ -85,7 +85,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
-        return 'payment';
+        return NotificationType::PAYMENT;
     }
 
     public function ensureValidSignature()
@@ -121,7 +121,8 @@ class CentiliPaymentProcessor extends PaymentProcessor
         }
 
         // order should be in the correct state
-        if ($this->getNotificationType() === 'payment' && !in_array($order->status, ['incart', 'checkout'], true)) {
+        if ($this->getNotificationType() === NotificationType::PAYMENT
+            && !in_array($order->status, ['incart', 'checkout'], true)) {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 

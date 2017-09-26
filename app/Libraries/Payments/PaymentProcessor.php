@@ -149,10 +149,10 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         $type = $this->getNotificationType();
         switch ($type) {
-            case 'payment':
+            case NotificationType::PAYMENT:
                 $this->apply();
                 break;
-            case 'refund':
+            case NotificationType::REFUND:
                 $this->cancel();
                 break;
             default:
