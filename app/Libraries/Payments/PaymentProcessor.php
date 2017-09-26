@@ -92,8 +92,8 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getPaymentTransactionId();
 
     /**
-     * Gets the transaction ID for the payment.
-     * Transaction IDs should be unique to the payment processor.
+     * Gets the transaction ID for the payment tagged with the payment processor used..
+     * Transaction IDs should be unique scoped to the payment processor.
      *
      * @return string
      */

@@ -78,7 +78,8 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getPaymentAmount()
     {
-        return $this['purchase.checkout.amount'];
+        // TODO: less floaty
+        return (float) $this['purchase.checkout.amount'];
     }
 
     public function getPaymentDate()

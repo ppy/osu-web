@@ -75,7 +75,8 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getPaymentAmount()
     {
-        return $this['payment_gross'];
+        // TODO: less floaty
+        return (float) $this['payment_gross'];
     }
 
     public function getPaymentDate()

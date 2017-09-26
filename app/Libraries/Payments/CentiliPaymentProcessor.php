@@ -75,6 +75,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getPaymentAmount()
     {
+        // TODO: less floaty
         return $this['enduserprice'] / config('payments.centili.conversion_rate');
     }
 
