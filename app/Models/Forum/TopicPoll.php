@@ -91,7 +91,7 @@ class TopicPoll
             $this->topic->update([
                 'poll_title' => $this->params['title'],
                 'poll_start' => Carbon::now(),
-                'poll_length' => ($this->params['length_days'] ?? 0) * 3600,
+                'poll_length' => ($this->params['length_days'] ?? 0) * 3600 * 24,
                 'poll_max_options' => $this->params['max_options'],
                 'poll_vote_change' => $this->params['vote_change'] ?? false,
             ]);
