@@ -18,7 +18,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     // Check username doesn't already exist
     while ($username === null) {
         if (!in_array($uname = $faker->userName, $existing_names, true)) {
-            $username = str_replace('.', ' ', $uname); // remove fullstops from username
+            $username = substr(str_replace('.', ' ', $uname), 0, 15); // remove fullstops from username
         }
     }
 
