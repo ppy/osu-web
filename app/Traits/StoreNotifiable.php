@@ -25,14 +25,25 @@ use Slack;
 
 trait StoreNotifiable
 {
-    public function notify($text)
+    public function notify($text, $eventName = null)
     {
+        if ($eventName) {
+            $text = "{$eventName} | {$text}";
+        }
+
         Slack::to(config('payments.notification_channel'))->send($text);
     }
 
-    public function notifyOrder($order, $text)
+    public function notifyOrder($order, $text, $eventName = null)
     {
-        Slack::to(config('payments.notification_channel'))->send("`Order {$order->order_id}`: {$text}");
+        $msg = '';
+        if ($eventName) {
+            $msg = "{$eventName} | ";
+        }
+
+        $msg .= "`Order {$order->order_id}`: {$text}";
+
+        Slack::to(config('payments.notification_channel'))->send($msg);
     }
 
     public function notifyError($order = null, $exception = null, $text = null)
