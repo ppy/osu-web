@@ -28,7 +28,7 @@ trait StoreNotifiable
     public function notify($text, $eventName = null)
     {
         if ($eventName) {
-            $text = "{$eventName} | {$text}";
+            $text = "`{$eventName}` | {$text}";
         }
 
         Slack::to(config('payments.notification_channel'))->send($text);
@@ -38,7 +38,7 @@ trait StoreNotifiable
     {
         $msg = '';
         if ($eventName) {
-            $msg = "{$eventName} | ";
+            $msg = "`{$eventName}` | ";
         }
 
         $msg .= "`Order {$order->order_id}`: {$text}";

@@ -35,10 +35,10 @@ class ValidationSubscribers
         \Log::warning("ValidationFailedEvent: {$eventName}");
         if ($event) {
             \Log::warning($event->getErrors()->allMessages());
-            $this->notify("`{$eventName}` | " . $event->toMessage());
+            $this->notify($event->toMessage(), $eventName);
         } else {
             \Log::warning('missing event data');
-            $this->notify("`{$eventName}` | missing event data");
+            $this->notify('missing event data', $eventName);
         }
     }
 
