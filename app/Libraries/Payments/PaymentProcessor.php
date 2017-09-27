@@ -188,7 +188,9 @@ abstract class PaymentProcessor implements \ArrayAccess
             }
 
             $order->paid($payment);
-            event(new PaymentCompleted($order));
+
+            $eventName = "store.payment.completed.{$payment->provider}";
+            event($eventName, new PaymentCompleted($order));
         });
     }
 
@@ -209,7 +211,9 @@ abstract class PaymentProcessor implements \ArrayAccess
             $payment->cancel();
 
             $order->cancel();
-            event(new PaymentCancelled($order));
+
+            $eventName = "store.payment.cancelled.{$payment->provider}";
+            event($eventName, new PaymentCancelled($order));
         });
     }
 

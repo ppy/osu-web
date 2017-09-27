@@ -29,11 +29,12 @@ class PaymentSubscribers
 {
     use StoreNotifiable;
 
-    public function onPaymentCompleted($event)
+    public function onPaymentCompleted($eventName, $data)
     {
+        $event = $data[0] ?? null;
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         $count = count($fulfillers);
-        $this->notifyOrder($event->order, "onPaymentCompleted: dispatching `{$count}` fulfillers");
+        $this->notifyOrder($event->order, "`{$eventName}` | dispatching `{$count}` fulfillers");
 
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $fulfiller) {
@@ -41,11 +42,12 @@ class PaymentSubscribers
         }
     }
 
-    public function onPaymentCancelled($event)
+    public function onPaymentCancelled($eventName, $data)
     {
+        $event = $data[0] ?? null;
         $fulfillers = FulfillmentFactory::createFulfillersFor($event->order);
         $count = count($fulfillers);
-        $this->notifyOrder($event->order, "onPaymentCancelled: dispatching `{$count}` fulfillers");
+        $this->notifyOrder($event->order, "`{$eventName}` | dispatching `{$count}` fulfillers");
 
         // This should probably be shoved off into a queue processor somewhere...
         foreach ($fulfillers as $fulfiller) {
@@ -56,12 +58,12 @@ class PaymentSubscribers
     public function subscribe($events)
     {
         $events->listen(
-            PaymentCancelled::class,
+            'store.payment.cancelled.*',
             static::class.'@onPaymentCancelled'
         );
 
         $events->listen(
-            PaymentCompleted::class,
+            'store.payment.completed.*',
             static::class.'@onPaymentCompleted'
         );
     }
