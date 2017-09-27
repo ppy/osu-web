@@ -59,7 +59,7 @@ class PaypalExecutePayment
 
     public function run()
     {
-        DB::connection('mysql-store')->transaction(function () use (&$result) {
+        return DB::connection('mysql-store')->transaction(function () {
             try {
                 $context = PaypalApiContext::get();
 
@@ -77,6 +77,8 @@ class PaypalExecutePayment
 
                 $order->status = 'checkout';
                 $order->saveOrExplode();
+
+                return $result;
             } catch (PayPalConnectionException $e) {
                 \Log::error($e->getData());
                 // TODO: get more context data
@@ -84,8 +86,6 @@ class PaypalExecutePayment
                 throw $e;
             }
         });
-
-        return $result;
     }
 
     private function getAmount()
