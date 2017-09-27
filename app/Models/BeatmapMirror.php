@@ -62,7 +62,10 @@ class BeatmapMirror extends Model
     public function generateURL(Beatmapset $beatmapset, $skipVideo = false)
     {
         $noVideo = $skipVideo ? '1' : '0';
-        $diskFilename = $serveFilename = $beatmapset->filename;
+        $diskFilename = $beatmapset->filename;
+        $serveFilename = "{$beatmapset->beatmapset_id} {$beatmapset->artist} - {$beatmapset->title}.osz";
+        $serveFilename = str_replace(['"', '?'], ['', ''], $serveFilename);
+
         $time = time();
         $checksum = md5("{$beatmapset->beatmapset_id}{$diskFilename}{$serveFilename}{$time}{$noVideo}{$this->secret_key}");
 
