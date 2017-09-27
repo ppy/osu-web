@@ -229,10 +229,10 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     protected function dispatchValidationFailed()
     {
-        event(new ProcessorValidationFailed(
-            $this,
-            $this->validationErrors()
-        ));
+        event(
+            'store.payment.validation.failed',
+            new ProcessorValidationFailed($this, $this->validationErrors())
+        );
     }
 
     /**

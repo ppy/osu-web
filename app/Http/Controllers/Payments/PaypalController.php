@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Libraries\Payments\PaypalCreatePayment;
@@ -54,6 +53,7 @@ class PaypalController extends Controller
 
         $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId'));
         $payment = $command->run();
+        \Log::debug($payment);
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }

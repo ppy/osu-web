@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;

@@ -22,7 +22,6 @@ namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillment\UsernameChanged;
 use App\Events\Fulfillment\UsernameReverted;
-use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Models\User;
 use App\Exceptions\UsernameChangeException;
 

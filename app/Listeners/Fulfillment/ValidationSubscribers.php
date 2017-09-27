@@ -29,27 +29,23 @@ class ValidationSubscribers
 {
     use StoreNotifiable;
 
-    public function onValidationFailed($event)
+    public function onValidationFailed($eventName, $data)
     {
-        \Log::warning('ValidationFailedEvent:');
-        \Log::warning($event->getErrors()->allMessages());
-        $this->notify($event->toMessage());
+        $event = $data[0] ?? null;
+        \Log::warning("ValidationFailedEvent: {$eventName}");
+        if ($event) {
+            \Log::warning($event->getErrors()->allMessages());
+            $this->notify("`{$eventName}` | " . $event->toMessage());
+        } else {
+            \Log::warning('missing event data');
+            $this->notify("`{$eventName}` | missing event data");
+        }
     }
 
     public function subscribe($events)
     {
         $events->listen(
-            ValidationFailedEvent::class,
-            static::class.'@onValidationFailed'
-        );
-
-        $events->listen(
-            FulfillmentValidationFailed::class,
-            static::class.'@onValidationFailed'
-        );
-
-        $events->listen(
-            ProcessorValidationFailed::class,
+            'store.*.validation.failed',
             static::class.'@onValidationFailed'
         );
     }

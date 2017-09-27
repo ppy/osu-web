@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers\Payments;
 
-use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
