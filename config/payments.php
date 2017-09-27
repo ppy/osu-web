@@ -12,7 +12,6 @@ return [
         'client_secret' => env('PAYPAL_CLIENT_SECRET'),
         'url' => env('PAYPAL_URL'),
         'merchant_id' => env('PAYPAL_MERCHANT_ID'),
-        'sandbox' => presence(env('PAYPAL_SANDBOX'), false),
     ],
     'xsolla' => [
         'api_key' => env('XSOLLA_API_KEY'),
@@ -21,5 +20,6 @@ return [
         'secret_key' => env('XSOLLA_SECRET_KEY'),
     ],
 
+    'sandbox' => presence(env('PAYMENT_SANDBOX'), false),
     'running_cost' => (int) presence(env('OSU_RUNNING_COST'), 3141592), // arbritary default >_>
 ];

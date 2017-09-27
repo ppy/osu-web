@@ -56,7 +56,7 @@ class XsollaController extends Controller
 
         $tokenRequest = new TokenRequest($projectId, (string)$user->user_id);
         $tokenRequest
-            ->setSandboxMode(true)
+            ->setSandboxMode(config('payments.sandbox'))
             ->setExternalPaymentId($order->getOrderNumber())
             ->setUserEmail($user->user_email)
             ->setUserName($user->username)

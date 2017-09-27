@@ -19,7 +19,9 @@
 const { mix } = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
+require('dotenv').config();
 
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
@@ -28,6 +30,16 @@ let min = '';
 if (mix.inProduction()) {
   min = '.min';
 }
+
+const paymentSandbox = function () {
+  if (process.env.PAYMENT_SANDBOX == 0
+      || process.env.PAYMENT_SANDBOX === 'false'
+      || !process.env.PAYMENT_SANDBOX) {
+    return false;
+  } else {
+    return true;
+  }
+}();
 
 // relative from root?
 const node_root = 'node_modules';
@@ -70,6 +82,11 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
+  plugins: [
+    new webpack.DefinePlugin({
+      ENV_PAYMENT_SANDBOX: JSON.stringify(paymentSandbox),
+    })
+  ],
   resolve: {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
