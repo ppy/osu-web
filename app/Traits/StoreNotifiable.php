@@ -27,12 +27,12 @@ trait StoreNotifiable
 {
     public function notify($text)
     {
-        Slack::to('test-hooks')->send($text);
+        Slack::to(config('payments.notification_channel'))->send($text);
     }
 
     public function notifyOrder($order, $text)
     {
-        Slack::to('test-hooks')->send("`Order {$order->order_id}`: {$text}");
+        Slack::to(config('payments.notification_channel'))->send("`Order {$order->order_id}`: {$text}");
     }
 
     public function notifyError($order = null, $exception = null, $text = null)

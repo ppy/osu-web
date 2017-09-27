@@ -20,6 +20,7 @@ return [
         'secret_key' => env('XSOLLA_SECRET_KEY'),
     ],
 
+    'notification_channel' => env('STORE_NOTIFICATION_CHANNEL'),
     'sandbox' => presence(env('PAYMENT_SANDBOX'), false),
     'running_cost' => (int) presence(env('OSU_RUNNING_COST'), 3141592), // arbritary default >_>
 ];
