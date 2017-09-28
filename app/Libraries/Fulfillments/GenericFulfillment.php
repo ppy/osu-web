@@ -42,6 +42,11 @@ class GenericFulfillment extends OrderFulfiller
         // noop
     }
 
+    public function taggedName()
+    {
+        return 'generic';
+    }
+
     public function validationErrorsTranslationPrefix()
     {
         // noop

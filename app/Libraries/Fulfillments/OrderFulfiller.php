@@ -39,6 +39,13 @@ abstract class OrderFulfiller implements Fulfillable
     abstract public function run();
     abstract public function revoke();
 
+    /**
+     * Tag for context in system message events and stuff
+     *
+     * @return string
+     */
+    abstract public function taggedName();
+
     public function getOrder()
     {
         return $this->order;
@@ -56,7 +63,7 @@ abstract class OrderFulfiller implements Fulfillable
     protected function dispatchValidationFailed()
     {
         event(
-            'store.fulfillment.validation.failed',
+            "store.fulfillment.validation.failed.{$this->taggedName()}",
             new FulfillmentValidationFailed($this, $this->validationErrors())
         );
     }

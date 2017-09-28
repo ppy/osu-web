@@ -54,6 +54,11 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
     }
 
+    public function taggedName()
+    {
+        return 'supporter-tag';
+    }
+
     private function afterRun()
     {
         $items = $this->getOrderItems();

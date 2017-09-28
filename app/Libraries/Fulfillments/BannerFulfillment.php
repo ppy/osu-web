@@ -54,6 +54,11 @@ abstract class BannerFulfillment extends OrderFulfiller
         }
     }
 
+    public function taggedName()
+    {
+        return static::CUSTOM_CLASS_NAME;
+    }
+
     protected function getOrderItems()
     {
         if (!isset($this->orderItems)) {

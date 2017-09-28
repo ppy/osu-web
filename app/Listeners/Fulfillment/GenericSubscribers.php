@@ -59,5 +59,10 @@ class GenericSubscribers
             'store.fulfillment.run.*',
             static::class.'@onEvent'
         );
+
+        $events->listen(
+            'store.fulfillment.revert.*',
+            static::class.'@onEvent'
+        );
     }
 }
