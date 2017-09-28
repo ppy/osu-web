@@ -20,8 +20,8 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillment\UsernameChanged;
-use App\Events\Fulfillment\UsernameReverted;
+use App\Events\Fulfillments\UsernameChanged;
+use App\Events\Fulfillments\UsernameReverted;
 use App\Models\User;
 use App\Exceptions\UsernameChangeException;
 

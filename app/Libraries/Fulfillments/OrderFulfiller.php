@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Events\Fulfillment\FulfillmentValidationFailed;
+use App\Events\Fulfillments\FulfillmentValidationFailed;
 use App\Libraries\ValidationFailable;
 use App\Models\Store\Order;
 use App\Traits\Validatable;

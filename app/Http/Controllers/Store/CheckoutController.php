@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Events\Fulfillment\PaymentEvent;
+use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
 use Auth;
 use DB;

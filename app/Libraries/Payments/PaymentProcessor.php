@@ -21,8 +21,8 @@
 namespace App\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Events\Fulfillment\PaymentEvent;
-use App\Events\Fulfillment\ProcessorValidationFailed;
+use App\Events\Fulfillments\PaymentEvent;
+use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;

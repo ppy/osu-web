@@ -18,23 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillment;
+namespace App\Events\Fulfillments;
 
-use App\Libraries\Fulfillments\OrderFulfiller;
-use App\Libraries\ValidationErrors;
-
-class FulfillmentValidationFailed extends ValidationFailedEvent
+class UsernameReverted extends UsernameEvent
 {
-    public function __construct(OrderFulfiller $sender, ValidationErrors $errors)
-    {
-        parent::__construct($sender, $errors);
-        $this->context = array_merge($this->context, [
-            'order_id' => $sender->getOrder()->order_id,
-        ]);
-    }
-
     public function toMessage()
     {
-        return "`Order {$this->context['order_id']}` | " . parent::toMessage();
+        return "`User {$this->user->user_id}` Reverted username to `{$this->user->username}`.";
     }
 }

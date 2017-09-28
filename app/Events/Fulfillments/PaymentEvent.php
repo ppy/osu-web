@@ -18,12 +18,23 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillment;
+namespace App\Events\Fulfillments;
 
-class UsernameReverted extends UsernameEvent
+use App\Models\Store\Order;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
+
+class PaymentEvent implements HasOrder, ShouldQueue
 {
-    public function toMessage()
+    use SerializesModels;
+
+    public function __construct(Order $order)
     {
-        return "`User {$this->user->user_id}` Reverted username to `{$this->user->username}`.";
+        $this->order = $order;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
     }
 }

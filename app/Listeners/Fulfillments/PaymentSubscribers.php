@@ -18,10 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Fulfillment;
+namespace App\Listeners\Fulfillments;
 
 use App\Events\MessageableEvent;
-use App\Events\Fulfillment\PaymentEvent;
+use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Traits\StoreNotifiable;
 

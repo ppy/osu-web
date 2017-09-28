@@ -18,38 +18,27 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillment;
+namespace App\Events\Fulfillments;
 
 use App\Events\MessageableEvent;
-use App\Libraries\ValidationErrors;
+use App\Models\Store\Order;
+use App\Models\User;
 
-class ValidationFailedEvent implements MessageableEvent
+abstract class UsernameEvent implements MessageableEvent, HasOrder
 {
-    protected $sender;
-    protected $context = [];
-    private $errors;
+    protected $order;
+    protected $user;
 
-
-    public function __construct($sender, ValidationErrors $errors)
+    public function __construct(User $user, Order $order)
     {
-        $this->sender = $sender;
-        $this->errors = $errors;
+        $this->user = $user;
+        $this->order = $order;
     }
 
-    public function getErrors(): ValidationErrors
+    public function getOrder()
     {
-        return $this->errors;
+        return $this->order;
     }
 
-    public function getContext()
-    {
-        return $this->context;
-    }
-
-    public function toMessage()
-    {
-        $senderText = get_class_basename(get_class($this->sender));
-        $className = get_class_basename(static::class);
-        return "`{$className}` from `{$senderText}`\n\t" . implode("\n\t", $this->getErrors()->allMessages());
-    }
+    abstract public function toMessage();
 }

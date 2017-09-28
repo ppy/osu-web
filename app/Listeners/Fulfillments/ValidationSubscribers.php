@@ -18,51 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Fulfillment;
+namespace App\Listeners\Fulfillments;
 
 use App\Events\MessageableEvent;
-use App\Events\Fulfillment\HasOrder;
-use App\Events\Fulfillment\UsernameChanged;
-use App\Events\Fulfillment\UsernameReverted;
+use App\Events\Fulfillments\FulfillmentValidationFailed;
+use App\Events\Fulfillments\ProcessorValidationFailed;
+use App\Events\Fulfillments\ValidationFailedEvent;
 use App\Traits\StoreNotifiable;
 
-class GenericSubscribers
+class ValidationSubscribers
 {
     use StoreNotifiable;
 
-    public function onEvent($eventName, $data)
+    public function onValidationFailed($eventName, $data)
     {
         $event = $data[0] ?? null;
-
-        if (!($event instanceof MessageableEvent)) {
-            \Log::warning("Received `{$eventName}` but is not an instance of `MessageableEvent`.");
+        if (!($event instanceof ValidationFailedEvent)) {
+            \Log::warning("Received `{$eventName}` but is not an instance of `ValidationFailedEvent`.");
+            $this->notify('missing event data', $eventName);
             return;
         }
 
-        if ($event instanceof HasOrder) {
-            $this->notifyOrder(
-                $event->getOrder(),
-                $event->toMessage(),
-                $eventName
-            );
-        } else {
-            $this->notify(
-                $event->toMessage(),
-                $eventName
-            );
-        }
+        \Log::warning("ValidationFailedEvent: {$eventName}");
+        \Log::warning($event->getErrors()->allMessages());
+        $this->notifyValidation($event, $eventName);
     }
 
     public function subscribe($events)
     {
         $events->listen(
-            'store.fulfillments.run.*',
-            static::class.'@onEvent'
-        );
-
-        $events->listen(
-            'store.fulfillments.revert.*',
-            static::class.'@onEvent'
+            'store.*.validation.failed',
+            static::class.'@onValidationFailed'
         );
     }
 }

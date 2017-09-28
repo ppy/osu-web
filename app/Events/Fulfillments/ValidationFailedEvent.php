@@ -18,23 +18,38 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillment;
+namespace App\Events\Fulfillments;
 
-use App\Models\Store\Order;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\SerializesModels;
+use App\Events\MessageableEvent;
+use App\Libraries\ValidationErrors;
 
-class PaymentEvent implements HasOrder, ShouldQueue
+class ValidationFailedEvent implements MessageableEvent
 {
-    use SerializesModels;
+    protected $sender;
+    protected $context = [];
+    private $errors;
 
-    public function __construct(Order $order)
+
+    public function __construct($sender, ValidationErrors $errors)
     {
-        $this->order = $order;
+        $this->sender = $sender;
+        $this->errors = $errors;
     }
 
-    public function getOrder()
+    public function getErrors(): ValidationErrors
     {
-        return $this->order;
+        return $this->errors;
+    }
+
+    public function getContext()
+    {
+        return $this->context;
+    }
+
+    public function toMessage()
+    {
+        $senderText = get_class_basename(get_class($this->sender));
+        $className = get_class_basename(static::class);
+        return "`{$className}` from `{$senderText}`\n\t" . implode("\n\t", $this->getErrors()->allMessages());
     }
 }

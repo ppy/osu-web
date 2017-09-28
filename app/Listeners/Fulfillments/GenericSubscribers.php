@@ -18,37 +18,51 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Fulfillment;
+namespace App\Listeners\Fulfillments;
 
 use App\Events\MessageableEvent;
-use App\Events\Fulfillment\FulfillmentValidationFailed;
-use App\Events\Fulfillment\ProcessorValidationFailed;
-use App\Events\Fulfillment\ValidationFailedEvent;
+use App\Events\Fulfillments\HasOrder;
+use App\Events\Fulfillments\UsernameChanged;
+use App\Events\Fulfillments\UsernameReverted;
 use App\Traits\StoreNotifiable;
 
-class ValidationSubscribers
+class GenericSubscribers
 {
     use StoreNotifiable;
 
-    public function onValidationFailed($eventName, $data)
+    public function onEvent($eventName, $data)
     {
         $event = $data[0] ?? null;
-        if (!($event instanceof ValidationFailedEvent)) {
-            \Log::warning("Received `{$eventName}` but is not an instance of `ValidationFailedEvent`.");
-            $this->notify('missing event data', $eventName);
+
+        if (!($event instanceof MessageableEvent)) {
+            \Log::warning("Received `{$eventName}` but is not an instance of `MessageableEvent`.");
             return;
         }
 
-        \Log::warning("ValidationFailedEvent: {$eventName}");
-        \Log::warning($event->getErrors()->allMessages());
-        $this->notifyValidation($event, $eventName);
+        if ($event instanceof HasOrder) {
+            $this->notifyOrder(
+                $event->getOrder(),
+                $event->toMessage(),
+                $eventName
+            );
+        } else {
+            $this->notify(
+                $event->toMessage(),
+                $eventName
+            );
+        }
     }
 
     public function subscribe($events)
     {
         $events->listen(
-            'store.*.validation.failed',
-            static::class.'@onValidationFailed'
+            'store.fulfillments.run.*',
+            static::class.'@onEvent'
+        );
+
+        $events->listen(
+            'store.fulfillments.revert.*',
+            static::class.'@onEvent'
         );
     }
 }
