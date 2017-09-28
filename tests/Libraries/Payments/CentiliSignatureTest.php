@@ -34,7 +34,7 @@ class CentiliSignatureTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        Config::set('payments.xsolla.secret_key', 'magic');
+        Config::set('payments.centili.secret_key', 'magic');
     }
 
     public function testStringifyInput()
@@ -54,7 +54,7 @@ class CentiliSignatureTest extends TestCase
 
     public function testCalculateSignature()
     {
-        static $expected = '99671a633c43e7ddf409d100cfc131f4e7a2ef25';
+        static $expected = '98b26bf9ba67820abb3cc76900c0d47fac52ca4b';
         static $params = [
             'clientid' => 'test-12345-123',
             'country' => 'jp',
@@ -65,7 +65,7 @@ class CentiliSignatureTest extends TestCase
             'revenue' => '12.3456',
             'revenuecurrency' => 'USD',
             'service' => 'adc38aea0cf18391a31e83f0b8a88286',
-            'sign' => '99671a633c43e7ddf409d100cfc131f4e7a2ef25',
+            'sign' => '98b26bf9ba67820abb3cc76900c0d47fac52ca4b',
             'status' => 'success',
             'transactionid' => '111222333444',
         ];
