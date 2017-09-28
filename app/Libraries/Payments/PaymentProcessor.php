@@ -234,7 +234,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     protected function dispatchValidationFailed()
     {
         event(
-            'store.payment.validation.failed',
+            "store.payment.validation.failed.{$this->getPaymentProvider()}",
             new ProcessorValidationFailed($this, $this->validationErrors())
         );
     }
