@@ -27,11 +27,9 @@ class ValidationFailedEvent implements MessageableEvent
 {
     protected $sender;
     private $errors;
-    private $customMessage;
 
-    public function __construct($sender, ValidationErrors $errors, string $customMessage = null)
+    public function __construct($sender, ValidationErrors $errors)
     {
-        $this->customMessage = $customMessage;
         $this->sender = $sender;
         $this->errors = $errors;
         $this->context = [
@@ -53,8 +51,7 @@ class ValidationFailedEvent implements MessageableEvent
     public function toMessage()
     {
         $senderText = $this->context['sender'];
-        $customText = presence($this->customMessage) ? "`{$this->customMessage}`" : '';
         $className = $this->context['class'];
-        return "`{$className}` from `{$senderText}` {$customText}\n\t" . implode("\n\t", $this->getErrors()->allMessages());
+        return "`{$className}` from `{$senderText}`\n\t" . implode("\n\t", $this->getErrors()->allMessages());
     }
 }
