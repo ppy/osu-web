@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Events\Fulfillment\PaymentCompleted;
+use App\Events\Fulfillment\PaymentEvent;
 use App\Libraries\OrderCheckout;
 use Auth;
 use DB;
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
                 OrderCheckout::complete($order->order_id);
                 $order->paid(null);
 
-                event('store.payments.completed.free', new PaymentCompleted($order));
+                event('store.payments.completed.free', new PaymentEvent($order));
             });
 
             return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));

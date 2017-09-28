@@ -21,8 +21,7 @@
 namespace App\Listeners\Fulfillment;
 
 use App\Events\MessageableEvent;
-use App\Events\Fulfillment\PaymentCancelled;
-use App\Events\Fulfillment\PaymentCompleted;
+use App\Events\Fulfillment\PaymentEvent;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Traits\StoreNotifiable;
 

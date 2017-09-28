@@ -21,8 +21,7 @@
 namespace App\Libraries\Payments;
 
 use App\Exceptions\InvalidSignatureException;
-use App\Events\Fulfillment\PaymentCancelled;
-use App\Events\Fulfillment\PaymentCompleted;
+use App\Events\Fulfillment\PaymentEvent;
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Fulfillments\Fulfillment;
@@ -190,7 +189,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->paid($payment);
 
             $eventName = "store.payments.completed.{$payment->provider}";
-            event($eventName, new PaymentCompleted($order));
+            event($eventName, new PaymentEvent($order));
         });
     }
 
@@ -213,7 +212,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order->cancel();
 
             $eventName = "store.payments.cancelled.{$payment->provider}";
-            event($eventName, new PaymentCancelled($order));
+            event($eventName, new PaymentEvent($order));
         });
     }
 

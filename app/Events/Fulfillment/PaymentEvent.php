@@ -24,7 +24,7 @@ use App\Models\Store\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 
-abstract class PaymentEvent implements HasOrder, ShouldQueue
+class PaymentEvent implements HasOrder, ShouldQueue
 {
     use SerializesModels;
 
