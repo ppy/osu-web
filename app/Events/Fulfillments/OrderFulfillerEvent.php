@@ -18,37 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Fulfillments;
+namespace App\Events\Fulfillments;
 
-use App\Events\Fulfillments\OrderFulfillerEvent;
-use App\Exceptions\NotImplementedException;
+use App\Events\MessageableEvent;
+use App\Models\Store\Order;
 
-/**
- * Placeholder class for handling non-custom class order item fulfillment.
- */
-class GenericFulfillment extends OrderFulfiller
+// Generic event for reporting
+class OrderFulfillerEvent implements HasOrder, MessageableEvent
 {
-    const TAGGED_NAME = 'generic';
+    private $order;
 
-    public function __construct($order)
+    public function __construct(Order $order)
     {
-        // noop
+        $this->order = $order;
     }
 
-    public function run()
+    public function getOrder()
     {
-        // almost noop
-        event("store.fulfillments.run.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
+        return $this->order;
     }
 
-    public function revoke()
+    public function toMessage()
     {
-        // almost noop
-        event("store.fulfillments.revoke.{$this->taggedName()}", new OrderFulfillerEvent($this->order));
-    }
-
-    public function validationErrorsTranslationPrefix()
-    {
-        // noop
+        return '';
     }
 }
