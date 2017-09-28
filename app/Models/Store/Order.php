@@ -100,7 +100,7 @@ class Order extends Model
             $total += $i->subtotal();
         }
 
-        return $total;
+        return (float) $total;
     }
 
     /**
@@ -139,7 +139,7 @@ class Order extends Model
     private function getShipping()
     {
         if (!$this->address) {
-            return 0;
+            return 0.0;
         }
 
         $rate = $this->address->shippingRate();
@@ -165,7 +165,7 @@ class Order extends Model
             }
         }
 
-        return $total * $rate;
+        return (float) $total * $rate;
     }
 
     public function getTotal()
