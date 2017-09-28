@@ -26,16 +26,14 @@ use App\Libraries\ValidationErrors;
 class ValidationFailedEvent implements MessageableEvent
 {
     protected $sender;
+    protected $context = [];
     private $errors;
+
 
     public function __construct($sender, ValidationErrors $errors)
     {
         $this->sender = $sender;
         $this->errors = $errors;
-        $this->context = [
-            'sender' => get_class_basename(get_class($sender)),
-            'class' => get_class_basename(static::class),
-        ];
     }
 
     public function getErrors(): ValidationErrors
@@ -50,8 +48,8 @@ class ValidationFailedEvent implements MessageableEvent
 
     public function toMessage()
     {
-        $senderText = $this->context['sender'];
-        $className = $this->context['class'];
+        $senderText = get_class_basename(get_class($this->sender));
+        $className = get_class_basename(static::class);
         return "`{$className}` from `{$senderText}`\n\t" . implode("\n\t", $this->getErrors()->allMessages());
     }
 }
