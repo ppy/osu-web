@@ -56,7 +56,7 @@
                 </h1>
             @endif
 
-            <div class="forum-category-header__counters">
+            <div class="forum-category-header__counters hidden-xs">
                 <div class="forum-category-header__counter">
                     @include('forum.topics._header_total_counter')
                 </div>
