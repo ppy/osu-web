@@ -760,8 +760,8 @@ function ci_file_search($fileName)
 
 function sanitize_filename($file)
 {
-    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
-    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+    $file = mb_ereg_replace('[^\w\s\d\-_~,;\[\]\(\).]', '', $file);
+    $file = mb_ereg_replace('[\.]{2,}', '.', $file);
 
     return $file;
 }
