@@ -20,11 +20,10 @@
 
 namespace App\Libraries\Payments;
 
-use App\Exceptions\InvalidSignatureException;
 use App\Events\Fulfillments\PaymentEvent;
 use App\Events\Fulfillments\ProcessorValidationFailed;
+use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\Fulfillments\Fulfillment;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Validatable;
@@ -122,7 +121,7 @@ abstract class PaymentProcessor implements \ArrayAccess
      * Validates the transaction.
      * Returns true if the transaction is valid; false, otherwise.
      *
-     * @return boolean
+     * @return bool
      */
     abstract public function validateTransaction();
 
@@ -134,7 +133,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getNotificationType();
 
     /**
-     * Tells callers to ignore this notification
+     * Tells callers to ignore this notification.
      */
     public function isSkipped()
     {
@@ -163,7 +162,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * Processes the payment transaction
+     * Processes the payment transaction.
      *
      * @return void
      */
@@ -194,7 +193,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * Cancels the payment transaction
+     * Cancels the payment transaction.
      *
      * @return void
      */
@@ -226,7 +225,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * Sends a ValidationFailedEvent with the validation errors
+     * Sends a ValidationFailedEvent with the validation errors.
      *
      * @return void
      */
@@ -265,7 +264,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * implements ArrayAccess
+     * implements ArrayAccess.
      */
     public function offsetExists($key)
     {
@@ -288,7 +287,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * Validatable
+     * Validatable.
      */
     public function validationErrorsTranslationPrefix()
     {

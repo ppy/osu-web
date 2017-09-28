@@ -22,7 +22,6 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
 
 class PaypalPaymentProcessor extends PaymentProcessor
@@ -105,6 +104,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         // order should exist
         if ($order === null) {
             $this->validationErrors()->add('order', '.order.invalid');
+
             return false;
         }
 
@@ -127,7 +127,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
         \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
         if ($this->getNotificationType() === NotificationType::PAYMENT
-            && $this->getPaymentAmount() != $order->getTotal()) {
+            && $this->getPaymentAmount() !== $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',

@@ -20,10 +20,8 @@
 
 namespace App\Listeners\Fulfillments;
 
-use App\Events\MessageableEvent;
 use App\Events\Fulfillments\HasOrder;
-use App\Events\Fulfillments\UsernameChanged;
-use App\Events\Fulfillments\UsernameReverted;
+use App\Events\MessageableEvent;
 use App\Traits\StoreNotifiable;
 
 class GenericSubscribers
@@ -36,6 +34,7 @@ class GenericSubscribers
 
         if (!($event instanceof MessageableEvent)) {
             \Log::warning("Received `{$eventName}` but is not an instance of `MessageableEvent`.");
+
             return;
         }
 

@@ -21,7 +21,6 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\OrderFulfillerEvent;
-use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
 use App\Models\User;
@@ -74,7 +73,7 @@ class SupporterTagFulfillment extends OrderFulfiller
             $targetId = $item['extra_data']['target_id'];
             $target = User::find($targetId);
             // TODO: warn if user doesn't exist, but don't explode.
-            if ($donor->getKey() != $target->getKey()) {
+            if ($donor->getKey() !== $target->getKey()) {
                 $giftees[$targetId] = $target;
             }
         }
@@ -99,7 +98,7 @@ class SupporterTagFulfillment extends OrderFulfiller
                 '.insufficient_paid',
                 ['expected' => $this->minimumRequired(), 'actual' => $this->order->getTotal()]
             );
-        };
+        }
 
         return $this->validationErrors()->isEmpty();
     }

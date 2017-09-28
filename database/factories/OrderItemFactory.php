@@ -23,12 +23,13 @@ $factory->defineAs(App\Models\Store\OrderItem::class, 'supporter_tag', function 
             // find the user for the generated item's order
             $order = App\Models\Store\Order::find($self['order_id']);
             $user = $order->user;
+
             return [
                 'target_id' => (string) $user->user_id,
                 'username' => $user->username,
                 'duration' => 1,
             ];
-        }
+        },
     ]);
 });
 

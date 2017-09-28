@@ -42,7 +42,7 @@ class XsollaHeaderSignature implements PaymentSignature
 
     public static function calculateSignature(string $content)
     {
-        return sha1($content . config('payments.xsolla.secret_key'));
+        return sha1($content.config('payments.xsolla.secret_key'));
     }
 
     private function receivedSignature()

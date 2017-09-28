@@ -22,8 +22,8 @@ namespace Tests;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Libraries\Payments\CentiliPaymentProcessor;
-use App\Libraries\Payments\PaymentSignature;
 use App\Libraries\Payments\PaymentProcessorException;
+use App\Libraries\Payments\PaymentSignature;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
@@ -46,8 +46,7 @@ class CentiliPaymentProcessorTest extends TestCase
 
     private function validSignature()
     {
-        return new class implements PaymentSignature
-        {
+        return new class implements PaymentSignature {
             public function isValid()
             {
                 return true;
@@ -57,8 +56,7 @@ class CentiliPaymentProcessorTest extends TestCase
 
     private function invalidSignature()
     {
-        return new class implements PaymentSignature
-        {
+        return new class implements PaymentSignature {
             public function isValid()
             {
                 return false;

@@ -23,5 +23,6 @@ namespace App\Libraries\Fulfillments;
 interface Fulfillable
 {
     public function run();
+
     public function revoke();
 }

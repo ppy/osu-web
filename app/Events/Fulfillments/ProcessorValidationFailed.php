@@ -39,6 +39,6 @@ class ProcessorValidationFailed extends ValidationFailedEvent
     {
         return "`{$this->context['order_number']}`"
             ." | notification `{$this->context['notification_type']}` `{$this->context['transaction_id']}` | "
-            . parent::toMessage();
+            .parent::toMessage();
     }
 }

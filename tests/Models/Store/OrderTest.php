@@ -23,7 +23,6 @@ namespace Tests;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
-use Config;
 use TestCase;
 
 class OrderTest extends TestCase

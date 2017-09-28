@@ -200,7 +200,7 @@ Route::group(['prefix' => 'store'], function () {
     Route::post('products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
     Route::delete('products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
 
-    # Store splitting starts here
+    // Store splitting starts here
     Route::resource(
         'checkout',
         'Store\CheckoutController',

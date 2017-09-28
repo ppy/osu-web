@@ -21,7 +21,6 @@
 namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\OrderFulfillerEvent;
-use App\Exceptions\NotImplementedException;
 
 /**
  * Placeholder class for handling non-custom class order item fulfillment.

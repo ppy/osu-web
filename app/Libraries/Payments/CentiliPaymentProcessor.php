@@ -22,7 +22,6 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
 
 // FIXME: rename?
@@ -97,6 +96,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         // order should exist
         if ($order === null) {
             $this->validationErrors()->add('order', '.order.invalid');
+
             return false;
         }
 
@@ -117,7 +117,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
-        if ($this->getPaymentAmount() != $order->getTotal()) {
+        if ($this->getPaymentAmount() !== $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',

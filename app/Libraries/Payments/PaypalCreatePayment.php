@@ -103,7 +103,7 @@ class PaypalCreatePayment
                 ->setCurrency('USD')
                 ->setQuantity(1)
                 ->setSku($this->order->getOrderNumber())
-                ->setPrice($this->order->getSubTotal())
+                ->setPrice($this->order->getSubTotal()),
             ]);
 
         return $list;

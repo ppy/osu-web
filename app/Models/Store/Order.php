@@ -104,7 +104,7 @@ class Order extends Model
     }
 
     /**
-     * Gets the orderId from the orderNumber
+     * Gets the orderId from the orderNumber.
      *
      * @param string $orderNumber
      * @return string|null

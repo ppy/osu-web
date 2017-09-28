@@ -20,10 +20,6 @@
 
 namespace App\Models;
 
-use App\Models\Country;
-use App\Models\Tournament;
-use App\Models\User;
-
 class ProfileBanner extends Model
 {
     protected $table = 'osu_profile_banners';

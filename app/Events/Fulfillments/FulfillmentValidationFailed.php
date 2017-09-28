@@ -20,9 +20,6 @@
 
 namespace App\Events\Fulfillments;
 
-use App\Libraries\Fulfillments\OrderFulfiller;
-use App\Libraries\ValidationErrors;
-
 class FulfillmentValidationFailed extends ValidationFailedEvent implements HasOrder
 {
     public function getOrder()

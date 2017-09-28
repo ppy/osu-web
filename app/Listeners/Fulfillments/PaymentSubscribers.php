@@ -20,8 +20,6 @@
 
 namespace App\Listeners\Fulfillments;
 
-use App\Events\MessageableEvent;
-use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Traits\StoreNotifiable;
 

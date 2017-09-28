@@ -35,7 +35,7 @@ abstract class BannerFulfillment extends OrderFulfiller
         'mwc7-supporter',
         'twc-supporter',
         'cwc-supporter',
-        'mwc4-supporter'
+        'mwc4-supporter',
     ];
     const TAGGED_NAME = null;
 
@@ -113,7 +113,6 @@ abstract class BannerFulfillment extends OrderFulfiller
 
         return Country::where('name', $countryName)->first->acronym;
     }
-
 
     //================
     // Validatable

@@ -35,7 +35,7 @@ abstract class Model extends BaseModel
     }
 
     /**
-     * Locks the current model for update with `select for update`
+     * Locks the current model for update with `select for update`.
      *
      * @return Model
      */

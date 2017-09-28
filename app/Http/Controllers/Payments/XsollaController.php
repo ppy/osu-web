@@ -26,10 +26,9 @@ use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Models\Store\Order;
 use Auth;
-use DB;
 use Request;
-use Xsolla\SDK\API\XsollaClient;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
+use Xsolla\SDK\API\XsollaClient;
 
 class XsollaController extends Controller
 {
@@ -53,7 +52,7 @@ class XsollaController extends Controller
             return;
         }
 
-        $tokenRequest = new TokenRequest($projectId, (string)$user->user_id);
+        $tokenRequest = new TokenRequest($projectId, (string) $user->user_id);
         $tokenRequest
             ->setSandboxMode(config('payments.sandbox'))
             ->setExternalPaymentId($order->getOrderNumber())
@@ -66,10 +65,10 @@ class XsollaController extends Controller
                 'order_id' => $order['order_id'],
             ]);
 
-        $xsollaClient = XsollaClient::factory(array(
+        $xsollaClient = XsollaClient::factory([
             'merchant_id' => config('payments.xsolla.merchant_id'),
             'api_key' => config('payments.xsolla.api_key'),
-        ));
+        ]);
 
         return $xsollaClient->createPaymentUITokenFromRequest($tokenRequest);
     }
@@ -126,6 +125,7 @@ class XsollaController extends Controller
         }
 
         \Log::error($exception);
+
         return $this->exceptionResponse($exception, 500, '');
     }
 }

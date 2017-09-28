@@ -52,6 +52,7 @@ class ApplySupporterTag extends OrderItemFulfillment
         $this->donor = User::findOrFail($this->donorId);
         $this->target = User::findOrFail($this->targetId);
     }
+
     public function cancelledTransactionId()
     {
         return "{$this->getTransactionId()}-cancel";
@@ -68,6 +69,7 @@ class ApplySupporterTag extends OrderItemFulfillment
             // check if transaction was already applied.
             if (UserDonation::where('transaction_id', $this->getTransactionId())->count() > 0) {
                 \Log::info("{$this->getTransactionId()} already exists in UserDonations!");
+
                 return;
             }
 
@@ -94,12 +96,14 @@ class ApplySupporterTag extends OrderItemFulfillment
             // cancel only if applied.
             if (UserDonation::where('transaction_id', $this->cancelledTransactionId())->count() > 0) {
                 \Log::info("{$this->cancelledTransactionId()} already exists in UserDonations!");
+
                 return;
             }
 
             $donations = UserDonation::where('transaction_id', $this->getTransactionId())->get();
             if ($donations->count() === 0) {
                 \Log::info("{$this->getTransactionId()} nothing to revoke!");
+
                 return;
             }
 

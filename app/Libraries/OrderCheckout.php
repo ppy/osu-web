@@ -47,7 +47,7 @@ class OrderCheckout
 
     public function allowCentiliPayment()
     {
-        # Geolocation header from Cloudflare
+        // Geolocation header from Cloudflare
         $isJapan = strcasecmp(Request::header('Cf-Ipcountry'), 'JP') === 0;
 
         return $isJapan && Request::input('intl') !== '1';
@@ -58,10 +58,10 @@ class OrderCheckout
         $extraDatas = $this->supporterTagItems()->pluck('extra_data');
         $mapped = [];
         foreach ($extraDatas as $data) {
-            $mapped[] = $data['target_id'] . "-" . $data['duration'];
+            $mapped[] = $data['target_id']."-".$data['duration'];
         }
 
-        return $this->order->user_id . ':' . implode($mapped, ',');
+        return $this->order->user_id.':'.implode($mapped, ',');
     }
 
     public function getXsollaCheckoutDescription()
@@ -72,22 +72,22 @@ class OrderCheckout
             $mapped[] = $data['target_id'];
         }
 
-        return "osu! supporter tags for " . implode(array_unique($mapped), ', ');
+        return "osu! supporter tags for ".implode(array_unique($mapped), ', ');
     }
 
     public function getCentiliPaymentLink()
     {
         $params = [
-            'api=' . config('payments.centili.api_key'),
+            'api='.config('payments.centili.api_key'),
             'country=jp',
             'countrylock=true',
-            'clientid=' . $this->order->getOrderNumber(),
-            'amount=' . $this->order->getTotal() * config('payments.centili.conversion_rate'),
+            'clientid='.$this->order->getOrderNumber(),
+            'amount='.$this->order->getTotal() * config('payments.centili.conversion_rate'),
         ];
 
         $queryString = implode('&', $params);
 
-        return config('payments.centili.widget_url') . '?' . $queryString;
+        return config('payments.centili.widget_url').'?'.$queryString;
     }
 
     public function isShippingDelayed()
@@ -117,7 +117,7 @@ class OrderCheckout
     }
 
     /**
-     * Helper method for completing checkout with just the order id
+     * Helper method for completing checkout with just the order id.
      *
      * @param string|int $orderId
      * @return Order

@@ -20,8 +20,8 @@
 
 namespace App\Traits;
 
-use PayPal\Exception\PayPalConnectionException;
 use App\Events\Fulfillments\ValidationFailedEvent;
+use PayPal\Exception\PayPalConnectionException;
 use Slack;
 
 trait StoreNotifiable

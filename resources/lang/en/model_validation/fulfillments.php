@@ -26,5 +26,5 @@ return [
     ],
     'supporter_tag' => [
         'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
-    ]
+    ],
 ];

@@ -21,11 +21,10 @@
 namespace Tests;
 
 use App\Libraries\Fulfillments\SupporterTagFulfillment;
-use App\Models\User;
-use App\Models\UserDonation;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\User;
+use App\Models\UserDonation;
 use Carbon\Carbon;
 use TestCase;
 
@@ -236,7 +235,7 @@ class SupporterTagFulfillmentTest extends TestCase
         $donor = $orderItem->order->user;
 
         return factory(UserDonation::class)->create([
-            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}" . ($cancelled ? '-cancel' : ''),
+            'transaction_id' => "{$orderItem->order->transaction_id}-{$orderItem->id}".($cancelled ? '-cancel' : ''),
             'user_id' => $donor->user_id,
             'target_user_id' => $giftee->user_id,
         ]);

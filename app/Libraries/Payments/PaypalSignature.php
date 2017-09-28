@@ -51,7 +51,7 @@ class PaypalSignature implements PaymentSignature
         $string = substr($response->getBody(), 0, 20);
         \Log::error("IPN verification returned: status `{$response->getStatusCode()}`: `{$string}`");
 
-        # NB: leave the default as false.
+        // NB: leave the default as false.
         return false;
     }
 

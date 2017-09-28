@@ -21,11 +21,10 @@
 namespace Tests;
 
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
-use App\Models\User;
-use App\Models\UsernameChangeHistory;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Models\User;
+use App\Models\UsernameChangeHistory;
 use TestCase;
 
 class UsernameChangeFulfillmentTest extends TestCase

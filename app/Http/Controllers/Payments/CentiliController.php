@@ -25,8 +25,6 @@ use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Models\Store\Order;
-use Auth;
-use DB;
 use Request;
 
 class CentiliController extends Controller
@@ -62,7 +60,7 @@ class CentiliController extends Controller
             abort(404);
         }
 
-        # FIXME: need a payments failed page.
+        // FIXME: need a payments failed page.
         return redirect(route('payments.failed'));
     }
 

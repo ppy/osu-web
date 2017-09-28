@@ -26,11 +26,9 @@ use App\Libraries\Fulfillments\SupporterTagFulfillment;
 use App\Libraries\Fulfillments\UsernameChangeFulfillment;
 use App\Models\Store\OrderItem;
 use App\Models\Store\Product;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Carbon\Carbon;
 use TestCase;
 
-class FulfillmentFactoryTests extends TestCase
+class FulfillmentFactoryTest extends TestCase
 {
     protected $connectionsToTransact = [
         'mysql',

@@ -20,9 +20,6 @@
 
 namespace App\Listeners\Fulfillments;
 
-use App\Events\MessageableEvent;
-use App\Events\Fulfillments\FulfillmentValidationFailed;
-use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Events\Fulfillments\ValidationFailedEvent;
 use App\Traits\StoreNotifiable;
 

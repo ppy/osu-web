@@ -25,7 +25,6 @@ use App\Traits\StoreNotifiable;
 use DB;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
-use PayPal\Api\ExecutePayment;
 use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;

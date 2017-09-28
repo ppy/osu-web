@@ -22,8 +22,6 @@ namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\UsernameChanged;
 use App\Events\Fulfillments\UsernameReverted;
-use App\Models\User;
-use App\Exceptions\UsernameChangeException;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {

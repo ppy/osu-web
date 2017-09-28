@@ -59,7 +59,7 @@ class FulfillmentFactory
             return $this->fulfillers[$type];
         }
 
-        $className = '\\App\\Libraries\\Fulfillments\\' . studly_case($type) . 'Fulfillment';
+        $className = '\\App\\Libraries\\Fulfillments\\'.studly_case($type).'Fulfillment';
         if (!class_exists($className)) {
             throw new InvalidFulfillerException($className);
         }
@@ -73,7 +73,7 @@ class FulfillmentFactory
     {
         $builder = new static($order);
 
-        $fulfillerMap =  $builder->createFulfillers();
+        $fulfillerMap = $builder->createFulfillers();
         return array_values($fulfillerMap);
     }
 }

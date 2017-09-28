@@ -39,10 +39,11 @@ abstract class OrderFulfiller implements Fulfillable
     }
 
     abstract public function run();
+
     abstract public function revoke();
 
     /**
-     * Tag for context in system message events and stuff
+     * Tag for context in system message events and stuff.
      *
      * @return string
      */

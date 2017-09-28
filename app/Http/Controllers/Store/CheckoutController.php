@@ -30,7 +30,6 @@ class CheckoutController extends Controller
 {
     protected $layout = 'master';
 
-
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
