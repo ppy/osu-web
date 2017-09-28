@@ -189,7 +189,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
             $order->paid($payment);
 
-            $eventName = "store.payment.completed.{$payment->provider}";
+            $eventName = "store.payments.completed.{$payment->provider}";
             event($eventName, new PaymentCompleted($order));
         });
     }
@@ -212,7 +212,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
             $order->cancel();
 
-            $eventName = "store.payment.cancelled.{$payment->provider}";
+            $eventName = "store.payments.cancelled.{$payment->provider}";
             event($eventName, new PaymentCancelled($order));
         });
     }
@@ -234,7 +234,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     protected function dispatchValidationFailed()
     {
         event(
-            "store.payment.validation.failed.{$this->getPaymentProvider()}",
+            "store.payments.validation.failed.{$this->getPaymentProvider()}",
             new ProcessorValidationFailed($this, $this->validationErrors())
         );
     }

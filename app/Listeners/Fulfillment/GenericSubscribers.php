@@ -56,12 +56,12 @@ class GenericSubscribers
     public function subscribe($events)
     {
         $events->listen(
-            'store.fulfillment.run.*',
+            'store.fulfillments.run.*',
             static::class.'@onEvent'
         );
 
         $events->listen(
-            'store.fulfillment.revert.*',
+            'store.fulfillments.revert.*',
             static::class.'@onEvent'
         );
     }

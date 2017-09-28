@@ -68,7 +68,7 @@ abstract class OrderFulfiller implements Fulfillable
     protected function dispatchValidationFailed()
     {
         event(
-            "store.fulfillment.validation.failed.{$this->taggedName()}",
+            "store.fulfillments.validation.failed.{$this->taggedName()}",
             new FulfillmentValidationFailed($this, $this->validationErrors())
         );
     }

@@ -37,7 +37,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->changeUsername($this->getNewUserName());
-        event("store.fulfillment.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
+        event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
     }
 
     public function revoke()
@@ -46,7 +46,7 @@ class UsernameChangeFulfillment extends OrderFulfiller
 
         $user = $this->order->user;
         $user->revertUsername();
-        event("store.fulfillment.revert.{$this->taggedName()}", new UsernameReverted($user, $this->order));
+        event("store.fulfillments.revert.{$this->taggedName()}", new UsernameReverted($user, $this->order));
     }
 
     private function validateRun()

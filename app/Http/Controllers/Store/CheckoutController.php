@@ -76,7 +76,7 @@ class CheckoutController extends Controller
                 OrderCheckout::complete($order->order_id);
                 $order->paid(null);
 
-                event('store.payment.completed.free', new PaymentCompleted($order));
+                event('store.payments.completed.free', new PaymentCompleted($order));
             });
 
             return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));

@@ -59,12 +59,12 @@ class PaymentSubscribers
     public function subscribe($events)
     {
         $events->listen(
-            'store.payment.cancelled.*',
+            'store.payments.cancelled.*',
             static::class.'@onPaymentCancelled'
         );
 
         $events->listen(
-            'store.payment.completed.*',
+            'store.payments.completed.*',
             static::class.'@onPaymentCompleted'
         );
     }
