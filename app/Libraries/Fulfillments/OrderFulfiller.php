@@ -29,6 +29,8 @@ abstract class OrderFulfiller implements Fulfillable
 {
     use Validatable;
 
+    const TAGGED_NAME = 'order-fulfiller';
+
     protected $order;
 
     public function __construct(Order $order)
@@ -44,7 +46,10 @@ abstract class OrderFulfiller implements Fulfillable
      *
      * @return string
      */
-    abstract public function taggedName();
+    public function taggedName()
+    {
+        return static::TAGGED_NAME;
+    }
 
     public function getOrder()
     {

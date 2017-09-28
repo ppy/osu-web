@@ -28,6 +28,8 @@ use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
 {
+    const TAGGED_NAME = 'supporter-tag';
+
     private $fulfillers;
     private $orderItems;
     private $minimumRequired = 0; // do not read this field outside of minimumRequired()
@@ -52,11 +54,6 @@ class SupporterTagFulfillment extends OrderFulfiller
         foreach ($fulfillers as $fulfiller) {
             $fulfiller->revoke();
         }
-    }
-
-    public function taggedName()
-    {
-        return 'supporter-tag';
     }
 
     private function afterRun()

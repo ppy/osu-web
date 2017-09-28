@@ -27,6 +27,8 @@ use App\Exceptions\UsernameChangeException;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {
+    const TAGGED_NAME = 'username-change';
+
     private $orderItems;
 
     public function run()
@@ -45,11 +47,6 @@ class UsernameChangeFulfillment extends OrderFulfiller
         $user = $this->order->user;
         $user->revertUsername();
         event("store.fulfillment.revert.{$this->taggedName()}", new UsernameReverted($user, $this->order));
-    }
-
-    public function taggedName()
-    {
-        return 'username-change';
     }
 
     private function validateRun()

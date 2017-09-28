@@ -27,6 +27,8 @@ use App\Exceptions\NotImplementedException;
  */
 class GenericFulfillment extends OrderFulfiller
 {
+    const TAGGED_NAME = 'generic';
+
     public function __construct($order)
     {
         // noop
@@ -40,11 +42,6 @@ class GenericFulfillment extends OrderFulfiller
     public function revoke()
     {
         // noop
-    }
-
-    public function taggedName()
-    {
-        return 'generic';
     }
 
     public function validationErrorsTranslationPrefix()
