@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\ChangeUsernameException;
+use App\Exceptions\ModelNotSavedException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
@@ -147,8 +148,10 @@ class User extends Model implements AuthenticatableContract, Messageable
             $history->username_last = $oldUsername;
             $history->type = $type;
 
-            $this->usernameChangeHistory()->save($history);
-            $this->save();
+            if (!$this->usernameChangeHistory()->save($history)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
+            $this->saveOrExplode();
         });
     }
 
