@@ -47,7 +47,7 @@ class ValidationSubscribers
     public function subscribe($events)
     {
         $events->listen(
-            'store.*.validation.failed',
+            'store.*.validation.failed.*',
             static::class.'@onValidationFailed'
         );
     }
