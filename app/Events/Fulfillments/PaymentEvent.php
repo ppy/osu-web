@@ -21,13 +21,9 @@
 namespace App\Events\Fulfillments;
 
 use App\Models\Store\Order;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\SerializesModels;
 
-class PaymentEvent implements HasOrder, ShouldQueue
+class PaymentEvent implements HasOrder
 {
-    use SerializesModels;
-
     public function __construct(Order $order)
     {
         $this->order = $order;
