@@ -20,10 +20,25 @@
 
 namespace App\Events\Fulfillment;
 
-class UsernameChanged extends UsernameEvent
+use App\Events\MessageableEvent;
+use App\Models\Store\Order;
+use App\Models\User;
+
+abstract class UsernameEvent implements MessageableEvent, HasOrder
 {
-    public function toMessage()
+    protected $order;
+    protected $user;
+
+    public function __construct(User $user, Order $order)
     {
-        return "`User {$this->user->user_id}` Changed username from `{$this->user->username_previous}` to `{$this->user->username}`.";
+        $this->user = $user;
+        $this->order = $order;
     }
+
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
+    abstract public function toMessage();
 }
