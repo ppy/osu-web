@@ -28,10 +28,13 @@ class FulfillmentValidationFailed extends ValidationFailedEvent
     public function __construct(OrderFulfiller $sender, ValidationErrors $errors)
     {
         parent::__construct($sender, $errors);
+        $this->context = array_merge($this->context, [
+            'order_id' => $sender->getOrder()->order_id,
+        ]);
     }
 
     public function toMessage()
     {
-        return "`Order {$this->sender->getOrder()->order_id}` | " . parent::toMessage();
+        return "`Order {$this->context['order_id']}` | " . parent::toMessage();
     }
 }

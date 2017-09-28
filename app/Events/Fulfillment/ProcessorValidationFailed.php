@@ -28,12 +28,17 @@ class ProcessorValidationFailed extends ValidationFailedEvent
     public function __construct(PaymentProcessor $sender, ValidationErrors $errors)
     {
         parent::__construct($sender, $errors);
+        $this->context = array_merge($this->context, [
+            'order_number' => $sender->getOrderNumber(),
+            'notification_type' => $sender->getNotificationType(),
+            'transaction_id' => $sender->getTransactionId(),
+        ]);
     }
 
     public function toMessage()
     {
-        return "`{$this->sender->getOrderNumber()}`"
-            ." | notification `{$this->sender->getNotificationType()}` `{$this->sender->getTransactionId()}` | "
+        return "`{$this->context['order_number']}`"
+            ." | notification `{$this->context['notification_type']}` `{$this->context['transaction_id']}` | "
             . parent::toMessage();
     }
 }

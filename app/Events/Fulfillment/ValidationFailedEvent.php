@@ -34,6 +34,10 @@ class ValidationFailedEvent implements MessageableEvent
         $this->customMessage = $customMessage;
         $this->sender = $sender;
         $this->errors = $errors;
+        $this->context = [
+            'sender' => get_class_basename(get_class($sender)),
+            'class' => get_class_basename(static::class),
+        ];
     }
 
     public function getErrors(): ValidationErrors
@@ -41,11 +45,16 @@ class ValidationFailedEvent implements MessageableEvent
         return $this->errors;
     }
 
+    public function getContext()
+    {
+        return $this->context;
+    }
+
     public function toMessage()
     {
-        $senderText = get_class_basename(get_class($this->sender));
+        $senderText = $this->context['sender'];
         $customText = presence($this->customMessage) ? "`{$this->customMessage}`" : '';
-        $className = get_class_basename(static::class);
+        $className = $this->context['class'];
         return "`{$className}` from `{$senderText}` {$customText}\n\t" . implode("\n\t", $this->getErrors()->allMessages());
     }
 }

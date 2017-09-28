@@ -21,6 +21,7 @@
 namespace App\Traits;
 
 use PayPal\Exception\PayPalConnectionException;
+use App\Events\Fulfillment\ValidationFailedEvent;
 use Slack;
 
 trait StoreNotifiable
@@ -70,5 +71,27 @@ trait StoreNotifiable
         }
 
         Slack::to('test-hooks')->send($message);
+    }
+
+    public function notifyValidation(ValidationFailedEvent $event, $eventName)
+    {
+        $fields = [];
+        foreach ($event->getContext() as $key => $value) {
+            $fields[] = [
+                'title' => $key,
+                'value' => $value,
+                'short' => true,
+            ];
+        }
+
+        Slack::to(config('payments.notification_channel'))
+            ->attach([
+                'color' => 'warning',
+                'fallback' => "{$eventName} | {$event->toMessage()}",
+                'text' => implode("\n", $event->getErrors()->allMessages()),
+                'fields' => $fields,
+                'mrkdwn_in' => ['text'],
+            ])
+            ->send("`{$eventName}`");
     }
 }

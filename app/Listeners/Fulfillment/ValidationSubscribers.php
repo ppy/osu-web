@@ -41,7 +41,7 @@ class ValidationSubscribers
 
         \Log::warning("ValidationFailedEvent: {$eventName}");
         \Log::warning($event->getErrors()->allMessages());
-        $this->notify($event->toMessage(), $eventName);
+        $this->notifyValidation($event, $eventName);
     }
 
     public function subscribe($events)
