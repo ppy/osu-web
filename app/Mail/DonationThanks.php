@@ -29,6 +29,7 @@ class DonationThanks extends Mailable
     use Queueable, SerializesModels;
 
     private $params = [];
+
     /**
      * Create a new message instance.
      *

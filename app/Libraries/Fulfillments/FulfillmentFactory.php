@@ -74,6 +74,7 @@ class FulfillmentFactory
         $builder = new static($order);
 
         $fulfillerMap = $builder->createFulfillers();
+
         return array_values($fulfillerMap);
     }
 }

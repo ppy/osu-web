@@ -21,7 +21,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Store\Controller as Controller;
-use App\Models\Country;
 use App\Models\Store;
 use Auth;
 use Request;

@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Fulfillments;
 
-use App\Libraries\Fulfillments\Fulfillable;
-
 abstract class OrderItemFulfillment implements Fulfillable
 {
     protected $orderItem;

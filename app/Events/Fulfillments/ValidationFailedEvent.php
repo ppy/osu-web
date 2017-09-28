@@ -29,7 +29,6 @@ class ValidationFailedEvent implements MessageableEvent
     protected $context = [];
     private $errors;
 
-
     public function __construct($sender, ValidationErrors $errors)
     {
         $this->sender = $sender;
@@ -51,6 +50,6 @@ class ValidationFailedEvent implements MessageableEvent
         $senderText = get_class_basename(get_class($this->sender));
         $className = get_class_basename(static::class);
 
-        return "`{$className}` from `{$senderText}`\n\t" . implode("\n\t", $this->getErrors()->allMessages());
+        return "`{$className}` from `{$senderText}`\n\t".implode("\n\t", $this->getErrors()->allMessages());
     }
 }

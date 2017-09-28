@@ -22,7 +22,6 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
 
 // FIXME: rename?
@@ -49,7 +48,6 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         return new static(static::extractParams($request), $signature);
     }
-
 
     public function isSkipped()
     {

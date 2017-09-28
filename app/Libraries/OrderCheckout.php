@@ -58,7 +58,7 @@ class OrderCheckout
         $extraDatas = $this->supporterTagItems()->pluck('extra_data');
         $mapped = [];
         foreach ($extraDatas as $data) {
-            $mapped[] = $data['target_id']."-".$data['duration'];
+            $mapped[] = "{$data['target_id']}-{$data['duration']}";
         }
 
         return $this->order->user_id.':'.implode($mapped, ',');
@@ -72,7 +72,7 @@ class OrderCheckout
             $mapped[] = $data['target_id'];
         }
 
-        return "osu! supporter tags for ".implode(array_unique($mapped), ', ');
+        return 'osu! supporter tags for '.implode(array_unique($mapped), ', ');
     }
 
     public function getCentiliPaymentLink()

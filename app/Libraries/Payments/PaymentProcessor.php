@@ -77,7 +77,6 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     abstract public function getOrderNumber();
 
-
     /**
      * string representing the payment provider.
      *
