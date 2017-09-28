@@ -19,5 +19,9 @@
 # Import shim so that globally declared scripts can work without changes.
 
 import { StoreCheckout } from 'store-checkout'
+import Promise from 'promise-polyfill'
+
+# polyfill non-Edge IE
+window.Promise = Promise unless window.Promise
 
 window.StoreCheckout = StoreCheckout

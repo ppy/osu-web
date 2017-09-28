@@ -26,6 +26,7 @@
     "lodash": "^4.0.0",
     "moment": "^2.11.1",
     "photoswipe": "^4.1.1",
+    "promise-polyfill": "^6.0.2",
     "qtip2": "notbakaneko/qTip2#e3278ba",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
