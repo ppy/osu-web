@@ -32,7 +32,7 @@ class GenericFulfillment extends OrderFulfiller
 
     public function __construct($order)
     {
-        // noop
+        parent::__construct($order);
     }
 
     public function run()
