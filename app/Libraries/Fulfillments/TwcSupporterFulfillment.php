@@ -22,5 +22,5 @@ namespace App\Libraries\Fulfillments;
 
 class TwcSupporterFulfillment extends BannerFulfillment
 {
-    const CUSTOM_CLASS_NAME = 'twc-supporter';
+    const TAGGED_NAME = 'twc-supporter';
 }

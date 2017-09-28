@@ -85,7 +85,7 @@ class BannerFulfillmentTest extends TestCase
 
     public function testBannerCustomClasses()
     {
-        static $customClasses = BannerFulfillment::ALLOWED_CUSTOM_CLASS_NAMES;
+        static $customClasses = BannerFulfillment::ALLOWED_TAGGED_NAMES;
         foreach ($customClasses as $customClass) {
             // only need the custom_class
             $product = factory(Product::class)->create(['custom_class' => $customClass]);

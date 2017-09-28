@@ -29,14 +29,14 @@ use App\Models\Store\OrderItem;
 abstract class BannerFulfillment extends OrderFulfiller
 {
     protected $orderItems;
-    const ALLOWED_CUSTOM_CLASS_NAMES = [
+    const ALLOWED_TAGGED_NAMES = [
         'owc-supporter',
         'mwc7-supporter',
         'twc-supporter',
         'cwc-supporter',
         'mwc4-supporter'
     ];
-    const CUSTOM_CLASS_NAME = null;
+    const TAGGED_NAME = null;
 
     public function run()
     {
@@ -54,20 +54,15 @@ abstract class BannerFulfillment extends OrderFulfiller
         }
     }
 
-    public function taggedName()
-    {
-        return static::CUSTOM_CLASS_NAME;
-    }
-
     protected function getOrderItems()
     {
         if (!isset($this->orderItems)) {
-            if (!in_array(static::CUSTOM_CLASS_NAME, self::ALLOWED_CUSTOM_CLASS_NAMES, true)) {
-                $customClassName = static::CUSTOM_CLASS_NAME;
+            if (!in_array(static::TAGGED_NAME, self::ALLOWED_TAGGED_NAMES, true)) {
+                $customClassName = static::TAGGED_NAME;
                 throw new InvalidFulfillerException("customClass {$customClassName} is not allowed");
             }
 
-            $this->orderItems = $this->getOrder()->items()->customClass(static::CUSTOM_CLASS_NAME)->get();
+            $this->orderItems = $this->getOrder()->items()->customClass(static::TAGGED_NAME)->get();
         }
 
         return $this->orderItems;

@@ -22,5 +22,5 @@ namespace App\Libraries\Fulfillments;
 
 class OwcSupporterFulfillment extends BannerFulfillment
 {
-    const CUSTOM_CLASS_NAME = 'owc-supporter';
+    const TAGGED_NAME = 'owc-supporter';
 }

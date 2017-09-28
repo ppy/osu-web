@@ -22,5 +22,5 @@ namespace App\Libraries\Fulfillments;
 
 class CwcSupporterFulfillment extends BannerFulfillment
 {
-    const CUSTOM_CLASS_NAME = 'cwc-supporter';
+    const TAGGED_NAME = 'cwc-supporter';
 }

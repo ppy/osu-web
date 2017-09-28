@@ -22,5 +22,5 @@ namespace App\Libraries\Fulfillments;
 
 class Mwc4SupporterFulfillment extends BannerFulfillment
 {
-    const CUSTOM_CLASS_NAME = 'mwc4-supporter';
+    const TAGGED_NAME = 'mwc4-supporter';
 }
