@@ -23,18 +23,10 @@ namespace App\Events\Fulfillments;
 use App\Libraries\Fulfillments\OrderFulfiller;
 use App\Libraries\ValidationErrors;
 
-class FulfillmentValidationFailed extends ValidationFailedEvent
+class FulfillmentValidationFailed extends ValidationFailedEvent implements HasOrder
 {
-    public function __construct(OrderFulfiller $sender, ValidationErrors $errors)
+    public function getOrder()
     {
-        parent::__construct($sender, $errors);
-        $this->context = array_merge($this->context, [
-            'order_id' => $sender->getOrder()->order_id,
-        ]);
-    }
-
-    public function toMessage()
-    {
-        return "`Order {$this->context['order_id']}` | " . parent::toMessage();
+        return $this->sender->getOrder();
     }
 }

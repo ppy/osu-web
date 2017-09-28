@@ -75,6 +75,11 @@ trait StoreNotifiable
 
     public function notifyValidation(ValidationFailedEvent $event, $eventName)
     {
+        $msg = "`{$eventName}`";
+        if ($event instanceof \App\Events\Fulfillments\HasOrder) {
+            $msg .= " | `Order {$event->getOrder()->order_id}`";
+        }
+
         $fields = [];
         foreach ($event->getContext() as $key => $value) {
             $fields[] = [
@@ -87,11 +92,11 @@ trait StoreNotifiable
         Slack::to(config('payments.notification_channel'))
             ->attach([
                 'color' => 'warning',
-                'fallback' => "{$eventName} | {$event->toMessage()}",
+                'fallback' => "{$msg} | {$event->toMessage()}",
                 'text' => implode("\n", $event->getErrors()->allMessages()),
                 'fields' => $fields,
                 'mrkdwn_in' => ['text'],
             ])
-            ->send("`{$eventName}`");
+            ->send($msg);
     }
 }
