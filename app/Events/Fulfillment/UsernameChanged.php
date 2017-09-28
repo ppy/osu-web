@@ -26,9 +26,16 @@ use Illuminate\Queue\SerializesModels;
 
 class UsernameChanged
 {
+    public $order;
+
     public function __construct(User $user, Order $order)
     {
         $this->user = $user;
         $this->order = $order;
+    }
+
+    public function toMessage()
+    {
+        return "`User {$this->user->user_id}` Changed username from `{$this->user->username_previous}` to `{$this->user->username}`.";
     }
 }

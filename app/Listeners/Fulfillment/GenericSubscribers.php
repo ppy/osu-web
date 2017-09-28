@@ -28,34 +28,20 @@ class GenericSubscribers
 {
     use StoreNotifiable;
 
-    public function onUsernameChanged($event)
+    public function onEvent($eventName, $data)
     {
-        $user = $event->user;
+        $event = $data[0] ?? null;
         $this->notifyOrder(
             $event->order,
-            "`User {$user->user_id}` Changed username from `{$user->username_previous}` to `{$user->username}`."
-        );
-    }
-
-    public function onUsernameReverted($event)
-    {
-        $user = $event->user;
-        $this->notifyOrder(
-            $event->order,
-            "`User {$user->user_id}` Reverted username to `{$user->username}`."
+            $event->toMessage()
         );
     }
 
     public function subscribe($events)
     {
         $events->listen(
-            UsernameChanged::class,
-            static::class.'@onUsernameChanged'
-        );
-
-        $events->listen(
-            UsernameReverted::class,
-            static::class.'@onUsernameReverted'
+            'store.fulfillment.run.*',
+            static::class.'@onEvent'
         );
     }
 }

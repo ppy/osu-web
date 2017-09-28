@@ -26,9 +26,16 @@ use Illuminate\Queue\SerializesModels;
 
 class UsernameReverted
 {
+    public $order;
+
     public function __construct(User $user, Order $order)
     {
         $this->user = $user;
         $this->order = $order;
+    }
+
+    public function toMessage()
+    {
+        return "`User {$this->user->user_id}` Reverted username to `{$this->user->username}`.";
     }
 }
