@@ -36,7 +36,7 @@ class ValidationFailedEvent implements MessageableEvent
         $this->errors = $errors;
     }
 
-    public function getErrors()
+    public function getErrors(): ValidationErrors
     {
         return $this->errors;
     }

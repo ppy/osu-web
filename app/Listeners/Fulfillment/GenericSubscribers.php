@@ -34,21 +34,22 @@ class GenericSubscribers
     {
         $event = $data[0] ?? null;
 
-        if ($event instanceof MessageableEvent) {
-            if ($event instanceof HasOrder) {
-                $this->notifyOrder(
-                    $event->getOrder(),
-                    $event->toMessage(),
-                    $eventName
-                );
-            } else {
-                $this->notify(
-                    $event->toMessage(),
-                    $eventName
-                );
-            }
-        } else {
+        if (!($event instanceof MessageableEvent)) {
             \Log::warning("Received `{$eventName}` but is not an instance of `MessageableEvent`.");
+            return;
+        }
+
+        if ($event instanceof HasOrder) {
+            $this->notifyOrder(
+                $event->getOrder(),
+                $event->toMessage(),
+                $eventName
+            );
+        } else {
+            $this->notify(
+                $event->toMessage(),
+                $eventName
+            );
         }
     }
 

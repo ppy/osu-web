@@ -20,6 +20,7 @@
 
 namespace App\Listeners\Fulfillment;
 
+use App\Events\MessageableEvent;
 use App\Events\Fulfillment\FulfillmentValidationFailed;
 use App\Events\Fulfillment\ProcessorValidationFailed;
 use App\Events\Fulfillment\ValidationFailedEvent;
@@ -32,14 +33,15 @@ class ValidationSubscribers
     public function onValidationFailed($eventName, $data)
     {
         $event = $data[0] ?? null;
-        \Log::warning("ValidationFailedEvent: {$eventName}");
-        if ($event) {
-            \Log::warning($event->getErrors()->allMessages());
-            $this->notify($event->toMessage(), $eventName);
-        } else {
-            \Log::warning('missing event data');
+        if (!($event instanceof ValidationFailedEvent)) {
+            \Log::warning("Received `{$eventName}` but is not an instance of `ValidationFailedEvent`.");
             $this->notify('missing event data', $eventName);
+            return;
         }
+
+        \Log::warning("ValidationFailedEvent: {$eventName}");
+        \Log::warning($event->getErrors()->allMessages());
+        $this->notify($event->toMessage(), $eventName);
     }
 
     public function subscribe($events)
