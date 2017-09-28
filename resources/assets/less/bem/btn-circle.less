@@ -74,12 +74,6 @@
     }
   }
 
-  &.js-disabled,
-  &--disabled {
-    background-color: #333;
-    cursor: not-allowed;
-  }
-
   &--topic-entry {
     .circle(20px);
     box-shadow: none;
@@ -95,6 +89,14 @@
 
   &--topic-nav {
     margin: 0 5px;
+  }
+
+  // overrides everything else
+  &[disabled],
+  &.js-disabled,
+  &--disabled {
+    background-color: #333;
+    cursor: not-allowed;
   }
 
   // some browsers can't display flex for <button>

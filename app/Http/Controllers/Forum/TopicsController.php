@@ -343,6 +343,31 @@ class TopicsController extends Controller
         }
     }
 
+    public function update($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        if (!priv_check('ForumTopicEdit', $topic)->can()) {
+            abort(403);
+        }
+
+        $params = get_params(request(), 'forum_topic', ['topic_title']);
+
+        if ($topic->update($params)) {
+            if ((Auth::user()->user_id ?? null) !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_EDIT_TOPIC',
+                    [$topic->topic_title],
+                    $topic
+                );
+            }
+
+            return [];
+        } else {
+            abort(422);
+        }
+    }
+
     public function vote($topicId)
     {
         $topic = Topic::findOrFail($topicId);
