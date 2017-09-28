@@ -20,6 +20,8 @@
 
 namespace App\Listeners\Fulfillment;
 
+use App\Events\MessageableEvent;
+use App\Events\Fulfillment\HasOrder;
 use App\Events\Fulfillment\UsernameChanged;
 use App\Events\Fulfillment\UsernameReverted;
 use App\Traits\StoreNotifiable;
@@ -31,10 +33,23 @@ class GenericSubscribers
     public function onEvent($eventName, $data)
     {
         $event = $data[0] ?? null;
-        $this->notifyOrder(
-            $event->order,
-            $event->toMessage()
-        );
+
+        if ($event instanceof MessageableEvent) {
+            if ($event instanceof HasOrder) {
+                $this->notifyOrder(
+                    $event->getOrder(),
+                    $event->toMessage(),
+                    $eventName
+                );
+            } else {
+                $this->notify(
+                    $event->toMessage(),
+                    $eventName
+                );
+            }
+        } else {
+            \Log::warning("Received `{$eventName}` but is not an instance of `MessageableEvent`.");
+        }
     }
 
     public function subscribe($events)

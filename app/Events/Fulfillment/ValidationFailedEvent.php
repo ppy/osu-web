@@ -20,9 +20,10 @@
 
 namespace App\Events\Fulfillment;
 
+use App\Events\MessageableEvent;
 use App\Libraries\ValidationErrors;
 
-class ValidationFailedEvent
+class ValidationFailedEvent implements MessageableEvent
 {
     protected $sender;
     private $errors;

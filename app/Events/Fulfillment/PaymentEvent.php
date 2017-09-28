@@ -24,14 +24,17 @@ use App\Models\Store\Order;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 
-abstract class PaymentEvent implements ShouldQueue
+abstract class PaymentEvent implements HasOrder, ShouldQueue
 {
     use SerializesModels;
-
-    public $order;
 
     public function __construct(Order $order)
     {
         $this->order = $order;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
     }
 }

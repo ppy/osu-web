@@ -20,28 +20,7 @@
 
 namespace App\Events\Fulfillment;
 
-use App\Events\MessageableEvent;
-use App\Models\Store\Order;
-use App\Models\User;
-use Illuminate\Queue\SerializesModels;
-
-class UsernameReverted implements HasOrder, MessageableEvent
+interface HasOrder
 {
-    public $order;
-
-    public function __construct(User $user, Order $order)
-    {
-        $this->user = $user;
-        $this->order = $order;
-    }
-
-    public function getOrder()
-    {
-        return $this->order;
-    }
-
-    public function toMessage()
-    {
-        return "`User {$this->user->user_id}` Reverted username to `{$this->user->username}`.";
-    }
+    public function getOrder();
 }

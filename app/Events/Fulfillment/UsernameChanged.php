@@ -20,18 +20,22 @@
 
 namespace App\Events\Fulfillment;
 
+use App\Events\MessageableEvent;
 use App\Models\Store\Order;
 use App\Models\User;
 use Illuminate\Queue\SerializesModels;
 
-class UsernameChanged
+class UsernameChanged implements MessageableEvent, HasOrder
 {
-    public $order;
-
     public function __construct(User $user, Order $order)
     {
         $this->user = $user;
         $this->order = $order;
+    }
+
+    public function getOrder()
+    {
+        return $this->order;
     }
 
     public function toMessage()
