@@ -109,19 +109,18 @@ class XsollaController extends Controller
 
     protected function exceptionHandler($exception)
     {
-        switch (true) {
-            case $exception instanceof ValidationException:
-                \Log::error($exception->getMessage());
+        if ($exception instanceof ValidationException) {
+            \Log::error($exception->getMessage());
 
-                return response()->json([
-                    'error' => [
-                        'code' => 'INVALID',
-                        'message' => 'A validation error occured while running the transaction',
-                    ],
-                ], 422);
-            case $exception instanceof InvalidSignatureException:
-                // xsolla expects INVALID_SIGNATURE
-                return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
+            return response()->json([
+                'error' => [
+                    'code' => 'INVALID',
+                    'message' => 'A validation error occured while running the transaction',
+                ],
+            ], 422);
+        } elseif ($exception instanceof InvalidSignatureException) {
+            // xsolla expects INVALID_SIGNATURE
+            return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
         }
 
         \Log::error($exception);
