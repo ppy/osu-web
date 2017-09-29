@@ -43,7 +43,7 @@ class FulfillmentFactory
     }
 
     /**
-     * Creates or finds a matching OrderFilfiller implementation.
+     * Creates or finds a matching OrderFulfiller implementation.
      *
      * @param string $type The custom-class of the OrderItem to find a fulfiller for.
      * 'generic' and null are considered to be the same.
