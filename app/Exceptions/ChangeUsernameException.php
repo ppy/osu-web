@@ -38,7 +38,7 @@ class ChangeUsernameException extends Exception
 
     public static function errors(array $errors = [])
     {
-        $exception = new self(implode($errors, "\n"));
+        $exception = new self(implode("\n", $errors));
         $exception->setErrors($errors);
 
         return $exception;
