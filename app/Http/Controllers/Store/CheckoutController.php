@@ -72,7 +72,7 @@ class CheckoutController extends Controller
             DB::connection('mysql-store')->transaction(function () use ($order) {
                 $checkout = new OrderCheckout($order);
                 $checkout->completeCheckout();
-                OrderCheckout::complete($order->order_id);
+
                 $order->paid(null);
 
                 event('store.payments.completed.free', new PaymentEvent($order));
