@@ -34,7 +34,7 @@ trait StoreNotifiable
 
     public function routeNotificationForSlack()
     {
-        return env('SLACK_ENDPOINT');
+        return config('slack.endpoint');
     }
 
     public function notifyText($text, $eventName = null)
