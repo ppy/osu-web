@@ -20,12 +20,10 @@
 
 namespace App\Notifications\Store;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\SlackMessage;
 use PayPal\Exception\PayPalConnectionException;
 
-class ErrorMessage extends Notification
+class ErrorMessage extends Message
 {
     use Queueable;
 
@@ -43,17 +41,6 @@ class ErrorMessage extends Notification
         $this->exception = $exception;
         $this->order = $order;
         $this->text = $text;
-    }
-
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function via($notifiable)
-    {
-        return ['slack'];
     }
 
     public function toSlack($notifiable)

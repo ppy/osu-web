@@ -20,43 +20,27 @@
 
 namespace App\Notifications\Store;
 
-use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 
-class StoreMessage extends Notification
+abstract class Message extends Notification
 {
-    private $eventName;
-    private $text;
+    use Queueable;
 
     /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct($eventName, $text)
-    {
-        $this->eventName = $eventName;
-        $this->text = $text;
-    }
-
-    public function toSlack($notifiable)
-    {
-        $content = "`{$this->eventName}` | {$this->text}";
-
-        return (new SlackMessage)
-            ->to(config('payments.notification_channel'))
-            ->content($content);
-    }
-
-    /**
-     * Get the array representation of the notification.
+     * Get the notification's delivery channels.
      *
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function via($notifiable)
     {
-        return [
-            //
-        ];
+        // FIXME: remove this after adding the right checks to the tests
+        if (config('app.env') === 'testing'
+            && presence(env('STORE_NOTIFICATION_TESTS'), false) === false) {
+            return [];
+        }
+
+        return ['slack'];
     }
 }

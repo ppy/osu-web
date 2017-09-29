@@ -20,14 +20,10 @@
 
 namespace App\Notifications\Store;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\SlackMessage;
 
-class OrderMessage extends Notification
+class OrderMessage extends Message
 {
-    use Queueable;
-
     private $eventName;
     private $order;
     private $text;
@@ -42,17 +38,6 @@ class OrderMessage extends Notification
         $this->eventName = $eventName;
         $this->order = $order;
         $this->text = $text;
-    }
-
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function via($notifiable)
-    {
-        return ['slack'];
     }
 
     public function toSlack($notifiable)

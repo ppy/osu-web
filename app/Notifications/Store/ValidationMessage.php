@@ -21,14 +21,10 @@
 namespace App\Notifications\Store;
 
 use App\Events\Fulfillments\ValidationFailedEvent;
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\SlackMessage;
 
-class ValidationMessage extends Notification
+class ValidationMessage extends Message
 {
-    use Queueable;
-
     private $eventName;
     private $event;
 
@@ -41,17 +37,6 @@ class ValidationMessage extends Notification
     {
         $this->eventName = $eventName;
         $this->event = $event;
-    }
-
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function via($notifiable)
-    {
-        return ['slack'];
     }
 
     public function toSlack($notifiable)
