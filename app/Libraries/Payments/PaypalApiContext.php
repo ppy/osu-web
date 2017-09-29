@@ -44,7 +44,7 @@ class PaypalApiContext
         if (config('payments.sandbox') === true) {
             $config = array_merge($config, [
                 'mode' => 'sandbox',
-                'http.CURLOPT_SSLVERSION' => CURL_SSLVERSION_TLSv1, // paypal sandbox has TLSv1_2 issues
+                // 'http.CURLOPT_SSLVERSION' => CURL_SSLVERSION_TLSv1, // paypal sandbox has TLSv1_2 issues
             ]);
         }
 

@@ -21,82 +21,39 @@
 namespace App\Traits;
 
 use App\Events\Fulfillments\ValidationFailedEvent;
-use PayPal\Exception\PayPalConnectionException;
-use Slack;
+use App\Notifications\Store\ErrorMessage;
+use App\Notifications\Store\OrderMessage;
+use App\Notifications\Store\StoreMessage;
+use App\Notifications\Store\ValidationMessage;
+use Illuminate\Notifications\Notifiable;
+use Notification;
 
 trait StoreNotifiable
 {
-    public function notify($text, $eventName = null)
-    {
-        if ($eventName) {
-            $text = "`{$eventName}` | {$text}";
-        }
+    use Notifiable;
 
-        Slack::to(config('payments.notification_channel'))->send($text);
+    public function routeNotificationForSlack()
+    {
+        return env('SLACK_ENDPOINT');
+    }
+
+    public function notifyText($text, $eventName = null)
+    {
+        Notification::send($this, new StoreMessage($eventName, $text));
     }
 
     public function notifyOrder($order, $text, $eventName = null)
     {
-        $msg = '';
-        if ($eventName) {
-            $msg = "`{$eventName}` | ";
-        }
-
-        $msg .= "`Order {$order->order_id}`: {$text}";
-
-        Slack::to(config('payments.notification_channel'))->send($msg);
+        Notification::send($this, new OrderMessage($eventName, $order, $text));
     }
 
     public function notifyError($order = null, $exception = null, $text = null)
     {
-        $message = 'ERROR:';
-
-        if ($order) {
-            $message .= " `Order {$order->order_id}`";
-        }
-
-        if ($text) {
-            $message .= '; ';
-            $message .= $text;
-        }
-
-        if ($exception) {
-            $className = get_class($exception);
-            $message .= "; `{$className}`";
-
-            if ($exception instanceof PayPalConnectionException) {
-                $message .= "\n";
-                $message .= $exception->getData();
-            }
-        }
-
-        Slack::to('test-hooks')->send($message);
+        Notification::send($this, new ErrorMessage($exception, $order, $text));
     }
 
     public function notifyValidation(ValidationFailedEvent $event, $eventName)
     {
-        $msg = "`{$eventName}`";
-        if ($event instanceof \App\Events\Fulfillments\HasOrder) {
-            $msg .= " | `Order {$event->getOrder()->order_id}`";
-        }
-
-        $fields = [];
-        foreach ($event->getContext() as $key => $value) {
-            $fields[] = [
-                'title' => $key,
-                'value' => $value,
-                'short' => true,
-            ];
-        }
-
-        Slack::to(config('payments.notification_channel'))
-            ->attach([
-                'color' => 'warning',
-                'fallback' => "{$msg} | {$event->toMessage()}",
-                'text' => implode("\n", $event->getErrors()->allMessages()),
-                'fields' => $fields,
-                'mrkdwn_in' => ['text'],
-            ])
-            ->send($msg);
+        Notification::send($this, new ValidationMessage($eventName, $event));
     }
 }

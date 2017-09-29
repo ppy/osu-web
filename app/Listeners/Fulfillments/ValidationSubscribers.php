@@ -32,7 +32,7 @@ class ValidationSubscribers
         $event = $data[0] ?? null;
         if (!($event instanceof ValidationFailedEvent)) {
             \Log::warning("Received `{$eventName}` but is not an instance of `ValidationFailedEvent`.");
-            $this->notify('missing event data', $eventName);
+            $this->notifyText('missing event data', $eventName);
 
             return;
         }

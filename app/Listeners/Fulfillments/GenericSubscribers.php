@@ -45,7 +45,7 @@ class GenericSubscribers
                 $eventName
             );
         } else {
-            $this->notify(
+            $this->notifyText(
                 $event->toMessage(),
                 $eventName
             );
