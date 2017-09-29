@@ -25,8 +25,6 @@ use PayPal\Exception\PayPalConnectionException;
 
 class ErrorMessage extends Message
 {
-    use Queueable;
-
     private $exception;
     private $order;
     private $text;
