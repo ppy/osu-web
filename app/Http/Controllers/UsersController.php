@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\Score\Best\Model as ScoreBestModel;
@@ -122,23 +121,6 @@ class UsersController extends Controller
 
             default:
                 abort(404);
-        }
-    }
-
-    public function store()
-    {
-        $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
-        $params['user_ip'] = Request::ip();
-        $params['country_acronym'] = Request::header('CF_IPCOUNTRY');
-
-        $registration = new UserRegistration($params);
-
-        if ($registration->save()) {
-            return $registration->user()->fresh()->defaultJson();
-        } else {
-            return response(['form_error' => [
-                'user' => $registration->user()->validationErrors()->all(),
-            ]], 422);
         }
     }
 
