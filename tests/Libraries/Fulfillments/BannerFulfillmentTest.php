@@ -56,9 +56,25 @@ class BannerFulfillmentTest extends TestCase
         // crap test
         $this->tournament = factory(Tournament::class)->create();
         $this->product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
-        $matches = [];
-        preg_match('/.+\((?<country>.+)\)$/', $this->product->name, $matches);
-        $this->country = Country::where('name', $matches['country'])->first();
+        $this->findOrSeed();
+    }
+
+    private function findOrSeed()
+    {
+        // TODO: factory that creates related items properly? or just use fixtures.
+        $product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
+        if ($product) {
+            $matches = [];
+            preg_match('/.+\((?<country>.+)\)$/', $this->product->name, $matches);
+            $country = Country::where('name', $matches['country'])->first();
+        } else {
+            $country = factory(Country::class)->create();
+            (new \ProductSeeder())->seedBanners();
+            $product = Product::customClass('mwc7-supporter')->orderBy('product_id', 'desc')->first();
+        }
+
+        $this->product = $product;
+        $this->country = $country;
     }
 
     public function testAddBanner()
