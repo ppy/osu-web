@@ -27,7 +27,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     public static function tearDownAfterClass()
     {
-        gc_collect_cycles();
+        // causes PDOException: There is no active transaction in the last test on travis?
+        // but not if route cache is disabled or the test is run alone?
+
+        // gc_collect_cycles();
     }
 
     /**
