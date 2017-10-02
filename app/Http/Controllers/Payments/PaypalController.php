@@ -33,9 +33,9 @@ class PaypalController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['approved', 'create']]);
-        $this->middleware('check-user-restricted', ['only' => ['approved', 'create']]);
-        $this->middleware('verify-user', ['only' => ['approved', 'create']]);
+        $this->middleware('auth', ['except' => ['ipn']]);
+        $this->middleware('check-user-restricted', ['except' => ['ipn']]);
+        $this->middleware('verify-user', ['except' => ['ipn']]);
 
         return parent::__construct();
     }

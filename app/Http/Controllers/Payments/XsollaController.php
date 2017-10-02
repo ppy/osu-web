@@ -34,9 +34,9 @@ class XsollaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['token', 'completed']]);
-        $this->middleware('check-user-restricted', ['only' => ['token', 'completed']]);
-        $this->middleware('verify-user', ['only' => ['token', 'completed']]);
+        $this->middleware('auth', ['except' => ['callback']]);
+        $this->middleware('check-user-restricted', ['except' => ['callback']]);
+        $this->middleware('verify-user', ['except' => ['callback']]);
 
         return parent::__construct();
     }

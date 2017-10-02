@@ -29,6 +29,15 @@ use Request;
 
 class CentiliController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['callback']]);
+        $this->middleware('check-user-restricted', ['except' => ['callback']]);
+        $this->middleware('verify-user', ['except' => ['callback']]);
+
+        parent::__construct();
+    }
+
     public function callback(Request $request)
     {
         $processor = CentiliPaymentProcessor::createFromRequest($request->getFacadeRoot());
