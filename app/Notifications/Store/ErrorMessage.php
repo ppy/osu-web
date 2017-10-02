@@ -73,10 +73,13 @@ class ErrorMessage extends Message
     public function toArray($notifiable)
     {
         $array = [
-            'orderId' => $this->order->order_id,
             'className' => get_class($this->exception),
             'message' => $this->exception->getMessage(),
         ];
+
+        if ($this->order) {
+            $array['orderId'] = $this->order->order_id;
+        }
 
         if ($this->exception instanceof PayPalConnectionException) {
             $array['data'] = $this->exception->getData();
