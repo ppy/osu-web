@@ -40,17 +40,18 @@ class OrderCheckout
         return $this->order;
     }
 
-    public function allowXsollaPayment()
+    public function allowedCheckoutTypes()
     {
-        return !$this->order->requiresShipping();
-    }
+        $allowed = ['paypal'];
+        if ($this->allowXsollaPayment()) {
+            $allowed[] = 'xsolla';
+        }
 
-    public function allowCentiliPayment()
-    {
-        // Geolocation header from Cloudflare
-        $isJapan = strcasecmp(Request::header('Cf-Ipcountry'), 'JP') === 0;
+        if ($this->allowCentiliPayment()) {
+            $allowed[] = 'centili';
+        }
 
-        return $isJapan && Request::input('intl') !== '1';
+        return $allowed;
     }
 
     public function getCentiliPaymentLink()
@@ -109,5 +110,18 @@ class OrderCheckout
         $checkout->completeCheckout();
 
         return $order;
+    }
+
+    private function allowCentiliPayment()
+    {
+        // Geolocation header from Cloudflare
+        $isJapan = strcasecmp(Request::header('Cf-Ipcountry'), 'JP') === 0;
+
+        return $isJapan && Request::input('intl') !== '1';
+    }
+
+    private function allowXsollaPayment()
+    {
+        return !$this->order->requiresShipping();
     }
 }

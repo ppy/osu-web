@@ -70,9 +70,9 @@
                 @endif
 
                 @if ($order->getTotal() > 0)
-                    @include('store._checkout-paypal')
-                    @include('store._checkout-centili')
-                    @include('store._checkout-xsolla')
+                    @foreach ($checkout->allowedCheckoutTypes() as $type)
+                        @include("store._checkout-{$type}")
+                    @endforeach
                 @else
                     <div class="big-button">
                         {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}

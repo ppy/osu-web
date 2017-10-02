@@ -16,30 +16,27 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@if ($checkout->allowXsollaPayment())
-    <div class="store-payment-method">
-        <div type="button"
-                class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--xsolla"
-                data-provider="xsolla"
-                data-order-number="{{ $order->getOrderNumber() }}"
-        >
-        </div>
-
-        <div class="store-payment-method__cell">
-            <div class="store-text store-text--header">Pay with xsolla</div>
-
-            <div class="store-text store-text--block">You can complete your transactions using Xsolla</div>
-
-            <div class="store-text store-text--block store-text--emphasis">Some of Xsolla's payment parters</div>
-            <div class="store-payment-method__provider-list">
-                <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/apple-pay.png" alt="Apple Pay">
-                <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/unionpay.png" alt="UnionPay">
-                <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/wechat-pay.png" alt="WeChat Pay">
-                <img class="store-payment-method__provider" src="/images/store/providers/bitcoin.png" alt="bitcoin">
-                <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/bitcash.png" alt="BitCash">
-            </div>
-            <div class="store-text store-text--block">any many more.</div>
-        </div>
+<div class="store-payment-method">
+    <div type="button"
+            class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--xsolla"
+            data-provider="xsolla"
+            data-order-number="{{ $order->getOrderNumber() }}"
+    >
     </div>
-@endif
 
+    <div class="store-payment-method__cell">
+        <div class="store-text store-text--header">Pay with xsolla</div>
+
+        <div class="store-text store-text--block">You can complete your transactions using Xsolla</div>
+
+        <div class="store-text store-text--block store-text--emphasis">Some of Xsolla's payment parters</div>
+        <div class="store-payment-method__provider-list">
+            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/apple-pay.png" alt="Apple Pay">
+            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/unionpay.png" alt="UnionPay">
+            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/wechat-pay.png" alt="WeChat Pay">
+            <img class="store-payment-method__provider" src="/images/store/providers/bitcoin.png" alt="bitcoin">
+            <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/bitcash.png" alt="BitCash">
+        </div>
+        <div class="store-text store-text--block">any many more.</div>
+    </div>
+</div>
