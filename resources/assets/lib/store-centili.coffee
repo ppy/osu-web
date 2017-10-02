@@ -27,16 +27,9 @@ export class StoreCentili
 
   @fetchScript: (name) ->
     new Promise (resolve, reject) ->
-      script = document.createElement('script')
-      script.type = "text/javascript"
-      script.async = true
-      script.src = "https://www.centili.com/widget/js/#{name}"
-      script.addEventListener 'load', ->
-        Timeout.set 3000, ->
-          resolve()
-      , false
-
-      document.head.appendChild(script)
+      loading = window.turbolinksReload.load "https://www.centili.com/widget/js/#{name}", ->
+        resolve()
+      resolve() unless loading
 
   @fetchStyle: (name) ->
     new Promise (resolve, reject) ->

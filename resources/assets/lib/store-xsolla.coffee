@@ -28,17 +28,9 @@ export class StoreXsolla
 
   @fetchScript: ->
     new Promise (resolve, reject) ->
-      script = document.createElement('script')
-      script.type = "text/javascript"
-      script.async = true
-      script.src = "https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js"
-      script.addEventListener 'load', ->
-        # TODO: remove after testing
-        # Timeout.set 3000, ->
+      loading = window.turbolinksReload.load 'https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js', ->
         resolve()
-      , false
-
-      document.head.appendChild(script)
+      resolve() unless loading
 
   @fetchToken: ->
     new Promise (resolve, reject) ->
