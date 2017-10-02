@@ -184,12 +184,12 @@ Route::group(['prefix' => 'help'], function () {
 });
 
 // FIXME: someone split this crap up into proper controllers
-Route::group(['prefix' => 'store'], function () {
+Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
     Route::get('/', 'StoreController@getIndex');
 
-    Route::get('listing', 'StoreController@getListing')->name('store.products.index');
-    Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('store.invoice.show');
-    Route::get('product/{product}', 'StoreController@getProduct')->name('store.product');
+    Route::get('listing', 'StoreController@getListing')->name('products.index');
+    Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
+    Route::get('product/{product}', 'StoreController@getProduct')->name('product');
     Route::get('cart', 'StoreController@getCart');
 
     Route::post('update-cart', 'StoreController@postUpdateCart');
@@ -197,42 +197,38 @@ Route::group(['prefix' => 'store'], function () {
     Route::post('new-address', 'StoreController@postNewAddress');
     Route::post('add-to-cart', 'StoreController@postAddToCart');
 
-    Route::post('products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
-    Route::delete('products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
+    Route::group(['namespace' => 'Store'], function () {
+        Route::post('products/{product}/notification-request', 'NotificationRequestsController@store')->name('notification-request');
+        Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
 
-    // Store splitting starts here
-    Route::resource(
-        'checkout',
-        'Store\CheckoutController',
-        [
-            'names' => [
-                'index' => 'store.checkout.index',
-                'store' => 'store.checkout.store',
-            ],
-        ],
-        ['only' => ['index', 'store']]
-    );
+        // Store splitting starts here
+        Route::resource(
+            'checkout',
+            'CheckoutController',
+            ['only' => ['index', 'store']]
+        );
+    });
 });
 
-Route::group(['prefix' => 'payments'], function () {
-    Route::group(['prefix' => 'paypal'], function () {
-        Route::get('approved', 'Payments\PaypalController@approved')->name('payments.paypal.approved');
-        Route::get('declined', 'Payments\PaypalController@declined')->name('payments.paypal.declined');
-        Route::get('create', 'Payments\PaypalController@create')->name('payments.paypal.create');
-        Route::get('completed', 'Payments\PaypalController@completed')->name('payments.paypal.completed');
-        Route::post('ipn', 'Payments\PaypalController@ipn')->name('payments.paypal.ipn');
+Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payments'], function () {
+    Route::group(['as' => 'paypal.', 'prefix' => 'paypal'], function () {
+        Route::get('approved', 'PaypalController@approved')->name('approved');
+        Route::get('declined', 'PaypalController@declined')->name('declined');
+        Route::get('create', 'PaypalController@create')->name('create');
+        Route::get('completed', 'PaypalController@completed')->name('completed');
+        Route::post('ipn', 'PaypalController@ipn')->name('ipn');
     });
 
-    Route::group(['prefix' => 'xsolla'], function () {
-        Route::get('completed', 'Payments\XsollaController@completed')->name('payments.xsolla.completed');
-        Route::get('token', 'Payments\XsollaController@token')->name('payments.xsolla.token');
-        Route::post('callback', 'Payments\XsollaController@callback')->name('payments.xsolla.callback');
+    Route::group(['as' => 'xsolla.', 'prefix' => 'xsolla'], function () {
+        Route::get('completed', 'XsollaController@completed')->name('completed');
+        Route::get('token', 'XsollaController@token')->name('token');
+        Route::post('callback', 'XsollaController@callback')->name('callback');
     });
 
-    Route::group(['prefix' => 'centili'], function () {
-        Route::match(['post', 'get'], 'callback', 'Payments\CentiliController@callback')->name('payments.centili.callback');
-        Route::get('completed', 'Payments\CentiliController@completed')->name('payments.centili.completed');
-        Route::get('failed', 'Payments\CentiliController@failed')->name('payments.centili.failed');
+    Route::group(['as' => 'centili.', 'prefix' => 'centili'], function () {
+        Route::match(['post', 'get'], 'callback', 'CentiliController@callback')->name('callback');
+        Route::get('completed', 'CentiliController@completed')->name('completed');
+        Route::get('failed', 'CentiliController@failed')->name('failed');
     });
 });
 
