@@ -53,28 +53,6 @@ class OrderCheckout
         return $isJapan && Request::input('intl') !== '1';
     }
 
-    public function getXsollaCheckoutCode()
-    {
-        $extraDatas = $this->supporterTagItems()->pluck('extra_data');
-        $mapped = [];
-        foreach ($extraDatas as $data) {
-            $mapped[] = "{$data['target_id']}-{$data['duration']}";
-        }
-
-        return $this->order->user_id.':'.implode($mapped, ',');
-    }
-
-    public function getXsollaCheckoutDescription()
-    {
-        $extraDatas = $this->supporterTagItems()->pluck('extra_data');
-        $mapped = [];
-        foreach ($extraDatas as $data) {
-            $mapped[] = $data['target_id'];
-        }
-
-        return 'osu! supporter tags for '.implode(array_unique($mapped), ', ');
-    }
-
     public function getCentiliPaymentLink()
     {
         $params = [
@@ -131,12 +109,5 @@ class OrderCheckout
         $checkout->completeCheckout();
 
         return $order;
-    }
-
-    private function supporterTagItems()
-    {
-        return $this->order->items()
-            ->join('products', 'order_items.product_id', 'products.product_id')
-            ->where('products.custom_class', SupporterTag::PRODUCT_CUSTOM_CLASS);
     }
 }
