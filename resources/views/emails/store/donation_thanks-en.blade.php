@@ -29,4 +29,5 @@ Your support keeps osu! running for around {{ $minutes }} minutes! It may not se
 
 If you have any questions or feedback, don't hesitate to reply to this mail; I'll get back to you as soon as possible!
 
-@include('emails.store._signature')
+Regards,
+Dean Herbert (peppy)
