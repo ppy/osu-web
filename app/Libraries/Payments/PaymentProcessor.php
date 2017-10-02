@@ -277,12 +277,12 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     public function offsetSet($key, $value)
     {
-        throw new \Exception('not supported');
+        throw new \BadMethodCallException('not supported');
     }
 
     public function offsetUnset($key)
     {
-        throw new \Exception('not supported');
+        throw new \BadMethodCallException('not supported');
     }
 
     /**

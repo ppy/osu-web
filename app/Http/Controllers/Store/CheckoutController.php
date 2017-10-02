@@ -81,6 +81,6 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
         }
 
-        return response()->json(['ok']);
+        return ['ok'];
     }
 }

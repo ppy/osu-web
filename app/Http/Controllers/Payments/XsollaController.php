@@ -84,7 +84,7 @@ class XsollaController extends Controller
 
         $processor->run();
 
-        return response()->json(['ok']);
+        return ['ok'];
     }
 
     // After user has approved payment and redirected here by xsolla
