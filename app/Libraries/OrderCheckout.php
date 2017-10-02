@@ -22,7 +22,6 @@ namespace App\Libraries;
 
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
-use App\Models\SupporterTag;
 use DB;
 use Request;
 
