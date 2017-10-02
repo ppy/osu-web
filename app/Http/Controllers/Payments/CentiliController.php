@@ -53,15 +53,10 @@ class CentiliController extends Controller
 
     public function failed()
     {
-        $orderNumber = Request::input('clientid') ?? '';
+        // FIXME: show a message to the user
+        Request::session()->flash('status', 'An error occured while processing the payment.');
 
-        $order = Order::getOrderId($orderNumber);
-        if (!$order) {
-            abort(404);
-        }
-
-        // FIXME: need a payments failed page.
-        return redirect(route('payments.failed'));
+        return redirect(route('store.checkout.index'));
     }
 
     protected function exceptionHandler($exception)

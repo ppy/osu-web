@@ -77,6 +77,8 @@ class PaypalController extends Controller
     public function declined()
     {
         // FIXME: show a message to the user
+        Request::session()->flash('status', 'The payment was not completed.');
+
         return redirect(route('store.checkout.index'));
     }
 
