@@ -32,7 +32,7 @@
 
         <div class="store-text store-text--block">You can complete your transactions using ¥COINS</div>
 
-        <div class="store-text store-text--block store-text--emphasis">Optionssss.</div>
+        <div class="store-text store-text--block store-text--emphasis">Powered by</div>
         <div class="store-payment-method__provider-list">
             <img class="store-payment-method__provider" src="/images/store/providers/softbank.png" alt="Softbank">
             <img class="store-payment-method__provider" src="/images/store/providers/docomo.png" alt="Docomo">
