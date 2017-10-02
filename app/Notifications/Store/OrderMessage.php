@@ -58,7 +58,9 @@ class OrderMessage extends Message
     public function toArray($notifiable)
     {
         return [
-            //
+            'eventName' => $this->eventName,
+            'orderId' => $this->order->order_id,
+            'text' => $this->text,
         ];
     }
 }

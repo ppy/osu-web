@@ -71,7 +71,10 @@ class ValidationMessage extends Message
     public function toArray($notifiable)
     {
         return [
-            //
+            'eventName' => $this->eventName,
+            'orderId' => $this->event->getOrder()->order_id,
+            'context' => $this->event->getContext(),
+            'errorMessages' => $this->event->getErrors()->allMessages(),
         ];
     }
 }

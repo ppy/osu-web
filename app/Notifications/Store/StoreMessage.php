@@ -56,7 +56,8 @@ class StoreMessage extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'eventName' => $this->eventName,
+            'text' => $this->text,
         ];
     }
 }

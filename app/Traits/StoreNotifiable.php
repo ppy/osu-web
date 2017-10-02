@@ -47,9 +47,9 @@ trait StoreNotifiable
         Notification::send($this, new OrderMessage($eventName, $order, $text));
     }
 
-    public function notifyError($order = null, $exception = null, $text = null)
+    public function notifyError($order, $exception)
     {
-        Notification::send($this, new ErrorMessage($exception, $order, $text));
+        Notification::send($this, new ErrorMessage($exception, $order));
     }
 
     public function notifyValidation(ValidationFailedEvent $event, $eventName)
