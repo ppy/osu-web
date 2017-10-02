@@ -24,5 +24,6 @@ use Exception;
 
 class InvalidSignatureException extends Exception
 {
+    public $handled = false;
     // doesn't really contain anything
 }

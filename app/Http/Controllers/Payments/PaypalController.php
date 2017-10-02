@@ -91,23 +91,16 @@ class PaypalController extends Controller
             return '';
         }
 
-        $processor->run();
-
-        return 'ok';
-    }
-
-    protected function exceptionHandler($exception)
-    {
-        if ($exception instanceof ValidationException) {
+        try {
+            $processor->run();
+        } catch (ValidationException $exception) {
             \Log::error($exception->getMessage());
 
             return response(['message' => 'A validation error occured while running the transaction'], 406);
-        } elseif ($exception instanceof InvalidSignatureException) {
+        } catch (InvalidSignatureException $exception) {
             return response(['message' => $exception->getMessage()], 406);
         }
 
-        // manually report
-        $this->setShouldntReport(false);
-        throw $exception;
+        return 'ok';
     }
 }

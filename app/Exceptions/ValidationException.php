@@ -26,6 +26,7 @@ use Exception;
 class ValidationException extends Exception
 {
     private $errors;
+    public $handled = false;
 
     public function __construct(ValidationErrors $errors = null, Exception $previous = null)
     {

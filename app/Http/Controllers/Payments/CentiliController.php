@@ -46,7 +46,15 @@ class CentiliController extends Controller
             return '';
         }
 
-        $processor->run();
+        try {
+            $processor->run();
+        } catch (ValidationException $exception) {
+            \Log::error($exception->getMessage());
+
+            return response(['message' => 'A validation error occured while running the transaction'], 406);
+        } catch (InvalidSignatureException $exception) {
+            return response(['message' => $exception->getMessage()], 406);
+        }
 
         return 'ok';
     }
@@ -66,20 +74,5 @@ class CentiliController extends Controller
         Request::session()->flash('status', 'An error occured while processing the payment.');
 
         return redirect(route('store.checkout.index'));
-    }
-
-    protected function exceptionHandler($exception)
-    {
-        if ($exception instanceof ValidationException) {
-            \Log::error($exception->getMessage());
-
-            return response(['message' => 'A validation error occured while running the transaction'], 406);
-        } elseif ($exception instanceof InvalidSignatureException) {
-            return response(['message' => $e->getMessage()], 406);
-        }
-
-        // manually report
-        $this->setShouldntReport(false);
-        throw $exception;
     }
 }

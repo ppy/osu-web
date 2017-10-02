@@ -82,7 +82,25 @@ class XsollaController extends Controller
             return response()->json();
         }
 
-        $processor->run();
+        try {
+            $processor->run();
+        } catch (ValidationException $exception) {
+            \Log::error($exception->getMessage());
+
+            return response()->json([
+                'error' => [
+                    'code' => 'INVALID',
+                    'message' => 'A validation error occured while running the transaction',
+                ],
+            ], 422);
+        } catch (InvalidSignatureException $exception) {
+            // xsolla expects INVALID_SIGNATURE
+            return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
+        } catch (\RuntimeException $exception) {
+            \Log::error($exception);
+
+            return $this->exceptionResponse($exception, 500, '');
+        }
 
         return ['ok'];
     }
@@ -105,26 +123,5 @@ class XsollaController extends Controller
                 'message' => $exception->getMessage(),
             ],
         ], $status);
-    }
-
-    protected function exceptionHandler($exception)
-    {
-        if ($exception instanceof ValidationException) {
-            \Log::error($exception->getMessage());
-
-            return response()->json([
-                'error' => [
-                    'code' => 'INVALID',
-                    'message' => 'A validation error occured while running the transaction',
-                ],
-            ], 422);
-        } elseif ($exception instanceof InvalidSignatureException) {
-            // xsolla expects INVALID_SIGNATURE
-            return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
-        }
-
-        \Log::error($exception);
-
-        return $this->exceptionResponse($exception, 500, '');
     }
 }
