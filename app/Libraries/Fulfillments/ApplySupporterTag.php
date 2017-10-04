@@ -80,8 +80,8 @@ class ApplySupporterTag extends OrderItemFulfillment
             $this->applySubscription();
 
             $this->donor->supports()->save($donation);
-            $this->donor->save();
-            $this->target->save();
+            $this->donor->saveOrExplode();
+            $this->target->saveOrExplode();
         });
     }
 
@@ -114,8 +114,8 @@ class ApplySupporterTag extends OrderItemFulfillment
                 $this->updateVotes(-$this->duration);
                 $this->revokeSubscription();
 
-                $this->donor->save();
-                $this->target->save();
+                $this->donor->saveOrExplode();
+                $this->target->saveOrExplode();
             }
         });
     }

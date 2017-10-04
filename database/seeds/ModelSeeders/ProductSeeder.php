@@ -89,6 +89,6 @@ class ProductSeeder extends Seeder
         }
 
         $master->type_mappings_json = json_encode($type_mappings_json, JSON_PRETTY_PRINT);
-        $master->save();
+        $master->saveOrExplode();
     }
 }

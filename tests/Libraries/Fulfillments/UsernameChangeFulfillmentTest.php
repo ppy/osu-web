@@ -62,7 +62,7 @@ class UsernameChangeFulfillmentTest extends TestCase
     public function testRevoke()
     {
         $this->user->username_previous = 'old_username';
-        $this->user->save();
+        $this->user->saveOrExplode();
 
         $oldUsername = $this->user->username_previous;
         $newUsername = $this->user->username;
@@ -123,7 +123,7 @@ class UsernameChangeFulfillmentTest extends TestCase
         $history->user_id = $this->user->user_id;
         $history->type = 'paid';
         $history->username = $this->user->username;
-        $history->save();
+        $history->saveOrExplode();
 
         $fulfiller = new UsernameChangeFulfillment($this->order);
         $fulfiller->run();
