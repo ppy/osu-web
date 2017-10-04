@@ -30,18 +30,6 @@ class XsollaPaymentProcessor extends PaymentProcessor
     const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
     const SKIP_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
-    private $explodedOrderNumber;
-    private $orderId;
-
-    public function __construct(array $params, PaymentSignature $signature)
-    {
-        parent::__construct($params, $signature);
-        $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 4);
-        if (count($this->explodedOrderNumber) > 2) {
-            $this->orderId = (int) $this->explodedOrderNumber[2];
-        }
-    }
-
     public static function createFromRequest(Request $request)
     {
         $signature = new XsollaHeaderSignature($request);
@@ -96,7 +84,16 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         // received notification_type should be payment
         if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
-            $this->validationErrors()->add('notification_type', '.notification_type', ['type' => $this['notification_type']]);
+            $this->validationErrors()->add(
+                'notification_type',
+                '.notification_type',
+                ['type' => $this['notification_type']]
+            );
+        }
+
+        // this is just to make the existing test pass
+        if (!preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
+            $this->validationErrors()->add('transaction.external_id', '.order_number.malformed');
         }
 
         $order = $this->getOrder();
@@ -107,12 +104,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        // id in order number should be correct
-        if (count($this->explodedOrderNumber) !== 3) {
-            $this->validationErrors()->add('transaction.external_id', '.order_number.malformed');
-        }
-
-        if ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
+        if ((int) $matches['userId'] !== $order['user_id']) {
             $this->validationErrors()->add('transaction.external_id', '.order_number.user_id_mismatch');
         }
 

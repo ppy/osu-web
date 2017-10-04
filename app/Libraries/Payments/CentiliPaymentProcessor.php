@@ -27,19 +27,6 @@ use Illuminate\Http\Request;
 // FIXME: rename?
 class CentiliPaymentProcessor extends PaymentProcessor
 {
-    private $explodedOrderNumber;
-    private $orderId;
-
-    public function __construct(array $params, PaymentSignature $signature)
-    {
-        parent::__construct($params, $signature);
-        // limiting to 3 means it won't pick up if the format is too long.
-        $this->explodedOrderNumber = explode('-', $this->getOrderNumber(), 4);
-        if (count($this->explodedOrderNumber) > 2) {
-            $this->orderId = (int) $this->explodedOrderNumber[2];
-        }
-    }
-
     public static function createFromRequest(Request $request)
     {
         $signature = new CentiliSignature($request);
@@ -92,6 +79,11 @@ class CentiliPaymentProcessor extends PaymentProcessor
     {
         $this->ensureValidSignature();
 
+        // this is just to make the existing test pass
+        if (!preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
+            $this->validationErrors()->add('clientid', '.order_number.malformed');
+        }
+
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
@@ -100,10 +92,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        // id in order number should be correct
-        if (count($this->explodedOrderNumber) !== 3) {
-            $this->validationErrors()->add('clientid', '.order_number.malformed');
-        } elseif ((int) $this->explodedOrderNumber[1] !== $order['user_id']) {
+        if ((int) $matches['userId'] !== $order['user_id']) {
             $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
         }
 

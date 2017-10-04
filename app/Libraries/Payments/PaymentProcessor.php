@@ -35,9 +35,12 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Validatable;
 
+    const ORDER_NUMBER_REGEX = '/^store-(?<userId>\d+)-(?<orderId>\d+)$/';
+
     protected $order;
     protected $params;
     protected $signature;
+    protected $orderId;
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -45,6 +48,11 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         $this->params = $params;
         $this->signature = $signature;
+
+        if (preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
+            $this->userId = (int) $matches['userId'];
+            $this->orderId = (int) $matches['orderId'];
+        }
     }
 
     public static function createFromRequest(Request $request)

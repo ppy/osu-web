@@ -96,7 +96,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
     public function testWhenUserIdMismatch()
     {
-        $orderNumber = 'test-'
+        $orderNumber = 'store-'
                            .($this->order->user_id + 10) // just make it bigger than whatever the factory generated
                            .'-'
                            .$this->order->order_id;
