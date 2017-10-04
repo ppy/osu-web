@@ -155,6 +155,10 @@ return [
             ],
         ],
 
+        'edit_title' => [
+            'start' => 'Edit title',
+        ],
+
         'index' => [
             'views' => 'views',
             'replies' => 'replies',
