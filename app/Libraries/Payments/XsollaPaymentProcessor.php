@@ -42,11 +42,6 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return in_array($this->getNotificationType(), static::SKIP_NOTIFICATION_TYPES, true);
     }
 
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
     public function getOrderNumber()
     {
         return $this['transaction.external_id'];
@@ -92,7 +87,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         // this is just to make the existing test pass
-        if (!preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
+        if (!$this->orderNumber->isValid()) {
             $this->validationErrors()->add('transaction.external_id', '.order_number.malformed');
         }
 
@@ -104,7 +99,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ((int) $matches['userId'] !== $order['user_id']) {
+        if ((int) $this->orderNumber->getUserId() !== $order['user_id']) {
             $this->validationErrors()->add('transaction.external_id', '.order_number.user_id_mismatch');
         }
 

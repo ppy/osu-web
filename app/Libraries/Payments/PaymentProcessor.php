@@ -24,6 +24,7 @@ use App\Events\Fulfillments\PaymentEvent;
 use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\OrderNumber;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Validatable;
@@ -35,12 +36,10 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Validatable;
 
-    const ORDER_NUMBER_REGEX = '/^store-(?<userId>\d+)-(?<orderId>\d+)$/';
-
     protected $order;
     protected $params;
     protected $signature;
-    protected $orderId;
+    protected $orderNumber;
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -49,10 +48,7 @@ abstract class PaymentProcessor implements \ArrayAccess
         $this->params = $params;
         $this->signature = $signature;
 
-        if (preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
-            $this->userId = (int) $matches['userId'];
-            $this->orderId = (int) $matches['orderId'];
-        }
+        $this->orderNumber = new OrderNumber($this->getOrderNumber());
     }
 
     public static function createFromRequest(Request $request)
@@ -76,7 +72,11 @@ abstract class PaymentProcessor implements \ArrayAccess
      *
      * @return string
      */
-    abstract public function getOrderId();
+    public function getOrderId()
+    {
+        return $this->orderNumber->getOrderId();
+    }
+
 
     /**
      * Gets a more friendly identifying order number string that represents an Order.

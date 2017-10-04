@@ -43,11 +43,6 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return false;
     }
 
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
     public function getOrderNumber()
     {
         return $this['invoice'];
@@ -93,7 +88,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         $this->ensureValidSignature();
 
         // to be consistent with the other processors.
-        if (!preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
+        if (!$this->orderNumber->isValid()) {
             $this->validationErrors()->add('item_number', '.order_number.malformed');
         }
 
@@ -105,7 +100,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ((int) $matches['userId'] !== $order['user_id']) {
+        if ((int) $this->orderNumber->getUserId() !== $order['user_id']) {
             $this->validationErrors()->add('item_number', '.order_number.user_id_mismatch');
         }
 

@@ -39,11 +39,6 @@ class CentiliPaymentProcessor extends PaymentProcessor
         return false;
     }
 
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
     public function getOrderNumber()
     {
         return $this['clientid']; // or reference?
@@ -80,7 +75,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
         $this->ensureValidSignature();
 
         // this is just to make the existing test pass
-        if (!preg_match(static::ORDER_NUMBER_REGEX, $this->getOrderNumber(), $matches)) {
+        if (!$this->orderNumber->isValid()) {
             $this->validationErrors()->add('clientid', '.order_number.malformed');
         }
 
@@ -92,7 +87,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ((int) $matches['userId'] !== $order['user_id']) {
+        if ((int) $this->orderNumber->getUserId() !== $order['user_id']) {
             $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
         }
 
