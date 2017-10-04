@@ -80,6 +80,7 @@ class @ForumTopicTitle
     input.disabled = true
     @saveButton[0].disabled = true
 
+    @abort()
     @xhr = $.ajax input.dataset.url,
       method: 'PUT'
       data:
