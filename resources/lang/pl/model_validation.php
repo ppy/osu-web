@@ -49,18 +49,14 @@ return [
         ],
     ],
 
-    'user_email' => [
-        'invalid' => 'To nie wygląda na adres email.',
-        'already_used' => 'Ten adres email jest już w użyciu.',
-        'wrong_confirmation' => 'Email potwierdzający się nie zgadza.',
-        'wrong_current_password' => 'Obecne hasło jest niepoprawne.',
-    ],
-
-    'user_password' => [
+    'user' => [
         'contains_username' => 'Hasło nie może zawierać pseudonimu.',
+        'email_already_used' => 'Ten adres email jest już w użyciu.',
+        'invalid_email' => 'To nie wygląda na adres email.',
         'too_short' => 'Nowe hasło jest za krótkie.',
         'weak' => 'Hasło jest za słabe.',
-        'wrong_confirmation' => 'Hasło potwierdzające się nie zgadza.',
         'wrong_current_password' => 'Obecne hasło jest niepoprawne.',
+        'wrong_email_confirmation' => 'Email potwierdzający się nie zgadza.',
+        'wrong_password_confirmation' => 'Hasło potwierdzające się nie zgadza.',
     ],
 ];
