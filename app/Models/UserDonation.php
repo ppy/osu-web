@@ -21,7 +21,9 @@
 namespace App\Models;
 
 use DB;
+use Log;
 
+// FIXME: should validate donation is a positive value on save.
 class UserDonation extends Model
 {
     protected $table = 'osu_user_donations';
@@ -51,5 +53,22 @@ class UserDonation extends Model
         }
 
         return $totalLength;
+    }
+
+    public function cancel($cancelledTransactionId)
+    {
+        if ($this->cancel) {
+            Log::warning("UserDonation({$this->getKey()}) Calling cancel on a cancelled donation");
+            return;
+        }
+
+        $donation = $this->replicate();
+        $donation->transaction_id = $cancelledTransactionId;
+        $donation->amount = -$donation->amount;
+        $donation->cancel = true;
+
+        Log::debug($donation);
+
+        $donation->saveOrExplode();
     }
 }

@@ -110,11 +110,10 @@ class ApplySupporterTag extends OrderItemFulfillment
             $this->assignUsers();
 
             foreach ($donations as $donation) { // loop, but there should only be one.
-                $donation = $this->revokeDonation($donation);
+                $donation->cancel($this->cancelledTransactionId());
                 $this->updateVotes(-$this->duration);
                 $this->revokeSubscription();
 
-                $donation->save();
                 $this->donor->save();
                 $this->target->save();
             }
@@ -138,19 +137,6 @@ class ApplySupporterTag extends OrderItemFulfillment
         \Log::debug($donation);
 
         return $donation;
-    }
-
-    private function revokeDonation($donation)
-    {
-        $reverse = $donation->replicate();
-        $reverse->transaction_id = $this->cancelledTransactionId();
-        $amount = $reverse->amount;
-        $reverse->amount = $amount > 0 ? -$amount : $amount;
-        $reverse->cancel = true;
-
-        \Log::debug($reverse);
-
-        return $reverse;
     }
 
     private function applySubscription()
