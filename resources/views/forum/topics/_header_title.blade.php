@@ -16,7 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $withEdit = priv_check('ForumTopicEdit', $topic)->can();
 @endphp
 <div class="forum-topic-title">
     <div class="js-forum-topic-title--main forum-topic-title__group">
@@ -24,7 +23,7 @@
             {{ $topic->topic_title }}
         </a>
 
-        @if ($withEdit)
+        @if (priv_check('ForumTopicEdit', $topic)->can())
             <div class="forum-topic-title__button">
                 <button
                     type="button"
