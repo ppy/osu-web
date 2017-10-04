@@ -129,11 +129,11 @@ class ApplySupporterTag extends OrderItemFulfillment
     private function applyDonation()
     {
         $donation = new UserDonation();
-        $donation['transaction_id'] = $this->getTransactionId();
-        $donation['user_id'] = $this->donorId;
-        $donation['target_user_id'] = $this->targetId;
-        $donation['length'] = $this->duration;
-        $donation['amount'] = $this->amount;
+        $donation->transaction_id = $this->getTransactionId();
+        $donation->user_id = $this->donorId;
+        $donation->target_user_id = $this->targetId;
+        $donation->length = $this->duration;
+        $donation->amount = $this->amount;
 
         \Log::debug($donation);
 
@@ -143,13 +143,13 @@ class ApplySupporterTag extends OrderItemFulfillment
     private function revokeDonation($donation)
     {
         $reverse = new UserDonation();
-        $reverse['transaction_id'] = $this->cancelledTransactionId();
-        $reverse['user_id'] = $donation['user_id'];
-        $reverse['target_user_id'] = $donation['target_user_id'];
-        $reverse['length'] = $donation['length'];
-        $amount = $donation['amount'];
-        $reverse['amount'] = $amount > 0 ? -$amount : $amount;
-        $reverse['cancel'] = true;
+        $reverse->transaction_id = $this->cancelledTransactionId();
+        $reverse->user_id = $donation->user_id;
+        $reverse->target_user_id = $donation->target_user_id;
+        $reverse->length = $donation->length;
+        $amount = $donation->amount;
+        $reverse->amount = $amount > 0 ? -$amount : $amount;
+        $reverse->cancel = true;
 
         \Log::debug($reverse);
 
@@ -158,15 +158,15 @@ class ApplySupporterTag extends OrderItemFulfillment
 
     private function applySubscription()
     {
-        $old = $this->target['osu_subscriptionexpiry'] === null ? Carbon::now() : Carbon::parse($this->target['osu_subscriptionexpiry']);
-        $this->target['osu_subscriptionexpiry'] = $old->addMonthsNoOverflow($this->duration);
-        $this->target['osu_subscriber'] = true;
+        $old = $this->target->osu_subscriptionexpiry === null ? Carbon::now() : Carbon::parse($this->target->osu_subscriptionexpiry);
+        $this->target->osu_subscriptionexpiry = $old->addMonthsNoOverflow($this->duration);
+        $this->target->osu_subscriber = true;
     }
 
     private function revokeSubscription()
     {
-        $old = Carbon::parse($this->target['osu_subscriptionexpiry']);
-        $this->target['osu_subscriptionexpiry'] = $old->subMonthsNoOverflow($this->duration);
-        $this->target['osu_subscriber'] = Carbon::now()->diffInMinutes($old, false) > 0;
+        $old = Carbon::parse($this->target->osu_subscriptionexpiry);
+        $this->target->osu_subscriptionexpiry = $old->subMonthsNoOverflow($this->duration);
+        $this->target->osu_subscriber = Carbon::now()->diffInMinutes($old, false) > 0;
     }
 }
