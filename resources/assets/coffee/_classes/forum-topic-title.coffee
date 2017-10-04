@@ -77,6 +77,8 @@ class @ForumTopicTitle
     input = @input[0]
     newTitle = input.value
 
+    return @cancel() if newTitle == @current()
+
     input.disabled = true
     @saveButton[0].disabled = true
 
