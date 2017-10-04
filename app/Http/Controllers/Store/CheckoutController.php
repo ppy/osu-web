@@ -29,6 +29,7 @@ use Request;
 class CheckoutController extends Controller
 {
     protected $layout = 'master';
+    protected $actionPrefix = 'checkout-';
 
     public function __construct()
     {

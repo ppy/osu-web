@@ -117,6 +117,7 @@ return [
         ],
         'store' => [
             '_' => 'store',
+            'checkout-index' => 'checkout',
             'getListing' => 'listing',
             'getCart' => 'cart',
 
