@@ -142,12 +142,9 @@ class ApplySupporterTag extends OrderItemFulfillment
 
     private function revokeDonation($donation)
     {
-        $reverse = new UserDonation();
+        $reverse = $donation->replicate();
         $reverse->transaction_id = $this->cancelledTransactionId();
-        $reverse->user_id = $donation->user_id;
-        $reverse->target_user_id = $donation->target_user_id;
-        $reverse->length = $donation->length;
-        $amount = $donation->amount;
+        $amount = $reverse->amount;
         $reverse->amount = $amount > 0 ? -$amount : $amount;
         $reverse->cancel = true;
 
