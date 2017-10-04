@@ -111,7 +111,7 @@ class @Forum
       .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
-    if !(currentUser.isAdmin || currentUser.isGMT)
+    if !(currentUser.isAdmin || currentUser.isGMT || currentUser.isQAT)
       $('.js-post-delete-toggle').hide()
 
     if lastPostLoaded
