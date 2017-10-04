@@ -20,12 +20,13 @@
     {{-- Centili widget needs href; centili init is also slow --}}
     <input id="c-mobile-payment-widget"
             href="{{ $checkout->getCentiliPaymentLink() }}"
-            type="hidden">
-    <div
+            type="hidden"
+    >
+    <button type="button"
             class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--centili"
             data-provider="centili"
     >
-    </div>
+    </button>
 
     <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with ¥COINS</div>

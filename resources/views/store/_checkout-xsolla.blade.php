@@ -17,12 +17,12 @@
 --}}
 
 <div class="store-payment-method">
-    <div type="button"
+    <button type="button"
             class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--xsolla"
             data-provider="xsolla"
             data-order-number="{{ $order->getOrderNumber() }}"
     >
-    </div>
+    </button>
 
     <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with xsolla</div>

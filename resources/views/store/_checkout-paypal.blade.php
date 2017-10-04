@@ -17,12 +17,12 @@
 --}}
 
 <div class="store-payment-method">
-    <div type="button"
+    <button type="button"
             class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--paypal"
             data-provider="paypal"
             data-order-id="{{ $order->order_id }}"
     >
-    </div>
+    </button>
 
     <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with PayPal / Credit Card</div>
