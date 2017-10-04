@@ -49,18 +49,14 @@ return [
         ],
     ],
 
-    'user_email' => [
-        'invalid' => '似乎不是有效的邮箱地址。',
-        'already_used' => '邮箱已被使用。',
-        'wrong_confirmation' => '重复新邮箱与新邮箱不一致。',
-        'wrong_current_password' => '当前密码错误。',
-    ],
-
-    'user_password' => [
+    'user' => [
         'contains_username' => '密码不能包含用户名。',
+        'email_already_used' => '邮箱已被使用。',
+        'invalid_email' => '似乎不是有效的邮箱地址。',
         'too_short' => '新密码太短。',
         'weak' => '弱密码。',
-        'wrong_confirmation' => '重复新密码与新密码不一致。',
         'wrong_current_password' => '当前密码错误。',
+        'wrong_email_confirmation' => '重复新邮箱与新邮箱不一致。',
+        'wrong_password_confirmation' => '重复新密码与新密码不一致。',
     ],
 ];
