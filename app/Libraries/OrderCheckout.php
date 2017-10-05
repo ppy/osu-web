@@ -56,16 +56,14 @@ class OrderCheckout
     public function getCentiliPaymentLink()
     {
         $params = [
-            'api='.config('payments.centili.api_key'),
-            'country=jp',
-            'countrylock=true',
-            'clientid='.$this->order->getOrderNumber(),
-            'amount='.$this->order->getTotal() * config('payments.centili.conversion_rate'),
+            'api' => config('payments.centili.api_key'),
+            'country' => 'jp',
+            'countrylock' => 'true',
+            'clientid' => $this->order->getOrderNumber(),
+            'amount' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
         ];
 
-        $queryString = implode('&', $params);
-
-        return config('payments.centili.widget_url').'?'.$queryString;
+        return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
     public function isShippingDelayed()
