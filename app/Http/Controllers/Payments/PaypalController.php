@@ -61,10 +61,7 @@ class PaypalController extends Controller
     // Begin process of approving a payment.
     public function create()
     {
-        $orderId = presence(Request::input('order_id'));
-        if ($orderId === null) {
-            abort(404);
-        }
+        $orderId = Request::input('order_id');
 
         $order = Order::where('user_id', Auth::user()->user_id)->where('status', 'incart')->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
