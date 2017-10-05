@@ -20,6 +20,7 @@
 
 namespace App\Notifications\Store;
 
+use App\Events\Fulfillments\HasOrder;
 use App\Events\Fulfillments\ValidationFailedEvent;
 use Illuminate\Notifications\Messages\SlackMessage;
 
@@ -42,7 +43,7 @@ class ValidationMessage extends Message
     public function toSlack($notifiable)
     {
         $content = "`{$this->eventName}`";
-        if ($this->event instanceof \App\Events\Fulfillments\HasOrder) {
+        if ($this->event instanceof HasOrder) {
             $content .= " | `Order {$this->event->getOrder()->order_id}`";
         }
 
@@ -56,7 +57,7 @@ class ValidationMessage extends Message
                     ->fields($this->event->getContext())
                     ->markdown(['text', 'fields']);
 
-                if ($this->event instanceof \App\Events\Fulfillments\HasOrder) {
+                if ($this->event instanceof HasOrder) {
                     $attachment->title("Order {$this->event->getOrder()->order_id}");
                 }
             });
