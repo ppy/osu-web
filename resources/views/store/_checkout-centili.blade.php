@@ -35,6 +35,7 @@
 
         <div class="store-text store-text--block store-text--emphasis">Powered by</div>
         <div class="store-payment-method__provider-list">
+            <img class="store-payment-method__provider" src="/images/store/providers/webmoney.png" alt="WebMomey">
             <img class="store-payment-method__provider" src="/images/store/providers/softbank.png" alt="Softbank">
             <img class="store-payment-method__provider" src="/images/store/providers/docomo.png" alt="Docomo">
             <img class="store-payment-method__provider" src="/images/store/providers/au.png" alt="au">
