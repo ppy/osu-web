@@ -28,6 +28,7 @@ use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Libraries\Payments\PaypalSignature;
 use App\Models\Store\Order;
 use Auth;
+use Illuminate\Http\Request as HttpRequest;
 use Request;
 
 class PaypalController extends Controller
@@ -81,10 +82,10 @@ class PaypalController extends Controller
     }
 
     // Called by Paypal.
-    public function ipn(Request $request)
+    public function ipn(HttpRequest $request)
     {
-        $params = static::extractParams($request->getFacadeRoot());
-        $signature = new PaypalSignature($request->getFacadeRoot());
+        $params = static::extractParams($request);
+        $signature = new PaypalSignature($request);
         $processor = new PaypalPaymentProcessor($params, $signature);
 
         if ($processor->isSkipped()) {

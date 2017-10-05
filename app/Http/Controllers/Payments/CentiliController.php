@@ -26,6 +26,7 @@ use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
+use Illuminate\Http\Request as HttpRequest;
 use Request;
 
 class CentiliController extends Controller
@@ -39,10 +40,10 @@ class CentiliController extends Controller
         parent::__construct();
     }
 
-    public function callback(Request $request)
+    public function callback(HttpRequest $request)
     {
-        $params = static::extractParams($request->getFacadeRoot());
-        $signature = new CentiliSignature($request->getFacadeRoot());
+        $params = static::extractParams($request);
+        $signature = new CentiliSignature($request);
         $processor = new CentiliPaymentProcessor($params, $signature);
 
         if ($processor->isSkipped()) {

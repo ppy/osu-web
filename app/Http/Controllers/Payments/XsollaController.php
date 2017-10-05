@@ -27,6 +27,7 @@ use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
 use App\Models\Store\Order;
 use Auth;
+use Illuminate\Http\Request as HttpRequest;
 use Request;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
@@ -75,10 +76,10 @@ class XsollaController extends Controller
     }
 
     // Called by xsolla after payment is approved by user.
-    public function callback(Request $request)
+    public function callback(HttpRequest $request)
     {
-        $params = static::extractParams($request->getFacadeRoot());
-        $signature = new XsollaSignature($request->getFacadeRoot());
+        $params = static::extractParams($request);
+        $signature = new XsollaSignature($request);
         $processor = new XsollaPaymentProcessor($params, $signature);
 
         if ($processor->isSkipped()) {
