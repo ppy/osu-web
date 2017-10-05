@@ -100,20 +100,6 @@ abstract class BannerFulfillment extends OrderFulfiller
         }
     }
 
-    private function getCountryName(OrderItem $orderItem)
-    {
-        $product = $orderItem->product;
-
-        return preg_split("/\(|\)/", $product->name);
-    }
-
-    private function getCountryAcronym(OrderItem $orderItem)
-    {
-        $countryName = $this->getCountryName($orderItem);
-
-        return Country::where('name', $countryName)->first->acronym;
-    }
-
     //================
     // Validatable
     //================
