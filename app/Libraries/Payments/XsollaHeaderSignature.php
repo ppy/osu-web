@@ -50,7 +50,7 @@ class XsollaHeaderSignature implements PaymentSignature
         $matches = [];
         preg_match('~^Signature (?<signature>[0-9a-f]{40})$~', $this->request->header('Authorization'), $matches);
 
-        return isset($matches['signature']) ? $matches['signature'] : null;
+        return $matches['signature'] ?? null;
     }
 
     private function calculatedSignature()
