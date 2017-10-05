@@ -20,8 +20,6 @@
 
 namespace App\Libraries;
 
-use App\Models\Store\Order;
-
 class OrderNumber
 {
     const ORDER_NUMBER_REGEX = '/^store-(?<userId>\d+)-(?<orderId>\d+)$/';

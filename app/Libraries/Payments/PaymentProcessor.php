@@ -60,7 +60,6 @@ abstract class PaymentProcessor implements \ArrayAccess
         return $this->orderNumber->getOrderId();
     }
 
-
     /**
      * Gets a more friendly identifying order number string that represents an Order.
      *

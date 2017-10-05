@@ -59,6 +59,7 @@ class UserDonation extends Model
     {
         if ($this->cancel) {
             Log::warning("UserDonation({$this->getKey()}) Calling cancel on a cancelled donation");
+
             return;
         }
 
