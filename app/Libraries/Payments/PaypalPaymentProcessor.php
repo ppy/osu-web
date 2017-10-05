@@ -26,11 +26,6 @@ use Illuminate\Http\Request;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
-    public function __construct(array $params, PaymentSignature $signature)
-    {
-        parent::__construct($params, $signature);
-    }
-
     public static function createFromRequest(Request $request)
     {
         $signature = new PaypalSignature($request);
