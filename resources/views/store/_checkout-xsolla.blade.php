@@ -37,6 +37,6 @@
             <img class="store-payment-method__provider" src="/images/store/providers/bitcoin.png" alt="bitcoin">
             <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/bitcash.png" alt="BitCash">
         </div>
-        <div class="store-text store-text--block">any many more.</div>
+        <div class="store-text store-text--block">and many more.</div>
     </div>
 </div>
