@@ -469,6 +469,17 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_colour'] = ltrim($value, '#');
     }
 
+    public function getOsuSubscriptionexpiryAttribute($value)
+    {
+        return Carbon::parse($value);
+    }
+
+    public function setOsuSubscriptionexpiryAttribute($value)
+    {
+        // strip time component
+        $this->attributes['osu_subscriptionexpiry'] = $value->startOfDay();
+    }
+
     // return a user's API details
 
     public function getApiDetails($user = null)

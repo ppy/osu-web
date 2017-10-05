@@ -141,14 +141,14 @@ class ApplySupporterTag extends OrderItemFulfillment
 
     private function applySubscription()
     {
-        $old = $this->target->osu_subscriptionexpiry === null ? Carbon::now() : Carbon::parse($this->target->osu_subscriptionexpiry);
+        $old = $this->target->osu_subscriptionexpiry ?? Carbon::now();
         $this->target->osu_subscriptionexpiry = $old->addMonthsNoOverflow($this->duration);
         $this->target->osu_subscriber = true;
     }
 
     private function revokeSubscription()
     {
-        $old = Carbon::parse($this->target->osu_subscriptionexpiry);
+        $old = $this->target->osu_subscriptionexpiry;
         $this->target->osu_subscriptionexpiry = $old->subMonthsNoOverflow($this->duration);
         $this->target->osu_subscriber = Carbon::now()->diffInMinutes($old, false) > 0;
     }
