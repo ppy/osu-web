@@ -20,7 +20,7 @@
 
 namespace Tests\Payments;
 
-use App\Libraries\Payments\XsollaHeaderSignature;
+use App\Libraries\Payments\XsollaSignature;
 use App\Models\Store\Order;
 use Config;
 use TestCase;
@@ -43,7 +43,7 @@ class XsollaControllerTest extends TestCase
     {
         $data = $this->getPostData();
         // fake a valid signature, we only want to test if the response is working.
-        $trollSignature = XsollaHeaderSignature::calculateSignature(json_encode($data));
+        $trollSignature = XsollaSignature::calculateSignature(json_encode($data));
         $response = $this->json(
             'POST',
             route('payments.xsolla.callback'),

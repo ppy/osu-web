@@ -32,7 +32,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public static function createFromRequest(Request $request)
     {
-        $signature = new XsollaHeaderSignature($request);
+        $signature = new XsollaSignature($request);
 
         return new static(static::extractParams($request), $signature);
     }

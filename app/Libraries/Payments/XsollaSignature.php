@@ -22,7 +22,7 @@ namespace App\Libraries\Payments;
 
 use Illuminate\Http\Request;
 
-class XsollaHeaderSignature implements PaymentSignature
+class XsollaSignature implements PaymentSignature
 {
     public function __construct(Request $request)
     {
@@ -32,7 +32,7 @@ class XsollaHeaderSignature implements PaymentSignature
     public function isValid()
     {
         $received = $this->receivedSignature();
-        \Log::debug("XsollaHeaderSignature::isValidSignature calc: {$this->calculatedSignature()}, signed: {$received}");
+        \Log::debug("XsollaSignature::isValidSignature calc: {$this->calculatedSignature()}, signed: {$received}");
         if ($received === null) {
             return false;
         }

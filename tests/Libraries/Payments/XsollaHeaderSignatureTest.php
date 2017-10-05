@@ -20,11 +20,11 @@
 
 namespace Tests;
 
-use App\Libraries\Payments\XsollaHeaderSignature;
+use App\Libraries\Payments\XsollaSignature;
 use Config;
 use TestCase;
 
-class XsollaHeaderSignatureTest extends TestCase
+class XsollaSignatureTest extends TestCase
 {
     protected $connectionsToTransact = [
         'mysql',
@@ -40,7 +40,7 @@ class XsollaHeaderSignatureTest extends TestCase
     public function testCalculateSignature()
     {
         static $expected = 'e61077e203eb692b6eb29fff47ccec989089118f';
-        $signature = XsollaHeaderSignature::calculateSignature("{'notification_type':'payment'}");
+        $signature = XsollaSignature::calculateSignature("{'notification_type':'payment'}");
 
         $this->assertSame($expected, $signature);
     }
