@@ -24,6 +24,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\XsollaPaymentProcessor;
+use App\Libraries\Payments\XsollaSignature;
 use App\Models\Store\Order;
 use Auth;
 use Request;
@@ -76,7 +77,10 @@ class XsollaController extends Controller
     // Called by xsolla after payment is approved by user.
     public function callback(Request $request)
     {
-        $processor = XsollaPaymentProcessor::createFromRequest($request->getFacadeRoot());
+        $params = static::extractParams($request->getFacadeRoot());
+        $signature = new XsollaSignature($request->getFacadeRoot());
+        $processor = new XsollaPaymentProcessor($params, $signature);
+
         if ($processor->isSkipped()) {
             // skip user_search notification
             return response()->json();

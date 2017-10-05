@@ -24,6 +24,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\CentiliPaymentProcessor;
+use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
 use Request;
 
@@ -40,7 +41,10 @@ class CentiliController extends Controller
 
     public function callback(Request $request)
     {
-        $processor = CentiliPaymentProcessor::createFromRequest($request->getFacadeRoot());
+        $params = static::extractParams($request->getFacadeRoot());
+        $signature = new CentiliSignature($request->getFacadeRoot());
+        $processor = new CentiliPaymentProcessor($params, $signature);
+
         if ($processor->isSkipped()) {
             // skip user_search notification
             return '';

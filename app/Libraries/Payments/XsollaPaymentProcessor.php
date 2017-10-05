@@ -22,20 +22,12 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 // FIXME: rename?
 class XsollaPaymentProcessor extends PaymentProcessor
 {
     const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
     const SKIP_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
-
-    public static function createFromRequest(Request $request)
-    {
-        $signature = new XsollaSignature($request);
-
-        return new static(static::extractParams($request), $signature);
-    }
 
     public function isSkipped()
     {

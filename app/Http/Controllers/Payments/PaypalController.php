@@ -25,6 +25,7 @@ use App\Exceptions\ValidationException;
 use App\Libraries\Payments\PaypalCreatePayment;
 use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
+use App\Libraries\Payments\PaypalSignature;
 use App\Models\Store\Order;
 use Auth;
 use Request;
@@ -82,7 +83,10 @@ class PaypalController extends Controller
     // Called by Paypal.
     public function ipn(Request $request)
     {
-        $processor = PaypalPaymentProcessor::createFromRequest($request->getFacadeRoot());
+        $params = static::extractParams($request->getFacadeRoot());
+        $signature = new PaypalSignature($request->getFacadeRoot());
+        $processor = new PaypalPaymentProcessor($params, $signature);
+
         if ($processor->isSkipped()) {
             // skip user_search notification
             return '';

@@ -22,17 +22,9 @@ namespace App\Libraries\Payments;
 
 use App\Models\Store\Order;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
-    public static function createFromRequest(Request $request)
-    {
-        $signature = new PaypalSignature($request);
-
-        return new static(static::extractParams($request), $signature);
-    }
-
     public function isSkipped()
     {
         return false;

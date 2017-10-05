@@ -21,7 +21,23 @@
 namespace App\Http\Controllers\Payments;
 
 use App\Http\Controllers\Controller as BaseController;
+use Illuminate\Http\Request;
 
 abstract class Controller extends BaseController
 {
+    /**
+     * Extracts all the parameters from the request to be used a payment processor.
+     *
+     * @param Request $request
+     * @return array
+     */
+    protected static function extractParams(Request $request)
+    {
+        $params = $request->input();
+        if ($request->isJson()) {
+            $params = array_merge($params, $request->json()->all());
+        }
+
+        return $params;
+    }
 }
