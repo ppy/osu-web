@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>账户</strong>设置',
+        'title' => '账户设置',
         'title_compact' => '设置',
 
         'avatar' => [
@@ -61,15 +61,15 @@ return [
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! 邮箱变更确认',
+        'email_subject' => 'osu! 帐户邮箱更改',
         'update' => '更新',
-        'updated' => '邮箱已更新',
+        'updated' => '邮箱已更改',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! 密码变更确认',
+        'email_subject' => 'osu! 帐户密码更改',
         'update' => '更新',
-        'updated' => '密码已更新',
+        'updated' => '密码已更改',
     ],
 
     'playstyles' => [

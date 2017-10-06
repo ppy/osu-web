@@ -22,14 +22,14 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => '编辑前请先登录。',
-            'system_generated' => '不能编辑系统的回复。',
-            'wrong_user' => '只有作者才能编辑。',
+            'system_generated' => '无法编辑系统回复。',
+            'wrong_user' => '只有作者能编辑。',
         ],
     ],
 
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
-        'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，在发表您的讨论前请检查一下。',
+        'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',
     ],
 
     'reply' => [
@@ -42,13 +42,13 @@ return [
     'system' => [
         'resolved' => [
             'true' => '被 :user 标记为已解决',
-            'false' => '被 :user 重新打开',
+            'false' => '被 :user 打回',
         ],
     ],
 
     'user' => [
         'admin' => '管理员',
-        'bng' => '谱面管理组',
+        'bng' => '谱面管理团队',
         'owner' => '制谱人',
         'qat' => '质量保障团队',
     ],

@@ -29,7 +29,7 @@ return [
 
         'destroy' => [
             '_' => '移除封面',
-            'confirm' => '您真的要移除这个封面吗？',
+            'confirm' => '移除这个封面？',
         ],
     ],
 
@@ -45,8 +45,8 @@ return [
 
     'pinned_topics' => '置顶主题',
     'post' => [
-        'confirm_destroy' => '真的要删除这个回复吗？',
-        'confirm_restore' => '真的要恢复这个回复吗？',
+        'confirm_destroy' => '删除此回复？',
+        'confirm_restore' => '恢复此回复？',
         'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count 次。',
         'posted_at' => '发表于 :when',
         'actions' => [
@@ -55,14 +55,14 @@ return [
             'edit' => '编辑回复',
         ],
     ],
-    'search' => [ //搜索功能已经完成 17.06.25, 但是没有在搜索中看见字段使用
+    'search' => [
         'go_to_post' => '前往该楼层',
         'post_number_input' => '输入楼层数',
         'total_posts' => '一共有 :posts_count 楼',
     ],
     'subforums' => '子版块',
     'title' => 'osu! 社区',
-    'slogan' => '一起来玩吧', //此处意译了
+    'slogan' => '节奏跃然指上',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -70,6 +70,8 @@ return [
                 'title' => '点击这里设置标题',
             ],
             'preview' => '预览',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
             'preview_hide' => '编辑',
             'submit' => '发表',
         ],
@@ -78,10 +80,10 @@ return [
             'enter' => '点击这里跳转到指定回复',
             'first' => '跳转到第一条回复',
             'last' => '跳转到最后一条回复',
-            'next' => '向后10条',
-            'previous' => '向前10条',
+            'next' => '向后 10 条',
+            'previous' => '向前 10 条',
         ],
-        'latest_post' => ':when :user', //DZ风格的写法
+        'latest_post' => ':when :user',
         'latest_reply_by' => '最后回复: :user',
         'new_topic' => '发表新主题',
         'post_edit' => [
@@ -94,7 +96,7 @@ return [
         ],
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
-        'started_by' => '发帖人: :user',
+        'started_by' => '发帖人： :user',
     ],
 
     'topic_watches' => [
@@ -108,7 +110,7 @@ return [
                 'unread' => '主题有新回复',
             ],
             'info' => [
-                'total' => '您总共订阅了 :total 个主题',
+                'total' => '共订阅了 :total 个主题',
                 'unread' => '有 :unread 个未读回复',
             ],
         ],
@@ -148,9 +150,13 @@ return [
                 'options' => '选项',
                 'options_info' => '一个选项占一行，最多10个选项。',
                 'title' => '问题',
-                'vote_change' => '允许重选',
+                'vote_change' => '允许修改',
                 'vote_change_info' => '如果选中，则用户可以更改他们的投票。',
             ],
+        ],
+
+        'edit_title' => [
+            'start' => '编辑标题',
         ],
 
         'index' => [
@@ -215,8 +221,10 @@ return [
         'moderate_pin' => [
             'pin-0' => '取消置顶',
             'pin-1' => '置顶',
+            'pin-2' => '置顶并标记为公告',            
             'state-0' => '该主题已取消置顶',
             'state-1' => '该主题已置顶',
+            'state-2' => '该主题已置顶并标记为公告',            
         ],
 
         'show' => [
@@ -228,9 +236,9 @@ return [
                 'do' => '提升这个请求',
 
                 'user' => [
-                    'current' => '您还有 :votes 票.',
+                    'current' => '还有 :votes 票.',
                     'count' => '{0} 没有票|[1,*] :count票',
-                    'not_enough' => '您没有票了',
+                    'not_enough' => '没有票了',
                 ],
             ],
 
@@ -246,8 +254,8 @@ return [
         ],
 
         'watch' => [
-            'state-0' => '取消了订阅',
-            'state-1' => '订阅了主题',
+            'state-0' => '取消订阅！',
+            'state-1' => '订阅成功！',
             'watch-0' => '取消订阅',
             'watch-1' => '订阅',
         ],

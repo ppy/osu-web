@@ -19,7 +19,7 @@
  */
 
 return [
-    'bold' => '加粗',
+    'bold' => '粗体',
     'heading' => '标题',
     'image' => '图片',
     'italic' => '斜体',
@@ -30,9 +30,9 @@ return [
         '_' => '字体大小',
         'tiny' => '极小',
         'small' => '小',
-        'normal' => '中',
+        'normal' => '普通',
         'large' => '大',
     ],
-    'spoilerbox' => '折叠文字', //翻译可能不准确
+    'spoilerbox' => '折叠文字',
     'strikethrough' => '删除线',
 ];

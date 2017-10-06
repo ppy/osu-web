@@ -49,7 +49,7 @@ return [
                 'title' => '论坛封面列表',
 
                 'type-title' => [
-                    'default-topic' => '默认话题封面',
+                    'default-topic' => '默认板块封面',
                     'main' => '论坛封面',
                 ],
             ],
@@ -85,7 +85,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => '该账户受限',
-            'message' => '（只有管理员能看到这条消息）',
+            'message' => '（仅限管理员查看）',
         ],
     ],
 

@@ -34,7 +34,7 @@ return [
         'standard_converts_only' => '此谱面难度在请求的游戏模式下分数不可用。',
     ],
     'beatmapsets' => [
-        'too-many-favourites' => '您收藏的谱面过多，请删除一个后再试。',
+        'too-many-favourites' => '谱面收藏超出限制，请删除一个后再试。',
     ],
     'logged_out' => '您已退出，请登录后再试。',
     'supporter_only' => '要使用此功能，请先成为捐赠者。',

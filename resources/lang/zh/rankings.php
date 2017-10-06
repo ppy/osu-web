@@ -22,7 +22,7 @@ return [
     'header' => ':type 排名',
     'type' => [
         'performance' => '表现',
-        'charts' => '图表', //暂时没有合适的翻译
+        'charts' => '月赛',
         'score' => '总分',
         'country' => '国家',
     ],

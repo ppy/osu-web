@@ -19,6 +19,7 @@
  */
 
 return [
+    'not_negative' => '无法否定 :attribute',    
     'required' => '需要 :attribute.',
     'wrong_confirmation' => '确认信息不匹配。', //需要上下文,
 
@@ -45,14 +46,14 @@ return [
         ],
 
         'topic_vote' => [
-            'too_many' => '选择了太多的选项。',
+            'too_many' => '选项超出限制。',
         ],
     ],
 
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
-        'invalid_email' => '似乎不是有效的邮箱地址。',
+        'invalid_email' => '无效的邮箱地址。',
         'too_short' => '新密码太短。',
         'weak' => '弱密码。',
         'wrong_current_password' => '当前密码错误。',

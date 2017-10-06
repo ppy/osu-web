@@ -29,7 +29,8 @@ return [
             'account-edit' => '设置',
             'friends' => '好友',
             'friends-index' => '好友',
-            'getChangelog' => '更新日志',
+            'changelog-index' => '更新日志',
+            'changelog-show' => '版本',
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
@@ -52,7 +53,7 @@ return [
             '_' => '谱面',
             'show' => '信息',
             'index' => '列表',
-            'artists' => '杰出艺术家',
+            'artists' => '精选艺术家',
             'packs' => '曲包',
             // 'getCharts' => 'charts',
         ],
@@ -64,10 +65,10 @@ return [
             '_' => '排名',
             'index' => '表现',
             'performance' => '表现',
-            'charts' => '图表',
+            'charts' => '月赛',
             'score' => '得分',
             'country' => '国家',
-            'kudosu' => 'kudosu', //mapping相关，暂时不翻译
+            'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => '社区',
@@ -97,7 +98,7 @@ return [
             '403' => '拒绝访问',
             '401' => '权限不足',
             '405' => '资源被禁止',
-            '500' => '发生了一些错误',
+            '500' => '严重错误',
             '503' => '维护中',
         ],
         'user' => [
@@ -151,7 +152,7 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => '常规', //可能不准确
+            '_' => '网站地图', //可能不准确
             'home' => '主页',
             'changelog' => '更新日志',
             'beatmaps' => '谱面列表',
@@ -187,12 +188,12 @@ return [
         ],
         '403' => [
             'error' => '没有权限',
-            'description' => '您没有权限访问该页面，建议您检查一下再试，或者返回到上一个页面',
+            'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面',
             'link' => false,
         ],
         '401' => [
             'error' => '没有权限',
-            'description' => '您没有权限访问该页面，建议您检查一下再试，或者返回到上一个页面（也许您还没登录呢）',
+            'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面（说不定因为没登录）',
             'link' => false,
         ],
         '405' => [
@@ -236,7 +237,7 @@ return [
         ],
 
         'register' => [
-            'info' => '您需要一个帐号，为什么不现在注册一个呢？',
+            'info' => '快来加入 osu! 大家庭，点击下面的按钮来注册！',
             'title' => '没有帐号？',
         ],
     ],
@@ -251,7 +252,7 @@ return [
     ],
 
     'popup_search' => [
-        'initial' => '输入以搜索！',
+        'initial' => '键入以搜索！',
         'retry' => '搜索失败，点击以重试。',
     ],
 ];
