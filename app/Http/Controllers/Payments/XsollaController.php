@@ -29,6 +29,7 @@ use App\Models\Store\Order;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
+use RuntimeException;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
 
@@ -92,19 +93,18 @@ class XsollaController extends Controller
         } catch (ValidationException $exception) {
             \Log::error($exception->getMessage());
 
-            return response()->json([
-                'error' => [
-                    'code' => 'INVALID',
-                    'message' => 'A validation error occured while running the transaction',
-                ],
-            ], 422);
+            return $this->errorResponse(
+                'A validation error occured while running the transaction',
+                'INVALID',
+                422
+            );
         } catch (InvalidSignatureException $exception) {
             // xsolla expects INVALID_SIGNATURE
-            return $this->exceptionResponse($exception, 422, 'INVALID_SIGNATURE');
-        } catch (\RuntimeException $exception) {
+            return $this->errorResponse('The signature is invalid.', 'INVALID_SIGNATURE', 422);
+        } catch (RuntimeException $exception) {
             \Log::error($exception);
 
-            return $this->exceptionResponse($exception, 500, '');
+            return $this->errorResponse('Something went wrong.', '', 500);
         }
 
         return ['ok'];
@@ -120,12 +120,12 @@ class XsollaController extends Controller
         return redirect(route('store.invoice.show', ['invoice' => $orderId, 'thanks' => 1]));
     }
 
-    private function exceptionResponse($exception, int $status, string $code)
+    private function errorResponse(string $message, string $code, int $status)
     {
         return response()->json([
             'error' => [
                 'code' => $code,
-                'message' => $exception->getMessage(),
+                'message' => $message,
             ],
         ], $status);
     }
