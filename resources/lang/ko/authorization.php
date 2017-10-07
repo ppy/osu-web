@@ -144,7 +144,7 @@ return [
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => '사용자 페이지가 잠겨있습니다.',
+                'locked' => '유저 페이지가 잠겨있습니다.',
                 'not_owner' => '본인의 사용자 페이지만 수정할 수 있습니다.',
                 'require_supporter_tag' => '서포터 태그가 필요합니다.',
             ],
