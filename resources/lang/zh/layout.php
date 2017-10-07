@@ -154,7 +154,7 @@ return [
         'general' => [
             '_' => '网站地图',
             'home' => '主页',
-            'changelog' => '更新日志',
+            'changelog-index' => '更新日志',
             'beatmaps' => '谱面列表',
             'download' => '下载 osu!',
             'wiki' => 'Wiki',
