@@ -20,94 +20,133 @@
 
 return [
     'beatmap_discussion' => [
+        'destroy' => [
+            'has_reply' => 'Can not delete discussion with replies',
+        ],
+        'nominate' => [
+            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+        ],
         'resolve' => [
-            'not_owner' => 'Alleen de eigenaar van de thread of de eigenaar van de beatmap kan een discussie als opgelost markeren.',
+            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+        ],
+
+        'vote' => [
+            'limit_exceeded' => 'Please wait a while before casting more votes',
+            'owner' => 'Can not vote own discussion!',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatisch gegenereerde posts kunnen niet worden bewerkt.',
-            'not_owner' => 'Alleen de eigenaar kan deze post bewerken.',
+            'system_generated' => 'Automatically generated post can not be edited.',
+            'not_owner' => 'Only the poster can edit post.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Toegang tot dit kanaal is niet toegestaan.',
+                'no_access' => 'Access to requested channel is not permitted.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Toegang tot dit kanaal is vereist.',
-                    'moderated' => 'Kanaal wordt op het moment gemodereerd.',
+                    'no_access' => 'Access to target channel is required.',
+                    'moderated' => 'Channel is currently moderated.',
+                    'not_lazer' => 'You can only speak in #lazer at this time.',
                 ],
 
-                'not_allowed' => 'Je kunt geen berichten sturen terwijl je bent verbannen/restricted/silenced.',
+                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
             ],
         ],
+    ],
+
+    'contest' => [
+        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Alleen de laatste post kan worden verwijderd.',
-                'locked' => 'Kan geen post in een gesloten onderwerp verwijderen.',
-                'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'not_owner' => 'Alleen de eigenaar kan deze post verwijderen.',
+                'only_last_post' => 'Only last post can be deleted.',
+                'locked' => 'Can not delete post of a locked topic.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'not_owner' => 'Only poster can delete the post.',
             ],
 
             'edit' => [
-                'locked' => 'De post is afgesloten voor bewerkingen.',
-                'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'not_owner' => 'Alleen de eigenaar kan de post bewerken.',
-                'topic_locked' => 'Kan geen post in een gesloten onderwerp bewerken.',
+                'deleted' => 'Can not edit deleted post.',
+                'locked' => 'The post is locked from editing.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'not_owner' => 'Only poster can edit the post.',
+                'topic_locked' => 'Can not edit post of a locked topic.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Je hebt zojuist gepost. Wacht even voordat je een nieuwe maakt of bewerk je vorige post.',
-                'locked' => 'Je kunt niet antwoorden op een gesloten onderwerp.',
-                'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'no_permission' => 'Geen toestemming om te antwoorden.',
+                'double_post' => 'You just posted. Wait a bit or edit your last post.',
+                'locked' => 'Can not reply to a locked thread.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to reply.',
+
+                'user' => [
+                    'require_login' => 'Please login to reply.',
+                    'restricted' => "Can't reply while restricted.",
+                    'silenced' => "Can't reply while silenced.",
+                ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Toegang tot dit forum is nodig.',
-                'no_permission' => 'Geen toestemming om een onderwerp te starten.',
-                'forum_closed' => 'Forum is gesloten en kan niet in gepost worden.',
+                'no_forum_access' => 'Access to requested forum is required.',
+                'no_permission' => 'No permission to create new topic.',
+                'forum_closed' => 'Forum is closed and can not be posted to.',
+            ],
+
+            'vote' => [
+                'no_forum_access' => 'Access to requested forum is required.',
+                'over' => 'Polling is over and can not be voted on anymore.',
+                'voted' => 'Changing vote is not allowed.',
+
+                'user' => [
+                    'require_login' => 'Please login to vote.',
+                    'restricted' => "Can't vote while restricted.",
+                    'silenced' => "Can't vote while silenced.",
+                ],
+            ],
+
+            'watch' => [
+                'no_forum_access' => 'Access to requested forum is required.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Foutieve cover gespecificeerd.',
-                'not_owner' => 'Alleen de eigenaar kan de cover bewerken.',
+                'uneditable' => 'Invalid cover specified.',
+                'not_owner' => 'Only owner can edit cover.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Alleen admins kunnen dit forum zien.',
+            'admin_only' => 'Only admin can view this forum.',
         ],
     ],
 
-    'require_login' => 'Log in om verder te gaan.',
+    'require_login' => 'Please login to proceed.',
 
-    'unauthorized' => 'Toegang geweigerd.',
+    'unauthorized' => 'Access denied.',
 
-    'silenced' => 'Je kunt dit niet doen terwijl je silenced bent.',
+    'silenced' => "Can't do that while silenced.",
 
-    'restricted' => 'Je kunt dit niet doen terwijl je restricted bent.',
+    'restricted' => "Can't do that while restricted.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Gebruikerspagina is gesloten.',
-                'not_owner' => 'Je kunt alleen je eigen gebruikerspagina bewerken.',
-                'require_supporter_tag' => 'Supporter tag is nodig.',
+                'locked' => 'User page is locked.',
+                'not_owner' => 'Can only edit own user page.',
+                'require_supporter_tag' => 'Supporter tag is required.',
             ],
         ],
     ],

@@ -20,34 +20,53 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warenhuis',
+        'warehouse' => 'Warehouse',
     ],
 
     'checkout' => [
-        'pay' => 'Afrekenen met Paypal',
-        'delayed_shipping' => 'We zijn momenteel overweldigd met bestellingen! Je kunt nog steeds bestellingen plaatsen maar verwacht dan **een vertraging van 1-2 weken** terwijl wij de bestaande bestellingen verwerken.',
+        'pay' => 'Checkout with Paypal',
+        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
+
+    'discount' => 'save :percent%',
 
     'order' => [
         'item' => [
-            'quantity' => 'Aantal',
+            'display_name' => [
+                'supporter_tag' => ':name for :username (:duration)',
+            ],
+            'quantity' => 'Quantity',
         ],
     ],
 
     'product' => [
-        'name' => 'Naam',
+        'name' => 'Name',
 
         'stock' => [
-            'out' => 'Momenteel niet op voorraad :(. Probeer het later opnieuw.',
-            'out_with_alternative' => 'Dit type is momenteel niet op voorraad :(. Probeer een ander type of probeer het later opnieuw.',
+            'out' => 'Currently out of stock :(. Check back soon.',
+            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
         ],
 
-        'add_to_cart' => 'Voeg toe aan winkelwagen',
-        'notify' => 'Laat me weten wanneer het beschikbaar is!',
+        'add_to_cart' => 'Add to Cart',
+        'notify' => 'Notify me when available!',
 
-        'notification_success' => 'we zullen het je laten weten wanneer het weer op voorraad is. klik :link om te annuleren',
-        'notification_remove_text' => 'hier',
+        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
+        'notification_remove_text' => 'here',
 
-        'notification_in_stock' => 'Dit product is al op voorraad!',
+        'notification_in_stock' => 'This product is already in stock!',
+    ],
+
+    'supporter_tag' => [
+        'require_login' => [
+            '_' => 'You need to be :link to get a supporter tag!',
+            'link_text' => 'logged in',
+        ],
+    ],
+
+    'username_change' => [
+        'require_login' => [
+            '_' => 'You need to be :link to change your name!',
+            'link_text' => 'logged in',
+        ],
     ],
 ];

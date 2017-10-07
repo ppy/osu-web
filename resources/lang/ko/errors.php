@@ -20,16 +20,24 @@
 
 return [
     'codes' => [
-        'http-403' => 'Toegang geweigerd.',
-        'http-401' => 'Log in om verder te gaan.',
+        'http-401' => 'Please login to proceed.',
+        'http-403' => 'Access denied.',
+        'http-429' => 'Too many attempts. Try again later.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
+            'generic' => 'An error occured. Try refreshing the page.',
         ],
     ],
-    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
-    'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
-    'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
-    'unknown' => 'Een onbekende fout trad op.',
+    'beatmaps' => [
+        'invalid_mode' => 'Invalid mode specified.',
+        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
+    ],
+    'beatmapsets' => [
+        'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
+    ],
+    'logged_out' => 'You have been logged out. Please login and retry.',
+    'supporter_only' => 'You must be a supporter to use this feature.',
+    'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
+    'unknown' => 'Unknown error occurred.',
 ];

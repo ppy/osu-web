@@ -19,20 +19,17 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
-    'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
-        'normal' => 'Normal',
-        'large' => 'Large',
+    'show' => [
+        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
+        'languages' => 'Languages',
+        'missing' => 'Requested page could not be found.',
+        'missing_title' => 'Not Found',
+        'missing_translation' => 'Requested page could not be found for currently selected language.',
+        'toc' => 'Contents',
+
+        'edit' => [
+            'link' => 'Show on GitHub',
+            'refresh' => 'Refresh',
+        ],
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
 ];

@@ -21,30 +21,30 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'jo man, wat is er allemaal aan de hand?',
+        'description' => 'whats going on mah dude?',
     ],
 
     'incidents' => [
-        'title' => 'Actieve Incidenten',
-        'automated' => 'geautomatiseerd',
+        'title' => 'Active Incidents',
+        'automated' => 'automated',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Gebruikers in de afgelopen 24 uur',
-            'score' => 'Score Inzendingen in de afgelopen 24 uur',
+            'users' => 'Online Users in the last 24 Hours',
+            'score' => 'Score Submissions in the last 24 Hours',
         ],
-        'current' => 'Momenteel Online Gebruikers',
-        'score' => 'Score Inzendingen per Seconde',
+        'current' => 'Current Online Users',
+        'score' => 'Score Submissions per Second',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recente Incidenten',
+            'title' => 'Recent Incidents',
             'state' => [
-                'resolved' => 'Opgelost',
-                'resolving' => 'Aan het oplossen',
-                'unknown' => 'Onbekend',
+                'resolved' => 'Resolved',
+                'resolving' => 'Resolving',
+                'unknown' => 'Unknown',
             ],
         ],
 
@@ -57,12 +57,12 @@ return [
         ],
 
         'when' => [
-            'today' => 'vandaag',
+            'today' => 'today',
             'week' => 'week',
-            'month' => 'maand',
-            'all_time' => 'altijd',
-            'last_week' => 'afgelopen week',
-            'weeks_ago' => ':count week geleden|:count weken geleden',
+            'month' => 'month',
+            'all_time' => 'all time',
+            'last_week' => 'last week',
+            'weeks_ago' => ':count week ago|:count weeks ago',
         ],
     ],
 ];

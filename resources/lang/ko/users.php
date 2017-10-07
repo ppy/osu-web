@@ -19,152 +19,201 @@
  */
 
 return [
+    'deleted' => '[deleted user]',
+
     'login' => [
-        '_' => 'Inloggen',
-        'username' => 'Gebruikernaam',
-        'password' => 'Wachtwoord',
-        'button' => 'Inloggen',
-        'remember' => 'Onthoud deze computer',
-        'title' => 'Log in om verder te gaan',
-        'failed' => 'Verkeerde login',
-        'register' => 'Heb je geen osu! account? Maak een nieuwe',
-        'forgot' => 'Wachtwoord vergeten?',
+        '_' => 'Sign in',
+        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
+        'username' => 'Username',
+        'password' => 'Password',
+        'button' => 'Sign in',
+        'button_posting' => 'Signing in...',
+        'remember' => 'Remember this computer',
+        'title' => 'Please login to proceed',
+        'failed' => 'Incorrect login',
+        'register' => "Don't have an osu! account? Make a new one",
+        'forgot' => 'Forgotten your password?',
         'beta' => [
-            'main' => 'Beta toegang is alleen voor bepaalde gebruikers.',
-            'small' => '(supporters krijgen binnenkort toegang)',
+            'main' => 'Beta access is currently restricted to privileged users.',
+            'small' => '(supporters will get in soon)',
         ],
 
-        'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+    ],
+    'signup' => [
+        '_' => 'Register',
     ],
     'anonymous' => [
-        'login_link' => 'klik om in te loggen',
-        'username' => 'Gast',
-        'error' => 'Je moet ingelogd zijn om dit te doen.',
+        'login_link' => 'click to login',
+        'username' => 'Guest',
+        'error' => 'You need to be logged in to do this.',
     ],
-    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
+    'logout_confirm' => 'Are you sure you want to log out? :(',
+    'restricted_banner' => [
+        'title' => 'Your account has been restricted!',
+        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+    ],
     'show' => [
-        '404' => 'Gebruiker niet gevonden! ;_;',
-        'age' => ':age jaar oud',
-        'current_location' => 'Momenteel in :location',
-        'first_members' => 'Hier sinds het begin',
+        '404' => 'User not found! ;_;',
+        'age' => ':age years old',
+        'current_location' => 'Currently in :location',
+        'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Werd lid op :date',
-        'lastvisit' => 'Laatst gezien op :date',
-        'missingtext' => 'Je hebt misschien een typfout gemaakt! (of de gebruiker is verbannen)',
+        'joined_at' => 'Joined :date',
+        'lastvisit' => 'Last seen :date',
+        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'origin_age' => ':age',
-        'origin_country' => 'Uit :country',
-        'origin_country_age' => ':age uit :country',
-        'page_description' => 'osu! - Alles wat je ooit over :username wilde weten!',
-        'title' => 'Profiel van :username',
+        'origin_country' => 'From :country',
+        'origin_country_age' => ':age from :country',
+        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'plays_with' => 'Plays with :devices',
+        'title' => ":username's profile",
 
         'edit' => [
             'cover' => [
-                'button' => 'Verander Profiel Cover',
-                'defaults_info' => 'In de toekomst zullen er meer cover opties beschikbaar zijn',
+                'button' => 'Change Profile Cover',
+                'defaults_info' => 'More cover options will be available in the future',
                 'upload' => [
-                    'broken_file' => 'Afbeelding verwerken mislukt. Controleer de geüploade afbeelding en probeer opnieuw.',
-                    'button' => 'Upload afbeelding',
-                    'dropzone' => 'Drop hier om te uploaden',
-                    'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
-                    'size_info' => 'Cover grootte moet 2000x700 zijn',
-                    'too_large' => 'Het geüploade bestand is te groot.',
-                    'unsupported_format' => 'Niet ondersteund formaat.',
+                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
+                    'button' => 'Upload image',
+                    'dropzone' => 'Drop here to upload',
+                    'dropzone_info' => 'You can also drop your image here to upload',
+                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'size_info' => 'Cover size should be 2000x700',
+                    'too_large' => 'Uploaded file is too large.',
+                    'unsupported_format' => 'Unsupported format.',
                 ],
             ],
         ],
         'extra' => [
+            'followers' => '1 follower|:count followers',
+            'unranked' => 'No recent plays',
+
             'achievements' => [
-                'title' => 'Prestaties',
-                'achieved-on' => 'Behaald op :date',
+                'title' => 'Achievements',
+                'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
             ],
             'historical' => [
-                'empty' => 'Geen prestatiegegevens. :(',
+                'empty' => 'No performance records. :(',
                 'most_played' => [
-                    'count' => 'keer gespeeld',
-                    'title' => 'Meest Gespeelde Beatmaps',
+                    'count' => 'times played',
+                    'title' => 'Most Played Beatmaps',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'precisie: :percentage',
-                    'title' => 'Recent gespeeld',
+                    'accuracy' => 'accuracy: :percentage',
+                    'title' => 'Recent Plays (24h)',
                 ],
-                'title' => 'Historisch',
+                'title' => 'Historical',
             ],
             'kudosu' => [
-                'available' => 'Kudosu Beschikbaar',
-                'available_info' => 'Kudosu kunnen omgeruild worden voor kudosu sterren, deze zorgen ervoor dat je beatmap meer aandacht krijgt. Dit is het aantal kudosu dat je nog niet omgeruild hebt.',
-                'recent_entries' => 'Recente Kudosu Geschiedenis',
+                'available' => 'Kudosu Available',
+                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
+                'recent_entries' => 'Recent Kudosu History',
                 'title' => 'Kudosu!',
-                'total' => 'Totaal Aantal Kudosu Verdiend',
-                'total_info' => 'Gebaseerd op hoeveel contributie de gebruiker heeft geleverd aan beatmap moderatie. Zie <a href="'.osu_url('user.kudosu').'">deze pagina</a> voor meer informatie.',
+                'total' => 'Total Kudosu Earned',
+                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => 'Deze gebruiker heeft nog geen kudosu ontvangen!',
+                    'empty' => "This user hasn't received any kudosu!",
+
+                    'beatmap_discussion' => [
+                        'allow_kudosu' => [
+                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                        ],
+
+                        'deny_kudosu' => [
+                            'reset' => 'Denied :amount from modding post :post',
+                        ],
+
+                        'delete' => [
+                            'reset' => 'Lost :amount from modding post deletion of :post',
+                        ],
+
+                        'restore' => [
+                            'give' => 'Received :amount from modding post restoration of :post',
+                        ],
+
+                        'vote' => [
+                            'give' => 'Received :amount from obtaining votes in modding post of :post',
+                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                        ],
+                    ],
 
                     'forum_post' => [
-                        'give' => ':amount ontvangen van :giver voor :post',
-                        'revoke' => 'Kudosu geweigerd door :giver voor :post',
+                        'give' => 'Received :amount from :giver for a post at :post',
+                        'reset' => 'Kudosu reset by :giver for the post :post',
+                        'revoke' => 'Denied kudosu by :giver for the post :post',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'ik!',
+                'title' => 'me!',
             ],
             'medals' => [
-                'title' => 'Medailles',
+                'empty' => "This user hasn't gotten any yet. ;_;",
+                'title' => 'Medals',
             ],
             'recent_activities' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Beste Prestatie',
+                    'title' => 'Best Performance',
                 ],
-                'empty' => 'Nog geen geweldige prestatiegegevens. :(',
+                'empty' => 'No awesome performance records yet. :(',
                 'first' => [
-                    'title' => 'Eerste Ranks',
+                    'title' => 'First Place Ranks',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
-                'weighted_pp' => 'gewogen: :pp (:percentage)',
+                'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
             'beatmaps' => [
                 'title' => 'Beatmaps',
                 'favourite' => [
-                    'title' => 'Favoriete Beatmaps (:count)',
+                    'title' => 'Favourite Beatmaps (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],
-                'none' => 'Nog geen...',
+                'none' => 'None... yet.',
             ],
         ],
         'page' => [
-            'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
-            'edit_big' => 'Bewerk me!',
-            'placeholder' => 'Typ pagina inhoud hier',
-            'restriction_info' => "Je moet een <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
+            'edit_big' => 'Edit me!',
+            'placeholder' => 'Type page content here',
+            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'rank' => [
-            'country' => 'Landelijke rank voor :mode',
-            'global' => 'Globale rank voor :mode',
+            'country' => 'Country rank for :mode',
+            'global' => 'Global rank for :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Precisie',
+            'hit_accuracy' => 'Hit Accuracy',
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
-            'ranked_score' => 'Gerankte Score',
-            'replays_watched_by_others' => 'Replays Gekeken door Anderen',
+            'ranked_score' => 'Ranked Score',
+            'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Totaal Aantal Hits',
-            'total_score' => 'Totaal Aantal Score',
+            'total_hits' => 'Total Hits',
+            'total_score' => 'Total Score',
         ],
     ],
-
+    'status' => [
+        'online' => 'Online',
+        'offline' => 'Offline',
+    ],
+    'store' => [
+        'saved' => 'User created',
+    ],
+    'verify' => [
+        'title' => 'Account Verification',
+    ],
 ];

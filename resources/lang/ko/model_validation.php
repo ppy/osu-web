@@ -19,12 +19,45 @@
  */
 
 return [
-    'required' => ':attribute is nodig.',
+    'not_negative' => ':attribute cannot be negative.',
+    'required' => ':attribute is required.',
+    'wrong_confirmation' => 'Confirmation does not match.',
+
+    'beatmap_discussion_post' => [
+        'first_post' => 'Can not delete starting post.',
+    ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Kan alleen maar stemmen op een feature aanvraag.',
-            'not_enough_feature_votes' => 'Niet genoeg stemmen.',
+            'not_feature_topic' => 'Can only vote a feature request.',
+            'not_enough_feature_votes' => 'Not enough votes.',
         ],
+
+        'poll_vote' => [
+            'invalid' => 'Invalid option specified.',
+        ],
+
+        'topic_poll' => [
+            'duplicate_options' => 'Duplicated option is not allowed.',
+            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
+            'minimum_one_selection' => 'A minimum of one option per user is required.',
+            'minimum_two_options' => 'Need at least two options.',
+            'too_many_options' => 'Exceeded maximum number of allowed options.',
+        ],
+
+        'topic_vote' => [
+            'too_many' => 'Selected more options than allowed.',
+        ],
+    ],
+
+    'user' => [
+        'contains_username' => 'Password may not contain username.',
+        'email_already_used' => 'Email address already used.',
+        'invalid_email' => "Doesn't seem to be an email address.",
+        'too_short' => 'New password is too short.',
+        'weak' => 'Blacklisted password.',
+        'wrong_current_password' => 'Current password is incorrect.',
+        'wrong_email_confirmation' => 'Email confirmation does not match.',
+        'wrong_password_confirmation' => 'Password confirmation does not match.',
     ],
 ];

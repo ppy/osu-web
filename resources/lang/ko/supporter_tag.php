@@ -19,20 +19,12 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
-    'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
-        'normal' => 'Normal',
-        'large' => 'Large',
+    'user_search' => [
+        'searching' => 'searching...',
+        'not_found' => "This user doesn't exist",
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+    'duration' => [
+        'months' => ':length month|:length months|{0}',
+        'years' => ':length year|:length years|{0}',
+    ],
 ];

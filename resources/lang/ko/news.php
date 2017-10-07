@@ -19,37 +19,36 @@
  */
 
 return [
-    'authorizations' => [
-        'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+    'breadcrumbs' => [
+        'news-index' => 'listing',
+        'news-show' => 'post',
+    ],
+
+    'index' => [
+        'title' => 'osu!news',
+
+        'nav' => [
+            'newer' => 'Newer posts',
+            'older' => 'Older posts',
         ],
     ],
 
-    'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
-    ],
+    'show' => [
+        'posted' => 'posted :time',
 
-    'reply' => [
-        'open' => [
-            'guest' => 'Login to Respond',
-            'user' => 'Respond',
+        'nav' => [
+            'newer' => 'Newer post',
+            'older' => 'Older post',
         ],
     ],
 
-    'system' => [
-        'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
-        ],
+    'store' => [
+        'button' => 'Update',
+        'ok' => 'Listing updated.',
     ],
 
-    'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+    'update' => [
+        'button' => 'Update',
+        'ok' => 'Post updated.',
     ],
 ];

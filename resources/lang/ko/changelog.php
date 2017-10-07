@@ -19,20 +19,13 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
-    'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
-        'normal' => 'Normal',
-        'large' => 'Large',
+    'feed_title' => 'feed',
+    'generic' => 'Bug fixes and minor improvements.',
+    'users-online' => '1 user online|:users users online',
+
+    'prefixes' => [
+        'add' => 'addition',
+        'fix' => 'fix',
+        'misc' => 'miscellanous',
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
 ];

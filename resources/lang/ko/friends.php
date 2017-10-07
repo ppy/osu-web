@@ -19,20 +19,18 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
-    'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
-        'normal' => 'Normal',
-        'large' => 'Large',
+    'buttons' => [
+      'add' => 'add friend',
+      'remove' => 'remove friend',
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+
+    'state' => [
+      'friends' => 'friends',
+      'mutual' => 'mutual',
+    ],
+
+    'title' => 'Friends',
+    'title_compact' => 'friends',
+
+    'too_many' => 'Friend limit reached.',
 ];

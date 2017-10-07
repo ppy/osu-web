@@ -19,42 +19,72 @@
  */
 
 return [
+    'confirmation' => 'Are you sure?',
+    'saved' => 'Saved',
+
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' and ',
+        'last_word_connector' => ', and ',
+    ],
+
     'buttons' => [
-        'cancel' => 'Annuleer',
+        'cancel' => 'Cancel',
+        'delete' => 'Delete',
+        'permalink' => 'permalink',
         'post' => 'Post',
-        'reply' => 'Beantwoord',
-        'reset' => 'Herstel',
-        'save' => 'Opslaan',
-        'show_more' => 'toon meer',
+        'reply' => 'Reply',
+        'reset' => 'Reset',
+        'save' => 'Save',
+        'saving' => 'Saving...',
+        'show_more' => 'show more',
+        'upload_image' => 'upload image',
     ],
 
     'count' => [
-        'item' => ':count stuk|:count stuks',
+        'item' => ':count unit|:count units',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
     ],
 
     'device' => [
-        'keyboard' => 'Toetsenbord',
-        'mouse' => 'Muis',
+        'keyboard' => 'Keyboard',
+        'mouse' => 'Mouse',
         'tablet' => 'Tablet',
         'touch' => 'Touch Screen',
     ],
 
     'dropzone' => [
-        'target' => 'laat hier los om te uploaden',
+        'target' => 'drop here to upload',
     ],
 
     'pagination' => [
-        'previous' => 'vorige',
-        'next' => 'volgende',
+        'previous' => 'prev',
+        'next' => 'next',
+    ],
+
+    'score_count' => [
+        'count_100' => '100',
+        'count_300' => '300',
+        'count_50' => '50',
+        'count_geki' => 'MAX',
+        'count_katu' => '200',
+        'count_miss' => 'Miss',
     ],
 
     'time' => [
-        'days_ago' => ':count dag geleden|:count dagen geleden',
-        'hours_ago' => ':count uur geleden|:count uur geleden',
-        'now' => 'nu',
+        'days_ago' => ':count day ago|:count days ago',
+        'hours_ago' => ':count hour ago|:count hours ago',
+        'now' => 'now',
+        'remaining' => 'Time Remaining',
     ],
 
     'title' => [
-        'notice' => 'Notitie',
+        'notice' => 'Notice',
     ],
 ];
