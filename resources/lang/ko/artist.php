@@ -19,30 +19,30 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'osu! 의 주요 아티스트',
+    'title' => '주요 아티스트',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => '아티스트가 현재 감춰져 있습니다',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        '_' => '비트맵',
+        'download' => '비트맵 템플릿 다운로드',
+        'download-na' => '비트맵 템플릿을 아직 다운로드할 수 없습니다',
     ],
 
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => '주요 아티스트는 osu!와 협력하여 osu!의 오리지널 곡을 작업중인 분들입니다. osu!팀은 정말 멋있고 비트맵으로 만들기에 제격인 곡들과 그 아티스트들을 엄선하였습니다. 여기 주요 아티스트중 몇몇은 이미 osu!에서 사용될 고유한 곡을 작곡하기도 했습니다.<br><br>이 곳에 실린 모든 곡들은 비트매핑되지 않은 .osz파일로 제공되며, 공식적으로 osu! 또는 osu!와 관련된 콘텐츠에 사용되도록 허가되었습니다.',
     ],
 
     'links' => [
-        'site' => 'Official Website',
+        'site' => '공식 웹사이트',
     ],
 
     'songs' => [
-        '_' => 'Songs',
+        '_' => '곡',
         'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
+        'exclusive' => 'osu! 고유 곡',
     ],
 ];
