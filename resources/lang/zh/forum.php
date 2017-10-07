@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => '子版块',
     'title' => 'osu! 社区',
-    'slogan' => '节奏跃然指上',
+    'slogan' => '独乐乐不如众乐乐~',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -254,7 +254,7 @@ return [
         ],
 
         'watch' => [
-            'state-0' => '取消订阅！',
+            'state-0' => '已取消订阅！',
             'state-1' => '订阅成功！',
             'watch-0' => '取消订阅',
             'watch-1' => '订阅',

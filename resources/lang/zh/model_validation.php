@@ -19,9 +19,9 @@
  */
 
 return [
-    'not_negative' => '无法否定 :attribute',    
-    'required' => '需要 :attribute.',
-    'wrong_confirmation' => '确认信息不匹配。', //需要上下文,
+    'not_negative' => ':attribute 不能为负数。',    
+    'required' => '需要 :attribute。',
+    'wrong_confirmation' => '确认信息不匹配。',
 
     'beatmap_discussion_post' => [
         'first_post' => '无法删除第一个提交。',
@@ -29,7 +29,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '只能投票给新特性请求。',
+            'not_feature_topic' => '只能给新特性请求投票。',
             'not_enough_feature_votes' => '票数不足。',
         ],
 
@@ -46,7 +46,7 @@ return [
         ],
 
         'topic_vote' => [
-            'too_many' => '选项超出限制。',
+            'too_many' => '选项数量超出限制。',
         ],
     ],
 

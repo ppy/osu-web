@@ -56,7 +56,7 @@ return [
             'red' => '红队',
         ],
         'winner' => ':team 胜利',
-        'difference' => '，高出另一队 :difference 分',
+        'difference' => '，领先 :difference 分',
         'loading-events' => '加载事件...',
         'more-events' => '查看全部...',
         'beatmap-deleted' => '删除谱面',

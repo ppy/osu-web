@@ -21,7 +21,7 @@
 return [
     'error' => [
         'chat' => [
-            'limit_exceeded' => '太快了，喝口水再发？',
+            'limit_exceeded' => '刚刚已经发送过消息了，坐下来，泡杯茶休息会儿吧。',
         ],
     ],
 ];

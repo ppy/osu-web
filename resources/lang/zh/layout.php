@@ -82,7 +82,7 @@ return [
             'tournaments' => '锦标赛',
             'tournaments-index' => '锦标赛',
             'tournaments-show' => '锦标赛信息',
-            'forum-topic-watches-index' => '捐赠',
+            'forum-topic-watches-index' => '订阅',
             'forum-topics-create' => '论坛',
             'forum-topics-show' => '论坛',
             'forum-forums-index' => '论坛',
@@ -98,7 +98,7 @@ return [
             '403' => '拒绝访问',
             '401' => '权限不足',
             '405' => '资源被禁止',
-            '500' => '严重错误',
+            '500' => '内部错误',
             '503' => '维护中',
         ],
         'user' => [
@@ -152,7 +152,7 @@ return [
 
     'footer' => [
         'general' => [
-            '_' => '网站地图', //可能不准确
+            '_' => '网站地图',
             'home' => '主页',
             'changelog' => '更新日志',
             'beatmaps' => '谱面列表',
@@ -220,7 +220,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '以防万一，您可以将这里的代码发给我们！',
+        'reference' => '以防万一，你可以将这里的代码发给我们！',
     ],
 
     'popup_login' => [

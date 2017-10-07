@@ -23,7 +23,7 @@ return [
         'update' => [
             'null_user' => '编辑前请先登录。',
             'system_generated' => '无法编辑系统回复。',
-            'wrong_user' => '只有作者能编辑。',
+            'wrong_user' => '只有作者可以编辑。',
         ],
     ],
 
@@ -41,8 +41,8 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => '被 :user 标记为已解决',
-            'false' => '被 :user 打回',
+            'true' => '被 :user 标记为 “已解决”',
+            'false' => '被 :user 标记为 “未解决”',
         ],
     ],
 

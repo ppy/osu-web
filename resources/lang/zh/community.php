@@ -22,7 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '喜欢 osu 吗！？<br/>
+            'big_description' => '喜欢 osu! 吗！？<br/>
                                 那就支持 osu! 开发者吧 (￣3￣)',
             'small_description' => '',
             'support_button' => '我想支持 osu!',
@@ -36,13 +36,13 @@ return [
             也包括继续支持 osu! 的所有人 :)。',
 
         'why_support' => [
-            'title' => '为什么我应该支持 osu! 呢？',
+            'title' => '为啥支持这个游戏？',
             'blocks' => [
-                'dev' => '开发和维护主要是一个澳大利亚人在负责', //可能不准确
-                'time' => '运行它的消耗已经不能称得上“兴趣”了',
+                'dev' => 'osu! 最初是 ppy 个人开发和维护的',
+                'time' => '运营它的成本和投入的精力已经超过了“兴趣”本身',
                 'ads' => '无广告 <br/><br/>
                         不像 99.95% 的网站，我们不推送广告，也没有从中获利。',
-                'goodies' => '解锁更多新功能！', //可能不准确
+                'goodies' => '解锁更多高级功能！',
             ],
         ],
 
@@ -50,17 +50,17 @@ return [
             'title' => '我能得到什么？',
             'osu_direct' => [
                 'title' => 'osu!direct', //不翻译
-                'description' => '不离开游戏进行谱面的搜索和下载。',
+                'description' => '在游戏客户端内搜索和下载谱面。',
             ],
 
             'auto_downloads' => [
                 'title' => '自动下载',
-                'description' => '在必要状态下（多人游戏、观看他人进行游戏、点击聊天中的谱面链接等）没有谱面时，osu! 会自动下载！',
+                'description' => '本地没有需要的谱面时，osu! 会自动下载！',
             ],
 
-            'upload_more' => [ //TODO 需要帮助
+            'upload_more' => [
                 'title' => '上传更多谱面',
-                'description' => '每个 Ranked 谱面集的 Pending 谱面上限增加到10张。',
+                'description' => '谱面集中 Pending 谱面上限增加到 10 张。',
             ],
 
             'early_access' => [
@@ -69,18 +69,18 @@ return [
             ],
 
             'customisation' => [
-                'title' => '自定义',
-                'description' => '自定义个人资料。',
+                'title' => '多彩的资料',
+                'description' => '自定义个人资料页。',
             ],
 
             'beatmap_filters' => [
                 'title' => '谱面筛选器',
-                'description' => '更多角度的去筛选谱面。', //可能不准确
+                'description' => '更多角度的去筛选谱面。',
             ],
 
             'yellow_fellow' => [
                 'title' => '高亮用户名',
-                'description' => '聊天时，黄色用户名会被加亮。',
+                'description' => '聊天时，用户名会变成亮黄色。',
             ],
 
             'speedy_downloads' => [
@@ -90,12 +90,12 @@ return [
 
             'change_username' => [
                 'title' => '修改用户名',
-                'description' => '修改用户名而不需要支付费用（最多 1 次）',
+                'description' => '修改用户名而不需要支付费用（最多 1 次）。',
             ],
 
             'skinnables' => [
                 'title' => '更多的定制',
-                'description' => '改变更多的游戏界面，例如主菜单的背景。',
+                'description' => '自定义更多的游戏界面元素，例如主菜单的背景。',
             ],
 
             'feature_votes' => [
@@ -108,9 +108,9 @@ return [
                 'description' => '新添加：在游戏中按 国家/好友/所选MOD 进行排名。',
             ],
 
-            'feel_special' => [ //TODO 需要帮助
-                'title' => '感到自豪',
-                'description' => '为帮助 osu! 顺利运行而自豪！',
+            'feel_special' => [
+                'title' => '满足感',
+                'description' => '对 “帮助 osu! 继续运营” 感到满足！',
             ],
 
             'more_to_come' => [

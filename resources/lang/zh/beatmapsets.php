@@ -20,9 +20,9 @@
 
 return [
     'availability' => [
-        'disabled' => '这张谱面现在不能下载。',
-        'parts-removed' => '由于作者/第三方版权持有者的要求，这张谱面已经被移除。',
-        'more-info' => '点击这里获得更多信息。',
+        'disabled' => '该谱面无法下载。',
+        'parts-removed' => '由于作者/第三方版权持有者的要求，这张谱面已经下架。',
+        'more-info' => '点击这里查看更多信息。',
     ],
 
     'index' => [
@@ -33,7 +33,7 @@ return [
     'show' => [
         'discussion' => '讨论',
 
-        'details' => [ //TODO 需要帮助
+        'details' => [
             'made-by' => '作者: ',
             'submitted' => '提交于 ',
             'updated' => '上次更新于 ',
@@ -82,7 +82,7 @@ return [
             'global' => '全球排名',
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
-            'title' => '分数板',
+            'title' => '排行榜',
 
             'list' => [
                 'accuracy' => '准确率',
@@ -91,9 +91,9 @@ return [
                 'score' => '得分',
             ],
             'no_scores' => [
-                'country' => '国内还没有人在这张谱面上得分！',
-                'friend' => '您的好友中还没有人在这张谱面上得分！',
-                'global' => '还没有人在这张谱面上得分，或许您可以试一试？',
+                'country' => '还没有玩家上传过成绩！',
+                'friend' => '还没有好友上传成绩！',
+                'global' => '还没有玩家上传过成绩，来玩一把？',
                 'loading' => '加载分数中...',
                 'unranked' => 'Unranked 谱面',
             ],

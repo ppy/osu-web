@@ -33,10 +33,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '请联系帮助团队以找回账户',
+        'contact_support' => '请联系支持团队以找回账户',
         'is_privileged' => '联系 peppy（笑）',
         'missing_key' => '必填',
-        'too_many_tries' => '尝试次数过多',
+        'too_many_tries' => '重试次数过多',
         'user_not_found' => '请求的用户不存在',
         'wrong_key' => '不正确的验证码',
     ],

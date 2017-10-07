@@ -31,7 +31,7 @@ return [
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
-        'register' => '没有 osu! 账户？现在注册一个吧',
+        'register' => '没有 osu! 账户？现在就注册一个！',
         'forgot' => '忘记密码？',
         'beta' => [ //已弃用(?)
             'main' => 'Beta 仅限于特定用户访问',
@@ -48,16 +48,16 @@ return [
         'username' => '游客',
         'error' => '请先登录',
     ],
-    'logout_confirm' => '你确定要退出吗？(^·ω·^ )',
+    'logout_confirm' => '确定要退出吗？o(TヘTo)',
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
-        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系客服</a>.',
+        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
     ],
     'show' => [
         '404' => '找不到指定的用户',
         'age' => ':age 岁',
         'current_location' => '位于 :location',
-        'first_members' => '从古到今',
+        'first_members' => '从最初到现在',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',
@@ -163,7 +163,7 @@ return [
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => '最佳成绩',
+                    'title' => '最好成绩',
                 ],
                 'empty' => '还没有上传过成绩。 :(',
                 'first' => [
@@ -199,7 +199,7 @@ return [
             'level' => '等级 :level',
             'maximum_combo' => '最大连击',
             'play_count' => '游玩次数',
-            'ranked_score' => 'Ranked 谱面总分', //Ranked不翻译
+            'ranked_score' => 'Ranked 谱面总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
             'total_hits' => '总命中次数',

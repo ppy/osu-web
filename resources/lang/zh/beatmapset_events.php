@@ -26,7 +26,7 @@ return [
         'discussion_post_restore' => '管理员在 :discussion 中恢复了这条回复',
         'discussion_restore' => '管理员恢复了 :discussion.',
         'disqualify' => '该谱面因为 :text 被 DQ',
-        'issue_reopen' => '已解决的 :discussion 被打回',
+        'issue_reopen' => '问题 :discussion 被标记为 “未解决”',
         'issue_resolve' => '问题 :discussion 被标记为 “已解决”',
         'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
         'kudosu_deny' => 'Discussion :discussion denied for kudosu.',

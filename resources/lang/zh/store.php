@@ -25,7 +25,7 @@ return [
 
     'checkout' => [
         'pay' => '使用 Paypal 支付',
-        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以您的订单**可能会有1-2天的延迟**。',
+        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
     ],
 
     'discount' => '节省 :percent%',
@@ -50,10 +50,10 @@ return [
         'add_to_cart' => '添加到购物车',
         'notify' => '当可以购买时提醒我！',
 
-        'notification_success' => '当我们进货时会收到提醒，点击 :link 以取消该提醒',
+        'notification_success' => '当商品有货时会收到提醒，点击 :link 以取消该提醒',
         'notification_remove_text' => '这里',
 
-        'notification_in_stock' => '新货到，快来购买吧！',
+        'notification_in_stock' => '新货到，快来买买买！',
     ],
 
     'supporter_tag' => [

@@ -38,11 +38,11 @@ return [
         'deny_kudosu' => '收回 kudosu',
         'edit' => '编辑',
         'edited' => '最后由 :editor 于 :update_time 编辑',
-        'message_placeholder' => '在这输入您的内容',
+        'message_placeholder' => '在此处输入您的内容',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
-        'reply_placeholder' => '在这输入您的回复',
-        'require-login' => '请先登录再发表',
+        'reply_placeholder' => '在此处输入您的回复',
+        'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'title' => '讨论',
@@ -58,8 +58,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '这个信息将提交到整个谱面讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。', //可能不准确
-            'in_timeline' => '需要 Mod 多处，请标记每一个时间戳填写意见并发表。',
+            'in_general' => '这个信息将提交到整个谱面讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。',
+            'in_timeline' => '需要 Mod 多处，请在每一个时间戳后写下意见并发表。',
         ],
 
         'message_type' => [
