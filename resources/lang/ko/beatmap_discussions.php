@@ -41,8 +41,8 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => ':user님이 의논을 결정했습니다',
-            'false' => ':user님이 의논을 재개했습니다',
+            'true' => ':user님이 토론 결과를 결정했습니다',
+            'false' => ':user님이 토론을 재개했습니다',
         ],
     ],
 
