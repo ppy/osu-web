@@ -21,40 +21,40 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Failed saving post',
+            'error' => '답글을 저장하는데 실패했습니다',
         ],
     ],
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Failed updating vote',
+            'error' => '투표를 변경하는데 실패했습니다',
         ],
     ],
 
     'discussions' => [
-        'allow_kudosu' => 'allow kudosu',
-        'delete' => 'delete',
-        'deleted' => 'Deleted by :editor :delete_time',
-        'deny_kudosu' => 'deny kudosu',
-        'edit' => 'edit',
-        'edited' => 'Last edited by :editor :update_time',
-        'message_placeholder' => 'Type here to post',
-        'message_type_select' => 'Select Comment Type',
-        'reply_notice' => 'Press enter to submit.',
-        'reply_placeholder' => 'Type your response here',
-        'require-login' => 'Please login to post or reply',
-        'resolved' => 'Resolved',
-        'restore' => 'restore',
-        'title' => 'Discussions',
+        'allow_kudosu' => 'kudosu 승인',
+        'delete' => '삭제',
+        'deleted' => ':delete_time에 :editor님에 의해 삭제되었습니다',
+        'deny_kudosu' => 'kudosu 거절',
+        'edit' => '편집',
+        'edited' => ':update_time에 :editor님에 의해 마지막으로 수정됨',
+        'message_placeholder' => '게시할 답글의 내용을 입력하세요.',
+        'message_type_select' => '게시할 답글의 형식을 선택하세요',
+        'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
+        'reply_placeholder' => '보내실 답변의 내용을 입력하세요.',
+        'require-login' => '답글을 올리려면 로그인해 주세요',
+        'resolved' => '결정됨', // Resolved, 해결됨이 적절할 수 있으나, 비트맵 토론에 관련된 내용이므로 결정으로 표현
+        'restore' => '복구됨',
+        'title' => '토론',
 
         'collapse' => [
-            'all-collapse' => 'Collapse all',
-            'all-expand' => 'Expand all',
+            'all-collapse' => '모두 축소하기', // Collapse All, 스포일러 박스와 관련된 기능으로 추정됨
+            'all-expand' => '모두 확대하기', // Expand All
         ],
 
         'empty' => [
-            'empty' => 'No discussions yet!',
-            'hidden' => 'No discussion matches selected filter.',
+            'empty' => '아직 토론이 아무것도 없습니다!',
+            'hidden' => '검색 결과에 해당하는 토론이 없습니다.',
         ],
 
         'message_hint' => [
@@ -63,9 +63,9 @@ return [
         ],
 
         'message_type' => [
-            'praise' => 'Praise',
-            'problem' => 'Problem',
-            'suggestion' => 'Suggestion',
+            'praise' => '칭찬',
+            'problem' => '문제',
+            'suggestion' => '제안',
         ],
 
         'mode' => [
@@ -76,9 +76,9 @@ return [
         ],
 
         'new' => [
-            'timestamp' => 'Timestamp',
-            'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
-            'title' => 'New Discussion',
+            'timestamp' => '타임스탬프',
+            'timestamp_missing' => '비트맵 편집 모드에서 Ctrl-C를 눌러 복사하고 이 곳에 붙여넣어 타임스탬프를 추가할 수 있습니다!',
+            'title' => '새 토론',
         ],
 
         'show' => [
@@ -184,22 +184,22 @@ return [
         'NM' => 'No mods',
     ],
     'language' => [
-        'any' => 'Any',
-        'english' => 'English',
-        'chinese' => 'Chinese',
-        'french' => 'French',
-        'german' => 'German',
-        'italian' => 'Italian',
-        'japanese' => 'Japanese',
-        'korean' => 'Korean',
-        'spanish' => 'Spanish',
-        'swedish' => 'Swedish',
-        'instrumental' => 'Instrumental',
-        'other' => 'Other',
+        'any' => '모두',
+        'english' => '영어',
+        'chinese' => '중국어',
+        'french' => '프랑스어',
+        'german' => '독일어',
+        'italian' => '이탈리아어',
+        'japanese' => '일본어',
+        'korean' => '한국어',
+        'spanish' => '스페인어',
+        'swedish' => '스웨덴어',
+        'instrumental' => '가사 없음',
+        'other' => '기타',
     ],
     'extra' => [
-        'video' => 'Has Video',
-        'storyboard' => 'Has Storyboard',
+        'video' => '비디오 있음',
+        'storyboard' => '스토리보드 있음',
     ],
     'rank' => [
         'any' => 'Any',
