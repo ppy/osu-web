@@ -21,25 +21,25 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => 'READ THIS BEFORE DOWNLOADING',
+            'important' => '[[ 다운로드 하기 전에 읽어주세요 ]]',
             'instruction' => [
-                '_' => "Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
-                    All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
-                    :scary extract the zip's/osz's yourself,
-                    or the beatmaps will display incorrectly in osu and will not function properly.",
-                'scary' => 'Do NOT',
+                '_' => "설치 방법: 맵팩 다운로드가 끝나면, .rar 파일안의 내용물을 osu!의 Songs폴더에 압축 해제합니다.
+                    맵팩에 동봉된 모든 곡들은 .zip 또는 .osz로 압축된 상태입니다. 따라서, 플레이하기 전에 osu! 프로그램이 이 비트맵들을 압축 해제할 필요가 있습니다.
+                    :scary 여러분이 직접 압축을 풀지 마세요. 직접 풀게되면,
+                    osu! 프로그램이 이를 비정상적으로 받아들이고 제대로 작동하지 않을 수 있습니다.",
+                'scary' => '절대',
             ],
             'note' => [
-                '_' => 'Also note that it is highly recommended to :scary, since the oldest maps are of much lower quality than most recent maps.',
-                'scary' => 'download the packs from latest to earliest',
+                '_' => '또한, 저희는 :scary을 강력히 추천합니다. 정말 오래된 맵들은 요즘 나온 맵보다 질적으로 떨어질 수 있으니까요.',
+                'scary' => '최신 맵팩부터 다운로드 하는것',
             ],
         ],
-        'title' => 'Beatmap Packs',
-        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
+        'title' => '비트맵 팩',
+        'description' => 'Pre-packaged collections of beatmaps based around a common theme.', // 공통된 주제를 기준으로 가포장된 모음집. (부드러운 번역 필요)
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => '다운로드',
         'item' => [
             'cleared' => 'cleared',
             'not_cleared' => 'not cleared',
@@ -47,14 +47,14 @@ return [
     ],
 
     'mode' => [
-        'artist' => 'Artist/Album',
-        'chart' => 'Chart',
-        'standard' => 'Standard',
-        'theme' => 'Theme',
+        'artist' => '가수/앨범별',
+        'chart' => '차트별',
+        'standard' => '표준',
+        'theme' => '테마별',
     ],
 
     'require_login' => [
-        '_' => 'You need to be :link to download',
-        'link_text' => 'logged in',
+        '_' => '다운로드하려면 :link하셔야 합니다',
+        'link_text' => '로그인',
     ],
 ];
