@@ -21,21 +21,21 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => '로그인하셔야 수정하실 수 있습니다.',
+            'system_generated' => '시스템에서 자동으로 만든 답글은 수정할 수 없습니다.',
+            'wrong_user' => '답글을 쓴 사람만 수정할 수 있습니다.',
         ],
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => 'None of the posts address my concern', // None of the posts address my concern
+        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.', // There are posts around :timestamp (:existing_timestamps). Please check them before posting.
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
-            'user' => 'Respond',
+            'guest' => '답글을 올리려면 로그인하세요', // Login to respond
+            'user' => '답글달기', // Respond
         ],
     ],
 
@@ -47,9 +47,9 @@ return [
     ],
 
     'user' => [
-        'admin' => 'admin',
-        'bng' => 'nominator',
-        'owner' => 'mapper',
-        'qat' => 'qat',
+        'admin' => '관리자',
+        'bng' => '노미네이터', // nominator
+        'owner' => '매퍼', // mapper
+        'qat' => 'QAT', // QAT
     ],
 ];
