@@ -28,21 +28,21 @@ return [
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern', // None of the posts address my concern
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.', // There are posts around :timestamp (:existing_timestamps). Please check them before posting.
+        'confirm' => '새로 달린 답글이 없습니다', // None of the posts address my concern
+        'notice' => ':timestamp (:existing_timestamps)에 달린 답글이 있습니다. 포스팅하기 전에 한 번 확인해보세요.', // There are posts around :timestamp (:existing_timestamps). Please check them before posting.
     ],
 
     'reply' => [
         'open' => [
-            'guest' => '답글을 올리려면 로그인하세요', // Login to respond
+            'guest' => '답글을 달려면 로그인하세요', // Login to respond
             'user' => '답글달기', // Respond
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => ':user님이 의논을 결정했습니다',
+            'false' => ':user님이 의논을 재개했습니다',
         ],
     ],
 
