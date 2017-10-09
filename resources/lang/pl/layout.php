@@ -154,7 +154,7 @@ return [
         'general' => [
             '_' => 'Główne',
             'home' => 'Strona główna',
-            'changelog' => 'Zmiany',
+            'changelog-index' => 'Zmiany',
             'beatmaps' => 'Beatmapy',
             'download' => 'Pobierz osu!',
             'wiki' => 'Wiki',
