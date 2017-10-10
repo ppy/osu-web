@@ -169,7 +169,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDownload', $beatmapset)->ensureCan();
 
         $noVideo = get_bool(Request::input('noVideo', false));
-        $mirror = BeatmapMirror::getRandomForRegion(Request::header('CF_IPCOUNTRY'));
+        $mirror = BeatmapMirror::getRandomForRegion(request_country(request()));
 
         BeatmapDownload::create([
             'user_id' => Auth::user()->user_id,

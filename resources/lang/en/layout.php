@@ -154,7 +154,7 @@ return [
         'general' => [
             '_' => 'General',
             'home' => 'Home',
-            'changelog' => 'Changelog',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Beatmap Listings',
             'download' => 'Download osu!',
             'wiki' => 'Wiki',
