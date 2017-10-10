@@ -19,13 +19,13 @@
 overlay = document.getElementsByClassName 'js-loading-overlay'
 
 
-showImmediate = ->
+show = ->
   return if overlay.length == 0
 
   overlay[0].classList.add 'loading-overlay--visible'
 
 
-show = _.debounce showImmediate, 5000, maxWait: 5000
+show = _.debounce show, 5000, maxWait: 5000
 
 
 hide = ->
@@ -37,5 +37,4 @@ hide = ->
 
 @LoadingOverlay =
   show: show
-  showImmediate: showImmediate
   hide: hide

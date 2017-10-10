@@ -76,7 +76,8 @@ export class StoreCheckout
       if provider?
         traps[provider] = new Promise (resolve, reject) ->
           $(button).on 'click.trap', (event) ->
-            LoadingOverlay.showImmediate()
+            LoadingOverlay.show()
+            LoadingOverlay.show.flush()
             resolve(event.target.dataset)
 
     traps
