@@ -63,8 +63,9 @@ class PaypalCreatePayment
 
     public function getApprovalLink()
     {
+        $context = PaypalApiContext::get();
+
         try {
-            $context = PaypalApiContext::get();
             $this->payment->create($context);
 
             return $this->payment->getApprovalLink();

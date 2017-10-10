@@ -59,31 +59,31 @@ class PaypalExecutePayment
     public function run()
     {
         return DB::connection('mysql-store')->transaction(function () {
+            $context = PaypalApiContext::get();
+
+            // prevent concurrent updates
+            $order = $this->order->lockSelf();
+            if ($order->status !== 'incart') {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` in wrong state: `{$order->status}`"
+                );
+            }
+
             try {
-                $context = PaypalApiContext::get();
-
-                // prevent concurrent updates
-                $order = $this->order->lockSelf();
-                if ($order->status !== 'incart') {
-                    throw new InvalidOrderStateException(
-                        "`Order {$order->order_id}` in wrong state: `{$order->status}`"
-                    );
-                }
-
                 // Tell Paypal to complete the transaction so we can finally clear the cart.
                 $payment = Payment::get($this->params['paymentId'], $context);
                 $result = $payment->execute($this->execution, $context);
-
-                $order->status = 'checkout';
-                $order->saveOrExplode();
-
-                return $result;
             } catch (PayPalConnectionException $e) {
                 \Log::error($e->getData());
                 // TODO: get more context data
                 $this->notifyError($e, $this->order);
                 throw $e;
             }
+
+            $order->status = 'checkout';
+            $order->saveOrExplode();
+
+            return $result;
         });
     }
 
