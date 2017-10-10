@@ -214,6 +214,29 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertTrue($donor->osu_subscriber);
     }
 
+    public function testDonateSupporterTagAfterExpired()
+    {
+        $today = Carbon::today();
+
+        $donor = $this->user;
+        $donor->update([
+            'osu_subscriber' => true,
+            'osu_subscriptionexpiry' => $today->copy()->subYears(1),
+        ]);
+
+        $expectedExpiry = $today->copy()->addMonthsNoOverflow(1);
+        $this->createDonationOrderItem($this->order, $this->user, false, false);
+
+        $fulfiller = new SupporterTagFulfillment($this->order);
+        $fulfiller->run();
+
+        $donor->refresh();
+        $this->assertTrue($donor->osu_subscriber);
+        $this->assertEquals($expectedExpiry, $donor->osu_subscriptionexpiry);
+        $this->assertEquals(2, $donor->osu_featurevotes);
+    }
+
+
     private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)
     {
         $orderItem = $this->createOrderItem($giftee, 1, 4);

@@ -141,7 +141,10 @@ class ApplySupporterTag extends OrderItemFulfillment
 
     private function applySubscription()
     {
-        $old = $this->target->osu_subscriptionexpiry ?? Carbon::now();
+        // start fresh if was an existing subscriber and expired.
+        // null < $now = true.
+        $now = Carbon::now();
+        $old = $this->target->osu_subscriptionexpiry < $now ? $now : $this->target->osu_subscriptionexpiry;
         $this->target->osu_subscriptionexpiry = $old->addMonthsNoOverflow($this->duration);
         $this->target->osu_subscriber = true;
     }
