@@ -34,7 +34,7 @@ export class StoreCheckout
       switch provider
         when 'paypal' then init['paypal'] = Promise.resolve()
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
-        when 'centili' then  init['centili'] = StoreCentili.promiseInit()
+        when 'centili' then init['centili'] = StoreCentili.promiseInit()
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) ->
       promiseAll = (provider) ->
@@ -55,11 +55,12 @@ export class StoreCheckout
                   promiseAll(provider).then (values) ->
                     LoadingOverlay.hide()
                     # fake a click for Centili
-                    $('#c-mobile-payment-widget').click()
+                    StoreCentili.fakeClick()
                 else
                   Promise.resolve()
 
       promise.catch (error) ->
+        console.error(error)
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
         # TODO: handle error.message

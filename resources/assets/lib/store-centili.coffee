@@ -17,6 +17,8 @@
 ###
 
 export class StoreCentili
+  widget = '#c-mobile-payment-widget'
+
   @promiseInit: ->
     # Load Centili scripts and css async.
     Promise.all([
@@ -37,8 +39,9 @@ export class StoreCentili
       link.type = 'text/css'
       link.href = "https://www.centili.com/widget/#{name}"
       link.media = 'screen'
-      link.addEventListener 'load', ->
-        resolve()
-      , false
+      link.addEventListener 'load', resolve, false
 
       document.body.appendChild(link)
+
+  @fakeClick: ->
+    window.centiliJQuery && window.centiliJQuery(widget).trigger('click')
