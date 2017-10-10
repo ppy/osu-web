@@ -32,6 +32,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'friends',
         'page',
         'recentActivities',
+        'mostPlayedBeatmapsetCount',
         'rankedAndApprovedBeatmapsetCount',
         'favouriteBeatmapsetCount',
         'disqus_auth',
@@ -133,6 +134,20 @@ class UserTransformer extends Fractal\TransformerAbstract
             $user->events()->recent()->get(),
             new EventTransformer()
         );
+    }
+
+    public function includeMostPlayedBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->beatmapPlaycounts()
+                    ->with('beatmap.beatmapset')
+                    ->has('beatmap')
+                    ->whereHas('beatmap', function ($query) {
+                        $query->has('beatmapset');
+                    })->count(),
+            ];
+        });
     }
 
     public function includeRankedAndApprovedBeatmapsetCount(User $user)

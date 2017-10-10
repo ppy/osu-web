@@ -183,6 +183,7 @@ class UsersController extends Controller
                 'followerCount',
                 'page',
                 'recentActivities',
+                'mostPlayedBeatmapsetCount',
                 'rankedAndApprovedBeatmapsetCount',
                 'favouriteBeatmapsetCount',
             ]

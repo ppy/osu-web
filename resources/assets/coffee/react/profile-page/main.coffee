@@ -159,6 +159,8 @@ class ProfilePage.Main extends React.PureComponent
       historical:
         props:
           beatmapPlaycounts: @state.beatmapPlaycounts
+          counts:
+            mostPlayedBeatmapsets: @state.user.mostPlayedBeatmapsetCount[0]
           scoresRecent: @state.scoresRecent
           user: @state.user
           currentMode: @state.currentMode
