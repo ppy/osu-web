@@ -123,31 +123,31 @@ return [
 
                     'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
                         'allow_kudosu' => [
-                            'give' => '因讨论帖 :post的 kudosu 移除操作的撤销而获得 :amount',
+                            'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '在讨论帖 :post中被移除 :amount',
+                            'reset' => '在讨论帖 :post 中被移除 :amount',
                         ],
 
                         'delete' => [
-                            'reset' => '因讨论帖 :post被删除而失去 :amount',
+                            'reset' => '因讨论帖 :post 被删除而失去 :amount',
                         ],
 
                         'restore' => [
-                            'give' => '因讨论帖 :post被恢复而获得 :amount',
+                            'give' => '因讨论帖 :post 被恢复而获得 :amount',
                         ],
 
                         'vote' => [
-                            'give' => '因在讨论帖 :post中得到了足够票数而获得 :amount',
-                            'reset' => '因在讨论帖 :post中丢失了票数而失去 :amount',
+                            'give' => '因在讨论帖 :post 中得到了足够票数而获得 :amount',
+                            'reset' => '因在讨论帖 :post 中丢失了票数而失去 :amount',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => '在帖子 :post中被 :giver给予 :amount',
-                        'reset' => '在帖子 :post中被 :giver重置 kudosu ',
-                        'revoke' => '在帖子 :post中被 :giver移除 kudosu ',
+                        'give' => '在帖子 :post 中被 :giver 给予 :amount ',
+                        'reset' => '在帖子 :post 中被 :giver 重置 kudosu ',
+                        'revoke' => '在帖子 :post 中被 :giver 移除 kudosu ',
                     ],
                 ],
             ],
