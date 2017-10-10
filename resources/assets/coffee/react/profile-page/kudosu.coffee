@@ -73,7 +73,7 @@ class ProfilePage.Kudosu extends React.Component
                 collection: @props.recentlyReceivedKudosu
                 propertyName: 'recentlyReceivedKudosu'
                 pagination: @props.pagination['recentlyReceivedKudosu']
-                maxResults: Math.min @props.count, 100
+                maxResults: @props.count
                 route: laroute.route 'users.kudosu', user: @props.user.id
 
         else

@@ -50,7 +50,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
                   collection: beatmapsets
                   propertyName: section
                   pagination: @props.pagination[section]
-                  maxResults: Math.min @props.counts[section], 100
+                  maxResults: @props.counts[section]
                   perPage: 6
                   route: laroute.route 'users.beatmapsets',
                     user: @props.user.id
