@@ -21,7 +21,6 @@ class @Polyfills
     @customEvent()
     @localStorage()
     @mathTrunc()
-    @forEach()
 
 
   # For IE9+.
@@ -61,12 +60,3 @@ class @Polyfills
   mathTrunc: ->
     Math.trunc ?= (x) ->
       x - x % 1
-
-  # For IE.
-  # Reference: https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
-  forEach: ->
-    if window.NodeList && !NodeList.prototype.forEach
-      NodeList.prototype.forEach = (callback, thisArg) ->
-        thisArg = thisArg || window
-        for value, index in @
-          callback.call(thisArg, value, index, @)

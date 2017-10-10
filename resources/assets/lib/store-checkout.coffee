@@ -27,7 +27,8 @@ export class StoreCheckout
     traps = @allTraps()
     # load scripts
     init = {}
-    document.querySelectorAll(@CHECKOUT_SELECTOR).forEach (element) ->
+
+    for element in document.querySelectorAll(@CHECKOUT_SELECTOR)
       provider = element.dataset.provider
       orderNumber = element.dataset.orderNumber
       switch provider
