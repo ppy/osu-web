@@ -73,11 +73,10 @@ export class StoreCheckout
     buttons = document.querySelectorAll(@CHECKOUT_SELECTOR)
     for button in buttons
       provider = button.dataset.provider
-      traps[provider] = DeferrablePromise() if provider?
-
-    $(buttons).on 'click.trap', (event) ->
-      LoadingOverlay.showImmediate()
-      dataset = event.target.dataset
-      traps[dataset.provider].resolve(dataset)
+      if provider?
+        traps[provider] = new Promise (resolve, reject) ->
+          $(button).on 'click.trap', (event) ->
+            LoadingOverlay.showImmediate()
+            resolve(event.target.dataset)
 
     traps

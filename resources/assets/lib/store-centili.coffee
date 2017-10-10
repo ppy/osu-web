@@ -27,8 +27,7 @@ export class StoreCentili
 
   @fetchScript: (name) ->
     new Promise (resolve, reject) ->
-      loading = window.turbolinksReload.load "https://www.centili.com/widget/js/#{name}", ->
-        resolve()
+      loading = window.turbolinksReload.load "https://www.centili.com/widget/js/#{name}", resolve
       resolve() unless loading
 
   @fetchStyle: (name) ->
