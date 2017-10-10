@@ -182,6 +182,12 @@ return [
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],
+                'unranked' => [
+                    'title' => 'Pending Beatmaps (:count)',
+                ],
+                'graveyard' => [
+                    'title' => 'Graveyarded Beatmaps (:count)'
+                ],
                 'none' => 'None... yet.',
             ],
         ],

@@ -1325,6 +1325,20 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->with('beatmaps');
     }
 
+    public function profileBeatmapsetsUnranked()
+    {
+        return $this->beatmapsets()
+            ->unranked()
+            ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetsGraveyard()
+    {
+        return $this->beatmapsets()
+            ->graveyard()
+            ->with('beatmaps');
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();

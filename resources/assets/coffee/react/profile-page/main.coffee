@@ -57,6 +57,8 @@ class ProfilePage.Main extends React.PureComponent
       beatmapPlaycounts: @props.beatmapsets.most_played
       favouriteBeatmapsets: @props.beatmapsets.favourite
       rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
+      unrankedBeatmapsets: @props.beatmapsets.unranked
+      graveyardBeatmapsets: @props.beatmapsets.graveyard
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
@@ -142,9 +144,13 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           favouriteBeatmapsets: @state.favouriteBeatmapsets
           rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          unrankedBeatmapsets: @state.unrankedBeatmapsets
+          graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
             favouriteBeatmapsets: @state.user.favouriteBeatmapsetCount[0]
             rankedAndApprovedBeatmapsets: @state.user.rankedAndApprovedBeatmapsetCount[0]
+            unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
+            graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
           pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 

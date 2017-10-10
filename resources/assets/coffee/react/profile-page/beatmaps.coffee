@@ -24,6 +24,12 @@ class ProfilePage.Beatmaps extends React.PureComponent
     allBeatmapsets =
       favouriteBeatmapsets: @props.favouriteBeatmapsets
       rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
+      unrankedBeatmapsets: @props.unrankedBeatmapsets
+      graveyardBeatmapsets: @props.graveyardBeatmapsets
+
+    perPage =
+      unrankedBeatmapsets: 4
+      graveyardBeatmapsets: 2
 
     div
       className: 'page-extra'
@@ -50,7 +56,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
                   collection: beatmapsets
                   propertyName: section
                   pagination: @props.pagination[section]
-                  perPage: 6
+                  perPage: perPage[section] ? 6
                   route: laroute.route 'users.beatmapsets',
                     user: @props.user.id
                     type: sectionSnaked
