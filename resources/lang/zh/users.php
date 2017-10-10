@@ -123,31 +123,31 @@ return [
 
                     'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => '因讨论帖 :post的 kudosu 移除操作的撤销而获得 :amount',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => '在讨论帖 :post中被移除 :amount',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => '因讨论帖 :post被删除而失去 :amount',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => '因讨论帖 :post被恢复而获得 :amount',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => '因在讨论帖 :post中得到了足够票数而获得 :amount',
+                            'reset' => '因在讨论帖 :post中丢失了票数而失去 :amount',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => '在帖子 :post中被 :giver给予 :amount',
+                        'reset' => '在帖子 :post中被 :giver重置 kudosu ',
+                        'revoke' => '在帖子 :post中被 :giver移除 kudosu ',
                     ],
                 ],
             ],
