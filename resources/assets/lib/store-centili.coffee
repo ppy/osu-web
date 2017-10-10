@@ -41,4 +41,4 @@ export class StoreCentili
         resolve()
       , false
 
-      document.head.appendChild(link)
+      document.body.appendChild(link)
