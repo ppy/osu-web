@@ -28,7 +28,7 @@ class OrderNumber
     private $orderId;
     private $isValid = true;
 
-    public function __construct(string $orderNumberString)
+    public function __construct(string $orderNumberString = null)
     {
         if (preg_match(static::ORDER_NUMBER_REGEX, $orderNumberString, $matches)) {
             $this->userId = $matches['userId'];
