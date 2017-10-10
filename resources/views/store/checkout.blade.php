@@ -71,7 +71,7 @@
 
                 @if ($order->getTotal() > 0)
                     @foreach ($checkout->allowedCheckoutTypes() as $type)
-                        @include("store._checkout-{$type}")
+                        @include("store._checkout_{$type}")
                     @endforeach
                 @else
                     <div class="big-button">
