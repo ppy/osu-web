@@ -25,6 +25,7 @@ reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
   currentMode: osu.parseJson('json-currentMode')
   rankHistory: osu.parseJson('json-rankHistory')
   scores: osu.parseJson('json-scores')
+  scoreCounts: osu.parseJson('json-scoreCounts')
   statistics: osu.parseJson('json-statistics')
   beatmapsets: osu.parseJson('json-beatmapsets')
   withEdit: user.id == window.currentUser.id

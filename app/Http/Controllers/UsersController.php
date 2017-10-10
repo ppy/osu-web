@@ -231,6 +231,12 @@ class UsersController extends Controller
                 'recent' => $this->scoresRecent($user, $currentMode),
             ];
 
+            $scoreCounts = [
+                'best' => $user->scoresBest($currentMode, true)->distinct()->count('beatmap_id'),
+                'firsts' => $user->scoresFirst($currentMode, true)->count(),
+                'recent' => $user->scores($currentMode, true)->count(),
+            ];
+
             $jsonChunks = [
                 'achievements' => $achievements,
                 'beatmapsets' => $beatmapsets,
@@ -238,6 +244,7 @@ class UsersController extends Controller
                 'kudosu' => $kudosu,
                 'rankHistory' => $rankHistory,
                 'scores' => $scores,
+                'scoreCounts' => $scoreCounts,
                 'statistics' => $statistics,
                 'user' => $userArray,
             ];

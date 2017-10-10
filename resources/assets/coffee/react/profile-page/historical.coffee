@@ -77,6 +77,7 @@ class ProfilePage.Historical extends React.PureComponent
               collection: @props.scoresRecent
               propertyName: 'scoresRecent'
               pagination: @props.pagination['scoresRecent']
+              maxResults: @props.counts.recentlyPlayedBeatmapsets
               route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'recent'
