@@ -126,6 +126,7 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           recentlyReceivedKudosu: @state.recentlyReceivedKudosu
           pagination: @state.showMorePagination
+          count: @state.user.kudosuCount[0]
         component: ProfilePage.Kudosu
 
       top_ranks:

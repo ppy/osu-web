@@ -186,6 +186,7 @@ class UsersController extends Controller
                 'mostPlayedBeatmapsetCount',
                 'rankedAndApprovedBeatmapsetCount',
                 'favouriteBeatmapsetCount',
+                'kudosuCount',
             ]
         );
 
