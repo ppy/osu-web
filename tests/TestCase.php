@@ -25,14 +25,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected $baseUrl = 'http://localhost';
 
-    public static function tearDownAfterClass()
-    {
-        // causes PDOException: There is no active transaction in the last test on travis?
-        // but not if route cache is disabled or the test is run alone?
-
-        // gc_collect_cycles();
-    }
-
     /**
      * Creates the application.
      *
