@@ -27,11 +27,6 @@ use TestCase;
 
 class XsollaControllerTest extends TestCase
 {
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();

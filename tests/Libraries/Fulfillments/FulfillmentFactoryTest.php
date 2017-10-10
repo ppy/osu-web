@@ -30,11 +30,6 @@ use TestCase;
 
 class FulfillmentFactoryTest extends TestCase
 {
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function testCustomClassSupporterTag()
     {
         $orderItem = factory(OrderItem::class, 'supporter_tag')->create();

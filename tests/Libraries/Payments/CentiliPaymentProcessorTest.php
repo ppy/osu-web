@@ -31,37 +31,12 @@ use TestCase;
 
 class CentiliPaymentProcessorTest extends TestCase
 {
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();
         Config::set('payments.centili.api_key', 'api_key');
         Config::set('payments.centili.conversion_rate', 120.00);
         $this->order = factory(Order::class)->states('checkout')->create();
-    }
-
-    private function validSignature()
-    {
-        return new class implements PaymentSignature {
-            public function isValid()
-            {
-                return true;
-            }
-        };
-    }
-
-    private function invalidSignature()
-    {
-        return new class implements PaymentSignature {
-            public function isValid()
-            {
-                return false;
-            }
-        };
     }
 
     public function testWhenEverythingIsFine()
@@ -171,5 +146,25 @@ class CentiliPaymentProcessorTest extends TestCase
         }
 
         return false;
+    }
+
+    private function validSignature()
+    {
+        return new class implements PaymentSignature {
+            public function isValid()
+            {
+                return true;
+            }
+        };
+    }
+
+    private function invalidSignature()
+    {
+        return new class implements PaymentSignature {
+            public function isValid()
+            {
+                return false;
+            }
+        };
     }
 }

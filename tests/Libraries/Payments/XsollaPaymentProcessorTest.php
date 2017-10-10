@@ -31,36 +31,11 @@ use TestCase;
 
 class XsollaPaymentProcessorTest extends TestCase
 {
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();
         Config::set('payments.xsolla.api_key', 'api_key');
         $this->order = factory(Order::class)->states('checkout')->create();
-    }
-
-    private function validSignature()
-    {
-        return new class implements PaymentSignature {
-            public function isValid()
-            {
-                return true;
-            }
-        };
-    }
-
-    private function invalidSignature()
-    {
-        return new class implements PaymentSignature {
-            public function isValid()
-            {
-                return false;
-            }
-        };
     }
 
     public function testWhenEverythingIsFine()
@@ -185,5 +160,25 @@ class XsollaPaymentProcessorTest extends TestCase
         }
 
         return false;
+    }
+
+    private function validSignature()
+    {
+        return new class implements PaymentSignature {
+            public function isValid()
+            {
+                return true;
+            }
+        };
+    }
+
+    private function invalidSignature()
+    {
+        return new class implements PaymentSignature {
+            public function isValid()
+            {
+                return false;
+            }
+        };
     }
 }

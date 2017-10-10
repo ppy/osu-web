@@ -26,11 +26,6 @@ use TestCase;
 
 class CentiliSignatureTest extends TestCase
 {
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();

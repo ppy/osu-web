@@ -34,11 +34,6 @@ use TestCase;
 
 class BannerFulfillmentTest extends TestCase
 {
-    protected $connectionsToTransact = [
-        'mysql',
-        'mysql-store',
-    ];
-
     public function setUp()
     {
         parent::setUp();
