@@ -36,10 +36,10 @@ return [
             也包括继续支持 osu! 的所有人 :)。',
 
         'why_support' => [
-            'title' => '为啥支持这个游戏？',
+            'title' => '为什么要支持 osu! ？',
             'blocks' => [
                 'dev' => 'osu! 最初是 ppy 个人开发和维护的',
-                'time' => '运营它的成本和投入的精力已经超过了“兴趣”本身',
+                'time' => '运营它的成本和投入的精力已经超出了“兴趣”的范围',
                 'ads' => '无广告 <br/><br/>
                         不像 99.95% 的网站，我们不推送广告，也没有从中获利。',
                 'goodies' => '解锁更多高级功能！',
@@ -69,7 +69,7 @@ return [
             ],
 
             'customisation' => [
-                'title' => '多彩的资料',
+                'title' => '个性化',
                 'description' => '自定义个人资料页。',
             ],
 
@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => '排名',
-                'description' => '新添加：在游戏中按 国家/好友/所选MOD 进行排名。',
+                'description' => '查看排名时可按 国家/好友/所选MOD 进行排名。',
             ],
 
             'feel_special' => [

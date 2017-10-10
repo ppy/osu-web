@@ -124,7 +124,7 @@ return [
         'topic_cover' => [
             'edit' => [
                 'uneditable' => '指定的封面不可用。',
-                'not_owner' => '只有作者可以编辑封面。',
+                'not_owner' => '只有楼主可以编辑封面。',
             ],
         ],
 

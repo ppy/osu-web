@@ -57,7 +57,7 @@ return [
         '404' => '找不到指定的用户',
         'age' => ':age 岁',
         'current_location' => '位于 :location',
-        'first_members' => '从最初到现在',
+        'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',

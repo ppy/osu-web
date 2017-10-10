@@ -42,7 +42,7 @@ return [
             'match-disbanded-no-user' => '房间被关闭',
             'host-changed-no-user' => '房主已经变更',
         ],
-        'in-progress' => '（游戏中）',
+        'in-progress' => '游戏中。。。',
         'score' => [
             'stats' => [
                 'accuracy' => '准确率',

@@ -84,7 +84,7 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => '该账户已进入限制模式',
+            'title' => '该账户当前处于限制模式',
             'message' => '（只有管理员能看见这条信息）',
         ],
     ],

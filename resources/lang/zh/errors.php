@@ -37,7 +37,7 @@ return [
         'too-many-favourites' => '谱面收藏数超出限制，请删除一个后再试。',
     ],
     'logged_out' => '你已退出，请登录后再试。',
-    'supporter_only' => '要使用此功能，请先成为捐赠者。',
+    'supporter_only' => '要使用此功能，请先成为 osu!支持者 。',
     'no_restricted_access' => '账户处于限制模式，无法执行该操作。',
     'unknown' => '发生了未知的错误。',
 ];
