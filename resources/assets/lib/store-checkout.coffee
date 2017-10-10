@@ -35,7 +35,7 @@ export class StoreCheckout
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
         when 'centili' then  init['centili'] = StoreCentili.promiseInit()
 
-    $(document.querySelectorAll(@CHECKOUT_SELECTOR)).on 'click.checkout', (event) ->
+    $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) ->
       promiseAll = (provider) ->
                      Promise.all([init[provider] || Promise.reject(), traps[provider]])
 
