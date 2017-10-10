@@ -22,6 +22,6 @@ import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
 
 # polyfill non-Edge IE
-window.Promise = Promise unless window.Promise
+window.Promise ?= Promise
 
 window.StoreCheckout = StoreCheckout
