@@ -24,49 +24,49 @@ return [
     ],
 
     'checkout' => [
-        'pay' => 'Checkout with Paypal',
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'pay' => 'Paypal로 결제',
+        'delayed_shipping' => '현재 주문이 밀려있습니다! 주문을 해주시는건 기쁘지만, 지금 주문을 처리하는데 **1~2 주 지연**될 수 있다는 걸 알려드립니다.',
     ],
 
-    'discount' => 'save :percent%',
+    'discount' => ':percent% 절약 가능',
 
     'order' => [
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
-            'quantity' => 'Quantity',
+            'quantity' => '수량',
         ],
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => '상품명',
 
         'stock' => [
-            'out' => 'Currently out of stock :(. Check back soon.',
-            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+            'out' => '현재 재고가 모두 떨어졌네요 :(. 나중에 다시 확인해주세요.',
+            'out_with_alternative' => '이 옵션은 재고가 모두 떨어졌네요 :(. 다른 옵션을 선택하시거나, 나중에 다시 확인해주세요.',
         ],
 
-        'add_to_cart' => 'Add to Cart',
-        'notify' => 'Notify me when available!',
+        'add_to_cart' => '장바구니에 추가',
+        'notify' => '구매할 수 있을 때 알려주세요!',
 
-        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
-        'notification_remove_text' => 'here',
+        'notification_success' => '재고가 들어오면 알려드리겠습니다. 취소하려면 :link를 누르세요.',
+        'notification_remove_text' => '여기',
 
-        'notification_in_stock' => 'This product is already in stock!',
+        'notification_in_stock' => '이 상품의 재고가 있습니다!',
     ],
 
     'supporter_tag' => [
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => '서포터 태그를 받으려면 :link하셔야 합니다!',
+            'link_text' => '로그인',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
+            'link_text' => '로그인',
         ],
     ],
 ];
