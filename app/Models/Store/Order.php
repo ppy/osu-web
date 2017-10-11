@@ -103,22 +103,6 @@ class Order extends Model
         return (float) $total;
     }
 
-    /**
-     * Gets the orderId from the orderNumber.
-     *
-     * @param string $orderNumber
-     * @return string|null
-     */
-    public static function getOrderId($orderNumber)
-    {
-        $exploded = explode('-', $orderNumber, 3);
-        if (count($exploded) !== 3) {
-            return;
-        }
-
-        return $exploded[2];
-    }
-
     public function requiresShipping()
     {
         foreach ($this->items as $i) {

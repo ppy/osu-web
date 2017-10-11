@@ -23,6 +23,7 @@ namespace App\Http\Controllers\Payments;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
+use App\Libraries\OrderNumber;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\CentiliSignature;
 use App\Models\Store\Order;
@@ -67,7 +68,7 @@ class CentiliController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('clientid') ?? '';
-        $orderId = Order::getOrderId($orderNumber);
+        $orderId = $orderId = (new OrderNumber($orderNumber))->getOrderId();
         OrderCheckout::complete($orderId);
 
         return redirect(route('store.invoice.show', ['invoice' => $orderId, 'thanks' => 1]));
