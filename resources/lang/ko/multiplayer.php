@@ -20,34 +20,34 @@
 
 return [
     'match' => [
-        'header' => 'Multiplayer Matches',
+        'header' => '멀티플레이 게임',
         'team-types' => [
-            'head-to-head' => 'Head-to-head',
-            'tag-coop' => 'Tag Co-op',
-            'team-vs' => 'Team VS',
-            'tag-team-vs' => 'Tag Team VS',
+            'head-to-head' => '개인전', // Head-to-Head
+            'tag-coop' => '태그 협동전', // Tag Co-op
+            'team-vs' => '팀 대전', // Team Vs
+            'tag-team-vs' => '팀 태그 대전', // Tag Team Vs
         ],
         'events' => [
-            'player-left' => ':user left the match',
-            'player-joined' => ':user joined the match',
-            'player-kicked' => ':user has been kicked from the match',
-            'match-created' => ':user created the match',
-            'match-disbanded' => 'the match was disbanded',
-            'host-changed' => ':user became the host',
+            'player-left' => ':user님이 게임을 떠났습니다.',
+            'player-joined' => ':user님이 게임에 참가했습니다.',
+            'player-kicked' => ':user님이 게임에서 추방되었습니다.',
+            'match-created' => ':user님이 게임을 개설하였습니다.',
+            'match-disbanded' => '게임이 해체되었습니다.',
+            'host-changed' => ':user님이 방장이 되었습니다.',
 
-            'player-left-no-user' => 'a player left the match',
-            'player-joined-no-user' => 'a player joined the match',
-            'player-kicked-no-user' => 'a player has been kicked from the match',
-            'match-created-no-user' => 'the match was created',
-            'match-disbanded-no-user' => 'the match was disbanded',
-            'host-changed-no-user' => 'the host was changed',
+            'player-left-no-user' => '플레이어가 게임을 떠났습니다.',
+            'player-joined-no-user' => '플레이어가 게임에 참가했습니다.',
+            'player-kicked-no-user' => '플레이어가 게임에서 추방되었습니다.',
+            'match-created-no-user' => '게임이 개설되었습니다.',
+            'match-disbanded-no-user' => '게임이 해체되었습니다.',
+            'host-changed-no-user' => '방장이 변경되었습니다.',
         ],
-        'in-progress' => '(match in progress)',
+        'in-progress' => '(게임이 진행중입니다.)',
         'score' => [
             'stats' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Combo',
-                'score' => 'Score',
+                'accuracy' => '정확도',
+                'combo' => '콤보',
+                'score' => '점수',
             ],
         ],
         'failed' => 'FAILED',
@@ -55,17 +55,17 @@ return [
             'blue' => 'Blue Team',
             'red' => 'Red Team',
         ],
-        'winner' => ':team wins',
-        'difference' => 'by :difference',
-        'loading-events' => 'Loading events...',
-        'more-events' => 'view all...',
-        'beatmap-deleted' => 'deleted beatmap',
+        'winner' => ':team 승리',
+        'difference' => '(점수 차: :difference)',
+        'loading-events' => '기록 불러오는 중...', // Loading events
+        'more-events' => '모두 보기...', // view all
+        'beatmap-deleted' => '삭제된 비트맵',
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Highest Score',
-            'accuracy' => 'Highest Accuracy',
-            'combo' => 'Highest Combo',
+            'score' => '최고 점수',
+            'accuracy' => '최고 정확도',
+            'combo' => '최다 콤보',
             'scorev2' => 'Score V2',
         ],
     ],
