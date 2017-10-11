@@ -30,8 +30,8 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Invalid mode specified.',
-        'standard_converts_only' => 'No scores are available for the requested mode on this beatmap difficulty.',
+        'invalid_mode' => '잘못된 모드 종류입니다.',
+        'standard_converts_only' => '선택하신 모드로는 현재 난이도에서 점수를 사용할 수 없습니다.',
     ],
     'beatmapsets' => [
         'too-many-favourites' => '즐겨찾기한 비트맵이 너무 많습니다! 계속하려면 즐겨찾기를 하나 해제해주세요.',
