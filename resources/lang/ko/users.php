@@ -57,8 +57,8 @@ return [
         '404' => '사용자를 찾을 수 없습니다! ;_;',
         'age' => ':age살',
         'current_location' => ':location에 거주',
-        'first_members' => 'Here since the beginning',
-        'is_developer' => 'osu!개발자',
+        'first_members' => 'osu!의 초창기부터 함께한 유저',
+        'is_developer' => 'osu!개발진',
         'is_supporter' => 'osu!서포터',
         'joined_at' => ':date에 가입',
         'lastvisit' => ':date에 마지막으로 접속',
@@ -66,7 +66,7 @@ return [
         'origin_age' => ':age',
         'origin_country' => ':country에 거주',
         'origin_country_age' => ':age, :country에 거주',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
         'plays_with' => '플레이 장비: :devices',
         'title' => ":username님의 프로필",
 
@@ -87,7 +87,7 @@ return [
             ],
         ],
         'extra' => [
-            'followers' => '1 follower|:count followers',
+            'followers' => ':count ',
             'unranked' => '최근 플레이가 없습니다',
 
             'achievements' => [
@@ -98,28 +98,28 @@ return [
                 'title' => '비트맵',
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
+                'empty' => '기록된 플레이가 없습니다. :(',
                 'most_played' => [
-                    'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'count' => '플레이 횟수',
+                    'title' => '가장 많이 플레이한 비트맵',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'accuracy' => '정확도: :percentage',
+                    'title' => '최근 플레이 (24시간)',
                 ],
-                'title' => 'Historical',
+                'title' => '기록',
             ],
             'kudosu' => [
-                'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'recent_entries' => 'Recent Kudosu History',
+                'available' => '사용 가능한 Kudosu',
+                'available_info' => "Kudosu는 제작자가 만든 비트맵이 더 관심을 끌게해주는 kudosu 별(★)로 교환할 수 있습니다. 여기 나타난 Kudous는 아직 교환하지 않은 kudous 수를 나타냅니다.",
+                'recent_entries' => '최근 Kudosu 기록',
                 'title' => 'Kudosu!',
-                'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total' => '총 획득한 Kudosu 수',
+                'total_info' => '유저가 비트맵 제작 과정에서의 조정에 얼마나 기여했는지를 나타내는 척도입니다. 더 많은 정보를 보려면 <a href="'.osu_url('user.kudosu').'">이 페이지</a>를 확인해주세요.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => "아직 어떤 kudosu도 받지 못했습니다!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -155,44 +155,44 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => "아직 아무런 업적 메달도 받지 못했네요. ;_;",
+                'title' => '메달',
             ],
             'recent_activities' => [
-                'title' => 'Recent',
+                'title' => '최근 활동',
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Best Performance',
+                    'title' => '최고 퍼포먼스 점수',
                 ],
-                'empty' => 'No awesome performance records yet. :(',
+                'empty' => '아직 이렇다 할 플레이 기록이 없네요. :(',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => '1위 달성 맵',
                 ],
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
+                'title' => '순위',
+                'weighted_pp' => '가중치 적용: :pp (:percentage)', // 높은 경쟁력을 가진 맵(구맵들)은 가중치가 줄어들고 본래 pp에서 가중치를 곱한 만큼의 실 pp를 받게됨
             ],
             'beatmaps' => [
-                'title' => 'Beatmaps',
+                'title' => '비트맵',
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => '즐겨찾기한 비트맵 (:count개)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked / Approved 된 비트맵 (:count개)',
                 ],
-                'none' => 'None... yet.',
+                'none' => '아직... 없네요...',
             ],
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>me!</strong>는 유저 프로필 페이지에서 개인이 꾸밀 수 있는 공간입니다.',
+            'edit_big' => 'me! 수정하기',
+            'placeholder' => '페이지에 들어갈 내용을 입력하세요.',
+            'restriction_info' => "이 기능을 이용하려면 <a href='".osu_url('support-the-game')."' target='_blank'>osu!서포터</a>가 되어야 합니다.",
         ],
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => ':mode 모드에 대한 국가 내 순위',
+            'global' => ':mode 모드에 대한 글로벌 순위',
         ],
         'stats' => [
             'hit_accuracy' => '명중률',
@@ -201,9 +201,9 @@ return [
             'play_count' => '플레이 횟수',
             'ranked_score' => '기록된 점수',
             'replays_watched_by_others' => '다른 플레이어가 관전한 횟수',
-            'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'score_ranks' => '점수 순위',
+            'total_hits' => '총 타격 횟수',
+            'total_score' => '총 점수',
         ],
     ],
     'status' => [
@@ -211,9 +211,9 @@ return [
         'offline' => '오프라인',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => '사용자 계정 생성됨',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => '계정 인증',
     ],
 ];
