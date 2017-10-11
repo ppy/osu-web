@@ -31,17 +31,15 @@ export class StoreCentili
   observer = new MutationObserver (mutations) ->
     mutations.forEach (mutation) ->
       $nodes = $(mutation.addedNodes)
+      hasFrame = false
+      hasContent = false
       for node in mutation.addedNodes
         node.id?.substr(0, 'fancybox-'.length) == 'fancybox-' && fancyboxes.push(node)
+        hasFrame |= node.id == 'fancybox-frame'
+        hasContent |= node.id == 'fancybox-content'
 
-      frame = $.grep $nodes, (elem) ->
-        elem.id == 'fancybox-frame'
-
-      content = $.grep $nodes, (elem) ->
-        elem.id == 'fancybox-content'
-
-      frame.length && window.LoadingOverlay.hide()
-      if content.length && needsTriggerClick
+      hasFrame && window.LoadingOverlay.hide()
+      if hasContent && needsTriggerClick
         # Queue up a click event if the loading completed after clicking
         Timeout.set 0, ->
           window.centiliJQuery(widget).trigger('click')
