@@ -34,7 +34,7 @@ export class StoreCentili
       hasFrame = false
       hasContent = false
       for node in mutation.addedNodes
-        node.id?.substr(0, 'fancybox-'.length) == 'fancybox-' && fancyboxes.push(node)
+        _.startsWith(node.id, 'fancybox-') && fancyboxes.push(node)
         hasFrame |= node.id == 'fancybox-frame'
         hasContent |= node.id == 'fancybox-content'
 
