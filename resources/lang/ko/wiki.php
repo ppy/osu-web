@@ -20,16 +20,16 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
-        'languages' => 'Languages',
-        'missing' => 'Requested page could not be found.',
-        'missing_title' => 'Not Found',
-        'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'toc' => 'Contents',
+        'fallback_translation' => '요청하신 페이지는 아직 사용하시는 언어(:language)로 번역되지 않았네요. 영어로 된 페이지를 보여드릴게요.', // [사용하시는]은 원래 Selected였음
+        'languages' => '언어',
+        'missing' => '요청하신 페이지를 찾을 수 없습니다.',
+        'missing_title' => '찾을 수 없음',
+        'missing_translation' => '현재 사용하시는 언어로 된 요청하신 페이지를 찾을 수 없습니다.',
+        'toc' => 'Contents', // Contents
 
         'edit' => [
-            'link' => 'Show on GitHub',
-            'refresh' => 'Refresh',
+            'link' => 'GitHub에서 보기',
+            'refresh' => '새로고침',
         ],
     ],
 ];
