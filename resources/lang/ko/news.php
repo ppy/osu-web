@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listing',
-        'news-show' => 'post',
+        'news-index' => '목록',
+        'news-show' => '게시글',
     ],
 
     'index' => [
-        'title' => 'osu!news',
+        'title' => 'osu!뉴스',
 
         'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
+            'newer' => '최근 글',
+            'older' => '이전 글',
         ],
     ],
 
     'show' => [
-        'posted' => 'posted :time',
+        'posted' => ':time에 작성됨',
 
         'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
+            'newer' => '최근 글',
+            'older' => '이전 글',
         ],
     ],
 
     'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
+        'button' => '수정',
+        'ok' => '목록이 수정되었습니다.',
     ],
 
     'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
+        'button' => '수정',
+        'ok' => '게시글이 수정되었습니다.',
     ],
 ];
