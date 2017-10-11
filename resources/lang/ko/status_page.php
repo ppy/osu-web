@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'title' => '상태',
+        'description' => '뭔 일이 일어나고 있는거지?',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => '진행중인 사건',
+        'automated' => '자동', // automated
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => '지난 24시간 동안 접속자 수',
+            'score' => '지난 24시간 동안 점수 제출 횟수',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => '현재 접속자',
+        'score' => '초당 점수 제출 횟수',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => '최근 사건',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => '해결됨',
+                'resolving' => '해결 중',
+                'unknown' => '알 수 없음',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => '가동 시간',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => '게임 서버',
+                'web' => '웹 서버',
             ],
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => '오늘',
+            'week' => '이번 주',
+            'month' => '이번 달',
+            'all_time' => '항상',
+            'last_week' => '저번 주',
+            'weeks_ago' => ':count주 전',
         ],
     ],
 ];
