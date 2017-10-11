@@ -26,7 +26,6 @@ use App\Libraries\OrderCheckout;
 use App\Libraries\OrderNumber;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\CentiliSignature;
-use App\Models\Store\Order;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
