@@ -19,26 +19,26 @@
  */
 
 return [
-    'confirmation' => 'Are you sure?',
-    'saved' => 'Saved',
+    'confirmation' => '확실합니까?', //  Are you sure?
+    'saved' => '저장됨',
 
     'array_and' => [
-        'words_connector' => ', ',
-        'two_words_connector' => ' and ',
-        'last_word_connector' => ', and ',
+        'words_connector' => ', ', // A[[, ]]B[[, ]]C, and D 를 표시할 때 사용
+        'two_words_connector' => ' 와(과) ', // A[[ and ]]B 를 표시할 때 사용 (앞 종성에 따른 모호함이 발생)
+        'last_word_connector' => ', 그리고 ', // A, B, C[, and ] 를 표시할 때 사용
     ],
 
     'buttons' => [
-        'cancel' => 'Cancel',
-        'delete' => 'Delete',
-        'permalink' => 'permalink',
-        'post' => 'Post',
-        'reply' => 'Reply',
-        'reset' => 'Reset',
-        'save' => 'Save',
-        'saving' => 'Saving...',
-        'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'cancel' => '취소',
+        'delete' => '삭제',
+        'permalink' => '고유 주소', // permalink
+        'post' => '게시하기', // Post
+        'reply' => '답변하기', // Reply
+        'reset' => '초기화',
+        'save' => '저장',
+        'saving' => '저장 중...',
+        'show_more' => '더 보기',
+        'upload_image' => '이미지 업로드',
     ],
 
     'count' => [
@@ -53,19 +53,19 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Keyboard',
-        'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'keyboard' => '키보드',
+        'mouse' => '마우스',
+        'tablet' => '태블릿',
+        'touch' => '터치 스크린',
     ],
 
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => '업로드할 파일을 이곳에 끌어놓으세요',
     ],
 
     'pagination' => [
-        'previous' => 'prev',
-        'next' => 'next',
+        'previous' => '이전',
+        'next' => '다음',
     ],
 
     'score_count' => [
@@ -78,13 +78,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count day ago|:count 일 전',
+        'hours_ago' => ':count hour ago|:count 시간 전',
+        'now' => '지금',
+        'remaining' => '남은 시간',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => '알림', // Notice
     ],
 ];
