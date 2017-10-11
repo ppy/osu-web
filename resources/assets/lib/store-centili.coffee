@@ -19,6 +19,34 @@
 export class StoreCentili
   widget = '#c-mobile-payment-widget'
 
+  ####################################################
+  # This junk is stupid hack for a loading overlay
+  # while the Centili script loads EVEN MORE SCRIPTS
+  ####################################################
+  clicked = false
+  observer = new MutationObserver (mutations) ->
+    mutations.forEach (mutation) ->
+      $nodes = $(mutation.addedNodes)
+      console.log($nodes)
+      frame = $.grep $nodes, (elem) ->
+        elem.id == 'fancybox-frame'
+
+      content = $.grep $nodes, (elem) ->
+        elem.id == 'fancybox-content'
+
+      frame.length && window.LoadingOverlay.hide()
+      if content.length && clicked
+        # Queue up a click event
+        Timeout.set 0, ->
+          window.centiliJQuery(widget).trigger('click')
+
+  $(document).on 'turbolinks:load', ->
+    if document.querySelector(widget)
+      observer.observe document.body, childList: true, subtree: true
+  ####################################################
+  # End stupid
+  ####################################################
+
   @promiseInit: ->
     # Load Centili scripts and css async.
     Promise.all([
@@ -44,4 +72,8 @@ export class StoreCentili
       document.body.appendChild(link)
 
   @fakeClick: ->
-    window.centiliJQuery && window.centiliJQuery(widget).trigger('click')
+    window.LoadingOverlay.show()
+    window.LoadingOverlay.show.flush()
+    if window.centiliJQuery
+      window.centiliJQuery(widget).trigger('click')
+      clicked = true
