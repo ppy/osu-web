@@ -19,6 +19,54 @@
 export class StoreCentili
   widget = '#c-mobile-payment-widget'
 
+  ####################################################
+  # This junk is stupid hack for a loading overlay
+  # while the Centili script loads EVEN MORE SCRIPTS
+  ####################################################
+  needsTriggerClick = false
+  fancyboxes = []
+  hasWidget = ->
+    document.querySelector(widget)
+
+  observer = new MutationObserver (mutations) ->
+    mutations.forEach (mutation) ->
+      $nodes = $(mutation.addedNodes)
+      for node in mutation.addedNodes
+        node.id?.startsWith('fancybox-') && fancyboxes.push(node)
+
+      frame = $.grep $nodes, (elem) ->
+        elem.id == 'fancybox-frame'
+
+      content = $.grep $nodes, (elem) ->
+        elem.id == 'fancybox-content'
+
+      frame.length && window.LoadingOverlay.hide()
+      if content.length && needsTriggerClick
+        # Queue up a click event if the loading completed after clicking
+        Timeout.set 0, ->
+          window.centiliJQuery(widget).trigger('click')
+
+  $(document).on 'turbolinks:load', ->
+    if hasWidget()
+      observer.observe document.body, childList: true, subtree: true
+      # If the centili global exists at load, we probably destroyed the previous fancyboxes.
+      window.centili && !fancyboxes.length && window.centili.loadFancyBox()
+
+  $(document).on 'turbolinks:before-cache', ->
+    hasWidget() && deleteFancyboxes()
+
+  deleteFancyboxes = ->
+    # force reset or else fancybox will automatically display
+    needsTriggerClick = false
+    $(fancyboxes).remove()
+    fancyboxes = []
+
+  # for testing
+  window.deleteFancyboxes = deleteFancyboxes
+  ####################################################
+  # End stupid
+  ####################################################
+
   @promiseInit: ->
     # Load Centili scripts and css async.
     Promise.all([
@@ -44,4 +92,8 @@ export class StoreCentili
       document.body.appendChild(link)
 
   @fakeClick: ->
-    window.centiliJQuery && window.centiliJQuery(widget).trigger('click')
+    window.LoadingOverlay.show()
+    window.LoadingOverlay.show.flush()
+    needsTriggerClick = true
+    if window.centiliJQuery
+      window.centiliJQuery(widget).trigger('click')
