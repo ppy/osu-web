@@ -233,7 +233,8 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     protected function getOrder()
     {
-        if (!isset($this->order)) {
+        // ...maybe use array_key_exists and an array instead? D:
+        if (!isset($this->order) && !(isset($this->order) && $this->order === null)) {
             $this->order = Order::withPayments()->find($this->getOrderId());
         }
 
