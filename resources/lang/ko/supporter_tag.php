@@ -25,6 +25,6 @@ return [
     ],
     'duration' => [
         'months' => ':length 달|:length 달|{0}',
-        'years' => ':length 년|:length 년|{0}.',
+        'years' => ':length 년|:length 년|{0}',
     ],
 ];
