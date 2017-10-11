@@ -100,12 +100,13 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function revertUsername($type = 'revert')
     {
+        // TODO: validation errors instead?
         if ($this->user_id <= 1) {
-            throw ChangeUsernameException::errors(['user_id is not valid']);
+            throw new ChangeUsernameException(['user_id is not valid']);
         }
 
         if (!presence($this->username_previous)) {
-            throw ChangeUsernameException::errors(['username_previous is blank.']);
+            throw new ChangeUsernameException(['username_previous is blank.']);
         }
 
         $this->updateUsername($this->username_previous, null, $type);
@@ -114,13 +115,14 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function changeUsername($newUsername, $type = 'support')
     {
+        // TODO: validation errors instead?
         if ($this->user_id <= 1) {
-            throw ChangeUsernameException::errors(['user_id is not valid']);
+            throw new ChangeUsernameException(['user_id is not valid']);
         }
 
         $errors = static::validateUsername($newUsername);
         if (count($errors) > 0) {
-            throw ChangeUsernameException::errors($errors);
+            throw new ChangeUsernameException($errors);
         }
 
         $this->updateUsername($newUsername, $this->username, $type);

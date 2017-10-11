@@ -26,21 +26,15 @@ class ChangeUsernameException extends Exception
 {
     private $errors = [];
 
-    public function getErrors()
+    public function __construct(array $errors = [], Exception $previous = null)
     {
-        return $this->errors;
-    }
-
-    private function setErrors(array $errors)
-    {
+        $message = implode("\n", $errors);
+        parent::__construct($message, 0, $previous);
         $this->errors = $errors;
     }
 
-    public static function errors(array $errors = [])
+    public function getErrors()
     {
-        $exception = new self(implode("\n", $errors));
-        $exception->setErrors($errors);
-
-        return $exception;
+        return $this->errors;
     }
 }
