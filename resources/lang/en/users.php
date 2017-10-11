@@ -104,13 +104,13 @@ return [
                     'title' => 'Pending Beatmaps (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)'
+                    'title' => 'Graveyarded Beatmaps (:count)',
                 ],
                 'none' => 'None... yet.',
             ],
             'favourite_beatmaps' => [
                 'title' => 'Favourite Beatmaps',
-                'header' => 'Favourite Beatmaps (:count)'
+                'header' => 'Favourite Beatmaps (:count)',
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
