@@ -34,6 +34,7 @@ class UserProfileCustomization extends Model
         'medals',
         'historical',
         'beatmaps',
+        'favourite_beatmaps',
         'kudosu',
     ];
 
