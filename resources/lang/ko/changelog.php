@@ -19,13 +19,13 @@
  */
 
 return [
-    'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'feed_title' => '피드',
+    'generic' => '버그 수정 및 소소한 사항 개선.',
+    'users-online' => ':users 명 접속 중',
 
     'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'miscellanous',
+        'add' => '추가 사항',
+        'fix' => '수정 사항',
+        'misc' => '기타 ',
     ],
 ];
