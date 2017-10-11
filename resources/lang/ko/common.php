@@ -78,8 +78,8 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count 일 전',
-        'hours_ago' => ':count hour ago|:count 시간 전',
+        'days_ago' => ':count 일 전',
+        'hours_ago' => ':count 시간 전',
         'now' => '지금',
         'remaining' => '남은 시간',
     ],
