@@ -85,6 +85,6 @@ return [
     ],
 
     'title' => [
-        'notice' => '알림',
+        'notice' => '알림', // Notice
     ],
 ];
