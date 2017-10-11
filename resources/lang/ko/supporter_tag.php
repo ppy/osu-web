@@ -20,11 +20,11 @@
 
 return [
     'user_search' => [
-        'searching' => 'searching...',
-        'not_found' => "This user doesn't exist",
+        'searching' => '찾는 중...',
+        'not_found' => "검색하신 사용자를 찾을 수 없습니다.",
     ],
     'duration' => [
-        'months' => ':length month|:length months|{0}',
-        'years' => ':length year|:length years|{0}',
+        'months' => ':length 달|:length 달|{0}',
+        'years' => ':length 년|:length 년|{0}',
     ],
 ];
