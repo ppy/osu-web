@@ -32,6 +32,9 @@ internal = [
   'users'
 ].join('|')
 
+exclude = [
+  'store/checkout'
+].join('|')
 
 class @TurbolinksDisable
   constructor: ->
@@ -41,5 +44,5 @@ class @TurbolinksDisable
   cancelIfExternal: (event) ->
     prefix = "#{document.location.protocol}//#{document.location.host}/"
 
-    unless RegExp("^(?:#{internal})(?:$|/)").test event.data.url.substr(prefix.length)
+    unless RegExp("^(?!#{exclude})(?:#{internal})(?:$|/)").test event.data.url.substr(prefix.length)
       event.preventDefault()
