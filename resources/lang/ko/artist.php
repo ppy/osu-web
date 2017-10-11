@@ -42,7 +42,7 @@ return [
 
     'songs' => [
         '_' => '곡',
-        'count' => '1 song|:count ',
+        'count' => ':count ',
         'exclusive' => 'osu! 고유 곡',
     ],
 ];
