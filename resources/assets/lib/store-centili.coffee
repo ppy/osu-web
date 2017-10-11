@@ -32,7 +32,7 @@ export class StoreCentili
     mutations.forEach (mutation) ->
       $nodes = $(mutation.addedNodes)
       for node in mutation.addedNodes
-        node.id?.startsWith('fancybox-') && fancyboxes.push(node)
+        node.id?.substr(0, 'fancybox-'.length) == 'fancybox-' && fancyboxes.push(node)
 
       frame = $.grep $nodes, (elem) ->
         elem.id == 'fancybox-frame'
