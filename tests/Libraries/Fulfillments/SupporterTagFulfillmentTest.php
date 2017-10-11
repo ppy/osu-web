@@ -231,7 +231,6 @@ class SupporterTagFulfillmentTest extends TestCase
         $this->assertEquals(2, $donor->osu_featurevotes);
     }
 
-
     private function createDonationOrderItem($order, $giftee, $cancelled = false, $run = false)
     {
         $orderItem = $this->createOrderItem($giftee, 1, 4);
