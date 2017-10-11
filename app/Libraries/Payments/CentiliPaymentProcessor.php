@@ -79,7 +79,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ((int) $this->orderNumber->getUserId() !== $order['user_id']) {
+        if ((int) $this->orderNumber->getUserId() !== $order->user_id) {
             $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
         }
 
