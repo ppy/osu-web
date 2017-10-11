@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'small' => 'Compete in more ways than just clicking circles.',
-        'large' => 'osu! Community Contests',
+        'small' => '원을 클릭하는 것 말고도 더 다양한 방법으로 겨뤄보세요.',
+        'large' => 'osu! 커뮤니티 콘테스트',
     ],
     'voting' => [
-        'over' => 'Voting for this contest has ended',
-        'login_required' => 'Please login to vote.',
+        'over' => '현재 콘테스트의 투표가 종료되었습니다.',
+        'login_required' => '투표하려면 로그인해주세요.',
         'best_of' => [
-            'none_played' => "It doesn't look like you played any beatmaps that qualify for this contest!",
+            'none_played' => "이 콘테스트에서 평가할 어떤 맵도 플레이하지 않으신 것 같네요.",
         ],
     ],
     'entry' => [
-        '_' => 'entry',
-        'login_required' => 'Please login to enter the contest.',
-        'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
-        'preparation' => 'We are currently preparing this contest. Please wait patiently!',
-        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
-        'limit_reached' => 'You have reached the entry limit for this contest',
-        'drop_here' => 'Drop your entry here',
+        '_' => '참가',
+        'login_required' => '콘테스트에 참가하려면 로그인해주세요.',
+        'silenced_or_restricted' => '제한 또는 침묵상태에서는 콘테스트에 참가할 수 없습니다.',
+        'preparation' => '현재 콘테스트가 준비중에 있습니다. 인내를 갖고 조금 더 기다려주세요!',
+        'over' => '콘테스트에 참가해주셔서 감사합니다! 작품 제출이 마감되었고, 곧 투표가 시작됩니다.',
+        'limit_reached' => '이 콘테스트에서 참가 가능한 작품 수를 초과했습니다.',
+        'drop_here' => '참가할 작품을 이곳에 끌어넣어주세요.',
         'wrong_type' => [
-            'art' => 'Only .jpg and .png files are accepted for this contest.',
-            'beatmap' => 'Only .osu files are accepted for this contest.',
-            'music' => 'Only .mp3 files are accepted for this contest.',
+            'art' => '이 콘테스트에서는 .jpg 파일과 .png 파일만 등록할 수 있습니다.',
+            'beatmap' => '이 콘테스트에서는 .osu 파일만 등록할 수 있습니다.',
+            'music' => '이 콘테스트에서는 .mp3 파일만 등록할 수 있습니다.',
         ],
-        'too_big' => 'Entries for this contest can only be up to :limit.',
+        'too_big' => '이 콘테스트의 최대 참가 작품 수는 :limit개 입니다.',
     ],
     'beatmaps' => [
-        'download' => 'Download Entry',
+        'download' => '참가작 다운로드',
     ],
     'vote' => [
-        'list' => 'votes',
-        'count' => '1 vote|:count votes',
+        'list' => '투표',
+        'count' => ':count 표 받음',
     ],
     'dates' => [
-        'ended' => 'Ended :date',
+        'ended' => ':date 에 끝났습니다',
 
         'starts' => [
-            '_' => 'Starts :date',
-            'soon' => 'soon™',
+            '_' => ':date 에 시작합니다',
+            'soon' => '곧...™',
         ],
     ],
     'states' => [
-        'entry' => 'Entry Open',
-        'voting' => 'Voting Started',
-        'results' => 'Results Out',
+        'entry' => '참가 작품 모집중',
+        'voting' => '투표 시작됨',
+        'results' => '종료됨', // Results Out
     ],
 ];
