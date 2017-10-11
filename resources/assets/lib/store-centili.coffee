@@ -24,10 +24,16 @@ export class StoreCentili
   # while the Centili script loads EVEN MORE SCRIPTS
   ####################################################
   clicked = false
+  fancyboxes = []
+  hasWidget = ->
+    document.querySelector(widget)
+
   observer = new MutationObserver (mutations) ->
     mutations.forEach (mutation) ->
       $nodes = $(mutation.addedNodes)
-      console.log($nodes)
+      for node in mutation.addedNodes
+        node.id?.startsWith('fancybox-') && fancyboxes.push(node)
+
       frame = $.grep $nodes, (elem) ->
         elem.id == 'fancybox-frame'
 
@@ -41,8 +47,14 @@ export class StoreCentili
           window.centiliJQuery(widget).trigger('click')
 
   $(document).on 'turbolinks:load', ->
-    if document.querySelector(widget)
-      observer.observe document.body, childList: true, subtree: true
+    hasWidget() && observer.observe document.body, childList: true, subtree: true
+
+  $(document).on 'turbolinks:before-cache', ->
+    hasWidget() && window.deleteFancyBoxes()
+
+  window.deleteFancyBoxes = ->
+    $(fancyboxes).remove()
+    fancyboxes = []
   ####################################################
   # End stupid
   ####################################################
