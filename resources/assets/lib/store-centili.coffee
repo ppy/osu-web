@@ -23,7 +23,7 @@ export class StoreCentili
   # This junk is stupid hack for a loading overlay
   # while the Centili script loads EVEN MORE SCRIPTS
   ####################################################
-  clicked = false
+  needsTriggerClick = false
   fancyboxes = []
   hasWidget = ->
     document.querySelector(widget)
@@ -41,20 +41,28 @@ export class StoreCentili
         elem.id == 'fancybox-content'
 
       frame.length && window.LoadingOverlay.hide()
-      if content.length && clicked
-        # Queue up a click event
+      if content.length && needsTriggerClick
+        # Queue up a click event if the loading completed after clicking
         Timeout.set 0, ->
           window.centiliJQuery(widget).trigger('click')
 
   $(document).on 'turbolinks:load', ->
-    hasWidget() && observer.observe document.body, childList: true, subtree: true
+    if hasWidget()
+      observer.observe document.body, childList: true, subtree: true
+      # If the centili global exists at load, we probably destroyed the previous fancyboxes.
+      window.centili && !fancyboxes.length && window.centili.loadFancyBox()
 
   $(document).on 'turbolinks:before-cache', ->
-    hasWidget() && window.deleteFancyBoxes()
+    hasWidget() && deleteFancyboxes()
 
-  window.deleteFancyBoxes = ->
+  deleteFancyboxes = ->
+    # force reset or else fancybox will automatically display
+    needsTriggerClick = false
     $(fancyboxes).remove()
     fancyboxes = []
+
+  # for testing
+  window.deleteFancyboxes = deleteFancyboxes
   ####################################################
   # End stupid
   ####################################################
@@ -86,6 +94,6 @@ export class StoreCentili
   @fakeClick: ->
     window.LoadingOverlay.show()
     window.LoadingOverlay.show.flush()
+    needsTriggerClick = true
     if window.centiliJQuery
       window.centiliJQuery(widget).trigger('click')
-      clicked = true
