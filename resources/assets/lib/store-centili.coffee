@@ -61,8 +61,6 @@ export class StoreCentili
     $(fancyboxes).remove()
     fancyboxes = []
 
-  # for testing
-  window.deleteFancyboxes = deleteFancyboxes
   ####################################################
   # End stupid
   ####################################################
