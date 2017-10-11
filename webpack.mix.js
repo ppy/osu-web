@@ -31,15 +31,9 @@ if (mix.inProduction()) {
   min = '.min';
 }
 
-const paymentSandbox = function () {
-  if (process.env.PAYMENT_SANDBOX == 0
-      || process.env.PAYMENT_SANDBOX === 'false'
-      || !process.env.PAYMENT_SANDBOX) {
-    return false;
-  } else {
-    return true;
-  }
-}();
+const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
+                         || process.env.PAYMENT_SANDBOX === 'false'
+                         || !process.env.PAYMENT_SANDBOX)
 
 // relative from root?
 const node_root = 'node_modules';
