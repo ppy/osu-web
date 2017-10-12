@@ -183,62 +183,62 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Page Missing',
-            'description' => "Sorry, but the page you requested isn't here!",
+            'description' => 'Sorry, but the page you requested isn\'t here!',
             'link' => false,
         ],
         '403' => [
-            'error' => "You shouldn't be here.",
+            'error' => 'You shouldn\'t be here.',
             'description' => 'You could try going back, though.',
             'link' => false,
         ],
         '401' => [
-            'error' => "You shouldn't be here.",
+            'error' => 'You shouldn\'t be here.',
             'description' => 'You could try going back, though. Or maybe logging in.',
             'link' => false,
         ],
         '405' => [
             'error' => 'Page Missing',
-            'description' => "Sorry, but the page you requested isn't here!",
+            'description' => 'Sorry, but the page you requested isn\'t here!',
             'link' => false,
         ],
         '500' => [
             'error' => 'Oh no! Something broke! ;_;',
-            'description' => "We're automatically notified of every error.",
+            'description' => 'We\'re automatically notified of every error.',
             'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Something broke (badly)! ;_;',
-            'description' => "We're automatically notified of every error.",
+            'description' => 'We\'re automatically notified of every error.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Down for maintenance!',
-            'description' => "Maintenance usually takes anywhere from 5 seconds to 10 minutes. If we're down for longer, see :link for more information.",
+            'description' => 'Maintenance usually takes anywhere from 5 seconds to 10 minutes. If we\'re down for longer, see :link for more information.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Just in case, here's a code you can give to support!",
+        'reference' => 'Just in case, here\'s a code you can give to support!',
     ],
 
     'popup_login' => [
         'login' => [
             'email' => '이메일 주소',
-            'forgot' => "계정 정보를 잊어버렸어요.",
+            'forgot' => '계정 정보를 잊어버렸어요.',
             'password' => '비밀번호',
             'title' => '로그인하여 계속하기',
 
             'error' => [
-                'email' => "존재하지 않는 유저이름 또는 이메일입니다.",
+                'email' => '존재하지 않는 유저이름 또는 이메일입니다.',
                 'password' => '비밀번호가 틀렸습니다.',
             ],
         ],
 
         'register' => [
-            'info' => "계정이 필요합니다, 하나 만들어보시는 건 어때요?",
-            'title' => "아직 계정이 없으신가요?",
+            'info' => '계정이 필요합니다, 하나 만들어보시는 건 어때요?',
+            'title' => '아직 계정이 없으신가요?',
         ],
     ],
 
