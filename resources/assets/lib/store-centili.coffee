@@ -30,7 +30,6 @@ export class StoreCentili
 
   observer = new MutationObserver (mutations) ->
     mutations.forEach (mutation) ->
-      $nodes = $(mutation.addedNodes)
       hasFrame = false
       hasContent = false
       for node in mutation.addedNodes
