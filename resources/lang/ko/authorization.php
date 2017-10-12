@@ -137,9 +137,9 @@ return [
 
     'unauthorized' => '접근이 제한되었습니다.',
 
-    'silenced' => "침묵 상태에서는 할 수 없습니다.",
+    'silenced' => '침묵 상태에서는 할 수 없습니다.',
 
-    'restricted' => "제한된 상태에서는 할 수 없습니다.",
+    'restricted' => '제한된 상태에서는 할 수 없습니다.',
 
     'user' => [
         'page' => [
