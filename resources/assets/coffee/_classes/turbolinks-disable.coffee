@@ -32,6 +32,7 @@ internal = [
   'users'
 ].join('|')
 
+
 class @TurbolinksDisable
   constructor: ->
     addEventListener 'turbolinks:click', @cancelIfExternal
