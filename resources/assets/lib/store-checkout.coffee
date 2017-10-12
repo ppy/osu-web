@@ -24,7 +24,6 @@ export class StoreCheckout
   @CHECKOUT_SELECTOR: '.js-store-checkout-button'
 
   @initialize: =>
-    traps = @allTraps()
     # load scripts
     init = {}
 
@@ -38,32 +37,21 @@ export class StoreCheckout
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       provider = event.target.dataset.provider
-      Promise.all([init[provider] || Promise.reject(), traps[provider]])
-      .then (values) =>
-        @handleClick(values[1])
+      # sanity
+      return unless provider?
+      LoadingOverlay.show()
+      LoadingOverlay.show.flush()
+
+      init[provider].then =>
+        @handleClick(event.target.dataset)
       .catch (error) ->
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
         # TODO: handle error.message
         osu.ajaxError(error?.xhr)
 
-  @allTraps: ->
-    traps = {}
-
-    buttons = document.querySelectorAll(@CHECKOUT_SELECTOR)
-    for button in buttons
-      provider = button.dataset.provider
-      if provider?
-        traps[provider] = new Promise (resolve) ->
-          $(button).on 'click.trap', (event) ->
-            LoadingOverlay.show()
-            LoadingOverlay.show.flush()
-            resolve(event.target.dataset)
-
-    traps
 
   @handleClick: (params) ->
-    console.log(params)
     switch params.provider
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
@@ -74,4 +62,3 @@ export class StoreCheckout
         LoadingOverlay.hide()
       when 'centili'
         StoreCentili.fakeClick()
-        LoadingOverlay.hide()

@@ -87,8 +87,6 @@ export class StoreCentili
       document.body.appendChild(link)
 
   @fakeClick: ->
-    window.LoadingOverlay.show()
-    window.LoadingOverlay.show.flush()
     needsTriggerClick = true
     if window.centiliJQuery
       window.centiliJQuery(widget).trigger('click')
