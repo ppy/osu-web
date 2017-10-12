@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,34 +16,49 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+.forum-topic-title {
+  // actual font takes more than the 1.1 default line height.
+  line-height: 1.5;
 
-class UserGroup extends Model
-{
-    protected $table = 'phpbb_user_group';
-    public $timestamps = false;
-    protected $guarded = [];
+  &__button {
+    margin-left: 5px;
+    display: flex;
+    pointer-events: auto;
+  }
 
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-    ];
+  &__buttons {
+    padding-left: 20px;
+    display: flex;
+  }
 
-    public function group()
-    {
-        return $this->belongsTo(Group::class, 'group_id');
-    }
+  &__buttons-container {
+    .full-size();
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+  }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+  &__buttons-padding {
+    pointer-events: none;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  &__group {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    .reset-input();
+    flex: 1;
+    // Overrides browser default. Actual width handled by flex.
+    width: 0;
+  }
+
+  &__title {
+    .link-white();
+    .link-plain();
+    margin-right: 10px;
+  }
 }

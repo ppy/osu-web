@@ -31,6 +31,7 @@ services:
       - ./docker/mysql/db_user.sql:/docker-entrypoint-initdb.d/db_user.sql
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ONETIME_PASSWORD: "yes"
   composer:
     build:
       context: ./docker/php

@@ -46,6 +46,11 @@ class ValidationErrors
         $this->errors[$column][] = trans($rawMessage, $params);
     }
 
+    public function addTranslated($column, $message)
+    {
+        $this->errors[$column][] = $message;
+    }
+
     public function reset()
     {
         $this->errors = [];

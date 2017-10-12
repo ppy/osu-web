@@ -49,18 +49,14 @@ return [
         ],
     ],
 
-    'user_email' => [
-        'invalid' => 'No parece que haya un correo electrónico.',
-        'already_used' => 'Correo electrónico ya en uso.',
-        'wrong_confirmation' => 'La confirmación de correo electrónico no coincide.',
-        'wrong_current_password' => 'Contraseña actual incorrecta.',
-    ],
-
-    'user_password' => [
+    'user' => [
         'contains_username' => 'La contraseña no puede contener el nombre de usuario.',
+        'email_already_used' => 'Correo electrónico ya en uso.',
+        'invalid_email' => 'No parece que haya un correo electrónico.',
         'too_short' => 'La nueva contraseña es muy corta.',
         'weak' => 'Contraseña no permitida.',
-        'wrong_confirmation' => 'La confirmación de contraseña no coincide.',
         'wrong_current_password' => 'La contraseña actual es incorrecta.',
+        'wrong_email_confirmation' => 'La confirmación de correo electrónico no coincide.',
+        'wrong_password_confirmation' => 'La confirmación de contraseña no coincide.',
     ],
 ];

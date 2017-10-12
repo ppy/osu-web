@@ -48,7 +48,7 @@
         </div>
         <div class='form-group grid-cell grid-cell--1of2'>
             {!! Form::label('address[country_code]', 'Country', ["class" => "sr-only"]) !!}
-            {!!Form::select('address[country_code]', countries_array_for_select(), isset($_SERVER['CF-IPCountry']) ? $_SERVER['CF-IPCountry'] : null, ['class' => 'form-control']) !!}
+            {!!Form::select('address[country_code]', countries_array_for_select(), request_country(), ['class' => 'form-control']) !!}
         </div>
         <div class='form-group grid-cell grid-cell--1of2'>
             {!! Form::label('address[phone]', 'Phone Number', ["class" => "sr-only"]) !!}

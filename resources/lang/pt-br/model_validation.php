@@ -49,18 +49,14 @@ return [
         ],
     ],
 
-    'user_email' => [
-        'invalid' => 'Não parece ser um endereço de e-mail.',
-        'already_used' => 'Endereço de e-mail já usado.',
-        'wrong_confirmation' => 'A confirmação de e-mail não corresponde.',
-        'wrong_current_password' => 'Senha atual incorreta.',
-    ],
-
-    'user_password' => [
+    'user' => [
         'contains_username' => 'A senha não pode conter o nome de usuário.',
+        'email_already_used' => 'Endereço de e-mail já usado.',
+        'invalid_email' => 'Não parece ser um endereço de e-mail.',
         'too_short' => 'A nova senha é muito curta.',
         'weak' => 'Senha na lista negra.',
-        'wrong_confirmation' => 'A confirmação de senha não corresponde.',
         'wrong_current_password' => 'Senha atual incorreta.',
+        'wrong_email_confirmation' => 'A confirmação de e-mail não corresponde.',
+        'wrong_password_confirmation' => 'A confirmação de senha não corresponde.',
     ],
 ];

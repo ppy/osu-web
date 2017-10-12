@@ -25,8 +25,6 @@ use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\User;
-use App\Models\UserEmail;
-use App\Models\UserPassword;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
@@ -133,12 +131,11 @@ class AccountController extends Controller
 
     public function updateEmail()
     {
-        $user = Auth::user();
+        $params = get_params(request(), 'user', ['current_password', 'user_email', 'user_email_confirmation']);
+        $user = Auth::user()->validateCurrentPassword()->validateEmailConfirmation();
         $previousEmail = $user->user_email;
-        $userEmail = (new UserEmail($user))
-            ->fill(Request::input('user_email'));
 
-        if ($userEmail->save() === true) {
+        if ($user->update($params) === true) {
             $addresses = [$user->user_email];
             if (present($previousEmail)) {
                 $addresses[] = $previousEmail;
@@ -150,7 +147,7 @@ class AccountController extends Controller
             return ['message' => trans('accounts.update_email.updated')];
         } else {
             return response(['form_error' => [
-                'user_email' => $userEmail->validationErrors()->all(),
+                'user' => $user->validationErrors()->all(),
             ]], 422);
         }
     }
@@ -168,11 +165,10 @@ class AccountController extends Controller
 
     public function updatePassword()
     {
-        $user = Auth::user();
-        $userPassword = (new UserPassword($user))
-            ->fill(Request::input('user_password'));
+        $params = get_params(request(), 'user', ['current_password', 'password', 'password_confirmation']);
+        $user = Auth::user()->validateCurrentPassword()->validatePasswordConfirmation();
 
-        if ($userPassword->save() === true) {
+        if ($user->update($params) === true) {
             if (present($user->user_email)) {
                 Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
             }
@@ -180,7 +176,7 @@ class AccountController extends Controller
             return ['message' => trans('accounts.update_password.updated')];
         } else {
             return response(['form_error' => [
-                'user_password' => $userPassword->validationErrors()->all(),
+                'user' => $user->validationErrors()->all(),
             ]], 422);
         }
     }
