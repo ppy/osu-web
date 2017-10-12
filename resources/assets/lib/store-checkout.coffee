@@ -60,14 +60,10 @@ export class StoreCheckout
                   Promise.resolve()
 
       promise.catch (error) ->
-        console.error(error)
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
         # TODO: handle error.message
-        if error.xhr
-          osu.ajaxError(error.xhr)
-        else
-          osu.ajaxError()
+        osu.ajaxError(error?.xhr)
 
   @allTraps: ->
     traps = {}
