@@ -20,132 +20,132 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
+        'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
+        'peak' => '최다 동시 접속자 수: :count명',
+        'players' => '제한된 플레이어: <strong>:count</strong>명',
 
         'download' => [
-            '_' => 'Download now',
-            'soon' => 'osu! coming soon to other operating systems',
-            'for' => 'for :os',
-            'other' => 'click here for :os1 or :os2',
+            '_' => '지금 바로 다운로드하기',
+            'soon' => 'osu!가 곧 다른 운영체제도 지원 할 거에요',
+            'for' => ':os 용',
+            'other' => ':os1 나, :os2 용은 여기를 눌러주세요',
         ],
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
-            'sub' => 'rhythm is just a click away',
+            'main' => '무료 리듬 게임',
+            'sub' => '리듬은 그냥 클릭만으로도 이루어지죠',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
-        'button' => 'Search',
-        'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'advanced_link' => '고급 검색',
+        'button' => '검색',
+        'empty_result' => '아무것도 찾지 못했습니다!',
+        'missing_query' => '검색하려면 적어도 :n글자는 적어주셔야 합니다.',
+        'title' => '검색 결과',
 
         'beatmapset' => [
-            'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
-            'title' => 'Beatmaps',
+            'more' => ':count개의 비트맵 검색 결과 더 보기',
+            'more_simple' => '비트맵 검색 결과 더 보기',
+            'title' => '비트맵',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Search the forum',
-            'more_simple' => 'See more forum search results',
-            'title' => 'Forum',
+            'all' => '모든 포럼',
+            'link' => '포럼 검색하기',
+            'more_simple' => '포럼 검색 결과 더 보기',
+            'title' => '포럼',
 
             'label' => [
-                'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
-                'username' => 'author',
+                'forum' => '포럼에서 검색하기',
+                'forum_children' => '서브포럼을 포함하여 검색',
+                'topic_id' => '주제 #',
+                'username' => '글쓴이',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'player',
-            'wiki_page' => 'wiki',
+            'all' => '모두',
+            'beatmapset' => '비트맵',
+            'forum_post' => '포럼',
+            'user' => '플레이어',
+            'wiki_page' => '위키',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
+            'more' => ':count명의 플레이어 검색 결과 더 보기',
+            'more_simple' => '플레이어 검색 결과 더 보기',
+            'more_hidden' => '플레이어 검색은 최대 :max명 까지 가능합니다. 다른 검색어로 시도해보세요.',
             'title' => 'Players',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
-            'title' => 'Wiki',
+            'link' => '위키에서 검색하기',
+            'more_simple' => '위키 검색 결과 더 보기',
+            'title' => '위키',
         ],
     ],
 
     'download' => [
       'header' => [
-          '1' => "let's get",
-          '2' => 'you started',
-          '3' => 'download osu! game client for Windows',
+          '1' => "같이 한 번", // let's get
+          '2' => '시작해보자구요!', // you started
+          '3' => 'Windows에서 osu! 게임 클라이언트 다운로드 하기',
       ],
       'steps' => [
           '1' => [
-              'name' => 'Step 1',
-              'content' => 'Download the osu! game client',
+              'name' => '1 단계',
+              'content' => 'osu! 게임 클라이언트를 다운로드하세요',
           ],
           '2' => [
-              'name' => 'Step 2',
-              'content' => 'Create an osu! player account',
+              'name' => '2 단계',
+              'content' => 'osu! 계정을 생성하세요',
           ],
           '3' => [
-              'name' => 'Step 3',
+              'name' => '3 단계',
               'content' => '???',
           ],
       ],
-      'more' => 'Learn more?',
-      'more_text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+      'more' => '더 알아보실래요?',
+      'more_text' => '<a href="https://www.youtube.com/user/osuacademy/">osu!아카데미 유튜브 채널</a>을 확인해보세요 osu!를 더 즐길 수 있는 최신 튜토리얼과 팁들이 있습니다!',
     ],
 
     'user' => [
         'title' => 'news',
         'news' => [
-            'title' => 'News',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'title' => '뉴스',
+            'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'welcome' => '<strong>:username</strong>님, 안녕하세요!',
+            'messages' => '새로 받은 메세지 :count건이 있습니다',
             'stats' => [
-                'friends' => 'Online Friends',
-                'games' => 'Games',
-                'online' => 'Online Users',
+                'friends' => '접속 중인 친구',
+                'games' => '게임 수',
+                'online' => '접속 중인 플레이어',
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'new' => '새로 Approved된 비트맵', // 비트맵 상태에 대한 적절한 번역을 결정하면 수정
+            'popular' => '유명한 비트맵',
+            'by' => '제작:',
+            'plays' => ':count번 플레이됨',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
-            'support' => 'Support osu!',
-            'store' => 'osu!store',
+            'download' => 'osu! 다운로드',
+            'support' => 'osu! 지원하기',
+            'store' => 'osu!상점',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
+        'title' => '와!',
+        'subtitle' => '즐거운 시간을 보내고 계신 것 같네요! :D',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
-        ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
+            'part-1' => 'osu!가 아무런 광고 수익 없이, 사용자들의 지원으로만 개발 / 운영된다는 사실, 알고 계신가요?',
+            'part-2' => '그리고 또, osu!를 지원하면 게임 내 자동 다운로드 같은 다양한 유용한 기능들을 이용할 수 있다는 점도 알고 계세요?',
+        ], 
+        'find-out-more' => '더 알아보려면 여기를 눌러주세요!',
+        'download-starting' => "아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)",
     ],
 ];
