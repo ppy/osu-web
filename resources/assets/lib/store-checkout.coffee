@@ -36,30 +36,12 @@ export class StoreCheckout
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
         when 'centili' then init['centili'] = StoreCentili.promiseInit()
 
-    $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) ->
-      promiseAll = (provider) ->
-                     Promise.all([init[provider] || Promise.reject(), traps[provider]])
-
+    $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       provider = event.target.dataset.provider
-      promise = switch provider
-                when 'paypal'
-                  promiseAll(provider).then (values) ->
-                    StorePaypal.fetchApprovalLink(event.target.dataset.orderId).then (link) ->
-                      window.location = link
-                when 'xsolla'
-                  promiseAll(provider).then (values) ->
-                    # FIXME: flickering when transitioning to widget
-                    XPayStationWidget.open()
-                    LoadingOverlay.hide()
-                when 'centili'
-                  promiseAll(provider).then (values) ->
-                    LoadingOverlay.hide()
-                    # fake a click for Centili
-                    StoreCentili.fakeClick()
-                else
-                  Promise.resolve()
-
-      promise.catch (error) ->
+      Promise.all([init[provider] || Promise.reject(), traps[provider]])
+      .then (values) =>
+        @handleClick(values[1])
+      .catch (error) ->
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
         # TODO: handle error.message
@@ -72,10 +54,24 @@ export class StoreCheckout
     for button in buttons
       provider = button.dataset.provider
       if provider?
-        traps[provider] = new Promise (resolve, reject) ->
+        traps[provider] = new Promise (resolve) ->
           $(button).on 'click.trap', (event) ->
             LoadingOverlay.show()
             LoadingOverlay.show.flush()
             resolve(event.target.dataset)
 
     traps
+
+  @handleClick: (params) ->
+    console.log(params)
+    switch params.provider
+      when 'paypal'
+        StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
+          window.location = link
+      when 'xsolla'
+        # FIXME: flickering when transitioning to widget
+        XPayStationWidget.open()
+        LoadingOverlay.hide()
+      when 'centili'
+        StoreCentili.fakeClick()
+        LoadingOverlay.hide()
