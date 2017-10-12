@@ -40,7 +40,7 @@ return [
 
     'recent' => [
         'incidents' => [
-            'title' => '최근 사건', // 확인 시 사건보다 문제가 더 부드러울 경우 문제로 
+            'title' => '최근 사건', // 확인 시 사건보다 문제가 더 부드러울 경우 문제로
             'state' => [
                 'resolved' => '해결됨',
                 'resolving' => '해결 중',
