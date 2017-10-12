@@ -201,6 +201,13 @@ function read_image_properties_from_string($string)
     }
 }
 
+function request_country($request = null)
+{
+    return $request === null
+        ? Request::header('CF_IPCOUNTRY')
+        : $request->header('CF_IPCOUNTRY');
+}
+
 function require_login($text_key, $link_text_key)
 {
     $title = trans('users.anonymous.login_link');

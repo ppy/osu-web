@@ -74,7 +74,7 @@ class UserVerification
         $this->request->session()->put('verification_tries', 0);
 
         $requestCountry = Country
-            ::where('acronym', $this->request->header('CF_IPCOUNTRY'))
+            ::where('acronym', request_country($this->request))
             ->pluck('name')
             ->first();
 
