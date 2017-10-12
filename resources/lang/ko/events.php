@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset 맵셋이 <strong>:user</strong>님에 의해 영원한 수면으로부터 깨어났습니다.',
     'beatmapset_update' => '<strong><em>:user</em></strong>님이 "<em>:beatmapset</em>" 맵셋을 업데이트했습니다.',
     'beatmapset_upload' => '<strong><em>:user</em></strong>님이 새 비트맵 ":beatmapset"을 제출했습니다.',
-    'empty' => "이 사용자는 최근에 눈에 띄는 활동을 하지 않았네요!",
+    'empty' => '이 사용자는 최근에 눈에 띄는 활동을 하지 않았네요!',
     'rank' => '<strong><em>:user</em></strong>님이 <em>:beatmap</em> (:mode)맵에서 #:rank등을 기록했습니다',
     'rank_lost' => '<strong><em>:user</em></strong>님이 <em>:beatmap</em> (:mode)맵에서 1등 자리를 빼앗겼습니다.',
     'user_support_again' => '<strong>:user</strong>님이 다시 한번 osu!를 지원하기로 결정하셨군요! - 당신의 그 너그러움에 감사를!',
