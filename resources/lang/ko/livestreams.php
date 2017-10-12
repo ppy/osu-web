@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => '라이브 스트림', 
+        'description' => ' 목록은 5분 마다 갱신되며 twitch.tv를 통해 정보를 가져옵니다. 자유롭게 방송을 시작하셔서 이 곳에 노출시킬 수 있습니다! 방송을 하는 데 필요한 환경의 설치법은, 위키 페이지의 라이브 스트리밍 항목을 참조해주세요.',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => '현재 방송 중',
     ],
 ];
