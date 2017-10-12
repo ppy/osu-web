@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => '서브포럼',
     'title' => 'osu!커뮤니티',
-    'slogan' => "혼자서 놀기엔 너무 위험하지요.",
+    'slogan' => '혼자서 놀기엔 너무 위험하지요.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -238,7 +238,7 @@ return [
                 'user' => [
                     'current' => '투표 횟수가 :votes회 남았습니다.',
                     'count' => '{0} 표 없음|{1,*} :count 표',
-                    'not_enough' => "투표를 모두 사용하여 더이상 투표할 수 없습니다.",
+                    'not_enough' => '투표를 모두 사용하여 더이상 투표할 수 없습니다.',
                 ],
             ],
 
