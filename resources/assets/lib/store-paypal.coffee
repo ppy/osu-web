@@ -17,12 +17,6 @@
 ###
 
 export class StorePaypal
-  @promiseInit: ->
-    Promise.resolve()
-
-  @fetchScript: ->
-    Promise.resolve()
-
   @fetchApprovalLink: (orderId) ->
     new Promise (resolve, reject) ->
       $.get laroute.route('payments.paypal.create'), order_id: orderId
