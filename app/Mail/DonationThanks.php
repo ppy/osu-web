@@ -20,6 +20,7 @@
 
 namespace App\Mail;
 
+use App\Models\SupporterTag;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -39,7 +40,7 @@ class DonationThanks extends Mailable
     {
         $this->params = [
             'donor' => $donor,
-            'length' => $length,
+            'duration' => SupporterTag::getDurationText($length),
             'amount' => $amount,
             'isGift' => $isGift,
             'minutes' => round($amount / config('payments.running_cost') * 525949, 1), // 365.2425 days

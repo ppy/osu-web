@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\SupporterTag;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -22,7 +23,7 @@ class SupporterGift extends Mailable
         $this->params = [
             'donor' => $donor,
             'giftee' => $giftee,
-            'length' => $length,
+            'duration' => SupporterTag::getDurationText($length),
         ];
     }
 

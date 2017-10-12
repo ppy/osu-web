@@ -95,4 +95,15 @@ class SupporterTag
 
         throw new \Exception('not a valid duration.');
     }
+
+    public static function getDurationText($length)
+    {
+        $years = (int) ($length / 12);
+        $months = $length % 12;
+
+        $yearsText = trans_choice('supporter_tag.duration.years', $years, ['length' => $years]);
+        $monthsText = trans_choice('supporter_tag.duration.months', $months, ['length' => $months]);
+
+        return implode(', ', array_filter([$yearsText, $monthsText]));
+    }
 }
