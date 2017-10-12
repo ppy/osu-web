@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 return [
     'deleted' => '[삭제된 사용자]',
 
