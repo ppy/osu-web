@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => 'add friend',
-      'remove' => 'remove friend',
+      'add' => '친구 추가',
+      'remove' => '친구 삭제',
     ],
 
     'state' => [
-      'friends' => 'friends',
-      'mutual' => 'mutual',
+      'friends' => '친구',
+      'mutual' => '서로 ',
     ],
 
-    'title' => 'Friends',
-    'title_compact' => 'friends',
+    'title' => '친구',
+    'title_compact' => '친구',
 
-    'too_many' => 'Friend limit reached.',
+    'too_many' => '등록 가능한 친구 수를 넘었습니다.',
 ];
