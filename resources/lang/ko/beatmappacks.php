@@ -35,14 +35,14 @@ return [
             ],
         ],
         'title' => '비트맵 팩',
-        'description' => 'Pre-packaged collections of beatmaps based around a common theme.', // 공통된 주제를 기준으로 가포장된 모음집. (부드러운 번역 필요)
+        'description' => '비슷한 주제를 기준으로 한 비트맵 모음집입니다.', // Pre-packaged collections of beatmaps based around a common theme
     ],
 
     'show' => [
         'download' => '다운로드',
         'item' => [
-            'cleared' => 'cleared',
-            'not_cleared' => 'not cleared',
+            'cleared' => '클리어한 맵',
+            'not_cleared' => '클리어 기록 없음',
         ],
     ],
 
