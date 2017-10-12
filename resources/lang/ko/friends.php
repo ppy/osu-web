@@ -26,7 +26,7 @@ return [
 
     'state' => [
       'friends' => '친구',
-      'mutual' => '서로 ',
+      'mutual' => '서로친구', // 서로이웃 같은 느낌으로...?
     ],
 
     'title' => '친구',
