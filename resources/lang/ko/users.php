@@ -31,7 +31,7 @@ return [
         'remember' => '이 컴퓨터에서 계정 정보 기억하기',
         'title' => '계속하려면 로그인해 주세요',
         'failed' => '계정 정보가 올바르지 않습니다',
-        'register' => "osu!계정이 없으신가요? 새로 하나 만들어보세요",
+        'register' => 'osu!계정이 없으신가요? 새로 하나 만들어보세요',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'beta' => [
             'main' => '베타 권한은 현재 일부 특수 사용자만 가지고 있습니다.',
@@ -68,7 +68,7 @@ return [
         'origin_country_age' => ':age, :country에 거주',
         'page_description' => 'osu! - :username님에 대해 궁금했던 모든 것!',
         'plays_with' => '플레이 장비: :devices',
-        'title' => ":username님의 프로필",
+        'title' => ':username님의 프로필',
 
         'edit' => [
             'cover' => [
@@ -111,7 +111,7 @@ return [
             ],
             'kudosu' => [
                 'available' => '사용 가능한 Kudosu',
-                'available_info' => "Kudosu는 제작자가 만든 비트맵이 더 관심을 끌게해주는 kudosu 별(★)로 교환할 수 있습니다. 여기 나타난 Kudous는 아직 교환하지 않은 kudous 수를 나타냅니다.",
+                'available_info' => 'Kudosu는 제작자가 만든 비트맵이 더 관심을 끌게해주는 kudosu 별(★)로 교환할 수 있습니다. 여기 나타난 Kudous는 아직 교환하지 않은 kudous 수를 나타냅니다.',
                 'recent_entries' => '최근 Kudosu 기록',
                 'title' => 'Kudosu!',
                 'total' => '총 획득한 Kudosu 수',
@@ -119,7 +119,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "아직 어떤 kudosu도 받지 못했습니다!",
+                    'empty' => '아직 어떤 kudosu도 받지 못했습니다!',
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -155,7 +155,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "아직 아무런 업적 메달도 받지 못했네요. ;_;",
+                'empty' => '아직 아무런 업적 메달도 받지 못했네요. ;_;',
                 'title' => '메달',
             ],
             'recent_activities' => [
