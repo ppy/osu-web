@@ -31,7 +31,7 @@ return [
         ],
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
-            'sub' => 'rytm jest tylko *o klik* stąd!',
+            'sub' => 'rytm jest tylko o klik stąd!',
         ],
     ],
     'search' => [
