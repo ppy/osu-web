@@ -91,7 +91,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             return false;
         }
 
-        if ((int) $this->orderNumber->getUserId() !== $order->user_id) {
+        if ($this->orderNumber->getUserId() !== $order->user_id) {
             $this->validationErrors()->add('transaction.external_id', '.order_number.user_id_mismatch');
         }
 

@@ -31,8 +31,8 @@ class OrderNumber
     public function __construct(string $orderNumberString = null)
     {
         if (preg_match(static::ORDER_NUMBER_REGEX, $orderNumberString, $matches)) {
-            $this->userId = $matches['userId'];
-            $this->orderId = $matches['orderId'];
+            $this->userId = (int) $matches['userId'];
+            $this->orderId = (int) $matches['orderId'];
         } else {
             $this->isValid = false;
         }
