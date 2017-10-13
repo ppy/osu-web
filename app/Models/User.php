@@ -1260,8 +1260,9 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if (present($this->country_acronym)) {
+        if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
             if (($country = Country::find($this->country_acronym)) !== null) {
+                // ensure matching case
                 $this->country_acronym = $country->getKey();
             } else {
                 $this->validationErrors()->add('country', '.invalid_country');
