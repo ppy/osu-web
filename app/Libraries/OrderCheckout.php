@@ -112,7 +112,7 @@ class OrderCheckout
     private function allowCentiliPayment()
     {
         // Geolocation header from Cloudflare
-        $isJapan = strcasecmp(Request::header('Cf-Ipcountry'), 'JP') === 0;
+        $isJapan = strcasecmp(request_country(), 'JP') === 0;
 
         return $isJapan && Request::input('intl') !== '1';
     }
