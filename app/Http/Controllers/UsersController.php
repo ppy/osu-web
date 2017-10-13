@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
@@ -144,7 +145,7 @@ class UsersController extends Controller
 
         $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
         $params['user_ip'] = $ip;
-        $params['country_acronym'] = request_country();
+        $params['country_acronym'] = Country::find(request_country())->getKey() ?? null;
 
         $registration = new UserRegistration($params);
 
