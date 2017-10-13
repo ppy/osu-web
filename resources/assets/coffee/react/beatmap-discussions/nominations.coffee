@@ -51,9 +51,10 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     nominators = []
     for event in @props.events by -1
-      switch event.type
-        when 'disqualify' then break
-        when 'nominate' then nominators.push(@props.users[event.user_id])
+      if event.type == 'disqualify'
+        break
+      else if event.type == 'nominate'
+        nominators.push(@props.users[event.user_id])
 
     div className: bn,
       div className: "#{bn}__header",
