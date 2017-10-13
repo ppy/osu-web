@@ -18,6 +18,7 @@
 
 export class StoreCentili
   widget = '#c-mobile-payment-widget'
+  className = 'js-centili-extra'
 
   ####################################################
   # This junk is stupid hack for a loading overlay
@@ -58,7 +59,9 @@ export class StoreCentili
       window.centili && !fancyboxes.length && window.centili.loadFancyBox()
 
   $(document).on 'turbolinks:before-cache', ->
-    hasWidget() && deleteFancyboxes()
+    if hasWidget()
+      deleteFancyboxes()
+      document.body.removeChild(el) for el in document.querySelectorAll(".#{className}")
 
   ####################################################
   # End stupid
@@ -80,6 +83,7 @@ export class StoreCentili
   @fetchStyle: (name) ->
     new Promise (resolve, reject) ->
       link = document.createElement('link')
+      link.classList.add className
       link.rel = 'stylesheet'
       link.type = 'text/css'
       link.href = "https://www.centili.com/widget/#{name}"
