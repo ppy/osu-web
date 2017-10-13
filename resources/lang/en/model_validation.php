@@ -53,6 +53,7 @@ return [
     'user' => [
         'contains_username' => 'Password may not contain username.',
         'email_already_used' => 'Email address already used.',
+        'invalid_country' => 'Country not in database.',
         'invalid_email' => "Doesn't seem to be an email address.",
         'too_short' => 'New password is too short.',
         'weak' => 'Blacklisted password.',
