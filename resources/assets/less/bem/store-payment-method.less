@@ -21,10 +21,18 @@
   justify-content: space-between;
   padding: 8px;
 
+  @media @mobile {
+    flex-direction: column;
+  }
+
   &__cell {
     margin: 8px;
     padding: 8px;
     width: 50%;
+    @media @mobile {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   &__provider {
