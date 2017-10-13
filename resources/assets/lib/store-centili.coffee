@@ -28,35 +28,37 @@ export class StoreCentili
   hasWidget = ->
     document.querySelector(widget)
 
-  observer = new MutationObserver (mutations) ->
-    mutations.forEach (mutation) ->
-      hasFrame = false
-      hasContent = false
-      for node in mutation.addedNodes
-        _.startsWith(node.id, 'fancybox-') && fancyboxes.push(node)
-        hasFrame |= node.id == 'fancybox-frame'
-        hasContent |= node.id == 'fancybox-content'
+  observer = ->
+    new MutationObserver (mutations) ->
+      mutations.forEach (mutation) ->
+        hasFrame = false
+        hasContent = false
+        for node in mutation.addedNodes
+          _.startsWith(node.id, 'fancybox-') && fancyboxes.push(node)
+          hasFrame |= node.id == 'fancybox-frame'
+          hasContent |= node.id == 'fancybox-content'
 
-      hasFrame && window.LoadingOverlay.hide()
-      if hasContent && needsTriggerClick
-        # Queue up a click event if the loading completed after clicking
-        Timeout.set 0, ->
-          window.centiliJQuery(widget).trigger('click')
-
-  $(document).on 'turbolinks:load', ->
-    if hasWidget()
-      observer.observe document.body, childList: true, subtree: true
-      # If the centili global exists at load, we probably destroyed the previous fancyboxes.
-      window.centili && !fancyboxes.length && window.centili.loadFancyBox()
-
-  $(document).on 'turbolinks:before-cache', ->
-    hasWidget() && deleteFancyboxes()
+        hasFrame && window.LoadingOverlay.hide()
+        if hasContent && needsTriggerClick
+          # Queue up a click event if the loading completed after clicking
+          Timeout.set 0, ->
+            window.centiliJQuery(widget).trigger('click')
 
   deleteFancyboxes = ->
     # force reset or else fancybox will automatically display
     needsTriggerClick = false
     $(fancyboxes).remove()
     fancyboxes = []
+
+
+  $(document).on 'turbolinks:load', ->
+    if hasWidget()
+      observer().observe document.body, childList: true, subtree: true
+      # If the centili global exists at load, we probably destroyed the previous fancyboxes.
+      window.centili && !fancyboxes.length && window.centili.loadFancyBox()
+
+  $(document).on 'turbolinks:before-cache', ->
+    hasWidget() && deleteFancyboxes()
 
   ####################################################
   # End stupid
