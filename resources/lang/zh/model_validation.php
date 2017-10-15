@@ -19,7 +19,7 @@
  */
 
 return [
-    'not_negative' => ':attribute 不能为负数。',    
+    'not_negative' => ':attribute 不能为负数。',
     'required' => '需要 :attribute。',
     'wrong_confirmation' => '确认信息不匹配。',
 

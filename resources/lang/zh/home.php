@@ -75,7 +75,7 @@ return [
         'user' => [
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
-            'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',            
+            'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',
             'title' => '玩家',
         ],
 
