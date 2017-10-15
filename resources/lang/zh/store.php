@@ -25,7 +25,7 @@ return [
 
     'checkout' => [
         'pay' => '使用 Paypal 支付',
-        'delayed_shipping' => '欢迎您购买，但是我们正在处理大量的订单，所以您的订单**可能会有1-2天的延迟**。',
+        'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
     ],
 
     'discount' => '节省 :percent%',
@@ -44,16 +44,16 @@ return [
 
         'stock' => [
             'out' => '卖完了呢( ´_ゝ｀) 过段时间再回来看看吧。',
-            'out_with_alternative' => '您选择的类型已经卖完了(´；ω；`) 试试另外几种或者过段时间再回来看看吧。',
+            'out_with_alternative' => '选择的类型已售罄(´；ω；`) 试试另外几种或者过段时间再回来看看吧。',
         ],
 
         'add_to_cart' => '添加到购物车',
         'notify' => '当可以购买时提醒我！',
 
-        'notification_success' => '当我们进货时您将收到提醒，点击 :link 以取消该提醒',
+        'notification_success' => '当商品有货时会收到提醒，点击 :link 以取消该提醒',
         'notification_remove_text' => '这里',
 
-        'notification_in_stock' => '这件商品已经进货！',
+        'notification_in_stock' => '新货到，快来买买买！',
     ],
 
     'supporter_tag' => [
@@ -65,7 +65,7 @@ return [
 
     'username_change' => [
         'require_login' => [
-            '_' => '你需要 :link 才能改变你的用户名！',
+            '_' => '需要 :link 才能改变用户名！',
             'link_text' => '登录',
         ],
     ],
