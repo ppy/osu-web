@@ -148,7 +148,9 @@
     .own-layer();
     position: absolute;
     left: 0;
-    bottom: 0;
+    // Not properly aligned in Firefox with 0px at certain zoom level.
+    // Thankfully chart usually covers the bottom part.
+    bottom: 1px;
     margin-left: @side-padding;
     height: 466px;
     width: calc(100% ~'-' @side-padding);
