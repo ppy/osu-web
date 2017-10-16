@@ -139,7 +139,7 @@ class UsersController extends Controller
 
         // Prevents browser-based form submission.
         // Javascript-side is prevented using CORS.
-        if (!starts_with(Request::header('User-Agent'), 'osu-client/')) {
+        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
             return error_popup('Wrong client', 403);
         }
 
