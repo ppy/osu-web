@@ -53,7 +53,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
 
     public function getPaymentDate()
     {
-        return Carbon::parse($this['payment_date']);
+        return Carbon::parse($this['payment_date'])->setTimezone('UTC');
     }
 
     public function getNotificationType()
