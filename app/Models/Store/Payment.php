@@ -29,6 +29,7 @@ class Payment extends Model
         'cancelled' => 'boolean',
     ];
     protected $dates = ['paid_at'];
+    protected $guarded = [];
 
     public function order()
     {

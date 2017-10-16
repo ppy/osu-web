@@ -127,16 +127,13 @@ class ApplySupporterTag extends OrderItemFulfillment
 
     private function applyDonation()
     {
-        $donation = new UserDonation();
-        $donation->transaction_id = $this->getTransactionId();
-        $donation->user_id = $this->donorId;
-        $donation->target_user_id = $this->targetId;
-        $donation->length = $this->duration;
-        $donation->amount = $this->amount;
-
-        \Log::debug($donation);
-
-        return $donation;
+        return new UserDonation([
+            'transaction_id' => $this->getTransactionId(),
+            'user_id' => $this->donorId,
+            'target_user_id' => $this->targetId,
+            'length' => $this->duration,
+            'amount' => $this->amount,
+        ]);
     }
 
     private function applySubscription()

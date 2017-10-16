@@ -165,10 +165,11 @@ abstract class PaymentProcessor implements \ArrayAccess
             $order = $this->getOrder();
 
             // Using a unique constraint, so we don't need to lock any rows.
-            $payment = new Payment();
-            $payment->provider = $this->getPaymentProvider();
-            $payment->transaction_id = $this->getPaymentTransactionId();
-            $payment->paid_at = $this->getPaymentDate();
+            $payment = new Payment([
+                'provider' => $this->getPaymentProvider(),
+                'transaction_id' => $this->getPaymentTransactionId(),
+                'paid_at' => $this->getPaymentDate(),
+            ]);
 
             if (!$order->payments()->save($payment)) {
                 throw new ModelNotSavedException('failed saving model');

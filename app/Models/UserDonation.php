@@ -30,6 +30,8 @@ class UserDonation extends Model
     protected $table = 'osu_user_donations';
 
     protected $dates = ['timestamp'];
+    protected $guarded = [];
+
     public $timestamps = false;
 
     protected $casts = [
