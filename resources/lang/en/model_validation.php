@@ -56,6 +56,8 @@ return [
         'invalid_country' => 'Country not in database.',
         'invalid_email' => "Doesn't seem to be an email address.",
         'too_short' => 'New password is too short.',
+        'unknown_duplicate' => 'Username or email address already used.',
+        'username_too_short' => 'The requested username is too short.',
         'weak' => 'Blacklisted password.',
         'wrong_current_password' => 'Current password is incorrect.',
         'wrong_email_confirmation' => 'Email confirmation does not match.',

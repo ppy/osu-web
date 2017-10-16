@@ -142,12 +142,12 @@ class User extends Model implements AuthenticatableContract, Messageable
             return [];
         }
 
-        if ($username !== trim($username)) {
+        if (($username ?? '') !== trim($username)) {
             return ["Username can't start or end with spaces!"];
         }
 
         if (strlen($username) < 3) {
-            return ['The requested username is too short.'];
+            return [trans('model_validation.user.username_too_short')];
         }
 
         if (strlen($username) > 15) {
@@ -1204,7 +1204,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $this->validationErrors()->reset();
 
-        if ($this->isDirty('username')) {
+        if (!present($this->username) || $this->isDirty('username')) {
             $errors = static::validateUsername($this->username, $this->getOriginal('username'));
 
             if (count($errors) > 0) {
@@ -1227,8 +1227,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         if (present($this->password)) {
-            if (strpos(strtolower($this->password), strtolower($this->username)) !== false) {
-                $this->validationErrors()->add('password', '.contains_username');
+            if (present($this->username)) {
+                if (strpos(strtolower($this->password), strtolower($this->username)) !== false) {
+                    $this->validationErrors()->add('password', '.contains_username');
+                }
             }
 
             if (strlen($this->password) < 8) {
