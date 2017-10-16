@@ -23,7 +23,7 @@ return [
 
     'login' => [
         '_' => '登录',
-        'locked_ip' => '您的IP已被锁定，请稍等几分钟',
+        'locked_ip' => 'IP 已被锁定，请稍等几分钟',
         'username' => '用户名',
         'password' => '密码',
         'button' => '登录',
@@ -31,7 +31,7 @@ return [
         'remember' => '记住此电脑',
         'title' => '登录以继续',
         'failed' => '登录失败',
-        'register' => '没有 osu! 账户？现在注册一个吧',
+        'register' => '没有 osu! 账户？现在就注册一个！',
         'forgot' => '忘记密码？',
         'beta' => [ //已弃用(?)
             'main' => 'Beta 仅限于特定用户访问',
@@ -48,21 +48,21 @@ return [
         'username' => '游客',
         'error' => '请先登录',
     ],
-    'logout_confirm' => '你确定要退出吗？(^·ω·^ )',
+    'logout_confirm' => '确定要退出吗？o(TヘTo)',
     'restricted_banner' => [
-        'title' => '账户已受限！',
-        'message' => '在被限制时，不能与其他玩家互动，并且您的分数只有您自己可见。该限制通常由系统自动给予，并将在24小时内解除。如果您需要申诉，请<a href="mailto:accounts@ppy.sh">联系客服</a>.',
+        'title' => '账户进入限制模式！',
+        'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',
     ],
     'show' => [
         '404' => '找不到指定的用户',
         'age' => ':age 岁',
-        'current_location' => '现在在 :location',
-        'first_members' => '最初的用户', //TODO 需要上下文
+        'current_location' => '位于 :location',
+        'first_members' => '元老玩家',
         'is_developer' => 'osu! 开发者',
         'is_supporter' => 'osu! 支持者',
         'joined_at' => '注册时间：:date',
         'lastvisit' => '上次登录：:date',
-        'missingtext' => '您可能输错了！（或者该用户已经被 ban）',
+        'missingtext' => '未找到用户！（或者该用户已经被 ban）',
         'origin_age' => ':age 岁',
         'origin_country' => '来自 :country',
         'origin_country_age' => ':age，来自 :country',
@@ -87,7 +87,7 @@ return [
             ],
         ],
         'extra' => [
-            'followers' => '粉丝：:count',
+            'followers' => '关注者：:count',
             'unranked' => '最近没有玩过',
 
             'achievements' => [
@@ -115,7 +115,7 @@ return [
                 'recent_entries' => '最近 Kudosu 记录',
                 'title' => 'Kudosu!',
                 'total' => '总共获得 kudosu',
-                'total_info' => '取决于您对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
+                'total_info' => '取决于你对制谱的贡献如何。查看 <a href="'.osu_url('user.kudosu').'">这个页面</a> 以得到更多信息。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
@@ -123,54 +123,54 @@ return [
 
                     'beatmap_discussion' => [ //TODO 专有名词太多,需要帮助
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => '因讨论帖 :post 的 kudosu 移除操作的撤销而获得 :amount',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => '在讨论帖 :post 中被移除 :amount',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => '因讨论帖 :post 被删除而失去 :amount',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => '因讨论帖 :post 被恢复而获得 :amount',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => '因在讨论帖 :post 中得到了足够票数而获得 :amount',
+                            'reset' => '因在讨论帖 :post 中丢失了票数而失去 :amount',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => '在帖子 :post 中被 :giver 给予 :amount ',
+                        'reset' => '在帖子 :post 中被 :giver 重置 kudosu ',
+                        'revoke' => '在帖子 :post 中被 :giver 移除 kudosu ',
                     ],
                 ],
             ],
             'me' => [
-                'title' => '关于我！',
+                'title' => '个人介绍',
             ],
             'medals' => [
-                'empty' => '该用户还没有获得奖章。;_;',
-                'title' => '奖章',
+                'empty' => '该用户还没有获得成就。;_;',
+                'title' => '成就',
             ],
             'recent_activities' => [
                 'title' => '最近活动',
             ],
-            'top_ranks' => [ //翻译可能不准确
+            'top_ranks' => [
                 'best' => [
-                    'title' => '最佳表现',
+                    'title' => '最好成绩',
                 ],
-                'empty' => '还没有最佳表现。 :(',
+                'empty' => '还没有上传过成绩。 :(',
                 'first' => [
                     'title' => '第一名',
                 ],
                 'pp' => ':amountpp',
-                'title' => '表现',
+                'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
             ],
             'beatmaps' => [
@@ -185,10 +185,10 @@ return [
             ],
         ],
         'page' => [
-            'description' => '<strong>关于我！</strong> 是您可以自定义的展示区.',
+            'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "您需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
+            'restriction_info' => "需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',
@@ -199,16 +199,19 @@ return [
             'level' => '等级 :level',
             'maximum_combo' => '最大连击',
             'play_count' => '游玩次数',
-            'ranked_score' => 'Ranked谱面总分', //Ranked不翻译
+            'ranked_score' => 'Ranked 谱面总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',
-            'total_hits' => '总命中次数', //或许不翻译hit更好
+            'total_hits' => '总命中次数',
             'total_score' => '总分',
         ],
     ],
     'status' => [
         'online' => '在线',
         'offline' => '离线',
+    ],
+    'store' => [
+        'saved' => '账户已创建',
     ],
     'verify' => [
         'title' => '账户认证',

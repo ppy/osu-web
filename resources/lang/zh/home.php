@@ -20,9 +20,9 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> 个在线玩家, <strong>:games</strong> 个游戏房间',
+        'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
-        'players' => '<strong>:count</strong> 个已注册玩家',
+        'players' => '<strong>:count</strong> 名已注册玩家',
 
         'download' => [
             '_' => '下载',
@@ -33,7 +33,7 @@ return [
 
         'slogan' => [
             'main' => '免费音乐游戏',
-            'sub' => '绝妙的节奏就在下一次点击', //@Flower: 翻译成狗话就是再点一下就FC了
+            'sub' => '节奏跃然指上',
         ],
     ],
 
@@ -75,11 +75,12 @@ return [
         'user' => [
             'more' => '搜索到 :count 个玩家',
             'more_simple' => '查看更多搜索结果',
+            'more_hidden' => '玩家搜索超出 :max 个限制，请修改搜索内容。',
             'title' => '玩家',
         ],
 
         'wiki_page' => [
-            'link' => '在 wiki 中搜索',
+            'link' => '在 Wiki 中搜索',
             'more_simple' => '查看更多搜索结果',
             'title' => 'Wiki',
         ],
@@ -117,7 +118,7 @@ return [
         ],
         'header' => [
             'welcome' => '哈喽，<strong>:username</strong>！',
-            'messages' => '你有 :count 条新消息|{0}', //无消息时隐藏消息通知
+            'messages' => '你有 :count 条新消息|{0}',
             'stats' => [
                 'friends' => '在线好友',
                 'games' => '房间',
@@ -125,7 +126,7 @@ return [
             ],
         ],
         'beatmaps' => [
-            'new' => '新 Approved 谱面', //mapping相关,暂不翻译
+            'new' => '新 Approved 谱面',
             'popular' => '高人气谱面',
             'by' => '作者：',
             'plays' => ':count 次游玩',
@@ -139,10 +140,10 @@ return [
 
     'support-osu' => [
         'title' => '喔！',
-        'subtitle' => '看起来您玩得很开心！ :D',
+        'subtitle' => '看起来你玩得很开心！',
         'body' => [
-            'part-1' => '你知道吗？ osu! 是一款完全没有广告，完全依赖玩家支持以维持开发及运营的游戏。',
-            'part-2' => '如果你选择向 osu! 捐赠，你将得到解锁额外的功能，例如<strong>游戏内自动下载</strong>，它将在您围观和多人游戏时生效。',
+            'part-1' => '你知道吗？ osu! 是一款没有广告，完全依赖玩家支持以维持开发及运营的游戏。',
+            'part-2' => '如果你选择给 osu! 捐赠，就可以解锁额外的功能，例如<strong>游戏内自动下载</strong>。',
         ],
         'find-out-more' => '点击这里以了解更多',
         'download-starting' => '对了，别担心 - 下载已经开始了 ;)',
