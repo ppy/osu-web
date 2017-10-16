@@ -75,9 +75,10 @@ class User extends Model implements AuthenticatableContract, Messageable
     ];
 
     private $memoized = [];
+
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
-    private $password = null;
+    public $password = null;
     private $passwordConfirmation = null;
     private $currentPassword = null;
 
@@ -1204,7 +1205,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $this->validationErrors()->reset();
 
-        if (!present($this->username) || $this->isDirty('username')) {
+        if ($this->isDirty('username')) {
             $errors = static::validateUsername($this->username, $this->getOriginal('username'));
 
             if (count($errors) > 0) {

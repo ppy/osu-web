@@ -45,6 +45,20 @@ class UserRegistration
 
     public function save()
     {
+        $isValid = true;
+
+        // basic validation
+        foreach (['username', 'user_email', 'password'] as $attribute) {
+            if (!present($this->user->$attribute)) {
+                $this->user->validationErrors()->add($attribute, 'required');
+                $isValid = false;
+            }
+        }
+
+        if (!$isValid) {
+            return $isValid;
+        }
+
         try {
             $ok = DB::transaction(function () {
                 $this->user->saveOrExplode();
