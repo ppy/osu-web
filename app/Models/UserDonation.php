@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use DB;
 use Log;
 
@@ -67,6 +68,7 @@ class UserDonation extends Model
         $donation->transaction_id = $cancelledTransactionId;
         $donation->amount = -$donation->amount;
         $donation->cancel = true;
+        $donation->timestamp = Carbon::now();
 
         Log::debug($donation);
 
