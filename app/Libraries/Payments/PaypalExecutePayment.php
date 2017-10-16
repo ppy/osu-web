@@ -51,9 +51,9 @@ class PaypalExecutePayment
 
         $this->order = $order;
 
-        $this->execution = new PaymentExecution();
-        $this->execution->setPayerId($params['payerId']);
-        $this->execution->addTransaction($this->getTransaction());
+        $this->execution = (new PaymentExecution())
+            ->setPayerId($params['payerId'])
+            ->addTransaction($this->getTransaction());
     }
 
     public function run()

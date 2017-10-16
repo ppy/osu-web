@@ -49,11 +49,11 @@ class PaypalCreatePayment
     {
         $this->order = $order;
 
-        $payer = new Payer();
-        $payer->setPaymentMethod('paypal');
+        $payer = (new Payer())
+            ->setPaymentMethod('paypal');
 
-        $payment = new Payment();
-        $payment->setIntent('sale')
+        $payment = (new Payment())
+            ->setIntent('sale')
             ->setPayer($payer)
             ->setRedirectUrls($this->getRedirectUrls())
             ->setTransactions([$this->getTransaction()]);
@@ -66,9 +66,7 @@ class PaypalCreatePayment
         $context = PaypalApiContext::get();
 
         try {
-            $this->payment->create($context);
-
-            return $this->payment->getApprovalLink();
+            return $this->payment->create($context)->getApprovalLink();
         } catch (PayPalConnectionException $e) {
             \Log::error($e->getData());
             // TODO: get more context data
@@ -84,49 +82,42 @@ class PaypalCreatePayment
 
     private function getAmount()
     {
-        $details = new Details();
-        $details->setShipping($this->order->shipping)
+        $details = (new Details())
+            ->setShipping($this->order->shipping)
             ->setSubtotal($this->order->getSubTotal());
 
-        $amount = new Amount();
-        $amount->setCurrency('USD')
+        return (new Amount())
+            ->setCurrency('USD')
             ->setTotal($this->order->getTotal())
             ->setDetails($details);
-
-        return $amount;
     }
 
     private function getItemList()
     {
-        $list = new ItemList();
-        $list->setItems([
-            (new Item())->setName($this->order->getOrderName())
-                ->setCurrency('USD')
-                ->setQuantity(1)
-                ->setSku($this->order->getOrderNumber())
-                ->setPrice($this->order->getSubTotal()),
-            ]);
-
-        return $list;
+        return (new ItemList())
+            ->setItems([
+                (new Item())
+                    ->setName($this->order->getOrderName())
+                    ->setCurrency('USD')
+                    ->setQuantity(1)
+                    ->setSku($this->order->getOrderNumber())
+                    ->setPrice($this->order->getSubTotal()),
+                ]);
     }
 
     private function getRedirectUrls()
     {
-        $urls = new RedirectUrls();
-        $urls->setReturnUrl(route('payments.paypal.approved', ['order_id' => $this->order->order_id]))
+        return (new RedirectUrls())
+            ->setReturnUrl(route('payments.paypal.approved', ['order_id' => $this->order->order_id]))
             ->setCancelUrl(route('payments.paypal.declined', ['order_id' => $this->order->order_id]));
-
-        return $urls;
     }
 
     private function getTransaction()
     {
-        $transaction = new Transaction();
-        $transaction->setAmount($this->getAmount())
+        return (new Transaction())
+            ->setAmount($this->getAmount())
             ->setItemList($this->getItemList())
             ->setDescription($this->order->getOrderName())
             ->setInvoiceNumber($this->order->getOrderNumber());
-
-        return $transaction;
     }
 }
