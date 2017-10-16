@@ -25,6 +25,7 @@ use App\Models\User;
 use App\Models\UserGroup;
 use Carbon\Carbon;
 use DB;
+use Exception;
 
 class UserRegistration
 {
@@ -33,7 +34,7 @@ class UserRegistration
     public function __construct($params)
     {
         $this->user = new User(array_merge([
-            'username_clean' => $params['username'],
+            'username_clean' => $params['username'] ?? '',
             'user_permissions' => '',
             'user_interests' => '',
             'user_occ' => '',
@@ -44,6 +45,20 @@ class UserRegistration
 
     public function save()
     {
+        $isValid = true;
+
+        // basic validation
+        foreach (['username', 'user_email', 'password'] as $attribute) {
+            if (!present($this->user->$attribute)) {
+                $this->user->validationErrors()->add($attribute, 'required');
+                $isValid = false;
+            }
+        }
+
+        if (!$isValid) {
+            return $isValid;
+        }
+
         try {
             $ok = DB::transaction(function () {
                 $this->user->saveOrExplode();
@@ -60,6 +75,13 @@ class UserRegistration
             });
         } catch (ModelNotSavedException $_e) {
             $ok = false;
+        } catch (Exception $e) {
+            if (is_sql_unique_exception($e)) {
+                $this->user->validationErrors()->add('username', '.unknown_duplicate');
+                $ok = false;
+            } else {
+                throw $e;
+            }
         }
 
         return $ok;

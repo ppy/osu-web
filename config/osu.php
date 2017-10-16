@@ -25,6 +25,9 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'client' => [
+        'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
+    ],
     'elasticsearch' => [
         'index' => env('ES_INDEX', 'osu'),
     ],
