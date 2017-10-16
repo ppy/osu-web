@@ -144,8 +144,9 @@ class UsersController extends Controller
         }
 
         $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
+        $country = Country::find(request_country());
         $params['user_ip'] = $ip;
-        $params['country_acronym'] = Country::find(request_country())->getKey() ?? null;
+        $params['country_acronym'] = $country === null ? '' : $country->getKey();
 
         $registration = new UserRegistration($params);
 
