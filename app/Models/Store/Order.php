@@ -27,6 +27,8 @@ use DB;
 
 class Order extends Model
 {
+    const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
+
     protected $primaryKey = 'order_id';
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     public $macros = ['itemsQuantities'];
@@ -320,6 +322,26 @@ class Order extends Model
 
             return $query->get();
         };
+    }
+
+    // TODO: turn into a scope or something so it can be chained.
+    public static function findByOrderNumber(string $orderNumber = '')
+    {
+        if (!preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)) {
+            return;
+        }
+
+        if (config('store.order.prefix') !== $matches['prefix']) {
+            return;
+        }
+
+        $userId = (int) $matches['userId'];
+        $orderId = (int) $matches['orderId'];
+
+        return static::where([
+            'order_id' => $orderId,
+            'user_id' => $userId,
+        ])->first();
     }
 
     private function removeOrderItem(array $params)
