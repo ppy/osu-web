@@ -91,12 +91,13 @@ class SupporterTagFulfillment extends OrderFulfiller
     {
         $this->validationErrors()->reset();
 
-        \Log::debug("total: {$this->order->getTotal()}, required: {$this->minimumRequired()}");
-        if ($this->order->getTotal() < $this->minimumRequired()) {
+        $donationTotal = $this->getOrderItems()->sum('cost');
+        \Log::debug("total: {$donationTotal}, required: {$this->minimumRequired()}");
+        if ($donationTotal < $this->minimumRequired()) {
             $this->validationErrors()->addError(
                 'order_total',
                 '.insufficient_paid',
-                ['expected' => $this->minimumRequired(), 'actual' => $this->order->getTotal()]
+                ['expected' => $this->minimumRequired(), 'actual' => $donationTotal]
             );
         }
 
