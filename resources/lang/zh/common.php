@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => '您确定要这样做吗？',
+    'confirmation' => '确定？',
     'saved' => '已保存',
 
     'array_and' => [
@@ -42,7 +42,7 @@ return [
     ],
 
     'count' => [
-        'item' => ':count 个', //参考翻译:件/份/个
+        'item' => ':count 个',
     ],
 
     'datetime' => [

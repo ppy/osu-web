@@ -33,10 +33,10 @@ return [
     ],
 
     'error' => [
-        'contact_support' => '请联系客服以找回账户',
+        'contact_support' => '请联系支持团队以找回账户',
         'is_privileged' => '联系 peppy（笑）',
         'missing_key' => '必填',
-        'too_many_tries' => '失败尝试次数过多',
+        'too_many_tries' => '重试次数过多',
         'user_not_found' => '请求的用户不存在',
         'wrong_key' => '不正确的验证码',
     ],
@@ -48,7 +48,7 @@ return [
 
     'started' => [
         'password' => '新密码',
-        'password_confirmation' => '确认密码',
+        'password_confirmation' => '确认新密码',
         'title' => '为 <strong>:username</strong> 重置密码',
         'verification_key' => '验证码',
     ],

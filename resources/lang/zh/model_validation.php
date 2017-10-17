@@ -19,8 +19,9 @@
  */
 
 return [
-    'required' => '需要 :attribute.',
-    'wrong_confirmation' => '确认信息不匹配。', //需要上下文,
+    'not_negative' => ':attribute 不能为负数。',
+    'required' => '需要 :attribute。',
+    'wrong_confirmation' => '确认信息不匹配。',
 
     'beatmap_discussion_post' => [
         'first_post' => '无法删除第一个提交。',
@@ -28,7 +29,7 @@ return [
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => '只能投票给新特性请求。',
+            'not_feature_topic' => '只能给新特性请求投票。',
             'not_enough_feature_votes' => '票数不足。',
         ],
 
@@ -45,14 +46,14 @@ return [
         ],
 
         'topic_vote' => [
-            'too_many' => '选择了太多的选项。',
+            'too_many' => '选项数量超出限制。',
         ],
     ],
 
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
-        'invalid_email' => '似乎不是有效的邮箱地址。',
+        'invalid_email' => '无效的邮箱地址。',
         'too_short' => '新密码太短。',
         'weak' => '弱密码。',
         'wrong_current_password' => '当前密码错误。',

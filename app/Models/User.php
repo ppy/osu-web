@@ -75,9 +75,10 @@ class User extends Model implements AuthenticatableContract, Messageable
     ];
 
     private $memoized = [];
+
     private $validateCurrentPassword = false;
     private $validatePasswordConfirmation = false;
-    private $password = null;
+    public $password = null;
     private $passwordConfirmation = null;
     private $currentPassword = null;
 
@@ -142,12 +143,12 @@ class User extends Model implements AuthenticatableContract, Messageable
             return [];
         }
 
-        if ($username !== trim($username)) {
+        if (($username ?? '') !== trim($username)) {
             return ["Username can't start or end with spaces!"];
         }
 
         if (strlen($username) < 3) {
-            return ['The requested username is too short.'];
+            return [trans('model_validation.user.username_too_short')];
         }
 
         if (strlen($username) > 15) {
@@ -1227,8 +1228,10 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         if (present($this->password)) {
-            if (strpos(strtolower($this->password), strtolower($this->username)) !== false) {
-                $this->validationErrors()->add('password', '.contains_username');
+            if (present($this->username)) {
+                if (strpos(strtolower($this->password), strtolower($this->username)) !== false) {
+                    $this->validationErrors()->add('password', '.contains_username');
+                }
             }
 
             if (strlen($this->password) < 8) {
@@ -1257,6 +1260,15 @@ class User extends Model implements AuthenticatableContract, Messageable
 
             if (static::where('user_id', '<>', $this->getKey())->where('user_email', '=', $this->user_email)->exists()) {
                 $this->validationErrors()->add('user_email', '.email_already_used');
+            }
+        }
+
+        if ($this->isDirty('country_acronym') && present($this->country_acronym)) {
+            if (($country = Country::find($this->country_acronym)) !== null) {
+                // ensure matching case
+                $this->country_acronym = $country->getKey();
+            } else {
+                $this->validationErrors()->add('country', '.invalid_country');
             }
         }
 

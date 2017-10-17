@@ -20,8 +20,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\Country;
+use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use Auth;
@@ -38,6 +41,8 @@ class UsersController extends Controller
             'checkUsernameAvailability',
             'checkUsernameExists',
         ]]);
+
+        $this->middleware('throttle:10,60', ['only' => ['store']]);
 
         return parent::__construct();
     }
@@ -121,6 +126,36 @@ class UsersController extends Controller
 
             default:
                 abort(404);
+        }
+    }
+
+    public function store()
+    {
+        $ip = Request::ip();
+
+        if (IpBan::where('ip', '=', $ip)->exists()) {
+            return error_popup('Banned IP', 403);
+        }
+
+        // Prevents browser-based form submission.
+        // Javascript-side is prevented using CORS.
+        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
+            return error_popup('Wrong client', 403);
+        }
+
+        $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
+        $country = Country::find(request_country());
+        $params['user_ip'] = $ip;
+        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+
+        $registration = new UserRegistration($params);
+
+        if ($registration->save()) {
+            return $registration->user()->fresh()->defaultJson();
+        } else {
+            return response(['form_error' => [
+                'user' => $registration->user()->validationErrors()->all(),
+            ]], 422);
         }
     }
 
