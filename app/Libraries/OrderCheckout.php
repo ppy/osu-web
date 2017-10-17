@@ -42,12 +42,12 @@ class OrderCheckout
     public function allowedCheckoutTypes()
     {
         $allowed = ['paypal'];
-        if ($this->allowXsollaPayment()) {
-            $allowed[] = 'xsolla';
-        }
-
         if ($this->allowCentiliPayment()) {
             $allowed[] = 'centili';
+        }
+
+        if ($this->allowXsollaPayment()) {
+            $allowed[] = 'xsolla';
         }
 
         return $allowed;
