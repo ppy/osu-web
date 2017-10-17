@@ -18,12 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'top-headers' => [
-        'headline' => '直播中心',
-        'description' => '每 5 分钟从 twitch.tv 更新一次列表，想要出现在列表中？快来直播吧！更多相关信息，请查阅我们的 Wiki 界面。', //翻译可能不准确
-    ],
-    'headers' => [
-        'regular' => '正在直播',
-    ],
-];
+namespace App\Models;
+
+class IpBan extends Model
+{
+    protected $table = 'osu_ip_bans';
+    protected $primaryKey = 'ip';
+    protected $dates = ['timestamp'];
+
+    public $timestamps = false;
+}
