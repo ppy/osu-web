@@ -36,7 +36,7 @@ export class StoreXsolla
       $.get laroute.route('payments.xsolla.token')
       .done (data) ->
         # Make sure laroute hasn't trolled us.
-        reject(message: 'wrong token length') unless data.length == 32
+        return reject(message: 'wrong token length') unless data.length == 32
         resolve(data)
       .fail (xhr) ->
         reject(xhr: xhr)
