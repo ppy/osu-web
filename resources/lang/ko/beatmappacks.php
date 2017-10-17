@@ -35,7 +35,7 @@ return [
             ],
         ],
         'title' => '비트맵 팩',
-        'description' => '비슷한 주제를 기준으로 한 비트맵 모음집입니다.', // Pre-packaged collections of beatmaps based around a common theme
+        'description' => '비슷한 주제를 기준으로 압축한 비트맵 모음집입니다.', // Pre-packaged collections of beatmaps based around a common theme
     ],
 
     'show' => [
