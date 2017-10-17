@@ -34,9 +34,9 @@ abstract class PaymentProcessor implements \ArrayAccess
 {
     use Validatable;
 
-    protected $order;
     protected $params;
     protected $signature;
+    private $order;
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -220,14 +220,15 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     protected function getOrder()
     {
-        // ...maybe use array_key_exists and an array instead? D:
-        if (!isset($this->order) && !(isset($this->order) && $this->order === null)) {
-            $this->order = Order::withPayments()
-                ->whereOrderNumber($this->getOrderNumber())
-                ->first();
+        if (!isset($this->order)) {
+            $this->order = [
+                Order::withPayments()
+                    ->whereOrderNumber($this->getOrderNumber())
+                    ->first()
+            ];
         }
 
-        return $this->order;
+        return $this->order[0];
     }
 
     /**
