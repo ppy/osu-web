@@ -81,7 +81,7 @@ class Order extends Model
 
     public function getOrderNumber()
     {
-        return "store-{$this->user_id}-{$this->order_id}";
+        return config('store.order.prefix')."-{$this->user_id}-{$this->order_id}";
     }
 
     public function getPaymentProvider()

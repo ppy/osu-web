@@ -22,15 +22,14 @@ namespace App\Libraries;
 
 class OrderNumber
 {
-    const ORDER_NUMBER_REGEX = '/^store-(?<userId>\d+)-(?<orderId>\d+)$/';
-
     private $userId;
     private $orderId;
     private $isValid = true;
 
     public function __construct(string $orderNumberString = null)
     {
-        if (preg_match(static::ORDER_NUMBER_REGEX, $orderNumberString, $matches)) {
+        $regex = '/^'.config('store.order.prefix').'-(?<userId>\d+)-(?<orderId>\d+)$/';
+        if (preg_match($regex, $orderNumberString, $matches)) {
             $this->userId = (int) $matches['userId'];
             $this->orderId = (int) $matches['orderId'];
         } else {
@@ -56,7 +55,7 @@ class OrderNumber
     public function __toString()
     {
         if ($this->userId && $this->orderId) {
-            return "store-{$this->userId}-{$this->orderId}";
+            return config('store.order.prefix')."-{$this->userId}-{$this->orderId}";
         }
 
         return '';
