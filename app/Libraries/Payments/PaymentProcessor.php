@@ -24,7 +24,6 @@ use App\Events\Fulfillments\PaymentEvent;
 use App\Events\Fulfillments\ProcessorValidationFailed;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\OrderNumber;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
 use App\Traits\Validatable;
@@ -38,7 +37,6 @@ abstract class PaymentProcessor implements \ArrayAccess
     protected $order;
     protected $params;
     protected $signature;
-    protected $orderNumber;
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -46,18 +44,6 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         $this->params = $params;
         $this->signature = $signature;
-
-        $this->orderNumber = new OrderNumber($this->getOrderNumber());
-    }
-
-    /**
-     * Gets the string that corresponds to an internal Order id.
-     *
-     * @return string
-     */
-    public function getOrderId()
-    {
-        return $this->orderNumber->getOrderId();
     }
 
     /**
@@ -236,7 +222,10 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         // ...maybe use array_key_exists and an array instead? D:
         if (!isset($this->order) && !(isset($this->order) && $this->order === null)) {
-            $this->order = Order::withPayments()->find($this->getOrderId());
+            // FIXME: turn findByOrderNumber into a scope
+            $order = Order::findByOrderNumber($this->getOrderNumber());
+            $orderId = $order ? $order->order_id : 0;
+            $this->order = Order::withPayments()->find($orderId);
         }
 
         return $this->order;

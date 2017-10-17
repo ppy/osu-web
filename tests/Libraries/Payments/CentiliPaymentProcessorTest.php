@@ -90,7 +90,7 @@ class CentiliPaymentProcessorTest extends TestCase
 
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
-        $this->assertArrayHasKey('clientid', $errors);
+        $this->assertArrayHasKey('order', $errors);
     }
 
     public function testWhenOrderNumberMalformed()
@@ -104,7 +104,7 @@ class CentiliPaymentProcessorTest extends TestCase
 
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
-        $this->assertArrayHasKey('clientid', $errors);
+        $this->assertArrayHasKey('order', $errors);
     }
 
     public function testWhenSignatureInvalid()

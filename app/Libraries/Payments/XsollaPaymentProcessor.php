@@ -78,21 +78,12 @@ class XsollaPaymentProcessor extends PaymentProcessor
             );
         }
 
-        // this is just to make the existing test pass
-        if (!$this->orderNumber->isValid()) {
-            $this->validationErrors()->add('transaction.external_id', '.order_number.malformed');
-        }
-
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
             $this->validationErrors()->add('order', '.order.invalid');
 
             return false;
-        }
-
-        if ($this->orderNumber->getUserId() !== $order->user_id) {
-            $this->validationErrors()->add('transaction.external_id', '.order_number.user_id_mismatch');
         }
 
         // order should be in the correct state
