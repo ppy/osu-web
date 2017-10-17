@@ -102,7 +102,7 @@ class OrderCheckout
     {
         // select for update will lock the table if the row doesn't exist,
         // so do a double select.
-        $order = Order::findByOrderNumber($orderNumber);
+        $order = Order::whereOrderNumber($orderNumber)->first();
         if ($order === null) {
             return;
         }

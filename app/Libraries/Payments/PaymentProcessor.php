@@ -222,10 +222,9 @@ abstract class PaymentProcessor implements \ArrayAccess
     {
         // ...maybe use array_key_exists and an array instead? D:
         if (!isset($this->order) && !(isset($this->order) && $this->order === null)) {
-            // FIXME: turn findByOrderNumber into a scope
-            $order = Order::findByOrderNumber($this->getOrderNumber());
-            $orderId = $order ? $order->order_id : 0;
-            $this->order = Order::withPayments()->find($orderId);
+            $this->order = Order::withPayments()
+                ->whereOrderNumber($this->getOrderNumber())
+                ->first();
         }
 
         return $this->order;

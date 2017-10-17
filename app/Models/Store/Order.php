@@ -58,6 +58,23 @@ class Order extends Model
         return $query->with('payments');
     }
 
+    public function scopeWhereOrderNumber($query, $orderNumber)
+    {
+        if (!preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
+            || config('store.order.prefix') !== $matches['prefix']) {
+            // hope there's no order_id 0 :D
+            return $query->where('order_id', '=', 0);
+        }
+
+        $userId = (int) $matches['userId'];
+        $orderId = (int) $matches['orderId'];
+
+        return $query->where([
+            'order_id' => $orderId,
+            'user_id' => $userId,
+        ]);
+    }
+
     public function trackingCodes()
     {
         $codes = [];
@@ -322,26 +339,6 @@ class Order extends Model
 
             return $query->get();
         };
-    }
-
-    // TODO: turn into a scope or something so it can be chained.
-    public static function findByOrderNumber(string $orderNumber = '')
-    {
-        if (!preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)) {
-            return;
-        }
-
-        if (config('store.order.prefix') !== $matches['prefix']) {
-            return;
-        }
-
-        $userId = (int) $matches['userId'];
-        $orderId = (int) $matches['orderId'];
-
-        return static::where([
-            'order_id' => $orderId,
-            'user_id' => $userId,
-        ])->first();
     }
 
     private function removeOrderItem(array $params)
