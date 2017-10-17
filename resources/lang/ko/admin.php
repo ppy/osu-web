@@ -24,10 +24,10 @@ return [
         'show' => [
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                'activate' => '활성화 하기',
+                'activate_confirm' => '이 비트맵에 modding v2을 활성화할까요?',
+                'active' => '활성',
+                'inactive' => '비활성',
             ],
         ],
     ],
@@ -35,22 +35,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => '삭제',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '포럼 #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => '설정된 표지가 없습니다.',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => '저장',
+                    'update' => '수정',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => '포럼 표지 목록',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => '기본 주제 표지',
+                    'main' => '포럼 표지',
                 ],
             ],
         ],
@@ -58,18 +58,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => '로그 뷰어',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => '관리자 콘솔 같은거', // Admin Console Thingy
 
             'sections' => [
-                'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'forum' => '포럼',
+                'general' => '일반',
+                'store' => '상점',
             ],
         ],
     ],
@@ -77,15 +77,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => '주문 목록',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => '이 사용자 계정은 현재 제한된 상태입니다.',
+            'message' => '(관리자만 이 메세지를 볼 수 있습니다)',
         ],
     ],
 
