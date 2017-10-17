@@ -62,7 +62,7 @@ return [
         'updated' => '비밀번호가 변경되었습니다.',
     ],
     'playstyles' => [
-        'title' => '플레이스타일',
+        'title' => '플레이 방식', // 플
         'mouse' => '마우스',
         'keyboard' => '키보드',
         'tablet' => '태블릿',
