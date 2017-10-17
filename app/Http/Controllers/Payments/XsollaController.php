@@ -115,9 +115,6 @@ class XsollaController extends Controller
     {
         $orderNumber = Request::input('foreignInvoice') ?? '';
         $order = OrderCheckout::complete($orderNumber);
-        if ($order === null) {
-            abort(404);
-        }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
