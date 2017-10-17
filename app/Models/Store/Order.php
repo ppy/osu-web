@@ -27,6 +27,8 @@ use DB;
 
 class Order extends Model
 {
+    const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
+
     protected $primaryKey = 'order_id';
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     public $macros = ['itemsQuantities'];
@@ -56,6 +58,23 @@ class Order extends Model
         return $query->with('payments');
     }
 
+    public function scopeWhereOrderNumber($query, $orderNumber)
+    {
+        if (!preg_match(static::ORDER_NUMBER_REGEX, $orderNumber, $matches)
+            || config('store.order.prefix') !== $matches['prefix']) {
+            // hope there's no order_id 0 :D
+            return $query->where('order_id', '=', 0);
+        }
+
+        $userId = (int) $matches['userId'];
+        $orderId = (int) $matches['orderId'];
+
+        return $query->where([
+            'order_id' => $orderId,
+            'user_id' => $userId,
+        ]);
+    }
+
     public function trackingCodes()
     {
         $codes = [];
@@ -81,7 +100,7 @@ class Order extends Model
 
     public function getOrderNumber()
     {
-        return "store-{$this->user_id}-{$this->order_id}";
+        return config('store.order.prefix')."-{$this->user_id}-{$this->order_id}";
     }
 
     public function getPaymentProvider()

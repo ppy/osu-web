@@ -74,21 +74,12 @@ class PaypalPaymentProcessor extends PaymentProcessor
     {
         $this->ensureValidSignature();
 
-        // to be consistent with the other processors.
-        if (!$this->orderNumber->isValid()) {
-            $this->validationErrors()->add('item_number', '.order_number.malformed');
-        }
-
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
             $this->validationErrors()->add('order', '.order.invalid');
 
             return false;
-        }
-
-        if ($this->orderNumber->getUserId() !== $order->user_id) {
-            $this->validationErrors()->add('item_number', '.order_number.user_id_mismatch');
         }
 
         if ($this['receiver_id'] !== config('payments.paypal.merchant_id')) {

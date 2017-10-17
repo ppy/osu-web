@@ -23,7 +23,6 @@ namespace App\Http\Controllers\Payments;
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
 use App\Libraries\OrderCheckout;
-use App\Libraries\OrderNumber;
 use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
 use App\Models\Store\Order;
@@ -115,10 +114,9 @@ class XsollaController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('foreignInvoice') ?? '';
-        $orderId = (new OrderNumber($orderNumber))->getOrderId();
-        OrderCheckout::complete($orderId);
+        $order = OrderCheckout::complete($orderNumber);
 
-        return redirect(route('store.invoice.show', ['invoice' => $orderId, 'thanks' => 1]));
+        return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 
     private function errorResponse(string $message, string $code, int $status)

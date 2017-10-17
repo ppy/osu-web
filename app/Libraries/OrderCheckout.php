@@ -93,16 +93,16 @@ class OrderCheckout
     }
 
     /**
-     * Helper method for completing checkout with just the order id.
+     * Helper method for completing checkout with just the order number.
      *
-     * @param string|int $orderId
+     * @param string $orderNumber
      * @return Order
      */
-    public static function complete($orderId)
+    public static function complete($orderNumber)
     {
         // select for update will lock the table if the row doesn't exist,
         // so do a double select.
-        $order = Order::findOrFail($orderId);
+        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
         $checkout = new static($order);
         $checkout->completeCheckout();
 

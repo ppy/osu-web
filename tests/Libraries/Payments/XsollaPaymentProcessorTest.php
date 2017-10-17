@@ -87,7 +87,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
-        $this->assertArrayHasKey('transaction.external_id', $errors);
+        $this->assertArrayHasKey('order', $errors);
     }
 
     public function testWhenOrderNumberMalformed()
@@ -105,7 +105,7 @@ class XsollaPaymentProcessorTest extends TestCase
 
         $errors = $subject->validationErrors()->all();
         $this->assertTrue($thrown);
-        $this->assertArrayHasKey('transaction.external_id', $errors);
+        $this->assertArrayHasKey('order', $errors);
     }
 
     public function testWhenSignatureInvalid()

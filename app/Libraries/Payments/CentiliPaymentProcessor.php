@@ -66,21 +66,12 @@ class CentiliPaymentProcessor extends PaymentProcessor
     {
         $this->ensureValidSignature();
 
-        // this is just to make the existing test pass
-        if (!$this->orderNumber->isValid()) {
-            $this->validationErrors()->add('clientid', '.order_number.malformed');
-        }
-
         $order = $this->getOrder();
         // order should exist
         if ($order === null) {
             $this->validationErrors()->add('order', '.order.invalid');
 
             return false;
-        }
-
-        if ($this->orderNumber->getUserId() !== $order->user_id) {
-            $this->validationErrors()->add('clientid', '.order_number.user_id_mismatch');
         }
 
         if ($this['service'] !== config('payments.centili.api_key')) {
