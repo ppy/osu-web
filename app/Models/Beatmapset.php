@@ -867,7 +867,7 @@ class Beatmapset extends Model
 
     public function requiredHype()
     {
-        return 10;
+        return 12;
     }
 
     public function requiredNominationCount()
