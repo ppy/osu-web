@@ -84,6 +84,15 @@ class CentiliPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
+        // All items should be virtual
+        if ($order->requiresShipping()) {
+            $this->validationErrors()->add(
+                'order.items',
+                '.order.items.virtual_only',
+                ['provider' => $this->getPaymentProvider()]
+            );
+        }
+
         if ($this->getPaymentAmount() !== $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',

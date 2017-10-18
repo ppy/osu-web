@@ -114,7 +114,9 @@ class OrderCheckout
         // Geolocation header from Cloudflare
         $isJapan = strcasecmp(request_country(), 'JP') === 0;
 
-        return $isJapan && Request::input('intl') !== '1';
+        return $isJapan
+            && !$this->order->requiresShipping()
+            && Request::input('intl') !== '1';
     }
 
     private function allowXsollaPayment()
