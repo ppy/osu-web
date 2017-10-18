@@ -93,8 +93,8 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               "#{hypeRaw} / #{requiredHype}"
           @renderLights(hype, requiredHype)
 
-        div className: "#{bn}__row-right",
-          if currentUser.id?
+        if currentUser.id?
+          div className: "#{bn}__row-right",
             el BigButton,
               modifiers: ['beatmap-discussion-hype']
               text: if userAlreadyHyped then osu.trans('beatmaps.hype.button-done') else osu.trans('beatmaps.hype.button')
@@ -114,22 +114,23 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 " #{nominations.current}/#{nominations.required}"
             @renderLights(nominations.current, nominations.required)
 
-          div className: "#{bn}__row-right",
-            if userCanDisqualify && mapIsQualified
-              el BigButton,
-                modifiers: ['beatmap-discussion-hype']
-                text: osu.trans 'beatmaps.nominations.disqualify'
-                icon: 'thumbs-down'
-                props:
-                  onClick: @disqualify
-            else if userCanNominate && mapCanBeNominated
-              el BigButton,
-                modifiers: ['beatmap-discussion-hype']
-                text: osu.trans 'beatmaps.nominations.nominate'
-                icon: 'thumbs-up'
-                props:
-                  disabled: @props.beatmapset.nominations.nominated
-                  onClick: @nominate
+          if currentUser.id?
+            div className: "#{bn}__row-right",
+              if userCanDisqualify && mapIsQualified
+                el BigButton,
+                  modifiers: ['beatmap-discussion-hype']
+                  text: osu.trans 'beatmaps.nominations.disqualify'
+                  icon: 'thumbs-down'
+                  props:
+                    onClick: @disqualify
+              else if userCanNominate && mapCanBeNominated
+                el BigButton,
+                  modifiers: ['beatmap-discussion-hype']
+                  text: osu.trans 'beatmaps.nominations.nominate'
+                  icon: 'thumbs-up'
+                  props:
+                    disabled: @props.beatmapset.nominations.nominated
+                    onClick: @nominate
 
       div className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
         div className: "#{bn}__note #{bn}__note--disqualification",
