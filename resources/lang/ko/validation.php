@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+    'mixture' => ':attribute 속성을 찾을 수 없습니다.', // :attribute is missing number or letter
+    'required' => ':attribute 속성이 필요합니다', // :attribute is required
 ];
