@@ -96,7 +96,7 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'disqualified :time_ago (:reason).',
+        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
         'disqualifed_no_reason' => 'no reason specified',
         'disqualification-prompt' => 'Reason for disqualification?',
         'disqualify' => 'Disqualify',
