@@ -187,7 +187,7 @@ class BeatmapDiscussion extends Model
     {
         return
             ($this->timestamp === null) ||
-            ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp < ($this->beatmap->total_length * 1000));
+            ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp < ($this->beatmap->total_length + 1) * 1000);
     }
 
     public function votesSummary()
