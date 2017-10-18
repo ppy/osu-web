@@ -23,6 +23,9 @@ modeSwitcher = document.getElementsByClassName('js-mode-switcher')
 newDiscussion = document.getElementsByClassName('js-new-discussion')
 
 class BeatmapDiscussions.Main extends React.PureComponent
+  DEFAULT_PAGE = 'timeline'
+  DEFAULT_FILTER = 'total'
+
   constructor: (props) ->
     super props
 
@@ -30,20 +33,26 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @checkNewTimeoutMax = 60000
     @cache = {}
 
+    query = @queryFromLocation()
+    mode = query.page
+    currentFilter = query.filter
+    if query.beatmapId?
+      currentBeatmap = _.find props.initial.beatmapsetDiscussion.beatmapset.beatmaps, id: query.beatmapId
+
     @state =
       beatmapset: @props.initial.beatmapsetDiscussion.beatmapset
       beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
-      currentBeatmap: null
+      currentBeatmap: currentBeatmap
       currentUser: currentUser
       userPermissions: @props.initial.userPermissions
-      mode: 'timeline'
+      mode: mode
       readPostIds: _.chain(props.initial.beatmapsetDiscussion.beatmap_discussions)
         .map (d) =>
           d.beatmap_discussion_posts?.map (r) =>
             r.id
         .flatten()
         .value()
-      currentFilter: 'total'
+      currentFilter: currentFilter
 
 
   componentDidMount: =>
@@ -64,6 +73,13 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   componentWillUpdate: =>
     @cache = {}
+
+  componentDidUpdate: =>
+    queryString = @queryStringFromState()
+
+    if document.location.search != queryString
+      url = encodeURI "#{document.location.pathname}#{queryString}#{document.location.hash}"
+      Turbolinks.controller.advanceHistory url
 
 
   componentWillUnmount: =>
@@ -166,7 +182,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   currentBeatmap: =>
-    @state.currentBeatmap ? BeatmapHelper.default(group: @groupedBeatmaps())
+    @state.currentBeatmap ? @defaultBeatmap()
 
 
   currentDiscussions: =>
@@ -258,6 +274,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache.currentDiscussions
 
 
+  defaultBeatmap: =>
+    BeatmapHelper.default group: @groupedBeatmaps()
+
+
   groupedBeatmaps: (discussionSet) =>
     return @cache.groupedBeatmaps if @cache.groupedBeatmaps?
 
@@ -330,9 +350,27 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @setState readPostIds: @state.readPostIds.concat(id)
 
 
-  setWatchStatus: (_e, {watching}) =>
-    beatmapset = _.assign {}, @state.beatmapset, is_watched: watching
-    @setState {beatmapset}
+  queryFromLocation: =>
+    pageQueryParams = new URLSearchParams(document.location.search)
+
+    beatmapId: parseInt(pageQueryParams.get('beatmap_id'))
+    page: pageQueryParams.get('page') ? DEFAULT_PAGE
+    filter: pageQueryParams.get('filter') ? DEFAULT_FILTER
+
+
+  queryStringFromState: =>
+    beatmapId = @state.currentBeatmap.id
+    page = @state.mode
+    filter = @state.currentFilter
+
+    opts = {}
+    opts.beatmap_id = beatmapId if beatmapId != @defaultBeatmap().id
+    opts.page = page if page != DEFAULT_PAGE
+    opts.filter = filter if filter != DEFAULT_FILTER
+
+    query = (new URLSearchParams(opts)).toString()
+
+    if query == '' then query else "?#{query}"
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) =>
@@ -386,6 +424,11 @@ class BeatmapDiscussions.Main extends React.PureComponent
       newState.currentFilter = @lastFilter ? 'total'
 
     @setState newState, callback
+
+
+  setWatchStatus: (_e, {watching}) =>
+    beatmapset = _.assign {}, @state.beatmapset, is_watched: watching
+    @setState {beatmapset}
 
 
   users: =>

@@ -41,3 +41,9 @@ Turbolinks.HttpRequest.prototype.requestLoaded = ->
     else
       @failed = true
       @delegate.requestFailedWithStatusCode(@xhr.status, @xhr.responseText)
+
+
+Turbolinks.Controller.prototype.advanceHistory = (url) ->
+  @cacheSnapshot()
+  @lastRenderedLocation = Turbolinks.Location.wrap(url)
+  @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
