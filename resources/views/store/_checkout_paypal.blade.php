@@ -17,12 +17,14 @@
 --}}
 
 <div class="store-payment-method">
-    <button type="button"
-            class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--paypal"
-            data-provider="paypal"
-            data-order-id="{{ $order->order_id }}"
-    >
-    </button>
+    <div class="store-payment-method__cell">
+        <button type="button"
+                class="js-store-checkout-button store-payment-button store-payment-button--paypal"
+                data-provider="paypal"
+                data-order-id="{{ $order->order_id }}"
+        >
+        </button>
+    </div>
 
     <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with PayPal / Credit Card</div>

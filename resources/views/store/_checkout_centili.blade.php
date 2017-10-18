@@ -17,16 +17,18 @@
 --}}
 
 <div class="store-payment-method">
-    {{-- Centili widget needs href; centili init is also slow --}}
-    <a id="c-mobile-payment-widget"
-       href="{{ $checkout->getCentiliPaymentLink() }}"
-       class="u-hidden"
-    ></a>
-    <button type="button"
-            class="js-store-checkout-button store-payment-method__cell store-payment-button store-payment-button--centili"
-            data-provider="centili"
-    >
-    </button>
+    <div class="store-payment-method__cell">
+        {{-- Centili widget needs href; centili init is also slow --}}
+        <a id="c-mobile-payment-widget"
+        href="{{ $checkout->getCentiliPaymentLink() }}"
+        class="u-hidden"
+        ></a>
+        <button type="button"
+                class="js-store-checkout-button store-payment-button store-payment-button--centili"
+                data-provider="centili"
+        >
+        </button>
+    </div>
 
     <div class="store-payment-method__cell">
         <div class="store-text store-text--header">Pay with ¥COINS</div>
