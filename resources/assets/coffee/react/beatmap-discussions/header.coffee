@@ -131,7 +131,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
       a
         key: type
-        href: '#'
+        href: osu.updateQueryString('filter', type)
         className: topClasses
         'data-type': type
         onClick: @setFilter

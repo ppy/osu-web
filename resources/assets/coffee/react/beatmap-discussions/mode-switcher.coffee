@@ -61,7 +61,7 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
                 a
                   className: "page-mode-link #{'page-mode-link--is-active' if @props.mode == mode}"
                   onClick: @switch
-                  href: '#'
+                  href: osu.updateQueryString('page', mode)
                   'data-mode': mode
                   osu.trans("beatmaps.discussions.mode.#{_.snakeCase mode}")
                   if mode != 'events'
