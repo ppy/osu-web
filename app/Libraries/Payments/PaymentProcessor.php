@@ -36,7 +36,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     protected $params;
     protected $signature;
-    private $order;
+    private $order; // Stores memoized result in array, not to be used directly otherwise.
 
     public function __construct(array $params, PaymentSignature $signature)
     {

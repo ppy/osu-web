@@ -61,9 +61,9 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $payment_statuses = ['Completed'];
         static $cancel_statuses = ['Expired', 'Failed', 'Refunded', 'Reversed', 'Voided', 'Canceled_Reversal', 'Denied'];
 
-        if (in_array($this['payment_status'], $payment_statuses, false)) {
+        if (in_array($this['payment_status'], $payment_statuses, true)) {
             return NotificationType::PAYMENT;
-        } elseif (in_array($this['payment_status'], $cancel_statuses, false)) {
+        } elseif (in_array($this['payment_status'], $cancel_statuses, true)) {
             return NotificationType::REFUND;
         } else {
             return $this['payment_status'];

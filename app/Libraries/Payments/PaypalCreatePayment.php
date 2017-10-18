@@ -52,13 +52,11 @@ class PaypalCreatePayment
         $payer = (new Payer())
             ->setPaymentMethod('paypal');
 
-        $payment = (new Payment())
+        $this->payment = (new Payment())
             ->setIntent('sale')
             ->setPayer($payer)
             ->setRedirectUrls($this->getRedirectUrls())
             ->setTransactions([$this->getTransaction()]);
-
-        $this->payment = $payment;
     }
 
     public function getApprovalLink()
