@@ -29,7 +29,7 @@ class BeatmapDiscussions.Events extends React.PureComponent
 
     div className: 'osu-page osu-page--small osu-page--generic osu-page--full',
       div className: 'beatmapset-events',
-        for event in @props.events
+        for event in _.reverse(@props.events)
           createdAt = moment(event.created_at)
           createdAtString = createdAt.format 'LL'
 
