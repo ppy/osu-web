@@ -69,21 +69,19 @@ class PaypalExecutePayment
                 );
             }
 
+            $order->status = 'checkout';
+            $order->saveOrExplode();
+
             try {
                 // Tell Paypal to complete the transaction so we can finally clear the cart.
                 $payment = Payment::get($this->params['paymentId'], $context);
-                $result = $payment->execute($this->execution, $context);
+                return $payment->execute($this->execution, $context);
             } catch (PayPalConnectionException $e) {
                 \Log::error($e->getData());
                 // TODO: get more context data
                 $this->notifyError($e, $this->order);
                 throw $e;
             }
-
-            $order->status = 'checkout';
-            $order->saveOrExplode();
-
-            return $result;
         });
     }
 
