@@ -19,45 +19,45 @@
  */
 
 return [
-    'not_negative' => ':attribute cannot be negative.',
-    'required' => ':attribute is required.',
-    'wrong_confirmation' => 'Confirmation does not match.',
+    'not_negative' => ':attribute 속성은 음수가 될 수 없습니다.', // :attribute cannot be negative.
+    'required' => ':attribute 속성이 필요합니다.', // :attribute is required.
+    'wrong_confirmation' => '확인란이 일치하지 않습니다.',
 
     'beatmap_discussion_post' => [
-        'first_post' => 'Can not delete starting post.',
+        'first_post' => '시작글은 삭제할 수 없습니다.', // Can not delete starting post
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => '기능을 요청하는 주제에만 투표할 수 있습니다.',
+            'not_enough_feature_votes' => '득표 수가 충분하지 않습니다.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specified.',
+            'invalid' => '항목 선택이 잘못되었습니다.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => '지정하려는 항목이 이미 존재합니다.', // 
+            'invalid_max_options' => '지정된 항목보다 많이 투표하도록 설정할 수 없습니다.',
+            'minimum_one_selection' => '투표자들이 최소 한 개 이상은 선택할 수 있도록 해야합니다.',
+            'minimum_two_options' => '투표 항목이 적어도 두 개는 필요합니다.',
+            'too_many_options' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selected more options than allowed.',
+            'too_many' => '허용된 것 보다 많은 항목을 선택하셨습니다.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Password may not contain username.',
-        'email_already_used' => 'Email address already used.',
-        'invalid_email' => "Doesn't seem to be an email address.",
-        'too_short' => 'New password is too short.',
-        'weak' => 'Blacklisted password.',
-        'wrong_current_password' => 'Current password is incorrect.',
-        'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
+        'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
+        'email_already_used' => '이미 사용중인 이메일 주소입니다.',
+        'invalid_email' => "이메일 주소가 잘못되었습니다.", // Doesn't seem to be an email address
+        'too_short' => '새 비밀번호가 너무 짧습니다.',
+        'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.', // Blacklisted password
+        'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
+        'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.', // Email confirmation does not match
+        'wrong_password_confirmation' => '비밀번호와 비밀번호 확인란이 일치하지 않습니다.',
     ],
 ];
