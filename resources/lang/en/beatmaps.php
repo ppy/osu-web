@@ -95,6 +95,14 @@ return [
         ],
     ],
 
+    'hype' => [
+        'button' => 'Hype Beatmapset!',
+        'button-done' => 'Already Hyped!',
+        'explanation' => "Adding praise ❤ will raise this beatmapset's hype, making it more visible for nomination and ranking!",
+        'section-title' => 'Hype Train',
+        'title' => 'Hype',
+    ],
+
     'nominations' => [
         'disqualifed-at' => 'Disqualified :time_ago (:reason).',
         'disqualifed_no_reason' => 'no reason specified',
@@ -102,6 +110,7 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect-state' => 'Error performing that action, try refreshing the page.',
         'nominate' => 'Nominate',
+        'nominated-by' => 'nominated by :users',
         'nominate-confirm' => 'Nominate this beatmap?',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',

@@ -108,6 +108,9 @@
     el.setAttribute 'data-remote', true if options.isRemote
     el.className = options.classNames.join(' ') if options.classNames
     el.textContent = text
+    if options.props
+      _.each options.props, (val, prop) ->
+        el.setAttribute prop, val
     el.outerHTML
 
 

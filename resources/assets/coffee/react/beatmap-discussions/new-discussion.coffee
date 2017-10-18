@@ -69,19 +69,24 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         div className: "#{bn}__footer",
           div
             className: "#{bn}__footer-content"
-            'data-visibility': if @props.mode != 'timeline' then 'hidden'
+            'data-visibility': if @props.mode != 'timeline' && @props.mode != 'generalAll' then 'hidden'
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
-              osu.trans('beatmaps.discussions.new.timestamp')
+              if @props.mode == 'timeline'
+                osu.trans 'beatmaps.discussions.new.timestamp'
+              else # mode == 'generalAll'
+                osu.trans 'beatmaps.hype.title'
             div
               key: 'timestamp'
               className: "#{bn}__timestamp-col"
-              if @state.timestamp?
-                BeatmapDiscussionHelper.formatTimestamp @state.timestamp
-              else
-                osu.trans('beatmaps.discussions.new.timestamp_missing')
-
+              if @props.mode == 'timeline'
+                if @state.timestamp?
+                  BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+                else
+                  osu.trans 'beatmaps.discussions.new.timestamp_missing'
+              else # mode == 'generalAll'
+                osu.trans 'beatmaps.hype.explanation'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             @submitButton 'praise'

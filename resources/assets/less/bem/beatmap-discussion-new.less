@@ -43,6 +43,11 @@
     background-color: #555;
     padding: 5px @_side-padding;
     justify-content: space-between;
+
+    @media @mobile {
+      width: 100%;
+      flex-direction: column;
+    }
   }
 
   &__footer-content {

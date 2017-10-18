@@ -34,18 +34,32 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     osu.pageChange()
 
 
+  focusHypeInput: ->
+    $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'
+    $.publish 'beatmapDiscussion:filter', filter: 'praises'
+    $.scrollTo($(".beatmap-discussion-new__message-area")[0], 200)
+    $(".beatmap-discussion-new__message-area").focus()
+
+
   render: =>
+    requiredHype = @props.beatmapset.nominations.required_hype
+    hypeByUser = _.countBy @props.currentDiscussions.byFilter['praises']['generalAll'], 'user_id'
+    filteredHype = _.reject hypeByUser, (k, v) =>
+      # no hyping your own maps
+      parseInt(v) == @props.beatmapset.user_id
+    hypeRaw = _.keys(filteredHype).length
+    hype = _.min([requiredHype, hypeRaw])
+    userAlreadyHyped = hypeByUser[currentUser.id]?
+
     userCanNominate = @props.currentUser.isAdmin || @props.currentUser.isBNG || @props.currentUser.isQAT
     userCanDisqualify = @props.currentUser.isAdmin || @props.currentUser.isQAT
-    mapCanBeNominated = (@props.beatmapset.status == 'pending')
+    mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = (@props.beatmapset.status == 'qualified')
-
-    return null unless mapCanBeNominated || mapIsQualified
 
     if mapIsQualified
       rankingETA = @props.beatmapset.nominations.ranking_eta
 
-    if mapCanBeNominated
+    if mapCanBeNominated || mapIsQualified
       nominations = @props.beatmapset.nominations
       disqualification = nominations.disqualification
 
@@ -57,38 +71,56 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         nominators.push(@props.users[event.user_id])
 
     div className: bn,
-      div className: "#{bn}__header",
-        span
-          className: "#{bn}__title"
-          osu.trans 'beatmaps.nominations.title'
-        span null,
-          if nominators.length > 0
-            span null,
-              '['
+      div className: "#{bn}__row",
+        div className: "#{bn}__row-left",
+          div className: "#{bn}__header",
+            span
+              className: "#{bn}__title"
+              osu.trans 'beatmaps.hype.section-title'
+            span {},
+              "#{hypeRaw} / #{requiredHype}"
+          @renderLights(hype, requiredHype)
+
+        div className: "#{bn}__row-right",
+          if currentUser.id?
+            el BigButton,
+              modifiers: ['beatmap-discussion-hype']
+              text: if userAlreadyHyped then osu.trans('beatmaps.hype.button-done') else osu.trans('beatmaps.hype.button')
+              icon: 'bullhorn'
+              props:
+                disabled: userAlreadyHyped
+                onClick: @focusHypeInput
+
+      if mapCanBeNominated || mapIsQualified
+        div className: "#{bn}__row",
+          div className: "#{bn}__row-left",
+            div className: "#{bn}__header",
               span
-                dangerouslySetInnerHTML:
-                  __html:
-                    nominators
-                      .map (user) ->
-                        osu.link(laroute.route('users.show', user: user.id), user.username)
-                      .join(', ')
-              ']'
-          if mapCanBeNominated
-            " #{nominations.current}/#{nominations.required}"
+                className: "#{bn}__title"
+                osu.trans 'beatmaps.nominations.title'
+              span null,
+                " #{nominations.current}/#{nominations.required}"
+            @renderLights(nominations.current, nominations.required)
 
-      if mapCanBeNominated
-        div className: "#{bn}__lights",
-          _.times nominations.current, (n) =>
-            div
-              key: n
-              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
-          _.times (nominations.required - nominations.current), (n) =>
-            div
-              key: nominations.current + n
-              className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
+          div className: "#{bn}__row-right",
+            if userCanDisqualify && mapIsQualified
+              el BigButton,
+                modifiers: ['beatmap-discussion-hype']
+                text: osu.trans 'beatmaps.nominations.disqualify'
+                icon: 'thumbs-down'
+                props:
+                  onClick: @disqualify
+            else if userCanNominate && mapCanBeNominated
+              el BigButton,
+                modifiers: ['beatmap-discussion-hype']
+                text: osu.trans 'beatmaps.nominations.nominate'
+                icon: 'thumbs-up'
+                props:
+                  disabled: @props.beatmapset.nominations.nominated
+                  onClick: @nominate
 
-      div className: "#{bn}__footer #{"#{bn}__footer--extended" unless mapCanBeNominated}",
-        div className: "#{bn}__note",
+      div className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
+        div className: "#{bn}__note #{bn}__note--disqualification",
           # implies mapCanBeNominated
           if disqualification
             span
@@ -104,20 +136,32 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             else
               span null, osu.trans 'beatmaps.nominations.qualified-soon'
 
-        div null,
-          if userCanDisqualify && mapIsQualified
-            el BigButton,
-              text: osu.trans 'beatmaps.nominations.disqualify'
-              icon: 'thumbs-down'
-              props:
-                onClick: @disqualify
-          else if userCanNominate && mapCanBeNominated
-            el BigButton,
-              text: osu.trans 'beatmaps.nominations.nominate'
-              icon: 'thumbs-up'
-              props:
-                disabled: @props.beatmapset.nominations.nominated
-                onClick: @nominate
+        if nominators.length > 0
+          div
+            className: "#{bn}__note #{bn}__note--nominators"
+            dangerouslySetInnerHTML:
+              __html: osu.trans 'beatmaps.nominations.nominated-by',
+                users: nominators.map (user) ->
+                    osu.link laroute.route('users.show', user: user.id), user.username,
+                      classNames: ['js-usercard']
+                      props:
+                        'data-user-id': user.id
+                  .join(', ')
+
+
+  renderLights: (lightsOn, lightsTotal) ->
+    lightsOff = lightsTotal - lightsOn
+
+    div className: "#{bn}__lights",
+      _.times lightsOn, (n) ->
+        div
+          key: n
+          className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-on'
+
+      _.times (lightsOff), (n) ->
+        div
+          key: lightsOn + n
+          className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
 
 
   disqualify: =>

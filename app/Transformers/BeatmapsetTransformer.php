@@ -105,6 +105,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             }
 
             $result = [
+                'required_hype' => $beatmapset->requiredHype(),
                 'required' => $beatmapset->requiredNominationCount(),
                 'current' => $beatmapset->currentNominationCount(),
             ];
@@ -121,6 +122,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
             $result = [
+                'required_hype' => $beatmapset->requiredHype(),
+                'required' => $beatmapset->requiredNominationCount(),
+                'current' => $beatmapset->currentNominationCount(),
                 'ranking_eta' => json_time($eta),
             ];
         }

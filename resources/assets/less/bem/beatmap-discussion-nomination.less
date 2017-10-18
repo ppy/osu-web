@@ -28,8 +28,7 @@
 
   &__footer {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    flex-direction: column;
 
     &--extended {
       flex: 1;
@@ -45,16 +44,49 @@
   &__lights {
     display: flex;
     margin: 0 -2.5px;
+
+    @media @mobile {
+      margin: 10px;
+    }
   }
 
   &__note {
     font-size: @font-size--normal;
     color: #eee;
     margin-right: 10px;
+    margin-top: 5px;
 
     .@{top}__footer--extended & {
       padding-top: 5px;
       height: 100%;
+    }
+
+    &--nominators {
+      font-style: italic;
+      align-self: flex-end;
+    }
+  }
+
+  &__row {
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 10px;
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__row-left {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  &__row-right {
+    width: 150px;
+
+    @media @mobile {
+      align-self: center;
     }
   }
 

@@ -865,6 +865,11 @@ class Beatmapset extends Model
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function requiredHype()
+    {
+        return 10;
+    }
+
     public function requiredNominationCount()
     {
         return 2;
