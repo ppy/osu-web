@@ -49,7 +49,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $order = $this->userCart();
-        if (!$order->items()->exists()) {
+        if (!$order || !$order->items()->exists()) {
             return ujs_redirect('/store/cart');
         }
 
