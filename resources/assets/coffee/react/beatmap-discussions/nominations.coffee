@@ -33,12 +33,24 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
   componentDidUpdate: =>
     osu.pageChange()
 
-
   focusHypeInput: ->
+    hypeMessage = $('.beatmap-discussion-new__footer-content')[0]
+    inputBox = $('.beatmap-discussion-new__message-area')
+    flashClass = 'beatmap-discussion-new__footer-content--flash'
+
+    # switch to generalAll tab, set current filter to praises
     $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'
     $.publish 'beatmapDiscussion:filter', filter: 'praises'
-    $.scrollTo($(".beatmap-discussion-new__message-area")[0], 200)
-    $(".beatmap-discussion-new__message-area").focus()
+
+    # ensure input box is in view and focus it
+    $.scrollTo(inputBox[0], 200)
+    inputBox.focus()
+
+    # flash border of hype description to emphasize input is required
+    $(hypeMessage).addClass(flashClass)
+    setTimeout ->
+      $(hypeMessage).removeClass(flashClass)
+    , 1000
 
 
   render: =>

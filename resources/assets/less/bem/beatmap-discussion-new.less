@@ -51,13 +51,20 @@
   }
 
   &__footer-content {
-    padding: 5px 0;
+    margin: 5px 0;
     display: flex;
     flex: none;
+    transition: 200ms;
+    border: 1px solid transparent;
+    .default-border-radius();
 
     &--right {
       flex: 1;
       justify-content: flex-end;
+    }
+
+    &--flash {
+      animation: flash-border 400ms 2;
     }
   }
 
