@@ -55,7 +55,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
   render: =>
     requiredHype = @props.beatmapset.nominations.required_hype
-    hypeByUser = _.countBy @props.currentDiscussions.byFilter['praises']['generalAll'], 'user_id'
+    hypeByUser = _.countBy @props.currentDiscussions.byFilter.praises.generalAll, 'user_id'
     filteredHype = _.reject hypeByUser, (k, v) =>
       # no hyping your own maps
       parseInt(v) == @props.beatmapset.user_id
