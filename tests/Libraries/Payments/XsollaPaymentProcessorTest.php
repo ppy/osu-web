@@ -127,6 +127,21 @@ class XsollaPaymentProcessorTest extends TestCase
         $this->assertTrue($subject->validationErrors()->isEmpty());
     }
 
+    public function testWhenOrderHasPhysicalItems()
+    {
+        $orderItem = factory(OrderItem::class)->create(['order_id' => $this->order->order_id]);
+
+        $params = $this->getTestParams();
+        $subject = new XsollaPaymentProcessor($params, $this->validSignature());
+
+        // want to examine the contents of validationErrors
+        $thrown = $this->runSubject($subject);
+
+        $errors = $subject->validationErrors()->all();
+        $this->assertTrue($thrown);
+        $this->assertArrayHasKey('order.items', $errors);
+    }
+
     private function getTestParams(array $overrides = [])
     {
         $order = $this->order;

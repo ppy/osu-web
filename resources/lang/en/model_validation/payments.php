@@ -25,6 +25,9 @@ return [
     'notification_type' => 'notification_type is not valid :type',
     'order' => [
         'invalid' => 'Order is not valid',
+        'items' => [
+            'virtual_only' => '`:provider` payment is not valid for physical items.',
+        ],
         'status' => [
             'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
             'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',

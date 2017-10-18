@@ -69,7 +69,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
     {
         $this->ensureValidSignature();
 
-        // received notification_type should be payment
+        // received notification_type should be in allowed ranges
         if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
             $this->validationErrors()->add(
                 'notification_type',
@@ -94,6 +94,15 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
         if ($this->getNotificationType() === NotificationType::REFUND && $order->status !== 'paid') {
             $this->validationErrors()->add('order.status', '.order.status.not_paid', ['state' => $order->status]);
+        }
+
+        // All items should be virtual
+        if ($order->requiresShipping()) {
+            $this->validationErrors()->add(
+                'order.items',
+                '.order.items.virtual_only',
+                ['provider' => $this->getPaymentProvider()]
+            );
         }
 
         if ($this['purchase.checkout.currency'] !== 'USD') {
