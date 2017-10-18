@@ -31,7 +31,7 @@ class BeatmapDiscussionTest extends TestCase
         $otherBeatmapset = factory(Beatmapset::class)->create();
         $otherBeatmap = $otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
-        $invalidTimestamp = $beatmap->total_length * 1000 + 1;
+        $invalidTimestamp = ($beatmap->total_length + 1) * 1000 + 1;
 
         // blank everything not fine
         $discussion = $this->newDiscussion($beatmapset);
