@@ -23,6 +23,12 @@ namespace App\Listeners\Fulfillments;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Traits\StoreNotifiable;
 
+/**
+ * store.payments event dispatcher.
+ *
+ * Listens to the "store.payments" event stream and dispatches the appropriate
+ * messages and commands.
+ */
 class PaymentSubscribers
 {
     use StoreNotifiable;
@@ -53,6 +59,12 @@ class PaymentSubscribers
         }
     }
 
+    public function onPaymentRejected($eventName, $data)
+    {
+        $event = $data[0] ?? null;
+        $this->notifyOrder($event->order, 'Payment was rejected or aborted before completion.', $eventName);
+    }
+
     public function subscribe($events)
     {
         $events->listen(
@@ -63,6 +75,11 @@ class PaymentSubscribers
         $events->listen(
             'store.payments.completed.*',
             static::class.'@onPaymentCompleted'
+        );
+
+        $events->listen(
+            'store.payments.rejected.*',
+            static::class.'@onPaymentRejected'
         );
     }
 }

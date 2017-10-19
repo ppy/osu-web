@@ -24,6 +24,7 @@ use App\Exceptions\InvalidSignatureException;
 use App\Libraries\Payments\CentiliPaymentProcessor;
 use App\Libraries\Payments\PaymentProcessorException;
 use App\Libraries\Payments\PaymentSignature;
+use App\Libraries\Payments\UnsupportedNotificationTypeException;
 use App\Models\Store\Order;
 use App\Models\Store\OrderItem;
 use Config;
@@ -46,6 +47,34 @@ class CentiliPaymentProcessorTest extends TestCase
         $subject->run();
 
         $this->assertTrue($subject->validationErrors()->isEmpty());
+    }
+
+    public function testWhenPaymentWasCancelled()
+    {
+        // FIXME: but now we can't see the notification, annoying ?_?
+        $this->expectsEvents('store.payments.rejected.centili');
+
+        $params = $this->getTestParams(['status' => 'cancelled']);
+        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $subject->run();
+    }
+
+    public function testWhenPaymentFailed()
+    {
+        $this->expectsEvents('store.payments.rejected.centili');
+
+        $params = $this->getTestParams(['status' => 'failed']);
+        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $subject->run();
+    }
+
+    public function testWhenStatusIsUnknown()
+    {
+        $this->expectException(UnsupportedNotificationTypeException::class);
+
+        $params = $this->getTestParams(['status' => 'derp']);
+        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $subject->run();
     }
 
     public function testWhenPaymentIsInsufficient()

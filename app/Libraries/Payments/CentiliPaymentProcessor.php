@@ -61,12 +61,11 @@ class CentiliPaymentProcessor extends PaymentProcessor
     {
         static $mapping = [
             'success' => NotificationType::PAYMENT,
-            'failed' => NotificationType::FAILED,
+            'failed' => NotificationType::REJECTED,
+            'cancelled' => NotificationType::REJECTED, // TODO: verify documentation is correct >_>
         ];
 
-        // TODO: there should probably be checks to make sure
-        // status doesn't match an existing one.
-        return $mapping[$this['status']] ?? $this['status'];
+        return $mapping[$this['status']] ?? "unknown__{$this['status']}";
     }
 
     public function validateTransaction()
