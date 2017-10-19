@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'title' => 'สถานะ',
+        'description' => 'เกิดอะไรขึ้น?',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => 'เหตุการณ์ที่เกิดขึ้นอยู่',
+        'automated' => 'อัตโนมัติ',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => 'ผู้ใช้งานออนไลน์ตั้งแต่ 24 ชั่วโมงที่แล้ว',
+            'score' => 'การส่งคะแนนตั้งแต่ 24 ชั่วโมงที่แล้ว',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => 'ผู้ใช้งานออนไลน์ในขณะนี้',
+        'score' => 'จำนวนการส่งคะแนนต่อวินาที',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => 'เหตุการณ์ที่เกิดขึ้นล่าสุด',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => 'แก้ไขแล้ว',
+                'resolving' => 'กำลังแก้ไข',
+                'unknown' => 'ไม่ทราบสถานะ',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => 'ระยะเวลาที่ให้บริการ',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => 'เซิร์ฟเวอร์',
+                'web' => 'เว็บไซต์',
             ],
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => 'วันนี้',
+            'week' => 'สัปดาห์',
+            'month' => 'เดือน',
+            'all_time' => 'ตลอดเวลา',
+            'last_week' => 'สัปดาห์ที่แล้ว',
+            'weeks_ago' => ':count สัปดาห์ที่แล้ว|:count สัปดาห์ที่แล้ว',
         ],
     ],
 ];
