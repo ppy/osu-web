@@ -26,11 +26,6 @@ use Carbon\Carbon;
 // FIXME: rename?
 class CentiliPaymentProcessor extends PaymentProcessor
 {
-    public function isSkipped()
-    {
-        return false;
-    }
-
     public function getOrderNumber()
     {
         return $this['reference'] ?? $this['clientid'];

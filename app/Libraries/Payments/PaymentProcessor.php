@@ -108,14 +108,6 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getNotificationType();
 
     /**
-     * Tells callers to ignore this notification.
-     */
-    public function isSkipped()
-    {
-        return false;
-    }
-
-    /**
      * Auto run apply() or cancel() depending on the notification type.
      *
      * @return void

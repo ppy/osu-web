@@ -45,11 +45,6 @@ class CentiliController extends Controller
         $signature = new CentiliSignature($request);
         $processor = new CentiliPaymentProcessor($params, $signature);
 
-        if ($processor->isSkipped()) {
-            // skip user_search notification
-            return '';
-        }
-
         try {
             $processor->run();
         } catch (ValidationException $exception) {

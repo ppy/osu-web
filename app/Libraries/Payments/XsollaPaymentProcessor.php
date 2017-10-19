@@ -20,8 +20,8 @@
 
 namespace App\Libraries\Payments;
 
-use App\Models\User;
 use App\Models\Store\Order;
+use App\Models\User;
 use Carbon\Carbon;
 
 // FIXME: rename?

@@ -28,7 +28,6 @@ use App\Libraries\Payments\XsollaSignature;
 use App\Libraries\Payments\XsollaUserNotFoundException;
 use App\Models\Store\Order;
 use Auth;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 use RuntimeException;
@@ -84,11 +83,6 @@ class XsollaController extends Controller
         $params = static::extractParams($request);
         $signature = new XsollaSignature($request);
         $processor = new XsollaPaymentProcessor($params, $signature);
-
-        if ($processor->isSkipped()) {
-            // skip user_search notification
-            return response()->json();
-        }
 
         try {
             $result = $processor->run();

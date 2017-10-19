@@ -88,11 +88,6 @@ class PaypalController extends Controller
         $signature = new PaypalSignature($request);
         $processor = new PaypalPaymentProcessor($params, $signature);
 
-        if ($processor->isSkipped()) {
-            // skip user_search notification
-            return '';
-        }
-
         try {
             $processor->run();
         } catch (ValidationException $exception) {

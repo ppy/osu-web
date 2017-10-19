@@ -25,11 +25,6 @@ use Carbon\Carbon;
 
 class PaypalPaymentProcessor extends PaymentProcessor
 {
-    public function isSkipped()
-    {
-        return false;
-    }
-
     public function getOrderNumber()
     {
         return $this['invoice'];
