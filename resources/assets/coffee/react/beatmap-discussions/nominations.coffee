@@ -35,9 +35,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     osu.pageChange()
 
   focusHypeInput: ->
-    hypeMessage = $('.beatmap-discussion-new__footer-content')[0]
-    inputBox = $('.beatmap-discussion-new__message-area')
-    flashClass = 'beatmap-discussion-new__footer-content--flash'
+    hypeMessage = $('.js-hype--explanation')
+    inputBox = $('.js-hype--input')
+    flashClass = 'js-flash-border--on'
 
     # switch to generalAll tab, set current filter to praises
     $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'

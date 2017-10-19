@@ -54,17 +54,11 @@
     margin: 5px 0;
     display: flex;
     flex: none;
-    transition: 200ms;
-    border: 1px solid transparent;
     .default-border-radius();
 
     &--right {
       flex: 1;
       justify-content: flex-end;
-    }
-
-    &--flash {
-      animation: flash-border 400ms 2;
     }
   }
 
@@ -104,9 +98,14 @@
     background-color: #777;
     border-radius: 0 @border-radius-base @border-radius-base 0;
 
+    @media @mobile {
+      flex-grow: 1;
+    }
+
     &--label {
       background-color: #333;
       border-radius: @border-radius-base 0 0 @border-radius-base;
+      flex-grow: 0;
     }
   }
 

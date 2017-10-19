@@ -59,7 +59,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div className: "#{bn}__message",
             if @props.currentUser.id?
               textarea
-                className: "#{bn}__message-area"
+                className: "#{bn}__message-area js-hype--input"
                 value: @state.message
                 onChange: @setMessage
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
@@ -68,7 +68,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
         div className: "#{bn}__footer",
           div
-            className: "#{bn}__footer-content"
+            className: "#{bn}__footer-content js-hype--explanation js-flash-border"
             'data-visibility': if @props.mode != 'timeline' && @props.mode != 'generalAll' then 'hidden'
             div
               key: 'label'
