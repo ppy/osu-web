@@ -33,7 +33,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber()
     {
-        return $this['reference'];
+        return $this['reference'] ?? $this['clientid'];
     }
 
     public function getPaymentProvider()
