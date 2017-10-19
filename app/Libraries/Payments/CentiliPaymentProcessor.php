@@ -99,6 +99,10 @@ class CentiliPaymentProcessor extends PaymentProcessor
             );
         }
 
+        if (strcasecmp($this['country'], 'JP') !== 0) {
+            $this->validationErrors()->add('country', '.param.invalid', ['param' => 'country']);
+        }
+
         if ($this->getPaymentAmount() !== $order->getTotal()) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',

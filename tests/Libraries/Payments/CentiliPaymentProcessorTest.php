@@ -77,6 +77,17 @@ class CentiliPaymentProcessorTest extends TestCase
         $subject->run();
     }
 
+    public function testWhenCountryIsNotJapan()
+    {
+        $params = $this->getTestParams(['country' => 'au']);
+        $subject = new CentiliPaymentProcessor($params, $this->validSignature());
+        $thrown = $this->runSubject($subject);
+
+        $errors = $subject->validationErrors()->all();
+        $this->assertTrue($thrown);
+        $this->assertArrayHasKey('country', $errors);
+    }
+
     public function testWhenPaymentIsInsufficient()
     {
         $orderItem = factory(OrderItem::class, 'supporter_tag')->create(['order_id' => $this->order->order_id]);
