@@ -62,7 +62,12 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
-        return $this['notification_type'];
+        static $mapping = [
+            'payment' => NotificationType::PAYMENT,
+            'refund' => NotificationType::REFUND,
+        ];
+
+        return $mapping[$this['notification_type']] ?? "unknown__{$this['notification_type']}";
     }
 
     public function validateTransaction()

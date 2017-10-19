@@ -66,7 +66,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         } elseif (in_array($this['payment_status'], $cancel_statuses, true)) {
             return NotificationType::REFUND;
         } else {
-            return $this['payment_status'];
+            return "unknown__{$this['payment_status']}";
         }
     }
 
