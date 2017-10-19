@@ -24,4 +24,5 @@ class NotificationType
 {
     const PAYMENT = 'payment';
     const REFUND = 'refund';
+    const FAILED = 'failed';
 }
