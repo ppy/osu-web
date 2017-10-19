@@ -224,7 +224,7 @@ abstract class PaymentProcessor implements \ArrayAccess
             $this->order = [
                 Order::withPayments()
                     ->whereOrderNumber($this->getOrderNumber())
-                    ->first()
+                    ->first(),
             ];
         }
 

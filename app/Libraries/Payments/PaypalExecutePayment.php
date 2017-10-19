@@ -75,6 +75,7 @@ class PaypalExecutePayment
             try {
                 // Tell Paypal to complete the transaction so we can finally clear the cart.
                 $payment = Payment::get($this->params['paymentId'], $context);
+
                 return $payment->execute($this->execution, $context);
             } catch (PayPalConnectionException $e) {
                 \Log::error($e->getData());
