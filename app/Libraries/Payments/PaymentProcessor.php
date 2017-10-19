@@ -134,6 +134,9 @@ abstract class PaymentProcessor implements \ArrayAccess
             case NotificationType::REJECTED:
                 $this->rejected();
                 break;
+            case NotificationType::USER_SEARCH:
+                $this->userSearch();
+                break;
             default:
                 throw new UnsupportedNotificationTypeException($type);
         }

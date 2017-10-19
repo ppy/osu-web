@@ -20,19 +20,15 @@
 
 namespace App\Libraries\Payments;
 
+use App\Models\User;
 use App\Models\Store\Order;
 use Carbon\Carbon;
 
 // FIXME: rename?
 class XsollaPaymentProcessor extends PaymentProcessor
 {
-    const VALID_NOTIFICATION_TYPES = ['payment', 'refund', 'user_validation'];
-    const SKIP_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
-
-    public function isSkipped()
-    {
-        return in_array($this->getNotificationType(), static::SKIP_NOTIFICATION_TYPES, true);
-    }
+    const PAYMENT_NOTIFICATION_TYPES = ['payment', 'refund'];
+    const USER_NOTIFICATION_TYPES = ['user_search', 'user_validation'];
 
     public function getOrderNumber()
     {
@@ -65,6 +61,8 @@ class XsollaPaymentProcessor extends PaymentProcessor
         static $mapping = [
             'payment' => NotificationType::PAYMENT,
             'refund' => NotificationType::REFUND,
+            'user_search' => NotificationType::USER_SEARCH,
+            'user_validation' => NotificationType::USER_SEARCH,
         ];
 
         return $mapping[$this['notification_type']] ?? "unknown__{$this['notification_type']}";
@@ -75,7 +73,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         $this->ensureValidSignature();
 
         // received notification_type should be in allowed ranges
-        if (!in_array($this['notification_type'], static::VALID_NOTIFICATION_TYPES, true)) {
+        if (!in_array($this['notification_type'], static::PAYMENT_NOTIFICATION_TYPES, true)) {
             $this->validationErrors()->add(
                 'notification_type',
                 '.notification_type',
@@ -128,5 +126,14 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function userSearch()
+    {
+        $userId = $this['notification_type'] === 'user_validation'
+            ? $this['user.id']
+            : $this['user.public_id'];
+
+        return User::findOrFail($userId);
     }
 }

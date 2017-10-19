@@ -27,6 +27,7 @@ use App\Libraries\Payments\XsollaPaymentProcessor;
 use App\Libraries\Payments\XsollaSignature;
 use App\Models\Store\Order;
 use Auth;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 use RuntimeException;
@@ -101,6 +102,8 @@ class XsollaController extends Controller
         } catch (InvalidSignatureException $exception) {
             // xsolla expects INVALID_SIGNATURE
             return $this->errorResponse('The signature is invalid.', 'INVALID_SIGNATURE', 422);
+        } catch (ModelNotFoundException $exception) {
+            return $this->errorResponse('INVALID_USER', 'INVALID_USER', 404);
         } catch (RuntimeException $exception) {
             \Log::error($exception);
 

@@ -25,4 +25,5 @@ class NotificationType
     const PAYMENT = 'payment';
     const REFUND = 'refund';
     const REJECTED = 'rejected';
+    const USER_SEARCH = 'user_search';
 }
