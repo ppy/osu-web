@@ -44,7 +44,7 @@ return [
             'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!',
             'download' => [
                 '_' => '다운로드',
-                'video' => '영상 포함', 
+                'video' => '영상 포함',
                 'no-video' => '영상 미포함',
                 'direct' => 'osu!다이렉트',
             ],
