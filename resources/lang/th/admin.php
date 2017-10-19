@@ -24,10 +24,10 @@ return [
         'show' => [
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                'activate' => 'เปิดการใช้งาน',
+                'activate_confirm' => 'เปิดการใช้งาน modding v2 สำหรับ beatmap นี้หรือไม่?',
+                'active' => 'เปิดการใช้งาน',
+                'inactive' => 'ปิดการใช้งาน',
             ],
         ],
     ],
@@ -35,22 +35,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => 'ลบ',
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => 'ไม่มี cover',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => 'บันทึก',
+                    'update' => 'อัพเดต',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => 'ฟอรั่มรายการ cover',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => 'หัวข้อ Cover เริ่มต้น',
+                    'main' => 'ฟอรั่ม Cover',
                 ],
             ],
         ],
@@ -58,18 +58,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => 'ดูบันทึกระบบ',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => 'Console ผู้ดูแลระบบ',
 
             'sections' => [
-                'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'forum' => 'ฟอรั่ม',
+                'general' => 'ทั่วไป',
+                'store' => 'ร้านค้า',
             ],
         ],
     ],
@@ -77,15 +77,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => 'รายการสั่งซื้อ',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => 'ผู้ใช้งานคนนี้ ถูกจำกัดการใช้งาน',
+            'message' => '(แอดมินเท่านั้นที่สามารถเห็นได้)',
         ],
     ],
 
