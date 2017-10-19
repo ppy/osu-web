@@ -28,7 +28,7 @@
 
   @media @desktop {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
   }
 
   &__content {
@@ -38,6 +38,7 @@
 
     &--mapping {
       display: flex;
+      margin-top: 20px;
 
       @media @mobile {
         justify-content: center;
@@ -49,7 +50,7 @@
       margin-top: 10px;
 
       @media @desktop {
-        flex-basis: 40%;
+        flex-basis: 30%;
         align-self: flex-end;
       }
     }

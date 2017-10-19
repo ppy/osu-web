@@ -28,6 +28,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
   componentWillUnmount: =>
     @xhr?.abort()
+    Timeout.clear @hypeFocusTimeout if @hypeFocusTimeout
 
 
   componentDidUpdate: =>
@@ -43,22 +44,25 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     $.publish 'beatmapDiscussion:filter', filter: 'praises'
 
     # ensure input box is in view and focus it
-    $.scrollTo(inputBox[0], 200)
+    $.scrollTo inputBox, 200,
+      interrupt: true
+      offset: -100
+
     inputBox.focus()
 
     # flash border of hype description to emphasize input is required
     $(hypeMessage).addClass(flashClass)
-    setTimeout ->
+    @hypeFocusTimeout = Timeout.set 1000, ->
       $(hypeMessage).removeClass(flashClass)
-    , 1000
 
 
   render: =>
     requiredHype = @props.beatmapset.nominations.required_hype
     hypeByUser = _.countBy @props.currentDiscussions.byFilter.praises.generalAll, 'user_id'
-    filteredHype = _.reject hypeByUser, (k, v) =>
+    filteredHype = _.reject hypeByUser, (_v, k) =>
       # no hyping your own maps
-      parseInt(v) == @props.beatmapset.user_id
+      parseInt(k) == @props.beatmapset.user_id
+
     hypeRaw = _.keys(filteredHype).length
     hype = _.min([requiredHype, hypeRaw])
     userAlreadyHyped = hypeByUser[currentUser.id]?
@@ -73,7 +77,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     if mapCanBeNominated || mapIsQualified
       nominations = @props.beatmapset.nominations
-      disqualification = nominations.disqualification
+      disqualification = nominations.disqualification if !mapIsQualified
 
     nominators = []
     for event in @props.events by -1
@@ -96,7 +100,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         if currentUser.id?
           div className: "#{bn}__row-right",
             el BigButton,
-              modifiers: ['beatmap-discussion-hype']
+              modifiers: ['full']
               text: if userAlreadyHyped then osu.trans('beatmaps.hype.button-done') else osu.trans('beatmaps.hype.button')
               icon: 'bullhorn'
               props:
@@ -118,14 +122,14 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             div className: "#{bn}__row-right",
               if userCanDisqualify && mapIsQualified
                 el BigButton,
-                  modifiers: ['beatmap-discussion-hype']
+                  modifiers: ['full']
                   text: osu.trans 'beatmaps.nominations.disqualify'
                   icon: 'thumbs-down'
                   props:
                     onClick: @disqualify
               else if userCanNominate && mapCanBeNominated
                 el BigButton,
-                  modifiers: ['beatmap-discussion-hype']
+                  modifiers: ['full']
                   text: osu.trans 'beatmaps.nominations.nominate'
                   icon: 'thumbs-up'
                   props:
