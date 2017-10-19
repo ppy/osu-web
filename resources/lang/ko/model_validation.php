@@ -53,7 +53,7 @@ return [
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
-        'invalid_email' => "이메일 주소가 잘못되었습니다.", // Doesn't seem to be an email address
+        'invalid_email' => '이메일 주소가 잘못되었습니다.', // Doesn't seem to be an email address
         'too_short' => '새 비밀번호가 너무 짧습니다.',
         'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.', // Blacklisted password
         'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
