@@ -196,7 +196,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     /**
      * Payment was rejected or aborted for whatever reason.
-     * This method is for handling notifications from the payment providers
+     * This method is for handling notifications from the payment providers.
      *
      * @return void
      */
