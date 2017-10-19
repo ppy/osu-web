@@ -65,7 +65,7 @@ class CentiliController extends Controller
 
     public function completed()
     {
-        $orderNumber = Request::input('clientid') ?? '';
+        $orderNumber = Request::input('reference') ?? '';
         $order = OrderCheckout::complete($orderNumber);
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));

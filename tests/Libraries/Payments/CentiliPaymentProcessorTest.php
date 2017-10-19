@@ -83,7 +83,7 @@ class CentiliPaymentProcessorTest extends TestCase
                            .'-'
                            .$this->order->order_id;
 
-        $params = $this->getTestParams(['clientid' => $orderNumber]);
+        $params = $this->getTestParams(['reference' => $orderNumber]);
         $subject = new CentiliPaymentProcessor($params, $this->validSignature());
 
         $thrown = $this->runSubject($subject);
@@ -97,7 +97,7 @@ class CentiliPaymentProcessorTest extends TestCase
     {
         $orderNumber = "{$this->order->getOrderNumber()}-oops";
 
-        $params = $this->getTestParams(['clientid' => $orderNumber]);
+        $params = $this->getTestParams(['reference' => $orderNumber]);
         $subject = new CentiliPaymentProcessor($params, $this->validSignature());
 
         $thrown = $this->runSubject($subject);
@@ -119,7 +119,7 @@ class CentiliPaymentProcessorTest extends TestCase
     private function getTestParams(array $overrides = [])
     {
         $base = [
-            'clientid' => $this->order->getOrderNumber(),
+            'reference' => $this->order->getOrderNumber(),
             'country' => 'jp',
             'enduserprice' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
             'event_type' => 'one_off',

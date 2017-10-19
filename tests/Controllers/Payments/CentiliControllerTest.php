@@ -68,7 +68,7 @@ class CentiliControllerTest extends TestCase
     private function getPostData(array $overrides = [])
     {
         $base = [
-            'clientid' => $this->order->getOrderNumber(),
+            'reference' => $this->order->getOrderNumber(),
             'country' => 'jp',
             'enduserprice' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
             'event_type' => 'one_off',

@@ -77,7 +77,7 @@ export class StoreCentili
 
   @fetchScript: (name) ->
     new Promise (resolve, reject) ->
-      loading = window.turbolinksReload.load "https://www.centili.com/widget/js/#{name}", resolve
+      loading = window.turbolinksReload.load "https://api.centili.com/widget/js/#{name}", resolve
       resolve() unless loading
 
   @fetchStyle: (name) ->
@@ -86,7 +86,7 @@ export class StoreCentili
       link.classList.add className
       link.rel = 'stylesheet'
       link.type = 'text/css'
-      link.href = "https://www.centili.com/widget/#{name}"
+      link.href = "https://api.centili.com/widget/#{name}"
       link.media = 'screen'
       link.addEventListener 'load', resolve, false
 
