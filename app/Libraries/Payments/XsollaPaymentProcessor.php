@@ -134,6 +134,8 @@ class XsollaPaymentProcessor extends PaymentProcessor
             ? $this['user.id']
             : $this['user.public_id'];
 
-        return User::findOrFail($userId);
+        $user = User::findOrFail($userId);
+
+        return ['user' => ['id' => $user->user_id]];
     }
 }

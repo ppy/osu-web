@@ -90,7 +90,7 @@ class XsollaController extends Controller
         }
 
         try {
-            $processor->run();
+            $result = $processor->run();
         } catch (ValidationException $exception) {
             \Log::error($exception->getMessage());
 
@@ -110,7 +110,7 @@ class XsollaController extends Controller
             return $this->errorResponse('Something went wrong.', '', 500);
         }
 
-        return ['ok'];
+        return $result;
     }
 
     // After user has approved payment and redirected here by xsolla
