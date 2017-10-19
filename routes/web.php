@@ -172,7 +172,7 @@ Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu'
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
-Route::resource('users', 'UsersController', ['only' => 'store']);
+// Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
