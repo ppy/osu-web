@@ -20,63 +20,63 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Settings',
-        'title_compact' => 'settings',
+        'title' => 'ตั้งค่า <strong>ผู้ใช้</strong>',
+        'title_compact' => 'ตั้งค่า',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'แก้ไข Avatar',
         ],
 
         'email' => [
-            'current' => 'current email',
-            'new' => 'new email',
-            'new_confirmation' => 'email confirmation',
-            'title' => 'Email',
+            'current' => 'อีเมลปัจจุบัน',
+            'new' => 'อีเมลใหม่',
+            'new_confirmation' => 'ยืนยันอีเมลใหม่',
+            'title' => 'อีเมล',
         ],
 
         'password' => [
-            'current' => 'current password',
-            'new' => 'new password',
-            'new_confirmation' => 'password confirmation',
-            'title' => 'Password',
+            'current' => 'รหัสผ่านปัจจุบัน',
+            'new' => 'รหัสผ่านใหม่',
+            'new_confirmation' => 'ยืนยันรหัสผ่านใหม่',
+            'title' => 'รหัสผ่าน',
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'แก้ไขโปรไฟล์',
 
             'user' => [
-                'user_from' => 'current location',
-                'user_interests' => 'interest',
+                'user_from' => 'ตำแหน่งปัจจุบัน',
+                'user_interests' => 'สิ่งที่สนใจ',
                 'user_msnm' => 'skype',
-                'user_occ' => 'occupation',
+                'user_occ' => 'อาชีพ',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'เว็บไซต์',
             ],
         ],
 
         'signature' => [
-            'title' => 'Signature',
-            'update' => 'update',
+            'title' => 'เอกลักษณ์',
+            'update' => 'อัพเดต',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! email change confirmation',
-        'update' => 'update',
-        'updated' => 'Email updated',
+        'email_subject' => 'ยืนยันการเปลี่ยนอีเมล osu!',
+        'update' => 'อัพเดต',
+        'updated' => 'อัพเดตอีเมลแล้ว',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! password change confirmation',
-        'update' => 'update',
-        'updated' => 'Password updated',
+        'email_subject' => 'ยืนยันการเปลี่ยนรหัสผ่าน osu!',
+        'update' => 'อัพเดต',
+        'updated' => 'อัพเดตรหัสผ่านแล้ว',
     ],
 
     'playstyles' => [
-        'title' => 'Playstyles',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
+        'title' => 'รูปแบบการเล่น',
+        'mouse' => 'เมาส์',
+        'keyboard' => 'คีย์บอร์ด',
+        'tablet' => 'แท็บเล็ต',
+        'touch' => 'สัมผัส',
     ],
 ];
