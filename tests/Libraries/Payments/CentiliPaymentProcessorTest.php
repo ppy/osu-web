@@ -54,7 +54,7 @@ class CentiliPaymentProcessorTest extends TestCase
         // FIXME: but now we can't see the notification, annoying ?_?
         $this->expectsEvents('store.payments.rejected.centili');
 
-        $params = $this->getTestParams(['status' => 'cancelled']);
+        $params = $this->getTestParams(['status' => 'canceled']);
         $subject = new CentiliPaymentProcessor($params, $this->validSignature());
         $subject->run();
     }
