@@ -58,8 +58,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'This post will go to general beatmapset discussion. To mod this beatmap, start message with timestamp (e.g. 00:12:345).',
-            'in_timeline' => 'To mod multiple timestamps, post multiple times (one post per timestamp).',
+            'in_general' => '작성된 글은 일반 비트맵 토론으로 올라갈 것입니다. 이 비트맵 조정에 참여하려면, 글의 첫 부분을 타임스탬프로 시작하십시오 (예시, 00:12:345).',
+            'in_timeline' => '비트맵의 여러 부분을 수정하려면, 글을 수 차례 올려야 합니다 (한 글에 한 타임스탬프밖에 수정할 수 없습니다).',
         ],
 
         'message_type' => [
@@ -100,13 +100,13 @@ return [
         'disqualifed_no_reason' => 'no reason specified',
         'disqualification-prompt' => 'Reason for disqualification?',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
-        'nominate' => 'Nominate',
-        'nominate-confirm' => 'Nominate this beatmap?',
+        'incorrect-state' => '작업을 처리하는 과정에서 문제가 발생했습니다, 페이지를 새로고침 해보세요.',
+        'nominate' => '추천하기', // Nominate
+        'nominate-confirm' => '이 비트맵을 추천할까요?', // Nominate
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'required-text' => 'Nominations: :current/:required',
-        'title' => 'Nomination Status',
+        'required-text' => '추천 수: :current/:required',
+        'title' => '추천 상태', // Nomination Status
     ],
 
     'listing' => [
