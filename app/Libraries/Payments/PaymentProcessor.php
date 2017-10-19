@@ -131,6 +131,9 @@ abstract class PaymentProcessor implements \ArrayAccess
             case NotificationType::REFUND:
                 $this->cancel();
                 break;
+            case NotificationType::REJECTED:
+                $this->rejected();
+                break;
             default:
                 throw new UnsupportedNotificationTypeException($type);
         }
@@ -169,7 +172,7 @@ abstract class PaymentProcessor implements \ArrayAccess
     }
 
     /**
-     * Cancels the payment transaction.
+     * Cancels (by refunding) the payment transaction.
      *
      * @return void
      */
@@ -189,6 +192,19 @@ abstract class PaymentProcessor implements \ArrayAccess
             $eventName = "store.payments.cancelled.{$payment->provider}";
             event($eventName, new PaymentEvent($order));
         });
+    }
+
+    /**
+     * Payment was rejected or aborted for whatever reason.
+     * This method is for handling notifications from the payment providers
+     *
+     * @return void
+     */
+    public function rejected()
+    {
+        $order = $this->getOrder();
+        $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
+        event($eventName, new PaymentEvent($order));
     }
 
     public function ensureValidSignature()

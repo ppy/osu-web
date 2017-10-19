@@ -18,16 +18,12 @@
 
 <div class="store-payment-method">
     <div class="store-payment-method__cell">
-        {{-- Centili widget needs href; centili init is also slow --}}
-        <a id="c-mobile-payment-widget"
-        href="{{ $checkout->getCentiliPaymentLink() }}"
-        class="u-hidden"
-        ></a>
-        <button type="button"
-                class="js-store-checkout-button store-payment-button store-payment-button--centili"
-                data-provider="centili"
+        <a href="{{ $checkout->getCentiliPaymentLink() }}"
+           class="js-store-checkout-button store-payment-button store-payment-button--centili"
+           rel="noopener"
+           data-provider="centili"
         >
-        </button>
+        </a>
     </div>
 
     <div class="store-payment-method__cell">

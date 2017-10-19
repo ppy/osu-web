@@ -56,11 +56,11 @@ class OrderCheckout
     public function getCentiliPaymentLink()
     {
         $params = [
-            'api' => config('payments.centili.api_key'),
+            'apikey' => config('payments.centili.api_key'),
             'country' => 'jp',
             'countrylock' => 'true',
-            'clientid' => $this->order->getOrderNumber(),
-            'amount' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
+            'reference' => $this->order->getOrderNumber(),
+            'price' => $this->order->getTotal() * config('payments.centili.conversion_rate'),
         ];
 
         return config('payments.centili.widget_url').'?'.http_build_query($params);

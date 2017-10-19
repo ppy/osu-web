@@ -16,7 +16,6 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-import { StoreCentili } from 'store-centili'
 import { StorePaypal } from 'store-paypal'
 import { StoreXsolla } from 'store-xsolla'
 
@@ -33,7 +32,6 @@ export class StoreCheckout
       switch provider
         when 'paypal' then init['paypal'] = Promise.resolve()
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
-        when 'centili' then init['centili'] = StoreCentili.promiseInit()
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       provider = event.target.dataset.provider
@@ -42,7 +40,7 @@ export class StoreCheckout
       LoadingOverlay.show()
       LoadingOverlay.show.flush()
 
-      init[provider].then =>
+      init[provider]?.then =>
         @handleClick(event.target.dataset)
       .catch (error) ->
         LoadingOverlay.hide()
@@ -60,5 +58,3 @@ export class StoreCheckout
         # FIXME: flickering when transitioning to widget
         XPayStationWidget.open()
         LoadingOverlay.hide()
-      when 'centili'
-        StoreCentili.fakeClick()

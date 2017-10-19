@@ -33,7 +33,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getOrderNumber()
     {
-        return $this['clientid']; // or reference?
+        return $this['reference'];
     }
 
     public function getPaymentProvider()
@@ -59,7 +59,13 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
     public function getNotificationType()
     {
-        return NotificationType::PAYMENT;
+        static $mapping = [
+            'success' => NotificationType::PAYMENT,
+            'failed' => NotificationType::REJECTED,
+            'cancelled' => NotificationType::REJECTED, // TODO: verify documentation is correct >_>
+        ];
+
+        return $mapping[$this['status']] ?? "unknown__{$this['status']}";
     }
 
     public function validateTransaction()
