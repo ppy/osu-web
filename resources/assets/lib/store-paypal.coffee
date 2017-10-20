@@ -19,7 +19,7 @@
 export class StorePaypal
   @fetchApprovalLink: (orderId) ->
     new Promise (resolve, reject) ->
-      $.get laroute.route('payments.paypal.create'), order_id: orderId
+      $.post laroute.route('payments.paypal.create'), order_id: orderId
       .done resolve
       .fail (xhr) ->
         reject(xhr: xhr)
