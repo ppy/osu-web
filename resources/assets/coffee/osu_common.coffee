@@ -97,6 +97,16 @@
   isMobile: -> ! window.matchMedia('(min-width: 840px)').matches
 
 
+  # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
+  focus: (el) =>
+    return $(el).focus() if !osu.isIos
+
+    currentFontSize = $(el).css('font-size');
+    $(el).css('font-size', '16px');
+    $(el).focus();
+    $(el).css('font-size', currentFontSize);
+
+
   src2x: (mainUrl) ->
     src: mainUrl
     srcSet: "#{mainUrl} 1x, #{mainUrl.replace(/(\.[^.]+)$/, '@2x$1')} 2x"

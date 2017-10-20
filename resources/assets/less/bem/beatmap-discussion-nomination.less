@@ -67,10 +67,18 @@
     }
   }
 
+  &__status-message {
+    font-size: 14px;
+  }
+
   &__row {
     flex-direction: row;
     display: flex;
     margin-bottom: 10px;
+
+    &--status-message {
+      margin-bottom: 20px;
+    }
 
     @media @mobile {
       flex-direction: column;
@@ -83,7 +91,7 @@
   }
 
   &__row-right {
-    width: 150px;
+    width: 130px;
 
     @media @mobile {
       align-self: center;

@@ -44,6 +44,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   render: =>
+    showHypeHelp = _.includes(['wip', 'pending', 'qualified'], @props.beatmapset.status) && @props.mode == 'generalAll'
+
     div
       className: 'osu-page osu-page--small'
       div
@@ -69,7 +71,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         div className: "#{bn}__footer",
           div
             className: "#{bn}__footer-content js-hype--explanation js-flash-border"
-            'data-visibility': if @props.mode != 'timeline' && @props.mode != 'generalAll' then 'hidden'
+            'data-visibility': if @props.mode != 'timeline' && !showHypeHelp then 'hidden'
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
