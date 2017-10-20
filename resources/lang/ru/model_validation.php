@@ -49,18 +49,14 @@ return [
         ],
     ],
 
-    'user_email' => [
-        'invalid' => 'Это не похоже на адрес электронной почты.',
-        'already_used' => 'Почта уже использована.',
-        'wrong_confirmation' => 'Подтверждения почты не совпадают.',
-        'wrong_current_password' => 'Текущий пароль неверный.',
-    ],
-
-    'user_password' => [
+    'user' => [
         'contains_username' => 'Пароль не должен содержать никнейм.',
+        'email_already_used' => 'Почта уже использована.',
+        'invalid_email' => 'Это не похоже на адрес электронной почты.',
         'too_short' => 'Новый пароль слишком короткий.',
         'weak' => 'Слишком лёгкий пароль.',
-        'wrong_confirmation' => 'Подтверждения пароля не совпадают.',
         'wrong_current_password' => 'Текущий пароль неверный.',
+        'wrong_email_confirmation' => 'Подтверждения почты не совпадают.',
+        'wrong_password_confirmation' => 'Подтверждения пароля не совпадают.',
     ],
 ];

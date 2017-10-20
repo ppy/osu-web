@@ -76,6 +76,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'Can not edit deleted post.',
                 'locked' => 'The post is locked from editing.',
                 'no_forum_access' => 'Access to requested forum is required.',
                 'not_owner' => 'Only poster can edit the post.',

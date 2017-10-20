@@ -28,9 +28,11 @@
 </a>
 --}}
 
-<a
+<button
+    type="button"
     class="btn-circle btn-circle--topic-entry"
-    href="{{ route('forum.topics.watch', [
+    title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
+    data-url="{{ route('forum.topics.watch', [
         $topic,
         'watch' => false,
         'page' => 'manage'
@@ -38,7 +40,8 @@
     data-remote="1"
     data-method="POST"
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
-    title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
 >
-    <i class="fa fa-trash"></i>
-</a>
+    <span class="btn-circle__content">
+        <i class="fa fa-trash"></i>
+    </span>
+</button>

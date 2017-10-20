@@ -26,14 +26,17 @@
         $method = 'delete';
     }
 @endphp
-<a
+<button
+    type="button"
+    class="btn-circle js-post-delete-toggle"
     title="{{ trans('forum.post.actions.'.$deleteString) }}"
     data-tooltip-position="left center"
-    href="{{ route("forum.posts.$deleteString", $post) }}"
-    class="btn-circle js-post-delete-toggle"
+    data-url="{{ route("forum.posts.$deleteString", $post) }}"
     data-remote="true"
     data-method="{{ $method }}"
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
 >
-    <i class="fa {{ $iconClass }}"></i>
-</a>
+    <span class="btn-circle__content">
+        <i class="fa {{ $iconClass }}"></i>
+    </span>
+</button>

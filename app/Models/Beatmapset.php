@@ -26,12 +26,16 @@ use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
+use Datadog;
 use DB;
 use Es;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
+    use SoftDeletes;
+
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
     protected $primaryKey = 'beatmapset_id';
@@ -43,6 +47,7 @@ class Beatmapset extends Model
         'epilepsy' => 'boolean',
         'storyboard' => 'boolean',
         'video' => 'boolean',
+        'discussion_enabled' => 'boolean',
     ];
 
     protected $dates = [
@@ -112,12 +117,21 @@ class Beatmapset extends Model
 
     // ranking functions for the set
 
-    public function beatmapsetDiscussion()
+    public function beatmapDiscussions()
     {
-        return $this->hasOne(BeatmapsetDiscussion::class, 'beatmapset_id', 'beatmapset_id');
+        return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
     // Beatmapset::rankable();
+
+    public function lastDiscussionTime()
+    {
+        $time = $this->beatmapDiscussions()->max('updated_at');
+
+        if ($time !== null) {
+            return Carbon::parse($time);
+        }
+    }
 
     public function scopeRankable($query)
     {
@@ -144,6 +158,7 @@ class Beatmapset extends Model
 
         $scoreClass = Score\Best\Model::getClass($mode);
         $beatmapsetTable = $this->getTable();
+        $beatmapTable = (new Beatmap)->getTable();
         $scoreBestTable = (new $scoreClass)->getTable();
 
         if ($user) {
@@ -151,7 +166,9 @@ class Beatmapset extends Model
             $counts = DB::raw("(SELECT count(*)
                                     FROM {$scoreBestTable}
                                     WHERE {$scoreBestTable}.user_id = {$userId}
-                                    AND {$scoreBestTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                    AND {$scoreBestTable}.beatmap_id IN (SELECT beatmap_id
+                                        FROM {$beatmapTable} WHERE {$beatmapTable}.beatmapset_id = {$beatmapsetTable}.beatmapset_id
+                                    )
                                 ) as {$fieldName}");
         } else {
             $counts = DB::raw("(SELECT 0) as {$fieldName}");
@@ -348,7 +365,7 @@ class Beatmapset extends Model
                     Score\Best\Model::getClass($mode)
                     ->forUser($params['user'])
                     ->whereIn('rank', $params['rank'])
-                    ->select('beatmapset_id');
+                    ->select('beatmap_id');
 
                 if ($unionQuery === null) {
                     $unionQuery = $newQuery;
@@ -357,9 +374,10 @@ class Beatmapset extends Model
                 }
             }
 
-            $scores = model_pluck($unionQuery, 'beatmapset_id');
+            $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
+            $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
 
-            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $scores]];
+            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]];
         }
 
         switch ($params['status']) {
@@ -417,7 +435,7 @@ class Beatmapset extends Model
         }
 
         $results = Es::search($searchParams);
-        $beatmapIds = array_map(
+        $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
             },
@@ -425,7 +443,7 @@ class Beatmapset extends Model
         );
 
         return [
-            'ids' => $beatmapIds,
+            'ids' => $beatmapsetIds,
             'total' => $results['hits']['total'],
         ];
     }
@@ -472,6 +490,7 @@ class Beatmapset extends Model
 
     public static function search(array $params = [])
     {
+        $startTime = microtime(true);
         $params = static::searchParams($params);
 
         if (empty(config('elasticsearch.hosts'))) {
@@ -487,6 +506,11 @@ class Beatmapset extends Model
                 ->orderByField('beatmapset_id', $result['ids'])
                 ->get()
             : [];
+
+        if (config('datadog-helper.enabled')) {
+            $searchDuration = microtime(true) - $startTime;
+            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
+        }
 
         return [
             'data' => $data,
@@ -785,26 +809,6 @@ class Beatmapset extends Model
         return true;
     }
 
-    public function nominators()
-    {
-        $events = $this
-            ->recentEvents()
-            ->with('user')
-            ->where(['type' => BeatmapsetEvent::NOMINATE])
-            ->select('user_id')
-            ->get()
-            ->all();
-
-        return array_map(function ($event) {
-            if ($event->user !== null) {
-                return [
-                    'id' => $event->user_id,
-                    'username' => $event->user->username,
-                ];
-            }
-        }, $events);
-    }
-
     public function favourite($user)
     {
         DB::transaction(function () use ($user) {
@@ -861,6 +865,11 @@ class Beatmapset extends Model
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function requiredHype()
+    {
+        return 12;
+    }
+
     public function requiredNominationCount()
     {
         return 2;
@@ -910,6 +919,24 @@ class Beatmapset extends Model
         $includes = ['beatmaps', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
+    }
+
+    public function defaultDiscussionJson()
+    {
+        return json_item(
+            static::with([
+                'beatmapDiscussions.beatmapDiscussionPosts',
+                'beatmapDiscussions.beatmapDiscussionVotes',
+            ])->find($this->getKey()),
+            'BeatmapsetDiscussion',
+            [
+                'beatmap_discussions.beatmap_discussion_posts',
+                'beatmap_discussions.current_user_attributes',
+                'beatmapset_events',
+                'users',
+                'users.groups',
+            ]
+        );
     }
 
     public function defaultBeatmaps()
@@ -976,7 +1003,12 @@ class Beatmapset extends Model
         // (mostly older beatmapsets)
         $description = $split[1] ?? '';
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, true))->toHTML(true);
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
     }
 
     public function toMetaDescription()

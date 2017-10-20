@@ -105,7 +105,7 @@ return [
                 ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays',
+                    'title' => 'Recent Plays (24h)',
                 ],
                 'title' => 'Historical',
             ],
@@ -209,6 +209,9 @@ return [
     'status' => [
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'store' => [
+        'saved' => 'User created',
     ],
     'verify' => [
         'title' => 'Account Verification',

@@ -47,15 +47,18 @@ class BeatmapDiscussions.Header extends React.PureComponent
     bn = 'beatmap-discussions-header-bottom'
 
     div className: bn,
-      div className: "#{bn}__content #{bn}__content--nomination",
-        el BeatmapDiscussions.Nominations,
-          beatmapset: @props.beatmapset
-          currentUser: @props.currentUser
-
       div className: "#{bn}__content #{bn}__content--mapping",
         el BeatmapsetMapping,
           beatmapset: @props.beatmapset
           user: @props.users[@props.beatmapset.user_id]
+
+      div className: "#{bn}__content #{bn}__content--nomination",
+        el BeatmapDiscussions.Nominations,
+          beatmapset: @props.beatmapset
+          events: @props.beatmapsetDiscussion.beatmapset_events
+          users: @props.users
+          currentUser: @props.currentUser
+          currentDiscussions: @props.currentDiscussions
 
 
   headerTop: =>

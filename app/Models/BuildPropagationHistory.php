@@ -20,6 +20,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class BuildPropagationHistory extends Model
@@ -30,4 +33,37 @@ class BuildPropagationHistory extends Model
     protected $dates = [
         'created_at',
     ];
+
+    public function build()
+    {
+        return $this->belongsTo(Build::class, 'build_id');
+    }
+
+    public function scopeChangelog($query, $streamId, $days)
+    {
+        $buildsTable = (new Build)->getTable();
+        $propagationTable = (new self)->getTable();
+        $streamsTable = config('database.connections.mysql-updates.database').'.'.(new UpdateStream)->getTable();
+
+        $query->join($buildsTable, "{$buildsTable}.build_id", '=', "{$propagationTable}.build_id")
+            ->select('created_at')
+            ->where('created_at', '>', Carbon::now()->subDays($days))
+            ->orderBy('created_at', 'asc');
+
+        if ($streamId !== null) {
+            $query->addSelect(DB::raw("user_count, {$buildsTable}.version as label"))
+                ->where("{$buildsTable}.stream_id", $streamId);
+        } else {
+            $query->join($streamsTable, "{$streamsTable}.stream_id", '=', "{$buildsTable}.stream_id")
+                // casting to integer here as the sum aggregate returns a string
+                ->addSelect(DB::raw('cast(sum(user_count) as signed) as user_count, pretty_name as label'))
+                ->whereIn("{$buildsTable}.stream_id", config('osu.changelog.update_streams'))
+                ->groupBy(['created_at', 'pretty_name']);
+        }
+    }
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->toIso8601String();
+    }
 }

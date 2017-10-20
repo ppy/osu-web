@@ -69,7 +69,7 @@ class ContestsController extends Controller
                     mkdir($targetDir, 0755, true);
                 }
 
-                copy($entry->fileUrl(), "{$targetDir}/".sanitize_filename($entry->original_filename));
+                copy($entry->fileUrl(), $targetDir.sanitize_filename($entry->original_filename));
             }
 
             // zip 'em

@@ -49,10 +49,10 @@ class BeatmapsetEvent extends Model
         if ($object instanceof BeatmapDiscussionPost) {
             $discussionPostId = $object->getKey();
             $discussionId = $object->beatmap_discussion_id;
-            $beatmapsetId = $object->beatmapDiscussion->beatmapsetDiscussion->beatmapset_id;
+            $beatmapsetId = $object->beatmapDiscussion->beatmapset_id;
         } elseif ($object instanceof BeatmapDiscussion) {
             $discussionId = $object->getKey();
-            $beatmapsetId = $object->beatmapsetDiscussion->beatmapset_id;
+            $beatmapsetId = $object->beatmapset_id;
         } elseif ($object instanceof Beatmapset) {
             $beatmapsetId = $object->getKey();
         }

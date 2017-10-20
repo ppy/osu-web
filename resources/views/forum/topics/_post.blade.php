@@ -77,15 +77,18 @@
             <div class="forum-post-actions">
                 @if ($options['editLink'] === true)
                     <div class="forum-post-actions__action">
-                        <a
+                        <button
+                            type="button"
+                            class="btn-circle edit-post-link"
                             title="{{ trans('forum.post.actions.edit') }}"
                             data-tooltip-position="left center"
-                            href="{{ route('forum.posts.edit', $post) }}"
-                            class="btn-circle edit-post-link"
+                            data-url="{{ route('forum.posts.edit', $post) }}"
                             data-remote="1"
                         >
-                            <i class="fa fa-edit"></i>
-                        </a>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-edit"></i>
+                            </span>
+                        </button>
                     </div>
                 @endif
 
@@ -97,15 +100,18 @@
 
                 @if ($options['replyLink'] === true)
                     <div class="forum-post-actions__action">
-                        <a
+                        <button
+                            type="button"
+                            class="btn-circle js-forum-topic-reply--quote"
                             title="{{ trans('forum.topics.actions.reply_with_quote') }}"
                             data-tooltip-position="left center"
-                            href="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
-                            class="btn-circle js-forum-topic-reply--quote"
+                            data-url="{{ route('forum.posts.raw', ['id' => $post, 'quote' => 1]) }}"
                             data-remote="1"
                         >
-                            <i class="fa fa-reply"></i>
-                        </a>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-reply"></i>
+                            </span>
+                        </button>
                     </div>
                 @endif
             </div>

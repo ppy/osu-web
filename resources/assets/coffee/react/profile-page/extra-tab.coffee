@@ -33,7 +33,7 @@ class ProfilePage.ExtraTab extends React.Component
       className += ' page-mode-link--is-active'
 
     a
-      href: ProfilePageHash.generate(page: @props.page, mode: @props.currentMode)
+      href: "##{@props.page}"
       className: className
       onClick: @pageSwitch
       'data-page-id': @props.page

@@ -28,6 +28,7 @@
 
   @media @desktop {
     flex-direction: row;
+    align-items: flex-start;
   }
 
   &__content {
@@ -36,13 +37,22 @@
     }
 
     &--mapping {
-      margin: 20px 0;
       display: flex;
-      justify-content: flex-end;
+      margin-top: 20px;
+
+      @media @mobile {
+        justify-content: center;
+        margin-top: 10px;
+      }
     }
 
     &--nomination {
       margin-top: 10px;
+
+      @media @desktop {
+        flex-basis: 30%;
+        align-self: flex-end;
+      }
     }
   }
 }

@@ -52,6 +52,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'options' => [
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
         ],
@@ -68,6 +69,7 @@ return [
             'prefix' => '',
             'strict' => false,
             'options' => [
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
         ],
@@ -83,6 +85,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'options' => [
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
         ],
@@ -98,6 +101,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'options' => [
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
         ],
@@ -113,6 +117,7 @@ return [
             'prefix' => '',
             'strict' => true,
             'options' => [
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
         ],
@@ -128,6 +133,7 @@ return [
             'prefix' => '',
             'strict' => false,
             'options' => [
+                PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
             ],
         ],

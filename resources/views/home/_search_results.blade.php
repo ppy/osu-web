@@ -18,13 +18,15 @@
 <div>
     @foreach ($search->all() as $mode => $result)
         <div class="search-result search-result--{{ $mode }}">
-            <h2 class="search-result__row search-result__row--title">
-                @lang("home.search.{$mode}.title")
-            </h2>
+            @if (request('mode') !== $mode)
+                <h2 class="search-result__row search-result__row--title">
+                    @lang("home.search.{$mode}.title")
+                </h2>
+            @endif
 
             {{-- `empty(collect())` is false :D --}}
             @if (count($result['data']) === 0)
-                <div class="search-result__row search-result__row--empty">
+                <div class="search-result__row search-result__row--notice">
                     @lang('home.search.empty_result')
                 </div>
             @else
@@ -49,11 +51,19 @@
                 </div>
 
                 @if ($search->mode === $mode)
-                    @include('objects._pagination', [
-                        'object' => $search
-                            ->paginate($mode)
-                            ->appends($search->urlParams()),
-                    ])
+                    @php
+                        $pagination = $search->paginate($mode)->appends($search->urlParams());
+                    @endphp
+
+                    @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))
+                        <div class="search-result__row search-result__row--notice">
+                            {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
+                        </div>
+                    @endif
+
+                    <div class="search-result__row search-result__row--paginator">
+                        @include('objects._pagination', ['object' => $pagination])
+                    </div>
                 @else
                     <a
                         class="search-result__row search-result__row--more"

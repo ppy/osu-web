@@ -29,22 +29,27 @@
                             title="{{ trans('wiki.show.edit.link') }}"
                             data-tooltip-position="left center"
                         >
-                            <i class="fa fa-github"></i>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-github"></i>
+                            </span>
                         </a>
                     </div>
 
                     <div class="forum-post-actions__action">
-                        <a
+                        <button
+                            type="button"
                             class="btn-circle"
-                            href="{{ Request::url() }}"
                             data-remote="true"
+                            data-url="{{ route('news.show', [$post->getKey()])}}"
                             data-method="PUT"
                             data-reload-on-success="1"
                             title="{{ trans('news.update.button') }}"
                             data-tooltip-position="left center"
                         >
-                            <i class="fa fa-refresh"></i>
-                        </a>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-refresh"></i>
+                            </span>
+                        </button>
                     </div>
                 @endif
             </div>

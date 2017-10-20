@@ -22,7 +22,7 @@
         'title' => trans('home.user.header.welcome', ['username' => Auth::user()->username])
     ])
 
-    <div class="osu-page osu-page--generic osu-page--dark-bg">
+    <div class="osu-page osu-page--generic osu-page--small osu-page--dark-bg">
         <div class="user-friends">
             <h2 class="user-friends__title">{{trans('friends.title')}}</h2>
             @include('objects._userlist', ['userlist' => $userlist])

@@ -29,7 +29,8 @@ return [
             'account-edit' => 'ustawienia',
             'friends' => 'znajomi',
             'friends-index' => 'znajomi',
-            'getChangelog' => 'zmiany',
+            'changelog-index' => 'zmiany',
+            'changelog-show' => 'kompilacja',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
@@ -153,7 +154,7 @@ return [
         'general' => [
             '_' => 'Główne',
             'home' => 'Strona główna',
-            'changelog' => 'Zmiany',
+            'changelog-index' => 'Zmiany',
             'beatmaps' => 'Beatmapy',
             'download' => 'Pobierz osu!',
             'wiki' => 'Wiki',

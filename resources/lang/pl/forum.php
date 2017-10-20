@@ -129,6 +129,7 @@ return [
         'actions' => [
             'reply' => 'Pokaż okno odpowiedzi',
             'reply_with_quote' => 'Zacytuj we własnej odpowiedzi',
+            'search' => 'Wyszukaj',
         ],
 
         'create' => [

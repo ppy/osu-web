@@ -46,22 +46,27 @@
                             title="{{ trans('wiki.show.edit.link') }}"
                             data-tooltip-position="left center"
                         >
-                            <i class="fa fa-github"></i>
+                            <span class="btn-circle__content">
+                                <i class="fa fa-github"></i>
+                            </span>
                         </a>
                     </div>
 
                     @if (priv_check('WikiPageRefresh')->can())
                         <div class="forum-post-actions__action">
-                            <a
+                            <button
+                                type="button"
                                 class="btn-circle"
-                                href="#"
                                 data-remote="true"
+                                data-url="{{ route('wiki.show', [$page->path]) }}"
                                 data-method="PUT"
                                 title="{{ trans('wiki.show.edit.refresh') }}"
                                 data-tooltip-position="left center"
                             >
-                                <i class="fa fa-refresh"></i>
-                            </a>
+                                <span class="btn-circle__content">
+                                    <i class="fa fa-refresh"></i>
+                                </span>
+                            </button>
                         </div>
                     @endif
                 </div>

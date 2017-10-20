@@ -23,14 +23,17 @@
 
         <ul>
             <li>{{ trans('admin.beatmapsets.show.discussion._') }}:
-                @if ($beatmapset->beatmapsetDiscussion !== null)
+                @if ($beatmapset->discussion_enabled)
                     {{ trans('admin.beatmapsets.show.discussion.active') }}
                 @else
                     {{ trans('admin.beatmapsets.show.discussion.inactive') }}
                     /
                     <a
-                        href="{{ route('admin.beatmapset-discussions.store', ['beatmapset_id' => $beatmapset->beatmapset_id]) }}"
-                        data-method="POST"
+                        href="{{ route('admin.beatmapsets.update', [
+                            'beatmapsets' => $beatmapset->getKey(),
+                            'beatmapset[discussion_enabled]=1'
+                        ]) }}"
+                        data-method="PUT"
                         data-confirm="{{ trans('admin.beatmapsets.show.discussion.activate_confirm') }}"
                     >{{ trans('admin.beatmapsets.show.discussion.activate') }}</a>
                 @endif

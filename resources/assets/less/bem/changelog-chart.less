@@ -1,0 +1,133 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.changelog-chart {
+  .area(@label) {
+    &--@{label} {
+      @color: "changelog-stream--@{label}";
+      fill: @@color;
+      stroke: @@color;
+    }
+  }
+
+  .text(@label) {
+    &--@{label} {
+      @color: "changelog-stream--@{label}";
+      color: @@color;
+    }
+  }
+
+  height: 125px;
+
+  &__area {
+    .area(stable);
+    .area(stable-fallback);
+    .area(cutting-edge);
+    .area(beta);
+    .area(lazer);
+    .area(lazer-experimental);
+
+    .area(build-0);
+    .area(build-1);
+    .area(build-2);
+    .area(build-3);
+    .area(build-4);
+    .area(build-5);
+    .area(build-6);
+    .area(build-7);
+  }
+
+  &__hover-area {
+    fill: none;
+    pointer-events: all;
+  }
+
+  &__tooltip-area {
+    display: flex;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    pointer-events: none;
+  }
+
+  &__tooltip-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+  }
+
+  &__tooltip {
+    .default-border-radius;
+    background: fade(#000000, 50%);
+
+    padding: 5px 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    text-align: center;
+  }
+
+  &__text {
+    &--name {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    &--user-count {
+      font-weight: 500;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    &--date {
+      font-weight: 700;
+      font-size: 10px;
+      color: #ffffff;
+    }
+
+    .text(stable);
+    .text(stable-fallback);
+    .text(beta);
+    .text(cutting-edge);
+    .text(lazer);
+    .text(lazer-experimental);
+
+    .text(build-0);
+    .text(build-1);
+    .text(build-2);
+    .text(build-3);
+    .text(build-4);
+    .text(build-5);
+    .text(build-6);
+    .text(build-7);
+  }
+
+  &__tooltip-line {
+    width: 1px;
+    flex-grow: 1;
+
+    background-color: #ffffff;
+  }
+}

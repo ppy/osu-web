@@ -18,8 +18,9 @@
 
 @import "app";
 
+@screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
-@mobile: ~"(max-width: @{screen-sm-min})";
+@mobile: ~"(max-width: @{screen-mobile-max})";
 
 @bar-size: 3px;
 @logo-size: 100px;
@@ -27,6 +28,7 @@
 @padding-big: (20px + @logo-size + 10px);
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
+@padding-paginator: 15px;
 
 @height--nav-popup: 300px;
 
@@ -205,6 +207,22 @@
 
 @user-color-default: @blue-darker;
 
+@changelog-stream--stable: @blue;
+@changelog-stream--stable-fallback: @green;
+@changelog-stream--beta: @yellow;
+@changelog-stream--cutting-edge: @yellow;
+@changelog-stream--lazer: @red;
+@changelog-stream--lazer-experimental: @red;
+
+@changelog-stream--build-0: @purple;
+@changelog-stream--build-1: @pink;
+@changelog-stream--build-2: @blue;
+@changelog-stream--build-3: @yellow;
+@changelog-stream--build-4: @green;
+@changelog-stream--build-5: @red;
+@changelog-stream--build-6: #eee;
+@changelog-stream--build-7: #fff;
+
 @mod-width: 45px;
 @mod-height: 32px;
 
@@ -240,4 +258,3 @@
 @slider-handle-height: @slider-height + 2 * @slider-handle-protrusion;
 @slider-handle-width: 10px;
 @slider-height: 10px;
-

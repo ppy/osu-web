@@ -15,36 +15,38 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div
-    class="js-forum-topic-lock"
-    data-topic-id="{{ $topic->topic_id }}"
->
+@if (priv_check('ForumTopicModerate', $topic)->can())
+    <button
+        type="button"
+        class="
+            js-forum-topic-lock
+            btn-circle
+            btn-circle--topic-nav
+            {{ $topic->isLocked() ? 'btn-circle--activated' : '' }}
+        "
+        data-topic-id="{{ $topic->topic_id }}"
+        title="{{ trans('forum.topics.lock.lock-'.(int) !$topic->isLocked()) }}"
+        data-remote="1"
+        data-url="{{ route('forum.topics.lock', [
+            $topic,
+            'lock' => !$topic->isLocked(),
+        ]) }}"
+        data-method="post"
+    >
+        <span class="btn-circle__content">
+            <i class="fa fa-lock"></i>
+        </span>
+    </button>
+@else
     @if ($topic->isLocked())
         <div
             class="btn-circle btn-circle--topic-nav btn-circle--blank"
             data-tooltip-float="fixed"
             title="{{ trans('forum.topics.lock.is_locked') }}"
         >
-            <i class="fa fa-lock"></i>
+            <span class="btn-circle__content">
+                <i class="fa fa-lock"></i>
+            </span>
         </div>
     @endif
-
-    @if (priv_check('ForumTopicModerate', $topic)->can())
-        <a
-            class="btn-circle btn-circle--topic-nav"
-            href="{{ route('forum.topics.lock', [
-                $topic,
-                'lock' => !$topic->isLocked(),
-            ]) }}"
-            data-remote="1"
-            data-method="post"
-            title="{{ trans('forum.topics.lock.lock-'.(int) !$topic->isLocked()) }}"
-        >
-            @if ($topic->isLocked())
-                <i class="fa fa-unlock"></i>
-            @else
-                <i class="fa fa-lock"></i>
-            @endif
-        </a>
-    @endif
-</div>
+@endif

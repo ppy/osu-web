@@ -87,11 +87,10 @@
   }
 
   &__item {
-    .default-border-radius;
+    .reset-input();
+    .default-border-radius();
+    .center-content();
     color: #fff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     margin: 0 5px;
     border: 2px solid transparent;
 
@@ -109,6 +108,7 @@
     &--button {
       width: @_content-height;
       height: @_content-height;
+      display: inline-block;
 
       &:focus,
       &:hover,
@@ -131,6 +131,12 @@
     &--focus {
       border-color: @yellow-darker;
     }
+  }
+
+  &__item-content {
+    .center-content();
+    width: 100%;
+    height: 100%;
   }
 
   &__seek-bar {

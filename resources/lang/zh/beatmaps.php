@@ -38,10 +38,11 @@ return [
         'deny_kudosu' => '收回 kudosu',
         'edit' => '编辑',
         'edited' => '最后由 :editor 于 :update_time 编辑',
-        'message_placeholder' => '在这里输入您的内容',
+        'message_placeholder' => '在此处输入您的内容',
         'message_type_select' => '选择回复类型',
-        'reply_placeholder' => '在这里输入您的回复',
-        'require-login' => '请先登录再发表',
+        'reply_notice' => '按下回车以提交',
+        'reply_placeholder' => '在此处输入您的回复',
+        'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'title' => '讨论',
@@ -57,8 +58,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '这个信息将提交到整个谱面讨论中。如果您想单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。', //可能不准确
-            'in_timeline' => '如果您想 mod 多处，就在每一个时间戳下写一次并发布。', //可能不准确，意译成分大，等看看Kwan那边的吧
+            'in_general' => '这个信息将提交到整个谱面讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。',
+            'in_timeline' => '需要 Mod 多处，请在每一个时间戳后写下意见并发表。',
         ],
 
         'message_type' => [
@@ -68,8 +69,9 @@ return [
         ],
 
         'mode' => [
-            'general' => 'General', //不好翻译
-            'general_all' => 'General (all difficulties)', //不好翻译
+            'events' => '历史',
+            'general' => '常规',
+            'general_all' => '常规（全难度）',
             'timeline' => '时间线',
         ],
 
@@ -89,6 +91,7 @@ return [
             'pending' => 'Pending',
             'praises' => '赞',
             'resolved' => '已解决',
+            'total' => '所有',
         ],
     ],
 
@@ -111,7 +114,7 @@ return [
             'prompt' => '输入关键字...',
             'options' => '更多搜索选项',
             'not-found' => '没有结果',
-            'not-found-quote' => '呃,什么也没有...',
+            'not-found-quote' => '呃，什么也没有...',
             'filters' => [
                 'mode' => '模式',
                 'status' => 'Rank 状态',
@@ -123,7 +126,7 @@ return [
         ],
         'mode' => '模式',
         'status' => 'Rank 状态',
-        'mapped-by' => '制谱人: :mapper', //可能不准确
+        'mapped-by' => '作者: :mapper',
         'source' => '来自 :source',
         'load-more' => '加载更多...',
     ],
@@ -196,7 +199,7 @@ return [
     ],
     'extra' => [
         'video' => '有视频',
-        'storyboard' => '有 Storyboard', //osu!中没有翻译这个,所以保持原样
+        'storyboard' => '有 Storyboard',
     ],
     'rank' => [
         'any' => '任意',

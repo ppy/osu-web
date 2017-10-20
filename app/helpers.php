@@ -201,6 +201,13 @@ function read_image_properties_from_string($string)
     }
 }
 
+function request_country($request = null)
+{
+    return $request === null
+        ? Request::header('CF_IPCOUNTRY')
+        : $request->header('CF_IPCOUNTRY');
+}
+
 function require_login($text_key, $link_text_key)
 {
     $title = trans('users.anonymous.login_link');
@@ -213,15 +220,6 @@ function require_login($text_key, $link_text_key)
 function render_to_string($view, $variables = [])
 {
     return view()->make($view, $variables)->render();
-}
-
-function search_total_display($total)
-{
-    if ($total >= 100) {
-        return '99+';
-    }
-
-    return (string) $total;
 }
 
 function strip_utf8_bom($input)
@@ -394,9 +392,9 @@ function wiki_url($page = 'Welcome', $locale = null)
     return route('wiki.show', $params);
 }
 
-function bbcode($text, $uid, $withGallery = false)
+function bbcode($text, $uid, $options = [])
 {
-    return (new App\Libraries\BBCodeFromDB($text, $uid, $withGallery))->toHTML();
+    return (new App\Libraries\BBCodeFromDB($text, $uid, $options))->toHTML();
 }
 
 function bbcode_for_editor($text, $uid)
@@ -446,7 +444,7 @@ function nav_links()
     $links['home'] = [
         'news-index' => route('news.index'),
         'friends' => route('friends.index'),
-        'getChangelog' => route('changelog'),
+        'changelog-index' => route('changelog.index'),
         'getDownload' => route('download'),
         'search' => route('search'),
     ];
@@ -487,7 +485,7 @@ function footer_landing_links()
     return [
         'general' => [
             'home' => route('home'),
-            'changelog' => route('changelog'),
+            'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
             'download' => osu_url('home.download'),
             'wiki' => wiki_url('Welcome'),
@@ -769,8 +767,8 @@ function ci_file_search($fileName)
 
 function sanitize_filename($file)
 {
-    $file = mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $file);
-    $file = mb_ereg_replace("([\.]{2,})", '', $file);
+    $file = mb_ereg_replace('[^\w\s\d\-_~,;\[\]\(\).]', '', $file);
+    $file = mb_ereg_replace('[\.]{2,}', '.', $file);
 
     return $file;
 }

@@ -44,6 +44,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   render: =>
+    showHypeHelp = _.includes(['wip', 'pending', 'qualified'], @props.beatmapset.status) && @props.mode == 'generalAll'
+
     div
       className: 'osu-page osu-page--small'
       div
@@ -59,7 +61,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div className: "#{bn}__message",
             if @props.currentUser.id?
               textarea
-                className: "#{bn}__message-area"
+                className: "#{bn}__message-area js-hype--input"
                 value: @state.message
                 onChange: @setMessage
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
@@ -68,20 +70,26 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
         div className: "#{bn}__footer",
           div
-            className: "#{bn}__footer-content"
-            'data-visibility': if @props.mode != 'timeline' then 'hidden'
+            className: "#{bn}__footer-content js-hype--explanation js-flash-border"
+            style:
+              opacity: 0 if @props.mode != 'timeline' && !showHypeHelp
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
-              osu.trans('beatmaps.discussions.new.timestamp')
+              if @props.mode == 'timeline'
+                osu.trans 'beatmaps.discussions.new.timestamp'
+              else # mode == 'generalAll'
+                osu.trans 'beatmaps.hype.title'
             div
               key: 'timestamp'
               className: "#{bn}__timestamp-col"
-              if @state.timestamp?
-                BeatmapDiscussionHelper.formatTimestamp @state.timestamp
-              else
-                osu.trans('beatmaps.discussions.new.timestamp_missing')
-
+              if @props.mode == 'timeline'
+                if @state.timestamp?
+                  BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+                else
+                  osu.trans 'beatmaps.discussions.new.timestamp_missing'
+              else # mode == 'generalAll'
+                osu.trans 'beatmaps.hype.explanation'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             @submitButton 'praise'

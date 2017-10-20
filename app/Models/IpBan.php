@@ -18,20 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Models;
 
-use App\Models\Beatmapset;
-use Request;
-
-class BeatmapsetDiscussionsController extends Controller
+class IpBan extends Model
 {
-    protected $section = 'admin-beatmapset-discussions';
+    protected $table = 'osu_ip_bans';
+    protected $primaryKey = 'ip';
+    protected $dates = ['timestamp'];
 
-    public function store()
-    {
-        $beatmapset = Beatmapset::findOrFail(Request::input('beatmapset_id'));
-        $discussion = $beatmapset->beatmapsetDiscussion()->firstOrCreate([]);
-
-        return redirect(route('admin.beatmapsets.show', $beatmapset));
-    }
+    public $timestamps = false;
 }

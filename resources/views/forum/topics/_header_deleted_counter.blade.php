@@ -15,16 +15,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="counter-box counter-box--forum">
-    <div class="counter-box__content">
-        <div class="counter-box__title">
-            {{ trans('forum.topics.show.deleted-posts') }}
-        </div>
+@if (!$newTopic && $topic->deletedPostsCount() > 0)
+    <div class="counter-box counter-box--forum counter-box--forum-deleted">
+        <div class="counter-box__content">
+            <div class="counter-box__title">
+                {{ trans('forum.topics.show.deleted-posts') }}
+            </div>
 
-        <div class="counter-box__count js-forum__deleted-count">
-            {{ $newTopic ? '0' : $topic->deletedPostsCount() }}
+            <div class="counter-box__count js-forum__deleted-count">
+                {{ $newTopic ? '0' : $topic->deletedPostsCount() }}
+            </div>
+        </div>
+        <div class="counter-box__line">
         </div>
     </div>
-    <div class="counter-box__line u-forum--bg">
-    </div>
-</div>
+@endif

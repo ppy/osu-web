@@ -43,7 +43,7 @@ class BeatmapDiscussionsController extends Controller
         $error = $discussion->allowKudosu(Auth::user());
 
         if ($error === null) {
-            return $discussion->beatmapsetDiscussion->defaultJson();
+            return $discussion->beatmapset->defaultDiscussionJson();
         } else {
             return error_popup($error);
         }
@@ -57,7 +57,7 @@ class BeatmapDiscussionsController extends Controller
         $error = $discussion->denyKudosu(Auth::user());
 
         if ($error === null) {
-            return $discussion->beatmapsetDiscussion->defaultJson();
+            return $discussion->beatmapset->defaultDiscussionJson();
         } else {
             return error_popup($error);
         }
@@ -71,7 +71,7 @@ class BeatmapDiscussionsController extends Controller
         $error = $discussion->softDelete(Auth::user());
 
         if ($error === null) {
-            return $discussion->beatmapsetDiscussion->defaultJson();
+            return $discussion->beatmapset->defaultDiscussionJson();
         } else {
             return error_popup($error);
         }
@@ -84,14 +84,14 @@ class BeatmapDiscussionsController extends Controller
 
         $discussion->restore(Auth::user());
 
-        return $discussion->beatmapsetDiscussion->defaultJson();
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function show($id)
     {
         $discussion = BeatmapDiscussion::findOrFail($id);
 
-        if ($discussion->beatmap === null) {
+        if ($discussion->beatmapset === null) {
             abort(404);
         }
 
@@ -108,7 +108,7 @@ class BeatmapDiscussionsController extends Controller
         $params['user_id'] = Auth::user()->user_id;
 
         if ($discussion->vote($params)) {
-            return $discussion->beatmapsetDiscussion->defaultJson(Auth::user());
+            return $discussion->beatmapset->defaultDiscussionJson();
         } else {
             return error_popup(trans('beatmaps.discussion-votes.update.error'));
         }

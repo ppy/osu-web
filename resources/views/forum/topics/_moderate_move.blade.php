@@ -22,7 +22,9 @@
     type="button"
     title="{{ trans('forum.topics.moderate_move.title') }}"
 >
-    <i class="fa fa-arrows"></i>
+    <span class="btn-circle__content">
+        <i class="fa fa-arrows"></i>
+    </span>
 </button>
 
 @section('script')

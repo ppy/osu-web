@@ -17,6 +17,7 @@
  */
 
 const { mix } = require('laravel-mix');
+const fs = require('fs');
 const path = require('path');
 const SentryPlugin = require('webpack-sentry-plugin');
 
@@ -30,6 +31,43 @@ if (mix.inProduction()) {
 
 // relative from root?
 const node_root = 'node_modules';
+
+const vendor = [
+  path.join(node_root, `url-polyfill/url-polyfill${min}.js`),
+  path.join(node_root, 'turbolinks/dist/turbolinks.js'),
+  path.join(node_root, `jquery/dist/jquery${min}.js`),
+  path.join(node_root, 'jquery-ujs/src/rails.js'),
+  path.join(node_root, `qtip2/dist/jquery.qtip${min}.js`),
+  path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
+  path.join(node_root, 'jquery-ui/ui/data.js'),
+  path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
+  path.join(node_root, 'jquery-ui/ui/widget.js'),
+  path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
+  path.join(node_root, 'jquery-ui/ui/widgets/slider.js'),
+  path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
+  path.join(node_root, 'jquery-ui/ui/keycode.js'),
+  path.join(node_root, 'timeago/jquery.timeago.js'),
+  path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
+  path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
+  path.join(node_root, 'lodash/lodash.js'),
+  path.join(node_root, 'layzr.js/dist/layzr.js'),
+  path.join(node_root, `react/dist/react${min}.js`),
+  path.join(node_root, 'react-dom-factories/index.js'),
+  path.join(node_root, `react-dom/dist/react-dom${min}.js`),
+  path.join(node_root, 'photoswipe/dist/photoswipe.js'),
+  path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
+  path.join(node_root, `d3/build/d3${min}.js`),
+  path.join(node_root, 'moment/moment.js'),
+  path.join(node_root, 'js-cookie/src/js.cookie.js'),
+  path.join(node_root, `imagesloaded/imagesloaded.pkgd${min}.js`),
+];
+
+vendor.forEach(function (script) {
+  if (!fs.existsSync(script)) {
+    throw new Error(`${script} doesn't exist`);
+  }
+});
+
 
 let webpackConfig = {
   resolve: {
@@ -136,37 +174,7 @@ mix
 ], 'public/js/app-deps.js') // FIXME: less dumb name; this needs to be separated -
                             // compiling coffee and then concating together doesn't
                             // work so well when versioning is used with webpack.
-.scripts([
-  path.join(node_root, 'turbolinks/dist/turbolinks.js'),
-  path.join(node_root, 'jquery/dist/jquery' + min + '.js'),
-  path.join(node_root, 'jquery-ujs/src/rails.js'),
-  path.join(node_root, 'qtip2/dist/jquery.qtip' + min + '.js'),
-  path.join(node_root, 'jquery.scrollto/jquery.scrollTo.js'),
-  path.join(node_root, 'jquery-ui/ui/data.js'),
-  path.join(node_root, 'jquery-ui/ui/scroll-parent.js'),
-  path.join(node_root, 'jquery-ui/ui/widget.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/mouse.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/slider.js'),
-  path.join(node_root, 'jquery-ui/ui/widgets/sortable.js'),
-  path.join(node_root, 'jquery-ui/ui/keycode.js'),
-  path.join(node_root, 'timeago/jquery.timeago.js'),
-  path.join(node_root, 'blueimp-file-upload/js/jquery.fileupload.js'),
-  path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
-  path.join(node_root, 'lodash/lodash.js'),
-  path.join(node_root, 'layzr.js/dist/layzr.js'),
-  path.join(node_root, 'react/dist/react' + min + '.js'),
-  path.join(node_root, 'react-dom-factories/index.js'),
-  path.join(node_root, 'react-dom/dist/react-dom' + min + '.js'),
-  path.join(node_root, 'photoswipe/dist/photoswipe.js'),
-  path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
-  path.join(node_root, 'd3/build/d3' + min + '.js'),
-  path.join(node_root, 'moment/moment.js'),
-  path.join(node_root, 'js-cookie/src/js.cookie.js'),
-  path.join(node_root, 'imagesloaded/imagesloaded.pkgd' + min + '.js'),
-
-  path.join(node_root, 'react-height/build/react-height' + min + '.js'),
-  path.join(node_root, 'react-motion/build/react-motion.js'),
-], 'public/js/vendor.js');
+.scripts(vendor, 'public/js/vendor.js');
 
 if (mix.inProduction()) {
   mix.version();

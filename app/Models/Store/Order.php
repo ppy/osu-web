@@ -151,10 +151,10 @@ class Order extends Model
      * and a message.
      *
      * @param array $itemForm form parameters.
-     * @param bool $addNew whether the quantity should be added or replaced.
+     * @param bool $addToExisting whether the quantity should be added or replaced.
      * @return array [success, message]
      **/
-    public function updateItem(array $itemForm, $addNew = false)
+    public function updateItem(array $itemForm, $addToExisting = false)
     {
         $params = [
             'id' => array_get($itemForm, 'id'),
@@ -177,7 +177,7 @@ class Order extends Model
             if ($params['product']->allow_multiple) {
                 $item = $this->newOrderItem($params);
             } else {
-                $item = $this->updateOrderItem($params, $addNew);
+                $item = $this->updateOrderItem($params, $addToExisting);
             }
 
             $result = $this->validateBeforeSave($params['product'], $item);
@@ -280,30 +280,40 @@ class Order extends Model
 
     private function newOrderItem(array $params)
     {
+        if ($params['cost'] < 0) {
+            $params['cost'] = 0;
+        }
+
         $product = $params['product'];
 
         // FIXME: custom class stuff should probably not go in Order...
-        if ($product->custom_class === 'supporter-tag') {
-            $targetId = $params['extraData']['target_id'];
-            $user = User::default()->where('user_id', $targetId)->firstOrFail();
-            $params['extraData']['username'] = $user->username;
+        switch ($product->custom_class) {
+            case 'supporter-tag':
+                $targetId = $params['extraData']['target_id'];
+                $user = User::default()->where('user_id', $targetId)->firstOrFail();
+                $params['extraData']['username'] = $user->username;
 
-            $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+                $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+                break;
+            case 'username-change':
+                // ignore received cost
+                $params['cost'] = $this->user->usernameChangeCost();
+                break;
+            default:
+                $params['cost'] = $product->cost ?? 0;
         }
 
         $item = new OrderItem();
         $item->quantity = $params['quantity'];
         $item->extra_info = $params['extraInfo'];
         $item->extra_data = $params['extraData'];
+        $item->cost = $params['cost'];
         $item->product()->associate($product);
-        if ($product->cost === null) {
-            $item->cost = $params['cost'];
-        }
 
         return $item;
     }
 
-    private function updateOrderItem(array $params, $addNew = false)
+    private function updateOrderItem(array $params, $addToExisting = false)
     {
         $product = $params['product'];
         $item = $this->items()->where('product_id', $product->product_id)->get()->first();
@@ -311,7 +321,7 @@ class Order extends Model
             return $this->newOrderItem($params);
         }
 
-        if ($addNew) {
+        if ($addToExisting) {
             $item->quantity += $params['quantity'];
         } else {
             $item->quantity = $params['quantity'];

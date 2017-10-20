@@ -65,7 +65,7 @@ class @UserCard
         text: (event, api) =>
           userId = parseInt(el.getAttribute('data-user-id'))
           $.ajax
-            url: laroute.route 'users.card', id: userId
+            url: laroute.route 'users.card', user: userId
           .done (content) =>
             if content
               api.set('content.text', content)

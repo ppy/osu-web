@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span} = ReactDOMFactories
+{a, button, span} = ReactDOMFactories
 el = React.createElement
 
 @BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
@@ -27,12 +27,12 @@ el = React.createElement
   blockElement = if props.href? then a else button
 
   blockElement props,
-    div className: "btn-osu-big__content #{'btn-osu-big__content--center' if !text? || !icon?}",
+    span className: "btn-osu-big__content #{if !text? || !icon? then 'btn-osu-big__content--center' else ''}",
       if text?
-        div className: 'btn-osu-big__left',
+        span className: 'btn-osu-big__left',
           span className: 'btn-osu-big__text-top', text.top ? text
           if text.bottom?
             span className: 'btn-osu-big__text-bottom', text.bottom
       if icon?
-        div className: 'btn-osu-big__icon',
+        span className: 'btn-osu-big__icon',
           el Icon, name: icon

@@ -29,7 +29,8 @@ return [
             'account-edit' => 'settings',
             'friends' => 'friends',
             'friends-index' => 'friends',
-            'getChangelog' => 'changelog',
+            'changelog-index' => 'changelog',
+            'changelog-show' => 'build',
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
@@ -153,7 +154,7 @@ return [
         'general' => [
             '_' => 'General',
             'home' => 'Home',
-            'changelog' => 'Changelog',
+            'changelog-index' => 'Changelog',
             'beatmaps' => 'Beatmap Listings',
             'download' => 'Download osu!',
             'wiki' => 'Wiki',

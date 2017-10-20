@@ -35,6 +35,7 @@ use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
@@ -137,9 +138,16 @@ class TopicsController extends Controller
         priv_check('ForumTopicModerate', $topic)->ensureCan();
 
         $type = 'moderate_pin';
-        $state = get_bool(Request::input('pin'));
-        $this->logModerate($state ? 'LOG_PIN' : 'LOG_UNPIN', [$topic->topic_title], $topic);
-        $topic->pin($state);
+        $state = get_int(Request::input('pin'));
+        DB::transaction(function () use ($topic, $type, $state) {
+            $topic->pin($state);
+
+            $this->logModerate(
+                'LOG_TOPIC_TYPE',
+                ['title' => $topic->topic_title, 'type' => $topic->topic_type],
+                $topic
+            );
+        });
 
         return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
     }
@@ -330,6 +338,31 @@ class TopicsController extends Controller
             }
 
             return ujs_redirect(route('forum.topics.show', $topic));
+        } else {
+            abort(422);
+        }
+    }
+
+    public function update($id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+
+        if (!priv_check('ForumTopicEdit', $topic)->can()) {
+            abort(403);
+        }
+
+        $params = get_params(request(), 'forum_topic', ['topic_title']);
+
+        if ($topic->update($params)) {
+            if ((Auth::user()->user_id ?? null) !== $topic->topic_poster) {
+                $this->logModerate(
+                    'LOG_EDIT_TOPIC',
+                    [$topic->topic_title],
+                    $topic
+                );
+            }
+
+            return [];
         } else {
             abort(422);
         }

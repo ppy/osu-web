@@ -21,7 +21,6 @@
 namespace App\Models\Score;
 
 use App\Models\Beatmap;
-use App\Models\Beatmapset;
 use App\Models\Model as BaseModel;
 use App\Models\User;
 use App\Traits\Scoreable;
@@ -52,11 +51,6 @@ abstract class Model extends BaseModel
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
-    }
-
-    public function beatmapset()
-    {
-        return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
     }
 
     public static function getClass($modeInt)

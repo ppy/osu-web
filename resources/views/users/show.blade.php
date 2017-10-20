@@ -48,13 +48,11 @@
         var postEditorToolbar = {!! json_encode(["html" => render_to_string('forum._post_toolbar')]) !!};
     </script>
 
-    <script id="json-user" type="application/json">
-        {!! json_encode($userArray) !!}
-    </script>
-
-    <script id="json-achievements" type="application/json">
-        {!! json_encode($achievements) !!}
-    </script>
+    @foreach ($jsonChunks as $name => $data)
+        <script id="json-{{$name}}" type="application/json">
+            {!! json_encode($data) !!}
+        </script>
+    @endforeach
 
     @include('layout._extra_js', ['src' => 'js/react/profile-page.js'])
 @endsection

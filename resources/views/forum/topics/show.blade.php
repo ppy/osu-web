@@ -29,7 +29,7 @@
 ])
 
 @section("content")
-    <div class="js-forum__topic-first-post-id hidden" data-first-post-id={{ $firstPostId }}></div>
+    <div class="js-forum__topic-first-post-id hidden" data-first-post-id="{{ $firstPostId }}"></div>
     <div class="forum-topic-headernav js-forum-topic-headernav js-sync-height--reference" data-sync-height-target="forum-topic-headernav" data-visibility="hidden">
         <div class="forum-topic-headernav__stripe
             u-forum--bg-link
@@ -99,14 +99,14 @@
         </div>
     @endif
 
-    <div class="forum-posts-load-link js-header--alt">
+    <div class="forum-posts-load-link js-header--alt {{ $posts->first()->post_id === $firstPostId ? 'hidden' : '' }}">
         <a href="{{ route("forum.topics.show", ["topics" => $topic->topic_id, "end" => ($posts->first()->post_id - 1)]) }}" class="js-forum-posts-show-more js-forum__posts-show-more--previous" data-mode="previous">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
     @include("forum.topics._posts")
 
-    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 === $topic->postsCount() ? 'hidden' : '' }}">
+    <div class="forum-posts-load-link {{ $firstPostPosition + sizeof($posts) - 1 >= $topic->postsCount() ? 'hidden' : '' }}">
         <a href="{{ post_url($topic->topic_id, $posts->last()->post_id + 1, false) }}" class="js-forum-posts-show-more js-forum__posts-show-more--next" data-mode="next">Load more</a>
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
@@ -175,9 +175,11 @@
                             </div>
 
                             <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
-                                <a href="#" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <i class="fa fa-close"></i>
-                                </a>
+                                <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
+                                    <span class="btn-circle__content">
+                                        <i class="fa fa-close"></i>
+                                    </span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -226,14 +228,13 @@
 
         <div class="forum-topic-nav__content">
             <div class="forum-topic-nav__group">
-                @include('forum.topics._lock', ['topic' => $topic])
-
+                @include('forum.topics._lock', compact('topic'))
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_pin', ['topic' => $topic])
+                    @include('forum.topics._moderate_pin', compact('topic'))
                 @endif
 
                 @if (priv_check('ForumTopicModerate', $topic)->can())
-                    @include('forum.topics._moderate_move', ['topic' => $topic])
+                    @include('forum.topics._moderate_move', compact('topic'))
                 @endif
 
                 @if ($topic->isIssue() && priv_check('ForumTopicModerate', $topic)->can())
@@ -256,11 +257,13 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.first') }}"
                 >
-                    <i class="fa fa-angle-double-left"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-double-left"></i>
+                    </span>
                 </a>
 
-                <a
-                    href="#"
+                <button
+                    type="button"
                     class="js-forum-posts-seek--jump
                         forum-topic-nav__item
                         forum-topic-nav__item--main
@@ -269,8 +272,10 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.previous') }}"
                 >
-                    <i class="fa fa-angle-left"></i>
-                </a>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-left"></i>
+                    </span>
+                </button>
 
                 <div class="
                     post-counter
@@ -313,8 +318,8 @@
                     ></div>
                 </div>
 
-                <a
-                    href="#"
+                <button
+                    type="button"
                     class="js-forum-posts-seek--jump
                         forum-topic-nav__item
                         forum-topic-nav__item--main
@@ -323,8 +328,10 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.next') }}"
                 >
-                    <i class="fa fa-angle-right"></i>
-                </a>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-right"></i>
+                    </span>
+                </button>
 
 
                 <a
@@ -337,20 +344,35 @@
                     data-tooltip-float="fixed"
                     title="{{ trans('forum.topic.jump.last') }}"
                 >
-                    <i class="fa fa-angle-double-right"></i>
+                    <span class="forum-topic-nav__item-content">
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
                 </a>
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--right">
+                <a
+                    href="{{ route('search', ['mode' => 'forum_post', 'topic_id' => $topic->getKey()]) }}"
+                    class="btn-circle btn-circle--topic-nav"
+                    data-tooltip-float="fixed"
+                    title="{{ trans('forum.topics.actions.search') }}"
+                >
+                    <span class="btn-circle__content">
+                        <i class="fa fa-search"></i>
+                    </span>
+                </a>
+
                 @if (priv_check('ForumTopicReply', $topic)->can())
-                    <a
-                        href="#"
+                    <button
+                        type="button"
                         class="btn-circle btn-circle--topic-nav js-forum-topic-reply--new"
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.actions.reply') }}"
                     >
-                        <i class="fa fa-plus"></i>
-                    </a>
+                        <span class="btn-circle__content">
+                            <i class="fa fa-plus"></i>
+                        </span>
+                    </button>
                 @endif
             </div>
         </div>

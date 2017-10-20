@@ -20,9 +20,7 @@
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
     Route::post('/beatmapsets/{beatmapset}/covers/regenerate', 'BeatmapsetsController@regenerateCovers')->name('beatmapsets.covers.regenerate');
-    Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show']]);
-
-    Route::resource('beatmapset-discussions', 'BeatmapsetDiscussionsController', ['only' => ['store']]);
+    Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show', 'update']]);
 
     Route::post('contests/{id}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
@@ -141,7 +139,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('search', 'HomeController@search')->name('search');
     Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
-    Route::get('changelog', 'HomeController@getChangelog')->name('changelog');
+    Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
     Route::get('icons', 'HomeController@getIcons');
     Route::post('set-locale', 'HomeController@setLocale')->name('set-locale');
@@ -169,8 +167,12 @@ Route::delete('session', 'SessionsController@destroy')->name('logout');
 Route::post('users/check-username-availability', 'UsersController@checkUsernameAvailability')->name('users.check-username-availability');
 Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
-Route::get('users/{id}/card', 'UsersController@card')->name('users.card');
-Route::resource('users', 'UsersController', ['only' => ['show']]);
+Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
+Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
+Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
+Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
+Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
+// Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
@@ -235,13 +237,20 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
 
         //  GET /api/v2/me
-        Route::get('me', 'UsersController@me');
+        Route::get('me', '\App\Http\Controllers\UsersController@me');
         //  GET /api/v2/me/download-quota-check
         Route::get('me/download-quota-check', '\App\Http\Controllers\HomeController@downloadQuotaCheck');
         //  GET /api/v2/rankings/:mode/:type
         Route::get('rankings/{mode}/{type}', '\App\Http\Controllers\RankingController@index');
-        //  GET /api/v2/users/:user_id
-        Route::get('users/{user}', ['uses' => 'UsersController@show']);
+
+        //  GET /api/v2/users/:user_id/kudosu
+        Route::get('users/{user}/kudosu', '\App\Http\Controllers\UsersController@kudosu');
+        //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
+        Route::get('users/{user}/scores/{type}', '\App\Http\Controllers\UsersController@scores');
+        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved]
+        Route::get('users/{user}/beatmapsets/{type}', '\App\Http\Controllers\UsersController@beatmapsets');
+        //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
+        Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {

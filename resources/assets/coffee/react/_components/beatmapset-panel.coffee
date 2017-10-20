@@ -23,7 +23,7 @@ class @BeatmapsetPanel extends React.PureComponent
   constructor: (props) ->
     super props
 
-    @eventId = "beatmapsetPanel-#{props.beatmap.beatmapset_id}-#{osu.generateId()}"
+    @eventId = "beatmapsetPanel-#{props.beatmap.beatmapset_id}-#{osu.uuid()}"
 
     @state =
       preview: 'ended'

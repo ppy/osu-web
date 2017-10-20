@@ -37,6 +37,7 @@ $(document).on 'turbolinks:load', ->
 @accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
+@changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
 @editorZoom ?= new EditorZoom
@@ -48,6 +49,7 @@ $(document).on 'turbolinks:load', ->
 @forum ?= new Forum
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
+@forumTopicTitle ?= new ForumTopicTitle
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
@@ -69,8 +71,6 @@ $(document).on 'turbolinks:load', ->
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
 @tooltipDefault ?= new TooltipDefault
-@turbolinksDisable ?= new TurbolinksDisable
-@turbolinksDisqus ?= new TurbolinksDisqus
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @wiki ?= new Wiki
@@ -81,6 +81,8 @@ $(document).on 'turbolinks:load', ->
 @forumSearchModal ?= new ForumSearchModal(@forum)
 @forumTopicPostJump ?= new ForumTopicPostJump(@forum)
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
+@turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
+@turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
 @userLogin ?= new UserLogin(@nav)
 @userVerification ?= new UserVerification(@nav)
 

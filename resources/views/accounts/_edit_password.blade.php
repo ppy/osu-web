@@ -37,7 +37,7 @@
 
                 <input
                     class="account-edit-entry__input js-form-clear--target"
-                    name="user_password[current_password]"
+                    name="user[current_password]"
                     type="password"
                     required
                 >
@@ -54,7 +54,7 @@
 
                 <input
                     class="account-edit-entry__input js-form-clear--target js-form-confirmation"
-                    name="user_password[password]"
+                    name="user[password]"
                     type="password"
                     required
                 >
@@ -72,7 +72,7 @@
 
                 <input
                     class="account-edit-entry__input js-form-clear--target js-form-confirmation"
-                    name="user_password[password_confirmation]"
+                    name="user[password_confirmation]"
                     type="password"
                     required
                 >

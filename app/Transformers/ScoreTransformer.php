@@ -75,7 +75,7 @@ class ScoreTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapset($score)
     {
-        return $this->item($score->beatmapset, new BeatmapsetCompactTransformer);
+        return $this->item($score->beatmap->beatmapset, new BeatmapsetCompactTransformer);
     }
 
     public function includeWeight($score)

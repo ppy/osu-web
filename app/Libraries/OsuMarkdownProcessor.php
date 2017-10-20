@@ -226,7 +226,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         }
 
         $title = $this->getText($this->node);
-        $slug = presence(str_slug($title)) ?? 'page';
+        $slug = presence(strtolower(str_replace(' ', '-', $title))) ?? 'page';
 
         if (array_key_exists($slug, $this->tocSlugs)) {
             $this->tocSlugs[$slug] += 1;

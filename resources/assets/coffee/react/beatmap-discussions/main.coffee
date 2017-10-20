@@ -105,6 +105,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         div
           className: 'osu-layout__section osu-layout__section--extra'
           el BeatmapDiscussions.NewDiscussion,
+            beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @state.currentBeatmap
             currentDiscussions: @currentDiscussions()
@@ -128,11 +129,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     Timeout.clear @checkNewTimeout
 
-    @checkNewAjax = $.ajax document.location.pathname,
-      data:
-        format: 'json'
-        last_updated: moment(@state.beatmapsetDiscussion.updated_at).unix()
+    params = format: 'json'
 
+    if @state.beatmapsetDiscussion.updated_at?
+      params.last_updated = moment(@state.beatmapsetDiscussion.updated_at).unix()
+
+    @checkNewAjax = $.get laroute.route('beatmapsets.discussion', beatmapset: @state.beatmapset.id), params
     .done (data, _textStatus, xhr) =>
       if xhr.status == 304
         @nextTimeout *= 2
@@ -168,6 +170,11 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
       for d in @state.beatmapsetDiscussion.beatmap_discussions
+        # skipped discussion
+        # - not privileged (deleted discussion)
+        # - deleted beatmap
+        continue if _.isEmpty(d)
+
         mode =
           if d.beatmap_id?
             if d.beatmap_id == @state.currentBeatmap.id

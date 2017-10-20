@@ -59,6 +59,7 @@ return [
             'label' => [
                 'forum' => 'search in forums',
                 'forum_children' => 'include subforums',
+                'topic_id' => 'topic #',
                 'username' => 'author',
             ],
         ],
@@ -74,6 +75,7 @@ return [
         'user' => [
             'more' => ':count more player search results',
             'more_simple' => 'See more player search results',
+            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
             'title' => 'Players',
         ],
 

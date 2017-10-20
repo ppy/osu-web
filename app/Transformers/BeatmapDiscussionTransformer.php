@@ -33,7 +33,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function transform(BeatmapDiscussion $discussion)
     {
-        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+        if (!$this->isVisible($discussion)) {
             return [];
         }
 
@@ -58,7 +58,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmapDiscussionPosts(BeatmapDiscussion $discussion)
     {
-        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+        if (!$this->isVisible($discussion)) {
             return;
         }
 
@@ -70,7 +70,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function includeCurrentUserAttributes(BeatmapDiscussion $discussion)
     {
-        if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+        if (!$this->isVisible($discussion)) {
             return;
         }
 
@@ -94,5 +94,12 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         return $this->item($discussion, function ($discussion) use ($score) {
             return ['vote_score' => $score];
         });
+    }
+
+    public function isVisible($discussion)
+    {
+        return
+            ($discussion->beatmap_id === null || $discussion->beatmap !== null) &&
+            priv_check('BeatmapDiscussionShow', $discussion)->can();
     }
 }

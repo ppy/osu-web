@@ -52,7 +52,7 @@ class Post extends Model
 
     public function topic()
     {
-        return $this->belongsTo("App\Models\Forum\Topic", 'topic_id', 'topic_id');
+        return $this->belongsTo(Topic::class, 'topic_id', 'topic_id');
     }
 
     public function user()
@@ -268,7 +268,12 @@ class Post extends Model
 
     public function getBodyHTMLAttribute()
     {
-        return bbcode($this->post_text, $this->bbcode_uid, true);
+        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true]);
+    }
+
+    public function getBodyHTMLWithoutImageDimensionsAttribute()
+    {
+        return bbcode($this->post_text, $this->bbcode_uid, ['withGallery' => true, 'withoutImageDimensions' => true]);
     }
 
     public function getBodyRawAttribute()

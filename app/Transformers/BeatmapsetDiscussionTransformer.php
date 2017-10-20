@@ -20,7 +20,7 @@
 
 namespace App\Transformers;
 
-use App\Models\BeatmapsetDiscussion;
+use App\Models\Beatmapset;
 use App\Models\User;
 use League\Fractal;
 
@@ -32,36 +32,39 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
         'users',
     ];
 
-    public function transform(BeatmapsetDiscussion $discussion)
+    public function transform(Beatmapset $beatmapset)
     {
         return [
-            'id' => $discussion->id,
-            'created_at' => json_time($discussion->created_at),
-            'updated_at' => json_time($discussion->updated_at),
+            'id' => $beatmapset->id,
+            'updated_at' => json_time($beatmapset->lastDiscussionTime()),
         ];
     }
 
-    public function includeBeatmapDiscussions(BeatmapsetDiscussion $discussion)
+    public function includeBeatmapDiscussions(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $discussion->beatmapDiscussions->all(),
+            $beatmapset->beatmapDiscussions()->with([
+                'beatmap',
+                'beatmapDiscussionPosts',
+                'beatmapDiscussionVotes',
+            ])->get(),
             new BeatmapDiscussionTransformer()
         );
     }
 
-    public function includeBeatmapsetEvents(BeatmapsetDiscussion $discussion)
+    public function includeBeatmapsetEvents(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $discussion->beatmapset->events->all(),
+            $beatmapset->events->all(),
             new BeatmapsetEventTransformer()
         );
     }
 
-    public function includeUsers(BeatmapsetDiscussion $discussion)
+    public function includeUsers(Beatmapset $beatmapset)
     {
-        $userIds = [$discussion->beatmapset->user_id];
+        $userIds = [$beatmapset->user_id];
 
-        foreach ($discussion->beatmapDiscussions as $beatmapDiscussion) {
+        foreach ($beatmapset->beatmapDiscussions as $beatmapDiscussion) {
             if (!priv_check('BeatmapDiscussionShow', $beatmapDiscussion)->can()) {
                 continue;
             }
@@ -80,7 +83,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
             }
         }
 
-        foreach ($discussion->beatmapset->events as $event) {
+        foreach ($beatmapset->events as $event) {
             if (priv_check('BeatmapsetEventViewUserId', $event)->can()) {
                 $userIds[] = $event->user_id;
             }

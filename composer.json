@@ -26,7 +26,7 @@
     "guzzlehttp/guzzle": "^6.2",
     "itsgoingd/clockwork": "~1.9",
     "laravel/framework": "5.4.*",
-    "laravel/passport": "^2.0",
+    "laravel/passport": "^4.0",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "5.4.*",
     "league/flysystem-aws-s3-v3": "^1.0",

@@ -1,0 +1,116 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.artist-link-button {
+  @_top: artist-link-button;
+
+  .button-theme(@colour) {
+    .@{_top}__lightbar {
+      background: @colour;
+    }
+    .@{_top}__chevron {
+      color: @colour;
+    }
+
+    &:hover {
+      .@{_top}__lightbar {
+        background: lighten(@colour, 10%);
+        box-shadow: 0 0 5px fade(lighten(@colour, 15%), 100%);
+      }
+      .@{_top}__chevron {
+        color: lighten(@colour, 10%);
+        text-shadow: 0 0 10px fade(lighten(@colour, 15%), 100%);
+      }
+    }
+  }
+
+  align-items: center;
+  background: @gray-blue-darker;
+  border-radius: 4px;
+  color: white;
+  display: flex;
+  font-size: 16px;
+  height: 40px;
+  margin-bottom: 5px;
+  padding: 6px 10px;
+  user-select: none;
+
+  .default-text-shadow();
+  .default-box-shadow();
+  .button-theme(#fff);
+
+  transition: 0.1s ease-out;
+
+  &:hover, &:focus {
+    color: white;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background: lighten(@gray-blue-darker, 2%);
+    .@{_top}__chevron {
+      right: -5px;
+    }
+  }
+
+  &__lightbar {
+    height: 100%;
+    margin-right: 15px;
+    width: 7px;
+    border-radius: 7px;
+    .default-box-shadow();
+    transition: 0.1s ease-out;
+  }
+
+  &__text {
+    font-weight: 200;
+    flex-basis: 100%;
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  &__chevron {
+    right: 0;
+    font-size: 14px;
+    transition: 0.1s ease-out;
+  }
+
+  &--twitter {
+    .button-theme(@twitter-colour);
+  }
+
+  &--facebook {
+    .button-theme(@facebook-colour);
+  }
+
+  &--soundcloud {
+    .button-theme(@soundcloud-colour);
+  }
+
+  &--bandcamp {
+    .button-theme(@bandcamp-colour);
+  }
+
+  &--patreon {
+    .button-theme(@patreon-colour);
+  }
+
+  &--youtube {
+    .button-theme(@youtube-colour);
+  }
+}

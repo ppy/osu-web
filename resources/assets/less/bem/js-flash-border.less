@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,30 +16,15 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\API;
+.js-flash-border {
+    transition: border 200ms;
+    border: 1px solid transparent;
 
-use App\Models\User;
-use App\Transformers\UserTransformer;
-use Auth;
-
-class UsersController extends Controller
-{
-    public function show($user_id)
-    {
-        return $this->showUser(User::findOrFail($user_id));
+    &--on {
+      animation: js-flash-border 400ms 2;
     }
+}
 
-    public function me()
-    {
-        return $this->showUser(Auth::user());
-    }
-
-    private function showUser($user)
-    {
-        return json_item(
-            $user,
-            new UserTransformer(),
-            'defaultStatistics'
-        );
-    }
+@keyframes js-flash-border {
+  50% { border-color: @yellow; }
 }

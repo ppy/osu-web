@@ -28,54 +28,68 @@
         >
     </label>
 
-    <label class="search-advanced-forum-post__input-group">
-        <div class="search-advanced-forum-post__label">
-            {{ trans('home.search.forum_post.label.forum') }}
-        </div>
+    @if (present($search->urlParams()['topic_id'] ?? null))
+        <label class="search-advanced-forum-post__input-group">
+            <div class="search-advanced-forum-post__label">
+                {{ trans('home.search.forum_post.label.topic_id') }}
+            </div>
 
-        <select
-            name="forum_id"
-            class="search-advanced-forum-post__input"
-        >
-            <option value="">
-                {{ trans('home.search.forum_post.all') }}
-            </option>
-
-            @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
-                @if (!priv_check('ForumView', $forum)->can())
-                    @continue
-                @endif
-
-                <option
-                    value="{{ $forum->getKey() }}"
-                    {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
-                >
-                    {{ str_repeat('&ndash;', $forum->currentDepth()) }}
-                    {{ $forum->forum_name }}
-                </option>
-            @endforeach
-        </select>
-
-        <div class="search-advanced-forum-post__dropdown-arrow">
-            <span class="fa fa-chevron-down"></span>
-        </div>
-    </label>
-
-    <span class="search-advanced-forum-post__input-group">
-        <label class="osu-checkbox">
             <input
-                type="checkbox"
-                name="forum_children"
-                {{ ($search->urlParams()['forum_children'] ?? false) ? 'checked' : '' }}
-                class="osu-checkbox__input"
+                name="topic_id"
+                value="{{ $search->urlParams()['topic_id'] ?? '' }}"
+                class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
             >
-            <span class="osu-checkbox__tick">
-                <span class="fa fa-check"></span>
-            </span>
-
-            {{ trans('home.search.forum_post.label.forum_children') }}
         </label>
-    </span>
+    @else
+        <label class="search-advanced-forum-post__input-group">
+            <div class="search-advanced-forum-post__label">
+                {{ trans('home.search.forum_post.label.forum') }}
+            </div>
+
+            <div class="search-advanced-forum-post__input-container">
+                <select
+                    name="forum_id"
+                    class="search-advanced-forum-post__input"
+                >
+                    <option value="">
+                        {{ trans('home.search.forum_post.all') }}
+                    </option>
+
+                    @foreach (App\Models\Forum\Forum::displayList()->get() as $forum)
+                        @if (priv_check('ForumView', $forum)->can())
+                            <option
+                                value="{{ $forum->getKey() }}"
+                                {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
+                            >
+                                {{ str_repeat('&ndash;', $forum->currentDepth()) }}
+                                {{ $forum->forum_name }}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
+
+                <div class="search-advanced-forum-post__dropdown-arrow">
+                    <span class="fa fa-chevron-down"></span>
+                </div>
+            </div>
+        </label>
+
+        <span class="search-advanced-forum-post__input-group">
+            <label class="osu-checkbox">
+                <input
+                    type="checkbox"
+                    name="forum_children"
+                    {{ ($search->urlParams()['forum_children'] ?? false) ? 'checked' : '' }}
+                    class="osu-checkbox__input"
+                >
+                <span class="osu-checkbox__tick">
+                    <span class="fa fa-check"></span>
+                </span>
+
+                {{ trans('home.search.forum_post.label.forum_children') }}
+            </label>
+        </span>
+    @endif
 
     <div class="search-advanced-forum-post__input-group search-advanced-forum-post__input-group--buttons">
         <button class="btn-osu-big btn-osu-big--search-advanced">

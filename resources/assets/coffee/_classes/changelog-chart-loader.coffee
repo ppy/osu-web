@@ -16,25 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-class @ProfilePageHash
-  @noMode: (page) =>
-    ['kudosu', 'me', 'medals'].indexOf(page) != -1
+class @ChangelogChartLoader
+  container: document.getElementsByClassName('js-changelog-chart')
 
-  @parse: (hash) =>
-    hash = hash.slice 1
-    if hash.length == 0
-      {}
-    else if @noMode(hash)
-      page: hash
-    else
-      split = hash.split '/'
-      mode: split[0]
-      page: split[1] || 'main'
+  constructor: ->
+    $(window).on 'throttled-resize', @resize
+    $(document).on 'turbolinks:load', @initialize
 
-  @generate: (options) =>
-    if @noMode(options.page)
-      "##{options.page}"
-    else
-      hash = "##{options.mode}"
-      hash += "/#{options.page}" if options.page? && options.page != 'main'
-      hash
+  initialize: =>
+    return if !@container[0]?
+
+    @container[0]._chart = new ChangelogChart @container[0]
+    @container[0]._chart.loadData()
+
+  resize: =>
+    @container[0]?._chart.resize()

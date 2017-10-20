@@ -25,6 +25,9 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'client' => [
+        'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
+    ],
     'elasticsearch' => [
         'index' => env('ES_INDEX', 'osu'),
     ],
@@ -57,6 +60,10 @@ return [
     ],
     'search' => [
         'minimum_length' => 3,
+
+        'max' => [
+            'user' => 100,
+        ],
     ],
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
@@ -118,5 +125,7 @@ return [
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
         'featured_stream' => intval(env('FEATURED_UPDATE_STREAM', 5)),
         'recent_weeks' => intval(env('CHANGELOG_RECENT_WEEKS', 6)),
+        'chart_days' => intval(env('CHANGELOG_CHART_DAYS', 7)),
+        'build_history_interval' => intval(env('CHANGELOG_BUILD_HISTORY_INTERVAL', 30)),
     ],
 ];
