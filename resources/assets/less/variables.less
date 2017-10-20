@@ -18,8 +18,9 @@
 
 @import "app";
 
+@screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
-@mobile: ~"(max-width: @{screen-sm-min})";
+@mobile: ~"(max-width: @{screen-mobile-max})";
 
 @bar-size: 3px;
 @logo-size: 100px;
