@@ -65,8 +65,7 @@ class CentiliSignatureTest extends TestCase
             'transactionid' => '111222333444',
         ];
 
-        $string = CentiliSignature::stringifyInput($params);
-        $signature = CentiliSignature::calculateSignature($string);
+        $signature = CentiliSignature::calculateSignature($params);
 
         $this->assertSame($expected, $signature);
     }

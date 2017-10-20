@@ -40,8 +40,11 @@ class CentiliSignature implements PaymentSignature
         return hash_equals($this->calculatedSignature(), $received);
     }
 
-    public static function calculateSignature(string $content)
+    public static function calculateSignature(array $params)
     {
+        // Centili signature is a HMAC of the concatenation of all params values sorted alphabetically by key name.
+        $content = static::stringifyInput($params);
+
         return hash_hmac('sha1', $content, config('payments.centili.secret_key'), false);
     }
 
@@ -60,9 +63,6 @@ class CentiliSignature implements PaymentSignature
 
     private function calculatedSignature()
     {
-        // Centili signature is a HMAC of the concatenation of all params values sorted alphabetically by key name.
-        $string = static::stringifyInput($this->request->input());
-
-        return static::calculateSignature($string);
+        return static::calculateSignature($this->request->input());
     }
 }

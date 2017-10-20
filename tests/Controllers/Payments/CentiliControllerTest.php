@@ -84,7 +84,7 @@ class CentiliControllerTest extends TestCase
         $data = array_merge($base, $overrides);
 
         // Generate a fake correct signature :trollface:
-        $data['sign'] = CentiliSignature::calculateSignature(CentiliSignature::stringifyInput($data));
+        $data['sign'] = CentiliSignature::calculateSignature($data);
 
         return $data;
     }
