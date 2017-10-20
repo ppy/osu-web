@@ -222,7 +222,7 @@ Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payme
 
     Route::group(['as' => 'xsolla.', 'prefix' => 'xsolla'], function () {
         Route::get('completed', 'XsollaController@completed')->name('completed');
-        Route::get('token', 'XsollaController@token')->name('token');
+        Route::post('token', 'XsollaController@token')->name('token');
         Route::post('callback', 'XsollaController@callback')->name('callback');
     });
 
