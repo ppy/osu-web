@@ -99,12 +99,13 @@
 
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
   focus: (el) =>
-    return $(el).focus() if !osu.isIos
+    el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
+    return el.focus() if !osu.isIos
 
-    currentFontSize = $(el).css('font-size');
-    $(el).css('font-size', '16px');
-    $(el).focus();
-    $(el).css('font-size', currentFontSize);
+    prevSize = el.style.fontSize
+    el.style.fontSize = '16px'
+    el.focus()
+    el.style.fontSize = prevSize
 
 
   src2x: (mainUrl) ->

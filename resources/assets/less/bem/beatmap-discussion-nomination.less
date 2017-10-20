@@ -39,6 +39,12 @@
     display: flex;
     justify-content: space-between;
     font-size: @font-size--small-2;
+
+    @media @mobile {
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+    }
   }
 
   &__lights {
@@ -82,6 +88,7 @@
 
     @media @mobile {
       flex-direction: column;
+      margin-bottom: 0px;
     }
   }
 

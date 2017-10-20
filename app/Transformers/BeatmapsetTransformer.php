@@ -87,6 +87,10 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeNominations(Beatmapset $beatmapset)
     {
+        if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
+            return;
+        }
+
         $result = [
             'required_hype' => $beatmapset->requiredHype(),
             'required' => $beatmapset->requiredNominationCount(),
@@ -124,11 +128,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $result['ranking_eta'] = json_time($eta);
         }
 
-        if (isset($result)) {
-            return $this->item($beatmapset, function ($beatmapset) use ($result) {
-                return $result;
-            });
-        }
+        return $this->item($beatmapset, function ($beatmapset) use ($result) {
+            return $result;
+        });
     }
 
     public function includeDescription(Beatmapset $beatmapset)

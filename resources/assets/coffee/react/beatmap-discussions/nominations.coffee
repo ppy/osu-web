@@ -39,15 +39,14 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     hypeMessage = $('.js-hype--explanation')
     flashClass = 'js-flash-border--on'
 
-    @focusPraiseInput()
+    @focusPraiseInput ->
+      # flash border of hype description to emphasize input is required
+      $(hypeMessage).addClass(flashClass)
+      @hypeFocusTimeout = Timeout.set 1000, ->
+        $(hypeMessage).removeClass(flashClass)
 
-    # flash border of hype description to emphasize input is required
-    $(hypeMessage).addClass(flashClass)
-    @hypeFocusTimeout = Timeout.set 1000, ->
-      $(hypeMessage).removeClass(flashClass)
 
-
-  focusPraiseInput: ->
+  focusPraiseInput: (callback) ->
     inputBox = $('.js-hype--input')
 
     # switch to generalAll tab, set current filter to praises
@@ -60,25 +59,28 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     $.scrollTo inputBox, 200,
       interrupt: true
       offset: -100
+      onAfter: -> callback() if typeof(callback) == 'function'
 
 
   render: =>
-    requiredHype = @props.beatmapset.nominations.required_hype
-    hypeByUser = _.countBy @props.currentDiscussions.byFilter.praises.generalAll, 'user_id'
-    filteredHype = _.reject hypeByUser, (_v, k) =>
-      # no hyping your own maps
-      parseInt(k) == @props.beatmapset.user_id
+    showHype = _.includes ['wip', 'pending', 'qualified'], @props.beatmapset.status
 
-    hypeRaw = _.keys(filteredHype).length
-    hype = _.min([requiredHype, hypeRaw])
-    userAlreadyHyped = hypeByUser[currentUser.id]?
+    if showHype
+      requiredHype = @props.beatmapset.nominations.required_hype
+      hypeByUser = _.countBy @props.currentDiscussions.byFilter.praises.generalAll, 'user_id'
+      filteredHype = _.reject hypeByUser, (_v, k) =>
+        # no hyping your own maps
+        parseInt(k) == @props.beatmapset.user_id
+
+      hypeRaw = _.keys(filteredHype).length
+      hype = _.min([requiredHype, hypeRaw])
+      userAlreadyHyped = hypeByUser[currentUser.id]?
 
     userCanNominate = @props.currentUser.isAdmin || @props.currentUser.isBNG || @props.currentUser.isQAT
     userCanDisqualify = @props.currentUser.isAdmin || @props.currentUser.isQAT
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = (@props.beatmapset.status == 'qualified')
 
-    showHype = _.includes ['wip', 'pending', 'qualified'], @props.beatmapset.status
     dateFormat = 'LL'
 
     if mapIsQualified
@@ -125,14 +127,18 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       else
         [
           if @props.beatmapset.status == 'wip'
-            div className: "#{bn}__row",
+            div
+              className: "#{bn}__row"
+              key: 'wip',
               div className: "#{bn}__row-left",
                 div className: "#{bn}__header",
                   span
                     className: "#{bn}__status-message"
                     osu.trans 'beatmaps.discussions.status-messages.wip'
 
-          div className: "#{bn}__row",
+          div
+            className: "#{bn}__row"
+            key: 'hype',
             div className: "#{bn}__row-left",
               div className: "#{bn}__header",
                 span
@@ -153,7 +159,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     onClick: @focusHypeInput
 
           if mapCanBeNominated || mapIsQualified
-            div className: "#{bn}__row",
+            div
+              className: "#{bn}__row"
+              key: 'nominations',
               div className: "#{bn}__row-left",
                 div className: "#{bn}__header",
                   span
@@ -181,7 +189,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                         disabled: @props.beatmapset.nominations.nominated
                         onClick: @nominate
 
-          div className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
+          div
+            className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
+            key: 'footer'
             div className: "#{bn}__note #{bn}__note--disqualification",
               # implies mapCanBeNominated
               if disqualification
