@@ -105,6 +105,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         div
           className: 'osu-layout__section osu-layout__section--extra'
           el BeatmapDiscussions.NewDiscussion,
+            beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @state.currentBeatmap
             currentDiscussions: @currentDiscussions()

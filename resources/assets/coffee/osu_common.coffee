@@ -97,6 +97,17 @@
   isMobile: -> ! window.matchMedia('(min-width: 840px)').matches
 
 
+  # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that
+  focus: (el) =>
+    el = $(el)[0] # so we can handle both jquery'd and normal dom nodes
+    return el.focus() if !osu.isIos
+
+    prevSize = el.style.fontSize
+    el.style.fontSize = '16px'
+    el.focus()
+    el.style.fontSize = prevSize
+
+
   src2x: (mainUrl) ->
     src: mainUrl
     srcSet: "#{mainUrl} 1x, #{mainUrl.replace(/(\.[^.]+)$/, '@2x$1')} 2x"
@@ -108,6 +119,9 @@
     el.setAttribute 'data-remote', true if options.isRemote
     el.className = options.classNames.join(' ') if options.classNames
     el.textContent = text
+    if options.props
+      _.each options.props, (val, prop) ->
+        el.setAttribute prop, val
     el.outerHTML
 
 
