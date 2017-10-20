@@ -63,6 +63,11 @@ class CentiliPaymentProcessor extends PaymentProcessor
         return $mapping[$this['status']] ?? "unknown__{$this['status']}";
     }
 
+    public function isTest()
+    {
+        return false; // No sandbox for Centili :(
+    }
+
     public function validateTransaction()
     {
         $this->ensureValidSignature();

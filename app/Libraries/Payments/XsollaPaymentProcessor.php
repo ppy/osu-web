@@ -68,6 +68,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return $mapping[$this['notification_type']] ?? "unknown__{$this['notification_type']}";
     }
 
+    public function isTest()
+    {
+        return presence($this['transaction.dry_run']);
+    }
+
     public function validateTransaction()
     {
         $this->ensureValidSignature();

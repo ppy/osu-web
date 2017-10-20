@@ -93,19 +93,28 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getPaymentDate();
 
     /**
+     * Gets the type of payment notification.
+     *
+     * @return string
+     */
+    abstract public function getNotificationType();
+
+    /**
+     * Gets if the payment notification is a test transaction.
+     * This should only be used for the final payment notification;
+     * it is not set by providers in the intermediate notifications.
+     *
+     * @return bool
+     */
+    abstract public function isTest();
+
+    /**
      * Validates the transaction.
      * Returns true if the transaction is valid; false, otherwise.
      *
      * @return bool
      */
     abstract public function validateTransaction();
-
-    /**
-     * Gets the type of payment notification.
-     *
-     * @return string
-     */
-    abstract public function getNotificationType();
 
     /**
      * Auto run apply() or cancel() depending on the notification type.
@@ -137,6 +146,8 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     public function apply()
     {
+        $this->sandboxAssertion();
+
         if (!$this->validateTransaction()) {
             $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
         }
@@ -169,6 +180,8 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     public function cancel()
     {
+        $this->sandboxAssertion();
+
         if (!$this->validateTransaction()) {
             $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
         }
@@ -284,5 +297,12 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function validationErrorsKeyBase()
     {
         return 'model_validation/';
+    }
+
+    private function sandboxAssertion()
+    {
+        if ($this->isTest() && !config('payments.sandbox')) {
+            throw new SandboxException('Trying to run a test transaction in a non-sanboxed environment.');
+        }
     }
 }

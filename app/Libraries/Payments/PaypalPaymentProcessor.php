@@ -51,6 +51,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
         return Carbon::parse($this['payment_date'])->setTimezone('UTC');
     }
 
+    public function isTest()
+    {
+        return presence($this['test_ipn']);
+    }
+
     public function getNotificationType()
     {
         static $payment_statuses = ['Completed'];
