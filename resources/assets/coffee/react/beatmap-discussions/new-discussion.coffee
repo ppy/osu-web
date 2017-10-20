@@ -71,7 +71,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         div className: "#{bn}__footer",
           div
             className: "#{bn}__footer-content js-hype--explanation js-flash-border"
-            'data-visibility': if @props.mode != 'timeline' && !showHypeHelp then 'hidden'
+            style:
+              opacity: 0 if @props.mode != 'timeline' && !showHypeHelp
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
