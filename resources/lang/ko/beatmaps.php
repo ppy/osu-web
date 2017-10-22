@@ -82,29 +82,29 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mapped by :mapper',
+            'title' => ':title, :mapper님이 ', // ':title mapped by :mapper'
         ],
 
         'stats' => [
-            'deleted' => 'Deleted',
-            'mine' => 'Mine',
-            'pending' => 'Pending',
-            'praises' => 'Praises',
-            'resolved' => 'Resolved',
-            'total' => 'All',
+            'deleted' => '삭제됨',
+            'mine' => 'Mine', // 내 비트맵(?)
+            'pending' => 'Pending', // 보류됨
+            'praises' => 'Praises', // 칭찬
+            'resolved' => 'Resolved', // 결정됨
+            'total' => '모두',
         ],
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'disqualified :time_ago (:reason).',
-        'disqualifed_no_reason' => 'no reason specified',
-        'disqualification-prompt' => 'Reason for disqualification?',
-        'disqualify' => 'Disqualify',
+        'disqualifed-at' => ':time_ago에 실격처리 되었습니다 (:reason).',
+        'disqualifed_no_reason' => '사유가 명시되지 않았습니다',
+        'disqualification-prompt' => '실격시키려는 사유는요?',
+        'disqualify' => '실격시키기',
         'incorrect-state' => '작업을 처리하는 과정에서 문제가 발생했습니다, 페이지를 새로고침 해보세요.',
         'nominate' => '추천하기', // Nominate
         'nominate-confirm' => '이 비트맵을 추천할까요?', // Nominate
-        'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'qualified' => '아무런 문제가 발견되지 않으면, :date에 Ranked될 것입니다.',
+        'qualified-soon' => '아무런 문제가 발견되지 않으면, 곧 Ranked될 것입니다.',
         'required-text' => '추천 수: :current/:required',
         'title' => '추천 상태', // Nomination Status
     ],
@@ -121,14 +121,14 @@ return [
                 'genre' => '장르',
                 'language' => '언어 분류',
                 'extra' => '부가 기능',
-                'rank' => 'Rank Achieved',
+                'rank' => '순위 기록됨',
             ],
         ],
         'mode' => '모드',
         'status' => '등록 상태', // Rank Status
-        'mapped-by' => 'mapped by :mapper',
-        'source' => 'from :source',
-        'load-more' => 'Load more...',
+        'mapped-by' => ':mapper님이 제작',
+        'source' => '원작: :source',
+        'load-more' => '더 불러오기...',
     ],
     'mode' => [
         'any' => '모두',
@@ -139,13 +139,13 @@ return [
     ],
     'status' => [
         'any' => '모두',
-        'ranked-approved' => 'Ranked & Approved',
-        'approved' => 'Approved',
-        'loved' => 'Loved',
-        'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
-        'pending' => 'Pending',
-        'graveyard' => 'Graveyard',
+        'ranked-approved' => 'Ranked & Approved', // 랭크 & 공인됨
+        'approved' => 'Approved', // 공인됨
+        'loved' => 'Loved', // 
+        'faves' => '즐겨찾기',
+        'modreqs' => '모딩 요청',
+        'pending' => 'Pending', // 보류됨
+        'graveyard' => 'Graveyard', // 사장됨
         'my-maps' => '내 비트맵',
     ],
     'genre' => [
@@ -161,26 +161,26 @@ return [
         'electronic' => '일렉트로닉',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
-        '4K' => '4K',
-        '5K' => '5K',
-        '6K' => '6K',
-        '7K' => '7K',
-        '8K' => '8K',
-        'FI' => 'Fade In',
-        '9K' => '9K',
+        'NF' => 'No Fail', // 노 페일
+        'EZ' => 'Easy Mode', // 이지 모드
+        'HD' => 'Hidden', // 히든
+        'HR' => 'Hard Rock', // 하드 락
+        'SD' => 'Sudden Death', // 서든 데스
+        'DT' => 'Double Time', // 더블 타임, 2배속
+        'Relax' => 'Relax', // 릴렉스
+        'HT' => 'Half Time', // 하프 타임
+        'NC' => 'Nightcore', // 나이트코어
+        'FL' => 'Flashlight', // 플래시라이트
+        'SO' => 'Spun Out', // 스펀 아웃
+        'AP' => 'Auto Pilot', // 오토 파일럿
+        'PF' => 'Perfect', // 퍼펙트
+        '4K' => '4키', // 4K
+        '5K' => '5키', // 5K
+        '6K' => '6키', // 6K
+        '7K' => '7키', // 7K
+        '8K' => '8키', // 8K
+        'FI' => 'Fade In', // 페이드 인
+        '9K' => '9키', // 9K
         'NM' => '모드 없음',
     ],
     'language' => [
@@ -203,9 +203,9 @@ return [
     ],
     'rank' => [
         'any' => '모두',
-        'XH' => 'Silver SS',
+        'XH' => '은장 SS', // 실버 SS
         'X' => 'SS',
-        'SH' => 'Silver S',
+        'SH' => '은장 S', // 실버 S
         'S' => 'S',
         'A' => 'A',
         'B' => 'B',
