@@ -20,7 +20,7 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warehouse',
+        'warehouse' => '보급 창고',
     ],
 
     'checkout' => [
