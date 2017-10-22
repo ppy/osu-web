@@ -141,7 +141,7 @@ return [
         'any' => '모두',
         'ranked-approved' => 'Ranked & Approved', // 랭크 & 공인됨
         'approved' => 'Approved', // 공인됨
-        'loved' => 'Loved', // 
+        'loved' => 'Loved',
         'faves' => '즐겨찾기',
         'modreqs' => '모딩 요청',
         'pending' => 'Pending', // 보류됨
