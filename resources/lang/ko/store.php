@@ -58,7 +58,7 @@ return [
 
     'supporter_tag' => [
         'require_login' => [
-            '_' => '서포터 태그를 받으려면 :link하셔야 합니다!',
+            '_' => '서포터를 구매하려면 :link하셔야 합니다!',
             'link_text' => '로그인',
         ],
     ],
