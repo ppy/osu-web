@@ -10,6 +10,8 @@ class UsersControllerTest extends TestCase
      */
     public function testStore()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $this
             ->json('POST', route('users.store'), [
                 'user' => [
@@ -26,6 +28,8 @@ class UsersControllerTest extends TestCase
 
     public function testStoreWithCountry()
     {
+        $this->expectException(InvalidArgumentException::class);
+
         $country = factory(Country::class)->create();
 
         $this

@@ -27,7 +27,7 @@ el = React.createElement
   blockElement = if props.href? then a else button
 
   blockElement props,
-    span className: "btn-osu-big__content #{'btn-osu-big__content--center' if !text? || !icon?}",
+    span className: "btn-osu-big__content #{if !text? || !icon? then 'btn-osu-big__content--center' else ''}",
       if text?
         span className: 'btn-osu-big__left',
           span className: 'btn-osu-big__text-top', text.top ? text
