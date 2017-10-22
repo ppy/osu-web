@@ -168,7 +168,7 @@ return [
         ],
         'support' => [
             '_' => 'osu! 지원',
-            'tags' => '서포터 태그',
+            'tags' => '서포터 권한',
             'merchandise' => '상품',
         ],
         'legal' => [
@@ -192,7 +192,7 @@ return [
             'link' => false,
         ],
         '401' => [
-            'error' => 'You shouldn\'t be here.',
+            'error' => '여기 계시면 안됩니다.',
             'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...',
             'link' => false,
         ],
