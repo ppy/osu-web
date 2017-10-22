@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - Rhythm is just a *click* away!  With Ouendan/EBA, Taiko and original gameplay modes, as well as a fully functional level editor.',
+        'page_description' => 'osu! - 리듬은 단순한 *클릭*만으로도 만들어질 수 있습니다! 응원단/리듬히어로, 태고와 이외 독자적인 게임플레이 모드, 완벽한 기능을 갖춘 맵 에디터까지 준비되어 있습니다.',
     ],
 
     'menu' => [
@@ -72,7 +72,7 @@ return [
         ],
         'community' => [
             '_' => '커뮤니티',
-            'dev' => 'osu!dev',
+            'dev' => 'osu!개발진',
             'getForum' => '포럼',
             'getChat' => '채팅',
             'getSupport' => '지원',
@@ -89,22 +89,22 @@ return [
             'forum-forums-show' => '포럼',
         ],
         'multiplayer' => [
-            '_' => 'multiplayer',
-            'show' => 'match',
+            '_' => '멀티플레이어', // 'multiplayer'
+            'show' => '매치', // 'match'
         ],
         'error' => [
-            '_' => 'error',
-            '404' => 'missing',
-            '403' => 'forbidden',
-            '401' => 'unauthorized',
-            '405' => 'missing',
-            '500' => 'something broke',
-            '503' => 'maintenance',
+            '_' => '오류',
+            '404' => '찾을 수 없음',
+            '403' => '거부됨', // 금지됨
+            '401' => '권한 없음',
+            '405' => '찾을 수 없음', // '허용되지 않는 방법'에 해당하는 상태 코드가 맞으나, 원문은 missing이므로 404와 같이 번역처리
+            '500' => '내부 서버 오류', // 내부 서버 오류, 원문은 'something broke'이었으나, 사용자가 납득할만한 번역을 찾지 못해 서버오류로 표현
+            '503' => '서비스 점검 ', // 서버가 오버로드되었거나 유지관리를 위해 다운되었기 때문에 현재 서버를 사용할 수 없는 상태.
         ],
         'user' => [
             '_' => '유저',
             'getLogin' => '로그인',
-            'disabled' => 'disabled',
+            'disabled' => '비활성 상태', // disabled
 
             'register' => '회원 가입',
             'reset' => '복원',
@@ -124,10 +124,10 @@ return [
             'getInvoice' => '청구서',
             'getProduct' => '상품',
 
-            'new' => 'new',
-            'home' => 'home',
-            'index' => 'home',
-            'thanks' => 'thanks',
+            'new' => '새',
+            'home' => '메인', // 'home'
+            'index' => '메인', // 'home'
+            'thanks' => '감사합니다',
         ],
         'admin-forum' => [
             '_' => '관리자::포럼',
@@ -140,8 +140,8 @@ return [
         ],
         'admin' => [
             '_' => '관리자',
-            'root' => 'index',
-            'logs-index' => 'log',
+            'root' => '목록', // 'index'
+            'logs-index' => '기록', // 'log'
             'beatmapsets' => [
                 '_' => '비트맵', // beatmapsets
                 'covers' => '표지',
@@ -182,45 +182,45 @@ return [
 
     'errors' => [
         '404' => [
-            'error' => 'Page Missing',
-            'description' => 'Sorry, but the page you requested isn\'t here!',
+            'error' => '페이지를 찾을 수 없음',
+            'description' => '죄송하지만, 저희는 요청하신 페이지를 갖고있질 않네요!',
             'link' => false,
         ],
         '403' => [
-            'error' => 'You shouldn\'t be here.',
-            'description' => 'You could try going back, though.',
+            'error' => '여기 계시면 안됩니다.',
+            'description' => '다시 돌아가보세요.',
             'link' => false,
         ],
         '401' => [
             'error' => 'You shouldn\'t be here.',
-            'description' => 'You could try going back, though. Or maybe logging in.',
+            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...',
             'link' => false,
         ],
         '405' => [
-            'error' => 'Page Missing',
-            'description' => 'Sorry, but the page you requested isn\'t here!',
+            'error' => '페이지를 찾을 수 없음',
+            'description' => '죄송하지만, 저희는 요청하신 페이지를 갖고있질 않네요!',
             'link' => false,
         ],
         '500' => [
-            'error' => 'Oh no! Something broke! ;_;',
-            'description' => 'We\'re automatically notified of every error.',
+            'error' => '이런! 뭔가 잘못 되었네요! ;_;',
+            'description' => '저희는 모든 에러를 자동으로 보고받고 있습니다.',
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh no! Something broke (badly)! ;_;',
-            'description' => 'We\'re automatically notified of every error.',
+            'error' => '이런! 뭔가 잘못 되었네요! (심각한데요...) ;_;',
+            'description' => '저희는 모든 에러를 자동으로 보고받고 있습니다.',
             'link' => false,
         ],
         '503' => [
-            'error' => 'Down for maintenance!',
-            'description' => 'Maintenance usually takes anywhere from 5 seconds to 10 minutes. If we\'re down for longer, see :link for more information.',
+            'error' => '서비스 점검중입니다!',
+            'description' => '점검은 보통 5분 내지 10분 동안 이루어집니다. 만약 더 오래 걸린다면, :link에서 더 많은 정보를 확인하실 수 있습니다.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Just in case, here\'s a code you can give to support!',
+        'reference' => '만약을 위해, 지원팀에게 보낼 수 있는 코드를 알려드릴게요!',
     ],
 
     'popup_login' => [
