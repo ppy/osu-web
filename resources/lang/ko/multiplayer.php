@@ -52,8 +52,8 @@ return [
         ],
         'failed' => 'FAILED',
         'teams' => [
-            'blue' => 'Blue Team',
-            'red' => 'Red Team',
+            'blue' => 'Blue 팀',
+            'red' => 'Red 팀',
         ],
         'winner' => ':team 승리',
         'difference' => '(점수 차: :difference)',
