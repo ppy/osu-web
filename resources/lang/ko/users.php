@@ -123,31 +123,31 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => '모딩 글(:post)에서의 kudosu 거절이 취소되어 :amount점을 받았습니다.',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => '모딩 글(:post)에서 :amount점을 거절당했습니다.',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => '모딩 글(:post)을 삭제하여 :amount점을 잃었습니다.',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => '삭제된 모딩 글(:post)을 복원하여 :amount점을 받았습니다.',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => '모딩 글(:post)의 투표에서 득표하여 :amount점을 받았습니다',
+                            'reset' => '모딩 글(:post)의 투표에서 충분한 표를 얻지 못해 :amount점을 잃었습니다.',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => ':post 글을 통해 :giver님으로부터 :amount점을 받았습니다.',
+                        'reset' => ':post 글에서 :giver님으로부터 Kudosu가 초기화되었습니다', // 'Kudosu reset by :giver for the post :post'
+                        'revoke' => ':post 글에서 :giver님으로부터 kudosu를 거절당했습니다.', // 'Denied kudosu by :giver for the post :post'
                     ],
                 ],
             ],
