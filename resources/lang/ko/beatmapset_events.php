@@ -28,8 +28,8 @@ return [
         'disqualify' => '실격 처리되었습니다. 사유: :text.', // Disqualified
         'issue_reopen' => '결정되었던 :discussion 토론이 재개되었습니다.', // Resolved issue :discussion reopened.
         'issue_resolve' => ':discussion 토론이 결정된 것으로 표시되었습니다.', // Issue :discussion marked as resolved.
-        'kudosu_allow' => ':discussion 토론에서의 kudous 거부를 취소했습니다.', // Kudosu denial for discussion :discussion has been removed
-        'kudosu_deny' => ':discussion 토론에서 kudosu를 거부당했습니다.', // Discussion :discussion denied for kudosu
+        'kudosu_allow' => ':discussion 토론에서의 kudous 거절을 취소했습니다.', // Kudosu denial for discussion :discussion has been removed
+        'kudosu_deny' => ':discussion 토론에서 kudosu를 거당했습니다.', // Discussion :discussion denied for kudosu
         'kudosu_gain' => ':discussion 토론에서 kudosu를 받을 만큼 충분한 표를 얻었습니다.', // Discussion :discussion obtained enough votes for kudosu
         'kudosu_lost' => ':discussion 토론에서 충분한 표를 얻지 못해 획득한 kudous가 삭제되었습니다.', // (삭제 -> 반환? 검토 필요) Discussion :discussion lost votes and granted kudosu has been removed.
         'nominate' => 'Nominated.',
