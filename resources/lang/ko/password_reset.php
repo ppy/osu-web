@@ -34,7 +34,7 @@ return [
 
     'error' => [
         'contact_support' => '계정을 복구하려면 지원 페이지를 통해 문의해주세요.',
-        'is_privileged' => 'peppy에게 문의하기 ㅎ.',
+        'is_privileged' => '그냥 peppy한테 문의하지 뭐 ㅋㅋ.',
         'missing_key' => '요구됨.', // Required
         'too_many_tries' => '실패한 횟수가 너무 많습니다.',
         'user_not_found' => '요청하신 사용자가 존재하지 않습니다.',
