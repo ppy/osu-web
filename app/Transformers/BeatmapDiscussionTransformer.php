@@ -90,8 +90,9 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
                 break;
             }
         }
+        $canResolve = priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can();
 
-        return $this->item($discussion, function ($discussion) use ($score) {
+        return $this->item($discussion, function ($discussion) use ($score, $canResolve) {
             return [
                 'vote_score' => $score,
                 'can_resolve' => priv_check('BeatmapDiscussionResolve', $discussion)->can(),
