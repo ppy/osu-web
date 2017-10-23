@@ -112,7 +112,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
 
   messageInput: (e) =>
-    @setState message: e.target.value
+    @setState message: e.target.value.replace /\n/g, ' '
 
 
   submitIfEnter: (e) =>
