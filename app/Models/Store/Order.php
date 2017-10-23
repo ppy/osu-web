@@ -23,6 +23,7 @@ namespace App\Models\Store;
 use App\Models\Country;
 use App\Models\SupporterTag;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
 
 class Order extends Model
@@ -243,6 +244,8 @@ class Order extends Model
             // TODO: remove/migrate duplicated fields.
             $this->transaction_id = $payment->getOrderTransactionId();
             $this->paid_at = $payment->paid_at;
+        } else {
+            $this->paid_at = Carbon::now();
         }
 
         $this->status = 'paid';
