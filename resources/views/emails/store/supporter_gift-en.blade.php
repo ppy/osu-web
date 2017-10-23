@@ -17,10 +17,9 @@
 --}}
 Hey there {{ $giftee->username }},
 
-
 Someone has just gifted you an osu! supporter tag!
 Thanks to them, you now have access osu!direct and other supporter benefits for the next {{ $duration }}.
-You can find out more details on these features at http://osu.ppy.sh/p/support.
+You can find out more details on these features at {{ route('support-the-game') }}
 The person who gifted you this tag may choose to remain anonymous, so they have not been mentioned in this notification
 (But you likely already know who it is ;).
 
