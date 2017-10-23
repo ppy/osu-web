@@ -20,7 +20,6 @@
     <div class="store-payment-method__cell">
         <a href="{{ $checkout->getCentiliPaymentLink() }}"
            class="js-store-checkout-button store-payment-button store-payment-button--centili"
-           rel="noopener"
            data-provider="centili"
         >
         </a>
