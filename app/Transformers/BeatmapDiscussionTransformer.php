@@ -92,7 +92,10 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item($discussion, function ($discussion) use ($score) {
-            return ['vote_score' => $score];
+            return [
+                'vote_score' => $score,
+                'can_resolve' => priv_check('BeatmapDiscussionResolve', $discussion)->can(),
+            ];
         });
     }
 

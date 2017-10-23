@@ -115,16 +115,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   canBeResolved: =>
-    @props.discussion.message_type in ['suggestion', 'problem'] &&
-      @canUpdate()
-
-
-  canUpdate: =>
-    return false if !@props.currentUser.id?
-
-    @props.currentUser.isAdmin ||
-      @props.currentUser.id == @props.beatmapset.user_id ||
-      @props.currentUser.id == @props.discussion.user_id
+    @props.discussion.current_user_attributes.can_resolve
 
 
   editStart: =>

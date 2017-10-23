@@ -96,6 +96,10 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
+        if (!$discussion->canBeResolved()) {
+            return $prefix.'wrong_type';
+        }
+
         if ($user->user_id === $discussion->user_id) {
             return 'ok';
         }
@@ -104,7 +108,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isQAT()) {
+        if ($user->isBNG() || $user->isQAT()) {
             return 'ok';
         }
 
