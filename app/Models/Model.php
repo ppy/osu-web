@@ -59,4 +59,12 @@ abstract class Model extends BaseModel
 
         return $result;
     }
+
+    public function save(array $options = [])
+    {
+        $result = parent::save($options);
+        priv_clear_cache();
+
+        return $result;
+    }
 }

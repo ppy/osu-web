@@ -33,6 +33,11 @@ class OsuAuthorize
 {
     private $cache = [];
 
+    public function clearCache()
+    {
+        return $this->cache = [];
+    }
+
     public function doCheckUser($user, $ability, $object)
     {
         $cacheKey = serialize([
