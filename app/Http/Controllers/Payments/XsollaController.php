@@ -28,9 +28,10 @@ use App\Libraries\Payments\XsollaSignature;
 use App\Libraries\Payments\XsollaUserNotFoundException;
 use App\Models\Store\Order;
 use Auth;
+use Exception;
 use Illuminate\Http\Request as HttpRequest;
+use Log;
 use Request;
-use RuntimeException;
 use Xsolla\SDK\API\PaymentUI\TokenRequest;
 use Xsolla\SDK\API\XsollaClient;
 
@@ -87,7 +88,7 @@ class XsollaController extends Controller
         try {
             $result = $processor->run();
         } catch (ValidationException $exception) {
-            \Log::error($exception->getMessage());
+            Log::error($exception->getMessage());
 
             return $this->errorResponse(
                 'A validation error occured while running the transaction',
@@ -99,10 +100,10 @@ class XsollaController extends Controller
             return $this->errorResponse('The signature is invalid.', 'INVALID_SIGNATURE', 422);
         } catch (XsollaUserNotFoundException $exception) {
             return $this->errorResponse('INVALID_USER', 'INVALID_USER', 404);
-        } catch (RuntimeException $exception) {
-            \Log::error($exception);
-
-            return $this->errorResponse('Something went wrong.', '', 500);
+        } catch (Exception $exception) {
+            Log::error($exception);
+            // status code needs to be a 4xx code to make Xsolla an error to the user.
+            return $this->errorResponse('Something went wrong.', 'FATAL_ERROR', 422);
         }
 
         return $result;
