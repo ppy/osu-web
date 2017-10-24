@@ -78,8 +78,9 @@ class SupporterTagFulfillment extends OrderFulfiller
             }
         }
 
+        $isGift = count($giftees) !== 0;
         Mail::to($donor->user_email)
-            ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal));
+            ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal, $isGift));
 
         foreach ($giftees as $giftee) {
             Mail::to($giftee->user_email)

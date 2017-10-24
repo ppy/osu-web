@@ -36,7 +36,7 @@ class DonationThanks extends Mailable
      *
      * @return void
      */
-    public function __construct($donor, $length, $amount, $isGift = false)
+    public function __construct($donor, $length, $amount, $isGift)
     {
         $this->params = [
             'donor' => $donor,
