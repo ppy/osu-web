@@ -24,6 +24,7 @@ use App\Events\Fulfillments\OrderFulfillerEvent;
 use App\Models\Store\OrderItem;
 use App\Models\SupporterTag;
 use App\Models\User;
+use Log;
 use Mail;
 
 class SupporterTagFulfillment extends OrderFulfiller
@@ -79,12 +80,21 @@ class SupporterTagFulfillment extends OrderFulfiller
         }
 
         $isGift = count($giftees) !== 0;
-        Mail::to($donor->user_email)
-            ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal, $isGift));
+
+        if (present($donor->user_email)) {
+            Mail::to($donor->user_email)
+                ->queue(new \App\Mail\DonationThanks($donor, $length, $donationTotal, $isGift));
+        } else {
+            Log::warning("User ({$$donor->getKey()}) does not have an email address set!");
+        }
 
         foreach ($giftees as $giftee) {
-            Mail::to($giftee->user_email)
-                ->queue(new \App\Mail\SupporterGift($donor, $giftee, $length));
+            if (present($giftee->user_email)) {
+                Mail::to($giftee->user_email)
+                    ->queue(new \App\Mail\SupporterGift($donor, $giftee, $length));
+            } else {
+                Log::warning("User ({$giftee->getKey()}) does not have an email address set!");
+            }
         }
     }
 
@@ -93,7 +103,7 @@ class SupporterTagFulfillment extends OrderFulfiller
         $this->validationErrors()->reset();
 
         $donationTotal = $this->getOrderItems()->sum('cost');
-        \Log::debug("total: {$donationTotal}, required: {$this->minimumRequired()}");
+        Log::debug("total: {$donationTotal}, required: {$this->minimumRequired()}");
         if ($donationTotal < $this->minimumRequired()) {
             $this->validationErrors()->addError(
                 'order_total',
