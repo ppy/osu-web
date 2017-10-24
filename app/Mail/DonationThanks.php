@@ -22,12 +22,15 @@ namespace App\Mail;
 
 use App\Models\SupporterTag;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DonationThanks extends Mailable
+class DonationThanks extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
+
+    public $tries = 5;
 
     private $params = [];
 
