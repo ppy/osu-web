@@ -71,4 +71,18 @@
             <span class="page-mode-link__stripe"></span>
         </a>
     </li>
+
+    <li class="page-mode__item">
+        <a
+            href="{{ route('beatmapsets.watches.index') }}"
+            class="
+                page-mode-link
+                {{ $current_action === 'beatmapset-watches-index' ? 'page-mode-link--is-active' : '' }}
+            "
+        >
+            {{ trans('beatmapset_watches.index.title_compact') }}
+
+            <span class="page-mode-link__stripe"></span>
+        </a>
+    </li>
 </ul>

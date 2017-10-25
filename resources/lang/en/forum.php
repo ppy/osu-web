@@ -102,7 +102,7 @@ return [
     'topic_watches' => [
         'index' => [
             'title' => 'Topic Subscriptions',
-            'title_compact' => 'subscriptions',
+            'title_compact' => 'topic subscriptions',
             'title_main' => 'Topic <strong>Subscriptions</strong>',
 
             'box' => [

@@ -41,6 +41,8 @@ class BeatmapDiscussion extends Model
         'problem' => 2,
     ];
 
+    const RESOLVABLE_TYPES = [1, 2];
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -302,6 +304,11 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function scopeOpenIssues($query)
+    {
+        $query->withoutDeleted()->whereIn('message_type', static::RESOLVABLE_TYPES)->where('resolved', '=', false);
     }
 
     public function scopeWithoutDeleted($query)
