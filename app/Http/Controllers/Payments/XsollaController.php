@@ -86,6 +86,10 @@ class XsollaController extends Controller
         $processor = new XsollaPaymentProcessor($params, $signature);
 
         try {
+            if ($processor->isSkipped()) {
+                return ['ok'];
+            }
+
             $result = $processor->run();
         } catch (ValidationException $exception) {
             Log::error($exception->getMessage());

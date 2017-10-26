@@ -116,6 +116,11 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     abstract public function validateTransaction();
 
+    public function isSkipped()
+    {
+        return false;
+    }
+
     /**
      * Auto run apply() or cancel() depending on the notification type.
      *

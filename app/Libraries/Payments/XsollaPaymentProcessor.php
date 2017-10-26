@@ -70,7 +70,23 @@ class XsollaPaymentProcessor extends PaymentProcessor
 
     public function isTest()
     {
-        return presence($this['transaction.dry_run']);
+        // temporarily disable.
+        return false; //presence($this['transaction.dry_run']);
+    }
+
+    public function isSkipped()
+    {
+        // just double validate for now
+        $this->ensureValidSignature();
+
+        $order = $this->getOrder();
+        if ($order === null) {
+            // force everything to run to trigger all the other errors.
+            return false;
+        }
+
+        return $this->getNotificationType() === NotificationType::PAYMENT
+            && $order->status === 'paid';
     }
 
     public function validateTransaction()
