@@ -28,7 +28,6 @@ return [
         ],
         'resolve' => [
             'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
-            'wrong_type' => 'Wrong type.',
         ],
 
         'vote' => [

@@ -73,7 +73,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @props.discussion.current_user_attributes.can_resolve
+            if @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
               div className: "#{bn}__action",
                 label
                   className: 'osu-checkbox'

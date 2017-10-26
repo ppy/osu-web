@@ -33,11 +33,6 @@ class OsuAuthorize
 {
     private $cache = [];
 
-    public function clearCache()
-    {
-        return $this->cache = [];
-    }
-
     public function doCheckUser($user, $ability, $object)
     {
         $cacheKey = serialize([
@@ -100,10 +95,6 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
-
-        if (!$discussion->canBeResolved()) {
-            return $prefix.'wrong_type';
-        }
 
         if ($user->user_id === $discussion->user_id) {
             return 'ok';

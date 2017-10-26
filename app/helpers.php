@@ -892,11 +892,6 @@ function priv_check_user($user, $ability, $args = null)
     return app()->make('OsuAuthorize')->doCheckUser($user, $ability, $args);
 }
 
-function priv_clear_cache()
-{
-    return app()->make('OsuAuthorize')->clearCache();
-}
-
 // Used to generate x,y pairs for fancy-chart.coffee
 function array_to_graph_json(array &$array, $property_to_use)
 {
