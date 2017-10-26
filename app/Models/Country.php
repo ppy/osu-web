@@ -28,6 +28,11 @@ class Country extends Model
 
     public $timestamps = false;
 
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'country_acronym');
+    }
+
     public function scopeForStore($query)
     {
         return $query->select('acronym', 'name', 'display')

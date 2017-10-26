@@ -20,7 +20,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
+use App\Http\Controllers\Store\Controller as Controller;
 use App\Models\Store;
 use Auth;
 use Request;
@@ -40,7 +40,6 @@ class StoreController extends Controller
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
-            'postCheckout',
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
@@ -50,7 +49,6 @@ class StoreController extends Controller
             'getInvoice',
             'postUpdateCart',
             'postAddToCart',
-            'postCheckout',
             'postNewAddress',
             'postUpdateAddress',
             'postUpdateCart',
@@ -58,8 +56,6 @@ class StoreController extends Controller
 
         $this->middleware('verify-user', ['only' => [
             'getInvoice',
-            'getCheckout',
-            'postCheckout',
             'postUpdateAddress',
         ]]);
 
@@ -83,10 +79,6 @@ class StoreController extends Controller
     public function getInvoice($id = null)
     {
         $order = Store\Order::findOrFail($id);
-        if ($order->shipping === null) {
-            $order->refreshCost(true);
-        }
-
         if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
@@ -117,20 +109,6 @@ class StoreController extends Controller
     {
         return view('store.cart')
             ->with('order', $this->userCart());
-    }
-
-    public function getCheckout()
-    {
-        $order = $this->userCart();
-        if (!$order->items()->exists()) {
-            return ujs_redirect('/store/cart');
-        }
-
-        $addresses = Auth::user()->storeAddresses()->with('country')->get();
-
-        $delayedShipping = Store\Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
-
-        return view('store.checkout', compact('order', 'addresses', 'delayedShipping'));
     }
 
     public function missingMethod($parameters = [])
@@ -229,34 +207,6 @@ class StoreController extends Controller
             return ujs_redirect('/store/cart');
         } else {
             return error_popup($result[1]);
-        }
-    }
-
-    public function postCheckout()
-    {
-        $order = $this->userCart();
-
-        if ($order->items()->count() === 0) {
-            return error_popup('cart is empty');
-        }
-
-        $order->checkout();
-
-        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            file_get_contents("https://osu.ppy.sh/web/ipn.php?mc_gross=0&item_number=store-{$order->user_id}-{$order->order_id}");
-
-            return ujs_redirect(action('StoreController@getInvoice', [$order->order_id]).'?thanks=1');
-        }
-
-        return js_view('store.order-create');
-    }
-
-    private function userCart()
-    {
-        if (Auth::check()) {
-            return Store\Order::cart(Auth::user());
-        } else {
-            return new Store\Order();
         }
     }
 }

@@ -39,7 +39,9 @@
     "shift31/laravel-elasticsearch": "~1.0",
     "webuni/commonmark-table-extension": "dev-fix-escapes",
     "chaseconey/laravel-datadog-helper": "^0.6.0",
-    "tumblr/tumblr": "^0.2.0"
+    "tumblr/tumblr": "^0.2.0",
+    "xsolla/xsolla-sdk-php": "^2.6",
+    "paypal/rest-api-sdk-php": "^1.12"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

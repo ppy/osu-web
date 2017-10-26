@@ -34,6 +34,16 @@ abstract class Model extends BaseModel
         return $this->macros ?? [];
     }
 
+    /**
+     * Locks the current model for update with `select for update`.
+     *
+     * @return Model
+     */
+    public function lockSelf()
+    {
+        return $this->lockForUpdate()->find($this->getKey());
+    }
+
     public function scopeOrderByField($query, $field, $ids)
     {
         $size = count($ids);

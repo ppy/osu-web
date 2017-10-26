@@ -60,7 +60,10 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_permissions' => '',
         'user_interests' => $faker->bs,
         'user_occ' => $faker->catchPhrase,
-        'user_sig' => $faker->realText(155),
+        'user_sig' => function () use ($faker) {
+            // avoids running if user_sig is supplied.
+            return $faker->realText(155);
+        },
         'user_from' => $faker->country,
         'user_regdate' => $faker->dateTimeBetween('-6 years', 'now'),
     ];
