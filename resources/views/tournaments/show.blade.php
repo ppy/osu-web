@@ -23,12 +23,7 @@
 ])
 
 @section("content")
-    @php
-        $cssMapping = [
-            '.tournament-list-item__image' => $tournament->header_banner,
-        ];
-    @endphp
-    @include('objects.css-override', ['mapping' => $cssMapping])
+    @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
 
     <div class="osu-layout__row">
         <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
@@ -45,9 +40,7 @@
 
     <div class="osu-page osu-page--tournament">
         <div class="tournament">
-            <div class='tournament-list-item__image-wrapper'>
-                <div class='tournament-list-item__image'></div>
-            </div>
+            <div class='tournament__banner'></div>
 
             <div class='tournament__description'>
                 {!! Markdown::convertToHtml($tournament->description) !!}
