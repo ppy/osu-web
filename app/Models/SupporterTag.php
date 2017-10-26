@@ -23,6 +23,7 @@ namespace App\Models;
 class SupporterTag
 {
     const MIN_DONATION = 4;
+    const PRODUCT_CUSTOM_CLASS = 'supporter-tag';
 
     /**
      * Gets the duration for a donated amount.
@@ -71,27 +72,38 @@ class SupporterTag
      * @return int Minimum donation required.
      * @throws Exception
      **/
-    private static function getMinimumDonation(int $duration)
+    public static function getMinimumDonation(int $duration)
     {
         switch (true) {
             case $duration >= 12:
-                 return ceil($duration / 12.0 * 26);
+                return ceil($duration / 12.0 * 26);
             case $duration === 10:
-                 return 24;
+                return 24;
             case $duration === 9:
-                 return 22;
+                return 22;
             case $duration === 8:
-                 return 20;
+                return 20;
             case $duration === 6:
-                 return 16;
+                return 16;
             case $duration === 4:
-                 return 12;
+                return 12;
             case $duration === 2:
-                 return 8;
+                return 8;
             case $duration === 1:
-                 return 4;
+                return 4;
         }
 
         throw new \Exception('not a valid duration.');
+    }
+
+    public static function getDurationText($length)
+    {
+        $years = (int) ($length / 12);
+        $months = $length % 12;
+
+        $yearsText = trans_choice('supporter_tag.duration.years', $years, ['length' => $years]);
+        $monthsText = trans_choice('supporter_tag.duration.months', $months, ['length' => $months]);
+
+        return implode(', ', array_filter([$yearsText, $monthsText]));
     }
 }

@@ -18,13 +18,9 @@
 <div class="osu-layout__row osu-layout__row--page-compact header-row no-print">
     <div class="store-header">
         <div class="store-header__main">
-            @if ((new Carbon\Carbon("2015-07-15"))->isFuture())
-                <a href="{{ action("StoreController@getListing") }}" class="store-logo--late"></a>
-            @else
-                <a href="{{ action("StoreController@getListing") }}" class="store-logo">
-                    @include("store._logo")
-                </a>
-            @endif
+            <a href="{{ route('store.products.index') }}" class="store-logo">
+                @include("store._logo")
+            </a>
 
             @if(isset($cart) && $cart && $cart->items()->exists())
                 <div class="store-header__float store-header__float--right">

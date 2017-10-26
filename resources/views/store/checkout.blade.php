@@ -19,7 +19,6 @@
 
 @section("content")
     @include("store.header")
-
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
             <h1>Checkout</h1>
@@ -31,7 +30,7 @@
                     <p class="store-cart-footer__text">total</p>
                     <p class="store-cart-footer__text store-cart-footer__text--amount">{{{ currency($order->getTotal()) }}}</p>
 
-                    @if($order->requiresShipping() && !$order->getShipping())
+                    @if($order->requiresShipping() && !$order->shipping)
                         <p class="store-cart-footer__text store-cart-footer__text--shipping">+ shipping fees</p>
                     @endif
                 </div>
@@ -57,70 +56,31 @@
         @endif
     </div>
 
-    @if(!$order->requiresShipping() || $order->getShipping())
+    @if(!$order->requiresShipping() || $order->shipping)
         <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row osu-layout__row--sm1">
             <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
-                <h1>Payment</h1>
+                <h1>Select Payment Method</h1>
 
-                @if($delayedShipping && $order->requiresShipping())
-                <div class="alert alert-warning">
-                    <p><strong>IMPORTANT: SHIPPING DELAYS</strong></p>
-
-                    <p>
-                        {!! Markdown::convertToHtml(config('store.delayed_shipping_order_message') ?: trans('store.checkout.delayed_shipping')) !!}
-                    </p>
-
-                    <p>
-                        <input type='checkbox' class='js-checkout-confirmation-step' id='delay-warning'/> <label for='delay-warning'>I have read and understand this message</label>
-                    </p>
-                </div>
+                @if($checkout->isShippingDelayed() && $order->requiresShipping())
+                    @include('store._shipping_delay_warning')
                 @endif
 
                 @if($order->address !== null && $order->address->country_code === 'DE')
-                    <div class="alert alert-warning">
-                        <p><strong>NOTE TO GERMAN CUSTOMERS</strong></p>
-
-                        <p>
-                            We have recently been notified of issues regarding deliveries within Germany, possibly due to a change in German customs regulations. Multiple cases have been reported where packages are not delivered to the addressee, but instead to a customs house. The addressee is then sent a notice to pick up the item in person and pay an import sales tax. Unfortunately international customs procedures are out of our control, but <strong>please take this into account when placing your order</strong>.
-                        </p>
-
-                        <p>
-                            <input type='checkbox' class='js-checkout-confirmation-step' id='german-warning'/> <label for='german-warning'>I have read and understand this message</label>
-                        </p>
-                    </div>
+                    @include('store._shipping_germany_warning')
                 @endif
 
-                <div class="big-button">
-                    @if($order->getTotal() > 0)
-                        <form class="text-center noajax" id="paypal-form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                            <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="business" value="5DD65FGXND4GS">
-                            <input type="hidden" name="lc" value="AU">
-                            <input type="hidden" name="button_subtype" value="services">
-                            <input type="hidden" name="no_note" value="0">
-                            <input type="hidden" name="cn" value="Add special instructions to the seller:">
-                            <input type="hidden" name="no_shipping" value="2">
-                            <input type="hidden" name="rm" value="1">
-                            <input type="hidden" name="return" value="{{{ action("StoreController@getInvoice", [$order->order_id]) }}}?thanks=1">
-                            <input type="hidden" name="cancel_return" value="{{{ action("StoreController@getCheckout") }}}">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input type="hidden" name="bn" value="PP-BuyNowBF:btn_paynowCC_LG.gif:NonHosted">
-                            <input type="hidden" id="paypal_name" name="item_name" value="osu!store order #{{{$order->order_id}}}">
-                            <input type="hidden" id="paypal_code" name="item_number" value="store-{{{$order->user_id}}}-{{{$order->order_id}}}">
-                            <input type="hidden" id="paypal_amount" name="amount" value="{{{$order->getSubtotal()}}}">
-                            <input type="hidden" id="paypal_shipping" name="shipping" value="{{{$order->getShipping()}}}">
-                            <a href="/store/checkout" class="btn-osu btn-osu-danger paypal-button" id="checkout-with-paypal" data-method="post" data-remote="1">
-                                {{ trans("store.checkout.pay") }}
-                            </a>
-                            <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-                        </form>
-                    @else
+                @if ($order->getTotal() > 0)
+                    @foreach ($checkout->allowedCheckoutTypes() as $type)
+                        @include("store._checkout_{$type}")
+                    @endforeach
+                @else
+                    <div class="big-button">
                         {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
                             <input type="hidden" name="completed" value="1">
                             <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
                         {!! Form::close() !!}
-                    @endif
-                </div>
+                    </div>
+                @endif
             </div>
         </div>
     @endif

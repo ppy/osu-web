@@ -78,6 +78,13 @@ class OrderItem extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
+    public function scopeCustomClass($query, $name)
+    {
+        return $query->whereHas('product', function ($q) use ($name) {
+            $q->customClass($name);
+        });
+    }
+
     public function refreshCost()
     {
         if ($this->product->cost === null) {
@@ -100,7 +107,8 @@ class OrderItem extends Model
 
                 return __('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,
-                    'username' => $this->extra_data['username'],
+                    // test data didn't include username, so ?? ''
+                    'username' => $this->extra_data['username'] ?? '',
                     'duration' => $text,
                 ]);
             default:

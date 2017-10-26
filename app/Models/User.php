@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\ChangeUsernameException;
+use App\Exceptions\ModelNotSavedException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
@@ -104,6 +106,65 @@ class User extends Model implements AuthenticatableContract, Messageable
             case 4: return 64;
             default: return 100;
         }
+    }
+
+    public function revertUsername($type = 'revert')
+    {
+        // TODO: validation errors instead?
+        if ($this->user_id <= 1) {
+            throw new ChangeUsernameException(['user_id is not valid']);
+        }
+
+        if (!presence($this->username_previous)) {
+            throw new ChangeUsernameException(['username_previous is blank.']);
+        }
+
+        $this->updateUsername($this->username_previous, null, $type);
+        \Log::debug("username reverted: {$this->username}");
+    }
+
+    public function changeUsername($newUsername, $type = 'support')
+    {
+        // TODO: validation errors instead?
+        if ($this->user_id <= 1) {
+            throw new ChangeUsernameException(['user_id is not valid']);
+        }
+
+        $errors = static::validateUsername($newUsername);
+        if (count($errors) > 0) {
+            throw new ChangeUsernameException($errors);
+        }
+
+        $this->updateUsername($newUsername, $this->username, $type);
+        \Log::debug("username changed: {$this->username}");
+    }
+
+    private function updateUsername($newUsername, $oldUsername, $type)
+    {
+        $this->username_previous = $oldUsername;
+        $this->username_clean = strtolower($newUsername);
+        $this->username = $newUsername;
+
+        DB::transaction(function () use ($newUsername, $oldUsername, $type) {
+            Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
+            // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
+            Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+            Forum\Topic::where('topic_last_poster_id', $this->user_id)
+                ->update([
+                    'topic_first_poster_name' => $newUsername,
+                    'topic_last_poster_name' => $newUsername,
+                ]);
+
+            $history = new UsernameChangeHistory();
+            $history->username = $newUsername;
+            $history->username_last = $oldUsername;
+            $history->type = $type;
+
+            if (!$this->usernameChangeHistory()->save($history)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
+            $this->saveOrExplode();
+        });
     }
 
     public static function checkWhenUsernameAvailable($username)
@@ -425,6 +486,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         $this->attributes['user_colour'] = ltrim($value, '#');
     }
 
+    public function getOsuSubscriptionexpiryAttribute($value)
+    {
+        if (present($value)) {
+            return Carbon::parse($value);
+        }
+    }
+
+    public function setOsuSubscriptionexpiryAttribute($value)
+    {
+        // strip time component
+        $this->attributes['osu_subscriptionexpiry'] = $value->startOfDay();
+    }
+
     // return a user's API details
 
     public function getApiDetails($user = null)
@@ -634,6 +708,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function apiKey()
     {
         return $this->hasOne(ApiKey::class, 'user_id');
+    }
+
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'user_id');
     }
 
     public function storeAddresses()

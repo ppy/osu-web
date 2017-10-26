@@ -19,7 +19,9 @@
 const { mix } = require('laravel-mix');
 const fs = require('fs');
 const path = require('path');
+const webpack = require('webpack');
 const SentryPlugin = require('webpack-sentry-plugin');
+require('dotenv').config();
 
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
@@ -28,6 +30,10 @@ let min = '';
 if (mix.inProduction()) {
   min = '.min';
 }
+
+const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
+                         || process.env.PAYMENT_SANDBOX === 'false'
+                         || !process.env.PAYMENT_SANDBOX)
 
 // relative from root?
 const node_root = 'node_modules';
@@ -70,10 +76,18 @@ vendor.forEach(function (script) {
 
 
 let webpackConfig = {
+  plugins: [
+    new webpack.DefinePlugin({
+      ENV_PAYMENT_SANDBOX: JSON.stringify(paymentSandbox),
+    })
+  ],
   resolve: {
     modules: [
       path.resolve(__dirname, 'resources/assets/coffee'),
-    ]
+      path.resolve(__dirname, 'resources/assets/lib'),
+      path.resolve(__dirname, 'node_modules'),
+    ],
+    extensions: ['*', '.js', '.coffee']
   },
   module: {
     rules: [
@@ -84,8 +98,23 @@ let webpackConfig = {
         exclude: /(node_modules)/,
       },
       {
+        // loader for preexisting global coffeescript
         test: /\.coffee$/,
+        include: [
+          path.resolve(__dirname, "resources/assets/coffee"),
+        ],
         use: ['imports-loader?this=>window', 'coffee-loader']
+      },
+      {
+        // loader for import-based coffeescript
+        test: /\.coffee$/,
+        include: [
+          path.resolve(__dirname, "resources/assets/lib"),
+        ],
+        exclude: [
+          path.resolve(__dirname, "resources/assets/coffee"),
+        ],
+        use: ['coffee-loader']
       }
     ]
   }
