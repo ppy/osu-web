@@ -16,40 +16,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.contest-list-legend {
-  display: flex;
-  justify-content: flex-end;
+ .tournament-list {
+    background-color: @gray-blue-dark;
+    font-weight: 300;
+    padding: 20px;
 
-  &__item {
-    display: inline-block;
-    height: 30px;
-    background: @community-grayblue-tile-background;
-    margin: 5px;
-    padding: 5px 10px;
-
-    @media @mobile {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      font-size: 12px;
-
-      &:hover {
-        flex: none;
-      }
+    @media @mobile{
+      padding: 5px;
     }
 
-    border-right: 5px solid @community-grayblue-tile-background;
-
-    &--entry {
-      border-color: @pink;
-    }
-
-    &--voting {
-      border-color: @blue;
-    }
-
-    &--results {
-      border-color: @green;
+    &__none-running {
+      color: @pink-light;
+      font-size: 20px;
+      font-weight: 100;
+      margin: 0;
+      margin-left: 10px;
     }
   }
-}

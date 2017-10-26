@@ -15,33 +15,63 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master', [
+    'current_section' => 'community',
+    'current_action' => 'tournaments',
+    'title' => trans('tournament.index.header.title'),
+    'body_additional_classes' => 'osu-layout--body-darker'
+])
 
 @section("content")
-<div class="osu-layout__row osu-layout__row--page-compact">
-    <div class="osu-page-header osu-page-header--tournaments">
-        <h1 class="osu-page-header__title">osu!tournaments</h1>
-        <h2 class="osu-page-header__title osu-page-header__title--small">A listing of all active officially-recognised tournaments</h2>
+    @php
+        $cssMapping = [];
+        foreach ($tournaments as $t) {
+            $cssMapping[".tournament-list-item__image--".$t->tournament_id] = $t->header_banner;
+        }
+    @endphp
+    @include('objects.css-override', ['mapping' => $cssMapping])
+
+    <div class="osu-layout__row">
+        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
+            <div class="osu-page-header-v2__overlay"></div>
+            <div class="osu-page-header-v2__title">{{trans('tournament.index.header.title')}}</div>
+            <div class="osu-page-header-v2__subtitle">{{trans('tournament.index.header.subtitle')}}</div>
+        </div>
     </div>
-</div>
 
-<div class='osu-layout__row osu-layout__row--page tournaments'>
-
-@foreach($tournaments as $t)
-<div class='tournament clickable-row'>
-    <div class='mode'>
-        <i class="fa osu fa-{!! $t->playModeStr() !!}-o"></i>
+    <div class="osu-page osu-page--tournament">
+        <div class="tournament-list">
+            @if($tournaments->isEmpty())
+                <h1 class="tournament-list__none-running">{{trans('tournament.index.none-running')}}</h1>
+            @endif
+            @foreach($tournaments as $t)
+                <a href="{{ route('tournaments.show', $t) }}" class='tournament-list-item tournament-list-item--open'>
+                    <div class='tournament-list-item__image-wrapper'>
+                        <div class='tournament-list-item__image tournament-list-item__image--{{$t->tournament_id}}'></div>
+                    </div>
+                    <div class='tournament-list-item__metadata'>
+                        <div class='tournament-list-item__metadata-left'>
+                            <div class='tournament-list-item__tournament-date'>{{
+                                trans('tournament.tournament-period', [
+                                    'start' => i18n_date($t->start_date),
+                                    'end' => i18n_date($t->end_date),
+                                ])
+                            }}</div>
+                            <div class='tournament-list-item__registration-date'>{{
+                                trans('tournament.index.registration-period', [
+                                    'start' => i18n_date($t->signup_open),
+                                    'end' => i18n_date($t->signup_close)
+                                ])
+                            }}</div>
+                        </div>
+                        <div class='tournament-list-item__metadata-right'>
+                            <div class='tournament-list-item__registrations'>
+                                {{number_format($t->registrations->count())}} <i class="fa fa-fw fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
     </div>
-    <div class='info'>
-        <div class='title'>{{ $t->name }}</div>
-        <div class='dates-tournament'>{{ $t->start_date->toDateString() }} ~ {{ $t->end_date->toDateString() }}</div>
-        <div class='dates-reg'>Registrations open {{ $t->signup_open->toDateString() }} through {{ $t->signup_close->toDateString() }}</div>
-
-        <div><a href='{{ route("tournaments.show", $t) }}' class='clickable-row-link'>{{ number_format($t->registrations->count()) }} registered player(s).</a></div>
-    </div>
-</div>
-@endforeach
-
-</div>
-
-@stop
+@endsection
