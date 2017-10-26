@@ -23,11 +23,11 @@ return [
     'beatmapsets' => [
         'show' => [
             'discussion' => [
-                '_' => 'Моддинг v2',
+                '_' => 'Modding v2',
                 'activate' => 'включить',
-                'activate_confirm' => 'включить моддинг v2 для этой карты?',
-                'active' => 'включить',
-                'inactive' => 'выключить',
+                'activate_confirm' => 'включить modding v2 для этой карты?',
+                'active' => 'включён',
+                'inactive' => 'отключён',
             ],
         ],
     ],
@@ -46,7 +46,7 @@ return [
                     'update' => 'Обновить',
                 ],
 
-                'title' => 'Список форумов',
+                'title' => 'Список обложек',
 
                 'type-title' => [
                     'default-topic' => 'Стандартная обложка темы',
@@ -68,7 +68,7 @@ return [
 
             'sections' => [
                 'forum' => 'Форум',
-                'general' => 'Главная',
+                'general' => 'Главное',
                 'store' => 'Магазин',
             ],
         ],
@@ -79,6 +79,13 @@ return [
             'index' => [
                 'title' => 'Список заказов',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Права этого пользователя ограничены.',
+            'message' => '(только администраторы могут видеть это)',
         ],
     ],
 
