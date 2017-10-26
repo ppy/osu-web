@@ -64,6 +64,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 className: "#{bn}__message-area js-hype--input"
                 value: @state.message
                 onChange: @setMessage
+                onKeyDown: @ignoreEnter
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
             else
               osu.trans('beatmaps.discussions.require-login')
@@ -123,6 +124,12 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 el Icon, name: 'check'
 
               osu.trans('beatmap_discussions.nearby_posts.confirm')
+
+
+  ignoreEnter: (e) =>
+    return if e.keyCode != 13
+
+    e.preventDefault()
 
 
   nearbyPosts: =>
@@ -189,7 +196,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   setMessage: (e) =>
-    message = e.currentTarget.value
+    message = e.currentTarget.value.replace /\n/g, ' '
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
 
     @setState {message, timestamp}
