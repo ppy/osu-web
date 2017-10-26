@@ -78,7 +78,7 @@ vendor.forEach(function (script) {
 let webpackConfig = {
   plugins: [
     new webpack.DefinePlugin({
-      ENV_PAYMENT_SANDBOX: JSON.stringify(paymentSandbox),
+      __PAYMENT_SANDBOX__: JSON.stringify(paymentSandbox),
     })
   ],
   resolve: {

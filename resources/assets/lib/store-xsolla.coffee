@@ -43,7 +43,7 @@ export class StoreXsolla
 
   @optionsWithToken: (token) ->
     access_token: token,
-    sandbox: ENV_PAYMENT_SANDBOX # injected by webpack.DefinePlugin
+    sandbox: __PAYMENT_SANDBOX__ # injected by webpack.DefinePlugin
 
   @onXsollaComplete: (orderNumber) ->
     done = false
