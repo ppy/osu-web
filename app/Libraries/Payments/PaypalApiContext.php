@@ -38,6 +38,7 @@ class PaypalApiContext
             'log.LogEnabled' => true,
             'log.FileName' => storage_path('logs/paypal.log'),
             'log.LogLevel' => 'DEBUG',
+            'cache.FileName' => storage_path('paypal_auth.cache'),
             'cache.enabled' => true,
             'mode' => 'live',
         ];
