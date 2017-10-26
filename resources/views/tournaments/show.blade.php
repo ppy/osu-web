@@ -30,7 +30,7 @@
             <div class="osu-page-header-v2__overlay"></div>
             <div class="osu-page-header-v2__title">{{$tournament->name}}</div>
             <div class="osu-page-header-v2__subtitle">{{
-                trans('tournament.tournament-period', [
+                trans('tournament.tournament_period', [
                     'start' => i18n_date($tournament->start_date),
                     'end' => i18n_date($tournament->end_date)
                 ])
@@ -44,7 +44,7 @@
 
             <div class='tournament__description'>
                 {!! Markdown::convertToHtml($tournament->description) !!}
-                {{trans('tournament.show.registration-ends', ['date' => i18n_date($tournament->signup_close)])}}.
+                {{trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)])}}.
             </div>
             @if($tournament->isRegistrationOpen())
                 <div class='tournament__countdown-timer'>
@@ -56,7 +56,7 @@
                 <div class="tournament__body">
                     @if (!Auth::user())
                         <div>{!!
-                            trans('tournament.show.login-to-register', [
+                            trans('tournament.show.login_to_register', [
                                 'login' => '<a href="#" class="js-user-link" title="'.trans("users.anonymous.login_link").'">'.trans("users.anonymous.login_text").'</a>'
                             ])
                         !!}</div>
@@ -65,7 +65,7 @@
                             @if($tournament->isSignedUp(Auth::user()))
                                 <div>{!!trans('tournament.show.entered')!!}</div>
                             @else
-                                <div>{{trans('tournament.show.not-yet-entered')}}</div>
+                                <div>{{trans('tournament.show.not_yet_entered')}}</div>
                             @endif
                             @if($tournament->isSignedUp(Auth::user()))
                                 <a
@@ -87,7 +87,7 @@
                                 </a>
                             @endif
                         @else
-                            <div>{{trans('tournament.show.rank-too-low')}}</div>
+                            <div>{{trans('tournament.show.rank_too_low')}}</div>
                         @endif
                     @endif
                 </div>

@@ -42,7 +42,7 @@
     <div class="osu-page osu-page--tournament">
         <div class="tournament-list">
             @if($tournaments->isEmpty())
-                <h1 class="tournament-list__none-running">{{trans('tournament.index.none-running')}}</h1>
+                <h1 class="tournament-list__none-running">{{trans('tournament.index.none_running')}}</h1>
             @endif
             @foreach($tournaments as $t)
                 <a href="{{ route('tournaments.show', $t) }}" class='tournament-list-item tournament-list-item--open'>
@@ -52,13 +52,13 @@
                     <div class='tournament-list-item__metadata'>
                         <div class='tournament-list-item__metadata-left'>
                             <div class='tournament-list-item__tournament-date'>{{
-                                trans('tournament.tournament-period', [
+                                trans('tournament.tournament_period', [
                                     'start' => i18n_date($t->start_date),
                                     'end' => i18n_date($t->end_date),
                                 ])
                             }}</div>
                             <div class='tournament-list-item__registration-date'>{{
-                                trans('tournament.index.registration-period', [
+                                trans('tournament.index.registration_period', [
                                     'start' => i18n_date($t->signup_open),
                                     'end' => i18n_date($t->signup_close)
                                 ])
