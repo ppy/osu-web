@@ -39,6 +39,7 @@ class PaypalApiContext
             'log.FileName' => storage_path('logs/paypal.log'),
             'log.LogLevel' => 'DEBUG',
             'cache.enabled' => true,
+            'mode' => 'live',
         ];
 
         if (config('payments.sandbox') === true) {
