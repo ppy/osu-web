@@ -177,6 +177,11 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function isPaidOrDelivered()
+    {
+        return in_array($this->status, ['paid', 'delivered'], true);
+    }
+
     public function removeInvalidItems()
     {
         $modified = false;
@@ -248,7 +253,7 @@ class Order extends Model
             $this->paid_at = Carbon::now();
         }
 
-        $this->status = 'paid';
+        $this->status = $this->requiresShipping() ? 'paid' : 'delivered';
         $this->saveOrExplode();
     }
 
