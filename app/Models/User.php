@@ -34,6 +34,7 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
@@ -130,13 +131,33 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException(['user_id is not valid']);
         }
 
-        $errors = static::validateUsername($newUsername);
+        $errors = static::validateUsername($newUsername, $this->username);
         if (count($errors) > 0) {
             throw new ChangeUsernameException($errors);
         }
 
-        $this->updateUsername($newUsername, $this->username, $type);
-        \Log::debug("username changed: {$this->username}");
+        DB::transaction(function () use ($newUsername, $type) {
+            // check for an exsiting inactive username and renames it.
+            static::renameUsernameIfInactive($newUsername);
+
+            $this->updateUsername($newUsername, $this->username, $type);
+            \Log::debug("username changed: {$this->username}");
+        });
+    }
+
+    private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
+    {
+        $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
+
+        try {
+            return $this->updateUsername($name, $oldUsername, $type);
+        } catch (QueryException $ex) {
+            if (!is_sql_unique_exception($ex) || $try > 9) {
+                throw $ex;
+            }
+
+            return $this->tryUpdateUsername($try + 1, $newUsername, $oldUsername, $type);
+        }
     }
 
     private function updateUsername($newUsername, $oldUsername, $type)
@@ -167,12 +188,21 @@ class User extends Model implements AuthenticatableContract, Messageable
         });
     }
 
+    public static function findByUsernameForInactive($username)
+    {
+        return static::whereIn(
+            'username',
+            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+        )->first();
+    }
+
     public static function checkWhenUsernameAvailable($username)
     {
-        $user = self::whereIn('username', [str_replace(' ', '_', $username), str_replace('_', ' ', $username)])->first();
+        $user = static::findByUsernameForInactive($username);
 
         if ($user === null) {
             $lastUsage = UsernameChangeHistory::where('username_last', $username)
+                ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
                 ->orderBy('change_id', 'desc')
                 ->first();
 
@@ -1357,5 +1387,23 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
+    }
+
+    /**
+     * Check for an exsiting inactive username and renames it if
+     * considered inactive.
+     *
+     * @return User if renamed; nil otherwise.
+     */
+    private static function renameUsernameIfInactive($username)
+    {
+        $existing = static::findByUsernameForInactive($username);
+        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
+        if ($existing !== null && $available) {
+            $newUsername = "{$existing->username}_old";
+            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
+
+            return $existing;
+        }
     }
 }
