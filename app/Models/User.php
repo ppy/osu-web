@@ -34,6 +34,7 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
@@ -156,9 +157,24 @@ class User extends Model implements AuthenticatableContract, Messageable
         $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
         if ($existing !== null && $available) {
             $newUsername = "{$existing->username}_old";
-            $existing->updateUsername($newUsername, $existing->username, 'inactive');
+            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
 
             return $existing;
+        }
+    }
+
+    private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
+    {
+        $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
+
+        try {
+            return $this->updateUsername($name, $oldUsername, $type);
+        } catch (QueryException $ex) {
+            if (!is_sql_unique_exception($ex) || $try > 9) {
+                throw $ex;
+            }
+
+            return $this->tryUpdateUsername($try + 1, $newUsername, $oldUsername, $type);
         }
     }
 
