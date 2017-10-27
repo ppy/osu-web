@@ -86,7 +86,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         return $this->getNotificationType() === NotificationType::PAYMENT
-            && $order->status === 'paid';
+            && in_array($order->status, ['paid', 'delivered'], true);
     }
 
     public function validateTransaction()
