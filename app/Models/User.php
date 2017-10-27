@@ -192,8 +192,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return static::whereIn(
             'username',
-            [str_replace(' ', '_', $username),
-            str_replace('_', ' ', $username)]
+            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
         )->first();
     }
 
