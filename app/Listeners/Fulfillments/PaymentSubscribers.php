@@ -42,7 +42,7 @@ class PaymentSubscribers
         $count = count($fulfillers);
         $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
 
-        DB::transaction(function () use ($fulfillers) {
+        DB::transaction(function () use ($fulfillers, $event) {
             try {
                 // This should probably be shoved off into a queue processor somewhere...
                 foreach ($fulfillers as $fulfiller) {
@@ -62,7 +62,7 @@ class PaymentSubscribers
         $count = count($fulfillers);
         $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
 
-        DB::transaction(function () use ($fulfillers) {
+        DB::transaction(function () use ($fulfillers, $event) {
             try {
                 // This should probably be shoved off into a queue processor somewhere...
                 foreach ($fulfillers as $fulfiller) {
