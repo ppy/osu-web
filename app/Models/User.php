@@ -77,6 +77,15 @@ class User extends Model implements AuthenticatableContract, Messageable
         ],
     ];
 
+    const MAX_FIELD_LENGTHS = [
+        'user_msnm' => 255,
+        'user_twitter' => 255,
+        'user_website' => 200,
+        'user_from' => 30,
+        'user_occ' => 30,
+        'user_interests' => 30,
+    ];
+
     private $memoized = [];
 
     private $validateCurrentPassword = false;
@@ -1378,6 +1387,13 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->country_acronym = $country->getKey();
             } else {
                 $this->validationErrors()->add('country', '.invalid_country');
+            }
+        }
+
+        foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
+            $val = $this->attributes[$field];
+            if ($val && mb_strlen($val) > $limit) {
+                $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
             }
         }
 

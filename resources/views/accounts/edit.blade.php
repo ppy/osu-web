@@ -30,18 +30,18 @@
 
             <div class="account-edit__input-groups">
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_website'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_msnm', 'maxlength' => App\Models\User::MAX_FIELD_LENGTHS['user_msnm']])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_twitter', 'maxlength' => App\Models\User::MAX_FIELD_LENGTHS['user_twitter']])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_website', 'maxlength' => App\Models\User::MAX_FIELD_LENGTHS['user_website']])
                 </div>
 
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_from'])
-                    @include('accounts._edit_entry_simple', ['field' => 'user_occ'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_from', 'maxlength' => App\Models\User::MAX_FIELD_LENGTHS['user_from']])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_occ', 'maxlength' => App\Models\User::MAX_FIELD_LENGTHS['user_occ']])
                 </div>
 
                 <div class="account-edit__input-group">
-                    @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
+                    @include('accounts._edit_entry_simple', ['field' => 'user_interests', 'maxlength' => App\Models\User::MAX_FIELD_LENGTHS['user_interests']])
                 </div>
             </div>
         </div>
