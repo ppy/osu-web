@@ -1391,7 +1391,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
-            $val = $this->attributes[$field];
+            $val = $this->$field;
             if ($val && mb_strlen($val) > $limit) {
                 $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
             }
