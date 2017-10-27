@@ -177,6 +177,11 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function isPaidOrDelivered()
+    {
+        return in_array($this->status, ['paid', 'delivered'], true);
+    }
+
     public function removeInvalidItems()
     {
         $modified = false;

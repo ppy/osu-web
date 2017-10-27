@@ -83,7 +83,7 @@ class OrderCheckout
             if ($order->status === 'incart') {
                 $order->status = 'checkout';
                 $order->saveorExplode();
-            } elseif (!in_array($order->status, ['paid', 'delivered'], true)) {
+            } elseif (!$order->isPaidOrDelivered()) {
                 // TODO: use validation errors instead?
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
