@@ -73,7 +73,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @canBeResolved()
+            if @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
               div className: "#{bn}__action",
                 label
                   className: 'osu-checkbox'
@@ -112,19 +112,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         modifiers: ['beatmap-discussion-reply-open']
         props:
           onClick: @editStart
-
-
-  canBeResolved: =>
-    @props.discussion.message_type in ['suggestion', 'problem'] &&
-      @canUpdate()
-
-
-  canUpdate: =>
-    return false if !@props.currentUser.id?
-
-    @props.currentUser.isAdmin ||
-      @props.currentUser.id == @props.beatmapset.user_id ||
-      @props.currentUser.id == @props.discussion.user_id
 
 
   editStart: =>

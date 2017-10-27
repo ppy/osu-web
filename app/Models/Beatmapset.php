@@ -927,6 +927,8 @@ class Beatmapset extends Model
             static::with([
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
+                'beatmapDiscussions.beatmapset',
+                'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
