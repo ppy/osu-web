@@ -23,6 +23,7 @@ namespace App\Listeners\Fulfillments;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Traits\StoreNotifiable;
 use DB;
+use Exception;
 
 /**
  * store.payments event dispatcher.
@@ -42,9 +43,14 @@ class PaymentSubscribers
         $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
 
         DB::transaction(function () use ($fulfillers) {
-            // This should probably be shoved off into a queue processor somewhere...
-            foreach ($fulfillers as $fulfiller) {
-                $fulfiller->run();
+            try {
+                // This should probably be shoved off into a queue processor somewhere...
+                foreach ($fulfillers as $fulfiller) {
+                    $fulfiller->run();
+                }
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $event->order);
+                throw $exception;
             }
         });
     }
@@ -57,9 +63,14 @@ class PaymentSubscribers
         $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
 
         DB::transaction(function () use ($fulfillers) {
-            // This should probably be shoved off into a queue processor somewhere...
-            foreach ($fulfillers as $fulfiller) {
-                $fulfiller->revoke();
+            try {
+                // This should probably be shoved off into a queue processor somewhere...
+                foreach ($fulfillers as $fulfiller) {
+                    $fulfiller->revoke();
+                }
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $event->order);
+                throw $exception;
             }
         });
     }
