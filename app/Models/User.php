@@ -193,7 +193,8 @@ class User extends Model implements AuthenticatableContract, Messageable
             if (!$this->usernameChangeHistory()->save($history)) {
                 throw new ModelNotSavedException('failed saving model');
             }
-            $this->saveOrExplode();
+
+            $this->saveOrExplode(['inactive' => $type === 'inactive']);
         });
     }
 
@@ -1403,6 +1404,15 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
+    }
+
+    public function save(array $options = [])
+    {
+        if ($options['inactive'] ?? false) {
+            return parent::save($options);
+        }
+
+        return $this->isValid() && parent::save($options);
     }
 
     /**

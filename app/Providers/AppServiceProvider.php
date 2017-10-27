@@ -58,10 +58,6 @@ class AppServiceProvider extends ServiceProvider
             return $vote->isValid();
         });
 
-        User::saving(function ($user) {
-            return $user->isValid();
-        });
-
         Queue::after(function (JobProcessed $event) {
             if (config('datadog-helper.enabled')) {
                 Datadog::increment(config('datadog-helper.prefix').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
