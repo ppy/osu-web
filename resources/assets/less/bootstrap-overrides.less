@@ -19,3 +19,12 @@
 .modal.fade .modal-dialog {
   transition-timing-function: cubic-bezier(0, 0, 0, 1);
 }
+
+// override so we can move everything under 1000.
+.modal {
+  z-index: 550;
+}
+
+.modal-backdrop {
+  z-index: 540;
+}
