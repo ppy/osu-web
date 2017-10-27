@@ -130,13 +130,36 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException(['user_id is not valid']);
         }
 
-        $errors = static::validateUsername($newUsername);
+        $errors = static::validateUsername($newUsername, $this->username);
         if (count($errors) > 0) {
             throw new ChangeUsernameException($errors);
         }
 
-        $this->updateUsername($newUsername, $this->username, $type);
-        \Log::debug("username changed: {$this->username}");
+        DB::transaction(function () use ($newUsername, $type) {
+            // check for an exsiting inactive username and renames it.
+            static::renameUsernameIfInactive($newUsername);
+
+            $this->updateUsername($newUsername, $this->username, $type);
+            \Log::debug("username changed: {$this->username}");
+        });
+    }
+
+    /**
+     * Check for an exsiting inactive username and renames it if
+     * considered inactive.
+     *
+     * @return User if renamed; nil otherwise.
+     */
+    private static function renameUsernameIfInactive($username)
+    {
+        $existing = static::findByUsernameForInactive($username);
+        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
+        if ($existing !== null && $available) {
+            $newUsername = "{$existing->username}_old";
+            $existing->updateUsername($newUsername, $existing->username, 'inactive');
+
+            return $existing;
+        }
     }
 
     private function updateUsername($newUsername, $oldUsername, $type)
@@ -182,6 +205,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
         if ($user === null) {
             $lastUsage = UsernameChangeHistory::where('username_last', $username)
+                ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
                 ->orderBy('change_id', 'desc')
                 ->first();
 
