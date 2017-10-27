@@ -116,7 +116,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
-        if ($this->getNotificationType() === NotificationType::REFUND && $order->status !== 'paid') {
+        if ($this->getNotificationType() === NotificationType::REFUND && !$order->isPaidOrDelivered()) {
             $this->validationErrors()->add('order.status', '.order.status.not_paid', ['state' => $order->status]);
         }
 
