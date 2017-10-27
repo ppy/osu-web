@@ -26,13 +26,15 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
+use App\Traits\StoreNotifiable;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Exception;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use Validatable;
+    use StoreNotifiable, Validatable;
 
     protected $params;
     protected $signature;
@@ -158,22 +160,28 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         DB::connection('mysql-store')->transaction(function () {
-            $order = $this->getOrder();
+            try {
+                $order = $this->getOrder();
 
-            // Using a unique constraint, so we don't need to lock any rows.
-            $payment = new Payment([
-                'provider' => $this->getPaymentProvider(),
-                'transaction_id' => $this->getPaymentTransactionId(),
-                'paid_at' => $this->getPaymentDate(),
-            ]);
+                // Using a unique constraint, so we don't need to lock any rows.
+                $payment = new Payment([
+                    'provider' => $this->getPaymentProvider(),
+                    'transaction_id' => $this->getPaymentTransactionId(),
+                    'paid_at' => $this->getPaymentDate(),
+                ]);
 
-            if (!$order->payments()->save($payment)) {
-                throw new ModelNotSavedException('failed saving model');
+                if (!$order->payments()->save($payment)) {
+                    throw new ModelNotSavedException('failed saving model');
+                }
+
+                $order->paid($payment);
+
+                $eventName = "store.payments.completed.{$payment->provider}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
             }
 
-            $order->paid($payment);
-
-            $eventName = "store.payments.completed.{$payment->provider}";
             event($eventName, new PaymentEvent($order));
         });
     }
@@ -192,13 +200,19 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         DB::connection('mysql-store')->transaction(function () {
-            $order = $this->getOrder();
-            $payment = $order->payments->where('cancelled', false)->first();
-            $payment->cancel();
+            try {
+                $order = $this->getOrder();
+                $payment = $order->payments->where('cancelled', false)->first();
+                $payment->cancel();
 
-            $order->cancel();
+                $order->cancel();
 
-            $eventName = "store.payments.cancelled.{$payment->provider}";
+                $eventName = "store.payments.cancelled.{$payment->provider}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
             event($eventName, new PaymentEvent($order));
         });
     }

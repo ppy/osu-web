@@ -62,5 +62,6 @@ return [
         'wrong_current_password' => 'Current password is incorrect.',
         'wrong_email_confirmation' => 'Email confirmation does not match.',
         'wrong_password_confirmation' => 'Password confirmation does not match.',
+        'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
     ],
 ];
