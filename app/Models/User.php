@@ -145,24 +145,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         });
     }
 
-    /**
-     * Check for an exsiting inactive username and renames it if
-     * considered inactive.
-     *
-     * @return User if renamed; nil otherwise.
-     */
-    private static function renameUsernameIfInactive($username)
-    {
-        $existing = static::findByUsernameForInactive($username);
-        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
-        if ($existing !== null && $available) {
-            $newUsername = "{$existing->username}_old";
-            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
-
-            return $existing;
-        }
-    }
-
     private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
     {
         $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
@@ -1406,5 +1388,23 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
+    }
+
+    /**
+     * Check for an exsiting inactive username and renames it if
+     * considered inactive.
+     *
+     * @return User if renamed; nil otherwise.
+     */
+    private static function renameUsernameIfInactive($username)
+    {
+        $existing = static::findByUsernameForInactive($username);
+        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
+        if ($existing !== null && $available) {
+            $newUsername = "{$existing->username}_old";
+            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
+
+            return $existing;
+        }
     }
 }
