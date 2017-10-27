@@ -95,7 +95,7 @@ class @FriendButton extends React.PureComponent
     else
       @props.container?.classList.add 'hidden'
 
-      return span()
+      return null
 
     blockClass = bn
 
