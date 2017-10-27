@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,51 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
+namespace App\Events;
 
-.tournament {
-  .default-box-shadow();
-
-  display: flex;
-
-  margin: 10px auto;
-
-  max-width: 640px;
-  min-height: 150px;
-
-  .title {
-    font-weight: bold;
-    font-size: 25px;
-    color: @pink-text;
-  }
-
-  .dates-tournament {
-    font-weight: bold;
-    color: @pink-text;
-  }
-
-  .dates-reg {
-    font-weight: bold;
-    padding-top: 10px;
-  }
-
-  .mode {
-    width: 150px;
-    color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .at2x("/images/backgrounds/watercolour-square-blue.jpg", 150px, 150px);
-
-    background-size: auto 100%;
-
-    font-size: 70px;
-    .default-text-shadow;
-  }
-
-  .info {
-    padding: 25px;
-  }
+interface MessageableEvent
+{
+    public function toMessage();
 }
