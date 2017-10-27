@@ -167,9 +167,18 @@ class User extends Model implements AuthenticatableContract, Messageable
         });
     }
 
+    public static function findByUsernameForInactive($username)
+    {
+        return static::whereIn(
+            'username',
+            [str_replace(' ', '_', $username),
+            str_replace('_', ' ', $username)]
+        )->first();
+    }
+
     public static function checkWhenUsernameAvailable($username)
     {
-        $user = self::whereIn('username', [str_replace(' ', '_', $username), str_replace('_', ' ', $username)])->first();
+        $user = static::findByUsernameForInactive($username);
 
         if ($user === null) {
             $lastUsage = UsernameChangeHistory::where('username_last', $username)
