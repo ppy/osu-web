@@ -27,7 +27,7 @@
     </div>
 
     <div class="store-payment-method__cell">
-        <div class="store-text store-text--header">Pay with xsolla</div>
+        <div class="store-text store-text--header">Pay with Xsolla</div>
 
         <div class="store-text store-text--block">You can complete your transactions using Xsolla</div>
 
