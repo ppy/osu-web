@@ -16,51 +16,45 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
-
 .tournament {
-  .default-box-shadow();
+  @_top: tournament;
+  background-color: @community-grayblue-page-background;
 
-  display: flex;
-
-  margin: 10px auto;
-
-  max-width: 640px;
-  min-height: 150px;
-
-  .title {
-    font-weight: bold;
-    font-size: 25px;
-    color: @pink-text;
-  }
-
-  .dates-tournament {
-    font-weight: bold;
-    color: @pink-text;
-  }
-
-  .dates-reg {
-    font-weight: bold;
-    padding-top: 10px;
-  }
-
-  .mode {
-    width: 150px;
-    color: #fff;
-
+  &__body {
+    .center-content();
     display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .at2x("/images/backgrounds/watercolour-square-blue.jpg", 150px, 150px);
-
-    background-size: auto 100%;
-
-    font-size: 70px;
-    .default-text-shadow;
+    color: white;
+    flex-direction: column;
+    padding: 20px;
   }
 
-  .info {
-    padding: 25px;
+  &__countdown-timer {
+    background: @gray-blue-dark;
+    padding-bottom: 20px;
+    margin-top: -10px;
+  }
+
+  &__description {
+    .content-font();
+
+    background-color: @gray-blue-dark;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 20px;
+    .default-box-shadow();
+
+    > h1, h2, h3, h4, h5, h6 {
+      color: white;
+    }
+    a {
+      color: @community-grayblue-text;
+    }
+  }
+
+  &__banner {
+    height: 450px;
+    background-size: cover;
+    background-position: center center;
   }
 }

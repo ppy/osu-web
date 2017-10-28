@@ -22,12 +22,16 @@ namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
+use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
+use Exception;
 use Request;
 
 class CheckoutController extends Controller
 {
+    use StoreNotifiable;
+
     protected $layout = 'master';
     protected $actionPrefix = 'checkout-';
 
@@ -71,10 +75,15 @@ class CheckoutController extends Controller
 
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
             DB::connection('mysql-store')->transaction(function () use ($order) {
-                $checkout = new OrderCheckout($order);
-                $checkout->completeCheckout();
+                try {
+                    $checkout = new OrderCheckout($order);
+                    $checkout->completeCheckout();
 
-                $order->paid(null);
+                    $order->paid(null);
+                } catch (Exception $exception) {
+                    $this->notifyError($exception, $order);
+                    throw $exception;
+                }
 
                 event('store.payments.completed.free', new PaymentEvent($order));
             });

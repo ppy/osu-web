@@ -104,7 +104,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isQAT()) {
+        if ($user->isBNG() || $user->isQAT()) {
             return 'ok';
         }
 
