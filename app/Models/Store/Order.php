@@ -25,6 +25,7 @@ use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -242,6 +243,16 @@ class Order extends Model
     {
         $this->status = 'cancelled';
         $this->saveOrExplode();
+    }
+
+    public function delete()
+    {
+        if ($this->status !== 'incart') {
+            // order_id and getKey() both return null at this stage ?_?
+            throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
+        }
+
+        parent::delete();
     }
 
     public function paid(Payment $payment = null)
