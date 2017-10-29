@@ -44,7 +44,7 @@ class ValidationMessage extends Message
     {
         $content = "`{$this->eventName}`";
         if ($this->event instanceof HasOrder) {
-            $content .= " | `Order {$this->event->getOrder()->order_id}`";
+            $content .= " | Order `{$this->event->getOrder()->getOrderNumber()}`";
         }
 
         return (new SlackMessage)
