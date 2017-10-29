@@ -22,10 +22,11 @@ namespace App\Models\Store;
 
 use App\Exceptions\ValidationException;
 use App\Traits\Validatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderItem extends Model
 {
-    use Validatable;
+    use SoftDeletes, Validatable;
 
     protected $primaryKey = 'id';
 

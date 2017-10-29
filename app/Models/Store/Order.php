@@ -25,9 +25,12 @@ use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use SoftDeletes;
+
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
 
     protected $primaryKey = 'order_id';
