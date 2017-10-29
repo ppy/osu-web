@@ -25,9 +25,13 @@ use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Exception;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use SoftDeletes;
+
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
 
     protected $primaryKey = 'order_id';
@@ -239,6 +243,17 @@ class Order extends Model
     {
         $this->status = 'cancelled';
         $this->saveOrExplode();
+    }
+
+    public function delete()
+    {
+        if ($this->status !== 'incart') {
+            // in most cases this would return a null key because the lookup for the cart
+            // would return a new cart anyway?
+            throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
+        }
+
+        parent::delete();
     }
 
     public function paid(Payment $payment = null)

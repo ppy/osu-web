@@ -43,7 +43,7 @@ class ErrorMessage extends Message
     {
         $content = 'ERROR';
         if ($this->order) {
-            $content .= " | `Order {$this->order->order_id}`";
+            $content .= " | Order `{$this->order->getOrderNumber()}`";
         }
 
         $className = get_class($this->exception);

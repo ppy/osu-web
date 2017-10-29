@@ -64,7 +64,11 @@ abstract class Model extends BaseModel
         $result = $this->save($options);
 
         if ($result === false) {
-            throw new ModelNotSavedException('failed saving model');
+            $message = method_exists($this, 'validationErrors') ?
+                implode("\n", $this->validationErrors()->allMessages()) :
+                'failed saving model';
+
+            throw new ModelNotSavedException($message);
         }
 
         return $result;
