@@ -22,10 +22,12 @@ namespace App\Models\Store;
 
 use App\Exceptions\ValidationException;
 use App\Traits\Validatable;
+use Exception;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class OrderItem extends Model
 {
-    use Validatable;
+    use SoftDeletes, Validatable;
 
     protected $primaryKey = 'id';
 
@@ -51,6 +53,15 @@ class OrderItem extends Model
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    public function delete()
+    {
+        if ($this->order->status !== 'incart') {
+            throw new Exception("Delete not allowed on Order ({$this->order->getKey()}).");
+        }
+
+        parent::delete();
     }
 
     public function save(array $options = [])
