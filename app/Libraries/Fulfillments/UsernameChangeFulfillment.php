@@ -33,8 +33,10 @@ class UsernameChangeFulfillment extends OrderFulfiller
     {
         $this->throwOnFail($this->validateRun());
 
+        $item = $this->getOrderItems()->first();
+        $type = $item['cost'] > 0 ? 'paid' : 'support';
         $user = $this->order->user;
-        $user->changeUsername($this->getNewUserName());
+        $user->changeUsername($this->getNewUserName(), $type);
         event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
     }
 
