@@ -25,7 +25,6 @@ use App\Libraries\OsuAuthorize;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Forum\PollVote as ForumPollVote;
-use App\Models\User;
 use Datadog;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
