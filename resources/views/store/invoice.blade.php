@@ -187,6 +187,12 @@ window.onload = function() {
                     We send all orders from Japan using a variety of shipping services depending on the weight and value. This area will update with specifics once we have shipped the order.
                 </p>
             @endif
+
+            @if ($order->isPendingEcheck())
+                <p>
+                    As your payment was an eCheck, please allow up to 10 extra days for the payment to clear through paypal!
+                </p>
+            @endif
         @endif
     </div>
 
