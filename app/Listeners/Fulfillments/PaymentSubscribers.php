@@ -78,7 +78,7 @@ class PaymentSubscribers
     public function onPaymentPending($eventName, $data)
     {
         $event = $data[0] ?? null;
-        $this->notifyOrder($event->order, "eCheck used; waiting to clear.", $eventName);
+        $this->notifyOrder($event->order, 'eCheck used; waiting to clear.', $eventName);
     }
 
     public function onPaymentRejected($eventName, $data)
