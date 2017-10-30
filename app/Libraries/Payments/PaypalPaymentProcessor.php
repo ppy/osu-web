@@ -61,6 +61,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $payment_statuses = ['Completed'];
         static $cancel_statuses = ['Expired', 'Failed', 'Refunded', 'Reversed', 'Voided', 'Canceled_Reversal', 'Denied'];
         static $pending_statuses = ['Pending'];
+        static $declined_statuses = ['Declined'];
 
         $status = $this['payment_status'];
         if (in_array($status, $payment_statuses, true)) {
@@ -69,6 +70,8 @@ class PaypalPaymentProcessor extends PaymentProcessor
             return NotificationType::REFUND;
         } elseif (in_array($status, $pending_statuses, true)) {
             return NotificationType::PENDING;
+        } elseif (in_array($status, $declined_statuses, true)) {
+            return NotificationType::REJECTED;
         } else {
             return "unknown__{$status}";
         }
