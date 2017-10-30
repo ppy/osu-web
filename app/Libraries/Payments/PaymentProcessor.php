@@ -165,6 +165,11 @@ abstract class PaymentProcessor implements \ArrayAccess
             try {
                 $order = $this->getOrder();
 
+                // FIXME: less hacky
+                if ($order->tracking_code === 'PENDING ECHECK') {
+                    $order->tracking_code = 'ECHECK CLEARED';
+                }
+
                 // Using a unique constraint, so we don't need to lock any rows.
                 $payment = new Payment([
                     'provider' => $this->getPaymentProvider(),
