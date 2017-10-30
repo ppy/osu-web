@@ -135,6 +135,8 @@ abstract class PaymentProcessor implements \ArrayAccess
         switch ($type) {
             case NotificationType::PAYMENT:
                 return $this->apply();
+            case NotificationType::PENDING:
+                return $this->pending();
             case NotificationType::REFUND:
                 return $this->cancel();
             case NotificationType::REJECTED:
@@ -208,6 +210,28 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $order->cancel();
 
                 $eventName = "store.payments.cancelled.{$payment->provider}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
+            event($eventName, new PaymentEvent($order));
+        });
+    }
+
+    public function pending()
+    {
+        $this->sandboxAssertion();
+
+        if (!$this->validateTransaction()) {
+            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+        }
+
+        DB::connection('mysql-store')->transaction(function () {
+            try {
+                $order = $this->getOrder();
+
+                $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
             } catch (Exception $exception) {
                 $this->notifyError($exception, $order);
                 throw $exception;
