@@ -80,7 +80,7 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'restriction_info' => "Upload available for <a href='".product_url('supporter_tag')."' target='_blank'>osu!supporters</a> only",
                     'size_info' => 'Cover size should be 2000x700',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
@@ -189,7 +189,7 @@ return [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'restriction_info' => "You need to be an <a href='".product_url('supporter_tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'rank' => [
             'country' => 'Country rank for :mode',

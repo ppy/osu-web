@@ -74,7 +74,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar a sua imagem aqui para enviar',
-                    'restriction_info' => "Envio de imagem disponível apenas para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => "Envio de imagem disponível apenas para <a href='".product_url('supporter_tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'O tamanho da capa deve ser 2000x700',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -156,7 +156,7 @@ return [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
             'edit_big' => 'Editar eu!',
             'placeholder' => 'Escreva o conteúdo da página aqui',
-            'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
+            'restriction_info' => "Você precisa ser um <a href='".product_url('supporter_tag')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
         ],
         'rank' => [
             'country' => 'Rank de país para :mode',

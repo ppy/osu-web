@@ -79,7 +79,7 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义皮肤只有 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 可用",
+                    'restriction_info' => "自定义皮肤只有 <a href='".product_url('supporter_tag')."' target='_blank'>osu!支持者</a> 可用",
                     'size_info' => '图片尺寸应为2000x500',
                     'too_large' => '上传的图片过大.',
                     'unsupported_format' => '不支持的格式.',
@@ -188,7 +188,7 @@ return [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
+            'restriction_info' => "需要成为 <a href='".product_url('supporter_tag')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',

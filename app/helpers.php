@@ -985,3 +985,8 @@ function group_users_by_online_state($users)
         'offline' => $offline,
     ];
 }
+
+function product_url($key)
+{
+    return route('store.product', ['product' => config("store.product_ids.{$key}")]);
+}

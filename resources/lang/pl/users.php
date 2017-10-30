@@ -81,7 +81,7 @@ return [
                     'button' => 'Dodaj tło',
                     'dropzone' => 'Upuść tutaj, aby dodać',
                     'dropzone_info' => 'Możesz także upuścić swoje tło tutaj, aby je dodać',
-                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".osu_url('support-the-game')."' target='_blank'>statusu donatora</a>, aby odblokować tę funkcję.",
+                    'restriction_info' => "Aby odblokować tę funkcję, potrzebujesz <a href='".product_url('supporter_tag')."' target='_blank'>statusu donatora</a>, aby odblokować tę funkcję.",
                     'size_info' => 'Rozmiary nagłówka powinny wynosić przynajmniej 2000x700',
                     'too_large' => 'Plik jest zbyt duży.',
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
@@ -190,7 +190,7 @@ return [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
-            'restriction_info' => "Musisz posiadać <a href='".osu_url('support-the-game')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
+            'restriction_info' => "Musisz posiadać <a href='".product_url('supporter_tag')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',

@@ -75,7 +75,7 @@ return [
                     'button' => 'Загрузить изображение',
                     'dropzone' => 'Брось изображение сюда для загрузки',
                     'dropzone_info' => 'Ты также можешь перетащить изображение сюда для загрузки',
-                    'restriction_info' => "Загрузка своих обложек доступна только для <a href='".osu_url('support-the-game')."' target='_blank'>osu! саппортеров</a>",
+                    'restriction_info' => "Загрузка своих обложек доступна только для <a href='".product_url('supporter_tag')."' target='_blank'>osu! саппортеров</a>",
                     'size_info' => 'Размер обложки должна быть 2000x700',
                     'too_large' => 'Загруженное изображение слишком большое.',
                     'unsupported_format' => 'Неподдерживаемый формат.',
@@ -183,7 +183,7 @@ return [
             'description' => '<strong>обо мне!</strong> - это твоё личное редактируемое пространство в твоём профиле.',
             'edit_big' => 'Отредактируй меня!',
             'placeholder' => 'Введи контент этой страницы',
-            'restriction_info' => "Ты должен иметь тег <a href='".osu_url('support-the-game')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
+            'restriction_info' => "Ты должен иметь тег <a href='".product_url('supporter_tag')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
         ],
         'rank' => [
             'country' => 'Рейтинг страны для :mode',
