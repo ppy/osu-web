@@ -75,6 +75,12 @@ class PaymentSubscribers
         });
     }
 
+    public function onPaymentPending($eventName, $data)
+    {
+        $event = $data[0] ?? null;
+        $this->notifyOrder($event->order, "eCheck used; waiting to clear.", $eventName);
+    }
+
     public function onPaymentRejected($eventName, $data)
     {
         $event = $data[0] ?? null;
@@ -91,6 +97,11 @@ class PaymentSubscribers
         $events->listen(
             'store.payments.completed.*',
             static::class.'@onPaymentCompleted'
+        );
+
+        $events->listen(
+            'store.payments.pending.*',
+            static::class.'@onPaymentPending'
         );
 
         $events->listen(

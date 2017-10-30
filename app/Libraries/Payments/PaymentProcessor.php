@@ -229,7 +229,12 @@ abstract class PaymentProcessor implements \ArrayAccess
 
         DB::connection('mysql-store')->transaction(function () {
             try {
-                $order = $this->getOrder();
+                $order = $this->getOrder()->lockSelf();
+                // Only supported by Paypal processor atm, so assume eCheck.
+                // Change if the situation changes.
+                $order->tracking_code = 'PENDING ECHECK';
+                $order->transaction_id = $this->getTransactionId();
+                $order->saveOrExplode();
 
                 $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
             } catch (Exception $exception) {
