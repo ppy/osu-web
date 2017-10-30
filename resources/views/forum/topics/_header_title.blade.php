@@ -19,7 +19,7 @@
 @endphp
 <div class="forum-topic-title">
     <div class="js-forum-topic-title--main forum-topic-title__group">
-        <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-title__title js-forum-topic-title--title u-ellipsis-overflow">
+        <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-title__title js-forum-topic-title--title">
             {{ $topic->topic_title }}
         </a>
 

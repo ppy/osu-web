@@ -60,5 +60,16 @@
     .link-white();
     .link-plain();
     margin-right: 10px;
+
+    /* force line-breaking and hide overflow */
+    word-break: break-all;
+    max-height: 180px;
+    overflow: hidden;
+
+    /* magic line-clamping on webkit browsers (safari, chrome, etc) */
+    /* (other browsers won't show ellipses) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 }
