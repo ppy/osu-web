@@ -37,6 +37,8 @@
 
                 <span class="osu-nav__title-separator">
                     <i class="fa fa-angle-right"></i>
+                    {{-- for title attribute --}}
+                    <span class="hidden">-</span>
                 </span>
 
                 {{ trans("layout.menu.{$current_section}.{$current_action}") }}
