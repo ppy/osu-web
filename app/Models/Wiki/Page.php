@@ -66,14 +66,20 @@ class Page
             'bool' => [
                 'minimum_should_match' => 1,
                 'should' => [
-                    ['term' => [
-                            'locale' => [
-                                'value' => $params['locale'] ?? App::getLocale(),
-                                'boost' => 1000,
+                    ['constant_score' => [
+                        'boost' => 1000,
+                        'query' => [
+                            'match' => [
+                                'locale' => $params['locale'] ?? App::getLocale(),
                             ],
+                        ],
                     ]],
-                    ['term' => [
-                            'locale' => config('app.fallback_locale'),
+                    ['constant_score' => [
+                        'query' => [
+                            'match' => [
+                                'locale' => config('app.fallback_locale'),
+                            ],
+                        ],
                     ]],
                 ],
             ],
