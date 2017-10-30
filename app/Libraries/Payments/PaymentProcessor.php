@@ -259,6 +259,10 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     public function rejected()
     {
+        // just validate the signature until we make sure validating
+        //  the whole transaction doesn't make it explode.
+        $this->ensureValidSignature();
+
         $order = $this->getOrder();
         $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
         event($eventName, new PaymentEvent($order));
