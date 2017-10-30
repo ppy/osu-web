@@ -166,8 +166,8 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $order = $this->getOrder();
 
                 // FIXME: less hacky
-                if ($order->tracking_code === 'PENDING ECHECK') {
-                    $order->tracking_code = 'ECHECK CLEARED';
+                if ($order->tracking_code === Order::PENDING_ECHECK) {
+                    $order->tracking_code = Order::ECHECK_CLEARED;
                 }
 
                 // Using a unique constraint, so we don't need to lock any rows.
@@ -237,7 +237,7 @@ abstract class PaymentProcessor implements \ArrayAccess
                 $order = $this->getOrder()->lockSelf();
                 // Only supported by Paypal processor atm, so assume eCheck.
                 // Change if the situation changes.
-                $order->tracking_code = 'PENDING ECHECK';
+                $order->tracking_code = Order::PENDING_ECHECK;
                 $order->transaction_id = $this->getTransactionId();
                 $order->saveOrExplode();
 
