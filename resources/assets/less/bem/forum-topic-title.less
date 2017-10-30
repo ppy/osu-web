@@ -18,7 +18,12 @@
 
 .forum-topic-title {
   // actual font takes more than the 1.1 default line height.
-  line-height: 1.5;
+  line-height: 1.4;
+
+  /* force line-breaking and hide overflow */
+  word-break: break-all;
+  max-height: 4.5em;
+  overflow: hidden;
 
   &__button {
     margin-left: 5px;
@@ -60,11 +65,6 @@
     .link-white();
     .link-plain();
     margin-right: 10px;
-
-    /* force line-breaking and hide overflow */
-    word-break: break-all;
-    max-height: 180px;
-    overflow: hidden;
 
     /* magic line-clamping on webkit browsers (safari, chrome, etc) */
     /* (other browsers won't show ellipses) */
