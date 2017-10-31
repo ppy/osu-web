@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\ValidationException;
+use App\Models\User;
 use App\Traits\Validatable;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;

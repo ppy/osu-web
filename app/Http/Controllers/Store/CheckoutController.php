@@ -27,6 +27,7 @@ use Auth;
 use DB;
 use Exception;
 use Request;
+use View;
 
 class CheckoutController extends Controller
 {
@@ -60,7 +61,12 @@ class CheckoutController extends Controller
         // TODO: should be able to notify user that items were changed due to stock/price changes.
         $order->refreshCost();
         $checkout = new OrderCheckout($order);
+        $validationErrors = $checkout->validate();
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
+
+        // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
+        // an array and will cause issues in shared views.
+        View::share('validationErrors', $validationErrors);
 
         return view('store.checkout', compact('order', 'addresses', 'checkout'));
     }

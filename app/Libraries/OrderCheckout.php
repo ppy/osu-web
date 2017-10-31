@@ -22,11 +22,14 @@ namespace App\Libraries;
 
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
+use App\Models\User;
 use DB;
 use Request;
 
 class OrderCheckout
 {
+    private $errors = [];
+
     private $order;
 
     public function __construct(Order $order)
@@ -90,6 +93,23 @@ class OrderCheckout
                 );
             }
         });
+    }
+
+    public function validate()
+    {
+        $changes = $this->order->items()->customClass('username-change')->get();
+
+        $itemErrors = [];
+        foreach ($changes as $item) {
+            $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
+            $itemErrors[$item->id] = $changeUsername->validate()->allMessages();
+        }
+
+        $this->errors = [
+            'orderItems' => $itemErrors,
+        ];
+
+        return $this->errors;
     }
 
     /**
