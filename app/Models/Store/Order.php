@@ -178,6 +178,20 @@ class Order extends Model
         return (float) $total * $rate;
     }
 
+    public function getStatusText()
+    {
+        switch ($this->status) {
+            case 'cancelled':
+                return 'Cancelled';
+            case 'checkout':
+                return 'Awaiting Payment';
+            case 'incart':
+                return '';
+            default:
+                return 'Paid';
+        }
+    }
+
     public function getTotal()
     {
         return $this->getSubtotal() + $this->shipping;
