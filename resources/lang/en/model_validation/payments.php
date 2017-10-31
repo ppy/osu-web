@@ -36,6 +36,9 @@ return [
     'param' => [
         'invalid' => '`:param` param does not match',
     ],
+    'paypal' => [
+        'not_echeck' => 'Pending payment is not an echeck. (:actual)',
+    ],
     'purchase' => [
         'checkout' => [
             'amount' => 'Payment amount does not match: :actual != :expected',
