@@ -23,6 +23,7 @@ namespace App\Libraries\Payments;
 class NotificationType
 {
     const PAYMENT = 'payment';
+    const PENDING = 'pending';
     const REFUND = 'refund';
     const REJECTED = 'rejected';
     const USER_SEARCH = 'user_search';
