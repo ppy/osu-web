@@ -32,7 +32,9 @@ class Order extends Model
 {
     use SoftDeletes;
 
+    const ECHECK_CLEARED = 'ECHECK CLEARED';
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
+    const PENDING_ECHECK = 'PENDING ECHECK';
 
     protected $primaryKey = 'order_id';
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
@@ -184,6 +186,11 @@ class Order extends Model
     public function isPaidOrDelivered()
     {
         return in_array($this->status, ['paid', 'delivered'], true);
+    }
+
+    public function isPendingEcheck()
+    {
+        return $this->tracking_code === static::PENDING_ECHECK;
     }
 
     public function removeInvalidItems()

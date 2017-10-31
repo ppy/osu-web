@@ -135,6 +135,8 @@ abstract class PaymentProcessor implements \ArrayAccess
         switch ($type) {
             case NotificationType::PAYMENT:
                 return $this->apply();
+            case NotificationType::PENDING:
+                return $this->pending();
             case NotificationType::REFUND:
                 return $this->cancel();
             case NotificationType::REJECTED:
@@ -162,6 +164,11 @@ abstract class PaymentProcessor implements \ArrayAccess
         DB::connection('mysql-store')->transaction(function () {
             try {
                 $order = $this->getOrder();
+
+                // FIXME: less hacky
+                if ($order->tracking_code === Order::PENDING_ECHECK) {
+                    $order->tracking_code = Order::ECHECK_CLEARED;
+                }
 
                 // Using a unique constraint, so we don't need to lock any rows.
                 $payment = new Payment([
@@ -217,6 +224,33 @@ abstract class PaymentProcessor implements \ArrayAccess
         });
     }
 
+    public function pending()
+    {
+        $this->sandboxAssertion();
+
+        if (!$this->validateTransaction()) {
+            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+        }
+
+        DB::connection('mysql-store')->transaction(function () {
+            try {
+                $order = $this->getOrder()->lockSelf();
+                // Only supported by Paypal processor atm, so assume eCheck.
+                // Change if the situation changes.
+                $order->tracking_code = Order::PENDING_ECHECK;
+                $order->transaction_id = $this->getTransactionId();
+                $order->saveOrExplode();
+
+                $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
+            event($eventName, new PaymentEvent($order));
+        });
+    }
+
     /**
      * Payment was rejected or aborted for whatever reason.
      * This method is for handling notifications from the payment providers.
@@ -225,6 +259,10 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     public function rejected()
     {
+        // just validate the signature until we make sure validating
+        //  the whole transaction doesn't make it explode.
+        $this->ensureValidSignature();
+
         $order = $this->getOrder();
         $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
         event($eventName, new PaymentEvent($order));

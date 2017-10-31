@@ -43,7 +43,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
     public function getPaymentAmount()
     {
         // TODO: less floaty
-        return (float) $this['payment_gross'];
+        return (float) ($this['payment_gross'] ?? $this['mc_gross']);
     }
 
     public function getPaymentDate()
@@ -60,13 +60,20 @@ class PaypalPaymentProcessor extends PaymentProcessor
     {
         static $payment_statuses = ['Completed'];
         static $cancel_statuses = ['Expired', 'Failed', 'Refunded', 'Reversed', 'Voided', 'Canceled_Reversal', 'Denied'];
+        static $pending_statuses = ['Pending'];
+        static $declined_statuses = ['Declined'];
 
-        if (in_array($this['payment_status'], $payment_statuses, true)) {
+        $status = $this['payment_status'];
+        if (in_array($status, $payment_statuses, true)) {
             return NotificationType::PAYMENT;
-        } elseif (in_array($this['payment_status'], $cancel_statuses, true)) {
+        } elseif (in_array($status, $cancel_statuses, true)) {
             return NotificationType::REFUND;
+        } elseif (in_array($status, $pending_statuses, true)) {
+            return NotificationType::PENDING;
+        } elseif (in_array($status, $declined_statuses, true)) {
+            return NotificationType::REJECTED;
         } else {
-            return "unknown__{$this['payment_status']}";
+            return "unknown__{$status}";
         }
     }
 
@@ -87,21 +94,50 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
 
         // order should be in the correct state
-        if ($this->getNotificationType() === NotificationType::PAYMENT
-            && !in_array($order->status, ['incart', 'checkout'], true)) {
-            $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
+        if ($this->isPaymentOrPending()) {
+            if (!in_array($order->status, ['incart', 'checkout'], true)) {
+                $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
+            }
+
+            \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
+            if ($this->getPaymentAmount() !== $order->getTotal()) {
+                $this->validationErrors()->add(
+                    'purchase.checkout.amount',
+                    '.purchase.checkout.amount',
+                    ['expected' => $order->getTotal(), 'actual' => $this->getPaymentAmount()]
+                );
+            }
         }
 
-        \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
-        if ($this->getNotificationType() === NotificationType::PAYMENT
-            && $this->getPaymentAmount() !== $order->getTotal()) {
-            $this->validationErrors()->add(
-                'purchase.checkout.amount',
-                '.purchase.checkout.amount',
-                ['expected' => $order->getTotal(), 'actual' => $this->getPaymentAmount()]
-            );
-        }
+        $this->validatePendingStatus();
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    private function isPaymentOrPending()
+    {
+        static $types = [NotificationType::PAYMENT, NotificationType::PENDING];
+
+        return in_array($this->getNotificationType(), $types, true);
+    }
+
+    /**
+     * Runs validations related to Pending status;
+     * adds errors into validationErrors(), does not return anything.
+     */
+    private function validatePendingStatus()
+    {
+        if ($this->getNotificationType() !== NotificationType::PENDING) {
+            return;
+        }
+
+        // only recognize echecks
+        if ($this['pending_reason'] !== 'echeck') {
+            $this->validationErrors()->add(
+                'pending_reason',
+                '.paypal.not_echeck',
+                ['actual' => $this['pending_reason']]
+            );
+        }
     }
 }
