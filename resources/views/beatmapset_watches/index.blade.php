@@ -81,7 +81,7 @@
                                 {{ $watch->beatmapset->beatmapDiscussions()->openIssues()->count() }}
                             </td>
 
-                            <td>
+                            <td class="beatmapset-watches__col">
                                 <button class="btn-circle"
                                     data-remote="true"
                                     data-method="DELETE"
