@@ -20,10 +20,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetWatch;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Language;
@@ -147,6 +149,8 @@ class BeatmapsetsController extends Controller
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
 
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+
         if ($returnJson) {
             return $initialData;
         } else {
@@ -192,6 +196,12 @@ class BeatmapsetsController extends Controller
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
 
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        NotifyBeatmapsetUpdate::dispatch([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]);
+
         return [
             'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
@@ -207,6 +217,12 @@ class BeatmapsetsController extends Controller
         if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
+
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        NotifyBeatmapsetUpdate::dispatch([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]);
 
         return [
             'beatmapset' => $beatmapset->defaultJson(),

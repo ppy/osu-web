@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h1, h2, p} = ReactDOMFactories
+{a, button, div, h1, h2, p} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapDiscussions.Header extends React.PureComponent
@@ -47,10 +47,13 @@ class BeatmapDiscussions.Header extends React.PureComponent
     bn = 'beatmap-discussions-header-bottom'
 
     div className: bn,
-      div className: "#{bn}__content #{bn}__content--mapping",
+      div className: "#{bn}__content #{bn}__content--details",
         el BeatmapsetMapping,
           beatmapset: @props.beatmapset
           user: @props.users[@props.beatmapset.user_id]
+
+        div className: "#{bn}__subscribe",
+          el BeatmapDiscussions.Subscribe, beatmapset: @props.beatmapset
 
       div className: "#{bn}__content #{bn}__content--nomination",
         el BeatmapDiscussions.Nominations,
@@ -106,6 +109,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
               beatmap: @props.currentBeatmap
 
 
+  setFilter: (e) =>
+    e.preventDefault()
+    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type
+
+
   stats: =>
     bn = 'counter-box'
 
@@ -148,8 +156,3 @@ class BeatmapDiscussions.Header extends React.PureComponent
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
     @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)
-
-
-  setFilter: (e) =>
-    e.preventDefault()
-    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type

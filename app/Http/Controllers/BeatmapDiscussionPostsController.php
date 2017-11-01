@@ -21,10 +21,12 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
 use Request;
@@ -118,6 +120,12 @@ class BeatmapDiscussionPostsController extends Controller
         $postIds = array_pluck($posts, 'id');
 
         if ($saved === true) {
+            BeatmapsetWatch::markRead($discussion->beatmapset, Auth::user());
+            NotifyBeatmapsetUpdate::dispatch([
+                'user' => Auth::user(),
+                'beatmapset' => $discussion->beatmapset,
+            ]);
+
             return [
                 'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
