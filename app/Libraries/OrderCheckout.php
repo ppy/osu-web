@@ -97,16 +97,25 @@ class OrderCheckout
 
     public function validate()
     {
-        $changes = $this->order->items()->customClass('username-change')->get();
+        $errors = [];
+        // FIXME: include Product in selection.
+        foreach ($this->order->items as $item) {
+            if (!$item->isValid()) {
+                $errors[$item->id] = $item->validationErrors()->allMessages();
+            }
 
-        $itemErrors = [];
-        foreach ($changes as $item) {
-            $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-            $itemErrors[$item->id] = $changeUsername->validate()->allMessages();
-        }
+            if ($item->product->custom_class === 'username-change') {
+
+                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
+                $errors[$item->id] = array_merge(
+                    $errors[$item->id] ?? [],
+                    $changeUsername->validate()->allMessages()
+                );
+            }
+        };
 
         $this->errors = [
-            'orderItems' => $itemErrors,
+            'orderItems' => $errors,
         ];
 
         return $this->errors;
