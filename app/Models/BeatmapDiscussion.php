@@ -94,7 +94,7 @@ class BeatmapDiscussion extends Model
 
     public function canBeResolved()
     {
-        return in_array($this->attributes['message_type'], static::RESOLVABLE_TYPES, true);
+        return in_array($this->attributes['message_type'] ?? null, static::RESOLVABLE_TYPES, true);
     }
 
     public function refreshKudosu($event)
