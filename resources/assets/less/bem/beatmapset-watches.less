@@ -18,4 +18,28 @@
 
 .beatmapset-watches {
   margin: 20px;
+
+  &__col {
+    &--cover {
+      width: 70px;
+      padding: 0;
+    }
+
+    && { // bootstrap override
+      vertical-align: middle;
+    }
+  }
+
+  &__cover {
+    .default-border-radius();
+    width: 70px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  &__description {
+    margin-bottom: 20px;
+  }
 }
