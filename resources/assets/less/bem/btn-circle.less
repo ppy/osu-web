@@ -17,6 +17,7 @@
  */
 
 .btn-circle {
+  @top: btn-circle;
   .reset-input();
   .circle(@btn-circle-diameter);
   .default-box-shadow();
@@ -36,17 +37,6 @@
     color: #fff;
     text-decoration: none;
     box-shadow: 0 5px 15px fade(#000, 40%);
-  }
-
-  &--activated {
-    background-color: @blue;
-    color: #000;
-
-    &:focus,
-    &:hover,
-    &:active {
-      color: #000;
-    }
   }
 
   &--bbcode {
@@ -89,6 +79,34 @@
 
   &--topic-nav {
     margin: 0 5px;
+  }
+
+  &--activated {
+    background-color: @blue;
+    color: #000;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #000;
+    }
+  }
+
+  // colour variations
+  &--purple {
+    background-color: @purple-dark;
+
+    &.@{top}--activated {
+      background-color: @purple-light;
+    }
+  }
+
+  &--yellow {
+    background-color: @yellow-dark;
+
+    &.@{top}--activated {
+      background-color: @yellow-light;
+    }
   }
 
   // overrides everything else
