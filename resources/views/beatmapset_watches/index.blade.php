@@ -55,7 +55,7 @@
                         <td>
                             <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
                                 @if ($watch->isRead())
-                                {{ $watch->beatmapset->title }}
+                                    {{ $watch->beatmapset->title }}
                                 @else
                                     <strong>
                                         {{ $watch->beatmapset->title }}
