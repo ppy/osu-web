@@ -5,7 +5,7 @@ Just letting you know that there has been a new update in beatmap "{!! $beatmaps
 Visit the discussion page here:
 {!! route('beatmapsets.discussion', $beatmapset) !!}
 
-If you no longer wish to watch this beatmap, you can either click the "Unsubscribe" link found in the page above, or from beatmap subscriptions management page:
+If you no longer wish to watch this beatmap, you can either click the "Unwatch" link found in the page above, or from the modding watchlist page:
 {!! route('beatmapsets.watches.index') !!}
 
 @include('emails._signature')
