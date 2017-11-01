@@ -42,6 +42,7 @@
 
             <table class="table">
                 <tr>
+                    <th></th>
                     <th>
                         {{ trans('beatmapset_watches.index.table.title') }}
                     </th>
