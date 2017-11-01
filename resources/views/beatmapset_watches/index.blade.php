@@ -97,7 +97,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="4">
+                        <td colspan="5">
                             {{ trans('beatmapset_watches.index.table.empty') }}
                         </td>
                     </tr>
