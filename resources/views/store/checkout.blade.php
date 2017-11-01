@@ -80,17 +80,24 @@
                     @include('store._shipping_germany_warning')
                 @endif
 
-                @if ($order->getTotal() > 0)
-                    @foreach ($checkout->allowedCheckoutTypes() as $type)
-                        @include("store._checkout_{$type}")
-                    @endforeach
-                @else
-                    <div class="big-button">
-                        {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
-                            <input type="hidden" name="completed" value="1">
-                            <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
-                        {!! Form::close() !!}
+                @if (count(array_flatten($validationErrors ?? [])) > 0)
+                    <div class="store-checkout-text--error">
+                        There are issues with the cart preventing checkout :(
+                        <a href="{{ route('store.cart') }}">Click here to go back.</a>
                     </div>
+                @else
+                    @if ($order->getTotal() > 0)
+                        @foreach ($checkout->allowedCheckoutTypes() as $type)
+                            @include("store._checkout_{$type}")
+                        @endforeach
+                    @else
+                        <div class="big-button">
+                            {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
+                                <input type="hidden" name="completed" value="1">
+                                <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
+                            {!! Form::close() !!}
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>

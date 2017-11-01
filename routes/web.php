@@ -194,7 +194,7 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
-    Route::get('cart', 'StoreController@getCart');
+    Route::get('cart', 'StoreController@getCart')->name('cart');
 
     Route::post('update-cart', 'StoreController@postUpdateCart');
     Route::post('update-address', 'StoreController@postUpdateAddress');
