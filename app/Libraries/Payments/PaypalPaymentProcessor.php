@@ -43,7 +43,12 @@ class PaypalPaymentProcessor extends PaymentProcessor
     public function getPaymentAmount()
     {
         // TODO: less floaty
-        return (float) ($this['payment_gross'] ?? $this['mc_gross']);
+
+        if ($this->getNotificationType() === 'NotificationType::REFUND') {
+            return (float) $this['mc_gross'] + $this['mc_fee'];
+        } else {
+            return (float) ($this['payment_gross'] ?? $this['mc_gross']);
+        }
     }
 
     public function getPaymentDate()
