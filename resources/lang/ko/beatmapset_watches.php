@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
+            'to_0' => '주시하기 해제',
+            'to_1' => '주시하기',
         ],
     ],
 
     'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'description' => '팔로우하고있는 비트맵 토론 목록을 나타냅니다. 새 글이나 변경사항이 있으면 알림을 받습니다.',
+        'title_compact' => '모딩 확인 목록',
+        'title_main' => '모딩 확인 목록',
 
         'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
+            'empty' => '주시하고있는 비트맵 토론이 없습니다.',
+            'open_issues' => '열린 이슈', // Open issues
+            'state' => '상태',
+            'title' => '제목',
         ],
     ],
 
     'mail' => [
-        'update' => 'New update for beatmap ":title"',
+        'update' => '":title"에 새로운 변경사항이 있습니다.',
     ],
 
     'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
+        'read' => '읽음',
+        'unread' => '읽지 않음',
     ],
 ];
