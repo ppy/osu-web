@@ -29,8 +29,8 @@ class ValidationFailedEvent implements MessageableEvent
     use SerializesModels;
 
     protected $context = [];
-    private $errors;
-    private $senderClass;
+    protected $errors;
+    protected $senderClass;
 
     public function __construct($sender, ValidationErrors $errors)
     {
