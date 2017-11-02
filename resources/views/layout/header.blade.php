@@ -56,7 +56,11 @@
                 </div>
 
                 <label class="header-search-box js-parent-focus">
-                    <input class="header-search-box__input js-nav-search--input" name="query" />
+                    <input
+                        class="header-search-box__input js-nav-search--input"
+                        name="query"
+                        data-min-length="{{ config('osu.search.minimum_length') }}"
+                    />
                     <a href="#" class="js-nav-search--run-link header-search-box__icon">
                         <i class="fa fa-fw fa-search"></i>
                     </a>
