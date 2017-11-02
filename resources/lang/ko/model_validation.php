@@ -53,15 +53,15 @@ return [
     'user' => [
         'contains_username' => '비밀번호는 유저 이름을 포함할 수 없습니다.',
         'email_already_used' => '이미 사용중인 이메일 주소입니다.',
-        'invalid_country' => 'Country not in database.',
+        'invalid_country' => '해당하는 국가가 데이터베이스에 존재하지 않습니다.',
         'invalid_email' => '이메일 주소가 잘못되었습니다.', // Doesn't seem to be an email address
         'too_short' => '새 비밀번호가 너무 짧습니다.',
-        'unknown_duplicate' => 'Username or email address already used.',
-        'username_too_short' => 'The requested username is too short.',
+        'unknown_duplicate' => '유저 이름 또는 이메일 주소가 이미 사용중입니다.',
+        'username_too_short' => '요청하신 유저 이름이 너무 짧습니다.',
         'weak' => '비밀번호에 사용할 수 없는 문자나 패턴이 포함되어 있습니다.', // Blacklisted password
         'wrong_current_password' => '현재 비밀번호가 일치하지 않습니다.',
         'wrong_email_confirmation' => '이메일과 이메일 확인란이 일치하지 않습니다.', // Email confirmation does not match
         'wrong_password_confirmation' => '비밀번호와 비밀번호 확인란이 일치하지 않습니다.',
-        'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
+        'too_long' => '최대 길이를 초과하셨습니다 - :limit자리 까지만 가능합니다.',
     ],
 ];
