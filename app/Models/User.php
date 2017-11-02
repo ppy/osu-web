@@ -422,7 +422,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setUserWebsiteAttribute($value)
     {
         $value = trim($value);
-        if (!starts_with($value, ['http://', 'https://'])) {
+        if ($value !== '' && !starts_with($value, ['http://', 'https://'])) {
             $value = "https://{$value}";
         }
 
