@@ -95,21 +95,21 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'This beatmap was approved on :date!',
-            'graveyard' => "This beatmap hasn't been updated since :date and has most likely been abandoned by the creator...",
-            'loved' => 'This beatmap was added to loved on :date!',
-            'ranked' => 'This beatmap was ranked on :date!',
-            'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
+            'approved' => '이 비트맵은 :date에 Approved 되었습니다!',
+            'graveyard' => "이 비트맵은 :date 이후로는 업데이트되지 않았고, 제작자가 제작을 거의 포기한 것 같습니다...",
+            'loved' => '이 비트맵은 :date에 Loved 비트맵으로 추가되었습니다!',
+            'ranked' => '이 비트맵은 :date에 Ranked 되었습니다!',
+            'wip' => 'Note: 이 비트맵은 제작자가 \'제작중\'이라고 표시한 맵입니다.',
         ],
 
 	],
 
     'hype' => [
-        'button' => 'Hype Beatmap!',
-        'button-done' => 'Already Hyped!',
-        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
-        'section-title' => 'Hype Train',
-        'title' => 'Hype',
+        'button' => '비트맵 홍보하기!',
+        'button-done' => '이미 이 비트맵을 홍보하셨습니다!',
+        'explanation' => "칭찬 ❤를 늘려주시면 비트맵이 점점 더 강조될 것이며, 추천 리스트와 비트맵 순위에도 잘 나타나게 될 겁니다!",
+        'section-title' => 'Hype Train', // 영어 슬랭으로, 적당한 말을 찾지 못해 번역 
+        'title' => '비트맵 홍보', // 원문 'Hype'
     ],
 
     'nominations' => [
