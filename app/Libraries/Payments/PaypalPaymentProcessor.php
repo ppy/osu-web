@@ -108,6 +108,14 @@ class PaypalPaymentProcessor extends PaymentProcessor
                 );
             }
 
+            if ($this['mc_currency'] !== 'USD') {
+                $this->validationErrors()->add(
+                    'mc_currency',
+                    '.purchase.checkout.currency',
+                    ['type' => $this['mc_currency']]
+                );
+            }
+
             \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
             if ($this->getPaymentAmount() !== $order->getTotal()) {
                 $this->validationErrors()->add(
