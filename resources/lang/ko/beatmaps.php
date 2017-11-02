@@ -93,6 +93,23 @@ return [
             'resolved' => 'Resolved', // 결정됨
             'total' => '모두',
         ],
+
+        'status-messages' => [
+            'approved' => 'This beatmap was approved on :date!',
+            'graveyard' => "This beatmap hasn't been updated since :date and has most likely been abandoned by the creator...",
+            'loved' => 'This beatmap was added to loved on :date!',
+            'ranked' => 'This beatmap was ranked on :date!',
+            'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
+        ],
+
+	],
+
+    'hype' => [
+        'button' => 'Hype Beatmap!',
+        'button-done' => 'Already Hyped!',
+        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
+        'section-title' => 'Hype Train',
+        'title' => 'Hype',
     ],
 
     'nominations' => [
