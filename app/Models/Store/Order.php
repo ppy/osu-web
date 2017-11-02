@@ -187,8 +187,12 @@ class Order extends Model
                 return 'Awaiting Payment';
             case 'incart':
                 return '';
-            default:
+            case 'paid':
+            case 'shipped':
+            case 'delivered':
                 return 'Paid';
+            default:
+                return 'Unknown';
         }
     }
 
