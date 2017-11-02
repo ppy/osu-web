@@ -101,7 +101,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
         // order should be in the correct state
         if ($this->isPaymentOrPending()) {
             if (!in_array($order->status, ['incart', 'checkout'], true)) {
-                $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
+                $this->validationErrors()->add(
+                    'order.status',
+                    '.order.status.not_checkout',
+                    ['state' => $order->status]
+                );
             }
 
             \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");
