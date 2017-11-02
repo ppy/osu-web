@@ -115,14 +115,15 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
-    // ranking functions for the set
-
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    // Beatmapset::rankable();
+    public function watches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
+    }
 
     public function lastDiscussionTime()
     {
@@ -1011,6 +1012,11 @@ class Beatmapset extends Model
         ];
 
         return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+    }
+
+    public function state()
+    {
+        return array_search_null($this->approved, static::STATES);
     }
 
     public function toMetaDescription()

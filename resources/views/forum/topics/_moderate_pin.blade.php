@@ -44,6 +44,7 @@
             class="
                 btn-circle
                 btn-circle--topic-nav
+                btn-circle--yellow
                 {{ $activated ? 'btn-circle--activated' : '' }}
             "
             data-url="{{ route('forum.topics.pin', [

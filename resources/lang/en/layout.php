@@ -55,6 +55,7 @@ return [
             'index' => 'listing',
             'artists' => 'featured artists',
             'packs' => 'packs',
+            'beatmapset-watches-index' => 'modding watchlist',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [

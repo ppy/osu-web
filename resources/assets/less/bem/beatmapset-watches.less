@@ -16,52 +16,30 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-discussions-header-bottom {
-  .default-box-shadow();
-  .inner-shadow-top();
+.beatmapset-watches {
+  margin: 20px;
 
-  display: flex;
-  padding: 0 20px;
-  background-color: #555;
-  flex-direction: column;
-  margin-bottom: @page-spacing;
-
-  @media @desktop {
-    flex-direction: row;
-    align-items: stretch;
-  }
-
-  &__content {
-    @media @desktop {
-      flex: 1;
+  &__col {
+    &--cover {
+      width: 70px;
+      padding: 0;
     }
 
-    &--details {
-      display: flex;
-      margin-top: 20px;
-      flex-direction: column;
-      justify-content: space-between;
-
-      @media @mobile {
-        margin-top: 10px;
-        align-self: center;
-      }
-    }
-
-    &--nomination {
-      margin-top: 10px;
-
-      @media @desktop {
-        flex-basis: 30%;
-      }
+    && { // bootstrap override
+      vertical-align: middle;
     }
   }
 
-  &__subscribe {
-    margin: 10px 0;
+  &__cover {
+    .default-border-radius();
+    width: 70px;
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+  }
 
-    @media @desktop {
-      margin: 10px 10px 10px 0;
-    }
+  &__description {
+    margin-bottom: 20px;
   }
 }
