@@ -22,9 +22,12 @@ namespace App\Events\Fulfillments;
 
 use App\Events\MessageableEvent;
 use App\Libraries\ValidationErrors;
+use Illuminate\Queue\SerializesModels;
 
 class ValidationFailedEvent implements MessageableEvent
 {
+    use SerializesModels;
+
     protected $context = [];
     private $errors;
     private $senderClass;
