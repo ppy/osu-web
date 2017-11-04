@@ -235,7 +235,7 @@ return [
 
                 'user' => [
                     'current' => '还有 :votes 票.',
-                    'count' => '{0} 没有票|[1,*] :count票',
+                    'count' => '{0} 没有票|[1,*] :count 票',
                     'not_enough' => '没有票了',
                 ],
             ],

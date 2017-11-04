@@ -45,6 +45,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => '点击登录',
+        'login_text' => '登录',
         'username' => '游客',
         'error' => '请先登录',
     ],
@@ -179,7 +180,7 @@ return [
                     'title' => '收藏的谱面 (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked并且得到赞的谱面 (:count)',
+                    'title' => 'Ranked 并且得到赞的谱面 (:count)',
                 ],
                 'none' => '暂时没有...',
             ],

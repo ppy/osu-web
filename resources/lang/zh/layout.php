@@ -55,6 +55,7 @@ return [
             'index' => '列表',
             'artists' => '精选艺术家',
             'packs' => '曲包',
+            'beatmapset-watches-index' => '摸图关注列表',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
@@ -79,9 +80,9 @@ return [
             'getLive' => '直播',
             'contests' => '评选',
             'profile' => '个人资料',
-            'tournaments' => '锦标赛',
-            'tournaments-index' => '锦标赛',
-            'tournaments-show' => '锦标赛信息',
+            'tournaments' => '官方比赛',
+            'tournaments-index' => '官方比赛',
+            'tournaments-show' => '官方比赛信息',
             'forum-topic-watches-index' => '订阅',
             'forum-topics-create' => '论坛',
             'forum-topics-show' => '论坛',
@@ -117,6 +118,7 @@ return [
         ],
         'store' => [
             '_' => '商店',
+            'checkout-index' => '结账',
             'getListing' => '列表',
             'getCart' => '购物车',
 
@@ -173,7 +175,7 @@ return [
         ],
         'legal' => [
             '_' => '法律 & 状态',
-            'copyright' => '版权 (DMCA)',
+            'copyright' => '版权（DMCA）',
             'osu_status' => '@osustatus',
             'server_status' => '服务器状态',
             'terms' => '服务条款',
