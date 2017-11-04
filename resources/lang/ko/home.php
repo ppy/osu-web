@@ -127,7 +127,7 @@ return [
         ],
         'beatmaps' => [
             'new' => '새로 Approved된 비트맵', // 비트맵 상태에 대한 적절한 번역을 결정하면 수정
-            'popular' => ' 비트맵',
+            'popular' => '인기 비트맵',
             'by' => '제작:',
             'plays' => ':count번 플레이됨',
         ],
