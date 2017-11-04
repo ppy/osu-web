@@ -29,8 +29,8 @@ return [
             'virtual_only' => '`:provider`의 결제는 실물 상품 결제에는 적용되지 않습니다.', // `:provider` payment is not valid for physical items
         ],
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.', // Trying to accept payment for an order in the wrong state `:state`.
-            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.', // Trying to refund payment for an order in the wrong state `:state`.
+            'not_checkout' => '비정상적인 상태(`:state`)에서 주문의 결제를 수락하고 있습니다.', // Trying to accept payment for an order in the wrong state `:state`.
+            'not_paid' => '비정상적인 상태(`:state`)에서 주문의 환불을 수락하고 있습니다.', // Trying to refund payment for an order in the wrong state `:state`.
         ],
     ],
     'param' => [
