@@ -45,7 +45,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => '클릭하여 로그인',
-        'login_text' => '',
+        'login_text' => '로그인',
         'username' => '손님',
         'error' => '계속하려면 로그인하셔야 합니다.',
     ],
