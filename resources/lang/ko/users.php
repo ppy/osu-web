@@ -146,9 +146,9 @@ return [
                     ],
 
                     'forum_post' => [
-                        'give' => ':post 글을 통해 :giver님으로부터 :amount점을 받았습니다.',
-                        'reset' => ':post 글에서 :giver님으로부터 Kudosu가 초기화되었습니다', // 'Kudosu reset by :giver for the post :post'
-                        'revoke' => ':post 글에서 :giver님으로부터 kudosu를 거절당했습니다.', // 'Denied kudosu by :giver for the post :post'
+                        'give' => ':post에서 :giver님으로부터 :amount를 받았습니다.',
+                        'reset' => ':post에서 :giver님으로부터 Kudosu가 초기화되었습니다', // 'Kudosu reset by :giver for the post :post'
+                        'revoke' => ':post에서 :giver님으로부터 kudosu를 거절당했습니다.', // 'Denied kudosu by :giver for the post :post'
                     ],
                 ],
             ],
