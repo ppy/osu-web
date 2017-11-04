@@ -124,24 +124,24 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '모딩 글(:post)에서의 kudosu 거절이 취소되어 :amount점을 받았습니다.',
+                            'give' => '모딩 글(:post)에서의 kudosu 거절이 취소되어 :amount를 받았습니다.',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '모딩 글(:post)에서 :amount점을 거절당했습니다.',
+                            'reset' => '모딩 글(:post)에서 :amount를 거절당했습니다.',
                         ],
 
                         'delete' => [
-                            'reset' => '모딩 글(:post)을 삭제하여 :amount점을 잃었습니다.',
+                            'reset' => '모딩 글(:post)을 삭제하여 :amount를 잃었습니다.',
                         ],
 
                         'restore' => [
-                            'give' => '삭제된 모딩 글(:post)을 복원하여 :amount점을 받았습니다.',
+                            'give' => '삭제된 모딩 글(:post)을 복원하여 :amount를 받았습니다.',
                         ],
 
                         'vote' => [
-                            'give' => '모딩 글(:post)의 투표에서 득표하여 :amount점을 받았습니다',
-                            'reset' => '모딩 글(:post)의 투표에서 충분한 표를 얻지 못해 :amount점을 잃었습니다.',
+                            'give' => '모딩 글(:post)의 투표에서 득표하여 :amount를 받았습니다',
+                            'reset' => '모딩 글(:post)의 투표에서 충분한 표를 얻지 못해 :amount를 잃었습니다.',
                         ],
                     ],
 
