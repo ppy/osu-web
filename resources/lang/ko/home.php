@@ -22,11 +22,11 @@ return [
     'landing' => [
         'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
-        'players' => '제한된 플레이어: <strong>:count</strong>명',
+        'players' => '등록된 플레이어: <strong>:count</strong>명',
 
         'download' => [
             '_' => '지금 바로 다운로드하기',
-            'soon' => 'osu!가 곧 다른 운영체제도 지원 할 거에요',
+            'soon' => 'osu!가 곧 다른 운영체제도 지원 할 거예요',
             'for' => ':os 용',
             'other' => ':os1 나, :os2 용은 여기를 눌러주세요',
         ],
@@ -58,7 +58,7 @@ return [
 
             'label' => [
                 'forum' => '포럼에서 검색하기',
-                'forum_children' => '서브포럼을 포함하여 검색',
+                'forum_children' => '서브 포럼을 포함하여 검색',
                 'topic_id' => '주제 #',
                 'username' => '글쓴이',
             ],
@@ -89,36 +89,36 @@ return [
     'download' => [
       'header' => [
           '1' => '같이 한 번', // let's get
-          '2' => '시작해보자구요!', // you started
+          '2' => '시작해보자고요!', // you started
           '3' => 'Windows에서 osu! 게임 클라이언트 다운로드 하기',
       ],
       'steps' => [
           '1' => [
-              'name' => '1 단계',
+              'name' => '1단계',
               'content' => 'osu! 게임 클라이언트를 다운로드하세요',
           ],
           '2' => [
-              'name' => '2 단계',
+              'name' => '2단계',
               'content' => 'osu! 계정을 생성하세요',
           ],
           '3' => [
-              'name' => '3 단계',
+              'name' => '3단계',
               'content' => '???',
           ],
       ],
       'more' => '더 알아보실래요?',
-      'more_text' => '<a href="https://www.youtube.com/user/osuacademy/">osu!아카데미 유튜브 채널</a>을 확인해보세요 osu!를 더 즐길 수 있는 최신 튜토리얼과 팁들이 있습니다!',
+      'more_text' => '<a href="https://www.youtube.com/user/osuacademy/">osu!아카데미 유튜브 채널</a>을 확인해보세요. osu!를 더 즐길 수 있는 최신 튜토리얼과 팁들이 있습니다!',
     ],
 
     'user' => [
         'title' => 'news',
         'news' => [
             'title' => '뉴스',
-            'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',
+            'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로 고쳐보시겠어요?...',
         ],
         'header' => [
             'welcome' => '<strong>:username</strong>님, 안녕하세요!',
-            'messages' => '새로 받은 메세지 :count건이 있습니다',
+            'messages' => '새로 받은 메시지 :count건이 있습니다.',
             'stats' => [
                 'friends' => '접속 중인 친구',
                 'games' => '게임 수',
@@ -127,7 +127,7 @@ return [
         ],
         'beatmaps' => [
             'new' => '새로 Approved된 비트맵', // 비트맵 상태에 대한 적절한 번역을 결정하면 수정
-            'popular' => '유명한 비트맵',
+            'popular' => '인기 있는 비트맵', // '유명한' 보다는 '인기 있는'이 더 자연스러울 것 같습니다.
             'by' => '제작:',
             'plays' => ':count번 플레이됨',
         ],
@@ -142,10 +142,10 @@ return [
         'title' => '와!',
         'subtitle' => '즐거운 시간을 보내고 계신 것 같네요! :D',
         'body' => [
-            'part-1' => 'osu!가 아무런 광고 수익 없이, 사용자들의 지원으로만 개발 / 운영된다는 사실, 알고 계신가요?',
+            'part-1' => 'osu!가 아무런 광고 수익 없이, 사용자들의 지원으로만 개발 / 운영된다는 사실, 알고 계시는가요?',
             'part-2' => '그리고 또, osu!를 지원하면 게임 내 자동 다운로드 같은 다양한 유용한 기능들을 이용할 수 있다는 점도 알고 계세요?',
         ],
         'find-out-more' => '더 알아보려면 여기를 눌러주세요!',
-        'download-starting' => '아, 걱정은 하지마세요 - 요청하신 다운로드는 이미 시작됐으니까요 ;)',
+        'download-starting' => '아, 걱정은 하지 마세요. - 요청하신 다운로드는 이미 시작됐으니까요 ;)',
     ],
 ];
