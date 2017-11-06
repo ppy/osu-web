@@ -30,7 +30,7 @@ abstract class Message extends Notification implements ShouldQueue
 
     public function __construct()
     {
-        $this->queue = 'store-notifications';
+        $this->queue = config('store.queue.notifications');
     }
 
     /**
