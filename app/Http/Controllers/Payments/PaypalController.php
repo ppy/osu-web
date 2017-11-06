@@ -113,8 +113,10 @@ class PaypalController extends Controller
     private function userErrorMessage($e)
     {
         $json = json_decode($e->getData());
-        $name = strtolower($json->name);
-        $key = Lang::has($name) ? "paypal/errors.{$name}" : 'paypal/errors.unknown';
+        $key = 'paypal/errors.'.strtolower($json->name);
+        if (!Lang::has($key)) {
+            $key = 'paypal/errors.unknown';
+        }
 
         return trans($key);
     }
