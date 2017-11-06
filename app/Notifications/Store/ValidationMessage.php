@@ -59,7 +59,7 @@ class ValidationMessage extends Message
                     ->markdown(['text', 'fields']);
 
                 if ($this->event instanceof HasOrder) {
-                    $attachment->title("Order {$this->event->getOrder()->order_id}");
+                    $attachment->title("Order {$this->event->getOrder()->getOrderNumber()}");
                 }
             });
     }
