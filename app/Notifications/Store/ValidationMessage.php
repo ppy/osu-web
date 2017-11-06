@@ -36,6 +36,7 @@ class ValidationMessage extends Message
      */
     public function __construct($eventName, ValidationFailedEvent $event)
     {
+        parent::__construct();
         $this->eventName = $eventName;
         $this->event = $event;
     }

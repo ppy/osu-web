@@ -35,6 +35,7 @@ class OrderMessage extends Message
      */
     public function __construct($eventName, $order, $text)
     {
+        parent::__construct();
         $this->eventName = $eventName;
         $this->order = $order;
         $this->text = $text;

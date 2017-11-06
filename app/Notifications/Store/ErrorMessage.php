@@ -37,6 +37,7 @@ class ErrorMessage extends Message
      */
     public function __construct($exception, $order)
     {
+        parent::__construct();
         $this->exceptionClass = get_class($exception);
 
         if ($exception instanceof PayPalConnectionException) {

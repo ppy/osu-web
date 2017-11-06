@@ -34,6 +34,7 @@ class StoreMessage extends Message
      */
     public function __construct($eventName, $text)
     {
+        parent::__construct();
         $this->eventName = $eventName;
         $this->text = $text;
     }

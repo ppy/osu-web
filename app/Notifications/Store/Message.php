@@ -28,6 +28,11 @@ abstract class Message extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    public function __construct()
+    {
+        $this->queue = 'store-notifications';
+    }
+
     /**
      * Get the notification's delivery channels.
      *
