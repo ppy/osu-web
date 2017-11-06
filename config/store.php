@@ -6,5 +6,5 @@ return [
     ],
     'queue' => [
         'notifications' => presence(env('STORE_NOTIFICATIONS_QUEUE'), 'store-notifications'),
-    ]
+    ],
 ];
