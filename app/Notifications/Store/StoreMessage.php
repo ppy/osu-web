@@ -22,7 +22,7 @@ namespace App\Notifications\Store;
 
 use Illuminate\Notifications\Messages\SlackMessage;
 
-class StoreMessage extends Notification
+class StoreMessage extends Message
 {
     private $eventName;
     private $text;
