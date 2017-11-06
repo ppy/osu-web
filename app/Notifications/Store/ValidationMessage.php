@@ -43,7 +43,7 @@ class ValidationMessage extends Message
 
     public function toSlack($notifiable)
     {
-        $content = "`{$this->eventName}`";
+        $content = "`{$this->notified_at}` | `{$this->eventName}`";
         if ($this->event instanceof HasOrder) {
             $content .= " | Order `{$this->event->getOrder()->getOrderNumber()}`";
         }

@@ -41,7 +41,7 @@ class StoreMessage extends Message
 
     public function toSlack($notifiable)
     {
-        $content = "`{$this->eventName}` | {$this->text}";
+        $content = "`{$this->notified_at}` | `{$this->eventName}` | {$this->text}";
 
         return (new SlackMessage)
             ->to(config('payments.notification_channel'))

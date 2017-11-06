@@ -20,6 +20,7 @@
 
 namespace App\Notifications\Store;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
@@ -28,9 +29,12 @@ abstract class Message extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $notified_at;
+
     public function __construct()
     {
         $this->queue = config('store.queue.notifications');
+        $this->notified_at = Carbon::now();
     }
 
     /**

@@ -43,7 +43,7 @@ class OrderMessage extends Message
 
     public function toSlack($notifiable)
     {
-        $content = "`{$this->eventName}` | Order `{$this->order->getOrderNumber()}`: {$this->text}";
+        $content = "`{$this->notified_at}` | `{$this->eventName}` | Order `{$this->order->getOrderNumber()}`: {$this->text}";
 
         return (new SlackMessage)
             ->to(config('payments.notification_channel'))
