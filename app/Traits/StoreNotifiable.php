@@ -60,7 +60,7 @@ trait StoreNotifiable
 
     private function tryNotify($message)
     {
-        // avoid failing if Slack fails :|
+        // avoid failing if calling notify fails for any reason.
         try {
             $this->notify($message);
         } catch (Exception $exception) {
