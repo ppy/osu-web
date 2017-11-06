@@ -25,8 +25,9 @@ use App\Notifications\Store\ErrorMessage;
 use App\Notifications\Store\OrderMessage;
 use App\Notifications\Store\StoreMessage;
 use App\Notifications\Store\ValidationMessage;
+use Exception;
 use Illuminate\Notifications\Notifiable;
-use Notification;
+use Log;
 
 trait StoreNotifiable
 {
@@ -39,21 +40,31 @@ trait StoreNotifiable
 
     public function notifyText($text, $eventName = null)
     {
-        Notification::send($this, new StoreMessage($eventName, $text));
+        $this->tryNotify(new StoreMessage($eventName, $text));
     }
 
     public function notifyOrder($order, $text, $eventName = null)
     {
-        Notification::send($this, new OrderMessage($eventName, $order, $text));
+        $this->tryNotify(new OrderMessage($eventName, $order, $text));
     }
 
     public function notifyError($exception, $order = null)
     {
-        Notification::send($this, new ErrorMessage($exception, $order));
+        $this->tryNotify(new ErrorMessage($exception, $order));
     }
 
     public function notifyValidation(ValidationFailedEvent $event, $eventName)
     {
-        Notification::send($this, new ValidationMessage($eventName, $event));
+        $this->tryNotify(new ValidationMessage($eventName, $event));
+    }
+
+    private function tryNotify($message)
+    {
+        // avoid failing if Slack fails :|
+        try {
+            $this->notify($message);
+        } catch (Exception $exception) {
+            Log::error($exception);
+        }
     }
 }
