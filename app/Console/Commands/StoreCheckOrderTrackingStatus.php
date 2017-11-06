@@ -70,7 +70,7 @@ class StoreCheckOrderTrackingStatus extends Command
 
         $i = 0;
         foreach ($orders as $o) {
-            ++$i;
+            $i++;
 
             try {
                 $trackingCodes = $o->trackingCodes();
