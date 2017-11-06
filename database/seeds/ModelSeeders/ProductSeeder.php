@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
             'master_product_id' => $master_tshirt->product_id,
         ])->each(function ($s) {
             $this->product_ids[] = $s->product_id;
-            ++$this->count;
+            $this->count++;
         });
 
         // Add the child shirt IDs to the master shirt's type_mappings_json
@@ -48,7 +48,7 @@ class ProductSeeder extends Seeder
                 'size' => $sizes[$i % 4],
                 'colour' => $colour,
             ];
-            ++$i;
+            $i++;
         }
         $master_tshirt->type_mappings_json = json_encode($type_mappings_json, JSON_PRETTY_PRINT);
         $master_tshirt->save();
