@@ -49,6 +49,7 @@ class ValidationMessage extends Message
         }
 
         return (new SlackMessage)
+            ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->warning()
             ->content($content)

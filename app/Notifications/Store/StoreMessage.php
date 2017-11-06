@@ -44,6 +44,7 @@ class StoreMessage extends Message
         $content = "`{$this->notified_at}` | `{$this->eventName}` | {$this->text}";
 
         return (new SlackMessage)
+            ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->content($content);
     }
