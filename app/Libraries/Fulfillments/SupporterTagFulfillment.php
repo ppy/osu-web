@@ -105,7 +105,7 @@ class SupporterTagFulfillment extends OrderFulfiller
         $donationTotal = $this->getOrderItems()->sum('cost');
         Log::debug("total: {$donationTotal}, required: {$this->minimumRequired()}");
         if ($donationTotal < $this->minimumRequired()) {
-            $this->validationErrors()->addError(
+            $this->validationErrors()->add(
                 'order_total',
                 '.insufficient_paid',
                 ['expected' => $this->minimumRequired(), 'actual' => $donationTotal]
