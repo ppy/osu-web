@@ -22,7 +22,7 @@ namespace App\Notifications\Store;
 
 use Illuminate\Notifications\Messages\SlackMessage;
 
-class StoreMessage extends Notification
+class StoreMessage extends Message
 {
     private $eventName;
     private $text;
@@ -34,15 +34,17 @@ class StoreMessage extends Notification
      */
     public function __construct($eventName, $text)
     {
+        parent::__construct();
         $this->eventName = $eventName;
         $this->text = $text;
     }
 
     public function toSlack($notifiable)
     {
-        $content = "`{$this->eventName}` | {$this->text}";
+        $content = "`{$this->notified_at}` | `{$this->eventName}` | {$this->text}";
 
         return (new SlackMessage)
+            ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->content($content);
     }
