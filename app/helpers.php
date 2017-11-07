@@ -986,7 +986,7 @@ function group_users_by_online_state($users)
     ];
 }
 
-function product_url($key)
+function product_url($product)
 {
-    return route('store.product.show', ['product' => config("store.product_ids.{$key}")]);
+    return route('store.product.show', ['product' => $product]);
 }
