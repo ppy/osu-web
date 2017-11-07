@@ -25,7 +25,9 @@ use PayPal\Exception\PayPalConnectionException;
 
 class ErrorMessage extends Message
 {
-    private $exception;
+    private $exceptionClass;
+    private $exceptionData;
+    private $exceptionMessage;
     private $order;
 
     /**
@@ -35,30 +37,37 @@ class ErrorMessage extends Message
      */
     public function __construct($exception, $order)
     {
-        $this->exception = $exception;
+        parent::__construct();
+        $this->exceptionClass = get_class($exception);
+
+        if ($exception instanceof PayPalConnectionException) {
+            $this->exceptionData = $exception->getData();
+        }
+
+        $this->exceptionMessage = $exception->getMessage();
         $this->order = $order;
     }
 
     public function toSlack($notifiable)
     {
-        $content = 'ERROR';
+        $content = "ERROR `{$this->notified_at}`";
         if ($this->order) {
             $content .= " | Order `{$this->order->getOrderNumber()}`";
         }
 
-        $className = get_class($this->exception);
-        $content .= "; `{$className}`";
+        $content .= "; `{$this->exceptionClass}`";
 
         return (new SlackMessage)
+            ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->error()
             ->content($content)
             ->attachment(function ($attachment) {
-                $attachment->content($this->exception->getMessage());
+                $attachment->content($this->exceptionMessage);
 
-                if ($this->exception instanceof PayPalConnectionException) {
+                if (isset($this->exceptionData)) {
                     $attachment->fields([
-                        'data' => $this->exception->getData(),
+                        'data' => $this->exceptionData,
                     ]);
                 }
             });
@@ -73,16 +82,16 @@ class ErrorMessage extends Message
     public function toArray($notifiable)
     {
         $array = [
-            'className' => get_class($this->exception),
-            'message' => $this->exception->getMessage(),
+            'className' => $this->exceptionClass,
+            'message' => $this->exceptionMessage,
         ];
 
         if ($this->order) {
             $array['orderId'] = $this->order->order_id;
         }
 
-        if ($this->exception instanceof PayPalConnectionException) {
-            $array['data'] = $this->exception->getData();
+        if (isset($this->exceptionData)) {
+            $array['data'] = $this->exceptionData;
         }
 
         return $array;
