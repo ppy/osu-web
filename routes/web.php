@@ -206,17 +206,8 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
 
         // Store splitting starts here
-        Route::resource(
-            'checkout',
-            'CheckoutController',
-            ['only' => ['index', 'store']]
-        );
-
-        Route::resource(
-            'product',
-            'ProductsController',
-            ['only' => ['show']]
-        );
+        Route::resource('checkout', 'CheckoutController', ['only' => ['index', 'store']]);
+        Route::resource('product', 'ProductsController', ['only' => ['show']]);
     });
 });
 
