@@ -37,7 +37,7 @@ class ProductsController extends Controller
             ? $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists()
             : false;
 
-        return view('store.product', compact('cart', 'product', 'requestedNotification'));
+        return view('store.products.show', compact('cart', 'product', 'requestedNotification'));
     }
 
     private function getProduct($id)
