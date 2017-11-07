@@ -7,6 +7,6 @@ return [
 
     // list of specific product ids to link to.
     'product_ids' => [
-        'supporter_tag' => (int) env('STORE_SUPPORTER_TAG_ID'),
+        'supporter_tag' => (int) env('STORE_SUPPORTER_TAG_PRODUCT_ID'),
     ],
 ];
