@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listing',
-        'news-show' => 'post',
+        'news-index' => 'รายการ',
+        'news-show' => 'โพสต์',
     ],
 
     'index' => [
         'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
+            'newer' => 'โพสต์ใหม่กว่า',
+            'older' => 'โพสต์เก่ากว่า',
         ],
     ],
 
     'show' => [
-        'posted' => 'posted :time',
+        'posted' => 'โพสต์เมื่อ :time',
 
         'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
+            'newer' => 'โพสต์ใหม่กว่า',
+            'older' => 'โพสต์เก่ากว่า',
         ],
     ],
 
     'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
+        'button' => 'อัพเดต',
+        'ok' => 'อัพเดตรายการแล้ว',
     ],
 
     'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
+        'button' => 'อัพเดต',
+        'ok' => 'อัพเดตโพสต์แล้ว',
     ],
 ];
