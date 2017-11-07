@@ -105,7 +105,7 @@ return [
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
-            'getProduct' => 'prodotto',
+            'products-show' => 'prodotto',
 
             'new' => 'nuovo',
             'home' => 'home',

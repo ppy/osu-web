@@ -114,7 +114,7 @@ return [
 
             'getCheckout' => 'pagar',
             'getInvoice' => 'fatura',
-            'getProduct' => 'produto',
+            'products-show' => 'produto',
 
             'new' => 'novo',
             'home' => 'início',
