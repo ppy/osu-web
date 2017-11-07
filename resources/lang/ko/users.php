@@ -45,6 +45,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => '클릭하여 로그인',
+        'login_text' => '로그인',
         'username' => '손님',
         'error' => '계속하려면 로그인하셔야 합니다.',
     ],
@@ -123,31 +124,31 @@ return [
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => '모딩 글(:post)에서의 kudosu 거절이 취소되어 :amount점을 받았습니다.',
+                            'give' => '모딩 글(:post)에서의 kudosu 거절이 취소되어 :amount를 받았습니다.',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => '모딩 글(:post)에서 :amount점을 거절당했습니다.',
+                            'reset' => '모딩 글(:post)에서 :amount를 거절당했습니다.',
                         ],
 
                         'delete' => [
-                            'reset' => '모딩 글(:post)을 삭제하여 :amount점을 잃었습니다.',
+                            'reset' => '모딩 글(:post)을 삭제하여 :amount를 잃었습니다.',
                         ],
 
                         'restore' => [
-                            'give' => '삭제된 모딩 글(:post)을 복원하여 :amount점을 받았습니다.',
+                            'give' => '삭제된 모딩 글(:post)을 복원하여 :amount를 받았습니다.',
                         ],
 
                         'vote' => [
-                            'give' => '모딩 글(:post)의 투표에서 득표하여 :amount점을 받았습니다',
-                            'reset' => '모딩 글(:post)의 투표에서 충분한 표를 얻지 못해 :amount점을 잃었습니다.',
+                            'give' => '모딩 글(:post)의 투표에서 득표하여 :amount를 받았습니다',
+                            'reset' => '모딩 글(:post)의 투표에서 충분한 표를 얻지 못해 :amount를 잃었습니다.',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => ':post 글을 통해 :giver님으로부터 :amount점을 받았습니다.',
-                        'reset' => ':post 글에서 :giver님으로부터 Kudosu가 초기화되었습니다', // 'Kudosu reset by :giver for the post :post'
-                        'revoke' => ':post 글에서 :giver님으로부터 kudosu를 거절당했습니다.', // 'Denied kudosu by :giver for the post :post'
+                        'give' => ':post에서 :giver님으로부터 :amount를 받았습니다.',
+                        'reset' => ':post에서 :giver님으로부터 Kudosu가 초기화되었습니다', // 'Kudosu reset by :giver for the post :post'
+                        'revoke' => ':post에서 :giver님으로부터 kudosu를 거절당했습니다.', // 'Denied kudosu by :giver for the post :post'
                     ],
                 ],
             ],
