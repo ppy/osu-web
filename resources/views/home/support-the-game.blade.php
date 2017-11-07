@@ -29,7 +29,7 @@
                 {!! trans('community.support.header.small_description') !!}
             </p>
 
-            <a class="stg-header__button" href="{{ product_url('supporter-tag') }}">
+            <a class="stg-header__button" href="{{ route('store.products.show', 'supporter-tag') }}">
                 {!! trans('community.support.header.support_button') !!}
                 <span class="stg-header__button-icon">
                     <span class="fa fa-heart"></span>
@@ -116,7 +116,7 @@
                 {{ trans('community.support.convinced.title') }}
             </h3>
 
-            <a class="icon-fancy" href="{{ product_url('supporter-tag') }}">
+            <a class="icon-fancy" href="{{ route('store.products.show', 'supporter-tag') }}">
                 <span class="fa fa-heart"></span>
             </a>
 

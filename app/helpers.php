@@ -985,8 +985,3 @@ function group_users_by_online_state($users)
         'offline' => $offline,
     ];
 }
-
-function product_url($product)
-{
-    return route('store.products.show', $product);
-}

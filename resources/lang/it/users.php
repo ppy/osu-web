@@ -70,7 +70,7 @@ return [
                     'button' => 'Carica immagine',
                     'dropzone' => 'Trascina qui per caricarla',
                     'dropzone_info' => 'Puoi anche trascinare qui l\'immagine per caricarla',
-                    'restriction_info' => "Caricamento disponibile solo per gli <a href='".product_url('supporter-tag')."' target='_blank'>osu!supporter</a>",
+                    'restriction_info' => "Caricamento disponibile solo per gli <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a>",
                     'size_info' => 'L\'immaigne di copertina dovrebbe essere 2000x700',
                     'too_large' => 'Il file caricato è troppo grande.',
                     'unsupported_format' => 'Formato non supportato.',
@@ -151,7 +151,7 @@ return [
             'description' => '<strong>io!</strong> è un\'area personale personalizzabile nella tua pagina del profilo.',
             'edit_big' => 'Modificami!',
             'placeholder' => 'Scrivi il contenuto della pagina qui',
-            'restriction_info' => "Devi essere un <a href='".product_url('supporter-tag')."' target='_blank'>osu!supporter</a> per sbloccare questa funzione.",
+            'restriction_info' => "Devi essere un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> per sbloccare questa funzione.",
         ],
         'rank' => [
             'country' => 'Rank del paese per :mode',
