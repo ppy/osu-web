@@ -64,7 +64,7 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            if ($user->user_id === $topic->last_poster_id) {
+            if ($user->user_id === $topic->topic_last_poster_id) {
                 continue;
             }
 
