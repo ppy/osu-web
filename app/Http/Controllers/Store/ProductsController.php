@@ -28,17 +28,28 @@ class ProductsController extends Controller
     protected $layout = 'master';
     protected $actionPrefix = 'products-';
 
-    public function show($id = null)
+    public function show($id)
     {
+        $product = $this->getProduct($id);
         $cart = $this->userCart();
-        $product = Product::with('masterProduct')->findOrFail($id);
-        $requestedNotification = Auth::check() ?
-            $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists() : false;
 
-        if (!$product->enabled) {
-            abort(404);
-        }
+        $requestedNotification = Auth::check()
+            ? $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists()
+            : false;
 
         return view('store.product', compact('cart', 'product', 'requestedNotification'));
+    }
+
+    private function getProduct($id)
+    {
+        $product = Product::with('masterProduct')->where('enabled', true);
+
+        return is_numeric($id)
+            ? $product->findOrFail($id)
+            : $product
+                ->customClass($id)
+                ->where('master_product_id', null)
+                ->orderBy('product_id', 'desc')
+                ->firstOrFail();
     }
 }
