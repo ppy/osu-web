@@ -63,6 +63,11 @@ class CentiliPaymentProcessor extends PaymentProcessor
         return $mapping[$this['status']] ?? "unknown__{$this['status']}";
     }
 
+    public function getNotificationTypeRaw()
+    {
+        return $this['status'];
+    }
+
     public function isTest()
     {
         return false; // No sandbox for Centili :(

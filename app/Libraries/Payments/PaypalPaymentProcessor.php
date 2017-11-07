@@ -82,6 +82,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
         }
     }
 
+    public function getNotificationTypeRaw()
+    {
+        return $this['payment_status'];
+    }
+
     public function validateTransaction()
     {
         $this->ensureValidSignature();

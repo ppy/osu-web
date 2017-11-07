@@ -68,6 +68,11 @@ class XsollaPaymentProcessor extends PaymentProcessor
         return $mapping[$this['notification_type']] ?? "unknown__{$this['notification_type']}";
     }
 
+    public function getNotificationTypeRaw()
+    {
+        return $this['notification_type'];
+    }
+
     public function isTest()
     {
         // temporarily disable.
