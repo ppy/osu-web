@@ -91,20 +91,6 @@ class StoreController extends Controller
             ->with('sentViaAddress', $sentViaAddress);
     }
 
-    public function getProduct($id = null)
-    {
-        $cart = $this->userCart();
-        $product = Store\Product::with('masterProduct')->findOrFail($id);
-        $requestedNotification = Auth::check() ?
-            $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists() : false;
-
-        if (!$product->enabled) {
-            abort(404);
-        }
-
-        return view('store.product', compact('cart', 'product', 'requestedNotification'));
-    }
-
     public function getCart($id = null)
     {
         return view('store.cart')

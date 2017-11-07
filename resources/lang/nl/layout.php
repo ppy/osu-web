@@ -98,7 +98,7 @@ return [
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
-            'getProduct' => 'artikel',
+            'products-show' => 'artikel',
 
             'new' => 'nieuw',
             'home' => 'start',

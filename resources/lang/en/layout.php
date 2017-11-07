@@ -124,7 +124,7 @@ return [
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
-            'getProduct' => 'product',
+            'products-show' => 'product',
 
             'new' => 'new',
             'home' => 'home',

@@ -194,7 +194,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
-    Route::get('product/{product}', 'StoreController@getProduct')->name('product');
     Route::get('cart', 'StoreController@getCart');
 
     Route::post('update-cart', 'StoreController@postUpdateCart');
@@ -211,6 +210,12 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
             'checkout',
             'CheckoutController',
             ['only' => ['index', 'store']]
+        );
+
+        Route::resource(
+            'product',
+            'ProductsController',
+            ['only' => ['show']]
         );
     });
 });

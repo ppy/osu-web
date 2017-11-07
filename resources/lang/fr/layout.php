@@ -121,7 +121,7 @@ return [
 
             'getCheckout' => 'acheter',
             'getInvoice' => 'facture',
-            'getProduct' => 'produit',
+            'products-show' => 'produit',
 
             'new' => 'nouveau',
             'home' => 'accueil',

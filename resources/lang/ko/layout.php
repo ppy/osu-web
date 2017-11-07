@@ -122,7 +122,7 @@ return [
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',
-            'getProduct' => '상품',
+            'products-show' => '상품',
 
             'new' => '새',
             'home' => '메인', // 'home'
