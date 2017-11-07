@@ -26,6 +26,12 @@
   overflow: hidden !important;
 }
 
+.u-ellipsis-overflow-desktop {
+  @media @desktop {
+    .u-ellipsis-overflow();
+  }
+}
+
 .u-full-screen {
   z-index: @z-index--editor-zoom !important;
   position: fixed !important;
