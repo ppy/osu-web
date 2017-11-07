@@ -23,6 +23,17 @@
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
             <h1>Checkout</h1>
 
+            @if (session()->has('checkout.error'))
+                <div class="alert alert-danger">
+                    <p>
+                        @lang('store.checkout.error')
+                    </p>
+                    <p>
+                        {{ session('checkout.error') }}
+                    </p>
+                </div>
+            @endif
+
             @include("store.objects.order", ['order' => $order, "table_class" => "table-fancy"])
 
             <div class="store-cart-footer">

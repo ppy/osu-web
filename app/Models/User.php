@@ -1183,7 +1183,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function receiveMessage(User $sender, $body, $isAction = false)
+    public function receiveMessage(self $sender, $body, $isAction = false)
     {
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
