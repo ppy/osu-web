@@ -988,5 +988,5 @@ function group_users_by_online_state($users)
 
 function product_url($product)
 {
-    return route('store.product.show', ['product' => $product]);
+    return route('store.products.show', ['product' => $product]);
 }
