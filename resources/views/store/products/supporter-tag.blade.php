@@ -31,9 +31,9 @@
     <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />
     <input type="hidden" name="item[extra_data][target_id]" value="{{ Auth::user()->user_id }}" />
     <div class="store-supporter-tag__user-icon">
-        <div style="background-image: url('{{ Auth::user()->user_avatar }}');" class="avatar avatar--centered js-avatar"></div>
     </div>
     <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
+        @include('objects._usercard', ['user' => Auth::user() ])
         <div class="grid-cell grid-cell--store-user-search">
             {!! Form::text('item[extra_data][username]', Auth::user()->username, ['id' => 'username', 'class' => 'js-username-input store-supporter-tag__input', 'placeholder' => 'Enter a username', 'autocomplete' => 'off']) !!}
         </div>
