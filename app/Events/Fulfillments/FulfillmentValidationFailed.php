@@ -20,10 +20,20 @@
 
 namespace App\Events\Fulfillments;
 
+use App\Libraries\ValidationErrors;
+
 class FulfillmentValidationFailed extends ValidationFailedEvent implements HasOrder
 {
+    private $order;
+
+    public function __construct($sender, ValidationErrors $errors)
+    {
+        parent::__construct($sender, $errors);
+        $this->order = $sender->getOrder();
+    }
+
     public function getOrder()
     {
-        return $this->sender->getOrder();
+        return $this->order;
     }
 }
