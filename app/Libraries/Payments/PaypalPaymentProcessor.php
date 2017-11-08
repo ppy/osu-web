@@ -68,7 +68,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $pending_statuses = ['Pending'];
         static $declined_statuses = ['Declined'];
 
-        $status = $this['payment_status'];
+        $status = $this->getNotificationTypeRaw();
         if (in_array($status, $payment_statuses, true)) {
             return NotificationType::PAYMENT;
         } elseif (in_array($status, $cancel_statuses, true)) {
