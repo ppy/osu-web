@@ -24,7 +24,7 @@
 @else
 <div class="js-store js-store-supporter-tag store-supporter-tag"
     data-user-id="{{ Auth::user()->user_id }}"
-    data-username="{{ Auth::user()->username }}"
+    data-username="{{ Auth::user()->username }}">
     <input type="hidden" name="item[product_id]" value="{{ $product->product_id }}" />
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
     <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />

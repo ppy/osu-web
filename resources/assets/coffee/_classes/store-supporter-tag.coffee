@@ -42,12 +42,23 @@ class @StoreSupporterTag
     @user = @currentUser =
       userId: @el.dataset.userId
       username: @el.dataset.username
-      cardHtml: @usercard.innerHTML
+
+    # save/restore current user card html
+    @currentUser.cardHtml = if @el.dataset.cardHtml
+                              @el.dataset.cardHtml
+                            else
+                              @usercard.innerHTML
+
+    delete @el.dataset.cardHtml
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
     @initializeUsernameInput()
     @updateCostDisplay()
+
+    $(document).on 'turbolinks:before-cache', =>
+      @el.dataset.cardHtml = @currentUser.cardHtml
+
 
   initializeSlider: =>
     # remove leftover from previous initialization
