@@ -38,6 +38,11 @@
 
   &__user-search {
     margin: 8px;
+    .js-store--disabled & {
+      .usercard {
+        pointer-events: none;
+      }
+    }
   }
 
   .ui-slider {
