@@ -36,7 +36,6 @@ class @StoreSupporterTag
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @usernameInput = @el.querySelector('.js-username-input')
-    @inputFeedback = @el.querySelector('.js-input-feedback')
     @usercard = @el.querySelector('.js-avatar')
 
     @user = @currentUser =
@@ -132,7 +131,6 @@ class @StoreSupporterTag
 
   updateSearchResult: =>
     if @searching
-      @inputFeedback.textContent = osu.trans('supporter_tag.user_search.searching')
       @usercard.innerHTML = $('#js-usercard__loading-template').html()
       return @setUserInteraction(false)
 
@@ -142,7 +140,6 @@ class @StoreSupporterTag
     else
       @el.querySelector('input[name="item[extra_data][target_id]"]').value = null
 
-    @inputFeedback.textContent = ''
     @setUserInteraction(@user?.userId)
 
   updateCostDisplay: =>

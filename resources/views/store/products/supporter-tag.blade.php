@@ -49,9 +49,6 @@
                 )
             !!}
         </div>
-        <div class="grid-cell grid-cell--store-user-search">
-            <div class="js-input-feedback store-supporter-tag__input-feedback"></div>
-        </div>
     </div>
     <div class="store-slider">
         <div class="js-slider ui-slider ui-slider-horizontal">
