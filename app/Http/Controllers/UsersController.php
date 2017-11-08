@@ -98,15 +98,25 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::default()->where('username', $username)->first();
-        if ($user === null) {
-            abort(404);
+        $user = User::lookup($username) ?? User::notFound();
+
+        $mutual = false;
+
+        if (Auth::user()) {
+            $friend = Auth::user()
+                ->friends()
+                ->where('user_id', $user->user_id)
+                ->first();
+
+            if ($friend) {
+                $mutual = $friend->mutual;
+            }
         }
 
         return [
             'user_id' => $user->user_id,
             'username' => $user->username,
-            'avatar_url' => $user->user_avatar,
+            'card_html' => view('objects._usercard', compact('user', 'friend', 'mutual'))->render(),
         ];
     }
 

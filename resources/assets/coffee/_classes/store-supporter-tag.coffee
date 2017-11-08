@@ -37,11 +37,12 @@ class @StoreSupporterTag
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
     @usernameInput = @el.querySelector('.js-username-input')
     @inputFeedback = @el.querySelector('.js-input-feedback')
+    @usercard = @el.querySelector('.js-avatar')
 
-    @user =
+    @user = @currentUser =
       userId: @el.dataset.userId
       username: @el.dataset.username
-      avatarUrl: @el.dataset.avatarUrl
+      cardHtml: @usercard.innerHTML
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
@@ -72,15 +73,21 @@ class @StoreSupporterTag
     $(@usernameInput).on 'input', @onInput
 
   getUser: (username) =>
+    if !username # reset to current user on empty
+      @user = @currentUser
+      @searching = false
+      @updateSearchResult()
+      return
+
     $.post laroute.route('users.check-username-exists'), username: username
     .done (data) =>
       # make a User DTO?
       @user =
         userId: data.user_id
         username: data.username
-        avatarUrl: data.avatar_url
+        cardHtml: data.card_html
 
-    .fail (xhr) =>
+    .fail (xhr, data, status) =>
       @user = null
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
@@ -117,18 +124,14 @@ class @StoreSupporterTag
       @inputFeedback.textContent = osu.trans('supporter_tag.user_search.searching')
       return @setUserInteraction(false)
 
-    [avatarUrl, text] = if @user
-                          [@user.avatarUrl, '']
-                        else
-                          ['', osu.trans("supporter_tag.user_search.not_found")]
+    if @user
+      @el.querySelector('input[name="item[extra_data][target_id]"]').value = @user.userId
+      @usercard.innerHTML = @user.cardHtml
+    else
+      @el.querySelector('input[name="item[extra_data][target_id]"]').value = null
 
-    @inputFeedback.textContent = text
-    # Avoid setting value to undefined
-    @el.querySelector('input[name="item[extra_data][target_id]"]').value = @user?.userId ? null
-    $(@el.querySelectorAll('.js-avatar')).css
-      'background-image': "url(#{avatarUrl})"
-
-    @setUserInteraction(@user?)
+    @inputFeedback.textContent = ''
+    @setUserInteraction(@user?.userId)
 
   updateCostDisplay: =>
     @el.querySelector('input[name="item[cost]"]').value = @cost.price()
