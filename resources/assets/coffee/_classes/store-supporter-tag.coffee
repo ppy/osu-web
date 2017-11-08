@@ -133,6 +133,7 @@ class @StoreSupporterTag
   updateSearchResult: =>
     if @searching
       @inputFeedback.textContent = osu.trans('supporter_tag.user_search.searching')
+      @usercard.innerHTML = $('#js-usercard__loading-template').html()
       return @setUserInteraction(false)
 
     if @user
