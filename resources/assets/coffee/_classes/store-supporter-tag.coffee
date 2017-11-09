@@ -137,6 +137,7 @@ class @StoreSupporterTag
     if @user
       @el.querySelector('input[name="item[extra_data][target_id]"]').value = @user.userId
       @usercard.innerHTML = @user.cardHtml
+      reactTurbolinks.boot()
     else
       @el.querySelector('input[name="item[extra_data][target_id]"]').value = null
 
