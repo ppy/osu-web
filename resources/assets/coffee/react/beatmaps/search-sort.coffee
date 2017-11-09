@@ -22,7 +22,7 @@ el = React.createElement
 class Beatmaps.SearchSort extends React.PureComponent
   render: =>
     div className: 'beatmapsets-sorting',
-      for field in ['title', 'artist', 'difficulty', 'ranked', 'rating', 'updated', 'plays']
+      for field in ['title', 'artist', 'difficulty', 'ranked', 'updated', 'rating', 'plays']
         selected = @selected(field)
 
         a
