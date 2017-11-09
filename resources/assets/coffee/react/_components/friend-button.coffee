@@ -137,5 +137,6 @@ class @FriendButton extends React.PureComponent
     # - not viewing own card
     # - already a friend or can add more friends
     currentUser.id? &&
+      !isNaN(@props.user_id) &&
       @props.user_id != currentUser.id &&
       (@state.friend || currentUser.friends.length < 200)
