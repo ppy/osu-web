@@ -18,22 +18,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillments;
-
-use App\Libraries\ValidationErrors;
-
-class FulfillmentValidationFailed extends ValidationFailedEvent implements HasOrder
-{
-    private $order;
-
-    public function __construct($sender, ValidationErrors $errors)
-    {
-        parent::__construct($sender, $errors);
-        $this->order = $sender->getOrder();
-    }
-
-    public function getOrder()
-    {
-        return $this->order;
-    }
-}
+return [
+    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
+    'invalid_resource_id' => 'No payment information was found.',
+    'unknown' => "The payment was rejected, but we're not sure why.",
+];

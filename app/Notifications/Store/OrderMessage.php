@@ -35,6 +35,7 @@ class OrderMessage extends Message
      */
     public function __construct($eventName, $order, $text)
     {
+        parent::__construct();
         $this->eventName = $eventName;
         $this->order = $order;
         $this->text = $text;
@@ -42,9 +43,10 @@ class OrderMessage extends Message
 
     public function toSlack($notifiable)
     {
-        $content = "`{$this->eventName}` | Order `{$this->order->getOrderNumber()}`: {$this->text}";
+        $content = "`{$this->notified_at}` | `{$this->eventName}` | Order `{$this->order->getOrderNumber()}`: {$this->text}";
 
         return (new SlackMessage)
+            ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->content($content);
     }

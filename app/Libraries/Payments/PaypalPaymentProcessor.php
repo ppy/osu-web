@@ -43,7 +43,12 @@ class PaypalPaymentProcessor extends PaymentProcessor
     public function getPaymentAmount()
     {
         // TODO: less floaty
-        return (float) ($this['payment_gross'] ?? $this['mc_gross']);
+
+        if ($this->getNotificationType() === 'NotificationType::REFUND') {
+            return (float) $this['mc_gross'] + $this['mc_fee'];
+        } else {
+            return (float) $this['mc_gross'];
+        }
     }
 
     public function getPaymentDate()
@@ -63,7 +68,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
         static $pending_statuses = ['Pending'];
         static $declined_statuses = ['Declined'];
 
-        $status = $this['payment_status'];
+        $status = $this->getNotificationTypeRaw();
         if (in_array($status, $payment_statuses, true)) {
             return NotificationType::PAYMENT;
         } elseif (in_array($status, $cancel_statuses, true)) {
@@ -75,6 +80,11 @@ class PaypalPaymentProcessor extends PaymentProcessor
         } else {
             return "unknown__{$status}";
         }
+    }
+
+    public function getNotificationTypeRaw()
+    {
+        return $this['payment_status'];
     }
 
     public function validateTransaction()
@@ -96,7 +106,19 @@ class PaypalPaymentProcessor extends PaymentProcessor
         // order should be in the correct state
         if ($this->isPaymentOrPending()) {
             if (!in_array($order->status, ['incart', 'checkout'], true)) {
-                $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
+                $this->validationErrors()->add(
+                    'order.status',
+                    '.order.status.not_checkout',
+                    ['state' => $order->status]
+                );
+            }
+
+            if ($this['mc_currency'] !== 'USD') {
+                $this->validationErrors()->add(
+                    'mc_currency',
+                    '.purchase.checkout.currency',
+                    ['type' => $this['mc_currency']]
+                );
             }
 
             \Log::debug("purchase.checkout.amount: {$this->getPaymentAmount()}, {$order->getTotal()}");

@@ -124,7 +124,7 @@ return [
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',
-            'getProduct' => '商品',
+            'products-show' => '商品',
 
             'new' => 'new', //TODO 需要上下文
             'home' => 'home', //TODO 需要上下文

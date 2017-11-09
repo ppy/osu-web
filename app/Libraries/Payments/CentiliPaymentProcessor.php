@@ -60,7 +60,13 @@ class CentiliPaymentProcessor extends PaymentProcessor
             'canceled' => NotificationType::REJECTED, // TODO: verify documentation is correct >_>
         ];
 
-        return $mapping[$this['status']] ?? "unknown__{$this['status']}";
+        return $mapping[$this->getNotificationTypeRaw()]
+            ?? "unknown__{$this->getNotificationTypeRaw()}";
+    }
+
+    public function getNotificationTypeRaw()
+    {
+        return $this['status'];
     }
 
     public function isTest()

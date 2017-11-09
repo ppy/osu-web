@@ -22,16 +22,19 @@ namespace App\Events\Fulfillments;
 
 use App\Events\MessageableEvent;
 use App\Libraries\ValidationErrors;
+use Illuminate\Queue\SerializesModels;
 
 class ValidationFailedEvent implements MessageableEvent
 {
-    protected $sender;
+    use SerializesModels;
+
     protected $context = [];
-    private $errors;
+    protected $errors;
+    protected $senderClass;
 
     public function __construct($sender, ValidationErrors $errors)
     {
-        $this->sender = $sender;
+        $this->senderClass = get_class_basename(get_class($sender));
         $this->errors = $errors;
     }
 
@@ -47,10 +50,9 @@ class ValidationFailedEvent implements MessageableEvent
 
     public function toMessage()
     {
-        $senderText = get_class_basename(get_class($this->sender));
         $className = get_class_basename(static::class);
         $messages = implode("\n\t", $this->getErrors()->allMessages());
 
-        return "`{$className}` from `{$senderText}`\n\t{$messages}";
+        return "`{$className}` from `{$this->senderClass}`\n\t{$messages}";
     }
 }

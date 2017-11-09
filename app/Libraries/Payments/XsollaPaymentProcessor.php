@@ -65,7 +65,13 @@ class XsollaPaymentProcessor extends PaymentProcessor
             'user_validation' => NotificationType::USER_SEARCH,
         ];
 
-        return $mapping[$this['notification_type']] ?? "unknown__{$this['notification_type']}";
+        return $mapping[$this->getNotificationTypeRaw()]
+            ?? "unknown__{$this->getNotificationTypeRaw()}";
+    }
+
+    public function getNotificationTypeRaw()
+    {
+        return $this['notification_type'];
     }
 
     public function isTest()

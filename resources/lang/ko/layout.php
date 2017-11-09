@@ -55,6 +55,7 @@ return [
             'index' => '목록',
             'artists' => '주요 아티스트',
             'packs' => '모음집',
+            'beatmapset-watches-index' => '모딩 확인 목록',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
@@ -122,7 +123,7 @@ return [
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',
-            'getProduct' => '상품',
+            'products-show' => '상품',
 
             'new' => '새',
             'home' => '메인', // 'home'

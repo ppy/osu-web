@@ -18,22 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Fulfillments;
-
-use App\Libraries\ValidationErrors;
-
-class FulfillmentValidationFailed extends ValidationFailedEvent implements HasOrder
-{
-    private $order;
-
-    public function __construct($sender, ValidationErrors $errors)
-    {
-        parent::__construct($sender, $errors);
-        $this->order = $sender->getOrder();
-    }
-
-    public function getOrder()
-    {
-        return $this->order;
-    }
-}
+return [
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => '감사합니다, osu!는 여러분들을 <3 합니다!',
+        ],
+        'supporter_gift' => [
+            'subject' => 'osu! 서포터 권한을 얻으셨습니다!',
+        ],
+    ],
+];

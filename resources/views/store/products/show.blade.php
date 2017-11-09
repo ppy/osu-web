@@ -107,7 +107,7 @@
 
                                     <select id="select-product-{{ $type }}" class="form-control js-url-selector" data-keep-scroll="1">
                                         @foreach($values as $value => $product_id)
-                                            <option {{ $product_id === $product->product_id ? "selected" : "" }} value="{{ action("StoreController@getProduct", $product_id) }}">
+                                            <option {{ $product_id === $product->product_id ? "selected" : "" }} value="{{ route('store.products.show', $product_id) }}">
                                                 {{ $value }}
                                             </option>
                                         @endforeach

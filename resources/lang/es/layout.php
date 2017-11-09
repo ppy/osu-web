@@ -120,7 +120,7 @@ return [
 
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',
-            'getProduct' => 'producto',
+            'products-show' => 'producto',
 
             'new' => 'nuevo',
             'home' => 'inicio',
