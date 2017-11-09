@@ -18,6 +18,12 @@
 
 .store-slider {
   @preset-margin: 4px;
+  @callout-padding: 6px;
+  @callout-extension: 64px;
+
+  // inset slider to prevent overflows making the page wider.
+  // the 2px is to add a gap between the callout and the page edge.
+  padding: 0 @callout-extension / 2 - @callout-padding * 2 + 2px;
 
   &__bigtext { // stupid name
     font-size: @font-size--large;
@@ -27,7 +33,7 @@
   &__fake-callout {
     position: absolute;
     left: @slider-handle-width / 2;
-    padding: 0 32px @slider-callout--arrow-height 32px;
+    padding-bottom: @slider-callout--arrow-height;
     transform: translateX(-50%);
     bottom: calc(100% ~'+' @slider-callout--arrow-gap);
   }
@@ -40,6 +46,11 @@
     border-radius: 10px;
     padding: 6px;
     width: @slider-callout--width;
+
+    @media @desktop {
+      // make fatter for wider viewports.
+      width: @slider-callout--width + @callout-extension;
+    }
 
     &:after, &:before {
       top: 100%;
@@ -88,6 +99,7 @@
 
   &__presets {
     align-items: center;
+    font-size: 12px;
   }
 
   &__subtext { // stupid name
