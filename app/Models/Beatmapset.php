@@ -270,6 +270,7 @@ class Beatmapset extends Model
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'title' => 'title',
+            'updated' => 'last_update',
         ];
         $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
 
