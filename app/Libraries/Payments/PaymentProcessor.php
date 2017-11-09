@@ -102,6 +102,13 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getNotificationType();
 
     /**
+     * Gets the raw value of the notification type from the payment provider.
+     *
+     * @return string
+     */
+    abstract public function getNotificationTypeRaw();
+
+    /**
      * Gets if the payment notification is a test transaction.
      * This should only be used for the final payment notification;
      * it is not set by providers in the intermediate notifications.
