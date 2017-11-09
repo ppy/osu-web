@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => 'Reset Password',
+    'title' => 'ตั้งรหัสผ่านใหม่',
 
     'button' => [
-        'cancel' => 'Cancel',
-        'resend' => 'Resend verification email',
-        'set' => 'Set password',
-        'start' => 'Start',
+        'cancel' => 'ยกเลิก',
+        'resend' => 'ส่งอีเมลยืนยันอีกครั้ง',
+        'set' => 'ตั้งรหัสผ่าน',
+        'start' => 'เริ่ม',
     ],
 
     'email' => [
-        'subject' => 'osu! account recover',
+        'subject' => 'กู้ข้อมูลผู้ใช้ osu!',
     ],
 
     'error' => [
-        'contact_support' => 'Please contact support to recover account.',
-        'is_privileged' => 'Contact peppy lulz.',
-        'missing_key' => 'Required.',
-        'too_many_tries' => 'Too many failed attempts.',
-        'user_not_found' => 'Requested user does not exist.',
-        'wrong_key' => 'Incorrect code.',
+        'contact_support' => 'กรุณาติดต่อฝ่าย support เพื่อทำการกู้ข้อมูลผู้ใช้',
+        'is_privileged' => 'ติดต่อ peppy เลย (พูดจริง)',
+        'missing_key' => 'ต้องการ',
+        'too_many_tries' => 'จำนวนการลองไม่สำเร็จมากเกินไป',
+        'user_not_found' => 'ไม่พบชื่อผู้ใช้ดังกล่าว',
+        'wrong_key' => 'รหัสผิด',
     ],
 
     'notice' => [
-        'sent' => 'Check your email for the verification code.',
-        'saved' => 'New password saved!',
+        'sent' => 'กรุณารับรหัสผ่านยืนยันที่อีเมลของท่าน',
+        'saved' => 'บันทึกรหัสผ่านใหม่แล้ว!',
     ],
 
     'started' => [
-        'password' => 'New password',
-        'password_confirmation' => 'Password confirmation',
-        'title' => 'Resetting password for account <strong>:username</strong>.',
-        'verification_key' => 'Verification code',
+        'password' => 'รหัสผ่านใหม่',
+        'password_confirmation' => 'ยืนยันรหัสผ่าน',
+        'title' => 'กำลังตั้งรหัสผ่านใหม่ให้กับผู้ใช้ <strong>:username</strong>.',
+        'verification_key' => 'รหัสผ่านยืนยัน',
     ],
 
     'starting' => [
-        'username' => 'Enter email address or username',
+        'username' => 'กรอกอีเมล หรือชื่อผู้ใช้',
     ],
 ];
