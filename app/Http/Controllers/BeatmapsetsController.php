@@ -61,7 +61,6 @@ class BeatmapsetsController extends Controller
             ['id' => 1, 'name' => trans('beatmaps.status.approved')],
             ['id' => 8, 'name' => trans('beatmaps.status.loved')],
             ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 3, 'name' => trans('beatmaps.status.modreqs')],
             ['id' => 4, 'name' => trans('beatmaps.status.pending')],
             ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
             ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
