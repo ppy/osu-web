@@ -35,18 +35,20 @@ class @StoreSupporterTag
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
+    @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
     @usernameInput = @el.querySelector('.js-username-input')
     @usercard = @el.querySelector('.js-avatar')
 
-    @user = @currentUser =
+    @user =
+      userId: @targetIdElement.value
+
+    @currentUser =
       userId: @el.dataset.userId
       username: @el.dataset.username
-
+      cardHtml: @el.dataset.cardHtml ? @usercard.innerHTML
     # save/restore current user card html
-    @currentUser.cardHtml = if @el.dataset.cardHtml
-                              @el.dataset.cardHtml
-                            else
-                              @usercard.innerHTML
+    $(document).on 'turbolinks:before-cache', =>
+      @el.dataset.cardHtml = @currentUser.cardHtml
 
     delete @el.dataset.cardHtml
 
@@ -54,9 +56,7 @@ class @StoreSupporterTag
     @initializeSliderPresets()
     @initializeUsernameInput()
     @updateCostDisplay()
-
-    $(document).on 'turbolinks:before-cache', =>
-      @el.dataset.cardHtml = @currentUser.cardHtml
+    @setUserInteraction(@user?.userId)
 
 
   initializeSlider: =>
@@ -135,11 +135,11 @@ class @StoreSupporterTag
       return @setUserInteraction(false)
 
     if @user
-      @el.querySelector('input[name="item[extra_data][target_id]"]').value = @user.userId
+      @targetIdElement.value = @user.userId
       @usercard.innerHTML = @user.cardHtml
       reactTurbolinks.boot()
     else
-      @el.querySelector('input[name="item[extra_data][target_id]"]').value = null
+      @targetIdElement.value = null
 
     @setUserInteraction(@user?.userId)
 
