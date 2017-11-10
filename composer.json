@@ -20,6 +20,7 @@
   ],
   "require": {
     "doctrine/dbal": "*",
+    "elasticsearch/elasticsearch": "~2.0",
     "ezyang/htmlpurifier": "^4.7",
     "graham-campbell/github": "^5.0",
     "graham-campbell/markdown": "*",
@@ -36,7 +37,7 @@
     "mariuzzo/laravel-js-localization": "*",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "^0.7.0",
-    "shift31/laravel-elasticsearch": "~1.0",
+    "shift31/laravel-elasticsearch": "~2.0",
     "webuni/commonmark-table-extension": "dev-fix-escapes",
     "chaseconey/laravel-datadog-helper": "^0.6.0",
     "tumblr/tumblr": "^0.2.0",
