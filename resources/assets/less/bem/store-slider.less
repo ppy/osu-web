@@ -17,7 +17,10 @@
  */
 
 .store-slider {
+  @preset-font-size: 12px;
+  @preset-height: 20px;
   @preset-margin: 4px;
+  @preset-width: 36px;
   @callout-padding: 6px;
   @callout-extension: 64px;
 
@@ -75,11 +78,11 @@
     background-color: #666;
     color: #fff;
     cursor: pointer;
-    font-size: 12px;
+    font-size: @preset-font-size;
     margin: @preset-margin;
-    height: 20px;
-    width: 36px;
-    line-height: 19px;
+    height: @preset-height;
+    width: @preset-width;
+    line-height: @preset-height - 1px;
     text-align: center;
     border-radius: 10px;
 
@@ -102,7 +105,7 @@
   }
 
   &__presets-blurb {
-    font-size: 12px;
+    font-size: @preset-font-size;
     margin: 0 @preset-margin;
   }
 
