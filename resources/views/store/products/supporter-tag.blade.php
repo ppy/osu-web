@@ -29,8 +29,6 @@
     <input type="hidden" name="item[quantity]" class="js-store-item-quantity" value="1" />
     <input type="hidden" id="supporter-tag-form-price" name="item[cost]" value="4" />
     <input type="hidden" name="item[extra_data][target_id]" value="{{ Auth::user()->user_id }}" />
-    <div class="store-supporter-tag__user-icon">
-    </div>
     <div class="grid grid--xs grid--centered grid--stack store-supporter-tag__user-search">
         <div class="js-avatar">
             @include('objects._usercard', ['user' => Auth::user() ])
