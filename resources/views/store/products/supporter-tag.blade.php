@@ -62,7 +62,7 @@
         </div>
         <div class="grid grid--xs grid--right store-slider__presets">
             <span class="store-slider__presets-blurb">@lang('supporter_tag.months')</span>
-            @foreach([2, 4, 6, 8, 12, 18, 24] as $months)
+            @foreach([1, 2, 4, 6, 12, 18, 24] as $months)
                 <div class="js-slider-preset store-slider__preset" data-months="{{$months}}">{{$months}}</div>
             @endforeach
         </div>
