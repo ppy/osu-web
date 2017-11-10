@@ -97,7 +97,7 @@ class @StoreSupporterTag
         username: data.username
         cardHtml: data.card_html
 
-    .fail (xhr, data, status) =>
+    .fail (xhr) =>
       @user = null
       if xhr.status == 401
         osu.popup osu.trans('errors.logged_out'), 'danger'
