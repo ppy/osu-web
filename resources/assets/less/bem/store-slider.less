@@ -26,7 +26,7 @@
 
   // inset slider to prevent overflows making the page wider.
   // the 2px is to add a gap between the callout and the page edge.
-  padding: 0 @callout-extension / 2 - @callout-padding * 2 + 2px;
+  padding: 0 ((@callout-extension / 2) - (@callout-padding * 2) + 2px);
 
   &__bigtext { // stupid name
     font-size: @font-size--large;
@@ -78,7 +78,6 @@
     background-color: #666;
     color: #fff;
     cursor: pointer;
-    font-size: @preset-font-size;
     margin: @preset-margin;
     height: @preset-height;
     width: @preset-width;
@@ -102,10 +101,10 @@
 
   &__presets {
     align-items: center;
+    font-size: @preset-font-size;
   }
 
   &__presets-blurb {
-    font-size: @preset-font-size;
     margin: 0 @preset-margin;
   }
 
