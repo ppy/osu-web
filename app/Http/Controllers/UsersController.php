@@ -27,6 +27,7 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
+use App\Models\UserNotFound;
 use Auth;
 use Request;
 
@@ -98,7 +99,7 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::lookup($username) ?? User::notFound();
+        $user = User::lookup($username) ?? UserNotFound::instance();
 
         $mutual = false;
 

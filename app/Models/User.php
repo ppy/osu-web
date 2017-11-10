@@ -1439,14 +1439,4 @@ class User extends Model implements AuthenticatableContract, Messageable
             return $existing;
         }
     }
-
-    public static function notFound()
-    {
-        static $user;
-        if (!isset($user)) {
-            $user =  new static(['username' => trans("supporter_tag.user_search.not_found")]);
-        }
-
-        return $user;
-    }
 }
