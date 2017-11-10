@@ -53,18 +53,8 @@ class UsersController extends Controller
         $id = get_int($id);
 
         $user = User::lookup($id, 'id');
-        $mutual = false;
 
-        if (Auth::user()) {
-            $friend = Auth::user()
-                ->friends()
-                ->where('user_id', $id)
-                ->first();
-
-            if ($friend) {
-                $mutual = $friend->mutual;
-            }
-        }
+        list($friend, $mutual) = $this->getFriendStatus($user);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
@@ -101,18 +91,7 @@ class UsersController extends Controller
         $username = Request::input('username');
         $user = User::lookup($username) ?? UserNotFound::instance();
 
-        $mutual = false;
-
-        if (Auth::user()) {
-            $friend = Auth::user()
-                ->friends()
-                ->where('user_id', $user->user_id)
-                ->first();
-
-            if ($friend) {
-                $mutual = $friend->mutual;
-            }
-        }
+        list($friend, $mutual) = $this->getFriendStatus($user);
 
         return [
             'user_id' => $user->user_id,
@@ -291,6 +270,22 @@ class UsersController extends Controller
                 'jsonChunks'
             ));
         }
+    }
+
+    private function getFriendStatus($user)
+    {
+        if (!(Auth::user()
+            && $user
+            && $user !== UserNotFound::instance())) {
+            return [null, false];
+        }
+
+        $friend = Auth::user()
+            ->friends()
+            ->where('user_id', $user->user_id)
+            ->first();
+
+        return [$friend, $friend->mutual ?? false];
     }
 
     private function parsePaginationParams($perPage)
