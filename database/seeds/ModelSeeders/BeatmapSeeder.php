@@ -50,7 +50,7 @@ class BeatmapSeeder extends Seeder
 
                 // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary
                 if ($last_beatmapset === $bm->beatmapset_id || $first_map === true) {
-                    ++$beatmapset_versions;
+                    $beatmapset_versions++;
                     $beatmap_diff_names[] = $bm->version.'@'.$bm->mode;
                     $set_playcount += $bm->playcount;
                 } else {
@@ -148,7 +148,7 @@ class BeatmapSeeder extends Seeder
                 }
                 $last_beatmapset = $bm->beatmapset_id;
                 $previous_beatmap = $bm;
-                ++$i;
+                $i++;
             } // end foreach beatmap
 
             $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');

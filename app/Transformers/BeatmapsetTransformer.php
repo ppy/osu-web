@@ -23,6 +23,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use Auth;
 use League\Fractal;
@@ -68,6 +69,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
+            'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
         ];
     }
 

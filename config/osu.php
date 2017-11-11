@@ -59,7 +59,7 @@ return [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
     'search' => [
-        'minimum_length' => 3,
+        'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
 
         'max' => [
             'user' => 100,

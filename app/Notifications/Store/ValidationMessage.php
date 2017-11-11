@@ -36,18 +36,20 @@ class ValidationMessage extends Message
      */
     public function __construct($eventName, ValidationFailedEvent $event)
     {
+        parent::__construct();
         $this->eventName = $eventName;
         $this->event = $event;
     }
 
     public function toSlack($notifiable)
     {
-        $content = "`{$this->eventName}`";
+        $content = "`{$this->notified_at}` | `{$this->eventName}`";
         if ($this->event instanceof HasOrder) {
-            $content .= " | `Order {$this->event->getOrder()->order_id}`";
+            $content .= " | Order `{$this->event->getOrder()->getOrderNumber()}`";
         }
 
         return (new SlackMessage)
+            ->http(static::HTTP_OPTIONS)
             ->to(config('payments.notification_channel'))
             ->warning()
             ->content($content)
@@ -58,7 +60,7 @@ class ValidationMessage extends Message
                     ->markdown(['text', 'fields']);
 
                 if ($this->event instanceof HasOrder) {
-                    $attachment->title("Order {$this->event->getOrder()->order_id}");
+                    $attachment->title("Order {$this->event->getOrder()->getOrderNumber()}");
                 }
             });
     }

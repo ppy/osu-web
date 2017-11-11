@@ -65,7 +65,7 @@ class LocaleMeta
         ],
         'ko' => [
             'name' => '한국어',
-            'flag' => 'KO',
+            'flag' => 'KR',
         ],
         'nl' => [
             'name' => 'Nederlands',

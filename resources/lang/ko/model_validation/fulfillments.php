@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,51 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import "app";
-
-.tournament {
-  .default-box-shadow();
-
-  display: flex;
-
-  margin: 10px auto;
-
-  max-width: 640px;
-  min-height: 150px;
-
-  .title {
-    font-weight: bold;
-    font-size: 25px;
-    color: @pink-text;
-  }
-
-  .dates-tournament {
-    font-weight: bold;
-    color: @pink-text;
-  }
-
-  .dates-reg {
-    font-weight: bold;
-    padding-top: 10px;
-  }
-
-  .mode {
-    width: 150px;
-    color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .at2x("/images/backgrounds/watercolour-square-blue.jpg", 150px, 150px);
-
-    background-size: auto 100%;
-
-    font-size: 70px;
-    .default-text-shadow;
-  }
-
-  .info {
-    padding: 25px;
-  }
-}
+return [
+    'username_change' => [
+        'only_one' => '주문이 성사될 때 마다 한 번씩만 유저 이름을 바꿀 수 있습니다.',
+        'insufficient_paid' => '지불하신 금액이 유저 이름을 변경하는데 필요한 금액보다 적습니다 (:expected > :actual)',
+        'reverting_username_mismatch' => '현재 유저 이름 (:current)이 철회시 적용될 유저 이름(:username)과 일치하지 않습니다', // Current username (:current) is not the same as change to revoke (:username)
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => '기부액이 서포터 권한을 얻는데 필요한 최소액보다 적습니다 (:actual > :expected)',
+    ],
+];

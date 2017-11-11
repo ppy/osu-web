@@ -29,7 +29,11 @@ use App\Libraries\Payments\PaypalSignature;
 use App\Models\Store\Order;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
+use Lang;
+use Log;
+use PayPal\Exception\PayPalConnectionException;
 use Request;
+use Session;
 
 class PaypalController extends Controller
 {
@@ -53,9 +57,15 @@ class PaypalController extends Controller
             ->where('status', 'incart')
             ->findOrFail($orderId);
 
-        $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId'));
-        $payment = $command->run();
-        \Log::debug($payment);
+        try {
+            $command = new PaypalExecutePayment($order, compact('paymentId', 'payerId'));
+            $payment = $command->run();
+            Log::debug($payment);
+        } catch (PayPalConnectionException $e) {
+            Session::flash('checkout.error', $this->userErrorMessage($e));
+
+            return redirect(route('store.checkout.index'));
+        }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
@@ -75,8 +85,7 @@ class PaypalController extends Controller
     // Payment declined by user.
     public function declined()
     {
-        // FIXME: show a message to the user
-        Request::session()->flash('status', 'The payment was not completed.');
+        Session::flash('checkout.error', trans('store.checkout.declined'));
 
         return redirect(route('store.checkout.index'));
     }
@@ -91,7 +100,7 @@ class PaypalController extends Controller
         try {
             $processor->run();
         } catch (ValidationException $exception) {
-            \Log::error($exception->getMessage());
+            Log::error($exception->getMessage());
 
             return response(['message' => 'A validation error occured while running the transaction'], 406);
         } catch (InvalidSignatureException $exception) {
@@ -99,5 +108,16 @@ class PaypalController extends Controller
         }
 
         return 'ok';
+    }
+
+    private function userErrorMessage($e)
+    {
+        $json = json_decode($e->getData());
+        $key = 'paypal/errors.'.strtolower($json->name);
+        if (!Lang::has($key)) {
+            $key = 'paypal/errors.unknown';
+        }
+
+        return trans($key);
     }
 }

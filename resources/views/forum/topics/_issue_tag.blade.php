@@ -24,6 +24,7 @@
         js-forum-topic-issue_tag_{{ $issueTag }}
         btn-circle
         btn-circle--topic-nav
+        btn-circle--purple
         {{ $state ? 'btn-circle--activated' : '' }}
     "
     data-topic-id="{{ $topic->topic_id }}"

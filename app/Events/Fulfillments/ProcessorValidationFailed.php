@@ -30,7 +30,7 @@ class ProcessorValidationFailed extends ValidationFailedEvent
         parent::__construct($sender, $errors);
         $this->context = array_merge($this->context, [
             'order_number' => $sender->getOrderNumber(),
-            'notification_type' => $sender->getNotificationType(),
+            'notification_type' => "{$sender->getNotificationType()} ({$sender->getNotificationTypeRaw()})",
             'transaction_id' => $sender->getTransactionId(),
         ]);
     }

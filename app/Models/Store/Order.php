@@ -25,10 +25,16 @@ use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
+use Exception;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use SoftDeletes;
+
+    const ECHECK_CLEARED = 'ECHECK CLEARED';
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
+    const PENDING_ECHECK = 'PENDING ECHECK';
 
     protected $primaryKey = 'order_id';
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
@@ -172,9 +178,37 @@ class Order extends Model
         return (float) $total * $rate;
     }
 
+    public function getStatusText()
+    {
+        switch ($this->status) {
+            case 'cancelled':
+                return 'Cancelled';
+            case 'checkout':
+                return 'Awaiting Payment';
+            case 'incart':
+                return '';
+            case 'paid':
+            case 'shipped':
+            case 'delivered':
+                return 'Paid';
+            default:
+                return 'Unknown';
+        }
+    }
+
     public function getTotal()
     {
         return $this->getSubtotal() + $this->shipping;
+    }
+
+    public function isPaidOrDelivered()
+    {
+        return in_array($this->status, ['paid', 'delivered'], true);
+    }
+
+    public function isPendingEcheck()
+    {
+        return $this->tracking_code === static::PENDING_ECHECK;
     }
 
     public function removeInvalidItems()
@@ -236,6 +270,17 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
+    public function delete()
+    {
+        if ($this->status !== 'incart') {
+            // in most cases this would return a null key because the lookup for the cart
+            // would return a new cart anyway?
+            throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
+        }
+
+        parent::delete();
+    }
+
     public function paid(Payment $payment = null)
     {
         // TODO: use a no payment object instead?
@@ -248,7 +293,7 @@ class Order extends Model
             $this->paid_at = Carbon::now();
         }
 
-        $this->status = 'paid';
+        $this->status = $this->requiresShipping() ? 'paid' : 'delivered';
         $this->saveOrExplode();
     }
 

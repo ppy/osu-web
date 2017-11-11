@@ -26,13 +26,15 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
+use App\Traits\StoreNotifiable;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
+use Exception;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use Validatable;
+    use StoreNotifiable, Validatable;
 
     protected $params;
     protected $signature;
@@ -100,6 +102,13 @@ abstract class PaymentProcessor implements \ArrayAccess
     abstract public function getNotificationType();
 
     /**
+     * Gets the raw value of the notification type from the payment provider.
+     *
+     * @return string
+     */
+    abstract public function getNotificationTypeRaw();
+
+    /**
      * Gets if the payment notification is a test transaction.
      * This should only be used for the final payment notification;
      * it is not set by providers in the intermediate notifications.
@@ -133,6 +142,8 @@ abstract class PaymentProcessor implements \ArrayAccess
         switch ($type) {
             case NotificationType::PAYMENT:
                 return $this->apply();
+            case NotificationType::PENDING:
+                return $this->pending();
             case NotificationType::REFUND:
                 return $this->cancel();
             case NotificationType::REJECTED:
@@ -158,22 +169,33 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         DB::connection('mysql-store')->transaction(function () {
-            $order = $this->getOrder();
+            try {
+                $order = $this->getOrder();
 
-            // Using a unique constraint, so we don't need to lock any rows.
-            $payment = new Payment([
-                'provider' => $this->getPaymentProvider(),
-                'transaction_id' => $this->getPaymentTransactionId(),
-                'paid_at' => $this->getPaymentDate(),
-            ]);
+                // FIXME: less hacky
+                if ($order->tracking_code === Order::PENDING_ECHECK) {
+                    $order->tracking_code = Order::ECHECK_CLEARED;
+                }
 
-            if (!$order->payments()->save($payment)) {
-                throw new ModelNotSavedException('failed saving model');
+                // Using a unique constraint, so we don't need to lock any rows.
+                $payment = new Payment([
+                    'provider' => $this->getPaymentProvider(),
+                    'transaction_id' => $this->getPaymentTransactionId(),
+                    'paid_at' => $this->getPaymentDate(),
+                ]);
+
+                if (!$order->payments()->save($payment)) {
+                    throw new ModelNotSavedException('failed saving model');
+                }
+
+                $order->paid($payment);
+
+                $eventName = "store.payments.completed.{$payment->provider}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
             }
 
-            $order->paid($payment);
-
-            $eventName = "store.payments.completed.{$payment->provider}";
             event($eventName, new PaymentEvent($order));
         });
     }
@@ -192,13 +214,46 @@ abstract class PaymentProcessor implements \ArrayAccess
         }
 
         DB::connection('mysql-store')->transaction(function () {
-            $order = $this->getOrder();
-            $payment = $order->payments->where('cancelled', false)->first();
-            $payment->cancel();
+            try {
+                $order = $this->getOrder();
+                $payment = $order->payments->where('cancelled', false)->first();
+                $payment->cancel();
 
-            $order->cancel();
+                $order->cancel();
 
-            $eventName = "store.payments.cancelled.{$payment->provider}";
+                $eventName = "store.payments.cancelled.{$payment->provider}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
+            event($eventName, new PaymentEvent($order));
+        });
+    }
+
+    public function pending()
+    {
+        $this->sandboxAssertion();
+
+        if (!$this->validateTransaction()) {
+            $this->throwValidationFailed(new PaymentProcessorException($this->validationErrors()));
+        }
+
+        DB::connection('mysql-store')->transaction(function () {
+            try {
+                $order = $this->getOrder()->lockSelf();
+                // Only supported by Paypal processor atm, so assume eCheck.
+                // Change if the situation changes.
+                $order->tracking_code = Order::PENDING_ECHECK;
+                $order->transaction_id = $this->getTransactionId();
+                $order->saveOrExplode();
+
+                $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
             event($eventName, new PaymentEvent($order));
         });
     }
@@ -211,6 +266,10 @@ abstract class PaymentProcessor implements \ArrayAccess
      */
     public function rejected()
     {
+        // just validate the signature until we make sure validating
+        //  the whole transaction doesn't make it explode.
+        $this->ensureValidSignature();
+
         $order = $this->getOrder();
         $eventName = "store.payments.rejected.{$this->getPaymentProvider()}";
         event($eventName, new PaymentEvent($order));

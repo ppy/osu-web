@@ -34,6 +34,7 @@ use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
@@ -74,6 +75,15 @@ class User extends Model implements AuthenticatableContract, Messageable
             'key' => 'followerCount',
             'duration' => 720, // 12 hours
         ],
+    ];
+
+    const MAX_FIELD_LENGTHS = [
+        'user_msnm' => 255,
+        'user_twitter' => 255,
+        'user_website' => 200,
+        'user_from' => 30,
+        'user_occ' => 30,
+        'user_interests' => 30,
     ];
 
     private $memoized = [];
@@ -130,13 +140,33 @@ class User extends Model implements AuthenticatableContract, Messageable
             throw new ChangeUsernameException(['user_id is not valid']);
         }
 
-        $errors = static::validateUsername($newUsername);
+        $errors = static::validateUsername($newUsername, $this->username);
         if (count($errors) > 0) {
             throw new ChangeUsernameException($errors);
         }
 
-        $this->updateUsername($newUsername, $this->username, $type);
-        \Log::debug("username changed: {$this->username}");
+        DB::transaction(function () use ($newUsername, $type) {
+            // check for an exsiting inactive username and renames it.
+            static::renameUsernameIfInactive($newUsername);
+
+            $this->updateUsername($newUsername, $this->username, $type);
+            \Log::debug("username changed: {$this->username}");
+        });
+    }
+
+    private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
+    {
+        $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
+
+        try {
+            return $this->updateUsername($name, $oldUsername, $type);
+        } catch (QueryException $ex) {
+            if (!is_sql_unique_exception($ex) || $try > 9) {
+                throw $ex;
+            }
+
+            return $this->tryUpdateUsername($try + 1, $newUsername, $oldUsername, $type);
+        }
     }
 
     private function updateUsername($newUsername, $oldUsername, $type)
@@ -163,16 +193,26 @@ class User extends Model implements AuthenticatableContract, Messageable
             if (!$this->usernameChangeHistory()->save($history)) {
                 throw new ModelNotSavedException('failed saving model');
             }
-            $this->saveOrExplode();
+
+            $this->saveOrExplode(['inactive' => $type === 'inactive']);
         });
+    }
+
+    public static function findByUsernameForInactive($username)
+    {
+        return static::whereIn(
+            'username',
+            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+        )->first();
     }
 
     public static function checkWhenUsernameAvailable($username)
     {
-        $user = self::whereIn('username', [str_replace(' ', '_', $username), str_replace('_', ' ', $username)])->first();
+        $user = static::findByUsernameForInactive($username);
 
         if ($user === null) {
             $lastUsage = UsernameChangeHistory::where('username_last', $username)
+                ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
                 ->orderBy('change_id', 'desc')
                 ->first();
 
@@ -382,7 +422,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setUserWebsiteAttribute($value)
     {
         $value = trim($value);
-        if (!starts_with($value, ['http://', 'https://'])) {
+        if ($value !== '' && !starts_with($value, ['http://', 'https://'])) {
             $value = "https://{$value}";
         }
 
@@ -673,6 +713,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function beatmapsets()
     {
         return $this->hasMany(Beatmapset::class, 'user_id');
+    }
+
+    public function beatmapsetWatches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'user_id');
     }
 
     public function beatmaps()
@@ -1138,7 +1183,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function receiveMessage(User $sender, $body, $isAction = false)
+    public function receiveMessage(self $sender, $body, $isAction = false)
     {
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
@@ -1351,11 +1396,47 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
+        foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+                if ($val && mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
+                }
+            }
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
+    }
+
+    public function save(array $options = [])
+    {
+        if ($options['inactive'] ?? false) {
+            return parent::save($options);
+        }
+
+        return $this->isValid() && parent::save($options);
+    }
+
+    /**
+     * Check for an exsiting inactive username and renames it if
+     * considered inactive.
+     *
+     * @return User if renamed; nil otherwise.
+     */
+    private static function renameUsernameIfInactive($username)
+    {
+        $existing = static::findByUsernameForInactive($username);
+        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
+        if ($existing !== null && $available) {
+            $newUsername = "{$existing->username}_old";
+            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
+
+            return $existing;
+        }
     }
 }

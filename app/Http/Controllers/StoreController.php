@@ -78,7 +78,7 @@ class StoreController extends Controller
 
     public function getInvoice($id = null)
     {
-        $order = Store\Order::findOrFail($id);
+        $order = Store\Order::where('status', '<>', 'incart')->findOrFail($id);
         if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
@@ -89,20 +89,6 @@ class StoreController extends Controller
             ->with('order', $order)
             ->with('copies', Request::input('copies', 1))
             ->with('sentViaAddress', $sentViaAddress);
-    }
-
-    public function getProduct($id = null)
-    {
-        $cart = $this->userCart();
-        $product = Store\Product::with('masterProduct')->findOrFail($id);
-        $requestedNotification = Auth::check() ?
-            $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists() : false;
-
-        if (!$product->enabled) {
-            abort(404);
-        }
-
-        return view('store.product', compact('cart', 'product', 'requestedNotification'));
     }
 
     public function getCart($id = null)

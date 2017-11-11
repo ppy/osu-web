@@ -42,7 +42,7 @@
     </a>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--main">
-        <div class="forum-topic-entry__content forum-topic-entry__content--left">
+        <div class="forum-topic-entry__content forum-topic-entry__content--left u-ellipsis-overflow-desktop">
             <a
                 href="{{ route("forum.topics.show", $topic->topic_id) }}"
                 class="

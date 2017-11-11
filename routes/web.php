@@ -63,6 +63,10 @@ Route::group(['prefix' => 'beatmapsets'], function () {
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'store', 'update']]);
 });
+
+Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
+    Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+});
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
@@ -190,7 +194,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
-    Route::get('product/{product}', 'StoreController@getProduct')->name('product');
     Route::get('cart', 'StoreController@getCart');
 
     Route::post('update-cart', 'StoreController@postUpdateCart');
@@ -203,11 +206,9 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
 
         // Store splitting starts here
-        Route::resource(
-            'checkout',
-            'CheckoutController',
-            ['only' => ['index', 'store']]
-        );
+        Route::resource('checkout', 'CheckoutController', ['only' => ['index', 'store']]);
+        route_redirect('product/{product}', 'store.products.show');
+        Route::resource('products', 'ProductsController', ['only' => ['show']]);
     });
 });
 

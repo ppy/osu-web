@@ -27,6 +27,7 @@ use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
+use App\Models\UserNotFound;
 use Auth;
 use Request;
 
@@ -52,18 +53,8 @@ class UsersController extends Controller
         $id = get_int($id);
 
         $user = User::lookup($id, 'id');
-        $mutual = false;
 
-        if (Auth::user()) {
-            $friend = Auth::user()
-                ->friends()
-                ->where('user_id', $id)
-                ->first();
-
-            if ($friend) {
-                $mutual = $friend->mutual;
-            }
-        }
+        list($friend, $mutual) = $this->getFriendStatus($user);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
@@ -98,15 +89,14 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::default()->where('username', $username)->first();
-        if ($user === null) {
-            abort(404);
-        }
+        $user = User::lookup($username) ?? UserNotFound::instance();
+
+        list($friend, $mutual) = $this->getFriendStatus($user);
 
         return [
             'user_id' => $user->user_id,
             'username' => $user->username,
-            'avatar_url' => $user->user_avatar,
+            'card_html' => view('objects._usercard', compact('user', 'friend', 'mutual'))->render(),
         ];
     }
 
@@ -280,6 +270,22 @@ class UsersController extends Controller
                 'jsonChunks'
             ));
         }
+    }
+
+    private function getFriendStatus($user)
+    {
+        if (!(Auth::user()
+            && $user
+            && $user !== UserNotFound::instance())) {
+            return [null, false];
+        }
+
+        $friend = Auth::user()
+            ->friends()
+            ->where('user_id', $user->user_id)
+            ->first();
+
+        return [$friend, $friend->mutual ?? false];
     }
 
     private function parsePaginationParams($perPage)

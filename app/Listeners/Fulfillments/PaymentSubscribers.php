@@ -23,6 +23,7 @@ namespace App\Listeners\Fulfillments;
 use App\Libraries\Fulfillments\FulfillmentFactory;
 use App\Traits\StoreNotifiable;
 use DB;
+use Exception;
 
 /**
  * store.payments event dispatcher.
@@ -41,10 +42,15 @@ class PaymentSubscribers
         $count = count($fulfillers);
         $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
 
-        DB::transaction(function () use ($fulfillers) {
-            // This should probably be shoved off into a queue processor somewhere...
-            foreach ($fulfillers as $fulfiller) {
-                $fulfiller->run();
+        DB::transaction(function () use ($fulfillers, $event) {
+            try {
+                // This should probably be shoved off into a queue processor somewhere...
+                foreach ($fulfillers as $fulfiller) {
+                    $fulfiller->run();
+                }
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $event->order);
+                throw $exception;
             }
         });
     }
@@ -56,12 +62,23 @@ class PaymentSubscribers
         $count = count($fulfillers);
         $this->notifyOrder($event->order, "dispatching `{$count}` fulfillers", $eventName);
 
-        DB::transaction(function () use ($fulfillers) {
-            // This should probably be shoved off into a queue processor somewhere...
-            foreach ($fulfillers as $fulfiller) {
-                $fulfiller->revoke();
+        DB::transaction(function () use ($fulfillers, $event) {
+            try {
+                // This should probably be shoved off into a queue processor somewhere...
+                foreach ($fulfillers as $fulfiller) {
+                    $fulfiller->revoke();
+                }
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $event->order);
+                throw $exception;
             }
         });
+    }
+
+    public function onPaymentPending($eventName, $data)
+    {
+        $event = $data[0] ?? null;
+        $this->notifyOrder($event->order, 'eCheck used; waiting to clear.', $eventName);
     }
 
     public function onPaymentRejected($eventName, $data)
@@ -80,6 +97,11 @@ class PaymentSubscribers
         $events->listen(
             'store.payments.completed.*',
             static::class.'@onPaymentCompleted'
+        );
+
+        $events->listen(
+            'store.payments.pending.*',
+            static::class.'@onPaymentPending'
         );
 
         $events->listen(

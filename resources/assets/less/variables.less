@@ -43,20 +43,26 @@
 @z-index--user-profile-avatar: 2;
 @z-index--beatmaps-panel: 4;
 @z-index--page-extra-tabs: 5;
-// navbar-static-top: 1000 (bootstrap nav for mobile)
-@z-index--forum-topic-headernav: 1001;
-@z-index--fixed-bar: 1001;
-@z-index--blackout: 1010;
-@z-index--blackout-visible: 1011;
-// modal-backdrop: 1040
-// modal: 1050
-@z-index--nav-popup: 8998;
-@z-index--nav-float: 8999;
+@zindex-navbar: 500; // bootstrap
+@zindex-dropdown: 500; // bootstrap
+@z-index--forum-topic-headernav: 501;
+@z-index--fixed-bar: 501;
+@z-index--blackout: 510;
+@z-index--blackout-visible: 511;
+@zindex-navbar-fixed: 530; // bootstrap
+@zindex-modal-background: 540; // bootstrap
+@zindex-modal: 550; // bootstrap
+@zindex-popover: 560; // bootstrap
+@zindex-tooltip: 570; // bootstrap
+@z-index--nav-popup: 998;
+@z-index--nav-float: 999;
+// Xsolla overlay: 1000
 @z-index--overlay: 9990;
 @z-index--editor-zoom: 9999;
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
+@z-index--tournament-header: 1;
 
 @box-shadow-x: 0;
 @box-shadow-y: 1px;
@@ -114,7 +120,7 @@
 @font-size--new-header-title: 30px;
 @font-size--new-header-subtitle: 14px;
 
-@font-size--new-header-title-mobile: 26px;
+@font-size--new-header-title-mobile: 24px;
 @font-size--new-header-subtitle-mobile: 12px;
 
 @font-size--forum-topic-entry-icon: 16px;
@@ -257,3 +263,6 @@
 @slider-handle-height: @slider-height + 2 * @slider-handle-protrusion;
 @slider-handle-width: 10px;
 @slider-height: 10px;
+
+@usercard-width: 260px;
+@usercard-height: 100px;

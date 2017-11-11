@@ -65,7 +65,13 @@ class XsollaPaymentProcessor extends PaymentProcessor
             'user_validation' => NotificationType::USER_SEARCH,
         ];
 
-        return $mapping[$this['notification_type']] ?? "unknown__{$this['notification_type']}";
+        return $mapping[$this->getNotificationTypeRaw()]
+            ?? "unknown__{$this->getNotificationTypeRaw()}";
+    }
+
+    public function getNotificationTypeRaw()
+    {
+        return $this['notification_type'];
     }
 
     public function isTest()
@@ -86,7 +92,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
         }
 
         return $this->getNotificationType() === NotificationType::PAYMENT
-            && $order->status === 'paid';
+            && $order->isPaidOrDelivered();
     }
 
     public function validateTransaction()
@@ -116,7 +122,7 @@ class XsollaPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
-        if ($this->getNotificationType() === NotificationType::REFUND && $order->status !== 'paid') {
+        if ($this->getNotificationType() === NotificationType::REFUND && !$order->isPaidOrDelivered()) {
             $this->validationErrors()->add('order.status', '.order.status.not_paid', ['state' => $order->status]);
         }
 

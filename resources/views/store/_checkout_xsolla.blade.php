@@ -27,11 +27,11 @@
     </div>
 
     <div class="store-payment-method__cell">
-        <div class="store-text store-text--header">Pay with xsolla</div>
+        <div class="store-text store-text--header">Pay with Xsolla</div>
 
         <div class="store-text store-text--block">You can complete your transactions using Xsolla</div>
 
-        <div class="store-text store-text--block store-text--emphasis">Some of Xsolla's payment parters</div>
+        <div class="store-text store-text--block store-text--emphasis">Some of Xsolla's payment partners</div>
         <div class="store-payment-method__provider-list">
             <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/apple-pay.png" alt="Apple Pay">
             <img class="store-payment-method__provider store-payment-method__provider--tall" src="/images/store/providers/unionpay.png" alt="UnionPay">

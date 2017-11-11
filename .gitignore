@@ -88,3 +88,5 @@ composer-installer
 
 /storage/oauth-public.key
 /storage/oauth-private.key
+
+/storage/paypal_auth.cache

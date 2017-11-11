@@ -81,20 +81,6 @@ class Beatmapset extends Model
         'loved' => 4,
     ];
 
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'mode' => null,
-        'sort_order' => 'desc',
-        'sort_field' => 'approved_date',
-        'rank' => '',
-        'status' => 0,
-        'genre' => null,
-        'language' => null,
-        'extra' => '',
-        'limit' => 20,
-        'page' => 1,
-    ];
-
     const NOMINATIONS_PER_DAY = 3;
     const QUALIFICATIONS_PER_DAY = 6;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
@@ -115,14 +101,15 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
-    // ranking functions for the set
-
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    // Beatmapset::rankable();
+    public function watches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
+    }
 
     public function lastDiscussionTime()
     {
@@ -283,6 +270,7 @@ class Beatmapset extends Model
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'title' => 'title',
+            'updated' => 'last_update',
         ];
         $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
 
@@ -927,6 +915,8 @@ class Beatmapset extends Model
             static::with([
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
+                'beatmapDiscussions.beatmapset',
+                'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
@@ -1009,6 +999,11 @@ class Beatmapset extends Model
         ];
 
         return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+    }
+
+    public function state()
+    {
+        return array_search_null($this->approved, static::STATES);
     }
 
     public function toMetaDescription()
