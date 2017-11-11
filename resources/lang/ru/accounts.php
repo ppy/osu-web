@@ -20,32 +20,32 @@
 
 return [
     'edit' => [
-        'title' => 'Настройки <strong>профиля</strong>',
+        'title' => '<strong>Настройки</strong> аккаунта',
         'title_compact' => 'настройки',
 
         'avatar' => [
-            'title' => 'Аватар',
+            'title' => 'Смена аватара',
         ],
 
         'email' => [
-            'current' => 'текущий email',
-            'new' => 'новый email',
-            'new_confirmation' => 'повтори email',
-            'title' => 'Email',
+            'current' => 'текущая почта',
+            'new' => 'новая почта',
+            'new_confirmation' => 'подтвердите почту',
+            'title' => 'Электронная почта',
         ],
 
         'password' => [
             'current' => 'текущий пароль',
             'new' => 'новый пароль',
-            'new_confirmation' => 'повтори пароль',
+            'new_confirmation' => 'подтвердите пароль',
             'title' => 'Пароль',
         ],
 
         'profile' => [
-            'title' => 'Дополнительная информация',
+            'title' => 'Основная информация',
 
             'user' => [
-                'user_from' => 'проживание',
+                'user_from' => 'место жительства',
                 'user_interests' => 'интересы',
                 'user_msnm' => 'скайп',
                 'user_occ' => 'профессия',
@@ -55,21 +55,21 @@ return [
         ],
 
         'signature' => [
-            'title' => 'Подпись',
-            'update' => 'обновить',
+            'title' => 'Подпись на форуме',
+            'update' => 'сохранить',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! подтверждение смены почты',
-        'update' => 'изменить',
-        'updated' => 'Почта изменена',
+        'email_subject' => 'Подтверждение смены почты в osu!',
+        'update' => 'обновить',
+        'updated' => 'Почта обновлена',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! подтверждение нового пароля',
-        'update' => 'изменить',
-        'updated' => 'Пароль изменён',
+        'email_subject' => 'Подтверждение смены пароля в osu!',
+        'update' => 'обновить',
+        'updated' => 'Пароль обновлён',
     ],
 
     'playstyles' => [
@@ -77,6 +77,6 @@ return [
         'mouse' => 'на мышке',
         'keyboard' => 'на клавиатуре',
         'tablet' => 'на планшете',
-        'touch' => 'на сенсорном экране',
+        'touch' => 'на экране',
     ],
 ];
