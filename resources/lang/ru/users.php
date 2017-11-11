@@ -185,17 +185,10 @@ return [
             ],
         ],
         'page' => [
-<<<<<<< HEAD
             'description' => 'Это Ваше редактируемое пространство в Вашем профиле.',
             'edit_big' => 'Редактировать',
             'placeholder' => 'Вводите содержимое',
-            'restriction_info' => "Вы должны быть <a href='".osu_url('support-the-game')."' target='_blank'>osu!саппортером</a> для разблокировки этой особенности.",
-=======
-            'description' => '<strong>обо мне!</strong> - это твоё личное редактируемое пространство в твоём профиле.',
-            'edit_big' => 'Отредактируй меня!',
-            'placeholder' => 'Введи контент этой страницы',
-            'restriction_info' => "Ты должен иметь тег <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
->>>>>>> master
+            'restriction_info' => "Вы должны быть <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!саппортером</a> для разблокировки этой особенности.",
         ],
         'rank' => [
             'country' => 'Рейтинг стран для :mode',
