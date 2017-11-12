@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,42 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.grid {
-  // 840px seems a big large for this to trigger?
-  @media @desktop {
-    display: flex;
-    flex-wrap: wrap;
-  }
+namespace App\Models;
 
-  &--stack {
-    flex-direction: column;
-    // stack shouldn't devolve into block when shrunk.
-    @media @mobile {
-      display: flex;
-      flex-wrap: wrap;
+class UserNotFound extends User
+{
+    public function checkPassword($password)
+    {
+        // password check should always fail.
+        return false;
     }
-  }
 
-  &--centered {
-    align-items: center;
-  }
+    public function isValid()
+    {
+        return false;
+    }
 
-  &--gutters {
-    margin-left: -@flex-grid--gutter-width;
-    margin-right: -@flex-grid--gutter-width;
-  }
+    public function save(array $options = [])
+    {
+        // not saveable.
+        return false;
+    }
 
-  &--packed {
-    justify-content: center;
-  }
+    public static function instance()
+    {
+        static $user;
+        if (!isset($user)) {
+            $user = new static(['username' => trans('supporter_tag.user_search.not_found')]);
+        }
 
-  &--right {
-    justify-content: flex-end;
-  }
-
-  // Use this if we don't want the grid to collapse into a stack.
-  // FIXME: better name
-  &--xs {
-    display: flex;
-  }
+        return $user;
+    }
 }

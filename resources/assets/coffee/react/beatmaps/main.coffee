@@ -219,6 +219,13 @@ class Beatmaps.Main extends React.PureComponent
   updateFilters: (_e, newFilters) =>
     newFilters = _.extend {}, @state.filters, newFilters
 
+    if @state.filters.status != newFilters.status
+      newFilters.sort =
+        if newFilters.status in [3, 4, 5]
+          'updated_desc'
+        else
+          'ranked_desc'
+
     if !_.isEqual @state.filters, newFilters
       @setState filters: newFilters, ->
         $(document).trigger 'beatmap:search:start'
