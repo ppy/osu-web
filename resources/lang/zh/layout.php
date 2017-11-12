@@ -55,7 +55,7 @@ return [
             'index' => '列表',
             'artists' => '精选艺术家',
             'packs' => '曲包',
-            'beatmapset-watches-index' => '摸图关注列表',
+            'beatmapset-watches-index' => '摸图',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [

@@ -53,7 +53,7 @@ return [
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
-        'invalid_country' => '国家不在数据库中。',
+        'invalid_country' => '国家未被数据库收录。',
         'invalid_email' => '无效的邮箱地址。',
         'too_short' => '新密码太短。',
         'unknown_duplicate' => '用户名或邮箱已被使用。',
