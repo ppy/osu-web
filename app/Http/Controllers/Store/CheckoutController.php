@@ -90,7 +90,10 @@ class CheckoutController extends Controller
                 $checkout = new OrderCheckout($order);
                 $validationErrors = $checkout->validate();
                 if (!empty($validationErrors)) {
-                    return $this->setAndRedirectCheckoutError('', $validationErrors);
+                    return $this->setAndRedirectCheckoutError(
+                        trans('store.checkout.cart_problems'),
+                        $validationErrors
+                    );
                 }
 
                 $checkout->completeCheckout();

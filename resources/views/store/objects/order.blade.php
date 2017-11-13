@@ -19,11 +19,6 @@
     $itemErrors = $validationErrors['orderItems'] ?? [];
 @endphp
 
-@if (count($itemErrors) > 0)
-    <div class="store-order-item__errors">
-        <p>Uh oh, there are problems with your cart!</p>
-    </div>
-@endif
 <table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
     <tbody>
         @foreach($order->items as $i)
