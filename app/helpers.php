@@ -59,6 +59,26 @@ function es_query_and_words($words)
     return implode(' AND ', $partsEscaped);
 }
 
+/*
+ * Remove some (but not all) elasticsearch reserved characters.
+ * Those characters seem to be ignored anyway even escaped so might as well
+ * just remove them. Note that double quotes are not escaped so they can be
+ * used for "exact" match. As a result, this doesn't always produce
+ * valid query. The execution must be wrapped within a try/catch.
+ *
+ * This also doesn't add keyword (OR/AND). Elasticsearch default is OR.
+ *
+ * Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
+ */
+function es_query_escape_with_caveats($query)
+{
+    return str_replace(
+        ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '\\', '/'],
+        [' ', ' ', ' ', '  ', '  ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '  ', ' '],
+        $query
+    );
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
