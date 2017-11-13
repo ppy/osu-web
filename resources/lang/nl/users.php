@@ -80,7 +80,15 @@ return [
                 'achieved-on' => 'Behaald op :date',
             ],
             'beatmaps' => [
+                'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favoriete Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
@@ -132,16 +140,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favoriete Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
-                ],
-                'none' => 'Nog geen...',
             ],
         ],
         'page' => [

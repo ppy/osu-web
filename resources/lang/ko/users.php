@@ -96,7 +96,15 @@ return [
                 'achieved-on' => ':date에 달성함',
             ],
             'beatmaps' => [
+                'none' => '아직... 없네요...',
                 'title' => '비트맵',
+
+                'favourite' => [
+                    'title' => '즐겨찾기한 비트맵 (:count개)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked / Approved 된 비트맵 (:count개)',
+                ],
             ],
             'historical' => [
                 'empty' => '기록된 플레이가 없습니다. :(',
@@ -173,16 +181,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => '순위',
                 'weighted_pp' => '가중치 적용: :pp (:percentage)', // 높은 경쟁력을 가진 맵(구맵들)은 가중치가 줄어들고 본래 pp에서 가중치를 곱한 만큼의 실 pp를 받게됨
-            ],
-            'beatmaps' => [
-                'title' => '비트맵',
-                'favourite' => [
-                    'title' => '즐겨찾기한 비트맵 (:count개)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked / Approved 된 비트맵 (:count개)',
-                ],
-                'none' => '아직... 없네요...',
             ],
         ],
         'page' => [

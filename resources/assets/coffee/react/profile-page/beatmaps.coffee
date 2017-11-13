@@ -22,6 +22,7 @@ el = React.createElement
 class ProfilePage.Beatmaps extends React.PureComponent
   render: =>
     allBeatmapsets =
+      favouriteBeatmapsets: @props.favouriteBeatmapsets
       rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
       unrankedBeatmapsets: @props.unrankedBeatmapsets
       graveyardBeatmapsets: @props.graveyardBeatmapsets

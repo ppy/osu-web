@@ -87,7 +87,15 @@ return [
                 'achieved-on' => 'Alcançada em :date',
             ],
             'beatmaps' => [
+                'none' => 'Nenhum... ainda.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Beatmaps favoritos (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps ranqueados e aprovados (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Sem histórico de desempenho. :(',
@@ -140,16 +148,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'conseguiu: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps favoritos (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps ranqueados e aprovados (:count)',
-                ],
-                'none' => 'Nenhum... ainda.',
             ],
         ],
         'page' => [

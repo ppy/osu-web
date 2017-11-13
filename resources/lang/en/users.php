@@ -96,21 +96,21 @@ return [
                 'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
-                'title' => 'My Beatmaps',
+                'none' => 'None... yet.',
+                'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'graveyard' => [
+                    'title' => 'Graveyarded Beatmaps (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked & Approved Beatmaps (:count)',
                 ],
                 'unranked' => [
                     'title' => 'Pending Beatmaps (:count)',
                 ],
-                'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
-                ],
-                'none' => 'None... yet.',
-            ],
-            'favourite_beatmaps' => [
-                'title' => 'Favourite Beatmaps',
-                'header' => 'Favourite Beatmaps (:count)',
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',

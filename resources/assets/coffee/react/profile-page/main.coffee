@@ -154,14 +154,6 @@ class ProfilePage.Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 
-      favourite_beatmaps:
-        props:
-          user: @state.user
-          beatmapsets: @state.favouriteBeatmapsets
-          count: @state.user.favouriteBeatmapsetCount[0]
-          pagination: @state.showMorePagination
-        component: ProfilePage.FavouriteBeatmaps
-
       medals:
         props:
           achievements: @props.achievements
