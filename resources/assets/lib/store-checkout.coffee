@@ -43,6 +43,7 @@ export class StoreCheckout
       init[provider]?.then =>
         @handleClick(event.target.dataset)
       .catch (error) ->
+        console.error(error)
         LoadingOverlay.hide()
         # TODO: less unknown error, disable button
         # TODO: handle error.message
@@ -50,6 +51,19 @@ export class StoreCheckout
 
 
   @handleClick: (params) ->
+    console.log('validate checkout')
+    $.post laroute.route('store.checkout.store')
+    .done (data) =>
+      console.log(data)
+      @doIt(params)
+    .fail (xhr, s, d) ->
+      console.error(xhr)
+      console.error(s)
+      console.error(d)
+
+
+  @doIt: (params) ->
+    console.log('doit')
     switch params.provider
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->

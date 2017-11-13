@@ -80,11 +80,31 @@ class CheckoutController extends Controller
             return error_popup('cart is empty');
         }
 
-        if (!((float) $order->getTotal() === 0.0 && Request::input('completed'))) {
-            // FIXME: not ok
+        // checkout
+        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
+            return $this->freeCheckout($order);
+        }
+
+        // validate
+        return $this->validateCheckout($order);
+    }
+
+    private function validateCheckout($order)
+    {
+        $checkout = new OrderCheckout($order);
+        $validationErrors = $checkout->validate();
+        if (empty($validationErrors)) {
             return ['ok'];
         }
 
+        return $this->setAndRedirectCheckoutError(
+            trans('store.checkout.cart_problems'),
+            $validationErrors
+        );
+    }
+
+    private function freeCheckout($order)
+    {
         $view = DB::connection('mysql-store')->transaction(function () use ($order) {
             try {
                 $checkout = new OrderCheckout($order);
