@@ -62,7 +62,6 @@ class CheckoutController extends Controller
         // TODO: should be able to notify user that items were changed due to stock/price changes.
         $order->refreshCost();
         $checkout = new OrderCheckout($order);
-        $validationErrors = $checkout->validate();
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
 
         // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
