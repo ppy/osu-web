@@ -166,8 +166,6 @@ class UsersController extends Controller
                 return $this->rankedAndApprovedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             case 'unranked':
-                $this->parsePaginationParams(4);
-
                 return $this->unrankedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             case 'graveyard':
@@ -376,7 +374,7 @@ class UsersController extends Controller
         );
     }
 
-    private function unrankedBeatmapsets($user, $perPage = 4, $offset = 0)
+    private function unrankedBeatmapsets($user, $perPage = 6, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsUnranked()

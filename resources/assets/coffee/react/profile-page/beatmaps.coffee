@@ -27,7 +27,6 @@ class ProfilePage.Beatmaps extends React.PureComponent
       graveyardBeatmapsets: @props.graveyardBeatmapsets
 
     perPage =
-      unrankedBeatmapsets: 4
       graveyardBeatmapsets: 2
 
     div
