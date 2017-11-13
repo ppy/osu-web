@@ -19,13 +19,32 @@
  */
 
 return [
-    'user_search' => [
-        'searching' => '搜索中..',
-        'not_found' => '该用户不存在',
+    'button' => [
+        'action' => [
+            'to_0' => '取消关注',
+            'to_1' => '关注',
+        ],
     ],
-    'duration' => [
-        'months' => ':length 个月|{0}',
-        'years' => ':length 年|{0}',
+
+    'index' => [
+        'description' => '这里是你关注的谱面，你会在它们更新或者有新讨论的时候收到通知。',
+        'title_compact' => '摸图关注列表', //需要帮助
+        'title_main' => '摸图关注列表', //需要帮助
+
+        'table' => [
+            'empty' => '没有正在关注的谱面',
+            'open_issues' => '打开的问题',
+            'state' => '状态',
+            'title' => '标题',
+        ],
     ],
-    'months' => '月',
+
+    'mail' => [
+        'update' => '谱面“:title”有更新',
+    ],
+
+    'status' => [
+        'read' => '已读',
+        'unread' => '未读',
+    ],
 ];

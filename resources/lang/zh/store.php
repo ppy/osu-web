@@ -24,6 +24,8 @@ return [
     ],
 
     'checkout' => [
+        'declined' => '支付被取消。',
+        'error' => '结账时出现错误 :(',
         'pay' => '使用 Paypal 支付',
         'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
     ],
@@ -57,6 +59,7 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => '要赠与的玩家',
         'require_login' => [
             '_' => '你需要 :link 以获得 Supporter 标签！',
             'link_text' => '登录',

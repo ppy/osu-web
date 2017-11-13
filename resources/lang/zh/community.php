@@ -123,7 +123,7 @@ return [
             'title' => '可以可以，买买买！',
             'support' => '支持 osu!',
             'gift' => '或者以礼物方式赠送给其它玩家',
-            'instructions' => '点击爱心按钮前往 osu! 商店',
+            'instructions' => '点击爱心前往 osu! 商店',
         ],
     ],
 ];

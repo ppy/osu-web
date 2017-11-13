@@ -53,11 +53,15 @@ return [
     'user' => [
         'contains_username' => '密码不能包含用户名。',
         'email_already_used' => '邮箱已被使用。',
+        'invalid_country' => '国家未被数据库收录。',
         'invalid_email' => '无效的邮箱地址。',
         'too_short' => '新密码太短。',
+        'unknown_duplicate' => '用户名或邮箱已被使用。',
+        'username_too_short' => '用户名太短。',
         'weak' => '弱密码。',
         'wrong_current_password' => '当前密码错误。',
         'wrong_email_confirmation' => '重复新邮箱与新邮箱不一致。',
         'wrong_password_confirmation' => '重复新密码与新密码不一致。',
+        'too_long' => '超出长度限制——最多为 :limit 个字符。',
     ],
 ];

@@ -19,13 +19,12 @@
  */
 
 return [
-    'user_search' => [
-        'searching' => '搜索中..',
-        'not_found' => '该用户不存在',
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => '非常感谢， osu! 爱你哦~',
+        ],
+        'supporter_gift' => [
+            'subject' => '你成为了 osu!支持者 ！',
+        ],
     ],
-    'duration' => [
-        'months' => ':length 个月|{0}',
-        'years' => ':length 年|{0}',
-    ],
-    'months' => '月',
 ];

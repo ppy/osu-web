@@ -19,13 +19,12 @@
  */
 
 return [
-    'user_search' => [
-        'searching' => '搜索中..',
-        'not_found' => '该用户不存在',
+    'username_change' => [
+        'only_one' => '一个订单中只能更改一个用户名',
+        'insufficient_paid' => '支付金额不足以更改用户名（ :expected > :actual ）',
+        'reverting_username_mismatch' => '当前用户名（:current）与要撤销更改的用户名不一致（:username）', //需要帮助
     ],
-    'duration' => [
-        'months' => ':length 个月|{0}',
-        'years' => ':length 年|{0}',
+    'supporter_tag' => [
+        'insufficient_paid' => '捐赠少于支持者标签所需要求（:actual > :expected）', //需要帮助
     ],
-    'months' => '月',
 ];
