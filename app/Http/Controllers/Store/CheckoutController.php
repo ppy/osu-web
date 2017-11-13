@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
+use App\Traits\CheckoutErrorSettable;
 use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
@@ -31,7 +32,7 @@ use View;
 
 class CheckoutController extends Controller
 {
-    use StoreNotifiable;
+    use CheckoutErrorSettable, StoreNotifiable;
 
     protected $layout = 'master';
     protected $actionPrefix = 'checkout-';
@@ -80,9 +81,14 @@ class CheckoutController extends Controller
         }
 
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            DB::connection('mysql-store')->transaction(function () use ($order) {
+            $view = DB::connection('mysql-store')->transaction(function () use ($order) {
                 try {
                     $checkout = new OrderCheckout($order);
+                    $validationErrors = $checkout->validate();
+                    if (!empty($validationErrors)) {
+                        return $this->setAndRedirectCheckoutError();
+                    }
+
                     $checkout->completeCheckout();
 
                     $order->paid(null);
@@ -94,7 +100,7 @@ class CheckoutController extends Controller
                 event('store.payments.completed.free', new PaymentEvent($order));
             });
 
-            return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+            return $view ?? ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
         }
 
         return ['ok'];
