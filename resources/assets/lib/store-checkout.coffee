@@ -41,29 +41,24 @@ export class StoreCheckout
       LoadingOverlay.show.flush()
 
       init[provider]?.then =>
-        @handleClick(event.target.dataset)
+        # @handleClick(event.target.dataset)
+        $.post laroute.route('store.checkout.validate')
+        .done (data) =>
+          @startPayment(event.target.dataset)
+
       .catch (error) ->
-        console.error(error)
         LoadingOverlay.hide()
+        # errors from they jquery deferred will propagate here.
+        if error.getResponseHeader # check if 4xx ujs_redirect
+          type = error.getResponseHeader('Content-Type')
+          return if _.startsWith(type, 'application/javascript')
+
         # TODO: less unknown error, disable button
         # TODO: handle error.message
         osu.ajaxError(error?.xhr)
 
 
-  @handleClick: (params) ->
-    console.log('validate checkout')
-    $.post laroute.route('store.checkout.store')
-    .done (data) =>
-      console.log(data)
-      @doIt(params)
-    .fail (xhr, s, d) ->
-      console.error(xhr)
-      console.error(s)
-      console.error(d)
-
-
-  @doIt: (params) ->
-    console.log('doit')
+  @startPayment: (params) ->
     switch params.provider
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->

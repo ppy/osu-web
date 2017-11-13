@@ -85,16 +85,18 @@ class CheckoutController extends Controller
             return $this->freeCheckout($order);
         }
 
-        // validate
-        return $this->validateCheckout($order);
+        // FIXME: not ok
+        return 'ok';
     }
 
-    private function validateCheckout($order)
+    public function validateCheckout()
     {
+        $order = $this->userCart();
+
         $checkout = new OrderCheckout($order);
         $validationErrors = $checkout->validate();
         if (empty($validationErrors)) {
-            return ['ok'];
+            return '';
         }
 
         return $this->setAndRedirectCheckoutError(
