@@ -23,13 +23,13 @@
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
             <h1>Checkout</h1>
 
-            @if (session()->has('checkout.error'))
+            @if (session()->has('checkout.error.message') || count($validationErrors) > 0)
                 <div class="alert alert-danger">
                     <p>
                         @lang('store.checkout.error')
                     </p>
                     <p>
-                        {{ session('checkout.error') }}
+                        {{ session('checkout.error.message') }}
                     </p>
                 </div>
             @endif
@@ -82,7 +82,7 @@
 
                 @if (count(array_flatten($validationErrors ?? [])) > 0)
                     <div class="store-checkout-text--error">
-                        There are issues with the cart preventing checkout :(
+                        @lang('store.checkout.error')
                         <a href="{{ route('store.cart') }}">Click here to go back.</a>
                     </div>
                 @else

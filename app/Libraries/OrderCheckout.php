@@ -105,7 +105,6 @@ class OrderCheckout
             }
 
             if ($item->product->custom_class === 'username-change') {
-
                 $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
                 $errors[$item->id] = array_merge(
                     $errors[$item->id] ?? [],

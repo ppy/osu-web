@@ -24,9 +24,10 @@ use Session;
 
 trait CheckoutErrorSettable
 {
-    public function setAndRedirectCheckoutError($message = '')
+    public function setAndRedirectCheckoutError($message = '', $errors = [])
     {
-        Session::flash('checkout.error', $message);
+        Session::flash('checkout.error.message', $message);
+        Session::flash('checkout.error.errors', $errors);
 
         return ujs_redirect(route('store.checkout.index'));
     }
