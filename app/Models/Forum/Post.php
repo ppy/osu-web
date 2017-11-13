@@ -292,4 +292,33 @@ class Post extends Model
             $query->withTrashed();
         }
     }
+
+    private function toEsJson()
+    {
+        return [
+            'index' => 'posts',
+            'type' => 'posts',
+            'id' => $this->post_id,
+            'body' => [
+                'topic_id' => $this->topic_id,
+                'poster_id' => $this->poster_id,
+                'forum_id' => $this->forum_id,
+                'post_time' => $this->post_time->timestamp,
+                'post_text' => $this->post_text,
+            ]
+        ];
+    }
+
+    public static function esReindexAll()
+    {
+        $forum_ids = Forum::where('enable_indexing', 1)->pluck('forum_id');
+
+        return static::whereIn('forum_id', $forum_ids)
+            ->orderBy('post_id', 'asc')
+            ->chunk(1000, function ($posts) {
+                foreach ($posts as $post) {
+                    Es::index($post->toEsJson());
+                }
+            });
+    }
 }
