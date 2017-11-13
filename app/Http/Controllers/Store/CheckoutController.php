@@ -80,29 +80,30 @@ class CheckoutController extends Controller
             return error_popup('cart is empty');
         }
 
-        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            $view = DB::connection('mysql-store')->transaction(function () use ($order) {
-                try {
-                    $checkout = new OrderCheckout($order);
-                    $validationErrors = $checkout->validate();
-                    if (!empty($validationErrors)) {
-                        return $this->setAndRedirectCheckoutError();
-                    }
-
-                    $checkout->completeCheckout();
-
-                    $order->paid(null);
-                } catch (Exception $exception) {
-                    $this->notifyError($exception, $order);
-                    throw $exception;
-                }
-
-                event('store.payments.completed.free', new PaymentEvent($order));
-            });
-
-            return $view ?? ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+        if (!((float) $order->getTotal() === 0.0 && Request::input('completed'))) {
+            // FIXME: not ok
+            return ['ok'];
         }
 
-        return ['ok'];
+        $view = DB::connection('mysql-store')->transaction(function () use ($order) {
+            try {
+                $checkout = new OrderCheckout($order);
+                $validationErrors = $checkout->validate();
+                if (!empty($validationErrors)) {
+                    return $this->setAndRedirectCheckoutError();
+                }
+
+                $checkout->completeCheckout();
+
+                $order->paid(null);
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
+            event('store.payments.completed.free', new PaymentEvent($order));
+        });
+
+        return $view ?? ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 }
