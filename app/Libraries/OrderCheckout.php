@@ -28,8 +28,6 @@ use Request;
 
 class OrderCheckout
 {
-    private $errors = [];
-
     private $order;
 
     public function __construct(Order $order)
@@ -97,27 +95,28 @@ class OrderCheckout
 
     public function validate()
     {
-        $errors = [];
+        $orderItemErrors = [];
         // FIXME: include Product in selection.
         foreach ($this->order->items as $item) {
             if (!$item->isValid()) {
-                $errors[$item->id] = $item->validationErrors()->allMessages();
+                $orderItemErrors[$item->id] = $item->validationErrors()->allMessages();
             }
 
             if ($item->product->custom_class === 'username-change') {
                 $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
-                $errors[$item->id] = array_merge(
-                    $errors[$item->id] ?? [],
+                $orderItemErrors[$item->id] = array_merge(
+                    $orderItemErrors[$item->id] ?? [],
                     $changeUsername->validate()->allMessages()
                 );
             }
         };
 
-        $this->errors = [
-            'orderItems' => $errors,
-        ];
+        $errors = [];
+        if ($orderItemErrors !== []) {
+            $errors['orderItems'] = $orderItemErrors;
+        }
 
-        return $this->errors;
+        return $errors;
     }
 
     /**
