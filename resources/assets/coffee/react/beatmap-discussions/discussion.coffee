@@ -69,7 +69,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
             ['up', 'down'].map (direction) =>
               div
                 key: direction
-                className: "#{bn}__action hidden-xs"
+                className: "#{bn}__action"
                 @displayVote direction
 
             button
