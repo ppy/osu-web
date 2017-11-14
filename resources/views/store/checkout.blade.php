@@ -94,12 +94,7 @@
                             @include("store._checkout_{$type}")
                         @endforeach
                     @else
-                        <div class="big-button">
-                            {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
-                                <input type="hidden" name="completed" value="1">
-                                <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
-                            {!! Form::close() !!}
-                        </div>
+                        @include('store._checkout_free')
                     @endif
                 @endif
             </div>
