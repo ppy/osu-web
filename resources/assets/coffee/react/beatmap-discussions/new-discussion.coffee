@@ -190,9 +190,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
       $.publish 'beatmapsetDiscussion:update',
-        beatmapsetDiscussion: data.beatmapset_discussion,
-        callback: =>
-          $.publish 'beatmapDiscussion:jump', id: data.beatmap_discussion_id
+        beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 
