@@ -56,7 +56,7 @@ class CheckoutController extends Controller
     {
         $order = $this->userCart();
         if (!$order || !$order->items()->exists()) {
-            return ujs_redirect('/store/cart');
+            return ujs_redirect(route('store.cart'));
         }
 
         // TODO: should be able to notify user that items were changed due to stock/price changes.
@@ -77,7 +77,7 @@ class CheckoutController extends Controller
         $order = $this->userCart();
 
         if ($order->items()->count() === 0) {
-            return error_popup('cart is empty');
+            return ujs_redirect(route('store.cart'));
         }
 
         // checkout
@@ -92,6 +92,10 @@ class CheckoutController extends Controller
     public function validateCheckout()
     {
         $order = $this->userCart();
+
+        if ($order->items()->count() === 0) {
+            return ujs_redirect(route('store.cart'));
+        }
 
         $checkout = new OrderCheckout($order);
         $validationErrors = $checkout->validate();

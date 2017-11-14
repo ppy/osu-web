@@ -16,8 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="big-button">
-    {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
-        <input type="hidden" name="completed" value="1">
-        <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
-    {!! Form::close() !!}
+    <button type="button"
+            class="js-store-checkout-button btn-osu btn-osu-danger"
+            data-provider="free"
+            data-order-number="{{ $order->getOrderNumber() }}"
+    >
+        Complete Order
+    </button>
 </div>
