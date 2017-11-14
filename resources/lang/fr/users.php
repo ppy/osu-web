@@ -95,7 +95,15 @@ return [
                 'achieved-on' => 'Acquis le :date',
             ],
             'beatmaps' => [
+                'none' => 'Aucune... Pour le moment.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Beatmaps favorites (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps classées et approuvées (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Aucun enregistrement de performance. :(',
@@ -172,16 +180,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Classements',
                 'weighted_pp' => 'pondéré: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps favorites (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps classées et approuvées (:count)',
-                ],
-                'none' => 'Aucune... Pour le moment.',
             ],
         ],
         'page' => [

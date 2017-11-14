@@ -97,7 +97,15 @@ return [
                 'achieved-on' => 'Odblokowane dnia :date',
             ],
             'beatmaps' => [
+                'none' => 'Jeszcze nie ma...',
                 'title' => 'Beatmapy',
+
+                'favourite' => [
+                    'title' => 'Ulubione beatmapy (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
@@ -174,16 +182,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmapy',
-                'favourite' => [
-                    'title' => 'Ulubione beatmapy (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
-                ],
-                'none' => 'Jeszcze nie ma...',
             ],
         ],
         'page' => [

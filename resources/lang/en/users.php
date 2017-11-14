@@ -96,7 +96,21 @@ return [
                 'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
+                'none' => 'None... yet.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'graveyard' => [
+                    'title' => 'Graveyarded Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Pending Beatmaps (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
@@ -173,16 +187,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
-                ],
-                'none' => 'None... yet.',
             ],
         ],
         'page' => [

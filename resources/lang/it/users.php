@@ -83,7 +83,15 @@ return [
                 'achieved-on' => 'Raggiunto il :date',
             ],
             'beatmaps' => [
-                'title' => 'Beatmaps',
+                'none' => 'Nessuna... per ora.',
+                'title' => 'Beatmap',
+
+                'favourite' => [
+                    'title' => 'Beatmaps Preferite (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmap Rankate e Approvate (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Nessuna registrazione della performance. :(', // record as "registrazione", like "we have no performance data to show you"
@@ -135,16 +143,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Rank',
                 'weighted_pp' => 'valutata: :pp (:percentage)', // "ponderata" - "pesata" - "valutata", i think "valutata" as "evalutated" is better
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmap',
-                'favourite' => [
-                    'title' => 'Beatmaps Preferite (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmap Rankate e Approvate (:count)',
-                ],
-                'none' => 'Nessuna... per ora.',
             ],
         ],
         'page' => [
