@@ -17,42 +17,42 @@
  */
 
 .forum-post-content {
-    .content-font();
-    font-size: 13px;
-    word-wrap: break-word;
+  .content-font();
+  font-size: 13px;
+  word-wrap: break-word;
 
-    &--edit {
-      .reset-input();
-      resize: vertical;
-      width: 100%;
+  &--edit {
+    .reset-input();
+    resize: vertical;
+    width: 100%;
 
-      @media @desktop {
-        min-height: 300px;
-      }
+    @media @desktop {
+      min-height: 300px;
     }
+  }
 
-    &--editor {
-      font-family: @font-family-monospace;
-    }
+  &--editor {
+    font-family: @font-family-monospace;
+  }
 
-    &--reply {
-      .reset-input();
-      resize: none;
-      width: 100%;
+  &--reply {
+    .reset-input();
+    resize: none;
+    width: 100%;
 
-      @media @desktop {
-        min-height: 150px;
-      }
-    }
-
-    &--reply-preview {
-      // arbitrary numbers
-      max-height: calc(100vh ~'-' 300px);
+    @media @desktop {
       min-height: 150px;
-      overflow-y: auto;
     }
+  }
 
-    &[disabled] {
-      opacity: 0.8;
-    }
+  &--reply-preview {
+    // arbitrary numbers
+    max-height: calc(100vh ~'-' 300px);
+    min-height: 150px;
+    overflow-y: auto;
+  }
+
+  &[disabled] {
+    opacity: 0.8;
+  }
 }
