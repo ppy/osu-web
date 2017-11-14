@@ -81,9 +81,12 @@
                 @endif
 
                 @if (count(array_flatten($validationErrors ?? [])) > 0)
+                    {{-- Remove checkout options if there are cart errors --}}
                     <div class="store-checkout-text--error">
-                        @lang('store.checkout.error')
-                        <a href="{{ route('store.cart') }}">Click here to go back.</a>
+                        <p>@lang('store.checkout.cart_problems')</p>
+                        <p>
+                            <a href="{{ route('store.cart') }}">@lang('store.checkout.cart_problems_edit')</a>
+                        </p>
                     </div>
                 @else
                     @if ($order->getTotal() > 0)

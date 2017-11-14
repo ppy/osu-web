@@ -25,6 +25,7 @@ return [
 
     'checkout' => [
         'cart_problems' => 'Uh oh, there are problems with your cart!',
+        'cart_problems_edit' => 'Click here to go edit it.',
         'declined' => 'The payment was cancelled.',
         'error' => 'There was a problem completing your checkout :(',
         'pay' => 'Checkout with Paypal',
