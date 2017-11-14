@@ -41,7 +41,6 @@ $(document).on 'turbolinks:load', ->
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
-@editorZoom ?= new EditorZoom
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
