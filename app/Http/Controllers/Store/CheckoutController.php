@@ -55,7 +55,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $order = $this->userCart();
-        if (!$order || !$order->items()->exists()) {
+        if (!$order || $order->isEmpty()) {
             return ujs_redirect(route('store.cart'));
         }
 
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
     {
         $order = $this->userCart();
 
-        if ($order->items()->count() === 0) {
+        if ($order->isEmpty()) {
             return ujs_redirect(route('store.cart'));
         }
 
@@ -93,7 +93,7 @@ class CheckoutController extends Controller
     {
         $order = $this->userCart();
 
-        if ($order->items()->count() === 0) {
+        if ($order->isEmpty()) {
             return ujs_redirect(route('store.cart'));
         }
 
