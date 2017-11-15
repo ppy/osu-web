@@ -206,7 +206,6 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
 
         // Store splitting starts here
-        Route::post('checkout/validate', 'CheckoutController@validateCheckout')->name('checkout.validate');
         Route::resource('checkout', 'CheckoutController', ['only' => ['index', 'store']]);
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);

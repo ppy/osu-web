@@ -80,50 +80,29 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart'));
         }
 
-        // checkout
-        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            return $this->freeCheckout($order);
+        $checkout = new OrderCheckout($order);
+        $validationErrors = $checkout->validate();
+        if (!empty($validationErrors)) {
+            return $this->setAndRedirectCheckoutError(
+                trans('store.checkout.cart_problems'),
+                $validationErrors
+            );
         }
 
-        // FIXME: not ok
+        // checkout
+        if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
+            return $this->freeCheckout($checkout);
+        }
+
         return 'ok';
     }
 
-    public function validateCheckout()
+    private function freeCheckout($checkout)
     {
-        $order = $this->userCart();
-
-        if ($order->isEmpty()) {
-            return ujs_redirect(route('store.cart'));
-        }
-
-        $checkout = new OrderCheckout($order);
-        $validationErrors = $checkout->validate();
-        if (empty($validationErrors)) {
-            return '';
-        }
-
-        return $this->setAndRedirectCheckoutError(
-            trans('store.checkout.cart_problems'),
-            $validationErrors
-        );
-    }
-
-    private function freeCheckout($order)
-    {
-        $view = DB::connection('mysql-store')->transaction(function () use ($order) {
+        DB::connection('mysql-store')->transaction(function () use ($checkout) {
             try {
-                $checkout = new OrderCheckout($order);
-                $validationErrors = $checkout->validate();
-                if (!empty($validationErrors)) {
-                    return $this->setAndRedirectCheckoutError(
-                        trans('store.checkout.cart_problems'),
-                        $validationErrors
-                    );
-                }
-
+                $order = $checkout->getOrder();
                 $checkout->completeCheckout();
-
                 $order->paid(null);
             } catch (Exception $exception) {
                 $this->notifyError($exception, $order);
@@ -133,6 +112,6 @@ class CheckoutController extends Controller
             event('store.payments.completed.free', new PaymentEvent($order));
         });
 
-        return $view ?? ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+        return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 }
