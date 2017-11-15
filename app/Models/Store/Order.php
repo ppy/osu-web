@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
-    use OrderCartTrait, SoftDeletes;
+    use SoftDeletes;
 
     const ECHECK_CLEARED = 'ECHECK CLEARED';
     const ORDER_NUMBER_REGEX = '/^(?<prefix>[A-Za-z]+)-(?<userId>\d+)-(?<orderId>\d+)$/';
@@ -302,24 +302,51 @@ class Order extends Model
         $this->saveOrExplode();
     }
 
-    public function macroItemsQuantities()
+    /**
+     * Updates the Order with form parameters.
+     *
+     * Updates the Order with with an item extracted from submitted form parameters.
+     * The function returns an array containing whether the operation was successful,
+     * and a message.
+     *
+     * @param array $itemForm form parameters.
+     * @param bool $addToExisting whether the quantity should be added or replaced.
+     * @return array [success, message]
+     **/
+    public function updateItem(array $itemForm, $addToExisting = false)
     {
-        return function ($query) {
-            $query = clone $query;
+        $params = [
+            'id' => array_get($itemForm, 'id'),
+            'quantity' => array_get($itemForm, 'quantity'),
+            'product' => Product::enabled()->find(array_get($itemForm, 'product_id')),
+            'cost' => intval(array_get($itemForm, 'cost')),
+            'extraInfo' => array_get($itemForm, 'extra_info'),
+            'extraData' => array_get($itemForm, 'extra_data'),
+        ];
 
-            $ordersTable = (new Order)->getTable();
-            $orderItemsTable = (new OrderItem)->getTable();
-            $productsTable = (new Product)->getTable();
+        if ($params['product'] === null) {
+            return [false, 'no product'];
+        }
 
-            $query
-                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
-                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
-                ->groupBy("{$orderItemsTable}.product_id")
-                ->groupBy('name')
-                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+        $result = [true, ''];
 
-            return $query->get();
-        };
+        if ($params['quantity'] <= 0) {
+            $this->removeOrderItem($params);
+        } else {
+            if ($params['product']->allow_multiple) {
+                $item = $this->newOrderItem($params);
+            } else {
+                $item = $this->updateOrderItem($params, $addToExisting);
+            }
+
+            $result = $this->validateBeforeSave($params['product'], $item);
+            if ($result[0]) {
+                $this->save();
+                $this->items()->save($item);
+            }
+        }
+
+        return $result;
     }
 
     public static function cart($user)
@@ -345,6 +372,103 @@ class Order extends Model
         }
 
         return $cart;
+    }
+
+    public function macroItemsQuantities()
+    {
+        return function ($query) {
+            $query = clone $query;
+
+            $ordersTable = (new Order)->getTable();
+            $orderItemsTable = (new OrderItem)->getTable();
+            $productsTable = (new Product)->getTable();
+
+            $query
+                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
+                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
+                ->groupBy("{$orderItemsTable}.product_id")
+                ->groupBy('name')
+                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+
+            return $query->get();
+        };
+    }
+
+    private function removeOrderItem(array $params)
+    {
+        $itemId = $params['id'];
+        $item = $this->items()->find($itemId);
+
+        if ($item) {
+            $item->delete();
+        }
+
+        if ($this->items()->count() === 0) {
+            $this->delete();
+        }
+    }
+
+    private function newOrderItem(array $params)
+    {
+        if ($params['cost'] < 0) {
+            $params['cost'] = 0;
+        }
+
+        $product = $params['product'];
+
+        // FIXME: custom class stuff should probably not go in Order...
+        switch ($product->custom_class) {
+            case 'supporter-tag':
+                $targetId = $params['extraData']['target_id'];
+                $user = User::default()->where('user_id', $targetId)->firstOrFail();
+                $params['extraData']['username'] = $user->username;
+
+                $params['extraData']['duration'] = SupporterTag::getDuration($params['cost']);
+                break;
+            case 'username-change':
+                // ignore received cost
+                $params['cost'] = $this->user->usernameChangeCost();
+                break;
+            case 'cwc-supporter':
+            case 'mwc4-supporter':
+            case 'mwc7-supporter':
+            case 'owc-supporter':
+            case 'twc-supporter':
+                // much dodgy. wow.
+                $matches = [];
+                preg_match('/.+\((?<country>.+)\)$/', $product->name, $matches);
+                $params['extraData']['cc'] = Country::where('name', $matches['country'])->first()->acronym;
+                $params['cost'] = $product->cost ?? 0;
+                break;
+            default:
+                $params['cost'] = $product->cost ?? 0;
+        }
+
+        $item = new OrderItem();
+        $item->quantity = $params['quantity'];
+        $item->extra_info = $params['extraInfo'];
+        $item->extra_data = $params['extraData'];
+        $item->cost = $params['cost'];
+        $item->product()->associate($product);
+
+        return $item;
+    }
+
+    private function updateOrderItem(array $params, $addToExisting = false)
+    {
+        $product = $params['product'];
+        $item = $this->items()->where('product_id', $product->product_id)->get()->first();
+        if ($item === null) {
+            return $this->newOrderItem($params);
+        }
+
+        if ($addToExisting) {
+            $item->quantity += $params['quantity'];
+        } else {
+            $item->quantity = $params['quantity'];
+        }
+
+        return $item;
     }
 
     private function validateBeforeSave(Product $product, $item)
