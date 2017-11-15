@@ -96,8 +96,8 @@ class OrderCheckout
     public function validate()
     {
         $orderItemErrors = [];
-        // FIXME: include Product in selection.
-        foreach ($this->order->items as $item) {
+        $items = $this->order->items()->with('product')->get();
+        foreach ($items as $item) {
             if (!$item->isValid()) {
                 $orderItemErrors[$item->id] = $item->validationErrors()->allMessages();
             }
