@@ -68,10 +68,7 @@ class ChangeUsername
         return $this->validationErrors()->isEmpty();
     }
 
-    public function save()
-    {
-        return $this->isValid() && $this->user->changeUsername($this->newUsername, $this->type);
-    }
+    // TODO: move User::changeUsername here.
 
     public function validationErrorsKeyBase()
     {
