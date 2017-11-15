@@ -17,13 +17,18 @@
 --}}
 @extends("master")
 
+@php
+    // always ignore empty keys.
+    $hasErrors = count(array_flatten($validationErrors)) > 0
+@endphp
+
 @section("content")
     @include("store.header")
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
             <h1>Checkout</h1>
 
-            @if (session()->has('checkout.error.message') || count($validationErrors) > 0)
+            @if (session()->has('checkout.error.message') || $hasErrors)
                 <div class="alert alert-danger">
                     <p>
                         @lang('store.checkout.error')
@@ -80,7 +85,7 @@
                     @include('store._shipping_germany_warning')
                 @endif
 
-                @if (count(array_flatten($validationErrors ?? [])) > 0)
+                @if ($hasErrors)
                     {{-- Remove checkout options if there are cart errors --}}
                     <div class="store-checkout-text--error">
                         <p>@lang('store.checkout.cart_problems')</p>
