@@ -84,6 +84,7 @@ class Beatmapset extends Model
 
     const NOMINATIONS_PER_DAY = 3;
     const QUALIFICATIONS_PER_DAY = 6;
+    const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     /*
@@ -883,10 +884,23 @@ class Beatmapset extends Model
             return;
         }
 
-        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
-        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+        $rankableCutoffDate = Carbon::now()->subDays(static::MINIMUM_DAYS_FOR_RANKING);
+        $rankableQueueSize = static::qualified()
+            ->where('approved_date', '<', $this->approved_date)
+            ->where('approved_date', '<=', $rankableCutoffDate)
+            ->count();
+        $days = ceil($rankableQueueSize / static::QUALIFICATIONS_PER_DAY);
 
-        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+        if ($this->approved_date > $rankableCutoffDate) {
+            $waitingQueueSize = static::qualified()
+                ->where('approved_date', '<', $this->approved_date)
+                ->where('approved_date', '>', $rankableCutoffDate)
+                ->count();
+
+            $days = max($days, static::MINIMUM_DAYS_FOR_RANKING) + ceil($waitingQueueSize / static::QUALIFICATIONS_PER_DAY);
+        }
+
+        return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
     public function recentEvents()
