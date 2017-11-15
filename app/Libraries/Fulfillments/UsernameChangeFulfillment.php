@@ -22,6 +22,7 @@ namespace App\Libraries\Fulfillments;
 
 use App\Events\Fulfillments\UsernameChanged;
 use App\Events\Fulfillments\UsernameReverted;
+use App\Libraries\ChangeUsername;
 
 class UsernameChangeFulfillment extends OrderFulfiller
 {
@@ -33,10 +34,8 @@ class UsernameChangeFulfillment extends OrderFulfiller
     {
         $this->throwOnFail($this->validateRun());
 
-        $item = $this->getOrderItems()->first();
-        $type = $item['cost'] > 0 ? 'paid' : 'support';
         $user = $this->order->user;
-        $user->changeUsername($this->getNewUserName(), $type);
+        $user->changeUsername($this->getNewUserName(), $this->getChangeType());
         event("store.fulfillments.run.{$this->taggedName()}", new UsernameChanged($user, $this->order));
     }
 
@@ -70,6 +69,9 @@ class UsernameChangeFulfillment extends OrderFulfiller
             );
         }
 
+        $change = new ChangeUsername($user, $this->getNewUserName(), $this->getChangeType());
+        $this->validationErrors()->merge($change->validate());
+
         return $this->validationErrors()->isEmpty();
     }
 
@@ -91,6 +93,13 @@ class UsernameChangeFulfillment extends OrderFulfiller
         }
 
         return $this->validationErrors()->isEmpty();
+    }
+
+    private function getChangeType()
+    {
+        $item = $this->getOrderItems()->first();
+
+        return $item['cost'] > 0 ? 'paid' : 'support';
     }
 
     private function getOrderItems()
