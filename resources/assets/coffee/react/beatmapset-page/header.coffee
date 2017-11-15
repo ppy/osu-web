@@ -35,6 +35,7 @@ class BeatmapsetPage.Header extends React.Component
         beatmaps: @props.beatmaps
         currentMode: @props.currentBeatmap.mode
         hrefFunc: @tabHrefFunc
+        showCounts: true,
 
       div
         className: 'beatmapset-header__content'

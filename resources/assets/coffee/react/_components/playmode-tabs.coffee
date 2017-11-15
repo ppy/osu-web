@@ -39,6 +39,7 @@ class @PlaymodeTabs extends React.Component
             'data-mode': mode
             'data-disabled': disabled
             osu.trans "beatmaps.mode.#{mode}"
+            span className: 'page-mode-link__badge', _.size(@props.beatmaps[mode]) if @props.showCounts
             span className: 'page-mode-link__stripe'
 
 
