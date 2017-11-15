@@ -113,7 +113,7 @@ class OrderCheckout
                     );
                 }
             }
-        };
+        }
 
         $errors = [];
         if ($itemErrors !== []) {

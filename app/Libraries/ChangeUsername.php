@@ -20,13 +20,8 @@
 
 namespace App\Libraries;
 
-use App\Exceptions\ChangeUsernameException;
-use App\Exceptions\ModelNotSavedException;
 use App\Models\User;
 use App\Traits\Validatable;
-use Carbon\Carbon;
-use DB;
-use Exception;
 
 class ChangeUsername
 {
@@ -35,7 +30,6 @@ class ChangeUsername
     private $newUsername;
     private $type;
     private $user;
-
 
     public function __construct(User $user, $newUsername, $type)
     {

@@ -34,7 +34,6 @@ use Lang;
 use Log;
 use PayPal\Exception\PayPalConnectionException;
 use Request;
-use Session;
 
 class PaypalController extends Controller
 {

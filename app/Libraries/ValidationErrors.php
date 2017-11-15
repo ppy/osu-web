@@ -51,7 +51,7 @@ class ValidationErrors
         $this->errors[$column][] = $message;
     }
 
-    public function merge(ValidationErrors $validationErrors)
+    public function merge(self $validationErrors)
     {
         $errors = $validationErrors->all();
         foreach ($errors as $key => $value) {
