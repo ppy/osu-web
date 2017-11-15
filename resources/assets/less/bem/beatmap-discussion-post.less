@@ -30,6 +30,8 @@
   @_owner-bg: @green-dark;
   @_owner-bg-hover: @green-darker;
 
+  @_content-gutter-base: 15px;
+
   &--discussion {
     min-width: 0;
     flex: 1;
@@ -84,7 +86,12 @@
     flex: none;
 
     .@{_top}--new-reply & {
-      margin-right: 10px;
+      margin-bottom: 5px;
+
+      @media @desktop {
+        margin-right: 10px;
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -98,14 +105,21 @@
 
   &__content {
     display: flex;
-    padding: 10px 15px;
+    padding: 10px @_content-gutter-base;
+    flex-direction: column;
 
     flex: 1;
     min-width: 0;
 
+    @media @desktop {
+      flex-direction: row;
+    }
+
     .@{_top}--reply & {
-      padding-left: @beatmap-discussion--reply-padding;
-      padding-right: @beatmap-discussion--reply-padding;
+      @media @desktop {
+        padding-left: @beatmap-discussion--reply-padding;
+        padding-right: @beatmap-discussion--reply-padding;
+      }
     }
   }
 
@@ -119,8 +133,13 @@
     }
 
     .@{_top}--reply & {
-      padding-left: @beatmap-discussion--reply-padding;
-      padding-right: @beatmap-discussion--reply-padding;
+      padding-left: @_content-gutter-base;
+      padding-right: @_content-gutter-base;
+
+      @media @desktop {
+        padding-left: @beatmap-discussion--reply-padding;
+        padding-right: @beatmap-discussion--reply-padding;
+      }
     }
   }
 
@@ -177,6 +196,14 @@
       width: 100%;
       resize: vertical;
       margin-bottom: 5px;
+
+      &, .@{_top}--reply & {
+        font-size: @font-size--phone-input;
+
+        @media @desktop {
+          font-size: @_reply-text-size;
+        }
+      }
     }
   }
 
@@ -204,6 +231,7 @@
   }
 
   &__user {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -241,7 +269,12 @@
   &__user-container {
     display: flex;
     align-items: flex-start;
-    margin-right: 10px;
+    margin-bottom: 5px;
+
+    @media @desktop {
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
 
     .link-plain();
     color: @user-color-default;
@@ -252,10 +285,11 @@
   }
 
   &__user-stripe {
-    width: 2px;
     align-self: stretch;
     background-color: @user-color-default;
     border-radius: 1px;
+    flex: none;
+    width: 2px;
 
     .@{_top}--admin & {
       background-color: @_moderator-bg;
