@@ -32,6 +32,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       message: ''
       timestamp: null
       timestampConfirmed: false
+      posting: null
 
 
   componentWillUpdate: =>
@@ -61,6 +62,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div className: "#{bn}__message",
             if @props.currentUser.id?
               textarea
+                disabled: @state.posting?
                 className: "#{bn}__message-area js-hype--input"
                 value: @state.message
                 onChange: @setMessage
@@ -163,13 +165,15 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   post: (e) =>
     return unless @validPost()
 
+    type = e.currentTarget.dataset.type
     @postXhr?.abort()
     LoadingOverlay.show()
+    @setState posting: type
 
     data =
       beatmapset_id: @props.currentBeatmap.beatmapset_id
       beatmap_discussion:
-        message_type: e.currentTarget.dataset.type
+        message_type: type
         timestamp: @state.timestamp
         beatmap_id: @props.currentBeatmap.id unless @props.mode == 'generalAll'
       beatmap_discussion_post:
@@ -186,13 +190,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
       $.publish 'beatmapsetDiscussion:update',
-        beatmapsetDiscussion: data.beatmapset_discussion,
-        callback: =>
-          $.publish 'beatmapDiscussion:jump', id: data.beatmap_discussion_id
+        beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always =>
+      LoadingOverlay.hide()
+      @setState posting: null
 
 
   setMessage: (e) =>
@@ -207,12 +211,19 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   submitButton: (type) =>
+    icon =
+      if @state.posting == type
+        # for some reason the spinner wobbles
+        'ellipsis-h'
+      else
+        BeatmapDiscussionHelper.messageType.icon[type]
+
     el BigButton,
       modifiers: ['beatmap-discussion']
-      icon: BeatmapDiscussionHelper.messageType.icon[type]
+      icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{type}")
       props:
-        disabled: !@validPost()
+        disabled: !@validPost() || @state.posting?
         'data-type': type
         onClick: @post
 
