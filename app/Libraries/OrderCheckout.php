@@ -95,11 +95,11 @@ class OrderCheckout
 
     public function validate()
     {
-        $orderItemErrors = [];
+        $itemErrors = [];
         $items = $this->order->items()->with('product')->get();
         foreach ($items as $item) {
             if (!$item->isValid()) {
-                $orderItemErrors[$item->id] = $item->validationErrors()->allMessages();
+                $itemErrors[$item->id] = $item->validationErrors()->allMessages();
             }
 
             if ($item->product->custom_class === 'username-change') {
@@ -107,8 +107,8 @@ class OrderCheckout
                 $messages = $changeUsername->validate()->allMessages();
                 if (!empty($messages)) {
                     // merge with existing errors, if any.
-                    $orderItemErrors[$item->id] = array_merge(
-                        $orderItemErrors[$item->id] ?? [],
+                    $itemErrors[$item->id] = array_merge(
+                        $itemErrors[$item->id] ?? [],
                         $messages
                     );
                 }
@@ -116,8 +116,8 @@ class OrderCheckout
         };
 
         $errors = [];
-        if ($orderItemErrors !== []) {
-            $errors['orderItems'] = $orderItemErrors;
+        if ($itemErrors !== []) {
+            $errors['orderItems'] = $itemErrors;
         }
 
         return $errors;
