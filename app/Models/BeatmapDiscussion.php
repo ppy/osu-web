@@ -33,7 +33,7 @@ class BeatmapDiscussion extends Model
 
     protected $dates = ['deleted_at'];
 
-    const KUDOSU_STEPS = [5, 10, 15];
+    const KUDOSU_STEPS = [1, 2, 5];
 
     const MESSAGE_TYPES = [
         'praise' => 0,
