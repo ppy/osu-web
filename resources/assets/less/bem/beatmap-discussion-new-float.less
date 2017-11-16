@@ -16,25 +16,44 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.page-title {
-  @_padding: 20px;
+.beatmap-discussion-new-float {
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
 
-  color: @pink-darker;
-  font-style: italic;
-  font-size: @font-size--title-small-2;
-  padding: @_padding;
-
-  &--lighter {
-    font-weight: 100;
-    color: @pink-light;
+    &::before {
+      .full-size();
+      background-color: fade(#000, 75%);
+    }
   }
 
-  &__button {
-    position: absolute;
-    right: @_padding;
-    top: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  @top: beatmap-discussion-new-float;
+  .bg();
+  // counter the padding from parent
+  margin-top: -10px;
+  margin-bottom: 10px;
+
+  &__content {
+    .bg();
+    padding-top: 10px;
+  }
+
+  &__floatable {
+    .own-layer();
+    width: 100%;
+
+    .@{top}--floating & {
+      position: fixed;
+      z-index: @z-index--fixed-bar;
+      top: 0;
+    }
+  }
+
+  &__spacer {
+    pointer-events: none;
+    display: none;
+
+    .@{top}--floating & {
+      display: block;
+    }
   }
 }

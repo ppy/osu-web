@@ -33,6 +33,12 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       timestamp: null
       timestampConfirmed: false
       posting: null
+      stickable: false
+      sticky: false
+
+
+  componentDidMount: =>
+    $.subscribe 'stickyHeader.newDiscussion', @checkStickability
 
 
   componentWillUpdate: =>
@@ -42,9 +48,26 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   componentWillUnmount: =>
     @postXhr?.abort()
     @throttledPost.cancel()
+    $.unsubscribe '.newDiscussion'
 
 
   render: =>
+    topClass = 'beatmap-discussion-new-float js-sync-height--target'
+    topClass += ' beatmap-discussion-new-float--floating' if @isSticky()
+
+    div
+      className: topClass
+      'data-sync-height-id': 'new-discussion-box'
+      div className: 'beatmap-discussion-new-float__floatable',
+        div
+          className: 'js-sync-height--target beatmap-discussion-new-float__spacer'
+          'data-sync-height-id': 'page-extra-tabs'
+        div
+          className: 'js-sync-height--reference beatmap-discussion-new-float__content'
+          'data-sync-height-target': 'new-discussion-box'
+          @renderBox()
+
+  renderBox: =>
     showHypeHelp = _.includes(['wip', 'pending', 'qualified'], @props.beatmapset.status) && @props.mode == 'generalAll'
 
     div
@@ -53,6 +76,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         className: bn
         div className: "page-title",
           osu.trans('beatmaps.discussions.new.title')
+
+          span className: 'page-title__button',
+            span
+              className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
+              onClick: @toggleSticky
+              span className: 'btn-circle__content',
+                el Icon, name: 'thumb-tack'
 
         div className: "#{bn}__content",
           div
@@ -67,7 +97,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 value: @state.message
                 onChange: @setMessage
                 onKeyDown: @ignoreEnter
+                onFocus: @setSticky
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
+                ref: (el) => @input = el
             else
               osu.trans('beatmaps.discussions.require-login')
 
@@ -128,10 +160,22 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
 
+  checkStickability: (_e, target) =>
+    # depends on ModeSwitcher
+    newState = (target == 'page-extra-tabs')
+    @setState(stickable: newState) if newState != @state.stickable
+
+
   ignoreEnter: (e) =>
     return if e.keyCode != 13
 
     e.preventDefault()
+
+
+  isSticky: =>
+    return false if !@state.stickable
+
+    @state.sticky
 
 
   nearbyPosts: =>
@@ -206,6 +250,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState {message, timestamp}
 
 
+  setSticky: =>
+    @setState sticky: true if !@state.sticky
+
+
   setTimestamp: (e) =>
     @setState timestamp: e.currentTarget.value
 
@@ -226,6 +274,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         disabled: !@validPost() || @state.posting?
         'data-type': type
         onClick: @post
+
+
+  toggleSticky: =>
+    @setState sticky: !@state.sticky
 
 
   toggleTimestampConfirmation: =>
