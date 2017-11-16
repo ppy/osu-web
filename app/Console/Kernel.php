@@ -42,7 +42,11 @@ class Kernel extends ConsoleKernel
         Commands\StoreCheckOrderTrackingStatus::class,
         Commands\BuildsUpdatePropagationHistory::class,
 
+        // leaderboard recalculation
         Commands\RankingsRecalculateCountryStats::class,
+
+        // moddingv2 kudosu recalculation
+        Commands\KudosuRecalculateDiscussionsGrants::class,
     ];
 
     /**
