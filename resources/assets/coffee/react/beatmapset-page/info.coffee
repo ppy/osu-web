@@ -16,10 +16,16 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h3, span} = ReactDOMFactories
+{a, button, div, h3, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Info extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state =
+      isEditing: false
+
   componentDidMount: ->
     @renderChart()
 
@@ -47,11 +53,35 @@ class BeatmapsetPage.Info extends React.Component
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
 
+
+  editStart: (e) =>
+    @setState isEditing: true
+    # $.publish 'beatmapset:description:update', editing: true
+
+
+  renderEditButton: =>
+    div className: 'beatmapset-info__edit-description',
+      button
+        type: 'button'
+        className: 'btn-circle'
+        onClick: @editStart
+        span className: 'btn-circle__content',
+          el Icon, name: 'edit'
+
+
   render: ->
     percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
 
+    # console.log(@props)
+    console.log(@state.isEditing)
+
     div className: 'beatmapset-info',
+      if @state.isEditing
+        el BeatmapsetPage.DescriptionEditor
+
       div className: 'beatmapset-info__box beatmapset-info__box--description',
+        @renderEditButton()
+
         h3
           className: 'beatmapset-info__header'
           osu.trans 'beatmapsets.show.info.description'
