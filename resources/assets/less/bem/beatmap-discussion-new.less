@@ -57,8 +57,11 @@
     .default-border-radius();
 
     &--right {
-      flex: 1;
       justify-content: flex-end;
+
+      @media @desktop {
+        flex: 1;
+      }
     }
   }
 

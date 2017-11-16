@@ -75,6 +75,12 @@
 
   &__status-message {
     font-size: 14px;
+    width: 100%;
+    text-align: center;
+
+    @media @desktop {
+      text-align: inherit;
+    }
   }
 
   &__row {
@@ -93,8 +99,10 @@
   }
 
   &__row-left {
-    flex: 1;
     margin-right: 10px;
+    @media @desktop {
+      flex: 1;
+    }
   }
 
   &__row-right {
