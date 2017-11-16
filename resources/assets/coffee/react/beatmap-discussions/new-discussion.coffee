@@ -63,7 +63,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           className: 'js-sync-height--target beatmap-discussion-new-float__spacer'
           'data-sync-height-id': 'page-extra-tabs'
         div
-          className: 'js-sync-height--reference beatmap-discussion-new-float__content'
+          className: 'js-new-discussion js-sync-height--reference beatmap-discussion-new-float__content'
           'data-sync-height-target': 'new-discussion-box'
           @renderBox()
 
