@@ -173,9 +173,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   isSticky: =>
-    return false if !@state.stickable
-
-    @state.sticky
+    @state.stickable && @state.sticky
 
 
   nearbyPosts: =>
