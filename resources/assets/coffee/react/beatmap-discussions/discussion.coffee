@@ -166,8 +166,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
       canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
-      canBeDeleted: @props.currentUser.isAdmin || @isOwner(post)
-      canBeRestored: @props.currentUser.isAdmin
+      canBeDeleted: @props.currentUser.isAdmin || @props.currentUser.isQAT || @isOwner(post)
+      canBeRestored: @props.currentUser.isAdmin || @props.currentUser.isQAT
       currentUser: @props.currentUser
 
 

@@ -60,7 +60,7 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
-    public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
+    public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
         if ($user !== null && $user->isQAT()) {
             return 'ok';
@@ -164,12 +164,12 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->user_id !== $post->user_id) {
-            return $prefix.'not_owner';
-        }
-
         if ($user->isQAT()) {
             return 'ok';
+        }
+
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
         }
 
         return 'ok';
@@ -186,12 +186,12 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->user_id !== $post->user_id) {
-            return $prefix.'not_owner';
-        }
-
         if ($user->isQAT()) {
             return 'ok';
+        }
+
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
         }
 
         return 'ok';
