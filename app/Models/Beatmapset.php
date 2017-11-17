@@ -783,6 +783,9 @@ class Beatmapset extends Model
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+
+            // global event
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
         });
 
         return true;
