@@ -15,17 +15,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<textarea
-    {{ $postBody['focus'] ? 'autofocus' : '' }}
-    required
-    class="
-        js-ujs-submit-disable
-        js-quick-submit
-        forum-post-content
-        forum-post-content--editor
-        {{ $postBody['extraClasses'] or '' }}
-    "
-    name="body"
-    placeholder="{{ trans('forum.topic.create.placeholder.body') }}"
-    {!! $postBody['extraAttrs'] or '' !!}
->{{ $postBody['content'] or '' }}</textarea>
+<div class="big-button">
+    <button type="button"
+            class="js-store-checkout-button btn-osu btn-osu-danger"
+            data-provider="free"
+            data-order-number="{{ $order->getOrderNumber() }}"
+    >
+        Complete Order
+    </button>
+</div>

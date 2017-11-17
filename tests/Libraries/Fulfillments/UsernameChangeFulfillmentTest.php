@@ -123,4 +123,24 @@ class UsernameChangeFulfillmentTest extends TestCase
         $fulfiller = new UsernameChangeFulfillment($this->order);
         $fulfiller->run();
     }
+
+    /**
+     * @expectedException \App\Libraries\Fulfillments\FulfillmentException
+     */
+    public function testRunWhenUsernameIsTaken()
+    {
+        factory(User::class)->create([
+            'username' => 'new_username',
+            'username_clean' => 'new_username',
+            'user_lastvisit' => time(),
+        ]);
+
+        $orderItem = factory(OrderItem::class, 'username_change')->create([
+            'order_id' => $this->order->order_id,
+            'extra_info' => 'new_username',
+        ]);
+
+        $fulfiller = new UsernameChangeFulfillment($this->order);
+        $fulfiller->run();
+    }
 }

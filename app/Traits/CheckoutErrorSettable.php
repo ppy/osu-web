@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,50 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-post-content {
-  .content-font();
-  @_font-size: @font-size--normal-2;
-  font-size: @_font-size;
-  word-wrap: break-word;
+namespace App\Traits;
 
-  &--edit {
-    .reset-input();
-    resize: vertical;
-    width: 100%;
-    min-height: 150px;
+use Session;
 
-    @media @desktop {
-      min-height: 300px;
+trait CheckoutErrorSettable
+{
+    public function setAndRedirectCheckoutError($message = '', $errors = [])
+    {
+        Session::flash('checkout.error.message', $message);
+        Session::flash('checkout.error.errors', $errors);
+
+        return ujs_redirect(route('store.checkout.index'), 422);
     }
-  }
-
-  &--editor {
-    font-family: @font-family-monospace;
-    font-size: @font-size--phone-input;
-
-    @media @desktop {
-      font-size: @_font-size;
-    }
-  }
-
-  &--reply {
-    .reset-input();
-    resize: vertical;
-    width: 100%;
-    min-height: 150px;
-
-    @media @desktop {
-    }
-  }
-
-  &--reply-preview {
-    // arbitrary numbers
-    max-height: calc(100vh ~'-' 300px);
-    min-height: 150px;
-    overflow-y: auto;
-  }
-
-  &[disabled] {
-    opacity: 0.8;
-  }
 }

@@ -17,19 +17,24 @@
 --}}
 @extends("master")
 
+@php
+    // always ignore empty keys.
+    $hasErrors = count(array_flatten($validationErrors)) > 0
+@endphp
+
 @section("content")
     @include("store.header")
     <div class="osu-layout__row osu-layout__row--page-compact osu-layout__row--sm1">
         <div class="osu-layout__sub-row osu-layout__sub-row--lg1">
             <h1>Checkout</h1>
 
-            @if (session()->has('checkout.error'))
+            @if (session()->has('checkout.error.message') || $hasErrors)
                 <div class="alert alert-danger">
                     <p>
                         @lang('store.checkout.error')
                     </p>
                     <p>
-                        {{ session('checkout.error') }}
+                        {{ session('checkout.error.message') }}
                     </p>
                 </div>
             @endif
@@ -80,17 +85,22 @@
                     @include('store._shipping_germany_warning')
                 @endif
 
-                @if ($order->getTotal() > 0)
-                    @foreach ($checkout->allowedCheckoutTypes() as $type)
-                        @include("store._checkout_{$type}")
-                    @endforeach
-                @else
-                    <div class="big-button">
-                        {!! Form::open(["url" => "store/checkout", "data-remote" => true]) !!}
-                            <input type="hidden" name="completed" value="1">
-                            <button type="submit" class="btn-osu btn-osu-danger">Complete Order</button>
-                        {!! Form::close() !!}
+                @if ($hasErrors)
+                    {{-- Remove checkout options if there are cart errors --}}
+                    <div class="store-checkout-text--error">
+                        <p>@lang('store.checkout.cart_problems')</p>
+                        <p>
+                            <a href="{{ route('store.cart') }}">@lang('store.checkout.cart_problems_edit')</a>
+                        </p>
                     </div>
+                @else
+                    @if ($order->getTotal() > 0)
+                        @foreach ($checkout->allowedCheckoutTypes() as $type)
+                            @include("store._checkout_{$type}")
+                        @endforeach
+                    @else
+                        @include('store._checkout_free')
+                    @endif
                 @endif
             </div>
         </div>

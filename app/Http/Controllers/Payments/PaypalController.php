@@ -27,16 +27,18 @@ use App\Libraries\Payments\PaypalExecutePayment;
 use App\Libraries\Payments\PaypalPaymentProcessor;
 use App\Libraries\Payments\PaypalSignature;
 use App\Models\Store\Order;
+use App\Traits\CheckoutErrorSettable;
 use Auth;
 use Illuminate\Http\Request as HttpRequest;
 use Lang;
 use Log;
 use PayPal\Exception\PayPalConnectionException;
 use Request;
-use Session;
 
 class PaypalController extends Controller
 {
+    use CheckoutErrorSettable;
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['ipn']]);
@@ -62,9 +64,7 @@ class PaypalController extends Controller
             $payment = $command->run();
             Log::debug($payment);
         } catch (PayPalConnectionException $e) {
-            Session::flash('checkout.error', $this->userErrorMessage($e));
-
-            return redirect(route('store.checkout.index'));
+            return $this->setAndRedirectCheckoutError($this->userErrorMessage($e));
         }
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
@@ -85,9 +85,7 @@ class PaypalController extends Controller
     // Payment declined by user.
     public function declined()
     {
-        Session::flash('checkout.error', trans('store.checkout.declined'));
-
-        return redirect(route('store.checkout.index'));
+        return $this->setAndRedirectCheckoutError(trans('store.checkout.declined'));
     }
 
     // Called by Paypal.

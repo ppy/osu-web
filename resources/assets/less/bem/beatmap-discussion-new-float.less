@@ -16,50 +16,44 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-post-content {
-  .content-font();
-  @_font-size: @font-size--normal-2;
-  font-size: @_font-size;
-  word-wrap: break-word;
+.beatmap-discussion-new-float {
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
 
-  &--edit {
-    .reset-input();
-    resize: vertical;
+    &::before {
+      .full-size();
+      background-color: fade(#000, 75%);
+    }
+  }
+
+  @top: beatmap-discussion-new-float;
+  .bg();
+  // counter the padding from parent
+  margin-top: -10px;
+  margin-bottom: 10px;
+
+  &__content {
+    .bg();
+    padding-top: 10px;
+  }
+
+  &__floatable {
+    .own-layer();
     width: 100%;
-    min-height: 150px;
 
-    @media @desktop {
-      min-height: 300px;
+    .@{top}--floating & {
+      position: fixed;
+      z-index: @z-index--fixed-bar;
+      top: 0;
     }
   }
 
-  &--editor {
-    font-family: @font-family-monospace;
-    font-size: @font-size--phone-input;
+  &__spacer {
+    pointer-events: none;
+    display: none;
 
-    @media @desktop {
-      font-size: @_font-size;
+    .@{top}--floating & {
+      display: block;
     }
-  }
-
-  &--reply {
-    .reset-input();
-    resize: vertical;
-    width: 100%;
-    min-height: 150px;
-
-    @media @desktop {
-    }
-  }
-
-  &--reply-preview {
-    // arbitrary numbers
-    max-height: calc(100vh ~'-' 300px);
-    min-height: 150px;
-    overflow-y: auto;
-  }
-
-  &[disabled] {
-    opacity: 0.8;
   }
 }

@@ -17,13 +17,24 @@
  */
 
 .page-title {
+  @_padding: 20px;
+
   color: @pink-darker;
   font-style: italic;
   font-size: @font-size--title-small-2;
-  padding: 20px;
+  padding: @_padding;
 
   &--lighter {
     font-weight: 100;
     color: @pink-light;
+  }
+
+  &__button {
+    position: absolute;
+    right: @_padding;
+    top: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 }

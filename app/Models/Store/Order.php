@@ -201,6 +201,11 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function isEmpty()
+    {
+        return !$this->items()->exists();
+    }
+
     public function isPaidOrDelivered()
     {
         return in_array($this->status, ['paid', 'delivered'], true);
