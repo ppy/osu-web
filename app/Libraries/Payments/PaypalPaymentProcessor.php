@@ -148,7 +148,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
             //  since the IPN might not include the invoice id.
             if ($this->getNotificationType() === NotificationType::REFUND) {
                 $order = Order::withPayments()
-                    ->wherePaymentTransactionId($this['parent_txn_id'])
+                    ->wherePaymentTransactionId($this['parent_txn_id'], 'paypal')
                     ->first();
             } else {
                 $order = Order::withPayments()

@@ -82,7 +82,7 @@ class Order extends Model
         ]);
     }
 
-    public static function scopeWherePaymentTransactionId($query, $transactionId)
+    public static function scopeWherePaymentTransactionId($query, $transactionId, $provider)
     {
         $ordersTable = (new static)->getTable();
         $paymentsTable = (new Payment)->getTable();
@@ -90,6 +90,7 @@ class Order extends Model
         return $query
             ->join($paymentsTable, "{$paymentsTable}.order_id", '=', "{$ordersTable}.order_id")
             ->where("{$paymentsTable}.transaction_id", $transactionId)
+            ->where("{$paymentsTable}.provider", $provider)
             ->where("{$paymentsTable}.cancelled", false);
     }
 
