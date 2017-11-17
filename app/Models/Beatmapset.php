@@ -387,10 +387,10 @@ class Beatmapset extends Model
                 $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
-            case 3: // Mod Requests
-                $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
+            case 3: // Qualified
+                $shouldParams[] = [
+                    ['match' => ['approved' => self::STATES['qualified']]],
+                ];
                 break;
             case 4: // Pending
                 $shouldParams[] = [

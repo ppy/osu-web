@@ -115,7 +115,6 @@ return [
         'ranked-approved' => 'Rankate e Approvate',
         'approved' => 'Approvate',
         'faves' => 'Preferiti',
-        'modreqs' => 'Richieste di Mod',
         'pending' => 'In Attesa',
         'graveyard' => 'Cimitero', // It litterally means "Cimitero" in italian, but maybe there's a better translation?
         'my-maps' => 'Mie Mappe',
