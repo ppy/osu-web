@@ -159,6 +159,7 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
         'modreqs' => 'Mod Requests',
