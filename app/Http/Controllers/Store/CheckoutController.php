@@ -22,15 +22,17 @@ namespace App\Http\Controllers\Store;
 
 use App\Events\Fulfillments\PaymentEvent;
 use App\Libraries\OrderCheckout;
+use App\Traits\CheckoutErrorSettable;
 use App\Traits\StoreNotifiable;
 use Auth;
 use DB;
 use Exception;
 use Request;
+use View;
 
 class CheckoutController extends Controller
 {
-    use StoreNotifiable;
+    use CheckoutErrorSettable, StoreNotifiable;
 
     protected $layout = 'master';
     protected $actionPrefix = 'checkout-';
@@ -53,14 +55,19 @@ class CheckoutController extends Controller
     public function index()
     {
         $order = $this->userCart();
-        if (!$order || !$order->items()->exists()) {
-            return ujs_redirect('/store/cart');
+        if (!$order || $order->isEmpty()) {
+            return ujs_redirect(route('store.cart'));
         }
 
         // TODO: should be able to notify user that items were changed due to stock/price changes.
         $order->refreshCost();
         $checkout = new OrderCheckout($order);
         $addresses = Auth::user()->storeAddresses()->with('country')->get();
+
+        // using $errors will conflict with laravel's default magic MessageBag/ViewErrorBag that doesn't act like
+        // an array and will cause issues in shared views.
+        $flash = session('checkout.error.errors') ?? [];
+        View::share('validationErrors', $flash);
 
         return view('store.checkout', compact('order', 'addresses', 'checkout'));
     }
@@ -69,28 +76,42 @@ class CheckoutController extends Controller
     {
         $order = $this->userCart();
 
-        if ($order->items()->count() === 0) {
-            return error_popup('cart is empty');
+        if ($order->isEmpty()) {
+            return ujs_redirect(route('store.cart'));
         }
 
+        $checkout = new OrderCheckout($order);
+        $validationErrors = $checkout->validate();
+        if (!empty($validationErrors)) {
+            return $this->setAndRedirectCheckoutError(
+                trans('store.checkout.cart_problems'),
+                $validationErrors
+            );
+        }
+
+        // checkout
         if ((float) $order->getTotal() === 0.0 && Request::input('completed')) {
-            DB::connection('mysql-store')->transaction(function () use ($order) {
-                try {
-                    $checkout = new OrderCheckout($order);
-                    $checkout->completeCheckout();
-
-                    $order->paid(null);
-                } catch (Exception $exception) {
-                    $this->notifyError($exception, $order);
-                    throw $exception;
-                }
-
-                event('store.payments.completed.free', new PaymentEvent($order));
-            });
-
-            return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
+            return $this->freeCheckout($checkout);
         }
 
-        return ['ok'];
+        return 'ok';
+    }
+
+    private function freeCheckout($checkout)
+    {
+        DB::connection('mysql-store')->transaction(function () use ($checkout) {
+            try {
+                $order = $checkout->getOrder();
+                $checkout->completeCheckout();
+                $order->paid(null);
+            } catch (Exception $exception) {
+                $this->notifyError($exception, $order);
+                throw $exception;
+            }
+
+            event('store.payments.completed.free', new PaymentEvent($order));
+        });
+
+        return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
 }

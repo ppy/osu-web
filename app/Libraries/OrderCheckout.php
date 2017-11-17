@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Libraries\Payments\InvalidOrderStateException;
 use App\Models\Store\Order;
+use App\Models\User;
 use DB;
 use Request;
 
@@ -90,6 +91,36 @@ class OrderCheckout
                 );
             }
         });
+    }
+
+    public function validate()
+    {
+        $itemErrors = [];
+        $items = $this->order->items()->with('product')->get();
+        foreach ($items as $item) {
+            if (!$item->isValid()) {
+                $itemErrors[$item->id] = $item->validationErrors()->allMessages();
+            }
+
+            if ($item->product->custom_class === 'username-change') {
+                $changeUsername = new ChangeUsername($this->order->user, $item->extra_info, 'paid');
+                $messages = $changeUsername->validate()->allMessages();
+                if (!empty($messages)) {
+                    // merge with existing errors, if any.
+                    $itemErrors[$item->id] = array_merge(
+                        $itemErrors[$item->id] ?? [],
+                        $messages
+                    );
+                }
+            }
+        }
+
+        $errors = [];
+        if ($itemErrors !== []) {
+            $errors['orderItems'] = $itemErrors;
+        }
+
+        return $errors;
     }
 
     /**

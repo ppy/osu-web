@@ -30,6 +30,7 @@ export class StoreCheckout
       provider = element.dataset.provider
       orderNumber = element.dataset.orderNumber
       switch provider
+        when 'free' then init['free'] = Promise.resolve()
         when 'paypal' then init['paypal'] = Promise.resolve()
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
 
@@ -41,19 +42,31 @@ export class StoreCheckout
       LoadingOverlay.show.flush()
 
       init[provider]?.then =>
-        @handleClick(event.target.dataset)
+        $.post laroute.route('store.checkout.store')
+        .done =>
+          @startPayment(event.target.dataset)
+
       .catch (error) ->
         LoadingOverlay.hide()
+        # errors from they jquery deferred will propagate here.
+        if error.getResponseHeader # check if 4xx ujs_redirect
+          type = error.getResponseHeader('Content-Type')
+          return if _.startsWith(type, 'application/javascript')
+
         # TODO: less unknown error, disable button
         # TODO: handle error.message
         osu.ajaxError(error?.xhr)
 
 
-  @handleClick: (params) ->
+  @startPayment: (params) ->
     switch params.provider
+      when 'free'
+        $.post laroute.route('store.checkout.store', completed: '1')
+
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
           window.location = link
+
       when 'xsolla'
         # FIXME: flickering when transitioning to widget
         XPayStationWidget.open()
