@@ -82,6 +82,18 @@ class Order extends Model
         ]);
     }
 
+    public static function scopeWherePaymentTransactionId($query, $transactionId)
+    {
+        $ordersTable = (new static)->getTable();
+        $paymentsTable = (new Payment)->getTable();
+
+        return $query
+            ->join($paymentsTable, "{$paymentsTable}.order_id", '=', "{$ordersTable}.order_id")
+            ->where("{$paymentsTable}.transaction_id", $transactionId)
+            ->where("{$paymentsTable}.cancelled", false);
+    }
+
+
     public function trackingCodes()
     {
         $codes = [];

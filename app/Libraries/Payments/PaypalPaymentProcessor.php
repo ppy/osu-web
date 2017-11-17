@@ -146,10 +146,9 @@ class PaypalPaymentProcessor extends PaymentProcessor
         if (!isset($this->order)) {
             // Use paypal's parent transaction ID for refunds,
             //  since the IPN might not include the invoice id.
-            $transactionId = "{$this->getPaymentProvider()}-{$this['parent_txn_id']}";
             if ($this->getNotificationType() === NotificationType::REFUND) {
                 $order = Order::withPayments()
-                    ->where('transaction_id', $transactionId)
+                    ->wherePaymentTransactionId($this['parent_txn_id'])
                     ->first();
             } else {
                 $order = Order::withPayments()
