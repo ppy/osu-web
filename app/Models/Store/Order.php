@@ -89,8 +89,8 @@ class Order extends Model
 
         return $query
             ->whereIn('order_id', Payment::select('order_id')
-                ->where('transaction_id', $transactionId)
                 ->where('provider', $provider)
+                ->where('transaction_id', $transactionId)
                 ->where('cancelled', false));
     }
 
