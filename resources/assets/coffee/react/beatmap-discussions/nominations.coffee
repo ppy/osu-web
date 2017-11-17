@@ -202,9 +202,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                       reason: disqualification.reason ? osu.trans('beatmaps.nominations.disqualifed_no_reason')
               else if mapIsQualified
                 if rankingETA
-                  span dangerouslySetInnerHTML:
-                    __html: osu.trans 'beatmaps.nominations.qualified',
-                      date: osu.timeago(rankingETA)
+                  span null,
+                    osu.trans 'beatmaps.nominations.qualified',
+                      date: moment(rankingETA).format(dateFormat)
                 else
                   span null, osu.trans 'beatmaps.nominations.qualified-soon'
 
