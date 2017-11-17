@@ -62,7 +62,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
-        if ($user !== null && ($user->isQAT() || $user->isBNG())) {
+        if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -74,7 +74,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -104,7 +104,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isBNG() || $user->isQAT()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -113,7 +113,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -124,7 +124,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -140,7 +140,7 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
-        if ($user->isQAT() || $user->isBNG()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -168,7 +168,7 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -190,7 +190,7 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -203,7 +203,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -214,7 +214,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
