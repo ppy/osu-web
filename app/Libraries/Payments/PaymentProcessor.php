@@ -299,7 +299,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     /**
      * Fetches the Order corresponding to this payment and memoizes it.
-     * Overridden in PaypalPaymentProcessor
+     * Overridden in PaypalPaymentProcessor.
      *
      * @return Order
      */

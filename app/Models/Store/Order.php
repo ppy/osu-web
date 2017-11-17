@@ -93,7 +93,6 @@ class Order extends Model
             ->where("{$paymentsTable}.cancelled", false);
     }
 
-
     public function trackingCodes()
     {
         $codes = [];
