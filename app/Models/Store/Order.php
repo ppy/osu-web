@@ -88,10 +88,10 @@ class Order extends Model
         $paymentsTable = (new Payment)->getTable();
 
         return $query
-            ->join($paymentsTable, "{$paymentsTable}.order_id", '=', "{$ordersTable}.order_id")
-            ->where("{$paymentsTable}.transaction_id", $transactionId)
-            ->where("{$paymentsTable}.provider", $provider)
-            ->where("{$paymentsTable}.cancelled", false);
+            ->whereIn('order_id', Payment::select('order_id')
+                ->where('transaction_id', $transactionId)
+                ->where('provider', $provider)
+                ->where('cancelled', false));
     }
 
     public function trackingCodes()
