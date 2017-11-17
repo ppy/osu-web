@@ -140,13 +140,17 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
+        if ($user->isQAT() || $user->isBNG()) {
+            return 'ok';
+        }
+
         // rate limit
         $recentVotesCount = $user
             ->beatmapDiscussionVotes()
             ->where('created_at', '>', Carbon::now()->subHour())
             ->count();
 
-        if ($recentVotesCount > 10) {
+        if ($recentVotesCount > 60) {
             return $prefix.'limit_exceeded';
         }
 
