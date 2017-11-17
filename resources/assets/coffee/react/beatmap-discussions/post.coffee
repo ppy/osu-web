@@ -235,7 +235,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
               'data-confirm': osu.trans('common.confirmation')
               osu.trans('beatmaps.discussions.restore')
 
-          if @props.type == 'discussion' && @props.discussion.message_type != 'praise'
+          if @props.type == 'discussion' && @props.discussion.message_type != 'praise' && @props.discussion.current_user_attributes?.can_moderate_kudosu
             if @props.discussion.kudosu_denied
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"

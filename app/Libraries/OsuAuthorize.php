@@ -62,7 +62,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isQAT() || $user->isBNG())) {
             return 'ok';
         }
     }
