@@ -31,10 +31,12 @@
   // counter the padding from parent
   margin-top: -10px;
   margin-bottom: 10px;
+  pointer-events: none;
 
   &__content {
     .bg();
     padding-top: 10px;
+    pointer-events: initial;
   }
 
   &__floatable {
@@ -49,7 +51,6 @@
   }
 
   &__spacer {
-    pointer-events: none;
     display: none;
 
     .@{top}--floating & {
