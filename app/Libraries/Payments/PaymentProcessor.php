@@ -38,7 +38,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     protected $params;
     protected $signature;
-    private $order; // Stores memoized result in array, not to be used directly otherwise.
+    protected $order; // Stores memoized result in array, not to be used directly otherwise.
 
     public function __construct(array $params, PaymentSignature $signature)
     {
@@ -299,6 +299,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
     /**
      * Fetches the Order corresponding to this payment and memoizes it.
+     * Overridden in PaypalPaymentProcessor.
      *
      * @return Order
      */
