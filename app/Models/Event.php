@@ -150,13 +150,8 @@ class Event extends Model
 
     public function parseMatchesBeatmapsetApprove($matches)
     {
-        $approval = $matches['approval'];
-        if ($approval === 'ranked') {
-            $approval = 'qualified';
-        }
-
         return [
-            'approval' => $approval,
+            'approval' => $matches['approval'],
             'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];
