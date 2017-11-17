@@ -140,7 +140,6 @@ return [
         'approved' => 'Aprobados',
         'loved' => 'Amados',
         'faves' => 'Favoritos',
-        'modreqs' => 'Solicitan mod',
         'pending' => 'Pendientes',
         'graveyard' => 'Cementerio',
         'my-maps' => 'Mis mapas',

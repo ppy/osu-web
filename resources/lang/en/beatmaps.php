@@ -162,7 +162,6 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',
