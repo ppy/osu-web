@@ -84,9 +84,6 @@ class Order extends Model
 
     public static function scopeWherePaymentTransactionId($query, $transactionId, $provider)
     {
-        $ordersTable = (new static)->getTable();
-        $paymentsTable = (new Payment)->getTable();
-
         return $query
             ->whereIn('order_id', Payment::select('order_id')
                 ->where('provider', $provider)
