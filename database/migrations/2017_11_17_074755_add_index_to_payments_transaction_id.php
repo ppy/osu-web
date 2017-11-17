@@ -13,7 +13,7 @@ class AddIndexToPaymentsTransactionId extends Migration
     public function up()
     {
         Schema::connection('mysql-store')->table('payments', function ($table) {
-            $table->index('transaction_id');
+            $table->index(['transaction_id', 'provider']);
         });
     }
 
@@ -25,7 +25,7 @@ class AddIndexToPaymentsTransactionId extends Migration
     public function down()
     {
         Schema::connection('mysql-store')->table('payments', function ($table) {
-            $table->dropIndex(['transaction_id']);
+            $table->dropIndex(['transaction_id', 'provider']);
         });
     }
 }
