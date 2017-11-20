@@ -154,6 +154,10 @@ class OsuAuthorize
             return $prefix.'limit_exceeded';
         }
 
+        if ($discussion->userRecentVotesCount($user) >= 3) {
+            return $prefix.'limit_exceeded';
+        }
+
         return 'ok';
     }
 
