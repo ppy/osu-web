@@ -174,6 +174,11 @@ class AccountController extends Controller
 
         priv_check('UserPageEdit', $user)->ensureCan();
 
+        if (Request::isMethod('delete')) {
+            $user->destroyPage();
+            return;
+        }
+
         $user = $user->updatePage(Request::input('body'));
 
         return ['html' => $user->userPage->bodyHTML];

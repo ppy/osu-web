@@ -1111,6 +1111,18 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->fresh();
     }
 
+    public function destroyPage()
+    {
+        if ($this->userPage === null) {
+            return;
+        }
+
+        DB::transaction(function () {
+            $this->userPage->topic->removePost($this->userPage);
+            $this->update(['userpage_post_id' => null]);
+        });
+    }
+
     public function notificationCount()
     {
         return $this->user_unread_privmsg;
