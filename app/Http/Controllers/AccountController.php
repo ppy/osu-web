@@ -176,6 +176,7 @@ class AccountController extends Controller
 
         if (Request::isMethod('delete')) {
             $user->destroyPage();
+
             return;
         }
 
