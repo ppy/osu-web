@@ -362,7 +362,7 @@ class User extends Model implements AuthenticatableContract, Messageable
                 break;
 
             default:
-                if (ctype_digit($username_or_id)) {
+                if (ctype_digit((string) $username_or_id)) {
                     $user = static::lookup($username_or_id, 'id', $find_all);
                 }
 
