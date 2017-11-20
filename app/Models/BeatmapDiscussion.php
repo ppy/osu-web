@@ -293,11 +293,10 @@ class BeatmapDiscussion extends Model
         if ($increment) {
             if ($count === null) {
                 Cache::put($key, 1, 60);
+                $count = 1;
             } else {
-                Cache::increment($key);
+                $count = Cache::increment($key);
             }
-
-            $count++;
         }
 
         return $count ?? 0;
