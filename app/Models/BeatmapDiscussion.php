@@ -288,18 +288,14 @@ class BeatmapDiscussion extends Model
     public function userRecentVotesCount($user, $increment = false)
     {
         $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
-        $count = get_int(Cache::get($key));
 
         if ($increment) {
-            if ($count === null) {
-                Cache::put($key, 1, 60);
-                $count = 1;
-            } else {
-                $count = Cache::increment($key);
-            }
-        }
+            Cache::add($key, 0, 60);
 
-        return $count ?? 0;
+            return Cache::increment($key);
+        } else {
+            return get_int(Cache::get($key)) ?? 0;
+        }
     }
 
     public function restore($restoredBy)
