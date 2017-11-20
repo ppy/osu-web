@@ -72,12 +72,10 @@ class BeatmapsetPage.Info extends React.Component
   render: ->
     percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
 
-    # console.log(@props)
-    console.log(@state.isEditing)
-
     div className: 'beatmapset-info',
       if @state.isEditing
-        el BeatmapsetPage.DescriptionEditor
+        el BeatmapsetPage.DescriptionEditor,
+          rawValue: @props.beatmapset.description.bbcode
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
         @renderEditButton()
