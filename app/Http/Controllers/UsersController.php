@@ -89,7 +89,7 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::lookup($username) ?? UserNotFound::instance();
+        $user = User::lookup($username, 'string') ?? UserNotFound::instance();
 
         list($friend, $mutual) = $this->getFriendStatus($user);
 
