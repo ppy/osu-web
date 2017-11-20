@@ -108,7 +108,7 @@ class ProfilePage.Main extends React.PureComponent
 
 
   render: =>
-    withMePage = @state.userPage.html != '' || @props.withEdit
+    withMePage = @state.userPage.initialRaw.trim() != '' || @props.withEdit
 
     extraPageParams =
       me:
