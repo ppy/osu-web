@@ -135,6 +135,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('account/cover', 'AccountController@cover')->name('account.cover');
     Route::put('account/email', 'AccountController@updateEmail')->name('account.email');
     Route::put('account/page', 'AccountController@updatePage')->name('account.page');
+    Route::delete('account/page', 'AccountController@updatePage')->name('account.page.destroy');
     Route::put('account/password', 'AccountController@updatePassword')->name('account.password');
     Route::post('account/reissue-code', 'AccountController@reissueCode')->name('account.reissue-code');
     Route::post('account/verify', 'AccountController@verify')->name('account.verify');

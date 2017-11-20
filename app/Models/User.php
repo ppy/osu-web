@@ -1091,23 +1091,51 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function updatePage($text)
     {
         if ($this->userPage === null) {
-            DB::transaction(function () use ($text) {
-                $topic = Forum\Topic::createNew(
-                    Forum\Forum::find(config('osu.user.user_page_forum_id')),
-                    [
-                        'title' => "{$this->username}'s user page",
-                        'user' => $this,
-                        'body' => $text,
-                    ]
-                );
+            $topic = Forum\Topic
+                ::where('topic_poster', $this->user_id)
+                ->where('forum_id', config('osu.user.user_page_forum_id'))
+                ->withTrashed()
+                ->first();
 
-                $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
-            });
+            if ($topic !== null) {
+                DB::transaction(function () use ($topic, $text) {
+                    $post = $topic->posts()->withTrashed()->first();
+
+                    $topic->restorePost($post);
+                    $post->edit($text, $this);
+                    $this->update(['userpage_post_id' => $post->post_id]);
+                });
+            } else {
+                DB::transaction(function () use ($text) {
+                    $topic = Forum\Topic::createNew(
+                        Forum\Forum::find(config('osu.user.user_page_forum_id')),
+                        [
+                            'title' => "{$this->username}'s user page",
+                            'user' => $this,
+                            'body' => $text,
+                        ]
+                    );
+
+                    $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
+                });
+            }
         } else {
             $this->userPage->edit($text, $this);
         }
 
         return $this->fresh();
+    }
+
+    public function destroyPage()
+    {
+        if ($this->userPage === null) {
+            return;
+        }
+
+        DB::transaction(function () {
+            $this->userPage->topic->removePost($this->userPage);
+            $this->update(['userpage_post_id' => null]);
+        });
     }
 
     public function notificationCount()

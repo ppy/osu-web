@@ -17,8 +17,6 @@
  */
 
 .page-extra {
-  @top: page-extra;
-
   .default-box-shadow();
   background-color: #fff;
   padding: 20px 10px;
@@ -39,6 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: opacity 120ms ease-in-out;
 
     position: absolute;
 
@@ -49,11 +48,17 @@
       right: 0;
       top: 20px;
       width: 0;
+
       opacity: 0;
+      will-change: opacity;
+
+      .page-extra:hover & {
+        opacity: 1;
+      }
     }
 
-    .@{top}:hover & {
-      opacity: 1;
+    &__action + &__action {
+      margin-top: 10px;
     }
   }
 

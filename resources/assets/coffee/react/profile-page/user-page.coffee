@@ -27,12 +27,20 @@ class ProfilePage.UserPage extends React.Component
 
       if !@props.userPage.editing && @props.withEdit && !isBlank
         div className: 'page-extra__actions',
-          button
-            type: 'button'
-            className: 'btn-circle'
-            onClick: @editStart
-            span className: 'btn-circle__content',
-              el Icon, name: 'edit'
+          div className: 'page-extra__actions__action',
+            button
+              type: 'button'
+              className: 'btn-circle'
+              onClick: @editStart
+              span className: 'btn-circle__content',
+                el Icon, name: 'edit'
+          div className: 'page-extra__actions__action',
+            button
+              type: 'button'
+              className: 'btn-circle'
+              onClick: @delete
+              span className: 'btn-circle__content',
+                el Icon, name: 'trash'
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
@@ -44,6 +52,21 @@ class ProfilePage.UserPage extends React.Component
 
   editStart: ->
     $.publish 'user:page:update', editing: true
+
+
+  delete: (e) ->
+    LoadingOverlay.show
+
+    $.ajax laroute.route('account.page.destroy'),
+      method: 'DELETE'
+    .done ->
+      $.publish 'user:page:update',
+        html: ''
+        editing: false
+        raw: ''
+        initialRaw: ''
+    .fail osu.emitAjaxError(e.target)
+    .always LoadingOverlay.hide
 
 
   pageNew: =>
