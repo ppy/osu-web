@@ -363,13 +363,10 @@ class User extends Model implements AuthenticatableContract, Messageable
 
             default:
                 if (is_numeric($username_or_id)) {
-                    $user = self::lookup($username_or_id, 'id', $find_all);
-                    if ($user !== null) {
-                        return $user;
-                    }
+                    $user = static::lookup($username_or_id, 'id', $find_all);
                 }
-                $user = self::where('username', $username_or_id)->orWhere('username_clean', '=', $username_or_id);
-                break;
+
+                return $user ?? static::lookup($username_or_id, 'string', $find_all);
         }
 
         if (!$find_all) {
