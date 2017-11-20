@@ -27,6 +27,9 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
   componentWillUnmount: =>
     # stuff
 
+  onChange: (e) ->
+    console.log(e)
+
 
   render: =>
     el 'form', null,
@@ -34,7 +37,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
         className: 'post-editor'
         name: 'body'
         value: @props.rawValue
-        onChange: @_change
+        onChange: @onChange # binds to oninput, not onchange
         placeholder: 'blah'
         ref: 'body'
 
@@ -44,6 +47,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
           div className: 'post-box-toolbar',
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--bold'
+              onClick: @onChange
               title: osu.trans('bbcode.bold')
               type: 'button',
 
@@ -52,6 +56,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--italic'
+              onClick: @onChange
               title: osu.trans('bbcode.italic')
               type: 'button',
 
@@ -60,6 +65,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough'
+              onClick: @onChange
               title: osu.trans('bbcode.strikethrough')
               type: 'button',
 
@@ -68,6 +74,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--heading'
+              onClick: @onChange
               title: osu.trans('bbcode.heading')
               type: 'button',
 
@@ -76,6 +83,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--link'
+              onClick: @onChange
               title: osu.trans('bbcode.link')
               type: 'button',
 
@@ -84,6 +92,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox'
+              onClick: @onChange
               title: osu.trans('bbcode.spoilerbox')
               type: 'button',
 
@@ -91,6 +100,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered'
+              onClick: @onChange
               title: osu.trans('bbcode.list_numbered')
               type: 'button',
 
@@ -99,6 +109,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list'
+              onClick: @onChange
               title: osu.trans('bbcode.list')
               type: 'button',
 
@@ -107,6 +118,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
             button
               className: 'btn-circle btn-circle--bbcode js-bbcode-btn--image'
+              onClick: @onChange
               title: osu.trans('bbcode.image')
               type: 'button',
 
@@ -120,9 +132,9 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
               span className: "bbcode-size-select__label", osu.trans('bbcode.size._'),
                 i className: "fa fa-chevron-down"
-
                 select
                   className: 'bbcode-size-select__select js-bbcode-btn--size'
+                  onChange: @onChange
                   value: '100',
                   option value: '50', osu.trans('bbcode.size.tiny')
                   option value: '85', osu.trans('bbcode.size.small')
