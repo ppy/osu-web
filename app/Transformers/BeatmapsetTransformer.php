@@ -141,6 +141,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         return $this->item($beatmapset, function ($beatmapset) {
             return [
                 'description' => $beatmapset->description(),
+                'bbcode' => $beatmapset->editableDescription(),
             ];
         });
     }
