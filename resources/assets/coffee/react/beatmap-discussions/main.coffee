@@ -160,6 +160,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         generalAll: []
       byFilter =
         total: {}
+        mappers: {}
         deleted: {}
         praises: {}
         resolved: {}
@@ -193,6 +194,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         if d.deleted_at?
           filters.push 'deleted'
+        else if d.message_type == 'mapper'
+          filters.push 'mappers'
         else if d.message_type == 'praise'
           filters.push 'praises'
         else

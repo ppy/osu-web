@@ -127,9 +127,14 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 osu.trans 'beatmaps.hype.explanation'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
-            @submitButton 'praise'
-            @submitButton 'suggestion'
-            @submitButton 'problem'
+            if @props.currentUser.id == @props.beatmapset.user_id
+              @submitButton 'mapper'
+            else
+              [
+                @submitButton 'praise'
+                @submitButton 'suggestion'
+                @submitButton 'problem'
+              ]
 
         if @nearbyPosts().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
@@ -268,6 +273,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       modifiers: ['beatmap-discussion']
       icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{type}")
+      key: type
       props:
         disabled: !@validPost() || @state.posting?
         'data-type': type

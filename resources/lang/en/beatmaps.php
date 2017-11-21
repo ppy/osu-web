@@ -63,6 +63,7 @@ return [
         ],
 
         'message_type' => [
+            'mapper' => 'Note',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -87,6 +88,7 @@ return [
 
         'stats' => [
             'deleted' => 'Deleted',
+            'mappers' => 'Notes',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',

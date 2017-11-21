@@ -20,9 +20,30 @@
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\User;
 
 class BeatmapDiscussionTest extends TestCase
 {
+    public function testMapperPost()
+    {
+        $mapper = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'user_id' => $mapper->getKey(),
+        ]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+
+        $discussion = $this->newDiscussion($beatmapset);
+        $discussion->fill([
+            'beatmap_id' => $beatmap->beatmap_id,
+            'message_type' => 'problem',
+            'user_id' => $mapper->getKey(),
+        ]);
+
+        $this->assertTrue($discussion->isValid());
+        $this->assertEquals($discussion->message_type, 'mapper');
+    }
+
     public function testIsValid()
     {
         $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);

@@ -117,7 +117,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
   stats: =>
     bn = 'counter-box'
 
-    for type in ['mine', 'resolved', 'pending', 'praises', 'deleted', 'total']
+    for type in ['mine', 'mappers', 'resolved', 'pending', 'praises', 'deleted', 'total']
       continue if type == 'deleted' && !@props.currentUser.isAdmin
 
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"

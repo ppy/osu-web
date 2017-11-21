@@ -20,6 +20,7 @@
   @top: counter-box;
 
   @color-deleted: @gray;
+  @color-mappers: @beatmap-discussion--color-mapper;
   @color-mine: @yellow-darker;
   @color-pending: @pink-darker;
   @color-praises: @blue-darker;
@@ -79,6 +80,10 @@
     .with-active(@color-praises);
   }
 
+  &--mappers {
+    .with-active(@color-mappers);
+  }
+
   &--mine {
     .with-active(@color-mine);
   }
@@ -111,6 +116,10 @@
 
     .@{top}--forum-deleted & {
       background-color: @color-deleted;
+    }
+
+    .@{top}--mappers & {
+      background-color: @color-mappers;
     }
 
     .@{top}--pending & {
