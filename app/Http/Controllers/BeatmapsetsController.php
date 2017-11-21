@@ -231,6 +231,25 @@ class BeatmapsetsController extends Controller
         ];
     }
 
+    public function update($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $description = Request::input('description');
+
+        if ($beatmapset->updateDescription($description, Auth::user())) {
+            $beatmapset->refresh();
+            return json_item(
+                $beatmapset,
+                new BeatmapsetTransformer(),
+                [
+                    'description',
+                ]
+            );
+        }
+
+        return response([], 500); // ?????
+    }
+
     public function updateFavourite($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

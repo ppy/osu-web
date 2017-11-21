@@ -1018,6 +1018,18 @@ class Beatmapset extends Model
         return $bbcode ? $bbcode->toEditor() : null;
     }
 
+    public function updateDescription($bbcode, $user)
+    {
+        $post = $this->getPost();
+        if ($post === null) {
+            return;
+        }
+
+        $split = preg_split('[-{15}]', $post->post_text, 2);
+
+        return $post->edit($split[0]."---------------\n".$bbcode, $user);
+    }
+
     public function state()
     {
         return array_search_null($this->approved, static::STATES);

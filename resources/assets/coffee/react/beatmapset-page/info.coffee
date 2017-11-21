@@ -55,23 +55,26 @@ class BeatmapsetPage.Info extends React.Component
     @_failurePointsChart.loadData @props.beatmap.failtimes
 
 
-  editStart: (e) =>
+  editStart: =>
     @setState isEditing: true
-    # $.publish 'beatmapset:description:update', editing: true
-
-  descriptionChanged: (e) ->
-    console.log(e)
 
 
-  cancelDescription: (e) =>
+  cancelDescription: =>
     @setState isEditing: false
 
-  resetDescription: (e) ->
-    console.log(e)
 
+  saveDescription: (e) =>
+    $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
+      method: 'PATCH',
+      data:
+        description: e.value
 
-  saveDescription: (e) ->
-    console.log(e)
+    .done (data) =>
+      console.log(data)
+      @setState isEditing: false
+
+    .fail osu.ajaxError
+
 
   renderEditButton: =>
     div className: 'beatmapset-info__edit-description',
