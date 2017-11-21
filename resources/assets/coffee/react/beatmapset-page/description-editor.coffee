@@ -41,17 +41,17 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
   _cancel: =>
     @refs.body.value = @props.rawValue
     @setState rawValue: @props.rawValue
-    @props.onCancel(value: @props.rawValue) if @props.onCancel
+    @props.onChange(type: 'cancel', value: @props.rawValue) if @props.onChange
 
 
   _reset: =>
     @refs.body.value = @props.rawValue
     @setState rawValue: @props.rawValue
-    @props.onReset(value: @props.rawValue) if @props.onReset
+    @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
 
 
   _save: =>
-    @props.onSave(value: @state.rawValue) if @props.onSave
+    @props.onChange(type: 'save', value: @state.rawValue) if @props.onChange
 
 
   render: =>

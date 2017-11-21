@@ -59,18 +59,21 @@ class BeatmapsetPage.Info extends React.Component
     @setState isEditing: true
 
 
-  cancelDescription: =>
-    @setState isEditing: false
+  onEditorChange: (action) =>
+    switch action.type
+      when 'save'
+        @saveDescription(action.value)
+      when 'cancel'
+        @setState isEditing: false
 
 
-  saveDescription: (e) =>
+  saveDescription: (value) =>
     $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
       method: 'PATCH',
       data:
-        description: e.value
+        description: value
 
     .done (data) =>
-      console.log(data)
       @setState
         isEditing: false
         description: data.description
@@ -94,10 +97,7 @@ class BeatmapsetPage.Info extends React.Component
     div className: 'beatmapset-info',
       if @state.isEditing
         el BeatmapsetPage.DescriptionEditor,
-          onCancel: @cancelDescription
-          onChange: @descriptionChanged
-          onReset: @resetDescription
-          onSave: @saveDescription
+          onChange: @onEditorChange
           rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
