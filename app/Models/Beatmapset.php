@@ -84,6 +84,7 @@ class Beatmapset extends Model
 
     const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
+    const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     /*
@@ -887,7 +888,10 @@ class Beatmapset extends Model
         }
 
         $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
-        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+        $days = ceil($queueSize / static::RANKED_PER_DAY);
+
+        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
+        $days = max($minDays, $days);
 
         return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
     }
