@@ -26,6 +26,7 @@ use Exception;
 use Illuminate\Auth\Access\AuthorizationException as LaravelAuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Session\TokenMismatchException;
 use Sentry;
@@ -81,49 +82,6 @@ class Handler extends ExceptionHandler
         return parent::report($e);
     }
 
-    private function statusCode($e)
-    {
-        if (method_exists($e, 'getStatusCode')) {
-            return $e->getStatusCode();
-        } elseif ($e instanceof ModelNotFoundException) {
-            return 404;
-        } elseif ($e instanceof NotFoundHttpException) {
-            return 404;
-        } elseif ($e instanceof TokenMismatchException) {
-            return 403;
-        } elseif ($e instanceof AuthenticationException) {
-            return 401;
-        } elseif ($e instanceof AuthorizationException) {
-            return 403;
-        } else {
-            return 500;
-        }
-    }
-
-    private function reportWithSentry($e)
-    {
-        $extra = [
-            'http_code' => $this->statusCode($e),
-        ];
-
-        if (Auth::check()) {
-            $userContext = [
-                'id' => Auth::user()->user_id,
-                'username' => Auth::user()->username_clean,
-            ];
-        } else {
-            $userContext = [
-                'id' => null,
-            ];
-        }
-
-        Sentry::user_context($userContext);
-
-        $ref = Sentry::captureException($e, compact('extra'));
-
-        view()->share('ref', $ref);
-    }
-
     /**
      * Render an exception into an HTTP response.
      *
@@ -150,7 +108,7 @@ class Handler extends ExceptionHandler
             }
         } else {
             if ($request->ajax()) {
-                $response = response(['error' => $e->getMessage()]);
+                $response = response(['error' => $this->ajaxMessage($e)]);
             } else {
                 $response = response()->view('layout.error');
             }
@@ -166,5 +124,57 @@ class Handler extends ExceptionHandler
         }
 
         return response()->view('users.login');
+    }
+
+    private function ajaxMessage($e)
+    {
+        if ($e instanceof QueryException) {
+            return;
+        }
+
+        return $e->getMessage();
+    }
+
+    private function reportWithSentry($e)
+    {
+        $extra = [
+            'http_code' => $this->statusCode($e),
+        ];
+
+        if (Auth::check()) {
+            $userContext = [
+                'id' => Auth::user()->user_id,
+                'username' => Auth::user()->username_clean,
+            ];
+        } else {
+            $userContext = [
+                'id' => null,
+            ];
+        }
+
+        Sentry::user_context($userContext);
+
+        $ref = Sentry::captureException($e, compact('extra'));
+
+        view()->share('ref', $ref);
+    }
+
+    private function statusCode($e)
+    {
+        if (method_exists($e, 'getStatusCode')) {
+            return $e->getStatusCode();
+        } elseif ($e instanceof ModelNotFoundException) {
+            return 404;
+        } elseif ($e instanceof NotFoundHttpException) {
+            return 404;
+        } elseif ($e instanceof TokenMismatchException) {
+            return 403;
+        } elseif ($e instanceof AuthenticationException) {
+            return 401;
+        } elseif ($e instanceof AuthorizationException) {
+            return 403;
+        } else {
+            return 500;
+        }
     }
 }
