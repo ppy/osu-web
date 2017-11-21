@@ -17,12 +17,6 @@
  */
 
 .post-editor {
-  margin-bottom: 5px;
-  padding-bottom: 0;
-
-  display: flex;
-  flex-direction: column;
-
   &--edit {
     width: 100%;
     margin-bottom: -20px;
@@ -30,12 +24,6 @@
     @media @desktop {
       margin-bottom: 0;
     }
-  }
-
-  [name=body] {
-    .reset-input();
-    resize: vertical;
-    min-height: 200px;
   }
 
   &__main {
@@ -73,6 +61,20 @@
         margin-right: -30px;
         padding-left: 30px;
         padding-right: 30px;
+      }
+    }
+
+    &__textarea {
+      margin-bottom: 5px;
+      padding-bottom: 0;
+
+      display: flex;
+      flex-direction: column;
+
+      [name=body] {
+        .reset-input();
+        resize: vertical;
+        min-height: 200px;
       }
     }
 
