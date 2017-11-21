@@ -38,6 +38,7 @@ return [
         'deny_kudosu' => 'deny kudosu',
         'edit' => 'edit',
         'edited' => 'Last edited by :editor :update_time',
+        'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder' => 'Type here to post',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to submit.',
