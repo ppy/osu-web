@@ -20,6 +20,13 @@
 el = React.createElement
 
 class BeatmapsetPage.DescriptionEditor extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state =
+      rawValue: @props.rawValue
+
+
   componentDidMount: =>
     # stuff
 
@@ -27,8 +34,24 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
   componentWillUnmount: =>
     # stuff
 
-  onChange: (e) ->
-    console.log(e)
+  onChange: (e) =>
+    @setState rawValue: @refs.body.value
+
+
+  _cancel: =>
+    @refs.body.value = @props.rawValue
+    @setState rawValue: @props.rawValue
+    @props.onCancel(value: @props.rawValue) if @props.onCancel
+
+
+  _reset: =>
+    @refs.body.value = @props.rawValue
+    @setState rawValue: @props.rawValue
+    @props.onReset(value: @props.rawValue) if @props.onReset
+
+
+  _save: =>
+    @props.onSave(value: @state.rawValue) if @props.onSave
 
 
   render: =>
@@ -36,7 +59,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
       el 'textarea',
         className: 'post-editor'
         name: 'body'
-        value: @props.rawValue
+        value: @state.rawValue
         onChange: @onChange # binds to oninput, not onchange
         placeholder: 'blah'
         ref: 'body'

@@ -26,6 +26,7 @@ class BeatmapsetPage.Info extends React.Component
     @state =
       isEditing: false
 
+
   componentDidMount: ->
     @renderChart()
 
@@ -58,6 +59,19 @@ class BeatmapsetPage.Info extends React.Component
     @setState isEditing: true
     # $.publish 'beatmapset:description:update', editing: true
 
+  descriptionChanged: (e) ->
+    console.log(e)
+
+
+  cancelDescription: (e) =>
+    @setState isEditing: false
+
+  resetDescription: (e) ->
+    console.log(e)
+
+
+  saveDescription: (e) ->
+    console.log(e)
 
   renderEditButton: =>
     div className: 'beatmapset-info__edit-description',
@@ -75,6 +89,10 @@ class BeatmapsetPage.Info extends React.Component
     div className: 'beatmapset-info',
       if @state.isEditing
         el BeatmapsetPage.DescriptionEditor,
+          onCancel: @cancelDescription
+          onChange: @descriptionChanged
+          onReset: @resetDescription
+          onSave: @saveDescription
           rawValue: @props.beatmapset.description.bbcode
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
