@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Cache;
 use Carbon\Carbon;
 use DB;
 
@@ -28,6 +29,7 @@ class BeatmapDiscussion extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'kudosu_denied' => 'boolean',
         'resolved' => 'boolean',
     ];
 
@@ -234,6 +236,7 @@ class BeatmapDiscussion extends Model
                     $vote->save();
                 }
 
+                $this->userRecentVotesCount($vote->user, true);
                 $this->refreshKudosu('vote');
             }
 
@@ -281,6 +284,19 @@ class BeatmapDiscussion extends Model
     public function isDeleted()
     {
         return $this->deleted_at !== null;
+    }
+
+    public function userRecentVotesCount($user, $increment = false)
+    {
+        $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
+
+        if ($increment) {
+            Cache::add($key, 0, 60);
+
+            return Cache::increment($key);
+        } else {
+            return get_int(Cache::get($key)) ?? 0;
+        }
     }
 
     public function restore($restoredBy)
