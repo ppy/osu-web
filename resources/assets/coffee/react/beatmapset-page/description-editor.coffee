@@ -34,6 +34,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
   componentWillUnmount: =>
     # stuff
 
+
   onInput: (_e) =>
     @setState rawValue: @refs.body.value
 
@@ -55,9 +56,9 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
 
   render: =>
-    el 'form', null,
+    el 'form', className: 'post-editor',
       el 'textarea',
-        className: 'post-editor'
+        className: 'post-editor__textarea'
         name: 'body'
         value: @state.rawValue
         onChange: @onInput # binds to oninput, not onchange
@@ -147,7 +148,6 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
 
               span className: 'btn-circle__content',
                 i className: 'fa fa-image'
-
 
             label
               className: 'bbcode-size-select'
