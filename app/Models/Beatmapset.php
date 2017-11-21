@@ -188,7 +188,7 @@ class Beatmapset extends Model
 
     public function scopeUnranked($query)
     {
-        return $query->where('approved', '=', self::STATES['pending']);
+        return $query->whereIn('approved', [static::STATES['pending'], static::STATES['wip']]);
     }
 
     public function scopeRanked($query)
