@@ -1027,7 +1027,7 @@ class Beatmapset extends Model
 
         $split = preg_split('[-{15}]', $post->post_text, 2);
 
-        return $post->edit($split[0]."---------------\n".$bbcode, $user);
+        return $post->edit($split[0]."---------------\n".ltrim($bbcode), $user);
     }
 
     public function state()
@@ -1051,7 +1051,7 @@ class Beatmapset extends Model
 
         // Return empty description if the pattern was not found
         // (mostly older beatmapsets)
-        return $split[1] ?? '';
+        return ltrim($split[1] ?? '');
     }
 
     private function getBBCode()
