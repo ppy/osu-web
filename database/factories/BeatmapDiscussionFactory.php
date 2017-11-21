@@ -22,13 +22,13 @@ $factory->define(BeatmapDiscussion::class, function (Faker\Generator $faker) use
 $factory->defineAs(BeatmapDiscussion::class, 'timeline', function () {
     return  [
         'timestamp' => 0,
-        'message_type' => array_rand(BeatmapDiscussion::MESSAGE_TYPES),
+        'message_type' => array_rand(BeatmapDiscussion::RESOLVABLE_TYPES),
     ];
 });
 
 $factory->defineAs(BeatmapDiscussion::class, 'general', function () {
     return  [
         'timestamp' => null,
-        'message_type' => null,
+        'message_type' => array_rand(BeatmapDiscussion::RESOLVABLE_TYPES),
     ];
 });
