@@ -71,7 +71,9 @@ class BeatmapsetPage.Info extends React.Component
 
     .done (data) =>
       console.log(data)
-      @setState isEditing: false
+      @setState
+        isEditing: false
+        description: data.description
 
     .fail osu.ajaxError
 
@@ -96,7 +98,7 @@ class BeatmapsetPage.Info extends React.Component
           onChange: @descriptionChanged
           onReset: @resetDescription
           onSave: @saveDescription
-          rawValue: @props.beatmapset.description.bbcode
+          rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
         @renderEditButton()
@@ -108,7 +110,7 @@ class BeatmapsetPage.Info extends React.Component
         div
           className: 'beatmapset-info__description'
           dangerouslySetInnerHTML:
-            __html: @props.beatmapset.description.description
+            __html: @state.description?.description || @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
         if @props.beatmapset.source
