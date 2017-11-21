@@ -887,21 +887,11 @@ class Beatmapset extends Model
             return;
         }
 
-        $rankableCutoffDate = Carbon::now()->subDays(static::MINIMUM_DAYS_FOR_RANKING);
-        $rankableQueueSize = static::qualified()
-            ->where('approved_date', '<', $this->approved_date)
-            ->where('approved_date', '<=', $rankableCutoffDate)
-            ->count();
-        $days = ceil($rankableQueueSize / static::RANKED_PER_DAY);
+        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
+        $days = ceil($queueSize / static::RANKED_PER_DAY);
 
-        if ($this->approved_date > $rankableCutoffDate) {
-            $waitingQueueSize = static::qualified()
-                ->where('approved_date', '<', $this->approved_date)
-                ->where('approved_date', '>', $rankableCutoffDate)
-                ->count();
-
-            $days = max($days, static::MINIMUM_DAYS_FOR_RANKING) + ceil($waitingQueueSize / static::RANKED_PER_DAY);
-        }
+        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
+        $days = max($minDays, $days);
 
         return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
