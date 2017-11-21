@@ -102,7 +102,10 @@ class UsersController extends Controller
 
     public function scores($id, $type)
     {
-        $this->parsePaginationParams(5);
+        // returning one more element than intended so that
+        // it can be checked in frontend whether all elements
+        // have been fetched
+        $this->parsePaginationParams(6);
 
         switch ($type) {
             case 'best':
@@ -400,7 +403,7 @@ class UsersController extends Controller
         );
     }
 
-    private function scoresBest($user, $mode, $perPage = 5, $offset = 0)
+    private function scoresBest($user, $mode, $perPage = 6, $offset = 0)
     {
         $scores = $user->scoresBest($mode, true)
             ->orderBy('pp', 'DESC')
@@ -411,7 +414,7 @@ class UsersController extends Controller
         return json_collection($scores, 'Score', ['beatmap', 'beatmapset', 'weight']);
     }
 
-    private function scoresFirsts($user, $mode, $perPage = 5, $offset = 0)
+    private function scoresFirsts($user, $mode, $perPage = 6, $offset = 0)
     {
         $scores = $user->scoresFirst($mode, true)
             ->orderBy('score_id', 'desc')
@@ -425,7 +428,7 @@ class UsersController extends Controller
         return json_collection($scores, 'Score', ['beatmap', 'beatmapset']);
     }
 
-    private function scoresRecent($user, $mode, $perPage = 5, $offset = 0)
+    private function scoresRecent($user, $mode, $perPage = 6, $offset = 0)
     {
         $scores = $user->scores($mode, true)
             ->with('beatmap', 'beatmap.beatmapset')

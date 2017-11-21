@@ -62,6 +62,12 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
+    for score in ['scoresBest', 'scoresFirsts', 'scoresRecent']
+      if @state[score].length > 5
+        @state.showMorePagination[score] ?= {}
+        @state.showMorePagination[score].hasMore = true
+        @state[score] = @state[score][0...-1]
+
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
@@ -257,7 +263,15 @@ class ProfilePage.Main extends React.PureComponent
 
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
+        paginationState[propertyName].hasMore =
+          if propertyName.startsWith 'scores'
+            if data.length > perPage
+              state = state[0...-1]
+              true
+            else
+              false
+          else
+            data.length == perPage && state.length < maxResults
 
         @setState
           "#{propertyName}": state
