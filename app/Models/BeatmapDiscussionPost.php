@@ -69,7 +69,7 @@ class BeatmapDiscussionPost extends Model
         if ($this->system) {
             return json_decode($value, true);
         } else {
-            return $value;
+            return str_replace("\n", ' ', $value);
         }
     }
 
@@ -80,7 +80,7 @@ class BeatmapDiscussionPost extends Model
             $value = json_encode($value);
         }
 
-        $this->attributes['message'] = $value;
+        $this->attributes['message'] = str_replace("\n", ' ', $value);
     }
 
     public static function generateLogResolveChange($user, $resolved)

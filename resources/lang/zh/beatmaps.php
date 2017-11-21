@@ -37,12 +37,12 @@ return [
         'deleted' => '被 :editor 于 :delete_time 删除',
         'deny_kudosu' => '收回 kudosu',
         'edit' => '编辑',
-        'edited' => '最后由 :editor 于 :update_time 编辑',
-        'message_placeholder' => '在这里输入您的内容',
+        'edited' => '最后由 :editor 编辑于 :update_time',
+        'message_placeholder' => '在此处输入您的内容',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
-        'reply_placeholder' => '在这里输入您的回复',
-        'require-login' => '请先登录再发表',
+        'reply_placeholder' => '在此处输入您的回复',
+        'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'title' => '讨论',
@@ -58,8 +58,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => '这个信息将提交到整个谱面讨论中。如果您想单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。', //可能不准确
-            'in_timeline' => '如果您想 mod 多处，就在每一个时间戳下写一次并发布。', //可能不准确，意译成分大，等看看Kwan那边的吧
+            'in_general' => '这个信息将提交到整个谱面讨论中。如果需要单独针对某处，请在开头使用时间戳 (例如: 00:12:345)。',
+            'in_timeline' => '需要 Mod 多处，请在每一个时间戳后写下意见并发表。',
         ],
 
         'message_type' => [
@@ -82,7 +82,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title 由 :mapper 制作',
+            'title' => '由 :mapper 制作的 :title',
         ],
 
         'stats' => [
@@ -93,6 +93,23 @@ return [
             'resolved' => '已解决',
             'total' => '所有',
         ],
+
+        'status-messages' => [
+            'approved' => '这张谱面于 :date 被 Approved !',
+            'graveyard' => '这张谱面自 :date 就未更新了，或许它已经被作者抛弃了 ;w;',
+            'loved' => '这张谱面于 :date 被 Loved !',
+            'ranked' => '这张谱面于 :date 被 Ranked !',
+            'wip' => '注意：这张谱面被作者标记为 WIP（work-in-progress）',
+        ],
+
+    ],
+
+    'hype' => [ //暂定 Hype => 推荐
+        'button' => '推荐这张谱面',
+        'button-done' => '已经推荐！',
+        'explanation' => '为谱面点赞 ❤ 会增加推荐进度，这会让这张谱面更容易被提名和 Ranked',
+        'section-title' => '推荐进度',
+        'title' => 'Hype',
     ],
 
     'nominations' => [
@@ -102,9 +119,10 @@ return [
         'disqualify' => 'Disqualify',
         'incorrect-state' => '操作出错了，请刷新页面。',
         'nominate' => '提名',
+        'nominated-by' => '被 :users 提名',
         'nominate-confirm' => '提名这张谱面？',
-        'qualified' => '如果没有问题，预计将于 :date 被 ranked.',
-        'qualified-soon' => '如果没有问题，预计不久将被 ranked.',
+        'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
+        'qualified-soon' => '如果没有问题，预计不久将被 Ranked 。',
         'required-text' => '提名数: :current/:required',
         'title' => '提名状态',
     ],
@@ -114,7 +132,7 @@ return [
             'prompt' => '输入关键字...',
             'options' => '更多搜索选项',
             'not-found' => '没有结果',
-            'not-found-quote' => '呃,什么也没有...',
+            'not-found-quote' => '呃，什么也没有...',
             'filters' => [
                 'mode' => '模式',
                 'status' => 'Rank 状态',
@@ -126,7 +144,7 @@ return [
         ],
         'mode' => '模式',
         'status' => 'Rank 状态',
-        'mapped-by' => '制谱人: :mapper', //可能不准确
+        'mapped-by' => '作者: :mapper',
         'source' => '来自 :source',
         'load-more' => '加载更多...',
     ],
@@ -143,7 +161,6 @@ return [
         'approved' => 'Approved',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => '我的',
@@ -199,7 +216,7 @@ return [
     ],
     'extra' => [
         'video' => '有视频',
-        'storyboard' => '有 Storyboard', //osu!中没有翻译这个,所以保持原样
+        'storyboard' => '有 Storyboard',
     ],
     'rank' => [
         'any' => '任意',

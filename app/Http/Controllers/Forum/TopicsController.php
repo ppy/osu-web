@@ -410,8 +410,8 @@ class TopicsController extends Controller
 
         TopicWatch::toggle($topic, Auth::user(), $state);
 
-        switch (Request::input('page')) {
-            case 'manage':
+        switch (Request::input('return')) {
+            case 'index':
                 $topics = Topic::watchedByUser(Auth::user())->get();
                 $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
 

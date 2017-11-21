@@ -28,10 +28,18 @@ trait Validatable
 
     abstract public function validationErrorsTranslationPrefix();
 
+    public function validationErrorsKeyBase()
+    {
+        return 'model_validation.';
+    }
+
     public function validationErrors()
     {
         if ($this->_validationErrors === null) {
-            $this->_validationErrors = new ValidationErrors($this->validationErrorsTranslationPrefix());
+            $this->_validationErrors = new ValidationErrors(
+                $this->validationErrorsTranslationPrefix(),
+                $this->validationErrorsKeyBase()
+            );
         }
 
         return $this->_validationErrors;

@@ -89,10 +89,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancel',
             'post' => 'Save',
-            'zoom' => [
-                'start' => 'Full Screen',
-                'end' => 'Exit Full Screen',
-            ],
         ],
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',
@@ -101,9 +97,9 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Topic Subscriptions',
-            'title_compact' => 'subscriptions',
-            'title_main' => 'Topic <strong>Subscriptions</strong>',
+            'title' => 'Forum Subscriptions',
+            'title_compact' => 'forum subscriptions',
+            'title_main' => 'Forum <strong>Subscriptions</strong>',
 
             'box' => [
                 'total' => 'Topics subscribed',

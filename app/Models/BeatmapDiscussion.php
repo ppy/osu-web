@@ -33,13 +33,15 @@ class BeatmapDiscussion extends Model
 
     protected $dates = ['deleted_at'];
 
-    const KUDOSU_STEPS = [5, 10, 15];
+    const KUDOSU_STEPS = [1, 2, 5];
 
     const MESSAGE_TYPES = [
         'praise' => 0,
         'suggestion' => 1,
         'problem' => 2,
     ];
+
+    const RESOLVABLE_TYPES = [1, 2];
 
     public function beatmap()
     {
@@ -92,7 +94,7 @@ class BeatmapDiscussion extends Model
 
     public function canBeResolved()
     {
-        return in_array($this->message_type, ['suggestion', 'problem'], true);
+        return in_array($this->attributes['message_type'] ?? null, static::RESOLVABLE_TYPES, true);
     }
 
     public function refreshKudosu($event)
@@ -187,7 +189,7 @@ class BeatmapDiscussion extends Model
     {
         return
             ($this->timestamp === null) ||
-            ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp < ($this->beatmap->total_length * 1000));
+            ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length) * 1000);
     }
 
     public function votesSummary()
@@ -241,7 +243,9 @@ class BeatmapDiscussion extends Model
 
     public function title()
     {
-        if ($this->beatmap === null) {
+        if ($this->beatmap_id === null) {
+            return $this->beatmapset->title;
+        } elseif ($this->beatmap === null) {
             return '[deleted beatmap]';
         }
 
@@ -302,6 +306,19 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function scopeOpenIssues($query)
+    {
+        $query
+            ->withoutDeleted()
+            ->whereIn('message_type', static::RESOLVABLE_TYPES)
+            ->where(function ($query) {
+                $query
+                    ->has('beatmap')
+                    ->orWhereNull('beatmap_id');
+            })
+            ->where('resolved', '=', false);
     }
 
     public function scopeWithoutDeleted($query)

@@ -122,7 +122,7 @@ return [
 
             'getCheckout' => 'zapłać',
             'getInvoice' => 'paragon',
-            'getProduct' => 'produkt',
+            'products-show' => 'produkt',
 
             'new' => 'nowy',
             'home' => 'strona główna',

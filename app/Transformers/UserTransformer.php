@@ -34,6 +34,8 @@ class UserTransformer extends Fractal\TransformerAbstract
         'recentActivities',
         'mostPlayedBeatmapsetCount',
         'rankedAndApprovedBeatmapsetCount',
+        'unrankedBeatmapsetCount',
+        'graveyardBeatmapsetCount',
         'favouriteBeatmapsetCount',
         'kudosuCount',
         'disqus_auth',
@@ -156,6 +158,24 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->item($user, function ($user) {
             return [
                 $user->profileBeatmapsetsRankedAndApproved()->count(),
+            ];
+        });
+    }
+
+    public function includeUnrankedBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsUnranked()->count(),
+            ];
+        });
+    }
+
+    public function includeGraveyardBeatmapsetCount(User $user)
+    {
+        return $this->item($user, function ($user) {
+            return [
+                $user->profileBeatmapsetsGraveyard()->count(),
             ];
         });
     }

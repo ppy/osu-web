@@ -31,6 +31,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       editing: false
       message: ''
       resolveDiscussion: @props.discussion.resolved
+      posting: null
 
 
   componentWillUnmount: =>
@@ -64,6 +65,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             onChange: @setMessage
             onKeyDown: @submitIfEnter
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
+            disabled: @state.posting?
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"
@@ -73,7 +75,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @canBeResolved()
+            if @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
               div className: "#{bn}__action",
                 label
                   className: 'osu-checkbox'
@@ -82,6 +84,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
                     type: 'checkbox'
                     checked: @state.resolveDiscussion
                     onChange: @toggleResolveDiscussion
+                    disabled: @state.posting?
 
                   span className: 'osu-checkbox__tick',
                     el Icon, name: 'check'
@@ -91,9 +94,10 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             div className: "#{bn}__action",
               el BigButton,
                 text: osu.trans('common.buttons.reply')
-                icon: 'reply'
+                # wobbles if using spinner
+                icon: if @state.posting then 'ellipsis-h' else 'reply'
                 props:
-                  disabled: !@validPost()
+                  disabled: !@validPost() || @state.posting?
                   onClick: @throttledPost
 
 
@@ -114,19 +118,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           onClick: @editStart
 
 
-  canBeResolved: =>
-    @props.discussion.message_type in ['suggestion', 'problem'] &&
-      @canUpdate()
-
-
-  canUpdate: =>
-    return false if !@props.currentUser.id?
-
-    @props.currentUser.isAdmin ||
-      @props.currentUser.id == @props.beatmapset.user_id ||
-      @props.currentUser.id == @props.discussion.user_id
-
-
   editStart: =>
     if !@props.currentUser.id?
       userLogin.show()
@@ -141,6 +132,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     LoadingOverlay.show()
 
     @postXhr?.abort()
+    @setState posting: true
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
@@ -160,11 +152,13 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always =>
+      LoadingOverlay.hide()
+      @setState posting: null
 
 
   setMessage: (e) =>
-    @setState message: e.target.value
+    @setState message: e.target.value.replace /\n/g, ' '
 
 
   submitIfEnter: (e) =>

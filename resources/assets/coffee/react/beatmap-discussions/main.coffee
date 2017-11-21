@@ -20,6 +20,7 @@
 el = React.createElement
 
 modeSwitcher = document.getElementsByClassName('js-mode-switcher')
+newDiscussion = document.getElementsByClassName('js-new-discussion')
 
 class BeatmapDiscussions.Main extends React.PureComponent
   constructor: (props) ->
@@ -105,6 +106,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         div
           className: 'osu-layout__section osu-layout__section--extra'
           el BeatmapDiscussions.NewDiscussion,
+            beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @state.currentBeatmap
             currentDiscussions: @currentDiscussions()
@@ -253,8 +255,13 @@ class BeatmapDiscussions.Main extends React.PureComponent
             $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
             target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+            offset = 0
+            for header in [modeSwitcher, newDiscussion]
+              continue if !header[0]?
+              offset += header[0].getBoundingClientRect().height * -1
+
             $(window).stop().scrollTo target, 500,
-              offset: modeSwitcher[0].getBoundingClientRect().height * -1
+              offset: offset
 
 
   jumpToClick: (e) =>

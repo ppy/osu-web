@@ -30,8 +30,15 @@
   @_owner-bg: @green-dark;
   @_owner-bg-hover: @green-darker;
 
+  @_content-gutter-base: 15px;
+
   &--discussion {
-    flex: 1;
+    min-width: 0;
+    flex: none;
+
+    @media @desktop {
+      flex: 1;
+    }
   }
 
   &--new-reply {
@@ -83,7 +90,12 @@
     flex: none;
 
     .@{_top}--new-reply & {
-      margin-right: 10px;
+      margin-bottom: 5px;
+
+      @media @desktop {
+        margin-right: 10px;
+        margin-bottom: 0;
+      }
     }
   }
 
@@ -97,14 +109,21 @@
 
   &__content {
     display: flex;
-    padding: 10px 15px;
-
-    flex: 1;
+    padding: 10px @_content-gutter-base;
+    flex-direction: column;
+    flex: none;
     min-width: 0;
 
+    @media @desktop {
+      flex-direction: row;
+      flex: 1;
+    }
+
     .@{_top}--reply & {
-      padding-left: @beatmap-discussion--reply-padding;
-      padding-right: @beatmap-discussion--reply-padding;
+      @media @desktop {
+        padding-left: @beatmap-discussion--reply-padding;
+        padding-right: @beatmap-discussion--reply-padding;
+      }
     }
   }
 
@@ -118,8 +137,13 @@
     }
 
     .@{_top}--reply & {
-      padding-left: @beatmap-discussion--reply-padding;
-      padding-right: @beatmap-discussion--reply-padding;
+      padding-left: @_content-gutter-base;
+      padding-right: @_content-gutter-base;
+
+      @media @desktop {
+        padding-left: @beatmap-discussion--reply-padding;
+        padding-right: @beatmap-discussion--reply-padding;
+      }
     }
   }
 
@@ -176,14 +200,26 @@
       width: 100%;
       resize: vertical;
       margin-bottom: 5px;
+
+      &, .@{_top}--reply & {
+        font-size: @font-size--phone-input;
+
+        @media @desktop {
+          font-size: @_reply-text-size;
+        }
+      }
     }
   }
 
   &__message-container {
-    flex: 1;
     min-width: 0;
     display: flex;
     flex-direction: column;
+    flex: none;
+
+    @media @desktop {
+      flex: 1;
+    }
   }
 
   &__timestamp {
@@ -203,12 +239,17 @@
   }
 
   &__user {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     margin: 0 5px;
     height: @beatmap-discussion--avatar-size;
+
+    @media @desktop {
+      flex: none;
+    }
   }
 
   &__user-badge {
@@ -240,7 +281,13 @@
   &__user-container {
     display: flex;
     align-items: flex-start;
-    margin-right: 10px;
+    margin-bottom: 5px;
+    flex: none;
+
+    @media @desktop {
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
 
     .link-plain();
     color: @user-color-default;
@@ -251,10 +298,11 @@
   }
 
   &__user-stripe {
-    width: 2px;
     align-self: stretch;
     background-color: @user-color-default;
     border-radius: 1px;
+    flex: none;
+    width: 2px;
 
     .@{_top}--admin & {
       background-color: @_moderator-bg;

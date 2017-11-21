@@ -142,7 +142,6 @@ return [
         'approved' => 'Zatwierdzone',
         'loved' => 'Ulubione społeczności',
         'faves' => 'Ulubione',
-        'modreqs' => 'Wymagające modów',
         'pending' => 'Oczekujące',
         'graveyard' => 'Cmentarz',
         'my-maps' => 'Moje beatmapy',

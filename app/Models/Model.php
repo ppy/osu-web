@@ -34,6 +34,16 @@ abstract class Model extends BaseModel
         return $this->macros ?? [];
     }
 
+    /**
+     * Locks the current model for update with `select for update`.
+     *
+     * @return Model
+     */
+    public function lockSelf()
+    {
+        return $this->lockForUpdate()->find($this->getKey());
+    }
+
     public function scopeOrderByField($query, $field, $ids)
     {
         $size = count($ids);
@@ -54,7 +64,11 @@ abstract class Model extends BaseModel
         $result = $this->save($options);
 
         if ($result === false) {
-            throw new ModelNotSavedException('failed saving model');
+            $message = method_exists($this, 'validationErrors') ?
+                implode("\n", $this->validationErrors()->allMessages()) :
+                'failed saving model';
+
+            throw new ModelNotSavedException($message);
         }
 
         return $result;

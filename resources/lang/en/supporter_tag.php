@@ -27,4 +27,5 @@ return [
         'months' => ':length month|:length months|{0}',
         'years' => ':length year|:length years|{0}',
     ],
+    'months' => 'months',
 ];

@@ -30,12 +30,12 @@
             <div class="navbar-header navbar-mobile__header">
                 <div class="navbar-mobile__header-section">
                     <a class="navbar-mobile__logo" href="{{ route('home') }}"></a>
-                    <span class="navbar-mobile__brand navbar-brand">
+                    <span class="navbar-mobile__brand navbar-brand u-ellipsis-overflow">
                         {{ trans("layout.menu.$current_section.$current_action") }}
                     </span>
                 </div>
 
-                <div class="navbar-mobile__header-section">
+                <div class="navbar-mobile__header-section navbar-mobile__header-section--buttons">
                     @if (Auth::check())
                         <a
                             href="{{ osu_url('user.inbox') }}"

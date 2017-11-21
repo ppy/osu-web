@@ -66,16 +66,10 @@ class @StoreSupporterTagPrice
 
   durationText: ->
     duration = @durationInYears()
-    yearsText = switch duration.years
-                when 0
-                  ''
-                else
+    yearsText = if duration.years > 0
                   Lang.choice('supporter_tag.duration.years', duration.years, length: duration.years)
 
-    monthsText = switch duration.months
-                 when 0
-                   ''
-                 else
+    monthsText = if duration.months > 0
                    Lang.choice('supporter_tag.duration.months', duration.months, length: duration.months)
 
     _.compact([yearsText, monthsText]).join(', ')

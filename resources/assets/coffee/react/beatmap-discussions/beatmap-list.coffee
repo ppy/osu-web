@@ -74,7 +74,7 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
   setSelector: (state) =>
     return if @state.showingSelector == state
 
-    Blackout.toggle(state)
+    Blackout.toggle(state, 0.5)
 
     @setState showingSelector: state
 

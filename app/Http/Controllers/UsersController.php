@@ -20,10 +20,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\Country;
+use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
+use App\Models\UserNotFound;
 use Auth;
 use Request;
 
@@ -39,6 +43,8 @@ class UsersController extends Controller
             'checkUsernameExists',
         ]]);
 
+        $this->middleware('throttle:10,60', ['only' => ['store']]);
+
         return parent::__construct();
     }
 
@@ -47,18 +53,8 @@ class UsersController extends Controller
         $id = get_int($id);
 
         $user = User::lookup($id, 'id');
-        $mutual = false;
 
-        if (Auth::user()) {
-            $friend = Auth::user()
-                ->friends()
-                ->where('user_id', $id)
-                ->first();
-
-            if ($friend) {
-                $mutual = $friend->mutual;
-            }
-        }
+        list($friend, $mutual) = $this->getFriendStatus($user);
 
         // render usercard as popup (i.e. pretty fade-in elements on load)
         $popup = true;
@@ -93,15 +89,14 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::default()->where('username', $username)->first();
-        if ($user === null) {
-            abort(404);
-        }
+        $user = User::lookup($username, 'string') ?? UserNotFound::instance();
+
+        list($friend, $mutual) = $this->getFriendStatus($user);
 
         return [
             'user_id' => $user->user_id,
             'username' => $user->username,
-            'avatar_url' => $user->user_avatar,
+            'card_html' => view('objects._usercard', compact('user', 'friend', 'mutual'))->render(),
         ];
     }
 
@@ -124,6 +119,36 @@ class UsersController extends Controller
         }
     }
 
+    public function store()
+    {
+        $ip = Request::ip();
+
+        if (IpBan::where('ip', '=', $ip)->exists()) {
+            return error_popup('Banned IP', 403);
+        }
+
+        // Prevents browser-based form submission.
+        // Javascript-side is prevented using CORS.
+        if (!starts_with(Request::header('User-Agent'), config('osu.client.user_agent'))) {
+            return error_popup('Wrong client', 403);
+        }
+
+        $params = get_params(request(), 'user', ['username', 'user_email', 'password']);
+        $country = Country::find(request_country());
+        $params['user_ip'] = $ip;
+        $params['country_acronym'] = $country === null ? '' : $country->getKey();
+
+        $registration = new UserRegistration($params);
+
+        if ($registration->save()) {
+            return $registration->user()->fresh()->defaultJson();
+        } else {
+            return response(['form_error' => [
+                'user' => $registration->user()->validationErrors()->all(),
+            ]], 422);
+        }
+    }
+
     public function beatmapsets($id, $type)
     {
         $this->parsePaginationParams(6);
@@ -139,6 +164,14 @@ class UsersController extends Controller
 
             case 'ranked_and_approved':
                 return $this->rankedAndApprovedBeatmapsets($this->user, $this->perPage, $this->offset);
+
+            case 'unranked':
+                return $this->unrankedBeatmapsets($this->user, $this->perPage, $this->offset);
+
+            case 'graveyard':
+                $this->parsePaginationParams(2);
+
+                return $this->graveyardBeatmapsets($this->user, $this->perPage, $this->offset);
 
             default:
                 abort(404);
@@ -185,6 +218,8 @@ class UsersController extends Controller
                 'recentActivities',
                 'mostPlayedBeatmapsetCount',
                 'rankedAndApprovedBeatmapsetCount',
+                'unrankedBeatmapsetCount',
+                'graveyardBeatmapsetCount',
                 'favouriteBeatmapsetCount',
                 'kudosuCount',
             ]
@@ -221,6 +256,8 @@ class UsersController extends Controller
                 'most_played' => $this->mostPlayedBeatmapsets($user),
                 'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
                 'favourite' => $this->favouriteBeatmapsets($user),
+                'unranked' => $this->unrankedBeatmapsets($user),
+                'graveyard' => $this->graveyardBeatmapsets($user),
             ];
 
             $kudosu = $this->recentKudosu($user);
@@ -254,6 +291,22 @@ class UsersController extends Controller
                 'jsonChunks'
             ));
         }
+    }
+
+    private function getFriendStatus($user)
+    {
+        if (!(Auth::user()
+            && $user
+            && $user !== UserNotFound::instance())) {
+            return [null, false];
+        }
+
+        $friend = Auth::user()
+            ->friends()
+            ->where('user_id', $user->user_id)
+            ->first();
+
+        return [$friend, $friend->mutual ?? false];
     }
 
     private function parsePaginationParams($perPage)
@@ -322,6 +375,30 @@ class UsersController extends Controller
     {
         return json_collection(
             $user->profileBeatmapsetsFavourite()
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
+            'BeatmapsetCompact',
+            ['beatmaps']
+        );
+    }
+
+    private function unrankedBeatmapsets($user, $perPage = 6, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsUnranked()
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
+            'BeatmapsetCompact',
+            ['beatmaps']
+        );
+    }
+
+    private function graveyardBeatmapsets($user, $perPage = 2, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsGraveyard()
                 ->limit($perPage)
                 ->offset($offset)
                 ->get(),

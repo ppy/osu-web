@@ -25,6 +25,9 @@ return [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
     ],
+    'client' => [
+        'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
+    ],
     'elasticsearch' => [
         'index' => env('ES_INDEX', 'osu'),
     ],
@@ -56,7 +59,7 @@ return [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
     'search' => [
-        'minimum_length' => 3,
+        'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
 
         'max' => [
             'user' => 100,

@@ -28,5 +28,11 @@ class @Blackout
     @toggle true
 
 
-  @toggle: (state) =>
-    Fade.toggle(@el[0], state) if @el[0]?
+  @toggle: (state, opacity) =>
+    el = @el[0]
+
+    return if !el?
+
+    opacity = null if !state || !opacity?
+    el.style.opacity = opacity
+    Fade.toggle(el, state)

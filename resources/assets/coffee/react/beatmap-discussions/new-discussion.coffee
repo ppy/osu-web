@@ -32,6 +32,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       message: ''
       timestamp: null
       timestampConfirmed: false
+      posting: null
+      stickable: false
+      sticky: false
+
+
+  componentDidMount: =>
+    $.subscribe 'stickyHeader.newDiscussion', @checkStickability
 
 
   componentWillUpdate: =>
@@ -41,15 +48,41 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   componentWillUnmount: =>
     @postXhr?.abort()
     @throttledPost.cancel()
+    $.unsubscribe '.newDiscussion'
 
 
   render: =>
+    topClass = 'beatmap-discussion-new-float js-sync-height--target'
+    topClass += ' beatmap-discussion-new-float--floating' if @isSticky()
+
+    div
+      className: topClass
+      'data-sync-height-id': 'new-discussion-box'
+      div className: 'beatmap-discussion-new-float__floatable',
+        div
+          className: 'js-sync-height--target beatmap-discussion-new-float__spacer'
+          'data-sync-height-id': 'page-extra-tabs'
+        div
+          className: 'js-new-discussion js-sync-height--reference beatmap-discussion-new-float__content'
+          'data-sync-height-target': 'new-discussion-box'
+          @renderBox()
+
+  renderBox: =>
+    showHypeHelp = _.includes(['wip', 'pending', 'qualified'], @props.beatmapset.status) && @props.mode == 'generalAll'
+
     div
       className: 'osu-page osu-page--small'
       div
         className: bn
         div className: "page-title",
           osu.trans('beatmaps.discussions.new.title')
+
+          span className: 'page-title__button',
+            span
+              className: "btn-circle #{'btn-circle--activated' if @state.sticky}"
+              onClick: @toggleSticky
+              span className: 'btn-circle__content',
+                el Icon, name: 'thumb-tack'
 
         div className: "#{bn}__content",
           div
@@ -59,29 +92,39 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div className: "#{bn}__message",
             if @props.currentUser.id?
               textarea
-                className: "#{bn}__message-area"
+                disabled: @state.posting?
+                className: "#{bn}__message-area js-hype--input"
                 value: @state.message
                 onChange: @setMessage
+                onKeyDown: @ignoreEnter
+                onFocus: @setSticky
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
+                ref: (el) => @input = el
             else
               osu.trans('beatmaps.discussions.require-login')
 
         div className: "#{bn}__footer",
           div
-            className: "#{bn}__footer-content"
-            'data-visibility': if @props.mode != 'timeline' then 'hidden'
+            className: "#{bn}__footer-content js-hype--explanation js-flash-border"
+            style:
+              opacity: 0 if @props.mode != 'timeline' && !showHypeHelp
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
-              osu.trans('beatmaps.discussions.new.timestamp')
+              if @props.mode == 'timeline'
+                osu.trans 'beatmaps.discussions.new.timestamp'
+              else # mode == 'generalAll'
+                osu.trans 'beatmaps.hype.title'
             div
               key: 'timestamp'
               className: "#{bn}__timestamp-col"
-              if @state.timestamp?
-                BeatmapDiscussionHelper.formatTimestamp @state.timestamp
-              else
-                osu.trans('beatmaps.discussions.new.timestamp_missing')
-
+              if @props.mode == 'timeline'
+                if @state.timestamp?
+                  BeatmapDiscussionHelper.formatTimestamp @state.timestamp
+                else
+                  osu.trans 'beatmaps.discussions.new.timestamp_missing'
+              else # mode == 'generalAll'
+                osu.trans 'beatmaps.hype.explanation'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             @submitButton 'praise'
@@ -117,6 +160,22 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
 
+  checkStickability: (_e, target) =>
+    # depends on ModeSwitcher
+    newState = (target == 'page-extra-tabs')
+    @setState(stickable: newState) if newState != @state.stickable
+
+
+  ignoreEnter: (e) =>
+    return if e.keyCode != 13
+
+    e.preventDefault()
+
+
+  isSticky: =>
+    @state.stickable && @state.sticky
+
+
   nearbyPosts: =>
     return [] if !@state.timestamp?
 
@@ -148,13 +207,15 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
   post: (e) =>
     return unless @validPost()
 
+    type = e.currentTarget.dataset.type
     @postXhr?.abort()
     LoadingOverlay.show()
+    @setState posting: type
 
     data =
       beatmapset_id: @props.currentBeatmap.beatmapset_id
       beatmap_discussion:
-        message_type: e.currentTarget.dataset.type
+        message_type: type
         timestamp: @state.timestamp
         beatmap_id: @props.currentBeatmap.id unless @props.mode == 'generalAll'
       beatmap_discussion_post:
@@ -171,20 +232,24 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
       $.publish 'beatmapsetDiscussion:update',
-        beatmapsetDiscussion: data.beatmapset_discussion,
-        callback: =>
-          $.publish 'beatmapDiscussion:jump', id: data.beatmap_discussion_id
+        beatmapsetDiscussion: data.beatmapset_discussion
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always =>
+      LoadingOverlay.hide()
+      @setState posting: null
 
 
   setMessage: (e) =>
-    message = e.currentTarget.value
+    message = e.currentTarget.value.replace /\n/g, ' '
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
 
     @setState {message, timestamp}
+
+
+  setSticky: =>
+    @setState sticky: true if !@state.sticky
 
 
   setTimestamp: (e) =>
@@ -192,14 +257,25 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   submitButton: (type) =>
+    icon =
+      if @state.posting == type
+        # for some reason the spinner wobbles
+        'ellipsis-h'
+      else
+        BeatmapDiscussionHelper.messageType.icon[type]
+
     el BigButton,
       modifiers: ['beatmap-discussion']
-      icon: BeatmapDiscussionHelper.messageType.icon[type]
+      icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{type}")
       props:
-        disabled: !@validPost()
+        disabled: !@validPost() || @state.posting?
         'data-type': type
         onClick: @post
+
+
+  toggleSticky: =>
+    @setState sticky: !@state.sticky
 
 
   toggleTimestampConfirmation: =>

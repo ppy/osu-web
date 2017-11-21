@@ -55,6 +55,7 @@ return [
             'index' => 'listing',
             'artists' => 'featured artists',
             'packs' => 'packs',
+            'beatmapset-watches-index' => 'modding watchlist',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
@@ -117,12 +118,13 @@ return [
         ],
         'store' => [
             '_' => 'store',
+            'checkout-index' => 'checkout',
             'getListing' => 'listing',
             'getCart' => 'cart',
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
-            'getProduct' => 'product',
+            'products-show' => 'product',
 
             'new' => 'new',
             'home' => 'home',

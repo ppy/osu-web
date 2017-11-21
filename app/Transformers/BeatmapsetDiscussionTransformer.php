@@ -43,11 +43,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapDiscussions(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapset->beatmapDiscussions()->with([
-                'beatmap',
-                'beatmapDiscussionPosts',
-                'beatmapDiscussionVotes',
-            ])->get(),
+            $beatmapset->beatmapDiscussions,
             new BeatmapDiscussionTransformer()
         );
     }

@@ -104,7 +104,6 @@ return [
         'ranked-approved' => 'Gerankt & Goedgekeurd',
         'approved' => 'Goedgekeurd',
         'faves' => 'Favorieten',
-        'modreqs' => 'Mod Verzoeken',
         'pending' => 'Afwachtend',
         'graveyard' => 'Begraafplaats',
         'my-maps' => 'Mijn Mappen',

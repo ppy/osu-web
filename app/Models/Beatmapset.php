@@ -28,6 +28,7 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
+use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
 use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
@@ -81,22 +82,9 @@ class Beatmapset extends Model
         'loved' => 4,
     ];
 
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'mode' => null,
-        'sort_order' => 'desc',
-        'sort_field' => 'approved_date',
-        'rank' => '',
-        'status' => 0,
-        'genre' => null,
-        'language' => null,
-        'extra' => '',
-        'limit' => 20,
-        'page' => 1,
-    ];
-
     const NOMINATIONS_PER_DAY = 3;
-    const QUALIFICATIONS_PER_DAY = 6;
+    const RANKED_PER_DAY = 8;
+    const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     /*
@@ -115,14 +103,15 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
-    // ranking functions for the set
-
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    // Beatmapset::rankable();
+    public function watches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
+    }
 
     public function lastDiscussionTime()
     {
@@ -283,6 +272,7 @@ class Beatmapset extends Model
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'title' => 'title',
+            'updated' => 'last_update',
         ];
         $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
 
@@ -348,7 +338,7 @@ class Beatmapset extends Model
         }
 
         if (present($params['query'])) {
-            $query = es_query_and_words($params['query']);
+            $query = es_query_escape_with_caveats($params['query']);
             $matchParams[] = ['query_string' => ['query' => $query]];
         }
 
@@ -397,10 +387,10 @@ class Beatmapset extends Model
                 $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
-            case 3: // Mod Requests
-                $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
+            case 3: // Qualified
+                $shouldParams[] = [
+                    ['match' => ['approved' => self::STATES['qualified']]],
+                ];
                 break;
             case 4: // Pending
                 $shouldParams[] = [
@@ -434,7 +424,15 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        $results = Es::search($searchParams);
+        try {
+            $results = Es::search($searchParams);
+        } catch (ElasticsearchBadRequest $e) {
+            $results = ['hits' => [
+                'hits' => [],
+                'total' => 0,
+            ]];
+        }
+
         $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
@@ -785,6 +783,9 @@ class Beatmapset extends Model
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+
+            // global event
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
         });
 
         return true;
@@ -865,6 +866,11 @@ class Beatmapset extends Model
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function requiredHype()
+    {
+        return 12;
+    }
+
     public function requiredNominationCount()
     {
         return 2;
@@ -881,10 +887,23 @@ class Beatmapset extends Model
             return;
         }
 
-        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
-        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+        $rankableCutoffDate = Carbon::now()->subDays(static::MINIMUM_DAYS_FOR_RANKING);
+        $rankableQueueSize = static::qualified()
+            ->where('approved_date', '<', $this->approved_date)
+            ->where('approved_date', '<=', $rankableCutoffDate)
+            ->count();
+        $days = ceil($rankableQueueSize / static::RANKED_PER_DAY);
 
-        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+        if ($this->approved_date > $rankableCutoffDate) {
+            $waitingQueueSize = static::qualified()
+                ->where('approved_date', '<', $this->approved_date)
+                ->where('approved_date', '>', $rankableCutoffDate)
+                ->count();
+
+            $days = max($days, static::MINIMUM_DAYS_FOR_RANKING) + ceil($waitingQueueSize / static::RANKED_PER_DAY);
+        }
+
+        return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
     public function recentEvents()
@@ -922,6 +941,8 @@ class Beatmapset extends Model
             static::with([
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
+                'beatmapDiscussions.beatmapset',
+                'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
@@ -1004,6 +1025,11 @@ class Beatmapset extends Model
         ];
 
         return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+    }
+
+    public function state()
+    {
+        return array_search_null($this->approved, static::STATES);
     }
 
     public function toMetaDescription()

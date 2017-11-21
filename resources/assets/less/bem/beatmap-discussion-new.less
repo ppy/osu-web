@@ -24,7 +24,6 @@
   display: flex;
   background-color: #fff;
   flex-direction: column;
-  margin-bottom: 10px;
 
   &__avatar {
     flex: none;
@@ -43,16 +42,22 @@
     background-color: #555;
     padding: 5px @_side-padding;
     justify-content: space-between;
+
+    @media @mobile {
+      width: 100%;
+      flex-direction: column;
+    }
   }
 
   &__footer-content {
-    padding: 5px 0;
+    margin: 5px 0;
     display: flex;
     flex: none;
+    .default-border-radius();
 
     &--right {
-      flex: 1;
       justify-content: flex-end;
+      flex: 1 0 auto;
     }
   }
 
@@ -71,6 +76,11 @@
     width: 100%;
 
     flex: 1 0 auto;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
   }
 
   &__notice {
@@ -92,9 +102,14 @@
     background-color: #777;
     border-radius: 0 @border-radius-base @border-radius-base 0;
 
+    @media @mobile {
+      flex-grow: 1;
+    }
+
     &--label {
       background-color: #333;
       border-radius: @border-radius-base 0 0 @border-radius-base;
+      flex-grow: 0;
     }
   }
 

@@ -23,6 +23,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use Auth;
 use League\Fractal;
@@ -68,6 +69,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
+            'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
         ];
     }
 
@@ -87,6 +89,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeNominations(Beatmapset $beatmapset)
     {
+        if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
+            return;
+        }
+
+        $result = [
+            'required_hype' => $beatmapset->requiredHype(),
+            'required' => $beatmapset->requiredNominationCount(),
+            'current' => $beatmapset->currentNominationCount(),
+        ];
+
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
 
@@ -104,11 +116,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 }
             }
 
-            $result = [
-                'required' => $beatmapset->requiredNominationCount(),
-                'current' => $beatmapset->currentNominationCount(),
-            ];
-
             if (isset($disqualifyEvent)) {
                 $result['disqualification'] = [
                     'reason' => $disqualifyEvent->comment,
@@ -120,16 +127,12 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             }
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
-            $result = [
-                'ranking_eta' => json_time($eta),
-            ];
+            $result['ranking_eta'] = json_time($eta);
         }
 
-        if (isset($result)) {
-            return $this->item($beatmapset, function ($beatmapset) use ($result) {
-                return $result;
-            });
-        }
+        return $this->item($beatmapset, function ($beatmapset) use ($result) {
+            return $result;
+        });
     }
 
     public function includeDescription(Beatmapset $beatmapset)

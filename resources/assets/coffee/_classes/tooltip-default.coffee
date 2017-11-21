@@ -19,7 +19,7 @@
 class @TooltipDefault
   constructor: ->
     $(document).on 'mouseover', '[title]:not(iframe)', @onMouseOver
-    $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow', @autoAddTooltip
+    $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow, .u-ellipsis-overflow-desktop', @autoAddTooltip
     $(document).on 'turbolinks:before-cache', @rollback
 
 

@@ -27,7 +27,7 @@ el = React.createElement
   blockElement = if props.href? then a else button
 
   blockElement props,
-    span className: "btn-osu-big__content #{'btn-osu-big__content--center' if !text? || !icon?}",
+    span className: "btn-osu-big__content #{if !text? || !icon? then 'btn-osu-big__content--center' else ''}",
       if text?
         span className: 'btn-osu-big__left',
           span className: 'btn-osu-big__text-top', text.top ? text
@@ -35,4 +35,5 @@ el = React.createElement
             span className: 'btn-osu-big__text-bottom', text.bottom
       if icon?
         span className: 'btn-osu-big__icon',
-          el Icon, name: icon
+          # ensure no random width change when changing icon
+          el Icon, name: icon, modifiers: ['fw']

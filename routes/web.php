@@ -63,6 +63,10 @@ Route::group(['prefix' => 'beatmapsets'], function () {
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
     Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'store', 'update']]);
 });
+
+Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
+    Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+});
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
@@ -172,6 +176,7 @@ Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu'
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
+// Route::resource('users', 'UsersController', ['only' => 'store']);
 
 Route::group(['prefix' => 'help'], function () {
     // help section
@@ -184,20 +189,50 @@ Route::group(['prefix' => 'help'], function () {
 });
 
 // FIXME: someone split this crap up into proper controllers
-Route::get('store', 'StoreController@getIndex');
-Route::get('store/listing', 'StoreController@getListing')->name('store.products.index');
-Route::get('store/invoice', 'StoreController@getInvoice');
-Route::get('store/invoice/{invoice}', 'StoreController@getInvoice');
-Route::get('store/product/{product}', 'StoreController@getProduct')->name('store.product');
-Route::get('store/cart', 'StoreController@getCart');
-Route::get('store/checkout', 'StoreController@getCheckout');
-Route::post('store/update-cart', 'StoreController@postUpdateCart');
-Route::post('store/update-address', 'StoreController@postUpdateAddress');
-Route::post('store/new-address', 'StoreController@postNewAddress');
-Route::post('store/add-to-cart', 'StoreController@postAddToCart');
-Route::post('store/checkout', 'StoreController@postCheckout');
-Route::post('store/products/{product}/notification-request', 'Store\NotificationRequestsController@store')->name('store.notification-request');
-Route::delete('store/products/{product}/notification-request', 'Store\NotificationRequestsController@destroy');
+Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
+    Route::get('/', 'StoreController@getIndex');
+
+    Route::get('listing', 'StoreController@getListing')->name('products.index');
+    Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
+    Route::get('cart', 'StoreController@getCart')->name('cart');
+
+    Route::post('update-cart', 'StoreController@postUpdateCart');
+    Route::post('update-address', 'StoreController@postUpdateAddress');
+    Route::post('new-address', 'StoreController@postNewAddress');
+    Route::post('add-to-cart', 'StoreController@postAddToCart');
+
+    Route::group(['namespace' => 'Store'], function () {
+        Route::post('products/{product}/notification-request', 'NotificationRequestsController@store')->name('notification-request');
+        Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
+
+        // Store splitting starts here
+        Route::resource('checkout', 'CheckoutController', ['only' => ['index', 'store']]);
+        route_redirect('product/{product}', 'store.products.show');
+        Route::resource('products', 'ProductsController', ['only' => ['show']]);
+    });
+});
+
+Route::group(['as' => 'payments.', 'prefix' => 'payments', 'namespace' => 'Payments'], function () {
+    Route::group(['as' => 'paypal.', 'prefix' => 'paypal'], function () {
+        Route::get('approved', 'PaypalController@approved')->name('approved');
+        Route::get('declined', 'PaypalController@declined')->name('declined');
+        Route::post('create', 'PaypalController@create')->name('create');
+        Route::get('completed', 'PaypalController@completed')->name('completed');
+        Route::post('ipn', 'PaypalController@ipn')->name('ipn');
+    });
+
+    Route::group(['as' => 'xsolla.', 'prefix' => 'xsolla'], function () {
+        Route::get('completed', 'XsollaController@completed')->name('completed');
+        Route::post('token', 'XsollaController@token')->name('token');
+        Route::post('callback', 'XsollaController@callback')->name('callback');
+    });
+
+    Route::group(['as' => 'centili.', 'prefix' => 'centili'], function () {
+        Route::match(['post', 'get'], 'callback', 'CentiliController@callback')->name('callback');
+        Route::get('completed', 'CentiliController@completed')->name('completed');
+        Route::get('failed', 'CentiliController@failed')->name('failed');
+    });
+});
 
 // API
 Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middleware' => 'auth:api'], function () {
@@ -246,7 +281,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::get('users/{user}/kudosu', '\App\Http\Controllers\UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
         Route::get('users/{user}/scores/{type}', '\App\Http\Controllers\UsersController@scores');
-        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved]
+        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
         Route::get('users/{user}/beatmapsets/{type}', '\App\Http\Controllers\UsersController@beatmapsets');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');
