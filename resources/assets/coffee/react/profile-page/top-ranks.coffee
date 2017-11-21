@@ -36,7 +36,6 @@ class ProfilePage.TopRanks extends React.PureComponent
                 collection: @props.scoresBest
                 propertyName: 'scoresBest'
                 pagination: @props.pagination['scoresBest']
-                maxResults: @props.counts.best
                 route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'best'
@@ -55,7 +54,6 @@ class ProfilePage.TopRanks extends React.PureComponent
                 collection: @props.scoresFirsts
                 propertyName: 'scoresFirsts'
                 pagination: @props.pagination['scoresFirsts']
-                maxResults: @props.counts.firsts
                 route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'firsts'

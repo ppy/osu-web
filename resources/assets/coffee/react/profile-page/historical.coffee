@@ -52,7 +52,6 @@ class ProfilePage.Historical extends React.PureComponent
               collection: @props.beatmapPlaycounts
               propertyName: 'beatmapPlaycounts'
               pagination: @props.pagination['beatmapPlaycounts']
-              maxResults: @props.counts.mostPlayedBeatmapsets
               route: laroute.route 'users.beatmapsets',
                   user: @props.user.id
                   type: 'most_played'
@@ -77,7 +76,6 @@ class ProfilePage.Historical extends React.PureComponent
               collection: @props.scoresRecent
               propertyName: 'scoresRecent'
               pagination: @props.pagination['scoresRecent']
-              maxResults: @props.counts.recentlyPlayedBeatmapsets
               route: laroute.route 'users.scores',
                   user: @props.user.id
                   type: 'recent'

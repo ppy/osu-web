@@ -136,7 +136,6 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           scoresBest: @state.scoresBest
           scoresFirsts: @state.scoresFirsts
-          counts: @props.scoreCounts
           currentMode: @state.currentMode
           pagination: @state.showMorePagination
         component: ProfilePage.TopRanks
@@ -169,7 +168,6 @@ class ProfilePage.Main extends React.PureComponent
           beatmapPlaycounts: @state.beatmapPlaycounts
           counts:
             mostPlayedBeatmapsets: @state.user.mostPlayedBeatmapsetCount[0]
-            recentlyPlayedBeatmapsets: @props.scoreCounts.recent
           scoresRecent: @state.scoresRecent
           user: @state.user
           currentMode: @state.currentMode
