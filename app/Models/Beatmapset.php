@@ -893,7 +893,7 @@ class Beatmapset extends Model
         $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
         $days = max($minDays, $days);
 
-        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+        return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
     public function recentEvents()
