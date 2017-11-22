@@ -123,9 +123,9 @@ class BeatmapDiscussion extends Model
 
         // inb4 timing problem
         $currentVotes = $this->canGrantKudosu() ?
-            $this->beatmapDiscussionVotes()->sum('score') :
+            (int) $this->beatmapDiscussionVotes()->sum('score') :
             0;
-        $kudosuGranted = $this->kudosuHistory()->sum('amount');
+        $kudosuGranted = (int) $this->kudosuHistory()->sum('amount');
         $targetKudosu = 0;
 
         foreach (static::KUDOSU_STEPS as $step) {
