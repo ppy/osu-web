@@ -88,6 +88,9 @@ class BeatmapsetsController extends Controller
             ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
+        $editable = Auth::user() && Auth::user()->user_id == $beatmapset->user_id;
+        $descriptionInclude = $editable ? 'description:editable' : 'description';
+
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -97,7 +100,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps.failtimes',
                 'converts',
                 'converts.failtimes',
-                'description',
+                $descriptionInclude,
                 'ratings',
                 'recentFavourites',
                 'user',
@@ -242,7 +245,7 @@ class BeatmapsetsController extends Controller
                 $beatmapset,
                 new BeatmapsetTransformer(),
                 [
-                    'description',
+                    'description:editable',
                 ]
             );
         }
