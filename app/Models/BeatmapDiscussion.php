@@ -45,6 +45,7 @@ class BeatmapDiscussion extends Model
     ];
 
     const RESOLVABLE_TYPES = [1, 2];
+    const KUDOSUABLE_TYPES = [1, 2];
 
     public function beatmap()
     {
@@ -69,6 +70,11 @@ class BeatmapDiscussion extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function kudosuHistory()
+    {
+        return $this->morphMany(KudosuHistory::class, 'kudosuable');
     }
 
     public function getMessageTypeAttribute($value)
@@ -100,38 +106,37 @@ class BeatmapDiscussion extends Model
         return in_array($this->attributes['message_type'] ?? null, static::RESOLVABLE_TYPES, true);
     }
 
+    public function canGrantKudosu()
+    {
+        return
+            in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+            !$this->isDeleted() &&
+            !$this->kudosu_denied;
+    }
+
     public function refreshKudosu($event)
     {
-        // no kudosu for either types
-        if ($this->message_type === 'praise' || $this->message_type === 'mapper_note') {
-            return;
-        }
-
-        // cleanup of own votes
+        // remove own votes
         $this->beatmapDiscussionVotes()->where([
             'user_id' => $this->user_id,
         ])->delete();
 
         // inb4 timing problem
-        $currentVotes = $this->currentVotes();
-        $previousVotes = $this->kudosu_refresh_votes ?? 0;
-        $votesChange = $currentVotes - $previousVotes;
+        $currentVotes = $this->canGrantKudosu() ?
+            (int) $this->beatmapDiscussionVotes()->sum('score') :
+            0;
+        $kudosuGranted = (int) $this->kudosuHistory()->sum('amount');
+        $targetKudosu = 0;
 
-        $change = 0;
-
-        if ($votesChange > 0) {
-            foreach (static::KUDOSU_STEPS as $step) {
-                if ($previousVotes < $step && $currentVotes >= $step) {
-                    $change += 1;
-                }
-            }
-        } else {
-            foreach (static::KUDOSU_STEPS as $step) {
-                if ($currentVotes < $step && $previousVotes >= $step) {
-                    $change -= 1;
-                }
+        foreach (static::KUDOSU_STEPS as $step) {
+            if ($currentVotes >= $step) {
+                $targetKudosu++;
+            } else {
+                break;
             }
         }
+
+        $change = $targetKudosu - $kudosuGranted;
 
         if ($change === 0) {
             return;
@@ -144,7 +149,11 @@ class BeatmapDiscussion extends Model
                 } else {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
                 }
+            } elseif ($event === 'recalculate') {
+                $beatmapsetEventType = BeatmapsetEvent::KUDOSU_RECALCULATE;
+            }
 
+            if (isset($beatmapsetEventType)) {
                 BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this)->saveOrExplode();
             }
 
@@ -159,21 +168,12 @@ class BeatmapDiscussion extends Model
                     'event' => $event,
                 ],
             ]);
-            $this->update([
-                'kudosu_refresh_votes' => $currentVotes,
-            ]);
+
             $this->user->update([
                 'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
                 'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
             ]);
         });
-    }
-
-    public function currentVotes()
-    {
-        return ($this->isDeleted() || $this->kudosu_denied)
-            ? 0
-            : $this->beatmapDiscussionVotes()->sum('score');
     }
 
     public function hasValidBeatmap()

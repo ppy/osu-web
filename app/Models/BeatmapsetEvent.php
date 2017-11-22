@@ -34,6 +34,7 @@ class BeatmapsetEvent extends Model
     const KUDOSU_DENY = 'kudosu_deny';
     const KUDOSU_GAIN = 'kudosu_gain';
     const KUDOSU_LOST = 'kudosu_lost';
+    const KUDOSU_RECALCULATE = 'kudosu_recalculate';
 
     const ISSUE_RESOLVE = 'issue_resolve';
     const ISSUE_REOPEN = 'issue_reopen';
