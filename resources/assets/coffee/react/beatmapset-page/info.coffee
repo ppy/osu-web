@@ -40,22 +40,6 @@ class BeatmapsetPage.Info extends React.Component
     $(window).off '.beatmapsetPageInfo'
 
 
-  renderChart: ->
-    return if !@props.beatmapset.has_scores
-
-    unless @_failurePointsChart?
-      options =
-        scales:
-          x: d3.scaleLinear()
-          y: d3.scaleLinear()
-        modifiers: ['beatmap-success-rate']
-
-      @_failurePointsChart = new StackedBarChart @refs.chartArea, options
-      $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
-
-    @_failurePointsChart.loadData @props.beatmap.failtimes
-
-
   editStart: =>
     @setState isEditing: true
 
@@ -88,6 +72,22 @@ class BeatmapsetPage.Info extends React.Component
 
   withEdit: =>
      window.currentUser.id == @props.beatmapset.user_id
+
+
+  renderChart: ->
+    return if !@props.beatmapset.has_scores
+
+    unless @_failurePointsChart?
+      options =
+        scales:
+          x: d3.scaleLinear()
+          y: d3.scaleLinear()
+        modifiers: ['beatmap-success-rate']
+
+      @_failurePointsChart = new StackedBarChart @refs.chartArea, options
+      $(window).on 'throttled-resize.beatmapsetPageInfo', @_failurePointsChart.resize
+
+    @_failurePointsChart.loadData @props.beatmap.failtimes
 
 
   renderEditButton: =>
