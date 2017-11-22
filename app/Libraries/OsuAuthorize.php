@@ -246,6 +246,17 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetDescriptionEdit($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->user_id !== $beatmapset->user_id) {
+            return 'beatmapset_description.edit.not_owner';
+        }
+
+        return 'ok';
+    }
+
     public function checkBeatmapsetDisqualify($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);

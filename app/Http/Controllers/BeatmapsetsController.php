@@ -88,7 +88,7 @@ class BeatmapsetsController extends Controller
             ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
-        $editable = Auth::user() && Auth::user()->user_id == $beatmapset->user_id;
+        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
         $descriptionInclude = $editable ? 'description:editable' : 'description';
 
         $set = json_item(
@@ -237,6 +237,9 @@ class BeatmapsetsController extends Controller
     public function update($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDescriptionEdit', $beatmapset)->ensureCan();
+
         $description = Request::input('description');
 
         if ($beatmapset->updateDescription($description, Auth::user())) {
