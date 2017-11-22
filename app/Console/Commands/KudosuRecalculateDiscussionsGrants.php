@@ -47,7 +47,7 @@ class KudosuRecalculateDiscussionsGrants extends Command
      */
     public function handle()
     {
-        $continue = $this->confirm('WARNING! This will remove ALL kudosu granted from beatmap discussions and recalculate them with current thresholds. Continue?');
+        $continue = $this->confirm('WARNING! This will recalculate kudosu from beatmap discussions with current thresholds. Continue?');
 
         if (!$continue) {
             $this->error('User aborted!');
