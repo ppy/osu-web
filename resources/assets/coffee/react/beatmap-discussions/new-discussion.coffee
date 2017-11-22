@@ -127,9 +127,14 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 osu.trans 'beatmaps.hype.explanation'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
-            @submitButton 'praise'
-            @submitButton 'suggestion'
-            @submitButton 'problem'
+            if @props.currentUser.id == @props.beatmapset.user_id
+              @submitButton 'mapper_note'
+            else
+              [
+                @submitButton 'praise'
+                @submitButton 'suggestion'
+                @submitButton 'problem'
+              ]
 
         if @nearbyPosts().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
@@ -266,12 +271,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         # for some reason the spinner wobbles
         'ellipsis-h'
       else
-        BeatmapDiscussionHelper.messageType.icon[type]
+        BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
 
     el BigButton,
       modifiers: ['beatmap-discussion']
       icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{type}")
+      key: type
       props:
         disabled: !@validPost() || @state.posting?
         'data-type': type

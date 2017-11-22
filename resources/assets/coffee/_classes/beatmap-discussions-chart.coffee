@@ -109,7 +109,7 @@ class @BeatmapDiscussionsChart
       .attr 'xlink:href', (d) =>
         BeatmapDiscussionHelper.hash discussionId: d.id
       .attr 'class', (d) ->
-        type = if d.resolved then 'resolved' else d.message_type
+        type = if d.resolved then 'resolved' else _.kebabCase(d.message_type)
         "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{type}"
 
     @svgPointsEnter
@@ -137,7 +137,7 @@ class @BeatmapDiscussionsChart
       .append 'tspan'
       .classed 'fa', true
       .html (d) =>
-        type = if d.resolved then 'resolved' else d.message_type
+        type = if d.resolved then 'resolved' else _.camelCase(d.message_type)
         BeatmapDiscussionHelper.messageType.iconText[type]
 
     @svgPoints.exit().remove()
