@@ -101,7 +101,7 @@ class BeatmapDiscussion extends Model
 
     public function refreshKudosu($event)
     {
-        // no kudosu for praises...?
+        // no kudosu for either types
         if ($this->message_type === 'praise' || $this->message_type === 'mapper_note') {
             return;
         }
