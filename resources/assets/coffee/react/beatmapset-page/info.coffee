@@ -104,7 +104,7 @@ class BeatmapsetPage.Info extends React.Component
         div className: 'beatmapset-description-editor',
           div className: 'beatmapset-description-editor__overlay',
             div className: 'beatmapset-description-editor__container',
-              el BeatmapsetPage.DescriptionEditor,
+              el BBCodeEditor,
                 disabled: @state.isBusy
                 onChange: @onEditorChange
                 rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode

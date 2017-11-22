@@ -19,7 +19,7 @@
 {button, div, em, i, label, option, select, span, strong} = ReactDOMFactories
 el = React.createElement
 
-class BeatmapsetPage.DescriptionEditor extends React.Component
+class @BBCodeEditor extends React.Component
   constructor: (props) ->
     super props
 
