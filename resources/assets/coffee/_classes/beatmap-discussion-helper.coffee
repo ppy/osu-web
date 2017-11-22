@@ -71,14 +71,14 @@ class @BeatmapDiscussionHelper
 
   @messageType:
     icon:
-      mapper: 'sticky-note-o'
+      mapperNote: 'sticky-note-o'
       praise: 'heart'
       problem: 'exclamation-circle'
       suggestion: 'circle-o'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
     iconText:
-      mapper: '&#xf24a;'
+      mapperNote: '&#xf24a;'
       praise: '&#xf004;'
       problem: '&#xf06a;'
       resolved: '&#xf05d;'

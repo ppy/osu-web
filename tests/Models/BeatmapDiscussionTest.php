@@ -41,7 +41,7 @@ class BeatmapDiscussionTest extends TestCase
         ]);
 
         $this->assertTrue($discussion->isValid());
-        $this->assertEquals($discussion->message_type, 'mapper');
+        $this->assertEquals($discussion->message_type, 'mapper_note');
     }
 
     public function testIsValid()

@@ -40,7 +40,7 @@ class BeatmapDiscussion extends Model
         'praise' => 0,
         'suggestion' => 1,
         'problem' => 2,
-        'mapper' => 3,
+        'mapper_note' => 3,
     ];
 
     const RESOLVABLE_TYPES = [1, 2];
@@ -102,7 +102,7 @@ class BeatmapDiscussion extends Model
     public function refreshKudosu($event)
     {
         // no kudosu for praises...?
-        if ($this->message_type === 'praise' || $this->message_type === 'mapper') {
+        if ($this->message_type === 'praise' || $this->message_type === 'mapper_note') {
             return;
         }
 
@@ -185,11 +185,11 @@ class BeatmapDiscussion extends Model
     public function hasValidMessageType()
     {
         if ($this->user_id === $this->beatmapset->user_id) {
-            $this->message_type = 'mapper';
+            $this->message_type = 'mapper_note';
 
             return true;
         } else {
-            return $this->message_type !== null && $this->message_type !== 'mapper';
+            return $this->message_type !== null && $this->message_type !== 'mapper_note';
         }
     }
 

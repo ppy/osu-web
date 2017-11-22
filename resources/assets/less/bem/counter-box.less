@@ -20,7 +20,7 @@
   @top: counter-box;
 
   @color-deleted: @gray;
-  @color-mappers: @beatmap-discussion--color-mapper;
+  @color-mapper-notes: @beatmap-discussion--color-mapper-note;
   @color-mine: @yellow-darker;
   @color-pending: @pink-darker;
   @color-praises: @blue-darker;
@@ -80,8 +80,8 @@
     .with-active(@color-praises);
   }
 
-  &--mappers {
-    .with-active(@color-mappers);
+  &--mapper-notes {
+    .with-active(@color-mapper-notes);
   }
 
   &--mine {
@@ -118,8 +118,8 @@
       background-color: @color-deleted;
     }
 
-    .@{top}--mappers & {
-      background-color: @color-mappers;
+    .@{top}--mapper-notes & {
+      background-color: @color-mapper-notes;
     }
 
     .@{top}--pending & {
