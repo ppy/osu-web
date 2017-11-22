@@ -47,6 +47,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             'timestamp' => $discussion->timestamp,
             'resolved' => $discussion->resolved,
             'can_be_resolved' => $discussion->canBeResolved(),
+            'can_grant_kudosu' => $discussion->canGrantKudosu(),
             'created_at' => json_time($discussion->created_at),
             'updated_at' => json_time($discussion->updated_at),
             'deleted_at' => json_time($discussion->deleted_at),
