@@ -24,6 +24,7 @@ class BeatmapsetPage.Info extends React.Component
     super props
 
     @state =
+      isBusy: false
       isEditing: false
 
 
@@ -68,6 +69,7 @@ class BeatmapsetPage.Info extends React.Component
 
 
   saveDescription: (value) =>
+    @setState isBusy: true
     $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
       method: 'PATCH',
       data:
@@ -79,6 +81,9 @@ class BeatmapsetPage.Info extends React.Component
         description: data.description
 
     .fail osu.ajaxError
+
+    .always =>
+      @setState isBusy: false
 
 
   renderEditButton: =>
@@ -100,6 +105,7 @@ class BeatmapsetPage.Info extends React.Component
           div className: 'beatmapset-description-editor__overlay',
             div className: 'beatmapset-description-editor__container',
               el BeatmapsetPage.DescriptionEditor,
+                disabled: @state.isBusy
                 onChange: @onEditorChange
                 rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
 

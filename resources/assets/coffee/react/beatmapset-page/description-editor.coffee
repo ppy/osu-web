@@ -24,6 +24,7 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
     super props
 
     @state =
+      disabled: @props.disabled
       rawValue: @props.rawValue
 
 
@@ -167,18 +168,21 @@ class BeatmapsetPage.DescriptionEditor extends React.Component
         el 'div', className: 'post-editor__actions',
           el 'button',
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
+            disabled: @props.disabled
             type: 'button'
             onClick: @_cancel
             osu.trans('common.buttons.cancel')
 
           el 'button',
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
+            disabled: @props.disabled
             type: 'button'
             onClick: @_reset
             osu.trans('common.buttons.reset')
 
           el 'button',
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
+            disabled: @props.disabled
             type: 'button'
             onClick: @_save
             osu.trans('common.buttons.save')
