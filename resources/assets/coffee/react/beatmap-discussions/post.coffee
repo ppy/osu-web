@@ -200,6 +200,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
+        if @props.type == 'discussion' && @props.discussion.kudosu_denied
+          span
+            className: "#{bn}__info #{bn}__info--edited"
+            osu.trans('beatmaps.discussions.kudosu_denied')
+
       div
         className: "#{bn}__actions"
         div
