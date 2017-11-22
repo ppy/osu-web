@@ -116,7 +116,7 @@ class BeatmapDiscussion extends Model
 
     public function refreshKudosu($event)
     {
-        // cleanup of own votes
+        // remove own votes
         $this->beatmapDiscussionVotes()->where([
             'user_id' => $this->user_id,
         ])->delete();
