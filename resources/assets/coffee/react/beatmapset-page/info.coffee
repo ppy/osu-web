@@ -116,14 +116,15 @@ class BeatmapsetPage.Info extends React.Component
       div className: 'beatmapset-info__box beatmapset-info__box--description',
         @renderEditButton() if @withEdit()
 
-        h3
-          className: 'beatmapset-info__header'
-          osu.trans 'beatmapsets.show.info.description'
+        div className: 'beatmapset-info__box-content',
+          h3
+            className: 'beatmapset-info__header'
+            osu.trans 'beatmapsets.show.info.description'
 
-        div
-          className: 'beatmapset-info__description'
-          dangerouslySetInnerHTML:
-            __html: @state.description?.description || @props.beatmapset.description.description
+          div
+            className: 'beatmapset-info__description'
+            dangerouslySetInnerHTML:
+              __html: @state.description?.description || @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
         if @props.beatmapset.source
