@@ -149,7 +149,11 @@ class BeatmapDiscussion extends Model
                 } else {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
                 }
+            } elseif ($event === 'recalculate') {
+                $beatmapsetEventType = BeatmapsetEvent::KUDOSU_RECALCULATED;
+            }
 
+            if (isset($beatmapsetEventType)) {
                 BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this)->saveOrExplode();
             }
 
