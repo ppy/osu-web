@@ -52,6 +52,11 @@ class @Nav
     (force || !document.body.classList.contains('modal-open')) && @popup[0]?
 
 
+  clearTimeouts: =>
+    Timeout.clear @hideTimeout
+    Timeout.clear @showTimeout
+
+
   currentMode: =>
     @data().currentMode ?= 'default'
 
@@ -68,14 +73,12 @@ class @Nav
     return if @currentMode() == 'user' && !currentUser.id?
     return if @currentMode() == 'search'
 
-    Timeout.clear @hideTimeout
-    Timeout.clear @showTimeout
+    @clearTimeouts()
     @hideTimeout = Timeout.set 250, @hidePopup
 
 
   delayedShowPopup: =>
-    Timeout.clear @hideTimeout
-    Timeout.clear @showTimeout
+    @clearTimeouts()
     @showTimeout = Timeout.set 250, @showPopup
 
 
@@ -100,8 +103,7 @@ class @Nav
 
       return if !hide
 
-    Timeout.clear @hideTimeout
-    Timeout.clear @showTimeout
+    @clearTimeouts()
     @hideTimeout = Timeout.set 10, =>
       @showAllMenu false
       $.publish 'nav:popup:hidden'
@@ -152,8 +154,7 @@ class @Nav
   showPopup: =>
     return if !@available()
 
-    Timeout.clear @hideTimeout
-    Timeout.clear @showTimeout
+    @clearTimeouts()
     @showTimeout = Timeout.set 10, =>
       @showAllMenu true
       @repositionPopup()
