@@ -96,9 +96,12 @@ class BeatmapsetPage.Info extends React.Component
 
     div className: 'beatmapset-info',
       if @state.isEditing
-        el BeatmapsetPage.DescriptionEditor,
-          onChange: @onEditorChange
-          rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
+        div className: 'beatmapset-description-editor',
+          div className: 'beatmapset-description-editor__overlay',
+            div className: 'beatmapset-description-editor__container',
+              el BeatmapsetPage.DescriptionEditor,
+                onChange: @onEditorChange
+                rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
         @renderEditButton()
