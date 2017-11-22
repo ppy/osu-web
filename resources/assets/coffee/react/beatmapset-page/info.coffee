@@ -86,6 +86,10 @@ class BeatmapsetPage.Info extends React.Component
       @setState isBusy: false
 
 
+  withEdit: =>
+     window.currentUser.id == @props.beatmapset.user_id
+
+
   renderEditButton: =>
     div className: 'beatmapset-info__edit-description',
       button
@@ -110,7 +114,7 @@ class BeatmapsetPage.Info extends React.Component
                 rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
-        @renderEditButton()
+        @renderEditButton() if @withEdit()
 
         h3
           className: 'beatmapset-info__header'
