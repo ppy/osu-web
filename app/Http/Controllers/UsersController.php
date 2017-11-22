@@ -158,8 +158,6 @@ class UsersController extends Controller
 
         switch ($type) {
             case 'most_played':
-                $this->parsePaginationParams(5);
-
                 return $this->mostPlayedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             case 'favourite':
@@ -219,7 +217,6 @@ class UsersController extends Controller
                 'followerCount',
                 'page',
                 'recentActivities',
-                'mostPlayedBeatmapsetCount',
                 'rankedAndApprovedBeatmapsetCount',
                 'unrankedBeatmapsetCount',
                 'graveyardBeatmapsetCount',
@@ -339,7 +336,7 @@ class UsersController extends Controller
         );
     }
 
-    private function mostPlayedBeatmapsets($user, $perPage = 5, $offset = 0)
+    private function mostPlayedBeatmapsets($user, $perPage = 6, $offset = 0)
     {
         $beatmapsets = $user->beatmapPlaycounts()
             ->with('beatmap', 'beatmap.beatmapset')

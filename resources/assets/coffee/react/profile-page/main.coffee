@@ -62,11 +62,11 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
-    for score in ['scoresBest', 'scoresFirsts', 'scoresRecent']
-      if @state[score].length > 5
-        @state.showMorePagination[score] ?= {}
-        @state.showMorePagination[score].hasMore = true
-        @state[score] = @state[score][0...-1]
+    for elem in ['scoresBest', 'scoresFirsts', 'scoresRecent', 'beatmapPlaycounts']
+      if @state[elem].length > 5
+        @state.showMorePagination[elem] ?= {}
+        @state.showMorePagination[elem].hasMore = true
+        @state[elem] = @state[elem][0...-1]
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
@@ -172,8 +172,6 @@ class ProfilePage.Main extends React.PureComponent
       historical:
         props:
           beatmapPlaycounts: @state.beatmapPlaycounts
-          counts:
-            mostPlayedBeatmapsets: @state.user.mostPlayedBeatmapsetCount[0]
           scoresRecent: @state.scoresRecent
           user: @state.user
           currentMode: @state.currentMode
@@ -264,7 +262,7 @@ class ProfilePage.Main extends React.PureComponent
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
         paginationState[propertyName].hasMore =
-          if propertyName.startsWith 'scores'
+          if propertyName == 'beatmapPlaycounts' || propertyName.startsWith 'scores'
             if data.length > perPage
               state = state[0...-1]
               true
