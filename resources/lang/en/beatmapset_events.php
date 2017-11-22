@@ -32,7 +32,7 @@ return [
         'kudosu_deny' => 'Discussion :discussion denied for kudosu.',
         'kudosu_gain' => 'Discussion :discussion obtained enough votes for kudosu.',
         'kudosu_lost' => 'Discussion :discussion lost votes and granted kudosu has been removed.',
-        'kudosu_recalculated' => 'Discussion :discussion has its granted kudosu recalculated.',
+        'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
         'nominate' => 'Nominated.',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
