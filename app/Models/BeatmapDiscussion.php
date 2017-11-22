@@ -122,7 +122,9 @@ class BeatmapDiscussion extends Model
         ])->delete();
 
         // inb4 timing problem
-        $currentVotes = $this->currentVotes();
+        $currentVotes = $this->canGrantKudosu() ?
+            $this->beatmapDiscussionVotes()->sum('score') :
+            0;
         $kudosuGranted = $this->kudosuHistory()->sum('amount');
         $targetKudosu = 0;
 
@@ -168,13 +170,6 @@ class BeatmapDiscussion extends Model
                 'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
             ]);
         });
-    }
-
-    public function currentVotes()
-    {
-        return $this->canGrantKudosu()
-            ? $this->beatmapDiscussionVotes()->sum('score')
-            : 0;
     }
 
     public function hasValidBeatmap()
