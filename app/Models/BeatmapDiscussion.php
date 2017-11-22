@@ -29,6 +29,7 @@ class BeatmapDiscussion extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'kudosu_denied' => 'boolean',
         'resolved' => 'boolean',
     ];
 

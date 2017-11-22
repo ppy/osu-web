@@ -190,6 +190,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       for post in @props.currentDiscussions.timeline
         continue if post.message_type not in ['suggestion', 'problem']
         continue if Math.abs(post.timestamp - @state.timestamp) > 5000
+
+        if post.user_id == @props.currentUser.id
+          continue if moment(post.updated_at).diff(moment(), 'hour') > -24
+
         posts.push(post)
 
       @cache.nearbyPosts =
