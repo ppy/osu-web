@@ -58,42 +58,17 @@ class KudosuRecalculateDiscussionsGrants extends Command
             return;
         }
 
-        DB::transaction(function () {
-            $this->info('Reverting user kudosu balance...');
-            $kudosuGrants = KudosuHistory::where('kudosuable_type', 'App\Models\BeatmapDiscussion')
-                ->select('receiver_id')
-                ->selectRaw('sum(amount) as kudosu_change')
-                ->groupBy('receiver_id')
-                ->get();
-
-            $bar = $this->output->createProgressBar($kudosuGrants->count());
-            foreach ($kudosuGrants as $grant) {
-                User::find($grant->receiver_id)->update([
-                    'osu_kudostotal' => DB::raw("osu_kudostotal - {$grant->kudosu_change}"),
-                    'osu_kudosavailable' => DB::raw("osu_kudosavailable - {$grant->kudosu_change}"),
-                ]);
+        $this->info('Recalculating kudosu grants...');
+        $bar = $this->output->createProgressBar(BeatmapDiscussion::count());
+        BeatmapDiscussion::chunk(1000, function ($discussions) use ($bar) {
+            foreach ($discussions as $discussion) {
+                $discussion->refreshKudosu('recalculate');
                 $bar->advance();
             }
-            $bar->finish();
-            $this->info(''); //newline for bar
-
-            $this->info('Removing all [KudosuHistory] and [BeatmapsetEvent] records...');
-            KudosuHistory::where('kudosuable_type', 'App\Models\BeatmapDiscussion')->delete();
-            BeatmapsetEvent::whereIn('type', ['kudosu_gain', 'kudosu_lost'])->delete();
-            BeatmapDiscussion::whereNotNull('kudosu_refresh_votes')->update(['kudosu_refresh_votes' => null]); // mainly 'cuz we can't just BeatmapDiscussion::update()
-
-            $this->info('Recalculating kudosu grants...');
-            $bar = $this->output->createProgressBar(BeatmapDiscussion::count());
-            BeatmapDiscussion::chunk(1000, function ($discussions) use ($bar) {
-                foreach ($discussions as $discussion) {
-                    $discussion->refreshKudosu('vote');
-                    $bar->advance();
-                }
-            });
-            $bar->finish();
-            $this->info(''); //newline for bar
-
-            $this->info('Recalculation done!');
         });
+        $bar->finish();
+        $this->info(''); //newline for bar
+
+        $this->info('Recalculation done!');
     }
 }

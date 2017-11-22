@@ -157,6 +157,11 @@ return [
                             'give' => 'Received :amount from obtaining votes in modding post of :post',
                             'reset' => 'Lost :amount from losing votes in modding post of :post',
                         ],
+
+                        'recalculate' => [
+                            'give' => 'Received :amount from votes recalculation in modding post of :post',
+                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                        ],
                     ],
 
                     'forum_post' => [
