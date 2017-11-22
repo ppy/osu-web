@@ -179,11 +179,10 @@ class User extends Model implements AuthenticatableContract, Messageable
             Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
             // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
             Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+            Forum\Topic::where('topic_poster', $this->user_id)
+                ->update(['topic_first_poster_name' => $newUsername]);
             Forum\Topic::where('topic_last_poster_id', $this->user_id)
-                ->update([
-                    'topic_first_poster_name' => $newUsername,
-                    'topic_last_poster_name' => $newUsername,
-                ]);
+                ->update(['topic_last_poster_name' => $newUsername]);
 
             $history = new UsernameChangeHistory();
             $history->username = $newUsername;
@@ -319,7 +318,8 @@ class User extends Model implements AuthenticatableContract, Messageable
             'total' => $total,
             'over_limit' => $overLimit,
             'data' => $query
-                ->orderBy('user_id', 'ASC')
+                ->orderByRaw('LENGTH(username)')
+                ->orderBy('user_id')
                 ->limit($limit)
                 ->offset($offset)
                 ->get(),
