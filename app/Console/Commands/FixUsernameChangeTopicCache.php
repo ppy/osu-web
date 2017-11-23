@@ -22,6 +22,7 @@ namespace App\Console\Commands;
 
 use App\Models\Forum\Topic;
 use App\Models\Forum\Post;
+use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -95,9 +96,9 @@ class FixUsernameChangeTopicCache extends Command
 
         $topicsFirstPoster->chunk(1000, function ($topics) use ($bar) {
             foreach ($topics as $topic) {
-                $topic->setFirstPostCache();
-                if ($topic->isDirty()) {
-                    $topic->save();
+                $username = User::select('username')->find($topic->topic_poster)->username;
+                if ($topic->topic_first_poster_name !== $username) {
+                    $topic->update(['topic_first_poster_name' => $username]);
                 }
 
                 $bar->advance();
@@ -108,9 +109,9 @@ class FixUsernameChangeTopicCache extends Command
 
         Topic::withTrashed()->whereIn('topic_id', $topicIds)->chunk(1000, function ($topics) use ($bar) {
             foreach ($topics as $topic) {
-                $topic->setFirstPostCache();
-                if ($topic->isDirty()) {
-                    $topic->save();
+                $username = User::select('username')->find($topic->topic_poster)->username;
+                if ($topic->topic_first_poster_name !== $username) {
+                    $topic->update(['topic_first_poster_name' => $username]);
                 }
 
                 $bar->advance();
