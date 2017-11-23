@@ -20,8 +20,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Forum\Topic;
 use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
@@ -73,53 +73,58 @@ class FixUsernameChangeTopicCache extends Command
         $this->warn("Found {$count}");
 
         // topics where they posted in - possible last posts.
+        // select is faster than pluck for the the whereNotIn().
         $this->info('Getting possible last poster counts...');
         $topicIds = Post::withTrashed()
             ->whereIn('poster_id', $ids)
             ->whereNotIn('topic_id', (clone $topicsFirstPoster)->select('topic_id'))
             ->distinct()
-            ->select('topic_id') // select is faster than pluck for these.
-            ->get();
+            ->pluck('topic_id');
 
         $count += $topicIds->count();
         $this->warn("Total {$count}");
 
         $this->warn((time() - $start).'s to scan.');
 
+        // reconfirm.
         if (!$this->confirm("This will affect an estimated {$count} Topics.")) {
             return $this->error('User aborted!');
         }
 
         $start = time();
-
         $bar = $this->output->createProgressBar($count);
 
-        $topicsFirstPoster->chunk(1000, function ($topics) use ($bar) {
-            foreach ($topics as $topic) {
-                $username = User::select('username')->find($topic->topic_poster)->username;
-                if ($topic->topic_first_poster_name !== $username) {
-                    $topic->update(['topic_first_poster_name' => $username]);
-                }
+        $this->chunkAndProcess($topicsFirstPoster->pluck('topic_id')->toArray(), $bar);
+        $this->warn("\n".(time() - $start).'s taken.');
 
-                $bar->advance();
-            }
-        });
-
-        $this->warn((time() - $start).'s taken.');
-
-        Topic::withTrashed()->whereIn('topic_id', $topicIds)->chunk(1000, function ($topics) use ($bar) {
-            foreach ($topics as $topic) {
-                $username = User::select('username')->find($topic->topic_poster)->username;
-                if ($topic->topic_first_poster_name !== $username) {
-                    $topic->update(['topic_first_poster_name' => $username]);
-                }
-
-                $bar->advance();
-            }
-        });
-
-        $this->warn((time() - $start).'s taken.');
-
+        $this->chunkAndProcess($topicIds->toArray(), $bar);
         $bar->finish();
+
+        $this->warn("\n".(time() - $start).'s taken.');
+    }
+
+    private function chunkAndProcess($array, $bar)
+    {
+        // This is a lot faster than Laravel's whereIn()->chunk for the number of records here.
+        // chunk() freezes every 1000 records as it queries and offsets.
+        $chunks = array_chunk($array, 1000);
+        foreach ($chunks as $chunk) {
+            $this->processChunk($chunk, $bar);
+        }
+    }
+
+    private function processChunk($chunk, $bar)
+    {
+        $topics = Topic::withTrashed()->whereIn('topic_id', $chunk)->get();
+        foreach ($topics as $topic) {
+            if ($topic->topic_poster) {
+                $username = User::select('username')->find($topic->topic_poster)->username;
+                if ($topic->topic_first_poster_name !== $username) {
+                    $topic->update(['topic_first_poster_name' => $username]);
+                }
+            }
+
+            $bar->advance();
+        }
     }
 }
