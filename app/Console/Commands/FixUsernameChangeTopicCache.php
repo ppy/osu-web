@@ -60,7 +60,7 @@ class FixUsernameChangeTopicCache extends Command
         $date = Carbon::parse('2017/08/09');
         $ids = UsernameChangeHistory::where('timestamp', '>', $date)
             ->distinct()
-            ->pluck('user_id');
+            ->pluck('user_id'); // pluck is faster than select for this.
 
         $userCount = count($ids);
         $this->warn("{$userCount} users effected");
@@ -75,9 +75,10 @@ class FixUsernameChangeTopicCache extends Command
         $this->info('Getting possible last poster counts...');
         $topicIds = Post::withTrashed()
             ->whereIn('poster_id', $ids)
-            ->whereNotIn('topic_id', (clone $topicsFirstPoster)->pluck('topic_id'))
+            ->whereNotIn('topic_id', (clone $topicsFirstPoster)->select('topic_id'))
             ->distinct()
-            ->pluck('topic_id');
+            ->select('topic_id') // select is faster than pluck for these.
+            ->get();
 
         $count += $topicIds->count();
         $this->warn("Total {$count}");
