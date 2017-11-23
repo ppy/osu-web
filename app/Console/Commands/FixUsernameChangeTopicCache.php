@@ -73,7 +73,11 @@ class FixUsernameChangeTopicCache extends Command
 
         // topics where they posted in - possible last posts.
         $this->info('Getting possible last poster counts...');
-        $topicIds = Post::withTrashed()->whereIn('poster_id', $ids)->distinct()->pluck('topic_id');
+        $topicIds = Post::withTrashed()
+            ->whereIn('poster_id', $ids)
+            ->whereNotIn('topic_id', (clone $topicsFirstPoster)->pluck('topic_id'))
+            ->distinct()
+            ->pluck('topic_id');
 
         $count += $topicIds->count();
         $this->warn("Total {$count}");
