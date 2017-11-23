@@ -29,11 +29,16 @@ class @BBCodeEditor extends React.Component
 
 
   componentDidMount: =>
-    # stuff
+    if @props.selection?.range
+      @refs.body.selectionStart = @props.selection.range[0]
+      @refs.body.selectionEnd = @props.selection.range[1]
+
+    @refs.body.focus()
 
 
   componentWillUnmount: =>
-    # stuff
+    @props.onSelectionUpdate && @props.onSelectionUpdate
+      range: [@refs.body.selectionStart, @refs.body.selectionEnd]
 
 
   onInput: (_e) =>

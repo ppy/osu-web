@@ -56,6 +56,10 @@ class BeatmapsetPage.Info extends React.Component
         @setState isEditing: false
 
 
+  onSelectionUpdate: (selection) =>
+    @setState selection: selection
+
+
   saveDescription: (value) =>
     @setState isBusy: true
     $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
@@ -115,7 +119,9 @@ class BeatmapsetPage.Info extends React.Component
               el BBCodeEditor,
                 disabled: @state.isBusy
                 onChange: @onEditorChange
+                onSelectionUpdate: @onSelectionUpdate
                 rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
+                selection: @state.selection
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
         @renderEditButton() if @withEdit()
