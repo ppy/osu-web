@@ -95,7 +95,11 @@ class FixUsernameChangeTopicCache extends Command
 
         $topicsFirstPoster->chunk(1000, function ($topics) use ($bar) {
             foreach ($topics as $topic) {
-                $topic->refreshCache();
+                $topic->setFirstPostCache();
+                if ($topic->isDirty()) {
+                    $topic->save();
+                }
+
                 $bar->advance();
             }
         });
@@ -104,7 +108,11 @@ class FixUsernameChangeTopicCache extends Command
 
         Topic::withTrashed()->whereIn('topic_id', $topicIds)->chunk(1000, function ($topics) use ($bar) {
             foreach ($topics as $topic) {
-                $topic->refreshCache();
+                $topic->setFirstPostCache();
+                if ($topic->isDirty()) {
+                    $topic->save();
+                }
+
                 $bar->advance();
             }
         });
