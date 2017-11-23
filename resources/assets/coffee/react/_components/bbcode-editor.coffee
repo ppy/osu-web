@@ -48,12 +48,16 @@ class @BBCodeEditor extends React.Component
 
   _reset: =>
     @refs.body.value = @props.rawValue
-    @setState rawValue: @props.rawValue
+    @setState dirty: false, rawValue: @props.rawValue
     @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
 
 
   _save: =>
-    @props.onChange(type: 'save', value: @state.rawValue) if @props.onChange
+    if @props.onChange
+      @props.onChange
+        type: 'save'
+        value: @state.rawValue
+        hasChanged: @state.rawValue != @props.rawValue
 
 
   render: =>

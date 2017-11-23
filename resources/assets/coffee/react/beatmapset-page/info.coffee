@@ -47,7 +47,11 @@ class BeatmapsetPage.Info extends React.Component
   onEditorChange: (action) =>
     switch action.type
       when 'save'
-        @saveDescription(action.value)
+        if action.hasChanged
+          @saveDescription(action.value)
+        else
+          @setState isEditing: false
+
       when 'cancel'
         @setState isEditing: false
 
