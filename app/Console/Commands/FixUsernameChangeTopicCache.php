@@ -21,6 +21,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Forum\Topic;
+use App\Models\Forum\Post;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -51,23 +52,59 @@ class FixUsernameChangeTopicCache extends Command
         $continue = $this->confirm('WARNING! This will refresh the cache for forum topics where the username has changed after 2017/08/09');
 
         if (!$continue) {
-            $this->error('User aborted!');
-
-            return;
+            return $this->error('User aborted!');
         }
 
-        $ids = UsernameChangeHistory::where('timestamp', '>', Carbon::parse('2017/08/09'))
+        $start = time();
+
+        $date = Carbon::parse('2017/08/09');
+        $ids = UsernameChangeHistory::where('timestamp', '>', $date)
             ->distinct()
             ->pluck('user_id');
 
-        $topics = Topic::whereIn('topic_last_poster_id', $ids);
-        $bar = $this->output->createProgressBar($topics->count());
-        Topic::whereIn('topic_last_poster_id', $ids)->chunk(1000, function ($topics) use ($bar) {
+        $userCount = count($ids);
+        $this->warn("{$userCount} users effected");
+
+        // where the user is the topic creator.
+        $this->info('Getting first poster counts...');
+        $topicsFirstPoster = Topic::withTrashed()->whereIn('topic_poster', $ids);
+        $count = $topicsFirstPoster->count();
+        $this->warn("Found {$count}");
+
+        // topics where they posted in - possible last posts.
+        $this->info('Getting possible last poster counts...');
+        $topicIds = Post::withTrashed()->whereIn('poster_id', $ids)->distinct()->pluck('topic_id');
+
+        $count += $topicIds->count();
+        $this->warn("Total {$count}");
+
+        $this->warn((time() - $start).'s to scan.');
+
+        if (!$this->confirm("This will affect an estimated {$count} Topics.")) {
+            return $this->error('User aborted!');
+        }
+
+        $start = time();
+
+        $bar = $this->output->createProgressBar($count);
+
+        $topicsFirstPoster->chunk(1000, function ($topics) use ($bar) {
             foreach ($topics as $topic) {
                 $topic->refreshCache();
                 $bar->advance();
             }
         });
+
+        $this->warn((time() - $start).'s taken.');
+
+        Topic::withTrashed()->whereIn('topic_id', $topicIds)->chunk(1000, function ($topics) use ($bar) {
+            foreach ($topics as $topic) {
+                $topic->refreshCache();
+                $bar->advance();
+            }
+        });
+
+        $this->warn((time() - $start).'s taken.');
 
         $bar->finish();
     }
