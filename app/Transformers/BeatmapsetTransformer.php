@@ -35,6 +35,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
         'converts',
         'description',
+        'recentFavourites',
         'nominations',
         'ratings',
         'user',
@@ -191,5 +192,13 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         return $this->item($beatmapset, function ($beatmapset) {
             return $beatmapset->ratingsCount();
         });
+    }
+
+    public function includeRecentFavourites(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->recentFavourites(),
+            new \App\Transformers\UserCompactTransformer()
+        );
     }
 }

@@ -108,6 +108,20 @@ class Beatmapset extends Model
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
+    public function recentFavourites($limit = 50)
+    {
+        $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('dateadded', 'desc')
+            ->limit($limit)
+            ->get();
+
+        return $favourites->pluck('user');
+    }
+
     public function watches()
     {
         return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
