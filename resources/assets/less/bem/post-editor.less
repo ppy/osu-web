@@ -35,19 +35,6 @@
     }
   }
 
-  &__toolbar {
-    display: flex;
-    flex: 1 0 auto;
-    justify-content: flex-start;
-
-    @media @mobile {
-      justify-content: center;
-      width: 100%; // force container to wrap.
-    }
-
-    margin-bottom: 10px;
-  }
-
   &__footer {
     display: flex;
     flex: 1 0 auto;
@@ -88,5 +75,18 @@
     .beatmapset-description-editor__container & {
       padding: 30px;
     }
+  }
+
+  &__toolbar {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-start;
+
+    @media @mobile {
+      justify-content: center;
+      width: 100%; // force container to wrap.
+    }
+
+    margin-bottom: 10px;
   }
 }
