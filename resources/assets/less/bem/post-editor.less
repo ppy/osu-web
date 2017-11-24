@@ -17,26 +17,10 @@
  */
 
 .post-editor {
-  &--edit {
-    width: 100%;
-    margin-bottom: -20px;
-
-    @media @desktop {
-      margin-bottom: 0;
-    }
-  }
-
   &__action {
-    margin-left: 10px;
     min-width: 120px;
-
-    &--preview {
-      margin-left: 0;
-      margin-right: 10px;
-    }
-
-    &--compact {
-      min-width: 0;
+    & + & {
+      margin-left: 10px;
     }
   }
 
@@ -45,22 +29,37 @@
     justify-content: flex-end;
     flex: 1 0 auto;
 
-    &--preview {
-      justify-content: flex-start;
+    @media @mobile {
+      justify-content: center;
+      width: 100%; // force container to wrap.
     }
+  }
+
+  &__toolbar {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-start;
+
+    @media @mobile {
+      justify-content: center;
+      width: 100%; // force container to wrap.
+    }
+
+    margin-bottom: 10px;
   }
 
   &__footer {
     display: flex;
-    justify-content: space-between;
+    flex: 1 0 auto;
     flex-wrap: wrap;
+    justify-content: space-between;
 
-    margin: 0 -20px;
-    padding: 10px 20px;
+    padding: 10px;
 
     background-color: @gray-lighter;
     background-image: linear-gradient(fade(#000, 30%), transparent 3px);
 
+    // not part of bbcode-editor
     &--profile-page {
       padding: 10px 10px;
       margin: 0 -10px -20px;
@@ -72,44 +71,14 @@
         padding-right: 30px;
       }
     }
-
-    &--large {
-      @media @desktop {
-        @space-left: 20px;
-        margin-left: -@space-left;
-        padding-left: @space-left;
-
-        @space-right: 60px;
-        margin-right: -@space-right;
-        padding-right: @space-right;
-      }
-    }
-  }
-
-  &__main {
-    flex: 1;
-    display: flex;
-    background-color: #fff;
-
-    flex-direction: column;
-    @media @desktop {
-      flex-direction: row;
-    }
-
-    &--reply {
-      padding: 20px;
-    }
   }
 
   &__textarea {
     .reset-input();
+    padding: 10px;
     max-height: ~'calc(100vh - 200px)';
     min-height: 200px;
     width: 100%;
     resize: vertical;
-  }
-
-  &__toolbar {
-    margin-bottom: 10px;
   }
 }

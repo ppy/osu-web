@@ -75,104 +75,102 @@ class @BBCodeEditor extends React.Component
         placeholder: 'blah'
         ref: 'body'
 
-      el 'div', className: 'post-editor__footer post-editor__footer--profile-page',
-        div
-          className: 'post-editor__toolbar',
-          div className: 'post-box-toolbar',
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--bold'
-              onClick: @onInput
-              title: osu.trans('bbcode.bold')
-              type: 'button',
+      el 'div', className: 'post-editor__footer',
+        div className: 'post-editor__toolbar',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--bold'
+            onClick: @onInput
+            title: osu.trans('bbcode.bold')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                strong null, 'B'
+            span className: 'btn-circle__content',
+              strong null, 'B'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--italic'
-              onClick: @onInput
-              title: osu.trans('bbcode.italic')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--italic'
+            onClick: @onInput
+            title: osu.trans('bbcode.italic')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                em null, 'I'
+            span className: 'btn-circle__content',
+              em null, 'I'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough'
-              onClick: @onInput
-              title: osu.trans('bbcode.strikethrough')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough'
+            onClick: @onInput
+            title: osu.trans('bbcode.strikethrough')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                i className: 'fa fa-strikethrough'
+            span className: 'btn-circle__content',
+              i className: 'fa fa-strikethrough'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--heading'
-              onClick: @onInput
-              title: osu.trans('bbcode.heading')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--heading'
+            onClick: @onInput
+            title: osu.trans('bbcode.heading')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                span null, 'H'
+            span className: 'btn-circle__content',
+              span null, 'H'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--link'
-              onClick: @onInput
-              title: osu.trans('bbcode.link')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--link'
+            onClick: @onInput
+            title: osu.trans('bbcode.link')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                i className: 'fa fa-link'
+            span className: 'btn-circle__content',
+              i className: 'fa fa-link'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox'
-              onClick: @onInput
-              title: osu.trans('bbcode.spoilerbox')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox'
+            onClick: @onInput
+            title: osu.trans('bbcode.spoilerbox')
+            type: 'button',
 
-              i className: 'fa fa-barcode'
+            i className: 'fa fa-barcode'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered'
-              onClick: @onInput
-              title: osu.trans('bbcode.list_numbered')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered'
+            onClick: @onInput
+            title: osu.trans('bbcode.list_numbered')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                i className: 'fa fa-list-ol'
+            span className: 'btn-circle__content',
+              i className: 'fa fa-list-ol'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list'
-              onClick: @onInput
-              title: osu.trans('bbcode.list')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list'
+            onClick: @onInput
+            title: osu.trans('bbcode.list')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                i className: 'fa fa-list'
+            span className: 'btn-circle__content',
+              i className: 'fa fa-list'
 
-            button
-              className: 'btn-circle btn-circle--bbcode js-bbcode-btn--image'
-              onClick: @onInput
-              title: osu.trans('bbcode.image')
-              type: 'button',
+          button
+            className: 'btn-circle btn-circle--bbcode js-bbcode-btn--image'
+            onClick: @onInput
+            title: osu.trans('bbcode.image')
+            type: 'button',
 
-              span className: 'btn-circle__content',
-                i className: 'fa fa-image'
+            span className: 'btn-circle__content',
+              i className: 'fa fa-image'
 
-            label
-              className: 'bbcode-size-select'
-              title: osu.trans('bbcode.size._'),
+          label
+            className: 'bbcode-size-select'
+            title: osu.trans('bbcode.size._'),
 
-              span className: "bbcode-size-select__label", osu.trans('bbcode.size._'),
-                i className: "fa fa-chevron-down"
-                select
-                  className: 'bbcode-size-select__select js-bbcode-btn--size'
-                  onChange: @onInput
-                  value: '100',
-                  option value: '50', osu.trans('bbcode.size.tiny')
-                  option value: '85', osu.trans('bbcode.size.small')
-                  option value: '100', osu.trans('bbcode.size.normal')
-                  option value: '150', osu.trans('bbcode.size.large')
+            span className: "bbcode-size-select__label", osu.trans('bbcode.size._'),
+              i className: "fa fa-chevron-down"
+              select
+                className: 'bbcode-size-select__select js-bbcode-btn--size'
+                onChange: @onInput
+                value: '100',
+                option value: '50', osu.trans('bbcode.size.tiny')
+                option value: '85', osu.trans('bbcode.size.small')
+                option value: '100', osu.trans('bbcode.size.normal')
+                option value: '150', osu.trans('bbcode.size.large')
 
         el 'div', className: 'post-editor__actions',
           el 'button',

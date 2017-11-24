@@ -28,22 +28,18 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0 ,0 , 0.5);
+    background-color: rgba(0, 0 ,0 , 0.7);
     z-index: @z-index--overlay;
     user-select: none;
   }
 
   &__container {
+    width: 100vw;
     max-width: 600px;
     background-color: #fff;
-    margin: 0 -10px;
-    padding: 10px 10px 0 10px;
 
     @media @desktop {
-      max-width: 860px; // just wide enough to keep buttons on 1 line.
-      // line up with existing post-box.
-      margin: 0 -30px;
-      padding: 30px 30px 0 30px;
+      max-width: @screen-sm-min + 60px;
     }
   }
 }
