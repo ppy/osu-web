@@ -118,9 +118,12 @@ class FixUsernameChangeTopicCache extends Command
         $topics = Topic::withTrashed()->whereIn('topic_id', $chunk)->get();
         foreach ($topics as $topic) {
             if ($topic->topic_poster) {
-                $username = User::select('username')->find($topic->topic_poster)->username;
-                if ($topic->topic_first_poster_name !== $username) {
-                    $topic->update(['topic_first_poster_name' => $username]);
+                $user = User::withoutGlobalScopes()->select('username')->find($topic->topic_poster);
+                if ($user) {
+                    $username = $user->username;
+                    if ($topic->topic_first_poster_name !== $username) {
+                        $topic->update(['topic_first_poster_name' => $username]);
+                    }
                 }
             }
 
