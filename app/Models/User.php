@@ -193,7 +193,8 @@ class User extends Model implements AuthenticatableContract, Messageable
                 throw new ModelNotSavedException('failed saving model');
             }
 
-            $this->saveOrExplode(['inactive' => $type === 'inactive']);
+            $skipValidations = in_array($type, ['inactive', 'revert'], true);
+            $this->saveOrExplode(['skipValidations' => $skipValidations]);
         });
     }
 
@@ -1428,7 +1429,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function save(array $options = [])
     {
-        if ($options['inactive'] ?? false) {
+        if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }
 
