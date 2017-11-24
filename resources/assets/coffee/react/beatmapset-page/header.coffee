@@ -16,10 +16,39 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, ol, li} = ReactDOMFactories
+{div, span, a, img, ol, li} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Header extends React.Component
+  favouritesToShow: 50
+  showFavourites: (event) =>
+    target = event.currentTarget
+
+    if @props.favcount < 1 || target._tooltip
+      return
+
+    target._tooltip = true
+
+    $(target).qtip
+      style:
+        classes: 'beatmapset-favourites'
+        def: false
+        tip: false
+      content:
+        text: (event, api) => $('.beatmapset-favourites__template').html()
+      position:
+        at: 'right center'
+        my: 'left center'
+        viewport: $(window)
+      show:
+        delay: 100
+        ready: true
+        effect: -> $(this).fadeTo(110, 1)
+      hide:
+        fixed: true
+        delay: 500
+        effect: -> $(this).fadeTo(250, 0)
+
   render: ->
     dateFormat = 'MMM D, YYYY'
     favouriteButton =
@@ -64,12 +93,31 @@ class BeatmapsetPage.Header extends React.Component
                 span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
 
-              span className: 'beatmapset-header__value',
+              span
+                className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
+                onMouseOver: @showFavourites
+                onTouchStart: @showFavourites
                 span className: 'beatmapset-header__value-icon',
                   el Icon, name: 'heart'
                 span className: 'beatmapset-header__value-name',
                   @props.favcount.toLocaleString()
 
+            # this content of this div is used as a template for the on-hover/touch above
+            div
+              className: 'beatmapset-favourites beatmapset-favourites__template'
+              style:
+                display: 'none'
+              @props.beatmapset.recentFavourites.map (user) ->
+                a
+                  href: laroute.route('users.show', user: user.id)
+                  className: 'js-usercard beatmapset-favourites__user'
+                  key: user.id
+                  'data-user-id': user.id
+                  style:
+                    backgroundImage: "url(#{user.avatar_url})"
+              if @props.favcount > @favouritesToShow
+                div className: 'beatmapset-favourites__remainder-count',
+                  osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
             href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title

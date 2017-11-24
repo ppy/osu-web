@@ -99,6 +99,7 @@ class BeatmapsetsController extends Controller
                 'converts.failtimes',
                 'description',
                 'ratings',
+                'recentFavourites',
                 'user',
             ]
         );
