@@ -124,6 +124,8 @@ class FixUsernameChangeTopicCache extends Command
                     if ($topic->topic_first_poster_name !== $username) {
                         $topic->update(['topic_first_poster_name' => $username]);
                     }
+                } else {
+                    $this->warn("topic_poster not found for Topic {$topic->topic_id}");
                 }
             }
 
