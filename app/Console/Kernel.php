@@ -47,6 +47,9 @@ class Kernel extends ConsoleKernel
 
         // moddingv2 kudosu recalculation
         Commands\KudosuRecalculateDiscussionsGrants::class,
+
+        // fix username change fail :D
+        Commands\FixUsernameChangeTopicCache::class,
     ];
 
     /**
