@@ -25,6 +25,7 @@ use App\Models\Forum\Topic;
 use App\Models\User;
 use App\Models\UsernameChangeHistory;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Console\Command;
 
 class FixUsernameChangeTopicCache extends Command
@@ -117,11 +118,21 @@ class FixUsernameChangeTopicCache extends Command
     {
         $topics = Topic::withTrashed()->whereIn('topic_id', $chunk)->get();
         foreach ($topics as $topic) {
-            if ($topic->topic_poster) {
-                $username = User::select('username')->find($topic->topic_poster)->username;
-                if ($topic->topic_first_poster_name !== $username) {
-                    $topic->update(['topic_first_poster_name' => $username]);
+            try {
+                if ($topic->topic_poster) {
+                    $user = User::withoutGlobalScopes()->select('username')->find($topic->topic_poster);
+                    if ($user) {
+                        $username = $user->username;
+                        if ($topic->topic_first_poster_name !== $username) {
+                            $topic->update(['topic_first_poster_name' => $username]);
+                        }
+                    } else {
+                        $this->warn("topic_poster not found for Topic {$topic->topic_id}");
+                    }
                 }
+            } catch (Exception $e) {
+                $this->error("Exception caught, Topic {$topic->topic_id}");
+                $this->error($e->getMessage());
             }
 
             $bar->advance();
