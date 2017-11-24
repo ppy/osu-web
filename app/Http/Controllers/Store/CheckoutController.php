@@ -99,7 +99,7 @@ class CheckoutController extends Controller
 
     private function freeCheckout($checkout)
     {
-        DB::connection('mysql-store')->transaction(function () use ($checkout) {
+        $order = DB::connection('mysql-store')->transaction(function () use ($checkout) {
             try {
                 $order = $checkout->getOrder();
                 $checkout->completeCheckout();
@@ -110,6 +110,8 @@ class CheckoutController extends Controller
             }
 
             event('store.payments.completed.free', new PaymentEvent($order));
+
+            return $order;
         });
 
         return ujs_redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
