@@ -87,10 +87,6 @@ return [
         'post_edit' => [
             'cancel' => '取消',
             'post' => '保存',
-            'zoom' => [
-                'start' => '全屏',
-                'end' => '退出全屏',
-            ],
         ],
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
