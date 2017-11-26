@@ -170,10 +170,6 @@ class BeatmapsetPage.Main extends React.Component
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
-  componentDidUpdate: ->
-    $.publish 'turbolinksDisqusReload'
-
-
   componentWillUnmount: ->
     $.unsubscribe '.beatmapsetPage'
     @scoreboardXhr?.abort()

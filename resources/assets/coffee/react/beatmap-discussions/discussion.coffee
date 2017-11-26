@@ -69,7 +69,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
             ['up', 'down'].map (direction) =>
               div
                 key: direction
-                className: "#{bn}__action hidden-xs"
+                className: "#{bn}__action"
                 @displayVote direction
 
             button
@@ -155,6 +155,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     elementName = if post.system then 'SystemPost' else 'Post'
 
+    canModeratePosts = @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT
+
     el BeatmapDiscussions[elementName],
       key: post.id
       beatmapset: @props.beatmapset
@@ -166,8 +168,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
       canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
-      canBeDeleted: @props.currentUser.isAdmin || @isOwner(post)
-      canBeRestored: @props.currentUser.isAdmin
+      canBeDeleted: canModeratePosts || @isOwner(post)
+      canBeRestored: canModeratePosts
       currentUser: @props.currentUser
 
 
@@ -198,8 +200,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
         div className: "#{tbn}__icons",
           div className: "#{tbn}__icon",
             span
-              className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
-              el Icon, name: BeatmapDiscussionHelper.messageType.icon[@props.discussion.message_type]
+              className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
+              el Icon, name: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",

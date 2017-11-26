@@ -82,6 +82,15 @@ class Order extends Model
         ]);
     }
 
+    public static function scopeWherePaymentTransactionId($query, $transactionId, $provider)
+    {
+        return $query
+            ->whereIn('order_id', Payment::select('order_id')
+                ->where('provider', $provider)
+                ->where('transaction_id', $transactionId)
+                ->where('cancelled', false));
+    }
+
     public function trackingCodes()
     {
         $codes = [];
@@ -199,6 +208,11 @@ class Order extends Model
     public function getTotal()
     {
         return $this->getSubtotal() + $this->shipping;
+    }
+
+    public function isEmpty()
+    {
+        return !$this->items()->exists();
     }
 
     public function isPaidOrDelivered()

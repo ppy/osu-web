@@ -89,10 +89,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancel',
             'post' => 'Save',
-            'zoom' => [
-                'start' => 'Full Screen',
-                'end' => 'Exit Full Screen',
-            ],
         ],
         'post_reply' => 'Post',
         'reply_box_placeholder' => 'Type here to reply',

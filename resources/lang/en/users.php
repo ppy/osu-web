@@ -96,7 +96,21 @@ return [
                 'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
+                'none' => 'None... yet.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'graveyard' => [
+                    'title' => 'Graveyarded Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Pending Beatmaps (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
@@ -143,6 +157,11 @@ return [
                             'give' => 'Received :amount from obtaining votes in modding post of :post',
                             'reset' => 'Lost :amount from losing votes in modding post of :post',
                         ],
+
+                        'recalculate' => [
+                            'give' => 'Received :amount from votes recalculation in modding post of :post',
+                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                        ],
                     ],
 
                     'forum_post' => [
@@ -173,16 +192,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
-                ],
-                'none' => 'None... yet.',
             ],
         ],
         'page' => [

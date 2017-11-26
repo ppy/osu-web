@@ -59,6 +59,26 @@ function es_query_and_words($words)
     return implode(' AND ', $partsEscaped);
 }
 
+/*
+ * Remove some (but not all) elasticsearch reserved characters.
+ * Those characters seem to be ignored anyway even escaped so might as well
+ * just remove them. Note that double quotes are not escaped so they can be
+ * used for "exact" match. As a result, this doesn't always produce
+ * valid query. The execution must be wrapped within a try/catch.
+ *
+ * This also doesn't add keyword (OR/AND). Elasticsearch default is OR.
+ *
+ * Reference: https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html
+ */
+function es_query_escape_with_caveats($query)
+{
+    return str_replace(
+        ['+', '-', '=', '&&', '||', '>', '<', '!', '(', ')', '{', '}', '[', ']', '^', '~', '*', '?', ':', '\\', '/'],
+        [' ', ' ', ' ', '  ', '  ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '  ', ' '],
+        $query
+    );
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -305,17 +325,17 @@ function is_sql_unique_exception($ex)
     );
 }
 
-function js_view($view, $vars = [])
+function js_view($view, $vars = [], $status = 200)
 {
     return response()
-        ->view($view, $vars)
+        ->view($view, $vars, $status)
         ->header('Content-Type', 'application/javascript');
 }
 
-function ujs_redirect($url)
+function ujs_redirect($url, $status = 200)
 {
     if (Request::ajax() && !Request::isMethod('get')) {
-        return js_view('layout.ujs-redirect', ['url' => $url]);
+        return js_view('layout.ujs-redirect', ['url' => $url], $status);
     } else {
         if (Request::header('Turbolinks-Referrer')) {
             Request::session()->put('_turbolinks_location', $url);

@@ -194,7 +194,7 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
-    Route::get('cart', 'StoreController@getCart');
+    Route::get('cart', 'StoreController@getCart')->name('cart');
 
     Route::post('update-cart', 'StoreController@postUpdateCart');
     Route::post('update-address', 'StoreController@postUpdateAddress');
@@ -281,7 +281,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::get('users/{user}/kudosu', '\App\Http\Controllers\UsersController@kudosu');
         //  GET /api/v2/users/:user_id/scores/:type [best, firsts, recent]
         Route::get('users/{user}/scores/{type}', '\App\Http\Controllers\UsersController@scores');
-        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved]
+        //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
         Route::get('users/{user}/beatmapsets/{type}', '\App\Http\Controllers\UsersController@beatmapsets');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');

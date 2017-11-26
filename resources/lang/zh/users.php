@@ -96,7 +96,15 @@ return [
                 'achieved-on' => '达成于 :date',
             ],
             'beatmaps' => [
+                'none' => '暂时没有...',
                 'title' => '谱面',
+
+                'favourite' => [
+                    'title' => '收藏的谱面 (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked 并且得到赞的谱面 (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
@@ -173,16 +181,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => '谱面',
-                'favourite' => [
-                    'title' => '收藏的谱面 (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked 并且得到赞的谱面 (:count)',
-                ],
-                'none' => '暂时没有...',
             ],
         ],
         'page' => [

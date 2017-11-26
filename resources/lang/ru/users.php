@@ -91,7 +91,15 @@ return [
                 'achieved-on' => 'Получено :date',
             ],
             'beatmaps' => [
+                'none' => 'Ничего нет...',
                 'title' => 'Карты',
+
+                'favourite' => [
+                    'title' => 'Любимые карты (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Рейтинговые и одобренные карты (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Нет каких-либо записей. :(',
@@ -167,16 +175,6 @@ return [
                 'pp' => ':amountpp',
                 'title' => 'Рейтинги',
                 'weighted_pp' => 'взвешено: :pp (:percentage)',
-            ],
-            'beatmaps' => [
-                'title' => 'Карты',
-                'favourite' => [
-                    'title' => 'Любимые карты (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Рейтинговые и одобренные карты (:count)',
-                ],
-                'none' => 'Ничего нет...',
             ],
         ],
         'page' => [

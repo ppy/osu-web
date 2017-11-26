@@ -161,7 +161,6 @@ return [
         'approved' => 'Approved',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => '我的',

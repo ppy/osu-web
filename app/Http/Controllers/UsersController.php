@@ -89,7 +89,7 @@ class UsersController extends Controller
     public function checkUsernameExists()
     {
         $username = Request::input('username');
-        $user = User::lookup($username) ?? UserNotFound::instance();
+        $user = User::lookup($username, 'string') ?? UserNotFound::instance();
 
         list($friend, $mutual) = $this->getFriendStatus($user);
 
@@ -165,6 +165,14 @@ class UsersController extends Controller
             case 'ranked_and_approved':
                 return $this->rankedAndApprovedBeatmapsets($this->user, $this->perPage, $this->offset);
 
+            case 'unranked':
+                return $this->unrankedBeatmapsets($this->user, $this->perPage, $this->offset);
+
+            case 'graveyard':
+                $this->parsePaginationParams(2);
+
+                return $this->graveyardBeatmapsets($this->user, $this->perPage, $this->offset);
+
             default:
                 abort(404);
         }
@@ -209,6 +217,8 @@ class UsersController extends Controller
                 'page',
                 'recentActivities',
                 'rankedAndApprovedBeatmapsetCount',
+                'unrankedBeatmapsetCount',
+                'graveyardBeatmapsetCount',
                 'favouriteBeatmapsetCount',
             ]
         );
@@ -244,6 +254,8 @@ class UsersController extends Controller
                 'most_played' => $this->mostPlayedBeatmapsets($user),
                 'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
                 'favourite' => $this->favouriteBeatmapsets($user),
+                'unranked' => $this->unrankedBeatmapsets($user),
+                'graveyard' => $this->graveyardBeatmapsets($user),
             ];
 
             $kudosu = $this->recentKudosu($user);
@@ -354,6 +366,30 @@ class UsersController extends Controller
     {
         return json_collection(
             $user->profileBeatmapsetsFavourite()
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
+            'BeatmapsetCompact',
+            ['beatmaps']
+        );
+    }
+
+    private function unrankedBeatmapsets($user, $perPage = 6, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsUnranked()
+                ->limit($perPage)
+                ->offset($offset)
+                ->get(),
+            'BeatmapsetCompact',
+            ['beatmaps']
+        );
+    }
+
+    private function graveyardBeatmapsets($user, $perPage = 2, $offset = 0)
+    {
+        return json_collection(
+            $user->profileBeatmapsetsGraveyard()
                 ->limit($perPage)
                 ->offset($offset)
                 ->get(),

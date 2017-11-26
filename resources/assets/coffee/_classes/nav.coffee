@@ -18,8 +18,8 @@
 
 class @Nav
   constructor: ->
-    $(document).on 'mouseenter', '.js-nav-popup', @showPopup
-    $(document).on 'mouseleave', '.js-nav-popup', @gracefulHidePopup
+    $(document).on 'mouseenter', '.js-nav-popup', @delayedShowPopup
+    $(document).on 'mouseleave', '.js-nav-popup', @delayedHidePopup
     $(document).on 'click', @hidePopup
 
     $(document).on 'click', '.js-nav-toggle', @toggleMenu
@@ -52,6 +52,11 @@ class @Nav
     (force || !document.body.classList.contains('modal-open')) && @popup[0]?
 
 
+  clearTimeouts: =>
+    Timeout.clear @hideTimeout
+    Timeout.clear @showTimeout
+
+
   currentMode: =>
     @data().currentMode ?= 'default'
 
@@ -64,6 +69,19 @@ class @Nav
     @_data[0].dataset
 
 
+  delayedHidePopup: =>
+    return if @currentMode() == 'user' && !currentUser.id?
+    return if @currentMode() == 'search'
+
+    @clearTimeouts()
+    @hideTimeout = Timeout.set 250, @hidePopup
+
+
+  delayedShowPopup: =>
+    @clearTimeouts()
+    @showTimeout = Timeout.set 250, @showPopup
+
+
   floatPopup: (float) =>
     if float
       @popupContainer[0].style.position = 'fixed'
@@ -71,14 +89,6 @@ class @Nav
       @popupContainer[0].style.width = '100%'
     else
       @popupContainer[0].style.position = ''
-
-
-  gracefulHidePopup: =>
-    return if @currentMode() == 'user' && !currentUser.id?
-    return if @currentMode() == 'search'
-
-    Timeout.clear @hideTimeout
-    @hideTimeout = Timeout.set 250, @hidePopup
 
 
   hidePopup: (e) =>
@@ -93,7 +103,7 @@ class @Nav
 
       return if !hide
 
-    Timeout.clear @hideTimeout
+    @clearTimeouts()
     @hideTimeout = Timeout.set 10, =>
       @showAllMenu false
       $.publish 'nav:popup:hidden'
@@ -144,9 +154,10 @@ class @Nav
   showPopup: =>
     return if !@available()
 
-    Timeout.clear @hideTimeout
-    @showAllMenu true
-    @repositionPopup()
+    @clearTimeouts()
+    @showTimeout = Timeout.set 10, =>
+      @showAllMenu true
+      @repositionPopup()
 
 
   switchMode: (e) =>

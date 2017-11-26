@@ -200,6 +200,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
 
+        if @props.type == 'discussion' && @props.discussion.kudosu_denied
+          span
+            className: "#{bn}__info #{bn}__info--edited"
+            osu.trans('beatmaps.discussions.kudosu_denied')
+
       div
         className: "#{bn}__actions"
         div
@@ -235,7 +240,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
               'data-confirm': osu.trans('common.confirmation')
               osu.trans('beatmaps.discussions.restore')
 
-          if @props.type == 'discussion' && @props.currentUser.isAdmin
+          if @props.type == 'discussion' && @props.discussion.can_grant_kudosu && @props.discussion.current_user_attributes?.can_moderate_kudosu
             if @props.discussion.kudosu_denied
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"

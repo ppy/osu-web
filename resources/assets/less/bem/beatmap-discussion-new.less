@@ -24,7 +24,6 @@
   display: flex;
   background-color: #fff;
   flex-direction: column;
-  margin-bottom: 10px;
 
   &__avatar {
     flex: none;
@@ -57,8 +56,8 @@
     .default-border-radius();
 
     &--right {
-      flex: 1;
       justify-content: flex-end;
+      flex: 1 0 auto;
     }
   }
 
@@ -77,6 +76,11 @@
     width: 100%;
 
     flex: 1 0 auto;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
   }
 
   &__notice {

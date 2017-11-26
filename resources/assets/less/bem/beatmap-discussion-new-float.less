@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,13 +16,45 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+.beatmap-discussion-new-float {
+  .bg() {
+    .at2x('/images/backgrounds/page-ddd.png');
 
-class ModQueue extends Model
-{
-    protected $table = 'osu_mod_queue';
-    protected $primaryKey = 'mod_queue_id';
+    &::before {
+      .full-size();
+      background-color: fade(#000, 75%);
+    }
+  }
 
-    public $timestamps = false;
-    public $dates = ['timestamp'];
+  @top: beatmap-discussion-new-float;
+  .bg();
+  // counter the padding from parent
+  margin-top: -10px;
+  margin-bottom: 10px;
+  pointer-events: none;
+
+  &__content {
+    .bg();
+    padding-top: 10px;
+    pointer-events: initial;
+  }
+
+  &__floatable {
+    .own-layer();
+    width: 100%;
+
+    .@{top}--floating & {
+      position: fixed;
+      z-index: @z-index--fixed-bar;
+      top: 0;
+    }
+  }
+
+  &__spacer {
+    display: none;
+
+    .@{top}--floating & {
+      display: block;
+    }
+  }
 }

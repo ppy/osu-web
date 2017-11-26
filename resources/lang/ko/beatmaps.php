@@ -160,7 +160,6 @@ return [
         'approved' => 'Approved', // 공인됨
         'loved' => 'Loved',
         'faves' => '즐겨찾기',
-        'modreqs' => '모딩 요청',
         'pending' => 'Pending', // 보류됨
         'graveyard' => 'Graveyard', // 사장됨
         'my-maps' => '내 비트맵',

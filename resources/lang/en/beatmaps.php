@@ -34,10 +34,11 @@ return [
     'discussions' => [
         'allow_kudosu' => 'allow kudosu',
         'delete' => 'delete',
-        'deleted' => 'Deleted by :editor :delete_time',
+        'deleted' => 'Deleted by :editor :delete_time.',
         'deny_kudosu' => 'deny kudosu',
         'edit' => 'edit',
-        'edited' => 'Last edited by :editor :update_time',
+        'edited' => 'Last edited by :editor :update_time.',
+        'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder' => 'Type here to post',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to submit.',
@@ -63,6 +64,7 @@ return [
         ],
 
         'message_type' => [
+            'mapper_note' => 'Note',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -87,6 +89,7 @@ return [
 
         'stats' => [
             'deleted' => 'Deleted',
+            'mapper_notes' => 'Notes',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
@@ -159,9 +162,9 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',

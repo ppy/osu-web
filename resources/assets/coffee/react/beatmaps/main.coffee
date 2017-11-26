@@ -221,7 +221,7 @@ class Beatmaps.Main extends React.PureComponent
 
     if @state.filters.status != newFilters.status
       newFilters.sort =
-        if newFilters.status in [3, 4, 5]
+        if newFilters.status in [4, 5]
           'updated_desc'
         else
           'ranked_desc'

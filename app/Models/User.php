@@ -179,11 +179,10 @@ class User extends Model implements AuthenticatableContract, Messageable
             Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
             // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
             Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+            Forum\Topic::where('topic_poster', $this->user_id)
+                ->update(['topic_first_poster_name' => $newUsername]);
             Forum\Topic::where('topic_last_poster_id', $this->user_id)
-                ->update([
-                    'topic_first_poster_name' => $newUsername,
-                    'topic_last_poster_name' => $newUsername,
-                ]);
+                ->update(['topic_last_poster_name' => $newUsername]);
 
             $history = new UsernameChangeHistory();
             $history->username = $newUsername;
@@ -194,7 +193,8 @@ class User extends Model implements AuthenticatableContract, Messageable
                 throw new ModelNotSavedException('failed saving model');
             }
 
-            $this->saveOrExplode(['inactive' => $type === 'inactive']);
+            $skipValidations = in_array($type, ['inactive', 'revert'], true);
+            $this->saveOrExplode(['skipValidations' => $skipValidations]);
         });
     }
 
@@ -319,7 +319,8 @@ class User extends Model implements AuthenticatableContract, Messageable
             'total' => $total,
             'over_limit' => $overLimit,
             'data' => $query
-                ->orderBy('user_id', 'ASC')
+                ->orderByRaw('LENGTH(username)')
+                ->orderBy('user_id')
                 ->limit($limit)
                 ->offset($offset)
                 ->get(),
@@ -362,12 +363,11 @@ class User extends Model implements AuthenticatableContract, Messageable
                 break;
 
             default:
-                if (is_numeric($username_or_id)) {
-                    $user = self::where('user_id', $username_or_id);
-                } else {
-                    $user = self::where('username', $username_or_id)->orWhere('username_clean', '=', $username_or_id);
+                if (ctype_digit((string) $username_or_id)) {
+                    $user = static::lookup($username_or_id, 'id', $find_all);
                 }
-                break;
+
+                return $user ?? static::lookup($username_or_id, 'string', $find_all);
         }
 
         if (!$find_all) {
@@ -1325,6 +1325,20 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->with('beatmaps');
     }
 
+    public function profileBeatmapsetsUnranked()
+    {
+        return $this->beatmapsets()
+            ->unranked()
+            ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetsGraveyard()
+    {
+        return $this->beatmapsets()
+            ->graveyard()
+            ->with('beatmaps');
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -1415,7 +1429,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function save(array $options = [])
     {
-        if ($options['inactive'] ?? false) {
+        if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }
 

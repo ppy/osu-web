@@ -28,6 +28,7 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
+use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
 use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
@@ -82,7 +83,8 @@ class Beatmapset extends Model
     ];
 
     const NOMINATIONS_PER_DAY = 3;
-    const QUALIFICATIONS_PER_DAY = 6;
+    const RANKED_PER_DAY = 8;
+    const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     /*
@@ -104,6 +106,20 @@ class Beatmapset extends Model
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
+    }
+
+    public function recentFavourites($limit = 50)
+    {
+        $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('dateadded', 'desc')
+            ->limit($limit)
+            ->get();
+
+        return $favourites->pluck('user');
     }
 
     public function watches()
@@ -186,7 +202,7 @@ class Beatmapset extends Model
 
     public function scopeUnranked($query)
     {
-        return $query->where('approved', '=', self::STATES['pending']);
+        return $query->whereIn('approved', [static::STATES['pending'], static::STATES['wip']]);
     }
 
     public function scopeRanked($query)
@@ -336,7 +352,7 @@ class Beatmapset extends Model
         }
 
         if (present($params['query'])) {
-            $query = es_query_and_words($params['query']);
+            $query = es_query_escape_with_caveats($params['query']);
             $matchParams[] = ['query_string' => ['query' => $query]];
         }
 
@@ -385,10 +401,10 @@ class Beatmapset extends Model
                 $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
-            case 3: // Mod Requests
-                $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
+            case 3: // Qualified
+                $shouldParams[] = [
+                    ['match' => ['approved' => self::STATES['qualified']]],
+                ];
                 break;
             case 4: // Pending
                 $shouldParams[] = [
@@ -422,7 +438,15 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        $results = Es::search($searchParams);
+        try {
+            $results = Es::search($searchParams);
+        } catch (ElasticsearchBadRequest $e) {
+            $results = ['hits' => [
+                'hits' => [],
+                'total' => 0,
+            ]];
+        }
+
         $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
@@ -773,6 +797,9 @@ class Beatmapset extends Model
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+
+            // global event
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
         });
 
         return true;
@@ -875,9 +902,12 @@ class Beatmapset extends Model
         }
 
         $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
-        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+        $days = ceil($queueSize / static::RANKED_PER_DAY);
 
-        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
+        $days = max($minDays, $days);
+
+        return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
     public function recentEvents()

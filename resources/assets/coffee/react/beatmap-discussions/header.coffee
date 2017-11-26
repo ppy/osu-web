@@ -117,10 +117,10 @@ class BeatmapDiscussions.Header extends React.PureComponent
   stats: =>
     bn = 'counter-box'
 
-    for type in ['mine', 'resolved', 'pending', 'praises', 'deleted', 'total']
+    for type in ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total']
       continue if type == 'deleted' && !@props.currentUser.isAdmin
 
-      topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"
+      topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{_.kebabCase(type)}"
       topClasses += ' js-active' if @props.mode != 'events' && @props.currentFilter == type
 
       total = 0
@@ -138,7 +138,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
           className: "#{bn}__content"
           div
             className: "#{bn}__title"
-            osu.trans("beatmaps.discussions.stats.#{type}")
+            osu.trans("beatmaps.discussions.stats.#{_.snakeCase(type)}")
           div
             className: "#{bn}__count"
             total
