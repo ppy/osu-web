@@ -165,16 +165,16 @@ class @BBCodeEditor extends React.Component
             className: 'bbcode-size-select'
             title: osu.trans('bbcode.size._'),
 
-            span className: "bbcode-size-select__label", osu.trans('bbcode.size._'),
-              i className: "fa fa-chevron-down"
-              select
-                className: 'bbcode-size-select__select js-bbcode-btn--size'
-                onChange: @onInput
-                value: '100',
-                option value: '50', osu.trans('bbcode.size.tiny')
-                option value: '85', osu.trans('bbcode.size.small')
-                option value: '100', osu.trans('bbcode.size.normal')
-                option value: '150', osu.trans('bbcode.size.large')
+            span className: "bbcode-size-select__label", osu.trans('bbcode.size._')
+            i className: "fa fa-chevron-down"
+            select
+              className: 'bbcode-size-select__select js-bbcode-btn--size'
+              onChange: @onInput
+              value: '100',
+              option value: '50', osu.trans('bbcode.size.tiny')
+              option value: '85', osu.trans('bbcode.size.small')
+              option value: '100', osu.trans('bbcode.size.normal')
+              option value: '150', osu.trans('bbcode.size.large')
 
         el 'div', className: 'post-editor__actions',
           el 'button',
