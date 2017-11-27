@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
@@ -1069,7 +1070,7 @@ class Beatmapset extends Model
             'ignoreLineHeight' => true,
         ];
 
-        return new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options);
+        return new BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
     private function getPost()
