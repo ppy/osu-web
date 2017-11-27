@@ -21,7 +21,7 @@
 ])
 
 @section("content")
-    <div class="js-react--beatmapset-page"></div>
+    <div class="js-react--beatmapset-page osu-layout osu-layout--full"></div>
 @endsection
 
 @section("script")
