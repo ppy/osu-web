@@ -91,6 +91,16 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
                   osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
+            if !@props.discussion.resolved
+              div className: "#{bn}__action",
+                el BigButton,
+                  text: osu.trans('common.buttons.reply_resolve')
+                  icon: if @state.posting then 'ellipsis-h' else 'reply'
+                  props:
+                    'data-action': 'resolve'
+                    disabled: !@validPost() || @state.posting?
+                    onClick: @throttledPost
+
             div className: "#{bn}__action",
               el BigButton,
                 text: osu.trans('common.buttons.reply')
@@ -127,19 +137,20 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
-  post: =>
+  post: (event) =>
     return if !@validPost()
     LoadingOverlay.show()
 
     @postXhr?.abort()
     @setState posting: true
+    dataset = event.currentTarget.dataset
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id
         beatmap_discussion:
-          resolved: @state.resolveDiscussion
+          resolved: dataset.action == 'resolve' || @state.resolveDiscussion
         beatmap_discussion_post:
           message: @state.message
 

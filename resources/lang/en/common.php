@@ -34,6 +34,7 @@ return [
         'permalink' => 'permalink',
         'post' => 'Post',
         'reply' => 'Reply',
+        'reply_resolve' => 'Reply and Resolve',
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
