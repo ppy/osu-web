@@ -244,6 +244,7 @@ class BeatmapsetsController extends Controller
 
         if ($beatmapset->updateDescription($description, Auth::user())) {
             $beatmapset->refresh();
+
             return json_item(
                 $beatmapset,
                 new BeatmapsetTransformer(),

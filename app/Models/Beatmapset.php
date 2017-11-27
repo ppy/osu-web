@@ -1069,7 +1069,7 @@ class Beatmapset extends Model
             'ignoreLineHeight' => true,
         ];
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options));
+        return new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options);
     }
 
     private function getPost()
