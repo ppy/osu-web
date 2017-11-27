@@ -21,14 +21,14 @@
 
   .default-box-shadow();
   background-color: #fff;
-  padding: 20px 10px;
+  padding: 20px @page-extra-side-padding--small;
   margin-bottom: 10px;
 
   font-size: 14px;
 
   @media @desktop {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: @page-extra-side-padding--large;
+    padding-right: @page-extra-side-padding--large;
   }
 
   &--compact {
