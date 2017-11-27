@@ -46,6 +46,11 @@ class Page
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
     }
 
+    public static function cleanupPath($path)
+    {
+        return strtolower(str_replace(['-', '/', '_'], ' ', $path));
+    }
+
     public static function search($rawParams, $locale = null)
     {
         $locale ?? ($locale = config('app.fallback_locale'));
@@ -148,6 +153,38 @@ class Page
         return $params;
     }
 
+    public static function searchPath($path, $locale)
+    {
+        $searchPath = static::cleanupPath($path);
+
+        $params = static::searchIndexConfig();
+        $params['size'] = 10;
+        $params['body']['query']['bool']['must'][] = [
+            'match' => [
+                'path_clean' => es_query_and_words($searchPath),
+            ],
+        ];
+        $params['body']['query']['bool']['must'][] = [
+            'match' => [
+                'locale' => $locale,
+            ],
+        ];
+
+        $results = Es::search($params)['hits']['hits'];
+
+        if (count($results) === 0) {
+            return;
+        }
+
+        foreach ($results as $result) {
+            $resultPath = static::cleanupPath($result['_source']['path']);
+
+            if ($resultPath === $searchPath) {
+                return $result['_source']['path'];
+            }
+        }
+    }
+
     public function __construct($path, $locale, $esCache = null)
     {
         if ($esCache !== null) {
@@ -184,7 +221,7 @@ class Page
             'body' => [
                 'locale' => $this->locale,
                 'path' => $this->path,
-                'path_clean' => str_replace(['-', '/', '_'], ' ', $this->path),
+                'path_clean' => static::cleanupPath($this->path),
                 'title' => $page['header']['title'],
                 'page_text' => strip_tags($page['output']),
                 'page' => $page,
