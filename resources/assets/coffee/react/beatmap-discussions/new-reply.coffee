@@ -194,7 +194,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     return if e.keyCode != 13
 
     e.preventDefault()
-    @throttledPost()
+    @throttledPost(e)
 
 
   toggleResolveDiscussion: (e) =>
