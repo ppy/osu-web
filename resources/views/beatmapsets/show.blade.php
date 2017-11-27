@@ -22,11 +22,6 @@
 
 @section("content")
     <div class="js-react--beatmapset-page"></div>
-    {{--
-        this should content a server side react.js render which doesn't exist in hhvm
-        because the only library for it, which is experimental, requires PHP extension
-        which isn't supported by hhvm (v8js).
-    --}}
 @endsection
 
 @section("script")
