@@ -92,34 +92,19 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
                   osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
             if @canResolve() && !@props.discussion.resolved
-              div className: "#{bn}__action",
-                el BigButton,
-                  text: osu.trans('common.buttons.reply_resolve')
-                  icon: if @state.posting then 'ellipsis-h' else 'reply'
-                  props:
-                    'data-action': 'resolve'
-                    disabled: !@validPost() || @state.posting?
-                    onClick: @throttledPost
+              @renderReplyButton
+                text: osu.trans('common.buttons.reply_resolve')
+                extraProps:
+                  'data-action': 'resolve'
 
             if @canResolve() && @props.discussion.resolved
-              div className: "#{bn}__action",
-                el BigButton,
-                  text: osu.trans('common.buttons.reply_reopen')
-                  icon: if @state.posting then 'ellipsis-h' else 'reply'
-                  props:
-                    'data-action': 'reopen'
-                    disabled: !@validPost() || @state.posting?
-                    onClick: @throttledPost
+              @renderReplyButton
+                text: osu.trans('common.buttons.reply_reopen')
+                extraProps:
+                  'data-action': 'reopen'
 
-            div className: "#{bn}__action",
-              el BigButton,
-                text: osu.trans('common.buttons.reply')
-                # wobbles if using spinner
-                icon: if @state.posting then 'ellipsis-h' else 'reply'
-                props:
-                  disabled: !@validPost() || @state.posting?
-                  onClick: @throttledPost
-
+            @renderReplyButton
+              text: osu.trans('common.buttons.reply')
 
   renderPlaceholder: =>
     [text, icon] =
@@ -136,6 +121,20 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         modifiers: ['beatmap-discussion-reply-open']
         props:
           onClick: @editStart
+
+
+  renderReplyButton: ({ text, extraProps = {} }) =>
+    props = _.extend
+      disabled: !@validPost() || @state.posting?
+      onClick: @throttledPost,
+      extraProps
+
+    div className: "#{bn}__action",
+      el BigButton,
+        text: text
+        # wobbles if using spinner
+        icon: if @state.posting then 'ellipsis-h' else 'reply'
+        props: props
 
 
   canResolve: =>
