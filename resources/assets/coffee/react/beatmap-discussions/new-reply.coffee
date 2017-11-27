@@ -75,7 +75,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
+            if @canResolve()
               div className: "#{bn}__action",
                 label
                   className: 'osu-checkbox'
@@ -91,7 +91,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
                   osu.trans('beatmaps.discussions.resolved')
           div className: "#{bn}__actions-group",
-            if !@props.discussion.resolved
+            if @canResolve() && !@props.discussion.resolved
               div className: "#{bn}__action",
                 el BigButton,
                   text: osu.trans('common.buttons.reply_resolve')
@@ -126,6 +126,10 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         modifiers: ['beatmap-discussion-reply-open']
         props:
           onClick: @editStart
+
+
+  canResolve: =>
+    @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
 
 
   editStart: =>
