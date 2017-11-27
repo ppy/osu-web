@@ -176,6 +176,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @setState
         message: ''
         editing: false
+        resolveDiscussion: resolved
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
       $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
