@@ -40,6 +40,10 @@ class BeatmapsetPage.Info extends React.Component
     $(window).off '.beatmapsetPageInfo'
 
 
+  dismissEditor: (e) =>
+    @setState isEditing: false if e.target == @refs.overlay
+
+
   editStart: =>
     @setState isEditing: true
 
@@ -114,7 +118,10 @@ class BeatmapsetPage.Info extends React.Component
     div className: 'beatmapset-info',
       if @state.isEditing
         div className: 'beatmapset-description-editor',
-          div className: 'beatmapset-description-editor__overlay',
+          div
+            className: 'beatmapset-description-editor__overlay'
+            onClick: @dismissEditor
+            ref: 'overlay',
             div className: 'beatmapset-description-editor__container',
               el BBCodeEditor,
                 disabled: @state.isBusy
