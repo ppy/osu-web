@@ -41,6 +41,10 @@ class @BBCodeEditor extends React.Component
       range: [@refs.body.selectionStart, @refs.body.selectionEnd]
 
 
+  onKeyDown: (e) =>
+    e.keyCode == 27 && @_cancel()
+
+
   onInput: (_e) =>
     @setState rawValue: @refs.body.value
 
@@ -65,13 +69,14 @@ class @BBCodeEditor extends React.Component
         hasChanged: @state.rawValue != @props.rawValue
 
 
-  render: =>
+  render: ->
     el 'form', className: 'post-editor',
       el 'textarea',
         className: 'post-editor__textarea'
         name: 'body'
         value: @state.rawValue
         onChange: @onInput # binds to oninput, not onchange
+        onKeyDown: @onKeyDown
         placeholder: 'blah'
         ref: 'body'
 
