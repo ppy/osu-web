@@ -77,7 +77,6 @@ class @BBCodeEditor extends React.Component
         value: @state.rawValue
         onChange: @onInput # binds to oninput, not onchange
         onKeyDown: @onKeyDown
-        placeholder: 'blah'
         ref: 'body'
 
       el 'div', className: 'post-editor__footer',
