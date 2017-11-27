@@ -30,15 +30,15 @@ class @BBCodeEditor extends React.Component
 
   componentDidMount: =>
     if @props.selection?.range
-      @refs.body.selectionStart = @props.selection.range[0]
-      @refs.body.selectionEnd = @props.selection.range[1]
+      @body.selectionStart = @props.selection.range[0]
+      @body.selectionEnd = @props.selection.range[1]
 
-    @refs.body.focus()
+    @body.focus()
 
 
   componentWillUnmount: =>
     @props.onSelectionUpdate && @props.onSelectionUpdate
-      range: [@refs.body.selectionStart, @refs.body.selectionEnd]
+      range: [@body.selectionStart, @body.selectionEnd]
 
 
   onKeyDown: (e) =>
@@ -46,17 +46,17 @@ class @BBCodeEditor extends React.Component
 
 
   onInput: (_e) =>
-    @setState rawValue: @refs.body.value
+    @setState rawValue: @body.value
 
 
   _cancel: =>
-    @refs.body.value = @props.rawValue
+    @body.value = @props.rawValue
     @setState rawValue: @props.rawValue
     @props.onChange(type: 'cancel', value: @props.rawValue) if @props.onChange
 
 
   _reset: =>
-    @refs.body.value = @props.rawValue
+    @body.value = @props.rawValue
     @setState rawValue: @props.rawValue
     @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
 
@@ -77,7 +77,8 @@ class @BBCodeEditor extends React.Component
         value: @state.rawValue
         onChange: @onInput # binds to oninput, not onchange
         onKeyDown: @onKeyDown
-        ref: 'body'
+        ref: (element) =>
+          @body = element
 
       el 'div', className: 'post-editor__footer',
         div className: 'post-editor__toolbar',
