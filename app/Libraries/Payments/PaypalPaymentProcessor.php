@@ -144,12 +144,20 @@ class PaypalPaymentProcessor extends PaymentProcessor
     protected function getOrder()
     {
         if (!isset($this->order)) {
-            // Use paypal's parent transaction ID for refunds,
+            // Order number can come from anywhere when paypal is involved /tableflip.
+            // Attempt to find order number, else fallback to paypal's parent transaction ID for refunds,
             //  since the IPN might not include the invoice id.
             if ($this->getNotificationType() === NotificationType::REFUND) {
-                $order = Order::withPayments()
-                    ->wherePaymentTransactionId($this['parent_txn_id'], 'paypal')
-                    ->first();
+                $orderNumber = $this->getOrderNumber() ?? $this['item_number1'];
+                if ($orderNumber === null) {
+                    $order = Order::withPayments()
+                        ->wherePaymentTransactionId($this['parent_txn_id'], 'paypal')
+                        ->first();
+                } else {
+                    $order = Order::withPayments()
+                        ->whereOrderNumber($orderNumber)
+                        ->first();
+                }
             } else {
                 $order = Order::withPayments()
                     ->whereOrderNumber($this->getOrderNumber())
