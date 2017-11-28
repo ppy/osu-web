@@ -75,22 +75,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @canResolve()
-              div className: "#{bn}__action",
-                label
-                  className: 'osu-checkbox'
-                  input
-                    className: 'osu-checkbox__input'
-                    type: 'checkbox'
-                    checked: @state.resolveDiscussion
-                    onChange: @toggleResolveDiscussion
-                    disabled: @state.posting?
-
-                  span className: 'osu-checkbox__tick',
-                    el Icon, name: 'check'
-
-                  osu.trans('beatmaps.discussions.resolved')
-          div className: "#{bn}__actions-group",
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_resolve')
