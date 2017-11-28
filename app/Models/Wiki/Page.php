@@ -202,6 +202,11 @@ class Page
         }
     }
 
+    public function isOutdated()
+    {
+        return $this->page()['header']['outdated'] ?? false;
+    }
+
     public function page()
     {
         if (!array_key_exists('page', $this->cache)) {
