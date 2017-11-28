@@ -141,9 +141,6 @@ class Page
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
         $params['locale'] = $params['locale'] ?? null;
-        $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
-        $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int');
-        $params['topic_id'] = get_int($params['topic_id'] ?? null);
 
         return $params;
     }
@@ -203,6 +200,11 @@ class Page
         } catch (Missing404Exception $_e) {
             // do nothing
         }
+    }
+
+    public function isOutdated()
+    {
+        return $this->page()['header']['outdated'] ?? false;
     }
 
     public function page()
