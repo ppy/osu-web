@@ -24,6 +24,8 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => '啊哦，你的购物车中存在问题！',
+        'cart_problems_edit' => '点击此处以编辑。',
         'declined' => '支付被取消。',
         'error' => '结账时出现错误 :(',
         'pay' => '使用 Paypal 支付',

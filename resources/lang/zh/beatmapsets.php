@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => '收藏这张谱面',
             'unfavourite' => '取消收藏',
+            'favourited_count' => '还有很多人...',
         ],
         'stats' => [
             'cs' => '缩圈大小',
