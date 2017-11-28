@@ -31,5 +31,10 @@ return [
             'link' => 'Show on GitHub',
             'refresh' => 'Refresh',
         ],
+
+        'outdated' => [
+            '_' => 'This page is outdated. Check :default for latest update and perhaps help translating it!',
+            'default' => 'English version',
+        ],
     ],
 ];
