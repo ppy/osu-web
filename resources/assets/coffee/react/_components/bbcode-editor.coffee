@@ -68,6 +68,7 @@ class @BBCodeEditor extends React.Component
         className: 'post-editor__textarea'
         name: 'body'
         defaultValue: @props.rawValue
+        disabled: @props.disabled
         onKeyDown: @onKeyDown
         ref: (element) =>
           @body = element
@@ -76,6 +77,7 @@ class @BBCodeEditor extends React.Component
         div className: 'post-editor__toolbar',
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--bold'
+            disabled: @props.disabled
             title: osu.trans('bbcode.bold')
             type: 'button',
 
@@ -84,6 +86,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--italic'
+            disabled: @props.disabled
             title: osu.trans('bbcode.italic')
             type: 'button',
 
@@ -92,6 +95,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough'
+            disabled: @props.disabled
             title: osu.trans('bbcode.strikethrough')
             type: 'button',
 
@@ -100,6 +104,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--heading'
+            disabled: @props.disabled
             title: osu.trans('bbcode.heading')
             type: 'button',
 
@@ -108,6 +113,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--link'
+            disabled: @props.disabled
             title: osu.trans('bbcode.link')
             type: 'button',
 
@@ -116,6 +122,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox'
+            disabled: @props.disabled
             title: osu.trans('bbcode.spoilerbox')
             type: 'button',
 
@@ -123,6 +130,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered'
+            disabled: @props.disabled
             title: osu.trans('bbcode.list_numbered')
             type: 'button',
 
@@ -131,6 +139,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list'
+            disabled: @props.disabled
             title: osu.trans('bbcode.list')
             type: 'button',
 
@@ -139,6 +148,7 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--image'
+            disabled: @props.disabled
             title: osu.trans('bbcode.image')
             type: 'button',
 
@@ -153,6 +163,7 @@ class @BBCodeEditor extends React.Component
             i className: "fa fa-chevron-down"
             select
               className: 'bbcode-size-select__select js-bbcode-btn--size'
+              disabled: @props.disabled
               defaultValue: '100',
               option value: '50', osu.trans('bbcode.size.tiny')
               option value: '85', osu.trans('bbcode.size.small')
