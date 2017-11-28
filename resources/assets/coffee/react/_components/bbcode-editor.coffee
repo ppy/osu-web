@@ -28,8 +28,7 @@ class @BBCodeEditor extends React.Component
 
 
   componentWillUnmount: =>
-    @props.onSelectionUpdate && @props.onSelectionUpdate
-      range: [@body.selectionStart, @body.selectionEnd]
+    @props.onSelectionUpdate?(range: [@body.selectionStart, @body.selectionEnd])
 
 
   onKeyDown: (e) =>
@@ -38,21 +37,21 @@ class @BBCodeEditor extends React.Component
 
   _cancel: =>
     @body.value = @props.rawValue
-    @props.onChange(type: 'cancel', value: @props.rawValue) if @props.onChange
+    @props.onChange?(type: 'cancel', value: @props.rawValue)
 
 
   _reset: =>
     @body.value = @props.rawValue
-    @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
+    @props.onChange?(type: 'reset', value: @props.rawValue)
     @body.focus()
 
 
   _save: =>
-    if @props.onChange
-      @props.onChange
-        type: 'save'
-        value: @body.value
-        hasChanged: @body.value != @props.rawValue
+    @props.onChange?(
+      type: 'save'
+      value: @body.value
+      hasChanged: @body.value != @props.rawValue
+    )
 
 
   render: ->
@@ -63,8 +62,7 @@ class @BBCodeEditor extends React.Component
         defaultValue: @props.rawValue
         disabled: @props.disabled
         onKeyDown: @onKeyDown
-        ref: (element) =>
-          @body = element
+        ref: (element) => @body = element
 
       div className: 'post-editor__footer',
         div className: 'post-editor__toolbar',
