@@ -33,7 +33,7 @@ return [
         ],
 
         'outdated' => [
-            '_' => 'This page is outdated. Check :default for latest update and perhaps help translating it!',
+            '_' => 'This page contains an outdated translation of the original content. Please check the :default for the most accurate information (and consider updating the translation if you are able to help out)!',
             'default' => 'English version',
         ],
     ],
