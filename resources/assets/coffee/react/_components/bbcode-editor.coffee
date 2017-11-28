@@ -16,8 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, em, i, label, option, select, span, strong} = ReactDOMFactories
-el = React.createElement
+{button, div, em, form, i, label, option, select, span, strong, textarea} = ReactDOMFactories
 
 class @BBCodeEditor extends React.Component
   componentDidMount: =>
@@ -57,8 +56,8 @@ class @BBCodeEditor extends React.Component
 
 
   render: ->
-    el 'form', className: 'post-editor',
-      el 'textarea',
+    form className: 'post-editor',
+      textarea
         className: 'post-editor__textarea'
         name: 'body'
         defaultValue: @props.rawValue
@@ -67,7 +66,7 @@ class @BBCodeEditor extends React.Component
         ref: (element) =>
           @body = element
 
-      el 'div', className: 'post-editor__footer',
+      div className: 'post-editor__footer',
         div className: 'post-editor__toolbar',
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--bold'
@@ -164,22 +163,22 @@ class @BBCodeEditor extends React.Component
               option value: '100', osu.trans('bbcode.size.normal')
               option value: '150', osu.trans('bbcode.size.large')
 
-        el 'div', className: 'post-editor__actions',
-          el 'button',
+        div className: 'post-editor__actions',
+          button
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
             disabled: @props.disabled
             type: 'button'
             onClick: @_cancel
             osu.trans('common.buttons.cancel')
 
-          el 'button',
+          button
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
             disabled: @props.disabled
             type: 'button'
             onClick: @_reset
             osu.trans('common.buttons.reset')
 
-          el 'button',
+          button
             className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
             disabled: @props.disabled
             type: 'button'
