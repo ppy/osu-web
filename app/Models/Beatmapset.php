@@ -1026,7 +1026,7 @@ class Beatmapset extends Model
             return;
         }
 
-        $split = preg_split('[-{15}]', $post->post_text, 2);
+        $split = preg_split('/-{15}/', $post->post_text, 2);
 
         return $post->edit($split[0]."---------------\n".ltrim($bbcode), $user);
     }
@@ -1046,9 +1046,9 @@ class Beatmapset extends Model
     private function extractDescription($post)
     {
         // Any description (after the first match) that matches
-        // '[-{15}]' within its body doesn't get split anymore,
+        // '/-{15}/' within its body doesn't get split anymore,
         // and gets stored in $split[1] anyways
-        $split = preg_split('[-{15}]', $post->post_text, 2);
+        $split = preg_split('/-{15}/', $post->post_text, 2);
 
         // Return empty description if the pattern was not found
         // (mostly older beatmapsets)
