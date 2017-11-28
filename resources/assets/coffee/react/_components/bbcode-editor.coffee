@@ -52,7 +52,7 @@ class @BBCodeEditor extends React.Component
   _reset: =>
     @body.value = @props.rawValue
     @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
-
+    @body.focus()
 
   _save: =>
     if @props.onChange
