@@ -171,7 +171,7 @@ class ProfilePage.Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: ProfilePage.Historical
 
-    div className: 'osu-layout__section',
+    div className: 'osu-layout osu-layout--full',
       el ProfilePage.Header,
         user: @state.user
         stats: @props.statistics
