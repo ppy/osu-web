@@ -94,17 +94,20 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_resolve')
+                icon: 'check'
                 extraProps:
                   'data-action': 'resolve'
 
             if @canResolve() && @props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_reopen')
+                icon: 'exclamation'
                 extraProps:
                   'data-action': 'reopen'
 
             @renderReplyButton
               text: osu.trans('common.buttons.reply')
+              icon: 'reply'
 
   renderPlaceholder: =>
     [text, icon] =
@@ -123,7 +126,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           onClick: @editStart
 
 
-  renderReplyButton: ({ text, extraProps = {} }) =>
+  renderReplyButton: ({ text, icon, extraProps = {} }) =>
     props = _.extend
       disabled: !@validPost() || @state.posting?
       onClick: @throttledPost,
@@ -133,7 +136,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       el BigButton,
         text: text
         # wobbles if using spinner
-        icon: if @state.posting then 'ellipsis-h' else 'reply'
+        icon: if @state.posting then 'ellipsis-h' else icon
         props: props
 
 
