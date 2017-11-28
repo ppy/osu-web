@@ -25,7 +25,6 @@ class @BBCodeEditor extends React.Component
 
     @state =
       disabled: @props.disabled
-      rawValue: @props.rawValue
 
 
   componentDidMount: =>
@@ -45,19 +44,13 @@ class @BBCodeEditor extends React.Component
     e.keyCode == 27 && @_cancel()
 
 
-  onInput: (_e) =>
-    @setState rawValue: @body.value
-
-
   _cancel: =>
     @body.value = @props.rawValue
-    @setState rawValue: @props.rawValue
     @props.onChange(type: 'cancel', value: @props.rawValue) if @props.onChange
 
 
   _reset: =>
     @body.value = @props.rawValue
-    @setState rawValue: @props.rawValue
     @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
 
 
@@ -65,8 +58,8 @@ class @BBCodeEditor extends React.Component
     if @props.onChange
       @props.onChange
         type: 'save'
-        value: @state.rawValue
-        hasChanged: @state.rawValue != @props.rawValue
+        value: @body.value
+        hasChanged: @body.value != @props.rawValue
 
 
   render: ->
@@ -74,8 +67,7 @@ class @BBCodeEditor extends React.Component
       el 'textarea',
         className: 'post-editor__textarea'
         name: 'body'
-        value: @state.rawValue
-        onChange: @onInput # binds to oninput, not onchange
+        defaultValue: @props.rawValue
         onKeyDown: @onKeyDown
         ref: (element) =>
           @body = element
@@ -84,7 +76,6 @@ class @BBCodeEditor extends React.Component
         div className: 'post-editor__toolbar',
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--bold'
-            onClick: @onInput
             title: osu.trans('bbcode.bold')
             type: 'button',
 
@@ -93,7 +84,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--italic'
-            onClick: @onInput
             title: osu.trans('bbcode.italic')
             type: 'button',
 
@@ -102,7 +92,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--strikethrough'
-            onClick: @onInput
             title: osu.trans('bbcode.strikethrough')
             type: 'button',
 
@@ -111,7 +100,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--heading'
-            onClick: @onInput
             title: osu.trans('bbcode.heading')
             type: 'button',
 
@@ -120,7 +108,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--link'
-            onClick: @onInput
             title: osu.trans('bbcode.link')
             type: 'button',
 
@@ -129,7 +116,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--spoilerbox'
-            onClick: @onInput
             title: osu.trans('bbcode.spoilerbox')
             type: 'button',
 
@@ -137,7 +123,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list-numbered'
-            onClick: @onInput
             title: osu.trans('bbcode.list_numbered')
             type: 'button',
 
@@ -146,7 +131,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--list'
-            onClick: @onInput
             title: osu.trans('bbcode.list')
             type: 'button',
 
@@ -155,7 +139,6 @@ class @BBCodeEditor extends React.Component
 
           button
             className: 'btn-circle btn-circle--bbcode js-bbcode-btn--image'
-            onClick: @onInput
             title: osu.trans('bbcode.image')
             type: 'button',
 
@@ -170,8 +153,7 @@ class @BBCodeEditor extends React.Component
             i className: "fa fa-chevron-down"
             select
               className: 'bbcode-size-select__select js-bbcode-btn--size'
-              onChange: @onInput
-              value: '100',
+              defaultValue: '100',
               option value: '50', osu.trans('bbcode.size.tiny')
               option value: '85', osu.trans('bbcode.size.small')
               option value: '100', osu.trans('bbcode.size.normal')
