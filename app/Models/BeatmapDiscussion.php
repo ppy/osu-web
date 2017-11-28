@@ -44,7 +44,7 @@ class BeatmapDiscussion extends Model
         'mapper_note' => 3,
     ];
 
-    const RESOLVABLE_TYPES = [1, 2];
+    const RESOLVABLE_TYPES = [1, 2, 3];
     const KUDOSUABLE_TYPES = [1, 2];
 
     public function beatmap()
