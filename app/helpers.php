@@ -405,7 +405,7 @@ function wiki_url($page = 'Welcome', $locale = null)
 {
     $params = compact('page');
 
-    if (present($locale) && $locale !== App::getLocale() && $locale !== config('app.fallback_locale')) {
+    if (present($locale) && $locale !== App::getLocale()) {
         $params['locale'] = $locale;
     }
 
