@@ -20,13 +20,6 @@
 el = React.createElement
 
 class @BBCodeEditor extends React.Component
-  constructor: (props) ->
-    super props
-
-    @state =
-      disabled: @props.disabled
-
-
   componentDidMount: =>
     if @props.selection?.range
       @body.selectionStart = @props.selection.range[0]
@@ -53,6 +46,7 @@ class @BBCodeEditor extends React.Component
     @body.value = @props.rawValue
     @props.onChange(type: 'reset', value: @props.rawValue) if @props.onChange
     @body.focus()
+
 
   _save: =>
     if @props.onChange
