@@ -30,7 +30,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     @state =
       editing: false
       message: ''
-      resolveDiscussion: @props.discussion.resolved
       posting: null
 
 
@@ -147,7 +146,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     resolved = switch event.currentTarget.dataset.action
                when 'resolve' then true
                when 'reopen' then false
-               else @state.resolveDiscussion
+               else @props.discussion.resolved
 
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
@@ -162,7 +161,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @setState
         message: ''
         editing: false
-        resolveDiscussion: resolved
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
       $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
 
@@ -182,10 +180,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
     e.preventDefault()
     @throttledPost(e)
-
-
-  toggleResolveDiscussion: (e) =>
-    @setState resolveDiscussion: e.target.checked
 
 
   validPost: =>
