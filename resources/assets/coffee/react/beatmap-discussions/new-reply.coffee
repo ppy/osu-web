@@ -30,7 +30,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     @state =
       editing: false
       message: ''
-      resolveDiscussion: @props.discussion.resolved
       posting: null
 
 
@@ -75,30 +74,23 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
-            if @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
-              div className: "#{bn}__action",
-                label
-                  className: 'osu-checkbox'
-                  input
-                    className: 'osu-checkbox__input'
-                    type: 'checkbox'
-                    checked: @state.resolveDiscussion
-                    onChange: @toggleResolveDiscussion
-                    disabled: @state.posting?
+            if @canResolve() && !@props.discussion.resolved
+              @renderReplyButton
+                text: osu.trans('common.buttons.reply_resolve')
+                icon: 'check'
+                extraProps:
+                  'data-action': 'resolve'
 
-                  span className: 'osu-checkbox__tick',
-                    el Icon, name: 'check'
+            if @canResolve() && @props.discussion.resolved
+              @renderReplyButton
+                text: osu.trans('common.buttons.reply_reopen')
+                icon: 'exclamation'
+                extraProps:
+                  'data-action': 'reopen'
 
-                  osu.trans('beatmaps.discussions.resolved')
-          div className: "#{bn}__actions-group",
-            div className: "#{bn}__action",
-              el BigButton,
-                text: osu.trans('common.buttons.reply')
-                # wobbles if using spinner
-                icon: if @state.posting then 'ellipsis-h' else 'reply'
-                props:
-                  disabled: !@validPost() || @state.posting?
-                  onClick: @throttledPost
+            @renderReplyButton
+              text: osu.trans('common.buttons.reply')
+              icon: 'reply'
 
 
   renderPlaceholder: =>
@@ -118,6 +110,24 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           onClick: @editStart
 
 
+  renderReplyButton: ({ text, icon, extraProps = {} }) =>
+    props = _.extend
+      disabled: !@validPost() || @state.posting?
+      onClick: @throttledPost,
+      extraProps
+
+    div className: "#{bn}__action",
+      el BigButton,
+        text: text
+        # wobbles if using spinner
+        icon: if @state.posting then 'ellipsis-h' else icon
+        props: props
+
+
+  canResolve: =>
+    @props.discussion.can_be_resolved && @props.discussion.current_user_attributes.can_resolve
+
+
   editStart: =>
     if !@props.currentUser.id?
       userLogin.show()
@@ -127,19 +137,24 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
-  post: =>
+  post: (event) =>
     return if !@validPost()
     LoadingOverlay.show()
 
     @postXhr?.abort()
     @setState posting: true
 
+    resolved = switch event.currentTarget.dataset.action
+               when 'resolve' then true
+               when 'reopen' then false
+               else @props.discussion.resolved
+
     @postXhr = $.ajax laroute.route('beatmap-discussion-posts.store'),
       method: 'POST'
       data:
         beatmap_discussion_id: @props.discussion.id
         beatmap_discussion:
-          resolved: @state.resolveDiscussion
+          resolved: resolved
         beatmap_discussion_post:
           message: @state.message
 
@@ -165,11 +180,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
     return if e.keyCode != 13
 
     e.preventDefault()
-    @throttledPost()
-
-
-  toggleResolveDiscussion: (e) =>
-    @setState resolveDiscussion: e.target.checked
+    @throttledPost(e)
 
 
   validPost: =>
