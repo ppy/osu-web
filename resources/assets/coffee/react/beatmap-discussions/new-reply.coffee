@@ -92,6 +92,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
               text: osu.trans('common.buttons.reply')
               icon: 'reply'
 
+
   renderPlaceholder: =>
     [text, icon] =
       if @props.currentUser.id?
