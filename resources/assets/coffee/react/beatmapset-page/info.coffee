@@ -124,7 +124,7 @@ class BeatmapsetPage.Info extends React.Component
             ref: (element) =>
               @overlay = element
             ,
-            div className: 'beatmapset-description-editor__container',
+            div className: 'beatmapset-description-editor__container osu-page',
               el BBCodeEditor,
                 disabled: @state.isBusy
                 onChange: @onEditorChange
