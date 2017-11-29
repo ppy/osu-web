@@ -128,7 +128,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if @props.currentUser.id == @props.beatmapset.user_id
-              @submitButton 'mapper_note'
+              [
+                @submitButton 'mapper_note'
+                @submitButton 'suggestion'
+                @submitButton 'problem'
+              ]
             else
               [
                 @submitButton 'praise'

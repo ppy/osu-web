@@ -186,11 +186,9 @@ class BeatmapDiscussion extends Model
     public function hasValidMessageType()
     {
         if ($this->user_id === $this->beatmapset->user_id) {
-            $this->message_type = 'mapper_note';
-
-            return true;
+            return in_array($this->message_type, ['mapper_note', 'problem', 'suggestion']);
         } else {
-            return $this->message_type !== null && $this->message_type !== 'mapper_note';
+            return in_array($this->message_type, ['praise', 'problem', 'suggestion']);
         }
     }
 
