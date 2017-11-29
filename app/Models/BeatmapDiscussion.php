@@ -187,7 +187,7 @@ class BeatmapDiscussion extends Model
     public function hasValidMessageType()
     {
         if ($this->user_id === $this->beatmapset->user_id) {
-            return in_array($this->message_type, ['mapper_note', 'problem', 'suggestion'], true);
+            return in_array($this->message_type, ['praise', 'problem', 'suggestion', 'mapper_note'], true);
         } else {
             return in_array($this->message_type, ['praise', 'problem', 'suggestion'], true);
         }
