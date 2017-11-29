@@ -194,8 +194,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         if d.deleted_at?
           filters.push 'deleted'
-        else if d.message_type == 'mapper_note'
-          filters.push 'mapperNotes'
         else if d.message_type == 'praise'
           filters.push 'praises'
         else
@@ -206,6 +204,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         if d.user_id == @state.currentUser.id
           filters.push 'mine'
+
+        if d.message_type == 'mapper_note'
+          filters.push 'mapperNotes'
 
         for filter in filters
           byFilter[filter][mode][d.id] = d
