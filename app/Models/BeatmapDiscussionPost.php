@@ -102,6 +102,22 @@ class BeatmapDiscussionPost extends Model
             ->where('id', '<', $this->id)->exists();
     }
 
+    public function relatedSystemPost()
+    {
+        if ($this->system) {
+            return;
+        }
+
+        $nextPost = static
+            ::where('id', '>', $this->getKey())
+            ->orderBy('id', 'ASC')
+            ->first();
+
+        if ($nextPost !== null && $nextPost->system && $nextPost->user_id === $this->user_id) {
+            return $nextPost;
+        }
+    }
+
     public function restore($restoredBy)
     {
         return DB::transaction(function () use ($restoredBy) {
@@ -109,7 +125,18 @@ class BeatmapDiscussionPost extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
-            return $this->update(['deleted_at' => null]);
+            // restore related system post
+            $systemPost = $this->relatedSystemPost();
+
+            if ($systemPost !== null) {
+                $systemPost->restore($restoredBy);
+            }
+
+            $this->update(['deleted_at' => null]);
+
+            $this->beatmapDiscussion->refreshResolved();
+
+            return true;
         });
     }
 
@@ -124,14 +151,11 @@ class BeatmapDiscussionPost extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
-            // check if we need to delete next post
-            $nextPost = static
-                ::where('id', '>', $this->getKey())
-                ->orderBy('id', 'ASC')
-                ->first();
+            // delete related system post
+            $systemPost = $this->relatedSystemPost();
 
-            if ($nextPost !== null && $nextPost->system && $nextPost->user_id === $this->user_id) {
-                $nextPost->softDelete($deletedBy);
+            if ($systemPost !== null) {
+                $systemPost->softDelete($deletedBy);
             }
 
             $time = Carbon::now();
