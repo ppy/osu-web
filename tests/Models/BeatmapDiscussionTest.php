@@ -36,12 +36,20 @@ class BeatmapDiscussionTest extends TestCase
         $discussion = $this->newDiscussion($beatmapset);
         $discussion->fill([
             'beatmap_id' => $beatmap->beatmap_id,
-            'message_type' => 'problem',
+            'message_type' => 'mapper_note',
             'user_id' => $mapper->getKey(),
         ]);
 
         $this->assertTrue($discussion->isValid());
-        $this->assertEquals($discussion->message_type, 'mapper_note');
+
+        $discussion->message_type = 'problem';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'suggestion';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'praise';
+        $this->assertFalse($discussion->isValid());
     }
 
     public function testIsValid()
