@@ -155,7 +155,7 @@ class Page
         $searchPath = static::cleanupPath($path);
 
         $params = static::searchIndexConfig();
-        $params['fields'] = 'path';
+        $params['_source'] = 'path';
         $params['size'] = 10;
         $params['body']['query']['bool']['must'][] = [
             'match' => [
@@ -175,10 +175,10 @@ class Page
         }
 
         foreach ($results as $result) {
-            $resultPath = static::cleanupPath($result['fields']['path'][0]);
+            $resultPath = static::cleanupPath($result['_source']['path']);
 
             if ($resultPath === $searchPath) {
-                return $result['fields']['path'][0];
+                return $result['_source']['path'];
             }
         }
     }
