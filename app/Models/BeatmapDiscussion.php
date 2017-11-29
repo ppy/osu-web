@@ -181,7 +181,9 @@ class BeatmapDiscussion extends Model
         $systemPosts = $this
             ->beatmapDiscussionPosts()
             ->withoutDeleted()
-            ->where('system', '=', true)->get();
+            ->where('system', '=', true)
+            ->orderBy('id', 'DESC')
+            ->get();
 
         foreach ($systemPosts as $post) {
             if ($post->message['type'] === 'resolved') {
