@@ -64,9 +64,9 @@ class PaypalPaymentProcessor extends PaymentProcessor
     public function getNotificationType()
     {
         static $payment_statuses = ['Completed'];
-        static $cancel_statuses = ['Expired', 'Failed', 'Refunded', 'Reversed', 'Voided', 'Canceled_Reversal', 'Denied'];
+        static $cancel_statuses = ['Refunded', 'Reversed', 'Canceled_Reversal'];
         static $pending_statuses = ['Pending'];
-        static $declined_statuses = ['Declined'];
+        static $declined_statuses = ['Declined', 'Denied', 'Expired', 'Failed', 'Voided'];
 
         $status = $this->getNotificationTypeRaw();
         if (in_array($status, $payment_statuses, true)) {
