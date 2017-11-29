@@ -217,9 +217,17 @@ abstract class PaymentProcessor implements \ArrayAccess
             try {
                 $order = $this->getOrder();
                 $payment = $order->payments->where('cancelled', false)->first();
-                $payment->cancel();
 
-                $order->cancel();
+                if ($payment === null && $order->status === 'cancelled') {
+                    // payment not processed, manually cancelled - don't explode
+                    $this->notifyError(
+                        new Exception('Order already cancelled with no existing payment found.'),
+                        $order
+                    );
+                } else {
+                    $payment->cancel();
+                    $order->cancel();
+                }
 
                 $eventName = "store.payments.cancelled.{$payment->provider}";
             } catch (Exception $exception) {
