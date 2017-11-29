@@ -124,13 +124,27 @@ class BeatmapDiscussionPost extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
+            // check if we need to delete next post
+            $nextPost = static
+                ::where('id', '>', $this->getKey())
+                ->orderBy('id', 'ASC')
+                ->first();
+
+            if ($nextPost !== null && $nextPost->system && $nextPost->user_id === $this->user_id) {
+                $nextPost->softDelete($deletedBy);
+            }
+
             $time = Carbon::now();
 
-            return $this->update([
+            $this->update([
                 'deleted_by_id' => $deletedBy->user_id,
                 'deleted_at' => $time,
                 'updated_at' => $time,
             ]);
+
+            $this->beatmapDiscussion->refreshResolved();
+
+            return true;
         });
     }
 

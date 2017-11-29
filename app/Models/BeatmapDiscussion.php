@@ -176,6 +176,22 @@ class BeatmapDiscussion extends Model
         });
     }
 
+    public function refreshResolved()
+    {
+        $systemPosts = $this
+            ->beatmapDiscussionPosts()
+            ->withoutDeleted()
+            ->where('system', '=', true)->get();
+
+        foreach ($systemPosts as $post) {
+            if ($post->message['type'] === 'resolved') {
+                return $this->update(['resolved' => $post->message['value']]);
+            }
+        }
+
+        return $this->update(['resolved' => false]);
+    }
+
     public function hasValidBeatmap()
     {
         return
