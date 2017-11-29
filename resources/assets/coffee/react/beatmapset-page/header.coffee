@@ -120,12 +120,12 @@ class BeatmapsetPage.Header extends React.Component
                   osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
-            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.title
+            href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.title)
             @props.beatmapset.title
 
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--artist'
-            href: laroute.route 'beatmapsets.index', q: @props.beatmapset.artist
+            href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.artist)
             @props.beatmapset.artist
 
           el BeatmapsetMapping, beatmapset: @props.beatmapset
