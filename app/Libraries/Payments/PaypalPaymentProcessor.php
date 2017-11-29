@@ -49,7 +49,7 @@ class PaypalPaymentProcessor extends PaymentProcessor
     {
         // TODO: less floaty
 
-        if ($this->getNotificationType() === 'NotificationType::REFUND') {
+        if ($this->getNotificationType() === NotificationType::REFUND) {
             return (float) $this['mc_gross'] + $this['mc_fee'];
         } else {
             return (float) $this['mc_gross'];
