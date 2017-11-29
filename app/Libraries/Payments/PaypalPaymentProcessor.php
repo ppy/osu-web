@@ -27,7 +27,12 @@ class PaypalPaymentProcessor extends PaymentProcessor
 {
     public function getOrderNumber()
     {
-        return $this['invoice'];
+        // If refund, there might not be an invoice id in production.
+        if ($this->getNotificationType() === NotificationType::REFUND) {
+            return $this['invoice'] ?? $this['item_number1'];
+        } else {
+            return $this['invoice'];
+        }
     }
 
     public function getPaymentProvider()
@@ -148,14 +153,13 @@ class PaypalPaymentProcessor extends PaymentProcessor
             // Attempt to find order number, else fallback to paypal's parent transaction ID for refunds,
             //  since the IPN might not include the invoice id.
             if ($this->getNotificationType() === NotificationType::REFUND) {
-                $orderNumber = $this->getOrderNumber() ?? $this['item_number1'];
-                if ($orderNumber === null) {
+                if ($this->getOrderNumber() === null) {
                     $order = Order::withPayments()
                         ->wherePaymentTransactionId($this['parent_txn_id'], 'paypal')
                         ->first();
                 } else {
                     $order = Order::withPayments()
-                        ->whereOrderNumber($orderNumber)
+                        ->whereOrderNumber($this->getOrderNumber())
                         ->first();
                 }
             } else {
