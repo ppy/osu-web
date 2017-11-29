@@ -17,6 +17,11 @@
  */
 
 .beatmapset-info {
+  @height: 220px;
+  @box-margin--top: 15px;
+  @header-margin--top: 15px;
+  @header-margin--bottom: 5px;
+
   font-size: @font-size--normal;
 
   display: flex;
@@ -26,11 +31,11 @@
 
   @media @desktop {
     flex-direction: row;
-    height: 220px;
+    height: @height;
   }
 
   &__box {
-    margin: 15px 10px 0;
+    margin: @box-margin--top 10px 0;
     flex: none;
 
     &--description {
@@ -52,25 +57,28 @@
     }
   }
 
-  // inner-content to fix overflow hidden of
-  // edit button
-  &__box-content {
-    height: 100%;
-    overflow-y: auto;
-  }
-
   &__edit-description {
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: -10px;
 
     opacity: 0;
     transition: opacity 120ms;
-    z-index: 1; // interference from...something.
+    z-index: 1; // place above sibling elements
 
     .beatmapset-info__box--description:hover & {
       opacity: 1;
     }
+  }
+
+  &__description {
+    height: @height
+            - @box-margin--top
+            - @header-margin--top
+            - @header-margin--bottom
+            - ceil(@font-size--title-small * 1.1); // 1.1 is line-height from...somewhere;
+
+    overflow-y: auto;
   }
 
   &__header {
@@ -79,6 +87,6 @@
     font-weight: bold;
     font-style: normal;
     padding: 0;
-    margin: 20px 0 5px;
+    margin: @header-margin--top 0 @header-margin--bottom;
   }
 }
