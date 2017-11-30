@@ -64,27 +64,31 @@ class FriendsController extends Controller
     public function store()
     {
         $currentUser = Auth::user();
-        $friends = $currentUser->friends()->get();
+        $friends = $currentUser->friends(); // don't fetch (avoids potentially instantiating 500+ friend objects)
 
         if ($friends->count() >= $currentUser->maxFriends()) {
             return error_popup(trans('friends.too_many'));
         }
 
-        $target_id = get_int(Request::input('target'));
-        $targetUser = User::lookup($target_id, 'id');
+        $targetId = get_int(Request::input('target'));
+        $targetUser = User::lookup($targetId, 'id');
+
+        if (!$targetUser) {
+            abort(404);
+        }
 
         $alreadyFriends = $friends
-            ->where('user_id', $target_id)
+            ->where('user_id', $targetId)
             ->first();
 
         if (!$alreadyFriends) {
             UserRelation::create([
                 'user_id' => $currentUser->user_id,
-                'zebra_id' => $target_id,
+                'zebra_id' => $targetId,
                 'friend' => 1,
             ]);
 
-            dispatch(new UpdateUserFollowerCountCache($target_id));
+            dispatch(new UpdateUserFollowerCountCache($targetId));
         }
 
         return json_collection(
