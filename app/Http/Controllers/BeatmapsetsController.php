@@ -88,6 +88,9 @@ class BeatmapsetsController extends Controller
             ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
+        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
+        $descriptionInclude = $editable ? 'description:editable' : 'description';
+
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -97,7 +100,7 @@ class BeatmapsetsController extends Controller
                 'beatmaps.failtimes',
                 'converts',
                 'converts.failtimes',
-                'description',
+                $descriptionInclude,
                 'ratings',
                 'recentFavourites',
                 'user',
@@ -229,6 +232,29 @@ class BeatmapsetsController extends Controller
             'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
+    }
+
+    public function update($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDescriptionEdit', $beatmapset)->ensureCan();
+
+        $description = Request::input('description');
+
+        if ($beatmapset->updateDescription($description, Auth::user())) {
+            $beatmapset->refresh();
+
+            return json_item(
+                $beatmapset,
+                new BeatmapsetTransformer(),
+                [
+                    'description:editable',
+                ]
+            );
+        }
+
+        return response([], 500); // ?????
     }
 
     public function updateFavourite($id)

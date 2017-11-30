@@ -73,7 +73,7 @@ Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download'
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::put('beatmapsets/{beatmapset}/disqualify', 'BeatmapsetsController@disqualify')->name('beatmapsets.disqualify');
 Route::post('beatmapsets/{beatmapset}/update-favourite', 'BeatmapsetsController@updateFavourite')->name('beatmapsets.update-favourite');
-Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show']]);
+Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['index', 'show', 'update']]);
 
 Route::group(['prefix' => 'community'], function () {
     Route::get('chat', 'CommunityController@getChat')->name('chat');

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
@@ -1006,29 +1007,28 @@ class Beatmapset extends Model
 
     public function description()
     {
-        $topic = Forum\Topic::find($this->thread_id);
+        $bbcode = $this->getBBCode();
 
-        if ($topic === null) {
+        return $bbcode ? $bbcode->toHTML() : null;
+    }
+
+    public function editableDescription()
+    {
+        $bbcode = $this->getBBCode();
+
+        return $bbcode ? $bbcode->toEditor() : null;
+    }
+
+    public function updateDescription($bbcode, $user)
+    {
+        $post = $this->getPost();
+        if ($post === null) {
             return;
         }
 
-        $post = Forum\Post::find($topic->topic_first_post_id);
+        $split = preg_split('/-{15}/', $post->post_text, 2);
 
-        // Any description (after the first match) that matches
-        // '[-{15}]' within its body doesn't get split anymore,
-        // and gets stored in $split[1] anyways
-        $split = preg_split('[-{15}]', $post->post_text, 2);
-
-        // Return empty description if the pattern was not found
-        // (mostly older beatmapsets)
-        $description = $split[1] ?? '';
-
-        $options = [
-            'withGallery' => true,
-            'ignoreLineHeight' => true,
-        ];
-
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+        return $post->edit($split[0]."---------------\n".ltrim($bbcode), $user);
     }
 
     public function state()
@@ -1041,5 +1041,46 @@ class Beatmapset extends Model
         $section = trans('layout.menu.beatmaps._');
 
         return "osu! » {$section} » {$this->artist} - {$this->title}";
+    }
+
+    private function extractDescription($post)
+    {
+        // Any description (after the first match) that matches
+        // '/-{15}/' within its body doesn't get split anymore,
+        // and gets stored in $split[1] anyways
+        $split = preg_split('/-{15}/', $post->post_text, 2);
+
+        // Return empty description if the pattern was not found
+        // (mostly older beatmapsets)
+        return ltrim($split[1] ?? '');
+    }
+
+    private function getBBCode()
+    {
+        $post = $this->getPost();
+
+        if ($post === null) {
+            return;
+        }
+
+        $description = $this->extractDescription($post);
+
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        return new BBCodeFromDB($description, $post->bbcode_uid, $options);
+    }
+
+    private function getPost()
+    {
+        $topic = Forum\Topic::find($this->thread_id);
+
+        if ($topic === null) {
+            return;
+        }
+
+        return Forum\Post::find($topic->topic_first_post_id);
     }
 }
