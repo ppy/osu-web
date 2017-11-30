@@ -250,11 +250,11 @@ class OsuAuthorize
     {
         $this->ensureLoggedIn($user);
 
-        if ($user->user_id !== $beatmapset->user_id) {
-            return 'beatmapset_description.edit.not_owner';
+        if ($user->user_id === $beatmapset->user_id || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
         }
 
-        return 'ok';
+        return 'beatmapset_description.edit.not_owner';
     }
 
     public function checkBeatmapsetDisqualify($user, $beatmapset)
