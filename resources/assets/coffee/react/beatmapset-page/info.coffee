@@ -83,7 +83,7 @@ class BeatmapsetPage.Info extends React.Component
 
 
   withEdit: =>
-     window.currentUser.id == @props.beatmapset.user_id
+     @props.beatmapset.description.bbcode?
 
 
   renderChart: ->
