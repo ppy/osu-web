@@ -128,7 +128,7 @@ class BeatmapsetPage.Info extends React.Component
                 disabled: @state.isBusy
                 onChange: @onEditorChange
                 onSelectionUpdate: @onSelectionUpdate
-                rawValue: @state.description?.bbcode || @props.beatmapset.description.bbcode
+                rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
                 selection: @state.selection
 
       div className: 'beatmapset-info__box beatmapset-info__box--description',
@@ -141,7 +141,7 @@ class BeatmapsetPage.Info extends React.Component
         div
           className: 'beatmapset-info__description'
           dangerouslySetInnerHTML:
-            __html: @state.description?.description || @props.beatmapset.description.description
+            __html: @state.description?.description ? @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
         if @props.beatmapset.source
