@@ -139,4 +139,4 @@ class @FriendButton extends React.PureComponent
     currentUser.id? &&
       _.isFinite(@props.user_id) &&
       @props.user_id != currentUser.id &&
-      (@state.friend || currentUser.friends.length < 200)
+      (@state.friend || currentUser.friends.length < currentUser.max_friends)
