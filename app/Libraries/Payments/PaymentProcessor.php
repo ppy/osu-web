@@ -26,7 +26,6 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
-use App\Traits\StoreNotifiable;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
