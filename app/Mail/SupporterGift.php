@@ -37,7 +37,7 @@ class SupporterGift extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->view(i18n_view('emails.store.supporter_gift'))
+        return $this->text(i18n_view('emails.store.supporter_gift'))
             ->with($this->params)
             ->subject(trans('fulfillments.mail.supporter_gift.subject'));
     }

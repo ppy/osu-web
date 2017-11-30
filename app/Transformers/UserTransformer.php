@@ -82,6 +82,7 @@ class UserTransformer extends Fractal\TransformerAbstract
                 'total' => $user->osu_kudostotal,
                 'available' => $user->osu_kudosavailable,
             ],
+            'max_friends' => $user->maxFriends(),
         ];
     }
 

@@ -46,6 +46,11 @@ class Page
         return static::VERSION.'.'.OsuMarkdownProcessor::VERSION;
     }
 
+    public static function cleanupPath($path)
+    {
+        return strtolower(str_replace(['-', '/', '_'], ' ', $path));
+    }
+
     public static function search($rawParams, $locale = null)
     {
         $locale ?? ($locale = config('app.fallback_locale'));
@@ -141,11 +146,41 @@ class Page
         $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
         $params['page'] = max(1, $params['page'] ?? 1);
         $params['locale'] = $params['locale'] ?? null;
-        $params['user_ids'] = get_arr($params['user_ids'] ?? null, 'get_int');
-        $params['forum_ids'] = get_arr($params['forum_ids'] ?? null, 'get_int');
-        $params['topic_id'] = get_int($params['topic_id'] ?? null);
 
         return $params;
+    }
+
+    public static function searchPath($path, $locale)
+    {
+        $searchPath = static::cleanupPath($path);
+
+        $params = static::searchIndexConfig();
+        $params['fields'] = 'path';
+        $params['size'] = 10;
+        $params['body']['query']['bool']['must'][] = [
+            'match' => [
+                'path_clean' => es_query_and_words($searchPath),
+            ],
+        ];
+        $params['body']['query']['bool']['must'][] = [
+            'match' => [
+                'locale' => $locale,
+            ],
+        ];
+
+        $results = Es::search($params)['hits']['hits'];
+
+        if (count($results) === 0) {
+            return;
+        }
+
+        foreach ($results as $result) {
+            $resultPath = static::cleanupPath($result['fields']['path'][0]);
+
+            if ($resultPath === $searchPath) {
+                return $result['fields']['path'][0];
+            }
+        }
     }
 
     public function __construct($path, $locale, $esCache = null)
@@ -184,7 +219,7 @@ class Page
             'body' => [
                 'locale' => $this->locale,
                 'path' => $this->path,
-                'path_clean' => str_replace(['-', '/', '_'], ' ', $this->path),
+                'path_clean' => static::cleanupPath($this->path),
                 'title' => $page['header']['title'],
                 'page_text' => strip_tags($page['output']),
                 'page' => $page,
@@ -203,6 +238,11 @@ class Page
         } catch (Missing404Exception $_e) {
             // do nothing
         }
+    }
+
+    public function isOutdated()
+    {
+        return $this->page()['header']['outdated'] ?? false;
     }
 
     public function page()

@@ -32,4 +32,4 @@ before_install:
   - ./bin/db_setup.sh
   - ./build.sh
 
-script: ./vendor/bin/phpunit
+script: ./bin/phpunit
