@@ -129,12 +129,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if @props.currentUser.id == @props.beatmapset.user_id
               @submitButton 'mapper_note'
-            else
-              [
-                @submitButton 'praise'
-                @submitButton 'suggestion'
-                @submitButton 'problem'
-              ]
+            @submitButton 'praise'
+            @submitButton 'suggestion'
+            @submitButton 'problem'
 
         if @nearbyPosts().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
