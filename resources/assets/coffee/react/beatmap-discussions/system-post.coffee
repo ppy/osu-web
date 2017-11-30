@@ -29,8 +29,11 @@ BeatmapDiscussions.SystemPost = (props) ->
           user: osu.link laroute.route('users.show', user: props.user.id), props.user.username,
             classNames: ["#{bn}__user"]
 
+  topClass = "#{bn} #{bn}--#{props.post.message.type}"
+  topClass += " #{bn}--deleted" if props.post.deleted_at
+
   div
-    className: "#{bn} #{bn}--#{props.post.message.type}"
+    className: topClass
     div
       className: "#{bn}__content"
       dangerouslySetInnerHTML:
