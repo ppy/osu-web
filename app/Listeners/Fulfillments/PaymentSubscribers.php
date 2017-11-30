@@ -75,8 +75,9 @@ class PaymentSubscribers
         });
     }
 
-    public function onPaymentError($eventName, $data)
+    public function onPaymentError(/* reserved */$eventName, $data)
     {
+        // TODO: make notifyError less fruity and more like the other ones.
         $this->notifyError($data['error'], $data['order']);
     }
 
