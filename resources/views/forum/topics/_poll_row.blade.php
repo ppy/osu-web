@@ -32,6 +32,7 @@
                         name="forum_topic_vote[option_ids][]"
                         {{ $pollOption['voted_by_user'] ? 'checked' : '' }}
                     >
+                    <span class="osu-checkbox__box"></span>
                     <span class="osu-checkbox__tick">
                         <i class="fa fa-fw fa-{{ $topic->poll_max_options == 1 ? 'circle' : 'check' }}"></i>
                     </span>

@@ -29,6 +29,7 @@
                 checked
             @endif
         >
+        <span class="osu-checkbox__box"></span>
         <span class="osu-checkbox__tick">
             <i class="fa fa-check"></i>
         </span>

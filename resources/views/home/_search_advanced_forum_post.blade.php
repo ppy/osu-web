@@ -82,6 +82,7 @@
                     {{ ($search->urlParams()['forum_children'] ?? false) ? 'checked' : '' }}
                     class="osu-checkbox__input"
                 >
+                <span class="osu-checkbox__box"></span>
                 <span class="osu-checkbox__tick">
                     <span class="fa fa-check"></span>
                 </span>

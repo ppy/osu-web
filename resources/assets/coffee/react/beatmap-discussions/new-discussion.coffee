@@ -159,6 +159,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 checked: @state.timestampConfirmed
                 onChange: @toggleTimestampConfirmation
 
+              span className: 'osu-checkbox__box'
               span className: 'osu-checkbox__tick',
                 el Icon, name: 'check'
 
