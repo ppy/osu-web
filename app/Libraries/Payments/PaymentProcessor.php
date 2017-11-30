@@ -34,7 +34,7 @@ use Exception;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use StoreNotifiable, Validatable;
+    use Validatable;
 
     protected $params;
     protected $signature;
@@ -192,7 +192,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.completed.{$payment->provider}";
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                (new DummySender($this))->notifyError($exception, $order);
                 throw $exception;
             }
 
@@ -221,7 +221,7 @@ abstract class PaymentProcessor implements \ArrayAccess
                 if ($payment === null && $order->status === 'cancelled') {
                     // payment not processed, manually cancelled - don't explode
                     // notify and bail out.
-                    $this->notifyError(
+                    (new DummySender($this))->notifyError(
                         new Exception('Order already cancelled with no existing payment found.'),
                         $order
                     );
@@ -234,7 +234,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.cancelled.{$payment->provider}";
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                (new DummySender($this))->notifyError($exception, $order);
                 throw $exception;
             }
 
@@ -261,7 +261,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                (new DummySender($this))->notifyError($exception, $order);
                 throw $exception;
             }
 
