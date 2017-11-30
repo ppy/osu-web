@@ -64,17 +64,18 @@ class FriendsController extends Controller
     public function store()
     {
         $currentUser = Auth::user();
-        if ($currentUser->friends()->count() >= $currentUser->maxFriends()) {
+        $friends = $currentUser->friends()->get();
+
+        if ($friends->count() >= $currentUser->maxFriends()) {
             return error_popup(trans('friends.too_many'));
         }
 
         $target_id = get_int(Request::input('target'));
-        $targetUser = User::find($target_id)->firstOrFail();
+        $targetUser = User::lookup($target_id, 'id');
 
-        $alreadyFriends = $currentUser
-            ->friends()
-            ->where(['user_id' => $target_id])
-            ->exists();
+        $alreadyFriends = $friends
+            ->where('user_id', $target_id)
+            ->first();
 
         if (!$alreadyFriends) {
             UserRelation::create([
