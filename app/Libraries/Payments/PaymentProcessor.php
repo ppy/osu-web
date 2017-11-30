@@ -333,7 +333,7 @@ abstract class PaymentProcessor implements \ArrayAccess
      * @param Exception $exception
      * @return void
      */
-    protected function throwValidationFailed(\Exception $exception)
+    protected function throwValidationFailed(Exception $exception)
     {
         $this->dispatchValidationFailed();
         throw $exception;
