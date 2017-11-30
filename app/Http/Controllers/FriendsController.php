@@ -79,7 +79,7 @@ class FriendsController extends Controller
 
         $alreadyFriends = $friends
             ->where('user_id', $targetId)
-            ->first();
+            ->exists();
 
         if (!$alreadyFriends) {
             UserRelation::create([
