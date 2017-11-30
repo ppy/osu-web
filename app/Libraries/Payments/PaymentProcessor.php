@@ -192,7 +192,10 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.completed.{$payment->provider}";
             } catch (Exception $exception) {
-                (new DummySender($this))->notifyError($exception, $order);
+                event("store.payments.error.{$this->getPaymentProvider()}", [
+                    'error' => $exception,
+                    'order' => $order,
+                ]);
                 throw $exception;
             }
 
@@ -221,10 +224,10 @@ abstract class PaymentProcessor implements \ArrayAccess
                 if ($payment === null && $order->status === 'cancelled') {
                     // payment not processed, manually cancelled - don't explode
                     // notify and bail out.
-                    (new DummySender($this))->notifyError(
-                        new Exception('Order already cancelled with no existing payment found.'),
-                        $order
-                    );
+                    event("store.payments.error.{$this->getPaymentProvider()}", [
+                        'error' => new Exception('Order already cancelled with no existing payment found.'),
+                        'order' => $order,
+                    ]);
 
                     return;
                 }
@@ -234,7 +237,10 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.cancelled.{$payment->provider}";
             } catch (Exception $exception) {
-                (new DummySender($this))->notifyError($exception, $order);
+                event("store.payments.error.{$this->getPaymentProvider()}", [
+                    'error' => $exception,
+                    'order' => $order,
+                ]);
                 throw $exception;
             }
 
@@ -261,7 +267,10 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
             } catch (Exception $exception) {
-                (new DummySender($this))->notifyError($exception, $order);
+                event("store.payments.error.{$this->getPaymentProvider()}", [
+                    'error' => $exception,
+                    'order' => $order,
+                ]);
                 throw $exception;
             }
 
