@@ -26,7 +26,6 @@ use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ModelNotSavedException;
 use App\Models\Store\Order;
 use App\Models\Store\Payment;
-use App\Traits\StoreNotifiable;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -34,7 +33,7 @@ use Exception;
 
 abstract class PaymentProcessor implements \ArrayAccess
 {
-    use StoreNotifiable, Validatable;
+    use Validatable;
 
     protected $params;
     protected $signature;
@@ -192,7 +191,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.completed.{$payment->provider}";
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
 
@@ -217,13 +216,24 @@ abstract class PaymentProcessor implements \ArrayAccess
             try {
                 $order = $this->getOrder();
                 $payment = $order->payments->where('cancelled', false)->first();
-                $payment->cancel();
 
+                if ($payment === null && $order->status === 'cancelled') {
+                    // payment not processed, manually cancelled - don't explode
+                    // notify and bail out.
+                    $this->dispatchErrorEvent(
+                        new Exception('Order already cancelled with no existing payment found.'),
+                        $order
+                    );
+
+                    return;
+                }
+
+                $payment->cancel();
                 $order->cancel();
 
                 $eventName = "store.payments.cancelled.{$payment->provider}";
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
 
@@ -250,7 +260,7 @@ abstract class PaymentProcessor implements \ArrayAccess
 
                 $eventName = "store.payments.pending.{$this->getPaymentProvider()}";
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                $this->dispatchErrorEvent($exception, $order);
                 throw $exception;
             }
 
@@ -322,7 +332,7 @@ abstract class PaymentProcessor implements \ArrayAccess
      * @param Exception $exception
      * @return void
      */
-    protected function throwValidationFailed(\Exception $exception)
+    protected function throwValidationFailed(Exception $exception)
     {
         $this->dispatchValidationFailed();
         throw $exception;
@@ -362,6 +372,14 @@ abstract class PaymentProcessor implements \ArrayAccess
     public function validationErrorsKeyBase()
     {
         return 'model_validation/';
+    }
+
+    private function dispatchErrorEvent($exception, $order)
+    {
+        event("store.payments.error.{$this->getPaymentProvider()}", [
+            'error' => $exception,
+            'order' => $order,
+        ]);
     }
 
     private function sandboxAssertion()
