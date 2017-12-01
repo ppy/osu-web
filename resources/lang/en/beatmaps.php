@@ -126,6 +126,7 @@ return [
         'nominate-confirm' => 'Nominate this beatmap?',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
         'required-text' => 'Nominations: :current/:required',
         'title' => 'Nomination Status',
     ],
