@@ -284,6 +284,8 @@ class OsuAuthorize
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
+            BeatmapsetEvent::KUDOSU_GAIN,
+            BeatmapsetEvent::KUDOSU_LOST,
         ];
 
         if (in_array($event->type, $publicEvents, true)) {
