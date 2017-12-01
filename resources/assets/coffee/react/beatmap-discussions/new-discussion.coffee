@@ -214,6 +214,12 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return unless @validPost()
 
     type = e.currentTarget.dataset.type
+
+    userCanResetNominations = currentUser.isAdmin || currentUser.isQAT || currentUser.isBNG
+
+    if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
+      return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
+
     @postXhr?.abort()
     LoadingOverlay.show()
     @setState posting: type
@@ -237,6 +243,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
+      $.publish 'beatmapset:update', beatmapset: data.beatmapset
       $.publish 'beatmapsetDiscussion:update',
         beatmapsetDiscussion: data.beatmapset_discussion
 

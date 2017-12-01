@@ -139,13 +139,30 @@ class BeatmapsetsController extends Controller
         $requestLastUpdated = get_int(Request::input('last_updated'));
 
         $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
-        $lastUpdated = $beatmapset->lastDiscussionTime();
 
-        if ($returnJson && (
-            $lastUpdated === null ||
-            ($requestLastUpdated !== null && $requestLastUpdated >= $lastUpdated->timestamp)
-        )) {
-            return response([], 304);
+        if ($returnJson) {
+            $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
+            $lastEventUpdate = $beatmapset->events()->max('updated_at');
+
+            $hasUpdates = false;
+            if ($lastDiscussionUpdate !== null || $lastEventUpdate !== null)
+            {
+                if ($lastDiscussionUpdate === null) {
+                    $latestUpdate = $lastEventUpdate;
+                } elseif ($lastEventUpdate === null) {
+                    $latestUpdate = $lastDiscussionUpdate;
+                } else {
+                    $latestUpdate = max($lastDiscussionUpdate->timestamp, Carbon::parse($lastEventUpdate)->timestamp);
+                }
+
+                if ($requestLastUpdated !== null && $requestLastUpdated < $latestUpdate) {
+                    $hasUpdates = true;
+                }
+            }
+
+            if (!$hasUpdates) {
+                return response([], 304);
+            }
         }
 
         $initialData = [

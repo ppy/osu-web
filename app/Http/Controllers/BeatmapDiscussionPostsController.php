@@ -120,13 +120,21 @@ class BeatmapDiscussionPostsController extends Controller
         $postIds = array_pluck($posts, 'id');
 
         if ($saved === true) {
-            BeatmapsetWatch::markRead($discussion->beatmapset, Auth::user());
+            $beatmapset = $discussion->beatmapset;
+
+            BeatmapsetWatch::markRead($beatmapset, Auth::user());
             NotifyBeatmapsetUpdate::dispatch([
                 'user' => Auth::user(),
-                'beatmapset' => $discussion->beatmapset,
+                'beatmapset' => $beatmapset,
             ]);
 
+            if ($beatmapset->isPending() && $beatmapset->hasNominations() && priv_check('BeatmapsetNominate')->can()) {
+                // bubble pop (isn't that like some kpop song?)
+                BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, Auth::user(), $discussion)->saveOrExplode();
+            }
+
             return [
+                'beatmapset' => $posts[0]->beatmapset->defaultJson(),
                 'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,

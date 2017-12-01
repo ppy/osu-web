@@ -34,6 +34,7 @@ return [
         'kudosu_lost' => 'Discussion :discussion lost votes and granted kudosu has been removed.',
         'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
         'nominate' => 'Nominated.',
+        'nomination_reset' => 'New problem :discussion triggered a nomination reset.',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
     ],

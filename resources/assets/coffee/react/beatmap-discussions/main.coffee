@@ -135,6 +135,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
     if @state.beatmapsetDiscussion.updated_at?
       params.last_updated = moment(@state.beatmapsetDiscussion.updated_at).unix()
 
+    if @state.beatmapsetDiscussion.beatmapset_events?
+      lastEventAt = moment(_.last(@state.beatmapsetDiscussion.beatmapset_events).created_at).unix()
+
+      if !params.last_updated? || lastEventAt > params.last_updated
+        params.last_updated = lastEventAt
+
     @checkNewAjax = $.get laroute.route('beatmapsets.discussion', beatmapset: @state.beatmapset.id), params
     .done (data, _textStatus, xhr) =>
       if xhr.status == 304
@@ -143,7 +149,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
+      @setBeatmapset null, beatmapset: data.beatmapset, callback: ->
+        @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
