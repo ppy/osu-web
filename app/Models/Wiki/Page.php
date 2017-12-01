@@ -85,25 +85,24 @@ class Page
             ],
         ];
 
-        $query = es_query_and_words($params['query']);
         $searchParams['body']['query']['bool']['must'][] = [
             'bool' => [
                 'minimum_should_match' => 1,
                 'should' => [
                     ['match' => [
                         'title' => [
-                            'query' => $query,
+                            'query' => $params['query'],
                             'boost' => 10,
                         ],
                     ]],
                     ['match' => [
                         'path_clean' => [
-                            'query' => $query,
+                            'query' => $params['query'],
                             'boost' => 9,
                         ],
                     ]],
                     ['match' => [
-                        'page_text' => $query,
+                        'page_text' => $params['query'],
                     ]],
                 ],
             ],
