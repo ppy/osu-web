@@ -87,6 +87,16 @@ class BeatmapDiscussionPostsController extends Controller
         $posts = [new BeatmapDiscussionPost($this->postParams())];
         $events = [];
 
+        $resetNominations = $isNewDiscussion &&
+            $beatmapset->isPending() &&
+            $beatmapset->hasNominations() &&
+            $discussion->message_type === 'problem' &&
+            priv_check('BeatmapsetNominate')->can();
+
+        if ($resetNominations) {
+            $events[] = BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, Auth::user(), $discussion);
+        }
+
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
@@ -127,11 +137,6 @@ class BeatmapDiscussionPostsController extends Controller
                 'user' => Auth::user(),
                 'beatmapset' => $beatmapset,
             ]);
-
-            if ($beatmapset->isPending() && $beatmapset->hasNominations() && priv_check('BeatmapsetNominate')->can()) {
-                // bubble pop (isn't that like some kpop song?)
-                BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, Auth::user(), $discussion)->saveOrExplode();
-            }
 
             return [
                 'beatmapset' => $posts[0]->beatmapset->defaultJson(),
