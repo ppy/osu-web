@@ -145,8 +145,7 @@ class BeatmapsetsController extends Controller
             $lastEventUpdate = $beatmapset->events()->max('updated_at');
 
             $hasUpdates = false;
-            if ($lastDiscussionUpdate !== null || $lastEventUpdate !== null)
-            {
+            if ($lastDiscussionUpdate !== null || $lastEventUpdate !== null) {
                 if ($lastDiscussionUpdate === null) {
                     $latestUpdate = $lastEventUpdate;
                 } elseif ($lastEventUpdate === null) {
