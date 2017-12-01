@@ -47,7 +47,24 @@
 @if(config('services.sentry.public_dsn') !== '')
     <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
     <script>
-        Raven.config('{{ config('services.sentry.public_dsn') }}', {release: '{{ config('osu.git-sha') }}'}).install();
+        var ravenOptions = {
+            release: '{{ config('osu.git-sha') }}',
+            ignoreErrors: [
+                // Random plugins/extensions
+                'top.GLOBALS'
+            ],
+            ignoreUrls: [
+                // Chrome/Firefox extensions
+                /extensions\//i,
+                /^chrome:\/\//i,
+                /^resource:\/\//i,
+                // Disqus
+                /embed\.js$/i,
+                // Errors caused by spyware/adware junk
+                /^\/loaders\//i
+            ]
+        }
+        Raven.config('{{ config('services.sentry.public_dsn') }}', ravenOptions).install();
         Raven.setUserContext({lang: currentLocale});
     </script>
 @endif

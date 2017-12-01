@@ -115,6 +115,17 @@
   &--disabled {
     background-color: #333;
     cursor: not-allowed;
+
+    // looks dumb if black and other buttons on the bar are not.
+    .post-editor__toolbar & {
+      background-color: @blue-darker;
+
+      &::before {
+        .full-size();
+        .circle(@btn-circle-diameter);
+        background-color: fade(#fff, 50%);
+      }
+    }
   }
 
   // some browsers can't display flex for <button>

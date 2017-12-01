@@ -16,10 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, h3, span} = ReactDOMFactories
+{a, button, div, h3, span, textarea} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Info extends React.Component
+  constructor: (props) ->
+    super props
+
+    @state =
+      isBusy: false
+      isEditing: false
+
+
   componentDidMount: ->
     @renderChart()
 
@@ -30,6 +38,52 @@ class BeatmapsetPage.Info extends React.Component
 
   componentWillUnmount: =>
     $(window).off '.beatmapsetPageInfo'
+
+
+  dismissEditor: (e) =>
+    @setState isEditing: false if e.target == @overlay
+
+
+  editStart: =>
+    @setState isEditing: true
+
+
+  onEditorChange: (action) =>
+    switch action.type
+      when 'save'
+        if action.hasChanged
+          @saveDescription(action.value)
+        else
+          @setState isEditing: false
+
+      when 'cancel'
+        @setState isEditing: false
+
+
+  onSelectionUpdate: (selection) =>
+    @setState selection: selection
+
+
+  saveDescription: (value) =>
+    @setState isBusy: true
+    $.ajax laroute.route('beatmapsets.update', beatmapset: @props.beatmapset.id),
+      method: 'PATCH',
+      data:
+        description: value
+
+    .done (data) =>
+      @setState
+        isEditing: false
+        description: data.description
+
+    .fail osu.ajaxError
+
+    .always =>
+      @setState isBusy: false
+
+
+  withEdit: =>
+     @props.beatmapset.description.bbcode?
 
 
   renderChart: ->
@@ -47,11 +101,39 @@ class BeatmapsetPage.Info extends React.Component
 
     @_failurePointsChart.loadData @props.beatmap.failtimes
 
+
+  renderEditButton: =>
+    div className: 'beatmapset-info__edit-description',
+      button
+        type: 'button'
+        className: 'btn-circle'
+        onClick: @editStart
+        span className: 'btn-circle__content',
+          el Icon, name: 'edit'
+
+
   render: ->
     percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
 
     div className: 'beatmapset-info',
+      if @state.isEditing
+        div className: 'beatmapset-description-editor',
+          div
+            className: 'beatmapset-description-editor__overlay'
+            onClick: @dismissEditor
+            ref: (element) => @overlay = element
+
+            div className: 'beatmapset-description-editor__container osu-page',
+              el BBCodeEditor,
+                disabled: @state.isBusy
+                onChange: @onEditorChange
+                onSelectionUpdate: @onSelectionUpdate
+                rawValue: @state.description?.bbcode ? @props.beatmapset.description.bbcode
+                selection: @state.selection
+
       div className: 'beatmapset-info__box beatmapset-info__box--description',
+        @renderEditButton() if @withEdit()
+
         h3
           className: 'beatmapset-info__header'
           osu.trans 'beatmapsets.show.info.description'
@@ -59,7 +141,7 @@ class BeatmapsetPage.Info extends React.Component
         div
           className: 'beatmapset-info__description'
           dangerouslySetInnerHTML:
-            __html: @props.beatmapset.description.description
+            __html: @state.description?.description ? @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
         if @props.beatmapset.source

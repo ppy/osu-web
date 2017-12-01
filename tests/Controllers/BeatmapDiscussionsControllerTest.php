@@ -12,19 +12,20 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         parent::setUp();
 
+        $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
         $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->user->user_id,
+            'user_id' => $this->mapper->user_id,
             'discussion_enabled' => true,
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
-            'user_id' => $this->user->user_id,
+            'user_id' => $this->mapper->user_id,
         ]));
         $this->beatmapDiscussion = BeatmapDiscussion::create([
             'beatmapset_id' => $this->beatmapset->getKey(),
             'timestamp' => 0,
-            'message_type' => 'praise',
+            'message_type' => 'problem',
             'beatmap_id' => $this->beatmap->beatmap_id,
             'user_id' => $this->user->user_id,
         ]);

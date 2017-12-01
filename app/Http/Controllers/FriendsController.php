@@ -63,30 +63,36 @@ class FriendsController extends Controller
 
     public function store()
     {
-        if (Auth::user()->friends()->count() >= config('osu.user.max_friends')) {
+        $currentUser = Auth::user();
+        $friends = $currentUser->friends(); // don't fetch (avoids potentially instantiating 500+ friend objects)
+
+        if ($friends->count() >= $currentUser->maxFriends()) {
             return error_popup(trans('friends.too_many'));
         }
 
-        $target_id = get_int(Request::input('target'));
-        $user = User::find($target_id)->firstOrFail();
+        $targetId = get_int(Request::input('target'));
+        $targetUser = User::lookup($targetId, 'id');
 
-        $friend = Auth::user()
-            ->friends()
-            ->where(['user_id' => $target_id])
-            ->first();
+        if (!$targetUser) {
+            abort(404);
+        }
 
-        if (!$friend) {
+        $alreadyFriends = $friends
+            ->where('user_id', $targetId)
+            ->exists();
+
+        if (!$alreadyFriends) {
             UserRelation::create([
-                'user_id' => Auth::user()->user_id,
-                'zebra_id' => $target_id,
+                'user_id' => $currentUser->user_id,
+                'zebra_id' => $targetId,
                 'friend' => 1,
             ]);
 
-            dispatch(new UpdateUserFollowerCountCache($target_id));
+            dispatch(new UpdateUserFollowerCountCache($targetId));
         }
 
         return json_collection(
-            Auth::user()->relations()->friends()->withMutual()->get(),
+            $currentUser->relations()->friends()->withMutual()->get(),
             'UserRelation'
         );
     }
