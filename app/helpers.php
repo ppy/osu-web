@@ -101,8 +101,7 @@ function get_valid_locale($requestedLocale)
 
 function html_excerpt($body, $limit = 300)
 {
-    // not using strip_tags because <br> and <p> needs to be converted to space
-    $body = preg_replace('#<[^>]+>#', ' ', $body);
+    $body = replace_tags_with_spaces($body);
 
     if (strlen($body) < $limit) {
         return $body;
@@ -219,6 +218,12 @@ function read_image_properties_from_string($string)
     if ($data !== false) {
         return $data;
     }
+}
+
+// use this instead of strip_tags when <br> and <p> need to be converted to space
+function replace_tags_with_spaces($body)
+{
+    return preg_replace('#<[^>]+>#', ' ', $body);
 }
 
 function request_country($request = null)
