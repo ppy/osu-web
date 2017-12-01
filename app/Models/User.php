@@ -191,7 +191,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     private function updateUsername($newUsername, $oldUsername, $type)
     {
         $this->username_previous = $oldUsername;
-        $this->username_clean = strtolower($newUsername);
         $this->username = $newUsername;
 
         DB::transaction(function () use ($newUsername, $oldUsername, $type) {
@@ -215,6 +214,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
         });
+    }
+
+    public static function cleanUsername($username)
+    {
+        return strtolower($username);
     }
 
     public static function findByUsernameForInactive($username)
@@ -455,6 +459,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         $this->attributes['osu_playstyle'] = $styles;
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = $value;
+        $this->username_clean = static::cleanUsername($value);
     }
 
     public function isSpecial()
