@@ -1034,7 +1034,15 @@ class Beatmapset extends Model
 
         $split = preg_split('/-{15}/', $post->post_text, 2);
 
-        return $post->edit($split[0]."---------------\n".ltrim($bbcode), $user);
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+        return $post->edit($newBody, $user);
     }
 
     public function state()
