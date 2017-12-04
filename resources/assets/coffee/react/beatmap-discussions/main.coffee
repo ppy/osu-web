@@ -254,22 +254,31 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         'generalAll'
 
-    @setMode null,
-      mode: mode
-      callback: =>
-        @setCurrentBeatmapId null,
-          id: discussion.beatmap_id
-          callback: =>
-            $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+    filter =
+      if @state.currentFilter == 'total' || @currentDiscussions().byFilter[@state.currentFilter][mode][id]?
+        @state.currentFilter
+      else
+        'total'
 
-            target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-            offset = 0
-            for header in [modeSwitcher, newDiscussion]
-              continue if !header[0]?
-              offset += header[0].getBoundingClientRect().height * -1
+    setFilter = =>
+      @setFilter null, filter: filter, callback: setMode
+    setMode = =>
+      @setMode null, mode: mode, callback: setCurrentBeatmapId
+    setCurrentBeatmapId = =>
+      @setCurrentBeatmapId null, id: discussion.beatmap_id, callback: jump
+    jump = =>
+      $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
-            $(window).stop().scrollTo target, 500,
-              offset: offset
+      target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+      offset = 0
+      for header in [modeSwitcher, newDiscussion]
+        continue if !header[0]?
+        offset += header[0].getBoundingClientRect().height * -1
+
+      $(window).stop().scrollTo target, 500,
+        offset: offset
+
+    setFilter()
 
 
   jumpToClick: (e) =>
@@ -315,14 +324,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @setCurrentBeatmapId null, id: beatmap?.id
 
 
-  setFilter: (_e, {filter}) =>
-    return if filter == @state.currentFilter && @state.mode != 'events'
+  setFilter: (_e, {filter, callback}) =>
+    return callback?() if filter == @state.currentFilter && @state.mode != 'events'
 
     newState = currentFilter: filter
     # restore last mode on clicking filter when viewing events
     newState.mode = @lastMode ? 'timeline' if @state.mode == 'events'
 
-    @setState newState
+    @setState newState, callback
 
 
   setMode: (_e, {mode, callback}) =>
