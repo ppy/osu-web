@@ -31,6 +31,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     @state =
       editing: false
+      posting: false
       message: @props.post.message
 
 
@@ -127,7 +128,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @setState editing: false
       return
 
-    LoadingOverlay.show()
+    @setState posting: true
 
     @xhr.updatePost?.abort()
     @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
@@ -142,7 +143,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always => @setState posting: false
 
 
   editStart: =>
@@ -278,12 +279,16 @@ class BeatmapDiscussions.Post extends React.PureComponent
           div className: "#{bn}__action",
             el BigButton,
               text: osu.trans 'common.buttons.cancel'
-              props: onClick: @editEnd
+              props:
+                onClick: @editEnd
+                disabled: @state.posting
 
           div className: "#{bn}__action",
             el BigButton,
               text: osu.trans 'common.buttons.save'
-              props: onClick: @throttledUpdatePost
+              props:
+                onClick: @throttledUpdatePost
+                disabled: @state.posting
 
 
   permalink: (e) =>
