@@ -309,16 +309,39 @@ class Post extends Model
         ];
     }
 
-    public static function esReindexAll()
+    public static function esReindexAll($batchSize = 1000, $fromId = 0)
     {
         $forum_ids = Forum::where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::whereIn('forum_id', $forum_ids)
+        $baseQuery = static::withoutGlobalScopes()
+            ->whereIn('forum_id', $forum_ids)
             ->orderBy('post_id', 'asc')
-            ->chunk(1000, function ($posts) {
-                foreach ($posts as $post) {
-                    Es::index($post->toEsJson());
+            ->limit($batchSize);
+
+        $count = 0;
+        while (true) {
+            $query = (clone $baseQuery)->where('post_id', '>', $fromId);
+            $models = $query->get();
+
+            $next = null;
+            foreach ($models as $model) {
+                Es::index($model->toEsJson());
+                $next = $model;
+
+                ++$count;
+                if ($count % $batchSize === 0) {
+                    \Log::info("Indexed {$count} records.");
                 }
-            });
+            }
+
+            if ($next === null) {
+                break;
+            }
+
+            $fromId = $next->getKey();
+            \Log::info("next: {$fromId}");
+        }
+
+        \Log::info("Indexed {$count} records.");
     }
 }
