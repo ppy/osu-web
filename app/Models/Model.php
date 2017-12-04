@@ -79,6 +79,21 @@ abstract class Model extends BaseModel
         $query->whereRaw('false');
     }
 
+    public function save(array $options = [])
+    {
+        $result = parent::save($options);
+
+        $connection = \DB::connection($this->connection);
+
+        \Log::debug([
+            'className' => get_class($this),
+            'connectionName' => $connection->getName(),
+            'transactionLevel' => $connection->transactionLevel(),
+        ]);
+
+        return $result;
+    }
+
     public function saveOrExplode($options = [])
     {
         $result = $this->save($options);
