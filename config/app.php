@@ -209,7 +209,7 @@ return [
         /*
          * After DB transaction commit support
          */
-        App\Providers\AfterCommitServiceProvider::class,
+        App\Providers\TransactionStateServiceProvider::class,
 
         /*
          * OAuth2 Setup

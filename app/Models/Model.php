@@ -91,6 +91,9 @@ abstract class Model extends BaseModel
             'transactionLevel' => $connection->transactionLevel(),
         ]);
 
+        $afterCommit = resolve(\App\Libraries\AfterCommit::class);
+        $afterCommit->add($connection, $this);
+
         return $result;
     }
 
