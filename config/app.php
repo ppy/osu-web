@@ -207,6 +207,11 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         /*
+         * After DB transaction commit support
+         */
+        App\Providers\AfterCommitServiceProvider::class,
+
+        /*
          * OAuth2 Setup
          */
 
