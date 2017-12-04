@@ -61,7 +61,7 @@
                                 value="{{ $forum->getKey() }}"
                                 {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
                             >
-                                {{ str_repeat('&ndash;', $forum->currentDepth()) }}
+                                {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
                             </option>
                         @endif
