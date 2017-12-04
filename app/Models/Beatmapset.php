@@ -1097,4 +1097,148 @@ class Beatmapset extends Model
 
         return Forum\Post::find($topic->topic_first_post_id);
     }
+
+    public function toEsJson()
+    {
+        return [
+            'index' => 'beatmaps',
+            'type' => 'beatmaps',
+            'id' => $this->beatmapset_id,
+            'body' => $this->esJsonBody(),
+        ];
+    }
+
+    private function esJsonBody()
+    {
+        return array_merge(
+            $this->esBeatmapsetValues(),
+            ['difficulties' => $this->esBeatmapValues()]
+        );
+    }
+
+    private function esBeatmapsetValues()
+    {
+        static $beatmapsetProperties = [
+            'approved',
+            'approved_date',
+            'artist',
+            'artist_unicode',
+            'bpm',
+            'creator',
+            'difficulty_names',
+            'download_disabled',
+            'epilepsy',
+            'favourite_count',
+            'filename',
+            'filesize',
+            'filesize_novideo',
+            'genre_id',
+            'language_id',
+            'last_update',
+            'offset',
+            'play_count',
+            'rating',
+            'source',
+            'star_priority',
+            'storyboard',
+            'submit_date',
+            'tags',
+            'thread_id',
+            'title',
+            'title_unicode',
+            'user_id',
+            'video',
+        ];
+
+        $beatmapsetValues = [];
+        foreach ($beatmapsetProperties as $property) {
+            $value = $this[$property];
+            if ($value instanceof Carbon) {
+                $value = $value = $value->toIso8601String();
+            }
+
+            $beatmapsetValues[$property] = $value;
+        }
+
+        return $beatmapsetValues;
+    }
+
+    private function esBeatmapValues()
+    {
+        // approved and playmode may be condensed.
+        static $beatmapProperties = [
+            'approved',
+            'beatmap_id',
+            'countNormal',
+            'countSlider',
+            'countSpinner',
+            'countTotal',
+            'diff_approach',
+            'diff_drain',
+            'diff_overall',
+            'diff_size',
+            'difficultyrating',
+            'hit_length',
+            'passcount',
+            'playcount',
+            'playmode',
+            'total_length',
+            'version',
+        ];
+
+        $beatmapValues = [];
+        // initialize everything to an array.
+        foreach ($beatmapProperties as $property) {
+            $beatmapValues[$property] = [];
+        }
+
+        foreach ($this->beatmaps as $beatmap) {
+            foreach ($beatmapProperties as $property) {
+                $beatmapValues[$property][] = $beatmap[$property];
+            }
+        }
+
+        return $beatmapValues;
+    }
+
+    public static function esReindexAll($batchSize = 1000, $fromId = 0)
+    {
+        $startTime = time();
+
+        $baseQuery = static::withoutGlobalScopes()
+            ->with('beatmaps') // note that the with query will run with the default scopes.
+            ->orderBy('beatmapset_id', 'asc')
+            ->limit($batchSize);
+
+        $count = 0;
+        while (true) {
+            $query = (clone $baseQuery)->where('beatmapset_id', '>', $fromId);
+            $models = $query->get();
+
+            $next = null;
+            foreach ($models as $model) {
+                $next = $model;
+                if ($model->trashed()) {
+                    continue;
+                }
+
+                Es::index($model->toEsJson());
+
+                ++$count;
+                if ($count % $batchSize === 0) {
+                    \Log::info("Indexed {$count} records.");
+                }
+            }
+
+            if ($next === null) {
+                break;
+            }
+
+            $fromId = $next->getKey();
+            \Log::info("next: {$fromId}");
+        }
+
+        $duration = time() - $startTime;
+        \Log::info("Indexed {$count} records in {$duration} s.");
+    }
 }
