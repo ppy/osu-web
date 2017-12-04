@@ -96,7 +96,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 className: "#{bn}__message-area js-hype--input"
                 value: @state.message
                 onChange: @setMessage
-                onKeyDown: @ignoreEnter
+                onKeyDown: @handleEnter
                 onFocus: @setSticky
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
                 ref: (el) => @input = el
@@ -168,8 +168,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState(stickable: newState) if newState != @state.stickable
 
 
-  ignoreEnter: (e) =>
-    return if e.keyCode != 13
+  handleEnter: (e) =>
+    return if e.keyCode != 13 || e.shiftKey
 
     e.preventDefault()
 
@@ -255,7 +255,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   setMessage: (e) =>
-    message = e.currentTarget.value.replace /\n/g, ' '
+    message = e.currentTarget.value
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
 
     @setState {message, timestamp}

@@ -62,7 +62,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             rows: 2
             value: @state.message
             onChange: @setMessage
-            onKeyDown: @submitIfEnter
+            onKeyDown: @handleEnter
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
             disabled: @state.posting?
 
@@ -137,6 +137,13 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
+  handleEnter: (e) =>
+    return if e.keyCode != 13 || e.shiftKey
+
+    e.preventDefault()
+    @throttledPost(e)
+
+
   post: (event) =>
     return if !@validPost()
     LoadingOverlay.show()
@@ -174,13 +181,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
   setMessage: (e) =>
     @setState message: e.target.value.replace /\n/g, ' '
-
-
-  submitIfEnter: (e) =>
-    return if e.keyCode != 13
-
-    e.preventDefault()
-    @throttledPost(e)
 
 
   validPost: =>

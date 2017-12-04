@@ -112,15 +112,15 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  messageInput: (e) =>
-    @setState message: e.target.value.replace /\n/g, ' '
-
-
-  submitIfEnter: (e) =>
-    return if e.keyCode != 13
+  handleEnter: (e) =>
+    return if e.keyCode != 13 || e.shiftKey
 
     e.preventDefault()
     @throttledUpdatePost()
+
+
+  messageInput: (e) =>
+    @setState message: e.target.value
 
 
   updatePost: =>
@@ -157,6 +157,19 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @setState editing: false
 
 
+  formattedMessage: =>
+    text = @props.post.message
+    text = _.escape text
+    text = _.trim text
+    # replace strictly single newline with single (html) newline
+    text = text.replace /\b\n\b/g, '<br>'
+    # fold multiple newlines into two (html) newlines
+    text = text.replace /(\n\s*){2,}/g, '<br><br>'
+    text = osu.linkify text
+    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
+    text
+
+
   isOwner: =>
     @props.post.user_id == @props.beatmapset.user_id
 
@@ -173,7 +186,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
+          __html: @formattedMessage()
 
       div className: "#{bn}__info-container",
         span
@@ -269,7 +282,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         ref: (el) => @textarea = el
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @messageInput
-        onKeyDown: @submitIfEnter
+        onKeyDown: @handleEnter
         value: @state.message
 
       div className: "#{bn}__actions",
