@@ -325,8 +325,12 @@ class Post extends Model
 
             $next = null;
             foreach ($models as $model) {
-                Es::index($model->toEsJson());
                 $next = $model;
+                if ($model->trashed()) {
+                    continue;
+                }
+
+                Es::index($model->toEsJson());
 
                 ++$count;
                 if ($count % $batchSize === 0) {
