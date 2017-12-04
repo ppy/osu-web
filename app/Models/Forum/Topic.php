@@ -391,8 +391,11 @@ class Topic extends Model
 
     public function scopeWatchedByUser($query, $user)
     {
+        $forumIds = Authorize::aclGetAllowedForums($user, 'f_read');
+
         return $query
             ->with('forum')
+            ->whereIn('forum_id', $forumIds)
             ->whereIn(
                 'topic_id',
                 model_pluck(
