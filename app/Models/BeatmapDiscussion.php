@@ -115,7 +115,7 @@ class BeatmapDiscussion extends Model
             !$this->kudosu_denied;
     }
 
-    public function refreshKudosu($event)
+    public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes
         $this->beatmapDiscussionVotes()->where([
@@ -143,19 +143,25 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        DB::transaction(function () use ($change, $event, $currentVotes) {
+        DB::transaction(function () use ($change, $event, $eventExtraData, $currentVotes) {
             if ($event === 'vote') {
                 if ($change > 0) {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_GAIN;
                 } else {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
                 }
+
+                $eventExtraData['votes'] = $this
+                    ->beatmapDiscussionVotes()
+                    ->get()
+                    ->map
+                    ->forEvent();
             } elseif ($event === 'recalculate') {
                 $beatmapsetEventType = BeatmapsetEvent::KUDOSU_RECALCULATE;
             }
 
             if (isset($beatmapsetEventType)) {
-                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this)->saveOrExplode();
+                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this, $eventExtraData)->saveOrExplode();
             }
 
             KudosuHistory::create([
@@ -260,7 +266,7 @@ class BeatmapDiscussion extends Model
                 }
 
                 $this->userRecentVotesCount($vote->user, true);
-                $this->refreshKudosu('vote');
+                $this->refreshKudosu('vote', ['new_vote' => $vote->forEvent()]);
             }
 
             return true;
