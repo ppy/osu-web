@@ -36,6 +36,7 @@ trait Esindexable
         ];
 
         static::esReindexAll($batchSize, 0, $options);
+        static::esUpdateAlias(static::esIndexName(), $newIndex);
 
         return $newIndex;
     }
@@ -97,6 +98,24 @@ trait Esindexable
         ];
 
         return Es::indices()->create($params);
+    }
+
+    public static function esUpdateAlias(string $alias, string $index)
+    {
+        $params = [
+            'body' => [
+                'actions' => [
+                    [
+                        'add' => [
+                            'index' => $index,
+                            'alias' => $alias,
+                        ],
+                    ],
+                ],
+            ],
+        ];
+
+        return Es::indices()->updateAliases($params);
     }
 
     public abstract static function esMappings();
