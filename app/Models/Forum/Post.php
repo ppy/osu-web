@@ -22,6 +22,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
+use App\Models\Elasticsearch;
 use App\Models\User;
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
@@ -31,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use EsIndexable, SoftDeletes;
+    use Elasticsearch\PostTrait, SoftDeletes;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -45,6 +46,19 @@ class Post extends Model
     ];
 
     private $normalizedUsers = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Elasticsearch mappings; can't put in a Trait.
+    |--------------------------------------------------------------------------
+    */
+    const ES_MAPPINGS = [
+        'topic_id' => ['type' => 'long'],
+        'poster_id' => ['type' => 'long'],
+        'forum_id' => ['type' => 'long'],
+        'post_time' => ['type' => 'date'],
+        'post_text' => ['type' => 'string'],
+    ];
 
     public function forum()
     {
@@ -292,72 +306,5 @@ class Post extends Model
         if ($showDeleted) {
             $query->withTrashed();
         }
-    }
-
-    public static function esIndexName()
-    {
-        return 'posts';
-    }
-
-    public static function esType()
-    {
-        return 'posts';
-    }
-
-    public function toEsJson()
-    {
-        return [
-            'index' => static::esIndexName(),
-            'type' => static::esType(),
-            'id' => $this->post_id,
-            'body' => $this->esPostValues(),
-        ];
-    }
-
-    private function esPostValues()
-    {
-        $mappings = static::ES_MAPPINGS;
-
-        $values = [];
-        foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $values[$field] = $value;
-        }
-
-        return $values;
-    }
-
-    const ES_MAPPINGS = [
-        'topic_id' => ['type' => 'long'],
-        'poster_id' => ['type' => 'long'],
-        'forum_id' => ['type' => 'long'],
-        'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'string'],
-    ];
-
-    public static function esMappings()
-    {
-        return static::ES_MAPPINGS;
-    }
-
-    public static function esReindexAll($batchSize = 1000, $fromId = 0)
-    {
-        $startTime = time();
-
-        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
-
-        $baseQuery = static::withoutGlobalScopes()
-            ->whereIn('forum_id', $forumIds)
-            ->orderBy('post_id', 'asc')
-            ->limit($batchSize);
-
-        $count = static::esIndexEach($baseQuery, 'post_id', $batchSize, $fromId);
-
-        $duration = time() - $startTime;
-        \Log::info("Indexed {$count} records in {$duration} s.");
     }
 }
