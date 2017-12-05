@@ -24,6 +24,7 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
+use App\Traits\EsIndexable;
 use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
@@ -36,7 +37,7 @@ use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
-    use SoftDeletes;
+    use EsIndexable, SoftDeletes;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -1206,37 +1207,9 @@ class Beatmapset extends Model
         $startTime = time();
 
         $baseQuery = static::withoutGlobalScopes()
-            ->with('beatmaps') // note that the with query will run with the default scopes.
-            ->orderBy('beatmapset_id', 'asc')
-            ->limit($batchSize);
+            ->with('beatmaps'); // note that the with query will run with the default scopes.
 
-        $count = 0;
-        while (true) {
-            $query = (clone $baseQuery)->where('beatmapset_id', '>', $fromId);
-            $models = $query->get();
-
-            $next = null;
-            foreach ($models as $model) {
-                $next = $model;
-                if ($model->trashed()) {
-                    continue;
-                }
-
-                Es::index($model->toEsJson());
-
-                ++$count;
-                if ($count % $batchSize === 0) {
-                    \Log::info("Indexed {$count} records.");
-                }
-            }
-
-            if ($next === null) {
-                break;
-            }
-
-            $fromId = $next->getKey();
-            \Log::info("next: {$fromId}");
-        }
+        $count = static::esIndexEach($baseQuery, 'beatmapset_id', $batchSize, $fromId);
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");

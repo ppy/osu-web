@@ -23,6 +23,7 @@ namespace App\Models\Forum;
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
 use App\Models\User;
+use App\Traits\EsIndexable;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -30,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes;
+    use EsIndexable, SoftDeletes;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -293,7 +294,7 @@ class Post extends Model
         }
     }
 
-    private function toEsJson()
+    public function toEsJson()
     {
         return [
             'index' => 'posts',
@@ -311,41 +312,18 @@ class Post extends Model
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0)
     {
-        $forum_ids = Forum::where('enable_indexing', 1)->pluck('forum_id');
+        $startTime = time();
+
+        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
 
         $baseQuery = static::withoutGlobalScopes()
-            ->whereIn('forum_id', $forum_ids)
+            ->whereIn('forum_id', $forumIds)
             ->orderBy('post_id', 'asc')
             ->limit($batchSize);
 
-        $count = 0;
-        while (true) {
-            $query = (clone $baseQuery)->where('post_id', '>', $fromId);
-            $models = $query->get();
+        $count = static::esIndexEach($baseQuery, 'post_id', $batchSize, $fromId);
 
-            $next = null;
-            foreach ($models as $model) {
-                $next = $model;
-                if ($model->trashed()) {
-                    continue;
-                }
-
-                Es::index($model->toEsJson());
-
-                ++$count;
-                if ($count % $batchSize === 0) {
-                    \Log::info("Indexed {$count} records.");
-                }
-            }
-
-            if ($next === null) {
-                break;
-            }
-
-            $fromId = $next->getKey();
-            \Log::info("next: {$fromId}");
-        }
-
-        \Log::info("Indexed {$count} records.");
+        $duration = time() - $startTime;
+        \Log::info("Indexed {$count} records in {$duration} s.");
     }
 }
