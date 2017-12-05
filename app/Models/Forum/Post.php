@@ -300,14 +300,31 @@ class Post extends Model
             'index' => 'posts',
             'type' => 'posts',
             'id' => $this->post_id,
-            'body' => [
-                'topic_id' => $this->topic_id,
-                'poster_id' => $this->poster_id,
-                'forum_id' => $this->forum_id,
-                'post_time' => $this->post_time->timestamp,
-                'post_text' => $this->post_text,
-            ]
+            'body' => $this->esPostValues(),
         ];
+    }
+
+    private function esPostValues()
+    {
+        static $mappings = [
+            'topic_id' => ['type' => 'long'],
+            'poster_id' => ['type' => 'long'],
+            'forum_id' => ['type' => 'long'],
+            'post_time' => ['type' => 'date'],
+            'post_text' => ['type' => 'string'],
+        ];
+
+        $values = [];
+        foreach ($mappings as $field => $mapping) {
+            $value = $this[$field];
+            if ($value instanceof Carbon) {
+                $value = $value->toIso8601String();
+            }
+
+            $values[$field] = $value;
+        }
+
+        return $values;
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0)

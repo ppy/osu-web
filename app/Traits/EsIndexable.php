@@ -66,5 +66,7 @@ trait Esindexable
         return $count;
     }
 
+    public abstract static function esFieldMappings();
+
     public abstract function toEsJson();
 }

@@ -1119,87 +1119,87 @@ class Beatmapset extends Model
 
     private function esBeatmapsetValues()
     {
-        static $beatmapsetProperties = [
-            'approved',
-            'approved_date',
-            'artist',
-            'artist_unicode',
-            'bpm',
-            'creator',
-            'difficulty_names',
-            'download_disabled',
-            'epilepsy',
-            'favourite_count',
-            'filename',
-            'filesize',
-            'filesize_novideo',
-            'genre_id',
-            'language_id',
-            'last_update',
-            'offset',
-            'play_count',
-            'rating',
-            'source',
-            'star_priority',
-            'storyboard',
-            'submit_date',
-            'tags',
-            'thread_id',
-            'title',
-            'title_unicode',
-            'user_id',
-            'video',
+        static $mappings = [
+            'approved' => ['type' => 'long'],
+            'approved_date' => ['type' => 'date'],
+            'artist' => ['type' => 'string'],
+            'artist_unicode' => ['type' => 'string'],
+            'bpm' => ['type' => 'double'],
+            'creator' => ['type' => 'string'],
+            'difficulty_names' => ['type' => 'string'],
+            'download_disabled' => ['type' => 'long'],
+            'epilepsy' => ['type' => 'long'],
+            'favourite_count' => ['type' => 'long'],
+            'filename' => ['type' => 'string'],
+            'filesize' => ['type' => 'long'],
+            'filesize_novideo' => ['type' => 'long'],
+            'genre_id' => ['type' => 'long'],
+            'language_id' => ['type' => 'long'],
+            'last_update' => ['type' => 'date'],
+            'offset' => ['type' => 'long'],
+            'play_count' => ['type' => 'long'],
+            'rating' => ['type' => 'double'],
+            'source' => ['type' => 'string'],
+            'star_priority' => ['type' => 'long'],
+            'storyboard' => ['type' => 'long'],
+            'submit_date' => ['type' => 'date'],
+            'tags' => ['type' => 'string'],
+            'thread_id' => ['type' => 'long'],
+            'title' => ['type' => 'string'],
+            'title_unicode' => ['type' => 'string'],
+            'user_id' => ['type' => 'long'],
+            'video' => ['type' => 'long'],
         ];
 
-        $beatmapsetValues = [];
-        foreach ($beatmapsetProperties as $property) {
-            $value = $this[$property];
+        $values = [];
+        foreach ($mappings as $field => $mapping) {
+            $value = $this[$field];
             if ($value instanceof Carbon) {
-                $value = $value = $value->toIso8601String();
+                $value = $value->toIso8601String();
             }
 
-            $beatmapsetValues[$property] = $value;
+            $values[$field] = $value;
         }
 
-        return $beatmapsetValues;
+        return $values;
     }
 
     private function esBeatmapValues()
     {
         // approved and playmode may be condensed.
-        static $beatmapProperties = [
-            'approved',
-            'beatmap_id',
-            'countNormal',
-            'countSlider',
-            'countSpinner',
-            'countTotal',
-            'diff_approach',
-            'diff_drain',
-            'diff_overall',
-            'diff_size',
-            'difficultyrating',
-            'hit_length',
-            'passcount',
-            'playcount',
-            'playmode',
-            'total_length',
-            'version',
+        static $mappings = [
+            'approved' => ['type' => 'long'],
+            'beatmap_id' => ['type' => 'long'],
+            'countNormal' => ['type' => 'long'],
+            'countSlider' => ['type' => 'long'],
+            'countSpinner' => ['type' => 'long'],
+            'countTotal' => ['type' => 'long'],
+            'diff_approach' => ['type' => 'double'],
+            'diff_drain' => ['type' => 'double'],
+            'diff_overall' => ['type' => 'double'],
+            'diff_size' => ['type' => 'double'],
+            'difficultyrating' => ['type' => 'double'],
+            'hit_length' => ['type' => 'long'],
+            'passcount' => ['type' => 'long'],
+            'playcount' => ['type' => 'long'],
+            'playmode' => ['type' => 'long'],
+            'total_length' => ['type' => 'long'],
+            'version' => ['type' => 'string'],
         ];
 
-        $beatmapValues = [];
+        $values = [];
         // initialize everything to an array.
-        foreach ($beatmapProperties as $property) {
-            $beatmapValues[$property] = [];
+        foreach ($mappings as $field => $mapping) {
+            $values[$field] = [];
         }
 
-        foreach ($this->beatmaps as $beatmap) {
-            foreach ($beatmapProperties as $property) {
-                $beatmapValues[$property][] = $beatmap[$property];
+        foreach ($this->beatmaps as $beatmap => $mapping) {
+            foreach ($mappings as $field) {
+                $values[$field][] = $beatmap[$field];
             }
         }
 
-        return $beatmapValues;
+        return $values;
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0)
