@@ -29,14 +29,14 @@ trait PostTrait
 {
     use EsIndexable;
 
-    public function toEsJson()
+    public function toEsJson(array $options = [])
     {
-        return [
+        return array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
             'id' => $this->post_id,
             'body' => $this->esPostValues(),
-        ];
+        ], $options);
     }
 
     public static function esIndexName()
@@ -54,7 +54,7 @@ trait PostTrait
         return static::ES_MAPPINGS;
     }
 
-    public static function esReindexAll($batchSize = 1000, $fromId = 0)
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
     {
         $startTime = time();
 
@@ -65,7 +65,7 @@ trait PostTrait
             ->orderBy('post_id', 'asc')
             ->limit($batchSize);
 
-        $count = static::esIndexEach($baseQuery, 'post_id', $batchSize, $fromId);
+        $count = static::esIndexEach($baseQuery, 'post_id', $batchSize, $fromId, $options);
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");

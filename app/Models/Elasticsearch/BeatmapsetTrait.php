@@ -28,14 +28,14 @@ trait BeatmapsetTrait
 {
     use EsIndexable;
 
-    public function toEsJson()
+    public function toEsJson(array $options = [])
     {
-        return [
+        return array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
             'id' => $this->beatmapset_id,
             'body' => $this->esJsonBody(),
-        ];
+        ], $options);
     }
     public static function esIndexName()
     {
@@ -55,14 +55,14 @@ trait BeatmapsetTrait
         );
     }
 
-    public static function esReindexAll($batchSize = 1000, $fromId = 0)
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
     {
         $startTime = time();
 
         $baseQuery = static::withoutGlobalScopes()
             ->with('beatmaps'); // note that the with query will run with the default scopes.
 
-        $count = static::esIndexEach($baseQuery, 'beatmapset_id', $batchSize, $fromId);
+        $count = static::esIndexEach($baseQuery, 'beatmapset_id', $batchSize, $fromId, $options);
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");

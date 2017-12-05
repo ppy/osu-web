@@ -21,14 +21,30 @@
 namespace App\Traits;
 
 use Es;
+use Log;
 
 trait Esindexable
 {
+    public static function esHotReindex($batchSize = 1000)
+    {
+        $newIndex = static::esIndexName().'_'.time();
+        Log::info("Creating new index {$newIndex}");
+        static::esCreateIndex($newIndex);
+
+        $options = [
+            'index' => $newIndex,
+        ];
+
+        static::esReindexAll($batchSize, 0, $options);
+
+        return $newIndex;
+    }
+
     /**
      * Paginates and indexes the recordsets using key-set pagination instead of
      *  the offset pagination used by chunk().
      */
-    public static function esIndexEach($baseQuery, $keyColumn, $batchSize, $fromId)
+    public static function esIndexEach($baseQuery, $keyColumn, $batchSize, $fromId, array $options = [])
     {
         $count = 0;
         while (true) {
@@ -47,11 +63,11 @@ trait Esindexable
                     continue;
                 }
 
-                Es::index($model->toEsJson());
+                Es::index($model->toEsJson($options));
 
                 ++$count;
                 if ($count % $batchSize === 0) {
-                    \Log::info("Indexed {$count} records.");
+                    Log::info("Indexed {$count} records.");
                 }
             }
 
@@ -60,17 +76,17 @@ trait Esindexable
             }
 
             $fromId = $next->getKey();
-            \Log::info("next: {$fromId}");
+            Log::info("next: {$fromId}");
         }
 
         return $count;
     }
 
-    public static function esCreateIndex()
+    public static function esCreateIndex(string $name = null)
     {
         $type = static::esType();
         $params = [
-            'index' => static::esIndexName(),
+            'index' => $name ?? static::esIndexName(),
             'body' => [
                 'mappings' => [
                     $type => [
@@ -86,6 +102,7 @@ trait Esindexable
     public abstract static function esMappings();
     public abstract static function esType();
     public abstract static function esIndexName();
+    public abstract static function esReindexAll($batchSize, $fromId, array $options);
 
-    public abstract function toEsJson();
+    public abstract function toEsJson(array $options);
 }
