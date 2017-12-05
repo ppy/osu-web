@@ -193,7 +193,8 @@ class User extends Model implements AuthenticatableContract, Messageable
                 throw new ModelNotSavedException('failed saving model');
             }
 
-            $this->saveOrExplode(['inactive' => $type === 'inactive']);
+            $skipValidations = in_array($type, ['inactive', 'revert'], true);
+            $this->saveOrExplode(['skipValidations' => $skipValidations]);
         });
     }
 
@@ -318,7 +319,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'total' => $total,
             'over_limit' => $overLimit,
             'data' => $query
-                ->orderByRaw('LENGTH(username)')
                 ->orderBy('user_id')
                 ->limit($limit)
                 ->offset($offset)
@@ -966,6 +966,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
     }
 
+    public function maxFriends()
+    {
+        return $this->osu_subscriber ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+    }
+
     public function uncachedFollowerCount()
     {
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
@@ -1428,7 +1433,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function save(array $options = [])
     {
-        if ($options['inactive'] ?? false) {
+        if ($options['skipValidations'] ?? false) {
             return parent::save($options);
         }
 

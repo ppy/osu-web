@@ -59,7 +59,7 @@ class Authorize extends Model
         $directAclForumIds = model_pluck(static::directAcl($groupIds, $authOptionId), 'forum_id');
         $roleAclForumIds = model_pluck(static::roleAcl($groupIds, $authOptionId), 'forum_id');
 
-        return array_unique(array_merge($directAclForumIds, $roleAclForumIds));
+        return array_values(array_unique(array_merge($directAclForumIds, $roleAclForumIds)));
     }
 
     public static function increasesPostsCount($user, $forum)

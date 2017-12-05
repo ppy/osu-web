@@ -31,6 +31,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     @state =
       editing: false
+      posting: false
       message: @props.post.message
 
 
@@ -127,7 +128,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @setState editing: false
       return
 
-    LoadingOverlay.show()
+    @setState posting: true
 
     @xhr.updatePost?.abort()
     @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
@@ -142,7 +143,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .fail osu.ajaxError
 
-    .always LoadingOverlay.hide
+    .always => @setState posting: false
 
 
   editStart: =>
@@ -240,16 +241,8 @@ class BeatmapDiscussions.Post extends React.PureComponent
               'data-confirm': osu.trans('common.confirmation')
               osu.trans('beatmaps.discussions.restore')
 
-          if @props.type == 'discussion' && @props.discussion.can_grant_kudosu && @props.discussion.current_user_attributes?.can_moderate_kudosu
-            if @props.discussion.kudosu_denied
-              a
-                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
-                'data-remote': true
-                'data-method': 'POST'
-                'data-confirm': osu.trans('common.confirmation')
-                osu.trans('beatmaps.discussions.allow_kudosu')
-            else
+          if @props.type == 'discussion' && @props.discussion.current_user_attributes?.can_moderate_kudosu
+            if @props.discussion.can_grant_kudosu
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
                 href: laroute.route('beatmap-discussions.deny-kudosu', beatmap_discussion: @props.discussion.id)
@@ -257,6 +250,14 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.deny_kudosu')
+            else if @props.discussion.kudosu_denied
+              a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
+                'data-remote': true
+                'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.allow_kudosu')
 
 
 
@@ -278,12 +279,16 @@ class BeatmapDiscussions.Post extends React.PureComponent
           div className: "#{bn}__action",
             el BigButton,
               text: osu.trans 'common.buttons.cancel'
-              props: onClick: @editEnd
+              props:
+                onClick: @editEnd
+                disabled: @state.posting
 
           div className: "#{bn}__action",
             el BigButton,
               text: osu.trans 'common.buttons.save'
-              props: onClick: @throttledUpdatePost
+              props:
+                onClick: @throttledUpdatePost
+                disabled: @state.posting
 
 
   permalink: (e) =>

@@ -129,12 +129,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if @props.currentUser.id == @props.beatmapset.user_id
               @submitButton 'mapper_note'
-            else
-              [
-                @submitButton 'praise'
-                @submitButton 'suggestion'
-                @submitButton 'problem'
-              ]
+            @submitButton 'praise'
+            @submitButton 'suggestion'
+            @submitButton 'problem'
 
         if @nearbyPosts().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
@@ -217,6 +214,12 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return unless @validPost()
 
     type = e.currentTarget.dataset.type
+
+    userCanResetNominations = currentUser.isAdmin || currentUser.isQAT || currentUser.isBNG
+
+    if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
+      return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
+
     @postXhr?.abort()
     LoadingOverlay.show()
     @setState posting: type
@@ -240,6 +243,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
+      $.publish 'beatmapset:update', beatmapset: data.beatmapset
       $.publish 'beatmapsetDiscussion:update',
         beatmapsetDiscussion: data.beatmapset_discussion
 

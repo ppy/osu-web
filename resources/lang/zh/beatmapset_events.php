@@ -32,6 +32,7 @@ return [
         'kudosu_deny' => '讨论 :discussion 所得的 kudosu 被移除。',
         'kudosu_gain' => '讨论 :discussion 获得了足够的票数而被给予 kudosu 。',
         'kudosu_lost' => '讨论 :discussion 失去了票数，并且所得 kudosu 已被移除。',
+        'kudosu_recalculate' => '讨论 :discussion 所得的 kudosu 已经重新计算。',
         'nominate' => 'Nominated.',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',

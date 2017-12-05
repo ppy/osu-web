@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
@@ -106,6 +107,20 @@ class Beatmapset extends Model
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
+    }
+
+    public function recentFavourites($limit = 50)
+    {
+        $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('dateadded', 'desc')
+            ->limit($limit)
+            ->get();
+
+        return $favourites->pluck('user');
     }
 
     public function watches()
@@ -881,6 +896,11 @@ class Beatmapset extends Model
         return count($this->recentEvents()->nominations()->get());
     }
 
+    public function hasNominations()
+    {
+        return $this->currentNominationCount() > 0;
+    }
+
     public function rankingETA()
     {
         if (!$this->isQualified()) {
@@ -903,10 +923,11 @@ class Beatmapset extends Model
         switch ($this->approved) {
             case self::STATES['pending']:
             case self::STATES['qualified']:
-                // last 'disqualify' event (if any) and all events since
-                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
-                if ($disqualifyEvent) {
-                    $events->where('id', '>=', $disqualifyEvent->id);
+                // last 'disqualify' or 'nomination reset' event (if any) and all events since
+                $resetEvent = $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+
+                if ($resetEvent) {
+                    $events->where('id', '>=', $resetEvent->id);
                 }
         }
 
@@ -992,29 +1013,36 @@ class Beatmapset extends Model
 
     public function description()
     {
-        $topic = Forum\Topic::find($this->thread_id);
+        $bbcode = $this->getBBCode();
 
-        if ($topic === null) {
+        return $bbcode ? $bbcode->toHTML() : null;
+    }
+
+    public function editableDescription()
+    {
+        $bbcode = $this->getBBCode();
+
+        return $bbcode ? $bbcode->toEditor() : null;
+    }
+
+    public function updateDescription($bbcode, $user)
+    {
+        $post = $this->getPost();
+        if ($post === null) {
             return;
         }
 
-        $post = Forum\Post::find($topic->topic_first_post_id);
-
-        // Any description (after the first match) that matches
-        // '[-{15}]' within its body doesn't get split anymore,
-        // and gets stored in $split[1] anyways
-        $split = preg_split('[-{15}]', $post->post_text, 2);
-
-        // Return empty description if the pattern was not found
-        // (mostly older beatmapsets)
-        $description = $split[1] ?? '';
+        $split = preg_split('/-{15}/', $post->post_text, 2);
 
         $options = [
             'withGallery' => true,
             'ignoreLineHeight' => true,
         ];
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+        return $post->edit($newBody, $user);
     }
 
     public function state()
@@ -1027,5 +1055,46 @@ class Beatmapset extends Model
         $section = trans('layout.menu.beatmaps._');
 
         return "osu! » {$section} » {$this->artist} - {$this->title}";
+    }
+
+    private function extractDescription($post)
+    {
+        // Any description (after the first match) that matches
+        // '/-{15}/' within its body doesn't get split anymore,
+        // and gets stored in $split[1] anyways
+        $split = preg_split('/-{15}/', $post->post_text, 2);
+
+        // Return empty description if the pattern was not found
+        // (mostly older beatmapsets)
+        return ltrim($split[1] ?? '');
+    }
+
+    private function getBBCode()
+    {
+        $post = $this->getPost();
+
+        if ($post === null) {
+            return;
+        }
+
+        $description = $this->extractDescription($post);
+
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        return new BBCodeFromDB($description, $post->bbcode_uid, $options);
+    }
+
+    private function getPost()
+    {
+        $topic = Forum\Topic::find($this->thread_id);
+
+        if ($topic === null) {
+            return;
+        }
+
+        return Forum\Post::find($topic->topic_first_post_id);
     }
 }

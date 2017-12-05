@@ -16,9 +16,41 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// TODO: remove after finished migrating to bbcode editor
-.post-box-toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -2px;
+.beatmapset-favourites {
+  @avatar-size: 32px;
+  @avatar-margin: 1px;
+  @columns: 10;
+  @columns-mobile: 5;
+
+  background-color: fade(black, 75%);
+  color: white;
+  font-size: @font-size--normal;
+  max-width: ((@avatar-size + 2*@avatar-margin) * @columns) + 20px;
+  padding: 5px;
+
+  .default-border-radius();
+  .default-box-shadow();
+
+  @media @mobile {
+    max-width: ((@avatar-size + 2*@avatar-margin) * @columns-mobile) + 20px;
+  }
+
+  &__user {
+    display: inline-block;
+    width: @avatar-size;
+    height: @avatar-size;
+    margin: 0px @avatar-margin;
+    background-size: cover;
+    .default-border-radius();
+  }
+
+  &__remainder-count {
+    text-align: right;
+    margin-top: 5px;
+  }
+
+  // fix qtip's padding
+  .qtip-content {
+    padding: 5px;
+  }
 }

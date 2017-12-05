@@ -53,6 +53,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
 
+    lastResolvedState = false
+
     div
       className: topClasses
       'data-id': @props.discussion.id
@@ -82,7 +84,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
           div
             className: "#{bn}__replies"
-            @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
+            for reply in @props.discussion.beatmap_discussion_posts.slice(1)
+              if reply.system && reply.message.type == 'resolved'
+                currentResolvedState = reply.message.value
+                continue if lastResolvedState == currentResolvedState
+                lastResolvedState = currentResolvedState
+
               @post reply, 'reply'
 
           el BeatmapDiscussions.NewReply,

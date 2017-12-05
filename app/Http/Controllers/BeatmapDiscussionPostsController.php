@@ -87,6 +87,16 @@ class BeatmapDiscussionPostsController extends Controller
         $posts = [new BeatmapDiscussionPost($this->postParams())];
         $events = [];
 
+        $resetNominations = $isNewDiscussion &&
+            $beatmapset->isPending() &&
+            $beatmapset->hasNominations() &&
+            $discussion->message_type === 'problem' &&
+            priv_check('BeatmapsetNominate')->can();
+
+        if ($resetNominations) {
+            $events[] = BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, Auth::user(), $discussion);
+        }
+
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
@@ -120,13 +130,16 @@ class BeatmapDiscussionPostsController extends Controller
         $postIds = array_pluck($posts, 'id');
 
         if ($saved === true) {
-            BeatmapsetWatch::markRead($discussion->beatmapset, Auth::user());
+            $beatmapset = $discussion->beatmapset;
+
+            BeatmapsetWatch::markRead($beatmapset, Auth::user());
             NotifyBeatmapsetUpdate::dispatch([
                 'user' => Auth::user(),
-                'beatmapset' => $discussion->beatmapset,
+                'beatmapset' => $beatmapset,
             ]);
 
             return [
+                'beatmapset' => $posts[0]->beatmapset->defaultJson(),
                 'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,

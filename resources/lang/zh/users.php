@@ -19,7 +19,7 @@
  */
 
 return [
-    'deleted' => '[已删除的用户]', //TODO 需要上下文
+    'deleted' => '[被删除的用户]', //TODO 需要上下文
 
     'login' => [
         '_' => '登录',
@@ -102,8 +102,14 @@ return [
                 'favourite' => [
                     'title' => '收藏的谱面 (:count)',
                 ],
+                'graveyard' => [
+                    'title' => '坟场里的谱面 (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked 并且得到赞的谱面 (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Pending Beatmaps (:count)',
                 ],
             ],
             'historical' => [
@@ -150,6 +156,11 @@ return [
                         'vote' => [
                             'give' => '因在讨论帖 :post 中得到了足够票数而获得 :amount',
                             'reset' => '因在讨论帖 :post 中丢失了票数而失去 :amount',
+                        ],
+
+                        'recalculate' => [
+                            'give' => '因讨论帖 :post 的投票重新计算而获得 :amount',
+                            'reset' => '因讨论帖 :post 的投票重新计算而失去 :amount',
                         ],
                     ],
 

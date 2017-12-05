@@ -16,15 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.wiki-fallback-locale {
-  padding: 10px 0;
+.beatmapset-description-editor {
+  &__overlay {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  &__box {
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px 20px;
-    background-color: #222;
-    border-radius: @border-radius-large;
-    color: @pink-light;
-    text-align: center;
+    height: 100vh;
+    background-color: fade(#000, 70%);
+    z-index: @z-index--overlay;
+    user-select: none;
+  }
+
+  &__container {
+    background-color: #fff;
   }
 }

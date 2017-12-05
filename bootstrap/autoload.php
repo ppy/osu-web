@@ -2,6 +2,9 @@
 
 define('LARAVEL_START', microtime(true));
 
+// fixes some laravel features.
+require_once __DIR__.'/../app/framework_helper_overrides.php';
+
 /*
 |--------------------------------------------------------------------------
 | Register The Composer Auto Loader

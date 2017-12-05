@@ -75,6 +75,12 @@ class PaymentSubscribers
         });
     }
 
+    public function onPaymentError(/* reserved */$eventName, $data)
+    {
+        // TODO: make notifyError less fruity and more like the other ones.
+        $this->notifyError($data['error'], $data['order']);
+    }
+
     public function onPaymentPending($eventName, $data)
     {
         $event = $data[0] ?? null;
@@ -97,6 +103,11 @@ class PaymentSubscribers
         $events->listen(
             'store.payments.completed.*',
             static::class.'@onPaymentCompleted'
+        );
+
+        $events->listen(
+            'store.payments.error.*',
+            static::class.'@onPaymentError'
         );
 
         $events->listen(
