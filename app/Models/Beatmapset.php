@@ -1191,8 +1191,8 @@ class Beatmapset extends Model
         'bpm' => ['type' => 'double'],
         'creator' => ['type' => 'string'],
         'difficulty_names' => ['type' => 'string'],
-        'download_disabled' => ['type' => 'long'],
-        'epilepsy' => ['type' => 'long'],
+        'download_disabled' => ['type' => 'boolean'],
+        'epilepsy' => ['type' => 'boolean'],
         'favourite_count' => ['type' => 'long'],
         'filename' => ['type' => 'string'],
         'filesize' => ['type' => 'long'],
@@ -1205,14 +1205,14 @@ class Beatmapset extends Model
         'rating' => ['type' => 'double'],
         'source' => ['type' => 'string'],
         'star_priority' => ['type' => 'long'],
-        'storyboard' => ['type' => 'long'],
+        'storyboard' => ['type' => 'boolean'],
         'submit_date' => ['type' => 'date'],
         'tags' => ['type' => 'string'],
         'thread_id' => ['type' => 'long'],
         'title' => ['type' => 'string'],
         'title_unicode' => ['type' => 'string'],
         'user_id' => ['type' => 'long'],
-        'video' => ['type' => 'long'],
+        'video' => ['type' => 'boolean'],
     ];
 
     public static function esMappings()
