@@ -248,9 +248,10 @@
   uuid: ->
     Turbolinks.uuid() # no point rolling our own
 
-  updateQueryString: (key, value, url = window.location.href) ->
-    urlObj = new URL(url, document.location.origin)
-    urlObj.searchParams.set(key, value)
+  updateQueryString: (url, params) ->
+    urlObj = new URL(url ? window.location.href, document.location.origin)
+    for own key, value of params
+      urlObj.searchParams.set(key, value)
 
     return urlObj.href
 

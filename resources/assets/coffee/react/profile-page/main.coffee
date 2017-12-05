@@ -27,6 +27,17 @@ currentLocation = ->
 
 
 class ProfilePage.Main extends React.PureComponent
+  perPage:
+    scoresBest: 5
+    scoresFirsts: 5
+    beatmapPlaycounts: 5
+    scoresRecent: 5
+    favouriteBeatmapsets: 6
+    rankedAndApprovedBeatmapsets: 6
+    unrankedBeatmapsets: 6
+    graveyardBeatmapsets: 2
+    recentlyReceivedKudosu: 5
+
   constructor: (props) ->
     super props
 
@@ -62,10 +73,11 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
-    for elem in ['scoresBest', 'scoresFirsts', 'scoresRecent', 'beatmapPlaycounts']
-      if @state[elem].length > 5
-        @state.showMorePagination[elem] ?= {}
-        @state.showMorePagination[elem].hasMore = true
+    for own elem, perPage of @perPage
+      @state.showMorePagination[elem] ?= {}
+      @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
+
+      if @state[elem].length > perPage
         @state[elem] = @state[elem][0...-1]
 
   componentDidMount: =>
@@ -134,7 +146,6 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           recentlyReceivedKudosu: @state.recentlyReceivedKudosu
           pagination: @state.showMorePagination
-          count: @state.user.kudosuCount[0]
         component: ProfilePage.Kudosu
 
       top_ranks:
@@ -159,6 +170,7 @@ class ProfilePage.Main extends React.PureComponent
             unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
             graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
           pagination: @state.showMorePagination
+          perPage: @perPage
         component: ProfilePage.Beatmaps
 
       medals:
@@ -256,20 +268,15 @@ class ProfilePage.Main extends React.PureComponent
     paginationState[propertyName].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString('offset', offset, url), (data) =>
+      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[propertyName]).concat(data)
+        hasMore = data.length > perPage && state.length < 100
+
+        state.pop() if hasMore
 
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore =
-          if propertyName == 'beatmapPlaycounts' || propertyName.startsWith 'scores'
-            if data.length > perPage
-              state = state[0...-1]
-              true
-            else
-              false
-          else
-            data.length == perPage && state.length < maxResults
+        paginationState[propertyName].hasMore = hasMore
 
         @setState
           "#{propertyName}": state

@@ -102,10 +102,7 @@ class UsersController extends Controller
 
     public function scores($id, $type)
     {
-        // returning one more element than intended so that
-        // it can be checked in frontend whether all elements
-        // have been fetched
-        $this->parsePaginationParams(6);
+        $this->parsePaginationParams();
 
         switch ($type) {
             case 'best':
@@ -154,7 +151,7 @@ class UsersController extends Controller
 
     public function beatmapsets($id, $type)
     {
-        $this->parsePaginationParams(6);
+        $this->parsePaginationParams();
 
         switch ($type) {
             case 'most_played':
@@ -170,8 +167,6 @@ class UsersController extends Controller
                 return $this->unrankedBeatmapsets($this->user, $this->perPage, $this->offset);
 
             case 'graveyard':
-                $this->parsePaginationParams(2);
-
                 return $this->graveyardBeatmapsets($this->user, $this->perPage, $this->offset);
 
             default:
@@ -181,7 +176,7 @@ class UsersController extends Controller
 
     public function kudosu($id)
     {
-        $this->parsePaginationParams(5);
+        $this->parsePaginationParams();
 
         return $this->recentKudosu($this->user, $this->perPage, $this->offset);
     }
@@ -221,7 +216,6 @@ class UsersController extends Controller
                 'unrankedBeatmapsetCount',
                 'graveyardBeatmapsetCount',
                 'favouriteBeatmapsetCount',
-                'kudosuCount',
             ]
         );
 
@@ -302,7 +296,7 @@ class UsersController extends Controller
         return [$friend, $friend->mutual ?? false];
     }
 
-    private function parsePaginationParams($perPage)
+    private function parsePaginationParams()
     {
         $this->user = User::lookup(Request::route('user'), 'id');
         if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
@@ -314,16 +308,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $this->offset = get_int(Request::input('offset'));
+        $this->offset = get_int(Request::input('offset')) ?? 0;
+        $perPage = clamp(get_int(request('limit')) ?? 5, 1, 10);
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
         } else {
-            $this->perPage = min($perPage, $this->maxResults - $this->offset);
+            $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
         }
     }
 
-    private function recentKudosu($user, $perPage = 5, $offset = 0)
+    private function recentKudosu($user, $perPage = 6, $offset = 0)
     {
         return json_collection(
             $user->receivedKudosu()
@@ -352,7 +347,7 @@ class UsersController extends Controller
         return json_collection($beatmapsets, 'BeatmapPlaycount');
     }
 
-    private function rankedAndApprovedBeatmapsets($user, $perPage = 6, $offset = 0)
+    private function rankedAndApprovedBeatmapsets($user, $perPage = 7, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsRankedAndApproved()
@@ -364,7 +359,7 @@ class UsersController extends Controller
         );
     }
 
-    private function favouriteBeatmapsets($user, $perPage = 6, $offset = 0)
+    private function favouriteBeatmapsets($user, $perPage = 7, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsFavourite()
@@ -376,7 +371,7 @@ class UsersController extends Controller
         );
     }
 
-    private function unrankedBeatmapsets($user, $perPage = 6, $offset = 0)
+    private function unrankedBeatmapsets($user, $perPage = 7, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsUnranked()
@@ -388,7 +383,7 @@ class UsersController extends Controller
         );
     }
 
-    private function graveyardBeatmapsets($user, $perPage = 2, $offset = 0)
+    private function graveyardBeatmapsets($user, $perPage = 3, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsGraveyard()
