@@ -1099,11 +1099,21 @@ class Beatmapset extends Model
         return Forum\Post::find($topic->topic_first_post_id);
     }
 
+    public static function esIndexName()
+    {
+        return 'beatmaps';
+    }
+
+    public static function esType()
+    {
+        return 'beatmaps';
+    }
+
     public function toEsJson()
     {
         return [
-            'index' => 'beatmaps',
-            'type' => 'beatmaps',
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
             'id' => $this->beatmapset_id,
             'body' => $this->esJsonBody(),
         ];
@@ -1119,37 +1129,7 @@ class Beatmapset extends Model
 
     private function esBeatmapsetValues()
     {
-        static $mappings = [
-            'approved' => ['type' => 'long'],
-            'approved_date' => ['type' => 'date'],
-            'artist' => ['type' => 'string'],
-            'artist_unicode' => ['type' => 'string'],
-            'bpm' => ['type' => 'double'],
-            'creator' => ['type' => 'string'],
-            'difficulty_names' => ['type' => 'string'],
-            'download_disabled' => ['type' => 'long'],
-            'epilepsy' => ['type' => 'long'],
-            'favourite_count' => ['type' => 'long'],
-            'filename' => ['type' => 'string'],
-            'filesize' => ['type' => 'long'],
-            'filesize_novideo' => ['type' => 'long'],
-            'genre_id' => ['type' => 'long'],
-            'language_id' => ['type' => 'long'],
-            'last_update' => ['type' => 'date'],
-            'offset' => ['type' => 'long'],
-            'play_count' => ['type' => 'long'],
-            'rating' => ['type' => 'double'],
-            'source' => ['type' => 'string'],
-            'star_priority' => ['type' => 'long'],
-            'storyboard' => ['type' => 'long'],
-            'submit_date' => ['type' => 'date'],
-            'tags' => ['type' => 'string'],
-            'thread_id' => ['type' => 'long'],
-            'title' => ['type' => 'string'],
-            'title_unicode' => ['type' => 'string'],
-            'user_id' => ['type' => 'long'],
-            'video' => ['type' => 'long'],
-        ];
+        $mappings = static::ES_MAPPINGS_BEATMAPSETS;
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -1166,26 +1146,7 @@ class Beatmapset extends Model
 
     private function esBeatmapValues()
     {
-        // approved and playmode may be condensed.
-        static $mappings = [
-            'approved' => ['type' => 'long'],
-            'beatmap_id' => ['type' => 'long'],
-            'countNormal' => ['type' => 'long'],
-            'countSlider' => ['type' => 'long'],
-            'countSpinner' => ['type' => 'long'],
-            'countTotal' => ['type' => 'long'],
-            'diff_approach' => ['type' => 'double'],
-            'diff_drain' => ['type' => 'double'],
-            'diff_overall' => ['type' => 'double'],
-            'diff_size' => ['type' => 'double'],
-            'difficultyrating' => ['type' => 'double'],
-            'hit_length' => ['type' => 'long'],
-            'passcount' => ['type' => 'long'],
-            'playcount' => ['type' => 'long'],
-            'playmode' => ['type' => 'long'],
-            'total_length' => ['type' => 'long'],
-            'version' => ['type' => 'string'],
-        ];
+        $mappings = static::ES_MAPPINGS_BEATMAPS;
 
         $values = [];
         // initialize everything to an array.
@@ -1193,13 +1154,73 @@ class Beatmapset extends Model
             $values[$field] = [];
         }
 
-        foreach ($this->beatmaps as $beatmap => $mapping) {
-            foreach ($mappings as $field) {
+        foreach ($this->beatmaps as $beatmap) {
+            foreach ($mappings as $field => $mapping) {
                 $values[$field][] = $beatmap[$field];
             }
         }
 
         return $values;
+    }
+
+    const ES_MAPPINGS_BEATMAPS = [
+        'approved' => ['type' => 'long'],
+        'beatmap_id' => ['type' => 'long'],
+        'countNormal' => ['type' => 'long'],
+        'countSlider' => ['type' => 'long'],
+        'countSpinner' => ['type' => 'long'],
+        'countTotal' => ['type' => 'long'],
+        'diff_approach' => ['type' => 'double'],
+        'diff_drain' => ['type' => 'double'],
+        'diff_overall' => ['type' => 'double'],
+        'diff_size' => ['type' => 'double'],
+        'difficultyrating' => ['type' => 'double'],
+        'hit_length' => ['type' => 'long'],
+        'passcount' => ['type' => 'long'],
+        'playcount' => ['type' => 'long'],
+        'playmode' => ['type' => 'long'],
+        'total_length' => ['type' => 'long'],
+        'version' => ['type' => 'string'],
+    ];
+
+    const ES_MAPPINGS_BEATMAPSETS = [
+        'approved' => ['type' => 'long'],
+        'approved_date' => ['type' => 'date'],
+        'artist' => ['type' => 'string'],
+        'artist_unicode' => ['type' => 'string'],
+        'bpm' => ['type' => 'double'],
+        'creator' => ['type' => 'string'],
+        'difficulty_names' => ['type' => 'string'],
+        'download_disabled' => ['type' => 'long'],
+        'epilepsy' => ['type' => 'long'],
+        'favourite_count' => ['type' => 'long'],
+        'filename' => ['type' => 'string'],
+        'filesize' => ['type' => 'long'],
+        'filesize_novideo' => ['type' => 'long'],
+        'genre_id' => ['type' => 'long'],
+        'language_id' => ['type' => 'long'],
+        'last_update' => ['type' => 'date'],
+        'offset' => ['type' => 'long'],
+        'play_count' => ['type' => 'long'],
+        'rating' => ['type' => 'double'],
+        'source' => ['type' => 'string'],
+        'star_priority' => ['type' => 'long'],
+        'storyboard' => ['type' => 'long'],
+        'submit_date' => ['type' => 'date'],
+        'tags' => ['type' => 'string'],
+        'thread_id' => ['type' => 'long'],
+        'title' => ['type' => 'string'],
+        'title_unicode' => ['type' => 'string'],
+        'user_id' => ['type' => 'long'],
+        'video' => ['type' => 'long'],
+    ];
+
+    public static function esMappings()
+    {
+        return array_merge(
+            static::ES_MAPPINGS_BEATMAPSETS,
+            ['difficulties' => ['properties' => static::ES_MAPPINGS_BEATMAPS]]
+        );
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0)

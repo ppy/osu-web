@@ -294,11 +294,21 @@ class Post extends Model
         }
     }
 
+    public static function esIndexName()
+    {
+        return 'posts';
+    }
+
+    public static function esType()
+    {
+        return 'posts';
+    }
+
     public function toEsJson()
     {
         return [
-            'index' => 'posts',
-            'type' => 'posts',
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
             'id' => $this->post_id,
             'body' => $this->esPostValues(),
         ];
@@ -306,13 +316,7 @@ class Post extends Model
 
     private function esPostValues()
     {
-        static $mappings = [
-            'topic_id' => ['type' => 'long'],
-            'poster_id' => ['type' => 'long'],
-            'forum_id' => ['type' => 'long'],
-            'post_time' => ['type' => 'date'],
-            'post_text' => ['type' => 'string'],
-        ];
+        $mappings = static::ES_MAPPINGS;
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -325,6 +329,19 @@ class Post extends Model
         }
 
         return $values;
+    }
+
+    const ES_MAPPINGS = [
+        'topic_id' => ['type' => 'long'],
+        'poster_id' => ['type' => 'long'],
+        'forum_id' => ['type' => 'long'],
+        'post_time' => ['type' => 'date'],
+        'post_text' => ['type' => 'string'],
+    ];
+
+    public static function esMappings()
+    {
+        return static::ES_MAPPINGS;
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0)

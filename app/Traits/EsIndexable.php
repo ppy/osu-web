@@ -66,7 +66,26 @@ trait Esindexable
         return $count;
     }
 
-    public abstract static function esFieldMappings();
+    public static function esCreateIndex()
+    {
+        $type = static::esType();
+        $params = [
+            'index' => static::esIndexName(),
+            'body' => [
+                'mappings' => [
+                    $type => [
+                        'properties' => static::esMappings(),
+                    ]
+                ],
+            ],
+        ];
+
+        return Es::indices()->create($params);
+    }
+
+    public abstract static function esMappings();
+    public abstract static function esType();
+    public abstract static function esIndexName();
 
     public abstract function toEsJson();
 }
