@@ -125,6 +125,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
             users: @users()
 
 
+  beatmaps: =>
+    @cache.beatmaps ?= _.keyBy @state.beatmapset.beatmaps, 'id'
+
+
   checkNew: =>
     @nextTimeout ?= @checkNewTimeoutDefault
 
@@ -159,6 +163,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     if !@cache.currentDiscussions?
 
       countsByBeatmap = {}
+      countsByPlaymode = {}
       byMode =
         timeline: []
         general: []
@@ -186,6 +191,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
         if d.beatmap_id? && !d.deleted_at && d.can_be_resolved && !d.resolved
           countsByBeatmap[d.beatmap_id] ?= 0
           countsByBeatmap[d.beatmap_id]++
+
+          mode = @beatmaps()[d.beatmap_id]?.mode
+          countsByPlaymode[mode] ?= 0
+          countsByPlaymode[mode]++
 
         mode =
           if d.beatmap_id?
@@ -227,7 +236,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       general = _.orderBy byMode.general, 'id'
       generalAll = _.orderBy byMode.generalAll, 'id'
 
-      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap}
+      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode}
 
     @cache.currentDiscussions
 

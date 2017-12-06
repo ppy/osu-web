@@ -73,6 +73,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
       el PlaymodeTabs,
         currentMode: @props.currentBeatmap.mode
         beatmaps: @props.beatmaps
+        counts: @props.currentDiscussions.countsByPlaymode
 
       div
         className: "#{bn}__content"
