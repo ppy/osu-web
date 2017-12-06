@@ -105,5 +105,5 @@ trait Esindexable
     public abstract static function esIndexingQuery();
     public abstract static function esReindexAll($batchSize, $fromId, array $options);
 
-    public abstract function toEsJson(array $options);
+    public abstract function toEsJson();
 }
