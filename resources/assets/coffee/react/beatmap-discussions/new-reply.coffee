@@ -180,7 +180,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   setMessage: (e) =>
-    @setState message: e.target.value.replace /\n/g, ' '
+    @setState message: e.target.value
 
 
   validPost: =>
