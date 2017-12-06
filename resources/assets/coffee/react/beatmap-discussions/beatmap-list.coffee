@@ -68,6 +68,7 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
 
 
   hideSelector: (e) =>
+    return if e.button != 0
     return unless @state.showingSelector
     return if $(e.target).closest('.js-beatmap-list-selector').length
 
@@ -83,12 +84,14 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
 
 
   selectBeatmap: (e) =>
+    return if e.button != 0
     e.preventDefault()
 
     $.publish 'beatmap:select', id: parseInt(e.currentTarget.dataset.id, 10)
 
 
   toggleSelector: (e) =>
+    return if e.button != 0
     e.preventDefault()
 
     @setSelector !@state.showingSelector
