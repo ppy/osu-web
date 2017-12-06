@@ -21,6 +21,7 @@
 namespace App\Traits;
 
 use Closure;
+use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Es;
 use Log;
 
@@ -97,22 +98,40 @@ trait Esindexable
         return Es::indices()->create($params);
     }
 
+    public static function esOldIndices($alias)
+    {
+        try {
+            // getAlias returns a dictionary where the keys are the names of the indices.
+            return array_keys(Es::indices()->getAlias(['name' => $alias]));
+        } catch (Missing404Exception $_e) {
+            return [];
+        }
+    }
+
     public static function esUpdateAlias(string $alias, string $index)
     {
-        $params = [
-            'body' => [
-                'actions' => [
-                    [
-                        'add' => [
-                            'index' => $index,
-                            'alias' => $alias,
-                        ],
-                    ],
-                ],
-            ],
+        $oldIndices = static::esOldIndices($alias);
+
+        // updateAliases doesn't work if the alias doesn't exist :D
+        if (count($oldIndices) === 0) {
+            return Es::indices()->putAlias(['index' => $index, 'name' => $alias]);
+        }
+
+        $remove = [];
+        foreach ($oldIndices as $oldIndex) {
+            $remove[] = ['index' => $oldIndex, 'alias' => $alias];
+        }
+
+        $actions = [
+            'remove' => $remove,
+            'add' => ['index' => $index, 'alias' => $alias],
         ];
 
-        return Es::indices()->updateAliases($params);
+        return Es::indices()->updateAliases([
+            'body' => [
+                'actions' => [$actions],
+            ],
+        ]);
     }
 
     public abstract static function esMappings();
