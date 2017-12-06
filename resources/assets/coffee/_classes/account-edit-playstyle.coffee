@@ -20,7 +20,7 @@ class @AccountEditPlaystyle
   checkboxFields: document.getElementsByClassName('js-account-edit-playstyle')
 
   constructor: ->
-    @debouncedUpdate = _.debounce @update, 200
+    @debouncedUpdate = _.debounce @update, 500
     $(document).on 'change', '.js-account-edit-playstyle', @change
 
 
