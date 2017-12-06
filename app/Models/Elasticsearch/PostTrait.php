@@ -61,9 +61,7 @@ trait PostTrait
         $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
 
         $baseQuery = static::withoutGlobalScopes()
-            ->whereIn('forum_id', $forumIds)
-            ->orderBy('post_id', 'asc')
-            ->limit($batchSize);
+            ->whereIn('forum_id', $forumIds);
 
         $count = static::esIndexEach(function ($model) use ($options) {
             Es::index(array_merge($model->toEsJson(), $options));
