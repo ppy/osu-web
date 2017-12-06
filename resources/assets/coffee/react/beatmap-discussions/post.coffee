@@ -112,38 +112,8 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  messageInput: (e) =>
-    @setState message: e.target.value.replace /\n/g, ' '
-
-
-  submitIfEnter: (e) =>
-    return if e.keyCode != 13
-
-    e.preventDefault()
-    @throttledUpdatePost()
-
-
-  updatePost: =>
-    if @state.message == @props.post.message
-      @setState editing: false
-      return
-
-    @setState posting: true
-
-    @xhr.updatePost?.abort()
-    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
-      method: 'PUT'
-      data:
-        beatmap_discussion_post:
-          message: @state.message
-
-    .done (data) =>
-      @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
-
-    .fail osu.ajaxError
-
-    .always => @setState posting: false
+  editEnd: =>
+    @setState editing: false
 
 
   editStart: =>
@@ -153,12 +123,58 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @textarea.focus()
 
 
-  editEnd: =>
-    @setState editing: false
+  formattedMessage: =>
+    text = @props.post.message
+    text = _.escape text
+    text = _.trim text
+    # replace strictly single newline with single (html) newline
+    text = text.replace /\b\n\b/g, '<br>'
+    # fold multiple newlines into two (html) newlines
+    text = text.replace /(\n\s*){2,}/g, '<br><br>'
+    text = osu.linkify text
+    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
+    text
+
+
+  handleEnter: (e) =>
+    return if e.keyCode != 13 || e.shiftKey
+
+    e.preventDefault()
+    @throttledUpdatePost()
 
 
   isOwner: =>
     @props.post.user_id == @props.beatmapset.user_id
+
+
+  messageEditor: =>
+    return if !@props.canBeEdited
+
+    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
+      textarea
+        ref: (el) => @textarea = el
+        className: "#{bn}__message #{bn}__message--editor"
+        onChange: @setMessage
+        onKeyDown: @handleEnter
+        value: @state.message
+
+      div className: "#{bn}__actions",
+        div className: "#{bn}__actions-group"
+
+        div className: "#{bn}__actions-group",
+          div className: "#{bn}__action",
+            el BigButton,
+              text: osu.trans 'common.buttons.cancel'
+              props:
+                onClick: @editEnd
+                disabled: @state.posting
+
+          div className: "#{bn}__action",
+            el BigButton,
+              text: osu.trans 'common.buttons.save'
+              props:
+                onClick: @throttledUpdatePost
+                disabled: @state.posting
 
 
   messageViewer: =>
@@ -173,7 +189,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
+          __html: @formattedMessage()
 
       div className: "#{bn}__info-container",
         span
@@ -260,39 +276,35 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
 
-
-  messageEditor: =>
-    return if !@props.canBeEdited
-
-    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      textarea
-        ref: (el) => @textarea = el
-        className: "#{bn}__message #{bn}__message--editor"
-        onChange: @messageInput
-        onKeyDown: @submitIfEnter
-        value: @state.message
-
-      div className: "#{bn}__actions",
-        div className: "#{bn}__actions-group"
-
-        div className: "#{bn}__actions-group",
-          div className: "#{bn}__action",
-            el BigButton,
-              text: osu.trans 'common.buttons.cancel'
-              props:
-                onClick: @editEnd
-                disabled: @state.posting
-
-          div className: "#{bn}__action",
-            el BigButton,
-              text: osu.trans 'common.buttons.save'
-              props:
-                onClick: @throttledUpdatePost
-                disabled: @state.posting
-
-
   permalink: (e) =>
     e.preventDefault()
+
+
+  setMessage: (e) =>
+    @setState message: e.target.value
+
+
+  updatePost: =>
+    if @state.message == @props.post.message
+      @setState editing: false
+      return
+
+    @setState posting: true
+
+    @xhr.updatePost?.abort()
+    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
+      method: 'PUT'
+      data:
+        beatmap_discussion_post:
+          message: @state.message
+
+    .done (data) =>
+      @setState editing: false
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+
+    .fail osu.ajaxError
+
+    .always => @setState posting: false
 
 
   userModerationGroup: =>
