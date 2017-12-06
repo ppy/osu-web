@@ -173,7 +173,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         mine: {}
 
       for own mode, _items of byMode
-        for own filter, modes of byFilter
+        for own _filter, modes of byFilter
           modes[mode] = {}
 
 
@@ -206,7 +206,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
           filters.push 'deleted'
         else if d.message_type == 'praise'
           filters.push 'praises'
-        else
+        else if d.can_be_resolved
           if d.resolved
             filters.push 'resolved'
           else
