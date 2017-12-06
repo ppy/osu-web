@@ -29,7 +29,7 @@ class BeatmapDiscussions.Events extends React.PureComponent
 
     div className: 'osu-page osu-page--small osu-page--generic',
       div className: 'beatmapset-events',
-        if @props.events.length == 0
+        if _.isEmpty @props.events
           div
             className: 'beatmapset-events__empty'
             osu.trans('beatmap_discussions.events.empty')
