@@ -323,7 +323,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     return callback?() if !id?
     return callback?() if id == @state.currentBeatmap.id
 
-    beatmap = _.find @state.beatmapset.beatmaps, id: id
+    beatmap = @beatmaps()[id]
 
     return callback?() if !beatmap?
 
