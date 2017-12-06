@@ -152,7 +152,7 @@ class @ForumTopicReply
 
 
   toggle: =>
-    if @getState('active') == '0'
-      @activate()
-    else
+    if @getState('active') == '1'
       @deactivate()
+    else
+      @activate()
