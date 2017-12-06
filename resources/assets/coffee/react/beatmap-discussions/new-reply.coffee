@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, form, input, label, span, textarea} = ReactDOMFactories
+{button, div, form, input, label, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -55,16 +55,15 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
           el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
         div className: "#{bn}__message-container",
-          textarea
+          el TextareaAutosize,
+            minRows: 3
+            disabled: @state.posting?
             className: "#{bn}__message #{bn}__message--editor"
-            ref: (el) => @box = el
-            type: 'text'
-            rows: 2
             value: @state.message
             onChange: @setMessage
             onKeyDown: @handleEnter
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
-            disabled: @state.posting?
+            inputRef: (el) => @box = el
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"

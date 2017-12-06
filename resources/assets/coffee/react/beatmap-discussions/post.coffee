@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = ReactDOMFactories
+{a, button, div, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -151,12 +151,13 @@ class BeatmapDiscussions.Post extends React.PureComponent
     return if !@props.canBeEdited
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      textarea
-        ref: (el) => @textarea = el
+      el TextareaAutosize,
+        minRows: 3
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
         onKeyDown: @handleEnter
         value: @state.message
+        inputRef: (el) => @textarea = el
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"

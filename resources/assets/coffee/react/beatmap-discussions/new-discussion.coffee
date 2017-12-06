@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, label, p, span, textarea} = ReactDOMFactories
+{button, div, input, label, p, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -91,7 +91,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           div className: "#{bn}__message",
             if @props.currentUser.id?
-              textarea
+              el TextareaAutosize,
+                minRows: 3
                 disabled: @state.posting?
                 className: "#{bn}__message-area js-hype--input"
                 value: @state.message
@@ -99,7 +100,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 onKeyDown: @handleEnter
                 onFocus: @setSticky
                 placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
-                ref: (el) => @input = el
+                inputRef: (el) => @input = el
             else
               osu.trans('beatmaps.discussions.require-login')
 
