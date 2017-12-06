@@ -57,7 +57,6 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__message-container",
           el TextareaAutosize,
             minRows: 3
-            maxLength: BeatmapDiscussionHelper.maxlength
             disabled: @state.posting?
             className: "#{bn}__message #{bn}__message--editor"
             value: @state.message
@@ -69,6 +68,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
+        el BeatmapDiscussions.MessageLengthCounter, message: @state.message
 
       div
         className: "#{bn}__footer"
@@ -184,4 +184,4 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   validPost: =>
-    @state.message.length != 0
+    BeatmapDiscussionHelper.validMessageLength(@state.message)

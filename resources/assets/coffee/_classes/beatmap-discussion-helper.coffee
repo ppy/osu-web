@@ -96,3 +96,7 @@ class @BeatmapDiscussionHelper
         when user.isAdmin then 'admin'
         when user.isQAT then 'qat'
         when user.isBNG then 'bng'
+
+
+  @validMessageLength: (message) =>
+    message.length > 0 && message.length <= @maxlength

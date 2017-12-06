@@ -91,17 +91,23 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           div className: "#{bn}__message",
             if @props.currentUser.id?
-              el TextareaAutosize,
-                minRows: 3
-                maxLength: BeatmapDiscussionHelper.maxlength
-                disabled: @state.posting?
-                className: "#{bn}__message-area js-hype--input"
-                value: @state.message
-                onChange: @setMessage
-                onKeyDown: @handleEnter
-                onFocus: @setSticky
-                placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
-                inputRef: (el) => @input = el
+              [
+                el TextareaAutosize,
+                  key: 'input'
+                  minRows: 3
+                  disabled: @state.posting?
+                  className: "#{bn}__message-area js-hype--input"
+                  value: @state.message
+                  onChange: @setMessage
+                  onKeyDown: @handleEnter
+                  onFocus: @setSticky
+                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
+                  inputRef: (el) => @input = el
+
+                el BeatmapDiscussions.MessageLengthCounter,
+                  key: 'counter'
+                  message: @state.message
+              ]
             else
               osu.trans('beatmaps.discussions.require-login')
 
@@ -299,7 +305,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   validPost: =>
-    return false if @state.message.length == 0
+    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
 
     if @props.mode == 'timeline'
       @state.timestamp? && (@nearbyPosts().length == 0 || @state.timestampConfirmed)

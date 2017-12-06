@@ -84,6 +84,21 @@
     }
   }
 
+  &__message-counter {
+    font-size: @font-size--normal;
+    text-align: right;
+    margin-top: 5px;
+
+    &--almost-over {
+      color: @yellow-dark;
+    }
+
+    &--over {
+      color: @red;
+      font-weight: 700;
+    }
+  }
+
   &__notice {
     background-color: #666;
     padding: 5px @_side-padding;
