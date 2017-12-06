@@ -119,7 +119,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @throttledUpdatePost()
 
 
-  messageInput: (e) =>
+  setMessage: (e) =>
     @setState message: e.target.value
 
 
@@ -281,7 +281,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
       textarea
         ref: (el) => @textarea = el
         className: "#{bn}__message #{bn}__message--editor"
-        onChange: @messageInput
+        onChange: @setMessage
         onKeyDown: @handleEnter
         value: @state.message
 
