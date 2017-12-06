@@ -67,7 +67,7 @@ trait Esindexable
                 // $closure should return truthy value if indexed, falsey otherwise.
                 if ($closure($model)
                     && ++$count % $batchSize === 0) {
-                    Log::info("Indexed {$count} records.");
+                    Log::info(static::esType().': Indexed '.$count.' records.');
                 }
             }
 
@@ -76,7 +76,7 @@ trait Esindexable
             }
 
             $fromId = $next->getKey();
-            Log::info("next: {$fromId}");
+            Log::info(static::esType().': next: '.$fromId);
         }
 
         return $count;
