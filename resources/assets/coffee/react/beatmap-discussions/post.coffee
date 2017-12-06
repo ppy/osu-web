@@ -153,6 +153,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
       el TextareaAutosize,
         minRows: 3
+        maxLength: BeatmapDiscussionHelper.maxlength
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
         onKeyDown: @handleEnter

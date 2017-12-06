@@ -93,6 +93,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             if @props.currentUser.id?
               el TextareaAutosize,
                 minRows: 3
+                maxLength: BeatmapDiscussionHelper.maxlength
                 disabled: @state.posting?
                 className: "#{bn}__message-area js-hype--input"
                 value: @state.message

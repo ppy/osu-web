@@ -69,6 +69,9 @@ class @BeatmapDiscussionHelper
         "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
 
 
+  @maxlength: 500
+
+
   @messageType:
     icon:
       mapperNote: 'sticky-note-o'

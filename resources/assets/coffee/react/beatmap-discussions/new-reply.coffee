@@ -57,6 +57,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__message-container",
           el TextareaAutosize,
             minRows: 3
+            maxLength: BeatmapDiscussionHelper.maxlength
             disabled: @state.posting?
             className: "#{bn}__message #{bn}__message--editor"
             value: @state.message
