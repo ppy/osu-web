@@ -150,6 +150,14 @@
                                             </a>
                                         </li>
                                     </ul>
+
+                                    <div class="forum-post__reply-stick">
+                                        <button type="button" class="js-forum-topic-reply--stick btn-circle">
+                                            <span class="btn-circle__content">
+                                                <i class="fa fa-thumb-tack"></i>
+                                            </span>
+                                        </button>
+                                    </div>
                                 </div>
                                 <div class="js-forum-reply-write forum-post__body forum-post__body--reply-form">
                                     <div class="forum-post__content forum-post__content--edit-body">
@@ -172,14 +180,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="forum-post__actions forum-post__actions--reply">
-                                <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <span class="btn-circle__content">
-                                        <i class="fa fa-close"></i>
-                                    </span>
-                                </button>
                             </div>
                         </div>
                     </div>
