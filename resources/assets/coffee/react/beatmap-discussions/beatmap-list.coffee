@@ -61,7 +61,10 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
       key: beatmap.id
       'data-id': beatmap.id
       onClick: @selectBeatmap
-      el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
+      el BeatmapDiscussions.BeatmapListItem,
+        beatmap: beatmap
+        mode: 'version'
+        count: @props.currentDiscussions.countsByBeatmap[beatmap.id]
 
 
   hideSelector: (e) =>

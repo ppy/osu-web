@@ -158,6 +158,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
   currentDiscussions: =>
     if !@cache.currentDiscussions?
 
+      countsByBeatmap = {}
       byMode =
         timeline: []
         general: []
@@ -170,6 +171,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         resolved: {}
         pending: {}
         mine: {}
+
       for own mode, _items of byMode
         for own filter, modes of byFilter
           modes[mode] = {}
@@ -180,6 +182,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
         # - not privileged (deleted discussion)
         # - deleted beatmap
         continue if _.isEmpty(d)
+
+        if d.beatmap_id? && !d.deleted_at && d.can_be_resolved && !d.resolved
+          countsByBeatmap[d.beatmap_id] ?= 0
+          countsByBeatmap[d.beatmap_id]++
 
         mode =
           if d.beatmap_id?
@@ -221,11 +227,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       general = _.orderBy byMode.general, 'id'
       generalAll = _.orderBy byMode.generalAll, 'id'
 
-      @cache.currentDiscussions =
-        general: general
-        generalAll: generalAll
-        timeline: timeline
-        byFilter: byFilter
+      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap}
 
     @cache.currentDiscussions
 

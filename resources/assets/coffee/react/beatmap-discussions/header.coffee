@@ -94,6 +94,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
           el BeatmapDiscussions.BeatmapList,
             currentBeatmap: @props.currentBeatmap
+            currentDiscussions: @props.currentDiscussions
             beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
 
           div
