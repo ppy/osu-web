@@ -33,7 +33,7 @@ trait BeatmapsetTrait
         return [
             'index' => static::esIndexName(),
             'type' => static::esType(),
-            'id' => $this->beatmapset_id,
+            'id' => $this->getKey(),
             'body' => $this->esJsonBody(),
         ];
     }
@@ -68,10 +68,11 @@ trait BeatmapsetTrait
         $baseQuery = static::esIndexingQuery();
         $count = static::esIndexEach(function ($model) use ($options) {
             if ($model->trashed()) {
+                $model->esDeleteDocument($options);
                 return;
             }
 
-            return Es::index(array_merge($model->toEsJson(), $options));
+            return $model->esIndexDocument($options);
         }, $baseQuery, $batchSize, $fromId);
 
         $duration = time() - $startTime;

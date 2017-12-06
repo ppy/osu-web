@@ -34,7 +34,7 @@ trait PostTrait
         return [
             'index' => static::esIndexName(),
             'type' => static::esType(),
-            'id' => $this->post_id,
+            'id' => $this->getKey(),
             'body' => $this->esPostValues(),
         ];
     }
@@ -68,10 +68,11 @@ trait PostTrait
         $baseQuery = static::esIndexingQuery();
         $count = static::esIndexEach(function ($model) use ($options) {
             if ($model->trashed()) {
+                $model->esDeleteDocument($options);
                 return;
             }
 
-            return Es::index(array_merge($model->toEsJson(), $options));
+            return $model->esIndexDocument($options);
         }, $baseQuery, $batchSize, $fromId);
 
         $duration = time() - $startTime;

@@ -28,6 +28,22 @@ use Log;
 
 trait Esindexable
 {
+    public function esDeleteDocument(array $options = [])
+    {
+        return Es::delete(
+            array_merge([
+                'index' => static::esIndexName(),
+                'type' => static::esType(),
+                'id' => $this->getKey(),
+            ], $options)
+        );
+    }
+
+    public function esIndexDocument(array $options = [])
+    {
+        return Es::index(array_merge($this->toEsJson(), $options));
+    }
+
     public static function esHotReindex($batchSize = 1000, $name = null)
     {
         $newIndex = $name ?? static::esIndexName().'_'.time();
