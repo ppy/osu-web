@@ -41,9 +41,12 @@ trait Esindexable
 
     public function esIndexDocument(array $options = [])
     {
-        $json = $this->toEsJson();
-        $json['index'] = static::esIndexName();
-        $json['type'] = static::esType();
+        $json = [
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
+            'id' => $this->getKey(),
+            'body' => $this->toEsJson(),
+        ];
 
         return Es::index(array_merge($json, $options));
     }

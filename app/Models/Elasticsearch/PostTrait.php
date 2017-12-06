@@ -31,10 +31,7 @@ trait PostTrait
 
     public function toEsJson()
     {
-        return [
-            'id' => $this->getKey(),
-            'body' => $this->esPostValues(),
-        ];
+        return $this->esPostValues();
     }
 
     public static function esIndexName()

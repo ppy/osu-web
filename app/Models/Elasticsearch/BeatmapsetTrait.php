@@ -30,10 +30,7 @@ trait BeatmapsetTrait
 
     public function toEsJson()
     {
-        return [
-            'id' => $this->getKey(),
-            'body' => $this->esJsonBody(),
-        ];
+        return $this->esJsonBody();
     }
     public static function esIndexName()
     {
