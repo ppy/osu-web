@@ -62,7 +62,9 @@ trait BeatmapsetTrait
         $baseQuery = static::withoutGlobalScopes()
             ->with('beatmaps'); // note that the with query will run with the default scopes.
 
-        $count = static::esIndexEach($baseQuery, 'beatmapset_id', $batchSize, $fromId, $options);
+        $count = static::esIndexEach(function ($model) use ($options) {
+            Es::index($model->toEsJson($options));
+        }, $baseQuery, 'beatmapset_id', $batchSize, $fromId);
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");

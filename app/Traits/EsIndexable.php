@@ -20,6 +20,7 @@
 
 namespace App\Traits;
 
+use Closure;
 use Es;
 use Log;
 
@@ -45,7 +46,7 @@ trait Esindexable
      * Paginates and indexes the recordsets using key-set pagination instead of
      *  the offset pagination used by chunk().
      */
-    public static function esIndexEach($baseQuery, $keyColumn, $batchSize, $fromId, array $options = [])
+    public static function esIndexEach(Closure $closure, $baseQuery, $keyColumn, $batchSize, $fromId)
     {
         $count = 0;
         while (true) {
@@ -64,7 +65,7 @@ trait Esindexable
                     continue;
                 }
 
-                Es::index($model->toEsJson($options));
+                $closure($model);
 
                 ++$count;
                 if ($count % $batchSize === 0) {

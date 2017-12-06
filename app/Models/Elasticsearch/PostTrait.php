@@ -65,7 +65,9 @@ trait PostTrait
             ->orderBy('post_id', 'asc')
             ->limit($batchSize);
 
-        $count = static::esIndexEach($baseQuery, 'post_id', $batchSize, $fromId, $options);
+        $count = static::esIndexEach(function ($model) use ($options) {
+            Es::index($model->toEsJson($options));
+        }, $baseQuery, 'post_id', $batchSize, $fromId);
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");
