@@ -29,14 +29,14 @@ trait PostTrait
 {
     use EsIndexable;
 
-    public function toEsJson(array $options = [])
+    public function toEsJson()
     {
-        return array_merge([
+        return [
             'index' => static::esIndexName(),
             'type' => static::esType(),
             'id' => $this->post_id,
             'body' => $this->esPostValues(),
-        ], $options);
+        ];
     }
 
     public static function esIndexName()
@@ -66,7 +66,7 @@ trait PostTrait
             ->limit($batchSize);
 
         $count = static::esIndexEach(function ($model) use ($options) {
-            Es::index($model->toEsJson($options));
+            Es::index(array_merge($model->toEsJson(), $options));
         }, $baseQuery, 'post_id', $batchSize, $fromId);
 
         $duration = time() - $startTime;
