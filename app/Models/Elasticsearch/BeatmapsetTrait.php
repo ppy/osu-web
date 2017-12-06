@@ -42,6 +42,12 @@ trait BeatmapsetTrait
         return 'beatmaps';
     }
 
+    public static function esIndexingQuery()
+    {
+        return static::withoutGlobalScopes()
+            ->with('beatmaps'); // note that the with query will run with the default scopes.
+    }
+
     public static function esType()
     {
         return 'beatmaps';
@@ -59,9 +65,7 @@ trait BeatmapsetTrait
     {
         $startTime = time();
 
-        $baseQuery = static::withoutGlobalScopes()
-            ->with('beatmaps'); // note that the with query will run with the default scopes.
-
+        $baseQuery = static::esIndexingQuery();
         $count = static::esIndexEach(function ($model) use ($options) {
             Es::index(array_merge($model->toEsJson(), $options));
         }, $baseQuery, 'beatmapset_id', $batchSize, $fromId);

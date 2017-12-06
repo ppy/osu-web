@@ -122,6 +122,7 @@ trait Esindexable
     public abstract static function esMappings();
     public abstract static function esType();
     public abstract static function esIndexName();
+    public abstract static function esIndexingQuery();
     public abstract static function esReindexAll($batchSize, $fromId, array $options);
 
     public abstract function toEsJson(array $options);
