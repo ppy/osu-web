@@ -27,7 +27,7 @@
                 "
                 data-menu-default="{{ $current_section === $section }}"
                 data-menu-target="header--{{ $section }}"
-                href="{{ array_values($links)[0] }}"
+                href="{{ $links['_'] ?? array_values($links)[0] }}"
             >
                 <div class="nav-popup__menu-head-bar">
                     <span class="bar bar--double"></span>
@@ -49,6 +49,9 @@
                     data-visibility-animation="none"
                 >
                     @foreach ($links as $action => $link)
+                        @if ($action === '_')
+                            @continue
+                        @endif
                         <a class="nav-popup__link" href="{{ $link }}">
                             {{ trans("layout.menu.$section.$action") }}
 
