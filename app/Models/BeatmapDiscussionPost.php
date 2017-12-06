@@ -52,7 +52,11 @@ class BeatmapDiscussionPost extends Model
 
     public function hasValidMessage()
     {
-        return present($this->message);
+        if (is_string($this->message)) {
+            return mb_strlen($this->message) <= 500;
+        } else {
+            return count($this->message) > 0;
+        }
     }
 
     /*
@@ -69,7 +73,7 @@ class BeatmapDiscussionPost extends Model
         if ($this->system) {
             return json_decode($value, true);
         } else {
-            return str_replace("\n", ' ', $value);
+            return $value;
         }
     }
 
@@ -80,7 +84,7 @@ class BeatmapDiscussionPost extends Model
             $value = json_encode($value);
         }
 
-        $this->attributes['message'] = str_replace("\n", ' ', $value);
+        $this->attributes['message'] = trim($value);
     }
 
     public static function generateLogResolveChange($user, $resolved)
