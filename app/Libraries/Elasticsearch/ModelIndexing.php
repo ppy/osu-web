@@ -35,6 +35,27 @@ class ModelIndexing
         }
     }
 
+    /**
+     * Creates an index with mappings from multiple types.
+     * This is intended for compatibility with the existing index.
+     */
+    public static function createMultiTypeIndex(string $name, array $types)
+    {
+        $mappings = [];
+        foreach ($types as $type) {
+            $mappings[$type::esType()] = ['properties' => $type::esMappings()];
+        }
+
+        $params = [
+            'index' => $name,
+            'body' => [
+                'mappings' => $mappings,
+            ],
+        ];
+
+        return Es::indices()->create($params);
+    }
+
     public static function updateAlias(string $alias, string $index)
     {
         $oldIndices = static::getOldIndices($alias);
