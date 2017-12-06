@@ -46,8 +46,10 @@ trait Esindexable
      * Paginates and indexes the recordsets using key-set pagination instead of
      *  the offset pagination used by chunk().
      */
-    public static function esIndexEach(Closure $closure, $baseQuery, $keyColumn, $batchSize, $fromId)
+    public static function esIndexEach(Closure $closure, $baseQuery, $batchSize, $fromId)
     {
+        $keyColumn = (new static())->getKeyName();
+
         $count = 0;
         while (true) {
             $query = (clone $baseQuery)

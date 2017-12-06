@@ -68,7 +68,7 @@ trait BeatmapsetTrait
         $baseQuery = static::esIndexingQuery();
         $count = static::esIndexEach(function ($model) use ($options) {
             Es::index(array_merge($model->toEsJson(), $options));
-        }, $baseQuery, 'beatmapset_id', $batchSize, $fromId);
+        }, $baseQuery, $batchSize, $fromId);
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");
