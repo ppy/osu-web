@@ -62,15 +62,9 @@ trait Esindexable
             $next = null;
             foreach ($models as $model) {
                 $next = $model;
-                // FIXME: only check if soft delete supported
-                if ($model->trashed()) {
-                    continue;
-                }
-
-                $closure($model);
-
-                ++$count;
-                if ($count % $batchSize === 0) {
+                // should return truthy value if indexed, falsey otherwise.
+                if ($closure($model)
+                    && ++$count % $batchSize === 0) {
                     Log::info("Indexed {$count} records.");
                 }
             }
