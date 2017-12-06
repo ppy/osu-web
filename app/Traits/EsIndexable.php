@@ -27,9 +27,9 @@ use Log;
 
 trait Esindexable
 {
-    public static function esHotReindex($batchSize = 1000)
+    public static function esHotReindex($batchSize = 1000, $name = null)
     {
-        $newIndex = static::esIndexName().'_'.time();
+        $newIndex = $name ?? static::esIndexName().'_'.time();
         Log::info("Creating new index {$newIndex}");
         static::esCreateIndex($newIndex);
 
