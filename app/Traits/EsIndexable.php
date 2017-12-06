@@ -63,7 +63,7 @@ trait Esindexable
             $next = null;
             foreach ($models as $model) {
                 $next = $model;
-                // should return truthy value if indexed, falsey otherwise.
+                // $closure should return truthy value if indexed, falsey otherwise.
                 if ($closure($model)
                     && ++$count % $batchSize === 0) {
                     Log::info("Indexed {$count} records.");
