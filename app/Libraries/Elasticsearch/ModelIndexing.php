@@ -56,7 +56,7 @@ class ModelIndexing
         return Es::indices()->create($params);
     }
 
-    public static function updateAlias(string $alias, string $index)
+    public static function updateAlias(string $alias, string $index, array $options = [])
     {
         $oldIndices = static::getOldIndices($alias);
 
@@ -66,8 +66,10 @@ class ModelIndexing
         }
 
         $remove = [];
-        foreach ($oldIndices as $oldIndex) {
-            $remove[] = ['index' => $oldIndex, 'alias' => $alias];
+        if ($options['delete'] ?? true) {
+            foreach ($oldIndices as $oldIndex) {
+                $remove[] = ['index' => $oldIndex, 'alias' => $alias];
+            }
         }
 
         $actions = [
