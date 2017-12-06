@@ -32,8 +32,6 @@ trait PostTrait
     public function toEsJson()
     {
         return [
-            'index' => static::esIndexName(),
-            'type' => static::esType(),
             'id' => $this->getKey(),
             'body' => $this->esPostValues(),
         ];

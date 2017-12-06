@@ -41,7 +41,11 @@ trait Esindexable
 
     public function esIndexDocument(array $options = [])
     {
-        return Es::index(array_merge($this->toEsJson(), $options));
+        $json = $this->toEsJson();
+        $json['index'] = static::esIndexName();
+        $json['type'] = static::esType();
+
+        return Es::index(array_merge($json, $options));
     }
 
     public static function esHotReindex($batchSize = 1000, $name = null)
