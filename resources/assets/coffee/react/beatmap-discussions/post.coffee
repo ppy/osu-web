@@ -128,7 +128,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
     text = _.escape text
     text = _.trim text
     # replace strictly single newline with single (html) newline
-    text = text.replace /\b\n\b/g, '<br>'
+    text = text.replace /([^\s])\n([^\s])/g, '$1<br>$2'
     # fold multiple newlines into two (html) newlines
     text = text.replace /(\n\s*){2,}/g, '<br><br>'
     text = osu.linkify text
