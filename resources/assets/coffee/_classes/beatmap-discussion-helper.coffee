@@ -69,6 +69,9 @@ class @BeatmapDiscussionHelper
         "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
 
 
+  @maxlength: 500
+
+
   @messageType:
     icon:
       mapperNote: 'sticky-note-o'
@@ -93,3 +96,7 @@ class @BeatmapDiscussionHelper
         when user.isAdmin then 'admin'
         when user.isQAT then 'qat'
         when user.isBNG then 'bng'
+
+
+  @validMessageLength: (message) =>
+    message.length > 0 && message.length <= @maxlength

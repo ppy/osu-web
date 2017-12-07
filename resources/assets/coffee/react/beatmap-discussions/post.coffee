@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = ReactDOMFactories
+{a, button, div, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -150,13 +150,17 @@ class BeatmapDiscussions.Post extends React.PureComponent
   messageEditor: =>
     return if !@props.canBeEdited
 
+    canPost = !@state.posting && @validPost()
+
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      textarea
-        ref: (el) => @textarea = el
+      el TextareaAutosize,
+        minRows: 3
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
         onKeyDown: @handleEnter
         value: @state.message
+        inputRef: (el) => @textarea = el
+      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -167,14 +171,14 @@ class BeatmapDiscussions.Post extends React.PureComponent
               text: osu.trans 'common.buttons.cancel'
               props:
                 onClick: @editEnd
-                disabled: @state.posting
+                disabled: !canPost
 
           div className: "#{bn}__action",
             el BigButton,
               text: osu.trans 'common.buttons.save'
               props:
                 onClick: @throttledUpdatePost
-                disabled: @state.posting
+                disabled: !canPost
 
 
   messageViewer: =>
@@ -312,3 +316,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
 
     @cache.userModerationGroup
+
+
+  validPost: =>
+    BeatmapDiscussionHelper.validMessageLength(@state.message)

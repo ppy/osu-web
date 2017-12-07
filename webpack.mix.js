@@ -60,6 +60,8 @@ const vendor = [
   path.join(node_root, `react/dist/react${min}.js`),
   path.join(node_root, 'react-dom-factories/index.js'),
   path.join(node_root, `react-dom/dist/react-dom${min}.js`),
+  path.join(node_root, `prop-types/prop-types${min}.js`),
+  path.join(node_root, `react-textarea-autosize/dist/react-textarea-autosize${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
   path.join(node_root, `d3/build/d3${min}.js`),
