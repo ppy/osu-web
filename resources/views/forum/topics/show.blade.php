@@ -357,12 +357,18 @@
                 @if (priv_check('ForumTopicReply', $topic)->can())
                     <button
                         type="button"
-                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--stick"
-                        data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.actions.reply') }}"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
                     >
-                        <span class="btn-circle__content">
-                            <i class="fa fa-comment"></i>
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fa fa-comment"></i>
+                            </span>
+
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.reply') }}
+                                </span>
+                            </span>
                         </span>
                     </button>
                 @endif

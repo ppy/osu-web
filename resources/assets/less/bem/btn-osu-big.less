@@ -112,6 +112,13 @@
     .center-content();
   }
 
+  &--forum-reply {
+    border-radius: (@btn-circle-diameter / 2);
+    padding: 0 5px;
+    height: @btn-circle-diameter;
+    background-image: none;
+  }
+
   &--full {
     width: 100%;
   }
@@ -149,6 +156,17 @@
     background-size: 175%;
     background-color: @blue;
     margin-bottom: 5px;
+  }
+
+  &--activated, &.js-activated {
+    background-color: @blue;
+    color: #000;
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: #000;
+    }
   }
 
   &__content {
@@ -210,6 +228,11 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+    }
+
+    .@{top}--forum-reply & {
+      // aligned to my system
+      top: -2px;
     }
   }
 
