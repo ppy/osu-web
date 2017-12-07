@@ -21,6 +21,7 @@
 namespace App\Traits;
 
 use App\Libraries\Elasticsearch\Indexing;
+use Closure;
 use Es;
 use Log;
 
@@ -93,29 +94,20 @@ trait EsIndexable
         return $newIndex;
     }
 
-    /**
-     * Paginates and indexes the recordsets using key-set pagination instead of
-     *  the offset pagination used by chunk().
-     */
-    public static function esIndexEach($baseQuery, $batchSize, $fromId, array $options)
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
     {
-        $keyColumn = (new static())->getKeyName();
         $isSoftDeleting = present((new static())->getDeletedAtColumn());
+        $startTime = time();
 
+        $baseQuery = static::esIndexingQuery();
         $count = 0;
-        while (true) {
-            $query = (clone $baseQuery)
-                ->where($keyColumn, '>', $fromId)
-                ->orderBy($keyColumn, 'asc')
-                ->limit($batchSize);
 
-            $models = $query->get();
-
+        static::esFindInBatches(function ($models) use ($options, $isSoftDeleting, &$count) {
             $next = null;
             $actions = [];
+
             foreach ($models as $model) {
                 $next = $model;
-
                 // bulk API am speshul.
                 $metadata = ['_id' => $model->getKey()];
 
@@ -130,34 +122,43 @@ trait EsIndexable
 
             if ($actions !== []) {
                 $result = Es::bulk([
-                    'index' => $options['index'] ?? $static::esIndexName(),
+                    'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
-                    'body' => $actions
+                    'body' => $actions,
                 ]);
 
                 $count += count($result['items']);
             }
+
+            return $next;
+        }, $baseQuery, $batchSize, $fromId);
+
+        $duration = time() - $startTime;
+        Log::info("Indexed {$count} records in {$duration} s.");
+    }
+
+    /**
+     * Paginates and indexes the recordsets using key-set pagination instead of
+     *  the offset pagination used by chunk().
+     */
+    private static function esFindInBatches(Closure $closure, $baseQuery, $batchSize, $fromId)
+    {
+        $keyColumn = (new static())->getKeyName();
+
+        while (true) {
+            $query = (clone $baseQuery)
+                ->where($keyColumn, '>', $fromId)
+                ->orderBy($keyColumn, 'asc')
+                ->limit($batchSize);
+
+            // TODO: don't rely on closure to figure out whether or not to continue.
+            $next = $closure($query->get());
 
             if ($next === null) {
                 break;
             }
 
             $fromId = $next->getKey();
-            Log::info(static::esType().': next: '.$fromId);
         }
-
-        return $count;
-    }
-
-    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
-    {
-        $isSoftDeleting = present((new static())->getDeletedAtColumn());
-        $startTime = time();
-
-        $baseQuery = static::esIndexingQuery();
-        $count = static::esIndexEach($baseQuery, $batchSize, $fromId, $options);
-
-        $duration = time() - $startTime;
-        Log::info("Indexed {$count} records in {$duration} s.");
     }
 }
