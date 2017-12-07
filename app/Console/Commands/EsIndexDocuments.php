@@ -23,6 +23,9 @@ class EsIndexDocuments extends Command
      */
     protected $description = 'Indexes documents into Elasticsearch.';
 
+    private $cleanup;
+    private $hot;
+
     /**
      * Create a new command instance.
      *
@@ -40,18 +43,70 @@ class EsIndexDocuments extends Command
      */
     public function handle()
     {
-        $hot = $this->option('hot');
-        $cleanup = $this->option('cleanup');
+        $this->readOptions();
 
-        $oldIndices = ModelIndexing::getOldIndices('osu');
         $indexName = 'osu';
+        $oldIndices = ModelIndexing::getOldIndices('osu');
         $types = [Beatmapset::class, Post::class];
 
-        if ($hot) {
+        if ($this->hot) {
             $indexName .= '_'.time();
+        }
+
+        $continue = $this->starterMessage($indexName, $oldIndices);
+        if (!$continue) {
+            return $this->error('User aborted!');
+        }
+
+        $this->index($types, $indexName);
+        $this->warn("\nIndexing of '{$indexName}' done.");
+
+        if ($this->hot) {
+            $this->warn("Aliasing '{$indexName}' to 'osu'...");
+
+            // old index paths
+            ModelIndexing::updateAlias('osu', $indexName);
+
+            if ($this->cleanup) {
+                foreach ($oldIndices as $index) {
+                    $this->info("Removing '{$index}'...");
+                    ModelIndexing::deleteIndex($index);
+                }
+            }
+        }
+    }
+
+    private function index(array $types, string $indexName)
+    {
+        // create new index if hot-reindexing, otherwise reuse the existing one.
+        if ($this->hot) {
+            ModelIndexing::createMultiTypeIndex($indexName, $types);
+        }
+
+        foreach ($types as $type) {
+            $this->info("Indexing {$type} into {$indexName}");
+            $type::esReindexAll(1000, 0, ['index' => $indexName]);
+
+            if ($this->hot) {
+                // also alias for new index paths so we can shift them.
+                $this->info("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
+                ModelIndexing::updateAlias($type::esIndexName(), $indexName);
+            }
+        }
+    }
+
+    private function readOptions()
+    {
+        $this->hot = $this->option('hot');
+        $this->cleanup = $this->option('cleanup');
+    }
+
+    private function starterMessage(string $indexName, array $oldIndices)
+    {
+        if ($this->hot) {
             $this->warn("Running hot reindex on {$indexName}.");
 
-            if ($cleanup) {
+            if ($this->cleanup) {
                 $this->warn(
                     "The following indices will be deleted on completion!\n"
                     .implode("\n", $oldIndices)
@@ -64,46 +119,6 @@ class EsIndexDocuments extends Command
             $confirmMessage = "This reindex '{$indexName}' in-place (schemas must match)";
         }
 
-        $continue = $this->confirm("{$confirmMessage}, begin indexing?");
-
-        if (!$continue) {
-            return $this->error('User aborted!');
-        }
-
-        $this->index($types, $indexName, $hot);
-        $this->warn("\nIndexing of '{$indexName}' done.");
-
-        if ($hot) {
-            $this->warn("Aliasing '{$indexName}' to 'osu'...");
-
-            // old index paths
-            ModelIndexing::updateAlias('osu', $indexName);
-
-            if ($cleanup) {
-                foreach ($oldIndices as $index) {
-                    $this->info("Removing '{$index}'...");
-                    ModelIndexing::deleteIndex($index);
-                }
-            }
-        }
-    }
-
-    private function index(array $types, string $indexName, bool $hot)
-    {
-        // create new index if hot-reindexing, otherwise reuse the existing one.
-        if ($hot) {
-            ModelIndexing::createMultiTypeIndex($indexName, $types);
-        }
-
-        foreach ($types as $type) {
-            $this->info("Indexing {$type} into {$indexName}");
-            $type::esReindexAll(1000, 0, ['index' => $indexName]);
-
-            if ($hot) {
-                // also alias for new index paths so we can shift them.
-                $this->info("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
-                ModelIndexing::updateAlias($type::esIndexName(), $indexName);
-            }
-        }
+        return $this->confirm("{$confirmMessage}, begin indexing?");
     }
 }
