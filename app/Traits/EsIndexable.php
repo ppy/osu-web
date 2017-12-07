@@ -135,6 +135,8 @@ trait EsIndexable
                     'type' => static::esType(),
                     'body' => $actions
                 ]);
+
+                $count += count($result['items']);
             }
 
             if ($next === null) {
