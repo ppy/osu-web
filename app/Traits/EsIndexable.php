@@ -21,7 +21,6 @@
 namespace App\Traits;
 
 use App\Libraries\Elasticsearch\Indexing;
-use Closure;
 use Es;
 use Log;
 
