@@ -116,7 +116,12 @@ class Beatmapset extends Model
     const ES_MAPPINGS_BEATMAPSETS = [
         'approved' => ['type' => 'long'],
         'approved_date' => ['type' => 'date'],
-        'artist' => ['type' => 'string'],
+        'artist' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
         'artist_unicode' => ['type' => 'string'],
         'bpm' => ['type' => 'double'],
         'creator' => ['type' => 'string'],
@@ -139,7 +144,12 @@ class Beatmapset extends Model
         'submit_date' => ['type' => 'date'],
         'tags' => ['type' => 'string'],
         'thread_id' => ['type' => 'long'],
-        'title' => ['type' => 'string'],
+        'title' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
         'title_unicode' => ['type' => 'string'],
         'user_id' => ['type' => 'long'],
         'video' => ['type' => 'boolean'],
