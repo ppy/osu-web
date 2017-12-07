@@ -31,7 +31,19 @@ trait PostTrait
 
     public function toEsJson()
     {
-        return $this->esPostValues();
+        $mappings = static::ES_MAPPINGS;
+
+        $values = [];
+        foreach ($mappings as $field => $mapping) {
+            $value = $this[$field];
+            if ($value instanceof Carbon) {
+                $value = $value->toIso8601String();
+            }
+
+            $values[$field] = $value;
+        }
+
+        return $values;
     }
 
     public static function esIndexName()
@@ -46,14 +58,14 @@ trait PostTrait
         return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
-    public static function esType()
-    {
-        return 'posts';
-    }
-
     public static function esMappings()
     {
         return static::ES_MAPPINGS;
+    }
+
+    public static function esType()
+    {
+        return 'posts';
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
@@ -72,22 +84,5 @@ trait PostTrait
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");
-    }
-
-    private function esPostValues()
-    {
-        $mappings = static::ES_MAPPINGS;
-
-        $values = [];
-        foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $values[$field] = $value;
-        }
-
-        return $values;
     }
 }

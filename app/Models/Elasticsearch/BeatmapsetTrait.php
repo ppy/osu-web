@@ -30,8 +30,12 @@ trait BeatmapsetTrait
 
     public function toEsJson()
     {
-        return $this->esJsonBody();
+        return array_merge(
+            $this->esBeatmapsetValues(),
+            ['difficulties' => $this->esBeatmapValues()]
+        );
     }
+
     public static function esIndexName()
     {
         return 'beatmaps';
@@ -43,17 +47,17 @@ trait BeatmapsetTrait
             ->with('beatmaps'); // note that the with query will run with the default scopes.
     }
 
-    public static function esType()
-    {
-        return 'beatmaps';
-    }
-
     public static function esMappings()
     {
         return array_merge(
             static::ES_MAPPINGS_BEATMAPSETS,
             ['difficulties' => ['properties' => static::ES_MAPPINGS_BEATMAPS]]
         );
+    }
+
+    public static function esType()
+    {
+        return 'beatmaps';
     }
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
@@ -72,14 +76,6 @@ trait BeatmapsetTrait
 
         $duration = time() - $startTime;
         \Log::info("Indexed {$count} records in {$duration} s.");
-    }
-
-    private function esJsonBody()
-    {
-        return array_merge(
-            $this->esBeatmapsetValues(),
-            ['difficulties' => $this->esBeatmapValues()]
-        );
     }
 
     private function esBeatmapsetValues()

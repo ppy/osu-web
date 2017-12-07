@@ -28,6 +28,14 @@ use Log;
 
 trait Esindexable
 {
+    public abstract static function esIndexName();
+    public abstract static function esIndexingQuery();
+    public abstract static function esMappings();
+    public abstract static function esReindexAll($batchSize, $fromId, array $options);
+    public abstract static function esType();
+
+    public abstract function toEsJson();
+
     public function esDeleteDocument(array $options = [])
     {
         return Es::delete(
@@ -49,6 +57,24 @@ trait Esindexable
         ];
 
         return Es::index(array_merge($json, $options));
+    }
+
+
+    public static function esCreateIndex(string $name = null)
+    {
+        $type = static::esType();
+        $params = [
+            'index' => $name ?? static::esIndexName(),
+            'body' => [
+                'mappings' => [
+                    $type => [
+                        'properties' => static::esMappings(),
+                    ]
+                ],
+            ],
+        ];
+
+        return Es::indices()->create($params);
     }
 
     public static function esHotReindex($batchSize = 1000, $name = null)
@@ -104,29 +130,4 @@ trait Esindexable
 
         return $count;
     }
-
-    public static function esCreateIndex(string $name = null)
-    {
-        $type = static::esType();
-        $params = [
-            'index' => $name ?? static::esIndexName(),
-            'body' => [
-                'mappings' => [
-                    $type => [
-                        'properties' => static::esMappings(),
-                    ]
-                ],
-            ],
-        ];
-
-        return Es::indices()->create($params);
-    }
-
-    public abstract static function esMappings();
-    public abstract static function esType();
-    public abstract static function esIndexName();
-    public abstract static function esIndexingQuery();
-    public abstract static function esReindexAll($batchSize, $fromId, array $options);
-
-    public abstract function toEsJson();
 }
