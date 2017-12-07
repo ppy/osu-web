@@ -98,9 +98,10 @@ trait EsIndexable
      * Paginates and indexes the recordsets using key-set pagination instead of
      *  the offset pagination used by chunk().
      */
-    public static function esIndexEach(Closure $closure, $baseQuery, $batchSize, $fromId)
+    public static function esIndexEach($baseQuery, $batchSize, $fromId, array $options)
     {
         $keyColumn = (new static())->getKeyName();
+        $isSoftDeleting = present((new static())->getDeletedAtColumn());
 
         $count = 0;
         while (true) {
@@ -112,13 +113,28 @@ trait EsIndexable
             $models = $query->get();
 
             $next = null;
+            $actions = [];
             foreach ($models as $model) {
                 $next = $model;
-                // $closure should return truthy value if indexed, falsey otherwise.
-                if ($closure($model)
-                    && ++$count % $batchSize === 0) {
-                    Log::info(static::esType().': Indexed '.$count.' records.');
+
+                // bulk API am speshul.
+                $metadata = ['_id' => $model->getKey()];
+
+                if ($isSoftDeleting && $model->trashed()) {
+                    $actions[] = ['delete' => $metadata];
+                } else {
+                    // index requires action and metadata followed by data on the next line.
+                    $actions[] = ['index' => $metadata];
+                    $actions[] = $model->toEsJson();
                 }
+            }
+
+            if ($actions !== []) {
+                $result = Es::bulk([
+                    'index' => $options['index'] ?? $static::esIndexName(),
+                    'type' => static::esType(),
+                    'body' => $actions
+                ]);
             }
 
             if ($next === null) {
@@ -138,16 +154,7 @@ trait EsIndexable
         $startTime = time();
 
         $baseQuery = static::esIndexingQuery();
-        $count = static::esIndexEach(function ($model) use ($options, $isSoftDeleting) {
-            // TODO: should probably be handled per-model.
-            if ($isSoftDeleting && $model->trashed()) {
-                $model->esDeleteDocument($options);
-
-                return;
-            }
-
-            return $model->esIndexDocument($options);
-        }, $baseQuery, $batchSize, $fromId);
+        $count = static::esIndexEach($baseQuery, $batchSize, $fromId, $options);
 
         $duration = time() - $startTime;
         Log::info("Indexed {$count} records in {$duration} s.");
