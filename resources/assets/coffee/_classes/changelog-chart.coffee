@@ -112,7 +112,9 @@ class @ChangelogChart
 
     @options.scales.class
       .range _.map @options.order, (d, i) =>
-        if @options.isBuild then "build-#{i}" else _.kebabCase d
+        # rotate over available build ids (0-11) when the amount of builds
+        # exceeds the available amount of colors
+        if @options.isBuild then "build-#{i % 12}" else _.kebabCase d
       .domain @options.order
 
   drawLines: ->

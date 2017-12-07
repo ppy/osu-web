@@ -29,7 +29,7 @@
             </div>
             <div class="news-post-preview__month-year">
                 @if ($collapsed)
-                    {{$post->createdAt()->formatLocalized('&nbsp;%b')}}
+                    &nbsp;{{$post->createdAt()->formatLocalized('%b')}}
                 @else
                     {{$post->createdAt()->formatLocalized('%b %Y')}}
                 @endif
