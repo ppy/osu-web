@@ -60,24 +60,6 @@ trait BeatmapsetTrait
         return 'beatmaps';
     }
 
-    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
-    {
-        $startTime = time();
-
-        $baseQuery = static::esIndexingQuery();
-        $count = static::esIndexEach(function ($model) use ($options) {
-            if ($model->trashed()) {
-                $model->esDeleteDocument($options);
-                return;
-            }
-
-            return $model->esIndexDocument($options);
-        }, $baseQuery, $batchSize, $fromId);
-
-        $duration = time() - $startTime;
-        \Log::info("Indexed {$count} records in {$duration} s.");
-    }
-
     private function esBeatmapsetValues()
     {
         $mappings = static::ES_MAPPINGS_BEATMAPSETS;

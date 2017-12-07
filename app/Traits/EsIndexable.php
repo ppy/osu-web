@@ -31,7 +31,6 @@ trait Esindexable
     public abstract static function esIndexName();
     public abstract static function esIndexingQuery();
     public abstract static function esMappings();
-    public abstract static function esReindexAll($batchSize, $fromId, array $options);
     public abstract static function esType();
 
     public abstract function toEsJson();
@@ -129,5 +128,25 @@ trait Esindexable
         }
 
         return $count;
+    }
+
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
+    {
+        $isSoftDeleting = present((new static())->getDeletedAtColumn());
+        $startTime = time();
+
+        $baseQuery = static::esIndexingQuery();
+        $count = static::esIndexEach(function ($model) use ($options, $isSoftDeleting) {
+            // TODO: should probably be handled per-model.
+            if ($isSoftDeleting && $model->trashed()) {
+                $model->esDeleteDocument($options);
+                return;
+            }
+
+            return $model->esIndexDocument($options);
+        }, $baseQuery, $batchSize, $fromId);
+
+        $duration = time() - $startTime;
+        Log::info("Indexed {$count} records in {$duration} s.");
     }
 }
