@@ -21,13 +21,12 @@ class @ForumTopicReply
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
     @input = document.getElementsByClassName('js-forum-topic-reply--input')
-    @stickButton = document.getElementsByClassName('js-forum-topic-reply--stick')
+    @stickButtons = document.getElementsByClassName('js-forum-topic-reply--stick')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
 
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
 
     $(document).on 'click', '.js-forum-topic-reply--stick', @toggle
-    $(document).on 'click', '.js-forum-topic-reply--new', @activate
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
@@ -69,7 +68,7 @@ class @ForumTopicReply
     e.preventDefault() if e
 
     @setState 'active', '1'
-    @stickButton[0].classList.add 'js-activated'
+    button.classList.add 'js-activated' for button in @stickButtons
 
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
@@ -95,7 +94,7 @@ class @ForumTopicReply
 
     @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
-    @stickButton[0].classList.remove 'js-activated'
+    button.classList.remove 'js-activated' for button in @stickButtons
     $.publish 'stickyFooter:check'
 
 
@@ -156,3 +155,4 @@ class @ForumTopicReply
       @deactivate()
     else
       @activate()
+      @$input().focus()

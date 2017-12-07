@@ -365,12 +365,12 @@
                 @if (priv_check('ForumTopicReply', $topic)->can())
                     <button
                         type="button"
-                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--new"
+                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--stick"
                         data-tooltip-float="fixed"
                         title="{{ trans('forum.topics.actions.reply') }}"
                     >
                         <span class="btn-circle__content">
-                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-comment"></i>
                         </span>
                     </button>
                 @endif
