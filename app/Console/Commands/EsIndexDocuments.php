@@ -61,17 +61,24 @@ class EsIndexDocuments extends Command
         $this->index($types, $indexName);
         $this->warn("\nIndexing of '{$indexName}' done.");
 
-        if ($this->hot) {
-            $this->warn("Aliasing '{$indexName}' to 'osu'...");
+        $this->finish($indexName, $oldIndices);
+    }
 
-            // old index paths
-            ModelIndexing::updateAlias('osu', $indexName);
+    private function finish(string $indexName, array $oldIndices)
+    {
+        if (!$this->hot) {
+            return;
+        }
 
-            if ($this->cleanup) {
-                foreach ($oldIndices as $index) {
-                    $this->info("Removing '{$index}'...");
-                    ModelIndexing::deleteIndex($index);
-                }
+        $this->warn("Aliasing '{$indexName}' to 'osu'...");
+
+        // old index paths
+        ModelIndexing::updateAlias('osu', $indexName);
+
+        if ($this->cleanup) {
+            foreach ($oldIndices as $index) {
+                $this->info("Removing '{$index}'...");
+                ModelIndexing::deleteIndex($index);
             }
         }
     }
