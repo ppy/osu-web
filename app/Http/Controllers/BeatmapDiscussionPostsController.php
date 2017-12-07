@@ -91,7 +91,7 @@ class BeatmapDiscussionPostsController extends Controller
             $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             $discussion->message_type === 'problem' &&
-            priv_check('BeatmapsetNominate')->can();
+            priv_check('BeatmapsetNominate', $beatmapset)->can();
 
         if ($resetNominations) {
             $events[] = BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, Auth::user(), $discussion);
