@@ -61,10 +61,14 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
       key: beatmap.id
       'data-id': beatmap.id
       onClick: @selectBeatmap
-      el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
+      el BeatmapDiscussions.BeatmapListItem,
+        beatmap: beatmap
+        mode: 'version'
+        count: @props.currentDiscussions.countsByBeatmap[beatmap.id]
 
 
   hideSelector: (e) =>
+    return if e.button != 0
     return unless @state.showingSelector
     return if $(e.target).closest('.js-beatmap-list-selector').length
 
@@ -80,12 +84,14 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
 
 
   selectBeatmap: (e) =>
+    return if e.button != 0
     e.preventDefault()
 
     $.publish 'beatmap:select', id: parseInt(e.currentTarget.dataset.id, 10)
 
 
   toggleSelector: (e) =>
+    return if e.button != 0
     e.preventDefault()
 
     @setSelector !@state.showingSelector
