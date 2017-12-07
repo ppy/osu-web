@@ -22,7 +22,6 @@ namespace App\Traits;
 
 use App\Libraries\Elasticsearch\ModelIndexing;
 use Closure;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Es;
 use Log;
 
