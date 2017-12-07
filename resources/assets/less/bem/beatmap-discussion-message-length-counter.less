@@ -16,22 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmapset-events {
-  @title-margin-top: 20px;
+.beatmap-discussion-message-length-counter {
+  flex: 1 0 auto;
+  font-size: @font-size--normal;
+  text-align: right;
+  margin-top: 5px;
 
-  margin-top: -@title-margin-top;
-  display: flex;
-  flex-direction: column;
-
-  &__empty {
-    font-size: @font-size--normal;
-    display: flex;
-    margin-top: @title-margin-top;
+  &--almost-over {
+    color: @yellow-dark;
   }
 
-  &__title {
-    font-size: @font-size--title-small-2;
-    color: @pink-darker;
-    margin: @title-margin-top 0 5px;
+  &--over {
+    color: @red;
+    font-weight: 700;
   }
 }
