@@ -43,6 +43,7 @@ class EsIndexDocuments extends Command
 
     private $cleanup;
     private $hot;
+    private $types;
 
     /**
      * Create a new command instance.
@@ -62,10 +63,10 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
+        $this->types = [Beatmapset::class, Post::class];
 
         $indexName = 'osu';
         $oldIndices = Indexing::getOldIndices('osu');
-        $types = [Beatmapset::class, Post::class];
 
         if ($this->hot) {
             $indexName .= '_'.time();
@@ -76,7 +77,7 @@ class EsIndexDocuments extends Command
             return $this->error('User aborted!');
         }
 
-        $this->index($types, $indexName);
+        $this->index($indexName);
         $this->warn("\nIndexing of '{$indexName}' done.");
 
         $this->finish($indexName, $oldIndices);
@@ -88,9 +89,14 @@ class EsIndexDocuments extends Command
             return;
         }
 
-        $this->warn("Aliasing '{$indexName}' to 'osu'...");
+        // also alias for new index paths so we can shift them.
+        foreach ($this->types as $type) {
+            $this->warn("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
+            Indexing::updateAlias($type::esIndexName(), $indexName);
+        }
 
         // old index paths
+        $this->warn("Aliasing '{$indexName}' to 'osu'...");
         Indexing::updateAlias('osu', $indexName);
 
         if ($this->cleanup) {
@@ -101,22 +107,16 @@ class EsIndexDocuments extends Command
         }
     }
 
-    private function index(array $types, string $indexName)
+    private function index(string $indexName)
     {
         // create new index if hot-reindexing, otherwise reuse the existing one.
         if ($this->hot) {
-            Indexing::createMultiTypeIndex($indexName, $types);
+            Indexing::createMultiTypeIndex($indexName, $this->types);
         }
 
-        foreach ($types as $type) {
+        foreach ($this->types as $type) {
             $this->info("Indexing {$type} into {$indexName}");
             $type::esReindexAll(1000, 0, ['index' => $indexName]);
-
-            if ($this->hot) {
-                // also alias for new index paths so we can shift them.
-                $this->info("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
-                Indexing::updateAlias($type::esIndexName(), $indexName);
-            }
         }
     }
 
