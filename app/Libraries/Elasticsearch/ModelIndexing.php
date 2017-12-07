@@ -27,7 +27,10 @@ class ModelIndexing
 {
     public static function deleteIndex(string $name)
     {
-        return Es::indices()->delete(['index' => $name]);
+        return Es::indices()->delete([
+            'index' => $name,
+            'client' => ['ignore' => 404],
+        ]);
     }
 
     public static function getOldIndices(string $alias)
