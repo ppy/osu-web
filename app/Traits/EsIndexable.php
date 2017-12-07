@@ -42,6 +42,7 @@ trait Esindexable
                 'index' => static::esIndexName(),
                 'type' => static::esType(),
                 'id' => $this->getKey(),
+                'client' => ['ignore' => 404],
             ], $options)
         );
     }
