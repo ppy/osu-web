@@ -23,7 +23,6 @@ namespace App\Models\Elasticsearch;
 use App\Models\Forum\Forum;
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
-use Es;
 
 trait PostTrait
 {

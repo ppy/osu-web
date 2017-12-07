@@ -24,7 +24,6 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
-use App\Traits\EsIndexable;
 use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;

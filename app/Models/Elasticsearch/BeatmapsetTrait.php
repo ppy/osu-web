@@ -22,7 +22,6 @@ namespace App\Models\Elasticsearch;
 
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
-use Es;
 
 trait BeatmapsetTrait
 {

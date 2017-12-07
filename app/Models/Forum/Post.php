@@ -24,7 +24,6 @@ use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
-use App\Traits\EsIndexable;
 use Carbon\Carbon;
 use DB;
 use Es;
