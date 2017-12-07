@@ -20,7 +20,7 @@
 
 namespace App\Traits;
 
-use App\Libraries\Elasticsearch\ModelIndexing;
+use App\Libraries\Elasticsearch\Indexing;
 use Closure;
 use Es;
 use Log;
@@ -89,7 +89,7 @@ trait EsIndexable
         ];
 
         static::esReindexAll($batchSize, 0, $options);
-        ModelIndexing::updateAlias(static::esIndexName(), $newIndex);
+        Indexing::updateAlias(static::esIndexName(), $newIndex);
 
         return $newIndex;
     }

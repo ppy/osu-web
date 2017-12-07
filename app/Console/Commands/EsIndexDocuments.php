@@ -20,7 +20,7 @@
 
 namespace App\Console\Commands;
 
-use App\Libraries\Elasticsearch\ModelIndexing;
+use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use Illuminate\Console\Command;
@@ -64,7 +64,7 @@ class EsIndexDocuments extends Command
         $this->readOptions();
 
         $indexName = 'osu';
-        $oldIndices = ModelIndexing::getOldIndices('osu');
+        $oldIndices = Indexing::getOldIndices('osu');
         $types = [Beatmapset::class, Post::class];
 
         if ($this->hot) {
@@ -91,12 +91,12 @@ class EsIndexDocuments extends Command
         $this->warn("Aliasing '{$indexName}' to 'osu'...");
 
         // old index paths
-        ModelIndexing::updateAlias('osu', $indexName);
+        Indexing::updateAlias('osu', $indexName);
 
         if ($this->cleanup) {
             foreach ($oldIndices as $index) {
                 $this->info("Removing '{$index}'...");
-                ModelIndexing::deleteIndex($index);
+                Indexing::deleteIndex($index);
             }
         }
     }
@@ -105,7 +105,7 @@ class EsIndexDocuments extends Command
     {
         // create new index if hot-reindexing, otherwise reuse the existing one.
         if ($this->hot) {
-            ModelIndexing::createMultiTypeIndex($indexName, $types);
+            Indexing::createMultiTypeIndex($indexName, $types);
         }
 
         foreach ($types as $type) {
@@ -115,7 +115,7 @@ class EsIndexDocuments extends Command
             if ($this->hot) {
                 // also alias for new index paths so we can shift them.
                 $this->info("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
-                ModelIndexing::updateAlias($type::esIndexName(), $indexName);
+                Indexing::updateAlias($type::esIndexName(), $indexName);
             }
         }
     }

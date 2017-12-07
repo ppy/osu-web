@@ -23,7 +23,7 @@ namespace App\Libraries\Elasticsearch;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Es;
 
-class ModelIndexing
+class Indexing
 {
     public static function deleteIndex(string $name)
     {
