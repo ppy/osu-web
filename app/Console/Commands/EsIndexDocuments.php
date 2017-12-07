@@ -45,6 +45,7 @@ class EsIndexDocuments extends Command
 
         $oldIndices = ModelIndexing::getOldIndices('osu');
         $indexName = 'osu';
+        $types = [Beatmapset::class, Post::class];
 
         if ($hot) {
             $indexName .= '_'.time();
@@ -69,24 +70,7 @@ class EsIndexDocuments extends Command
             return $this->error('User aborted!');
         }
 
-        $types = [Beatmapset::class, Post::class];
-
-        // create new index if hot-reindexing, otherwise reuse the existing one.
-        if ($hot) {
-            ModelIndexing::createMultiTypeIndex($indexName, $types);
-        }
-
-        foreach ($types as $type) {
-            $this->info("Indexing {$type} into {$indexName}");
-            $type::esReindexAll(1000, 0, ['index' => $indexName]);
-
-            if ($hot) {
-                // also alias for new index paths so we can shift them.
-                $this->info("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
-                ModelIndexing::updateAlias($type::esIndexName(), $indexName);
-            }
-        }
-
+        $this->index($types, $indexName, $hot);
         $this->warn("\nIndexing of '{$indexName}' done.");
 
         if ($hot) {
@@ -100,6 +84,25 @@ class EsIndexDocuments extends Command
                     $this->info("Removing '{$index}'...");
                     ModelIndexing::deleteIndex($index);
                 }
+            }
+        }
+    }
+
+    private function index(array $types, string $indexName, bool $hot)
+    {
+        // create new index if hot-reindexing, otherwise reuse the existing one.
+        if ($hot) {
+            ModelIndexing::createMultiTypeIndex($indexName, $types);
+        }
+
+        foreach ($types as $type) {
+            $this->info("Indexing {$type} into {$indexName}");
+            $type::esReindexAll(1000, 0, ['index' => $indexName]);
+
+            if ($hot) {
+                // also alias for new index paths so we can shift them.
+                $this->info("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
+                ModelIndexing::updateAlias($type::esIndexName(), $indexName);
             }
         }
     }
