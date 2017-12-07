@@ -21,7 +21,6 @@
 namespace App\Traits;
 
 use App\Libraries\Elasticsearch\Indexing;
-use Closure;
 use Es;
 use Log;
 
@@ -102,8 +101,7 @@ trait EsIndexable
         $baseQuery = static::esIndexingQuery();
         $count = 0;
 
-        static::esFindInBatches(function ($models) use ($options, $isSoftDeleting, &$count) {
-            $next = null;
+        $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count) {
             $actions = [];
 
             foreach ($models as $model) {
@@ -130,35 +128,10 @@ trait EsIndexable
                 $count += count($result['items']);
             }
 
-            return $next;
-        }, $baseQuery, $batchSize, $fromId);
+            Log::info("next: {$models->last()->getKey()}");
+        });
 
         $duration = time() - $startTime;
         Log::info("Indexed {$count} records in {$duration} s.");
-    }
-
-    /**
-     * Paginates and indexes the recordsets using key-set pagination instead of
-     *  the offset pagination used by chunk().
-     */
-    private static function esFindInBatches(Closure $closure, $baseQuery, $batchSize, $fromId)
-    {
-        $keyColumn = (new static())->getKeyName();
-
-        while (true) {
-            $query = (clone $baseQuery)
-                ->where($keyColumn, '>', $fromId)
-                ->orderBy($keyColumn, 'asc')
-                ->limit($batchSize);
-
-            // TODO: don't rely on closure to figure out whether or not to continue.
-            $next = $closure($query->get());
-
-            if ($next === null) {
-                break;
-            }
-
-            $fromId = $next->getKey();
-        }
     }
 }
