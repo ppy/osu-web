@@ -25,14 +25,17 @@ use Closure;
 use Es;
 use Log;
 
-trait Esindexable
+trait EsIndexable
 {
-    public abstract static function esIndexName();
-    public abstract static function esIndexingQuery();
-    public abstract static function esMappings();
-    public abstract static function esType();
+    abstract public static function esIndexName();
 
-    public abstract function toEsJson();
+    abstract public static function esIndexingQuery();
+
+    abstract public static function esMappings();
+
+    abstract public static function esType();
+
+    abstract public function toEsJson();
 
     public function esDeleteDocument(array $options = [])
     {
@@ -58,7 +61,6 @@ trait Esindexable
         return Es::index(array_merge($json, $options));
     }
 
-
     public static function esCreateIndex(string $name = null)
     {
         $type = static::esType();
@@ -68,7 +70,7 @@ trait Esindexable
                 'mappings' => [
                     $type => [
                         'properties' => static::esMappings(),
-                    ]
+                    ],
                 ],
             ],
         ];
@@ -140,6 +142,7 @@ trait Esindexable
             // TODO: should probably be handled per-model.
             if ($isSoftDeleting && $model->trashed()) {
                 $model->esDeleteDocument($options);
+
                 return;
             }
 
