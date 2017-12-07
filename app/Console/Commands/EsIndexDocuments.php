@@ -87,10 +87,10 @@ class EsIndexDocuments extends Command
             }
         }
 
-        $this->info("{$indexName} done.");
+        $this->warn("\nIndexing of '{$indexName}' done.");
 
         if ($hot) {
-            $this->info("Aliasing '{$indexName}' to 'osu'...");
+            $this->warn("Aliasing '{$indexName}' to 'osu'...");
 
             // old index paths
             ModelIndexing::updateAlias('osu', $indexName);
