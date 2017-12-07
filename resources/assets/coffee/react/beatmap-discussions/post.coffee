@@ -127,10 +127,15 @@ class BeatmapDiscussions.Post extends React.PureComponent
     text = @props.post.message
     text = _.escape text
     text = _.trim text
-    # replace strictly single newline with single (html) newline
-    text = text.replace /([^\s])\n([^\s])/g, '$1<br>$2'
-    # fold multiple newlines into two (html) newlines
-    text = text.replace /(\n\s*){2,}/g, '<br><br>'
+    # replace newlines with <br>
+    # - trim trailing spaces
+    # - then join with <br>
+    # - limit to 2 consecutive <br>s
+    text = text
+      .split '\n'
+      .map (x) -> x.trim()
+      .join '<br>'
+      .replace /(?:<br>){2,}/g, '<br><br>'
     text = osu.linkify text
     text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
     text
