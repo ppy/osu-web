@@ -14,7 +14,7 @@ class EsIndexDocuments extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--hot}';
+    protected $signature = 'es:index-documents {--hot} {--cleanup}';
 
     /**
      * The console command description.
@@ -41,11 +41,22 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $hot = $this->option('hot');
+        $cleanup = $this->option('cleanup');
 
+        $oldIndices = ModelIndexing::getOldIndices('osu');
         $indexName = 'osu';
+
         if ($hot) {
             $indexName .= '_'.time();
             $this->warn("Running hot reindex on {$indexName}.");
+
+            if ($cleanup) {
+                $this->warn(
+                    "The following indices will be deleted on completion!\n"
+                    .implode("\n", $oldIndices)
+                );
+            }
+
             $confirmMessage = "This will create the index '{$indexName}' and alias it to 'osu'";
         } else {
             $this->warn("Running cold reindex on {$indexName}.");
@@ -80,8 +91,16 @@ class EsIndexDocuments extends Command
 
         if ($hot) {
             $this->info("Aliasing '{$indexName}' to 'osu'...");
+
             // old index paths
             ModelIndexing::updateAlias('osu', $indexName);
+
+            if ($cleanup) {
+                foreach ($oldIndices as $index) {
+                    $this->info("Removing '{$index}'...");
+                    ModelIndexing::deleteIndex($index);
+                }
+            }
         }
     }
 }

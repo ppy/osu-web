@@ -25,6 +25,11 @@ use Es;
 
 class ModelIndexing
 {
+    public static function deleteIndex(string $name)
+    {
+        return Es::indices()->delete(['index' => $name]);
+    }
+
     public static function getOldIndices(string $alias)
     {
         try {
@@ -56,6 +61,13 @@ class ModelIndexing
         return Es::indices()->create($params);
     }
 
+    /**
+     * Updates the index alias to point to the given index and unaliases any
+     *  existing indices.
+     *
+     * @param string $alias Name of the alias.
+     * @param string $index Name of the index to alias.
+     */
     public static function updateAlias(string $alias, string $index)
     {
         $oldIndices = static::getOldIndices($alias);
