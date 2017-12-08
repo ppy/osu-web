@@ -44,6 +44,7 @@ class EsIndexDocuments extends Command
     private $cleanup;
     private $hot;
     private $types;
+    private $suffix;
 
     /**
      * Create a new command instance.
@@ -64,60 +65,61 @@ class EsIndexDocuments extends Command
     {
         $this->readOptions();
         $this->types = [Beatmapset::class, Post::class];
+        $this->suffix = $this->hot ? '_'.time() : '';
 
-        $indexName = 'osu';
         $oldIndices = Indexing::getOldIndices('osu');
 
-        if ($this->hot) {
-            $indexName .= '_'.time();
-        }
-
-        $continue = $this->starterMessage($indexName, $oldIndices);
+        $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
             return $this->error('User aborted!');
         }
 
-        $this->index($indexName);
-        $this->warn("\nIndexing of '{$indexName}' done.");
+        $indices = $this->index();
 
-        $this->finish($indexName, $oldIndices);
+        $this->finish($indices, $oldIndices);
+        $this->warn("\nIndexing completed.");
     }
 
-    private function finish(string $indexName, array $oldIndices)
+    private function finish(array $indices, array $oldIndices)
     {
-        if (!$this->hot) {
-            return;
-        }
+        // always update osu alias
+        $indicesString = implode(', ', $indices);
+        $this->warn("Aliasing '{$indicesString}' to 'osu'...");
+        Indexing::updateAlias('osu', $indices);
 
-        // also alias for new index paths so we can shift them.
-        foreach ($this->types as $type) {
-            $this->warn("Aliasing '{$indexName}' to '{$type::esIndexName()}'...");
-            Indexing::updateAlias($type::esIndexName(), $indexName);
-        }
-
-        // old index paths
-        $this->warn("Aliasing '{$indexName}' to 'osu'...");
-        Indexing::updateAlias('osu', $indexName);
-
-        if ($this->cleanup) {
+        if ($this->hot && $this->cleanup) {
             foreach ($oldIndices as $index) {
-                $this->info("Removing '{$index}'...");
+                $this->warn("Removing '{$index}'...");
                 Indexing::deleteIndex($index);
             }
         }
     }
 
-    private function index(string $indexName)
+    /**
+     * Indexes and returns the names of the indices.
+     *
+     * @return array names of the indices indexed to.
+     */
+    private function index()
     {
-        // create new index if hot-reindexing, otherwise reuse the existing one.
-        if ($this->hot) {
-            Indexing::createMultiTypeIndex($indexName, $this->types);
+        $indices = [];
+        foreach ($this->types as $type) {
+            if ($this->hot) {
+                $indexName = "{$type::esIndexName()}{$this->suffix}";
+
+                $this->info("Hot indexing {$type} into {$indexName}");
+                $type::esHotReindex(1000, $indexName);
+
+                $indices[] = $indexName;
+            } else {
+                $this->info("Cold indexing {$type} into {$type::esIndexName()}");
+                $type::esReindexAll(1000);
+
+                $indices[] = $type::esIndexName();
+            }
         }
 
-        foreach ($this->types as $type) {
-            $this->info("Indexing {$type} into {$indexName}");
-            $type::esReindexAll(1000, 0, ['index' => $indexName]);
-        }
+        return $indices;
     }
 
     private function readOptions()
@@ -126,10 +128,10 @@ class EsIndexDocuments extends Command
         $this->cleanup = $this->option('cleanup');
     }
 
-    private function starterMessage(string $indexName, array $oldIndices)
+    private function starterMessage(array $oldIndices)
     {
         if ($this->hot) {
-            $this->warn("Running hot reindex on {$indexName}.");
+            $this->warn('Running hot reindex.');
 
             if ($this->cleanup) {
                 $this->warn(
@@ -138,10 +140,10 @@ class EsIndexDocuments extends Command
                 );
             }
 
-            $confirmMessage = "This will create the index '{$indexName}' and alias it to 'osu'";
+            $confirmMessage = "This will create new indices and alias them to 'osu'";
         } else {
-            $this->warn("Running cold reindex on {$indexName}.");
-            $confirmMessage = "This reindex '{$indexName}' in-place (schemas must match)";
+            $this->warn('Running cold reindex.');
+            $confirmMessage = "This will reindex in-place (schemas must match) and alias them to 'osu'";
         }
 
         return $this->confirm("{$confirmMessage}, begin indexing?");
