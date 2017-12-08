@@ -18,18 +18,15 @@
 
 .osu-checkbox {
   @_top: osu-checkbox;
-  @_box: 18px;
-  @_box-border: 2px;
-  @_tick: (@_box - (@_box-border * 2) - 2px);
 
   flex: none;
   .center-content();
   display: inline-flex;
   margin: 0 5px 0 0;
   cursor: pointer;
-  width: @_box;
-  height: @_box;
-  font-size: @_tick;
+  width: 19px;
+  height: 19px;
+  font-size: 12px;
   line-height: 1;
   color: #fff;
 
@@ -41,7 +38,7 @@
     .full-size();
     .default-border-radius();
     .default-box-shadow();
-    border: @_box-border solid #fff;
+    border: 2px solid #fff;
     background-color: #ccc;
 
     .@{_top}__input:checked ~ & {
