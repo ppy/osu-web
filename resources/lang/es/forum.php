@@ -127,7 +127,6 @@ return [
         '_' => 'Temas',
 
         'actions' => [
-            'reply' => 'Mostrar caja de respuesta',
             'reply_with_quote' => 'Citar y responder publicación',
         ],
 

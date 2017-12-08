@@ -85,7 +85,6 @@ return [
         '_' => 'Onderwerpen',
 
         'actions' => [
-            'reply' => 'Toon antwoordbox',
             'reply_with_quote' => 'Citeer post voor antwoord',
         ],
 
