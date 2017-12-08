@@ -21,6 +21,9 @@ el = React.createElement
 
 class ProfilePage.Beatmaps extends React.PureComponent
   render: =>
+    perPageOverride =
+      graveyardBeatmapsets: 6
+
     allBeatmapsets =
       favouriteBeatmapsets: @props.favouriteBeatmapsets
       rankedAndApprovedBeatmapsets: @props.rankedAndApprovedBeatmapsets
@@ -52,7 +55,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
                   collection: beatmapsets
                   propertyName: section
                   pagination: @props.pagination[section]
-                  perPage: @props.perPage[section]
+                  perPage: perPageOverride[section] ? @props.perPage[section]
                   route: laroute.route 'users.beatmapsets',
                     user: @props.user.id
                     type: sectionSnaked

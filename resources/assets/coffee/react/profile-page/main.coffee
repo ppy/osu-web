@@ -27,17 +27,6 @@ currentLocation = ->
 
 
 class ProfilePage.Main extends React.PureComponent
-  perPage:
-    scoresBest: 5
-    scoresFirsts: 5
-    beatmapPlaycounts: 5
-    scoresRecent: 5
-    favouriteBeatmapsets: 6
-    rankedAndApprovedBeatmapsets: 6
-    unrankedBeatmapsets: 6
-    graveyardBeatmapsets: 2
-    recentlyReceivedKudosu: 5
-
   constructor: (props) ->
     super props
 
@@ -73,12 +62,12 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
-    for own elem, perPage of @perPage
+    for own elem, perPage of @props.perPage
       @state.showMorePagination[elem] ?= {}
       @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
 
-      if @state[elem].length > perPage
-        @state[elem] = @state[elem][0...-1]
+      if @state.showMorePagination[elem].hasMore
+        @state[elem].pop()
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
@@ -170,7 +159,7 @@ class ProfilePage.Main extends React.PureComponent
             unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
             graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
           pagination: @state.showMorePagination
-          perPage: @perPage
+          perPage: @props.perPage
         component: ProfilePage.Beatmaps
 
       medals:
@@ -261,6 +250,7 @@ class ProfilePage.Main extends React.PureComponent
     url = showMoreLink.dataset.showMoreUrl
     offset = @state[propertyName].length
     perPage = parseInt(showMoreLink.dataset.showMorePerPage)
+    console.log perPage
     maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
 
     paginationState = _.cloneDeep @state.showMorePagination

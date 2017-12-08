@@ -246,20 +246,34 @@ class UsersController extends Controller
                 'Achievement'
             );
 
-            $beatmapsets = [
-                'most_played' => $this->mostPlayedBeatmapsets($user),
-                'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
-                'favourite' => $this->favouriteBeatmapsets($user),
-                'unranked' => $this->unrankedBeatmapsets($user),
-                'graveyard' => $this->graveyardBeatmapsets($user),
+            $perPage = [
+                'scoresBest' => 5,
+                'scoresFirsts' => 5,
+                'beatmapPlaycounts' => 5,
+                'scoresRecent' => 5,
+
+                'favouriteBeatmapsets' => 6,
+                'rankedAndApprovedBeatmapsets' => 6,
+                'unrankedBeatmapsets' => 6,
+                'graveyardBeatmapsets' => 2,
+
+                'recentlyReceivedKudosu' => 5,
             ];
 
-            $kudosu = $this->recentKudosu($user);
+            $beatmapsets = [
+                'most_played' => $this->mostPlayedBeatmapsets($user, $perPage['beatmapPlaycounts'] + 1),
+                'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user, $perPage['rankedAndApprovedBeatmapsets'] + 1),
+                'favourite' => $this->favouriteBeatmapsets($user, $perPage['favouriteBeatmapsets'] + 1),
+                'unranked' => $this->unrankedBeatmapsets($user, $perPage['unrankedBeatmapsets'] + 1),
+                'graveyard' => $this->graveyardBeatmapsets($user, $perPage['graveyardBeatmapsets'] + 1),
+            ];
+
+            $kudosu = $this->recentKudosu($user, $perPage['recentlyReceivedKudosu'] + 1);
 
             $scores = [
-                'best' => $this->scoresBest($user, $currentMode),
-                'firsts' => $this->scoresFirsts($user, $currentMode),
-                'recent' => $this->scoresRecent($user, $currentMode),
+                'best' => $this->scoresBest($user, $currentMode, $perPage['scoresBest'] + 1),
+                'firsts' => $this->scoresFirsts($user, $currentMode, $perPage['scoresFirsts'] + 1),
+                'recent' => $this->scoresRecent($user, $currentMode, $perPage['scoresRecent'] + 1),
             ];
 
             $jsonChunks = [
@@ -271,6 +285,7 @@ class UsersController extends Controller
                 'scores' => $scores,
                 'statistics' => $statistics,
                 'user' => $userArray,
+                'perPage' => $perPage,
             ];
 
             return view('users.show', compact(
@@ -318,7 +333,7 @@ class UsersController extends Controller
         }
     }
 
-    private function recentKudosu($user, $perPage = 6, $offset = 0)
+    private function recentKudosu($user, $perPage = 10, $offset = 0)
     {
         return json_collection(
             $user->receivedKudosu()
@@ -331,7 +346,7 @@ class UsersController extends Controller
         );
     }
 
-    private function mostPlayedBeatmapsets($user, $perPage = 6, $offset = 0)
+    private function mostPlayedBeatmapsets($user, $perPage = 10, $offset = 0)
     {
         $beatmapsets = $user->beatmapPlaycounts()
             ->with('beatmap', 'beatmap.beatmapset')
@@ -347,7 +362,7 @@ class UsersController extends Controller
         return json_collection($beatmapsets, 'BeatmapPlaycount');
     }
 
-    private function rankedAndApprovedBeatmapsets($user, $perPage = 7, $offset = 0)
+    private function rankedAndApprovedBeatmapsets($user, $perPage = 10, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsRankedAndApproved()
@@ -359,7 +374,7 @@ class UsersController extends Controller
         );
     }
 
-    private function favouriteBeatmapsets($user, $perPage = 7, $offset = 0)
+    private function favouriteBeatmapsets($user, $perPage = 10, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsFavourite()
@@ -371,7 +386,7 @@ class UsersController extends Controller
         );
     }
 
-    private function unrankedBeatmapsets($user, $perPage = 7, $offset = 0)
+    private function unrankedBeatmapsets($user, $perPage = 10, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsUnranked()
@@ -383,7 +398,7 @@ class UsersController extends Controller
         );
     }
 
-    private function graveyardBeatmapsets($user, $perPage = 3, $offset = 0)
+    private function graveyardBeatmapsets($user, $perPage = 10, $offset = 0)
     {
         return json_collection(
             $user->profileBeatmapsetsGraveyard()
@@ -395,7 +410,7 @@ class UsersController extends Controller
         );
     }
 
-    private function scoresBest($user, $mode, $perPage = 6, $offset = 0)
+    private function scoresBest($user, $mode, $perPage = 10, $offset = 0)
     {
         $scores = $user->scoresBest($mode, true)
             ->orderBy('pp', 'DESC')
@@ -406,7 +421,7 @@ class UsersController extends Controller
         return json_collection($scores, 'Score', ['beatmap', 'beatmapset', 'weight']);
     }
 
-    private function scoresFirsts($user, $mode, $perPage = 6, $offset = 0)
+    private function scoresFirsts($user, $mode, $perPage = 10, $offset = 0)
     {
         $scores = $user->scoresFirst($mode, true)
             ->orderBy('score_id', 'desc')
@@ -420,7 +435,7 @@ class UsersController extends Controller
         return json_collection($scores, 'Score', ['beatmap', 'beatmapset']);
     }
 
-    private function scoresRecent($user, $mode, $perPage = 6, $offset = 0)
+    private function scoresRecent($user, $mode, $perPage = 10, $offset = 0)
     {
         $scores = $user->scores($mode, true)
             ->with('beatmap', 'beatmap.beatmapset')

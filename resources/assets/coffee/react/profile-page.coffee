@@ -31,3 +31,4 @@ reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
   recentActivities: user.recentActivities
   recentlyReceivedKudosu: osu.parseJson('json-kudosu')
   achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
+  perPage: osu.parseJson('json-perPage')
