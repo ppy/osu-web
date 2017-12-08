@@ -18,12 +18,15 @@
 
 .osu-checkbox {
   @_top: osu-checkbox;
+  @_box: 18px;
+  @_box-border: 2px;
+  @_tick: (@_box - (@_box-border * 2) - 2px);
 
   text-transform: initial;
   font-weight: initial;
   flex: none;
   display: inline-flex;
-  margin: 0 5px 0 0;
+  margin: 0;
   cursor: pointer;
 
   &--beatmap-discussion {
@@ -34,8 +37,11 @@
     .full-size();
     .default-border-radius();
     .default-box-shadow();
-    border: 2px solid #fff;
+    border: @_box-border solid #fff;
     background-color: #ccc;
+    margin-right: 5px;
+    width: @_box;
+    height: @_box;
 
     .@{_top}__input:checked ~ & {
       background-color: @green;
@@ -58,6 +64,7 @@
     color: #fff;
     padding: 3px;
     display: flex;
+    font-size: @_tick;
 
     .@{_top}__input:checked ~ & {
       visibility: visible;
