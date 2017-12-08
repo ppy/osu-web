@@ -93,7 +93,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     nominators = []
     for event in @props.events by -1
-      if event.type == 'disqualify'
+      if event.type == 'disqualify' || event.type == 'nomination_reset'
         break
       else if event.type == 'nominate'
         nominators.push(@props.users[event.user_id])
@@ -148,7 +148,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                   "#{hypeRaw} / #{requiredHype}"
               @renderLights(hype, requiredHype)
 
-            if currentUser.id?
+            if currentUser.id? && currentUser.id != @props.beatmapset.user_id
               div className: "#{bn}__row-right",
                 el BigButton,
                   modifiers: ['full']

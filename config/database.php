@@ -67,7 +67,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
             'options' => [
                 PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",
@@ -131,7 +131,7 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_general_ci',
             'prefix' => '',
-            'strict' => false,
+            'strict' => true,
             'options' => [
                 PDO::ATTR_PERSISTENT => true,
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET time_zone = '+00:00'",

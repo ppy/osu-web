@@ -110,6 +110,7 @@ class BeatmapDiscussion extends Model
     {
         return
             in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+            $this->user_id !== $this->beatmapset->user_id &&
             !$this->isDeleted() &&
             !$this->kudosu_denied;
     }
@@ -176,6 +177,24 @@ class BeatmapDiscussion extends Model
         });
     }
 
+    public function refreshResolved()
+    {
+        $systemPosts = $this
+            ->beatmapDiscussionPosts()
+            ->withoutDeleted()
+            ->where('system', '=', true)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        foreach ($systemPosts as $post) {
+            if ($post->message['type'] === 'resolved') {
+                return $this->update(['resolved' => $post->message['value']]);
+            }
+        }
+
+        return $this->update(['resolved' => false]);
+    }
+
     public function hasValidBeatmap()
     {
         return
@@ -186,11 +205,9 @@ class BeatmapDiscussion extends Model
     public function hasValidMessageType()
     {
         if ($this->user_id === $this->beatmapset->user_id) {
-            $this->message_type = 'mapper_note';
-
-            return true;
+            return in_array($this->message_type, ['praise', 'problem', 'suggestion', 'mapper_note'], true);
         } else {
-            return $this->message_type !== null && $this->message_type !== 'mapper_note';
+            return in_array($this->message_type, ['praise', 'problem', 'suggestion'], true);
         }
     }
 

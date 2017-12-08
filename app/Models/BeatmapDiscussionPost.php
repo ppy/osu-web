@@ -52,7 +52,11 @@ class BeatmapDiscussionPost extends Model
 
     public function hasValidMessage()
     {
-        return present($this->message);
+        if (is_string($this->message)) {
+            return mb_strlen($this->message) <= 500;
+        } else {
+            return count($this->message) > 0;
+        }
     }
 
     /*
@@ -69,7 +73,7 @@ class BeatmapDiscussionPost extends Model
         if ($this->system) {
             return json_decode($value, true);
         } else {
-            return str_replace("\n", ' ', $value);
+            return $value;
         }
     }
 
@@ -80,7 +84,7 @@ class BeatmapDiscussionPost extends Model
             $value = json_encode($value);
         }
 
-        $this->attributes['message'] = str_replace("\n", ' ', $value);
+        $this->attributes['message'] = trim($value);
     }
 
     public static function generateLogResolveChange($user, $resolved)
@@ -102,6 +106,22 @@ class BeatmapDiscussionPost extends Model
             ->where('id', '<', $this->id)->exists();
     }
 
+    public function relatedSystemPost()
+    {
+        if ($this->system) {
+            return;
+        }
+
+        $nextPost = static
+            ::where('id', '>', $this->getKey())
+            ->orderBy('id', 'ASC')
+            ->first();
+
+        if ($nextPost !== null && $nextPost->system && $nextPost->user_id === $this->user_id) {
+            return $nextPost;
+        }
+    }
+
     public function restore($restoredBy)
     {
         return DB::transaction(function () use ($restoredBy) {
@@ -109,7 +129,18 @@ class BeatmapDiscussionPost extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_RESTORE, $restoredBy, $this)->saveOrExplode();
             }
 
-            return $this->update(['deleted_at' => null]);
+            // restore related system post
+            $systemPost = $this->relatedSystemPost();
+
+            if ($systemPost !== null) {
+                $systemPost->restore($restoredBy);
+            }
+
+            $this->update(['deleted_at' => null]);
+
+            $this->beatmapDiscussion->refreshResolved();
+
+            return true;
         });
     }
 
@@ -124,13 +155,24 @@ class BeatmapDiscussionPost extends Model
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
             }
 
+            // delete related system post
+            $systemPost = $this->relatedSystemPost();
+
+            if ($systemPost !== null) {
+                $systemPost->softDelete($deletedBy);
+            }
+
             $time = Carbon::now();
 
-            return $this->update([
+            $this->update([
                 'deleted_by_id' => $deletedBy->user_id,
                 'deleted_at' => $time,
                 'updated_at' => $time,
             ]);
+
+            $this->beatmapDiscussion->refreshResolved();
+
+            return true;
         });
     }
 

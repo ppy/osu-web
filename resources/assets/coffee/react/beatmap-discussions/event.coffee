@@ -28,7 +28,7 @@ class BeatmapDiscussions.Event extends React.PureComponent
     time = @props.time ? moment(@props.event.created_at)
 
     div className: 'beatmapset-event',
-      div className: "beatmapset-event__icon beatmapset-event__icon--#{@props.event.type}"
+      div className: "beatmapset-event__icon beatmapset-event__icon--#{_.kebabCase @props.event.type}"
       div
         className: 'beatmapset-event__time'
         time.format 'LT'
@@ -42,13 +42,18 @@ class BeatmapDiscussions.Event extends React.PureComponent
     discussionId = @props.event.comment?.beatmap_discussion_id
 
     if discussionId?
+      # TODO: get discussion starter to show more detail.
       discussion = osu.link(BeatmapDiscussionHelper.hash({discussionId}), "##{discussionId}", ['js-beatmap-discussion--jump'])
     else
       text = @props.event.comment
 
-    message = osu.trans "beatmapset_events.event.#{@props.event.type}", {discussion, text}
-
     if @props.event.user_id?
-      message += " (#{osu.link(laroute.route('users.show', user: @props.event.user_id), @props.users[@props.event.user_id].username)})"
+      user = osu.link(laroute.route('users.show', user: @props.event.user_id), @props.users[@props.event.user_id].username)
+
+    message = osu.trans "beatmapset_events.event.#{@props.event.type}", {discussion, text, user}
+
+    # append owner of the event if not already included in main message
+    if user? && @props.event.type not in ['disqualify', 'kudosu_gain', 'kudosu_lost', 'nominate']
+      message += " (#{user})"
 
     message

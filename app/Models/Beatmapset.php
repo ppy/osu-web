@@ -896,6 +896,11 @@ class Beatmapset extends Model
         return count($this->recentEvents()->nominations()->get());
     }
 
+    public function hasNominations()
+    {
+        return $this->currentNominationCount() > 0;
+    }
+
     public function rankingETA()
     {
         if (!$this->isQualified()) {
@@ -918,10 +923,11 @@ class Beatmapset extends Model
         switch ($this->approved) {
             case self::STATES['pending']:
             case self::STATES['qualified']:
-                // last 'disqualify' event (if any) and all events since
-                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
-                if ($disqualifyEvent) {
-                    $events->where('id', '>=', $disqualifyEvent->id);
+                // last 'disqualify' or 'nomination reset' event (if any) and all events since
+                $resetEvent = $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+
+                if ($resetEvent) {
+                    $events->where('id', '>=', $resetEvent->id);
                 }
         }
 
@@ -1028,7 +1034,15 @@ class Beatmapset extends Model
 
         $split = preg_split('/-{15}/', $post->post_text, 2);
 
-        return $post->edit($split[0]."---------------\n".ltrim($bbcode), $user);
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+        return $post->edit($newBody, $user);
     }
 
     public function state()

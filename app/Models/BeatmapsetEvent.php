@@ -45,6 +45,8 @@ class BeatmapsetEvent extends Model
     const DISCUSSION_POST_DELETE = 'discussion_post_delete';
     const DISCUSSION_POST_RESTORE = 'discussion_post_restore';
 
+    const NOMINATION_RESET = 'nomination_reset';
+
     public static function log($type, $user, $object, $extraData = [])
     {
         if ($object instanceof BeatmapDiscussionPost) {
@@ -84,9 +86,19 @@ class BeatmapsetEvent extends Model
         return $query->where('type', self::NOMINATE);
     }
 
+    public function scopeNominationResets($query)
+    {
+        return $query->where('type', self::NOMINATION_RESET);
+    }
+
     public function scopeDisqualifications($query)
     {
         return $query->where('type', self::DISQUALIFY);
+    }
+
+    public function scopeDisqualificationAndNominationResetEvents($query)
+    {
+        return $query->whereIn('type', [self::DISQUALIFY, self::NOMINATION_RESET]);
     }
 
     public function hasArrayComment()

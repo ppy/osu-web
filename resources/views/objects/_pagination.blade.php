@@ -46,7 +46,7 @@
         }
     @endphp
 
-    <div class="paginator">
+    <div class="paginator {{ isset($modifier) ? "paginator--{$modifier}" : '' }}">
         @include('objects._pagination_page', ['page' => 1, 'label' => '«'])
         @include('objects._pagination_page', ['page' => max(1, $currentPage - 1), 'label' => '‹'])
 

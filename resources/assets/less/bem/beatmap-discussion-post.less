@@ -75,7 +75,18 @@
 
   &__actions {
     display: flex;
-    justify-content: flex-end;
+
+    .@{_top}--editing & {
+      justify-content: flex-end;
+    }
+
+    .@{_top}--new-reply & {
+      justify-content: flex-end;
+    }
+
+    .@{_top}--editing.@{_top}--reply & {
+      margin-top: 5px;
+    }
   }
 
   &__actions-group {
@@ -125,6 +136,10 @@
         padding-right: @beatmap-discussion--reply-padding;
       }
     }
+
+    .@{_top}--new-reply & {
+      padding-bottom: 0;
+    }
   }
 
   &__footer {
@@ -133,6 +148,8 @@
     &--notice {
       padding-top: 0;
       padding-bottom: 0;
+      display: flex;
+      align-items: flex-end;
       font-size: @font-size--normal;
     }
 
@@ -199,8 +216,8 @@
       .default-border-radius();
       width: 100%;
       resize: vertical;
-      margin-bottom: 5px;
 
+      // --reply part to override top modifier
       &, .@{_top}--reply & {
         font-size: @font-size--phone-input;
 

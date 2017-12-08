@@ -319,7 +319,6 @@ class User extends Model implements AuthenticatableContract, Messageable
             'total' => $total,
             'over_limit' => $overLimit,
             'data' => $query
-                ->orderByRaw('LENGTH(username)')
                 ->orderBy('user_id')
                 ->limit($limit)
                 ->offset($offset)

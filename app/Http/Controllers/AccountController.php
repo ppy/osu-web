@@ -47,7 +47,15 @@ class AccountController extends Controller
             }
 
             return $next($request);
-        });
+        }, [
+            'except' => [
+                'edit',
+                'reissueCode',
+                'updateEmail',
+                'updatePassword',
+                'verify',
+            ],
+        ]);
 
         $this->middleware('verify-user');
         $this->middleware('throttle:60,10', [
