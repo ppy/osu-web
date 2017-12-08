@@ -127,7 +127,6 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
-            'reply' => 'Exibir caixa de resposta',
             'reply_with_quote' => 'Citar na resposta',
         ],
 

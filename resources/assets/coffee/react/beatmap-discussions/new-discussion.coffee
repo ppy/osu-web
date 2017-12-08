@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, input, label, p, span, textarea} = ReactDOMFactories
+{button, div, input, label, p, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-new'
@@ -91,15 +91,23 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
           div className: "#{bn}__message",
             if @props.currentUser.id?
-              textarea
-                disabled: @state.posting?
-                className: "#{bn}__message-area js-hype--input"
-                value: @state.message
-                onChange: @setMessage
-                onKeyDown: @ignoreEnter
-                onFocus: @setSticky
-                placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
-                ref: (el) => @input = el
+              [
+                el TextareaAutosize,
+                  key: 'input'
+                  minRows: 3
+                  disabled: @state.posting?
+                  className: "#{bn}__message-area js-hype--input"
+                  value: @state.message
+                  onChange: @setMessage
+                  onKeyDown: @handleEnter
+                  onFocus: @setSticky
+                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
+                  inputRef: (el) => @input = el
+
+                el BeatmapDiscussions.MessageLengthCounter,
+                  key: 'counter'
+                  message: @state.message
+              ]
             else
               osu.trans('beatmaps.discussions.require-login')
 
@@ -149,15 +157,17 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   timestamp: currentTimestamp
                   existing_timestamps: timestampsString
 
-            label className: 'osu-checkbox osu-checkbox--beatmap-discussion',
-              input
-                className: 'osu-checkbox__input'
-                type: 'checkbox'
-                checked: @state.timestampConfirmed
-                onChange: @toggleTimestampConfirmation
+            label className: "#{bn}__notice-checkbox",
+              div className: 'osu-checkbox osu-checkbox--beatmap-discussion',
+                input
+                  className: 'osu-checkbox__input'
+                  type: 'checkbox'
+                  checked: @state.timestampConfirmed
+                  onChange: @toggleTimestampConfirmation
 
-              span className: 'osu-checkbox__tick',
-                el Icon, name: 'check'
+                span className: 'osu-checkbox__box'
+                span className: 'osu-checkbox__tick',
+                  el Icon, name: 'check'
 
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
@@ -168,8 +178,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState(stickable: newState) if newState != @state.stickable
 
 
-  ignoreEnter: (e) =>
-    return if e.keyCode != 13
+  handleEnter: (e) =>
+    return if e.keyCode != 13 || e.shiftKey
 
     e.preventDefault()
 
@@ -255,7 +265,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   setMessage: (e) =>
-    message = e.currentTarget.value.replace /\n/g, ' '
+    message = e.currentTarget.value
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
 
     @setState {message, timestamp}
@@ -297,7 +307,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   validPost: =>
-    return false if @state.message.length == 0
+    return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
 
     if @props.mode == 'timeline'
       @state.timestamp? && (@nearbyPosts().length == 0 || @state.timestampConfirmed)

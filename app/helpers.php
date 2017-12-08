@@ -467,6 +467,7 @@ function nav_links()
     $links = [];
 
     $links['home'] = [
+        '_' => route('home'),
         'news-index' => route('news.index'),
         'friends' => route('friends.index'),
         'changelog-index' => route('changelog.index'),
