@@ -88,7 +88,7 @@ trait EsIndexable
         ];
 
         static::esReindexAll($batchSize, 0, $options);
-        Indexing::updateAlias(static::esIndexName(), $newIndex);
+        Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
     }
