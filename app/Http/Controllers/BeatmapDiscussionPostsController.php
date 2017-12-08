@@ -94,17 +94,13 @@ class BeatmapDiscussionPostsController extends Controller
             priv_check('BeatmapsetNominate', $beatmapset)->can();
 
         if ($resetNominations) {
-            $events[] = BeatmapsetEvent::log(BeatmapsetEvent::NOMINATION_RESET, Auth::user(), $discussion);
+            $events[] = BeatmapsetEvent::NOMINATION_RESET;
         }
 
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
-            $events[] = BeatmapsetEvent::log(
-                $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN,
-                Auth::user(),
-                $discussion
-            );
+            $events[] = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
         }
 
         try {
@@ -118,7 +114,7 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 foreach ($events as $event) {
-                    $event->saveOrExplode();
+                    BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
                 }
 
                 return true;
