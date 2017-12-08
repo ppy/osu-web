@@ -286,6 +286,7 @@ class Beatmapset extends Model
             'plays' => 'playcount',
             'ranked' => 'approved_date',
             'rating' => 'rating',
+            'relevance' => '_score',
             'title' => 'title',
             'updated' => 'last_update',
         ];

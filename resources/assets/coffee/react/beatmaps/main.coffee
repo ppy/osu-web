@@ -72,7 +72,7 @@ class Beatmaps.Main extends React.PureComponent
       div className: 'osu-layout__row osu-layout__row--page-compact',
         div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
           if currentUser.id?
-            el Beatmaps.SearchSort, sorting: @sorting()
+            el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
 
           div
             className: 'beatmapsets__content'
@@ -219,12 +219,20 @@ class Beatmaps.Main extends React.PureComponent
   updateFilters: (_e, newFilters) =>
     newFilters = _.extend {}, @state.filters, newFilters
 
+    if @state.filters.query != newFilters.query
+      if @state.filters.query == ''
+        newFilters.sort = 'relevance_desc'
+      else if newFilters.query == ''
+        newFilters.sort = null
+
     if @state.filters.status != newFilters.status
-      newFilters.sort =
-        if newFilters.status in [4, 5]
-          'updated_desc'
-        else
-          'ranked_desc'
+      newFilters.sort = null
+
+    newFilters.sort ?=
+      if newFilters.status in [4, 5]
+        'updated_desc'
+      else
+        'ranked_desc'
 
     if !_.isEqual @state.filters, newFilters
       @setState filters: newFilters, ->
