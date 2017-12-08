@@ -142,7 +142,7 @@ class @ChangelogChart
     return unless pos
 
     for el, i in @data
-      if y <= el[pos][1]
+      if y <= el[pos][1] && el[pos].data[el.key]?
         dataRow = i
         currentLabel = el.key
         labelModifier = @options.scales.class currentLabel
