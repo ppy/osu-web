@@ -22,12 +22,16 @@
   @_box-border: 2px;
   @_tick: (@_box - (@_box-border * 2) - 2px);
 
-  text-transform: initial;
-  font-weight: initial;
   flex: none;
+  .center-content();
   display: inline-flex;
-  margin: 0;
+  margin: 0 5px 0 0;
   cursor: pointer;
+  width: @_box;
+  height: @_box;
+  font-size: @_tick;
+  line-height: 1;
+  color: #fff;
 
   &--beatmap-discussion {
     margin-top: 5px;
@@ -39,9 +43,6 @@
     .default-box-shadow();
     border: @_box-border solid #fff;
     background-color: #ccc;
-    margin-right: 5px;
-    width: @_box;
-    height: @_box;
 
     .@{_top}__input:checked ~ & {
       background-color: @green;
@@ -61,10 +62,6 @@
 
   &__tick {
     visibility: hidden;
-    color: #fff;
-    padding: 3px;
-    display: flex;
-    font-size: @_tick;
 
     .@{_top}__input:checked ~ & {
       visibility: visible;

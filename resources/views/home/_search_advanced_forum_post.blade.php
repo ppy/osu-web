@@ -74,8 +74,8 @@
             </div>
         </label>
 
-        <span class="search-advanced-forum-post__input-group">
-            <label class="osu-checkbox">
+        <label class="search-advanced-forum-post__input-group">
+            <div class="osu-checkbox">
                 <input
                     type="checkbox"
                     name="forum_children"
@@ -87,9 +87,10 @@
                     <span class="fa fa-check"></span>
                 </span>
 
-                {{ trans('home.search.forum_post.label.forum_children') }}
-            </label>
-        </span>
+            </div>
+
+            {{ trans('home.search.forum_post.label.forum_children') }}
+        </label>
     @endif
 
     <div class="search-advanced-forum-post__input-group search-advanced-forum-post__input-group--buttons">

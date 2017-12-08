@@ -157,16 +157,17 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   timestamp: currentTimestamp
                   existing_timestamps: timestampsString
 
-            label className: 'osu-checkbox osu-checkbox--beatmap-discussion',
-              input
-                className: 'osu-checkbox__input'
-                type: 'checkbox'
-                checked: @state.timestampConfirmed
-                onChange: @toggleTimestampConfirmation
+            label className: "#{bn}__notice-checkbox",
+              div className: 'osu-checkbox osu-checkbox--beatmap-discussion',
+                input
+                  className: 'osu-checkbox__input'
+                  type: 'checkbox'
+                  checked: @state.timestampConfirmed
+                  onChange: @toggleTimestampConfirmation
 
-              span className: 'osu-checkbox__box'
-              span className: 'osu-checkbox__tick',
-                el Icon, name: 'check'
+                span className: 'osu-checkbox__box'
+                span className: 'osu-checkbox__tick',
+                  el Icon, name: 'check'
 
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
