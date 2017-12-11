@@ -95,7 +95,7 @@ trait EsIndexable
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
     {
-        $isSoftDeleting = present((new static())->getDeletedAtColumn());
+        $isSoftDeleting = method_exists(new static(), 'getDeletedAtColumn');
         $startTime = time();
 
         $baseQuery = static::esIndexingQuery();
