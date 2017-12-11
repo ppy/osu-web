@@ -32,6 +32,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Es;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -331,16 +332,29 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         }
         $offset = $end - $limit;
 
+        $ids = [];
+        $es = static::searchUsername($params['query']);
+        $hits = $es['hits']['hits'];
+        foreach ($hits as $hit) {
+            $ids[] = $hit['_id'];
+        }
+
         return [
             'total' => $total,
             'over_limit' => $overLimit,
-            'data' => $query
-                ->orderBy('user_id')
-                ->limit($limit)
-                ->offset($offset)
-                ->get(),
+            'data' => static::whereIn('user_id', $ids)->default()->get(),
             'params' => $params,
         ];
+    }
+
+    public static function searchUsername(string $username)
+    {
+        return Es::search([
+            'index' => static::esIndexName(),
+            'body' => [
+                'query' => static::usernameSearchQuery($username ?? '')
+            ],
+        ]);
     }
 
     public function validateUsernameChangeTo($username)

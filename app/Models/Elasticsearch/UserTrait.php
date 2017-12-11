@@ -64,4 +64,16 @@ trait UserTrait
     {
         return 'users';
     }
+
+    public static function usernameSearchQuery(string $username)
+    {
+        return [
+            'bool' => [
+                'should' => [
+                    ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
+                    ['match' => ['username' => ['query' => $username]]],
+                ],
+            ],
+        ];
+    }
 }
