@@ -21,6 +21,8 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\Transactions\AfterCommit;
+use App\Libraries\Transactions\AfterRollback;
 use App\Traits\MacroableModel;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -79,20 +81,18 @@ abstract class Model extends BaseModel
         $query->whereRaw('false');
     }
 
+    public function delete(array $options = [])
+    {
+        $result = parent::delete($options);
+        $this->enlistCallbacks();
+
+        return $result;
+    }
+
     public function save(array $options = [])
     {
         $result = parent::save($options);
-
-        $connection = \DB::connection($this->connection);
-
-        \Log::debug([
-            'className' => get_class($this),
-            'connectionName' => $connection->getName(),
-            'transactionLevel' => $connection->transactionLevel(),
-        ]);
-
-        $afterCommit = resolve(\App\Libraries\AfterCommit::class);
-        $afterCommit->add($connection, $this);
+        $this->enlistCallbacks();
 
         return $result;
     }
@@ -110,5 +110,18 @@ abstract class Model extends BaseModel
         }
 
         return $result;
+    }
+
+    private function enlistCallbacks()
+    {
+        $transaction = resolve('transaction')->current($this->connection);
+
+        if ($this instanceof AfterCommit) {
+            $transaction->addCommittable($this);
+        }
+
+        if ($this instanceof AfterRollback) {
+            $this->addRollbackable($this);
+        }
     }
 }

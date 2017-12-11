@@ -33,4 +33,38 @@ class TransactionState
     {
         $this->connection = $connection;
     }
+
+    public function addCommittable($committable)
+    {
+        $this->commits[] = $committable;
+    }
+
+    public function addRollbackable($rollbackable)
+    {
+        $this->rollbacks[] = $rollbackable;
+    }
+
+    public function commit()
+    {
+        foreach ($this->commits as $commit) {
+            $commit->afterCommit();
+        }
+
+        $this->clear();
+    }
+
+    public function rollback()
+    {
+        foreach ($this->rollbacks as $rollback) {
+            $rollback->afterRollback();
+        }
+
+        $this->clear();
+    }
+
+    public function clear()
+    {
+        $this->commits = [];
+        $this->rollbacks = [];
+    }
 }

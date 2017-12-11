@@ -38,12 +38,29 @@ class TransactionStateManager
     {
         $name = $connection->getName();
         \Log::info("committing {$name}");
+
+        if ($this->isCompleted()) {
+            foreach ($this->states as $name => $connection) {
+                $connection->commit();
+            }
+        }
+    }
+
+    public function current(string $name)
+    {
+        return $this->states[$name] ?? null;
     }
 
     public function rollback(ConnectionInterface $connection)
     {
         $name = $connection->getName();
         \Log::info("rolling back {$name}");
+
+        $state = $this->states[$name] ?? null;
+
+        if ($state) {
+            $state->commit();
+        }
     }
 
     private function push(string $name, $item)
