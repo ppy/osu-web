@@ -313,6 +313,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         $params['query'] = presence($rawParams['query'] ?? null);
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
+        $size = $params['limit'];
+        $from = ($params['page'] - 1) * $size;
 
         $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
             ->where('username', 'NOT LIKE', '%\_old')
@@ -333,24 +335,40 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         $offset = $end - $limit;
 
         $ids = [];
-        $es = static::searchUsername($params['query']);
+        $es = static::searchUsername($params['query'], $from, $size);
         $hits = $es['hits']['hits'];
         foreach ($hits as $hit) {
-            $ids[] = $hit['_id'];
+            // keys are for matching later
+            $ids[$hit['_id']] = $hit['_id'];
+        }
+
+        $keyed = [];
+        $results = static::whereIn('user_id', array_values($ids))->default()->get();
+        foreach ($results as $result) {
+            $keyed[$result->user_id] = $result;
+        }
+
+        $data = [];
+        foreach (array_keys($ids) as $id) {
+            if (isset($keyed[$id])) {
+                $data[] = $keyed[$id];
+            }
         }
 
         return [
             'total' => $total,
             'over_limit' => $overLimit,
-            'data' => static::whereIn('user_id', $ids)->default()->get(),
+            'data' => $data,
             'params' => $params,
         ];
     }
 
-    public static function searchUsername(string $username)
+    public static function searchUsername(string $username, $from, $size)
     {
         return Es::search([
             'index' => static::esIndexName(),
+            'from' => $from,
+            'size' => $size,
             'body' => [
                 'query' => static::usernameSearchQuery($username ?? '')
             ],
