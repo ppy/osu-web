@@ -34,6 +34,11 @@ class TransactionState
         $this->connection = $connection;
     }
 
+    public function isCompleted()
+    {
+        return $this->connection->transactionLevel() === 0;
+    }
+
     public function addCommittable($committable)
     {
         $this->commits[] = $committable;

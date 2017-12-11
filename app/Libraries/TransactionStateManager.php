@@ -26,6 +26,13 @@ class TransactionStateManager
 {
     private $states = [];
 
+    public function isCompleted()
+    {
+        return array_reduce(array_values($this->states), function ($completed, $state) {
+            return $completed && $state->isCompleted();
+        }, true);
+    }
+
     public function begin(ConnectionInterface $connection)
     {
         $name = $connection->getName();
@@ -56,10 +63,10 @@ class TransactionStateManager
         $name = $connection->getName();
         \Log::info("rolling back {$name}");
 
-        $state = $this->states[$name] ?? null;
-
-        if ($state) {
-            $state->commit();
+        if ($this->isCompleted()) {
+            foreach ($this->states as $name => $connection) {
+                $connection->rollback();
+            }
         }
     }
 
