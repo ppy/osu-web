@@ -96,6 +96,8 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
                 'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
             ],
         ],
+        'user_warnings' => ['type' => 'short'],
+        'user_type' => ['type' => 'short'],
     ];
 
     private $memoized = [];

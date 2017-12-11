@@ -73,6 +73,10 @@ trait UserTrait
                     ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
                     ['match' => ['username' => ['query' => $username]]],
                 ],
+                'must' => [
+                    ['match' => ['user_warnings' => ['query' => 0]]],
+                    ['match' => ['user_type' => ['query' => 0]]],
+                ],
             ],
         ];
     }
