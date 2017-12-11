@@ -24,9 +24,10 @@ use Illuminate\Database\ConnectionInterface;
 
 class TransactionState
 {
-    protected $pending = [];
+    private $connection;
 
-    protected $connection;
+    private $commits = [];
+    private $rollbacks = [];
 
     public function __construct(ConnectionInterface $connection)
     {

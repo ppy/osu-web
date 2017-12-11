@@ -24,7 +24,7 @@ use Illuminate\Database\ConnectionInterface;
 
 class TransactionStateManager
 {
-    private $stacks = [];
+    private $states = [];
 
     public function begin(ConnectionInterface $connection)
     {
@@ -38,42 +38,20 @@ class TransactionStateManager
     {
         $name = $connection->getName();
         \Log::info("committing {$name}");
-
-        $this->pop($name);
     }
 
     public function rollback(ConnectionInterface $connection)
     {
         $name = $connection->getName();
         \Log::info("rolling back {$name}");
-
-        $this->pop($name);
-    }
-
-    public function current(string $name)
-    {
-        array_slice($this->stacks[$name] ?? [], -1);
     }
 
     private function push(string $name, $item)
     {
-        $stack = $this->stacks[$name] ?? [];
-        $stack[] = $item;
-        $this->stacks[$name] = $stack;
+        if (!isset($this->states[$name])) {
+            $this->states[$name] = $item;
+        }
 
-        $depth = count($stack);
-        \Log::info("pushed {$name}, stack depth now: {$depth}");
-    }
-
-    private function pop(string $name)
-    {
-        $stack = $this->stacks[$name] ?? [];
-        $item = array_pop($stack);
-        $this->stacks[$name] = $stack;
-
-        $depth = count($stack);
-        \Log::info("popped {$name}, stack depth left: {$depth}");
-
-        return $item;
+        \Log::info("pushed {$name}");
     }
 }
