@@ -51,7 +51,8 @@ class TransactionState
 
     public function commit()
     {
-        foreach ($this->commits as $commit) {
+        $commits = array_unique($this->commits);
+        foreach ($commits as $commit) {
             $commit->afterCommit();
         }
 
@@ -60,7 +61,8 @@ class TransactionState
 
     public function rollback()
     {
-        foreach ($this->rollbacks as $rollback) {
+        $rollbacks = array_unique($this->rollbacks);
+        foreach ($rollbacks as $rollback) {
             $rollback->afterRollback();
         }
 
