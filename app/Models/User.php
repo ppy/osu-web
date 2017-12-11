@@ -320,8 +320,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
             ->where('username', 'NOT LIKE', '%\_old')
             ->default();
 
-        $overLimit = (clone $query)->limit(1)->offset($max)->exists();
-        $total = $overLimit ? $max : $query->count();
         $end = $params['page'] * $params['limit'];
         // Actual limit for query.
         // Don't change the params because it's used for pagination.
@@ -337,6 +335,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         $ids = [];
         $es = static::searchUsername($params['query'], $from, $size);
         $hits = $es['hits']['hits'];
+        $total = $es['hits']['total'];
         foreach ($hits as $hit) {
             // keys are for matching later
             $ids[$hit['_id']] = $hit['_id'];
@@ -357,7 +356,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
 
         return [
             'total' => $total,
-            'over_limit' => $overLimit,
+            'over_limit' => $total > $max,
             'data' => $data,
             'params' => $params,
         ];
