@@ -115,6 +115,12 @@ abstract class Model extends BaseModel
     private function enlistCallbacks()
     {
         $transaction = resolve('transaction')->current($this->connection);
+        // call immediately if not in transaction
+        if ($transaction === null && ($this instanceof AfterCommit)) {
+            $this->afterCommit();
+
+            return;
+        }
 
         if ($this instanceof AfterCommit) {
             $transaction->addCommittable($this);
