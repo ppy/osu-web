@@ -24,7 +24,9 @@ use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Transactions\AfterCommit;
 use App\Models\Chat\PrivateMessage;
+use App\Models\Elasticsearch;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -38,9 +40,9 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AuthenticatableContract, Messageable
+class User extends Model implements AfterCommit, AuthenticatableContract, Messageable
 {
-    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -86,6 +88,15 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_interests' => 30,
     ];
 
+    const ES_MAPPINGS = [
+        'username' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+    ];
+
     private $memoized = [];
 
     private $validateCurrentPassword = false;
@@ -96,6 +107,11 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
+
+    public function afterCommit()
+    {
+        $this->esIndexDocument();
+    }
 
     public function getAuthPassword()
     {
