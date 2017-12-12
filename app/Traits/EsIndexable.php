@@ -95,10 +95,11 @@ trait EsIndexable
 
     public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
     {
-        $isSoftDeleting = method_exists(new static(), 'getDeletedAtColumn');
+        $dummy = new static();
+        $isSoftDeleting = method_exists($dummy, 'getDeletedAtColumn');
         $startTime = time();
 
-        $baseQuery = static::esIndexingQuery();
+        $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
         $count = 0;
 
         $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count) {
