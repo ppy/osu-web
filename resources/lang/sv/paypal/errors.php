@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'Vald betalningsmetod blev avvisad av Paypal.',
     'invalid_resource_id' => 'Ingen betalningsinformation kunde hittas.',
-    'unknown' => "Betalningen blev avvisad, men vi är inte helt säkra varför.",
+    'unknown' => 'Betalningen blev avvisad, men vi är inte helt säkra varför.',
 ];
