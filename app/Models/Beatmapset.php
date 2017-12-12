@@ -353,6 +353,7 @@ class Beatmapset extends Model
             'plays' => 'playcount',
             'ranked' => 'approved_date',
             'rating' => 'rating',
+            'relevance' => '_score',
             'title' => 'title',
             'updated' => 'last_update',
         ];
@@ -1003,7 +1004,7 @@ class Beatmapset extends Model
 
     public function status()
     {
-        return array_search($this->approved, self::STATES, true);
+        return array_search_null($this->approved, static::STATES);
     }
 
     public function defaultJson($currentUser = null)
@@ -1110,11 +1111,6 @@ class Beatmapset extends Model
         $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
 
         return $post->edit($newBody, $user);
-    }
-
-    public function state()
-    {
-        return array_search_null($this->approved, static::STATES);
     }
 
     public function toMetaDescription()

@@ -123,7 +123,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
-            'reply' => 'Show reply box',
+            'reply' => 'Reply',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',
         ],
