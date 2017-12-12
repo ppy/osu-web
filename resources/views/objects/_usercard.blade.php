@@ -20,7 +20,7 @@
     if (isset($popup) && $popup) {
         $blockClass .= ' usercard--popup';
     }
-    if (count($_modifiers ?? null) > 0) {
+    if (count($_modifiers ?? []) > 0) {
         foreach ($_modifiers as $modifier) {
             $blockClass .= ' usercard--'.$modifier;
         }
