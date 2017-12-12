@@ -109,7 +109,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('country', '.param.invalid', ['param' => 'country']);
         }
 
-        if ($this->getPaymentAmount() !== $order->getTotal()) {
+        if (compare_currency($this->getPaymentAmount(), $order->getTotal()) !== 0) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',
