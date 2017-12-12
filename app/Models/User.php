@@ -329,7 +329,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         }
 
         $keyed = [];
-        $results = static::whereIn('user_id', array_values($ids))->default()->get();
+        $results = static::whereIn('user_id', array_values($ids))->get();
         foreach ($results as $result) {
             $keyed[$result->user_id] = $result;
         }
