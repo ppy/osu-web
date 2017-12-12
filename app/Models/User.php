@@ -94,6 +94,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
             'type' => 'string',
             'fields' => [
                 'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_search'],
             ],
         ],
         'user_warnings' => ['type' => 'short'],

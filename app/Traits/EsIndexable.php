@@ -63,15 +63,27 @@ trait EsIndexable
     public static function esCreateIndex(string $name = null)
     {
         $type = static::esType();
-        $params = [
-            'index' => $name ?? static::esIndexName(),
-            'body' => [
-                'mappings' => [
-                    $type => [
-                        'properties' => static::esMappings(),
-                    ],
+        $body = [
+            'mappings' => [
+                $type => [
+                    'properties' => static::esMappings(),
                 ],
             ],
+        ];
+
+        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
+            $settings = [
+                'settings' => [
+                    'analysis' => static::esAnalysisSettings(),
+                ],
+            ];
+
+            $body = array_merge($body, $settings);
+        }
+
+        $params = [
+            'index' => $name ?? static::esIndexName(),
+            'body' => $body,
         ];
 
         return Es::indices()->create($params);

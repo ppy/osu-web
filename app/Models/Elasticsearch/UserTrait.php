@@ -45,6 +45,34 @@ trait UserTrait
         return $values;
     }
 
+    public static function esAnalysisSettings()
+    {
+        static $settings = [
+            'filter' => [
+                // sloppy match index filter
+                'username_slop_filter' => [
+                    'type' => 'ngram',
+                    'min_gram' => 2,
+                    'max_gram' => 8,
+                ],
+            ],
+            'analyzer' => [
+                // analyzer to support sloppy search matches.
+                'username_slop' => [
+                    'type' => 'custom',
+                    'tokenizer' => 'standard',
+                    'filter' => ['lowercase', 'username_slop_filter'],
+                ],
+                'username_search' => [
+                    'type' => 'custom',
+                    'tokenizer' => 'lowercase',
+                ],
+            ]
+        ];
+
+        return $settings;
+    }
+
     public static function esIndexName()
     {
         return 'users';
@@ -74,6 +102,7 @@ trait UserTrait
                         'should' => [
                             ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
                             ['match' => ['username' => ['query' => $username]]],
+                            ['match' => ['username._slop' => ['query' => $username, 'type' => 'phrase']]],
                         ]
                     ]
                 ],
