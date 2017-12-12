@@ -319,22 +319,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         $size = $params['limit'];
         $from = ($params['page'] - 1) * $size;
 
-        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
-            ->where('username', 'NOT LIKE', '%\_old')
-            ->default();
-
-        $end = $params['page'] * $params['limit'];
-        // Actual limit for query.
-        // Don't change the params because it's used for pagination.
-        $limit = $params['limit'];
-        if ($end > $max) {
-            // Ensure $max is honored.
-            $limit -= ($end - $max);
-            // Avoid negative limit.
-            $limit = max(0, $limit);
-        }
-        $offset = $end - $limit;
-
         $ids = [];
         $es = static::searchUsername($params['query'], $from, $size);
         $hits = $es['hits']['hits'];
