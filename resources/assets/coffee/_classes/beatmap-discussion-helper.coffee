@@ -65,8 +65,8 @@ class @BeatmapDiscussionHelper
 
   @linkTimestamp: (text, classNames = []) =>
     text
-      .replace /(^|\s|\()((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?)(?=$|\s|\)|\.|,)/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_, text, m, s, ms, range) =>
+        "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
 
 
   @maxlength: 500
