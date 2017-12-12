@@ -81,9 +81,9 @@ abstract class Model extends BaseModel
         $query->whereRaw('false');
     }
 
-    public function delete(array $options = [])
+    public function delete()
     {
-        $result = parent::delete($options);
+        $result = parent::delete();
         $this->enlistCallbacks();
 
         return $result;
