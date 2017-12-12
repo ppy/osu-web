@@ -319,27 +319,10 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         $size = $params['limit'];
         $from = ($params['page'] - 1) * $size;
 
-        $ids = [];
-        $es = static::searchUsername($params['query'], $from, $size);
-        $hits = $es['hits']['hits'];
-        $total = $es['hits']['total'];
-        foreach ($hits as $hit) {
-            // keys are for matching later
-            $ids[$hit['_id']] = $hit['_id'];
-        }
+        $results = static::searchUsername($params['query'], $from, $size);
 
-        $keyed = [];
-        $results = static::whereIn('user_id', array_values($ids))->get();
-        foreach ($results as $result) {
-            $keyed[$result->user_id] = $result;
-        }
-
-        $data = [];
-        foreach (array_keys($ids) as $id) {
-            if (isset($keyed[$id])) {
-                $data[] = $keyed[$id];
-            }
-        }
+        $total = $results['hits']['total'];
+        $data = es_records($results, get_called_class());
 
         return [
             'total' => $total,

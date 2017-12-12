@@ -79,6 +79,42 @@ function es_query_escape_with_caveats($query)
     );
 }
 
+/**
+ * Takes an Elasticsearch resultset and retrieves the matching models from the database,
+ *  returning them in the same order as the Elasticsearch results.
+ *
+ *
+ * @param $results Elasticsesarch results.
+ * @param $class Class name of the model.
+ * @return array Records matching the Elasticsearch results.
+ */
+function es_records($results, $class)
+{
+    $keyName = (new $class())->getKeyName();
+
+    $hits = $results['hits']['hits'];
+    $ids = [];
+    foreach ($hits as $hit) {
+        // keys are for matching later
+        $ids[$hit['_id']] = $hit['_id'];
+    }
+
+    $keyed = [];
+    $query = $class::whereIn($keyName, array_values($ids));
+    foreach ($query->get() as $result) {
+        $keyed[$result->user_id] = $result;
+    }
+
+    $records = [];
+    foreach (array_keys($ids) as $id) {
+        if (isset($keyed[$id])) {
+            $records[] = $keyed[$id];
+        }
+    }
+
+    return $records;
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
