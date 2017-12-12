@@ -20,33 +20,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signatures do not match',
+        'not_match' => 'Signaturer stämmer inte överens',
     ],
-    'notification_type' => 'notification_type is not valid :type',
+    'notification_type' => 'notification_type är inte en giltigt :type',
     'order' => [
-        'invalid' => 'Order is not valid',
+        'invalid' => 'Order är inte giltigt',
         'items' => [
-            'virtual_only' => '`:provider` payment is not valid for physical items.',
+            'virtual_only' => '`:provider` betalning är inte giltigt för fysiska föremål.',
         ],
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
-            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',
+            'not_checkout' => 'Försöker acceptera betalning för en order i fel stat `:state`.',
+            'not_paid' => 'Försöker återbetala betalning för en order i fel stat `:state`.',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param does not match',
+        'invalid' => '`:param` parameter stämmer inte överens',
     ],
     'paypal' => [
-        'not_echeck' => 'Pending payment is not an echeck. (:actual)',
+        'not_echeck' => 'Pågående betalning är inte en echeck. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Payment amount does not match: :actual != :expected',
-            'currency' => 'Payment is not in USD. (:type)',
+            'amount' => 'Betalningssumma stämmer inte överens: :actual != :expected',
+            'currency' => 'Betalning är inte i USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Received order transaction id is malformed',
-        'user_id_mismatch' => 'external_id contains wrong user id',
+        'malformed' => 'Mottagen order transaktion id är missformad',
+        'user_id_mismatch' => 'external_id innehåller fel användar id',
     ],
 ];

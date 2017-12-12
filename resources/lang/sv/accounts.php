@@ -20,63 +20,63 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Settings',
-        'title_compact' => 'settings',
+        'title' => '<strong>Användar</strong> Inställningar',
+        'title_compact' => 'inställningar',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Ändra Avatar',
         ],
 
         'email' => [
-            'current' => 'current email',
-            'new' => 'new email',
-            'new_confirmation' => 'email confirmation',
+            'current' => 'nuvarande email',
+            'new' => 'ny email',
+            'new_confirmation' => 'email bekräftelse',
             'title' => 'Email',
         ],
 
         'password' => [
-            'current' => 'current password',
-            'new' => 'new password',
-            'new_confirmation' => 'password confirmation',
-            'title' => 'Password',
+            'current' => 'nuvarande lösenord',
+            'new' => 'nytt lösenord',
+            'new_confirmation' => 'lösenord bekräftelse',
+            'title' => 'Lösenord',
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'Ändra Profil',
 
             'user' => [
-                'user_from' => 'current location',
-                'user_interests' => 'interest',
+                'user_from' => 'nuvarande position',
+                'user_interests' => 'intresse',
                 'user_msnm' => 'skype',
-                'user_occ' => 'occupation',
+                'user_occ' => 'sysselsättning',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'hemsida',
             ],
         ],
 
         'signature' => [
-            'title' => 'Signature',
-            'update' => 'update',
+            'title' => 'Signatur',
+            'update' => 'uppdatera',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! email change confirmation',
-        'update' => 'update',
-        'updated' => 'Email updated',
+        'email_subject' => 'ändring av osu! email bekräftelse',
+        'update' => 'uppdatera',
+        'updated' => 'Email uppdaterad',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! password change confirmation',
-        'update' => 'update',
-        'updated' => 'Password updated',
+        'email_subject' => 'ändring av osu! lösenord bekräftelse',
+        'update' => 'uppdatera',
+        'updated' => 'Lösenord uppdaterat',
     ],
 
     'playstyles' => [
-        'title' => 'Playstyles',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
-        'tablet' => 'tablet',
+        'title' => 'Spelsätt',
+        'mouse' => 'mus',
+        'keyboard' => 'tangentbord',
+        'tablet' => 'platta',
         'touch' => 'touch',
     ],
 ];
