@@ -31,6 +31,7 @@ trait UserTrait
     public function toEsJson()
     {
         $mappings = static::ES_MAPPINGS;
+        unset($mappings['is_old']);
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -41,6 +42,8 @@ trait UserTrait
 
             $values[$field] = $value;
         }
+
+        $values['is_old'] = ends_with($this->username, '_old');
 
         return $values;
     }
@@ -103,6 +106,9 @@ trait UserTrait
                             ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
                             ['match' => ['username' => ['query' => $username]]],
                             ['match' => ['username._slop' => ['query' => $username, 'type' => 'phrase']]],
+                        ],
+                        'must_not' => [
+                            [ 'term' => [ 'is_old' => true ] ],
                         ]
                     ]
                 ],

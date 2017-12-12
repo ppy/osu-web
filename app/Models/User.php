@@ -90,6 +90,7 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
     ];
 
     const ES_MAPPINGS = [
+        'is_old' => ['type' => 'boolean'],
         'username' => [
             'type' => 'string',
             'fields' => [
