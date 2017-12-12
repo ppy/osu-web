@@ -95,18 +95,19 @@ function es_records($results, $class)
     $hits = $results['hits']['hits'];
     $ids = [];
     foreach ($hits as $hit) {
-        // keys are for matching later
-        $ids[$hit['_id']] = $hit['_id'];
+        $ids[] = $hit['_id'];
     }
 
+    $query = $class::whereIn($keyName, $ids);
     $keyed = [];
-    $query = $class::whereIn($keyName, array_values($ids));
     foreach ($query->get() as $result) {
+        // save for lookup.
         $keyed[$result->user_id] = $result;
     }
 
+    // match records with elasticsearch results.
     $records = [];
-    foreach (array_keys($ids) as $id) {
+    foreach ($ids as $id) {
         if (isset($keyed[$id])) {
             $records[] = $keyed[$id];
         }
