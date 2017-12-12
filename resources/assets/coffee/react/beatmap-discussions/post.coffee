@@ -126,7 +126,9 @@ class BeatmapDiscussions.Post extends React.PureComponent
   formattedMessage: =>
     text = @props.post.message
     text = _.escape text
-    text = _.trim text
+    text = text.trim()
+    text = osu.linkify text
+    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
     # replace newlines with <br>
     # - trim trailing spaces
     # - then join with <br>
@@ -136,8 +138,6 @@ class BeatmapDiscussions.Post extends React.PureComponent
       .map (x) -> x.trim()
       .join '<br>'
       .replace /(?:<br>){2,}/g, '<br><br>'
-    text = osu.linkify text
-    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
     text
 
 
