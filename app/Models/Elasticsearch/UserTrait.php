@@ -68,14 +68,18 @@ trait UserTrait
     public static function usernameSearchQuery(string $username)
     {
         return [
-            'bool' => [
-                'should' => [
-                    ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
-                    ['match' => ['username' => ['query' => $username]]],
+            'filtered' => [
+                'query' => [
+                    'bool' => [
+                        'should' => [
+                            ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
+                            ['match' => ['username' => ['query' => $username]]],
+                        ]
+                    ]
                 ],
-                'must' => [
-                    ['match' => ['user_warnings' => ['query' => 0]]],
-                    ['match' => ['user_type' => ['query' => 0]]],
+                'filter' => [
+                    [ 'term' => [ 'user_warnings' => 0 ] ],
+                    [ 'term' => [ 'user_type' => 0 ] ],
                 ],
             ],
         ];
