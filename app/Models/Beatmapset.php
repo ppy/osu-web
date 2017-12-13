@@ -884,7 +884,7 @@ class Beatmapset extends Model
 
     public function requiredHype()
     {
-        return 12;
+        return config('osu.beatmapset.required_hype');
     }
 
     public function requiredNominationCount()
