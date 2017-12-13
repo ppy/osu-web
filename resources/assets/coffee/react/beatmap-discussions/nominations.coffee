@@ -63,18 +63,13 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   render: =>
-    showHype = _.includes ['wip', 'pending', 'qualified'], @props.beatmapset.status
+    showHype = @props.beatmapset.can_be_hyped
 
     if showHype
       requiredHype = @props.beatmapset.nominations.required_hype
-      hypeByUser = _.countBy @props.currentDiscussions.byFilter.praises.generalAll, 'user_id'
-      filteredHype = _.reject hypeByUser, (_v, k) =>
-        # no hyping your own maps
-        parseInt(k) == @props.beatmapset.user_id
-
-      hypeRaw = _.keys(filteredHype).length
+      hypeRaw = _.size @props.currentDiscussions.byFilter.hype.generalAll
       hype = _.min([requiredHype, hypeRaw])
-      userAlreadyHyped = hypeByUser[currentUser.id]?
+      userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
     userCanNominate = @props.currentUser.isAdmin || @props.currentUser.isBNG || @props.currentUser.isQAT
     userCanDisqualify = @props.currentUser.isAdmin || @props.currentUser.isQAT

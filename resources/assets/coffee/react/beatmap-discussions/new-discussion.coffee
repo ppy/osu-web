@@ -68,7 +68,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           @renderBox()
 
   renderBox: =>
-    showHypeHelp = _.includes(['wip', 'pending', 'qualified'], @props.beatmapset.status) && @props.mode == 'generalAll'
+    canHype =
+      @props.beatmapset.current_user_attributes?.can_hype &&
+      @props.beatmapset.can_be_hyped &&
+      @props.mode == 'generalAll'
 
     div
       className: 'osu-page osu-page--small'
@@ -115,7 +118,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div
             className: "#{bn}__footer-content js-hype--explanation js-flash-border"
             style:
-              opacity: 0 if @props.mode != 'timeline' && !showHypeHelp
+              opacity: 0 if @props.mode != 'timeline' && !canHype
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
@@ -135,6 +138,8 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 osu.trans 'beatmaps.hype.explanation'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
+            if canHype
+              @submitButton 'hype'
             if @props.currentUser.id == @props.beatmapset.user_id
               @submitButton 'mapper_note'
             @submitButton 'praise'

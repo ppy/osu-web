@@ -64,6 +64,7 @@ return [
         ],
 
         'message_type' => [
+            'hype' => 'Hype!',
             'mapper_note' => 'Note',
             'praise' => 'Praise',
             'problem' => 'Problem',

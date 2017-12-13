@@ -169,13 +169,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
         general: []
         generalAll: []
       byFilter =
-        total: {}
-        mapperNotes: {}
         deleted: {}
+        hype: {}
+        mapperNotes: {}
+        mine: {}
+        pending: {}
         praises: {}
         resolved: {}
-        pending: {}
-        mine: {}
+        total: {}
 
       for own mode, _items of byMode
         for own _filter, modes of byFilter
@@ -213,6 +214,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         if d.deleted_at?
           filters.push 'deleted'
+        else if d.message_type == 'hype'
+          filters.push 'hype'
         else if d.message_type == 'praise'
           filters.push 'praises'
         else if d.can_be_resolved
