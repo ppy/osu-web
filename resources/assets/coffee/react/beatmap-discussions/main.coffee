@@ -216,6 +216,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
           filters.push 'deleted'
         else if d.message_type == 'hype'
           filters.push 'hype'
+          filters.push 'praises'
         else if d.message_type == 'praise'
           filters.push 'praises'
         else if d.can_be_resolved
