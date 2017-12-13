@@ -84,6 +84,10 @@ class BeatmapDiscussionPostsController extends Controller
 
         priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
+        if (!$discussion->exists && $discussion->message_type === 'hype') {
+            priv_check('BeatmapsetHype', $discussion->beatmapset)->ensureCan();
+        }
+
         $posts = [new BeatmapDiscussionPost($this->postParams())];
         $events = [];
 
