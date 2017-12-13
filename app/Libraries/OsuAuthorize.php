@@ -354,6 +354,8 @@ class OsuAuthorize
         if ($user->remainingHype() === 0) {
             return $prefix.'limit_exceeded';
         }
+
+        return 'ok';
     }
 
     public function checkChatMessageSend($user, $target)
