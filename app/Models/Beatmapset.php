@@ -641,6 +641,12 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
+    public function removeCovers()
+    {
+        $this->storage()->deleteDirectory($this->coverPath());
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();

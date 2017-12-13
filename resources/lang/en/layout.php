@@ -146,9 +146,9 @@ return [
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'covers',
                 'show' => 'detail',
             ],
+            'beatmapsets-covers' => 'beatmapset covers',
         ],
     ],
 

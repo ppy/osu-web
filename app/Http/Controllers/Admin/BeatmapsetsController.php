@@ -26,13 +26,22 @@ use Request;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'admin.beatmapsets';
+    protected $section = 'admin';
+    protected $actionPrefix = 'beatmapsets-';
 
     public function covers($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
         return view('admin.beatmapsets.cover', compact('beatmapset'));
+    }
+
+    public function removeCovers($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+        $beatmapset->removeCovers();
+
+        return back();
     }
 
     public function regenerateCovers($id)

@@ -18,20 +18,29 @@
 @extends('master')
 
 @section('content')
-    <div class="osu-layout__row osu-layout__row--page">
-        <h2>{{$beatmapset->title}} - {{$beatmapset->artist}}</h2>
-        <br>
-        {!! Form::open([
-            'route' => ['admin.beatmapsets.covers.regenerate', $beatmapset->beatmapset_id],
-            'method' => 'POST'
-        ]) !!}
-            <button>regenerate</button>
-        {!! Form::close() !!}
-        @foreach ($beatmapset->coverSizes() as $size)
-            <h3>{{$size}}</h3>
-            <p>{{$beatmapset->coverURL($size)}}</p>
-            <img src="{{$beatmapset->coverURL($size)}}">
+    <div class="osu-page osu-page--generic">
+        <div class="beatmapset-cover-admin">
+            <h2>{{$beatmapset->title}} - {{$beatmapset->artist}}</h2>
             <br>
-        @endforeach
+            {!! Form::open([
+                'route' => ['admin.beatmapsets.covers.regenerate', $beatmapset->beatmapset_id],
+                'method' => 'POST'
+            ]) !!}
+                <button>{{trans('admin.beatmapsets.covers.regenerate')}}</button>
+            {!! Form::close() !!}
+            {!! Form::open([
+                'route' => ['admin.beatmapsets.covers.remove', $beatmapset->beatmapset_id],
+                'method' => 'POST'
+            ]) !!}
+                <button>{{trans('admin.beatmapsets.covers.remove')}}</button>
+            {!! Form::close() !!}
+            @foreach ($beatmapset->coverSizes() as $size)
+                <h3>{{$size}}</h3>
+                <a href="{{$beatmapset->coverURL($size)}}">
+                    <div>{{$beatmapset->coverURL($size)}}</div>
+                    <img class="beatmapset-cover-admin__img" src="{{$beatmapset->coverURL($size)}}">
+                </a>
+            @endforeach
+        </div>
     </div>
 @endsection

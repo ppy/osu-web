@@ -21,6 +21,10 @@
 return [
 
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenerate',
+            'remove' => 'Remove',
+        ],
         'show' => [
             'discussion' => [
                 '_' => 'Modding v2',
