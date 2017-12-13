@@ -643,7 +643,12 @@ class Beatmapset extends Model
 
     public function removeCovers()
     {
-        $this->storage()->deleteDirectory($this->coverPath());
+        try {
+            $this->storage()->deleteDirectory($this->coverPath());
+        } catch (\Exception $e) {
+            // ignore errors
+        }
+
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
     }
 
