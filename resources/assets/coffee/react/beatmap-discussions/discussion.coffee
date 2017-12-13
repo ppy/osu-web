@@ -163,6 +163,11 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     elementName = if post.system then 'SystemPost' else 'Post'
 
     canModeratePosts = @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT
+    canBeDeleted =
+      if type == 'discussion'
+        @props.discussion.current_user_attributes?.can_destroy
+      else
+        canModeratePosts || @isOwner(post)
 
     el BeatmapDiscussions[elementName],
       key: post.id
@@ -175,7 +180,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
       canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
-      canBeDeleted: canModeratePosts || @isOwner(post)
+      canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
 
