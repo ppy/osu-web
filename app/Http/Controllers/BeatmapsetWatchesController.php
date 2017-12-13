@@ -40,7 +40,7 @@ class BeatmapsetWatchesController extends Controller
     {
         return view('beatmapset_watches.index')
             ->with([
-                'watches' => Auth::user()->beatmapsetWatches()->paginate(50),
+                'watches' => Auth::user()->beatmapsetWatches()->has('beatmapset')->paginate(50),
             ]);
     }
 
