@@ -21,6 +21,9 @@ return [
         'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
+    'beatmapset' => [
+        'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+    ],
     'camo' => [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
