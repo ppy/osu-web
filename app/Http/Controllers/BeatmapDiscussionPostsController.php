@@ -69,9 +69,8 @@ class BeatmapDiscussionPostsController extends Controller
     public function store()
     {
         $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
-        $isNewDiscussion = ($discussion->id === null);
 
-        if ($isNewDiscussion) {
+        if (!$discussion->exists) {
             $beatmapset = Beatmapset
                 ::where('discussion_enabled', true)
                 ->findOrFail(Request::input('beatmapset_id'));
@@ -80,7 +79,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         $previousDiscussionResolved = $discussion->resolved;
-        $discussion->fill($this->discussionParams($isNewDiscussion));
+        $discussion->fill($this->discussionParams(!$discussion->exists));
 
         priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
@@ -91,7 +90,7 @@ class BeatmapDiscussionPostsController extends Controller
         $posts = [new BeatmapDiscussionPost($this->postParams())];
         $events = [];
 
-        $resetNominations = $isNewDiscussion &&
+        $resetNominations = !$discussion->exists &&
             $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             $discussion->message_type === 'problem' &&
@@ -101,7 +100,7 @@ class BeatmapDiscussionPostsController extends Controller
             $events[] = BeatmapsetEvent::NOMINATION_RESET;
         }
 
-        if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
+        if ($discussion->exists && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
             $events[] = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
