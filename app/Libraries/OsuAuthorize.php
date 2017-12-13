@@ -82,6 +82,10 @@ class OsuAuthorize
             return;
         }
 
+        if ($discussion->message_type === 'hype') {
+            return $prefix.'is_hype';
+        }
+
         if ($discussion->relationLoaded('beatmapDiscussionPosts')) {
             $visiblePosts = 0;
 
