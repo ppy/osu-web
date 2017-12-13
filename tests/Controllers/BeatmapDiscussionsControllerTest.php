@@ -66,7 +66,27 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
     }
 
-    // voting again only changes the score
+    // chaging vote (as BNG) only changes the score
+    public function testPutVoteChangeBNG()
+    {
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->bngUser->user_id]);
+
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
+
+        $this
+            ->actingAs($this->bngUser)
+            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
+                'beatmap_discussion_vote' => ['score' => '-1'],
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+    }
+
+    // voting again has no effect
     public function testPutVoteChange()
     {
         $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->anotherUser->user_id]);
@@ -134,6 +154,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
 
         $this
             ->actingAs($this->bngUser)
+            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
                 'beatmap_discussion_vote' => ['score' => '-1'],
             ])
