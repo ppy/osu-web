@@ -66,7 +66,7 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
     }
 
-    // chaging vote (as BNG) only changes the score
+    // changing vote (as BNG) only changes the score
     public function testPutVoteChangeBNG()
     {
         $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->bngUser->user_id]);
