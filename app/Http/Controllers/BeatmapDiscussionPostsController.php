@@ -87,7 +87,6 @@ class BeatmapDiscussionPostsController extends Controller
             ];
         }
 
-        $previousDiscussionResolved = $discussion->resolved;
         $discussionParams = get_params(Request::all(), 'beatmap_discussion', $discussionFilters);
         $discussion->fill($discussionParams);
 
@@ -112,7 +111,7 @@ class BeatmapDiscussionPostsController extends Controller
             $events[] = BeatmapsetEvent::NOMINATION_RESET;
         }
 
-        if ($discussion->exists && ($discussion->resolved !== $previousDiscussionResolved)) {
+        if ($discussion->exists && $discussion->isDirty('resolved')) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
             $events[] = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
