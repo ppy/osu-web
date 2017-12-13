@@ -662,6 +662,9 @@ class Beatmapset extends Model
                 mkdir($outputFolder, 0755, true);
             }
 
+            // start by clearing existing covers
+            $this->removeCovers();
+
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
             try {
