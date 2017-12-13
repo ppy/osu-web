@@ -948,7 +948,7 @@ class Beatmapset extends Model
 
     public function defaultJson($currentUser = null)
     {
-        $includes = ['beatmaps', 'nominations'];
+        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }

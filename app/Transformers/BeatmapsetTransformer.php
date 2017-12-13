@@ -34,6 +34,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'availability',
         'beatmaps',
         'converts',
+        'current_user_attributes',
         'description',
         'recent_favourites',
         'nominations',
@@ -71,6 +72,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
+            'can_be_hyped' => $beatmapset->canBeHyped(),
         ];
     }
 
@@ -85,6 +87,24 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 'download_disabled' => $beatmapset->download_disabled,
                 'more_information' => $beatmapset->download_disabled_url,
             ];
+        });
+    }
+
+    public function includeCurrentUserAttributes(Beatmapset $beatmapset)
+    {
+        $currentUser = Auth::user();
+
+        if ($currentUser === null) {
+            return;
+        }
+
+        $ret = [
+            'can_hype' => priv_check_user($currentUser, 'BeatmapsetHype', $beatmapset)->can(),
+            'remaining_hype' => $currentUser->remainingHype(),
+        ];
+
+        return $this->item($beatmapset, function () use ($ret) {
+            return $ret;
         });
     }
 
