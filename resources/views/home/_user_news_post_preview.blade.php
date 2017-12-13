@@ -19,6 +19,7 @@
 <div class="news-post-preview{{$collapsed ? ' news-post-preview--collapsed' : ''}}">
     <a
         class="news-post-preview__image"
+        tabindex="-1"
         href='{{ route('news.show', $post->getKey() )}}'
         {!! background_image($post->firstImage()) !!}
     ></a>
