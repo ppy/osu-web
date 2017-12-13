@@ -70,16 +70,26 @@ class BeatmapDiscussionPostsController extends Controller
     {
         $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
 
-        if (!$discussion->exists) {
+        if ($discussion->exists) {
+            $discussionFilters = ['resolved:bool'];
+        } else {
             $beatmapset = Beatmapset
                 ::where('discussion_enabled', true)
                 ->findOrFail(Request::input('beatmapset_id'));
 
             $discussion->beatmapset_id = $beatmapset->getKey();
+            $discussion->user_id = Auth::user()->user_id;
+            $discussion->resolved = false;
+            $discussionFilters = [
+                'beatmap_id:int',
+                'message_type',
+                'timestamp:int',
+            ];
         }
 
         $previousDiscussionResolved = $discussion->resolved;
-        $discussion->fill($this->discussionParams(!$discussion->exists));
+        $discussionParams = get_params(Request::all(), 'beatmap_discussion', $discussionFilters);
+        $discussion->fill($discussionParams);
 
         priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
@@ -87,7 +97,9 @@ class BeatmapDiscussionPostsController extends Controller
             priv_check('BeatmapsetHype', $discussion->beatmapset)->ensureCan();
         }
 
-        $posts = [new BeatmapDiscussionPost($this->postParams())];
+        $postParams = get_params(request(), 'beatmap_discussion_post', ['message']);
+        $postParams['user_id'] = Auth::user()->user_id;
+        $posts = [new BeatmapDiscussionPost($postParams)];
         $events = [];
 
         $resetNominations = !$discussion->exists &&
@@ -154,45 +166,12 @@ class BeatmapDiscussionPostsController extends Controller
 
         priv_check('BeatmapDiscussionPostEdit', $post)->ensureCan();
 
-        $post->update($this->postParams(false));
+        $params = get_params(request(), 'beatmap_discussion_post', ['message']);
+        $params['last_editor_id'] = Auth::user()->user_id;
+        $post->update($params);
 
         return [
             'beatmapset_discussion' => $post->beatmapset->defaultDiscussionJson(),
         ];
-    }
-
-    private function discussionParams($isNew)
-    {
-        if ($isNew) {
-            $filters = [
-                'beatmap_id:int',
-                'message_type',
-                'timestamp:int',
-            ];
-        } else {
-            $filters = ['resolved:bool'];
-        }
-
-        $params = get_params(Request::all(), 'beatmap_discussion', $filters);
-
-        if ($isNew) {
-            $params['user_id'] = Auth::user()->user_id;
-            $params['resolved'] = false;
-        }
-
-        return $params;
-    }
-
-    private function postParams($isNew = true)
-    {
-        $params = get_params(Request::all(), 'beatmap_discussion_post', ['message']);
-
-        if ($isNew) {
-            $params['user_id'] = Auth::user()->user_id;
-        } else {
-            $params['last_editor_id'] = Auth::user()->user_id;
-        }
-
-        return $params;
     }
 }
