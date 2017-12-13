@@ -42,6 +42,7 @@ class BeatmapDiscussion extends Model
         'suggestion' => 1,
         'problem' => 2,
         'mapper_note' => 3,
+        'hype' => 4,
     ];
 
     const RESOLVABLE_TYPES = [1, 2];
@@ -204,11 +205,25 @@ class BeatmapDiscussion extends Model
 
     public function hasValidMessageType()
     {
-        if ($this->user_id === $this->beatmapset->user_id) {
-            return in_array($this->message_type, ['praise', 'problem', 'suggestion', 'mapper_note'], true);
-        } else {
-            return in_array($this->message_type, ['praise', 'problem', 'suggestion'], true);
+        if ($this->message_type === null) {
+            return false;
         }
+
+        if (!$this->isDirty('message_type')) {
+            return true;
+        }
+
+        $validTypes = ['praise', 'problem', 'suggestion'];
+
+        if ($this->user_id === $this->beatmapset->user_id) {
+            $validTypes[] = 'mapper_note';
+        } else {
+            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped()) {
+                $validTypes[] = 'hype';
+            }
+        }
+
+        return in_array($this->message_type, $validTypes, true);
     }
 
     public function hasValidTimestamp()
@@ -346,6 +361,15 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function scopeOfType($query, $types)
+    {
+        foreach ((array) $types as $type) {
+            $intTypes[] = static::MESSAGE_TYPES[$type];
+        }
+
+        $query->whereIn('message_type', $intTypes);
     }
 
     public function scopeOpenIssues($query)

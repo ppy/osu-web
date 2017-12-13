@@ -82,6 +82,7 @@ class Beatmapset extends Model
         'qualified' => 3,
         'loved' => 4,
     ];
+    const HYPEABLE_STATES = [-1, 0, 3];
 
     const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
@@ -885,6 +886,11 @@ class Beatmapset extends Model
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
+    }
+
+    public function canBeHyped()
+    {
+        return in_array($this->approved, static::HYPEABLE_STATES, true);
     }
 
     public function requiredNominationCount()
