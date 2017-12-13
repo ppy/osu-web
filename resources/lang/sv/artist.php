@@ -19,30 +19,30 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Framhävda artister på osu!',
+    'title' => 'Framhävda Artister',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => 'ARTIST ÄR FÖR NÄRVARANDE GÖMD',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        'download' => 'Ladda ner Beatmap Mall',
+        'download-na' => 'Beatmap Mall är inte tillgänglig',
     ],
 
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => 'Framhävda artister är artister som vi jobbar tillsammans med för att skapa ny och originell musik till osu!. Dessa artister och ett urval av deras låtar har blivit handplockade av osu! teamet på grund av att dem är grymt bra och lämpliga för mapping. Några av dessa framhävda artister har också skapat exklusiva nya låtar för användning i osu! <br><br>Alla dessa låtar i denna sektion ges ut som för-tajmade .osz filer och har blivit officielt licensierade för använding i osu! och osu!-relaterat innehåll.',
     ],
 
     'links' => [
-        'site' => 'Official Website',
+        'site' => 'Officiell Hemsida',
     ],
 
     'songs' => [
-        '_' => 'Songs',
-        'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
+        '_' => 'Sånger',
+        'count' => '1 sång|:count sånger',
+        'exclusive' => 'osu! exklusiv',
     ],
 ];

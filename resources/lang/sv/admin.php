@@ -24,10 +24,10 @@ return [
         'show' => [
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                'activate' => 'aktivera',
+                'activate_confirm' => 'aktivera modding v2 på denna beatmap?',
+                'active' => 'aktiv',
+                'inactive' => 'inaktiv',
             ],
         ],
     ],
@@ -35,22 +35,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => 'Radera',
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => 'Inget omslag satt',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => 'Spara',
+                    'update' => 'Uppdatera',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => 'Forum Omslag Lista',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => 'Ordinarie Ämne Omslag',
+                    'main' => 'Forum Omslag',
                 ],
             ],
         ],
@@ -58,18 +58,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => 'Logg Visare',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => 'Admin Konsol Sak',
 
             'sections' => [
                 'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'general' => 'Allmänt',
+                'store' => 'Affär',
             ],
         ],
     ],
@@ -77,15 +77,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => 'Order Lista',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => 'Denna användare är begränsad.',
+            'message' => '(endast admins kan se detta)',
         ],
     ],
 
