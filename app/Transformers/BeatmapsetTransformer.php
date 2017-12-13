@@ -36,9 +36,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'converts',
         'current_user_attributes',
         'description',
-        'recent_favourites',
         'nominations',
         'ratings',
+        'recent_favourites',
         'user',
     ];
 
