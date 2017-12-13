@@ -107,7 +107,7 @@ class BeatmapsetPage.Header extends React.Component
               className: 'beatmapset-favourites beatmapset-favourites__template'
               style:
                 display: 'none'
-              @props.beatmapset.recentFavourites.map (user) ->
+              @props.beatmapset.recent_favourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
                   className: 'js-usercard beatmapset-favourites__user'

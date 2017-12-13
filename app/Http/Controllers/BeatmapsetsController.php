@@ -102,7 +102,7 @@ class BeatmapsetsController extends Controller
                 'converts.failtimes',
                 $descriptionInclude,
                 'ratings',
-                'recentFavourites',
+                'recent_favourites',
                 'user',
             ]
         );
