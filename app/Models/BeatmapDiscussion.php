@@ -152,8 +152,7 @@ class BeatmapDiscussion extends Model
                 }
 
                 $eventExtraData['votes'] = $this
-                    ->beatmapDiscussionVotes()
-                    ->get()
+                    ->beatmapDiscussionVotes
                     ->map
                     ->forEvent();
             } elseif ($event === 'recalculate') {
