@@ -19,20 +19,20 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
-    'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
+    'bold' => 'Fet',
+    'heading' => 'Huvud',
+    'image' => 'Bild',
+    'italic' => 'Kursiv',
+    'link' => 'Länk',
+    'list' => 'Lista',
+    'list_numbered' => 'Numrerad Lista',
     'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
+        '_' => 'Teckenstorlek',
+        'tiny' => 'Mycket liten',
+        'small' => 'Liten',
         'normal' => 'Normal',
-        'large' => 'Large',
+        'large' => 'Stor',
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+    'spoilerbox' => 'Spoiler Låda',
+    'strikethrough' => 'Igenom struken',
 ];

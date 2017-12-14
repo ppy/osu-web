@@ -21,132 +21,132 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'has_reply' => 'Can not delete discussion with replies',
+            'has_reply' => 'Kan inte radera en diskussion med svar',
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'Du har uppnått din nominerings gräns för idag, var god försök igen imorgon.',
         ],
         'resolve' => [
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            'not_owner' => 'Endast tråd skaparen eller beatmap ägare kan lösa en diskussion.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'limit_exceeded' => 'Var god vänta innan du lägger mer röster',
+            'owner' => 'Kan inte rösta på din egen diskussion!',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+            'system_generated' => 'Automatiska genererande inlägg kan inte redigeras.',
+            'not_owner' => 'Endast den som la upp inlägget kan redigera inlägget.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
+                'no_access' => 'Åtkomst till begärd kanal tillåts inte.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
+                    'no_access' => 'Åtkomst till kanal behövs',
+                    'moderated' => 'Kanal modereras just nu.',
+                    'not_lazer' => 'Du kan endast prata i #lazer just nu.',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => 'Kan ej skicka meddelande medans man är bannad/begränsad/tystad.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'Du kan inte ändra din röst efter röst perioden för den här tävlingen har avslutas.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Only last post can be deleted.',
-                'locked' => 'Can not delete post of a locked topic.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'only_last_post' => 'Endast sista inlägget kan raderas.',
+                'locked' => 'Kan ej radera ett inlägg på en låst tråd.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'not_owner' => 'Endast ägare kan radera inlägget.',
             ],
 
             'edit' => [
-                'deleted' => 'Can not edit deleted post.',
-                'locked' => 'The post is locked from editing.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
+                'deleted' => 'Kan ej redigera raderad inlägg.',
+                'locked' => 'Inlägget är låst för redigering.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'not_owner' => 'Endast ägare kan redigera inlägget.',
+                'topic_locked' => 'Kan ej redigera låst inlägg.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
-                'locked' => 'Can not reply to a locked thread.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to reply.',
+                'double_post' => 'Du la precis upp ett inlägg. Vänta en stund eller redigera ditt senaste inlägg.',
+                'locked' => 'Kan ej svara på ett låst inlägg.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_permission' => 'Inget tillstånd att svara.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
+                    'require_login' => 'Var vänlig logga in för att svara.',
+                    'restricted' => "Kan ej svara när man är begränsad.",
+                    'silenced' => "Kan ej svara när man är tystad.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'no_permission' => 'Inget tillstånd för att skapa ny tråd.',
+                'forum_closed' => 'Forum är stängd och kan inte lägga upp inlägg.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'over' => 'Polling is over and can not be voted on anymore.',
-                'voted' => 'Changing vote is not allowed.',
+                'no_forum_access' => 'Åtkomst till begärd forum behövs.',
+                'over' => 'Röstning är avslutad och kan inte röstas på längre.',
+                'voted' => 'Ändra röst är ej tillåtet.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
+                    'require_login' => 'Var vänlig logga in för att rösta.',
+                    'restricted' => "Kan ej rösta när man är begränsad.",
+                    'silenced' => "Kan ej rösta när man är tystad.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
+                'no_forum_access' => 'Kan ej rösta när man är begränsad.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => 'Ogiltigt omslag specificerad.',
+                'not_owner' => 'Endast ägare kan redigera omslag.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
+            'admin_only' => 'Endast admin kan se detta forum',
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Var vänlig logga in för att fortsätta.',
 
-    'unauthorized' => 'Access denied.',
+    'unauthorized' => 'Åtkomst nekad.',
 
-    'silenced' => "Can't do that while silenced.",
+    'silenced' => "Kan ej göra det när man är tystad.",
 
-    'restricted' => "Can't do that while restricted.",
+    'restricted' => "Kan ej göra det när man är begränsad.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page is locked.',
-                'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'locked' => 'Användar sida är låst.',
+                'not_owner' => 'Kan endast redigera egen användar sida.',
+                'require_supporter_tag' => 'Supporter tagg behövs.',
             ],
         ],
     ],

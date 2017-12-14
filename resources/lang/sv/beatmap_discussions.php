@@ -21,38 +21,38 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => 'Måste vara inloggad för att redigera.',
+            'system_generated' => 'System-genererade inlägg kan inte redigeras.',
+            'wrong_user' => 'Måste vara ägare av inlägget för att redigera.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Nothing has happened... yet.',
+        'empty' => 'Inget har hänt... än.',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => 'Inga av dessa inlägg har med mig att göra',
+        'notice' => 'Dessa är inlägg runt :timestamp (:existing_timestamps). Var vänlig kontrollera innan du lägger upp ett inlägg.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
-            'user' => 'Respond',
+            'guest' => 'Logga in för att svara',
+            'user' => 'Svara',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => 'Markerad som löst av :user',
+            'false' => 'Öppnad igen av :user',
         ],
     ],
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'nominator',
+        'bng' => 'nominerade',
         'owner' => 'mapper',
         'qat' => 'qat',
     ],
