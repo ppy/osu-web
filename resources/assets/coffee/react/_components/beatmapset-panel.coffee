@@ -90,11 +90,11 @@ class @BeatmapsetPanel extends React.PureComponent
 
             div className: 'beatmapset-panel__counts-box',
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count
+                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
                 el Icon, name: 'play-circle', modifiers: ['fw']
 
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.favourite_count
+                span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
                 el Icon, name: 'heart', modifiers: ['fw']
 
             div
