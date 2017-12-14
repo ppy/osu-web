@@ -118,7 +118,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div
             className: "#{bn}__footer-content js-hype--explanation js-flash-border"
             style:
-              opacity: 0 if @props.mode != 'timeline' && !canHype
+              opacity: 0 if @props.mode != 'timeline' && !(@props.mode == 'generalAll' && @props.beatmapset.can_be_hyped)
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
@@ -134,8 +134,14 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   BeatmapDiscussionHelper.formatTimestamp @state.timestamp
                 else
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
-              else # mode == 'generalAll'
-                osu.trans 'beatmaps.hype.explanation'
+              else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
+                if @props.currentUser.id?
+                  if @props.beatmapset.current_user_attributes.can_hype
+                    osu.trans 'beatmaps.hype.explanation', remaining: @props.beatmapset.current_user_attributes.remaining_hype
+                  else
+                    @props.beatmapset.current_user_attributes.can_hype_reason
+                else
+                  osu.trans 'beatmaps.hype.explanation_guest'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if canHype

@@ -44,6 +44,14 @@ return [
         ],
     ],
 
+    'beatmapset' => [
+        'hype' => [
+            'hyped' => 'You have already hyped this beatmap.',
+            'limit_exceeded' => 'You have used all your hype.',
+            'owner' => 'No hyping your own beatmap.',
+        ],
+    ],
+
     'chat' => [
         'channel' => [
             'read' => [

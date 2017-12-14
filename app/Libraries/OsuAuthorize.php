@@ -332,7 +332,7 @@ class OsuAuthorize
 
     public function checkBeatmapsetHype($user, $beatmapset)
     {
-        static $prefix = 'beatmap_discussion.hype.';
+        static $prefix = 'beatmapset.hype.';
 
         $this->ensureLoggedIn($user);
 

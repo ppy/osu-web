@@ -111,7 +111,8 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button-done' => 'Already Hyped!',
-        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
+        'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking! You have :remaining hype left.',
+        'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
         'section-title' => 'Hype Train',
         'title' => 'Hype',
     ],
