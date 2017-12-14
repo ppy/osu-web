@@ -28,6 +28,7 @@ return [
             'removing' => 'Removing...',
         ],
         'show' => [
+            'covers' => 'Manage Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activate',
