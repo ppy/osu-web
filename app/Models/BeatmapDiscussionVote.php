@@ -46,4 +46,12 @@ class BeatmapDiscussionVote extends Model
 
         $this->attributes['score'] = $value;
     }
+
+    public function forEvent()
+    {
+        return [
+            'user_id' => $this->user_id,
+            'score' => $this->score,
+        ];
+    }
 }
