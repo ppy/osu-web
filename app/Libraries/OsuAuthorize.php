@@ -161,6 +161,24 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapDiscussionVoteDown($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.vote.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($discussion->user_id === $user->user_id) {
+            return $prefix.'owner';
+        }
+
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
+    }
+
     public function checkBeatmapDiscussionPostDestroy($user, $post)
     {
         $prefix = 'beatmap_discussion_post.destroy.';
