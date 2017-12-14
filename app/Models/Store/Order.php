@@ -37,6 +37,11 @@ class Order extends Model
     const PENDING_ECHECK = 'PENDING ECHECK';
 
     protected $primaryKey = 'order_id';
+
+    protected $casts = [
+        'shipping' => 'float',
+    ];
+
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     public $macros = ['itemsQuantities'];
 

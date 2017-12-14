@@ -32,6 +32,7 @@ class OrderItem extends Model
     protected $primaryKey = 'id';
 
     protected $casts = [
+        'cost' => 'float',
         'extra_data' => 'array',
     ];
     // The format for extra_data is:
