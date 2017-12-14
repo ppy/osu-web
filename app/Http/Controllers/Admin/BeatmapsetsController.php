@@ -41,7 +41,7 @@ class BeatmapsetsController extends Controller
         $beatmapset = Beatmapset::findOrFail($id);
         $beatmapset->removeCovers();
 
-        return back();
+        return response([], 204);
     }
 
     public function regenerateCovers($id)
@@ -51,7 +51,7 @@ class BeatmapsetsController extends Controller
         $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
         $this->dispatch($job);
 
-        return back();
+        return response([], 204);
     }
 
     public function show($id)
