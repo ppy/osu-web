@@ -23,7 +23,9 @@ return [
     'beatmapsets' => [
         'covers' => [
             'regenerate' => 'Regenerate',
+            'regenerating' => 'Regenerating...',
             'remove' => 'Remove',
+            'removing' => 'Removing...',
         ],
         'show' => [
             'discussion' => [

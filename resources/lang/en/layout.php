@@ -142,13 +142,13 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => 'beatmapset covers',
             'root' => 'index',
             'logs-index' => 'log',
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'show' => 'detail',
             ],
-            'beatmapsets-covers' => 'beatmapset covers',
         ],
     ],
 
