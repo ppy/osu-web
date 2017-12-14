@@ -60,15 +60,20 @@ trait UserTrait
                 ],
             ],
             'analyzer' => [
-                // analyzer to support sloppy search matches.
                 'username_slop' => [
                     'type' => 'custom',
                     'tokenizer' => 'standard',
                     'filter' => ['lowercase', 'username_slop_filter'],
                 ],
-                'username_search' => [
+                'username_lower' => [
                     'type' => 'custom',
-                    'tokenizer' => 'lowercase',
+                    'tokenizer' => 'standard',
+                    'filter' => ['lowercase'],
+                ],
+                'whitespace' => [
+                    'type' => 'custom',
+                    'tokenizer' => 'whitespace',
+                    'filter' => ['lowercase'],
                 ],
             ]
         ];
@@ -98,13 +103,27 @@ trait UserTrait
 
     public static function usernameSearchQuery(string $username)
     {
+
+        static $lowercase_stick = [
+            'analyzer' => 'username_lower',
+            'type' => 'most_fields',
+            'fields' => ['username', 'username._*'],
+        ];
+
+        static $whitespace_stick = [
+            'analyzer' => 'whitespace',
+            'type' => 'most_fields',
+            'fields' => ['username', 'username._*'],
+        ];
+
         return [
             'filtered' => [
                 'query' => [
                     'bool' => [
                         'should' => [
                             ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
-                            ['match' => ['username' => ['query' => $username]]],
+                            ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
+                            ['multi_match' => array_merge(['query' => $username], $whitespace_stick)],
                             ['match' => ['username._slop' => ['query' => $username, 'type' => 'phrase']]],
                         ],
                         'must_not' => [

@@ -93,9 +93,14 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
         'is_old' => ['type' => 'boolean'],
         'username' => [
             'type' => 'string',
+            'analyzer' => 'username_lower',
             'fields' => [
+                // for exact match
                 'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
-                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_search'],
+                // try match sloppy search guesses
+                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                // for people who like to use too many dashes and brackets in their username
+                '_whitespace' => ['type' => 'string', 'analyzer' => 'whitespace'],
             ],
         ],
         'user_warnings' => ['type' => 'short'],
