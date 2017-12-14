@@ -893,6 +893,39 @@ class Beatmapset extends Model
         return in_array($this->approved, static::HYPEABLE_STATES, true);
     }
 
+    public function validateHypeBy($user)
+    {
+        if ($user === null) {
+            $message = 'guest';
+        } else {
+            if ($this->user_id === $user->getKey()) {
+                $message = 'owner';
+            } else {
+                $hyped = $this
+                    ->beatmapDiscussions()
+                    ->withoutDeleted()
+                    ->ofType('hype')
+                    ->where('user_id', '=', $user->getKey())
+                    ->exists();
+
+                if ($hyped) {
+                    $message = 'hyped';
+                } elseif ($user->remainingHype() === 0) {
+                    $message = 'limit_exceeded';
+                }
+            }
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => trans("model_validation.beatmap_discussion.hype.{$message}"),
+            ];
+        } else {
+            return ['result' => true];
+        }
+    }
+
     public function requiredNominationCount()
     {
         return 2;

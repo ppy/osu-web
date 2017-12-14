@@ -98,11 +98,11 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             return;
         }
 
-        $hypePriv = priv_check_user($currentUser, 'BeatmapsetHype', $beatmapset);
+        $hypeValidation = $beatmapset->validateHypeBy($currentUser);
 
         $ret = [
-            'can_hype' => $hypePriv->can(),
-            'can_hype_reason' => $hypePriv->can() ? null : $hypePriv->message(),
+            'can_hype' => $hypeValidation['result'],
+            'can_hype_reason' => $hypeValidation['message'] ?? null,
             'remaining_hype' => $currentUser->remainingHype(),
         ];
 

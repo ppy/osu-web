@@ -330,34 +330,6 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkBeatmapsetHype($user, $beatmapset)
-    {
-        static $prefix = 'beatmapset.hype.';
-
-        $this->ensureLoggedIn($user);
-
-        if ($beatmapset->user_id === $user->getKey()) {
-            return $prefix.'owner';
-        }
-
-        $hyped = $beatmapset
-            ->beatmapDiscussions()
-            ->withoutDeleted()
-            ->ofType('hype')
-            ->where('user_id', '=', $user->getKey())
-            ->exists();
-
-        if ($hyped) {
-            return $prefix.'hyped';
-        }
-
-        if ($user->remainingHype() === 0) {
-            return $prefix.'limit_exceeded';
-        }
-
-        return 'ok';
-    }
-
     public function checkChatMessageSend($user, $target)
     {
         $prefix = 'chat.message.send.';

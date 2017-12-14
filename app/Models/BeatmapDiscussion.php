@@ -220,7 +220,7 @@ class BeatmapDiscussion extends Model
         if ($this->user_id === $this->beatmapset->user_id) {
             $validTypes[] = 'mapper_note';
         } else {
-            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped()) {
+            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)) {
                 $validTypes[] = 'hype';
             }
         }

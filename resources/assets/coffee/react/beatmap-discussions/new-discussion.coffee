@@ -136,9 +136,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
               else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
                 if @props.currentUser.id?
-                  if @props.currentUser.isAdmin
-                    osu.trans 'beatmaps.hype.explanation_admin'
-                  else if @props.beatmapset.current_user_attributes.can_hype
+                  if @props.beatmapset.current_user_attributes.can_hype
                     osu.trans 'beatmaps.hype.explanation', remaining: @props.beatmapset.current_user_attributes.remaining_hype
                   else
                     @props.beatmapset.current_user_attributes.can_hype_reason
