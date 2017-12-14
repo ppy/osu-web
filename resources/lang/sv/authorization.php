@@ -93,8 +93,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Var vänlig logga in för att svara.',
-                    'restricted' => "Kan ej svara när man är begränsad.",
-                    'silenced' => "Kan ej svara när man är tystad.",
+                    'restricted' => 'Kan ej svara när man är begränsad.',
+                    'silenced' => 'Kan ej svara när man är tystad.',
                 ],
             ],
 
@@ -111,8 +111,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Var vänlig logga in för att rösta.',
-                    'restricted' => "Kan ej rösta när man är begränsad.",
-                    'silenced' => "Kan ej rösta när man är tystad.",
+                    'restricted' => 'Kan ej rösta när man är begränsad.',
+                    'silenced' => 'Kan ej rösta när man är tystad.',
                 ],
             ],
 
@@ -137,9 +137,9 @@ return [
 
     'unauthorized' => 'Åtkomst nekad.',
 
-    'silenced' => "Kan ej göra det när man är tystad.",
+    'silenced' => 'Kan ej göra det när man är tystad.',
 
-    'restricted' => "Kan ej göra det när man är begränsad.",
+    'restricted' => 'Kan ej göra det när man är begränsad.',
 
     'user' => [
         'page' => [
