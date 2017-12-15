@@ -142,9 +142,15 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmap_discussions-index' => 'beatmap discussions',
+            'beatmapset_activities-index' => 'user beatmapset activities',
+            'beatmapset_events-index' => 'beatmapset events',
             'beatmapsets-covers' => 'beatmapset covers',
-            'root' => 'index',
             'logs-index' => 'log',
+            'root' => 'index',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'show' => 'detail',

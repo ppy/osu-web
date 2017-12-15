@@ -19,6 +19,80 @@
  */
 
 return [
+    'beatmap_discussion_posts' => [
+        'index' => [
+            'title' => 'Beatmap Discussion Posts',
+        ],
+
+        'item' => [
+            'content' => 'Content',
+        ],
+    ],
+
+    'beatmap_discussion_votes' => [
+        'index' => [
+            'title' => 'Beatmap Discussion Votes',
+        ],
+
+        'item' => [
+            'score' => 'Score',
+        ],
+    ],
+
+    'beatmap_discussions' => [
+        'index' => [
+            'title' => 'Beatmap Discussions',
+            'form' => [
+                'deleted' => 'Include deleted discussions',
+
+                'user' => [
+                    'label' => 'User',
+                    'overview' => 'Activities overview',
+                ],
+            ],
+        ],
+
+        'item' => [
+            'created_at' => 'Post date',
+            'deleted_at' => 'Deletion date',
+            'message_type' => 'Type',
+            'permalink' => 'Permalink',
+        ],
+    ],
+
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Recently started discussions',
+        ],
+
+        'events' => [
+            'title_recent' => 'Recent events',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Recent posts',
+        ],
+
+        'received_votes' => [
+            'title_recent' => 'Recently received votes',
+        ],
+
+        'votes' => [
+            'title_recent' => 'Recent votes',
+        ],
+    ],
+
+    'beatmapset_events' => [
+        'index' => [
+            'title' => 'Beatmapset Events',
+        ],
+
+        'item' => [
+            'content' => 'Content',
+            'link' => 'Beatmapset',
+            'type' => 'Type',
+        ],
+    ],
 
     'beatmapsets' => [
         'covers' => [

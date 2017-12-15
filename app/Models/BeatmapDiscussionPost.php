@@ -35,6 +35,53 @@ class BeatmapDiscussionPost extends Model
 
     protected $dates = ['deleted_at'];
 
+    public static function search($rawParams = [])
+    {
+        $params = [
+            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
+            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+        ];
+
+        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+
+        if (isset($rawParams['user'])) {
+            $params['user'] = $rawParams['user'];
+            $user = User::lookup($params['user']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->where('user_id', '=', $user->getKey());
+            }
+        }
+
+        if (isset($rawParams['sort'])) {
+            $sort = explode('-', strtolower($rawParams['sort']));
+
+            if (in_array($sort[0] ?? null, ['id'], true)) {
+                $sortField = $sort[0];
+            }
+
+            if (in_array($sort[1] ?? null, ['asc', 'desc'], true)) {
+                $sortOrder = $sort[1];
+            }
+        }
+
+        $sortField ?? ($sortField = 'id');
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $query->orderBy($sortField, $sortOrder);
+
+        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+
+        if (!$params['with_deleted']) {
+            $query->withoutDeleted();
+        }
+
+        return ['query' => $query, 'params' => $params];
+    }
+
     public function beatmapset()
     {
         return $this->beatmapDiscussion->beatmapset();

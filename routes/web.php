@@ -18,6 +18,11 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
+    Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['index']]);
+    Route::resource('beatmap-discussion-votes', 'BeatmapDiscussionVotesController', ['only' => ['index']]);
+    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['index']]);
+    Route::resource('beatmapset-events', 'BeatmapsetEventsController', ['only' => ['index']]);
+
     Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
     Route::post('/beatmapsets/{beatmapset}/covers/regenerate', 'BeatmapsetsController@regenerateCovers')->name('beatmapsets.covers.regenerate');
     Route::post('/beatmapsets/{beatmapset}/covers/remove', 'BeatmapsetsController@removeCovers')->name('beatmapsets.covers.remove');
@@ -27,6 +32,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
+
+    Route::resource('users/{user}/beatmapset-activities', 'BeatmapsetActivitiesController', ['only' => ['index']]);
 
     Route::get('/', 'PagesController@root')->name('root');
 

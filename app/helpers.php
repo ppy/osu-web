@@ -381,8 +381,13 @@ function current_action()
     return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
-function link_to_user($user_id, $user_name, $user_color)
+function link_to_user($user_id, $user_name = null, $user_color = null)
 {
+    if ($user_id instanceof App\Models\User) {
+        $user_name = $user_id->username;
+        $user_color = $user_id->user_colour;
+        $user_id = $user_id->getKey();
+    }
     $user_name = e($user_name);
     $style = user_color_style($user_color, 'color');
 
@@ -735,9 +740,9 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
+    } elseif ($string === 1 || $string === '1' || $string === 'on' || $string === 'true') {
         return true;
-    } elseif ($string === '0' || $string === 'false') {
+    } elseif ($string === 0 || $string === '0' || $string === 'false') {
         return false;
     }
 }
