@@ -1066,10 +1066,10 @@ class User extends Model implements AuthenticatableContract, Messageable
                 ->beatmapDiscussions()
                 ->withoutDeleted()
                 ->ofType('hype')
-                ->where('created_at', '>', Carbon::now()->subDays(31))
+                ->where('created_at', '>', Carbon::now()->subWeek())
                 ->count();
 
-            $this->memoized[__FUNCTION__] = max(0, config('osu.beatmapset.user_monthly_hype') - $hyped);
+            $this->memoized[__FUNCTION__] = max(0, config('osu.beatmapset.user_weekly_hype') - $hyped);
         }
 
         return $this->memoized[__FUNCTION__];
