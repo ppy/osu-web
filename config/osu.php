@@ -78,6 +78,8 @@ return [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
+        'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
+        'osx' => 'https://osx.ppy.sh',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 

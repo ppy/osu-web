@@ -97,12 +97,26 @@
     }
   }
 
-  &--download {
+  &--download-landing {
     .default-box-shadow();
     .default-text-shadow();
     font-style: italic;
     font-size: @font-size--title-small;
     padding: 10px 5px;
+  }
+
+  &--download-page {
+    .default-box-shadow();
+    .default-border-radius();
+    background-image: url("/images/backgrounds/button.svg");
+    background-color: @blue-darker;
+    background-size: 150%;
+
+    height: 50px;
+    width: 180px;
+
+    .center-content;
+    flex-direction: column;
   }
 
   &--mega {
@@ -219,7 +233,7 @@
       justify-content: center;
     }
 
-    .@{top}--download & {
+    .@{top}--download-landing & {
       .circle(40px);
       .center-content();
       .thick-box-shadow();
@@ -260,9 +274,24 @@
     .@{top}--user-homepage & {
       margin-bottom: 5px;
     }
+
+    .@{top}--download-page & {
+      font-size: 15px;
+      font-style: italic;
+      font-weight: 700;
+
+      margin: 0;
+
+      .default-text-shadow;
+    }
   }
 
   &__text-bottom {
     font-size: @font-size--small;
+
+    .@{top}--download-page & {
+      font-style: italic;
+      .default-text-shadow;
+    }
   }
 }

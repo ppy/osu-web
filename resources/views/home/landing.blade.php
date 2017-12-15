@@ -154,7 +154,7 @@
 
                 <div class="landing-hero__message-extra-container">
                     <div class="landing-hero__message-extra landing-hero__message-extra--bottom">
-                        <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download">
+                        <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download-landing">
                             <span class="btn-osu-big__content">
                                 <span class="btn-osu-big__left">
                                     <span class="btn-osu-big__text-top">

@@ -16,3 +16,26 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends("master")
+
+@section("content")
+<div class="osu-layout__row">
+    <div class="osu-page-header-v2 osu-page-header-v2--download">
+        <div class="download-page__header-content">
+            <span class="download-page__tagline">{!! trans('home.download.tagline') !!}</span>
+
+            <i class="fa fa-download download-page__icon" aria-hidden="true"></i>
+
+            <a class="download-page__button btn-osu-big btn-osu-big--download-page" href="{{ config('osu.urls.installer') }}">
+                <span class="btn-osu-big__text-top">{{ trans('home.download.action') }}</span>
+                <span class="btn-osu-big__text-bottom">{{ trans('home.download.os.windows') }}</span>
+            </a>
+
+            <p class="download-page__text">
+                <a href="{{ config('osu.urls.installer-mirror') }}">{{ trans('home.download.mirror') }}</a> -
+                <a href="{{ config('osu.urls.osx') }}">{{ trans('home.download.macos-fallback') }}</a>
+            </p>
+        </div>
+    </div>
+</div>
+@endsection
+

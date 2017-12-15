@@ -52,6 +52,16 @@
     }
   }
 
+  &--download {
+    height: 360px;
+    .at2x-simple("/images/headers/download.jpg");
+
+    @media @desktop {
+      .default-box-shadow();
+      z-index: @z-index--download-header;
+    }
+  }
+
   &--featured-artists {
     .at2x-simple("/images/headers/featured-artists.jpg");
   }

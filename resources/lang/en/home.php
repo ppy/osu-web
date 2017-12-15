@@ -87,6 +87,15 @@ return [
     ],
 
     'download' => [
+        'tagline' => "let's get<br>you started!",
+        'action' => 'Download osu!',
+        'os' => [
+            'windows' => 'for Windows',
+            'macos' => 'for macOS',
+            'linux' => 'for Linux',
+        ],
+        'mirror' => 'mirror',
+        'macos-fallback' => 'macOS users',
       'header' => [
           '1' => "let's get",
           '2' => 'you started',
