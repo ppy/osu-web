@@ -25,6 +25,7 @@ use PayPal\Exception\PayPalConnectionException;
 
 class ErrorMessage extends Message
 {
+    private $context;
     private $exceptionClass;
     private $exceptionData;
     private $exceptionMessage;
@@ -35,9 +36,10 @@ class ErrorMessage extends Message
      *
      * @return void
      */
-    public function __construct($exception, $order)
+    public function __construct($exception, $order, $context = [])
     {
         parent::__construct();
+        $this->context = $context;
         $this->exceptionClass = get_class($exception);
 
         if ($exception instanceof PayPalConnectionException) {
@@ -63,13 +65,13 @@ class ErrorMessage extends Message
             ->error()
             ->content($content)
             ->attachment(function ($attachment) {
-                $attachment->content($this->exceptionMessage);
-
+                $fields = $this->context;
                 if (isset($this->exceptionData)) {
-                    $attachment->fields([
-                        'data' => $this->exceptionData,
-                    ]);
+                    $fields = array_merge($fields, ['data' => $this->exceptionData]);
                 }
+
+                $attachment->content($this->exceptionMessage);
+                $attachment->fields($fields);
             });
     }
 
