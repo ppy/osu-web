@@ -104,6 +104,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
             'remaining_hype' => $currentUser->remainingHype(),
+            'new_hype_time' => json_time($currentUser->newHypeTime()),
         ];
 
         return $this->item($beatmapset, function () use ($ret) {

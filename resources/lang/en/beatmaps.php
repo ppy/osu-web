@@ -111,8 +111,10 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button-done' => 'Already Hyped!',
-        'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking! You have :remaining hype left.',
+        'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking!',
         'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
+        'new_time' => "You'll get another hype at :new_time.",
+        'remaining' => 'You have :remaining hype left.',
         'section-title' => 'Hype Train',
         'title' => 'Hype',
     ],

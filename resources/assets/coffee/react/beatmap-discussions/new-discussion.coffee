@@ -136,10 +136,19 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
               else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
                 if @props.currentUser.id?
-                  if @props.beatmapset.current_user_attributes.can_hype
-                    osu.trans 'beatmaps.hype.explanation', remaining: @props.beatmapset.current_user_attributes.remaining_hype
-                  else
-                    @props.beatmapset.current_user_attributes.can_hype_reason
+                  message =
+                    if @props.beatmapset.current_user_attributes.can_hype
+                      osu.trans 'beatmaps.hype.explanation'
+                    else
+                      @props.beatmapset.current_user_attributes.can_hype_reason
+
+                  if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype == 0
+                    message += " #{osu.trans 'beatmaps.hype.remaining', remaining: @props.beatmapset.current_user_attributes.remaining_hype}"
+                    if @props.beatmapset.current_user_attributes.new_hype_time?
+                      message += " #{osu.trans 'beatmaps.hype.new_time', new_time: osu.timeago(@props.beatmapset.current_user_attributes.new_hype_time)}"
+
+                  span dangerouslySetInnerHTML:
+                    __html: message
                 else
                   osu.trans 'beatmaps.hype.explanation_guest'
           div

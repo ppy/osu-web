@@ -1075,6 +1075,23 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->memoized[__FUNCTION__];
     }
 
+    public function newHypeTime()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $earliestWeeklyHype = $this
+                ->beatmapDiscussions()
+                ->withoutDeleted()
+                ->ofType('hype')
+                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->orderBy('created_at')
+                ->first();
+
+            $this->memoized[__FUNCTION__] = $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
     public function flags()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
