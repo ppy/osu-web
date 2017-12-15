@@ -156,7 +156,6 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
 
@@ -213,10 +212,7 @@ class BeatmapsetsController extends Controller
             'beatmapset' => $beatmapset,
         ]);
 
-        return [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
-        ];
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function disqualify($id)
@@ -235,10 +231,7 @@ class BeatmapsetsController extends Controller
             'beatmapset' => $beatmapset,
         ]);
 
-        return [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
-        ];
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function update($id)

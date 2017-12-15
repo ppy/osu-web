@@ -145,7 +145,6 @@ class BeatmapDiscussionPostsController extends Controller
             ]);
 
             return [
-                'beatmapset' => $posts[0]->beatmapset->defaultJson(),
                 'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,
@@ -165,8 +164,6 @@ class BeatmapDiscussionPostsController extends Controller
         $params['last_editor_id'] = Auth::user()->user_id;
         $post->update($params);
 
-        return [
-            'beatmapset_discussion' => $post->beatmapset->defaultDiscussionJson(),
-        ];
+        return $post->beatmapset->defaultDiscussionJson();
     }
 }

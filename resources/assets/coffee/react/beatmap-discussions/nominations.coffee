@@ -254,7 +254,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
-      $.publish 'beatmapset:update', beatmapset: response.beatmapset
       $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response.beatmapsetDiscussion
 
     .fail osu.ajaxError

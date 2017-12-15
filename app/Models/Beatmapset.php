@@ -997,6 +997,7 @@ class Beatmapset extends Model
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
+                'beatmapset',
                 'beatmap_discussions.beatmap_discussion_posts',
                 'beatmap_discussions.current_user_attributes',
                 'beatmapset_events',

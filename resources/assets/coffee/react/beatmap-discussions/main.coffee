@@ -30,10 +30,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @checkNewTimeoutMax = 60000
     @cache = {}
 
-    beatmaps = BeatmapHelper.group props.initial.beatmapset.beatmaps
+    beatmaps = BeatmapHelper.group props.initial.beatmapsetDiscussion.beatmapset.beatmaps
 
     @state =
-      beatmapset: @props.initial.beatmapset
+      beatmapset: @props.initial.beatmapsetDiscussion.beatmapset
       beatmaps: beatmaps
       beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
       currentBeatmap: BeatmapHelper.default(group: beatmaps)
@@ -150,8 +150,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setBeatmapset null, beatmapset: data.beatmapset, callback: ->
-        @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
+      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
@@ -319,9 +318,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) =>
-    @setState
-      beatmapsetDiscussion: beatmapsetDiscussion
-      callback
+    @setBeatmapset null,
+      beatmapset: beatmapsetDiscussion.beatmapset
+      callback: =>
+        @setState
+          beatmapsetDiscussion: beatmapsetDiscussion
+          callback
 
   setCurrentBeatmapId: (_e, {id, callback}) =>
     return callback?() if !id?
