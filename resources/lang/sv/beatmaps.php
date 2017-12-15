@@ -110,7 +110,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button-done' => 'Redan Hyped!',
-        'explanation' => "Att lägga till beröm ❤ kommer höja denna beatmaps hype, vilket gör den mer synlig för nominering och rankning!",
+        'explanation' => 'Att lägga till beröm ❤ kommer höja denna beatmaps hype, vilket gör den mer synlig för nominering och rankning!',
         'section-title' => 'Hype Tåg',
         'title' => 'Hype',
     ],
