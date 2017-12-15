@@ -49,7 +49,7 @@ class PaymentSubscribers
                     $fulfiller->run();
                 }
             } catch (Exception $exception) {
-                $this->notifyError($exception, $event->order);
+                $this->notifyError($exception, $event->order, $eventName);
                 throw $exception;
             }
         });
@@ -69,7 +69,7 @@ class PaymentSubscribers
                     $fulfiller->revoke();
                 }
             } catch (Exception $exception) {
-                $this->notifyError($exception, $event->order);
+                $this->notifyError($exception, $event->order, $eventName);
                 throw $exception;
             }
         });

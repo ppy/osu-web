@@ -54,7 +54,7 @@ class ErrorMessage extends Message
 
     public function toSlack($notifiable)
     {
-        $content = "ERROR `{$this->notified_at}`";
+        $content = "ERROR `{$this->notified_at}` | `{$this->eventName}`";
         if ($this->order) {
             $content .= " | Order `{$this->order->getOrderNumber()}`";
         }
