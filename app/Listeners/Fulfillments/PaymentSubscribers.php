@@ -75,7 +75,7 @@ class PaymentSubscribers
         });
     }
 
-    public function onPaymentError(/* reserved */$eventName, $data)
+    public function onPaymentError($eventName, $data)
     {
         // TODO: make notifyError less fruity and more like the other ones.
         $context = array_intersect_key($data, [
@@ -83,7 +83,7 @@ class PaymentSubscribers
             'notification_type' => '',
             'transaction_id' => '',
         ]);
-        $this->notifyError($data['error'], $data['order'], $context);
+        $this->notifyError($data['error'], $data['order'], $eventName, $context);
     }
 
     public function onPaymentPending($eventName, $data)

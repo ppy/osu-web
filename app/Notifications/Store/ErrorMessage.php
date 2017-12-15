@@ -26,6 +26,7 @@ use PayPal\Exception\PayPalConnectionException;
 class ErrorMessage extends Message
 {
     private $context;
+    private $eventName;
     private $exceptionClass;
     private $exceptionData;
     private $exceptionMessage;
@@ -36,10 +37,11 @@ class ErrorMessage extends Message
      *
      * @return void
      */
-    public function __construct($exception, $order, $context = [])
+    public function __construct($eventName, $exception, $order, $context = [])
     {
         parent::__construct();
         $this->context = $context;
+        $this->eventName = $eventName;
         $this->exceptionClass = get_class($exception);
 
         if ($exception instanceof PayPalConnectionException) {
