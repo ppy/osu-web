@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
+            'to_0' => 'Bevaka inte',
+            'to_1' => 'Bekava',
         ],
     ],
 
     'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'description' => 'Detta är beatmap diskussioner du följer. Du kommer bli notifierad när det finns nya inlägg eller uppdateringar.',
+        'title_compact' => 'modding bevakningslista',
+        'title_main' => 'Modding Bevakningslista',
 
         'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
+            'empty' => 'Inga beatmap diskussioner bevakade.',
+            'open_issues' => 'Öppna Problem',
+            'state' => 'Tillstånd',
+            'title' => 'Titel',
         ],
     ],
 
     'mail' => [
-        'update' => 'New update for beatmap ":title"',
+        'update' => 'Ny uppdatering för beatmap ":title"',
     ],
 
     'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
+        'read' => 'Läst',
+        'unread' => 'Oläst',
     ],
 ];

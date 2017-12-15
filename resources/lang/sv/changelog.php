@@ -19,13 +19,13 @@
  */
 
 return [
-    'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'feed_title' => 'flöde',
+    'generic' => 'Bugg fixar och mindre förbättringar.',
+    'users-online' => '1 användare online|:users användare online',
 
     'prefixes' => [
-        'add' => 'addition',
+        'add' => 'tillägg',
         'fix' => 'fix',
-        'misc' => 'miscellanous',
+        'misc' => 'diverse',
     ],
 ];
