@@ -138,7 +138,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               div className: "#{bn}__header",
                 span
                   className: "#{bn}__title"
-                  osu.trans 'beatmaps.hype.section-title'
+                  osu.trans 'beatmaps.hype.section_title'
                 span {},
                   "#{hypeRaw} / #{requiredHype}"
               @renderLights(hype, requiredHype)
@@ -147,7 +147,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               div className: "#{bn}__row-right",
                 el BigButton,
                   modifiers: ['full']
-                  text: if userAlreadyHyped then osu.trans('beatmaps.hype.button-done') else osu.trans('beatmaps.hype.button')
+                  text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
                   icon: 'bullhorn'
                   props:
                     disabled: userAlreadyHyped
