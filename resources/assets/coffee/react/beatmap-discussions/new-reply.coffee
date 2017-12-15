@@ -61,7 +61,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             className: "#{bn}__message #{bn}__message--editor"
             value: @state.message
             onChange: @setMessage
-            onKeyDown: @handleEnter
+            onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
             inputRef: (el) => @box = el
 
@@ -151,11 +151,12 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
-  handleEnter: (e) =>
-    return if e.keyCode != 13 || e.shiftKey
-
-    e.preventDefault()
-    @throttledPost(e)
+  handleKeyDown: (e) =>
+    if e.keyCode == 27
+      @setState editing: false
+    else if e.keyCode == 13 && !e.shiftKey
+      e.preventDefault()
+      @throttledPost(e)
 
 
   post: (event) =>
