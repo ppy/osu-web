@@ -61,5 +61,3 @@ BeatmapsetPage.Score = (props) ->
       if props.score.statistics.count_miss > 0
         osu.trans 'beatmapsets.show.scoreboard.miss_count',
           count: props.score.statistics.count_miss
-      else
-        ''
