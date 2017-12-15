@@ -154,7 +154,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if canHype
-              @submitButton 'hype'
+              @submitButton 'hype', 'data-confirm': osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype)
             if @props.currentUser.id == @props.beatmapset.user_id
               @submitButton 'mapper_note'
             @submitButton 'praise'
@@ -298,7 +298,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState timestamp: e.currentTarget.value
 
 
-  submitButton: (type) =>
+  submitButton: (type, extraProps) =>
     icon =
       if @state.posting == type
         # for some reason the spinner wobbles
@@ -311,10 +311,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{type}")
       key: type
-      props:
-        disabled: !@validPost() || @state.posting?
-        'data-type': type
-        onClick: @post
+      props: _.merge
+          disabled: !@validPost() || @state.posting?
+          'data-type': type
+          onClick: @post
+          extraProps
 
 
   toggleSticky: =>
