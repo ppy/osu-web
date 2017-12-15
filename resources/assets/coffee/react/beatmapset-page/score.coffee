@@ -58,4 +58,8 @@ BeatmapsetPage.Score = (props) ->
       hits.values
 
     div className: 'beatmapset-score__stat beatmapset-score__stat--miss hidden-xs',
-      if props.score.statistics.count_miss > 0 then osu.trans('beatmapsets.show.scoreboard.miss_count', count: props.score.statistics.count_miss) else ''
+      if props.score.statistics.count_miss > 0
+        osu.trans 'beatmapsets.show.scoreboard.miss_count',
+          count: props.score.statistics.count_miss
+      else
+        ''
