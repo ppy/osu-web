@@ -642,6 +642,17 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
+    public function removeCovers()
+    {
+        try {
+            $this->storage()->deleteDirectory($this->coverPath());
+        } catch (\Exception $e) {
+            // ignore errors
+        }
+
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -656,6 +667,9 @@ class Beatmapset extends Model
             if (!is_dir($outputFolder)) {
                 mkdir($outputFolder, 0755, true);
             }
+
+            // start by clearing existing covers
+            $this->removeCovers();
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";

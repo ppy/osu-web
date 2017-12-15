@@ -82,6 +82,7 @@ return [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
+        'legacy-forum-thread-prefix' => '/forum/t/',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 

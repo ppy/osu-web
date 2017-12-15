@@ -20,6 +20,10 @@
 el = React.createElement
 
 class BeatmapsetPage.Scoreboard extends React.Component
+  DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
+  MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
+  MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
+
   constructor: (props) ->
     super props
 
@@ -45,9 +49,13 @@ class BeatmapsetPage.Scoreboard extends React.Component
     modsClassName += ' beatmapset-scoreboard__mods--initial' if _.isEmpty @props.enabledMods
 
     mods = if @props.beatmap.mode == 'mania'
-      ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL', '4K', '5K', '6K', '7K', '8K', '9K']
+      if @props.beatmap.convert
+        _.concat(MANIA_MODS, MANIA_KEY_MODS)
+      else
+        MANIA_MODS
+
     else
-      ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
+      DEFAULT_MODS
 
     div className: 'beatmapset-scoreboard',
       div className: 'page-tabs',

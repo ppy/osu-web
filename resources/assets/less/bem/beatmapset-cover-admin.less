@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,40 +16,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
-
-class BeatmapDiscussionVote extends Model
-{
-    protected $guarded = [];
-
-    public function beatmapDiscussion()
-    {
-        return $this->belongsTo(BeatmapDiscussion::class);
+ .beatmapset-cover-admin {
+    &__img {
+      max-width: 100%;
     }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function setScoreAttribute($value)
-    {
-        if ($value > 0) {
-            $value = 1;
-        } elseif ($value < 0) {
-            $value = -1;
-        } else {
-            $value = 0;
-        }
-
-        $this->attributes['score'] = $value;
-    }
-
-    public function forEvent()
-    {
-        return [
-            'user_id' => $this->user_id,
-            'score' => $this->score,
-        ];
-    }
-}
+  }

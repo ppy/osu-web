@@ -73,6 +73,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'can_be_hyped' => $beatmapset->canBeHyped(),
+            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
         ];
     }
 
