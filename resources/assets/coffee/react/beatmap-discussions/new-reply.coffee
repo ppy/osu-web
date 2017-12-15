@@ -74,6 +74,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
+            @renderCancelButton()
+
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_resolve')
@@ -91,6 +93,18 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             @renderReplyButton
               text: osu.trans('common.buttons.reply')
               icon: 'reply'
+
+
+  renderCancelButton: =>
+    props =
+      disabled: @state.posting?
+      onClick: => @setState editing: false
+
+    div className: "#{bn}__action",
+      el BigButton,
+        text: osu.trans('common.buttons.cancel')
+        icon: if @state.posting then 'ellipsis-h' else 'times'
+        props: props
 
 
   renderPlaceholder: =>
