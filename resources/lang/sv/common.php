@@ -19,32 +19,32 @@
  */
 
 return [
-    'confirmation' => 'Are you sure?',
-    'saved' => 'Saved',
+    'confirmation' => 'Är du säker?',
+    'saved' => 'Sparad',
 
     'array_and' => [
         'words_connector' => ', ',
-        'two_words_connector' => ' and ',
-        'last_word_connector' => ', and ',
+        'two_words_connector' => ' och ',
+        'last_word_connector' => ', och ',
     ],
 
     'buttons' => [
-        'cancel' => 'Cancel',
-        'delete' => 'Delete',
-        'permalink' => 'permalink',
-        'post' => 'Post',
-        'reply' => 'Reply',
-        'reply_reopen' => 'Reply and Reopen',
-        'reply_resolve' => 'Reply and Resolve',
-        'reset' => 'Reset',
-        'save' => 'Save',
-        'saving' => 'Saving...',
-        'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'cancel' => 'Avbryt',
+        'delete' => 'Radera',
+        'permalink' => 'permalänk',
+        'post' => 'Lägg upp',
+        'reply' => 'Svara',
+        'reply_reopen' => 'Svara och Öppna Igen',
+        'reply_resolve' => 'Svara och Lös',
+        'reset' => 'Återställ',
+        'save' => 'Spara',
+        'saving' => 'Sparar...',
+        'show_more' => 'visa mer',
+        'upload_image' => 'ladda upp bild',
     ],
 
     'count' => [
-        'item' => ':count unit|:count units',
+        'item' => ':count enhet|:count enheter',
     ],
 
     'datetime' => [
@@ -55,19 +55,19 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Keyboard',
-        'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'keyboard' => 'Tangentbord',
+        'mouse' => 'Mus',
+        'tablet' => 'Platta',
+        'touch' => 'Touch Skärm',
     ],
 
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => 'släpp här för att ladda upp',
     ],
 
     'pagination' => [
-        'previous' => 'prev',
-        'next' => 'next',
+        'previous' => 'föregående',
+        'next' => 'nästa',
     ],
 
     'score_count' => [
@@ -80,13 +80,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count dag sedan|:count dagar sedan',
+        'hours_ago' => ':count timme sedan|:count timmar sedan',
+        'now' => 'nu',
+        'remaining' => 'Återstående Tid',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => 'Lägg märke till',
     ],
 ];

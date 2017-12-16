@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => 'add friend',
-      'remove' => 'remove friend',
+      'add' => 'lägg till vän',
+      'remove' => 'ta bort vän',
     ],
 
     'state' => [
-      'friends' => 'friends',
-      'mutual' => 'mutual',
+      'friends' => 'vänner',
+      'mutual' => 'gemensamma',
     ],
 
-    'title' => 'Friends',
-    'title_compact' => 'friends',
+    'title' => 'Vänner',
+    'title_compact' => 'vänner',
 
-    'too_many' => 'Friend limit reached.',
+    'too_many' => 'Vän gräns uppnådd.',
 ];
