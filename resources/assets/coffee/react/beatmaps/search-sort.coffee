@@ -22,7 +22,7 @@ el = React.createElement
 class Beatmaps.SearchSort extends React.PureComponent
   render: =>
     div className: 'beatmapsets-sorting',
-      for field in ['title', 'artist', 'difficulty', 'ranked', 'rating', 'plays']
+      for field in @fields()
         selected = @selected(field)
 
         a
@@ -36,6 +36,28 @@ class Beatmaps.SearchSort extends React.PureComponent
             className: 'beatmapsets-sorting__item-arrow'
             'data-visibility': ('hidden' if !selected)
             el Icon, name: "caret-#{if @props.sorting.order == 'asc' then 'up' else 'down'}"
+
+
+  fields: =>
+    fields =
+      title: true
+      artist: true
+      difficulty: true
+      ranked: false
+      updated: false
+      rating: true
+      plays: true
+      relevance: false
+
+    if !_.isEmpty(@props.filters.query)
+      fields.relevance = true
+
+    if @props.filters.status in [4, 5]
+      fields.updated = true
+    else
+      fields.ranked = true
+
+    field for own field, enabled of fields when enabled
 
 
   select: (e) =>

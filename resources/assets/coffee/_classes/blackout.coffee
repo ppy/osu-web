@@ -33,5 +33,6 @@ class @Blackout
 
     return if !el?
 
+    opacity = null if !state || !opacity?
     el.style.opacity = opacity
     Fade.toggle(el, state)

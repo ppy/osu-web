@@ -53,6 +53,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     lineClasses = "#{bn}__line"
     lineClasses += " #{bn}__line--resolved" if @props.discussion.resolved
 
+    lastResolvedState = false
+
     div
       className: topClasses
       'data-id': @props.discussion.id
@@ -69,7 +71,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
             ['up', 'down'].map (direction) =>
               div
                 key: direction
-                className: "#{bn}__action hidden-xs"
+                className: "#{bn}__action"
                 @displayVote direction
 
             button
@@ -82,7 +84,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
           div
             className: "#{bn}__replies"
-            @props.discussion.beatmap_discussion_posts.slice(1).map (reply) =>
+            for reply in @props.discussion.beatmap_discussion_posts.slice(1)
+              if reply.system && reply.message.type == 'resolved'
+                currentResolvedState = reply.message.value
+                continue if lastResolvedState == currentResolvedState
+                lastResolvedState = currentResolvedState
+
               @post reply, 'reply'
 
           el BeatmapDiscussions.NewReply,
@@ -110,7 +117,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    topClasses += " #{vbn}--disabled" if @isOwner()
+    topClasses += " #{vbn}--disabled" if @isOwner() || (type == 'down' && !@canDownvote())
 
     button
       className: topClasses
@@ -122,7 +129,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    return if @isOwner()
+    downvoting = e.currentTarget.dataset.score == '-1'
+    return if @isOwner() || (downvoting && !@canDownvote())
 
     LoadingOverlay.show()
 
@@ -149,11 +157,15 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
   isOwner: (object = @props.discussion) =>
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
+  canDownvote: =>
+    @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT || @props.currentUser.isBNG
 
   post: (post, type) =>
     return if !post.id?
 
     elementName = if post.system then 'SystemPost' else 'Post'
+
+    canModeratePosts = @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT
 
     el BeatmapDiscussions[elementName],
       key: post.id
@@ -166,8 +178,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
       canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
-      canBeDeleted: @props.currentUser.isAdmin || @isOwner(post)
-      canBeRestored: @props.currentUser.isAdmin
+      canBeDeleted: canModeratePosts || @isOwner(post)
+      canBeRestored: canModeratePosts
       currentUser: @props.currentUser
 
 
@@ -198,8 +210,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
         div className: "#{tbn}__icons",
           div className: "#{tbn}__icon",
             span
-              className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{@props.discussion.message_type}"
-              el Icon, name: BeatmapDiscussionHelper.messageType.icon[@props.discussion.message_type]
+              className: "beatmap-discussion-message-type beatmap-discussion-message-type--#{_.kebabCase(@props.discussion.message_type)}"
+              el Icon, name: BeatmapDiscussionHelper.messageType.icon[_.camelCase(@props.discussion.message_type)]
 
           if @props.discussion.resolved
             div className: "#{tbn}__icon #{tbn}__icon--resolved",

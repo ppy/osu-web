@@ -23,6 +23,11 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     use DatabaseTransactions;
 
+    protected $connectionsToTransact = [
+        'mysql',
+        'mysql-store',
+    ];
+
     protected $baseUrl = 'http://localhost';
 
     /**

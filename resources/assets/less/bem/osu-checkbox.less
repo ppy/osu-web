@@ -19,50 +19,50 @@
 .osu-checkbox {
   @_top: osu-checkbox;
 
-  text-transform: initial;
-  font-weight: initial;
   flex: none;
+  .center-content();
   display: inline-flex;
-  margin: 0;
+  margin: 0 5px 0 0;
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
 
   &--beatmap-discussion {
     margin-top: 5px;
   }
 
+  &__box {
+    .full-size();
+    .default-border-radius();
+    .default-box-shadow();
+    border: 2px solid #fff;
+    background-color: #ccc;
+
+    .@{_top}__input:checked ~ & {
+      background-color: @green;
+    }
+  }
+
   // the input is hidden
   &__input {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 0;
     height: 0;
+    opacity: 0;
     overflow: hidden;
   }
 
   &__tick {
     visibility: hidden;
-    padding: 3px;
-    color: #fff;
-    margin-right: 5px;
-
     display: flex;
-    align-items: center;
-    justify-content: center;
 
     .@{_top}__input:checked ~ & {
       visibility: visible;
-
-      &::before {
-        background-color: @green;
-      }
-    }
-
-    // tick box
-    &::before {
-      .full-size();
-      .default-border-radius();
-      .default-box-shadow();
-      border: 2px solid #fff;
-      visibility: visible;
-      background-color: #ccc;
     }
   }
 }

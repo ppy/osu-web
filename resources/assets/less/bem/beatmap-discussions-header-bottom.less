@@ -28,6 +28,7 @@
 
   @media @desktop {
     flex-direction: row;
+    align-items: stretch;
   }
 
   &__content {
@@ -35,14 +36,32 @@
       flex: 1;
     }
 
-    &--mapping {
-      margin: 20px 0;
+    &--details {
       display: flex;
-      justify-content: flex-end;
+      margin-top: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @media @mobile {
+        margin-top: 10px;
+        align-self: center;
+      }
     }
 
     &--nomination {
       margin-top: 10px;
+
+      @media @desktop {
+        flex-basis: 30%;
+      }
+    }
+  }
+
+  &__subscribe {
+    margin: 10px 0;
+
+    @media @desktop {
+      margin: 10px 10px 10px 0;
     }
   }
 }

@@ -20,6 +20,7 @@
 el = React.createElement
 
 modeSwitcher = document.getElementsByClassName('js-mode-switcher')
+newDiscussion = document.getElementsByClassName('js-new-discussion')
 
 class BeatmapDiscussions.Main extends React.PureComponent
   constructor: (props) ->
@@ -105,6 +106,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
         div
           className: 'osu-layout__section osu-layout__section--extra'
           el BeatmapDiscussions.NewDiscussion,
+            beatmapset: @state.beatmapset
             currentUser: @state.currentUser
             currentBeatmap: @state.currentBeatmap
             currentDiscussions: @currentDiscussions()
@@ -123,6 +125,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
             users: @users()
 
 
+  beatmaps: =>
+    @cache.beatmaps ?= _.keyBy @state.beatmapset.beatmaps, 'id'
+
+
   checkNew: =>
     @nextTimeout ?= @checkNewTimeoutDefault
 
@@ -133,6 +139,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     if @state.beatmapsetDiscussion.updated_at?
       params.last_updated = moment(@state.beatmapsetDiscussion.updated_at).unix()
 
+    if !_.isEmpty @state.beatmapsetDiscussion.beatmapset_events
+      params.last_updated = _.max [params?.last_updated, moment(_.last(@state.beatmapsetDiscussion.beatmapset_events).created_at).unix()]
+
     @checkNewAjax = $.get laroute.route('beatmapsets.discussion', beatmapset: @state.beatmapset.id), params
     .done (data, _textStatus, xhr) =>
       if xhr.status == 304
@@ -141,7 +150,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
+      @setBeatmapset null, beatmapset: data.beatmapset, callback: ->
+        @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
@@ -152,19 +162,23 @@ class BeatmapDiscussions.Main extends React.PureComponent
   currentDiscussions: =>
     if !@cache.currentDiscussions?
 
+      countsByBeatmap = {}
+      countsByPlaymode = {}
       byMode =
         timeline: []
         general: []
         generalAll: []
       byFilter =
         total: {}
+        mapperNotes: {}
         deleted: {}
         praises: {}
         resolved: {}
         pending: {}
         mine: {}
+
       for own mode, _items of byMode
-        for own filter, modes of byFilter
+        for own _filter, modes of byFilter
           modes[mode] = {}
 
 
@@ -173,6 +187,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
         # - not privileged (deleted discussion)
         # - deleted beatmap
         continue if _.isEmpty(d)
+
+        if d.beatmap_id? && !d.deleted_at && d.can_be_resolved && !d.resolved
+          countsByBeatmap[d.beatmap_id] ?= 0
+          countsByBeatmap[d.beatmap_id]++
+
+          mode = @beatmaps()[d.beatmap_id]?.mode
+          countsByPlaymode[mode] ?= 0
+          countsByPlaymode[mode]++
 
         mode =
           if d.beatmap_id?
@@ -193,7 +215,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
           filters.push 'deleted'
         else if d.message_type == 'praise'
           filters.push 'praises'
-        else
+        else if d.can_be_resolved
           if d.resolved
             filters.push 'resolved'
           else
@@ -201,6 +223,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         if d.user_id == @state.currentUser.id
           filters.push 'mine'
+
+        if d.message_type == 'mapper_note'
+          filters.push 'mapperNotes'
 
         for filter in filters
           byFilter[filter][mode][d.id] = d
@@ -211,11 +236,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       general = _.orderBy byMode.general, 'id'
       generalAll = _.orderBy byMode.generalAll, 'id'
 
-      @cache.currentDiscussions =
-        general: general
-        generalAll: generalAll
-        timeline: timeline
-        byFilter: byFilter
+      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode}
 
     @cache.currentDiscussions
 
@@ -244,17 +265,31 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         'generalAll'
 
-    @setMode null,
-      mode: mode
-      callback: =>
-        @setCurrentBeatmapId null,
-          id: discussion.beatmap_id
-          callback: =>
-            $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+    filter =
+      if @state.currentFilter == 'total' || @currentDiscussions().byFilter[@state.currentFilter][mode][id]?
+        @state.currentFilter
+      else
+        'total'
 
-            target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
-            $(window).stop().scrollTo target, 500,
-              offset: modeSwitcher[0].getBoundingClientRect().height * -1
+    setFilter = =>
+      @setFilter null, filter: filter, callback: setMode
+    setMode = =>
+      @setMode null, mode: mode, callback: setCurrentBeatmapId
+    setCurrentBeatmapId = =>
+      @setCurrentBeatmapId null, id: discussion.beatmap_id, callback: jump
+    jump = =>
+      $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
+
+      target = $(".js-beatmap-discussion-jump[data-id='#{id}']")
+      offset = 0
+      for header in [modeSwitcher, newDiscussion]
+        continue if !header[0]?
+        offset += header[0].getBoundingClientRect().height * -1
+
+      $(window).stop().scrollTo target, 500,
+        offset: offset
+
+    setFilter()
 
 
   jumpToClick: (e) =>
@@ -288,7 +323,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     return callback?() if !id?
     return callback?() if id == @state.currentBeatmap.id
 
-    beatmap = _.find @state.beatmapset.beatmaps, id: id
+    beatmap = @beatmaps()[id]
 
     return callback?() if !beatmap?
 
@@ -300,14 +335,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @setCurrentBeatmapId null, id: beatmap?.id
 
 
-  setFilter: (_e, {filter}) =>
-    return if filter == @state.currentFilter && @state.mode != 'events'
+  setFilter: (_e, {filter, callback}) =>
+    return callback?() if filter == @state.currentFilter && @state.mode != 'events'
 
     newState = currentFilter: filter
     # restore last mode on clicking filter when viewing events
     newState.mode = @lastMode ? 'timeline' if @state.mode == 'events'
 
-    @setState newState
+    @setState newState, callback
 
 
   setMode: (_e, {mode, callback}) =>

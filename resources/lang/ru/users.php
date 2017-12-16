@@ -75,7 +75,7 @@ return [
                     'button' => 'Загрузить изображение',
                     'dropzone' => 'Брось изображение сюда для загрузки',
                     'dropzone_info' => 'Ты также можешь перетащить изображение сюда для загрузки',
-                    'restriction_info' => "Загрузка своих обложек доступна только для <a href='".osu_url('support-the-game')."' target='_blank'>osu! саппортеров</a>",
+                    'restriction_info' => "Загрузка своих обложек доступна только для <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu! саппортеров</a>",
                     'size_info' => 'Размер обложки должна быть 2000x700',
                     'too_large' => 'Загруженное изображение слишком большое.',
                     'unsupported_format' => 'Неподдерживаемый формат.',
@@ -91,7 +91,15 @@ return [
                 'achieved-on' => 'Получено :date',
             ],
             'beatmaps' => [
+                'none' => 'Ничего нет...',
                 'title' => 'Карты',
+
+                'favourite' => [
+                    'title' => 'Любимые карты (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Рейтинговые и одобренные карты (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Нет каких-либо записей. :(',
@@ -168,22 +176,12 @@ return [
                 'title' => 'Рейтинги',
                 'weighted_pp' => 'взвешено: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Карты',
-                'favourite' => [
-                    'title' => 'Любимые карты (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Рейтинговые и одобренные карты (:count)',
-                ],
-                'none' => 'Ничего нет...',
-            ],
         ],
         'page' => [
             'description' => '<strong>обо мне!</strong> - это твоё личное редактируемое пространство в твоём профиле.',
             'edit_big' => 'Отредактируй меня!',
             'placeholder' => 'Введи контент этой страницы',
-            'restriction_info' => "Ты должен иметь тег <a href='".osu_url('support-the-game')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
+            'restriction_info' => "Ты должен иметь тег <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
         ],
         'rank' => [
             'country' => 'Рейтинг страны для :mode',

@@ -65,22 +65,27 @@ class @BeatmapDiscussionHelper
 
   @linkTimestamp: (text, classNames = []) =>
     text
-      .replace /(^|\s|\()((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?)(?=$|\s|\)|\.|,)/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_, text, m, s, ms, range) =>
+        "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+
+
+  @maxlength: 500
 
 
   @messageType:
     icon:
+      mapperNote: 'sticky-note-o'
       praise: 'heart'
-      suggestion: 'circle-o'
       problem: 'exclamation-circle'
+      suggestion: 'circle-o'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
     iconText:
+      mapperNote: '&#xf24a;'
       praise: '&#xf004;'
-      suggestion: '&#xf10c;'
       problem: '&#xf06a;'
       resolved: '&#xf05d;'
+      suggestion: '&#xf10c;'
 
 
   @moderationGroup: (user) =>
@@ -91,3 +96,7 @@ class @BeatmapDiscussionHelper
         when user.isAdmin then 'admin'
         when user.isQAT then 'qat'
         when user.isBNG then 'bng'
+
+
+  @validMessageLength: (message) =>
+    message.length > 0 && message.length <= @maxlength

@@ -120,7 +120,7 @@ return [
 
             'getCheckout' => 'проверка',
             'getInvoice' => 'чек',
-            'getProduct' => 'товар',
+            'products-show' => 'товар',
 
             'new' => 'новый',
             'home' => 'главная',

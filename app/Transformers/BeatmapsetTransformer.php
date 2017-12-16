@@ -23,6 +23,7 @@ namespace App\Transformers;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use Auth;
 use League\Fractal;
@@ -34,6 +35,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'beatmaps',
         'converts',
         'description',
+        'recentFavourites',
         'nominations',
         'ratings',
         'user',
@@ -68,6 +70,8 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
+            'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
+            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
         ];
     }
 
@@ -87,6 +91,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeNominations(Beatmapset $beatmapset)
     {
+        if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
+            return;
+        }
+
+        $result = [
+            'required_hype' => $beatmapset->requiredHype(),
+            'required' => $beatmapset->requiredNominationCount(),
+            'current' => $beatmapset->currentNominationCount(),
+        ];
+
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
 
@@ -104,11 +118,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 }
             }
 
-            $result = [
-                'required' => $beatmapset->requiredNominationCount(),
-                'current' => $beatmapset->currentNominationCount(),
-            ];
-
             if (isset($disqualifyEvent)) {
                 $result['disqualification'] = [
                     'reason' => $disqualifyEvent->comment,
@@ -120,24 +129,22 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             }
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
-            $result = [
-                'ranking_eta' => json_time($eta),
-            ];
+            $result['ranking_eta'] = json_time($eta);
         }
 
-        if (isset($result)) {
-            return $this->item($beatmapset, function ($beatmapset) use ($result) {
-                return $result;
-            });
-        }
+        return $this->item($beatmapset, function ($beatmapset) use ($result) {
+            return $result;
+        });
     }
 
-    public function includeDescription(Beatmapset $beatmapset)
+    public function includeDescription(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-        return $this->item($beatmapset, function ($beatmapset) {
-            return [
-                'description' => $beatmapset->description(),
-            ];
+        $editable = $params->get('editable');
+
+        return $this->item($beatmapset, function ($beatmapset) use ($editable) {
+            return $editable
+                ? ['description' => $beatmapset->description(), 'bbcode' => $beatmapset->editableDescription()]
+                : ['description' => $beatmapset->description()];
         });
     }
 
@@ -188,5 +195,13 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         return $this->item($beatmapset, function ($beatmapset) {
             return $beatmapset->ratingsCount();
         });
+    }
+
+    public function includeRecentFavourites(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->recentFavourites(),
+            new \App\Transformers\UserCompactTransformer()
+        );
     }
 }

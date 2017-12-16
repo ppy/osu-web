@@ -34,10 +34,11 @@ return [
     'discussions' => [
         'allow_kudosu' => '给予 kudosu',
         'delete' => '删除',
-        'deleted' => '被 :editor 于 :delete_time 删除',
+        'deleted' => '被 :editor 于 :delete_time 删除。',
         'deny_kudosu' => '收回 kudosu',
         'edit' => '编辑',
-        'edited' => '最后由 :editor 于 :update_time 编辑',
+        'edited' => '最后由 :editor 编辑于 :update_time 。',
+        'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder' => '在此处输入您的内容',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
@@ -63,6 +64,7 @@ return [
         ],
 
         'message_type' => [
+            'mapper_note' => '备注',
             'praise' => '赞',
             'problem' => '问题',
             'suggestion' => '建议',
@@ -82,29 +84,48 @@ return [
         ],
 
         'show' => [
-            'title' => ':title 由 :mapper 制作',
+            'title' => '由 :mapper 制作的 :title',
         ],
 
         'stats' => [
             'deleted' => '已删除',
+            'mapper_notes' => '备注',
             'mine' => '我的',
             'pending' => 'Pending',
             'praises' => '赞',
             'resolved' => '已解决',
             'total' => '所有',
         ],
+
+        'status-messages' => [
+            'approved' => '这张谱面于 :date 被 Approved !',
+            'graveyard' => '这张谱面自 :date 就未更新了，或许它已经被作者抛弃了 ;w;',
+            'loved' => '这张谱面于 :date 被 Loved !',
+            'ranked' => '这张谱面于 :date 被 Ranked !',
+            'wip' => '注意：这张谱面被作者标记为 WIP（work-in-progress）',
+        ],
+
+    ],
+
+    'hype' => [ //暂定 Hype => 推荐
+        'button' => '推荐这张谱面',
+        'button-done' => '已经推荐！',
+        'explanation' => '为谱面点赞 ❤ 会增加推荐进度，这会让这张谱面更容易被提名和 Ranked',
+        'section-title' => '推荐进度',
+        'title' => 'Hype',
     ],
 
     'nominations' => [
-        'disqualifed-at' => '于 :time_ago 被 DQ (:reason).', //disqualifed现在好像没有很合适的翻译，姑且先写作DQ了
+        'disqualifed-at' => '于 :time_ago 被 DQ (:reason)', //disqualifed现在好像没有很合适的翻译，姑且先写作DQ了
         'disqualifed_no_reason' => '没有指定原因',
         'disqualification-prompt' => 'DQ 的理由？',
         'disqualify' => 'Disqualify',
         'incorrect-state' => '操作出错了，请刷新页面。',
         'nominate' => '提名',
+        'nominated-by' => '被 :users 提名',
         'nominate-confirm' => '提名这张谱面？',
-        'qualified' => '如果没有问题，预计将于 :date 被 ranked.',
-        'qualified-soon' => '如果没有问题，预计不久将被 ranked.',
+        'qualified' => '如果没有问题，预计将于 :date 被 Ranked',
+        'qualified-soon' => '如果没有问题，预计不久将被 Ranked',
         'required-text' => '提名数: :current/:required',
         'title' => '提名状态',
     ],
@@ -141,9 +162,9 @@ return [
         'any' => '所有',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => '我的',

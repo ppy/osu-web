@@ -32,6 +32,7 @@ $(document).on 'submit', 'form', (e) ->
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
   StoreSupporterTag.initialize()
+  StoreCheckout.initialize()
 
 @accountEdit ?= new AccountEdit
 @accountEditPlaystyle ?= new AccountEditPlaystyle
@@ -40,7 +41,6 @@ $(document).on 'turbolinks:load', ->
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
-@editorZoom ?= new EditorZoom
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError

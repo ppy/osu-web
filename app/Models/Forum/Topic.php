@@ -391,14 +391,14 @@ class Topic extends Model
 
     public function scopeWatchedByUser($query, $user)
     {
+        $forumIds = Authorize::aclGetAllowedForums($user, 'f_read');
+
         return $query
             ->with('forum')
+            ->whereIn('forum_id', $forumIds)
             ->whereIn(
                 'topic_id',
-                model_pluck(
-                    TopicWatch::where('user_id', $user->user_id),
-                    'topic_id'
-                )
+                TopicWatch::where('user_id', $user->user_id)->select('topic_id')
             )
             ->orderBy('topic_last_post_time', 'DESC');
     }

@@ -17,13 +17,21 @@
  */
 
 .beatmapset-events {
-  margin-top: -20px;
+  @title-margin-top: 20px;
+
+  margin-top: -@title-margin-top;
   display: flex;
   flex-direction: column;
+
+  &__empty {
+    font-size: @font-size--normal;
+    display: flex;
+    margin-top: @title-margin-top;
+  }
 
   &__title {
     font-size: @font-size--title-small-2;
     color: @pink-darker;
-    margin: 20px 0 5px;
+    margin: @title-margin-top 0 5px;
   }
 }

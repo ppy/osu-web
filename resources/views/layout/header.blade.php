@@ -31,17 +31,17 @@
             @include('objects._logo')
         </a>
 
-        <div class="osu-nav__col osu-nav__col--title">
-            <div class="js-nav-switch js-nav-switch--active" data-nav-mode="default">
-                <div class="osu-nav__title">
-                    {{ trans("layout.menu.{$current_section}._") }}
+        <div class="osu-nav__col osu-nav__col--title js-nav-switch js-nav-switch--active" data-nav-mode="default">
+            <div class="osu-nav__title u-ellipsis-overflow">
+                {{ trans("layout.menu.{$current_section}._") }}
 
-                    <span class="osu-nav__title-separator">
-                        <i class="fa fa-angle-right"></i>
-                    </span>
+                <span class="osu-nav__title-separator">
+                    <i class="fa fa-angle-right"></i>
+                    {{-- for title attribute --}}
+                    <span class="hidden">-</span>
+                </span>
 
-                    {{ trans("layout.menu.{$current_section}.{$current_action}") }}
-                </div>
+                {{ trans("layout.menu.{$current_section}.{$current_action}") }}
 
                 <div class="osu-nav__highlight-bar">
                     <span class="bar"></span>
@@ -56,7 +56,11 @@
                 </div>
 
                 <label class="header-search-box js-parent-focus">
-                    <input class="header-search-box__input js-nav-search--input" name="query" />
+                    <input
+                        class="header-search-box__input js-nav-search--input"
+                        name="query"
+                        data-min-length="{{ config('osu.search.minimum_length') }}"
+                    />
                     <a href="#" class="js-nav-search--run-link header-search-box__icon">
                         <i class="fa fa-fw fa-search"></i>
                     </a>

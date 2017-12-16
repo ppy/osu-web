@@ -24,6 +24,10 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => 'Uh oh, there are problems with your cart!',
+        'cart_problems_edit' => 'Click here to go edit it.',
+        'declined' => 'The payment was cancelled.',
+        'error' => 'There was a problem completing your checkout :(',
         'pay' => 'Checkout with Paypal',
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
@@ -57,6 +61,7 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => 'gift to player',
         'require_login' => [
             '_' => 'You need to be :link to get a supporter tag!',
             'link_text' => 'logged in',

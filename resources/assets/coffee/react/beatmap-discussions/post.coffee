@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = ReactDOMFactories
+{a, button, div, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -31,6 +31,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     @state =
       editing: false
+      posting: false
       message: @props.post.message
 
 
@@ -111,38 +112,8 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  messageInput: (e) =>
-    @setState message: e.target.value
-
-
-  submitIfEnter: (e) =>
-    return if e.keyCode != 13
-
-    e.preventDefault()
-    @throttledUpdatePost()
-
-
-  updatePost: =>
-    if @state.message == @props.post.message
-      @setState editing: false
-      return
-
-    LoadingOverlay.show()
-
-    @xhr.updatePost?.abort()
-    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
-      method: 'PUT'
-      data:
-        beatmap_discussion_post:
-          message: @state.message
-
-    .done (data) =>
-      @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
-
-    .fail osu.ajaxError
-
-    .always LoadingOverlay.hide
+  editEnd: =>
+    @setState editing: false
 
 
   editStart: =>
@@ -152,12 +123,68 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @textarea.focus()
 
 
-  editEnd: =>
-    @setState editing: false
+  formattedMessage: =>
+    text = @props.post.message
+    text = _.escape text
+    text = text.trim()
+    text = osu.linkify text
+    text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
+    # replace newlines with <br>
+    # - trim trailing spaces
+    # - then join with <br>
+    # - limit to 2 consecutive <br>s
+    text = text
+      .split '\n'
+      .map (x) -> x.trim()
+      .join '<br>'
+      .replace /(?:<br>){2,}/g, '<br><br>'
+    text
+
+
+  handleEnter: (e) =>
+    return if e.keyCode != 13 || e.shiftKey
+
+    e.preventDefault()
+    @throttledUpdatePost()
 
 
   isOwner: =>
     @props.post.user_id == @props.beatmapset.user_id
+
+
+  messageEditor: =>
+    return if !@props.canBeEdited
+
+    canPost = !@state.posting && @validPost()
+
+    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
+      el TextareaAutosize,
+        minRows: 3
+        disabled: @state.posting
+        className: "#{bn}__message #{bn}__message--editor"
+        onChange: @setMessage
+        onKeyDown: @handleEnter
+        value: @state.message
+        inputRef: (el) => @textarea = el
+      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
+
+      div className: "#{bn}__actions",
+        div className: "#{bn}__actions-group"
+
+        div className: "#{bn}__actions-group",
+          div className: "#{bn}__action",
+            el BigButton,
+              text: osu.trans 'common.buttons.cancel'
+              props:
+                onClick: @editEnd
+                disabled: !canPost
+
+          div className: "#{bn}__action",
+            el BigButton,
+              text: osu.trans 'common.buttons.save'
+              props:
+                onClick: @throttledUpdatePost
+                disabled: !canPost
 
 
   messageViewer: =>
@@ -172,7 +199,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         className: "#{bn}__message"
         ref: (el) => @messageBody = el
         dangerouslySetInnerHTML:
-          __html: BeatmapDiscussionHelper.linkTimestamp(osu.linkify(_.escape(@props.post.message)), ["#{bn}__timestamp"])
+          __html: @formattedMessage()
 
       div className: "#{bn}__info-container",
         span
@@ -199,6 +226,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   @props.lastEditor.username
                   classNames: ["#{bn}__info-user"]
                 update_time: osu.timeago @props.post.updated_at
+
+        if @props.type == 'discussion' && @props.discussion.kudosu_denied
+          span
+            className: "#{bn}__info #{bn}__info--edited"
+            osu.trans('beatmaps.discussions.kudosu_denied')
 
       div
         className: "#{bn}__actions"
@@ -235,16 +267,8 @@ class BeatmapDiscussions.Post extends React.PureComponent
               'data-confirm': osu.trans('common.confirmation')
               osu.trans('beatmaps.discussions.restore')
 
-          if @props.type == 'discussion' && @props.currentUser.isAdmin
-            if @props.discussion.kudosu_denied
-              a
-                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
-                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
-                'data-remote': true
-                'data-method': 'POST'
-                'data-confirm': osu.trans('common.confirmation')
-                osu.trans('beatmaps.discussions.allow_kudosu')
-            else
+          if @props.type == 'discussion' && @props.discussion.current_user_attributes?.can_moderate_kudosu
+            if @props.discussion.can_grant_kudosu
               a
                 className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
                 href: laroute.route('beatmap-discussions.deny-kudosu', beatmap_discussion: @props.discussion.id)
@@ -252,37 +276,45 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-method': 'POST'
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.deny_kudosu')
-
-
-
-  messageEditor: =>
-    return if !@props.canBeEdited
-
-    div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      textarea
-        ref: (el) => @textarea = el
-        className: "#{bn}__message #{bn}__message--editor"
-        onChange: @messageInput
-        onKeyDown: @submitIfEnter
-        value: @state.message
-
-      div className: "#{bn}__actions",
-        div className: "#{bn}__actions-group"
-
-        div className: "#{bn}__actions-group",
-          div className: "#{bn}__action",
-            el BigButton,
-              text: osu.trans 'common.buttons.cancel'
-              props: onClick: @editEnd
-
-          div className: "#{bn}__action",
-            el BigButton,
-              text: osu.trans 'common.buttons.save'
-              props: onClick: @throttledUpdatePost
+            else if @props.discussion.kudosu_denied
+              a
+                className: "js-beatmapset-discussion-update #{bn}__action #{bn}__action--button"
+                href: laroute.route('beatmap-discussions.allow-kudosu', beatmap_discussion: @props.discussion.id)
+                'data-remote': true
+                'data-method': 'POST'
+                'data-confirm': osu.trans('common.confirmation')
+                osu.trans('beatmaps.discussions.allow_kudosu')
 
 
   permalink: (e) =>
     e.preventDefault()
+
+
+  setMessage: (e) =>
+    @setState message: e.target.value
+
+
+  updatePost: =>
+    if @state.message == @props.post.message
+      @setState editing: false
+      return
+
+    @setState posting: true
+
+    @xhr.updatePost?.abort()
+    @xhr.updatePost = $.ajax laroute.route('beatmap-discussion-posts.update', beatmap_discussion_post: @props.post.id),
+      method: 'PUT'
+      data:
+        beatmap_discussion_post:
+          message: @state.message
+
+    .done (data) =>
+      @setState editing: false
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+
+    .fail osu.ajaxError
+
+    .always => @setState posting: false
 
 
   userModerationGroup: =>
@@ -290,3 +322,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
 
     @cache.userModerationGroup
+
+
+  validPost: =>
+    BeatmapDiscussionHelper.validMessageLength(@state.message)

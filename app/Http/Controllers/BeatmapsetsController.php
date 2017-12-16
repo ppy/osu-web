@@ -20,10 +20,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetWatch;
 use App\Models\Country;
 use App\Models\Genre;
 use App\Models\Language;
@@ -57,9 +59,9 @@ class BeatmapsetsController extends Controller
             ['id' => 7, 'name' => trans('beatmaps.status.any')],
             ['id' => 0, 'name' => trans('beatmaps.status.ranked-approved')],
             ['id' => 1, 'name' => trans('beatmaps.status.approved')],
+            ['id' => 3, 'name' => trans('beatmaps.status.qualified')],
             ['id' => 8, 'name' => trans('beatmaps.status.loved')],
             ['id' => 2, 'name' => trans('beatmaps.status.faves')],
-            ['id' => 3, 'name' => trans('beatmaps.status.modreqs')],
             ['id' => 4, 'name' => trans('beatmaps.status.pending')],
             ['id' => 5, 'name' => trans('beatmaps.status.graveyard')],
             ['id' => 6, 'name' => trans('beatmaps.status.my-maps')],
@@ -86,6 +88,9 @@ class BeatmapsetsController extends Controller
             ::with('beatmaps.failtimes', 'user')
             ->findOrFail($id);
 
+        $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
+        $descriptionInclude = $editable ? 'description:editable' : 'description';
+
         $set = json_item(
             $beatmapset,
             new BeatmapsetTransformer(),
@@ -95,8 +100,9 @@ class BeatmapsetsController extends Controller
                 'beatmaps.failtimes',
                 'converts',
                 'converts.failtimes',
-                'description',
+                $descriptionInclude,
                 'ratings',
+                'recentFavourites',
                 'user',
             ]
         );
@@ -133,19 +139,28 @@ class BeatmapsetsController extends Controller
         $requestLastUpdated = get_int(Request::input('last_updated'));
 
         $beatmapset = Beatmapset::where('discussion_enabled', true)->findOrFail($id);
-        $lastUpdated = $beatmapset->lastDiscussionTime();
 
-        if ($returnJson && (
-            $lastUpdated === null ||
-            ($requestLastUpdated !== null && $requestLastUpdated >= $lastUpdated->timestamp)
-        )) {
-            return response([], 304);
+        if ($returnJson) {
+            $lastDiscussionUpdate = $beatmapset->lastDiscussionTime();
+            $lastEventUpdate = $beatmapset->events()->max('updated_at');
+
+            if ($lastEventUpdate !== null) {
+                $lastEventUpdate = Carbon::parse($lastEventUpdate);
+            }
+
+            $latestUpdate = max($lastDiscussionUpdate, $lastEventUpdate);
+
+            if ($latestUpdate === null || $requestLastUpdated >= $latestUpdate->timestamp) {
+                return response([], 304);
+            }
         }
 
         $initialData = [
             'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
+
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
 
         if ($returnJson) {
             return $initialData;
@@ -192,6 +207,12 @@ class BeatmapsetsController extends Controller
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
 
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        NotifyBeatmapsetUpdate::dispatch([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]);
+
         return [
             'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
@@ -208,10 +229,39 @@ class BeatmapsetsController extends Controller
             return error_popup(trans('beatmaps.nominations.incorrect-state'));
         }
 
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        NotifyBeatmapsetUpdate::dispatch([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]);
+
         return [
             'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
+    }
+
+    public function update($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        priv_check('BeatmapsetDescriptionEdit', $beatmapset)->ensureCan();
+
+        $description = Request::input('description');
+
+        if ($beatmapset->updateDescription($description, Auth::user())) {
+            $beatmapset->refresh();
+
+            return json_item(
+                $beatmapset,
+                new BeatmapsetTransformer(),
+                [
+                    'description:editable',
+                ]
+            );
+        }
+
+        return response([], 500); // ?????
     }
 
     public function updateFavourite($id)

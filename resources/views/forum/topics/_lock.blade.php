@@ -22,6 +22,7 @@
             js-forum-topic-lock
             btn-circle
             btn-circle--topic-nav
+            btn-circle--yellow
             {{ $topic->isLocked() ? 'btn-circle--activated' : '' }}
         "
         data-topic-id="{{ $topic->topic_id }}"

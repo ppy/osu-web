@@ -21,10 +21,12 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
 use Request;
@@ -85,14 +87,20 @@ class BeatmapDiscussionPostsController extends Controller
         $posts = [new BeatmapDiscussionPost($this->postParams())];
         $events = [];
 
+        $resetNominations = $isNewDiscussion &&
+            $beatmapset->isPending() &&
+            $beatmapset->hasNominations() &&
+            $discussion->message_type === 'problem' &&
+            priv_check('BeatmapsetNominate', $beatmapset)->can();
+
+        if ($resetNominations) {
+            $events[] = BeatmapsetEvent::NOMINATION_RESET;
+        }
+
         if (!$isNewDiscussion && ($discussion->resolved !== $previousDiscussionResolved)) {
             priv_check('BeatmapDiscussionResolve', $discussion)->ensureCan();
             $posts[] = BeatmapDiscussionPost::generateLogResolveChange(Auth::user(), $discussion->resolved);
-            $events[] = BeatmapsetEvent::log(
-                $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN,
-                Auth::user(),
-                $discussion
-            );
+            $events[] = $discussion->resolved ? BeatmapsetEvent::ISSUE_RESOLVE : BeatmapsetEvent::ISSUE_REOPEN;
         }
 
         try {
@@ -106,7 +114,7 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 foreach ($events as $event) {
-                    $event->saveOrExplode();
+                    BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
                 }
 
                 return true;
@@ -118,7 +126,16 @@ class BeatmapDiscussionPostsController extends Controller
         $postIds = array_pluck($posts, 'id');
 
         if ($saved === true) {
+            $beatmapset = $discussion->beatmapset;
+
+            BeatmapsetWatch::markRead($beatmapset, Auth::user());
+            NotifyBeatmapsetUpdate::dispatch([
+                'user' => Auth::user(),
+                'beatmapset' => $beatmapset,
+            ]);
+
             return [
+                'beatmapset' => $posts[0]->beatmapset->defaultJson(),
                 'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,

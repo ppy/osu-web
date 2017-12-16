@@ -18,8 +18,9 @@
 
 @import "app";
 
+@screen-mobile-max: (@screen-sm-min - 1px);
 @desktop: ~"(min-width: @{screen-sm-min})";
-@mobile: ~"(max-width: @{screen-sm-min})";
+@mobile: ~"(max-width: @{screen-mobile-max})";
 
 @bar-size: 3px;
 @logo-size: 100px;
@@ -27,7 +28,6 @@
 @padding-big: (20px + @logo-size + 10px);
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
-@padding-paginator: 15px;
 
 @height--nav-popup: 300px;
 
@@ -42,20 +42,25 @@
 @z-index--user-profile-avatar: 2;
 @z-index--beatmaps-panel: 4;
 @z-index--page-extra-tabs: 5;
-// navbar-static-top: 1000 (bootstrap nav for mobile)
-@z-index--forum-topic-headernav: 1001;
-@z-index--fixed-bar: 1001;
-@z-index--blackout: 1010;
-@z-index--blackout-visible: 1011;
-// modal-backdrop: 1040
-// modal: 1050
-@z-index--nav-popup: 8998;
-@z-index--nav-float: 8999;
+@zindex-navbar: 500; // bootstrap
+@zindex-dropdown: 500; // bootstrap
+@z-index--forum-topic-headernav: 501;
+@z-index--fixed-bar: 501;
+@z-index--blackout: 510;
+@z-index--blackout-visible: 511;
+@zindex-navbar-fixed: 530; // bootstrap
+@zindex-modal-background: 540; // bootstrap
+@zindex-modal: 550; // bootstrap
+@zindex-popover: 560; // bootstrap
+@zindex-tooltip: 570; // bootstrap
+@z-index--nav-popup: 998;
+@z-index--nav-float: 999;
+// Xsolla overlay: 1000
 @z-index--overlay: 9990;
-@z-index--editor-zoom: 9999;
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
+@z-index--tournament-header: 1;
 
 @box-shadow-x: 0;
 @box-shadow-y: 1px;
@@ -113,7 +118,7 @@
 @font-size--new-header-title: 30px;
 @font-size--new-header-subtitle: 14px;
 
-@font-size--new-header-title-mobile: 26px;
+@font-size--new-header-title-mobile: 24px;
 @font-size--new-header-subtitle-mobile: 12px;
 
 @font-size--forum-topic-entry-icon: 16px;
@@ -146,8 +151,6 @@
 
 @font-size--warning: 13px;
 @font-size--warning-icon: 20px;
-
-@font-size--iphone-input: 16px;
 
 @flex-grid--gutter-width: 20px;
 
@@ -184,10 +187,11 @@
 @beatmap-discussion--reply-padding: (20px + @beatmap-discussion--avatar-size);
 @beatmap-discussion--timestamp-width: 110px;
 
+@beatmap-discussion--color-mapper-note: @purple;
 @beatmap-discussion--color-praise: @blue-dark;
 @beatmap-discussion--color-problem: @pink-dark;
-@beatmap-discussion--color-suggestion: @yellow-dark;
 @beatmap-discussion--color-resolved: @green;
+@beatmap-discussion--color-suggestion: @yellow-dark;
 
 @beatmappack-listing--gutter: 20px;
 
@@ -213,13 +217,20 @@
 @changelog-stream--lazer-experimental: @red;
 
 @changelog-stream--build-0: @purple;
-@changelog-stream--build-1: @pink;
-@changelog-stream--build-2: @blue;
-@changelog-stream--build-3: @yellow;
-@changelog-stream--build-4: @green;
-@changelog-stream--build-5: @red;
-@changelog-stream--build-6: #eee;
-@changelog-stream--build-7: #fff;
+@changelog-stream--build-1: @purple-darker;
+@changelog-stream--build-2: @pink;
+@changelog-stream--build-3: @pink-darker;
+@changelog-stream--build-4: @blue;
+@changelog-stream--build-5: @blue-darker;
+@changelog-stream--build-6: @yellow;
+@changelog-stream--build-7: @yellow-darker;
+@changelog-stream--build-8: @green;
+@changelog-stream--build-9: @green-darker;
+@changelog-stream--build-10: @red;
+@changelog-stream--build-11: @red-darker;
+
+@page-extra-side-padding--small: 10px;
+@page-extra-side-padding--large: 30px;
 
 @mod-width: 45px;
 @mod-height: 32px;
@@ -256,3 +267,6 @@
 @slider-handle-height: @slider-height + 2 * @slider-handle-protrusion;
 @slider-handle-width: 10px;
 @slider-height: 10px;
+
+@usercard-width: 260px;
+@usercard-height: 100px;

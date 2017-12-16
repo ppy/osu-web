@@ -19,7 +19,7 @@
  */
 
 return [
-    'deleted' => '[已删除的用户]', //TODO 需要上下文
+    'deleted' => '[被删除的用户]', //TODO 需要上下文
 
     'login' => [
         '_' => '登录',
@@ -45,6 +45,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => '点击登录',
+        'login_text' => '登录',
         'username' => '游客',
         'error' => '请先登录',
     ],
@@ -79,7 +80,7 @@ return [
                     'button' => '上传图片',
                     'dropzone' => '拖拽到此处',
                     'dropzone_info' => '将图片拖动到这里也可以上传',
-                    'restriction_info' => "自定义皮肤只有 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 可用",
+                    'restriction_info' => "自定义皮肤只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
                     'size_info' => '图片尺寸应为2000x500',
                     'too_large' => '上传的图片过大.',
                     'unsupported_format' => '不支持的格式.',
@@ -95,7 +96,21 @@ return [
                 'achieved-on' => '达成于 :date',
             ],
             'beatmaps' => [
+                'none' => '暂时没有...',
                 'title' => '谱面',
+
+                'favourite' => [
+                    'title' => '收藏的谱面 (:count)',
+                ],
+                'graveyard' => [
+                    'title' => '坟场里的谱面 (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked 并且得到赞的谱面 (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Pending Beatmaps (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
@@ -142,6 +157,11 @@ return [
                             'give' => '因在讨论帖 :post 中得到了足够票数而获得 :amount',
                             'reset' => '因在讨论帖 :post 中丢失了票数而失去 :amount',
                         ],
+
+                        'recalculate' => [
+                            'give' => '因讨论帖 :post 的投票重新计算而获得 :amount',
+                            'reset' => '因讨论帖 :post 的投票重新计算而失去 :amount',
+                        ],
                     ],
 
                     'forum_post' => [
@@ -173,22 +193,12 @@ return [
                 'title' => '成绩',
                 'weighted_pp' => '权重：:pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => '谱面',
-                'favourite' => [
-                    'title' => '收藏的谱面 (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked并且得到赞的谱面 (:count)',
-                ],
-                'none' => '暂时没有...',
-            ],
         ],
         'page' => [
             'description' => '<strong>个人介绍</strong> 是您可以自定义的展示区.',
             'edit_big' => '编辑',
             'placeholder' => '在这里编辑',
-            'restriction_info' => "需要成为 <a href='".osu_url('support-the-game')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
+            'restriction_info' => "需要成为 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 以解锁该特性.",
         ],
         'rank' => [
             'country' => ':mode 模式的国内排名',

@@ -87,10 +87,6 @@ return [
         'post_edit' => [
             'cancel' => '取消',
             'post' => '保存',
-            'zoom' => [
-                'start' => '全屏',
-                'end' => '退出全屏',
-            ],
         ],
         'post_reply' => '发表',
         'reply_box_placeholder' => '输入回复',
@@ -125,7 +121,6 @@ return [
         '_' => '主题',
 
         'actions' => [
-            'reply' => '显示回复盒子',
             'reply_with_quote' => '引用以回复',
             'search' => '搜索',
         ],
@@ -235,7 +230,7 @@ return [
 
                 'user' => [
                     'current' => '还有 :votes 票.',
-                    'count' => '{0} 没有票|[1,*] :count票',
+                    'count' => '{0} 没有票|[1,*] :count 票',
                     'not_enough' => '没有票了',
                 ],
             ],

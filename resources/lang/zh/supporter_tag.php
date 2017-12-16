@@ -27,4 +27,5 @@ return [
         'months' => ':length 个月|{0}',
         'years' => ':length 年|{0}',
     ],
+    'months' => '月',
 ];

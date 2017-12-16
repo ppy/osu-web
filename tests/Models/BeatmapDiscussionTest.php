@@ -20,9 +20,67 @@
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
+use App\Models\User;
 
 class BeatmapDiscussionTest extends TestCase
 {
+    public function testMapperPost()
+    {
+        $mapper = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'user_id' => $mapper->getKey(),
+        ]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+
+        $discussion = $this->newDiscussion($beatmapset);
+        $discussion->fill([
+            'beatmap_id' => $beatmap->beatmap_id,
+            'message_type' => 'mapper_note',
+            'user_id' => $mapper->getKey(),
+        ]);
+
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'problem';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'suggestion';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'praise';
+        $this->assertTrue($discussion->isValid());
+    }
+
+    public function testModderPost()
+    {
+        $mapper = factory(User::class)->create();
+        $beatmapset = factory(Beatmapset::class)->create([
+            'discussion_enabled' => true,
+            'user_id' => $mapper->getKey(),
+        ]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $modder = factory(User::class)->create();
+
+        $discussion = $this->newDiscussion($beatmapset);
+        $discussion->fill([
+            'beatmap_id' => $beatmap->beatmap_id,
+            'message_type' => 'mapper_note',
+            'user_id' => $modder->getKey(),
+        ]);
+
+        $this->assertFalse($discussion->isValid());
+
+        $discussion->message_type = 'problem';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'suggestion';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->message_type = 'praise';
+        $this->assertTrue($discussion->isValid());
+    }
+
     public function testIsValid()
     {
         $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);

@@ -34,13 +34,14 @@ return [
     'discussions' => [
         'allow_kudosu' => 'allow kudosu',
         'delete' => 'delete',
-        'deleted' => 'Deleted by :editor :delete_time',
+        'deleted' => 'Deleted by :editor :delete_time.',
         'deny_kudosu' => 'deny kudosu',
         'edit' => 'edit',
-        'edited' => 'Last edited by :editor :update_time',
+        'edited' => 'Last edited by :editor :update_time.',
+        'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder' => 'Type here to post',
         'message_type_select' => 'Select Comment Type',
-        'reply_notice' => 'Press enter to submit.',
+        'reply_notice' => 'Press enter to reply.',
         'reply_placeholder' => 'Type your response here',
         'require-login' => 'Please login to post or reply',
         'resolved' => 'Resolved',
@@ -63,6 +64,7 @@ return [
         ],
 
         'message_type' => [
+            'mapper_note' => 'Note',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -87,24 +89,44 @@ return [
 
         'stats' => [
             'deleted' => 'Deleted',
+            'mapper_notes' => 'Notes',
             'mine' => 'Mine',
             'pending' => 'Pending',
             'praises' => 'Praises',
             'resolved' => 'Resolved',
             'total' => 'All',
         ],
+
+        'status-messages' => [
+            'approved' => 'This beatmap was approved on :date!',
+            'graveyard' => "This beatmap hasn't been updated since :date and has most likely been abandoned by the creator...",
+            'loved' => 'This beatmap was added to loved on :date!',
+            'ranked' => 'This beatmap was ranked on :date!',
+            'wip' => 'Note: This beatmap is marked as a work-in-progress by the creator.',
+        ],
+
+    ],
+
+    'hype' => [
+        'button' => 'Hype Beatmap!',
+        'button-done' => 'Already Hyped!',
+        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
+        'section-title' => 'Hype Train',
+        'title' => 'Hype',
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'disqualified :time_ago (:reason).',
+        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
         'disqualifed_no_reason' => 'no reason specified',
         'disqualification-prompt' => 'Reason for disqualification?',
         'disqualify' => 'Disqualify',
         'incorrect-state' => 'Error performing that action, try refreshing the page.',
         'nominate' => 'Nominate',
+        'nominated-by' => 'nominated by :users',
         'nominate-confirm' => 'Nominate this beatmap?',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
         'required-text' => 'Nominations: :current/:required',
         'title' => 'Nomination Status',
     ],
@@ -141,9 +163,9 @@ return [
         'any' => 'Any',
         'ranked-approved' => 'Ranked & Approved',
         'approved' => 'Approved',
+        'qualified' => 'Qualified',
         'loved' => 'Loved',
         'faves' => 'Favourites',
-        'modreqs' => 'Mod Requests',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => 'My Maps',

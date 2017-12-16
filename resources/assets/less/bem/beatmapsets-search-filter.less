@@ -17,21 +17,37 @@
  */
 
 .beatmapsets-search-filter {
+  @gutter-mobile: 6px;
+
+  @media @desktop {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+  }
+
   &__header {
-    display: inline-block;
-    width: 100px;
+    display: block;
 
     font-size: @font-size--small;
     text-transform: uppercase;
     color: #fff;
 
-    // to ignore difference in item font size (inherited)
-    margin: 5px 0;
+    margin: 15px 0 5px;
+
+    @media @desktop {
+      width: 100px;
+      margin-top: 5px;
+    }
   }
 
   &__item {
     color: @pink;
-    margin: 0 5px;
+    margin: 2px @gutter-mobile;
+
+    @media @desktop {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
 
     &:hover,
     &:active,
@@ -48,5 +64,13 @@
         color: #fff;
       }
     }
+  }
+
+  &__items {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    margin: 0 (-@gutter-mobile);
   }
 }

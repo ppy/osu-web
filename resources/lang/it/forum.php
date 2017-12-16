@@ -120,7 +120,6 @@ return [
         '_' => 'Topic',
 
         'actions' => [
-            'reply' => 'Mostra box per rispondere',
             'reply_with_quote' => 'Quota il post per rispondere',
         ],
 

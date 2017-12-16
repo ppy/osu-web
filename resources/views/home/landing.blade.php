@@ -31,7 +31,7 @@
             <div class="landing-nav__section">
                 @foreach (nav_links() as $section => $links)
                     <a
-                        href="{{ array_values($links)[0] }}"
+                        href="{{ $links['_'] ?? array_values($links)[0] }}"
                         class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
                     >
                         {{ trans("layout.menu.$section._") }}

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Transformers\BeatmapsetTransformer;
@@ -28,6 +29,7 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
+use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
 use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
@@ -81,22 +83,9 @@ class Beatmapset extends Model
         'loved' => 4,
     ];
 
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'mode' => null,
-        'sort_order' => 'desc',
-        'sort_field' => 'approved_date',
-        'rank' => '',
-        'status' => 0,
-        'genre' => null,
-        'language' => null,
-        'extra' => '',
-        'limit' => 20,
-        'page' => 1,
-    ];
-
     const NOMINATIONS_PER_DAY = 3;
-    const QUALIFICATIONS_PER_DAY = 6;
+    const RANKED_PER_DAY = 8;
+    const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
 
     /*
@@ -115,14 +104,29 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
-    // ranking functions for the set
-
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    // Beatmapset::rankable();
+    public function recentFavourites($limit = 50)
+    {
+        $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('dateadded', 'desc')
+            ->limit($limit)
+            ->get();
+
+        return $favourites->pluck('user');
+    }
+
+    public function watches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
+    }
 
     public function lastDiscussionTime()
     {
@@ -199,7 +203,7 @@ class Beatmapset extends Model
 
     public function scopeUnranked($query)
     {
-        return $query->where('approved', '=', self::STATES['pending']);
+        return $query->whereIn('approved', [static::STATES['pending'], static::STATES['wip']]);
     }
 
     public function scopeRanked($query)
@@ -282,7 +286,9 @@ class Beatmapset extends Model
             'plays' => 'playcount',
             'ranked' => 'approved_date',
             'rating' => 'rating',
+            'relevance' => '_score',
             'title' => 'title',
+            'updated' => 'last_update',
         ];
         $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
 
@@ -348,7 +354,7 @@ class Beatmapset extends Model
         }
 
         if (present($params['query'])) {
-            $query = es_query_and_words($params['query']);
+            $query = es_query_escape_with_caveats($params['query']);
             $matchParams[] = ['query_string' => ['query' => $query]];
         }
 
@@ -397,10 +403,10 @@ class Beatmapset extends Model
                 $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
-            case 3: // Mod Requests
-                $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
+            case 3: // Qualified
+                $shouldParams[] = [
+                    ['match' => ['approved' => self::STATES['qualified']]],
+                ];
                 break;
             case 4: // Pending
                 $shouldParams[] = [
@@ -434,7 +440,15 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        $results = Es::search($searchParams);
+        try {
+            $results = Es::search($searchParams);
+        } catch (ElasticsearchBadRequest $e) {
+            $results = ['hits' => [
+                'hits' => [],
+                'total' => 0,
+            ]];
+        }
+
         $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
@@ -627,6 +641,17 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
+    public function removeCovers()
+    {
+        try {
+            $this->storage()->deleteDirectory($this->coverPath());
+        } catch (\Exception $e) {
+            // ignore errors
+        }
+
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -641,6 +666,9 @@ class Beatmapset extends Model
             if (!is_dir($outputFolder)) {
                 mkdir($outputFolder, 0755, true);
             }
+
+            // start by clearing existing covers
+            $this->removeCovers();
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
@@ -785,6 +813,9 @@ class Beatmapset extends Model
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+
+            // global event
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
         });
 
         return true;
@@ -865,6 +896,11 @@ class Beatmapset extends Model
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function requiredHype()
+    {
+        return config('osu.beatmapset.required_hype');
+    }
+
     public function requiredNominationCount()
     {
         return 2;
@@ -875,6 +911,11 @@ class Beatmapset extends Model
         return count($this->recentEvents()->nominations()->get());
     }
 
+    public function hasNominations()
+    {
+        return $this->currentNominationCount() > 0;
+    }
+
     public function rankingETA()
     {
         if (!$this->isQualified()) {
@@ -882,9 +923,12 @@ class Beatmapset extends Model
         }
 
         $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
-        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+        $days = ceil($queueSize / static::RANKED_PER_DAY);
 
-        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
+        $days = max($minDays, $days);
+
+        return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
     public function recentEvents()
@@ -894,10 +938,11 @@ class Beatmapset extends Model
         switch ($this->approved) {
             case self::STATES['pending']:
             case self::STATES['qualified']:
-                // last 'disqualify' event (if any) and all events since
-                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
-                if ($disqualifyEvent) {
-                    $events->where('id', '>=', $disqualifyEvent->id);
+                // last 'disqualify' or 'nomination reset' event (if any) and all events since
+                $resetEvent = $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+
+                if ($resetEvent) {
+                    $events->where('id', '>=', $resetEvent->id);
                 }
         }
 
@@ -906,7 +951,7 @@ class Beatmapset extends Model
 
     public function status()
     {
-        return array_search($this->approved, self::STATES, true);
+        return array_search_null($this->approved, static::STATES);
     }
 
     public function defaultJson($currentUser = null)
@@ -922,6 +967,8 @@ class Beatmapset extends Model
             static::with([
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
+                'beatmapDiscussions.beatmapset',
+                'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
@@ -981,29 +1028,36 @@ class Beatmapset extends Model
 
     public function description()
     {
-        $topic = Forum\Topic::find($this->thread_id);
+        $bbcode = $this->getBBCode();
 
-        if ($topic === null) {
+        return $bbcode ? $bbcode->toHTML() : null;
+    }
+
+    public function editableDescription()
+    {
+        $bbcode = $this->getBBCode();
+
+        return $bbcode ? $bbcode->toEditor() : null;
+    }
+
+    public function updateDescription($bbcode, $user)
+    {
+        $post = $this->getPost();
+        if ($post === null) {
             return;
         }
 
-        $post = Forum\Post::find($topic->topic_first_post_id);
-
-        // Any description (after the first match) that matches
-        // '[-{15}]' within its body doesn't get split anymore,
-        // and gets stored in $split[1] anyways
-        $split = preg_split('[-{15}]', $post->post_text, 2);
-
-        // Return empty description if the pattern was not found
-        // (mostly older beatmapsets)
-        $description = $split[1] ?? '';
+        $split = preg_split('/-{15}/', $post->post_text, 2);
 
         $options = [
             'withGallery' => true,
             'ignoreLineHeight' => true,
         ];
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+        return $post->edit($newBody, $user);
     }
 
     public function toMetaDescription()
@@ -1011,5 +1065,46 @@ class Beatmapset extends Model
         $section = trans('layout.menu.beatmaps._');
 
         return "osu! » {$section} » {$this->artist} - {$this->title}";
+    }
+
+    private function extractDescription($post)
+    {
+        // Any description (after the first match) that matches
+        // '/-{15}/' within its body doesn't get split anymore,
+        // and gets stored in $split[1] anyways
+        $split = preg_split('/-{15}/', $post->post_text, 2);
+
+        // Return empty description if the pattern was not found
+        // (mostly older beatmapsets)
+        return ltrim($split[1] ?? '');
+    }
+
+    private function getBBCode()
+    {
+        $post = $this->getPost();
+
+        if ($post === null) {
+            return;
+        }
+
+        $description = $this->extractDescription($post);
+
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        return new BBCodeFromDB($description, $post->bbcode_uid, $options);
+    }
+
+    private function getPost()
+    {
+        $topic = Forum\Topic::find($this->thread_id);
+
+        if ($topic === null) {
+            return;
+        }
+
+        return Forum\Post::find($topic->topic_first_post_id);
     }
 }

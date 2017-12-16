@@ -24,26 +24,22 @@ class ValidationErrors
 {
     private $errors = [];
 
-    public function __construct($prefix)
+    public function __construct($prefix, $keyBase = 'model_validation.')
     {
         $this->prefix = $prefix;
+        $this->keyBase = $keyBase;
     }
 
-    public function add($column, $rawMessage)
+    public function add($column, $rawMessage, $params = null)
     {
         $this->errors[$column] ?? ($this->errors[$column] = []);
-
-        if (is_array($rawMessage)) {
-            $params = $rawMessage[1] ?? null;
-            $rawMessage = $rawMessage[0];
-        }
 
         $params ?? ($params = []);
 
         if ($rawMessage[0] === '.') {
             $rawMessage = $this->prefix.$rawMessage;
         }
-        $rawMessage = 'model_validation.'.$rawMessage;
+        $rawMessage = $this->keyBase.$rawMessage;
 
         $params['attribute'] = $column;
 
@@ -53,6 +49,17 @@ class ValidationErrors
     public function addTranslated($column, $message)
     {
         $this->errors[$column][] = $message;
+    }
+
+    public function merge(self $validationErrors)
+    {
+        $errors = $validationErrors->all();
+        foreach ($errors as $key => $value) {
+            // merge with existing key if any.
+            $this->errors[$key] = array_merge($this->errors[$key] ?? [], $value);
+        }
+
+        return $this;
     }
 
     public function reset()

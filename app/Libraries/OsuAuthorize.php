@@ -60,9 +60,9 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
-    public function checkBeatmapDiscussionAllowOrDenyKusodu($user, $discussion)
+    public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -74,7 +74,7 @@ class OsuAuthorize
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
 
-        if ($user->isQAT()) {
+        if ($user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -104,7 +104,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user->isQAT()) {
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
             return 'ok';
         }
 
@@ -113,7 +113,7 @@ class OsuAuthorize
 
     public function checkBeatmapDiscussionRestore($user, $discussion)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -124,7 +124,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -140,17 +140,43 @@ class OsuAuthorize
             return $prefix.'owner';
         }
 
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
         // rate limit
         $recentVotesCount = $user
             ->beatmapDiscussionVotes()
             ->where('created_at', '>', Carbon::now()->subHour())
             ->count();
 
-        if ($recentVotesCount > 10) {
+        if ($recentVotesCount > 60) {
+            return $prefix.'limit_exceeded';
+        }
+
+        if ($discussion->userRecentVotesCount($user) >= 3) {
             return $prefix.'limit_exceeded';
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionVoteDown($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.vote.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($discussion->user_id === $user->user_id) {
+            return $prefix.'owner';
+        }
+
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     public function checkBeatmapDiscussionPostDestroy($user, $post)
@@ -164,12 +190,12 @@ class OsuAuthorize
             return $prefix.'system_generated';
         }
 
-        if ($user->user_id !== $post->user_id) {
-            return $prefix.'not_owner';
+        if ($user->isGMT() || $user->isQAT()) {
+            return 'ok';
         }
 
-        if ($user->isQAT()) {
-            return 'ok';
+        if ($user->user_id !== $post->user_id) {
+            return $prefix.'not_owner';
         }
 
         return 'ok';
@@ -190,16 +216,12 @@ class OsuAuthorize
             return $prefix.'not_owner';
         }
 
-        if ($user->isQAT()) {
-            return 'ok';
-        }
-
         return 'ok';
     }
 
     public function checkBeatmapDiscussionPostRestore($user, $post)
     {
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -210,7 +232,7 @@ class OsuAuthorize
             return 'ok';
         }
 
-        if ($user !== null && $user->isQAT()) {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
             return 'ok';
         }
     }
@@ -242,6 +264,17 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetDescriptionEdit($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if ($user->user_id === $beatmapset->user_id || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        return 'beatmapset_description.edit.not_owner';
+    }
+
     public function checkBeatmapsetDisqualify($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
@@ -259,20 +292,33 @@ class OsuAuthorize
 
     public function checkBeatmapsetEventViewUserId($user, $event)
     {
+        if ($user !== null && $user->isQAT()) {
+            return 'ok';
+        }
+
         static $publicEvents = [
             BeatmapsetEvent::NOMINATE,
             BeatmapsetEvent::QUALIFY,
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
+            BeatmapsetEvent::KUDOSU_GAIN,
+            BeatmapsetEvent::KUDOSU_LOST,
         ];
-
-        if ($user !== null && $user->isQAT()) {
-            return 'ok';
-        }
 
         if (in_array($event->type, $publicEvents, true)) {
             return 'ok';
+        }
+
+        static $kudosuModerationEvents = [
+            BeatmapsetEvent::KUDOSU_ALLOW,
+            BeatmapsetEvent::KUDOSU_DENY,
+        ];
+
+        if (in_array($event->type, $kudosuModerationEvents, true)) {
+            if ($this->checkBeatmapDiscussionAllowOrDenyKudosu($user, null) === 'ok') {
+                return 'ok';
+            }
         }
     }
 

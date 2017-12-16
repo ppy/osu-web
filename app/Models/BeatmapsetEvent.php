@@ -34,6 +34,7 @@ class BeatmapsetEvent extends Model
     const KUDOSU_DENY = 'kudosu_deny';
     const KUDOSU_GAIN = 'kudosu_gain';
     const KUDOSU_LOST = 'kudosu_lost';
+    const KUDOSU_RECALCULATE = 'kudosu_recalculate';
 
     const ISSUE_RESOLVE = 'issue_resolve';
     const ISSUE_REOPEN = 'issue_reopen';
@@ -43,6 +44,8 @@ class BeatmapsetEvent extends Model
 
     const DISCUSSION_POST_DELETE = 'discussion_post_delete';
     const DISCUSSION_POST_RESTORE = 'discussion_post_restore';
+
+    const NOMINATION_RESET = 'nomination_reset';
 
     public static function log($type, $user, $object, $extraData = [])
     {
@@ -83,9 +86,19 @@ class BeatmapsetEvent extends Model
         return $query->where('type', self::NOMINATE);
     }
 
+    public function scopeNominationResets($query)
+    {
+        return $query->where('type', self::NOMINATION_RESET);
+    }
+
     public function scopeDisqualifications($query)
     {
         return $query->where('type', self::DISQUALIFY);
+    }
+
+    public function scopeDisqualificationAndNominationResetEvents($query)
+    {
+        return $query->whereIn('type', [self::DISQUALIFY, self::NOMINATION_RESET]);
     }
 
     public function hasArrayComment()

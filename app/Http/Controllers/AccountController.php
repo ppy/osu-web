@@ -21,11 +21,13 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\ImageProcessorException;
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\UserVerification;
 use App\Mail\UserEmailUpdated;
 use App\Mail\UserPasswordUpdated;
 use App\Models\User;
 use Auth;
+use DB;
 use Illuminate\Http\Request as HttpRequest;
 use Mail;
 use Request;
@@ -45,7 +47,15 @@ class AccountController extends Controller
             }
 
             return $next($request);
-        });
+        }, [
+            'except' => [
+                'edit',
+                'reissueCode',
+                'updateEmail',
+                'updatePassword',
+                'verify',
+            ],
+        ]);
 
         $this->middleware('verify-user');
         $this->middleware('throttle:60,10', [
@@ -116,17 +126,31 @@ class AccountController extends Controller
             ]
         );
 
-        if (count($customizationParams) > 0) {
-            Auth::user()
-                ->profileCustomization()
-                ->update($customizationParams);
+        try {
+            $ok = DB::transaction(function () use ($customizationParams, $userParams) {
+                if (count($customizationParams) > 0) {
+                    if (!Auth::user()->profileCustomization()->update($customizationParams)) {
+                        throw new ModelNotSavedException('failed saving model');
+                    }
+                }
+
+                if (count($userParams) > 0) {
+                    if (!Auth::user()->update($userParams)) {
+                        throw new ModelNotSavedException('failed saving model');
+                    }
+                }
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
+            $ok = false;
         }
 
-        if (count($userParams) > 0) {
-            Auth::user()->update($userParams);
+        if ($ok) {
+            return Auth::user()->defaultJson();
+        } else {
+            return error_popup(implode("\n", Auth::user()->validationErrors()->allMessages()));
         }
-
-        return Auth::user()->defaultJson();
     }
 
     public function updateEmail()

@@ -35,7 +35,7 @@
     data-url="{{ route('forum.topics.watch', [
         $topic,
         'watch' => false,
-        'page' => 'manage'
+        'return' => 'index'
     ]) }}"
     data-remote="1"
     data-method="POST"

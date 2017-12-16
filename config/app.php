@@ -92,6 +92,7 @@ return [
         'es',
         'fr',
         'it',
+        'ko',
         'nl',
         'pl',
         'pt-br',

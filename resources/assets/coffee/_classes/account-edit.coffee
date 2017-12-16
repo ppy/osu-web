@@ -91,4 +91,6 @@ class @AccountEdit
       return if status == 'abort'
 
       form.lastValue = prevValue
+      @clearState form
+
       osu.ajaxError xhr
