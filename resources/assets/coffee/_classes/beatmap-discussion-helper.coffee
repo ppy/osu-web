@@ -74,6 +74,7 @@ class @BeatmapDiscussionHelper
 
   @messageType:
     icon:
+      hype: 'bullhorn'
       mapperNote: 'sticky-note-o'
       praise: 'heart'
       problem: 'exclamation-circle'

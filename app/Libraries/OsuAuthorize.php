@@ -82,7 +82,25 @@ class OsuAuthorize
             return;
         }
 
-        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        if ($discussion->message_type === 'hype') {
+            return $prefix.'is_hype';
+        }
+
+        if ($discussion->relationLoaded('beatmapDiscussionPosts')) {
+            $visiblePosts = 0;
+
+            foreach ($discussion->beatmapDiscussionPosts as $post) {
+                if ($post->deleted_at !== null || $post->system) {
+                    continue;
+                }
+
+                $visiblePosts++;
+
+                if ($visiblePosts > 1) {
+                    return $prefix.'has_reply';
+                }
+            }
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 

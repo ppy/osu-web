@@ -64,6 +64,7 @@ return [
         ],
 
         'message_type' => [
+            'hype' => 'Hype!',
             'mapper_note' => 'Note',
             'praise' => 'Praise',
             'problem' => 'Problem',
@@ -109,9 +110,13 @@ return [
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button-done' => 'Already Hyped!',
-        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
-        'section-title' => 'Hype Train',
+        'button_done' => 'Already Hyped!',
+        'confirm' => "Are you sure? This will use one out of your remaining :n hypes and can't be undone.",
+        'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking!',
+        'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
+        'new_time' => "You'll get another hype at :new_time.",
+        'remaining' => 'You have :remaining hype left.',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 

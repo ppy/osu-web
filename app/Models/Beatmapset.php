@@ -82,6 +82,7 @@ class Beatmapset extends Model
         'qualified' => 3,
         'loved' => 4,
     ];
+    const HYPEABLE_STATES = [-1, 0, 3];
 
     const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
@@ -901,6 +902,44 @@ class Beatmapset extends Model
         return config('osu.beatmapset.required_hype');
     }
 
+    public function canBeHyped()
+    {
+        return in_array($this->approved, static::HYPEABLE_STATES, true);
+    }
+
+    public function validateHypeBy($user)
+    {
+        if ($user === null) {
+            $message = 'guest';
+        } else {
+            if ($this->user_id === $user->getKey()) {
+                $message = 'owner';
+            } else {
+                $hyped = $this
+                    ->beatmapDiscussions()
+                    ->withoutDeleted()
+                    ->ofType('hype')
+                    ->where('user_id', '=', $user->getKey())
+                    ->exists();
+
+                if ($hyped) {
+                    $message = 'hyped';
+                } elseif ($user->remainingHype() === 0) {
+                    $message = 'limit_exceeded';
+                }
+            }
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => trans("model_validation.beatmap_discussion.hype.{$message}"),
+            ];
+        } else {
+            return ['result' => true];
+        }
+    }
+
     public function requiredNominationCount()
     {
         return 2;
@@ -956,7 +995,7 @@ class Beatmapset extends Model
 
     public function defaultJson($currentUser = null)
     {
-        $includes = ['beatmaps', 'nominations'];
+        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }
@@ -972,6 +1011,7 @@ class Beatmapset extends Model
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
+                'beatmapset',
                 'beatmap_discussions.beatmap_discussion_posts',
                 'beatmap_discussions.current_user_attributes',
                 'beatmapset_events',

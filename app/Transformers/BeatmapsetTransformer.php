@@ -34,10 +34,11 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'availability',
         'beatmaps',
         'converts',
+        'current_user_attributes',
         'description',
-        'recentFavourites',
         'nominations',
         'ratings',
+        'recent_favourites',
         'user',
     ];
 
@@ -71,6 +72,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
+            'can_be_hyped' => $beatmapset->canBeHyped(),
             'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
         ];
     }
@@ -86,6 +88,28 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 'download_disabled' => $beatmapset->download_disabled,
                 'more_information' => $beatmapset->download_disabled_url,
             ];
+        });
+    }
+
+    public function includeCurrentUserAttributes(Beatmapset $beatmapset)
+    {
+        $currentUser = Auth::user();
+
+        if ($currentUser === null) {
+            return;
+        }
+
+        $hypeValidation = $beatmapset->validateHypeBy($currentUser);
+
+        $ret = [
+            'can_hype' => $hypeValidation['result'],
+            'can_hype_reason' => $hypeValidation['message'] ?? null,
+            'remaining_hype' => $currentUser->remainingHype(),
+            'new_hype_time' => json_time($currentUser->newHypeTime()),
+        ];
+
+        return $this->item($beatmapset, function () use ($ret) {
+            return $ret;
         });
     }
 

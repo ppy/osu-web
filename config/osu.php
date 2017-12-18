@@ -23,6 +23,7 @@ return [
     ],
     'beatmapset' => [
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
         'key' => env('CAMO_KEY'),

@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'Can not undo hyping.',
             'has_reply' => 'Can not delete discussion with replies',
         ],
         'nominate' => [
