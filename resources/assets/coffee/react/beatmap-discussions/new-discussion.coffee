@@ -154,7 +154,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
             if canHype
-              @submitButton 'hype', 'data-confirm': osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype)
+              @submitButton 'hype'
             if @props.currentUser.id == @props.beatmapset.user_id
               @submitButton 'mapper_note'
             @submitButton 'praise'
@@ -249,6 +249,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
       return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
+
+    if type == 'hype'
+      return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
 
     @postXhr?.abort()
     LoadingOverlay.show()
