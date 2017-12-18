@@ -372,7 +372,11 @@ class BeatmapDiscussion extends Model
     public function scopeOfType($query, $types)
     {
         foreach ((array) $types as $type) {
-            $intTypes[] = static::MESSAGE_TYPES[$type];
+            $intType = static::MESSAGE_TYPES[$type] ?? null;
+
+            if ($intType !== null) {
+                $intTypes[] = $intType;
+            }
         }
 
         $query->whereIn('message_type', $intTypes);
