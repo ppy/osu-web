@@ -54,6 +54,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__avatar",
           el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
+        @renderCancelButton()
+
         div className: "#{bn}__message-container",
           el TextareaAutosize,
             minRows: 3
@@ -61,7 +63,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             className: "#{bn}__message #{bn}__message--editor"
             value: @state.message
             onChange: @setMessage
-            onKeyDown: @handleEnter
+            onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
             inputRef: (el) => @box = el
 
@@ -74,6 +76,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         className: "#{bn}__footer"
         div className: "#{bn}__actions",
           div className: "#{bn}__actions-group",
+            @renderCancelButton()
+
             if @canResolve() && !@props.discussion.resolved
               @renderReplyButton
                 text: osu.trans('common.buttons.reply_resolve')
@@ -91,6 +95,14 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             @renderReplyButton
               text: osu.trans('common.buttons.reply')
               icon: 'reply'
+
+
+  renderCancelButton: =>
+    button
+      className: "#{bn}__action #{bn}__action--cancel"
+      disabled: @state.posting?
+      onClick: => @setState editing: false
+      el Icon, name: 'times'
 
 
   renderPlaceholder: =>
@@ -137,11 +149,12 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
-  handleEnter: (e) =>
-    return if e.keyCode != 13 || e.shiftKey
-
-    e.preventDefault()
-    @throttledPost(e)
+  handleKeyDown: (e) =>
+    if e.keyCode == 27
+      @setState editing: false
+    else if e.keyCode == 13 && !e.shiftKey
+      e.preventDefault()
+      @throttledPost(e)
 
 
   post: (event) =>
