@@ -48,9 +48,9 @@ trait StoreNotifiable
         $this->tryNotify(new OrderMessage($eventName, $order, $text));
     }
 
-    public function notifyError($exception, $order = null)
+    public function notifyError($exception, $order = null, $eventName = null, $context = [])
     {
-        $this->tryNotify(new ErrorMessage($exception, $order));
+        $this->tryNotify(new ErrorMessage($eventName, $exception, $order, $context));
     }
 
     public function notifyValidation(ValidationFailedEvent $event, $eventName)
