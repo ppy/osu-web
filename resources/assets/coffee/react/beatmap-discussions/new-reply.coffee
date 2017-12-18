@@ -54,6 +54,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__avatar",
           el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
+        @renderCancelButton()
+
         div className: "#{bn}__message-container",
           el TextareaAutosize,
             minRows: 3
@@ -96,15 +98,11 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   renderCancelButton: =>
-    props =
+    button
+      className: "#{bn}__action #{bn}__action--cancel"
       disabled: @state.posting?
       onClick: => @setState editing: false
-
-    div className: "#{bn}__action",
-      el BigButton,
-        text: osu.trans('common.buttons.cancel')
-        icon: if @state.posting then 'ellipsis-h' else 'times'
-        props: props
+      el Icon, name: 'times'
 
 
   renderPlaceholder: =>
