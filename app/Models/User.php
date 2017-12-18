@@ -731,7 +731,13 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function favouriteBeatmapsets()
     {
-        return Beatmapset::whereIn('beatmapset_id', $this->favourites()->select('beatmapset_id')->get());
+        $favouritesTable = (new FavouriteBeatmapset)->getTable();
+        $beatmapsetsTable = (new Beatmapset)->getTable();
+
+        return Beatmapset::select("{$beatmapsetsTable}.*")
+            ->join($favouritesTable, "{$favouritesTable}.beatmapset_id", '=', "{$beatmapsetsTable}.beatmapset_id")
+            ->where("{$favouritesTable}.user_id", '=', $this->user_id)
+            ->orderby("{$favouritesTable}.dateadded", 'desc');
     }
 
     public function beatmapsetNominations()
