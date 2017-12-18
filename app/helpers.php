@@ -874,8 +874,12 @@ function array_rand_val($array)
  *
  * If need to pluck for all rows, just call `select()` on the class.
  */
-function model_pluck($builder, $key)
+function model_pluck($builder, $key, $class = null)
 {
+    if ($class) {
+        $key = (new $class)->getTable().'.'.$key;
+    }
+
     $result = [];
 
     foreach ($builder->select($key)->get() as $el) {
