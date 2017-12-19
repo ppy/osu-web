@@ -1,12 +1,87 @@
 <?php
 
+use App\Models\Beatmap;
 use App\Models\BeatmapDifficulty;
+use App\Models\BeatmapFailtimes;
+use App\Models\Beatmapset;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class BeatmapSeeder extends Seeder
 {
+    // store some state to cut down querying
+    private $beatmapsets = [];
+    private $beatmaps = [];
+    private $existingMaps = [];
+    private $existingSets = [];
+
+
+    private function createBeatmapset($json)
+    {
+        $beatmapset = new Beatmapset();
+        $beatmapset->beatmapset_id = $json->beatmapset_id;
+        $beatmapset->creator = $json->creator;
+        $beatmapset->artist = $json->artist;
+        $beatmapset->title = $json->title;
+        $beatmapset->displaytitle = $json->title;
+        $beatmapset->source = $json->source;
+        $beatmapset->tags = $json->tags;
+        $beatmapset->bpm = $json->bpm;
+        $beatmapset->approved = $json->approved;
+        $beatmapset->approved_date = $json->approved_date;
+        $beatmapset->genre_id = $json->genre_id;
+        $beatmapset->language_id = $json->language_id;
+        $beatmapset->versions_available = 1;
+        $beatmapset->difficulty_names = '';
+        $beatmapset->play_count = 0;
+        $beatmapset->favourite_count = $json->favourite_count;
+        $beatmapset->user_id = $this->randomUser()['user_id'];
+        $beatmapset->submit_date = Carbon::now();
+
+        return $beatmapset;
+    }
+
+    private function createBeatmap($json)
+    {
+        $beatmap = new Beatmap();
+        $beatmap->beatmap_id = $json->beatmap_id;
+        $beatmap->beatmapset_id = $json->beatmapset_id;
+        $beatmap->filename = $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz';
+        $beatmap->checksum = $json->file_md5;
+        $beatmap->version = $json->version;
+        $beatmap->total_length = $json->total_length;
+        $beatmap->hit_length = $json->hit_length;
+        $beatmap->countTotal = $json->max_combo !== null ? $json->max_combo : 1500;
+        $beatmap->countNormal = round(intval($json->max_combo) - (0.2 * intval($json->max_combo)));
+        $beatmap->countSlider = round(intval($json->max_combo) - (0.8 * intval($json->max_combo)));
+        $beatmap->countSpinner = 1;
+        $beatmap->diff_drain = $json->diff_drain;
+        $beatmap->diff_size = $json->diff_size;
+        $beatmap->diff_overall = $json->diff_overall;
+        $beatmap->diff_approach = $json->diff_approach;
+        $beatmap->playmode = $json->mode;
+        $beatmap->approved = $json->approved;
+        $beatmap->difficultyrating = $json->difficultyrating;
+        $beatmap->playcount = $json->playcount;
+        $beatmap->passcount = $json->passcount;
+        $beatmap->user_id = $this->randomUser()['user_id'];
+
+        return $beatmap;
+    }
+
+    private function createBeatmapFailtimes($beatmap)
+    {
+        // Generating the beatmap failtimes
+        // just delete all the old ones and create new ones.
+        BeatmapFailtimes::where('beatmap_id', $beatmap->beatmap_id)->delete();
+
+        $beatmap->failtimes()->saveMany([
+            factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
+            factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
+        ]);
+    }
+
     /**
      * Run the database seeds.
      *
@@ -28,136 +103,62 @@ class BeatmapSeeder extends Seeder
         }
         $api = '&k='.$api_key;
 
+        // get beatmaps
         try {
-            $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
-            $last_beatmapset = null;
-            $beatmap_diff_names = [];
-            $beatmapset_versions = 0;
-            $set_playcount = 0;
-            $number_of_beatmaps = count($beatmaps);
-            $i = 0;
-            $first_map = true;
-            $last_map = false;
-
-            foreach ($beatmaps as $bm) {
-                $make_new_set = false;
-                if ($i === $number_of_beatmaps - 1) {
-                    $make_new_set = true;
-                    $last_map = true;
-                }
-
-                // Here we are going to check if the current beatmap belongs to a new set, and make the set if necessary
-                if ($last_beatmapset === $bm->beatmapset_id || $first_map === true) {
-                    $beatmapset_versions++;
-                    $beatmap_diff_names[] = $bm->version.'@'.$bm->mode;
-                    $set_playcount += $bm->playcount;
-                } else {
-                    $make_new_set = true;
-                }
-                if ($make_new_set === true) {
-                    if ($last_map === true) {
-                        $the_beatmap = $bm;
-                    } else {
-                        $the_beatmap = $previous_beatmap;
-                    }
-                    // Create new beatmapset
-                    $set = \App\Models\Beatmapset::where('beatmapset_id', $the_beatmap->beatmapset_id)->first();
-                    if ($set) {
-                        $set->delete();
-                        $overbeatmapsets[] = $the_beatmap->beatmapset_id;
-                    }
-                    $beatmap_diff_names = implode(',', $beatmap_diff_names);
-                    $set = new \App\Models\Beatmapset;
-                    $set->beatmapset_id = $the_beatmap->beatmapset_id;
-                    $set->creator = $the_beatmap->creator;
-                    $set->artist = $the_beatmap->artist;
-                    $set->title = $the_beatmap->title;
-                    $set->displaytitle = $the_beatmap->title;
-                    $set->source = $the_beatmap->source;
-                    $set->tags = $the_beatmap->tags;
-                    $set->bpm = $the_beatmap->bpm;
-                    $set->approved = $the_beatmap->approved;
-                    $set->approved_date = $the_beatmap->approved_date;
-                    $set->genre_id = $the_beatmap->genre_id;
-                    $set->language_id = $the_beatmap->language_id;
-                    $set->versions_available = $beatmapset_versions;
-                    $set->difficulty_names = $beatmap_diff_names;
-                    $set->play_count = $set_playcount;
-                    $set->favourite_count = $the_beatmap->favourite_count;
-                    $set->user_id = $this->randomUser()['user_id'];
-                    $set->submit_date = Carbon::now();
-                    $set->save();
-
-                    $set->difficulty_names = $beatmap_diff_names;
-                    $beatmapset_array[] = $set;
-
-                    $set_playcount = $bm->playcount;
-                    $beatmapset_versions = 1;
-                    $beatmap_diff_names = [$bm->version.'@'.$bm->mode];
-                }
-
-                if ($new_bm = \App\Models\Beatmap::where('beatmap_id', $bm->beatmap_id)->first()) {
-                    $new_bm->delete();
-                    $overbeatmaps[] = $new_bm;
-                }
-                $new_bm = new \App\Models\Beatmap;
-                $new_bm->beatmap_id = $bm->beatmap_id;
-                $new_bm->beatmapset_id = $bm->beatmapset_id;
-                $new_bm->filename = $bm->beatmapset_id.' '.$bm->artist.' - '.$bm->title.'.osz';
-                $new_bm->checksum = $bm->file_md5;
-                $new_bm->version = $bm->version;
-                $new_bm->total_length = $bm->total_length;
-                $new_bm->hit_length = $bm->hit_length;
-                $new_bm->countTotal = $bm->max_combo !== null ? $bm->max_combo : 1500;
-                $new_bm->countNormal = round(intval($bm->max_combo) - (0.2 * intval($bm->max_combo)));
-                $new_bm->countSlider = round(intval($bm->max_combo) - (0.8 * intval($bm->max_combo)));
-                $new_bm->countSpinner = 1;
-                $new_bm->diff_drain = $bm->diff_drain;
-                $new_bm->diff_size = $bm->diff_size;
-                $new_bm->diff_overall = $bm->diff_overall;
-                $new_bm->diff_approach = $bm->diff_approach;
-                $new_bm->playmode = $bm->mode;
-                $new_bm->approved = $bm->approved;
-                $new_bm->difficultyrating = $bm->difficultyrating;
-                $new_bm->playcount = $bm->playcount;
-                $new_bm->passcount = $bm->passcount;
-                $new_bm->user_id = $this->randomUser()['user_id'];
-
-                $failtimes = App\Models\BeatmapFailtimes::where('beatmap_id', $new_bm->beatmap_id)->get();
-
-                if (!$failtimes->isEmpty()) {
-                    foreach ($failtimes as $ft) {
-                        $ft->delete();
-                    }
-                }
-
-                // Generating the beatmap failtimes
-                $new_bm->failtimes()->saveMany([
-                    factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
-                    factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
-                ]);
-
-                $this->createDifficulty($beatmap);
-
-                $new_bm->save();
-
-                $beatmaps_array[] = $new_bm;
-
-                if ($first_map === true) {
-                    $first_map = false;
-                }
-                $last_beatmapset = $bm->beatmapset_id;
-                $previous_beatmap = $bm;
-                $i++;
-            } // end foreach beatmap
-
-            $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
-            $this->command->info('Saved '.strval(count($beatmapset_array)).' Beatmap Sets (Overwritten '.strval(count($overbeatmapsets)).').');
-        } catch (\Illuminate\Database\QueryException $e) {
-            $this->command->error("DB Error: Unable to save Beatmap Data\r\n".$e->getMessage());
+            $json = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
         } catch (Exception $ex) {
-            $this->command->error("Error: Unable to save Beatmap Data\r\n".$ex->getMessage());
+            $this->command->error('Unable to fetch Beatmap data');
+            $this->command->error($ex->getMessage());
+
+            return;
         }
+
+        $sets = $this->populateExisting($json);
+
+        foreach ($json as $item) {
+            $beatmapset = $this->existingSets[$item->beatmapset_id] ?? null;
+            $beatmap = $this->existingMaps[$item->beatmap_id] ?? null;
+
+            if ($beatmapset === null) {
+                $beatmapset = $this->createBeatmapset($item);
+                $beatmapset->save();
+            }
+            $this->beatmapsets[$beatmapset->beatmapset_id] = $beatmapset;
+
+            if ($beatmap === null) {
+                $beatmap = $this->createBeatmap($item);
+                $beatmap->save();
+            }
+            $this->beatmaps[$beatmap->beatmap_id] = $beatmap;
+
+            $this->createBeatmapFailtimes($beatmap);
+        }
+
+        foreach ($sets as $setId => $mapIds) {
+            $setPlaycount = 0;
+            $names = [];
+            foreach ($mapIds as $mapId) {
+                $beatmap = $this->beatmaps[$mapId];
+                $setPlaycount += $beatmap->playcount;
+                $names[] = $beatmap->version.'@'.$beatmap->mode;
+            }
+
+            // continue;
+            $beatmapset = $this->existingSets[$setId];
+            $beatmapset->versions_available = count($mapIds);
+            $beatmapset->play_count = $setPlaycount;
+            $beatmapset->difficulty_names = implode(',', $names);
+            $beatmapset->save();
+        }
+
+
+        //     $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
+        //     $this->command->info('Saved '.strval(count($beatmapset_array)).' Beatmap Sets (Overwritten '.strval(count($overbeatmapsets)).').');
+        // } catch (\Illuminate\Database\QueryException $e) {
+        //     $this->command->error("DB Error: Unable to save Beatmap Data\r\n".$e->getMessage());
+        // } catch (Exception $ex) {
+        //     $this->command->error("Error: Unable to save Beatmap Data\r\n".$ex->getMessage());
+        // }
     }
 
     private function createDifficulty($beatmap)
@@ -185,6 +186,38 @@ class BeatmapSeeder extends Seeder
                 'diff_unified' => $diff_unified,
             ]);
         }
+    }
+
+    private function populateExisting(array $beatmaps)
+    {
+        // grind some numbers
+        $sets = [];
+        foreach ($beatmaps as $bm) {
+            $ids = $sets[$bm->beatmapset_id] ?? null;
+            if ($ids === null) {
+                $sets[$bm->beatmapset_id] = [];
+            }
+
+            $sets[$bm->beatmapset_id][] = $bm->beatmap_id;
+        }
+
+        // get existing
+        $beatmapsetIds = array_keys($sets);
+        $beatmapIds = array_flatten(array_values($sets));
+
+        $this->existingSets = [];
+        $beatmapsets = Beatmapset::withoutGlobalScopes()->whereIn('beatmapset_id', $beatmapsetIds)->get();
+        foreach ($beatmapsets as $beatmapset) {
+            $this->existingSets[$beatmapset->beatmapset_id] = $beatmapset;
+        }
+
+        $this->existingMaps = [];
+        $beatmaps = Beatmap::withoutGlobalScopes()->whereIn('beatmap_id', $beatmapIds)->get();
+        foreach ($beatmaps as $beatmap) {
+            $this->existingMaps[$beatmap->beatmap_id] = $beatmap;
+        }
+
+        return $sets;
     }
 
     private function randomUser()
