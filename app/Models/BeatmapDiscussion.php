@@ -292,7 +292,7 @@ class BeatmapDiscussion extends Model
     public function title()
     {
         if ($this->beatmap_id === null) {
-            return $this->beatmapset->title;
+            return $this->beatmapset ? $this->beatmapset->title : '[deleted beatmap]';
         } elseif ($this->beatmap === null) {
             return '[deleted beatmap]';
         }
