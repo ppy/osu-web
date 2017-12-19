@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\BeatmapDifficulty;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -26,10 +27,6 @@ class BeatmapSeeder extends Seeder
             return;
         }
         $api = '&k='.$api_key;
-        $users = App\Models\User::orderByRaw('RAND()')->get()->toArray();
-        if (count($users) < 1) {
-            $users = [['user_id' => 1]];
-        }
 
         try {
             $beatmaps = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
@@ -87,7 +84,7 @@ class BeatmapSeeder extends Seeder
                     $set->difficulty_names = $beatmap_diff_names;
                     $set->play_count = $set_playcount;
                     $set->favourite_count = $the_beatmap->favourite_count;
-                    $set->user_id = array_rand_val($users)['user_id'];
+                    $set->user_id = $this->randomUser()['user_id'];
                     $set->submit_date = Carbon::now();
                     $set->save();
 
@@ -124,7 +121,7 @@ class BeatmapSeeder extends Seeder
                 $new_bm->difficultyrating = $bm->difficultyrating;
                 $new_bm->playcount = $bm->playcount;
                 $new_bm->passcount = $bm->passcount;
-                $new_bm->user_id = array_rand_val($users)['user_id'];
+                $new_bm->user_id = $this->randomUser()['user_id'];
 
                 $failtimes = App\Models\BeatmapFailtimes::where('beatmap_id', $new_bm->beatmap_id)->get();
 
@@ -188,5 +185,19 @@ class BeatmapSeeder extends Seeder
                 'diff_unified' => $diff_unified,
             ]);
         }
+    }
+
+    private function randomUser()
+    {
+        static $users;
+        if ($users === null) {
+            $users = User::orderByRaw('RAND()')->get()->toArray();
+
+            if (count($users) < 1) {
+                $users = [['user_id' => 1]];
+            }
+        }
+
+        return array_rand_val($users);
     }
 }
