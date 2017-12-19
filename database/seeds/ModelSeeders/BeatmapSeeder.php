@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BeatmapDifficulty;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
@@ -139,30 +140,7 @@ class BeatmapSeeder extends Seeder
                     factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
                 ]);
 
-                // difficulties
-                if ($bm->mode !== 0) {
-                    $modes = [$bm->mode];
-                } else {
-                    $modes = [0, 1, 2, 3];
-                }
-
-                foreach ($modes as $mode) {
-                    // fuzz the ratings for converts a little.
-                    $diff_unified = $mode === $bm->mode
-                        ? $bm->difficultyrating
-                        : $rand(-10000, 10000) / 10000;
-
-                    if ($diff_unified < 0) {
-                        $diff_unified = rand(1, 10000) / 10000;
-                    }
-
-                    $difficulty = \App\Models\BeatmapDifficulty::create([
-                        'beatmap_id' => $bm->beatmap_id,
-                        'mode' => $mode,
-                        'mods' => 0,
-                        'diff_unified' => $diff_unified,
-                    ]);
-                }
+                $this->createDifficulty($beatmap);
 
                 $new_bm->save();
 
@@ -182,6 +160,33 @@ class BeatmapSeeder extends Seeder
             $this->command->error("DB Error: Unable to save Beatmap Data\r\n".$e->getMessage());
         } catch (Exception $ex) {
             $this->command->error("Error: Unable to save Beatmap Data\r\n".$ex->getMessage());
+        }
+    }
+
+    private function createDifficulty($beatmap)
+    {
+        if ($beatmap->mode !== 0) {
+            $modes = [$beatmap->mode];
+        } else {
+            $modes = [0, 1, 2, 3];
+        }
+
+        foreach ($modes as $mode) {
+            // fuzz the ratings for converts a little.
+            $diff_unified = $mode === $beatmap->mode
+                ? $beatmap->difficultyrating
+                : $rand(-10000, 10000) / 10000;
+
+            if ($diff_unified < 0) {
+                $diff_unified = rand(1, 10000) / 10000;
+            }
+
+            BeatmapDifficulty::create([
+                'beatmap_id' => $beatmap->beatmap_id,
+                'mode' => $mode,
+                'mods' => 0,
+                'diff_unified' => $diff_unified,
+            ]);
         }
     }
 }
