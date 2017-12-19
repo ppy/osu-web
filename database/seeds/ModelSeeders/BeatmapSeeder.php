@@ -139,6 +139,31 @@ class BeatmapSeeder extends Seeder
                     factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
                 ]);
 
+                // difficulties
+                if ($bm->mode !== 0) {
+                    $modes = [$bm->mode];
+                } else {
+                    $modes = [0, 1, 2, 3];
+                }
+
+                foreach ($modes as $mode) {
+                    // fuzz the ratings for converts a little.
+                    $diff_unified = $mode === $bm->mode
+                        ? $bm->difficultyrating
+                        : $rand(-10000, 10000) / 10000;
+
+                    if ($diff_unified < 0) {
+                        $diff_unified = rand(1, 10000) / 10000;
+                    }
+
+                    $difficulty = \App\Models\BeatmapDifficulty::create([
+                        'beatmap_id' => $bm->beatmap_id,
+                        'mode' => $mode,
+                        'mods' => 0,
+                        'diff_unified' => $diff_unified,
+                    ]);
+                }
+
                 $new_bm->save();
 
                 $beatmaps_array[] = $new_bm;
