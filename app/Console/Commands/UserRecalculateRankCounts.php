@@ -85,14 +85,19 @@ class UserRecalculateRankCounts extends Command
 
         $query->chunkById(1000, function ($chunk) use ($bar) {
             foreach ($chunk as $stats) {
-                $counts = $this->getCountsWithStats($stats);
-                $stats->update([
-                    'x_rank_count' => $counts['X'],
-                    's_rank_count' => $counts['S'],
-                    'a_rank_count' => $counts['A'],
-                ]);
+                try {
+                    $counts = $this->getCountsWithStats($stats);
+                    $stats->update([
+                        'x_rank_count' => $counts['X'],
+                        's_rank_count' => $counts['S'],
+                        'a_rank_count' => $counts['A'],
+                    ]);
 
-                $bar->advance();
+                    $bar->advance();
+                } catch (Exception $e) {
+                    $this->error("Exception caught, user_id: {$stats->user_id}");
+                    $this->error($e->getMessage());
+                }
             }
         }, 'user_id');
 
