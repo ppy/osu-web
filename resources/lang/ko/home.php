@@ -86,30 +86,6 @@ return [
         ],
     ],
 
-    'download' => [
-      'header' => [
-          '1' => '같이 한 번', // let's get
-          '2' => '시작해보자구요!', // you started
-          '3' => 'Windows에서 osu! 게임 클라이언트 다운로드 하기',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => '1 단계',
-              'content' => 'osu! 게임 클라이언트를 다운로드하세요',
-          ],
-          '2' => [
-              'name' => '2 단계',
-              'content' => 'osu! 계정을 생성하세요',
-          ],
-          '3' => [
-              'name' => '3 단계',
-              'content' => '???',
-          ],
-      ],
-      'more' => '더 알아보실래요?',
-      'more_text' => '<a href="https://www.youtube.com/user/osuacademy/">osu!아카데미 유튜브 채널</a>을 확인해보세요 osu!를 더 즐길 수 있는 최신 튜토리얼과 팁들이 있습니다!',
-    ],
-
     'user' => [
         'title' => 'news',
         'news' => [
