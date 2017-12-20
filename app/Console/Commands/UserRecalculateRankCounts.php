@@ -89,7 +89,9 @@ class UserRecalculateRankCounts extends Command
                     $counts = $this->getCountsWithStats($stats);
                     $stats->update([
                         'x_rank_count' => $counts['X'],
+                        'xh_rank_count' => $counts['XH'],
                         's_rank_count' => $counts['S'],
+                        'sh_rank_count' => $counts['SH'],
                         'a_rank_count' => $counts['A'],
                     ]);
 
