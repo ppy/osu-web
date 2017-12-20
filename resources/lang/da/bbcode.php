@@ -19,20 +19,20 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
+    'bold' => 'Fed',
+    'heading' => 'Overskrift',
+    'image' => 'Billede',
     'italic' => 'Italic',
     'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
+    'list' => 'Liste',
+    'list_numbered' => 'Numereret List',
     'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
+        '_' => 'Skriftstørrelse',
+        'tiny' => 'Meget lille',
+        'small' => 'Lille',
         'normal' => 'Normal',
-        'large' => 'Large',
+        'large' => 'Stor',
     ],
     'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+    'strikethrough' => 'Gennemstreget',
 ];
