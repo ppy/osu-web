@@ -111,6 +111,7 @@ return [
                 'description' => 'the vast library of user-created beatmaps and start playing!',
             ],
         ],
+        'video-guide' => 'video guide',
     ],
 
     'user' => [
