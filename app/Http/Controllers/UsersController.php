@@ -354,6 +354,7 @@ class UsersController extends Controller
     {
         return json_collection(
             $user->profileBeatmapsetsRankedAndApproved()
+                ->orderBy('approved_date', 'desc')
                 ->limit($perPage)
                 ->offset($offset)
                 ->get(),
@@ -379,6 +380,7 @@ class UsersController extends Controller
         return json_collection(
             $user->profileBeatmapsetsUnranked()
                 ->limit($perPage)
+                ->orderBy('last_update', 'desc')
                 ->offset($offset)
                 ->get(),
             'BeatmapsetCompact',
@@ -390,6 +392,7 @@ class UsersController extends Controller
     {
         return json_collection(
             $user->profileBeatmapsetsGraveyard()
+                ->orderBy('last_update', 'desc')
                 ->limit($perPage)
                 ->offset($offset)
                 ->get(),
