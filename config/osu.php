@@ -80,6 +80,7 @@ return [
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
         'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
         'osx' => 'https://osx.ppy.sh',
+        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 

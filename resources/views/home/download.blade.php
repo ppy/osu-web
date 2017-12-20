@@ -81,5 +81,11 @@
     </div>
     <div class="download-page__accent"></div>
 </div>
+<div class="osu-layout__row osu-layout__row--page-download">
+    <div class="download-page__video-header">video guide</div>
+    <div class="download-page__video-embed">
+        <iframe src="https://youtube.com/embed/videoseries?list={{ config('osu.urls.youtube-tutorial-playlist') }}" width="" height="350"></iframe>
+    </div>
+</div>
 @endsection
 
