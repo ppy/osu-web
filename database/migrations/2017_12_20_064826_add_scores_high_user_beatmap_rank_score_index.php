@@ -19,8 +19,8 @@ class AddScoresHighUserBeatmapRankScoreIndex extends Migration
 
         // Doctrine still doesn't support enum in tables, so using Schema to check if the index exists explodes.
         if (DB::select("SHOW INDEX FROM osu_scores_high WHERE KEY_NAME = 'user_beatmap_rank'") !== []) {
-            DB::statement("DROP INDEX user_beatmap_rank ON osu_scores_high");
-        };
+            DB::statement('DROP INDEX user_beatmap_rank ON osu_scores_high');
+        }
     }
 
     /**
