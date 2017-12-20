@@ -33,7 +33,7 @@ class UserRecalculateRankCounts extends Command
      *
      * @var string
      */
-    protected $signature = 'user:recalculate-rank-counts';
+    protected $signature = 'user:recalculate-rank-counts {--from=} {--until=}';
 
     /**
      * The console command description.
@@ -49,6 +49,9 @@ class UserRecalculateRankCounts extends Command
      */
     public function handle()
     {
+        $this->from = $this->option('from');
+        $this->until = $this->option('until');
+
         $continue = $this->confirm('This will recalculate and update the rank counts for user statistics, continue?');
 
         if (!$continue) {
@@ -68,11 +71,19 @@ class UserRecalculateRankCounts extends Command
     {
         $this->info("Recalculating {$mode}");
         $class = UserStatistics::class.'\\'.studly_case($mode);
+        $query = $class::query();
+        if (present($this->from)) {
+            $query->where('user_id', '>', $this->from);
+        }
 
-        $count = $class::count();
+        if (present($this->until)) {
+            $query->where('user_id', '<', $this->until);
+        }
+
+        $count = $query->count();
         $bar = $this->output->createProgressBar($count);
 
-        $class::chunkById(1000, function ($chunk) use ($bar) {
+        $query->chunkById(1000, function ($chunk) use ($bar) {
             foreach ($chunk as $stats) {
                 $counts = $this->getCountsWithStats($stats);
                 $stats->update([
