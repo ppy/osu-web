@@ -250,7 +250,6 @@ class ProfilePage.Main extends React.PureComponent
     url = showMoreLink.dataset.showMoreUrl
     offset = @state[propertyName].length
     perPage = parseInt(showMoreLink.dataset.showMorePerPage)
-    console.log perPage
     maxResults = parseInt(showMoreLink.dataset.showMoreMaxResults)
 
     paginationState = _.cloneDeep @state.showMorePagination
