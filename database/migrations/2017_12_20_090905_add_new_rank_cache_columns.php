@@ -39,17 +39,17 @@ class AddNewRankCacheColumns extends Migration
      */
     public function down()
     {
-        Schema::table('osu_user_stats', function (Blueprint $table) {
+        Schema::table('osu_user_stats', function ($table) {
             $table->dropColumn('xh_rank_count');
             $table->dropColumn('sh_rank_count');
         });
 
-        Schema::table('osu_user_stats_taiko', function (Blueprint $table) {
+        Schema::table('osu_user_stats_taiko', function ($table) {
             $table->dropColumn('xh_rank_count');
             $table->dropColumn('sh_rank_count');
         });
 
-        Schema::table('osu_user_stats_fruits', function (Blueprint $table) {
+        Schema::table('osu_user_stats_fruits', function ($table) {
             $table->dropColumn('xh_rank_count');
             $table->dropColumn('sh_rank_count');
         });
