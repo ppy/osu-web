@@ -22,19 +22,19 @@ return [
 
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerate',
-            'regenerating' => 'Regenerating...',
-            'remove' => 'Remove',
-            'removing' => 'Removing...',
+            'regenerate' => 'Regenerer',
+            'regenerating' => 'Regenererer...',
+            'remove' => 'Fjern',
+            'removing' => 'Fjerner...',
         ],
         'show' => [
-            'covers' => 'Manage Beatmapset Covers',
+            'covers' => 'Administrer Beatmapset Covers',
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                'activate' => 'aktiver',
+                'activate_confirm' => 'aktiver modding v2 for denne beatmap?',
+                'active' => 'aktiv',
+                'inactive' => 'inaktiv',
             ],
         ],
     ],
@@ -42,21 +42,21 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => 'Fjern',
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => 'Intet cover set',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => 'Gem',
+                    'update' => 'Opdater',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => 'Forum Covers Liste',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
+                    'default-topic' => 'Standard Topic Cover',
                     'main' => 'Forum Cover',
                 ],
             ],
@@ -65,18 +65,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => 'Logbog',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => 'Administrator Konsol Tingest',
 
             'sections' => [
                 'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'general' => 'Generelt',
+                'store' => 'Butik',
             ],
         ],
     ],
@@ -84,15 +84,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => 'Ordre Katalogisering',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => 'Denne bruger er i øjeblikket begrænset.',
+            'message' => '(kun administratorer kan se dette)',
         ],
     ],
 
