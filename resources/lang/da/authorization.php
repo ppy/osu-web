@@ -21,133 +21,133 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Can not undo hyping.',
-            'has_reply' => 'Can not delete discussion with replies',
+            'is_hype' => 'Kan ikke ophæve hyping.',
+            'has_reply' => 'Kan ikke slette en diskussion med svar',
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
         ],
         'resolve' => [
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            'not_owner' => 'Kun trådens person af oprindelse og beatmap ejer kan løse en diskussion.',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
+            'owner' => 'Du kan ikke stemme på din egen diskussion!',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+            'system_generated' => 'Automatisk genererede opslag kan ikke slettes.',
+            'not_owner' => 'Kun ejeren af dette opslag kan ændre det.',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
+                'no_access' => 'Adgang til den anmodede kanal er nægtet.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
+                    'no_access' => 'Adgang til den anmodede kanal er nødvendig.',
+                    'moderated' => 'Kanal er i øjeblikket modereret.',
+                    'not_lazer' => 'Du kan i øjeblikket kun tale i #lazer.',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => 'Kan ikke sende besked når bannet/begrænset/mutet.',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => 'Du kan ikke ændre din stemme efter stemmeperioden for denne konkurrence er slut.',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Only last post can be deleted.',
-                'locked' => 'Can not delete post of a locked topic.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'only_last_post' => 'Kun sidste opslag kan blive slettet.',
+                'locked' => 'Kan ikke slette opslag fra låste emner.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
+                'not_owner' => 'Kun ejeren af dette opslag kan slette opslaget.',
             ],
 
             'edit' => [
-                'deleted' => 'Can not edit deleted post.',
-                'locked' => 'The post is locked from editing.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
+                'deleted' => 'Kan ikke ændre slettet opslag',
+                'locked' => 'Dette opslag er låst fra at blive redigeret.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
+                'not_owner' => 'Kun ejeren af dette opslag kan slette opslaget.',
+                'topic_locked' => 'Kan ikke slette opslag fra låste emner.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
-                'locked' => 'Can not reply to a locked thread.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to reply.',
+                'double_post' => 'Du har lige slået dette op! Vent et stykke tid, eller rediger dit seneste opslag.',
+                'locked' => 'Kan ikke svare til en låst tråd.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
+                'no_permission' => 'Du har ikke tilladelse til at svare.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
+                    'require_login' => 'Log venligst ind for at svare.',
+                    'restricted' => "Du kan ikke svare, når du er begrænset.",
+                    'silenced' => "Du kan ikke svare, når dui er mutet.",
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
+                'no_permission' => 'Du har ikke tilladelse til at lave et nyt emne.',
+                'forum_closed' => 'Forummet er lukket og intet kan blive slået op.',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'over' => 'Polling is over and can not be voted on anymore.',
-                'voted' => 'Changing vote is not allowed.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
+                'over' => 'Stemmeafgivningen er slut og kan ikke stemmes på længere.',
+                'voted' => 'Det er ikke tilladt at ændre stemme.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
+                    'require_login' => 'Log venligst ind for at stemme.',
+                    'restricted' => "Du kan ikke stemme, når du er begrænset.",
+                    'silenced' => "Du kan ikke stemme, når du er mutet.",
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
+                'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => 'Ugyldigt cover valgt.',
+                'not_owner' => 'Kun ejeren kan redigere dette cover.',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
+            'admin_only' => 'Kun administratorer kan se dette forum.',
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Log venligst ind for at fortsætte.',
 
-    'unauthorized' => 'Access denied.',
+    'unauthorized' => 'Adgang nægtet.',
 
-    'silenced' => "Can't do that while silenced.",
+    'silenced' => "Det kan du ikke gøre, når du er mutet.",
 
-    'restricted' => "Can't do that while restricted.",
+    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page is locked.',
-                'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'locked' => 'Brugerside er låst.',
+                'not_owner' => 'Du kan kun ændre din egen brugerside.',
+                'require_supporter_tag' => 'Supporter tag er nødvendigt.',
             ],
         ],
     ],
