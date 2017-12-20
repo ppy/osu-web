@@ -17,6 +17,16 @@
  */
 
 .download-page {
+  &__accent {
+    width: 100%;
+    height: 10px;
+    background-color: @pink;
+  }
+
+  &__button {
+    margin-bottom: 20px;
+  }
+
   &__header-content {
     display: flex;
     flex-direction: column;
@@ -31,6 +41,18 @@
     }
   }
 
+  &__header-text {
+    font-size: 10px;
+
+    a {
+      color: #ffffff;
+    }
+
+    a:link, a:visited, a:hover, a:active {
+      color: #ffffff;
+    }
+  }
+
   &__tagline {
     font-size: 30px;
     font-weight: 200;
@@ -42,22 +64,6 @@
   &__icon {
     font-size: 24px;
     padding-bottom: 20px;
-  }
-
-  &__button {
-    margin-bottom: 20px;
-  }
-
-  &__text {
-    font-size: 10px;
-
-    a {
-      color: #ffffff;
-    }
-
-    a:link, a:visited, a:hover, a:active {
-      color: #ffffff;
-    }
   }
 
   &__info {
@@ -82,6 +88,10 @@
     padding-bottom: 10px;
   }
 
+  &__step-bottom {
+    padding-left: 32px;
+  }
+
   &__step-number {
     .circle(28px);
     border: solid @pink 2px;
@@ -101,16 +111,16 @@
     font-size: 15px;
     color: #ffffff;
 
-    &--description {
-      font-size: 11px;
-    }
-
     &--accent {
       color: @pink-light;
 
       &:link, &:visited, &:hover, &:active {
         color: @pink-light;
       }
+    }
+
+    &--description {
+      font-size: 11px;
     }
   }
 
@@ -120,15 +130,5 @@
     align-items: center;
 
     padding-bottom: 15px;
-  }
-
-  &__step-bottom {
-    padding-left: 32px;
-  }
-
-  &__accent {
-    width: 100%;
-    height: 10px;
-    background-color: @pink;
   }
 }

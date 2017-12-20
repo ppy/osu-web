@@ -30,7 +30,7 @@
                 <span class="btn-osu-big__text-bottom">{{ trans('home.download.os.windows') }}</span>
             </a>
 
-            <p class="download-page__text">
+            <p class="download-page__header-text">
                 <a href="{{ config('osu.urls.installer-mirror') }}">{{ trans('home.download.mirror') }}</a> -
                 <a href="{{ config('osu.urls.osx') }}">{{ trans('home.download.macos-fallback') }}</a>
             </p>
