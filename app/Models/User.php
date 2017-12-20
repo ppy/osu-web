@@ -709,6 +709,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(BeatmapDiscussionVote::class, 'user_id');
     }
 
+    public function beatmapDiscussions()
+    {
+        return $this->hasMany(BeatmapDiscussion::class, 'user_id');
+    }
+
     public function beatmapsets()
     {
         return $this->hasMany(Beatmapset::class, 'user_id');
@@ -731,7 +736,13 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function favouriteBeatmapsets()
     {
-        return Beatmapset::whereIn('beatmapset_id', $this->favourites()->select('beatmapset_id')->get());
+        $favouritesTable = (new FavouriteBeatmapset)->getTable();
+        $beatmapsetsTable = (new Beatmapset)->getTable();
+
+        return Beatmapset::select("{$beatmapsetsTable}.*")
+            ->join($favouritesTable, "{$favouritesTable}.beatmapset_id", '=', "{$beatmapsetsTable}.beatmapset_id")
+            ->where("{$favouritesTable}.user_id", '=', $this->user_id)
+            ->orderby("{$favouritesTable}.dateadded", 'desc');
     }
 
     public function beatmapsetNominations()
@@ -1052,6 +1063,39 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function hasFavourited($beatmapset)
     {
         return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
+    }
+
+    public function remainingHype()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $hyped = $this
+                ->beatmapDiscussions()
+                ->withoutDeleted()
+                ->ofType('hype')
+                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->count();
+
+            $this->memoized[__FUNCTION__] = max(0, config('osu.beatmapset.user_weekly_hype') - $hyped);
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
+    public function newHypeTime()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $earliestWeeklyHype = $this
+                ->beatmapDiscussions()
+                ->withoutDeleted()
+                ->ofType('hype')
+                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->orderBy('created_at')
+                ->first();
+
+            $this->memoized[__FUNCTION__] = $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+        }
+
+        return $this->memoized[__FUNCTION__];
     }
 
     public function flags()

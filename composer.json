@@ -33,7 +33,7 @@
     "league/fractal": "^0.14.0",
     "lord/laroute": "~2.0",
     "maknz/slack": "dev-laravel-5.4",
-    "mariuzzo/laravel-js-localization": "*",
+    "mariuzzo/laravel-js-localization": "^1.4",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "^0.7.0",
     "shift31/laravel-elasticsearch": "~1.0",

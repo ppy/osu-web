@@ -20,6 +20,7 @@
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
     Route::post('/beatmapsets/{beatmapset}/covers/regenerate', 'BeatmapsetsController@regenerateCovers')->name('beatmapsets.covers.regenerate');
+    Route::post('/beatmapsets/{beatmapset}/covers/remove', 'BeatmapsetsController@removeCovers')->name('beatmapsets.covers.remove');
     Route::resource('beatmapsets', 'BeatmapsetsController', ['only' => ['show', 'update']]);
 
     Route::post('contests/{id}/zip', 'ContestsController@gimmeZip')->name('contests.get-zip');

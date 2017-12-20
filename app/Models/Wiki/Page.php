@@ -199,25 +199,27 @@ class Page
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
-    public function indexAdd($page)
+    public function indexAdd()
     {
         $params = static::searchIndexConfig();
 
-        if ($page === null) {
+        if ($this->page() === null) {
             $params['body'] = [
                 'locale' => null,
+                'page' => null,
+                'page_text' => null,
                 'path' => null,
                 'path_clean' => null,
-                'page_text' => null,
-                'page' => null,
+                'title' => null,
             ];
         } else {
             $params['body'] = [
                 'locale' => $this->locale,
+                'page' => json_encode($this->page()),
+                'page_text' => replace_tags_with_spaces($this->page()['output']),
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
-                'page_text' => replace_tags_with_spaces($page['output']),
-                'page' => json_encode($page),
+                'title' => $this->title(),
             ];
         }
 
@@ -297,16 +299,18 @@ class Page
                             'path' => route('wiki.show', $this->path),
                         ]);
                     }
+                }
 
-                    $this->indexAdd($page);
+                $this->cache['page'] = $page;
+
+                if ($fetch) {
+                    $this->indexAdd();
                 }
 
                 if ($page !== null) {
                     break;
                 }
             }
-
-            $this->cache['page'] = $page;
         }
 
         return $this->cache['page'];
