@@ -246,17 +246,16 @@ class @Forum
 
       if mode == 'previous'
         $linkDiv.after data
-
-        if @posts.length > @maxPosts
-          parent = @posts[0].parentNode
-          parent.removeChild(post) for post in _.slice(@posts, @maxPosts)
+        toRemoveStart = @maxPosts
+        toRemoveEnd = @posts.length
       else
         $linkDiv.before data
+        toRemoveStart = 0
+        toRemoveEnd = @posts.length - @maxPosts
 
-        toRemove = @posts.length - @maxPosts
-        if toRemove > 0
-          parent = @posts[0].parentNode
-          parent.removeChild(post) for post in _.slice(@posts, 0, toRemove)
+      if toRemoveStart < toRemoveEnd
+        parent = @posts[0].parentNode
+        parent.removeChild(post) for post in _.slice(@posts, toRemoveStart, toRemoveEnd)
 
       @refreshLoadMoreLinks()
 
