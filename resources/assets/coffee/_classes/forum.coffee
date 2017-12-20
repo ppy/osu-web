@@ -35,6 +35,8 @@ class @Forum
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
+    @maxPosts = 250
+
     $(document).on 'turbolinks:load osu:page:change', @boot
 
     $(window).on 'throttled-scroll', @refreshCounter
@@ -239,26 +241,33 @@ class @Forum
 
     $.get(window.canonicalUrl, options)
     .done (data) =>
-      if mode == 'previous'
-        scrollReference = $refPost[0]
-        scrollReferenceTop = scrollReference.getBoundingClientRect().top
+      scrollReference = $refPost[0]
+      scrollReferenceTop = scrollReference.getBoundingClientRect().top
 
+      if mode == 'previous'
         $linkDiv.after data
 
-        # Restore scroll position after prepending the page.
-        # Called after refreshLoadMoreLinks to allow header changes
-        # to be included in calculation.
-        restoreScrollPosition = =>
-          x = window.pageXOffset
-          currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
-          currentDocumentScrollTop = window.pageYOffset
-          targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
-          window.scrollTo x, targetDocumentScrollTop
+        if @posts.length > @maxPosts
+          parent = @posts[0].parentNode
+          parent.removeChild(post) for post in _.slice(@posts, @maxPosts)
       else
         $linkDiv.before data
 
+        toRemove = @posts.length - @maxPosts
+        if toRemove > 0
+          parent = @posts[0].parentNode
+          parent.removeChild(post) for post in _.slice(@posts, 0, toRemove)
+
       @refreshLoadMoreLinks()
-      restoreScrollPosition?()
+
+      # Restore scroll position after adding/removing posts.
+      # Called after refreshLoadMoreLinks to allow header changes
+      # to be included in calculation.
+      x = window.pageXOffset
+      currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
+      currentDocumentScrollTop = window.pageYOffset
+      targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
+      window.scrollTo x, targetDocumentScrollTop
 
       osu.pageChange()
       $link.attr 'data-failed', '0'
