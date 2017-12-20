@@ -20,11 +20,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
-use App\Models\User;
-use App\Models\UsernameChangeHistory;
-use Carbon\Carbon;
+use App\Models\Beatmap;
+use App\Models\Score\Best;
+use App\Models\UserStatistics;
 use Exception;
 use Illuminate\Console\Command;
 
@@ -59,28 +57,41 @@ class UserRecalculateRankCounts extends Command
 
         $start = time();
 
-        $users = User::withoutGlobalScopes();
-        $users->chunkById(1000, function ($chunk) {
-            foreach ($chunk as $user) {
-                $this->process($user);
+        foreach (Beatmap::MODES as $mode => $id) {
+            $this->processMode($mode);
+        }
+
+        $this->warn("\n".(time() - $start).'s taken.');
+    }
+
+    private function processMode($mode)
+    {
+        $this->info("Recalculating {$mode}");
+        $class = UserStatistics::class.'\\'.studly_case($mode);
+        $class::chunkById(1000, function ($chunk) {
+            foreach ($chunk as $stats) {
+                $counts = $this->getCountsWithStats($stats);
+                $stats->update([
+                    'x_rank_count' => $counts['X'],
+                    's_rank_count' => $counts['S'],
+                    'a_rank_count' => $counts['A'],
+                ]);
             }
         }, 'user_id');
     }
 
-    private function process($user)
+    private function getCountsWithStats($stats)
     {
-        // var_dump($user->user_id);
-        $this->rankCounts($user->scoresBestOsu());
-        $this->rankCounts($user->scoresBestFruits());
-        $this->rankCounts($user->scoresBestMania());
-        $this->rankCounts($user->scoresBestTaiko());
+        $class = Best::class.'\\'.get_class_basename(get_class($stats));
+        $counts = $class::where('user_id', '=', $stats->user_id)
+            ->rankCounts()
+            [$stats->user_id] ?? [];
+
+        return $this->map($counts);
     }
 
-    private function rankCounts($scores)
+    private function map($values)
     {
-        $counts = $scores->rankCounts();
-        $values = array_values($counts)[0] ?? [];
-
         return [
             'XH' => $values['XH'] ?? 0,
             'SH' => $values['SH'] ?? 0,
