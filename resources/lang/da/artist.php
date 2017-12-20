@@ -19,30 +19,30 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'Udvalgte artister på osu!',
+    'title' => 'Udvalgte artister',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => 'ARTISTEN ER I ØJEBLIKKET SKJULT',
     ],
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        'download' => 'Download Beatmap Skabelon',
+        'download-na' => 'Beatmap Skabelon er ikke tilgængelig endnu',
     ],
 
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => 'Udvalgte artister er artister, som vi samarbejder med for at skabe nyt og originalt musik til osu!. Disse artiser og et udvalg af deres spor er blevet specielt udvalgt af osu! teamet for at være gode til at blive mappet. Nogle af de udvalgte artister har også skabt eksklusive nye sange bare for at kunne blive brugt i osu!.<br><br>Alle spor i denne sektion er fremskaffede som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
     ],
-
+        
     'links' => [
-        'site' => 'Official Website',
+        'site' => 'Officiel Hjemmeside',
     ],
 
     'songs' => [
-        '_' => 'Songs',
-        'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
+        '_' => 'Sange',
+        'count' => '1 sang|:tæl sange',
+        'exclusive' => 'osu! exklusive',
     ],
 ];
