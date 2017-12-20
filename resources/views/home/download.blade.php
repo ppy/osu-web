@@ -37,5 +37,49 @@
         </div>
     </div>
 </div>
+<div class="osu-layout__row osu-layout__row--page-download">
+    <div class="download-page__info">
+        <div class="download-page__step">
+            <div class="download-page__step-top">
+                <span class="download-page__step-number">1</span>
+                <span class="download-page__step-text">{{ trans("home.download.steps.download.title") }}</span>
+            </div>
+            <div class="download-page__step-bottom">
+                <p class="download-page__step-text download-page__step-text--description">
+                    {{ trans("home.download.steps.download.description") }}
+                </p>
+            </div>
+        </div>
+        <div class="download-page__step">
+            <div class="download-page__step-top">
+                <span class="download-page__step-number">2</span>
+                <span class="download-page__step-text">{{ trans('home.download.steps.register.title') }}</span>
+            </div>
+            <div class="download-page__step-bottom">
+                <p class="download-page__step-text download-page__step-text--description">
+                    {{ trans('home.download.steps.register.description') }}
+                </p>
+            </div>
+        </div>
+        <div class="download-page__step">
+            <div class="download-page__step-top">
+                <span class="download-page__step-number">3</span>
+                <span class="download-page__step-text">{{ trans("home.download.steps.beatmaps.title") }}</span>
+            </div>
+            <div class="download-page__step-bottom">
+                <p class="download-page__step-text download-page__step-text--description">
+                    <a
+                        class="download-page__step-text download-page__step-text--description download-page__step-text--accent"
+                        href="{{ action('BeatmapsetsController@index') }}"
+                    >
+                        {{ trans('home.download.steps.beatmaps.description-accent') }}
+                    </a>
+                    {{ trans("home.download.steps.beatmaps.description") }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="download-page__accent"></div>
+</div>
 @endsection
 

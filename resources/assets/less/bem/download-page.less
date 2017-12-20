@@ -22,9 +22,13 @@
     flex-direction: column;
     align-items: center;
 
-    margin-left: 90px;
+    margin: 20px 0;
     margin-top: 80px;
-    width: 180px;
+
+    @media @desktop {
+      margin-left: 90px;
+      width: 180px;
+    }
   }
 
   &__tagline {
@@ -59,8 +63,67 @@
   &__info {
     display: flex;
     flex-grow: 1;
+    justify-content: space-between;
 
-    height: 190px;
+    padding: 40px 20px;
+
+    @media @desktop {
+      height: 190px;
+      padding: 40px 100px;
+    }
+
+    @media @mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__step {
+    width: 220px;
+    padding-bottom: 10px;
+  }
+
+  &__step-number {
+    .circle(28px);
+    border: solid @pink 2px;
+
+    font-size: 15px;
+    line-height: 15px;
+    font-weight: 700;
+    color: #ffffff;
+
+    text-align: center;
+    padding-top: 3px;
+
+    margin-right: 4px;
+  }
+
+  &__step-text {
+    font-size: 15px;
+    color: #ffffff;
+
+    &--description {
+      font-size: 11px;
+    }
+
+    &--accent {
+      color: @pink-light;
+
+      &:link, &:visited, &:hover, &:active {
+        color: @pink-light;
+      }
+    }
+  }
+
+  &__step-top {
+    display: flex;
+    height: 30px;
+    align-items: center;
+
+    padding-bottom: 15px;
+  }
+
+  &__step-bottom {
+    padding-left: 32px;
   }
 
   &__accent {
