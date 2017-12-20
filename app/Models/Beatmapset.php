@@ -924,7 +924,7 @@ class Beatmapset extends Model
 
                 if ($hyped) {
                     $message = 'hyped';
-                } elseif ($user->remainingHype() === 0) {
+                } elseif ($user->remainingHype() <= 0) {
                     $message = 'limit_exceeded';
                 }
             }
