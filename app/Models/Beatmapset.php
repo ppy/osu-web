@@ -271,11 +271,25 @@ class Beatmapset extends Model
 
     public static function searchParams(array $params = [])
     {
+        // simple stuff
+        $params['query'] = presence($params['query'] ?? null);
+        $params['status'] = get_int($params['status'] ?? null) ?? 0;
+        $params['genre'] = get_int($params['genre'] ?? null);
+        $params['language'] = get_int($params['language'] ?? null);
+        $params['extra'] = explode('.', $params['extra'] ?? null);
+        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
+        $params['page'] = max(1, get_int($params['page'] ?? 1));
+        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
+
+        // rank
+        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
 
         // sort_order, sort_field (and clear up sort)
         $sort = explode('_', array_pull($params, 'sort'));
@@ -291,26 +305,27 @@ class Beatmapset extends Model
             'title' => 'title',
             'updated' => 'last_update',
         ];
-        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
+        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
 
         $params['sort_order'] = $sort[1] ?? null;
         if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
             $params['sort_order'] = 'desc';
         }
 
-        // rank
-        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
-
-        // the rest, oneliner
-        $params['query'] = presence($params['query'] ?? null);
-        $params['status'] = get_int($params['status'] ?? 0);
-        $params['genre'] = get_int($params['genre'] ?? null);
-        $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode('.', $params['extra'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
-        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+        if ($params['sort_field'] === null) {
+            if (present($params['query'])) {
+                $params['sort_field'] = '_score';
+                $params['sort_order'] = 'desc';
+            } else {
+                if ($params['status'] === 4 || $params['status'] === 5) {
+                    $params['sort_field'] = 'last_update';
+                    $params['sort_order'] = 'desc';
+                } else {
+                    $params['sort_field'] = 'approved_date';
+                    $params['sort_order'] = 'desc';
+                }
+            }
+        }
 
         return $params;
     }
