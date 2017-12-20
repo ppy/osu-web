@@ -159,7 +159,6 @@ class ProfilePage.Main extends React.PureComponent
             unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
             graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
           pagination: @state.showMorePagination
-          perPage: @props.perPage
         component: ProfilePage.Beatmaps
 
       medals:
