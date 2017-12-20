@@ -243,7 +243,8 @@
 
 
   transChoice: (key, count, replacements) ->
-    message = Lang.choice key, count, replacements, currentLocale
+    Lang.choice key, count, replacements
+
 
   uuid: ->
     Turbolinks.uuid() # no point rolling our own

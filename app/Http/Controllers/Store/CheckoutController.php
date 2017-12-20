@@ -105,7 +105,7 @@ class CheckoutController extends Controller
                 $checkout->completeCheckout();
                 $order->paid(null);
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                $this->notifyError($exception, $order, 'store.payments.error.free');
                 throw $exception;
             }
 

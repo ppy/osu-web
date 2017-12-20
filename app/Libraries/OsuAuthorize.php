@@ -82,7 +82,25 @@ class OsuAuthorize
             return;
         }
 
-        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        if ($discussion->message_type === 'hype') {
+            return $prefix.'is_hype';
+        }
+
+        if ($discussion->relationLoaded('beatmapDiscussionPosts')) {
+            $visiblePosts = 0;
+
+            foreach ($discussion->beatmapDiscussionPosts as $post) {
+                if ($post->deleted_at !== null || $post->system) {
+                    continue;
+                }
+
+                $visiblePosts++;
+
+                if ($visiblePosts > 1) {
+                    return $prefix.'has_reply';
+                }
+            }
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 
@@ -159,6 +177,24 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionVoteDown($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.vote.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($discussion->user_id === $user->user_id) {
+            return $prefix.'owner';
+        }
+
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     public function checkBeatmapDiscussionPostDestroy($user, $post)

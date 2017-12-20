@@ -82,6 +82,7 @@ class Beatmapset extends Model
         'qualified' => 3,
         'loved' => 4,
     ];
+    const HYPEABLE_STATES = [-1, 0, 3];
 
     const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
@@ -400,7 +401,7 @@ class Beatmapset extends Model
                 $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                 break;
             case 2: // Favourites
-                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
+                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', self::class);
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
             case 3: // Qualified
@@ -641,6 +642,17 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
+    public function removeCovers()
+    {
+        try {
+            $this->storage()->deleteDirectory($this->coverPath());
+        } catch (\Exception $e) {
+            // ignore errors
+        }
+
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -655,6 +667,9 @@ class Beatmapset extends Model
             if (!is_dir($outputFolder)) {
                 mkdir($outputFolder, 0755, true);
             }
+
+            // start by clearing existing covers
+            $this->removeCovers();
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
@@ -884,7 +899,45 @@ class Beatmapset extends Model
 
     public function requiredHype()
     {
-        return 12;
+        return config('osu.beatmapset.required_hype');
+    }
+
+    public function canBeHyped()
+    {
+        return in_array($this->approved, static::HYPEABLE_STATES, true);
+    }
+
+    public function validateHypeBy($user)
+    {
+        if ($user === null) {
+            $message = 'guest';
+        } else {
+            if ($this->user_id === $user->getKey()) {
+                $message = 'owner';
+            } else {
+                $hyped = $this
+                    ->beatmapDiscussions()
+                    ->withoutDeleted()
+                    ->ofType('hype')
+                    ->where('user_id', '=', $user->getKey())
+                    ->exists();
+
+                if ($hyped) {
+                    $message = 'hyped';
+                } elseif ($user->remainingHype() === 0) {
+                    $message = 'limit_exceeded';
+                }
+            }
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => trans("model_validation.beatmap_discussion.hype.{$message}"),
+            ];
+        } else {
+            return ['result' => true];
+        }
     }
 
     public function requiredNominationCount()
@@ -937,12 +990,12 @@ class Beatmapset extends Model
 
     public function status()
     {
-        return array_search($this->approved, self::STATES, true);
+        return array_search_null($this->approved, static::STATES);
     }
 
     public function defaultJson($currentUser = null)
     {
-        $includes = ['beatmaps', 'nominations'];
+        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }
@@ -958,6 +1011,7 @@ class Beatmapset extends Model
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
+                'beatmapset',
                 'beatmap_discussions.beatmap_discussion_posts',
                 'beatmap_discussions.current_user_attributes',
                 'beatmapset_events',
@@ -1044,11 +1098,6 @@ class Beatmapset extends Model
         $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
 
         return $post->edit($newBody, $user);
-    }
-
-    public function state()
-    {
-        return array_search_null($this->approved, static::STATES);
     }
 
     public function toMetaDescription()

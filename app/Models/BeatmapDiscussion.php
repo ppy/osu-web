@@ -42,6 +42,7 @@ class BeatmapDiscussion extends Model
         'suggestion' => 1,
         'problem' => 2,
         'mapper_note' => 3,
+        'hype' => 4,
     ];
 
     const RESOLVABLE_TYPES = [1, 2];
@@ -98,7 +99,9 @@ class BeatmapDiscussion extends Model
             $value = false;
         }
 
-        $this->attributes['resolved'] = $value;
+        // Ensure isDirty works as expected.
+        // Reference: https://github.com/laravel/internals/issues/349
+        $this->attributes['resolved'] = $value ? 1 : 0;
     }
 
     public function canBeResolved()
@@ -115,7 +118,7 @@ class BeatmapDiscussion extends Model
             !$this->kudosu_denied;
     }
 
-    public function refreshKudosu($event)
+    public function refreshKudosu($event, $eventExtraData = [])
     {
         // remove own votes
         $this->beatmapDiscussionVotes()->where([
@@ -143,19 +146,24 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        DB::transaction(function () use ($change, $event, $currentVotes) {
+        DB::transaction(function () use ($change, $event, $eventExtraData, $currentVotes) {
             if ($event === 'vote') {
                 if ($change > 0) {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_GAIN;
                 } else {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
                 }
+
+                $eventExtraData['votes'] = $this
+                    ->beatmapDiscussionVotes
+                    ->map
+                    ->forEvent();
             } elseif ($event === 'recalculate') {
                 $beatmapsetEventType = BeatmapsetEvent::KUDOSU_RECALCULATE;
             }
 
             if (isset($beatmapsetEventType)) {
-                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this)->saveOrExplode();
+                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this, $eventExtraData)->saveOrExplode();
             }
 
             KudosuHistory::create([
@@ -204,11 +212,25 @@ class BeatmapDiscussion extends Model
 
     public function hasValidMessageType()
     {
-        if ($this->user_id === $this->beatmapset->user_id) {
-            return in_array($this->message_type, ['praise', 'problem', 'suggestion', 'mapper_note'], true);
-        } else {
-            return in_array($this->message_type, ['praise', 'problem', 'suggestion'], true);
+        if ($this->message_type === null) {
+            return false;
         }
+
+        if (!$this->isDirty('message_type')) {
+            return true;
+        }
+
+        $validTypes = ['praise', 'problem', 'suggestion'];
+
+        if ($this->user_id === $this->beatmapset->user_id) {
+            $validTypes[] = 'mapper_note';
+        } else {
+            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)) {
+                $validTypes[] = 'hype';
+            }
+        }
+
+        return in_array($this->message_type, $validTypes, true);
     }
 
     public function hasValidTimestamp()
@@ -251,9 +273,8 @@ class BeatmapDiscussion extends Model
             $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
             $previousScore = $vote->score ?? 0;
             $vote->fill($params);
-            $scoreChange = $vote->score - $previousScore;
 
-            if ($scoreChange !== 0) {
+            if ($previousScore !== $vote->score) {
                 if ($vote->score === 0) {
                     $vote->delete();
                 } else {
@@ -261,7 +282,7 @@ class BeatmapDiscussion extends Model
                 }
 
                 $this->userRecentVotesCount($vote->user, true);
-                $this->refreshKudosu('vote');
+                $this->refreshKudosu('vote', ['new_vote' => $vote->forEvent()]);
             }
 
             return true;
@@ -346,6 +367,15 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function scopeOfType($query, $types)
+    {
+        foreach ((array) $types as $type) {
+            $intTypes[] = static::MESSAGE_TYPES[$type];
+        }
+
+        $query->whereIn('message_type', $intTypes);
     }
 
     public function scopeOpenIssues($query)

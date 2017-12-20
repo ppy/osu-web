@@ -75,7 +75,7 @@
                             </td>
 
                             <td class="beatmapset-watches__col">
-                                {{ $watch->beatmapset->state() }}
+                                {{ $watch->beatmapset->status() }}
                             </td>
 
                             <td class="beatmapset-watches__col">

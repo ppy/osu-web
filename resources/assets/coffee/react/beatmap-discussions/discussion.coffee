@@ -117,7 +117,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    topClasses += " #{vbn}--disabled" if @isOwner()
+    topClasses += " #{vbn}--disabled" if @isOwner() || (type == 'down' && !@canDownvote())
 
     button
       className: topClasses
@@ -129,7 +129,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   doVote: (e) =>
-    return if @isOwner()
+    downvoting = e.currentTarget.dataset.score == '-1'
+    return if @isOwner() || (downvoting && !@canDownvote())
 
     LoadingOverlay.show()
 
@@ -156,6 +157,8 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
   isOwner: (object = @props.discussion) =>
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
+  canDownvote: =>
+    @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT || @props.currentUser.isBNG
 
   post: (post, type) =>
     return if !post.id?
@@ -163,6 +166,11 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     elementName = if post.system then 'SystemPost' else 'Post'
 
     canModeratePosts = @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT
+    canBeDeleted =
+      if type == 'discussion'
+        @props.discussion.current_user_attributes?.can_destroy
+      else
+        canModeratePosts || @isOwner(post)
 
     el BeatmapDiscussions[elementName],
       key: post.id
@@ -175,7 +183,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
       canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
-      canBeDeleted: canModeratePosts || @isOwner(post)
+      canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser
 

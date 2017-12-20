@@ -306,6 +306,19 @@ function currency($price)
     return sprintf('US$%.2f', $price);
 }
 
+/**
+ * Compares 2 money values from payment processor in a sane manner.
+ * i.e. not a float.
+ *
+ * @param $a money value A
+ * @param $b money value B
+ * @return 0 if equal, 1 if $a > $b, -1 if $a < $b
+ */
+function compare_currency($a, $b)
+{
+    return (int) ($a * 100) <=> (int) ($b * 100);
+}
+
 function error_popup($message, $statusCode = 422)
 {
     return response(['error' => $message], $statusCode);
@@ -874,8 +887,12 @@ function array_rand_val($array)
  *
  * If need to pluck for all rows, just call `select()` on the class.
  */
-function model_pluck($builder, $key)
+function model_pluck($builder, $key, $class = null)
 {
+    if ($class) {
+        $key = (new $class)->getTable().'.'.$key;
+    }
+
     $result = [];
 
     foreach ($builder->select($key)->get() as $el) {
