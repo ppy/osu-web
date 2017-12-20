@@ -68,7 +68,11 @@ class UserRecalculateRankCounts extends Command
     {
         $this->info("Recalculating {$mode}");
         $class = UserStatistics::class.'\\'.studly_case($mode);
-        $class::chunkById(1000, function ($chunk) {
+
+        $count = $class::count();
+        $bar = $this->output->createProgressBar($count);
+
+        $class::chunkById(1000, function ($chunk) use ($bar) {
             foreach ($chunk as $stats) {
                 $counts = $this->getCountsWithStats($stats);
                 $stats->update([
@@ -76,8 +80,13 @@ class UserRecalculateRankCounts extends Command
                     's_rank_count' => $counts['S'],
                     'a_rank_count' => $counts['A'],
                 ]);
+
+                $bar->advance();
             }
         }, 'user_id');
+
+        $bar->finish();
+        $this->info('');
     }
 
     private function getCountsWithStats($stats)
