@@ -20,62 +20,62 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Settings',
-        'title_compact' => 'settings',
+        'title' => '<strong>Konto</strong> Indstillinger',
+        'title_compact' => 'indstillinger',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => 'Ændr Avatar',
         ],
 
         'email' => [
-            'current' => 'current email',
-            'new' => 'new email',
-            'new_confirmation' => 'email confirmation',
+            'current' => 'nuværende email-adresse',
+            'new' => 'ny email-adresse',
+            'new_confirmation' => 'bekræftelse af email-adresse',
             'title' => 'Email',
         ],
 
         'password' => [
-            'current' => 'current password',
-            'new' => 'new password',
-            'new_confirmation' => 'password confirmation',
-            'title' => 'Password',
+            'current' => 'nuværende adgangskode',
+            'new' => 'ny adgangskode',
+            'new_confirmation' => 'bekræftelse af adgangskode',
+            'title' => 'Adgangskode',
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => 'Ændr Profil',
 
             'user' => [
-                'user_from' => 'current location',
-                'user_interests' => 'interest',
+                'user_from' => 'nuværende placering',
+                'user_interests' => 'interesser',
                 'user_msnm' => 'skype',
-                'user_occ' => 'occupation',
+                'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_website' => 'hjemmeside',
             ],
         ],
 
         'signature' => [
-            'title' => 'Signature',
-            'update' => 'update',
+            'title' => 'Signatur',
+            'update' => 'opdater',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! email change confirmation',
-        'update' => 'update',
-        'updated' => 'Email updated',
+        'email_subject' => 'Bekræftelse for opdatering af osu! email-adresse',
+        'update' => 'opdater',
+        'updated' => 'Email-adresse opdateret',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! password change confirmation',
-        'update' => 'update',
-        'updated' => 'Password updated',
+        'email_subject' => 'Bekræftelse for opdatering af osu! adgangskode',
+        'update' => 'opdater',
+        'updated' => 'Adgangskode opdateret',
     ],
 
     'playstyles' => [
-        'title' => 'Playstyles',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
+        'title' => 'Spillestile',
+        'mouse' => 'mus',
+        'keyboard' => 'tastatur',
         'tablet' => 'tablet',
         'touch' => 'touch',
     ],
