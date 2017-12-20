@@ -21,32 +21,32 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => 'Du skal være logget ind for at kunne redigere.',
+            'system_generated' => 'System-genererede opslag kan ikke redigeres.',
+            'wrong_user' => 'Du skal være ejer af dette opslag for at kunne redigere.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Nothing has happened... yet.',
+        'empty' => 'Intet er hændt...endnu.',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => 'Ingen af opslagene angår mig',
+        'notice' => 'Der er opslag omkring :timestamp (:existing_timestamps). Vær venlig at tjekke dem inden du slår noget op.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
-            'user' => 'Respond',
+            'guest' => 'Log ind for at svare',
+            'user' => 'Svar',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => 'Marker som løst af :user',
+            'false' => 'Genåbnet af :user',
         ],
     ],
 
