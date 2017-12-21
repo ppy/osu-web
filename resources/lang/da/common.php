@@ -19,28 +19,28 @@
  */
 
 return [
-    'confirmation' => 'Are you sure?',
-    'saved' => 'Saved',
+    'confirmation' => 'Er du sikker?',
+    'saved' => 'Gemt',
 
     'array_and' => [
         'words_connector' => ', ',
-        'two_words_connector' => ' and ',
-        'last_word_connector' => ', and ',
+        'two_words_connector' => ' og ',
+        'last_word_connector' => ', og ',
     ],
 
     'buttons' => [
-        'cancel' => 'Cancel',
-        'delete' => 'Delete',
+        'cancel' => 'Annullér',
+        'delete' => 'Slet',
         'permalink' => 'permalink',
-        'post' => 'Post',
-        'reply' => 'Reply',
-        'reply_reopen' => 'Reply and Reopen',
-        'reply_resolve' => 'Reply and Resolve',
-        'reset' => 'Reset',
-        'save' => 'Save',
-        'saving' => 'Saving...',
-        'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'post' => 'Slå op',
+        'reply' => 'Svar',
+        'reply_reopen' => 'Svar og Genåben',
+        'reply_resolve' => 'Svar og markér som løst',
+        'reset' => 'Nulstil',
+        'save' => 'Gem',
+        'saving' => 'Gemmer...',
+        'show_more' => 'vis mere',
+        'upload_image' => 'upload billede',
     ],
 
     'count' => [
@@ -55,19 +55,19 @@ return [
     ],
 
     'device' => [
-        'keyboard' => 'Keyboard',
-        'mouse' => 'Mouse',
+        'keyboard' => 'Tastatur',
+        'mouse' => 'Mus',
         'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'touch' => 'Touch Skærm',
     ],
 
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => 'slip her for at uploade',
     ],
 
     'pagination' => [
-        'previous' => 'prev',
-        'next' => 'next',
+        'previous' => 'forrige',
+        'next' => 'næste',
     ],
 
     'score_count' => [
@@ -80,13 +80,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count dag siden|:count dage siden',
+        'hours_ago' => ':count time siden|:count timer siden',
+        'now' => 'nu',
+        'remaining' => 'Tid Tilbage',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => 'Meddelelse',
     ],
 ];
