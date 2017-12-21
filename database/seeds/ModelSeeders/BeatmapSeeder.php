@@ -87,10 +87,12 @@ class BeatmapSeeder extends Seeder
      */
     public function run()
     {
-        $beatmaps_array = [];
-        $beatmapset_array = [];
-        $overbeatmaps = [];
-        $overbeatmapsets = [];
+        if ($this->command) {
+            $this->command->info('Seeding Beatmaps, this may take a while...');
+        }
+
+        $newBeatmapsetsCount = 0;
+        $newBeatmapsCount = 0;
 
         $base_url = 'https://osu.ppy.sh/api/';
         $api_key = env('OSU_API_KEY', null);
@@ -105,10 +107,14 @@ class BeatmapSeeder extends Seeder
         try {
             $json = json_decode(file_get_contents($base_url.'get_beatmaps?since=2016-01-01%2000:00:00'.$api));
         } catch (Exception $ex) {
-            $this->command->error('Unable to fetch Beatmap data');
-            $this->command->error($ex->getMessage());
+            if ($this->command) {
+                $this->command->error('Unable to fetch Beatmap data');
+                $this->command->error($ex->getMessage());
 
-            return;
+                return;
+            }
+
+            throw $ex;
         }
 
         $sets = $this->populateExisting($json);
@@ -120,12 +126,22 @@ class BeatmapSeeder extends Seeder
             if ($beatmapset === null) {
                 $beatmapset = $this->createBeatmapset($item);
                 $beatmapset->save();
+
+                // technically shouldn't exist if new...
+                if (!array_key_exists($beatmapset->beatmapset_id, $sets)) {
+                    $sets[$beatmapset->beatmapset_id] = [];
+                }
+                $newBeatmapsetsCount++;
             }
             $this->beatmapsets[$beatmapset->beatmapset_id] = $beatmapset;
 
             if ($beatmap === null) {
                 $beatmap = $this->createBeatmap($item);
                 $beatmap->save();
+
+                // don't bother checking if it exists, just add it.
+                $sets[$beatmap->beatmapset_id][] = $beatmap->beatmap_id;
+                $newBeatmapsCount++;
             }
             $this->beatmaps[$beatmap->beatmap_id] = $beatmap;
 
@@ -133,43 +149,42 @@ class BeatmapSeeder extends Seeder
         }
 
         foreach ($sets as $setId => $mapIds) {
+            $uniqueMapIds = array_unique($mapIds);
             $setPlaycount = 0;
             $names = [];
-            foreach ($mapIds as $mapId) {
+            foreach ($uniqueMapIds as $mapId) {
                 $beatmap = $this->beatmaps[$mapId];
                 $setPlaycount += $beatmap->playcount;
-                $names[] = $beatmap->version.'@'.$beatmap->mode;
+                $names[] = $beatmap->version.'@'.$beatmap->playmode;
             }
 
-            // continue;
             $beatmapset = $this->beatmapsets[$setId];
-            $beatmapset->versions_available = count($mapIds);
+            $beatmapset->versions_available = count($uniqueMapIds);
             $beatmapset->play_count = $setPlaycount;
             $beatmapset->difficulty_names = implode(',', $names);
             $beatmapset->save();
         }
 
+        $updatedBeatmapsetsCount = count($this->beatmapsets) - $newBeatmapsetsCount;
+        $updatedBeatmapsCount = count($this->beatmaps) - $newBeatmapsCount;
 
-        //     $this->command->info('Saved '.strval(count($beatmaps_array)).' Beatmaps (Overwritten '.strval(count($overbeatmaps)).').');
-        //     $this->command->info('Saved '.strval(count($beatmapset_array)).' Beatmap Sets (Overwritten '.strval(count($overbeatmapsets)).').');
-        // } catch (\Illuminate\Database\QueryException $e) {
-        //     $this->command->error("DB Error: Unable to save Beatmap Data\r\n".$e->getMessage());
-        // } catch (Exception $ex) {
-        //     $this->command->error("Error: Unable to save Beatmap Data\r\n".$ex->getMessage());
-        // }
+        if ($this->command) {
+            $this->command->info("Beatmap Sets: {$updatedBeatmapsetsCount} updated, {$newBeatmapsetsCount} new.");
+            $this->command->info("Beatmaps: {$updatedBeatmapsCount} updated, {$newBeatmapsCount} new.");
+        }
     }
 
     private function createDifficulty($beatmap)
     {
-        if ($beatmap->mode !== 0) {
-            $modes = [$beatmap->mode];
+        if ($beatmap->playmode !== Beatmap::MODE['osu']) {
+            $modes = [$beatmap->playmode];
         } else {
-            $modes = [0, 1, 2, 3];
+            $modes = array_values(Beatmap::MODES);
         }
 
         foreach ($modes as $mode) {
             // fuzz the ratings for converts a little.
-            $diff_unified = $mode === $beatmap->mode
+            $diff_unified = $mode === $beatmap->playmode
                 ? $beatmap->difficultyrating
                 : $rand(-10000, 10000) / 10000;
 
