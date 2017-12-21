@@ -22,108 +22,107 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the osu! dev :D',
+            'big_description' => 'Elsker du osu!?<br/>
+                                Støt osu! udvikleren :D',
             'small_description' => '',
-            'support_button' => 'I want to support osu!',
+            'support_button' => 'Jeg ønsker at støtte osu!',
         ],
 
-        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-            I have had to quit my day job in order to keep up with osu!,
-            and do at times struggle to maintain the standards I strive for.
-            I would like to offer my personal thanks to those who have supported osu! thus far,
-            and just as much to those who continue to support this amazing game and community into the future :).',
+        'dev_quote' => 'osu! er et spil, som er helt gratis og frit at spille, men det at drive det er ikke helt gratis. Både på grund af serverne med international båndbredde af høj kvalitet, tiden det tager at vedligeholde systemet og fællesskabet, fremskaffelsen af præmier til konkurrencer og turnering, besvarelser af support spørgsmål og generelt det at sørge for, at alle er tilfredse koster rigtig, rigtig mange penge. Og glem nu ikke, at vi gør ALT dette uden at tjene så meget som en krone på reklamer eller partnerskaber!
+            <br/><br/>osu! er i sidste ende stort set kun drevet af mig selv, bedre kendt som "peppy".
+            Jeg var nødt til at sige mit almindelig hverdagsjob op bare for, at holde osu! i live og for at holde de standarder, som jeg ønskede.
+            Jeg vil gerne personligt sige tusinde mange gange tak til alle dem, som har støttet osu! så vidt
+            og ligeledes til alle dem, som fortsat støtter dette fantastiske spil og fællesskab ud i fremtiden :)',
 
         'why_support' => [
-            'title' => 'Why should I support osu!?',
+            'title' => 'Hvorfor skulle jeg støtte osu!?',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'dev' => 'Udviklet og vedligeholdt hovedsageligt af én fyr fra Australien.',
+                'time' => 'Tager meeega lang tid at holde vedlige, og jeg kan ikke længere kalde det en "hobby".',
+                'ads' => 'Ingen reklamer overhovedet. <br/><br/>
+                        I modsætning til 99.95% af internettet tjener vi ikke penge på at bombardere dig med reklamer.',
+                'goodies' => 'Du får nogle ekstra lækre fordele!',
             ],
         ],
 
         'perks' => [
-            'title' => 'Oh? What do I get?!',
+            'title' => 'Uhh, hvad får jeg så?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'description' => 'hurtig og nem adgang til at søge efter beatmaps uden at forlade spillet.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => 'Automatiske Downloads',
+                'description' => 'Automatiske downloads når du spiller mulitplayer, ser på andre eller klikker på links i chatten.',
             ],
 
             'upload_more' => [
-                'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
+                'title' => 'Upload Mere',
+                'description' => 'Ekstra afventende beatmap pladser (pr. ranked beatmap) op til et maksimum af 10.',
             ],
 
             'early_access' => [
                 'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'description' => 'Adgang til splinternye versioner, hvor du kan prøve alle de nye funktioner inden, at den bliver udgivet!',
             ],
 
             'customisation' => [
-                'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'title' => 'Tilpasning',
+                'description' => 'Tilpas din profil ved at tilføje en fuld brugerdefinerbar profilside.',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'title' => 'Beatmap Filtre',
+                'description' => 'Filtrér beatmaps efter spillede, ikke-spillede og rank opnået (hvis nogle).',
             ],
 
             'yellow_fellow' => [
                 'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+                'description' => 'Bliv genkendt i spillet med din nye gule farve i dit navn i chatten.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.',
+                'title' => 'Hurtigere Downloads',
+                'description' => 'Færre download restriktioner, især når du bruger osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'title' => 'Skift Brugernavn',
+                'description' => 'Muligheden for at skifte brugernavn uden ekstra omkostninger. (max én gang)',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.',
+                'title' => 'Mere Tilpasning',
+                'description' => 'Ekstra tilpasning i spillet, f.eks. baggrundsbilledet i menuen.',
             ],
 
             'feature_votes' => [
-                'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)',
+                'title' => 'Funktionsstemmer',
+                'description' => 'Stem på funktioner for fremtidens osu!. (max. 2 pr. måned)',
             ],
 
             'sort_options' => [
-                'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'title' => 'Sorteringsmuligheder',
+                'description' => 'NY: Muligheden for at vise et beatmap specificeret efter land-, venne og mod rangeringer i spillet.',
             ],
 
             'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+                'title' => 'Føl Dig Speciel',
+                'description' => 'Nyd den fantastiske fornemmelse af, at du aktivt støtter osu!s fremtid',
             ],
 
             'more_to_come' => [
-                'title' => 'More to come',
+                'title' => 'Og der kommer mere...',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+            'title' => 'Jeg er overbevist! :D',
+            'support' => 'støt osu!',
+            'gift' => 'eller giv det som en gave til en anden',
+            'instructions' => 'klik på knappen med hjertet for at gå videre til osu!store',
         ],
     ],
 ];
