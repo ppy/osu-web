@@ -192,20 +192,25 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     {
         $converts = [];
 
-        foreach (Beatmap::MODES as $modeStr => $modeInt) {
-            if ($modeStr === 'osu') {
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($beatmap->mode !== 'osu') {
                 continue;
             }
 
-            foreach ($beatmapset->beatmaps as $beatmap) {
-                if ($beatmap->mode !== 'osu') {
+            $difficulties = $beatmap->difficulty;
+
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                if ($modeStr === 'osu') {
                     continue;
                 }
+
+                $difficulty = $difficulties->where('mode', $modeInt)->where('mods', 0)->first();
 
                 $beatmap = clone $beatmap;
 
                 $beatmap->playmode = $modeInt;
                 $beatmap->convert = true;
+                $beatmap->difficultyrating = $difficulty->diff_unified;
 
                 array_push($converts, $beatmap);
             }
