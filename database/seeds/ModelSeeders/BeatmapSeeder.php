@@ -11,10 +11,8 @@ use Illuminate\Database\Seeder;
 class BeatmapSeeder extends Seeder
 {
     // store some state to cut down querying
-    private $beatmapsets = [];
     private $beatmaps = [];
-    private $existingMaps = [];
-    private $existingSets = [];
+    private $beatmapsets = [];
 
 
     private function createBeatmapset($json)
@@ -116,8 +114,8 @@ class BeatmapSeeder extends Seeder
         $sets = $this->populateExisting($json);
 
         foreach ($json as $item) {
-            $beatmapset = $this->existingSets[$item->beatmapset_id] ?? null;
-            $beatmap = $this->existingMaps[$item->beatmap_id] ?? null;
+            $beatmapset = $this->beatmapsets[$item->beatmapset_id] ?? null;
+            $beatmap = $this->beatmaps[$item->beatmap_id] ?? null;
 
             if ($beatmapset === null) {
                 $beatmapset = $this->createBeatmapset($item);
@@ -144,7 +142,7 @@ class BeatmapSeeder extends Seeder
             }
 
             // continue;
-            $beatmapset = $this->existingSets[$setId];
+            $beatmapset = $this->beatmapsets[$setId];
             $beatmapset->versions_available = count($mapIds);
             $beatmapset->play_count = $setPlaycount;
             $beatmapset->difficulty_names = implode(',', $names);
@@ -205,16 +203,16 @@ class BeatmapSeeder extends Seeder
         $beatmapsetIds = array_keys($sets);
         $beatmapIds = array_flatten(array_values($sets));
 
-        $this->existingSets = [];
+        $this->beatmapsets = [];
         $beatmapsets = Beatmapset::withoutGlobalScopes()->whereIn('beatmapset_id', $beatmapsetIds)->get();
         foreach ($beatmapsets as $beatmapset) {
-            $this->existingSets[$beatmapset->beatmapset_id] = $beatmapset;
+            $this->beatmapsets[$beatmapset->beatmapset_id] = $beatmapset;
         }
 
-        $this->existingMaps = [];
+        $this->beatmaps = [];
         $beatmaps = Beatmap::withoutGlobalScopes()->whereIn('beatmap_id', $beatmapIds)->get();
         foreach ($beatmaps as $beatmap) {
-            $this->existingMaps[$beatmap->beatmap_id] = $beatmap;
+            $this->beatmaps[$beatmap->beatmap_id] = $beatmap;
         }
 
         return $sets;
