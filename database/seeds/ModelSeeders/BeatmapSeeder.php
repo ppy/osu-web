@@ -37,6 +37,8 @@ class BeatmapSeeder extends Seeder
         $beatmapset->user_id = $this->randomUser()['user_id'];
         $beatmapset->submit_date = Carbon::now();
 
+        $beatmapset->save();
+
         return $beatmapset;
     }
 
@@ -64,6 +66,8 @@ class BeatmapSeeder extends Seeder
         $beatmap->playcount = $json->playcount;
         $beatmap->passcount = $json->passcount;
         $beatmap->user_id = $this->randomUser()['user_id'];
+
+        $beatmap->save();
 
         return $beatmap;
     }
@@ -125,7 +129,6 @@ class BeatmapSeeder extends Seeder
 
             if ($beatmapset === null) {
                 $beatmapset = $this->createBeatmapset($item);
-                $beatmapset->save();
 
                 // technically shouldn't exist if new...
                 if (!array_key_exists($beatmapset->beatmapset_id, $sets)) {
@@ -137,7 +140,6 @@ class BeatmapSeeder extends Seeder
 
             if ($beatmap === null) {
                 $beatmap = $this->createBeatmap($item);
-                $beatmap->save();
 
                 // don't bother checking if it exists, just add it.
                 $sets[$beatmap->beatmapset_id][] = $beatmap->beatmap_id;
