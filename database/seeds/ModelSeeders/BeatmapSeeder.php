@@ -237,7 +237,7 @@ class BeatmapSeeder extends Seeder
     {
         static $users;
         if ($users === null) {
-            $users = User::orderByRaw('RAND()')->get()->toArray();
+            $users = User::all()->toArray();
 
             if (count($users) < 1) {
                 $users = [['user_id' => 1]];
