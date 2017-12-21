@@ -187,7 +187,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                   else if userCanNominate && mapCanBeNominated
                     if @props.currentDiscussions.unresolvedIssues > 0
                       # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
-                      div title: osu.trans('beatmaps.nominations.unresolved-issues'),
+                      div title: osu.trans('beatmaps.nominations.unresolved_issues'),
                         @nominationButton true
                     else
                       @nominationButton @props.beatmapset.nominations.nominated
