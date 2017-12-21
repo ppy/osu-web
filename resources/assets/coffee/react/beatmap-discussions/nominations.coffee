@@ -262,7 +262,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response.beatmapsetDiscussion
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response
 
     .fail osu.ajaxError
     .always LoadingOverlay.hide
