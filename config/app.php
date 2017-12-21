@@ -97,6 +97,7 @@ return [
         'pl',
         'pt-br',
         'ru',
+        'vi',
         'zh',
     ],
 
