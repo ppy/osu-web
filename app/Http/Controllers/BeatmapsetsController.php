@@ -223,7 +223,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
 
         if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
-            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+            return error_popup(trans('beatmaps.nominations.incorrect_state'));
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());

@@ -825,12 +825,12 @@ class Beatmapset extends Model
     public function nominate(User $user)
     {
         if (!$this->isPending()) {
-            $message = trans('beatmaps.nominations.incorrect-state');
+            $message = trans('beatmaps.nominations.incorrect_state');
         }
 
         // check if there are any outstanding issues still
         if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
-            $message = trans('beatmaps.nominations.unresolved-issues');
+            $message = trans('beatmaps.nominations.unresolved_issues');
         }
 
         if (isset($message)) {
