@@ -25,9 +25,10 @@ class ProfilePage.ShowMoreLink extends React.PureComponent
 
     else
       firstLoad = !@props.pagination?
-      perPage = @props.perPage ? 5
+      firstPage = 5
+      perPage = @props.perPage ? 20
       maxResults = @props.maxResults ? 100
-      hasMore = (firstLoad && (!@props.collection? || @props.collection.length == perPage)) || @props.pagination?.hasMore
+      hasMore = (firstLoad && (!@props.collection? || @props.collection.length == firstPage)) || @props.pagination?.hasMore
 
       return null unless hasMore
 

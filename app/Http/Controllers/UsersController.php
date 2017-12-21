@@ -300,7 +300,7 @@ class UsersController extends Controller
         return [$friend, $friend->mutual ?? false];
     }
 
-    private function parsePaginationParams($perPage)
+    private function parsePaginationParams($firstPage, $perPage = 20)
     {
         $this->user = User::lookup(Request::route('user'), 'id');
         if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
@@ -316,6 +316,8 @@ class UsersController extends Controller
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
+        } else if ($this->offset === 0) {
+            $this->perPage = $firstPage;
         } else {
             $this->perPage = min($perPage, $this->maxResults - $this->offset);
         }
