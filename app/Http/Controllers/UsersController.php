@@ -45,6 +45,12 @@ class UsersController extends Controller
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);
 
+        $this->middleware(function ($request, $next) {
+            $this->parsePaginationParams();
+
+            return $next($request);
+        });
+
         return parent::__construct();
     }
 
@@ -102,8 +108,6 @@ class UsersController extends Controller
 
     public function scores($id, $type)
     {
-        $this->parsePaginationParams();
-
         switch ($type) {
             case 'best':
                 return $this->scoresBest($this->user, $this->mode, $this->perPage, $this->offset);
@@ -151,8 +155,6 @@ class UsersController extends Controller
 
     public function beatmapsets($id, $type)
     {
-        $this->parsePaginationParams();
-
         switch ($type) {
             case 'most_played':
                 return $this->mostPlayedBeatmapsets($this->user, $this->perPage, $this->offset);
@@ -176,8 +178,6 @@ class UsersController extends Controller
 
     public function kudosu($id)
     {
-        $this->parsePaginationParams();
-
         return $this->recentKudosu($this->user, $this->perPage, $this->offset);
     }
 
