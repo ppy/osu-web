@@ -34,7 +34,7 @@ There are a few different options to get started:
   _UID=$(id -u) _GID=$(id -g) docker-compose up
   ```
   - To run any of the below commands, make sure you are in the docker container: `$ docker exec -it osuweb-php bash`
-- Use your existing web dev environment.
+- Follow [this guide](https://github.com/osu-translate-zh/osu-web/issues/6) to make osu-web work on your local machine.
 
 ### Creating user
 
