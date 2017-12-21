@@ -260,6 +260,8 @@ class UsersController extends Controller
                 'recentlyReceivedKudosu' => 5,
             ];
 
+            // Fetch perPage + 1 so the frontend can tell if there are more items
+            // by comparing items count and perPage number.
             $beatmapsets = [
                 'most_played' => $this->mostPlayedBeatmapsets($user, $perPage['beatmapPlaycounts'] + 1),
                 'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user, $perPage['rankedAndApprovedBeatmapsets'] + 1),
