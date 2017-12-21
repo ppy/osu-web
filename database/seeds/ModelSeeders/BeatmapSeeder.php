@@ -188,7 +188,7 @@ class BeatmapSeeder extends Seeder
             //  include per-mode difficulties later.
             $diff_unified = $mode === $beatmap->playmode
                 ? $beatmap->difficultyrating
-                : rand(-1000, 1000) / 10000;
+                : $beatmap->difficultyrating + rand(-1000, 1000) / 10000;
 
             if ($diff_unified < 0) {
                 $diff_unified = rand(1, 10000) / 10000;
