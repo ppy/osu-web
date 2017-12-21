@@ -49,7 +49,9 @@ class UsersController extends Controller
             $this->parsePaginationParams();
 
             return $next($request);
-        });
+        }, [
+            'only' => ['scores', 'beatmapsets', 'kudosu'],
+        ]);
 
         return parent::__construct();
     }
