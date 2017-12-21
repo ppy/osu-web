@@ -17,59 +17,53 @@ class BeatmapSeeder extends Seeder
 
     private function createBeatmapset($json)
     {
-        $beatmapset = new Beatmapset();
-        $beatmapset->beatmapset_id = $json->beatmapset_id;
-        $beatmapset->creator = $json->creator;
-        $beatmapset->artist = $json->artist;
-        $beatmapset->title = $json->title;
-        $beatmapset->displaytitle = $json->title;
-        $beatmapset->source = $json->source;
-        $beatmapset->tags = $json->tags;
-        $beatmapset->bpm = $json->bpm;
-        $beatmapset->approved = $json->approved;
-        $beatmapset->approved_date = $json->approved_date;
-        $beatmapset->genre_id = $json->genre_id;
-        $beatmapset->language_id = $json->language_id;
-        $beatmapset->versions_available = 1;
-        $beatmapset->difficulty_names = '';
-        $beatmapset->play_count = 0;
-        $beatmapset->favourite_count = $json->favourite_count;
-        $beatmapset->user_id = $this->randomUser()['user_id'];
-        $beatmapset->submit_date = Carbon::now();
-
-        $beatmapset->save();
-
-        return $beatmapset;
+        return Beatmapset::create([
+            'beatmapset_id' => $json->beatmapset_id,
+            'creator' => $json->creator,
+            'artist' => $json->artist,
+            'title' => $json->title,
+            'displaytitle' => $json->title,
+            'source' => $json->source,
+            'tags' => $json->tags,
+            'bpm' => $json->bpm,
+            'approved' => $json->approved,
+            'approved_date' => $json->approved_date,
+            'genre_id' => $json->genre_id,
+            'language_id' => $json->language_id,
+            'versions_available' => 1,
+            'difficulty_names' => '',
+            'play_count' => 0,
+            'favourite_count' => $json->favourite_count,
+            'user_id' => $this->randomUser()['user_id'],
+            'submit_date' => Carbon::now(),
+        ]);
     }
 
     private function createBeatmap($json)
     {
-        $beatmap = new Beatmap();
-        $beatmap->beatmap_id = $json->beatmap_id;
-        $beatmap->beatmapset_id = $json->beatmapset_id;
-        $beatmap->filename = $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz';
-        $beatmap->checksum = $json->file_md5;
-        $beatmap->version = $json->version;
-        $beatmap->total_length = $json->total_length;
-        $beatmap->hit_length = $json->hit_length;
-        $beatmap->countTotal = $json->max_combo !== null ? $json->max_combo : 1500;
-        $beatmap->countNormal = round(intval($json->max_combo) - (0.2 * intval($json->max_combo)));
-        $beatmap->countSlider = round(intval($json->max_combo) - (0.8 * intval($json->max_combo)));
-        $beatmap->countSpinner = 1;
-        $beatmap->diff_drain = $json->diff_drain;
-        $beatmap->diff_size = $json->diff_size;
-        $beatmap->diff_overall = $json->diff_overall;
-        $beatmap->diff_approach = $json->diff_approach;
-        $beatmap->playmode = $json->mode;
-        $beatmap->approved = $json->approved;
-        $beatmap->difficultyrating = $json->difficultyrating;
-        $beatmap->playcount = $json->playcount;
-        $beatmap->passcount = $json->passcount;
-        $beatmap->user_id = $this->randomUser()['user_id'];
-
-        $beatmap->save();
-
-        return $beatmap;
+        return Beatmap::create([
+            'beatmap_id' => $json->beatmap_id,
+            'beatmapset_id' => $json->beatmapset_id,
+            'filename' => $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz',
+            'checksum' => $json->file_md5,
+            'version' => $json->version,
+            'total_length' => $json->total_length,
+            'hit_length' => $json->hit_length,
+            'countTotal' => $json->max_combo !== null ? $json->max_combo : 1500,
+            'countNormal' => round(intval($json->max_combo) - (0.2 * intval($json->max_combo))),
+            'countSlider' => round(intval($json->max_combo) - (0.8 * intval($json->max_combo))),
+            'countSpinner' => 1,
+            'diff_drain' => $json->diff_drain,
+            'diff_size' => $json->diff_size,
+            'diff_overall' => $json->diff_overall,
+            'diff_approach' => $json->diff_approach,
+            'playmode' => $json->mode,
+            'approved' => $json->approved,
+            'difficultyrating' => $json->difficultyrating,
+            'playcount' => $json->playcount,
+            'passcount' => $json->passcount,
+            'user_id' => $this->randomUser()['user_id'],
+        ]);
     }
 
     private function createBeatmapFailtimes($beatmap)
