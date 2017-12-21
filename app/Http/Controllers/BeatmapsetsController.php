@@ -86,6 +86,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset
             ::with('beatmaps.failtimes', 'user')
+            ->with('beatmaps.difficulty')
             ->findOrFail($id);
 
         $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
