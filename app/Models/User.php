@@ -1075,7 +1075,7 @@ class User extends Model implements AuthenticatableContract, Messageable
                 ->where('created_at', '>', Carbon::now()->subWeek())
                 ->count();
 
-            $this->memoized[__FUNCTION__] = max(0, config('osu.beatmapset.user_weekly_hype') - $hyped);
+            $this->memoized[__FUNCTION__] = config('osu.beatmapset.user_weekly_hype') - $hyped;
         }
 
         return $this->memoized[__FUNCTION__];
