@@ -20,17 +20,17 @@
 
 return [
     'buttons' => [
-      'add' => 'add friend',
-      'remove' => 'remove friend',
+      'add' => 'tilføj ven',
+      'remove' => 'fjern ven',
     ],
 
     'state' => [
-      'friends' => 'friends',
-      'mutual' => 'mutual',
+      'friends' => 'venner',
+      'mutual' => 'fælles',
     ],
 
-    'title' => 'Friends',
-    'title_compact' => 'friends',
+    'title' => 'Venner',
+    'title_compact' => 'venner',
 
-    'too_many' => 'Friend limit reached.',
+    'too_many' => 'Maksimale antal venner nået.',
 ];
