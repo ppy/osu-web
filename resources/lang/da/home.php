@@ -20,132 +20,132 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
+        'online' => '<strong>:players</strong> er online i øjeblikket i <strong>:games</strong> spil',
+        'peak' => 'Toppunkt: :count',
+        'players' => '<strong>:count</strong> registrerede spillere',
 
         'download' => [
             '_' => 'Download now',
-            'soon' => 'osu! coming soon to other operating systems',
-            'for' => 'for :os',
-            'other' => 'click here for :os1 or :os2',
+            'soon' => 'osu! kommer snart til flere operativsystemer',
+            'for' => 'til :os',
+            'other' => 'klik her for :os1 eller :os2',
         ],
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
-            'sub' => 'rhythm is just a click away',
+            'main' => 'Gratis rytme-spil',
+            'sub' => 'rytmen er bare ét klik væk',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
-        'button' => 'Search',
-        'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'advanced_link' => 'Avanceret søgning',
+        'button' => 'Søg',
+        'empty_result' => 'Intet fundet!',
+        'missing_query' => 'Søg nøgleord med mindst :n karakterer er nødvendigt',
+        'title' => 'Søg resultater',
 
         'beatmapset' => [
-            'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
+            'more' => ':count flere beatmap søgeresultater',
+            'more_simple' => 'Se flere beatmap søgeresultater',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Search the forum',
-            'more_simple' => 'See more forum search results',
+            'all' => 'Alle forums',
+            'link' => 'Søg på forummet',
+            'more_simple' => 'Se flere søgeresultater fra forummet',
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
-                'username' => 'author',
+                'forum' => 'Søg i forums',
+                'forum_children' => 'inkluder subforums',
+                'topic_id' => 'emne #',
+                'username' => 'forfatter',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
+            'all' => 'alle',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'user' => 'player',
+            'user' => 'spiller',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
-            'title' => 'Players',
+            'more' => ':count flere spiller søgeresultater',
+            'more_simple' => 'Se flere spiller søgeresultater',
+            'more_hidden' => 'Spillersøgningen er begrænset til :max spillere. Prøv at lave om på din søgning.',
+            'title' => 'Spillere',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
+            'link' => 'Søg på wikiet',
+            'more_simple' => 'Se flere wiki resultater',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
       'header' => [
-          '1' => "let's get",
-          '2' => 'you started',
-          '3' => 'download osu! game client for Windows',
+          '1' => "lad os få",
+          '2' => 'dig i gang',
+          '3' => 'download osu! spilklienten til Windows',
       ],
       'steps' => [
           '1' => [
-              'name' => 'Step 1',
-              'content' => 'Download the osu! game client',
+              'name' => 'Trin 1',
+              'content' => 'Download osu! spilklienten',
           ],
           '2' => [
-              'name' => 'Step 2',
-              'content' => 'Create an osu! player account',
+              'name' => 'Trin 2',
+              'content' => 'Lav en osu! spillerkonto',
           ],
           '3' => [
-              'name' => 'Step 3',
+              'name' => 'Trin 3',
               'content' => '???',
           ],
       ],
-      'more' => 'Learn more?',
-      'more_text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+      'more' => 'Vil du lære mere?',
+      'more_text' => 'Tjek <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Kanalen</a> for at få god vejledning til, hvordan du får den bedste oplevelse ud af osu!',
     ],
 
     'user' => [
-        'title' => 'news',
+        'title' => 'nyheder',
         'news' => [
-            'title' => 'News',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'title' => 'Nyheder',
+            'error' => 'Fejl under indlæsning af nyheder. Prøv at genindlæse siden...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'welcome' => 'Hejsa, <strong>:username</strong>!',
+            'messages' => 'Du har 1 ny besked|Du har :count nye beskeder',
             'stats' => [
-                'friends' => 'Online Friends',
-                'games' => 'Games',
-                'online' => 'Online Users',
+                'friends' => 'Online Venner',
+                'games' => 'Spil',
+                'online' => 'Online Brugere',
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'new' => 'Nye Godkendte Beatmaps',
+            'popular' => 'Populære Beatmaps',
+            'by' => 'af',
+            'plays' => ':count afspilninger',
         ],
         'buttons' => [
             'download' => 'Download osu!',
-            'support' => 'Support osu!',
+            'support' => 'Støt osu!',
             'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
         'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
+        'subtitle' => 'Du ser ud til at have det sjovt! :D',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
+            'part-1' => 'Vidste du, at osu! er drevet helt uden reklamer og er afhængigt af, at spillets aktive brugere støtter udvikling og vedligeholdelsen?',
+            'part-2' => 'Vidste du også, at du ved at støtte osu! får en masse lækre funktioner, som f.eks. <strong>downloads i spillet</strong> som automatisk foregår, når du ser på et spil eller spiller et multiplayerspil?',
         ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
+        'find-out-more' => 'Klik her for at læse mere',
+        'download-starting' => "Hov, og bare rolig - din download er allerede sat i gang for dig ;)",
     ],
 ];
