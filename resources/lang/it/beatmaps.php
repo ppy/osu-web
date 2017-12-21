@@ -87,7 +87,7 @@ return [
         'disqualification-prompt' => 'Ragioni della squalifica?',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
         'qualified-soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
-        'incorrect-state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
+        'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
     ],
 
     'listing' => [

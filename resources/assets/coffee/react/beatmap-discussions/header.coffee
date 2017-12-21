@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, h1, h2, p} = ReactDOMFactories
+{a, div, h1, h2, p} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapDiscussions.Header extends React.PureComponent
