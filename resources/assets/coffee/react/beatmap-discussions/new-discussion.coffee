@@ -68,7 +68,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           @renderBox()
 
   renderBox: =>
-    showHypeHelp = _.includes(['wip', 'pending', 'qualified'], @props.beatmapset.status) && @props.mode == 'generalAll'
+    canHype =
+      @props.beatmapset.current_user_attributes?.can_hype &&
+      @props.beatmapset.can_be_hyped &&
+      @props.mode == 'generalAll'
 
     div
       className: 'osu-page osu-page--small'
@@ -115,7 +118,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
           div
             className: "#{bn}__footer-content js-hype--explanation js-flash-border"
             style:
-              opacity: 0 if @props.mode != 'timeline' && !showHypeHelp
+              opacity: 0 if @props.mode != 'timeline' && !(@props.mode == 'generalAll' && @props.beatmapset.can_be_hyped)
             div
               key: 'label'
               className: "#{bn}__timestamp-col #{bn}__timestamp-col--label"
@@ -131,10 +134,27 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   BeatmapDiscussionHelper.formatTimestamp @state.timestamp
                 else
                   osu.trans 'beatmaps.discussions.new.timestamp_missing'
-              else # mode == 'generalAll'
-                osu.trans 'beatmaps.hype.explanation'
+              else if @props.beatmapset.can_be_hyped # mode == 'generalAll'
+                if @props.currentUser.id?
+                  message =
+                    if @props.beatmapset.current_user_attributes.can_hype
+                      osu.trans 'beatmaps.hype.explanation'
+                    else
+                      @props.beatmapset.current_user_attributes.can_hype_reason
+
+                  if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype <= 0
+                    message += " #{osu.trans 'beatmaps.hype.remaining', remaining: @props.beatmapset.current_user_attributes.remaining_hype}"
+                    if @props.beatmapset.current_user_attributes.new_hype_time?
+                      message += " #{osu.trans 'beatmaps.hype.new_time', new_time: osu.timeago(@props.beatmapset.current_user_attributes.new_hype_time)}"
+
+                  span dangerouslySetInnerHTML:
+                    __html: message
+                else
+                  osu.trans 'beatmaps.hype.explanation_guest'
           div
             className: "#{bn}__footer-content #{bn}__footer-content--right"
+            if canHype
+              @submitButton 'hype'
             if @props.currentUser.id == @props.beatmapset.user_id
               @submitButton 'mapper_note'
             @submitButton 'praise'
@@ -230,6 +250,9 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
       return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
 
+    if type == 'hype'
+      return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
+
     @postXhr?.abort()
     LoadingOverlay.show()
     @setState posting: type
@@ -253,7 +276,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
-      $.publish 'beatmapset:update', beatmapset: data.beatmapset
       $.publish 'beatmapsetDiscussion:update',
         beatmapsetDiscussion: data.beatmapset_discussion
 
@@ -279,7 +301,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @setState timestamp: e.currentTarget.value
 
 
-  submitButton: (type) =>
+  submitButton: (type, extraProps) =>
     icon =
       if @state.posting == type
         # for some reason the spinner wobbles
@@ -292,10 +314,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       icon: icon
       text: osu.trans("beatmaps.discussions.message_type.#{type}")
       key: type
-      props:
-        disabled: !@validPost() || @state.posting?
-        'data-type': type
-        onClick: @post
+      props: _.merge
+          disabled: !@validPost() || @state.posting?
+          'data-type': type
+          onClick: @post
+          extraProps
 
 
   toggleSticky: =>

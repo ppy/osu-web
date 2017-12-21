@@ -310,7 +310,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
 
     .fail osu.ajaxError
 

@@ -50,6 +50,11 @@ class BeatmapDiscussionTest extends TestCase
 
         $discussion->message_type = 'praise';
         $this->assertTrue($discussion->isValid());
+
+        $discussion->beatmapset->update(['approved' => Beatmapset::STATES['pending']]);
+        $discussion->beatmap_id = null;
+        $discussion->message_type = 'hype';
+        $this->assertFalse($discussion->isValid());
     }
 
     public function testModderPost()
@@ -78,6 +83,16 @@ class BeatmapDiscussionTest extends TestCase
         $this->assertTrue($discussion->isValid());
 
         $discussion->message_type = 'praise';
+        $this->assertTrue($discussion->isValid());
+
+        $discussion->beatmapset->update(['approved' => Beatmapset::STATES['ranked']]);
+        $discussion->message_type = 'hype';
+        $this->assertFalse($discussion->isValid());
+
+        $discussion->beatmap_id = null;
+        $this->assertFalse($discussion->isValid());
+
+        $discussion->beatmapset->update(['approved' => Beatmapset::STATES['pending']]);
         $this->assertTrue($discussion->isValid());
     }
 

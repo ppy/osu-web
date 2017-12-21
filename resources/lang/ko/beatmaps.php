@@ -106,9 +106,8 @@ return [
 
     'hype' => [
         'button' => '비트맵 홍보하기!',
-        'button-done' => '이미 이 비트맵을 홍보하셨습니다!',
-        'explanation' => '칭찬 ❤를 늘려주시면 비트맵이 점점 더 강조되고, 추천 리스트와 비트맵 순위에도 잘 나타나게 될 겁니다!',
-        'section-title' => 'Hype Train', // 영어 슬랭으로, 적당한 말을 찾지 못해 번역
+        'button_done' => '이미 이 비트맵을 홍보하셨습니다!',
+        'section_title' => 'Hype Train', // 영어 슬랭으로, 적당한 말을 찾지 못해 번역
         'title' => '비트맵 홍보', // 원문 'Hype'
     ],
 
