@@ -73,11 +73,11 @@ class UserRecalculateRankCounts extends Command
         $class = UserStatistics::class.'\\'.studly_case($mode);
         $query = $class::query();
         if (present($this->from)) {
-            $query->where('user_id', '>', $this->from);
+            $query->where('user_id', '>=', $this->from);
         }
 
         if (present($this->until)) {
-            $query->where('user_id', '<', $this->until);
+            $query->where('user_id', '<=', $this->until);
         }
 
         $count = $query->count();
