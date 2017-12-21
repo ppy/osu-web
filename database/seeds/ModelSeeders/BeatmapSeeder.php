@@ -14,70 +14,6 @@ class BeatmapSeeder extends Seeder
     private $beatmaps = [];
     private $beatmapsets = [];
 
-
-    private function createBeatmapset($json)
-    {
-        return Beatmapset::create([
-            'beatmapset_id' => $json->beatmapset_id,
-            'creator' => $json->creator,
-            'artist' => $json->artist,
-            'title' => $json->title,
-            'displaytitle' => $json->title,
-            'source' => $json->source,
-            'tags' => $json->tags,
-            'bpm' => $json->bpm,
-            'approved' => $json->approved,
-            'approved_date' => $json->approved_date,
-            'genre_id' => $json->genre_id,
-            'language_id' => $json->language_id,
-            'versions_available' => 1,
-            'difficulty_names' => '',
-            'play_count' => 0,
-            'favourite_count' => $json->favourite_count,
-            'user_id' => $this->randomUser()['user_id'],
-            'submit_date' => Carbon::now(),
-        ]);
-    }
-
-    private function createBeatmap($json)
-    {
-        return Beatmap::create([
-            'beatmap_id' => $json->beatmap_id,
-            'beatmapset_id' => $json->beatmapset_id,
-            'filename' => $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz',
-            'checksum' => $json->file_md5,
-            'version' => $json->version,
-            'total_length' => $json->total_length,
-            'hit_length' => $json->hit_length,
-            'countTotal' => $json->max_combo !== null ? $json->max_combo : 1500,
-            'countNormal' => round(intval($json->max_combo) - (0.2 * intval($json->max_combo))),
-            'countSlider' => round(intval($json->max_combo) - (0.8 * intval($json->max_combo))),
-            'countSpinner' => 1,
-            'diff_drain' => $json->diff_drain,
-            'diff_size' => $json->diff_size,
-            'diff_overall' => $json->diff_overall,
-            'diff_approach' => $json->diff_approach,
-            'playmode' => $json->mode,
-            'approved' => $json->approved,
-            'difficultyrating' => $json->difficultyrating,
-            'playcount' => $json->playcount,
-            'passcount' => $json->passcount,
-            'user_id' => $this->randomUser()['user_id'],
-        ]);
-    }
-
-    private function createBeatmapFailtimes($beatmap)
-    {
-        // Generating the beatmap failtimes
-        // just delete all the old ones and create new ones.
-        BeatmapFailtimes::where('beatmap_id', $beatmap->beatmap_id)->delete();
-
-        $beatmap->failtimes()->saveMany([
-            factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
-            factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
-        ]);
-    }
-
     /**
      * Run the database seeds.
      *
@@ -141,7 +77,7 @@ class BeatmapSeeder extends Seeder
             }
             $this->beatmaps[$beatmap->beatmap_id] = $beatmap;
 
-            $this->createBeatmapFailtimes($beatmap);
+            $this->createFailtimes($beatmap);
             $this->createDifficulty($beatmap);
         }
 
@@ -169,6 +105,69 @@ class BeatmapSeeder extends Seeder
             $this->command->info("Beatmap Sets: {$updatedBeatmapsetsCount} updated, {$newBeatmapsetsCount} new.");
             $this->command->info("Beatmaps: {$updatedBeatmapsCount} updated, {$newBeatmapsCount} new.");
         }
+    }
+
+    private function createBeatmap($json)
+    {
+        return Beatmap::create([
+            'beatmap_id' => $json->beatmap_id,
+            'beatmapset_id' => $json->beatmapset_id,
+            'filename' => $json->beatmapset_id.' '.$json->artist.' - '.$json->title.'.osz',
+            'checksum' => $json->file_md5,
+            'version' => $json->version,
+            'total_length' => $json->total_length,
+            'hit_length' => $json->hit_length,
+            'countTotal' => $json->max_combo !== null ? $json->max_combo : 1500,
+            'countNormal' => round(intval($json->max_combo) - (0.2 * intval($json->max_combo))),
+            'countSlider' => round(intval($json->max_combo) - (0.8 * intval($json->max_combo))),
+            'countSpinner' => 1,
+            'diff_drain' => $json->diff_drain,
+            'diff_size' => $json->diff_size,
+            'diff_overall' => $json->diff_overall,
+            'diff_approach' => $json->diff_approach,
+            'playmode' => $json->mode,
+            'approved' => $json->approved,
+            'difficultyrating' => $json->difficultyrating,
+            'playcount' => $json->playcount,
+            'passcount' => $json->passcount,
+            'user_id' => $this->randomUser()['user_id'],
+        ]);
+    }
+
+    private function createBeatmapset($json)
+    {
+        return Beatmapset::create([
+            'beatmapset_id' => $json->beatmapset_id,
+            'creator' => $json->creator,
+            'artist' => $json->artist,
+            'title' => $json->title,
+            'displaytitle' => $json->title,
+            'source' => $json->source,
+            'tags' => $json->tags,
+            'bpm' => $json->bpm,
+            'approved' => $json->approved,
+            'approved_date' => $json->approved_date,
+            'genre_id' => $json->genre_id,
+            'language_id' => $json->language_id,
+            'versions_available' => 1,
+            'difficulty_names' => '',
+            'play_count' => 0,
+            'favourite_count' => $json->favourite_count,
+            'user_id' => $this->randomUser()['user_id'],
+            'submit_date' => Carbon::now(),
+        ]);
+    }
+
+    private function createFailtimes($beatmap)
+    {
+        // Generating the beatmap failtimes
+        // just delete all the old ones and create new ones.
+        BeatmapFailtimes::where('beatmap_id', $beatmap->beatmap_id)->delete();
+
+        $beatmap->failtimes()->saveMany([
+            factory(App\Models\BeatmapFailtimes::class, 'fail')->make(),
+            factory(App\Models\BeatmapFailtimes::class, 'retry')->make(),
+        ]);
     }
 
     private function createDifficulty($beatmap)
