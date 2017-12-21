@@ -134,6 +134,7 @@ return [
         'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
         'required-text' => 'Nominations: :current/:required',
         'title' => 'Nomination Status',
+        'unresolved-issues' => 'There are still unresolved issues that must be addressed first.',
     ],
 
     'listing' => [
