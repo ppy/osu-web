@@ -142,6 +142,7 @@ class BeatmapSeeder extends Seeder
             $this->beatmaps[$beatmap->beatmap_id] = $beatmap;
 
             $this->createBeatmapFailtimes($beatmap);
+            $this->createDifficulty($beatmap);
         }
 
         foreach ($sets as $setId => $mapIds) {
@@ -172,7 +173,11 @@ class BeatmapSeeder extends Seeder
 
     private function createDifficulty($beatmap)
     {
-        if ($beatmap->playmode !== Beatmap::MODE['osu']) {
+        // Generating the beatmap difficulties
+        // just delete all the old ones and create new ones.
+        BeatmapDifficulty::where('beatmap_id', $beatmap->beatmap_id)->delete();
+
+        if ($beatmap->playmode !== Beatmap::MODES['osu']) {
             $modes = [$beatmap->playmode];
         } else {
             $modes = array_values(Beatmap::MODES);
@@ -180,9 +185,11 @@ class BeatmapSeeder extends Seeder
 
         foreach ($modes as $mode) {
             // fuzz the ratings for converts a little.
+            // TODO: should probably update the endpoint the seeder uses to
+            //  include per-mode difficulties later.
             $diff_unified = $mode === $beatmap->playmode
                 ? $beatmap->difficultyrating
-                : $rand(-10000, 10000) / 10000;
+                : rand(-10000, 10000) / 10000;
 
             if ($diff_unified < 0) {
                 $diff_unified = rand(1, 10000) / 10000;
