@@ -22,238 +22,238 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            '_' => 'Sæt coverbillede',
+            'button' => 'Upload billede',
+            'info' => 'Coverstørrelse skal være :dimensions. Du kan også smide dit cover her for at uploade det.',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => 'Fjern coverbillede',
+            'confirm' => 'Er du sikker på, at du vil fjerne coverbilledet?',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
+        'new_reply' => '[osu!] Nyt svar for emne ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => 'Ingen emner!',
         ],
     ],
 
-    'pinned_topics' => 'Pinned Topics',
+    'pinned_topics' => 'Fastgjorte Emner',
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'confirm_destroy' => 'Slet opslag?',
+        'confirm_restore' => 'Gendag opslag?',
+        'edited' => 'Sidst redigeret af :user på :when, redigeret i alt :count gange.',
+        'posted_at' => 'slået op på :when',
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => 'Slet opslag',
+            'restore' => 'Gendan opslag',
+            'edit' => 'Redigér opslag',
         ],
     ],
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => 'Gå til opslag',
+        'post_number_input' => 'indtast opslagsnummer',
+        'total_posts' => ':posts_count opslag i alt',
     ],
     'subforums' => 'Subforums',
     'title' => 'osu!community',
-    'slogan' => "it's dangerous to play alone.",
+    'slogan' => "det er farlig at spille alene.",
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'Skriv opslagets indhold her',
+                'title' => 'Klik her for at lave en overskrift',
             ],
-            'preview' => 'Preview',
+            'preview' => 'Forhåndsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
+            'preview_hide' => 'Skriv',
+            'submit' => 'Slå op',
         ],
-        'go_to_latest' => 'view latest post',
+        'go_to_latest' => 'vist seneste opslag',
         'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'enter' => 'klik for at vælge et specifikt opslagsnummer',
+            'first' => 'gå til første opslag',
+            'last' => 'gå til sidste opslag',
+            'next' => 'spring over næste 10 opslag',
+            'previous' => 'gå 10 opslag tilbage',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+        'latest_post' => ':when af :user',
+        'latest_reply_by' => 'seneste svar af :user',
+        'new_topic' => 'Slå nyt emne op',
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'Annullér',
+            'post' => 'Gem',
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'post_reply' => 'Slå op',
+        'reply_box_placeholder' => 'Skriv her for at svare',
+        'started_by' => 'af :user',
     ],
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
-            'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
+            'title' => 'Forum Abonnementer',
+            'title_compact' => 'forum abonnementer',
+            'title_main' => 'Forum <strong>Abonnementer</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => 'Emner Abonneret',
+                'unread' => 'Emner med nye svar',
             ],
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => 'Du abonnerer i alt på :total emner.',
+                'unread' => 'Du har :unread ulæste svar til abonnerede emner.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => 'Opsig abonnement fra emne?',
+                'title' => 'Opsig abonnement',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'Emner',
 
         'actions' => [
-            'reply' => 'Reply',
-            'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'reply' => 'Svar',
+            'reply_with_quote' => 'Citér opslag til svar',
+            'search' => 'Søg',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => 'Oprettelse af afstemning',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => 'Lav en afstemning',
+                'remove' => 'Annullér oprettelsen af afstemning',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => 'Kør afstemning i',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length_days_suffix' => 'dage',
+                'length_info' => 'Efterlad blank for at køre afstemning på ubestemt tid',
+                'max_options' => 'Muligheder pr. bruger',
+                'max_options_info' => 'Dette er antallet af muligheder, en bruger har.',
+                'options' => 'Muligheder',
+                'options_info' => 'Placer hver mulighed på en ny linje. Du kan lave op til 10 muligheder.',
+                'title' => 'Spørgsmål',
+                'vote_change' => 'Tillad ændring af stemme.',
+                'vote_change_info' => 'Hvis aktiveret, kan brugerne undervejs ændre stemme.',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => 'Ændr titel',
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => 'visninger',
+            'replies' => 'svar',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
-            'state-0' => 'Removed "added" tag',
-            'state-1' => 'Added "added" tag',
+            'action-0' => 'Fjern "tilføjet" tag',
+            'action-1' => 'Tilføj "tilføjet" tag',
+            'state-0' => 'Fjern "tilføjet" tag',
+            'state-1' => 'Tilføj "tilføjet" tag',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
-            'state-0' => 'Removed "assigned" tag',
-            'state-1' => 'Added "assigned" tag',
+            'action-0' => 'Fjern "tildelelt" tag',
+            'action-1' => 'Tilføj "tildelelt" tag',
+            'state-0' => 'Fjern "tildelelt" tag',
+            'state-1' => 'Tilføj "tildelelt" tag',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
-            'state-0' => 'Removed "confirmed" tag',
-            'state-1' => 'Added "confirmed" tag',
+            'action-0' => 'Fjern "bekræftet" tag',
+            'action-1' => 'Tilføj "bekræftet" tag',
+            'state-0' => 'Fjern "bekræftet" tag',
+            'state-1' => 'Tilføj "bekræftet" tag',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
-            'state-0' => 'Removed "duplicate" tag',
-            'state-1' => 'Added "duplicate" tag',
+            'action-0' => 'Fjern "duplikeret" tag',
+            'action-1' => 'Tilføj "duplikeret" tag',
+            'state-0' => 'Fjern "duplikeret" tag',
+            'state-1' => 'Tilføj "duplikeret" tag',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
-            'state-0' => 'Removed "invalid" tag',
-            'state-1' => 'Added "invalid" tag',
+            'action-0' => 'Fjern "ugyldigt" tag',
+            'action-1' => 'Tilføj "ugyldigt" tag',
+            'state-0' => 'Fjern "ugyldigt" tag',
+            'state-1' => 'Tilføj "ugyldigt" tag',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
-            'state-0' => 'Removed "resolved" tag',
-            'state-1' => 'Added "resolved" tag',
+            'action-0' => 'Fjern "løst" tag',
+            'action-1' => 'Tilføj "løst" tag',
+            'state-0' => 'Fjern "løst" tag',
+            'state-1' => 'Tilføj "løst" tag',
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'is_locked' => 'Dette emne er arkiveret og kan ikke svares til',
+            'lock-0' => 'Oplås emne',
+            'lock-1' => 'Lås emne',
+            'state-0' => 'Emnet er blevet oplåst',
+            'state-1' => 'Emnet er blevet låst',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'Flyt til et andet forum',
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
-            'state-2' => 'Topic has been pinned and marked as announcement',
+            'pin-0' => 'Fjern fastgørelse af emne',
+            'pin-1' => 'Fastgør emne',
+            'pin-2' => 'Fastgør emne og marker som en meddelelse',
+            'state-0' => 'Emnet er blevet løsgjort',
+            'state-1' => 'Emnet er blevet fastgjort',
+            'state-2' => 'Emnet er blevet fastgjort og markeret som en meddelelse',
         ],
 
         'show' => [
-            'total_posts' => 'Total Posts',
-            'deleted-posts' => 'Deleted Posts',
+            'total_posts' => 'Opslag i alt',
+            'deleted-posts' => 'Slettede opslag',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => 'Nuværende prioritet: +:count',
+                'do' => 'Promovér denne anmodning',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'current' => 'Du har :votes stemmer tilbage.',
+                    'count' => '{0} ingen stemmer|{1} :count stemme|[2,*] :count stemmer',
+                    'not_enough' => "Du har ikke flere stemmer tilbage",
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => 'Stem',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
-                    'end_time' => 'Polling will end at :time',
+                    'total' => 'Stemmer i alt: :count',
+                    'ended' => 'Afstemning sluttede :time',
+                    'end_time' => 'Afstemning slutter :time',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'state-0' => 'Opsagde abonnement for emnet',
+            'state-1' => 'Abonnerede på emnet',
+            'watch-0' => 'Opsagde abonnement for emnet',
+            'watch-1' => 'Abonnerede på emnet',
         ],
     ],
 
