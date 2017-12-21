@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
-    'invalid_resource_id' => 'No payment information was found.',
-    'unknown' => "The payment was rejected, but we're not sure why.",
+    'instrument_declined' => 'Den ønskede betalingsmetode blev afvist af PayPal.',
+    'invalid_resource_id' => 'Ingen betalingsinformation blev fundet.',
+    'unknown' => "Betalingen blev afvist, og vi er ikke sikre på hvorfor.",
 ];
