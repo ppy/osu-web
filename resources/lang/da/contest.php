@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'small' => 'Compete in more ways than just clicking circles.',
-        'large' => 'osu! Community Contests',
+        'small' => 'Konkurrér på flere måder end bare at klikke på cirkler.',
+        'large' => 'osu! Fællesskabskonkurrencer',
     ],
     'voting' => [
-        'over' => 'Voting for this contest has ended',
-        'login_required' => 'Please login to vote.',
+        'over' => 'Afstemning for denne konkurrence er sluit',
+        'login_required' => 'Log venligst ind for at stemme.',
         'best_of' => [
-            'none_played' => "It doesn't look like you played any beatmaps that qualify for this contest!",
+            'none_played' => "Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!",
         ],
     ],
     'entry' => [
         '_' => 'entry',
-        'login_required' => 'Please login to enter the contest.',
-        'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
-        'preparation' => 'We are currently preparing this contest. Please wait patiently!',
-        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
-        'limit_reached' => 'You have reached the entry limit for this contest',
-        'drop_here' => 'Drop your entry here',
+        'login_required' => 'Log venligst ind for at deltage i denne konkurrence.',
+        'silenced_or_restricted' => 'Du kan ikke deltage i konkurrencer, når du er mutet eller begrænset.',
+        'preparation' => 'Vi er i gang med at forberede den næste konkurrence. Vær tålmodig!',
+        'over' => 'Tak for jeres bidrag! Indsendelsen for denne konkurrence er slut, og afstemning vil finde sted snarest!.',
+        'limit_reached' => 'Du har nået dit maksimale antal bidrag for denne konkurrence',
+        'drop_here' => 'Smid dit bidrag her',
         'wrong_type' => [
-            'art' => 'Only .jpg and .png files are accepted for this contest.',
-            'beatmap' => 'Only .osu files are accepted for this contest.',
-            'music' => 'Only .mp3 files are accepted for this contest.',
+            'art' => 'Kun .jpg og .png filer er accepteret for denne konkurrence.',
+            'beatmap' => 'Kun .osu filer er accepteret for denne konkurrence.',
+            'music' => 'Kun .mp3 filer er accepteret for denne konkurrence.',
         ],
-        'too_big' => 'Entries for this contest can only be up to :limit.',
+        'too_big' => 'Bidrag til denne konkurrence kan maks være op til :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Download Entry',
+        'download' => 'Download Bidrag',
     ],
     'vote' => [
-        'list' => 'votes',
-        'count' => '1 vote|:count votes',
+        'list' => 'stemmer',
+        'count' => '1 stemme|:count stemmer',
     ],
     'dates' => [
-        'ended' => 'Ended :date',
+        'ended' => 'Sluttede :date',
 
         'starts' => [
-            '_' => 'Starts :date',
-            'soon' => 'soon™',
+            '_' => 'Starter :date',
+            'soon' => 'snart™',
         ],
     ],
     'states' => [
-        'entry' => 'Entry Open',
-        'voting' => 'Voting Started',
-        'results' => 'Results Out',
+        'entry' => 'Åbent For Bidrag',
+        'voting' => 'Afstemning Begyndt',
+        'results' => 'Resultaterne Er Ude',
     ],
 ];
