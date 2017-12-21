@@ -326,7 +326,7 @@ class UsersController extends Controller
         }
 
         $this->offset = get_int(Request::input('offset')) ?? 0;
-        $perPage = clamp(get_int(request('limit')) ?? 5, 1, 10);
+        $perPage = clamp(get_int(request('limit')) ?? 5, 1, 20);
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
