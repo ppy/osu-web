@@ -30,4 +30,8 @@ class BeatmapDifficulty extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
 }
