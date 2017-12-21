@@ -202,18 +202,9 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        // check if there are any outstanding issues still
-        $outstandingIssues = Beatmapset::find($id)
-            ->beatmapDiscussions()
-            ->openIssues()
-            ->count();
-
-        if ($outstandingIssues > 0) {
-            return error_popup(trans('beatmaps.nominations.unresolved-issues'));
-        }
-
-        if (!$beatmapset->nominate(Auth::user())) {
-            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        $nomination = $beatmapset->nominate(Auth::user());
+        if (!$nomination['result']) {
+            return error_popup($nomination['message']);
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
