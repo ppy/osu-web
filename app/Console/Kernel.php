@@ -50,6 +50,8 @@ class Kernel extends ConsoleKernel
 
         // fix username change fail :D
         Commands\FixUsernameChangeTopicCache::class,
+
+        Commands\UserRecalculateRankCounts::class,
     ];
 
     /**

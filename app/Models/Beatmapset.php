@@ -825,7 +825,19 @@ class Beatmapset extends Model
     public function nominate(User $user)
     {
         if (!$this->isPending()) {
-            return false;
+            $message = trans('beatmaps.nominations.incorrect_state');
+        }
+
+        // check if there are any outstanding issues still
+        if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
+            $message = trans('beatmaps.nominations.unresolved_issues');
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => $message,
+            ];
         }
 
         DB::transaction(function () use ($user) {
@@ -838,7 +850,9 @@ class Beatmapset extends Model
             }
         });
 
-        return true;
+        return [
+            'result' => true,
+        ];
     }
 
     public function favourite($user)
@@ -924,7 +938,7 @@ class Beatmapset extends Model
 
                 if ($hyped) {
                     $message = 'hyped';
-                } elseif ($user->remainingHype() === 0) {
+                } elseif ($user->remainingHype() <= 0) {
                     $message = 'limit_exceeded';
                 }
             }
