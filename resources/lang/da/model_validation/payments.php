@@ -20,33 +20,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signatures do not match',
+        'not_match' => 'Signaturerne matcher ikke hinanden',
     ],
-    'notification_type' => 'notification_type is not valid :type',
+    'notification_type' => 'notification_type er ikke gyldig :type',
     'order' => [
-        'invalid' => 'Order is not valid',
+        'invalid' => 'Ordren er ugyldig',
         'items' => [
-            'virtual_only' => '`:provider` payment is not valid for physical items.',
+            'virtual_only' => '`:provider` betalingsmetode er ikke mulig for fysiske produkter.',
         ],
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
-            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',
+            'not_checkout' => 'Forsøger at acceptere betaling for en ordre i den forkerte tilstand `:state`.',
+            'not_paid' => 'Forsøger at refundere betaling for en ordre i den forkerte tilstand `:state`.',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param does not match',
+        'invalid' => '`:param` param matcher ikke',
     ],
     'paypal' => [
-        'not_echeck' => 'Pending payment is not an echeck. (:actual)',
+        'not_echeck' => 'Afventende betaling er ikke echeck. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Payment amount does not match: :actual != :expected',
-            'currency' => 'Payment is not in USD. (:type)',
+            'amount' => 'Beløbet matcher ikke: :actual != :expected',
+            'currency' => 'Beløbet er ikke i USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Received order transaction id is malformed',
-        'user_id_mismatch' => 'external_id contains wrong user id',
+        'malformed' => 'Det modtagne transaktions-id er misdannet',
+        'user_id_mismatch' => 'external_id indeholder det forkerte bruger-id',
     ],
 ];
