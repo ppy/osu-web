@@ -20,12 +20,12 @@
 
 return [
     'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'generic' => 'Fejlrettelser og små forbedringer.',
+    'users-online' => '1 bruger online|:users brugere online',
 
     'prefixes' => [
         'add' => 'addition',
         'fix' => 'fix',
-        'misc' => 'miscellanous',
+        'misc' => 'diverse',
     ],
 ];
