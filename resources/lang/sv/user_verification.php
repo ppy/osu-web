@@ -20,30 +20,30 @@
 
 return [
     'box' => [
-        'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
-        'verifying' => 'Verifying...',
-        'issuing' => 'Issuing new code...',
+        'sent' => 'Ett email att skickats till :mail med en verifikations kod. Skriv in koden.',
+        'title' => 'Konto Verifiering',
+        'verifying' => 'Verifieras...',
+        'issuing' => 'Utfärdar ny kod...',
 
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
-            'recover_link' => 'email recovery process here',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
-            'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
+            'check_spam' => 'Dubbelkolla din skräpkorg ifall du inte kan hitta emailet.',
+            'recover' => 'Om du inte har åtkomst till din email eller har glömt vad du använde, var vänlig att följa :link.',
+            'recover_link' => 'email återställning processen här',
+            'reissue' => 'Du kan också :reissue_link eller :logout_link.',
+            'reissue_link' => 'begära annan kod',
+            'logout_link' => 'logga ut',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'osu! konto verifiering',
     ],
 
     'errors' => [
-        'expired' => 'Verification code expired, new verification email sent.',
-        'incorrect_key' => 'Incorrect verification code.',
-        'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
-        'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
+        'expired' => 'Verifierings kod är utgången, ny verifierings email skickad.',
+        'incorrect_key' => 'Felaktig verifierings kod.',
+        'retries_exceeded' => 'Felaktig verifierings kod. Försöks gräns uppnådd, ny verifierings email skickad.',
+        'reissued' => 'Verifierings kod återutfärdat, ny verifierings email skickad.',
+        'unknown' => 'Okänt problem uppstod, ny verifierings email skickad.',
     ],
 ];

@@ -20,35 +20,35 @@
 
 return [
     'breadcrumbs' => [
-        'news-index' => 'listing',
-        'news-show' => 'post',
+        'news-index' => 'listning',
+        'news-show' => 'inlägg',
     ],
 
     'index' => [
         'title' => 'osu!news',
 
         'nav' => [
-            'newer' => 'Newer posts',
-            'older' => 'Older posts',
+            'newer' => 'Nyare inlägg',
+            'older' => 'Äldre inlägg',
         ],
     ],
 
     'show' => [
-        'posted' => 'posted :time',
+        'posted' => 'uppladdad :time',
 
         'nav' => [
-            'newer' => 'Newer post',
-            'older' => 'Older post',
+            'newer' => 'Nyare inlägg',
+            'older' => 'Äldre inlägg',
         ],
     ],
 
     'store' => [
-        'button' => 'Update',
-        'ok' => 'Listing updated.',
+        'button' => 'Uppdatera',
+        'ok' => 'Listning uppdaterat.',
     ],
 
     'update' => [
-        'button' => 'Update',
-        'ok' => 'Post updated.',
+        'button' => 'Uppdaterad',
+        'ok' => 'Inlägg uppdaterat.',
     ],
 ];

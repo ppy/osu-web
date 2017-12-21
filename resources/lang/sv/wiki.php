@@ -20,21 +20,21 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
-        'languages' => 'Languages',
-        'missing' => 'Requested page could not be found.',
-        'missing_title' => 'Not Found',
-        'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'toc' => 'Contents',
+        'fallback_translation' => 'Begärd sida är inte översatt till vald språk (:language). Visar Engelsk version.',
+        'languages' => 'Språk',
+        'missing' => 'Begärd sida kunde ej hittas.',
+        'missing_title' => 'Ej Hittad',
+        'missing_translation' => 'Begärd sida kunde ej hittas för nuvarande valt språk.',
+        'toc' => 'Innehåll',
 
         'edit' => [
-            'link' => 'Show on GitHub',
-            'refresh' => 'Refresh',
+            'link' => 'Visa på GitHub',
+            'refresh' => 'Ladda om',
         ],
 
         'outdated' => [
-            '_' => 'This page contains an outdated translation of the original content. Please check the :default for the most accurate information (and consider updating the translation if you are able to help out)!',
-            'default' => 'English version',
+            '_' => 'Denna sida innehåller en utdaterad version av det originala innehållet. Var vänlig kolla :default för den mest exakta informationen (och överväg uppdatera översättningen om du kan hjälpa till)!',
+            'default' => 'Engelsk version',
         ],
     ],
 ];

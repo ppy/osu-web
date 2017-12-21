@@ -21,35 +21,35 @@
 return [
     'header' => [
         'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'description' => 'vad händer mah dude?',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => 'Aktiva Incidenter',
+        'automated' => 'automatiserad',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => 'Användare Online dem senaste 24 timmarna',
+            'score' => 'Poäng Inlämningar dem senaste 24 timmarna',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => 'Nuvarande Användare Online',
+        'score' => 'Poäng Inlämningar per Sekund',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => 'Senaste Incidenter',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => 'Löst',
+                'resolving' => 'Lösande',
+                'unknown' => 'Okänd',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => 'Upptid',
             'graphs' => [
                 'server' => 'server',
                 'web' => 'web',
@@ -57,12 +57,12 @@ return [
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => 'idag',
+            'week' => 'vecka',
+            'month' => 'månad',
+            'all_time' => 'all tid',
+            'last_week' => 'senaste vecka',
+            'weeks_ago' => ':count vecka sedan|:count veckor sedan',
         ],
     ],
 ];

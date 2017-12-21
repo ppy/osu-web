@@ -19,49 +19,49 @@
  */
 
 return [
-    'not_negative' => ':attribute cannot be negative.',
-    'required' => ':attribute is required.',
-    'wrong_confirmation' => 'Confirmation does not match.',
+    'not_negative' => ':attribute kan inte vara negativt.',
+    'required' => ':attribute behövs.',
+    'wrong_confirmation' => 'Bekräftelse matchar inte.',
 
     'beatmap_discussion_post' => [
-        'first_post' => 'Can not delete starting post.',
+        'first_post' => 'Kan inte radera ursprungs inlägg.',
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => 'Kan endast rösta på funktion begäran.',
+            'not_enough_feature_votes' => 'Inte tillräckligt med röster.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specified.',
+            'invalid' => 'Ogiltligt val specificerat.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => 'Duplicerad val är ej tillåtet.',
+            'invalid_max_options' => 'Val per användare för inte överskrida antalet tillgängliga val.',
+            'minimum_one_selection' => 'Minst ett val per användare behövs.',
+            'minimum_two_options' => 'Behövs minst två val.',
+            'too_many_options' => 'Överskred max antal tillåtna val.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selected more options than allowed.',
+            'too_many' => 'Valde mer val än tillåtet.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Password may not contain username.',
-        'email_already_used' => 'Email address already used.',
-        'invalid_country' => 'Country not in database.',
-        'invalid_email' => "Doesn't seem to be an email address.",
-        'too_short' => 'New password is too short.',
-        'unknown_duplicate' => 'Username or email address already used.',
-        'username_too_short' => 'The requested username is too short.',
-        'weak' => 'Blacklisted password.',
-        'wrong_current_password' => 'Current password is incorrect.',
-        'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
-        'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
+        'contains_username' => 'Lösenord får inte innehålla användarnamn.',
+        'email_already_used' => 'Email adress används redan.',
+        'invalid_country' => 'Land är inte i databasen.',
+        'invalid_email' => 'Verkar inte som att det är en email adress.',
+        'too_short' => 'Nytt lösenord är för kort.',
+        'unknown_duplicate' => 'Användarnamn eller email adress används redan.',
+        'username_too_short' => 'Begärt användarnamn är för kort.',
+        'weak' => 'Svartlistad lösenord.',
+        'wrong_current_password' => 'Nuvarande lösenord är inkorrekt.',
+        'wrong_email_confirmation' => 'Email bekräftelse matchar inte.',
+        'wrong_password_confirmation' => 'Lösenord bekräftelse matchar inte.',
+        'too_long' => 'Överskred max längd - kan endast vara upp till :limit karaktärer.',
     ],
 ];

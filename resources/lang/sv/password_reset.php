@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => 'Reset Password',
+    'title' => 'Återställ Lösenord',
 
     'button' => [
-        'cancel' => 'Cancel',
-        'resend' => 'Resend verification email',
-        'set' => 'Set password',
-        'start' => 'Start',
+        'cancel' => 'Avbryt',
+        'resend' => 'Skicka verifikations email igen',
+        'set' => 'Sätt lösenord',
+        'start' => 'Starta',
     ],
 
     'email' => [
-        'subject' => 'osu! account recover',
+        'subject' => 'osu! konto återhämtning',
     ],
 
     'error' => [
-        'contact_support' => 'Please contact support to recover account.',
-        'is_privileged' => 'Contact peppy lulz.',
-        'missing_key' => 'Required.',
-        'too_many_tries' => 'Too many failed attempts.',
-        'user_not_found' => 'Requested user does not exist.',
-        'wrong_key' => 'Incorrect code.',
+        'contact_support' => 'Vänligen kontakta support för att återhämta konto.',
+        'is_privileged' => 'Kontakta peppy lulz.',
+        'missing_key' => 'Behövs.',
+        'too_many_tries' => 'För många misslyckade försök.',
+        'user_not_found' => 'Begärd användare finns inte.',
+        'wrong_key' => 'Felaktig kod.',
     ],
 
     'notice' => [
-        'sent' => 'Check your email for the verification code.',
-        'saved' => 'New password saved!',
+        'sent' => 'Kolla din email för verifikations koden.',
+        'saved' => 'Nytt lösenord sparat!',
     ],
 
     'started' => [
-        'password' => 'New password',
-        'password_confirmation' => 'Password confirmation',
-        'title' => 'Resetting password for account <strong>:username</strong>.',
-        'verification_key' => 'Verification code',
+        'password' => 'Nytt lösenord',
+        'password_confirmation' => 'Lösenord bekräftelse',
+        'title' => 'Åteställer lösenord för användare <strong>:username</strong>.',
+        'verification_key' => 'Verifikations kod',
     ],
 
     'starting' => [
-        'username' => 'Enter email address or username',
+        'username' => 'Skriv in email adress eller användarnamn',
     ],
 ];

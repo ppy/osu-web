@@ -20,58 +20,58 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warehouse',
+        'warehouse' => 'Lager',
     ],
 
     'checkout' => [
-        'cart_problems' => 'Uh oh, there are problems with your cart!',
-        'cart_problems_edit' => 'Click here to go edit it.',
-        'declined' => 'The payment was cancelled.',
-        'error' => 'There was a problem completing your checkout :(',
-        'pay' => 'Checkout with Paypal',
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'cart_problems' => 'Uh oh, det finns problem med din varukorg!',
+        'cart_problems_edit' => 'Klicka här för att redigera det.',
+        'declined' => 'Betalningen blev avbruten.',
+        'error' => 'Det var ett problem med att slutföra din betalning :(',
+        'pay' => 'Betala med Paypal',
+        'delayed_shipping' => 'Vi är för nuvarande överväldigad med orders! Du får gärna placera din order, men du kanske kommer få en **extra 1-2 veckors försening** medans vi kommer ikapp alla ordrar.',
     ],
 
-    'discount' => 'save :percent%',
+    'discount' => 'spara :percent%',
 
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
+                'supporter_tag' => ':name för :username (:duration)',
             ],
-            'quantity' => 'Quantity',
+            'quantity' => 'Antal',
         ],
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => 'Namn',
 
         'stock' => [
-            'out' => 'Currently out of stock :(. Check back soon.',
-            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+            'out' => 'Slut i lager :(. Kolla igen snart.',
+            'out_with_alternative' => 'Denna typ är för närvarande slut i lager :(. Testa andra typer eller kolla igen snart.',
         ],
 
-        'add_to_cart' => 'Add to Cart',
-        'notify' => 'Notify me when available!',
+        'add_to_cart' => 'Lägg till i Varukorgen',
+        'notify' => 'Notifiera mig när den är tillgänglig!',
 
-        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
-        'notification_remove_text' => 'here',
+        'notification_success' => 'du kommer bli notifierad när vi har nytt i lager. klicka :link för att avbryta',
+        'notification_remove_text' => 'här',
 
-        'notification_in_stock' => 'This product is already in stock!',
+        'notification_in_stock' => 'Denna produkt är redan i lager!',
     ],
 
     'supporter_tag' => [
-        'gift' => 'gift to player',
+        'gift' => 'present till spelare',
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => 'Du behöver vara :link för att få en supporter tagg!',
+            'link_text' => 'inloggad',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            '_' => 'Du behöver var :link för att ändra ditt namn!',
+            'link_text' => 'inloggad',
         ],
     ],
 ];

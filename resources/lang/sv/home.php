@@ -20,132 +20,132 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
+        'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> spel',
+        'peak' => 'Som högst, :count spelare online',
+        'players' => '<strong>:count</strong> registrerade spelare',
 
         'download' => [
-            '_' => 'Download now',
-            'soon' => 'osu! coming soon to other operating systems',
-            'for' => 'for :os',
-            'other' => 'click here for :os1 or :os2',
+            '_' => 'Ladda ner nu',
+            'soon' => 'osu! kommer snart till andra operativsystem',
+            'for' => 'för :os',
+            'other' => 'klicka här för :os1 eller :os2',
         ],
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
-            'sub' => 'rhythm is just a click away',
+            'main' => 'gratis-att-spela rytm spel',
+            'sub' => 'rytmen är bara ett klick bort',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
-        'button' => 'Search',
-        'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'advanced_link' => 'Avancerad sökning',
+        'button' => 'Sök',
+        'empty_result' => 'Ingenting hittades!',
+        'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
+        'title' => 'Sök Resultat',
 
         'beatmapset' => [
-            'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
+            'more' => ':count fler sök resultat på beatmaps',
+            'more_simple' => 'Se fler sök resultat på beatmaps',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Search the forum',
-            'more_simple' => 'See more forum search results',
+            'all' => 'Alla forum',
+            'link' => 'Sök på forumet',
+            'more_simple' => 'Se fler sök resultat på forum',
             'title' => 'Forum',
 
             'label' => [
-                'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
-                'username' => 'author',
+                'forum' => 'sök i forum',
+                'forum_children' => 'inkludera subforum',
+                'topic_id' => 'ämne #',
+                'username' => 'författare',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
+            'all' => 'alla',
             'beatmapset' => 'beatmap',
             'forum_post' => 'forum',
-            'user' => 'player',
+            'user' => 'spelare',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
-            'title' => 'Players',
+            'more' => ':count fler sök resultat på spelare',
+            'more_simple' => 'Se fler sök resultat på spelare',
+            'more_hidden' => 'Sökning på spelare är begränsad till :max spelare. Försök förfina sökningen.',
+            'title' => 'Spelare',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
+            'link' => 'Sök på wiki',
+            'more_simple' => 'Se fler sök resultat på wiki',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
       'header' => [
-          '1' => "let's get",
-          '2' => 'you started',
-          '3' => 'download osu! game client for Windows',
+          '1' => 'låt oss',
+          '2' => 'få dig igång',
+          '3' => 'ladda ner osu! spel klienten för Windows',
       ],
       'steps' => [
           '1' => [
-              'name' => 'Step 1',
-              'content' => 'Download the osu! game client',
+              'name' => 'Steg 1',
+              'content' => 'Ladda ner osu! spel klienten',
           ],
           '2' => [
-              'name' => 'Step 2',
-              'content' => 'Create an osu! player account',
+              'name' => 'Steg 2',
+              'content' => 'Skapa ett osu! spel konto',
           ],
           '3' => [
-              'name' => 'Step 3',
+              'name' => 'Steg 3',
               'content' => '???',
           ],
       ],
-      'more' => 'Learn more?',
-      'more_text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+      'more' => 'Lära dig mer?',
+      'more_text' => 'Kolla in <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Kanalen</a> för uppdaterade genomgångar och tips på hur du kan få ut det mesta av osu!',
     ],
 
     'user' => [
-        'title' => 'news',
+        'title' => 'nyheter',
         'news' => [
-            'title' => 'News',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'title' => 'Nyheter',
+            'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'welcome' => 'Hej, <strong>:username</strong>!',
+            'messages' => 'Du har 1 nytt meddelande|Du har :count nya meddelanden',
             'stats' => [
-                'friends' => 'Online Friends',
-                'games' => 'Games',
-                'online' => 'Online Users',
+                'friends' => 'Vänner Online',
+                'games' => 'Spel',
+                'online' => 'Användare Online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'new' => 'Nya Godkända Beatmaps',
+            'popular' => 'Populära Beatmaps',
+            'by' => 'av',
+            'plays' => 'Spelad :count gånger',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
-            'support' => 'Support osu!',
+            'download' => 'Ladda ner osu!',
+            'support' => 'Stötta osu!',
             'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
         'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
+        'subtitle' => 'Det ser ut som att du har det bra! :D',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
+            'part-1' => 'Visste du att osu! körs utan annonser, och förlitar sig på spelare som söttar utvecklingen och och kostnader för underhåll?',
+            'part-2' => 'Visste du också att när du stöttar osu! så kommer du få en hög med användbara funktioner, som <strong>nedladdning i spelet</strong> vilket automatiskt sätts igång när du är åskådare eller spelar med andra?',
         ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
+        'find-out-more' => 'Klicka här för att ta reda på mer!',
+        'download-starting' => 'Oh, och oroa dig inte - din nedladdning har redan startas åt dig ;)',
     ],
 ];

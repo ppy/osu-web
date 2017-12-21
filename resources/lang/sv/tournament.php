@@ -21,22 +21,22 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'A listing of active, officially-recognised tournaments',
-            'title' => 'Community Tournaments',
+            'subtitle' => 'En listning av aktiva, officiellt-igenkända turneringar',
+            'title' => 'Gemenskap Turneringar',
         ],
-        'none_running' => 'There are no tournaments running at the moment, please check back later!',
-        'registration_period' => 'Registration: :start to :end',
+        'none_running' => 'Det finns inga turneringar igång just nu, var vänlig kolla igen senare!',
+        'registration_period' => 'Registrering: :start till :end',
     ],
     'show' => [
         'button' => [
-            'register' => 'Sign me up!',
-            'cancel' => 'Cancel Registration',
+            'register' => 'Skriv upp mig!',
+            'cancel' => 'Avbryt Registrering',
         ],
-        'entered' => 'Your are registered for this tournament.<br><br>Note that this does not mean you have been assigned to a team.<br><br>Further instructions will be sent to you via email closer to the tournament date, so please ensure your osu! account\'s email address is valid!',
-        'login_to_register' => 'Please :login to view registration details!',
-        'not_yet_entered' => 'You are not registered for this tournament.',
-        'rank_too_low' => 'Sorry, you do not meet the rank requirements for this tournament!',
-        'registration_ends' => 'Registrations close on :date',
+        'entered' => 'Du är registrerad för denna turnering.<br><br>Notera att detta betyder inte att du har blivit tilldelad ett lag.<br><br>Yttligare instruktioner kommer att skickas till dig via email närmare datumet för turneringen, så var vänlig att kontrollera att ditt osu! kontos email adress är korrekt!',
+        'login_to_register' => 'Var vänlig :login för att visa registrerings detaljer!',
+        'not_yet_entered' => 'Du är inte registrerad för denna turnering.',
+        'rank_too_low' => 'Tyvärr, men du möter inte kraven på rank för denna turnering!',
+        'registration_ends' => 'Registreringar stänger :date',
     ],
-    'tournament_period' => ':start to :end',
+    'tournament_period' => ':start till :end',
 ];
