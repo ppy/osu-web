@@ -27,24 +27,24 @@ return [
     ],
 
     'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
+        'description' => 'Disse beatmap diskussioner følger du. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
         'title_compact' => 'modding watchlist',
         'title_main' => 'Modding Watchlist',
 
         'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
+            'empty' => 'Ingen beatmap diskussioner watched.',
+            'open_issues' => 'Åbne problemer',
+            'state' => 'Tilstand',
+            'title' => 'Titel',
         ],
     ],
 
     'mail' => [
-        'update' => 'New update for beatmap ":title"',
+        'update' => 'Ny opdatering for beatmap ":title"',
     ],
 
     'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
+        'read' => 'Læst',
+        'unread' => 'Ulæst',
     ],
 ];
