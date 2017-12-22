@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => 'Reset Password',
+    'title' => 'Nulstil Adgangskode',
 
     'button' => [
-        'cancel' => 'Cancel',
-        'resend' => 'Resend verification email',
-        'set' => 'Set password',
+        'cancel' => 'Annullér',
+        'resend' => 'Gensend Bekræftelsesemail',
+        'set' => 'Indstil adgangskode',
         'start' => 'Start',
     ],
 
     'email' => [
-        'subject' => 'osu! account recover',
+        'subject' => 'osu! konto genoprettelse',
     ],
 
     'error' => [
-        'contact_support' => 'Please contact support to recover account.',
-        'is_privileged' => 'Contact peppy lulz.',
-        'missing_key' => 'Required.',
-        'too_many_tries' => 'Too many failed attempts.',
-        'user_not_found' => 'Requested user does not exist.',
-        'wrong_key' => 'Incorrect code.',
+        'contact_support' => 'Kontakt venligst support for at genoprette denne konto.',
+        'is_privileged' => 'Kontakt peppy lulz.',
+        'missing_key' => 'Krævet.',
+        'too_many_tries' => 'For mange mislykkede forsøg.',
+        'user_not_found' => 'Brugeren eksisterer ikke.',
+        'wrong_key' => 'Forkert kode.',
     ],
 
     'notice' => [
-        'sent' => 'Check your email for the verification code.',
-        'saved' => 'New password saved!',
+        'sent' => 'Tjek din email for en bekræftelseskode.',
+        'saved' => 'Ny adgangskode gemt!',
     ],
 
     'started' => [
-        'password' => 'New password',
-        'password_confirmation' => 'Password confirmation',
-        'title' => 'Resetting password for account <strong>:username</strong>.',
-        'verification_key' => 'Verification code',
+        'password' => 'Ny adgangskode',
+        'password_confirmation' => 'Bekræftelse af adgangskode',
+        'title' => 'Nulstiller adgangskode for kontoen <strong>:username</strong>.',
+        'verification_key' => 'Bekræftelseskode',
     ],
 
     'starting' => [
-        'username' => 'Enter email address or username',
+        'username' => 'Indtast email-adresse eller brugernavn',
     ],
 ];
