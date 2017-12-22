@@ -33,8 +33,8 @@ abstract class Model extends BaseModel
     public $position = null;
     public $weight = null;
     public $macros = [
+        'accurateRankCounts',
         'forListing',
-        'rankCounts',
         'userBest',
     ];
 
@@ -212,7 +212,15 @@ abstract class Model extends BaseModel
         };
     }
 
-    public function macroRankCounts()
+    /**
+     * Gets up-to-date User score rank counts.
+     *
+     * This can be relatively slow for large numbers of scores, so
+     *  prefer getting the cached counts from one of the UserStatistics objects instead.
+     *
+     * @return array [user_id => [rank => count]]
+     */
+    public function macroAccurateRankCounts()
     {
         return function ($query) {
             $newQuery = clone $query;
