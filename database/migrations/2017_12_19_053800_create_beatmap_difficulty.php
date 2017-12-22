@@ -24,7 +24,7 @@ class CreateBeatmapDifficulty extends Migration
             $table->tinyInteger('mode')->default(0);
             $table->unsignedInteger('mods');
             $table->float('diff_unified', null, null); // creates a double instead of float.
-            $table->timestamp('last_update');
+            $table->timestamp('last_update')->useCurrent();
 
             $table->primary(['beatmap_id', 'mode', 'mods'], 'osu_beatmap_difficulty_primary');
             $table->index(['mode', 'mods', 'diff_unified'], 'diff_sort');
