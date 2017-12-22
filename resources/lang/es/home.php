@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Descarga ya',
         'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> juegos',
         'peak' => 'Pico, :count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
-
-        'download' => [
-            '_' => 'Descarga ya',
-            'soon' => 'osu! para otros sistemas operativos llegarán próximamente',
-            'for' => 'para :os',
-            'other' => 'clic aquí para :os1 o :os2',
-        ],
 
         'slogan' => [
             'main' => 'juego de ritmo gratis',

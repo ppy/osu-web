@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Télécharger maintenant',
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
-
-        'download' => [
-            '_' => 'Télécharger maintenant',
-            'soon' => "osu! sera bientôt disponible sur d'autres plateformes",
-            'for' => 'pour :os',
-            'other' => 'cliquez ici pour :os1 ou :os2',
-        ],
 
         'slogan' => [
             'main' => 'jeu de rythme free-to-play',

@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Скачать сейчас',
         'online' => 'из них сейчас <strong>:players</strong> в <strong>:games</strong> играх',
         'peak' => 'Пик :count активных игроков',
         'players' => 'зарегистрировано <strong>:count</strong> игроков',
-
-        'download' => [
-            '_' => 'Скачать сейчас',
-            'soon' => 'osu! пока доступна только для Windows',
-            'for' => 'для :os',
-            'other' => 'или для :os1 и :os2',
-        ],
 
         'slogan' => [
             'main' => 'бесплатная ритм-игра',
