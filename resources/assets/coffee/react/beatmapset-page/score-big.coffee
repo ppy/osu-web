@@ -59,11 +59,24 @@ BeatmapsetPage.ScoreBig = (props) ->
           div className: "#{bn}__stat-value #{bn}__stat-value--score",
             "#{_.round props.score.accuracy * 100, 2}%"
 
+        div className: "#{bn}__stat hidden-xs",
+          div className: "#{bn}__stat-header",
+            osu.trans 'beatmapsets.show.scoreboard.stats.combo'
+          div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            "#{props.score.max_combo.toLocaleString()}x"
+
         div className: "#{bn}__stat",
           div className: "#{bn}__stat-header",
             hits.header
           div className: "#{bn}__stat-value #{bn}__stat-value--score",
             hits.values
+
+        div className: "#{bn}__stat hidden-xs",
+          div className: "#{bn}__stat-header",
+            osu.trans 'beatmapsets.show.scoreboard.stats.misses'
+          div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            props.score.statistics.count_miss
+
 
     div className: "#{bn}__section #{bn}__section--bottom",
       div className: "#{bn}__achieved",

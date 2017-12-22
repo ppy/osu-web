@@ -116,7 +116,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
-            'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
+            'messages' => 'Vous avez :count nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'friends' => 'Amis en ligne',
                 'games' => 'Jeux',

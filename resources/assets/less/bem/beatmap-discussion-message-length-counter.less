@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,29 +16,18 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Middleware;
+.beatmap-discussion-message-length-counter {
+  flex: 1 0 auto;
+  font-size: @font-size--normal;
+  text-align: right;
+  margin-top: 5px;
 
-use Carbon\Carbon;
-use Closure;
-use Illuminate\Contracts\Auth\Guard;
+  &--almost-over {
+    color: @yellow-dark;
+  }
 
-class UpdateUserLastvisit
-{
-    protected $auth;
-
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
-    public function handle($request, Closure $next)
-    {
-        if ($this->auth->check()) {
-            $this->auth->user()->update([
-                'user_lastvisit' => Carbon::createFromTime(null, null, 0),
-            ], ['skipValidations' => true]);
-        }
-
-        return $next($request);
-    }
+  &--over {
+    color: @red;
+    font-weight: 700;
+  }
 }

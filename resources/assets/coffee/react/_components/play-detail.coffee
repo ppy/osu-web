@@ -63,7 +63,7 @@ el = React.createElement
             className: 'detail-row__detail-row detail-row__detail-row--main'
             span
               className: 'detail-row__text-score detail-row__text-score--pp'
-              if score.pp
+              if score.weight
                 osu.trans('users.show.extra.top_ranks.pp', amount: Math.round(score.pp))
               else
                 score.score.toLocaleString()

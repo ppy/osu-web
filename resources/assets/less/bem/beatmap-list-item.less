@@ -20,6 +20,7 @@
   display: flex;
   align-items: center;
 
+  flex: 1;
   min-width: 0;
   text-align: left;
 
@@ -38,6 +39,16 @@
       padding: 0 10px;
       white-space: nowrap;
     }
+  }
+
+  &__counter {
+    .default-border-radius();
+    padding: 2px 5px;
+    font-size: 80%;
+    font-weight: bold;
+    margin-left: 10px;
+    background-color: @link-gray-light;
+    color: #555;
   }
 
   &__small {

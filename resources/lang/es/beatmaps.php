@@ -97,7 +97,7 @@ return [
         'disqualifed_no_reason' => 'motivo no especificado',
         'disqualification-prompt' => '¿Motivo de descalificación?',
         'disqualify' => 'Descalificar',
-        'incorrect-state' => 'Error al realizar esa acción, intenta recargando la página.',
+        'incorrect_state' => 'Error al realizar esa acción, intenta recargando la página.',
         'nominate' => 'Nominar',
         'nominate-confirm' => '¿Nominar este beatmap?',
         'qualified' => 'Se estima que será rankeado :date, si no se encuentra ningún problema.',

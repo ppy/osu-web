@@ -127,7 +127,6 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
-            'reply' => 'Afficher Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
         ],
 

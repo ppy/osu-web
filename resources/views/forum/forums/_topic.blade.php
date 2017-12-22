@@ -16,7 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <li
-    class="u-forum--hover-area forum-topic-entry clickable-row js-forum-topic-entry"
+    class="
+        u-forum--hover-area
+        forum-topic-entry
+        {{ $topic->trashed() ? 'forum-topic-entry--deleted' : '' }}
+        clickable-row
+        js-forum-topic-entry
+    "
     data-topic-id="{{ $topic->topic_id }}"
 >
     <div class="forum-topic-entry__bg"></div>

@@ -30,10 +30,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @checkNewTimeoutMax = 60000
     @cache = {}
 
-    beatmaps = BeatmapHelper.group props.initial.beatmapset.beatmaps
+    beatmaps = BeatmapHelper.group props.initial.beatmapsetDiscussion.beatmapset.beatmaps
 
     @state =
-      beatmapset: @props.initial.beatmapset
+      beatmapset: @props.initial.beatmapsetDiscussion.beatmapset
       beatmaps: beatmaps
       beatmapsetDiscussion: @props.initial.beatmapsetDiscussion
       currentBeatmap: BeatmapHelper.default(group: beatmaps)
@@ -125,6 +125,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
             users: @users()
 
 
+  beatmaps: =>
+    @cache.beatmaps ?= _.keyBy @state.beatmapset.beatmaps, 'id'
+
+
   checkNew: =>
     @nextTimeout ?= @checkNewTimeoutDefault
 
@@ -146,8 +150,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       @nextTimeout = @checkNewTimeoutDefault
 
-      @setBeatmapset null, beatmapset: data.beatmapset, callback: ->
-        @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
+      @setBeatmapsetDiscussion null, beatmapsetDiscussion: data.beatmapsetDiscussion
 
     .always =>
       @nextTimeout = Math.min @nextTimeout, @checkNewTimeoutMax
@@ -158,20 +161,25 @@ class BeatmapDiscussions.Main extends React.PureComponent
   currentDiscussions: =>
     if !@cache.currentDiscussions?
 
+      countsByBeatmap = {}
+      countsByPlaymode = {}
+      unresolvedIssues = 0
       byMode =
         timeline: []
         general: []
         generalAll: []
       byFilter =
-        total: {}
-        mapperNotes: {}
         deleted: {}
+        hype: {}
+        mapperNotes: {}
+        mine: {}
+        pending: {}
         praises: {}
         resolved: {}
-        pending: {}
-        mine: {}
+        total: {}
+
       for own mode, _items of byMode
-        for own filter, modes of byFilter
+        for own _filter, modes of byFilter
           modes[mode] = {}
 
 
@@ -180,6 +188,16 @@ class BeatmapDiscussions.Main extends React.PureComponent
         # - not privileged (deleted discussion)
         # - deleted beatmap
         continue if _.isEmpty(d)
+
+        if !d.deleted_at && d.can_be_resolved && !d.resolved
+          unresolvedIssues++
+          if d.beatmap_id?
+            countsByBeatmap[d.beatmap_id] ?= 0
+            countsByBeatmap[d.beatmap_id]++
+
+            mode = @beatmaps()[d.beatmap_id]?.mode
+            countsByPlaymode[mode] ?= 0
+            countsByPlaymode[mode]++
 
         mode =
           if d.beatmap_id?
@@ -198,9 +216,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         if d.deleted_at?
           filters.push 'deleted'
+        else if d.message_type == 'hype'
+          filters.push 'hype'
+          filters.push 'praises'
         else if d.message_type == 'praise'
           filters.push 'praises'
-        else
+        else if d.can_be_resolved
           if d.resolved
             filters.push 'resolved'
           else
@@ -221,11 +242,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       general = _.orderBy byMode.general, 'id'
       generalAll = _.orderBy byMode.generalAll, 'id'
 
-      @cache.currentDiscussions =
-        general: general
-        generalAll: generalAll
-        timeline: timeline
-        byFilter: byFilter
+      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, unresolvedIssues}
 
     @cache.currentDiscussions
 
@@ -304,15 +321,18 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) =>
-    @setState
-      beatmapsetDiscussion: beatmapsetDiscussion
-      callback
+    @setBeatmapset null,
+      beatmapset: beatmapsetDiscussion.beatmapset
+      callback: =>
+        @setState
+          beatmapsetDiscussion: beatmapsetDiscussion
+          callback
 
   setCurrentBeatmapId: (_e, {id, callback}) =>
     return callback?() if !id?
     return callback?() if id == @state.currentBeatmap.id
 
-    beatmap = _.find @state.beatmapset.beatmaps, id: id
+    beatmap = @beatmaps()[id]
 
     return callback?() if !beatmap?
 

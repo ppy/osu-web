@@ -121,7 +121,6 @@ return [
         '_' => '主题',
 
         'actions' => [
-            'reply' => '显示回复盒子',
             'reply_with_quote' => '引用以回复',
             'search' => '搜索',
         ],

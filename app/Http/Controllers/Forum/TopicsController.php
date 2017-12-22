@@ -256,7 +256,10 @@ class TopicsController extends Controller
 
         $firstPostId = $topic->posts()
             ->showDeleted($showDeleted)
-            ->min('post_id');
+            ->orderBy('post_id', 'asc')
+            ->select('post_id')
+            ->first()
+            ->post_id;
 
         $firstShownPostId = $posts->first()->post_id;
 
