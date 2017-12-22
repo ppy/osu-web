@@ -298,7 +298,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'plays' => 'playcount',
+            'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'relevance' => '_score',
