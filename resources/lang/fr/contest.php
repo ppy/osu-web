@@ -50,7 +50,7 @@ return [
     ],
     'vote' => [
         'list' => 'votes',
-        'count' => '1 vote|:count votes',
+        'count' => ':count vote|:count votes',
     ],
     'dates' => [
         'ended' => 'Terminé le :date',

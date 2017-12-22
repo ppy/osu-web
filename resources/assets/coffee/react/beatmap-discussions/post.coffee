@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, span, textarea} = ReactDOMFactories
+{a, button, div, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -126,13 +126,18 @@ class BeatmapDiscussions.Post extends React.PureComponent
   formattedMessage: =>
     text = @props.post.message
     text = _.escape text
-    text = _.trim text
-    # replace strictly single newline with single (html) newline
-    text = text.replace /\b\n\b/g, '<br>'
-    # fold multiple newlines into two (html) newlines
-    text = text.replace /(\n\s*){2,}/g, '<br><br>'
+    text = text.trim()
     text = osu.linkify text
     text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
+    # replace newlines with <br>
+    # - trim trailing spaces
+    # - then join with <br>
+    # - limit to 2 consecutive <br>s
+    text = text
+      .split '\n'
+      .map (x) -> x.trim()
+      .join '<br>'
+      .replace /(?:<br>){2,}/g, '<br><br>'
     text
 
 
@@ -150,13 +155,18 @@ class BeatmapDiscussions.Post extends React.PureComponent
   messageEditor: =>
     return if !@props.canBeEdited
 
+    canPost = !@state.posting && @validPost()
+
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
-      textarea
-        ref: (el) => @textarea = el
+      el TextareaAutosize,
+        minRows: 3
+        disabled: @state.posting
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
         onKeyDown: @handleEnter
         value: @state.message
+        inputRef: (el) => @textarea = el
+      el BeatmapDiscussions.MessageLengthCounter, message: @state.message
 
       div className: "#{bn}__actions",
         div className: "#{bn}__actions-group"
@@ -167,14 +177,14 @@ class BeatmapDiscussions.Post extends React.PureComponent
               text: osu.trans 'common.buttons.cancel'
               props:
                 onClick: @editEnd
-                disabled: @state.posting
+                disabled: !canPost
 
           div className: "#{bn}__action",
             el BigButton,
               text: osu.trans 'common.buttons.save'
               props:
                 onClick: @throttledUpdatePost
-                disabled: @state.posting
+                disabled: !canPost
 
 
   messageViewer: =>
@@ -300,7 +310,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
 
     .fail osu.ajaxError
 
@@ -312,3 +322,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @cache.userModerationGroup = BeatmapDiscussionHelper.moderationGroup(@props.user)
 
     @cache.userModerationGroup
+
+
+  validPost: =>
+    BeatmapDiscussionHelper.validMessageLength(@state.message)

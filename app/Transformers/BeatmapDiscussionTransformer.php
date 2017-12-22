@@ -93,15 +93,15 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
             }
         }
 
-        $canModerateKudosu = priv_check_user($currentUser, 'BeatmapDiscussionAllowOrDenyKudosu', $discussion)->can();
-        $canResolve = priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can();
+        $ret = [
+            'vote_score' => $score,
+            'can_moderate_kudosu' => priv_check_user($currentUser, 'BeatmapDiscussionAllowOrDenyKudosu', $discussion)->can(),
+            'can_resolve' => priv_check_user($currentUser, 'BeatmapDiscussionResolve', $discussion)->can(),
+            'can_destroy' => priv_check_user($currentUser, 'BeatmapDiscussionDestroy', $discussion)->can(),
+        ];
 
-        return $this->item($discussion, function ($discussion) use ($score, $canModerateKudosu, $canResolve) {
-            return [
-                'vote_score' => $score,
-                'can_resolve' => $canResolve,
-                'can_moderate_kudosu' => $canModerateKudosu,
-            ];
+        return $this->item($discussion, function () use ($ret) {
+            return $ret;
         });
     }
 

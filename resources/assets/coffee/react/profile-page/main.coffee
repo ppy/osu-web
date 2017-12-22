@@ -62,6 +62,13 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
+    for own elem, perPage of @props.perPage
+      @state.showMorePagination[elem] ?= {}
+      @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
+
+      if @state.showMorePagination[elem].hasMore
+        @state[elem].pop()
+
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
     $.subscribe 'user:page:update.profilePage', @userPageUpdate
@@ -249,12 +256,15 @@ class ProfilePage.Main extends React.PureComponent
     paginationState[propertyName].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString('offset', offset, url), (data) =>
+      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[propertyName]).concat(data)
+        hasMore = data.length > perPage && state.length < 100
+
+        state.pop() if hasMore
 
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
+        paginationState[propertyName].hasMore = hasMore
 
         @setState
           "#{propertyName}": state

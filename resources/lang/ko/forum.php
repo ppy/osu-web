@@ -127,7 +127,6 @@ return [
         '_' => '주제',
 
         'actions' => [
-            'reply' => '답글 편집 박스 보이기',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',
         ],

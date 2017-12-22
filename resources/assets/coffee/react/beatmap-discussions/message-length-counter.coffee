@@ -16,14 +16,17 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-# Lang.js monkey patch
-Lang.origGet = Lang.get
-Lang.get = (key, replacements) ->
-  try
-    Lang.origGet.apply @, arguments
-  catch
-    Lang.setLocale fallbackLocale
-    message = Lang.origGet(key, replacements, fallbackLocale)
-    Lang.setLocale currentLocale
+{div} = ReactDOMFactories
 
-    message
+bn = 'beatmap-discussion-message-length-counter'
+
+BeatmapDiscussions.MessageLengthCounter = ({message}) ->
+  counterClass = bn
+  if message.length > BeatmapDiscussionHelper.maxlength
+    counterClass += " #{bn}--over"
+  else if message.length > (BeatmapDiscussionHelper.maxlength * 0.95)
+    counterClass += " #{bn}--almost-over"
+
+  div
+    className: counterClass
+    "#{message.length} / #{BeatmapDiscussionHelper.maxlength}"

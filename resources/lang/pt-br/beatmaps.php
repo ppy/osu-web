@@ -97,7 +97,7 @@ return [
         'disqualifed_no_reason' => 'nenhuma razão especificada',
         'disqualification-prompt' => 'Motivo da desqualificação?',
         'disqualify' => 'Desqualificar',
-        'incorrect-state' => 'Erro ao executar essa ação, tente atualizar a página.',
+        'incorrect_state' => 'Erro ao executar essa ação, tente atualizar a página.',
         'nominate' => 'Nomear',
         'nominate-confirm' => 'Nomear este beatmap?',
         'qualified' => 'Estimado para ser ranqueado em :date, caso nenhum problema for encontrado.',

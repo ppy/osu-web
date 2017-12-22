@@ -65,12 +65,16 @@ class @BeatmapDiscussionHelper
 
   @linkTimestamp: (text, classNames = []) =>
     text
-      .replace /(^|\s|\()((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?)(?=$|\s|\)|\.|,)/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_, text, m, s, ms, range) =>
+        "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+
+
+  @maxlength: 500
 
 
   @messageType:
     icon:
+      hype: 'bullhorn'
       mapperNote: 'sticky-note-o'
       praise: 'heart'
       problem: 'exclamation-circle'
@@ -93,3 +97,7 @@ class @BeatmapDiscussionHelper
         when user.isAdmin then 'admin'
         when user.isQAT then 'qat'
         when user.isBNG then 'bng'
+
+
+  @validMessageLength: (message) =>
+    message.length > 0 && message.length <= @maxlength
