@@ -32,7 +32,7 @@ class EsIndexDocuments extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--hot} {--cleanup}';
+    protected $signature = 'es:index-documents {--inplace} {--cleanup}';
 
     /**
      * The console command description.
@@ -42,7 +42,7 @@ class EsIndexDocuments extends Command
     protected $description = 'Indexes documents into Elasticsearch.';
 
     private $cleanup;
-    private $hot;
+    private $inplace;
     private $types;
     private $suffix;
 
@@ -97,7 +97,7 @@ class EsIndexDocuments extends Command
 
     private function isInplace()
     {
-        return !$this->hot;
+        return $this->inplace;
     }
 
     /**
@@ -129,7 +129,7 @@ class EsIndexDocuments extends Command
 
     private function readOptions()
     {
-        $this->hot = $this->option('hot');
+        $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
     }
 
