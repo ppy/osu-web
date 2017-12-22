@@ -99,7 +99,7 @@ return [
         'disqualifed_no_reason' => 'brak określonego powodu',
         'disqualification-prompt' => 'Powód dyskwalifikacji?',
         'disqualify' => 'Zdyskwalifikuj',
-        'incorrect-state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
+        'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'nominate' => 'Nominuj',
         'nominate-confirm' => 'Nominować tę beatmapę?',
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną odnalezione żadne błędy.',

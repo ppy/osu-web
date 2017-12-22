@@ -97,7 +97,7 @@ return [
         'disqualifed_no_reason' => 'aucune raison spécifiée',
         'disqualification-prompt' => 'Raison de la disqualification?',
         'disqualify' => 'Disqualifier',
-        'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
+        'incorrect_state' => "Erreur lors de l'action, merci de réesayer.",
         'nominate' => 'Nominer',
         'nominate-confirm' => 'Nominer cette beatmap?',
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
