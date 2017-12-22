@@ -23,6 +23,10 @@ namespace App\Http\Controllers;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\BeatmapsetEvent;
+use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionVote;
+use App\Models\BeatmapDiscussionPost;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
@@ -46,6 +50,50 @@ class UsersController extends Controller
         $this->middleware('throttle:10,60', ['only' => ['store']]);
 
         return parent::__construct();
+    }
+
+    public function beatmapsetActivities($id)
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $user = User::lookup($id, 'id', true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
+        $params = [
+            'limit' => 10,
+            'sort' => 'id-desc',
+            'user' => $user->getKey(),
+        ];
+
+        $discussions = BeatmapDiscussion::search($params);
+        $discussions['items'] = $discussions['query']->get();
+
+        $posts = BeatmapDiscussionPost::search($params);
+        $posts['items'] = $posts['query']->get();
+
+        $events = BeatmapsetEvent::search($params);
+        $events['items'] = $events['query']->get();
+
+        $votes = BeatmapDiscussionVote::search($params);
+        $votes['items'] = $votes['query']->get();
+
+        $receivedVotes = BeatmapDiscussionVote::search(array_merge($params, [
+            'receiver' => $user->getKey(),
+            'user' => null,
+        ]));
+        $receivedVotes['items'] = $receivedVotes['query']->get();
+
+        return view('users.beatmapset_activities', compact(
+            'discussions',
+            'events',
+            'posts',
+            'user',
+            'receivedVotes',
+            'votes'
+        ));
     }
 
     public function card($id)

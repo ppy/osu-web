@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Models\BeatmapDiscussion;
 use Auth;
 use Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeatmapDiscussionsController extends Controller
 {
@@ -77,6 +78,31 @@ class BeatmapDiscussionsController extends Controller
         }
     }
 
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $params = request();
+
+        // for when the priv_check lock above is removed
+        if (!priv_check('BeatmapDiscussionModerate')->can()) {
+            $params['with_deleted'] = false;
+        }
+
+        $search = BeatmapDiscussion::search($params);
+        $discussions = new LengthAwarePaginator(
+            $search['query']->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => route('beatmap-discussions.index'),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmap_discussions.index', compact('discussions', 'search'));
+    }
     public function restore($id)
     {
         $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);

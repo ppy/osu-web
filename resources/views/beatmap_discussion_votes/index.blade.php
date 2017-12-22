@@ -20,10 +20,10 @@
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
         <div>
-            <h3>{{ trans('admin.beatmap_discussion_votes.index.title') }}</h3>
+            <h3>{{ trans('beatmap_discussion_votes.index.title') }}</h3>
             @foreach ($votes as $vote)
                 <p>
-                    @include('admin.beatmap_discussion_votes._item', compact('vote'))
+                    @include('beatmap_discussion_votes._item', compact('vote'))
                 </p>
             @endforeach
 

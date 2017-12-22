@@ -18,11 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], function () {
-    Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['index']]);
-    Route::resource('beatmap-discussion-votes', 'BeatmapDiscussionVotesController', ['only' => ['index']]);
-    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['index']]);
-    Route::resource('beatmapset-events', 'BeatmapsetEventsController', ['only' => ['index']]);
-
     Route::get('/beatmapsets/{beatmapset}/covers', 'BeatmapsetsController@covers')->name('beatmapsets.covers');
     Route::post('/beatmapsets/{beatmapset}/covers/regenerate', 'BeatmapsetsController@regenerateCovers')->name('beatmapsets.covers.regenerate');
     Route::post('/beatmapsets/{beatmapset}/covers/remove', 'BeatmapsetsController@removeCovers')->name('beatmapsets.covers.remove');
@@ -32,8 +27,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'namespace' => 'Admin'], fu
     Route::resource('contests', 'ContestsController', ['only' => ['index', 'show']]);
 
     Route::resource('logs', 'LogsController', ['only' => ['index']]);
-
-    Route::resource('users/{user}/beatmapset-activities', 'BeatmapsetActivitiesController', ['only' => ['index']]);
 
     Route::get('/', 'PagesController@root')->name('root');
 
@@ -62,14 +55,17 @@ Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beat
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'beatmapsets'], function () {
+    Route::resource('beatmap-discussion-votes', 'BeatmapDiscussionVotesController', ['only' => ['index']]);
+    Route::resource('beatmapset-events', 'BeatmapsetEventsController', ['only' => ['index']]);
+
     Route::put('beatmap-discussions/{beatmap_discussion}/vote', 'BeatmapDiscussionsController@vote')->name('beatmap-discussions.vote');
     Route::post('beatmap-discussions/{beatmap_discussion}/restore', 'BeatmapDiscussionsController@restore')->name('beatmap-discussions.restore');
     Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('beatmap-discussions.deny-kudosu');
     Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', 'BeatmapDiscussionsController@allowKudosu')->name('beatmap-discussions.allow-kudosu');
-    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'show']]);
+    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
-    Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'store', 'update']]);
+    Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
 });
 
 Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
@@ -182,6 +178,7 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
+Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);

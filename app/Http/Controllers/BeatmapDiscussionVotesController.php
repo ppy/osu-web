@@ -18,30 +18,32 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Models\BeatmapDiscussionPost;
+use App\Models\BeatmapDiscussionVote;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class BeatmapDiscussionPostsController extends Controller
+class BeatmapDiscussionVotesController extends Controller
 {
-    protected $section = 'admin';
-    protected $actionPrefix = 'beatmap_discussion_posts-';
+    protected $section = 'beatmaps';
+    protected $actionPrefix = 'beatmap_discussion_votes-';
 
     public function index()
     {
-        $search = BeatmapDiscussionPost::search(request());
-        $posts = new LengthAwarePaginator(
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $search = BeatmapDiscussionVote::search(request());
+        $votes = new LengthAwarePaginator(
             $search['query']->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('admin.beatmap-discussion-posts.index'),
+                'path' => route('beatmap-discussion-votes.index'),
                 'query' => $search['params'],
             ]
         );
 
-        return view('admin.beatmap_discussion_posts.index', compact('posts'));
+        return view('beatmap_discussion_votes.index', compact('votes'));
     }
 }

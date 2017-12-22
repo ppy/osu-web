@@ -15,19 +15,23 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+<ul>
+    <li>
+        <a href="{{ route('beatmapsets.discussion', $post->beatmapset) }}#/{{ $post->beatmapDiscussion->getKey() }}">
+            {{ trans('beatmap_discussions.item.permalink') }}
+        </a>
+    </li>
 
-@section('content')
-    <div class="osu-layout__row osu-layout__row--page">
-        <div>
-            <h3>{{ trans('admin.beatmapset_events.index.title') }}</h3>
-            @foreach ($events as $event)
-                <p>
-                    @include('admin.beatmapset_events._item', compact('event'))
-                </p>
-            @endforeach
+    <li>
+        {!! link_to_user($post->user) !!}
+    </li>
 
-            @include('forum._pagination', ['object' => $events])
-        </div>
-    </div>
-@endsection
+    <li>
+        {{ trans('beatmap_discussion_posts.item.content') }}:
+        @if ($post->system)
+            <pre>{{ json_encode($post->message) }}</pre>
+        @else
+            <pre>{{ $post->message }}</pre>
+        @endif
+    </li>
+</ul>

@@ -17,31 +17,22 @@
 --}}
 <ul>
     <li>
-        <a href="{{ route('beatmapsets.discussion', $discussion->beatmapset) }}#/{{ $discussion->getKey() }}">
-            {{ trans('admin.beatmap_discussions.item.permalink') }}
+        <a href="{{ route('beatmapsets.discussion', $event->beatmapset) }}">
+            {{ trans('beatmap_discussions.item.permalink') }}
         </a>
     </li>
 
     <li>
-        {!! link_to_user($discussion->user) !!}
+        {!! link_to_user($event->user) !!}
     </li>
 
     <li>
-        {{ trans('admin.beatmap_discussions.item.message_type') }}: {{ $discussion->message_type ?? 'invalid' }}
+        {{ trans('beatmapset_events.item.type') }}:
+        {{ $event->type }}
     </li>
 
     <li>
-        {{ trans('admin.beatmap_discussions.item.created_at') }}: {{ $discussion->created_at }}
-    </li>
-
-    @if ($discussion->deleted_at !== null)
-        <li>
-            {{ trans('admin.beatmap_discussions.item.deleted_at') }}: {{ $discussion->deleted_at }}
-        </li>
-    @endif
-
-    <li>
-        {{ trans('admin.beatmap_discussion_posts.item.content') }}:
-        <pre>{{ $discussion->startingPost->message }}</pre>
+        {{ trans('beatmapset_events.item.content') }}:
+        <pre>{{ json_encode($event->comment) }}</pre>
     </li>
 </ul>

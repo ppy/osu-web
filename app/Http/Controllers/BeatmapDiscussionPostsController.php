@@ -30,6 +30,7 @@ use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
 use Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BeatmapDiscussionPostsController extends Controller
 {
@@ -54,6 +55,25 @@ class BeatmapDiscussionPostsController extends Controller
         } else {
             return error_popup($error);
         }
+    }
+
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $search = BeatmapDiscussionPost::search(request());
+        $posts = new LengthAwarePaginator(
+            $search['query']->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => route('beatmap-discussion-posts.index'),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmap_discussion_posts.index', compact('posts'));
     }
 
     public function restore($id)

@@ -20,18 +20,18 @@
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
         <div>
-            <h3>{{ trans('admin.beatmap_discussions.index.title') }}</h3>
+            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
             <form>
                 <div>
                     <label>
-                        {{ trans('admin.beatmap_discussions.index.form.user.label') }}
+                        {{ trans('beatmap_discussions.index.form.user.label') }}
                         <input name="user" value="{{ $search['params']['user'] }}">
                     </label>
 
                     @if (present($search['params']['user']))
-                        <a href="{{ route('admin.beatmapset-activities.index', $search['params']['user']) }}">
-                            {{ trans('admin.beatmap_discussions.index.form.user.overview') }}
+                        <a href="{{ route('users.beatmapset-activities', $search['params']['user']) }}">
+                            {{ trans('beatmap_discussions.index.form.user.overview') }}
                         </a>
                     @endif
                 </div>
@@ -59,7 +59,7 @@
                             {{ $search['params']['with_deleted'] ? 'checked' : '' }}
                         >
 
-                        {{ trans('admin.beatmap_discussions.index.form.deleted') }}
+                        {{ trans('beatmap_discussions.index.form.deleted') }}
                     </label>
                 </div>
 
@@ -68,7 +68,7 @@
 
             @foreach ($discussions as $discussion)
                 <p>
-                    @include('admin.beatmap_discussions._item', compact('discussion'))
+                    @include('beatmap_discussions._item', compact('discussion'))
                 </p>
             @endforeach
 

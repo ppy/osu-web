@@ -21,6 +21,28 @@
 return [
     'deleted' => '[deleted user]',
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Recently started discussions',
+        ],
+
+        'events' => [
+            'title_recent' => 'Recent events',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Recent posts',
+        ],
+
+        'received_votes' => [
+            'title_recent' => 'Recently received votes',
+        ],
+
+        'votes' => [
+            'title_recent' => 'Recent votes',
+        ],
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',

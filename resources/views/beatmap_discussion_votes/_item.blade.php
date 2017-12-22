@@ -18,7 +18,7 @@
 <ul>
     <li>
         <a href="{{ route('beatmapsets.discussion', $vote->beatmapDiscussion->beatmapset) }}#/{{ $vote->beatmapDiscussion->getKey() }}">
-            {{ trans('admin.beatmap_discussions.item.permalink') }}
+            {{ trans('beatmap_discussions.item.permalink') }}
         </a>
     </li>
 
@@ -27,7 +27,7 @@
     </li>
 
     <li>
-        {{ trans('admin.beatmap_discussion_votes.item.score') }}:
+        {{ trans('beatmap_discussion_votes.item.score') }}:
         {{ $vote->score }}
     </li>
 </ul>
