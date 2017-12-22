@@ -119,7 +119,7 @@ return [
         'disqualifed_no_reason' => '没有指定原因',
         'disqualification-prompt' => 'DQ 的理由？',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => '操作出错了，请刷新页面。',
+        'incorrect_state' => '操作出错了，请刷新页面。',
         'nominate' => '提名',
         'nominated-by' => '被 :users 提名',
         'nominate-confirm' => '提名这张谱面？',
