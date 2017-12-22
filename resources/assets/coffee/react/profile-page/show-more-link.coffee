@@ -25,16 +25,14 @@ class ProfilePage.ShowMoreLink extends React.PureComponent
 
     else
       firstLoad = !@props.pagination?
-      perPage = @props.perPage ? 5
-      maxResults = @props.maxResults ? 100
-      hasMore = (firstLoad && (!@props.collection? || @props.collection.length == perPage)) || @props.pagination?.hasMore
+      perPage = @props.perPage ? 20
+      hasMore = (firstLoad && (!@props.collection? || @props.collection.length < 100)) || @props.pagination?.hasMore
 
       return null unless hasMore
 
       a
         href: '#'
         'data-show-more': @props.propertyName
-        'data-show-more-max-results': maxResults
         'data-show-more-per-page': perPage
         'data-show-more-url': @props.route
         onClick: @showMore
