@@ -107,8 +107,10 @@ return [
             ],
             'beatmaps' => [
                 'title' => 'get beatmaps',
-                'description-accent' => 'browse',
-                'description' => 'the vast library of user-created beatmaps and start playing!',
+                'description' => [
+                    '_' => ':browse the vast library of user-created beatmaps and start playing!',
+                    'browse' => 'browse',
+                ],
             ],
         ],
         'video-guide' => 'video guide',
