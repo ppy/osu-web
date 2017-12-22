@@ -927,12 +927,12 @@ function parse_time_to_carbon($value)
         return Carbon\Carbon::parse($value);
     }
 
-    if ($value instanceof DateTime) {
-        return Carbon\Carbon::instance($value);
-    }
-
     if ($value instanceof Carbon\Carbon) {
         return $value;
+    }
+
+    if ($value instanceof DateTime) {
+        return Carbon\Carbon::instance($value);
     }
 }
 
