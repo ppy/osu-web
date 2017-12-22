@@ -104,6 +104,8 @@ return [
             ],
             'stats' => [
                 'accuracy' => 'Accuracy',
+                'combo' => 'Combo',
+                'misses' => 'Miss',
                 'score' => 'Score',
             ],
         ],
