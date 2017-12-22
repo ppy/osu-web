@@ -65,7 +65,7 @@ class EsIndexDocuments extends Command
     {
         $this->readOptions();
         $this->types = [Beatmapset::class, Post::class];
-        $this->suffix = $this->hot ? '_'.time() : '';
+        $this->suffix = !$this->isInplace() ? '_'.time() : '';
 
         $oldIndices = Indexing::getOldIndices('osu');
 
@@ -87,12 +87,17 @@ class EsIndexDocuments extends Command
         $this->warn("Aliasing '{$indicesString}' to 'osu'...");
         Indexing::updateAlias('osu', $indices);
 
-        if ($this->hot && $this->cleanup) {
+        if (!$this->isInplace() && $this->cleanup) {
             foreach ($oldIndices as $index) {
                 $this->warn("Removing '{$index}'...");
                 Indexing::deleteIndex($index);
             }
         }
+    }
+
+    private function isInplace()
+    {
+        return !$this->hot;
     }
 
     /**
@@ -104,7 +109,7 @@ class EsIndexDocuments extends Command
     {
         $indices = [];
         foreach ($this->types as $type) {
-            if ($this->hot) {
+            if (!$this->isInplace()) {
                 $indexName = "{$type::esIndexName()}{$this->suffix}";
 
                 $this->info("Hot indexing {$type} into {$indexName}");
@@ -130,7 +135,7 @@ class EsIndexDocuments extends Command
 
     private function starterMessage(array $oldIndices)
     {
-        if ($this->hot) {
+        if (!$this->isInplace()) {
             $this->warn('Running hot reindex.');
 
             if ($this->cleanup) {
