@@ -74,12 +74,12 @@
     padding: 40px 20px;
 
     @media @desktop {
-      height: 190px;
       padding: 40px 100px;
     }
 
     @media @mobile {
       flex-direction: column;
+      align-items: center;
     }
   }
 
@@ -94,17 +94,12 @@
 
   &__step-number {
     .circle(28px);
+    .center-content();
+
     border: solid @pink 2px;
-
-    font-size: 15px;
-    line-height: 15px;
-    font-weight: 700;
     color: #ffffff;
-
-    text-align: center;
-    padding-top: 3px;
-
-    margin-right: 4px;
+    font-weight: 700;
+    margin-right: 5px;
   }
 
   &__step-text {
@@ -125,11 +120,8 @@
   }
 
   &__step-top {
-    display: flex;
-    height: 30px;
-    align-items: center;
-
-    padding-bottom: 15px;
+    .center-content();
+    margin-bottom: 15px;
   }
 
   &__video-header {
