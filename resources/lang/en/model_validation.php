@@ -23,6 +23,16 @@ return [
     'required' => ':attribute is required.',
     'wrong_confirmation' => 'Confirmation does not match.',
 
+    'beatmap_discussion' => [
+        'hype' => [
+            'guest' => 'Must be logged in to hype.',
+            'hyped' => 'You have already hyped this beatmap.',
+            'limit_exceeded' => 'You have used all your hype.',
+            'not_hypeable' => 'This beatmap can not be hyped',
+            'owner' => 'No hyping your own beatmap.',
+        ],
+    ],
+
     'beatmap_discussion_post' => [
         'first_post' => 'Can not delete starting post.',
     ],

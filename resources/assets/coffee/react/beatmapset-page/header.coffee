@@ -107,7 +107,7 @@ class BeatmapsetPage.Header extends React.Component
               className: 'beatmapset-favourites beatmapset-favourites__template'
               style:
                 display: 'none'
-              @props.beatmapset.recentFavourites.map (user) ->
+              @props.beatmapset.recent_favourites.map (user) ->
                 a
                   href: laroute.route('users.show', user: user.id)
                   className: 'js-usercard beatmapset-favourites__user'
@@ -195,6 +195,14 @@ class BeatmapsetPage.Header extends React.Component
                 icon: 'comments-o'
                 props:
                   href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
+            else if @props.beatmapset.legacy_thread_url
+              el BigButton,
+                modifiers: ['beatmapset-header']
+                text:
+                  top: osu.trans 'beatmapsets.show.discussion'
+                icon: 'comments-o'
+                props:
+                  href: @props.beatmapset.legacy_thread_url
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
           el BeatmapsetPage.Stats,

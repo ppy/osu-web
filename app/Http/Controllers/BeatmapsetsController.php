@@ -102,7 +102,7 @@ class BeatmapsetsController extends Controller
                 'converts.failtimes',
                 $descriptionInclude,
                 'ratings',
-                'recentFavourites',
+                'recent_favourites',
                 'user',
             ]
         );
@@ -156,7 +156,6 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapset' => $beatmapset->defaultJson(),
             'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
         ];
 
@@ -203,8 +202,9 @@ class BeatmapsetsController extends Controller
 
         priv_check('BeatmapsetNominate', $beatmapset)->ensureCan();
 
-        if (!$beatmapset->nominate(Auth::user())) {
-            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+        $nomination = $beatmapset->nominate(Auth::user());
+        if (!$nomination['result']) {
+            return error_popup($nomination['message']);
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -213,10 +213,7 @@ class BeatmapsetsController extends Controller
             'beatmapset' => $beatmapset,
         ]);
 
-        return [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
-        ];
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function disqualify($id)
@@ -226,7 +223,7 @@ class BeatmapsetsController extends Controller
         priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
 
         if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
-            return error_popup(trans('beatmaps.nominations.incorrect-state'));
+            return error_popup(trans('beatmaps.nominations.incorrect_state'));
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -235,10 +232,7 @@ class BeatmapsetsController extends Controller
             'beatmapset' => $beatmapset,
         ]);
 
-        return [
-            'beatmapset' => $beatmapset->defaultJson(),
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
-        ];
+        return $beatmapset->defaultDiscussionJson();
     }
 
     public function update($id)

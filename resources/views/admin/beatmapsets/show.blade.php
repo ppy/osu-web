@@ -38,6 +38,7 @@
                     >{{ trans('admin.beatmapsets.show.discussion.activate') }}</a>
                 @endif
             </li>
+            <li><a href="{{ route('admin.beatmapsets.covers', $beatmapset->beatmapset_id) }}">{{ trans('admin.beatmapsets.show.covers') }}</a></li>
         </ul>
     </div>
 @endsection

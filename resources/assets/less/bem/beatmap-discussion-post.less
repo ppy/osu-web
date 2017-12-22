@@ -71,6 +71,15 @@
       margin: 0 5px;
       font-size: @font-size--small;
     }
+
+    &--cancel {
+      .reset-input();
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: @beatmap-discussion--reply-padding;
+      height: @beatmap-discussion--reply-padding;
+    }
   }
 
   &__actions {
@@ -213,7 +222,6 @@
 
     &--editor {
       .reset-input();
-      .default-border-radius();
       width: 100%;
       resize: vertical;
 

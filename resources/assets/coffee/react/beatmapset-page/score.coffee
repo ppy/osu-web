@@ -51,5 +51,13 @@ BeatmapsetPage.Score = (props) ->
     div className: 'beatmapset-score__stat beatmapset-score__stat--accuracy hidden-xs',
       "#{_.round props.score.accuracy * 100, 2}%"
 
+    div className: 'beatmapset-score__stat beatmapset-score__stat--combo hidden-xs',
+      "#{props.score.max_combo.toLocaleString()}x"
+
     div className: 'beatmapset-score__stat beatmapset-score__stat--hits hidden-xs',
       hits.values
+
+    div className: 'beatmapset-score__stat beatmapset-score__stat--miss hidden-xs',
+      if props.score.statistics.count_miss > 0
+        osu.trans 'beatmapsets.show.scoreboard.miss_count',
+          count: props.score.statistics.count_miss

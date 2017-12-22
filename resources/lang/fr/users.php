@@ -87,7 +87,7 @@ return [
             ],
         ],
         'extra' => [
-            'followers' => '1 abonné|:count abonnés',
+            'followers' => ':count abonné|:count abonnés',
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [

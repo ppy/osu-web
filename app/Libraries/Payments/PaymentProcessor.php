@@ -379,6 +379,9 @@ abstract class PaymentProcessor implements \ArrayAccess
         event("store.payments.error.{$this->getPaymentProvider()}", [
             'error' => $exception,
             'order' => $order,
+            'order_number' => $this->getOrderNumber(),
+            'notification_type' => "{$this->getNotificationType()} ({$this->getNotificationTypeRaw()})",
+            'transaction_id' => $this->getTransactionId(),
         ]);
     }
 

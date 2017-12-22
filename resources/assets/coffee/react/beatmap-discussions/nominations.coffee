@@ -62,19 +62,23 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       onAfter: -> callback() if typeof(callback) == 'function'
 
 
+  nominationButton: (disabled = false) =>
+    el BigButton,
+      modifiers: ['full']
+      text: osu.trans 'beatmaps.nominations.nominate'
+      icon: 'thumbs-up'
+      props:
+        disabled: disabled
+        onClick: @nominate
+
   render: =>
-    showHype = _.includes ['wip', 'pending', 'qualified'], @props.beatmapset.status
+    showHype = @props.beatmapset.can_be_hyped
 
     if showHype
       requiredHype = @props.beatmapset.nominations.required_hype
-      hypeByUser = _.countBy @props.currentDiscussions.byFilter.praises.generalAll, 'user_id'
-      filteredHype = _.reject hypeByUser, (_v, k) =>
-        # no hyping your own maps
-        parseInt(k) == @props.beatmapset.user_id
-
-      hypeRaw = _.keys(filteredHype).length
+      hypeRaw = _.size @props.currentDiscussions.byFilter.hype.generalAll
       hype = _.min([requiredHype, hypeRaw])
-      userAlreadyHyped = hypeByUser[currentUser.id]?
+      userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
     userCanNominate = @props.currentUser.isAdmin || @props.currentUser.isBNG || @props.currentUser.isQAT
     userCanDisqualify = @props.currentUser.isAdmin || @props.currentUser.isQAT
@@ -143,7 +147,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               div className: "#{bn}__header",
                 span
                   className: "#{bn}__title"
-                  osu.trans 'beatmaps.hype.section-title'
+                  osu.trans 'beatmaps.hype.section_title'
                 span {},
                   "#{hypeRaw} / #{requiredHype}"
               @renderLights(hype, requiredHype)
@@ -152,7 +156,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               div className: "#{bn}__row-right",
                 el BigButton,
                   modifiers: ['full']
-                  text: if userAlreadyHyped then osu.trans('beatmaps.hype.button-done') else osu.trans('beatmaps.hype.button')
+                  text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
                   icon: 'bullhorn'
                   props:
                     disabled: userAlreadyHyped
@@ -181,13 +185,12 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                       props:
                         onClick: @disqualify
                   else if userCanNominate && mapCanBeNominated
-                    el BigButton,
-                      modifiers: ['full']
-                      text: osu.trans 'beatmaps.nominations.nominate'
-                      icon: 'thumbs-up'
-                      props:
-                        disabled: @props.beatmapset.nominations.nominated
-                        onClick: @nominate
+                    if @props.currentDiscussions.unresolvedIssues > 0
+                      # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
+                      div title: osu.trans('beatmaps.nominations.unresolved_issues'),
+                        @nominationButton true
+                    else
+                      @nominationButton @props.beatmapset.nominations.nominated
 
           div
             className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
@@ -259,8 +262,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
-      $.publish 'beatmapset:update', beatmapset: response.beatmapset
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response.beatmapsetDiscussion
+      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response
 
     .fail osu.ajaxError
     .always LoadingOverlay.hide

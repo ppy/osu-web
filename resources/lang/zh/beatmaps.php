@@ -109,9 +109,8 @@ return [
 
     'hype' => [ //暂定 Hype => 推荐
         'button' => '推荐这张谱面',
-        'button-done' => '已经推荐！',
-        'explanation' => '为谱面点赞 ❤ 会增加推荐进度，这会让这张谱面更容易被提名和 Ranked',
-        'section-title' => '推荐进度',
+        'button_done' => '已经推荐！',
+        'section_title' => '推荐进度',
         'title' => 'Hype',
     ],
 
@@ -120,7 +119,7 @@ return [
         'disqualifed_no_reason' => '没有指定原因',
         'disqualification-prompt' => 'DQ 的理由？',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => '操作出错了，请刷新页面。',
+        'incorrect_state' => '操作出错了，请刷新页面。',
         'nominate' => '提名',
         'nominated-by' => '被 :users 提名',
         'nominate-confirm' => '提名这张谱面？',

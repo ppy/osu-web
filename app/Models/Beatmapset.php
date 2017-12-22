@@ -82,6 +82,7 @@ class Beatmapset extends Model
         'qualified' => 3,
         'loved' => 4,
     ];
+    const HYPEABLE_STATES = [-1, 0, 3];
 
     const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
@@ -337,11 +338,25 @@ class Beatmapset extends Model
 
     public static function searchParams(array $params = [])
     {
+        // simple stuff
+        $params['query'] = presence($params['query'] ?? null);
+        $params['status'] = get_int($params['status'] ?? null) ?? 0;
+        $params['genre'] = get_int($params['genre'] ?? null);
+        $params['language'] = get_int($params['language'] ?? null);
+        $params['extra'] = explode('.', $params['extra'] ?? null);
+        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
+        $params['page'] = max(1, get_int($params['page'] ?? 1));
+        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
+
+        // rank
+        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
 
         // sort_order, sort_field (and clear up sort)
         $sort = explode('_', array_pull($params, 'sort'));
@@ -350,33 +365,34 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'plays' => 'playcount',
+            'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'relevance' => '_score',
             'title' => 'title',
             'updated' => 'last_update',
         ];
-        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
+        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
 
         $params['sort_order'] = $sort[1] ?? null;
         if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
             $params['sort_order'] = 'desc';
         }
 
-        // rank
-        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
-
-        // the rest, oneliner
-        $params['query'] = presence($params['query'] ?? null);
-        $params['status'] = get_int($params['status'] ?? 0);
-        $params['genre'] = get_int($params['genre'] ?? null);
-        $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode('.', $params['extra'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
-        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+        if ($params['sort_field'] === null) {
+            if (present($params['query'])) {
+                $params['sort_field'] = '_score';
+                $params['sort_order'] = 'desc';
+            } else {
+                if ($params['status'] === 4 || $params['status'] === 5) {
+                    $params['sort_field'] = 'last_update';
+                    $params['sort_order'] = 'desc';
+                } else {
+                    $params['sort_field'] = 'approved_date';
+                    $params['sort_order'] = 'desc';
+                }
+            }
+        }
 
         return $params;
     }
@@ -467,7 +483,7 @@ class Beatmapset extends Model
                 $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                 break;
             case 2: // Favourites
-                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
+                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', self::class);
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
             case 3: // Qualified
@@ -708,6 +724,17 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
+    public function removeCovers()
+    {
+        try {
+            $this->storage()->deleteDirectory($this->coverPath());
+        } catch (\Exception $e) {
+            // ignore errors
+        }
+
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -722,6 +749,9 @@ class Beatmapset extends Model
             if (!is_dir($outputFolder)) {
                 mkdir($outputFolder, 0755, true);
             }
+
+            // start by clearing existing covers
+            $this->removeCovers();
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
@@ -877,7 +907,19 @@ class Beatmapset extends Model
     public function nominate(User $user)
     {
         if (!$this->isPending()) {
-            return false;
+            $message = trans('beatmaps.nominations.incorrect_state');
+        }
+
+        // check if there are any outstanding issues still
+        if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
+            $message = trans('beatmaps.nominations.unresolved_issues');
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => $message,
+            ];
         }
 
         DB::transaction(function () use ($user) {
@@ -890,7 +932,9 @@ class Beatmapset extends Model
             }
         });
 
-        return true;
+        return [
+            'result' => true,
+        ];
     }
 
     public function favourite($user)
@@ -951,7 +995,45 @@ class Beatmapset extends Model
 
     public function requiredHype()
     {
-        return 12;
+        return config('osu.beatmapset.required_hype');
+    }
+
+    public function canBeHyped()
+    {
+        return in_array($this->approved, static::HYPEABLE_STATES, true);
+    }
+
+    public function validateHypeBy($user)
+    {
+        if ($user === null) {
+            $message = 'guest';
+        } else {
+            if ($this->user_id === $user->getKey()) {
+                $message = 'owner';
+            } else {
+                $hyped = $this
+                    ->beatmapDiscussions()
+                    ->withoutDeleted()
+                    ->ofType('hype')
+                    ->where('user_id', '=', $user->getKey())
+                    ->exists();
+
+                if ($hyped) {
+                    $message = 'hyped';
+                } elseif ($user->remainingHype() <= 0) {
+                    $message = 'limit_exceeded';
+                }
+            }
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => trans("model_validation.beatmap_discussion.hype.{$message}"),
+            ];
+        } else {
+            return ['result' => true];
+        }
     }
 
     public function requiredNominationCount()
@@ -1009,7 +1091,7 @@ class Beatmapset extends Model
 
     public function defaultJson($currentUser = null)
     {
-        $includes = ['beatmaps', 'nominations'];
+        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }
@@ -1025,6 +1107,7 @@ class Beatmapset extends Model
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
+                'beatmapset',
                 'beatmap_discussions.beatmap_discussion_posts',
                 'beatmap_discussions.current_user_attributes',
                 'beatmapset_events',
