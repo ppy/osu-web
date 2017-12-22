@@ -22,6 +22,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
+use App\Models\Elasticsearch;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
@@ -30,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes;
+    use Elasticsearch\PostTrait, SoftDeletes;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -44,6 +45,19 @@ class Post extends Model
     ];
 
     private $normalizedUsers = [];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Elasticsearch mappings; can't put in a Trait.
+    |--------------------------------------------------------------------------
+    */
+    const ES_MAPPINGS = [
+        'topic_id' => ['type' => 'long'],
+        'poster_id' => ['type' => 'long'],
+        'forum_id' => ['type' => 'long'],
+        'post_time' => ['type' => 'date'],
+        'post_text' => ['type' => 'string'],
+    ];
 
     public function forum()
     {
