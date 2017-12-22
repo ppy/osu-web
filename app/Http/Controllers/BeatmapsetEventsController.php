@@ -39,7 +39,7 @@ class BeatmapsetEventsController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmapset-events.index'),
+                'path' => route('beatmapsets.events.index'),
                 'query' => $search['params'],
             ]
         );

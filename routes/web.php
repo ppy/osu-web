@@ -55,9 +55,6 @@ Route::get('beatmaps/{beatmap}/scores', 'BeatmapsController@scores')->name('beat
 Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
 
 Route::group(['prefix' => 'beatmapsets'], function () {
-    Route::resource('beatmap-discussion-votes', 'BeatmapDiscussionVotesController', ['only' => ['index']]);
-    Route::resource('beatmapset-events', 'BeatmapsetEventsController', ['only' => ['index']]);
-
     Route::put('beatmap-discussions/{beatmap_discussion}/vote', 'BeatmapDiscussionsController@vote')->name('beatmap-discussions.vote');
     Route::post('beatmap-discussions/{beatmap_discussion}/restore', 'BeatmapDiscussionsController@restore')->name('beatmap-discussions.restore');
     Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('beatmap-discussions.deny-kudosu');
@@ -69,7 +66,12 @@ Route::group(['prefix' => 'beatmapsets'], function () {
 });
 
 Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
+    Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
     Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+
+    Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
+        Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
+    });
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');

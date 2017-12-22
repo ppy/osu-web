@@ -54,6 +54,9 @@ class UsersController extends Controller
 
     public function beatmapsetActivities($id)
     {
+        // FIXME: camelCase
+        $current_action = 'beatmapset_activities';
+
         priv_check('BeatmapDiscussionModerate')->ensureCan();
 
         $user = User::lookup($id, 'id', true);
@@ -87,6 +90,7 @@ class UsersController extends Controller
         $receivedVotes['items'] = $receivedVotes['query']->get();
 
         return view('users.beatmapset_activities', compact(
+            'current_action',
             'discussions',
             'events',
             'posts',

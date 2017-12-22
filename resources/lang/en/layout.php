@@ -51,11 +51,15 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'listing',
             'artists' => 'featured artists',
-            'packs' => 'packs',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmap_discussions-index' => 'beatmap discussions',
             'beatmapset-watches-index' => 'modding watchlist',
+            'beatmapset_events-index' => 'beatmapset events',
+            'index' => 'listing',
+            'packs' => 'packs',
+            'show' => 'info',
             // 'getCharts' => 'charts',
         ],
         'beatmapsets' => [
@@ -115,6 +119,7 @@ return [
             'settings' => 'Settings',
             'logout' => 'Log Out',
             'help' => 'Help',
+            'beatmapset_activities' => 'user beatmapset activities',
         ],
         'store' => [
             '_' => 'store',
@@ -142,11 +147,6 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
-            'beatmap_discussion_votes-index' => 'beatmap discussion votes',
-            'beatmap_discussions-index' => 'beatmap discussions',
-            'beatmapset_activities-index' => 'user beatmapset activities',
-            'beatmapset_events-index' => 'beatmapset events',
             'beatmapsets-covers' => 'beatmapset covers',
             'logs-index' => 'log',
             'root' => 'index',

@@ -23,10 +23,10 @@ namespace App\Http\Controllers;
 use App\Models\BeatmapDiscussionVote;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class BeatmapDiscussionVotesController extends Controller
+class BeatmapsetDiscussionVotesController extends Controller
 {
     protected $section = 'beatmaps';
-    protected $actionPrefix = 'beatmap_discussion_votes-';
+    protected $actionPrefix = 'beatmapset_discussion_votes-';
 
     public function index()
     {
@@ -39,11 +39,11 @@ class BeatmapDiscussionVotesController extends Controller
             $search['params']['limit'],
             $search['params']['page'],
             [
-                'path' => route('beatmap-discussion-votes.index'),
+                'path' => route('beatmapsets.discussions.votes.index'),
                 'query' => $search['params'],
             ]
         );
 
-        return view('beatmap_discussion_votes.index', compact('votes'));
+        return view('beatmapset_discussion_votes.index', compact('votes'));
     }
 }
