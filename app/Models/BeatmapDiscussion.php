@@ -294,7 +294,7 @@ class BeatmapDiscussion extends Model
         if ($this->user_id === $this->beatmapset->user_id) {
             $validTypes[] = 'mapper_note';
         } else {
-            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)) {
+            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)['result']) {
                 $validTypes[] = 'hype';
             }
         }
@@ -361,7 +361,7 @@ class BeatmapDiscussion extends Model
     public function title()
     {
         if ($this->beatmap_id === null) {
-            return $this->beatmapset->title;
+            return $this->beatmapset ? $this->beatmapset->title : '[deleted beatmap]';
         } elseif ($this->beatmap === null) {
             return '[deleted beatmap]';
         }

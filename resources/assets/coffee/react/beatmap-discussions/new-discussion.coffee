@@ -142,7 +142,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                     else
                       @props.beatmapset.current_user_attributes.can_hype_reason
 
-                  if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype == 0
+                  if @props.beatmapset.current_user_attributes.can_hype || @props.beatmapset.current_user_attributes.remaining_hype <= 0
                     message += " #{osu.trans 'beatmaps.hype.remaining', remaining: @props.beatmapset.current_user_attributes.remaining_hype}"
                     if @props.beatmapset.current_user_attributes.new_hype_time?
                       message += " #{osu.trans 'beatmaps.hype.new_time', new_time: osu.timeago(@props.beatmapset.current_user_attributes.new_hype_time)}"

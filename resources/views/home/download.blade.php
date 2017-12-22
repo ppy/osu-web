@@ -15,47 +15,87 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends("master", [
+    'body_additional_classes' => 'osu-layout--body-555'
+])
 
 @section("content")
-    <div id="download-header" class="osu-layout__row osu-layout__row--page">
-        <p>{{ trans('home.download.header.1') }}</p>
-        <p>{{ trans('home.download.header.2') }}</p>
-        <p>{{ trans('home.download.header.3') }}</p>
-    </div>
+<div class="osu-page osu-page--header">
+    <div class="osu-page-header-v2 osu-page-header-v2--download">
+        <div class="download-page-header">
+            <span class="download-page-header__tagline">{!! trans('home.download.tagline') !!}</span>
 
-    <div class="osu-layout__row" id="download-button">
-        <a href="http://m1.ppy.sh/r/osu!install.exe">
-            <img class="round" src="/images/download-button.png" alt="osu! online installer" />
-        </a>
-    </div>
+            <div class="download-page-header__icon">
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </div>
 
-    <div class="osu-layout__row osu-layout__row--page" id="download-steps">
-        <div>
-            <h1>{{ trans('home.download.steps.1.name') }}</h1>
-            <p>{{ trans('home.download.steps.1.content') }}</p>
-        </div>
-        <div>
-            <h1>{{ trans('home.download.steps.2.name') }}</h1>
-            <p>{{ trans('home.download.steps.2.content') }}</p>
-        </div>
-        <div>
-            <h1>{{ trans('home.download.steps.3.name') }}</h1>
-            <p>{{ trans('home.download.steps.3.content') }}</p>
-        </div>
-    </div>
+            <a class="btn-osu-big btn-osu-big--download-page" href="{{ config('osu.urls.installer') }}">
+                <span class="btn-osu-big__text-top">{{ trans('home.download.action') }}</span>
+                <span class="btn-osu-big__text-bottom">{{ trans('home.download.os.windows') }}</span>
+            </a>
 
-    <div class="osu-layout__row osu-layout__row--page" id="download-guides">
-        <div class="explanation">
-            <h4>{{ trans('home.download.more') }}</h4>
-
-            <p>
-                {!! trans('home.download.more_text') !!}
+            <p class="download-page-header__text">
+                <a class="download-page-header__extra-link" href="{{ config('osu.urls.installer-mirror') }}">
+                    {{ trans('home.download.mirror') }}
+                </a>
+                &middot;
+                <a class="download-page-header__extra-link" href="{{ config('osu.urls.osx') }}">
+                    {{ trans('home.download.macos-fallback') }}
+                </a>
             </p>
         </div>
+    </div>
+</div>
 
-        <div class="embed-responsive embed-responsive-16by9">
-            <iframe src="https://www.youtube.com/embed/videoseries?list=PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl" frameborder="0" allowfullscreen></iframe>
+<div class="osu-page osu-page--download">
+    <div class="download-page">
+        <div class="download-page__step">
+            <div class="download-page__text download-page__text--title">
+                <span class="download-page__step-number">1</span>
+                {{ trans("home.download.steps.download.title") }}
+            </div>
+            <div class="download-page__text download-page__text--description">
+                {{ trans("home.download.steps.download.description") }}
+            </div>
+        </div>
+        <div class="download-page__step">
+            <div class="download-page__text download-page__text--title">
+                <span class="download-page__step-number">2</span>
+                {{ trans('home.download.steps.register.title') }}
+            </div>
+            <div class="download-page__text download-page__text--description">
+                {{ trans('home.download.steps.register.description') }}
+            </div>
+        </div>
+        <div class="download-page__step">
+            <div class="download-page__text download-page__text--title">
+                <span class="download-page__step-number">3</span>
+                {{ trans("home.download.steps.beatmaps.title") }}
+            </div>
+            <div class="download-page__text download-page__text--description">
+                {!! trans('home.download.steps.beatmaps.description._', [
+                    'browse' =>
+                        '<a class="download-page__link" href="'.e(route('beatmapsets.index')).'" >'.
+                        trans('home.download.steps.beatmaps.description.browse').
+                        '</a>',
+                ]) !!}
+            </div>
+        </div>
+        <div class="download-page__accent"></div>
+    </div>
+</div>
+
+<div class="osu-page osu-page--download">
+    <div class="download-page-video">
+        <div class="download-page-video__title">
+            {{ trans('home.download.video-guide') }}
+        </div>
+
+        <div class="download-page-video__embed">
+            <iframe
+                src="https://youtube.com/embed/videoseries?list={{ config('osu.urls.youtube-tutorial-playlist') }}"
+            ></iframe>
         </div>
     </div>
-@stop
+</div>
+@endsection
