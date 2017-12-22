@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => '下载',
         'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
-
-        'download' => [
-            '_' => '下载',
-            'soon' => '适用于其它操作系统的 osu! 即将到来',
-            'for' => ':os 版',
-            'other' => '点击这里下载 :os1 或 :os2 版',
-        ],
 
         'slogan' => [
             'main' => '免费音乐游戏',

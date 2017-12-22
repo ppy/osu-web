@@ -20,15 +20,11 @@
 
 return [
     'landing' => [
+        'download' => 'Pobierz teraz',
         'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
-        'download' => [
-            '_' => 'Pobierz teraz',
-            'soon' => 'osu! na inne systemy operacyjne pojawi się wkrótce',
-            'for' => 'dla :os',
-            'other' => 'kliknij tutaj po :os1 lub :os2',
-        ],
+
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
             'sub' => 'rytm jest tylko o klik stąd!',

@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Baixe agora',
         'online' => '<strong>:players</strong> jogadores online em <strong>:games</strong> partidas',
         'peak' => 'Pico, :count usuários online',
         'players' => '<strong>:count</strong> jogadores registrados',
-
-        'download' => [
-            '_' => 'Baixe agora',
-            'soon' => 'osu! para outros sistemas operacionais virá em breve',
-            'for' => 'para :os',
-            'other' => 'clique aqui para :os1 ou :os2',
-        ],
 
         'slogan' => [
             'main' => 'simulador de ritmo gratuito',
