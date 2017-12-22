@@ -126,6 +126,7 @@
 
   &__video-header {
     height: 60px;
+    width: 100%;
 
     font-size: 15px;
     color: #ffffff;
@@ -134,11 +135,20 @@
   }
 
   &__video-embed {
-    height: 350px;
+    // this trick maintains the video's aspect ratio while resizing
+    // see: http://alistapart.com/article/creating-intrinsic-ratios-for-video
+    padding-bottom: 56.25%; /* 16:9 */
 
     iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: 350px;
+      height: 100%;
     }
+  }
+
+  &__video-wrapper {
+    display: block !important;
   }
 }
