@@ -81,27 +81,33 @@ return [
     ],
 
     'download' => [
-      'header' => [
-          '1' => 'låt oss',
-          '2' => 'få dig igång',
-          '3' => 'ladda ner osu! spel klienten för Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Steg 1',
-              'content' => 'Ladda ner osu! spel klienten',
-          ],
-          '2' => [
-              'name' => 'Steg 2',
-              'content' => 'Skapa ett osu! spel konto',
-          ],
-          '3' => [
-              'name' => 'Steg 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Lära dig mer?',
-      'more_text' => 'Kolla in <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Kanalen</a> för uppdaterade genomgångar och tips på hur du kan få ut det mesta av osu!',
+        'tagline' => 'låt oss<br>få dig igång!',
+        'action' => 'Ladda ner osu!',
+        'os' => [
+            'windows' => 'för Windows',
+            'macos' => 'för macOS',
+            'linux' => 'för Linux',
+        ],
+        'mirror' => 'spegel',
+        'macos-fallback' => 'macOS användare',
+        'steps' => [
+            'register' => [
+                'title' => 'skaffa ett konto',
+                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
+            ],
+            'download' => [
+                'title' => 'ladda ner spelet',
+                'description' => 'klicka på knappen ovan för att ladda ner installeraren, sen kör den!',
+            ],
+            'beatmaps' => [
+                'title' => 'skaffa beatmaps',
+                'description' => [
+                    '_' => ':browse det stora bibloteket av beatmaps skapade av användare och börja spela!',
+                    'browse' => 'bläddra',
+                ],
+            ],
+        ],
+        'video-guide' => 'video guide',
     ],
 
     'user' => [
