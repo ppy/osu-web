@@ -26,6 +26,7 @@ return [
             'regenerating' => 'Regenerating...',
             'remove' => 'Remove',
             'removing' => 'Removing...',
+        ],
         'show' => [
             'covers' => 'Manage Beatmapset Covers',
             'discussion' => [
