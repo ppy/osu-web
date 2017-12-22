@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Ladda ner nu',
         'online' => '<strong>:players</strong> spelare online i <strong>:games</strong> spel',
         'peak' => 'Som högst, :count spelare online',
         'players' => '<strong>:count</strong> registrerade spelare',
-
-        'download' => [
-            '_' => 'Ladda ner nu',
-            'soon' => 'osu! kommer snart till andra operativsystem',
-            'for' => 'för :os',
-            'other' => 'klicka här för :os1 eller :os2',
-        ],
 
         'slogan' => [
             'main' => 'gratis-att-spela rytm spel',

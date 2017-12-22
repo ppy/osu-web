@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Download now',
         'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
         'peak' => 'Peak, :count online users',
         'players' => '<strong>:count</strong> registered players',
-
-        'download' => [
-            '_' => 'Download now',
-            'soon' => 'osu! coming soon to other operating systems',
-            'for' => 'for :os',
-            'other' => 'click here for :os1 or :os2',
-        ],
 
         'slogan' => [
             'main' => 'free-to-play rhythm game',
