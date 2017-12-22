@@ -87,27 +87,33 @@ return [
     ],
 
     'download' => [
-      'header' => [
-          '1' => "let's get",
-          '2' => 'you started',
-          '3' => 'download osu! game client for Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Step 1',
-              'content' => 'Download the osu! game client',
-          ],
-          '2' => [
-              'name' => 'Step 2',
-              'content' => 'Create an osu! player account',
-          ],
-          '3' => [
-              'name' => 'Step 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Learn more?',
-      'more_text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+        'tagline' => "let's get<br>you started!",
+        'action' => 'Download osu!',
+        'os' => [
+            'windows' => 'for Windows',
+            'macos' => 'for macOS',
+            'linux' => 'for Linux',
+        ],
+        'mirror' => 'mirror',
+        'macos-fallback' => 'macOS users',
+        'steps' => [
+            'register' => [
+                'title' => 'get an account',
+                'description' => 'follow the prompts when starting the game to login or make a new account',
+            ],
+            'download' => [
+                'title' => 'download the game',
+                'description' => 'click the button above to download the installer, then run it!',
+            ],
+            'beatmaps' => [
+                'title' => 'get beatmaps',
+                'description' => [
+                    '_' => ':browse the vast library of user-created beatmaps and start playing!',
+                    'browse' => 'browse',
+                ],
+            ],
+        ],
+        'video-guide' => 'video guide',
     ],
 
     'user' => [

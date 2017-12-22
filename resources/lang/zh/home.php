@@ -86,30 +86,6 @@ return [
         ],
     ],
 
-    'download' => [
-      'header' => [
-          '1' => '让我们',
-          '2' => '开始吧',
-          '3' => '下载 osu! Windows 版',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => '第一步',
-              'content' => '下载 osu!',
-          ],
-          '2' => [
-              'name' => '第二步',
-              'content' => '注册 osu! 账户',
-          ],
-          '3' => [
-              'name' => '第三步',
-              'content' => '???',
-          ],
-      ],
-      'more' => '想了解更多？',
-      'more_text' => '查看 <a href="https://www.youtube.com/user/osuacademy/">osu! 学院 YouTube 频道</a>（国内用户可能访问有困难）获取最新的教程',
-    ],
-
     'user' => [
         'title' => '新闻',
         'news' => [

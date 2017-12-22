@@ -84,30 +84,6 @@ return [
         ],
     ],
 
-    'download' => [
-      'header' => [
-          '1' => 'vamos',
-          '2' => 'começar.',
-          '3' => 'baixe o cliente do osu! para Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Passo 1',
-              'content' => 'baixe o cliente do osu!',
-          ],
-          '2' => [
-              'name' => 'Passo 2',
-              'content' => 'crie uma conta no osu!',
-          ],
-          '3' => [
-              'name' => 'Passo 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Quer saber mais?',
-      'more_text' => 'Olhe o canal do <a href="https://www.youtube.com/user/osuacademy/">osu!academy no youtube</a> para ver tutoriais atualizados e dicas em como conseguir o melhor possivel do osu!',
-    ],
-
     'user' => [
         'title' => 'notícias',
         'news' => [

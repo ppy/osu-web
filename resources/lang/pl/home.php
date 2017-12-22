@@ -74,30 +74,6 @@ return [
             'title' => 'Wiki',
         ],
     ],
-    'download' => [
-      'header' => [
-          '1' => 'a więc',
-          '2' => 'zapoznajmy się z',
-          '3' => 'pobieraniem osu! na system Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Krok 1',
-              'content' => 'Pobierz klienta gry osu!',
-          ],
-          '2' => [
-              'name' => 'Krok 2',
-              'content' => 'Załóż konto na osu!',
-          ],
-          '3' => [
-              'name' => 'Krok 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Dowiedz się więcej!',
-      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy</a> po poradniki i wskazówki dotyczące całego świata osu!',
-    ],
-
     'user' => [
         'title' => 'wiadomości',
         'news' => [
