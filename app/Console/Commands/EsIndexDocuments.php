@@ -65,7 +65,7 @@ class EsIndexDocuments extends Command
     {
         $this->readOptions();
         $this->types = [Beatmapset::class, Post::class];
-        $this->suffix = !$this->isInplace() ? '_'.time() : '';
+        $this->suffix = !$this->inplace ? '_'.time() : '';
 
         $oldIndices = Indexing::getOldIndices('osu');
 
@@ -87,17 +87,12 @@ class EsIndexDocuments extends Command
         $this->warn("Aliasing '{$indicesString}' to 'osu'...");
         Indexing::updateAlias('osu', $indices);
 
-        if (!$this->isInplace() && $this->cleanup) {
+        if (!$this->inplace && $this->cleanup) {
             foreach ($oldIndices as $index) {
                 $this->warn("Removing '{$index}'...");
                 Indexing::deleteIndex($index);
             }
         }
-    }
-
-    private function isInplace()
-    {
-        return $this->inplace;
     }
 
     /**
@@ -109,15 +104,15 @@ class EsIndexDocuments extends Command
     {
         $indices = [];
         foreach ($this->types as $type) {
-            if (!$this->isInplace()) {
+            if (!$this->inplace) {
                 $indexName = "{$type::esIndexName()}{$this->suffix}";
 
-                $this->info("Hot indexing {$type} into {$indexName}");
+                $this->info("Indexing {$type} into {$indexName}");
                 $type::esHotReindex(1000, $indexName);
 
                 $indices[] = $indexName;
             } else {
-                $this->info("Cold indexing {$type} into {$type::esIndexName()}");
+                $this->info("In-place indexing {$type} into {$type::esIndexName()}");
                 $type::esReindexAll(1000);
 
                 $indices[] = $type::esIndexName();
@@ -135,8 +130,11 @@ class EsIndexDocuments extends Command
 
     private function starterMessage(array $oldIndices)
     {
-        if (!$this->isInplace()) {
-            $this->warn('Running hot reindex.');
+        if ($this->inplace) {
+            $this->warn('Running in-place reindex.');
+            $confirmMessage = "This will reindex in-place (schemas must match) and alias them to 'osu'";
+        } else {
+            $this->warn('Running index transfer.');
 
             if ($this->cleanup) {
                 $this->warn(
@@ -146,9 +144,6 @@ class EsIndexDocuments extends Command
             }
 
             $confirmMessage = "This will create new indices and alias them to 'osu'";
-        } else {
-            $this->warn('Running cold reindex.');
-            $confirmMessage = "This will reindex in-place (schemas must match) and alias them to 'osu'";
         }
 
         return $this->confirm("{$confirmMessage}, begin indexing?");
