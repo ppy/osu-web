@@ -29,8 +29,8 @@ use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
-use Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Request;
 
 class BeatmapDiscussionPostsController extends Controller
 {

@@ -22,8 +22,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BeatmapDiscussion;
 use Auth;
-use Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Request;
 
 class BeatmapDiscussionsController extends Controller
 {
@@ -103,6 +103,7 @@ class BeatmapDiscussionsController extends Controller
 
         return view('beatmap_discussions.index', compact('discussions', 'search'));
     }
+
     public function restore($id)
     {
         $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
