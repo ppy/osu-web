@@ -108,7 +108,7 @@ class EsIndexDocuments extends Command
                 $indexName = "{$type::esIndexName()}{$this->suffix}";
 
                 $this->info("Indexing {$type} into {$indexName}");
-                $type::esHotReindex(1000, $indexName);
+                $type::esIndexIntoNew(1000, $indexName);
 
                 $indices[] = $indexName;
             } else {

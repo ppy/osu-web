@@ -77,7 +77,7 @@ trait EsIndexable
         return Es::indices()->create($params);
     }
 
-    public static function esHotReindex($batchSize = 1000, $name = null)
+    public static function esIndexIntoNew($batchSize = 1000, $name = null)
     {
         $newIndex = $name ?? static::esIndexName().'_'.time();
         Log::info("Creating new index {$newIndex}");
