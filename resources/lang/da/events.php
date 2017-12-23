@@ -26,7 +26,7 @@ return [
     'beatmapset_revive' => ':beatmapset er blevet genoplivet fra en evig slumren af <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> har opdateret beatmappet "<em>:beatmapset</em>"',
     'beatmapset_upload' => '<strong><em>:user</em></strong> har indsendt et nyt beatmap ":beatmapset"',
-    'empty' => "Denne bruger har ikke foretaget sig noget bemærkelsesværdigt for nyligt!",
+    'empty' => 'Denne bruger har ikke foretaget sig noget bemærkelsesværdigt for nyligt!',
     'rank' => '<strong><em>:user</em></strong> opnåede rank #:rank på <em>:beatmap</em> (:mode)',
     'rank_lost' => '<strong><em>:user</em></strong> har mistet førerpositionen på <em>:beatmap</em> (:mode)',
     'user_support_again' => '<strong>:user</strong> har endnu engang valgt at støtte osu! - tak for din gavmildhed!',
