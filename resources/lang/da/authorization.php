@@ -94,8 +94,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Log venligst ind for at svare.',
-                    'restricted' => "Du kan ikke svare, når du er begrænset.",
-                    'silenced' => "Du kan ikke svare, når dui er mutet.",
+                    'restricted' => 'Du kan ikke svare, når du er begrænset.',
+                    'silenced' => 'Du kan ikke svare, når dui er mutet.',
                 ],
             ],
 
@@ -112,8 +112,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Log venligst ind for at stemme.',
-                    'restricted' => "Du kan ikke stemme, når du er begrænset.",
-                    'silenced' => "Du kan ikke stemme, når du er mutet.",
+                    'restricted' => 'Du kan ikke stemme, når du er begrænset.',
+                    'silenced' => 'Du kan ikke stemme, når du er mutet.',
                 ],
             ],
 
@@ -138,9 +138,9 @@ return [
 
     'unauthorized' => 'Adgang nægtet.',
 
-    'silenced' => "Det kan du ikke gøre, når du er mutet.",
+    'silenced' => 'Det kan du ikke gøre, når du er mutet.',
 
-    'restricted' => "Det kan du ikke gøre, når du er begrænset.",
+    'restricted' => 'Det kan du ikke gøre, når du er begrænset.',
 
     'user' => [
         'page' => [
