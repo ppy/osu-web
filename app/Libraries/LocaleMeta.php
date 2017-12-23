@@ -95,6 +95,10 @@ class LocaleMeta
             'name' => 'Русский',
             'flag' => 'RU',
         ],
+        'sv' => [
+            'name' => 'Svenska',
+            'flag' => 'SE',
+        ],
         'th' => [
             'name' => 'ไทย',
             'flag' => 'TH',

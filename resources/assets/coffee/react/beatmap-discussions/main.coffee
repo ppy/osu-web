@@ -163,6 +163,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       countsByBeatmap = {}
       countsByPlaymode = {}
+      unresolvedIssues = 0
       byMode =
         timeline: []
         general: []
@@ -188,13 +189,15 @@ class BeatmapDiscussions.Main extends React.PureComponent
         # - deleted beatmap
         continue if _.isEmpty(d)
 
-        if d.beatmap_id? && !d.deleted_at && d.can_be_resolved && !d.resolved
-          countsByBeatmap[d.beatmap_id] ?= 0
-          countsByBeatmap[d.beatmap_id]++
+        if !d.deleted_at && d.can_be_resolved && !d.resolved
+          unresolvedIssues++
+          if d.beatmap_id?
+            countsByBeatmap[d.beatmap_id] ?= 0
+            countsByBeatmap[d.beatmap_id]++
 
-          mode = @beatmaps()[d.beatmap_id]?.mode
-          countsByPlaymode[mode] ?= 0
-          countsByPlaymode[mode]++
+            mode = @beatmaps()[d.beatmap_id]?.mode
+            countsByPlaymode[mode] ?= 0
+            countsByPlaymode[mode]++
 
         mode =
           if d.beatmap_id?
@@ -239,7 +242,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       general = _.orderBy byMode.general, 'id'
       generalAll = _.orderBy byMode.generalAll, 'id'
 
-      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode}
+      @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, unresolvedIssues}
 
     @cache.currentDiscussions
 

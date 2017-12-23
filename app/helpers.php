@@ -908,8 +908,31 @@ function model_pluck($builder, $key, $class = null)
 // helper returns null if it's 0 and parses the timestamp otherwise.
 function get_time_or_null($timestamp)
 {
-    if ($timestamp !== null && $timestamp !== 0) {
-        return Carbon\Carbon::createFromTimestamp($timestamp);
+    if ($timestamp !== 0) {
+        return parse_time_to_carbon($timestamp);
+    }
+}
+
+function parse_time_to_carbon($value)
+{
+    if (!present($value)) {
+        return;
+    }
+
+    if (is_numeric($value)) {
+        return Carbon\Carbon::createFromTimestamp($value);
+    }
+
+    if (is_string($value)) {
+        return Carbon\Carbon::parse($value);
+    }
+
+    if ($value instanceof Carbon\Carbon) {
+        return $value;
+    }
+
+    if ($value instanceof DateTime) {
+        return Carbon\Carbon::instance($value);
     }
 }
 

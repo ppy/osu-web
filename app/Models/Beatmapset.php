@@ -36,7 +36,7 @@ use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
-    use SoftDeletes;
+    use Elasticsearch\BeatmapsetTrait, SoftDeletes;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -91,6 +91,73 @@ class Beatmapset extends Model
 
     /*
     |--------------------------------------------------------------------------
+    | Elasticsearch mappings; can't put in a Trait.
+    |--------------------------------------------------------------------------
+    */
+    const ES_MAPPINGS_BEATMAPS = [
+        'approved' => ['type' => 'long'],
+        'beatmap_id' => ['type' => 'long'],
+        'countNormal' => ['type' => 'long'],
+        'countSlider' => ['type' => 'long'],
+        'countSpinner' => ['type' => 'long'],
+        'countTotal' => ['type' => 'long'],
+        'diff_approach' => ['type' => 'double'],
+        'diff_drain' => ['type' => 'double'],
+        'diff_overall' => ['type' => 'double'],
+        'diff_size' => ['type' => 'double'],
+        'difficultyrating' => ['type' => 'double'],
+        'hit_length' => ['type' => 'long'],
+        'passcount' => ['type' => 'long'],
+        'playcount' => ['type' => 'long'],
+        'playmode' => ['type' => 'long'],
+        'total_length' => ['type' => 'long'],
+        'version' => ['type' => 'string'],
+    ];
+
+    const ES_MAPPINGS_BEATMAPSETS = [
+        'approved' => ['type' => 'long'],
+        'approved_date' => ['type' => 'date'],
+        'artist' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+        'artist_unicode' => ['type' => 'string'],
+        'bpm' => ['type' => 'double'],
+        'creator' => ['type' => 'string'],
+        'difficulty_names' => ['type' => 'string'],
+        'download_disabled' => ['type' => 'boolean'],
+        'epilepsy' => ['type' => 'boolean'],
+        'favourite_count' => ['type' => 'long'],
+        'filename' => ['type' => 'string'],
+        'filesize' => ['type' => 'long'],
+        'filesize_novideo' => ['type' => 'long'],
+        'genre_id' => ['type' => 'long'],
+        'language_id' => ['type' => 'long'],
+        'last_update' => ['type' => 'date'],
+        'offset' => ['type' => 'long'],
+        'play_count' => ['type' => 'long'],
+        'rating' => ['type' => 'double'],
+        'source' => ['type' => 'string'],
+        'star_priority' => ['type' => 'long'],
+        'storyboard' => ['type' => 'boolean'],
+        'submit_date' => ['type' => 'date'],
+        'tags' => ['type' => 'string'],
+        'thread_id' => ['type' => 'long'],
+        'title' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+        'title_unicode' => ['type' => 'string'],
+        'user_id' => ['type' => 'long'],
+        'video' => ['type' => 'boolean'],
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
     | Accesssors
     |--------------------------------------------------------------------------
     */
@@ -100,9 +167,19 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
+    public function setApprovedDateAttribute($value)
+    {
+        $this->attributes['approved_date'] = parse_time_to_carbon($value)->addHours(8);
+    }
+
     public function getSubmitDateAttribute($value)
     {
         return (new Carbon($value))->subHours(8);
+    }
+
+    public function setSubmitDateAttribute($value)
+    {
+        $this->attributes['submit_date'] = parse_time_to_carbon($value)->addHours(8);
     }
 
     public function beatmapDiscussions()
@@ -271,11 +348,25 @@ class Beatmapset extends Model
 
     public static function searchParams(array $params = [])
     {
+        // simple stuff
+        $params['query'] = presence($params['query'] ?? null);
+        $params['status'] = get_int($params['status'] ?? null) ?? 0;
+        $params['genre'] = get_int($params['genre'] ?? null);
+        $params['language'] = get_int($params['language'] ?? null);
+        $params['extra'] = explode('.', $params['extra'] ?? null);
+        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
+        $params['page'] = max(1, get_int($params['page'] ?? 1));
+        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
+
+        // rank
+        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
 
         // sort_order, sort_field (and clear up sort)
         $sort = explode('_', array_pull($params, 'sort'));
@@ -284,33 +375,34 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'plays' => 'playcount',
+            'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'relevance' => '_score',
             'title' => 'title',
             'updated' => 'last_update',
         ];
-        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
+        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
 
         $params['sort_order'] = $sort[1] ?? null;
         if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
             $params['sort_order'] = 'desc';
         }
 
-        // rank
-        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
-
-        // the rest, oneliner
-        $params['query'] = presence($params['query'] ?? null);
-        $params['status'] = get_int($params['status'] ?? 0);
-        $params['genre'] = get_int($params['genre'] ?? null);
-        $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode('.', $params['extra'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
-        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+        if ($params['sort_field'] === null) {
+            if (present($params['query'])) {
+                $params['sort_field'] = '_score';
+                $params['sort_order'] = 'desc';
+            } else {
+                if ($params['status'] === 4 || $params['status'] === 5) {
+                    $params['sort_field'] = 'last_update';
+                    $params['sort_order'] = 'desc';
+                } else {
+                    $params['sort_field'] = 'approved_date';
+                    $params['sort_order'] = 'desc';
+                }
+            }
+        }
 
         return $params;
     }
@@ -825,7 +917,19 @@ class Beatmapset extends Model
     public function nominate(User $user)
     {
         if (!$this->isPending()) {
-            return false;
+            $message = trans('beatmaps.nominations.incorrect_state');
+        }
+
+        // check if there are any outstanding issues still
+        if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
+            $message = trans('beatmaps.nominations.unresolved_issues');
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => $message,
+            ];
         }
 
         DB::transaction(function () use ($user) {
@@ -838,7 +942,9 @@ class Beatmapset extends Model
             }
         });
 
-        return true;
+        return [
+            'result' => true,
+        ];
     }
 
     public function favourite($user)
