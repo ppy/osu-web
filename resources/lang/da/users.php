@@ -19,155 +19,155 @@
  */
 
 return [
-    'deleted' => '[deleted user]',
+    'deleted' => '[slette bruger]',
 
     'login' => [
-        '_' => 'Sign in',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
-        'button' => 'Sign in',
-        'button_posting' => 'Signing in...',
-        'remember' => 'Remember this computer',
-        'title' => 'Please login to proceed',
-        'failed' => 'Incorrect login',
-        'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
+        '_' => 'Log ind',
+        'locked_ip' => 'din IP-adresse er låst. Vent venligst et par minutter.',
+        'username' => 'Brugernavn',
+        'password' => 'Adgangskode',
+        'button' => 'Log Ind',
+        'button_posting' => 'Logger ind...',
+        'remember' => 'Husk denne computer',
+        'title' => 'Log venligst ind for at fortsætte',
+        'failed' => 'Ugyldigt login',
+        'register' => "Har du ikke en osu! konto? Lav en ny én!",
+        'forgot' => 'Glemt din adgangskode?',
         'beta' => [
-            'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'main' => 'Adgang til betaversionen er i øjeblikket restrikteret til priveligerede brugere.',
+            'small' => '(supportere ville også kunne snart)',
         ],
 
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'her', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'signup' => [
-        '_' => 'Register',
+        '_' => 'Registrér',
     ],
     'anonymous' => [
-        'login_link' => 'click to login',
-        'login_text' => 'login',
-        'username' => 'Guest',
-        'error' => 'You need to be logged in to do this.',
+        'login_link' => 'klik for at logge ind',
+        'login_text' => 'log ind',
+        'username' => 'Gæst',
+        'error' => 'Du skal være logget ind for at gøre dette.',
     ],
-    'logout_confirm' => 'Are you sure you want to log out? :(',
+    'logout_confirm' => 'Er du sikker på, at du vil logge ud? :(',
     'restricted_banner' => [
-        'title' => 'Your account has been restricted!',
-        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+        'title' => 'Du konto er blevet begrænset!',
+        'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
     ],
     'show' => [
-        '404' => 'User not found! ;_;',
-        'age' => ':age years old',
-        'current_location' => 'Currently in :location',
-        'first_members' => 'Here since the beginning',
+        '404' => 'Bruger ikke fundet! ;_;',
+        'age' => ':age år gammel',
+        'current_location' => 'Befinder sig i :location',
+        'first_members' => 'Var her fra starten',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Joined :date',
-        'lastvisit' => 'Last seen :date',
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
+        'joined_at' => 'Deltog på :date',
+        'lastvisit' => 'Sidste set på :date',
+        'missingtext' => 'Du har formentlig lavet en stavefejl! (eller også er brugeren blevet bannet)',
         'origin_age' => ':age',
-        'origin_country' => 'From :country',
-        'origin_country_age' => ':age from :country',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
-        'plays_with' => 'Plays with :devices',
-        'title' => ":username's profile",
+        'origin_country' => 'Fra :country',
+        'origin_country_age' => ':age fra :country',
+        'page_description' => 'osu! - Alt hvad du har brug for at vide om :username!',
+        'plays_with' => 'Spiller med :devices',
+        'title' => ":username's profil",
 
         'edit' => [
             'cover' => [
-                'button' => 'Change Profile Cover',
-                'defaults_info' => 'More cover options will be available in the future',
+                'button' => 'Skift coverbillede',
+                'defaults_info' => 'Flere muligheder for coverbillede kommer snart',
                 'upload' => [
-                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
-                    'button' => 'Upload image',
-                    'dropzone' => 'Drop here to upload',
-                    'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be 2000x700',
-                    'too_large' => 'Uploaded file is too large.',
-                    'unsupported_format' => 'Unsupported format.',
+                    'broken_file' => 'Kunne ikke uploade billedet. Prøv igen.',
+                    'button' => 'Upload billede',
+                    'dropzone' => 'Smid her for at uploade',
+                    'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
+                    'restriction_info' => "Upload kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
+                    'size_info' => 'Coverbilledet burde være 2000x700',
+                    'too_large' => 'Den uploadede fil er for stor.',
+                    'unsupported_format' => 'Ikke-understøttet format.',
                 ],
             ],
         ],
         'extra' => [
-            'followers' => '1 follower|:count followers',
-            'unranked' => 'No recent plays',
+            'followers' => '1 følger|:count følgere',
+            'unranked' => 'Ingen seneste spil',
 
             'achievements' => [
-                'title' => 'Achievements',
-                'achieved-on' => 'Achieved on :date',
+                'title' => 'Præstationer',
+                'achieved-on' => 'Opnået på :date',
             ],
             'beatmaps' => [
-                'none' => 'None... yet.',
+                'none' => 'Ingen... endnu.',
                 'title' => 'Beatmaps',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => 'Favorit Beatmaps (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => 'Beatmaps på kirkegården (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked & Godkendte Beatmaps (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Afventende Beatmaps (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
+                'empty' => 'Ingen præstationsrekorder endnu. :(',
                 'most_played' => [
-                    'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'count' => 'gange spillet',
+                    'title' => 'Mest Spillede Beatmaps',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'accuracy' => 'præcision: :percentage',
+                    'title' => 'Seneste spil (24 timer)',
                 ],
-                'title' => 'Historical',
+                'title' => 'Historisk',
             ],
             'kudosu' => [
-                'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'recent_entries' => 'Recent Kudosu History',
+                'available' => 'Kudosu Tilgængelig',
+                'available_info' => "Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har omdannet endnu.",
+                'recent_entries' => 'Seneste Kudosu Historie',
                 'title' => 'Kudosu!',
-                'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total' => 'Samlet Kudosu Optjent',
+                'total_info' => 'Baseret på hvor stort et bidrag brugeren har givet til beatmaps. Se <a href="'.osu_url('user.kudosu').'">denne side</a> for mere information.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => "Denne bruger har ikke modtages nogen kudosu!",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => 'Modtog :amount fra kudosu benægtelsesophævelse af modding opslaget :post',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => 'Benægtet :amount fra modding opslaget :post',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => 'Mistede :amount fra sletning af modding opslag :post',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => 'Modtog :amount fra modding opslag genetablering af :post',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => 'Modtog :amount fra at få stemmer på modding opslaget :post',
+                            'reset' => 'Mistede :amount fra at miste stemmer på modding opslaget :post',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Received :amount from votes recalculation in modding post of :post',
-                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                            'give' => 'Modtog :amount fra genberegning af stemmer i modding opslaget :post',
+                            'reset' => 'Mistede :amount fra genberegning af stemmer i modding opslaget :post',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => 'Modtog :amount fra :giver for opslaget :post',
+                        'reset' => 'Kudosu nulstillet af :giver for opslaget :post',
+                        'revoke' => 'Benægtet kudosu af :giver for opslaget :post',
                     ],
                 ],
             ],
@@ -175,45 +175,45 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
+                'title' => 'Medaljer',
             ],
             'recent_activities' => [
-                'title' => 'Recent',
+                'title' => 'Seneste',
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Best Performance',
+                    'title' => 'Bedste Præstation',
                 ],
-                'empty' => 'No awesome performance records yet. :(',
+                'empty' => 'Ingen fede præstationsrekorder endnu. :(',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => 'Førerpositioner',
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
+                'weighted_pp' => 'vejede: :pp (:percentage)',
             ],
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
+            'edit_big' => 'Ændr mig!',
+            'placeholder' => 'Skriv indhold her',
+            'restriction_info' => "Du skal være <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for at benytte dette felt.",
         ],
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => 'Landerangering for :mode',
+            'global' => 'Global rangering for :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Accuracy',
+            'hit_accuracy' => 'Hit Præcision',
             'level' => 'Level :level',
-            'maximum_combo' => 'Maximum Combo',
-            'play_count' => 'Play Count',
+            'maximum_combo' => 'Højeste Combo',
+            'play_count' => 'Spilantal',
             'ranked_score' => 'Ranked Score',
-            'replays_watched_by_others' => 'Replays Watched by Others',
+            'replays_watched_by_others' => 'Replays Set af Andre',
             'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'total_hits' => 'Hits i Alt',
+            'total_score' => 'Samlet Score',
         ],
     ],
     'status' => [
@@ -221,9 +221,9 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => 'Bruger Oprettet',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => 'Kontobekræftelse',
     ],
 ];
