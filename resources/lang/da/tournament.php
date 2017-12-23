@@ -21,22 +21,22 @@
 return [
     'index' => [
         'header' => [
-            'subtitle' => 'A listing of active, officially-recognised tournaments',
-            'title' => 'Community Tournaments',
+            'subtitle' => 'En liste over alle aktive officielle turneringer',
+            'title' => 'Fællesskabsturnerninger',
         ],
-        'none_running' => 'There are no tournaments running at the moment, please check back later!',
-        'registration_period' => 'Registration: :start to :end',
+        'none_running' => 'Der er ingen turneringer, som kører i øjeblikket. Kig forbi senere!',
+        'registration_period' => 'Tilmelding: :start til :end',
     ],
     'show' => [
         'button' => [
-            'register' => 'Sign me up!',
-            'cancel' => 'Cancel Registration',
+            'register' => 'Tilmeld mig!',
+            'cancel' => 'Annullér tilmelding',
         ],
-        'entered' => 'Your are registered for this tournament.<br><br>Note that this does not mean you have been assigned to a team.<br><br>Further instructions will be sent to you via email closer to the tournament date, so please ensure your osu! account\'s email address is valid!',
-        'login_to_register' => 'Please :login to view registration details!',
-        'not_yet_entered' => 'You are not registered for this tournament.',
-        'rank_too_low' => 'Sorry, you do not meet the rank requirements for this tournament!',
-        'registration_ends' => 'Registrations close on :date',
+        'entered' => 'Du er nu tilmeldt turneringen.<br><br>Vær opmærksom på, at dette ikke betyder, at du skal være tilmeldt et hold..<br><br>Mere info vil blive sendt til dig på din email-adresse, så vær venligst sikker på, at din kontos email-adresse er gyldig!',
+        'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
+        'not_yet_entered' => 'Du er ikke tilmeldt denne turnering.',
+        'rank_too_low' => 'Beklager, du opfylder ikke kravene for rang til denne turnering!',
+        'registration_ends' => 'Tilmelding lukker på :date',
     ],
-    'tournament_period' => ':start to :end',
+    'tournament_period' => ':start til :end',
 ];
