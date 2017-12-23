@@ -100,7 +100,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Dette beatmap blev godkendt på :date!',
-            'graveyard' => "Dette beatmap er ikke blevet opdateret siden :date og er højst sandsynligt blevet droppet af skaberen...",
+            'graveyard' => 'Dette beatmap er ikke blevet opdateret siden :date og er højst sandsynligt blevet droppet af skaberen...',
             'loved' => 'Dette beatmap blev tilføjet til "Loved" på :date!',
             'ranked' => 'Dette beatmap blev ranked på :date!',
             'wip' => 'Notat: Dette beatmap er blevet markeret som "Under konstruktion" af skaberen.',
@@ -114,7 +114,7 @@ return [
         'confirm' => "Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.",
         'explanation' => 'Hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
         'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
-        'new_time' => "Du får en ny hype ved :new_time.",
+        'new_time' => 'Du får en ny hype ved :new_time.',
         'remaining' => 'Du har :remaining hypes tilbage.',
         'section_title' => 'Hype Tog',
         'title' => 'Hype',
