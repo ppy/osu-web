@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => 'Subforums',
     'title' => 'osu!community',
-    'slogan' => "det er farlig at spille alene.",
+    'slogan' => 'det er farlig at spille alene.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -234,7 +234,7 @@ return [
                 'user' => [
                     'current' => 'Du har :votes stemmer tilbage.',
                     'count' => '{0} ingen stemmer|{1} :count stemme|[2,*] :count stemmer',
-                    'not_enough' => "Du har ikke flere stemmer tilbage",
+                    'not_enough' => 'Du har ikke flere stemmer tilbage',
                 ],
             ],
 
