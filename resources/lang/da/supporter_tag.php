@@ -20,12 +20,12 @@
 
 return [
     'user_search' => [
-        'searching' => 'searching...',
-        'not_found' => "This user doesn't exist",
+        'searching' => 'søger...',
+        'not_found' => "Denne bruger eksisterer ikke",
     ],
     'duration' => [
-        'months' => ':length month|:length months|{0}',
-        'years' => ':length year|:length years|{0}',
+        'months' => ':length måned|:length måneder|{0}',
+        'years' => ':length år|:length år|{0}',
     ],
-    'months' => 'months',
+    'months' => 'måneder',
 ];
