@@ -35,7 +35,7 @@ return [
     'index' => [
         'description' => 'Udvalgte artister er artister, som vi samarbejder med for at skabe nyt og originalt musik til osu!. Disse artiser og et udvalg af deres spor er blevet specielt udvalgt af osu! teamet for at være gode til at blive mappet. Nogle af de udvalgte artister har også skabt eksklusive nye sange bare for at kunne blive brugt i osu!.<br><br>Alle spor i denne sektion er fremskaffede som "pre-timed" .osz filer og er blevet officielt licenseret til brug i osu! og osu!-relateret indhold.',
     ],
-        
+
     'links' => [
         'site' => 'Officiel Hjemmeside',
     ],

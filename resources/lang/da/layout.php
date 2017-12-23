@@ -185,62 +185,62 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Siden findes ikke',
-            'description' => "Beklager, men siden, du forsøger at finde, eksisterer ikke!",
+            'description' => 'Beklager, men siden, du forsøger at finde, eksisterer ikke!',
             'link' => false,
         ],
         '403' => [
-            'error' => "Du burde ikke være her.",
+            'error' => 'Du burde ikke være her.',
             'description' => 'Du kunne prøve at gå tilbage igen, okay?',
             'link' => false,
         ],
         '401' => [
-            'error' => "Du burde ikke være her.",
+            'error' => 'Du burde ikke være her.',
             'description' => 'Du kunne prøve at gå tilbage igen, okay? Eller bare logge ind måske.',
             'link' => false,
         ],
         '405' => [
             'error' => 'Siden findes ikke',
-            'description' => "Beklager, men siden, du forsøger at finde, eksisterer ikke!!",
+            'description' => 'Beklager, men siden, du forsøger at finde, eksisterer ikke!!',
             'link' => false,
         ],
         '500' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
-            'description' => "Vi er blevet informeret om fejlen.",
+            'description' => 'Vi er blevet informeret om fejlen.',
             'link' => false,
         ],
         'fatal' => [
             'error' => 'Åh nej! Der er noget galt! ;_;',
-            'description' => "Vi er blevet informeret om fejlen.",
+            'description' => 'Vi er blevet informeret om fejlen.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Under Vedligeholdelse!',
-            'description' => "Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.",
+            'description' => 'Vedligeholdelse tager som regel mellem 5 sekunder og 10 minutter. Hvis siden er nede i længere tid, se :link for mere information.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Her er en kode, som du kan sige videre til support, hvis du vil!",
+        'reference' => 'Her er en kode, som du kan sige videre til support, hvis du vil!',
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'email-adresse',
-            'forgot' => "Jeg har glemt min login-info",
+            'forgot' => 'Jeg har glemt min login-info',
             'password' => 'adgangskode',
             'title' => 'Log ind for at fortsætte',
 
             'error' => [
-                'email' => "Brugernavn eller adgangskode eksisterer ikke",
+                'email' => 'Brugernavn eller adgangskode eksisterer ikke',
                 'password' => 'Forkert adgangskode',
             ],
         ],
 
         'register' => [
-            'info' => "Du skal have en konto, min gode mand! Hvor har du ikke én endnu?",
-            'title' => "Har du ikke en konto?",
+            'info' => 'Du skal have en konto, min gode mand! Hvor har du ikke én endnu?',
+            'title' => 'Har du ikke en konto?',
         ],
     ],
 

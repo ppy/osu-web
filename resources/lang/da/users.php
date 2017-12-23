@@ -31,7 +31,7 @@ return [
         'remember' => 'Husk denne computer',
         'title' => 'Log venligst ind for at fortsætte',
         'failed' => 'Ugyldigt login',
-        'register' => "Har du ikke en osu! konto? Lav en ny én!",
+        'register' => 'Har du ikke en osu! konto? Lav en ny én!',
         'forgot' => 'Glemt din adgangskode?',
         'beta' => [
             'main' => 'Adgang til betaversionen er i øjeblikket restrikteret til priveligerede brugere.',
@@ -69,7 +69,7 @@ return [
         'origin_country_age' => ':age fra :country',
         'page_description' => 'osu! - Alt hvad du har brug for at vide om :username!',
         'plays_with' => 'Spiller med :devices',
-        'title' => ":username's profil",
+        'title' => ':username ´s profil',
 
         'edit' => [
             'cover' => [
@@ -80,7 +80,7 @@ return [
                     'button' => 'Upload billede',
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
-                    'restriction_info' => "Upload kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => 'Upload kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>',
                     'size_info' => 'Coverbilledet burde være 2000x700',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
@@ -126,7 +126,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tilgængelig',
-                'available_info' => "Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har omdannet endnu.",
+                'available_info' => 'Kudosu kan blive omdannet til kudosu-stjerner, som giver dine beatmaps mere opmærksomhed. Dette er antallet af kudosu, som du ikke har omdannet endnu.',
                 'recent_entries' => 'Seneste Kudosu Historie',
                 'title' => 'Kudosu!',
                 'total' => 'Samlet Kudosu Optjent',
@@ -134,7 +134,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Denne bruger har ikke modtages nogen kudosu!",
+                    'empty' => 'Denne bruger har ikke modtages nogen kudosu!',
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -175,7 +175,7 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "Denne bruger har ikke fået nogle endnu. ;_;",
+                'empty' => 'Denne bruger har ikke fået nogle endnu. ;_;',
                 'title' => 'Medaljer',
             ],
             'recent_activities' => [
@@ -198,7 +198,7 @@ return [
             'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
             'edit_big' => 'Ændr mig!',
             'placeholder' => 'Skriv indhold her',
-            'restriction_info' => "Du skal være <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for at benytte dette felt.",
+            'restriction_info' => 'Du skal være <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for at benytte dette felt.',
         ],
         'rank' => [
             'country' => 'Landerangering for :mode',

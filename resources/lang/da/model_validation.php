@@ -64,7 +64,7 @@ return [
         'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
         'email_already_used' => 'Email-adressen er allerede i brug.',
         'invalid_country' => 'Landet er ikke i databasen.',
-        'invalid_email' => "Dette ligner ikke en email-adresse...",
+        'invalid_email' => 'Dette ligner ikke en email-adresse...',
         'too_short' => 'Den nye adgangskode er for kort.',
         'unknown_duplicate' => 'Brugernavn eller email-adresse er allerede i brug.',
         'username_too_short' => 'Det anmodede brugernavn er for kort.',

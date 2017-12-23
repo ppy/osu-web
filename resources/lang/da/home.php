@@ -88,7 +88,7 @@ return [
 
     'download' => [
       'header' => [
-          '1' => "lad os få",
+          '1' => 'lad os få',
           '2' => 'dig i gang',
           '3' => 'download osu! spilklienten til Windows',
       ],
@@ -146,6 +146,6 @@ return [
             'part-2' => 'Vidste du også, at du ved at støtte osu! får en masse lækre funktioner, som f.eks. <strong>downloads i spillet</strong> som automatisk foregår, når du ser på et spil eller spiller et multiplayerspil?',
         ],
         'find-out-more' => 'Klik her for at læse mere',
-        'download-starting' => "Hov, og bare rolig - din download er allerede sat i gang for dig ;)",
+        'download-starting' => 'Hov, og bare rolig - din download er allerede sat i gang for dig ;)',
     ],
 ];

@@ -21,7 +21,7 @@
 return [
     'user_search' => [
         'searching' => 'søger...',
-        'not_found' => "Denne bruger eksisterer ikke",
+        'not_found' => 'Denne bruger eksisterer ikke',
     ],
     'duration' => [
         'months' => ':length måned|:length måneder|{0}',
