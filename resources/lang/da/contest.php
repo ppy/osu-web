@@ -27,7 +27,7 @@ return [
         'over' => 'Afstemning for denne konkurrence er sluit',
         'login_required' => 'Log venligst ind for at stemme.',
         'best_of' => [
-            'none_played' => "Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!",
+            'none_played' => 'Det ser ikke ud som om, at du har spillet nogle beatmaps, som kvalificerer sig til denne konkurrence!',
         ],
     ],
     'entry' => [
