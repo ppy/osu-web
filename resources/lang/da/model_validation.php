@@ -19,59 +19,59 @@
  */
 
 return [
-    'not_negative' => ':attribute cannot be negative.',
-    'required' => ':attribute is required.',
-    'wrong_confirmation' => 'Confirmation does not match.',
+    'not_negative' => ':attribute kan ikke være negativ.',
+    'required' => ':attribute er påkrævet.',
+    'wrong_confirmation' => 'Bekræftelseskoderne matcher ikke.',
 
     'beatmap_discussion' => [
         'hype' => [
-            'guest' => 'Must be logged in to hype.',
-            'hyped' => 'You have already hyped this beatmap.',
-            'limit_exceeded' => 'You have used all your hype.',
-            'not_hypeable' => 'This beatmap can not be hyped',
-            'owner' => 'No hyping your own beatmap.',
+            'guest' => 'Du skal være logget ind for at hype.',
+            'hyped' => 'Du har allerede hypet dette beatmap.',
+            'limit_exceeded' => 'Du har opbrugt alt dit hype.',
+            'not_hypeable' => 'Dette beatmap kan ikke blive hypet',
+            'owner' => 'Du kan ikke hype dit eget beatmap.',
         ],
     ],
 
     'beatmap_discussion_post' => [
-        'first_post' => 'Can not delete starting post.',
+        'first_post' => 'Kan ikke slette det startende opslag.',
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => 'Kan kun stemme på en funktionsanmodning.',
+            'not_enough_feature_votes' => 'Ikke nok stemmer.',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specified.',
+            'invalid' => 'Ugyldig valgmulighed er valgt.',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => 'Duplikeret valgmulighed er ikke tilladt.',
+            'invalid_max_options' => 'Valgmuligheder pr. bruger må ikke overskride antallet af valgmuligheder i alt.',
+            'minimum_one_selection' => 'Et minimum af én valgmulighed pr. bruger er nødvendig.',
+            'minimum_two_options' => 'Der skal være mindst 2 valgmuligheder.',
+            'too_many_options' => 'Overskrider det maksimale antal tilladte valgmuligheder.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selected more options than allowed.',
+            'too_many' => 'Valgte flere valgmuliheder en tilladt.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Password may not contain username.',
-        'email_already_used' => 'Email address already used.',
-        'invalid_country' => 'Country not in database.',
-        'invalid_email' => "Doesn't seem to be an email address.",
-        'too_short' => 'New password is too short.',
-        'unknown_duplicate' => 'Username or email address already used.',
-        'username_too_short' => 'The requested username is too short.',
-        'weak' => 'Blacklisted password.',
-        'wrong_current_password' => 'Current password is incorrect.',
-        'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
-        'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
+        'contains_username' => 'Adgangskoden må ikke indholde et brugernavn.',
+        'email_already_used' => 'Email-adressen er allerede i brug.',
+        'invalid_country' => 'Landet er ikke i databasen.',
+        'invalid_email' => "Dette ligner ikke en email-adresse...",
+        'too_short' => 'Den nye adgangskode er for kort.',
+        'unknown_duplicate' => 'Brugernavn eller email-adresse er allerede i brug.',
+        'username_too_short' => 'Det anmodede brugernavn er for kort.',
+        'weak' => 'Sortlistet adgangskode.',
+        'wrong_current_password' => 'Den nuværende adgangskode er ugyldig.',
+        'wrong_email_confirmation' => 'Emailbekræftelsen er forkert.',
+        'wrong_password_confirmation' => 'Adgangskodebekræftelsen er forkert.',
+        'too_long' => 'Overskrider maksimale længde - kan højest være op til :limit karakterer.',
     ],
 ];
