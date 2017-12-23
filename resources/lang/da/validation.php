@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+    'mixture' => ':attribute mangler et tal eller et bogstav',
+    'required' => ':attribute er påkrævet',
 ];
