@@ -111,7 +111,7 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Allerede Hypet!',
-        'confirm' => "Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.",
+        'confirm' => 'Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.',
         'explanation' => 'Hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
         'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
         'new_time' => 'Du får en ny hype ved :new_time.',
