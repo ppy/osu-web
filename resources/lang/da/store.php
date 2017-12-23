@@ -20,58 +20,58 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warehouse',
+        'warehouse' => 'Varedepot',
     ],
 
     'checkout' => [
-        'cart_problems' => 'Uh oh, there are problems with your cart!',
-        'cart_problems_edit' => 'Click here to go edit it.',
-        'declined' => 'The payment was cancelled.',
-        'error' => 'There was a problem completing your checkout :(',
-        'pay' => 'Checkout with Paypal',
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'cart_problems' => 'Åh åh, der er problemer med din indkøbskurv!',
+        'cart_problems_edit' => 'Klik her for at redigere den.',
+        'declined' => 'Betalingen blev annulleret.',
+        'error' => 'Der opstod et problem under betaling :(',
+        'pay' => 'Betal med PayPal',
+        'delayed_shipping' => 'Vi bliver overvældet med ordrer lige nu! Du skal stadig være velkommen til at afgive din ordre, men forvent **yderligere 1-2 ugers forsinkelse** mens vi forsøger at indhente alle andre ordre.',
     ],
 
-    'discount' => 'save :percent%',
+    'discount' => 'spar :percent%',
 
     'order' => [
         'item' => [
             'display_name' => [
                 'supporter_tag' => ':name for :username (:duration)',
             ],
-            'quantity' => 'Quantity',
+            'quantity' => 'Kvantitet',
         ],
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => 'Navn',
 
         'stock' => [
-            'out' => 'Currently out of stock :(. Check back soon.',
-            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+            'out' => 'I øjeblikket udsolgt :(. Kig forbi senere.',
+            'out_with_alternative' => 'Denne type er i øjeblikket udsolgt :(. Prøv en anden, eller kig forbi senere.',
         ],
 
-        'add_to_cart' => 'Add to Cart',
-        'notify' => 'Notify me when available!',
+        'add_to_cart' => 'Tilføj til Indkøbskurv',
+        'notify' => 'Giv mig besked, når varen er tilgængelig igen!',
 
-        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
+        'notification_success' => 'du vil modtage en besked når varen er på lager igen. klik :link for at annullere',
         'notification_remove_text' => 'here',
 
-        'notification_in_stock' => 'This product is already in stock!',
+        'notification_in_stock' => 'Dette produkt er allerede på lager!',
     ],
 
     'supporter_tag' => [
-        'gift' => 'gift to player',
+        'gift' => 'giv gave',
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => 'Du skal være :link for at få et supporter tag!',
+            'link_text' => 'logget ind',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            '_' => 'Du skal være :link for at ændre dit brugernavn!',
+            'link_text' => 'logget ind',
         ],
     ],
 ];
