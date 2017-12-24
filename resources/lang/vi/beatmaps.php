@@ -100,7 +100,7 @@ return [
 
         'status-messages' => [
             'approved' => 'Beatmap này đã được approve vào :date!',
-            'graveyard' => "Beatmap này chưa được update từ :date và có thể đã bị bỏ rơi bởi mapper...",
+            'graveyard' => 'Beatmap này chưa được update từ :date và có thể đã bị bỏ rơi bởi mapper...',
             'loved' => 'Beatmap này đã được love vào :date!',
             'ranked' => 'Beatmap này đã được rank vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
@@ -111,10 +111,10 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button-done' => 'Đã Được Hype!',
-        'confirm' => "Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn bà không thể hủy bỏ.",
+        'confirm' => 'Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn bà không thể hủy bỏ.',
         'explanation' => 'Hype beatmap này để làm nó có khả năng được nominate và rank!',
         'explanation_guest' => 'Đăng nhập hype beatmap này để nó có khả năng được nominate và rank!',
-        'new_time' => "Bạn sẽ nhận được đợt hype khác vào :new_time.",
+        'new_time' => 'Bạn sẽ nhận được đợt hype khác vào :new_time.',
         'remaining' => 'Bạn còn :remaining hype.',
         'section_title' => 'Hype Train',
         'title' => 'Hype',
