@@ -154,14 +154,12 @@
 
                 <div class="landing-hero__message-extra-container">
                     <div class="landing-hero__message-extra landing-hero__message-extra--bottom">
-                        <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download">
+                        <a href="{{ route('download') }}" class="btn-osu-big btn-osu-big--download-landing">
                             <span class="btn-osu-big__content">
                                 <span class="btn-osu-big__left">
                                     <span class="btn-osu-big__text-top">
-                                        {{ trans("home.landing.download._") }}
+                                        {{ trans("home.landing.download") }}
                                     </span>
-
-                                    <span class="btn-osu-big__text-bottom">{{ trans('home.landing.download.for', ['os' => 'Windows'])}}</span>
                                 </span>
 
                                 <span class="btn-osu-big__icon">
@@ -169,10 +167,6 @@
                                 </span>
                             </span>
                         </a>
-
-                        <span class="landing-hero__download-other">
-                            {{ trans('home.landing.download.soon') }}
-                        </span>
                     </div>
                 </div>
             </div>

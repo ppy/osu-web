@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Baixe agora',
         'online' => '<strong>:players</strong> jogadores online em <strong>:games</strong> partidas',
         'peak' => 'Pico, :count usuários online',
         'players' => '<strong>:count</strong> jogadores registrados',
-
-        'download' => [
-            '_' => 'Baixe agora',
-            'soon' => 'osu! para outros sistemas operacionais virá em breve',
-            'for' => 'para :os',
-            'other' => 'clique aqui para :os1 ou :os2',
-        ],
 
         'slogan' => [
             'main' => 'simulador de ritmo gratuito',
@@ -82,30 +76,6 @@ return [
             'more_simple' => 'See more wiki search results',
             'title' => 'Wiki',
         ],
-    ],
-
-    'download' => [
-      'header' => [
-          '1' => 'vamos',
-          '2' => 'começar.',
-          '3' => 'baixe o cliente do osu! para Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Passo 1',
-              'content' => 'baixe o cliente do osu!',
-          ],
-          '2' => [
-              'name' => 'Passo 2',
-              'content' => 'crie uma conta no osu!',
-          ],
-          '3' => [
-              'name' => 'Passo 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Quer saber mais?',
-      'more_text' => 'Olhe o canal do <a href="https://www.youtube.com/user/osuacademy/">osu!academy no youtube</a> para ver tutoriais atualizados e dicas em como conseguir o melhor possivel do osu!',
     ],
 
     'user' => [

@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,20 +16,24 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'news' => [
-        'slogan' => 'Il ritmo è solo ad un *click* di distanza!',
-    ],
-    'landing' => [
-        'download' => 'Scarica ora',
-        'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
-        'peak' => 'Picco, :count utenti online',
-        'players' => '<strong>:count</strong> utenti registrati',
+.download-page-video {
+  &__embed {
+    // this trick maintains the video's aspect ratio while resizing
+    // see: http://alistapart.com/article/creating-intrinsic-ratios-for-video
+    padding-bottom: 56.25%; /* 16:9 */
 
-        'slogan' => [
-            // free to win => vinci gratuitamente, but maybe there's a better way to translate that
-            'main' => 'simulatore di cerchi dove vinci gratuitamente',
-            'sub' => 'il ritmo è solo ad un click di distanza',
-        ],
-    ],
-];
+    iframe {
+      .full-size();
+    }
+  }
+
+  &__title {
+    .center-content();
+
+    height: 60px;
+    width: 100%;
+
+    font-size: 15px;
+    color: #fff;
+  }
+}

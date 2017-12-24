@@ -36,7 +36,7 @@ use Illuminate\Database\QueryException;
 
 class Beatmapset extends Model
 {
-    use SoftDeletes;
+    use Elasticsearch\BeatmapsetTrait, SoftDeletes;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -91,6 +91,73 @@ class Beatmapset extends Model
 
     /*
     |--------------------------------------------------------------------------
+    | Elasticsearch mappings; can't put in a Trait.
+    |--------------------------------------------------------------------------
+    */
+    const ES_MAPPINGS_BEATMAPS = [
+        'approved' => ['type' => 'long'],
+        'beatmap_id' => ['type' => 'long'],
+        'countNormal' => ['type' => 'long'],
+        'countSlider' => ['type' => 'long'],
+        'countSpinner' => ['type' => 'long'],
+        'countTotal' => ['type' => 'long'],
+        'diff_approach' => ['type' => 'double'],
+        'diff_drain' => ['type' => 'double'],
+        'diff_overall' => ['type' => 'double'],
+        'diff_size' => ['type' => 'double'],
+        'difficultyrating' => ['type' => 'double'],
+        'hit_length' => ['type' => 'long'],
+        'passcount' => ['type' => 'long'],
+        'playcount' => ['type' => 'long'],
+        'playmode' => ['type' => 'long'],
+        'total_length' => ['type' => 'long'],
+        'version' => ['type' => 'string'],
+    ];
+
+    const ES_MAPPINGS_BEATMAPSETS = [
+        'approved' => ['type' => 'long'],
+        'approved_date' => ['type' => 'date'],
+        'artist' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+        'artist_unicode' => ['type' => 'string'],
+        'bpm' => ['type' => 'double'],
+        'creator' => ['type' => 'string'],
+        'difficulty_names' => ['type' => 'string'],
+        'download_disabled' => ['type' => 'boolean'],
+        'epilepsy' => ['type' => 'boolean'],
+        'favourite_count' => ['type' => 'long'],
+        'filename' => ['type' => 'string'],
+        'filesize' => ['type' => 'long'],
+        'filesize_novideo' => ['type' => 'long'],
+        'genre_id' => ['type' => 'long'],
+        'language_id' => ['type' => 'long'],
+        'last_update' => ['type' => 'date'],
+        'offset' => ['type' => 'long'],
+        'play_count' => ['type' => 'long'],
+        'rating' => ['type' => 'double'],
+        'source' => ['type' => 'string'],
+        'star_priority' => ['type' => 'long'],
+        'storyboard' => ['type' => 'boolean'],
+        'submit_date' => ['type' => 'date'],
+        'tags' => ['type' => 'string'],
+        'thread_id' => ['type' => 'long'],
+        'title' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+        'title_unicode' => ['type' => 'string'],
+        'user_id' => ['type' => 'long'],
+        'video' => ['type' => 'boolean'],
+    ];
+
+    /*
+    |--------------------------------------------------------------------------
     | Accesssors
     |--------------------------------------------------------------------------
     */
@@ -100,9 +167,19 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
+    public function setApprovedDateAttribute($value)
+    {
+        $this->attributes['approved_date'] = parse_time_to_carbon($value)->addHours(8);
+    }
+
     public function getSubmitDateAttribute($value)
     {
         return (new Carbon($value))->subHours(8);
+    }
+
+    public function setSubmitDateAttribute($value)
+    {
+        $this->attributes['submit_date'] = parse_time_to_carbon($value)->addHours(8);
     }
 
     public function beatmapDiscussions()
@@ -298,7 +375,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'plays' => 'playcount',
+            'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'relevance' => '_score',
