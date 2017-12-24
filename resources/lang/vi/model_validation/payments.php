@@ -20,33 +20,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signatures do not match',
+        'not_match' => 'Chữ ký không khớp.',
     ],
-    'notification_type' => 'notification_type is not valid :type',
+    'notification_type' => 'notification_type không hợp lệ :type',
     'order' => [
-        'invalid' => 'Order is not valid',
+        'invalid' => 'Đơn đặt hàng không hợp lệ.',
         'items' => [
-            'virtual_only' => '`:provider` payment is not valid for physical items.',
+            'virtual_only' => 'thanh toán `:provider` không hợp lệ cho các vật phẩm thật.',
         ],
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
-            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',
+            'not_checkout' => 'Đang cố chấp nhận thanh toán cho mặt hàng trong trạng thái lỗi `:state`.',
+            'not_paid' => 'Đang cố hoàn tiền của thanh toán cho mặt hàng trong trạng thái lỗi `:state`.',
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param does not match',
+        'invalid' => '`:param` param không khớp',
     ],
     'paypal' => [
-        'not_echeck' => 'Pending payment is not an echeck. (:actual)',
+        'not_echeck' => 'Thanh toán đang chờ không phải là echeck. (:actual)',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Payment amount does not match: :actual != :expected',
-            'currency' => 'Payment is not in USD. (:type)',
+            'amount' => 'Lượng tiền trong thanh toán không khớp: :actual != :expected',
+            'currency' => 'Thanh toán không phải bằng USD. (:type)',
         ],
     ],
     'order_number' => [
-        'malformed' => 'Received order transaction id is malformed',
-        'user_id_mismatch' => 'external_id contains wrong user id',
+        'malformed' => 'ID giao dịch của đơn hàng nhận được không bình thường',
+        'user_id_mismatch' => 'external_id chứa sai ID của người dùng',
     ],
 ];

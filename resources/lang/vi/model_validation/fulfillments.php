@@ -20,11 +20,11 @@
 
 return [
     'username_change' => [
-        'only_one' => 'only 1 username change allowed per order fulfillment.',
-        'insufficient_paid' => 'Username change cost exceeds amount paid (:expected > :actual)',
-        'reverting_username_mismatch' => 'Current username (:current) is not the same as change to revoke (:username)',
+        'only_one' => 'Chỉ được đổi tên tài khoản 1 lần cho mỗi đơn đặt hàng.',
+        'insufficient_paid' => 'Không đủ tiền để đổi tên tài khoản(:expected > :actual)',
+        'reverting_username_mismatch' => 'Tên tài khoản hiện tại (:current) không giống với tên đã đổi, không thể hủy tên (:username)',
     ],
     'supporter_tag' => [
-        'insufficient_paid' => 'Donation is less than required for supporter tag gift (:actual > :expected)',
+        'insufficient_paid' => 'Không đủ tiền để tặng supporter tag (:actual > :expected)',
     ],
 ];
