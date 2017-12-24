@@ -22,23 +22,13 @@ return [
 
     'beatmapsets' => [
         'covers' => [
-<<<<<<< HEAD
             'regenerate' => 'Phục hồi',
             'regenerating' => 'Đang phục hồi...',
             'remove' => 'Gỡ bỏ',
             'removing' => 'Đang gỡ bỏ...',
         ],
         'show' => [
-            'covers' => 'Quản lý Các Ảnh Bìa của Beatmapset',
-=======
-            'regenerate' => 'Regenerate',
-            'regenerating' => 'Regenerating...',
-            'remove' => 'Remove',
-            'removing' => 'Removing...',
-        ],
-        'show' => [
-            'covers' => 'Manage Beatmapset Covers',
->>>>>>> master
+            'covers' => 'Quản lý Các ảnh cover của Beatmapset',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'kích hoạt',
@@ -47,7 +37,7 @@ return [
                 'inactive' => 'inactive',
             ],
         ],
-    ],
+    ],    
 
     'forum' => [
         'forum-covers' => [
@@ -63,10 +53,10 @@ return [
                     'update' => 'Cập nhật',
                 ],
 
-                'title' => 'Danh Sách Các Ảnh Bìa của Diễn Đàn',
+                'title' => 'Danh Sách Các Ảnh Cover của Diễn Đàn',
 
                 'type-title' => [
-                    'default-topic' => 'Ảnh Bìa Mặc Định cho Bài Viết',
+                    'default-topic' => 'Ảnh Cover Mặc Định cho Bài Viết',
                     'main' => 'Ảnh Bìa của Diễn Đàn',
                 ],
             ],
@@ -75,7 +65,7 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Lưu Trữ về Người Dùng',
+            'title' => 'Lưu Trữ về Người Xem',
         ],
     ],
 
@@ -102,7 +92,7 @@ return [
     'users' => [
         'restricted_banner' => [
             'title' => 'Người dùng đang bị restricted.',
-            'message' => '(chỉ có các quản trị mới có thể thấy)',
+            'message' => '(chỉ có admin mới có thể thấy)',
         ],
     ],
 
