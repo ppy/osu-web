@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
-    'invalid_resource_id' => 'No payment information was found.',
-    'unknown' => "The payment was rejected, but we're not sure why.",
+    'instrument_declined' => 'Không thể sử dụng phương thức thanh toán này trong Paypal.',
+    'invalid_resource_id' => 'Không tìm thấy thông tin thanh toán.',
+    'unknown' => 'Thanh toán đã bị từ chối, nhưng chúng tôi không biết tại sao.',
 ];

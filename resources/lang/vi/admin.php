@@ -22,6 +22,15 @@ return [
 
     'beatmapsets' => [
         'covers' => [
+<<<<<<< HEAD
+            'regenerate' => 'Phục hồi',
+            'regenerating' => 'Đang phục hồi...',
+            'remove' => 'Gỡ bỏ',
+            'removing' => 'Đang gỡ bỏ...',
+        ],
+        'show' => [
+            'covers' => 'Quản lý Các Ảnh Bìa của Beatmapset',
+=======
             'regenerate' => 'Regenerate',
             'regenerating' => 'Regenerating...',
             'remove' => 'Remove',
@@ -29,6 +38,7 @@ return [
         ],
         'show' => [
             'covers' => 'Manage Beatmapset Covers',
+>>>>>>> master
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'kích hoạt',
@@ -42,22 +52,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => 'Xóa',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => 'Diễn đàn #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => 'Không có ảnh bìa',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => 'Lưu lại',
+                    'update' => 'Cập nhật',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => 'Danh Sách Các Ảnh Bìa của Diễn Đàn',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => 'Ảnh Bìa Mặc Định cho Bài Viết',
+                    'main' => 'Ảnh Bìa của Diễn Đàn',
                 ],
             ],
         ],
@@ -65,18 +75,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => 'Lưu Trữ về Người Dùng',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => 'Đồ Chơi Điều Khiển của Admin',
 
             'sections' => [
-                'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'forum' => 'Diễn đàn',
+                'general' => 'Thông tin chung',
+                'store' => 'Cửa hàng',
             ],
         ],
     ],
@@ -84,15 +94,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => 'Danh Sách Đơn Hàng',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => 'Người dùng đang bị restricted.',
+            'message' => '(chỉ có các quản trị mới có thể thấy)',
         ],
     ],
 
