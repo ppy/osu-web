@@ -22,31 +22,31 @@ return [
     'authorizations' => [
         'update' => [
             'null_user' => 'Bạn cần phải đăng nhập để chỉnh sửa.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'system_generated' => 'Không thể sửa bài đăng của hệ thống.',
+            'wrong_user' => 'Chỉ chủ bài đăng mới được chỉnh sửa.',
         ],
     ],
 
     'events' => [
-        'empty' => 'Nothing has happened... yet.',
+        'empty' => 'Chưa có gì... cả.',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => 'Không bài đăng nào đề cập đến vấn đề của tôi',
+        'notice' => 'Có một vài bài đăng xung quanh :timestamp (:existing_timestamps). Hãy kiểm tra trước khi đăng.',
     ],
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
-            'user' => 'Respond',
+            'guest' => 'Hãy đăng nhập để trả lời',
+            'user' => 'Trả lời',
         ],
     ],
 
     'system' => [
         'resolved' => [
-            'true' => 'Marked as resolved by :user',
-            'false' => 'Reopened by :user',
+            'true' => 'Được đánh dấu đã giải quyết bởi :user',
+            'false' => 'Bị mở lại bởi :user',
         ],
     ],
 

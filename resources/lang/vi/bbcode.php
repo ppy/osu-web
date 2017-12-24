@@ -19,20 +19,20 @@
  */
 
 return [
-    'bold' => 'Bold',
-    'heading' => 'Header',
-    'image' => 'Image',
-    'italic' => 'Italic',
+    'bold' => 'Đậm',
+    'heading' => 'Tiêu Đề',
+    'image' => 'Hình Ảnh',
+    'italic' => 'Nghiêng',
     'link' => 'Link',
-    'list' => 'List',
-    'list_numbered' => 'Numbered List',
+    'list' => 'Danh Sách',
+    'list_numbered' => 'Danh Sách Đánh Số',
     'size' => [
-        '_' => 'Font Size',
-        'tiny' => 'Tiny',
-        'small' => 'Small',
-        'normal' => 'Normal',
-        'large' => 'Large',
+        '_' => 'Cỡ Font',
+        'tiny' => 'Rất Nhỏ',
+        'small' => 'Nhỏ',
+        'normal' => 'Bình Thường',
+        'large' => 'Lớn',
     ],
-    'spoilerbox' => 'Spoiler Box',
-    'strikethrough' => 'Strike Out',
+    'spoilerbox' => 'Hộp Spoiler', //?
+    'strikethrough' => 'Gạch Ngang',
 ];

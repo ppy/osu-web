@@ -34,8 +34,8 @@ return [
         'permalink' => 'permalink',
         'post' => 'Bài đăng',
         'reply' => 'Trả lời',
-        'reply_reopen' => 'Trả lời và Mở lại',
-        'reply_resolve' => 'Trả lời và Giải quyết',
+        'reply_reopen' => 'Trả lời và mở lại',
+        'reply_resolve' => 'Trả lời và giải quyết',
         'reset' => 'Reset',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
@@ -44,7 +44,7 @@ return [
     ],
 
     'count' => [
-        'item' => ':count cái',
+        'item' => ':count đơn vị',
     ],
 
     'datetime' => [
