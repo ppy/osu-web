@@ -37,7 +37,7 @@ return [
                 'inactive' => 'inactive',
             ],
         ],
-    ],    
+    ],
 
     'forum' => [
         'forum-covers' => [
