@@ -19,22 +19,22 @@
  */
 
 return [
-    'header' => ':type Ranking',
+    'header' => 'Xếp hạng theo :type',
     'type' => [
         'performance' => 'Performance',
-        'charts' => 'Charts',
-        'score' => 'Score',
-        'country' => 'Country',
+        'charts' => 'Biểu đồ',
+        'score' => 'Điểm',
+        'country' => 'Quốc gia',
     ],
     'stat' => [
-        'accuracy' => 'Accuracy',
-        'active_users' => 'Active Users',
-        'country' => 'Country',
-        'play_count' => 'Play Count',
+        'accuracy' => 'Độ chính xác',
+        'active_users' => 'Số người đang chơi',
+        'country' => 'Quốc gia',
+        'play_count' => 'Số lần chơi',
         'performance' => 'Performance',
-        'total_score' => 'Total Score',
-        'ranked_score' => 'Ranked Score',
-        'average_score' => 'Avg. Score',
+        'total_score' => 'Tổng số điểm',
+        'ranked_score' => 'Điểm rank',
+        'average_score' => 'Điểm trung bình',
         'average_performance' => 'Avg. Perf.',
         'ss' => 'SS',
         's' => 'S',
