@@ -42,7 +42,7 @@ trait UserTrait
             $values[$field] = $value;
         }
 
-        $values['is_old'] = ends_with($this->username, '_old');
+        $values['is_old'] = preg_match('/_old(_\d+)?$/', $this->username) === 1;
 
         return $values;
     }
