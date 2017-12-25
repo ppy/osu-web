@@ -27,7 +27,7 @@ return [
 
     'discussion-votes' => [
         'update' => [
-            'error' => 'Không thể cập nhật vote',
+            'error' => 'Cập nhật vote thất bại',
         ],
     ],
 
@@ -37,7 +37,7 @@ return [
         'deleted' => 'Đã xóa bởi :editor :delete_time.',
         'deny_kudosu' => 'từ chối kudosu',
         'edit' => 'sửa',
-        'edited' => 'Sửa đổi cuối cùng bởi :editor :update_time.',
+        'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder' => 'Nhập vào đây để đăng',
         'message_type_select' => 'Chọn Loại Nhận Xét',
