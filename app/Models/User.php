@@ -24,7 +24,6 @@ use App\Exceptions\ChangeUsernameException;
 use App\Exceptions\ModelNotSavedException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
-use App\Libraries\Transactions\AfterCommit;
 use App\Models\Chat\PrivateMessage;
 use App\Models\Elasticsearch;
 use App\Traits\UserAvatar;
@@ -41,7 +40,7 @@ use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
-class User extends Model implements AfterCommit, AuthenticatableContract, Messageable
+class User extends Model implements AuthenticatableContract, Messageable
 {
     use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
@@ -117,11 +116,6 @@ class User extends Model implements AfterCommit, AuthenticatableContract, Messag
 
     private $emailConfirmation = null;
     private $validateEmailConfirmation = false;
-
-    public function afterCommit()
-    {
-        $this->esIndexDocument();
-    }
 
     public function getAuthPassword()
     {
