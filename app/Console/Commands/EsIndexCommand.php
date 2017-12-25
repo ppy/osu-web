@@ -88,19 +88,31 @@ class EsIndexCommand extends Command
     {
         $indices = [];
         foreach ($this->types as $type) {
+            $count = $type::esIndexingQuery()->count();
+            $bar = $this->output->createProgressBar($count);
+
+
             if (!$this->inplace) {
                 $indexName = "{$type::esIndexName()}{$this->suffix}";
 
                 $this->info("Indexing {$type} into {$indexName}");
-                $type::esIndexIntoNew(1000, $indexName);
+
+                $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
+                    $bar->setProgress($progress);
+                });
 
                 $indices[] = $indexName;
             } else {
                 $this->info("In-place indexing {$type} into {$type::esIndexName()}");
-                $type::esReindexAll(1000);
+                $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
+                    $bar->setProgress($progress);
+                });
 
                 $indices[] = $type::esIndexName();
             }
+
+            $bar->finish();
+            $this->line("\n");
         }
 
         return $indices;
