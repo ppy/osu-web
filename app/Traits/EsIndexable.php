@@ -89,7 +89,7 @@ trait EsIndexable
         return Es::indices()->create($params);
     }
 
-    public static function esIndexIntoNew($batchSize = 1000, $name = null)
+    public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
     {
         $newIndex = $name ?? static::esIndexName().'_'.time();
         Log::info("Creating new index {$newIndex}");
@@ -99,13 +99,13 @@ trait EsIndexable
             'index' => $newIndex,
         ];
 
-        static::esReindexAll($batchSize, 0, $options);
+        static::esReindexAll($batchSize, 0, $options, $progress);
         Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
     }
 
-    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
     {
         $dummy = new static();
         $isSoftDeleting = method_exists($dummy, 'getDeletedAtColumn');
@@ -114,7 +114,7 @@ trait EsIndexable
         $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
         $count = 0;
 
-        $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count) {
+        $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count, $progress) {
             $actions = [];
 
             foreach ($models as $model) {
@@ -142,6 +142,9 @@ trait EsIndexable
             }
 
             Log::info(static::class." next: {$models->last()->getKey()}");
+            if ($progress) {
+                $progress($count);
+            }
         });
 
         $duration = time() - $startTime;
