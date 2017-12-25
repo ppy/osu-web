@@ -45,7 +45,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Được đánh dấu đã giải quyết bởi :user',
+            'true' => 'Đã được giải quyết bởi :user',
             'false' => 'Bị mở lại bởi :user',
         ],
     ],

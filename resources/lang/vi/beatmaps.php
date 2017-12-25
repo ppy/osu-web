@@ -21,7 +21,7 @@
 return [
     'discussion-posts' => [
         'store' => [
-            'error' => 'Không thể lưu bài viết',
+            'error' => 'Lưu bài viết thất bại',
         ],
     ],
 
@@ -46,7 +46,7 @@ return [
         'require-login' => 'Hãy đăng nhập để đăng hoặc trả lời',
         'resolved' => 'Đã giải quyết',
         'restore' => 'hoàn lại',
-        'title' => 'Cuộc Thảo Luận',
+        'title' => 'Góc Thảo Luận',
 
         'collapse' => [
             'all-collapse' => 'Thu gọn tất cả',
@@ -121,7 +121,7 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
+        'disqualifed-at' => 'Bị disqualify :time_ago (:reason).',
         'disqualifed_no_reason' => 'không đưa ra lí do',
         'disqualification-prompt' => 'Lí do để qualify?',
         'disqualify' => 'Disqualify',
@@ -166,11 +166,11 @@ return [
     ],
     'status' => [
         'any' => 'Bất Kì',
-        'ranked-approved' => 'Đã Rank & Approve',
-        'approved' => 'Đã Approve',
-        'qualified' => 'Đã Qualify',
-        'loved' => 'Đã Love',
-        'faves' => 'Yếu Thích',
+        'ranked-approved' => 'Được Rank & Approve',
+        'approved' => 'Được Approve',
+        'qualified' => 'Được Qualify',
+        'loved' => 'Được Love',
+        'faves' => 'Yêu Thích',
         'pending' => 'Pending',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Map Của Tôi',
