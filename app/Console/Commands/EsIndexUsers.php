@@ -24,7 +24,7 @@ use App\Libraries\Elasticsearch\Indexing;
 use App\Models\User;
 use Illuminate\Console\Command;
 
-class EsIndexUsers extends Command
+class EsIndexUsers extends EsIndexCommand
 {
     /**
      * The name and signature of the console command.
@@ -40,111 +40,7 @@ class EsIndexUsers extends Command
      */
     protected $description = 'Indexes users into Elasticsearch.';
 
-    private $cleanup;
-    private $inplace;
-    private $suffix;
-    private $types;
+    protected $alias = 'users';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return mixed
-     */
-    public function handle()
-    {
-        $this->readOptions();
-        $this->types = [User::class];
-        $this->suffix = !$this->inplace ? '_'.time() : '';
-
-        $oldIndices = Indexing::getOldIndices('users');
-
-        $continue = $this->starterMessage($oldIndices);
-        if (!$continue) {
-            return $this->error('User aborted!');
-        }
-
-        $indices = $this->index();
-
-        $this->finish($indices, $oldIndices);
-        $this->warn("\nIndexing completed.");
-    }
-
-    private function finish(array $indices, array $oldIndices)
-    {
-        // always update osu alias
-        $indicesString = implode(', ', $indices);
-        $this->warn("Aliasing '{$indicesString}' to 'users'...");
-        Indexing::updateAlias('users', $indices);
-
-        if (!$this->inplace && $this->cleanup) {
-            foreach ($oldIndices as $index) {
-                $this->warn("Removing '{$index}'...");
-                Indexing::deleteIndex($index);
-            }
-        }
-    }
-
-    /**
-     * Indexes and returns the names of the indices.
-     *
-     * @return array names of the indices indexed to.
-     */
-    private function index()
-    {
-        $indices = [];
-        foreach ($this->types as $type) {
-            if (!$this->inplace) {
-                $indexName = "{$type::esIndexName()}{$this->suffix}";
-
-                $this->info("Indexing {$type} into {$indexName}");
-                $type::esIndexIntoNew(1000, $indexName);
-
-                $indices[] = $indexName;
-            } else {
-                $this->info("In-place indexing {$type} into {$type::esIndexName()}");
-                $type::esReindexAll(1000);
-
-                $indices[] = $type::esIndexName();
-            }
-        }
-
-        return $indices;
-    }
-
-    private function readOptions()
-    {
-        $this->inplace = $this->option('inplace');
-        $this->cleanup = $this->option('cleanup');
-    }
-
-    private function starterMessage(array $oldIndices)
-    {
-        if ($this->inplace) {
-            $this->warn('Running in-place reindex.');
-            $confirmMessage = "This will reindex in-place (schemas must match) and alias them to 'users'";
-        } else {
-            $this->warn('Running index transfer.');
-
-            if ($this->cleanup) {
-                $this->warn(
-                    "The following indices will be deleted on completion!\n"
-                    .implode("\n", $oldIndices)
-                );
-            }
-
-            $confirmMessage = "This will create new indices and alias them to 'users'";
-        }
-
-        return $this->confirm("{$confirmMessage}, begin indexing?");
-    }
+    protected $types = [User::class];
 }
