@@ -198,7 +198,7 @@ return [
             'description' => '<strong>me!</strong> er et brugerdefinerbart felt på din profilside.',
             'edit_big' => 'Ændr mig!',
             'placeholder' => 'Skriv indhold her',
-            'restriction_info' => 'Du skal være <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for at benytte dette felt.',
+            'restriction_info' => "Du skal være <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> for at bruge denne funktion.",
         ],
         'rank' => [
             'country' => 'Landerangering for :mode',
