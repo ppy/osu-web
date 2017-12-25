@@ -80,7 +80,7 @@ return [
                     'button' => 'Upload billede',
                     'dropzone' => 'Smid her for at uploade',
                     'dropzone_info' => 'Du kan også smide dit billede her for at uploade',
-                    'restriction_info' => 'Upload kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>',
+                    'restriction_info' => "Upload er kun tilgængelig for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Coverbilledet burde være 2000x700',
                     'too_large' => 'Den uploadede fil er for stor.',
                     'unsupported_format' => 'Ikke-understøttet format.',
