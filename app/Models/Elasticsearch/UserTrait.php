@@ -30,8 +30,7 @@ trait UserTrait
 
     public function toEsJson()
     {
-        $mappings = static::ES_MAPPINGS;
-        unset($mappings['is_old']);
+        $mappings = array_intersect_key(static::ES_MAPPINGS, $this->getAttributes());
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
