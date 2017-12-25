@@ -141,10 +141,10 @@ trait EsIndexable
                 $count += count($result['items']);
             }
 
-            Log::info("next: {$models->last()->getKey()}");
+            Log::info(static::class." next: {$models->last()->getKey()}");
         });
 
         $duration = time() - $startTime;
-        Log::info("Indexed {$count} records in {$duration} s.");
+        Log::info(static::class." Indexed {$count} records in {$duration} s.");
     }
 }
