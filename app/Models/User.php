@@ -663,6 +663,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_type === 1;
     }
 
+    public function isOld()
+    {
+        return preg_match('/_old(_\d+)?$/', $this->username) === 1;
+    }
+
     public function isRestricted()
     {
         return $this->isBanned() || $this->user_warnings > 0;
