@@ -58,10 +58,12 @@ class EsIndexCommand extends Command
             return $this->error('User aborted!');
         }
 
+        $start = time();
+
         $indices = $this->index();
 
         $this->finish($indices, $oldIndices);
-        $this->warn("\nIndexing completed.");
+        $this->warn("\nIndexing completed in ".(time() - $start).'s');
     }
 
     protected function finish(array $indices, array $oldIndices)
