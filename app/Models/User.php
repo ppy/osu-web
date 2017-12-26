@@ -90,6 +90,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     const ES_MAPPINGS = [
         'is_old' => ['type' => 'boolean'],
+        'user_lastvisit' => ['type' => 'date'],
         'username' => [
             'type' => 'string',
             'analyzer' => 'username_lower',
