@@ -37,11 +37,6 @@ return [
     'product' => [
         'name' => 'Nome',
 
-        'stock' => [
-            'out' => 'Attualmente non disponibile :(. Controlla più tardi.',
-            'out_with_alternative' => 'Questo tipo non è attualmente disponibile :(. Prova con un altro tipo o controlla più tardi.',
-        ],
-
         'add_to_cart' => 'Aggiungi al carrello',
         'notify' => 'Avvisami quando è disponibile!',
 

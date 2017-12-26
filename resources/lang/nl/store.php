@@ -37,11 +37,6 @@ return [
     'product' => [
         'name' => 'Naam',
 
-        'stock' => [
-            'out' => 'Momenteel niet op voorraad :(. Probeer het later opnieuw.',
-            'out_with_alternative' => 'Dit type is momenteel niet op voorraad :(. Probeer een ander type of probeer het later opnieuw.',
-        ],
-
         'add_to_cart' => 'Voeg toe aan winkelwagen',
         'notify' => 'Laat me weten wanneer het beschikbaar is!',
 

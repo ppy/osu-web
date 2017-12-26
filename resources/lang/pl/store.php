@@ -42,11 +42,6 @@ return [
     'product' => [
         'name' => 'Nazwa',
 
-        'stock' => [
-            'out' => 'Obecnie brak :(. Sprawdź poźniej.',
-            'out_with_alternative' => 'Obecnie brak :(. Spróbuj z innym rozmiarem/typem bądź sprawdź później.',
-        ],
-
         'add_to_cart' => 'Dodaj do koszyka',
         'notify' => 'Powiadom mnie, kiedy będzie dostępne!',
 
