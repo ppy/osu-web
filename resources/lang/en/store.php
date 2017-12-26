@@ -48,7 +48,7 @@ return [
 
         'stock' => [
             'out' => 'This item is currently out of stock. Check back later!',
-            'out_with_alternative' => 'Unfortunately this item is out of stock. Use the dropdown to choose a different type or check back later!',
+            'out_with_alternative' => 'Unfortunately this item is out of stock. Use the merchandise listing to choose a different one or check back later!',
         ],
 
         'add_to_cart' => 'Add to Cart',
