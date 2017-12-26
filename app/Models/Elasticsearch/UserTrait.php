@@ -112,7 +112,7 @@ trait UserTrait
         $columns = array_keys((new static())->esFilterFields());
         array_unshift($columns, 'user_id');
 
-        return static::withoutGlobalScopes()->select($columns);
+        return static::on('mysql-readonly')->withoutGlobalScopes()->select($columns);
     }
 
     public static function esMappings()
