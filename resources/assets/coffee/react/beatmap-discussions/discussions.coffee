@@ -49,9 +49,9 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               onClick: @changeSort
               span className: 'btn-osu-lite__right',
                 if @state.sortField == 'updated_at'
-                  osu.trans('beatmaps.discussions.collapse.sort-updated-time')
+                  osu.trans('beatmaps.discussions.sort.updated-time')
                 else
-                  osu.trans('beatmaps.discussions.collapse.sort-post-time')
+                  osu.trans('beatmaps.discussions.sort.post-time')
 
             a
               href: '#'

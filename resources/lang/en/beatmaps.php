@@ -88,6 +88,11 @@ return [
             'title' => ':title mapped by :mapper',
         ],
 
+        'sort' => [
+            'post-time' => 'Sorted by post time',
+            'updated-time' => 'Sorted by last post time',
+        ],
+
         'stats' => [
             'deleted' => 'Deleted',
             'mapper_notes' => 'Notes',
