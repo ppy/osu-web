@@ -23,6 +23,7 @@ namespace App\Models\Elasticsearch;
 use App\Models\Forum\Forum;
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
+use Schema;
 
 trait UserTrait
 {
@@ -30,7 +31,7 @@ trait UserTrait
 
     public function toEsJson()
     {
-        $mappings = array_intersect_key(static::ES_MAPPINGS, $this->getAttributes());
+        $mappings = $this->esFilterFields();
 
         $values = [];
         foreach ($mappings as $field => $mapping) {
@@ -45,6 +46,28 @@ trait UserTrait
         $values['is_old'] = $this->isOld();
 
         return $values;
+    }
+
+    /**
+     * Returns the fields which have a directly corresponding column.
+     * This is intended to filter out fields calculated for indexing purposes.
+     */
+    protected function esFilterFields()
+    {
+        // get table columns to intersect with.
+        // getAttributes() doesn't return attributes that aren't populated.
+        // This involves reading the schema from the database;
+        static $columnMap;
+        // read once.
+        if (!isset($columnMap)) {
+            $columnMap = [];
+            $columns = Schema::getColumnListing($this->table);
+            foreach ($columns as $column) {
+                $columnMap[$column] = '';
+            }
+        }
+
+        return array_intersect_key(static::esMappings(), $columnMap);
     }
 
     public static function esAnalysisSettings()
@@ -87,7 +110,9 @@ trait UserTrait
 
     public static function esIndexingQuery()
     {
-        return static::withoutGlobalScopes();
+        $columns = array_keys((new static())->esFilterFields());
+        array_unshift($columns, 'user_id');
+        return static::withoutGlobalScopes()->select($columns);
     }
 
     public static function esMappings()
