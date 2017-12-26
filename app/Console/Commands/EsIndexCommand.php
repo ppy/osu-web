@@ -93,7 +93,6 @@ class EsIndexCommand extends Command
             $count = $type::esIndexingQuery()->count();
             $bar = $this->output->createProgressBar($count);
 
-
             if (!$this->inplace) {
                 $indexName = "{$type::esIndexName()}{$this->suffix}";
 

@@ -20,7 +20,6 @@
 
 namespace App\Models\Elasticsearch;
 
-use App\Models\Forum\Forum;
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
 use Schema;
@@ -97,7 +96,7 @@ trait UserTrait
                     'tokenizer' => 'whitespace',
                     'filter' => ['lowercase'],
                 ],
-            ]
+            ],
         ];
 
         return $settings;
@@ -112,6 +111,7 @@ trait UserTrait
     {
         $columns = array_keys((new static())->esFilterFields());
         array_unshift($columns, 'user_id');
+
         return static::withoutGlobalScopes()->select($columns);
     }
 
@@ -150,13 +150,13 @@ trait UserTrait
                             ['match' => ['username._slop' => ['query' => $username, 'type' => 'phrase']]],
                         ],
                         'must_not' => [
-                            [ 'term' => [ 'is_old' => true ] ],
-                        ]
-                    ]
+                            ['term' => ['is_old' => true]],
+                        ],
+                    ],
                 ],
                 'filter' => [
-                    [ 'term' => [ 'user_warnings' => 0 ] ],
-                    [ 'term' => [ 'user_type' => 0 ] ],
+                    ['term' => ['user_warnings' => 0]],
+                    ['term' => ['user_type' => 0]],
                 ],
             ],
         ];

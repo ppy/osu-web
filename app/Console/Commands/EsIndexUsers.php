@@ -20,7 +20,6 @@
 
 namespace App\Console\Commands;
 
-use App\Libraries\Elasticsearch\Indexing;
 use App\Models\User;
 use Illuminate\Console\Command;
 

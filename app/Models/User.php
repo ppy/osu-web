@@ -25,7 +25,6 @@ use App\Exceptions\ModelNotSavedException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
-use App\Models\Elasticsearch;
 use App\Traits\UserAvatar;
 use App\Traits\Validatable;
 use Cache;
@@ -340,7 +339,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             'from' => $from,
             'size' => $size,
             'body' => [
-                'query' => static::usernameSearchQuery($username ?? '')
+                'query' => static::usernameSearchQuery($username ?? ''),
             ],
         ]);
     }

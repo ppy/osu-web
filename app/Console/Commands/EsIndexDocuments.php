@@ -20,7 +20,6 @@
 
 namespace App\Console\Commands;
 
-use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use Illuminate\Console\Command;
