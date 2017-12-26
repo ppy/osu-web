@@ -23,6 +23,13 @@ bn = 'beatmap-discussions'
 lp = 'beatmaps.discussions'
 
 class BeatmapDiscussions.Discussions extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @state =
+      sortField: 'created_at'
+
+
   render: =>
     discussions = @props.currentDiscussions[@props.mode]
 
@@ -35,6 +42,17 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
         div className: "#{bn}__toolbar",
           div className: "#{bn}__toolbar-content #{bn}__toolbar-content--right",
+            a
+              href: '#'
+              className: "#{bn}__toolbar-link"
+              'data-type': 'sort'
+              onClick: @changeSort
+              span className: 'btn-osu-lite__right',
+                if @state.sortField == 'updated_at'
+                  osu.trans('beatmaps.discussions.collapse.sort-updated-time')
+                else
+                  osu.trans('beatmaps.discussions.collapse.sort-post-time')
+
             a
               href: '#'
               className: "#{bn}__toolbar-link"
@@ -71,7 +89,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               div className: "#{bn}__timeline-line hidden-xs"
 
             div null,
-              discussions.map @discussionPage
+              @sortedDisussions().map @discussionPage
 
             @timelineCircle()
 
@@ -97,6 +115,14 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
         visible: visible
 
 
+  changeSort: (e) =>
+    e.preventDefault()
+    if @state.sortField == 'created_at'
+      @setState sortField: 'updated_at'
+    else
+      @setState sortField: 'created_at'
+
+
   expand: (e) =>
     e.preventDefault()
     $.publish 'beatmapDiscussionEntry:collapse', collapse: e.currentTarget.dataset.type
@@ -109,6 +135,17 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
       when 'pending' then discussion.message_type == 'praise' || discussion.resolved
       when 'praises' then discussion.message_type != 'praise'
       else false
+
+
+  sortedDisussions: ->
+    discussions = @props.currentDiscussions[@props.mode]
+    if @state.sortField == 'updated_at'
+      discussions.sort (a, b) ->
+        if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
+    else
+      discussions.sort (a, b) ->
+        if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
+
 
 
   timelineCircle: =>
