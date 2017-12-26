@@ -52,9 +52,9 @@ trait PostTrait
 
     public static function esIndexingQuery()
     {
-        $forumIds = Forum::where('enable_indexing', 1)->pluck('forum_id');
+        $forumIds = Forum::on('mysql-readonly')->where('enable_indexing', 1)->pluck('forum_id');
 
-        return static::withoutGlobalScopes()->whereIn('forum_id', $forumIds);
+        return static::on('mysql-readonly')->withoutGlobalScopes()->whereIn('forum_id', $forumIds);
     }
 
     public static function esMappings()
