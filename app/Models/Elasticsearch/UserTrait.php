@@ -127,7 +127,6 @@ trait UserTrait
 
     public static function usernameSearchQuery(string $username)
     {
-
         static $lowercase_stick = [
             'analyzer' => 'username_lower',
             'type' => 'most_fields',
