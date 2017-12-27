@@ -90,9 +90,9 @@ return [
 
         'sort' => [
             '_' => 'Sorted by:',
-            'post-time' => 'creation time',
+            'created_at' => 'creation time',
             'timeline' => 'timeline',
-            'updated-time' => 'last update',
+            'updated_at' => 'last update',
         ],
 
         'stats' => [

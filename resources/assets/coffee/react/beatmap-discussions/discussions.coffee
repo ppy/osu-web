@@ -25,13 +25,13 @@ lp = 'beatmaps.discussions'
 sortPresets =
   updated_at:
     icon: 'calendar'
-    text: osu.trans('beatmaps.discussions.sort.updated-time')
+    text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
       if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
 
   created_at:
     icon: 'folder-o'
-    text: osu.trans('beatmaps.discussions.sort.post-time')
+    text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
       if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
 
