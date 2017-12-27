@@ -75,6 +75,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               className: "#{bn}__toolbar-link"
               'data-type': 'sort'
               onClick: @changeSort
+              span className: 'btn-osu-lite__right', osu.trans('beatmaps.discussions.sort._')
               el Icon, name: sortPresets[@state.sortField].icon
               span className: 'btn-osu-lite__right', sortPresets[@state.sortField].text
 

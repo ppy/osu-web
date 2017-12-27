@@ -89,9 +89,10 @@ return [
         ],
 
         'sort' => [
-            'post-time' => 'Sorted by post time',
-            'timeline' => 'Sorted by timeline',
-            'updated-time' => 'Sorted by last post time',
+            '_' => 'Sorted by:',
+            'post-time' => 'creation time',
+            'timeline' => 'timeline',
+            'updated-time' => 'last update',
         ],
 
         'stats' => [
