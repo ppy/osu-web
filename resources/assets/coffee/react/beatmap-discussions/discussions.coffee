@@ -110,7 +110,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
             className: "#{bn}__discussions"
             @timelineCircle()
 
-            if @props.mode == 'timeline'
+            if @isTimelineVisible()
               div className: "#{bn}__timeline-line hidden-xs"
 
             div null,
@@ -137,6 +137,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
         currentBeatmap: @props.currentBeatmap
         userPermissions: @props.userPermissions
         readPostIds: @props.readPostIds
+        isTimelineVisible: @isTimelineVisible()
         visible: visible
 
 
@@ -166,6 +167,10 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
       else false
 
 
+  isTimelineVisible: =>
+    @props.mode == 'timeline' && @state.sortField == 'timeline'
+
+
   sortedDisussions: ->
     discussions = @props.currentDiscussions[@props.mode].slice(0)
     discussions.sort sortPresets[@state.sortField].sort
@@ -173,5 +178,5 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
   timelineCircle: =>
     div
-      'data-visibility': if @props.mode != 'timeline' then 'hidden'
+      'data-visibility': if !@isTimelineVisible() then 'hidden'
       className: "#{bn}__mode-circle #{bn}__mode-circle--active hidden-xs"
