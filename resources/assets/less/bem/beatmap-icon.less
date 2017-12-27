@@ -35,7 +35,7 @@
     border-radius: 50%;
     background-color: @pink;
   }
-
+   
   &--large {
     font-size: 30px;
   }
@@ -77,6 +77,13 @@
   &--expert-plus {
     &::before {
       background-color: #000;
+    }
+  }
+
+  &--with-tooltip {
+    &:hover::before {
+      box-shadow: 0 0 0 4px #333333;
+      transition: box-shadow 90ms ease-in 90ms; /* same as in qtip2's documentation */
     }
   }
 
