@@ -31,7 +31,7 @@ class EsIndexDocuments extends EsIndexCommand
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--inplace} {--cleanup}';
+    protected $signature = 'es:index-documents {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.

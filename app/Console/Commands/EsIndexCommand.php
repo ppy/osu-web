@@ -30,6 +30,7 @@ class EsIndexCommand extends Command
     protected $inplace;
     protected $suffix;
     protected $types;
+    protected $yes;
 
     /**
      * Create a new command instance.
@@ -123,6 +124,7 @@ class EsIndexCommand extends Command
     {
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
+        $this->yes = $this->option('yes');
     }
 
     protected function starterMessage(array $oldIndices)
@@ -143,6 +145,6 @@ class EsIndexCommand extends Command
             $confirmMessage = "This will create new indices and alias them to {$this->alias}";
         }
 
-        return $this->confirm("{$confirmMessage}, begin indexing?");
+        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
     }
 }
