@@ -30,7 +30,7 @@ sortPresets =
       if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
 
   created_at:
-    icon: 'arrow-down'
+    icon: 'calendar'
     text: osu.trans('beatmaps.discussions.sort.post-time')
     sort: (a, b) ->
       if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
