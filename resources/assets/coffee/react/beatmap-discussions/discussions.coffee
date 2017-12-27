@@ -22,6 +22,19 @@ el = React.createElement
 bn = 'beatmap-discussions'
 lp = 'beatmaps.discussions'
 
+sortPresets =
+  updated_at:
+    icon: 'arrow-up'
+    text: osu.trans('beatmaps.discussions.sort.updated-time')
+    sort: (a, b) ->
+      if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
+
+  created_at:
+    icon: 'arrow-down'
+    text: osu.trans('beatmaps.discussions.sort.post-time')
+    sort: (a, b) ->
+      if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
+
 class BeatmapDiscussions.Discussions extends React.PureComponent
   constructor: (props) ->
     super props
@@ -47,17 +60,8 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               className: "#{bn}__toolbar-link"
               'data-type': 'sort'
               onClick: @changeSort
-              el Icon, name:
-                if @state.sortField == 'updated_at'
-                  'arrow-up'
-                else
-                  'arrow-down'
-
-              span className: 'btn-osu-lite__right',
-                if @state.sortField == 'updated_at'
-                  osu.trans('beatmaps.discussions.sort.updated-time')
-                else
-                  osu.trans('beatmaps.discussions.sort.post-time')
+              el Icon, name: sortPresets[@state.sortField].icon
+              span className: 'btn-osu-lite__right', sortPresets[@state.sortField].text
 
             a
               href: '#'
@@ -145,13 +149,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
   sortedDisussions: ->
     discussions = @props.currentDiscussions[@props.mode]
-    if @state.sortField == 'updated_at'
-      discussions.sort (a, b) ->
-        if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
-    else
-      discussions.sort (a, b) ->
-        if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
-
+    discussions.sort sortPresets[@state.sortField].sort
 
 
   timelineCircle: =>
