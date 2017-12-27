@@ -301,7 +301,10 @@ class Beatmapset extends Model
 
     public function scopeRankedOrApproved($query)
     {
-        return $query->whereIn('approved', [self::STATES['ranked'], self::STATES['approved']]);
+        return $query->whereIn(
+            'approved',
+            [self::STATES['ranked'], self::STATES['approved'], self::STATES['qualified']]
+        );
     }
 
     public function scopeActive($query)
