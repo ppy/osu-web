@@ -42,6 +42,11 @@ return [
     'product' => [
         'name' => 'Nombre',
 
+        'stock' => [
+            'out' => 'En este momento sin existencias :(. Vuelve a revisar pronto.',
+            'out_with_alternative' => 'Este tipo no tiene existencias  :(. Intenta otro tipo o vuelve a revisar pronto.',
+        ],
+
         'add_to_cart' => 'Añadir al carrito',
         'notify' => '¡Notificarme cuando esté disponible!',
 

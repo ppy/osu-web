@@ -46,6 +46,11 @@ return [
     'product' => [
         'name' => 'Namn',
 
+        'stock' => [
+            'out' => 'Slut i lager :(. Kolla igen snart.',
+            'out_with_alternative' => 'Denna typ är för närvarande slut i lager :(. Testa andra typer eller kolla igen snart.',
+        ],
+
         'add_to_cart' => 'Lägg till i Varukorgen',
         'notify' => 'Notifiera mig när den är tillgänglig!',
 

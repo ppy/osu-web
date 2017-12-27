@@ -42,6 +42,11 @@ return [
     'product' => [
         'name' => 'Nome',
 
+        'stock' => [
+            'out' => 'Atualmente fora de estoque :(. Volte em breve.',
+            'out_with_alternative' => 'Esta variação está fora de estoque :(. Tente outra ou volte em breve.',
+        ],
+
         'add_to_cart' => 'Adicionar ao carrinho',
         'notify' => 'Avise-me quando estiver disponível!',
 

@@ -42,6 +42,11 @@ return [
     'product' => [
         'name' => 'Nom',
 
+        'stock' => [
+            'out' => 'Pas de stock en ce moment :(. Vérifiez plus tard.',
+            'out_with_alternative' => 'Pas de stock de ce type en ce moment :(. Essayez un autre type ou revérifiez plus tard.',
+        ],
+
         'add_to_cart' => 'Ajouter au panier',
         'notify' => "Notifiez-moi quand c'est disponible !",
 
