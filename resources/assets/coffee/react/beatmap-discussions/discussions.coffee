@@ -35,12 +35,19 @@ sortPresets =
     sort: (a, b) ->
       if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
 
+  # there's obviously no timeline field
+  timeline:
+    icon: 'clock-o'
+    text: osu.trans('beatmaps.discussions.sort.timeline')
+    sort: (a, b) ->
+      0
+
 class BeatmapDiscussions.Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
     @state =
-      sortField: 'created_at'
+      sortField: if @props.mode == 'timeline' then 'timeline' else 'created_at'
 
 
   render: =>
@@ -127,10 +134,14 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
   changeSort: (e) =>
     e.preventDefault()
-    if @state.sortField == 'created_at'
-      @setState sortField: 'updated_at'
+    if @state.sortField == 'updated_at'
+      if @props.mode == 'timeline'
+        @setState sortField: 'timeline'
+      else
+        @setState sortField: 'created_at'
+
     else
-      @setState sortField: 'created_at'
+      @setState sortField: 'updated_at'
 
 
   expand: (e) =>

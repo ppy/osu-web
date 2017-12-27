@@ -90,6 +90,7 @@ return [
 
         'sort' => [
             'post-time' => 'Sorted by post time',
+            'timeline' => 'Sorted by timeline',
             'updated-time' => 'Sorted by last post time',
         ],
 
