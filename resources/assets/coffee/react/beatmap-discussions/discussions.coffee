@@ -148,7 +148,7 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
 
   sortedDisussions: ->
-    discussions = @props.currentDiscussions[@props.mode]
+    discussions = @props.currentDiscussions[@props.mode].slice(0)
     discussions.sort sortPresets[@state.sortField].sort
 
 
