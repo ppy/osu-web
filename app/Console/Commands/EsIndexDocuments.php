@@ -32,7 +32,7 @@ class EsIndexDocuments extends Command
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--inplace} {--cleanup}';
+    protected $signature = 'es:index-documents {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.
@@ -45,6 +45,7 @@ class EsIndexDocuments extends Command
     private $inplace;
     private $types;
     private $suffix;
+    private $yes;
 
     /**
      * Create a new command instance.
@@ -126,6 +127,7 @@ class EsIndexDocuments extends Command
     {
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
+        $this->yes = $this->option('yes');
     }
 
     private function starterMessage(array $oldIndices)
@@ -146,6 +148,6 @@ class EsIndexDocuments extends Command
             $confirmMessage = "This will create new indices and alias them to 'osu'";
         }
 
-        return $this->confirm("{$confirmMessage}, begin indexing?");
+        return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
     }
 }
