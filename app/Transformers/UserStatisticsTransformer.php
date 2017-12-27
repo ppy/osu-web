@@ -20,7 +20,6 @@
 
 namespace App\Transformers;
 
-use App\Models\Score\Best as ScoreBest;
 use App\Models\UserStatistics;
 use League\Fractal;
 
@@ -82,22 +81,13 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             $stats = new UserStatistics\Osu();
         }
 
-        if ($stats->user_id === null) {
-            $scoreRankCounts = null;
-        } else {
-            $scoreRankClass = ScoreBest::class.'\\'.get_class_basename(get_class($stats));
-            $scoreRankCounts = $scoreRankClass::where('user_id', '=', $stats->user_id)
-                ->rankCounts()
-                [$stats->user_id] ?? null;
-        }
-
-        return $this->item($scoreRankCounts, function ($scoreRankCounts) {
+        return $this->item($stats, function ($stats) {
             return [
-                'XH' => $scoreRankCounts['XH'] ?? 0,
-                'SH' => $scoreRankCounts['SH'] ?? 0,
-                'X' => $scoreRankCounts['X'] ?? 0,
-                'S' => $scoreRankCounts['S'] ?? 0,
-                'A' => $scoreRankCounts['A'] ?? 0,
+                'XH' => $stats->xh_rank_count,
+                'SH' => $stats->sh_rank_count,
+                'X' => $stats->x_rank_count,
+                'S' => $stats->s_rank_count,
+                'A' => $stats->a_rank_count,
             ];
         });
     }
