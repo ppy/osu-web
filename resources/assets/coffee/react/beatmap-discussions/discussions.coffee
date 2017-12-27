@@ -47,6 +47,12 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               className: "#{bn}__toolbar-link"
               'data-type': 'sort'
               onClick: @changeSort
+              el Icon, name:
+                if @state.sortField == 'updated_at'
+                  'arrow-up'
+                else
+                  'arrow-down'
+
               span className: 'btn-osu-lite__right',
                 if @state.sortField == 'updated_at'
                   osu.trans('beatmaps.discussions.sort.updated-time')
