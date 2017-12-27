@@ -375,14 +375,14 @@ class Beatmapset extends Model
         $sort = explode('_', array_pull($params, 'sort'));
 
         $validSortFields = [
-            'artist' => 'artist',
+            'artist' => 'artist.raw',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'relevance' => '_score',
-            'title' => 'title',
+            'title' => 'title.raw',
             'updated' => 'last_update',
         ];
         $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
