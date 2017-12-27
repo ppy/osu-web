@@ -50,6 +50,14 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
       sortField: if @props.mode == 'timeline' then 'timeline' else 'created_at'
 
 
+  componentWillReceiveProps: (nextProps) =>
+    if _.includes(['created_at', 'timeline'], @state.sortField)
+      if nextProps.mode == 'timeline'
+        @setState sortField: 'timeline'
+      else
+        @setState sortField: 'created_at'
+
+
   render: =>
     discussions = @props.currentDiscussions[@props.mode]
 
