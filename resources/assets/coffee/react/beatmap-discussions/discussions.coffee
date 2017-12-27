@@ -75,17 +75,21 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               className: "#{bn}__toolbar-link"
               'data-type': 'sort'
               onClick: @changeSort
-              span className: 'btn-osu-lite__right', osu.trans('beatmaps.discussions.sort._')
-              el Icon, name: sortPresets[@state.sortField].icon
-              span className: 'btn-osu-lite__right', sortPresets[@state.sortField].text
+              span className: "#{bn}__toolbar-link-content", osu.trans('beatmaps.discussions.sort._')
+              el Icon,
+                name: sortPresets[@state.sortField].icon
+                parentClass: "#{bn}__toolbar-link-content"
+              span className: "#{bn}__toolbar-link-content", sortPresets[@state.sortField].text
 
             a
               href: '#'
               className: "#{bn}__toolbar-link"
               'data-type': 'collapse'
               onClick: @expand
-              el IconExpand, expand: false
-              span className: 'btn-osu-lite__right',
+              el IconExpand,
+                expand: false
+                parentClass: "#{bn}__toolbar-link-content"
+              span className: "#{bn}__toolbar-link-content",
                 osu.trans('beatmaps.discussions.collapse.all-collapse')
 
             a
@@ -93,8 +97,9 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               className: "#{bn}__toolbar-link"
               'data-type': 'expand'
               onClick: @expand
-              el IconExpand
-              span className: 'btn-osu-lite__right',
+              el IconExpand,
+                parentClass: "#{bn}__toolbar-link-content"
+              span className: "#{bn}__toolbar-link-content",
                 osu.trans('beatmaps.discussions.collapse.all-expand')
 
 
