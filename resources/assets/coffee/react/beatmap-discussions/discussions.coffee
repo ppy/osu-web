@@ -24,20 +24,20 @@ lp = 'beatmaps.discussions'
 
 sortPresets =
   updated_at:
-    icon: 'arrow-up'
+    icon: 'calendar'
     text: osu.trans('beatmaps.discussions.sort.updated-time')
     sort: (a, b) ->
       if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
 
   created_at:
-    icon: 'calendar'
+    icon: 'folder-o'
     text: osu.trans('beatmaps.discussions.sort.post-time')
     sort: (a, b) ->
       if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
 
   # there's obviously no timeline field
   timeline:
-    icon: 'clock-o'
+    icon: 'barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
       0
