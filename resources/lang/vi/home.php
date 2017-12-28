@@ -20,132 +20,132 @@
 
 return [
     'landing' => [
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
-
-        'download' => [
-            '_' => 'Download now',
-            'soon' => 'osu! coming soon to other operating systems',
-            'for' => 'for :os',
-            'other' => 'click here for :os1 or :os2',
-        ],
+        'download' => 'Tải ngay',
+        'online' => '<strong>:players</strong> đang chơi trong <strong>:games</strong> games',
+        'peak' => 'Đỉnh điểm, :count người chơi online',
+        'players' => '<strong>:count</strong> người chơi đã đang kí',
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
-            'sub' => 'rhythm is just a click away',
+            'main' => 'game nhịp điệu miễn phí',
+            'sub' => 'chỉ bắt đầu bằng một cái click chuột',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
-        'button' => 'Search',
-        'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'advanced_link' => 'Tìm kiếm nâng cao',
+        'button' => 'Tìm kiếm ',
+        'empty_result' => 'Không có kết quả!',
+        'missing_query' => 'Từ khóa tìm kiếm tối thiểu :n kí tự',
+        'title' => 'Kết Quả Tìm Kiếm',
 
         'beatmapset' => [
-            'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
+            'more' => 'còn :count kết quả tìm kiếm beatmap khác',
+            'more_simple' => 'Hiển thị thêm kết quả tìm kiếm beatmap',
             'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Search the forum',
-            'more_simple' => 'See more forum search results',
-            'title' => 'Forum',
+            'all' => 'Tất cả diễn đàn',
+            'link' => 'Tìm trong diễn đàn',
+            'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong diễn đàn',
+            'title' => 'Diễn Đàn',
 
             'label' => [
-                'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
-                'username' => 'author',
+                'forum' => 'tìm trong diễn đần',
+                'forum_children' => 'bao gồm diễn đàn con',
+                'topic_id' => '# chủ đề',
+                'username' => 'người đăng',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
+            'all' => 'tất cả',
             'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'player',
+            'forum_post' => 'diễn đàn',
+            'user' => 'người chơi',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
-            'title' => 'Players',
+            'more' => 'còn :count kết quả tìm kiếm người chơi khác',
+            'more_simple' => 'Hiển thị thêm kết quả tìm kiếm người chơi',
+            'more_hidden' => 'Kết quả tìm kiếm người chơi chỉ hiện thị :max người chơi. Hãy thử tinh chỉnh truy vấn tìm kiếm.',
+            'title' => 'Người Chơi',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
+            'link' => 'Tìm trong wiki',
+            'more_simple' => 'Hiển thị thêm kết quả tìm kiếm trong wiki',
             'title' => 'Wiki',
         ],
     ],
 
-    'download' => [
-      'header' => [
-          '1' => "let's get",
-          '2' => 'you started',
-          '3' => 'download osu! game client for Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Step 1',
-              'content' => 'Download the osu! game client',
-          ],
-          '2' => [
-              'name' => 'Step 2',
-              'content' => 'Create an osu! player account',
-          ],
-          '3' => [
-              'name' => 'Step 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Learn more?',
-      'more_text' => 'Check out the <a href="https://www.youtube.com/user/osuacademy/">osu!academy YouTube Channel</a> for up-to-date tutorials and tips on how to get the most out of osu!',
+'download' => [
+        'tagline' => "hãy<br>bắt đầu!",
+        'action' => 'Tải xuống osu!',
+        'os' => [
+            'windows' => 'cho Windows',
+            'macos' => 'cho macOS',
+            'linux' => 'cho Linux',
+        ],
+        'mirror' => 'liên kết phụ',
+        'macos-fallback' => 'người dùng macOS',
+        'steps' => [
+            'register' => [
+                'title' => 'tạo tài khoản',
+                'description' => 'làm theo những hướng dẫn khi bắt đầu trò chơi để đăng nhập hoặc tạo tài khoản mới',
+            ],
+            'download' => [
+                'title' => 'tải xuống trò chơi',
+                'description' => 'bấm vào nút phía trên để tải xuống bộ cài đặt, sau đó mở nó!',
+            ],
+            'beatmaps' => [
+                'title' => 'tải xuống beatmaps',
+                'description' => [
+                    '_' => ':browse bộ sưu tập khổng lồ các beatmap được người chơi tạo ra và bắt đầu chơi!',
+                    'browse' => 'duyệt qua',
+                ],
+            ],
+        ],
+        'video-guide' => 'hướng dẫn bằng video',
     ],
-
+    
     'user' => [
-        'title' => 'news',
+        'title' => 'tin tức',
         'news' => [
-            'title' => 'News',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'title' => 'Tin Tức',
+            'error' => 'Có lỗi khi tải tin tức, thử tải lại trang xem?...',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'welcome' => 'Xin chào, <strong>:username</strong>!',
+            'messages' => 'Bạn có :count tin nhắn mới',
             'stats' => [
-                'friends' => 'Online Friends',
-                'games' => 'Games',
-                'online' => 'Online Users',
+                'friends' => 'Bạn Bè Đang Online',
+                'games' => 'Phòng',
+                'online' => 'Người Chơi Đang Online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
-            'by' => 'by',
-            'plays' => ':count plays',
+            'new' => 'Beatmaps Approved Mới',
+            'popular' => 'Beatmaps Được Chơi Nhiều',
+            'by' => 'bởi',
+            'plays' => ':count lần chơi',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
-            'support' => 'Support osu!',
+            'download' => 'Tải Xuống osu!',
+            'support' => 'Ủng Hộ osu!',
             'store' => 'osu!store',
         ],
     ],
 
     'support-osu' => [
         'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
+        'subtitle' => 'Dường như bạn đang có một khoảng thời gian vui vẻ! :D',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
+            'part-1' => 'Bạn có biết rằng osu! không được vận hành bằng lợi nhuận quảng cáo, và dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động của nó?',
+            'part-2' => 'Và bạn có biết rằng bằng cách hỗ trợ osu! bạn nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tự động tải xuống trong game</strong> khi bạn trong chế độ theo dõi người chơi và trong chế độ multiplayer?',
         ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
+        'find-out-more' => 'Bấm vào đây để tìm hiểu thêm!',
+        'download-starting' => "Ồ, và đừng lo lăng - quá trình tải xuống đã được bắt đầu cho bạn rồi ;)",
     ],
 ];
