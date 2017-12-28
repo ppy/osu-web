@@ -129,5 +129,10 @@ class @Menu
         @$menuLink(menuId).removeClass('js-menu--active')
 
       else
+        last = $(menu).children('a:last')
+        bottom = last.position().top + last.height()
+        height = Math.max(250, bottom + 120)
+        $('.nav-popup').css('height', "#{height}px")
+
         Fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')
