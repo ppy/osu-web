@@ -131,7 +131,7 @@ class @Menu
       else
         last = $(menu).children('a:last')
         bottom = last.position().top + last.height()
-        height = Math.max(250, bottom + 120)
+        height = Math.max(210, bottom + 110)
         $('.nav-popup').css('height', "#{height}px")
 
         Fade.in menu
