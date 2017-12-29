@@ -20,26 +20,26 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Beatmapset;
-use App\Models\Forum\Post;
+use App\Models\User;
 use Illuminate\Console\Command;
 
-class EsIndexDocuments extends EsIndexCommand
+class EsIndexUsers extends EsIndexCommand
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-users {--inplace} {--cleanup}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Indexes documents into Elasticsearch.';
+    protected $description = 'Indexes users into Elasticsearch.';
 
-    protected $alias = 'osu';
-    protected $types = [Beatmapset::class, Post::class];
+    protected $alias = 'users';
+
+    protected $types = [User::class];
 }
