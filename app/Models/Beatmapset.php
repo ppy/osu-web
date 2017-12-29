@@ -169,7 +169,7 @@ class Beatmapset extends Model
 
     public function setApprovedDateAttribute($value)
     {
-        $this->attributes['approved_date'] = parse_time_to_carbon($value)->addHours(8);
+        $this->attributes['approved_date'] = $value !== null ? parse_time_to_carbon($value)->addHours(8) : null;
     }
 
     public function getSubmitDateAttribute($value)
