@@ -100,7 +100,7 @@ return [
                 'description' => 'bấm vào nút phía trên để tải xuống bộ cài đặt, sau đó mở nó!',
             ],
             'beatmaps' => [
-                'title' => 'tải xuống beatmaps',
+                'title' => 'tải beatmaps',
                 'description' => [
                     '_' => ':browse bộ sưu tập khổng lồ các beatmap được người chơi tạo ra và bắt đầu chơi!',
                     'browse' => 'duyệt qua',

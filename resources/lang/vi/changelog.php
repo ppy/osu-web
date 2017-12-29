@@ -21,7 +21,7 @@
 return [
     'feed_title' => 'feed',
     'generic' => 'Sửa lỗi và một số cải tiến',
-    'users-online' => '1 người dùng online|:users người dùng online',
+    'users-online' => ':users người dùng online',
 
     'prefixes' => [
         'add' => 'thêm',
