@@ -109,7 +109,7 @@ return [
         ],
         'video-guide' => 'hướng dẫn bằng video',
     ],
-    
+
     'user' => [
         'title' => 'tin tức',
         'news' => [
