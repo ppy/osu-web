@@ -30,7 +30,7 @@ class EsIndexUsers extends EsIndexCommand
      *
      * @var string
      */
-    protected $signature = 'es:index-users {--inplace} {--cleanup}';
+    protected $signature = 'es:index-users {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.
