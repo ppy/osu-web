@@ -174,7 +174,7 @@ return [
             'merchandise' => 'Hàng Hóa',
         ],
         'legal' => [
-            '_' => 'Tình Trạng Pháp Lý',
+            '_' => 'Pháp Lý & Trạng Thái',
             'copyright' => 'Bản Quyền (DMCA)',
             'osu_status' => '@osustatus',
             'server_status' => 'Trạng Thái Server',
@@ -222,7 +222,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Khi cần thiết, đây là một đoạn code bạn có thể đưa cho người giúp đỡ!",
+        'reference' => 'Khi cần thiết, đây là một đoạn code bạn có thể đưa cho người giúp đỡ!',
     ],
 
     'popup_login' => [

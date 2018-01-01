@@ -23,7 +23,7 @@ return [
         'download' => 'Tải ngay',
         'online' => '<strong>:players</strong> đang chơi trong <strong>:games</strong> games',
         'peak' => 'Đỉnh điểm, :count người chơi online',
-        'players' => '<strong>:count</strong> người chơi đã đang kí',
+        'players' => '<strong>:count</strong> người chơi đã đăng kí',
 
         'slogan' => [
             'main' => 'game nhịp điệu miễn phí',
@@ -142,7 +142,7 @@ return [
         'title' => 'Wow!',
         'subtitle' => 'Dường như bạn đang có một khoảng thời gian vui vẻ! :D',
         'body' => [
-            'part-1' => 'Bạn có biết rằng osu! không được vận hành bằng lợi nhuận quảng cáo, và dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động của nó?',
+            'part-1' => 'Bạn có biết rằng osu! không được vận hành dựa vào lợi nhuận quảng cáo, mà dựa vào sự ủng hộ của người chơi để hỗ trợ sự phát triển và chi phí hoạt động?',
             'part-2' => 'Và bạn có biết rằng bằng cách hỗ trợ osu! bạn nhận được hàng tá các tính năng hữu ích, chẳng hạn như <strong>tự động tải xuống trong game</strong> khi bạn trong chế độ theo dõi người chơi và trong chế độ multiplayer?',
         ],
         'find-out-more' => 'Bấm vào đây để tìm hiểu thêm!',
