@@ -563,7 +563,7 @@ function footer_landing_links()
             'home' => route('home'),
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
-            'download' => osu_url('home.download'),
+            'download' => route('download'),
             'wiki' => wiki_url('Welcome'),
         ],
         'help' => [
