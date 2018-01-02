@@ -25,14 +25,14 @@ class @TooltipBeatmap
 
     return if !el.dataset.beatmapTitle?
 
+    tmpl = _.template '<span class="tooltip-beatmap__title"><%= beatmapTitle %></span>' +
+      '<span class="tooltip-beatmap__stars tooltip-beatmap__stars--<%= difficulty %>"><%= stars %> <i class="fa fa-star" aria-hidden="true"></i></span>'
+
     at = el.dataset.tooltipPosition ? 'top center'
     my = switch at
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
       when 'right center' then 'left center'
-
-    tmpl = _.template '<span class="tooltip-beatmap__title"><%= beatmapTitle %></span>' +
-      '<span class="tooltip-beatmap__stars tooltip-beatmap__stars--<%= difficulty %>"><%= stars %> <i class="fa fa-star" aria-hidden="true"></i></span>'
 
     content = tmpl el.dataset
 
@@ -56,7 +56,7 @@ class @TooltipBeatmap
         classes: 'qtip tooltip-beatmap'
         tip:
           width: 10
-          height: 8
+          height: 9
 
     $(el).qtip options, event
 
