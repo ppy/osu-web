@@ -80,16 +80,14 @@
     }
   }
 
-  &--with-tooltip {
-    &:hover::before {
-      box-shadow: 0 0 0 4px #333333;
-      transition: box-shadow 90ms ease-in 90ms; /* same as in qtip2's documentation */
-    }
-  }
-
   &__shadow {
     .default-box-shadow();
     .full-size();
+
+    &:hover {
+      .thicker-box-shadow();
+      transition: all 90ms ease-in-out; // 90ms to be in line with the tooltip (qtip2 default)
+    }
 
     @margin: 1px;
     @size: calc(100% ~'-' (@margin * 2));
@@ -99,5 +97,9 @@
     top: @margin;
     left: @margin;
     border-radius: 50%;
+  }
+
+  & > span {
+    pointer-events: none;
   }
 }
