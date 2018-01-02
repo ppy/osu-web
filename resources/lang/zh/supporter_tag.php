@@ -19,6 +19,8 @@
  */
 
 return [
+    'months' => '月',
+
     'user_search' => [
         'searching' => '搜索中..',
         'not_found' => '该用户不存在',
@@ -27,5 +29,4 @@ return [
         'months' => ':count 个月',
         'years' => ':count 年',
     ],
-    'months' => '月',
 ];

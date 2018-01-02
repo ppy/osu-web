@@ -19,6 +19,8 @@
  */
 
 return [
+    'months' => 'månader',
+
     'user_search' => [
         'searching' => 'söker...',
         'not_found' => 'Denna användare finns inte',
@@ -27,5 +29,4 @@ return [
         'months' => ':count månad|:count månader',
         'years' => ':count år|:count år',
     ],
-    'months' => 'månader',
 ];
