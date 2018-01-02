@@ -23,8 +23,4 @@ return [
         'searching' => 'szukanie...',
         'not_found' => 'Ten użytkownik nie istnieje',
     ],
-    'duration' => [
-        'months' => ':count miesiąc|:count miesięcy',
-        'years' => ':count rok|:count lata|:count lat',
-    ],
 ];

@@ -25,8 +25,4 @@ return [
         'searching' => '搜索中..',
         'not_found' => '该用户不存在',
     ],
-    'duration' => [
-        'months' => ':count 个月',
-        'years' => ':count 年',
-    ],
 ];

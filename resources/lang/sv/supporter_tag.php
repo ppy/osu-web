@@ -25,8 +25,4 @@ return [
         'searching' => 'söker...',
         'not_found' => 'Denna användare finns inte',
     ],
-    'duration' => [
-        'months' => ':count månad|:count månader',
-        'years' => ':count år|:count år',
-    ],
 ];

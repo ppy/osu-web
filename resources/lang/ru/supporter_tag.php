@@ -23,8 +23,4 @@ return [
         'searching' => 'поиск...',
         'not_found' => 'Пользователь не найден',
     ],
-    'duration' => [
-        'months' => ':count месяц|:count месяцев|:count месяцев',
-        'years' => ':count год|:count лет|:count лет',
-    ],
 ];

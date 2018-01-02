@@ -25,8 +25,4 @@ return [
         'searching' => 'searching...',
         'not_found' => "This user doesn't exist",
     ],
-    'duration' => [
-        'months' => ':count month|:count months',
-        'years' => ':count year|:count years',
-    ],
 ];
