@@ -24,8 +24,8 @@ return [
         'not_found' => 'Denna användare finns inte',
     ],
     'duration' => [
-        'months' => ':length månad|:length månader|{0}',
-        'years' => ':length år|:length år|{0}',
+        'months' => ':count månad|:count månader',
+        'years' => ':count år|:count år',
     ],
     'months' => 'månader',
 ];

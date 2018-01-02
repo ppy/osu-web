@@ -23,7 +23,7 @@ return [
         'not_found' => 'Ten użytkownik nie istnieje',
     ],
     'duration' => [
-        'months' => ':length miesiąc|:length miesięcy|{0}',
-        'years' => ':length rok|:length lata|:length lat|{0}',
+        'months' => ':count miesiąc|:count miesięcy',
+        'years' => ':count rok|:count lata|:count lat',
     ],
 ];

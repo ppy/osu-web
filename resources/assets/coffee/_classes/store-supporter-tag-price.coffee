@@ -67,9 +67,9 @@ class @StoreSupporterTagPrice
   durationText: ->
     duration = @durationInYears()
     yearsText = if duration.years > 0
-                  Lang.choice('supporter_tag.duration.years', duration.years, length: duration.years)
+                  Lang.choice('supporter_tag.duration.years', duration.years)
 
     monthsText = if duration.months > 0
-                   Lang.choice('supporter_tag.duration.months', duration.months, length: duration.months)
+                   Lang.choice('supporter_tag.duration.months', duration.months)
 
     _.compact([yearsText, monthsText]).join(', ')

@@ -24,8 +24,8 @@ return [
         'not_found' => '该用户不存在',
     ],
     'duration' => [
-        'months' => ':length 个月|{0}',
-        'years' => ':length 年|{0}',
+        'months' => ':count 个月',
+        'years' => ':count 年',
     ],
     'months' => '月',
 ];

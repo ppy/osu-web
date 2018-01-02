@@ -24,7 +24,7 @@ return [
         'not_found' => "Cet utilisateur n'existe pas",
     ],
     'duration' => [
-        'months' => ':length mois|:length mois|{0}',
-        'years' => ':length année|:length années|{0}',
+        'months' => ':count mois|:count mois',
+        'years' => ':count année|:count années',
     ],
 ];
