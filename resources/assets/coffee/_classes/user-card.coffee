@@ -63,7 +63,7 @@ class @UserCard
         height: 130
       content:
         text: (event, api) =>
-          userId = parseInt(el.getAttribute('data-user-id'))
+          userId = el.getAttribute('data-user-id')
           $.ajax
             url: laroute.route 'users.card', user: userId
           .done (content) =>

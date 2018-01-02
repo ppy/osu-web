@@ -217,11 +217,14 @@ class BBCodeFromDB
 
     public function parseProfile($text)
     {
-        return preg_replace(
-            "#\[profile:{$this->uid}\](.+?)\[/profile:{$this->uid}\]#",
-            "<a href='/u/\\1'>\\1</a>",
-            $text
-        );
+        preg_match_all("#\[profile:{$this->uid}\](?<id>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
+
+        foreach ($users as $user) {
+            $userLink = link_to_user($user['id'], $user['id'], null);
+            $text = str_replace($user[0], $userLink, $text);
+        }
+
+        return $text;
     }
 
     public function parseQuote($text)
