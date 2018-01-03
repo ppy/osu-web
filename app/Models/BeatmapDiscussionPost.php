@@ -91,6 +91,11 @@ class BeatmapDiscussionPost extends Model
             $query->withoutDeleted();
         }
 
+        // TODO: readd this when content becomes public
+        // $query->whereHas('user', function ($userQuery) {
+        //     $userQuery->default();
+        // });
+
         return ['query' => $query, 'params' => $params];
     }
 
