@@ -21,7 +21,7 @@ class @TooltipBeatmap
       '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%- difficulty %>"><%- stars %> <i class="fa fa-star" aria-hidden="true"></i></div>'
 
   constructor: ->
-    $(document).on 'mouseover', '[data-beatmap-title]', @onMouseOver
+    $(document).on 'mouseover', '.js-beatmap-tooltip', @onMouseOver
 
   onMouseOver: (event) =>
     el = event.currentTarget

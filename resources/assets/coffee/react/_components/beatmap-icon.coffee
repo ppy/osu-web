@@ -27,7 +27,7 @@ el = React.createElement
   mode = if beatmap.convert then 'osu' else beatmap.mode
 
   className = "beatmap-icon beatmap-icon--#{difficultyRating} beatmap-icon--#{props.modifier}"
-  className += " beatmap-icon--with-tooltip" if showTooltip
+  className += " js-beatmap-tooltip" if showTooltip
 
   div
     className: className
