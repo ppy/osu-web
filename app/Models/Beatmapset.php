@@ -134,7 +134,7 @@ class Beatmapset extends Model
         'filesize' => ['type' => 'long'],
         'filesize_novideo' => ['type' => 'long'],
         'genre_id' => ['type' => 'long'],
-        'hypes' => ['type' => 'long'],
+        'hype' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
         'offset' => ['type' => 'long'],
@@ -379,7 +379,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'hypes' => 'hypes',
+            'hype' => 'hype',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
@@ -1242,7 +1242,7 @@ class Beatmapset extends Model
         return Forum\Post::find($topic->topic_first_post_id);
     }
 
-    public function freshHypes()
+    public function freshHype()
     {
         return $this
             ->beatmapDiscussions()
@@ -1253,7 +1253,7 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->update(['hypes' => $this->freshHypes()]);
+        $this->update(['hype' => $this->freshHype()]);
         $this->esIndexDocument();
     }
 }

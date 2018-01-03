@@ -23,21 +23,21 @@ namespace App\Console\Commands;
 use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
-class BeatmapsetsHypesSyncCommand extends Command
+class BeatmapsetsHypeSyncCommand extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $signature = 'beatmapsets:hypessync';
+    protected $signature = 'beatmapsets:hypesync';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Synchronises hypes count cache for all beatmapsets.';
+    protected $description = 'Synchronises hype count cache for all beatmapsets.';
 
     private $progress;
 
@@ -48,7 +48,7 @@ class BeatmapsetsHypesSyncCommand extends Command
      */
     public function handle()
     {
-        $this->info('Synchronising hypes counts...');
+        $this->info('Synchronising hype counts...');
 
         $this->progress = $this->output->createProgressBar(Beatmapset::count());
 

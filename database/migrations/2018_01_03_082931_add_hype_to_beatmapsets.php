@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class AddHypesToBeatmapsets extends Migration
+class AddHypeToBeatmapsets extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddHypesToBeatmapsets extends Migration
     public function up()
     {
         Schema::table('osu_beatmapsets', function ($table) {
-            $table->integer('hypes')->default(0);
+            $table->integer('hype')->default(0);
         });
     }
 
@@ -25,7 +25,7 @@ class AddHypesToBeatmapsets extends Migration
     public function down()
     {
         Schema::table('osu_beatmapsets', function ($table) {
-            $table->dropColumn('hypes');
+            $table->dropColumn('hype');
         });
     }
 }

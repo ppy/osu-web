@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
         Commands\ModdingScoreIndexCommand::class,
 
         Commands\UserForumStatSyncCommand::class,
-        Commands\BeatmapsetsHypesSyncCommand::class,
+        Commands\BeatmapsetsHypeSyncCommand::class,
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
