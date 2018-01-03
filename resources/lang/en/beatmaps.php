@@ -88,6 +88,13 @@ return [
             'title' => ':title mapped by :mapper',
         ],
 
+        'sort' => [
+            '_' => 'Sorted by:',
+            'created_at' => 'creation time',
+            'timeline' => 'timeline',
+            'updated_at' => 'last update',
+        ],
+
         'stats' => [
             'deleted' => 'Deleted',
             'mapper_notes' => 'Notes',
@@ -125,7 +132,7 @@ return [
         'disqualifed_no_reason' => 'no reason specified',
         'disqualification-prompt' => 'Reason for disqualification?',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'incorrect_state' => 'Error performing that action, try refreshing the page.',
         'nominate' => 'Nominate',
         'nominated-by' => 'nominated by :users',
         'nominate-confirm' => 'Nominate this beatmap?',
@@ -134,6 +141,7 @@ return [
         'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
         'required-text' => 'Nominations: :current/:required',
         'title' => 'Nomination Status',
+        'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
     ],
 
     'listing' => [

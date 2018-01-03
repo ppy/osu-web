@@ -271,6 +271,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
 
+        // Friends
+        //  GET /api/v2/friends
+        Route::resource('friends', '\App\Http\Controllers\FriendsController', ['only' => ['index']]);
+
         //  GET /api/v2/me
         Route::get('me', '\App\Http\Controllers\UsersController@me');
         //  GET /api/v2/me/download-quota-check

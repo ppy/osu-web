@@ -29,7 +29,7 @@
 // ┐(ﾟ ヮﾟ)┌
 @padding-wiki-desktop: 40px;
 
-@height--nav-popup: 300px;
+@height--nav-popup: 210px; // min-height; actual height will be calculated by js.
 
 @navbar-mobile--content-height: @navbar-height - (@navbar-padding-vertical * 2);
 
@@ -60,6 +60,7 @@
 
 @z-index--beatmapset-header: 1;
 @z-index--contest-header: 1;
+@z-index--download-header: 1;
 @z-index--tournament-header: 1;
 
 @box-shadow-x: 0;
@@ -251,10 +252,11 @@
 
 // difficulty colours
 @diff-easy: @green;
-@diff-normal: @yellow;
-@diff-hard: @pink;
-@diff-insane: @purple;
-@diff-expert: #000;
+@diff-normal: @blue;
+@diff-hard: @yellow;
+@diff-insane: @pink;
+@diff-expert: @purple;
+@diff-expert-plus: #000;
 
 // user profile detail-row
 @detail-row--bottom-min-height: 18px;

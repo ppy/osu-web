@@ -74,12 +74,12 @@ class @Nav
     return if @currentMode() == 'search'
 
     @clearTimeouts()
-    @hideTimeout = Timeout.set 250, @hidePopup
+    @hideTimeout = Timeout.set 50, @hidePopup
 
 
   delayedShowPopup: =>
     @clearTimeouts()
-    @showTimeout = Timeout.set 250, @showPopup
+    @showTimeout = Timeout.set 50, @showPopup
 
 
   floatPopup: (float) =>

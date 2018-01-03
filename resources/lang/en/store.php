@@ -47,8 +47,8 @@ return [
         'name' => 'Name',
 
         'stock' => [
-            'out' => 'Currently out of stock :(. Check back soon.',
-            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+            'out' => 'This item is currently out of stock. Check back later!',
+            'out_with_alternative' => 'Unfortunately this item is out of stock. Use the dropdown to choose a different type or check back later!',
         ],
 
         'add_to_cart' => 'Add to Cart',

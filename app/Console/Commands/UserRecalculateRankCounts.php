@@ -73,11 +73,11 @@ class UserRecalculateRankCounts extends Command
         $class = UserStatistics::class.'\\'.studly_case($mode);
         $query = $class::query();
         if (present($this->from)) {
-            $query->where('user_id', '>', $this->from);
+            $query->where('user_id', '>=', $this->from);
         }
 
         if (present($this->until)) {
-            $query->where('user_id', '<', $this->until);
+            $query->where('user_id', '<=', $this->until);
         }
 
         $count = $query->count();
@@ -111,7 +111,7 @@ class UserRecalculateRankCounts extends Command
     {
         $class = Best::class.'\\'.get_class_basename(get_class($stats));
         $counts = $class::where('user_id', '=', $stats->user_id)
-            ->rankCounts()
+            ->accurateRankCounts()
             [$stats->user_id] ?? [];
 
         return $this->map($counts);

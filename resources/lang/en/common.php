@@ -45,6 +45,8 @@ return [
 
     'count' => [
         'item' => ':count unit|:count units',
+        'months' => ':count month|:count months',
+        'years' => ':count year|:count years',
     ],
 
     'datetime' => [

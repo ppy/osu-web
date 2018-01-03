@@ -43,6 +43,8 @@ return [
 
     'count' => [
         'item' => ':count единица|:count единиц',
+        'months' => ':count месяц|:count месяцев|:count месяцев',
+        'years' => ':count год|:count лет|:count лет',
     ],
 
     'device' => [

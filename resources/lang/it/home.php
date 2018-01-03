@@ -23,15 +23,10 @@ return [
         'slogan' => 'Il ritmo è solo ad un *click* di distanza!',
     ],
     'landing' => [
+        'download' => 'Scarica ora',
         'online' => '<strong>:players</strong> giocatori online ora in <strong>:games</strong> games',
         'peak' => 'Picco, :count utenti online',
         'players' => '<strong>:count</strong> utenti registrati',
-
-        'download' => [
-            '_' => 'Scarica ora',
-            'for' => 'per :os',
-            'other' => 'clicca qui per :os1 o :os2',
-        ],
 
         'slogan' => [
             // free to win => vinci gratuitamente, but maybe there's a better way to translate that

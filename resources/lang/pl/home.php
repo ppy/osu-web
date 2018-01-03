@@ -20,15 +20,11 @@
 
 return [
     'landing' => [
+        'download' => 'Pobierz teraz',
         'online' => '<strong>:players</strong> użytkowników jest obecnie online w <strong>:games</strong> meczach',
         'peak' => ':count użytkowników online',
         'players' => '<strong>:count</strong> zarejestrowanych użytkowników',
-        'download' => [
-            '_' => 'Pobierz teraz',
-            'soon' => 'osu! na inne systemy operacyjne pojawi się wkrótce',
-            'for' => 'dla :os',
-            'other' => 'kliknij tutaj po :os1 lub :os2',
-        ],
+
         'slogan' => [
             'main' => 'darmowa gra rytmiczna',
             'sub' => 'rytm jest tylko o klik stąd!',
@@ -74,30 +70,6 @@ return [
             'title' => 'Wiki',
         ],
     ],
-    'download' => [
-      'header' => [
-          '1' => 'a więc',
-          '2' => 'zapoznajmy się z',
-          '3' => 'pobieraniem osu! na system Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Krok 1',
-              'content' => 'Pobierz klienta gry osu!',
-          ],
-          '2' => [
-              'name' => 'Krok 2',
-              'content' => 'Załóż konto na osu!',
-          ],
-          '3' => [
-              'name' => 'Krok 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Dowiedz się więcej!',
-      'more_text' => 'Sprawdź kanał YouTube <a href=https://www.youtube.com/user/osuacademy/">osu!academy</a> po poradniki i wskazówki dotyczące całego świata osu!',
-    ],
-
     'user' => [
         'title' => 'wiadomości',
         'news' => [

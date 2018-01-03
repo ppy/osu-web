@@ -79,6 +79,43 @@ function es_query_escape_with_caveats($query)
     );
 }
 
+/**
+ * Takes an Elasticsearch resultset and retrieves the matching models from the database,
+ *  returning them in the same order as the Elasticsearch results.
+ *
+ *
+ * @param $results Elasticsesarch results.
+ * @param $class Class name of the model.
+ * @return array Records matching the Elasticsearch results.
+ */
+function es_records($results, $class)
+{
+    $keyName = (new $class())->getKeyName();
+
+    $hits = $results['hits']['hits'];
+    $ids = [];
+    foreach ($hits as $hit) {
+        $ids[] = $hit['_id'];
+    }
+
+    $query = $class::whereIn($keyName, $ids);
+    $keyed = [];
+    foreach ($query->get() as $result) {
+        // save for lookup.
+        $keyed[$result->user_id] = $result;
+    }
+
+    // match records with elasticsearch results.
+    $records = [];
+    foreach ($ids as $id) {
+        if (isset($keyed[$id])) {
+            $records[] = $keyed[$id];
+        }
+    }
+
+    return $records;
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -526,7 +563,7 @@ function footer_landing_links()
             'home' => route('home'),
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
-            'download' => osu_url('home.download'),
+            'download' => route('download'),
             'wiki' => wiki_url('Welcome'),
         ],
         'help' => [
@@ -908,8 +945,31 @@ function model_pluck($builder, $key, $class = null)
 // helper returns null if it's 0 and parses the timestamp otherwise.
 function get_time_or_null($timestamp)
 {
-    if ($timestamp !== null && $timestamp !== 0) {
-        return Carbon\Carbon::createFromTimestamp($timestamp);
+    if ($timestamp !== 0) {
+        return parse_time_to_carbon($timestamp);
+    }
+}
+
+function parse_time_to_carbon($value)
+{
+    if (!present($value)) {
+        return;
+    }
+
+    if (is_numeric($value)) {
+        return Carbon\Carbon::createFromTimestamp($value);
+    }
+
+    if (is_string($value)) {
+        return Carbon\Carbon::parse($value);
+    }
+
+    if ($value instanceof Carbon\Carbon) {
+        return $value;
+    }
+
+    if ($value instanceof DateTime) {
+        return Carbon\Carbon::instance($value);
     }
 }
 
