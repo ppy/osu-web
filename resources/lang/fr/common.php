@@ -43,6 +43,8 @@ return [
 
     'count' => [
         'item' => ':count objet|:count objets',
+        'months' => ':count mois|:count mois',
+        'years' => ':count année|:count années',
     ],
 
     'datetime' => [

@@ -62,7 +62,7 @@ return [
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
-        'joined_at' => 'Dołączono :date',
+        'joined_at' => 'Na osu! od :date',
         'lastvisit' => 'Ostatnio widziany :date',
         'missingtext' => 'Na pewno nie ma tu żadnej literówki? (albo ten użytkownik jest zablokowany)',
         'origin_age' => ':age',

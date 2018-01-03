@@ -39,7 +39,7 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
         return [
             'id' => $discussion->id,
-            'beatmapset_discussion_id' => $discussion->beatmapset_discussion_id,
+            'beatmapset_id' => $discussion->beatmapset_id,
             'beatmap_id' => $discussion->beatmap_id,
             'user_id' => $discussion->user_id,
             'deleted_by_id' => $discussion->deleted_by_id,

@@ -88,6 +88,13 @@ return [
             'title' => ':title mapped by :mapper',
         ],
 
+        'sort' => [
+            '_' => 'Sorted by:',
+            'created_at' => 'creation time',
+            'timeline' => 'timeline',
+            'updated_at' => 'last update',
+        ],
+
         'stats' => [
             'deleted' => 'Deleted',
             'mapper_notes' => 'Notes',

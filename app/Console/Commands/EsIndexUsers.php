@@ -18,9 +18,28 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'user_search' => [
-        'searching' => '찾는 중...',
-        'not_found' => '검색하신 사용자를 찾을 수 없습니다.',
-    ],
-];
+namespace App\Console\Commands;
+
+use App\Models\User;
+use Illuminate\Console\Command;
+
+class EsIndexUsers extends EsIndexCommand
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'es:index-users {--inplace} {--cleanup} {--yes}';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Indexes users into Elasticsearch.';
+
+    protected $alias = 'users';
+
+    protected $types = [User::class];
+}
