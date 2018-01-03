@@ -112,8 +112,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  editEnd: =>
-    @setState editing: false
+  editCancel: =>
+    @setState
+      editing: false
+      message: @props.post.message
 
 
   editStart: =>
@@ -176,7 +178,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
             el BigButton,
               text: osu.trans 'common.buttons.cancel'
               props:
-                onClick: @editEnd
+                onClick: @editCancel
                 disabled: @state.posting
 
           div className: "#{bn}__action",
