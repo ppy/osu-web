@@ -17,16 +17,16 @@
 ###
 
 class @TooltipBeatmap
+  tmpl: _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%- beatmapTitle %></div>' +
+      '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%- difficulty %>"><%- stars %> <i class="fa fa-star" aria-hidden="true"></i></div>'
+
   constructor: ->
     $(document).on 'mouseover', '[data-beatmap-title]', @onMouseOver
 
-  onMouseOver: (event) ->
+  onMouseOver: (event) =>
     el = event.currentTarget
 
     return if !el.dataset.beatmapTitle?
-
-    tmpl = _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%= beatmapTitle %></div>' +
-      '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%= difficulty %>"><%= stars %> <i class="fa fa-star" aria-hidden="true"></i></div>'
 
     at = el.dataset.tooltipPosition ? 'top center'
     my = switch at
@@ -34,7 +34,7 @@ class @TooltipBeatmap
       when 'left center' then 'right center'
       when 'right center' then 'left center'
 
-    content = tmpl el.dataset
+    content = @tmpl el.dataset
 
     if el._tooltip
       $(el).qtip 'set', 'content.text': content
