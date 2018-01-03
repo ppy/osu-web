@@ -34,7 +34,13 @@ class BeatmapsetDiscussionVotesController extends Controller
 
         $search = BeatmapDiscussionVote::search(request());
         $votes = new LengthAwarePaginator(
-            $search['query']->get(),
+            $search['query']->with([
+                    'user',
+                    'beatmapDiscussion',
+                    'beatmapDiscussion.user',
+                    'beatmapDiscussion.beatmapset',
+                    'beatmapDiscussion.startingPost'
+                ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
             $search['params']['page'],

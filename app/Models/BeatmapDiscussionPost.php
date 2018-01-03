@@ -51,9 +51,21 @@ class BeatmapDiscussionPost extends Model
             if ($user === null) {
                 $query->none();
             } else {
-                $query->where('user_id', '=', $user->getKey());
+                $query->where('user_id', $user->getKey());
             }
         }
+
+        // only find replies (i.e. exclude discussion starting-posts)
+        $query->whereExists(function ($postQuery) {
+            $table = (new BeatmapDiscussionPost)->getTable();
+
+            $postQuery->selectRaw(1)
+                ->from(DB::raw("{$table} d"))
+                ->whereRaw('beatmap_discussion_id = beatmap_discussion_posts.beatmap_discussion_id')
+                ->whereRaw("d.id < {$table}.id");
+        });
+
+        $query->where('system', 0);
 
         if (isset($rawParams['sort'])) {
             $sort = explode('-', strtolower($rawParams['sort']));

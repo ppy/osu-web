@@ -80,22 +80,27 @@ class UsersController extends Controller
         ];
 
         $discussions = BeatmapDiscussion::search($params);
-        $discussions['items'] = $discussions['query']->get();
+        $discussions['items'] = $discussions['query']->with([
+                'user',
+                'beatmapset',
+                'startingPost'
+            ])->get();
 
         $posts = BeatmapDiscussionPost::search($params);
-        $posts['items'] = $posts['query']->get();
+        $posts['items'] = $posts['query']->with([
+                'user',
+                'beatmapset',
+                'beatmapDiscussion',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.startingPost',
+            ])->get();
 
         $events = BeatmapsetEvent::search($params);
-        $events['items'] = $events['query']->get();
+        $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
 
-        $votes = BeatmapDiscussionVote::search($params);
-        $votes['items'] = $votes['query']->get();
-
-        $receivedVotes = BeatmapDiscussionVote::search(array_merge($params, [
-            'receiver' => $user->getKey(),
-            'user' => null,
-        ]));
-        $receivedVotes['items'] = $receivedVotes['query']->get();
+        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
+        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
 
         return view('users.beatmapset_activities', compact(
             'current_action',

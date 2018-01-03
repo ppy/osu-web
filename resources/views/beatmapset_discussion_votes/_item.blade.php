@@ -15,19 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<ul>
-    <li>
-        <a href="{{ route('beatmapsets.discussion', $vote->beatmapDiscussion->beatmapset) }}#/{{ $vote->beatmapDiscussion->getKey() }}">
-            {{ trans('beatmap_discussions.item.permalink') }}
+<div class="beatmap-discussion-post beatmapset-activities__discussion-post">
+    <div class="beatmapset-activities__vote-user-panel">
+        <a href="{{route('users.beatmapset-activities', $vote->user->user_id)}}">
+            <div class="beatmap-discussion-post__avatar">
+                <div class="avatar avatar--full-rounded" style="background-image: url('{{$vote->user->user_avatar}}');"></div>
+            </div>
         </a>
-    </li>
+        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($vote->user) !!}</span>
+    </div>
 
-    <li>
-        {!! link_to_user($vote->user) !!}
-    </li>
+    <div class="beatmapset-activities__vote-icon-spacer">
+        @if ($vote->score > 0)
+            <i class="fa fa-fw fa-thumbs-up beatmap-discussion-vote--up"></i>
+        @else
+            <i class="fa fa-fw fa-thumbs-down beatmap-discussion-vote--down"></i>
+        @endif
+    </div>
 
-    <li>
-        {{ trans('beatmapset_discussion_votes.item.score') }}:
-        {{ $vote->score }}
-    </li>
-</ul>
+    <div class="beatmapset-activities__post-grow">
+        @include('beatmap_discussions._item', ['discussion' => $vote->beatmapDiscussion])
+    </div>
+</div>

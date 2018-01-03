@@ -21,12 +21,12 @@
     <div class="osu-layout__row osu-layout__row--page">
         <div>
             <h3>{{ trans('beatmapset_events.index.title') }}</h3>
-            @foreach ($events as $event)
-                <p>
+            <div class='beatmapset-events'>
+                <div class='beatmapset-events__title'></div>
+                @foreach ($events as $event)
                     @include('beatmapset_events._item', compact('event'))
-                </p>
-            @endforeach
-
+                @endforeach
+            </div>
             @include('forum._pagination', ['object' => $events])
         </div>
     </div>

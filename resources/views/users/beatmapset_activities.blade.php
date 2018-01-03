@@ -24,9 +24,7 @@
         <div>
             <h3>{{ trans('users.beatmapset_activities.events.title_recent') }}</h3>
             @foreach ($events['items'] as $event)
-                <p>
-                    @include('beatmapset_events._item', compact('event'))
-                </p>
+                @include('beatmapset_events._item', compact('event'))
             @endforeach
 
             <a href="{{ route('beatmapsets.events.index', ['user' => $user->getKey()]) }}">
@@ -34,25 +32,19 @@
             </a>
         </div>
 
-        <div>
-            <h3>{{ trans('users.beatmapset_activities.discussions.title_recent') }}</h3>
-            @foreach ($discussions['items'] as $discussion)
-                <p>
-                    @include('beatmap_discussions._item', compact('discussion'))
-                </p>
-            @endforeach
+        <h3>{{ trans('users.beatmapset_activities.discussions.title_recent') }}</h3>
+        @foreach ($discussions['items'] as $discussion)
+            @include('beatmap_discussions._item', compact('discussion'))
+        @endforeach
 
-            <a href="{{ route('beatmap-discussions.index', ['user' => $user->getKey()]) }}">
-                {{ trans('common.buttons.show_more') }}
-            </a>
-        </div>
+        <a href="{{ route('beatmap-discussions.index', ['user' => $user->getKey()]) }}">
+            {{ trans('common.buttons.show_more') }}
+        </a>
 
+        <h3>{{ trans('users.beatmapset_activities.posts.title_recent') }}</h3>
         <div>
-            <h3>{{ trans('users.beatmapset_activities.posts.title_recent') }}</h3>
             @foreach ($posts['items'] as $post)
-                <p>
-                    @include('beatmap_discussion_posts._item', compact('post'))
-                </p>
+                @include('beatmap_discussion_posts._item', compact('post'))
             @endforeach
 
             <a href="{{ route('beatmap-discussion-posts.index', ['user' => $user->getKey()]) }}">
@@ -60,30 +52,44 @@
             </a>
         </div>
 
-        <div>
-            <h3>{{ trans('users.beatmapset_activities.received_votes.title_recent') }}</h3>
-            @foreach ($receivedVotes['items'] as $vote)
-                <p>
-                    @include('beatmapset_discussion_votes._item', compact('vote'))
-                </p>
+        <h3>{{ trans('users.beatmapset_activities.votes_received.title_most') }}</h3>
+        <div class="beatmapset-activities__user-upvote-list">
+            @foreach ($receivedVotes['items'] as $userVotes)
+                <div class="beatmapset-activities__user-upvote-panel">
+                    <div class="beatmap-discussion-post__avatar">
+                        <a href="{{route('users.beatmapset-activities', $userVotes[0]->user->user_id)}}">
+                            <div class="avatar avatar--full-rounded" style="background-image: url('{{$userVotes[0]->user->user_avatar}}');"></div>
+                        </a>
+                    </div>
+                    <div class="beatmap-discussion-post__user">
+                        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($userVotes[0]->user) !!}</span>
+                        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">
+                            <a href="{{ route('beatmapsets.discussions.votes.index', ['user' => $userVotes[0]->user->user_id]) }}">
+                                {{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)
+                            </a>
+                        </span>
+                    </div>
+                </div>
             @endforeach
-
-            <a href="{{ route('beatmapsets.discussions.votes.index', ['receiver' => $user->getKey()]) }}">
-                {{ trans('common.buttons.show_more') }}
-            </a>
         </div>
 
-        <div>
-            <h3>{{ trans('users.beatmapset_activities.votes.title_recent') }}</h3>
-            @foreach ($votes['items'] as $vote)
-                <p>
-                    @include('beatmapset_discussion_votes._item', compact('vote'))
-                </p>
+        <h3>{{ trans('users.beatmapset_activities.votes_made.title_most') }}</h3>
+        <div class="beatmapset-activities__user-upvote-list">
+            @foreach ($votes['items'] as $userVotes)
+                <div class="beatmapset-activities__user-upvote-panel">
+                    <div class="beatmap-discussion-post__avatar">
+                        <a href="{{route('users.beatmapset-activities', $userVotes[0]->beatmapDiscussion->user->user_id)}}">
+                            <div class="avatar avatar--full-rounded" style="background-image: url('{{$userVotes[0]->beatmapDiscussion->user->user_avatar}}');"></div>
+                        </a>
+                    </div>
+                    <div class="beatmap-discussion-post__user">
+                        <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($userVotes[0]->beatmapDiscussion->user) !!}</span>
+                        <a href="{{ route('beatmapsets.discussions.votes.index', ['receiver' => $userVotes[0]->beatmapDiscussion->user->user_id]) }}">
+                            <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{{$userVotes->sum('score') > 0 ? '+' : ''}}{{$userVotes->sum('score')}} ({{count($userVotes)}} votes)</span>
+                        </a>
+                    </div>
+                </div>
             @endforeach
-
-            <a href="{{ route('beatmapsets.discussions.votes.index', ['user' => $user->getKey()]) }}">
-                {{ trans('common.buttons.show_more') }}
-            </a>
         </div>
     </div>
 @endsection

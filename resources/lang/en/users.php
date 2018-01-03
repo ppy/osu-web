@@ -34,12 +34,12 @@ return [
             'title_recent' => 'Recent posts',
         ],
 
-        'received_votes' => [
-            'title_recent' => 'Recently received votes',
+        'votes_received' => [
+            'title_most' => 'Most upvoted by (last 3 months)',
         ],
 
-        'votes' => [
-            'title_recent' => 'Recent votes',
+        'votes_made' => [
+            'title_most' => 'Most upvoted (last 3 months)',
         ],
     ],
 

@@ -15,24 +15,30 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<ul>
-    <li>
-        <a href="{{ route('beatmapsets.discussion', $event->beatmapset) }}">
-            {{ trans('beatmap_discussions.item.permalink') }}
+@php
+    $discussionId = isset($event->comment['beatmap_discussion_id']) ? $event->comment['beatmap_discussion_id'] : null;
+    $discussionLink = route('beatmapsets.discussion', $event->beatmapset);
+    if ($discussionId) {
+        $discussionLink .= '#/'.$discussionId;
+    }
+@endphp
+<div class='beatmapset-events__event'>
+    <div class="beatmapset-event">
+        <a href="{{$discussionLink}}">
+            <img class='beatmapset-activities__beatmapset-cover'
+                src="{{$event->beatmapset->coverURL('list')}}"
+                srcSet="{{$event->beatmapset->coverURL('list')}} 1x, {{$event->beatmapset->coverURL('list@2x')}} 2x">
         </a>
-    </li>
-
-    <li>
-        {!! link_to_user($event->user) !!}
-    </li>
-
-    <li>
-        {{ trans('beatmapset_events.item.type') }}:
-        {{ $event->type }}
-    </li>
-
-    <li>
-        {{ trans('beatmapset_events.item.content') }}:
-        <pre>{{ json_encode($event->comment) }}</pre>
-    </li>
-</ul>
+        <div class="beatmapset-event__icon beatmapset-event__icon--{{str_replace('_', '-', $event->type)}} beatmapset-activities__event-icon-spacer"></div>
+        <div>
+            <div class="beatmapset-event__content">
+                {!! trans('beatmapset_events.event.'.$event->type, [
+                    'user' => link_to_user($event->user),
+                    'discussion' => $discussionId ? "<a href='$discussionLink'>#$discussionId</a>" : '',
+                    'text' => !$event->hasArrayComment() ? $event->comment : null,
+                ]) !!}
+            </div>
+            <div>{!! timeago($event->created_at) !!}</div>
+        </div>
+    </div>
+</div>

@@ -19,15 +19,11 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <div>
-            <h3>{{ trans('beatmapset_discussion_votes.index.title') }}</h3>
-            @foreach ($votes as $vote)
-                <p>
-                    @include('beatmapset_discussion_votes._item', compact('vote'))
-                </p>
-            @endforeach
+        <h3>{{ trans('beatmapset_discussion_votes.index.title') }}</h3>
+        @foreach ($votes as $vote)
+            @include('beatmapset_discussion_votes._item', compact('vote'))
+        @endforeach
 
-            @include('forum._pagination', ['object' => $votes])
-        </div>
+        @include('forum._pagination', ['object' => $votes])
     </div>
 @endsection

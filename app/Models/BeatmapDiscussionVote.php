@@ -20,9 +20,44 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class BeatmapDiscussionVote extends Model
 {
     protected $guarded = [];
+
+    public static function recentlyReceivedByUser($user_id, $timeframeMonths = 3)
+    {
+        $query = static::with('user')->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
+        $query->whereIn('beatmap_discussion_id', BeatmapDiscussion::where('user_id', '=', $user_id)->select('id'))
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
+
+        $result = $query->get()
+            ->groupBy('user_id')
+            ->sortByDesc(function ($obj, $key) {
+                return $obj->sum('score');
+            });
+
+        return $result;
+    }
+
+    public static function recentlyGivenByUser($user_id, $timeframeMonths = 3)
+    {
+        $query = static::with(['beatmapDiscussion', 'beatmapDiscussion.user'])->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
+        $query->where('user_id', $user_id)->whereHas('user', function ($userQuery) {
+            $userQuery->default();
+        });
+
+        $result = $query->get()
+            ->groupBy('beatmapDiscussion.user_id')
+            ->sortByDesc(function ($obj, $key) {
+                return $obj->sum('score');
+            });
+
+        return $result;
+    }
 
     public static function search($rawParams = [])
     {
@@ -40,7 +75,7 @@ class BeatmapDiscussionVote extends Model
             if ($user === null) {
                 $query->none();
             } else {
-                $query->where('user_id', '=', $user->getKey());
+                $query->where('user_id', $user->getKey());
             }
         }
 

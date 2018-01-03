@@ -19,60 +19,58 @@
 
 @section('content')
     <div class="osu-layout__row osu-layout__row--page">
-        <div>
-            <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
+        <h3>{{ trans('beatmap_discussions.index.title') }}</h3>
 
-            <form>
-                <div>
-                    <label>
-                        {{ trans('beatmap_discussions.index.form.user.label') }}
-                        <input name="user" value="{{ $search['params']['user'] }}">
-                    </label>
+        <form>
+            <div>
+                <label>
+                    {{ trans('beatmap_discussions.index.form.user.label') }}
+                    <input name="user" value="{{ $search['params']['user'] }}">
+                </label>
 
-                    @if (present($search['params']['user']))
-                        <a href="{{ route('users.beatmapset-activities', $search['params']['user']) }}">
-                            {{ trans('beatmap_discussions.index.form.user.overview') }}
-                        </a>
-                    @endif
-                </div>
+                @if (present($search['params']['user']))
+                    <a href="{{ route('users.beatmapset-activities', $search['params']['user']) }}">
+                        {{ trans('beatmap_discussions.index.form.user.overview') }}
+                    </a>
+                @endif
+            </div>
 
-                <div>
-                    @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
-                        <label>
-                            <input
-                                type="checkbox"
-                                name="message_types[]"
-                                value="{{ $type }}"
-                                {{ in_array($type, $search['params']['message_types'], true) ? 'checked' : '' }}
-                            >
-                            {{ $type }}
-                        </label>
-                    @endforeach
-                </div>
-
-                <div>
+            <div>
+                @foreach (array_keys(App\Models\BeatmapDiscussion::MESSAGE_TYPES) as $type)
                     <label>
                         <input
                             type="checkbox"
-                            name="with_deleted"
-                            value="1"
-                            {{ $search['params']['with_deleted'] ? 'checked' : '' }}
+                            name="message_types[]"
+                            value="{{ $type }}"
+                            {{ in_array($type, $search['params']['message_types'], true) ? 'checked' : '' }}
                         >
-
-                        {{ trans('beatmap_discussions.index.form.deleted') }}
+                        {{ $type }}
                     </label>
-                </div>
+                @endforeach
+            </div>
 
-                <input type="submit">
-            </form>
+            <div>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="with_deleted"
+                        value="1"
+                        {{ $search['params']['with_deleted'] ? 'checked' : '' }}
+                    >
 
+                    {{ trans('beatmap_discussions.index.form.deleted') }}
+                </label>
+            </div>
+
+            <input type="submit">
+        </form>
+
+        <div class="beatmap-discussions__discussion">
             @foreach ($discussions as $discussion)
-                <p>
-                    @include('beatmap_discussions._item', compact('discussion'))
-                </p>
+                @include('beatmap_discussions._item', compact('discussion'))
             @endforeach
-
-            @include('forum._pagination', ['object' => $discussions])
         </div>
+
+        @include('forum._pagination', ['object' => $discussions])
     </div>
 @endsection
