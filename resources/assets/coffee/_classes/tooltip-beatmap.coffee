@@ -28,17 +28,17 @@ class @TooltipBeatmap
 
     return if !el.dataset.beatmapTitle?
 
-    at = el.dataset.tooltipPosition ? 'top center'
-    my = switch at
-      when 'top center' then 'bottom center'
-      when 'left center' then 'right center'
-      when 'right center' then 'left center'
-
     content = @tmpl el.dataset
 
     if el._tooltip
       $(el).qtip 'set', 'content.text': content
       return
+
+    at = el.dataset.tooltipPosition ? 'top center'
+    my = switch at
+      when 'top center' then 'bottom center'
+      when 'left center' then 'right center'
+      when 'right center' then 'left center'
 
     options =
       overwrite: false
