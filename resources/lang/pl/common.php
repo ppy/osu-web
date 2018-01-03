@@ -43,6 +43,8 @@ return [
 
     'count' => [
         'item' => ':count sztuka|:count sztuki|:count sztuk',
+        'months' => ':count miesiąc|:count miesiące|:count miesięcy',
+        'years' => ':count rok|:count lata|:count lat',
     ],
 
     'datetime' => [
