@@ -177,7 +177,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
               text: osu.trans 'common.buttons.cancel'
               props:
                 onClick: @editEnd
-                disabled: !canPost
+                disabled: @state.posting
 
           div className: "#{bn}__action",
             el BigButton,
