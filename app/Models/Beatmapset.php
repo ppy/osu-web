@@ -134,6 +134,7 @@ class Beatmapset extends Model
         'filesize' => ['type' => 'long'],
         'filesize_novideo' => ['type' => 'long'],
         'genre_id' => ['type' => 'long'],
+        'hypes' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
         'offset' => ['type' => 'long'],
@@ -1283,5 +1284,20 @@ class Beatmapset extends Model
         }
 
         return Forum\Post::find($topic->topic_first_post_id);
+    }
+
+    public function recountHypes()
+    {
+        return $this
+            ->beatmapDiscussions()
+            ->withoutDeleted()
+            ->ofType('hype')
+            ->count();
+    }
+
+    public function refreshCache()
+    {
+        $this->update(['hypes' => $this->recountHypes()]);
+        $this->esIndexDocument();
     }
 }
