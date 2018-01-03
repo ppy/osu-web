@@ -43,6 +43,8 @@ return [
 
     'count' => [
         'item' => ':count unit|:count units',
+        'months' => ':count 달|:count 달',
+        'years' => ':count 년|:count 년',
     ],
 
     'datetime' => [

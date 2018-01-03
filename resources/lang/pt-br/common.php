@@ -37,6 +37,8 @@ return [
 
     'count' => [
         'item' => ':count unidade|:count unidades',
+        'months' => ':count mês|:count meses',
+        'years' => ':count ano|:count anos',
     ],
 
     'device' => [

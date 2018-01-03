@@ -23,8 +23,4 @@ return [
         'searching' => 'recherche en cours...',
         'not_found' => "Cet utilisateur n'existe pas",
     ],
-    'duration' => [
-        'months' => ':length mois|:length mois|{0}',
-        'years' => ':length année|:length années|{0}',
-    ],
 ];

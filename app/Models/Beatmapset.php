@@ -169,7 +169,7 @@ class Beatmapset extends Model
 
     public function setApprovedDateAttribute($value)
     {
-        $this->attributes['approved_date'] = parse_time_to_carbon($value)->addHours(8);
+        $this->attributes['approved_date'] = $value !== null ? parse_time_to_carbon($value)->addHours(8) : null;
     }
 
     public function getSubmitDateAttribute($value)
@@ -417,11 +417,7 @@ class Beatmapset extends Model
             'type' => 'beatmaps',
             'size' => $params['limit'],
             'from' => $params['offset'],
-            'body' => [
-                'sort' => [
-                    $params['sort_field'] => ['order' => $params['sort_order']],
-                ],
-            ],
+            'body' => ['sort' => static::searchSortParamsES($params)],
             'fields' => 'id',
         ];
 
@@ -625,6 +621,38 @@ class Beatmapset extends Model
         return [
             'data' => $data,
             'total' => $result['total'],
+        ];
+    }
+
+    /**
+     * Generate sort parameters for the elasticsearch query.
+     */
+    public static function searchSortParamsES(array $params)
+    {
+        static $fields = [
+            'artist' => 'artist.raw',
+            'title' => 'title.raw',
+        ];
+
+        // additional options
+        static $orderOptions = [
+            'difficultyrating' => [
+                'asc' => ['mode' => 'min'],
+                'desc' => ['mode' => 'max'],
+            ],
+        ];
+
+        $sortField = $params['sort_field'];
+        $sortOrder = $params['sort_order'];
+
+        $field = $fields[$sortField] ?? $sortField;
+        $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
+
+        return [
+            $field => array_merge(
+                ['order' => $sortOrder],
+                $options
+            ),
         ];
     }
 
