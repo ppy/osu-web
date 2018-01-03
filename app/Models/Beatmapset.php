@@ -556,56 +556,11 @@ class Beatmapset extends Model
         ];
     }
 
-    public static function searchDB(array $params = [])
-    {
-        $query = static::where('title', 'like', '%'.$params['query'].'%');
-
-        if ($params['mode'] !== null) {
-            $query->whereHas('beatmaps', function ($query) use ($params) {
-                $query->where('playmode', '=', $params['mode']);
-            });
-        }
-
-        if ($params['genre'] !== null) {
-            $query->where('genre_id', '=', $params['genre']);
-        }
-
-        if ($params['language'] !== null) {
-            $query->where('language_id', '=', $params['language']);
-        }
-
-        if (!empty($params['extra'])) {
-            foreach ($params['extra'] as $val) {
-                switch ($val) {
-                    case 'video':
-                        $query->where('video', '=', 1);
-                        break;
-                    case 'storyboard':
-                        $query->where('storyboard', '=', 1);
-                        break;
-                }
-            }
-        }
-
-        $ids = $query->take($params['limit'])->skip($params['offset'])
-            ->orderBy($params['sort_field'], $params['sort_order'])
-            ->get()->pluck('beatmapset_id')->toArray();
-
-        $total = $query->count();
-
-        return compact('ids', 'total');
-    }
-
     public static function search(array $params = [])
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-
-        if (empty(config('elasticsearch.hosts'))) {
-            $result = static::searchDB($params);
-        } else {
-            $result = static::searchES($params);
-        }
+        $result = static::searchES($params);
 
         $data = count($result['ids']) > 0
             ? static
