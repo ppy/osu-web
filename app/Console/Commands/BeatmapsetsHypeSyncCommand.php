@@ -52,7 +52,7 @@ class BeatmapsetsHypeSyncCommand extends Command
 
         $this->progress = $this->output->createProgressBar(Beatmapset::count());
 
-        Beatmapset::chunk(1000, function ($sets) {
+        Beatmapset::chunkById(1000, function ($sets) {
             foreach ($sets as $set) {
                 $set->refreshCache();
                 $this->progress->advance();
