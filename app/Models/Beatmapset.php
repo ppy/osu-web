@@ -1242,7 +1242,7 @@ class Beatmapset extends Model
         return Forum\Post::find($topic->topic_first_post_id);
     }
 
-    public function recountHypes()
+    public function freshHypes()
     {
         return $this
             ->beatmapDiscussions()
@@ -1253,7 +1253,7 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->update(['hypes' => $this->recountHypes()]);
+        $this->update(['hypes' => $this->freshHypes()]);
         $this->esIndexDocument();
     }
 }
