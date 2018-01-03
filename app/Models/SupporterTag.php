@@ -101,9 +101,16 @@ class SupporterTag
         $years = (int) ($length / 12);
         $months = $length % 12;
 
-        $yearsText = trans_choice('supporter_tag.duration.years', $years, ['length' => $years]);
-        $monthsText = trans_choice('supporter_tag.duration.months', $months, ['length' => $months]);
+        $texts = [];
 
-        return implode(', ', array_filter([$yearsText, $monthsText]));
+        if ($years > 0) {
+            $texts[] = trans_choice('common.count.years', $years);
+        }
+
+        if ($months > 0) {
+            $texts[] = trans_choice('common.count.months', $months);
+        }
+
+        return implode(', ', $texts);
     }
 }
