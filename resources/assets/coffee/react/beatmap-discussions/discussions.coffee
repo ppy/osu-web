@@ -27,13 +27,13 @@ sortPresets =
     icon: 'calendar'
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
-      if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
+      Date.parse(b.updated_at) - Date.parse(a.updated_at)
 
   created_at:
     icon: 'folder-o'
     text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
-      if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
+      Date.parse(a.created_at) - Date.parse(b.created_at)
 
   # there's obviously no timeline field
   timeline:
