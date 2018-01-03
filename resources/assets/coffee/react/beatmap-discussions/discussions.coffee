@@ -40,7 +40,11 @@ sortPresets =
     icon: 'barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
-      0
+      if a.timestamp == b.timestamp
+        a.id - b.id
+      else
+        a.timestamp - b.timestamp
+
 
 class BeatmapDiscussions.Discussions extends React.PureComponent
   constructor: (props) ->
