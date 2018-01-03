@@ -25,8 +25,8 @@ class @TooltipBeatmap
 
     return if !el.dataset.beatmapTitle?
 
-    tmpl = _.template '<span class="tooltip-beatmap__title"><%= beatmapTitle %></span>' +
-      '<span class="tooltip-beatmap__stars tooltip-beatmap__stars--<%= difficulty %>"><%= stars %> <i class="fa fa-star" aria-hidden="true"></i></span>'
+    tmpl = _.template '<div class="tooltip-beatmap__text tooltip-beatmap__text--title"><%= beatmapTitle %></div>' +
+      '<div class="tooltip-beatmap__text tooltip-beatmap__text--<%= difficulty %>"><%= stars %> <i class="fa fa-star" aria-hidden="true"></i></div>'
 
     at = el.dataset.tooltipPosition ? 'top center'
     my = switch at
