@@ -94,7 +94,7 @@ class BeatmapDiscussionsController extends Controller
             $search['query']->with([
                     'user',
                     'beatmapset',
-                    'startingPost'
+                    'startingPost',
                 ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],

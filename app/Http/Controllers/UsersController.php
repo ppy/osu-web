@@ -83,7 +83,7 @@ class UsersController extends Controller
         $discussions['items'] = $discussions['query']->with([
                 'user',
                 'beatmapset',
-                'startingPost'
+                'startingPost',
             ])->get();
 
         $posts = BeatmapDiscussionPost::search($params);

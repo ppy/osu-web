@@ -39,7 +39,7 @@ class BeatmapsetDiscussionVotesController extends Controller
                     'beatmapDiscussion',
                     'beatmapDiscussion.user',
                     'beatmapDiscussion.beatmapset',
-                    'beatmapDiscussion.startingPost'
+                    'beatmapDiscussion.startingPost',
                 ])->get(),
             $search['query']->realCount(),
             $search['params']['limit'],
