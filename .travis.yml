@@ -23,7 +23,6 @@ env:
     - SESSION_DRIVER=array
     - CACHE_DRIVER=array
     - CAMO_KEY=""
-    - ES_HOST=localhost:9200
     - ES_VERSION=1.7.6 ES_DOWNLOAD_URL=https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-${ES_VERSION}.zip
 
 install:
@@ -35,9 +34,9 @@ install:
   - ./build.sh
 
   # elasticsearch setup
-  - wget ${ES_DOWNLOAD_URL}
-  - unzip elasticsearch-${ES_VERSION}.zip
-  - ./elasticsearch-${ES_VERSION}/bin/elasticsearch &
+  - wget "${ES_DOWNLOAD_URL}"
+  - unzip "elasticsearch-${ES_VERSION}.zip"
+  - ./"elasticsearch-${ES_VERSION}/bin/elasticsearch" &
   - sleep 10 # wait until the server is up
   - php artisan es:index-users --yes
   - php artisan es:index-documents --yes
