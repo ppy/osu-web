@@ -65,6 +65,7 @@ class @StoreSupporterTagPrice
     months: Math.floor(@duration() % 12)
 
   durationText: ->
+    # don't forget to update SupporterTag::getDurationText() in php
     duration = @durationInYears()
     texts = []
 
