@@ -55,7 +55,9 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'is_ranked' => $stats->isRanked(),
             'grade_counts' => [
                 'ss' => $stats->x_rank_count,
+                'ssh' => $stats->xh_rank_count,
                 's' => $stats->s_rank_count,
+                'sh' => $stats->sh_rank_count,
                 'a' => $stats->a_rank_count,
             ],
         ];
