@@ -23,13 +23,22 @@ env:
     - SESSION_DRIVER=array
     - CACHE_DRIVER=array
     - CAMO_KEY=""
+    - ES_VERSION=1.7.6 ES_DOWNLOAD_URL=https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-${ES_VERSION}.zip
 
-before_install:
+install:
   - sudo ./bin/mysql_debian_install
   - nvm install 6.11
   - nvm use 6.11
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
   - ./bin/db_setup.sh
   - ./build.sh
+
+  # elasticsearch setup
+  - wget "${ES_DOWNLOAD_URL}"
+  - unzip "elasticsearch-${ES_VERSION}.zip"
+  - ./"elasticsearch-${ES_VERSION}/bin/elasticsearch" &
+  - sleep 10 # wait until the server is up
+  - php artisan es:index-users --yes
+  - php artisan es:index-documents --yes
 
 script: ./bin/phpunit

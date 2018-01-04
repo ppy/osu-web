@@ -20,32 +20,24 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
-class UserForumStatSyncCommand extends Command
+class BeatmapsetsHypeSyncCommand extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $signature = 'user:forumsync';
+    protected $signature = 'beatmapsets:hypesync';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Synchronises forum post counts for all users.';
-
-    /**
-     * Create a new command instance.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Synchronises hype count cache for all beatmapsets.';
 
     private $progress;
 
@@ -56,37 +48,17 @@ class UserForumStatSyncCommand extends Command
      */
     public function handle()
     {
-        $this->info('Synchronising user post counts...');
+        $this->info('Synchronising hype counts...');
 
-        $this->progress = $this->output->createProgressBar(User::count());
+        $this->progress = $this->output->createProgressBar(Beatmapset::count());
 
-        User::chunkById(1000, function ($users) {
-            foreach ($users as $u) {
-                $u->refreshForumCache();
+        Beatmapset::chunkById(1000, function ($sets) {
+            foreach ($sets as $set) {
+                $set->refreshCache();
                 $this->progress->advance();
             }
         });
 
         $this->progress->finish();
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [];
     }
 }
