@@ -59,7 +59,7 @@
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
                             >
                                 {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
