@@ -21,6 +21,7 @@
 namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
+use App\Models\Beatmapset;
 use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
@@ -126,6 +127,11 @@ class Topic extends Model
 
     public function removePost($post, $user = null)
     {
+        // no deleting first post of beatmapset topic.
+        if ($post->getKey() === $this->topic_first_post_id && $this->beatmapset()->exists()) {
+            return false;
+        }
+
         DB::transaction(function () use ($post, $user) {
             $post->delete();
 
@@ -221,6 +227,11 @@ class Topic extends Model
         } else {
             return static::TYPES[$typeIntOrStr] ?? null;
         }
+    }
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class, 'topic_id', 'thread_id');
     }
 
     public function posts()
