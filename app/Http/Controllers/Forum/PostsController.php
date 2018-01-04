@@ -20,9 +20,11 @@
 
 namespace App\Http\Controllers\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use Auth;
+use DB;
 use Request;
 
 class PostsController extends Controller
@@ -48,23 +50,37 @@ class PostsController extends Controller
 
         $topic = $post->topic()->withTrashed()->first();
 
-        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-            $this->logModerate(
-                'LOG_DELETE_POST',
-                [$topic->topic_title],
-                $post
-            );
+        try {
+            $ok = DB::transaction(function () use ($post, $topic) {
+                if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+                    $this->logModerate(
+                        'LOG_DELETE_POST',
+                        [$topic->topic_title],
+                        $post
+                    );
+                }
+
+                if ($topic->removePost($post, Auth::user()) === false) {
+                    throw new ModelNotSavedException('failed deleting post');
+                }
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
+            $ok = false;
         }
 
-        $topic->removePost($post, Auth::user());
+        if ($ok) {
+            if ($topic->trashed()) {
+                $redirect = route('forum.forums.show', $topic->forum);
 
-        if ($topic->trashed()) {
-            $redirect = route('forum.forums.show', $topic->forum);
+                return ujs_redirect($redirect);
+            }
 
-            return ujs_redirect($redirect);
+            return js_view('forum.topics.delete', compact('post'));
+        } else {
+            abort(422);
         }
-
-        return js_view('forum.topics.delete', compact('post'));
     }
 
     public function restore($id)
