@@ -279,7 +279,6 @@ class Post extends Model
             'post_edit_count' => DB::raw('post_edit_count + 1'),
             'post_edit_user' => $user->user_id,
         ]);
-
     }
 
     public function delete()
