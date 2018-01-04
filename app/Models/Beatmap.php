@@ -97,7 +97,7 @@ class Beatmap extends Model
                 $total = $sliderOrSpinner + $this->countNormal;
                 $percentSliderOrSpinner = $sliderOrSpinner / $total;
 
-                $accuracy = round($this->diff_overall);
+                $accuracy = (int) round($this->diff_overall);
 
                 if ($percentSliderOrSpinner < 0.2) {
                     return 7;
@@ -109,7 +109,7 @@ class Beatmap extends Model
                     return clamp($accuracy + 1, 1, 7);
                 }
             } else {
-                return round($value);
+                return (int) round($value);
             }
         }
 
