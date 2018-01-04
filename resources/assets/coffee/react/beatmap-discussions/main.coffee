@@ -238,9 +238,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
         byMode[mode].push d
 
-      timeline = _.orderBy byMode.timeline, ['timestamp', 'id']
-      general = _.orderBy byMode.general, 'id'
-      generalAll = _.orderBy byMode.generalAll, 'id'
+      timeline = byMode.timeline
+      general = byMode.general
+      generalAll = byMode.generalAll
 
       @cache.currentDiscussions = {general, generalAll, timeline, byFilter, countsByBeatmap, countsByPlaymode, unresolvedIssues}
 

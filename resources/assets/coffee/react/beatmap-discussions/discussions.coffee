@@ -27,20 +27,30 @@ sortPresets =
     icon: 'calendar'
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
-      if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
+      if a.updated_at == b.updated_at
+        b.id - a.id
+      else
+        Date.parse(b.updated_at) - Date.parse(a.updated_at)
 
   created_at:
     icon: 'folder-o'
     text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
-      if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
+      if a.created_at == b.created_at
+        a.id - b.id
+      else
+        Date.parse(a.created_at) - Date.parse(b.created_at)
 
   # there's obviously no timeline field
   timeline:
     icon: 'barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
-      0
+      if a.timestamp == b.timestamp
+        a.id - b.id
+      else
+        a.timestamp - b.timestamp
+
 
 class BeatmapDiscussions.Discussions extends React.PureComponent
   constructor: (props) ->
