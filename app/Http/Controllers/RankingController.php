@@ -98,7 +98,7 @@ class RankingController extends Controller
         $maxPages = ceil($maxResults / static::PAGE_SIZE);
         $page = clamp(get_int(Request::input('page')), 1, $maxPages);
 
-        if (Request::is('api/v2/*')) {
+        if (is_api_request()) {
             $stats->with(['user.userProfileCustomization']);
         }
 
@@ -106,7 +106,7 @@ class RankingController extends Controller
             ->offset(static::PAGE_SIZE * ($page - 1))
             ->get();
 
-        if (Request::is('api/v2/*')) {
+        if (is_api_request()) {
             switch ($type) {
                 case 'country':
                     return json_collection($stats, 'CountryStatistics', ['country']);
