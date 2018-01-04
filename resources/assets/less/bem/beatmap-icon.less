@@ -17,6 +17,8 @@
  */
 
 .beatmap-icon {
+  @top: beatmap-icon;
+
   color: #fff;
   font-size: 22px;
   display: flex;
@@ -83,6 +85,11 @@
   &__shadow {
     .default-box-shadow();
     .full-size();
+
+    .@{top}--with-hover:hover & {
+      .thicker-box-shadow();
+      transition: all 90ms ease-in-out; // 90ms to be in line with the tooltip (qtip2 default)
+    }
 
     @margin: 1px;
     @size: calc(100% ~'-' (@margin * 2));
