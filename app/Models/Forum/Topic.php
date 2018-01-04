@@ -20,6 +20,7 @@
 
 namespace App\Models\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
 use App\Models\Beatmapset;
 use App\Models\Log;
@@ -127,30 +128,31 @@ class Topic extends Model
 
     public function removePost($post, $user = null)
     {
-        // no deleting first post of beatmapset topic.
-        if ($post->getKey() === $this->topic_first_post_id && $this->beatmapset()->exists()) {
+        try {
+            return DB::transaction(function () use ($post, $user) {
+                if ($post->delete() === false) {
+                    throw new ModelNotSavedException('failed deleting post');
+                }
+
+                if ($this->posts()->exists() === true) {
+                    $this->refreshCache();
+                } else {
+                    $this->delete();
+                }
+
+                if ($this->forum !== null) {
+                    $this->forum->refreshCache();
+                }
+
+                if ($post->user !== null) {
+                    $post->user->refreshForumCache($this->forum, -1);
+                }
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
             return false;
         }
-
-        return DB::transaction(function () use ($post, $user) {
-            $post->delete();
-
-            if ($this->posts()->exists() === true) {
-                $this->refreshCache();
-            } else {
-                $this->delete();
-            }
-
-            if ($this->forum !== null) {
-                $this->forum->refreshCache();
-            }
-
-            if ($post->user !== null) {
-                $post->user->refreshForumCache($this->forum, -1);
-            }
-
-            return true;
-        });
     }
 
     public function restorePost($post, $user = null)

@@ -1191,7 +1191,7 @@ class Beatmapset extends Model
         $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
         $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
 
-        return $post->edit($newBody, $user);
+        return $post->edit($newBody, $user, true);
     }
 
     public function toMetaDescription()

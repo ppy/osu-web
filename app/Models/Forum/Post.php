@@ -261,10 +261,16 @@ class Post extends Model
         return $this->topic->postPosition($this->post_id);
     }
 
-    public function edit($body, $user)
+    public function edit($body, $user, $skipRestrictionCheck = false)
     {
         if ($body === $this->bodyRaw) {
             return true;
+        }
+
+        if (!$skipRestrictionCheck) {
+            if ($this->isBeatmapsetPost()) {
+                return false;
+            }
         }
 
         $updates = [
@@ -278,6 +284,24 @@ class Post extends Model
         ]);
 
         return $this->update($updates);
+    }
+
+    public function delete()
+    {
+        if ($this->isBeatmapsetPost()) {
+            return false;
+        }
+
+        return parent::delete();
+    }
+
+    public function isBeatmapsetPost()
+    {
+        if ($this->topic !== null) {
+            return
+                $this->getKey() === $this->topic->topic_first_post_id &&
+                $this->topic->beatmapset()->exists();
+        }
     }
 
     public function getBodyHTMLAttribute()
