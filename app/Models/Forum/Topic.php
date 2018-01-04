@@ -132,7 +132,7 @@ class Topic extends Model
             return false;
         }
 
-        DB::transaction(function () use ($post, $user) {
+        return DB::transaction(function () use ($post, $user) {
             $post->delete();
 
             if ($this->posts()->exists() === true) {
@@ -148,9 +148,9 @@ class Topic extends Model
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
             }
-        });
 
-        return true;
+            return true;
+        });
     }
 
     public function restorePost($post, $user = null)
