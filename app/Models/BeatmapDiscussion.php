@@ -337,11 +337,6 @@ class BeatmapDiscussion extends Model
         return $votes;
     }
 
-    /*
-     * Called before saving. The callback definition is located in
-     * App\Providers\AppServiceProvider. Don't ask me why it's there;
-     * ask Laravel.
-     */
     public function isValid()
     {
         return $this->hasValidBeatmap() &&
@@ -435,6 +430,18 @@ class BeatmapDiscussion extends Model
             $this->update(['deleted_at' => null]);
             $this->refreshKudosu('restore');
         });
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        $ret = parent::save($options);
+        $this->beatmapset->refreshCache();
+
+        return $ret;
     }
 
     public function softDelete($deletedBy)

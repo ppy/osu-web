@@ -372,6 +372,11 @@ function i18n_view($view)
     }
 }
 
+function is_api_request()
+{
+    return Request::is('api/*');
+}
+
 function is_sql_unique_exception($ex)
 {
     return starts_with(
