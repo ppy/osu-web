@@ -31,7 +31,10 @@ abstract class Model extends BaseModel
 
     public function getMacros()
     {
-        return $this->macros ?? [];
+        $macros = $this->macros ?? [];
+        $macros[] = 'realCount';
+
+        return $macros;
     }
 
     /**
@@ -42,6 +45,18 @@ abstract class Model extends BaseModel
     public function lockSelf()
     {
         return $this->lockForUpdate()->find($this->getKey());
+    }
+
+    public function macroRealCount()
+    {
+        return function ($baseQuery) {
+            $query = clone $baseQuery;
+            $query->getQuery()->orders = null;
+            $query->getQuery()->offset = null;
+            $query->limit(null);
+
+            return $query->count();
+        };
     }
 
     public function scopeOrderByField($query, $field, $ids)
@@ -57,6 +72,11 @@ abstract class Model extends BaseModel
         $values = array_map('strval', $ids);
 
         $query->orderByRaw($string, $values);
+    }
+
+    public function scopeNone($query)
+    {
+        $query->whereRaw('false');
     }
 
     public function saveOrExplode($options = [])
