@@ -116,27 +116,42 @@ class PostsController extends Controller
 
         priv_check('ForumPostEdit', $post)->ensureCan();
 
-        if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
-            $this->logModerate(
-                'LOG_POST_EDITED',
-                [
-                    $post->topic->topic_title,
-                    $post->user->username,
-                ],
-                $post
-            );
+        try {
+            $ok = DB::transaction(function () use ($post) {
+                if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+                    $this->logModerate(
+                        'LOG_POST_EDITED',
+                        [
+                            $post->topic->topic_title,
+                            $post->user->username,
+                        ],
+                        $post
+                    );
+                }
+
+                $body = request('body');
+
+                if ($body !== '') {
+                    if ($post->edit($body, Auth::user()) === false) {
+                        throw new ModelNotSavedException('failed editing post');
+                    }
+                }
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
+            $ok = false;
         }
 
-        $body = Request::input('body');
-        if ($body !== '') {
-            $post->edit($body, Auth::user());
+        if ($ok) {
+            $posts = collect([$post->fresh()]);
+            $topic = $post->topic;
+            $firstPostPosition = $topic->postPosition($post->post_id);
+
+            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
+        } else {
+            abort(422);
         }
-
-        $posts = collect([$post->fresh()]);
-        $topic = $post->topic;
-        $firstPostPosition = $topic->postPosition($post->post_id);
-
-        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)
