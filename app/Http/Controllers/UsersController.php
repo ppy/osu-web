@@ -58,9 +58,7 @@ class UsersController extends Controller
 
     public function card($id)
     {
-        $id = get_int($id);
-
-        $user = User::lookup($id, 'id');
+        $user = User::lookup($id);
 
         list($friend, $mutual) = $this->getFriendStatus($user);
 
