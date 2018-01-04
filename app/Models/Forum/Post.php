@@ -261,9 +261,9 @@ class Post extends Model
         return $this->topic->postPosition($this->post_id);
     }
 
-    public function edit($body, $user, $skipRestrictionCheck = false)
+    public function edit($newBodyRaw, $user, $skipRestrictionCheck = false)
     {
-        if ($body === $this->bodyRaw) {
+        if ($newBodyRaw === $this->bodyRaw) {
             return true;
         }
 
@@ -273,17 +273,13 @@ class Post extends Model
             }
         }
 
-        $updates = [
-            'post_text' => $body,
-        ];
-
-        $updates = array_merge($updates, [
+        return $this->update([
+            'post_text' => $newBodyRaw,
             'post_edit_time' => Carbon::now(),
             'post_edit_count' => DB::raw('post_edit_count + 1'),
             'post_edit_user' => $user->user_id,
         ]);
 
-        return $this->update($updates);
     }
 
     public function delete()
