@@ -38,12 +38,12 @@
                     <div class="beatmap-discussion-post__content">
                         <div class="beatmap-discussion-post__user-container">
                             <div class="beatmap-discussion-post__avatar">
-                                <a href="{{ route('users.beatmapset-activities', $post->beatmapDiscussion->user) }}">
-                                    <div class="avatar avatar--full-rounded" style="background-image: url('{{$post->beatmapDiscussion->user->user_avatar}}');"></div>
+                                <a href="{{ route('users.beatmapset-activities', $post->user) }}">
+                                    <div class="avatar avatar--full-rounded" style="background-image: url('{{$post->user->user_avatar}}');"></div>
                                 </a>
                             </div>
                             <div class="beatmap-discussion-post__user">
-                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($post->beatmapDiscussion->user) !!}</span>
+                                <span class="beatmap-discussion-post__user-text u-ellipsis-overflow">{!! link_to_user($post->user) !!}</span>
                             </div>
                         </div>
                         <div class="beatmap-discussion-post__message-container">
