@@ -109,7 +109,7 @@ class Beatmap extends Model
                     return clamp($accuracy + 1, 1, 7);
                 }
             } else {
-                return (int) round($value);
+                return (int) max(1, round($value));
             }
         }
 
