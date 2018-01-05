@@ -105,11 +105,28 @@ class AfterCommitTest extends TestCase
 
         DB::transaction(function () use ($model) {
             $model->save();
+            $model->save();
 
             $this->assertSame(0, $model->afterCommitCount);
-            $this->assertSame(1, count($this->getPendingCommits('mysql')));
+            $this->assertSame(2, count($this->getPendingCommits('mysql')));
+            $this->assertSame(1, count($this->getPendingUniqueCommits('mysql')));
+        });
 
+        $this->assertSame(0, count($this->getPendingCommits('mysql')));
+        $this->assertSame(1, $model->afterCommitCount);
+    }
+
+    public function testNestedTransactions()
+    {
+        $model = $this->afterCommittable();
+
+        DB::transaction(function () use ($model) {
             $model->save();
+
+            DB::transaction(function () use ($model) {
+                $model->save();
+            });
+
             $this->assertSame(0, $model->afterCommitCount);
             $this->assertSame(2, count($this->getPendingCommits('mysql')));
             $this->assertSame(1, count($this->getPendingUniqueCommits('mysql')));
