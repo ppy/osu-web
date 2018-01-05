@@ -180,6 +180,26 @@ class AfterCommitTest extends TestCase
         $this->assertSame(0, $model->afterCommitCount);
     }
 
+    public function testExceptionThrownInOtherConnection()
+    {
+        $model = $this->afterCommittable();
+
+        try {
+            // After commit only runs if all transactions in scope complete.
+            DB::connection('mysql-store')->transaction(function () use ($model) {
+                DB::transaction(function () use ($model) {
+                    $model->save();
+                });
+
+                throw new Exception($this->exceptionMessage);
+            });
+        } catch (Exception $e) {
+            $this->assertSame($this->exceptionMessage, $e->getMessage());
+        }
+
+        $this->assertSame(0, $model->afterCommitCount);
+    }
+
     private function getPendingCommits(string $connection)
     {
         $state = $this->getTransactionState('mysql');
