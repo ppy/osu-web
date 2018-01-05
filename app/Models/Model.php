@@ -21,9 +21,9 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
-use App\Libraries\TransactionState;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
+use App\Libraries\TransactionState;
 use App\Traits\MacroableModel;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 

@@ -4,11 +4,11 @@ namespace App\Providers;
 
 use App\Libraries\TransactionState;
 use App\Libraries\TransactionStateManager;
+use Event;
 use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Database\Events\TransactionCommitted;
 use Illuminate\Database\Events\TransactionRolledBack;
 use Illuminate\Support\ServiceProvider;
-use Event;
 use Log;
 
 class TransactionStateServiceProvider extends ServiceProvider

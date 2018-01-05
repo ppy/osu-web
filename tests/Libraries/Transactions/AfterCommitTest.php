@@ -22,7 +22,6 @@ namespace Tests;
 
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Model;
-use Config;
 use DB;
 use Exception;
 use Illuminate\Support\Facades\Schema;
