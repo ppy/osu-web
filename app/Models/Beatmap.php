@@ -94,7 +94,7 @@ class Beatmap extends Model
             // Reference: https://github.com/ppy/osu/blob/8c2cc4c85b369aee4c04b151cc28725cb3280a86/osu.Game.Rulesets.Mania/UI/ManiaRulesetContainer.cs#L87
             if ($this->convert) {
                 $sliderOrSpinner = $this->countSlider + $this->countSpinner;
-                $total = $sliderOrSpinner + $this->countNormal;
+                $total = max(1, $sliderOrSpinner + $this->countNormal);
                 $percentSliderOrSpinner = $sliderOrSpinner / $total;
 
                 $accuracy = (int) round($this->diff_overall);
