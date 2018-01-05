@@ -290,15 +290,12 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   permalink: (e) =>
     e.preventDefault()
-
-    hash = BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
-    targetUrl = "#{location.origin}#{location.pathname}#{hash}"
+    targetEl = e.currentTarget
 
     # copy url to clipboard
-    clipboard.writeText targetUrl
+    clipboard.writeText targetEl.href
 
     # show feedback
-    targetEl = e.currentTarget
     targetEl.innerHTML = osu.trans('common.buttons.permalink_copied')
     Timeout.set 2000, ->
       targetEl.innerHTML = osu.trans('common.buttons.permalink')
