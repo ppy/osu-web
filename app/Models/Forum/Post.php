@@ -271,6 +271,7 @@ class Post extends Model
         }
 
         if (!$skipRestrictionCheck) {
+            // don't forget to sync with views.forum.topics._posts
             if ($this->isBeatmapsetPost()) {
                 $this->validationErrors()->add('base', '.beatmapset_post_no_edit');
 
@@ -290,6 +291,7 @@ class Post extends Model
     {
         $this->validationErrors()->reset();
 
+        // don't forget to sync with views.forum.topics._posts
         if ($this->isBeatmapsetPost()) {
             $this->validationErrors()->add('base', '.beatmapset_post_no_delete');
 
@@ -299,6 +301,7 @@ class Post extends Model
         return parent::delete();
     }
 
+    // don't forget to sync with views.forum.topics._posts
     public function isBeatmapsetPost()
     {
         if ($this->topic !== null) {
