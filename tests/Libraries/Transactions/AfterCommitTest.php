@@ -55,6 +55,7 @@ class AfterCommitTest extends TestCase
     {
         $model = $this->afterCommittable();
         $model->save();
+
         $this->assertSame(1, $model->afterCommitCount);
     }
 
@@ -62,6 +63,7 @@ class AfterCommitTest extends TestCase
     {
         $model = $this->notAfterCommittable();
         $model->save();
+
         $this->assertSame(0, $model->afterCommitCount);
     }
 
@@ -69,6 +71,7 @@ class AfterCommitTest extends TestCase
     {
         // count should increase after transaction completes but not before.
         $model = $this->afterCommittable();
+
         DB::transaction(function () use ($model) {
             $model->save();
 
@@ -84,6 +87,7 @@ class AfterCommitTest extends TestCase
     {
         // count should increase after save.
         $model = $this->afterCommittable();
+
         DB::connection('mysql-store')->transaction(function () use ($model) {
             $model->save();
 
