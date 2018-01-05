@@ -112,7 +112,7 @@ class AfterCommitTest extends TestCase
             $model->save();
             $this->assertSame(0, $model->afterCommitCount);
             $this->assertSame(2, count($this->getPendingCommits('mysql')));
-            $this->assertSame(1, count(array_unique($this->getPendingCommits('mysql'))));
+            $this->assertSame(1, count($this->getPendingUniqueCommits('mysql')));
         });
 
         $this->assertSame(0, count($this->getPendingCommits('mysql')));
@@ -124,6 +124,13 @@ class AfterCommitTest extends TestCase
         $state = $this->getTransactionState('mysql');
 
         return $state ? $this->invokeProperty($state, 'commits') : null;
+    }
+
+    private function getPendingUniqueCommits(string $connection)
+    {
+        $state = $this->getTransactionState('mysql');
+
+        return $state ? $this->invokeMethod($state, 'uniqueCommits') : null;
     }
 
     private function getTransactionState(string $connection)
