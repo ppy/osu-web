@@ -56,7 +56,6 @@ class AfterCommitTest extends TestCase
         $model = $this->afterCommittable();
         $model->save();
         $this->assertSame(1, $model->afterCommitCount);
-        $this->assertSame(1, $model->enlisted);
     }
 
     public function testModelWithoutAfterCommitSupportDoesNotEnlist()
@@ -64,7 +63,6 @@ class AfterCommitTest extends TestCase
         $model = $this->notAfterCommittable();
         $model->save();
         $this->assertSame(0, $model->afterCommitCount);
-        $this->assertSame(1, $model->enlisted);
     }
 
     public function testModelAfterCommitTransaction()
@@ -115,16 +113,9 @@ class AfterCommitTest extends TestCase
     {
         return new class extends Model {
             public $afterCommitCount = 0;
-            public $enlisted = 0;
 
             protected $connection = 'mysql';
             protected $table = 'test_after_commit';
-
-            protected function enlistCallbacks()
-            {
-                $this->enlisted++;
-                parent::enlistCallbacks();
-            }
         };
     }
 
@@ -132,7 +123,6 @@ class AfterCommitTest extends TestCase
     {
         return new class extends Model implements AfterCommit {
             public $afterCommitCount = 0;
-            public $enlisted = 0;
 
             protected $connection = 'mysql';
             protected $table = 'test_after_commit';
@@ -140,12 +130,6 @@ class AfterCommitTest extends TestCase
             public function afterCommit()
             {
                 $this->afterCommitCount++;
-            }
-
-            protected function enlistCallbacks()
-            {
-                $this->enlisted++;
-                parent::enlistCallbacks();
             }
         };
     }
