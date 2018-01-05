@@ -43,4 +43,20 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         return $app;
     }
+
+    protected function invokeMethod($obj, string $name, array $params = [])
+    {
+        $method = new ReflectionMethod($obj, $name);
+        $method->setAccessible(true);
+
+        return $method->invokeArgs($obj, $params);
+    }
+
+    protected function invokeProperty($obj, string $name)
+    {
+        $property = new ReflectionProperty($obj, $name);
+        $property->setAccessible(true);
+
+        return $property->getValue($obj);
+    }
 }

@@ -74,9 +74,11 @@ class AfterCommitTest extends TestCase
         DB::transaction(function () use ($model) {
             $model->save();
 
+            $this->assertSame(1, count($this->getPendingCommits('mysql')));
             $this->assertSame(0, $model->afterCommitCount);
         });
 
+        $this->assertSame(0, count($this->getPendingCommits('mysql')));
         $this->assertSame(1, $model->afterCommitCount);
     }
 
@@ -93,12 +95,29 @@ class AfterCommitTest extends TestCase
         $this->assertSame(1, $model->afterCommitCount);
     }
 
+    private function getPendingCommits(string $connection)
+    {
+        $state = $this->getTransactionState('mysql');
+
+        return $this->invokeProperty($state, 'commits');
+    }
+
+    private function getTransactionState(string $connection)
+    {
+        return resolve('transaction')->current($connection);
+    }
+
+    //
+    // Test double helpers.
+    //
+
     private function notAfterCommittable()
     {
         return new class extends Model {
             public $afterCommitCount = 0;
             public $enlisted = 0;
 
+            protected $connection = 'mysql';
             protected $table = 'test_after_commit';
 
             protected function enlistCallbacks()
@@ -115,6 +134,7 @@ class AfterCommitTest extends TestCase
             public $afterCommitCount = 0;
             public $enlisted = 0;
 
+            protected $connection = 'mysql';
             protected $table = 'test_after_commit';
 
             public function afterCommit()
