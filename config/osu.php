@@ -33,7 +33,12 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'index' => env('ES_INDEX', 'osu'),
+        'index' => [
+            'beatmaps' => App\Models\Beatmapset::esIndexName(),
+            'posts' => App\Models\Forum\Post::esIndexName(),
+            'users' => App\Models\User::esIndexName(),
+            'wiki_pages' => 'osu:wiki_pages_20171130',
+        ],
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',

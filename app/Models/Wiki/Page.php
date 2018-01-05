@@ -129,7 +129,7 @@ class Page
     public static function searchIndexConfig($params = [])
     {
         return array_merge([
-            'index' => config('elasticsearch.index.wiki_pages'),
+            'index' => config('osu.elasticsearch.index.wiki_pages'),
             'type' => 'wiki_page',
         ], $params);
     }
