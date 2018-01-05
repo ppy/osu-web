@@ -244,7 +244,7 @@ class AfterCommitTest extends TestCase
 
     private function getTransactionState(string $connection)
     {
-        return resolve('transaction')->current($connection);
+        return resolve('TransactionState')->current($connection);
     }
 
     //

@@ -9,6 +9,7 @@ use Illuminate\Database\Events\TransactionCommitted;
 use Illuminate\Database\Events\TransactionRolledBack;
 use Illuminate\Support\ServiceProvider;
 use Event;
+use Log;
 
 class TransactionStateServiceProvider extends ServiceProvider
 {
@@ -20,18 +21,18 @@ class TransactionStateServiceProvider extends ServiceProvider
     public function boot()
     {
         Event::listen(TransactionBeginning::class, function ($event) {
-            \Log::debug($this->eventInfo($event));
-            resolve('transaction')->begin($event->connection);
+            Log::debug($this->eventInfo($event));
+            resolve('TransactionState')->begin($event->connection);
         });
 
         Event::listen(TransactionCommitted::class, function ($event) {
-            \Log::debug($this->eventInfo($event));
-            resolve('transaction')->commit($event->connection);
+            Log::debug($this->eventInfo($event));
+            resolve('TransactionState')->commit($event->connection);
         });
 
         Event::listen(TransactionRolledBack::class, function ($event) {
-            \Log::debug($this->eventInfo($event));
-            resolve('transaction')->rollback($event->connection);
+            Log::debug($this->eventInfo($event));
+            resolve('TransactionState')->rollback($event->connection);
         });
     }
 
@@ -56,7 +57,7 @@ class TransactionStateServiceProvider extends ServiceProvider
         // Laravel uses a singleton DatabaseManager that reuses connections
         // by name, so a singleton for tracking should be good enough.
         // The alternative is to override Connection and its subclasses.
-        $this->app->singleton('transaction', function ($app) {
+        $this->app->singleton('TransactionState', function ($app) {
             return new TransactionStateManager();
         });
     }

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\TransactionState;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Traits\MacroableModel;
@@ -114,7 +115,7 @@ abstract class Model extends BaseModel
 
     private function enlistCallbacks()
     {
-        $transaction = resolve('transaction')->current($this->connection);
+        $transaction = resolve('TransactionState')->current($this->connection);
         // call immediately if not in transaction
         if ($transaction === null && ($this instanceof AfterCommit)) {
             $this->afterCommit();
