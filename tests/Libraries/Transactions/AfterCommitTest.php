@@ -24,6 +24,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Models\Model;
 use Config;
 use DB;
+use Exception;
 use Illuminate\Support\Facades\Schema;
 use TestCase;
 
@@ -134,6 +135,40 @@ class AfterCommitTest extends TestCase
 
         $this->assertSame(0, count($this->getPendingCommits('mysql')));
         $this->assertSame(1, $model->afterCommitCount);
+    }
+
+    public function testExceptionThrown()
+    {
+        $this->expectException(Exception::class);
+        $model = $this->afterCommittable();
+
+        DB::transaction(function () use ($model) {
+            $model->save();
+
+            throw new Exception('it should not commit');
+        });
+
+        $this->assertSame(0, count($this->getPendingCommits('mysql')));
+        $this->assertSame(0, $model->afterCommitCount);
+    }
+
+    public function testExceptionThrownAfterAnotherTransaction()
+    {
+        $this->expectException(Exception::class);
+        $model = $this->afterCommittable();
+
+        DB::transaction(function () use ($model) {
+            $model->save();
+
+            DB::transaction(function () use ($model) {
+                $model->save();
+            });
+
+            throw new Exception('it should not commit');
+        });
+
+        $this->assertSame(0, count($this->getPendingCommits('mysql')));
+        $this->assertSame(0, $model->afterCommitCount);
     }
 
     private function getPendingCommits(string $connection)
