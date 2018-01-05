@@ -38,6 +38,15 @@ class AfterCommitTest extends TestCase
     {
         parent::setUp();
 
+        // not ideal to create the table between every test
+        // but Laravel's resolvers do not work in the
+        // setUpBeforeClass/tearDownAfterClass methods.
+
+        // force cleanup
+        if (Schema::hasTable('test_after_commit')) {
+            Schema::drop('test_after_commit');
+        }
+
         // create a dummy table
         Schema::create('test_after_commit', function ($table) {
             $table->charset = 'utf8mb4';
