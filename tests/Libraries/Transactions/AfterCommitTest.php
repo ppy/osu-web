@@ -99,6 +99,26 @@ class AfterCommitTest extends TestCase
         $this->assertSame(1, $model->afterCommitCount);
     }
 
+    public function testMultipleSaveInTransaction()
+    {
+        $model = $this->afterCommittable();
+
+        DB::transaction(function () use ($model) {
+            $model->save();
+
+            $this->assertSame(0, $model->afterCommitCount);
+            $this->assertSame(1, count($this->getPendingCommits('mysql')));
+
+            $model->save();
+            $this->assertSame(0, $model->afterCommitCount);
+            $this->assertSame(2, count($this->getPendingCommits('mysql')));
+            $this->assertSame(1, count(array_unique($this->getPendingCommits('mysql'))));
+        });
+
+        $this->assertSame(0, count($this->getPendingCommits('mysql')));
+        $this->assertSame(1, $model->afterCommitCount);
+    }
+
     private function getPendingCommits(string $connection)
     {
         $state = $this->getTransactionState('mysql');
