@@ -164,9 +164,7 @@ class Product extends Model
             return true;
         }
 
-        $this->stock += $quantity;
-
-        return $this->save();
+        $this->increment('stock', $quantity);
     }
 
     public function reserve($quantity)
@@ -175,12 +173,12 @@ class Product extends Model
             return true;
         }
 
-        $this->stock -= $quantity;
+        $this->decrement('stock', $quantity);
+        $this->fresh();
+
         if ($this->stock < 0) {
             throw new InsufficientStockException();
         }
-
-        return $this->save();
     }
 
     public function types()
