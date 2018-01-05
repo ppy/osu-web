@@ -184,7 +184,6 @@ class AfterCommitTest extends TestCase
             $this->assertSame($this->exceptionMessage, $e->getMessage());
         }
 
-
         $this->assertSame(0, count($this->getPendingCommits('mysql')));
         $this->assertSame(0, $model->afterCommitCount);
     }
