@@ -23,6 +23,7 @@ namespace Tests;
 use App\Libraries\Transactions\AfterCommit;
 use App\Models\Model;
 use Config;
+use DB;
 use Illuminate\Support\Facades\Schema;
 use TestCase;
 
@@ -64,6 +65,32 @@ class AfterCommitTest extends TestCase
         $model->save();
         $this->assertSame(0, $model->afterCommitCount);
         $this->assertSame(1, $model->enlisted);
+    }
+
+    public function testModelAfterCommitTransaction()
+    {
+        // count should increase after transaction completes but not before.
+        $model = $this->afterCommittable();
+        DB::transaction(function () use ($model) {
+            $model->save();
+
+            $this->assertSame(0, $model->afterCommitCount);
+        });
+
+        $this->assertSame(1, $model->afterCommitCount);
+    }
+
+    public function testModelAfterCommitTransactionUnrelatedConnection()
+    {
+        // count should increase after save.
+        $model = $this->afterCommittable();
+        DB::connection('mysql-store')->transaction(function () use ($model) {
+            $model->save();
+
+            $this->assertSame(1, $model->afterCommitCount);
+        });
+
+        $this->assertSame(1, $model->afterCommitCount);
     }
 
     private function notAfterCommittable()
