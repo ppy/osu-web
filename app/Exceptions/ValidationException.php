@@ -31,7 +31,7 @@ class ValidationException extends Exception
     {
         $message = null;
         if ($errors !== null) {
-            $message = implode("\n", $errors->allMessages());
+            $message = $errors->toSentence();
         }
 
         parent::__construct($message, 0, $previous);

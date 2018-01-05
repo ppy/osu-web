@@ -149,7 +149,7 @@ class AccountController extends Controller
         if ($ok) {
             return Auth::user()->defaultJson();
         } else {
-            return error_popup(implode("\n", Auth::user()->validationErrors()->allMessages()));
+            return error_popup(Auth::user()->validationErrors()->toSentence());
         }
     }
 
