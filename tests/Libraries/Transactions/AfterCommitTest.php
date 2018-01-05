@@ -200,6 +200,25 @@ class AfterCommitTest extends TestCase
         $this->assertSame(0, $model->afterCommitCount);
     }
 
+    public function testRollbackExplictlyCalled()
+    {
+        $model = $this->afterCommittable();
+
+        // Explictly rolling back single transaction level should still allow
+        // after commit to run at the end.
+        // Same behaviour as Rails without enlisting a new transaction.
+        DB::transaction(function () use ($model) {
+            $model->save();
+
+            $this->assertSame(0, $model->afterCommitCount);
+            DB::transaction(function () use ($model) {
+                DB::rollback();
+            });
+        });
+
+        $this->assertSame(1, $model->afterCommitCount);
+    }
+
     private function getPendingCommits(string $connection)
     {
         $state = $this->getTransactionState('mysql');
