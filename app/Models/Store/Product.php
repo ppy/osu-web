@@ -20,6 +20,8 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InsufficientStockException;
+
 class Product extends Model
 {
     protected $primaryKey = 'product_id';
@@ -154,6 +156,31 @@ class Product extends Model
         }
 
         return self::whereIn('product_id', array_keys($mappings))->get();
+    }
+
+    public function release($quantity)
+    {
+        if ($this->stock === null) {
+            return true;
+        }
+
+        $this->stock += $quantity;
+
+        return $this->save();
+    }
+
+    public function reserve($quantity)
+    {
+        if ($this->stock === null) {
+            return true;
+        }
+
+        $this->stock -= $quantity;
+        if ($this->stock < 0) {
+            throw new InsufficientStockException();
+        }
+
+        return $this->save();
     }
 
     public function types()

@@ -123,6 +123,16 @@ class OrderCheckout
         return $errors;
     }
 
+    public function releaseItems()
+    {
+        $this->order->releaseItems();
+    }
+
+    public function reserveItems()
+    {
+        $this->order->reserveItems();
+    }
+
     /**
      * Helper method for completing checkout with just the order number.
      *

@@ -363,6 +363,26 @@ class Order extends Model
         return $result;
     }
 
+    public function releaseItems()
+    {
+        DB::connection($this->connection)->transaction(function () {
+            $items = $this->items()->with('product')->get();
+            foreach ($items as $item) {
+                $item->product->release($item->quantity);
+            }
+        });
+    }
+
+    public function reserveItems()
+    {
+        DB::connection($this->connection)->transaction(function () {
+            $items = $this->items()->with('product')->get();
+            foreach ($items as $item) {
+                $item->product->reserve($item->quantity);
+            }
+        });
+    }
+
     public static function cart($user)
     {
         $cart = static::query()
