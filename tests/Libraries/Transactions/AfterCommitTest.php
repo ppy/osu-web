@@ -87,6 +87,8 @@ class AfterCommitTest extends TestCase
         DB::connection('mysql-store')->transaction(function () use ($model) {
             $model->save();
 
+            $this->assertNull($this->getPendingCommits('mysql'));
+            $this->assertNull($this->getPendingCommits('mysql-store'));
             $this->assertSame(1, $model->afterCommitCount);
         });
 
@@ -97,7 +99,7 @@ class AfterCommitTest extends TestCase
     {
         $state = $this->getTransactionState('mysql');
 
-        return $this->invokeProperty($state, 'commits');
+        return $state ? $this->invokeProperty($state, 'commits') : null;
     }
 
     private function getTransactionState(string $connection)
