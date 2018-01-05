@@ -24,6 +24,7 @@ use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -31,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use Elasticsearch\PostTrait, SoftDeletes;
+    use Elasticsearch\PostTrait, SoftDeletes, Validatable;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -263,12 +264,16 @@ class Post extends Model
 
     public function edit($newBodyRaw, $user, $skipRestrictionCheck = false)
     {
+        $this->validationErrors()->reset();
+
         if ($newBodyRaw === $this->bodyRaw) {
             return true;
         }
 
         if (!$skipRestrictionCheck) {
             if ($this->isBeatmapsetPost()) {
+                $this->validationErrors()->add('base', '.beatmapset_post_no_edit');
+
                 return false;
             }
         }
@@ -283,7 +288,11 @@ class Post extends Model
 
     public function delete()
     {
+        $this->validationErrors()->reset();
+
         if ($this->isBeatmapsetPost()) {
+            $this->validationErrors()->add('base', '.beatmapset_post_no_delete');
+
             return false;
         }
 
@@ -297,6 +306,11 @@ class Post extends Model
                 $this->getKey() === $this->topic->topic_first_post_id &&
                 $this->topic->beatmapset()->exists();
         }
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.post';
     }
 
     public function getBodyHTMLAttribute()

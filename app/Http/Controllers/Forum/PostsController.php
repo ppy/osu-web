@@ -79,7 +79,7 @@ class PostsController extends Controller
 
             return js_view('forum.topics.delete', compact('post'));
         } else {
-            abort(422);
+            return error_popup($topic->validationErrors()->toSentence());
         }
     }
 
@@ -150,7 +150,7 @@ class PostsController extends Controller
 
             return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         } else {
-            abort(422);
+            return error_popup($post->validationErrors()->toSentence());
         }
     }
 

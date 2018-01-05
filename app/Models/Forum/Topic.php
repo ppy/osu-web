@@ -25,6 +25,7 @@ use App\Libraries\BBCodeForDB;
 use App\Models\Beatmapset;
 use App\Models\Log;
 use App\Models\User;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,7 +33,7 @@ use Illuminate\Database\QueryException;
 
 class Topic extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Validatable;
 
     const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
@@ -128,9 +129,13 @@ class Topic extends Model
 
     public function removePost($post, $user = null)
     {
+        $this->validationErrors()->reset();
+
         try {
             return DB::transaction(function () use ($post, $user) {
                 if ($post->delete() === false) {
+                    $this->validationErrors()->addTranslated('post', $post->validationErrors()->toSentence());
+
                     throw new ModelNotSavedException('failed deleting post');
                 }
 
@@ -229,6 +234,11 @@ class Topic extends Model
         } else {
             return static::TYPES[$typeIntOrStr] ?? null;
         }
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.topic';
     }
 
     public function beatmapset()

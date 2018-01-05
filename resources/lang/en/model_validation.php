@@ -47,6 +47,11 @@ return [
             'invalid' => 'Invalid option specified.',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => 'No deleting post used for beatmap metadata.',
+            'beatmapset_post_no_edit' => 'No editing post used for beatmap metadata.',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => 'Duplicated option is not allowed.',
             'invalid_max_options' => 'Option per user may not exceed the number of available options.',
