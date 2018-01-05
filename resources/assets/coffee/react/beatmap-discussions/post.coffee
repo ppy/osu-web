@@ -296,9 +296,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
     clipboard.writeText targetEl.href
 
     # show feedback
+    currentLabel = targetEl.innerHTML
     targetEl.innerHTML = osu.trans('common.buttons.permalink_copied')
     Timeout.set 2000, ->
-      targetEl.innerHTML = osu.trans('common.buttons.permalink')
+      targetEl.innerHTML = currentLabel
 
 
   setMessage: (e) =>
