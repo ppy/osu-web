@@ -32,6 +32,8 @@ class AfterCommitTest extends TestCase
 {
     protected $connectionsToTransact = [];
 
+    private $exceptionMessage = 'it should not run afterCommit';
+
     public function setUp()
     {
         parent::setUp();
@@ -139,14 +141,17 @@ class AfterCommitTest extends TestCase
 
     public function testExceptionThrown()
     {
-        $this->expectException(Exception::class);
         $model = $this->afterCommittable();
 
-        DB::transaction(function () use ($model) {
-            $model->save();
+        try {
+            DB::transaction(function () use ($model) {
+                $model->save();
 
-            throw new Exception('it should not commit');
-        });
+                throw new Exception($this->exceptionMessage);
+            });
+        } catch (Exception $e) {
+            $this->assertSame($this->exceptionMessage, $e->getMessage());
+        }
 
         $this->assertSame(0, count($this->getPendingCommits('mysql')));
         $this->assertSame(0, $model->afterCommitCount);
@@ -154,18 +159,22 @@ class AfterCommitTest extends TestCase
 
     public function testExceptionThrownAfterAnotherTransaction()
     {
-        $this->expectException(Exception::class);
         $model = $this->afterCommittable();
 
-        DB::transaction(function () use ($model) {
-            $model->save();
-
+        try {
             DB::transaction(function () use ($model) {
                 $model->save();
-            });
 
-            throw new Exception('it should not commit');
-        });
+                DB::transaction(function () use ($model) {
+                    $model->save();
+                });
+
+                throw new Exception($this->exceptionMessage);
+            });
+        } catch (Exception $e) {
+            $this->assertSame($this->exceptionMessage, $e->getMessage());
+        }
+
 
         $this->assertSame(0, count($this->getPendingCommits('mysql')));
         $this->assertSame(0, $model->afterCommitCount);
