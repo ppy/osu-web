@@ -21,5 +21,5 @@
 return [
     'instrument_declined' => 'La méthode de payement sélectionnée a été annulée par Paypal.',
     'invalid_resource_id' => "Aucune information de payement n'a été trouvé.",
-    'unknown' => "Le payement a été rejeté, mais nous ne savons pas pourquoi.",
+    'unknown' => 'Le payement a été rejeté, mais nous ne savons pas pourquoi.',
 ];

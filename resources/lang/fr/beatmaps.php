@@ -121,7 +121,7 @@ return [
         'confirm' => 'Êtes-vous sûr ? Cela va utiliser un de vos :n hype restants et ne peut pas être annulé.',
         'explanation' => 'Hype cette beatmap pour la rendre plus visible pour la nomination et son classement !',
         'explanation_guest' => 'Connectes-toi et hype cette beatmap pour la nomination et son classement !',
-        'new_time' => "Vous aurez un noueau hype le :new_time.",
+        'new_time' => 'Vous aurez un nouveau hype le :new_time.',
         'remaining' => 'Il vous reste :remaining hype.',
         'section_title' => 'Hype Train',
         'title' => 'Hype',

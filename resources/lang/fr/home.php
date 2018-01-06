@@ -81,8 +81,8 @@ return [
     ],
 
     'download' => [
-        'tagline' => "Commençons<br>avec vous !",
-        'action' => 'Tléchargez osu!',
+        'tagline' => 'Commençons<br>avec vous !',
+        'action' => 'Téléchargez osu!',
         'os' => [
             'windows' => 'pour Windows',
             'macos' => 'pour macOS',
@@ -146,6 +146,6 @@ return [
             'part-2' => "Savez-vous aussi que supporter osu! vous donnera toute une liste de fonctionnalités utiles, comme le <strong>téléchargement en-jeu</strong> qui s'active tout seul lorsque que vous êtes spectateur de quelqu'un ou que vous jouez en multijoueur ?",
         ],
         'find-out-more' => 'Cliquez ici pour en savoir plus !',
-        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement à déjà commencé ;)",
+        'download-starting' => 'Oh, et ne vous inquiétez pas - votre téléchargement à déjà commencé ;)',
     ],
 ];
