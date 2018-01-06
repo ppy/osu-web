@@ -89,10 +89,6 @@ return [
         'post_edit' => [
             'cancel' => 'Annuler',
             'post' => 'Sauvegarder',
-            'zoom' => [
-                'start' => 'Plein écran',
-                'end' => 'Sortir du plein écran',
-            ],
         ],
         'post_reply' => 'Poster',
         'reply_box_placeholder' => 'Tapez ici pour répondre',
@@ -127,7 +123,9 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
+            'reply' => 'Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
+            'search' => 'Chercher',
         ],
 
         'create' => [
@@ -151,6 +149,10 @@ return [
                 'vote_change' => 'Autoriser le changement de vote.',
                 'vote_change_info' => "Si c'est activé, vous permettez aux utilisateurs de changer leur vote.",
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Éditer le titre',
         ],
 
         'index' => [
@@ -215,8 +217,10 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Désépingler le sujet',
             'pin-1' => 'Épingler le sujet',
+            'pin-2' => "Épingler le sujet et le marquer en tant qu'annonce",
             'state-0' => 'Le sujet a été désépinglé',
             'state-1' => 'Le sujet a été épinglé',
+            'state-2' => "Le sujet a été épinglé et marqué en tant qu'annonce",
         ],
 
         'show' => [

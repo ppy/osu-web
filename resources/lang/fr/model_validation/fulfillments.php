@@ -19,10 +19,12 @@
  */
 
 return [
-    'months' => 'mois',
-
-    'user_search' => [
-        'searching' => 'recherche en cours...',
-        'not_found' => "Cet utilisateur n'existe pas",
+    'username_change' => [
+        'only_one' => "Seulement 1 changement de nom d'utilisateur par commande autorisé.",
+        'insufficient_paid' => "Le changement de nom d'utilisateur dépasse le montant payé (:expected > :actual)",
+        'reverting_username_mismatch' => "Le nom d'utilisateur actuel (:current) n'est pas le même que le changement à annuler (:username)",
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'La donation est inférieure à ce qui est requis pour un tag supporter (:actual > :expected)',
     ],
 ];

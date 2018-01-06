@@ -34,12 +34,14 @@ return [
     'discussions' => [
         'allow_kudosu' => 'accorder le kudosu',
         'delete' => 'supprimer',
-        'deleted' => 'supprimé par :editor :delete_time',
+        'deleted' => 'supprimé par :editor :delete_time.',
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
-        'edited' => 'Dernière modification par :editor :update_time',
+        'edited' => 'Dernière modification par :editor :update_time.',
+        'kudosu_denied' => 'Interdit de recevoir des kudosu.',
         'message_placeholder' => 'Écrivez ici pour poster',
         'message_type_select' => 'Sélectionnez un type de commentaire',
+        'reply_notice' => 'Appuyez sur entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
         'require-login' => 'Veuillez vous connecter pour poster ou répondre',
         'resolved' => 'Résolu',
@@ -62,12 +64,15 @@ return [
         ],
 
         'message_type' => [
+            'hype' => 'Hype!',
+            'mapper_note' => 'Note',
             'praise' => 'Hommage',
             'problem' => 'Problème',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
+            'events' => 'Histoire',
             'general' => 'Général',
             'general_all' => 'Général (toutes difficultées)',
             'timeline' => 'Chronologie',
@@ -80,16 +85,46 @@ return [
         ],
 
         'show' => [
-            'title' => 'Discussion de la beatmap',
+            'title' => ':title mappée par :mappe',
+        ],
+
+        'sort' => [
+            '_' => 'Trier par:',
+            'created_at' => 'date de création',
+            'timeline' => 'timeline',
+            'updated_at' => 'last update',
         ],
 
         'stats' => [
             'deleted' => 'Supprimé',
+            'mapper_notes' => 'Notes',
             'mine' => 'Moi',
             'pending' => 'En attente',
             'praises' => 'Hommages',
             'resolved' => 'Résolu',
+            'total' => 'Tout',
         ],
+
+        'status-messages' => [
+            'approved' => 'Cette beatmap a été approuvée le :date!',
+            'graveyard' => "Cette beatmap n'a pas été mise à jour depuis le :date et semble être abamdonnée par son créateur...",
+            'loved' => 'Cette beatmap a été ajoutée aux aimées le :date!',
+            'ranked' => 'Cette beatmap a été classée le :date!',
+            'wip' => 'Note: Cette beatmap est amrquée en tant que work-in-progress par le créateur.',
+        ],
+
+    ],
+
+    'hype' => [
+        'button' => 'Hype la Beatmap !',
+        'button_done' => 'Déjà Hypée !',
+        'confirm' => 'Êtes-vous sûr ? Cela va utiliser un de vos :n hype restants et ne peut pas être annulé.',
+        'explanation' => 'Hype cette beatmap pour la rendre plus visible pour la nomination et son classement !',
+        'explanation_guest' => 'Connectes-toi et hype cette beatmap pour la nomination et son classement !',
+        'new_time' => "Vous aurez un noueau hype le :new_time.",
+        'remaining' => 'Il vous reste :remaining hype.',
+        'section_title' => 'Hype Train',
+        'title' => 'Hype',
     ],
 
     'nominations' => [
@@ -99,11 +134,14 @@ return [
         'disqualify' => 'Disqualifier',
         'incorrect_state' => "Erreur lors de l'action, merci de réesayer.",
         'nominate' => 'Nominer',
+        'nominated-by' => 'nominée par :users',
         'nominate-confirm' => 'Nominer cette beatmap?',
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified-soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
+        'reset-confirm' => 'Êtes-vous sûr ? Poster un nouveau problème réinitialisera la nomination.',
         'required-text' => 'Nominations: :current/:required',
         'title' => 'Statut de Nomination',
+        'unresolved_issues' => "Il reste encore des problèmes non résolus qui doivent être d'abord corrigés.",
     ],
 
     'listing' => [
@@ -138,6 +176,7 @@ return [
         'any' => 'Tous',
         'ranked-approved' => 'Classifiée & approuvée',
         'approved' => 'Approuvée',
+        'qualified' => 'Qualifée',
         'loved' => 'Loved',
         'faves' => 'Favoris',
         'pending' => 'En attente',

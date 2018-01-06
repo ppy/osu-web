@@ -53,6 +53,7 @@ return [
             'label' => [
                 'forum' => 'Rechercher dans les forums',
                 'forum_children' => 'inclure les sous-forums',
+                'topic_id' => 'sujet #',
                 'username' => 'auteur',
             ],
         ],
@@ -68,6 +69,7 @@ return [
         'user' => [
             'more' => ':count résultats de la recherche de joueur',
             'more_simple' => 'Voir plus de résultats de la recherche de joueurs',
+            'more_hidden' => "La recherche de joueurs est limité à :max joueurs. Essayez d'affiner votre recherche",
             'title' => 'Joueurs',
         ],
 
@@ -78,6 +80,36 @@ return [
         ],
     ],
 
+    'download' => [
+        'tagline' => "Commençons<br>avec vous !",
+        'action' => 'Tléchargez osu!',
+        'os' => [
+            'windows' => 'pour Windows',
+            'macos' => 'pour macOS',
+            'linux' => 'pour Linux',
+        ],
+        'mirror' => 'mirroirs',
+        'macos-fallback' => 'utilisateurs de macOS',
+        'steps' => [
+            'register' => [
+                'title' => 'se faire un compte',
+                'description' => 'cuivez les instructions lorsque vous avez démarré le jeu pour se connecter ou faire se faire un compte',
+            ],
+            'download' => [
+                'title' => 'télécharger le jeu',
+                'description' => "cliquez sur le bouton ci-dessus pour télécharger l'installateur, puis lancez-le !",
+            ],
+            'beatmaps' => [
+                'title' => 'obtenir des beatmaps',
+                'description' => [
+                    '_' => ':browse sur la vaste bibliothèque de betmaps créées par les utilisateurs et commencez à jouer !',
+                    'browse' => 'naviguez',
+                ],
+            ],
+        ],
+        'video-guide' => 'guide vidéo',
+    ],
+
     'user' => [
         'title' => 'nouvelles',
         'news' => [
@@ -86,7 +118,7 @@ return [
         ],
         'header' => [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
-            'messages' => 'Vous avez :count nouveau message|Vous avez :count nouveaux messages',
+            'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'friends' => 'Amis en ligne',
                 'games' => 'Jeux',
@@ -104,5 +136,16 @@ return [
             'support' => 'Supporter osu!',
             'store' => 'osu!store',
         ],
+    ],
+
+    'support-osu' => [
+        'title' => 'Wow !',
+        'subtitle' => 'Vous semblez avoir du bon temps ! :D',
+        'body' => [
+            'part-1' => "Savez-vous qu'osu! fonctionne sans publicités, et repose sur les joueurs pour les coûts de fonctionnement ?",
+            'part-2' => "Savez-vous aussi que supporter osu! vous donnera toute une liste de fonctionnalités utiles, comme le <strong>téléchargement en-jeu</strong> qui s'active tout seul lorsque que vous êtes spectateur de quelqu'un ou que vous jouez en multijoueur ?",
+        ],
+        'find-out-more' => 'Cliquez ici pour en savoir plus !',
+        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement à déjà commencé ;)",
     ],
 ];

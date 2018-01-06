@@ -27,9 +27,39 @@ return [
         ],
     ],
 
+    'events' => [
+        'empty' => "Rien n'est arrivé... pour l'instant.",
+    ],
+
+    'index' => [
+        'title' => 'Discussions de Beatmap',
+        'form' => [
+            'deleted' => 'Inclure les discussions supprimées',
+
+            'user' => [
+                'label' => 'Utilisateur',
+                'overview' => "Vue d'ensemble de l'activité",
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Date du Post',
+        'deleted_at' => 'ate de Suppression',
+        'message_type' => 'Type',
+        'permalink' => 'Lien permanent',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'Aucun des posts ne parle de mon problème',
         'notice' => 'Il y a des posts :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Se connecter pour Répondre',
+            'user' => 'Répondre',
+        ],
     ],
 
     'system' => [

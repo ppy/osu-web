@@ -19,10 +19,11 @@
  */
 
 return [
-    'months' => 'mois',
+    'index' => [
+        'title' => 'Posts des Discussions de Beatmap',
+    ],
 
-    'user_search' => [
-        'searching' => 'recherche en cours...',
-        'not_found' => "Cet utilisateur n'existe pas",
+    'item' => [
+        'content' => 'Contenu',
     ],
 ];

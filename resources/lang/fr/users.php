@@ -21,6 +21,28 @@
 return [
     'deleted' => '[utilisateur supprimé]',
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Discussions récemment démarrées',
+        ],
+
+        'events' => [
+            'title_recent' => 'Évènements récents',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Posts récents',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Les mieux notés par (3 derniers mois)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Les mieux notés (3 derniers mois)',
+        ],
+    ],
+
     'login' => [
         '_' => 'Se connecter',
         'locked_ip' => 'votre adresse IP est bloquée. Veuillez attendre quelques minutes.',
@@ -45,6 +67,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'Cliquez pour vous connecter',
+        'login_text' => 'connexion',
         'username' => 'Invité',
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
@@ -101,8 +124,14 @@ return [
                 'favourite' => [
                     'title' => 'Beatmaps favorites (:count)',
                 ],
+                'graveyard' => [
+                    'title' => 'Beatmaps au Cimetière (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps classées et approuvées (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Beatmaps en Attente (:count)',
                 ],
             ],
             'historical' => [
@@ -148,6 +177,11 @@ return [
 
                         'vote' => [
                             'give' => 'Réception de :amount kudosu suite aux votes reçus dans le post :post',
+                            'reset' => ':amount perdu en perdant des votes du post de modding :post',
+                        ],
+
+                        'recalculate' => [
+                            'give' => 'Réception de :amount grâce au recalcul dans le post de modding :post',
                             'reset' => 'Perte de :amount kudosu suite aux votes perdus dans le post :post',
                         ],
                     ],
@@ -207,6 +241,9 @@ return [
     'status' => [
         'online' => 'En ligne',
         'offline' => 'Hors-ligne',
+    ],
+    'store' => [
+        'saved' => 'Utilisateur créé',
     ],
     'verify' => [
         'title' => 'Vérification de compte',

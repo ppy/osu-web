@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => 'Ajouter ce beatmapset aux favoris',
             'unfavourite' => 'Retirer ce beatmapset des favoris',
+            'favourited_count' => '+ 1 autre !|+ :count autres!',
         ],
         'stats' => [
             'cs' => 'Taille des Cercles',
@@ -80,6 +81,7 @@ return [
             'country' => 'Classement national',
             'friend' => 'Classement des amis',
             'global' => 'Classement global',
+            'miss_count' => ':count manqués',
             'supporter-link' => 'Cliquez <a href=":link">ici</a> pour connaître toutes les supers fonctions obtenues avec !',
             'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité !',
             'title' => 'Tableaux des scores',
@@ -103,6 +105,8 @@ return [
             ],
             'stats' => [
                 'accuracy' => 'Précision',
+                'combo' => 'Combo',
+                'misses' => 'Manqués',
                 'score' => 'Score',
             ],
         ],

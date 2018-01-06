@@ -19,10 +19,12 @@
  */
 
 return [
-    'months' => 'mois',
-
-    'user_search' => [
-        'searching' => 'recherche en cours...',
-        'not_found' => "Cet utilisateur n'existe pas",
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => "Merci, osu! t'<3",
+        ],
+        'supporter_gift' => [
+            'subject' => 'Vous avez un osu! supporter tag !',
+        ],
     ],
 ];
