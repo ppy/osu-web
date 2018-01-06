@@ -22,24 +22,24 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => "Vous aimez osu!?<br/>
-                                Supportez le développement d'osu! :D",
+            'big_description' => 'Vous aimez osu! ?<br/>
+                                Supportez son développement :D',
             'small_description' => '',
             'support_button' => 'Je veux supporter osu!',
         ],
 
-        'dev_quote' => "osu! est un free-to-play complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maintenir le système et la communauté, parvenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consomme une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
-                    <br/><br/>osu! est à largement développé par moi-même, pour cela vous me connaisez sûrement avec le surnom \"peppy\".
-                    J'ai du quitté mon travail à temps plein pour garder le rythme avec osu!,
+        'dev_quote' => "osu! est un free-to-play complet, mais le maintenir n'est pas gratuit. Entre le prix des serveurs et de la grande bande passante internationale, le temps passé à maintenir le système et la communauté, obtenir des prix pour les compétitions, répondre aux questions du support et généralement garder les gens heureux, osu! consomme une certaine somme d'argent! Oh, et n'oubliez pas le fait que nous le faisons sans pub ou partenariat avec des toolbars ou autres!
+                    <br/><br/>osu! est largement développé par moi-même, et vous me connaissez sûrement sous le pseudo \"peppy\".
+                    J'ai du quitter mon travail à temps plein pour garder le rythme avec osu!,
                     et à certains moments je lutte pour garder mes standards.
-                    J'aurais aimé d'offrir mes remerciments personnels pour ceux qui ont supporté osu! jusque là,
-                    et aussi ceux qui continueront à supporter ce super jeu et la communauté dans le futur :).",
+                    J'aimerais offrir mes remerciements personnels à ceux qui ont supporté osu! jusque là,
+                    et aussi ceux qui continueront à supporter ce super jeu et sa communauté dans le futur :).",
 
         'why_support' => [
-            'title' => 'Pourquoi je supporterais osu!?',
+            'title' => 'Pourquoi je supporterais osu! ?',
             'blocks' => [
-                'dev' => 'Développé et maitenu par une seule personne en Australie',
-                'time' => "Prend tellement de temps pour le maitenir que ce n'est plus possible d'appeler ça un \"hobby\".",
+                'dev' => 'Développé et maintenu par une seule personne en Australie',
+                'time' => "Prend tellement de temps pour le maintenir que ce n'est plus possible d'appeler ça un \"hobby\".",
                 'ads' => "Aucune pub, nulle part. <br/><br/>
                         Pas comme 99,95% des sites, nous ne profitons pas de votre clic pour l'argent.",
                 'goodies' => 'Vous obtiendrez des goodies !',
@@ -47,25 +47,25 @@ return [
         ],
 
         'perks' => [
-            'title' => "Ah? J'aurais quoi?!",
+            'title' => "Ah ? J'aurais quoi ?!",
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'accès à la recherche et au téléchargement de beatmap sans quitter le jeu.',
+                'description' => 'accès à la recherche et au téléchargement de beatmaps sans quitter le jeu.',
             ],
 
             'auto_downloads' => [
                 'title' => 'Téléchargements automatiques',
-                'description' => 'Téléchargements automatiques en multijoueur, lorsque vous observez ou dans le chat!',
+                'description' => 'Téléchargements automatiques en multijoueur, lorsque vous observez ou dans le chat !',
             ],
 
             'upload_more' => [
                 'title' => "Plus de slots d'upload",
-                'description' => "Slots de beatmaps additionnels jusqu'à 10.",
+                'description' => "Slots de beatmaps supplémentaires, jusqu'à 10.",
             ],
 
             'early_access' => [
                 'title' => 'Accès anticipé',
-                'description' => 'Accès aux versions anticipées, vous obtiendrez les nouvelles fonctions avant tout le monde!',
+                'description' => 'Accès aux versions anticipées, vous obtiendrez les nouvelles fonctionnalitéss avant tout le monde !',
             ],
 
             'customisation' => [
@@ -75,7 +75,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtres de beatmaps',
-                'description' => 'Filtrez les recherches de beatmaps par les jouées et les non-jouées et les notes obtenues (si une).',
+                'description' => "Filtrez les recherches de beatmaps par jouées, non-jouées et notes obtenues (s'il y en a).",
             ],
 
             'yellow_fellow' => [
