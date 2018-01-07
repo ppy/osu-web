@@ -24,7 +24,14 @@ class BeatmapDifficulty extends Model
 {
     protected $table = 'osu_beatmap_difficulty';
     protected $primaryKey = null;
+    protected $guarded = [];
 
     public $dates = ['last_updated'];
+    public $incrementing = false;
     public $timestamps = false;
+
+    public function beatmap()
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+    }
 }

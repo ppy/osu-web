@@ -30,6 +30,7 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Es;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -40,7 +41,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -84,6 +85,25 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
+    ];
+
+    const ES_MAPPINGS = [
+        'is_old' => ['type' => 'boolean'],
+        'user_lastvisit' => ['type' => 'date'],
+        'username' => [
+            'type' => 'string',
+            'analyzer' => 'username_lower',
+            'fields' => [
+                // for exact match
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                // try match sloppy search guesses
+                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                // for people who like to use too many dashes and brackets in their username
+                '_whitespace' => ['type' => 'string', 'analyzer' => 'whitespace'],
+            ],
+        ],
+        'user_warnings' => ['type' => 'short'],
+        'user_type' => ['type' => 'short'],
     ];
 
     private $memoized = [];
@@ -296,35 +316,32 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['query'] = presence($rawParams['query'] ?? null);
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
+        $size = $params['limit'];
+        $from = ($params['page'] - 1) * $size;
 
-        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
-            ->where('username', 'NOT LIKE', '%\_old')
-            ->default();
+        $results = static::searchUsername($params['query'], $from, $size);
 
-        $overLimit = (clone $query)->limit(1)->offset($max)->exists();
-        $total = $overLimit ? $max : $query->count();
-        $end = $params['page'] * $params['limit'];
-        // Actual limit for query.
-        // Don't change the params because it's used for pagination.
-        $limit = $params['limit'];
-        if ($end > $max) {
-            // Ensure $max is honored.
-            $limit -= ($end - $max);
-            // Avoid negative limit.
-            $limit = max(0, $limit);
-        }
-        $offset = $end - $limit;
+        $total = $results['hits']['total'];
+        $data = es_records($results, get_called_class());
 
         return [
             'total' => $total,
-            'over_limit' => $overLimit,
-            'data' => $query
-                ->orderBy('user_id')
-                ->limit($limit)
-                ->offset($offset)
-                ->get(),
+            'over_limit' => $total > $max,
+            'data' => $data,
             'params' => $params,
         ];
+    }
+
+    public static function searchUsername(string $username, $from, $size)
+    {
+        return Es::search([
+            'index' => static::esIndexName(),
+            'from' => $from,
+            'size' => $size,
+            'body' => [
+                'query' => static::usernameSearchQuery($username ?? ''),
+            ],
+        ]);
     }
 
     public function validateUsernameChangeTo($username)
@@ -644,6 +661,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isBanned()
     {
         return $this->user_type === 1;
+    }
+
+    public function isOld()
+    {
+        return preg_match('/_old(_\d+)?$/', $this->username) === 1;
     }
 
     public function isRestricted()

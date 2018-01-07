@@ -48,6 +48,68 @@ class BeatmapDiscussion extends Model
     const RESOLVABLE_TYPES = [1, 2];
     const KUDOSUABLE_TYPES = [1, 2];
 
+    public static function search($rawParams = [])
+    {
+        $params = [
+            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
+            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+        ];
+
+        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+
+        if (present($rawParams['user'] ?? null)) {
+            $params['user'] = $rawParams['user'];
+            $user = User::lookup($params['user']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->where('user_id', '=', $user->getKey());
+            }
+        } else {
+            $params['user'] = null;
+        }
+
+        if (isset($rawParams['sort'])) {
+            $sort = explode('-', strtolower($rawParams['sort']));
+
+            if (in_array($sort[0] ?? null, ['id'], true)) {
+                $sortField = $sort[0];
+            }
+
+            if (in_array($sort[1] ?? null, ['asc', 'desc'], true)) {
+                $sortOrder = $sort[1];
+            }
+        }
+
+        $sortField ?? ($sortField = 'id');
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $query->orderBy($sortField, $sortOrder);
+
+        if (isset($rawParams['message_types'])) {
+            $params['message_types'] = get_arr($rawParams['message_types'], 'get_string');
+
+            $query->ofType($params['message_types']);
+        } else {
+            $params['message_types'] = array_keys(static::MESSAGE_TYPES);
+        }
+
+        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+
+        if (!$params['with_deleted']) {
+            $query->withoutDeleted();
+        }
+
+        // TODO: readd this when content becomes public
+        // $query->whereHas('user', function ($userQuery) {
+        //     $userQuery->default();
+        // });
+
+        return ['query' => $query, 'params' => $params];
+    }
+
     public function beatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
@@ -61,6 +123,18 @@ class BeatmapDiscussion extends Model
     public function beatmapDiscussionPosts()
     {
         return $this->hasMany(BeatmapDiscussionPost::class);
+    }
+
+    public function startingPost()
+    {
+        return $this->hasOne(BeatmapDiscussionPost::class)->whereNotExists(function ($query) {
+            $table = (new BeatmapDiscussionPost)->getTable();
+
+            $query->selectRaw(1)
+                ->from(DB::raw("{$table} d"))
+                ->where('beatmap_discussion_id', $this->beatmap_discussion_id)
+                ->whereRaw("d.id < {$table}.id");
+        });
     }
 
     public function beatmapDiscussionVotes()
@@ -235,9 +309,17 @@ class BeatmapDiscussion extends Model
 
     public function hasValidTimestamp()
     {
+        if ($this->timestamp === null) {
+            return true;
+        }
+
+        // skip validation if not changed
+        if (!$this->isDirty('timestamp')) {
+            return true;
+        }
+
         return
-            ($this->timestamp === null) ||
-            ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length) * 1000);
+            $this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length) * 1000;
     }
 
     public function votesSummary()
@@ -255,11 +337,6 @@ class BeatmapDiscussion extends Model
         return $votes;
     }
 
-    /*
-     * Called before saving. The callback definition is located in
-     * App\Providers\AppServiceProvider. Don't ask me why it's there;
-     * ask Laravel.
-     */
     public function isValid()
     {
         return $this->hasValidBeatmap() &&
@@ -355,6 +432,18 @@ class BeatmapDiscussion extends Model
         });
     }
 
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        $ret = parent::save($options);
+        $this->beatmapset->refreshCache();
+
+        return $ret;
+    }
+
     public function softDelete($deletedBy)
     {
         DB::transaction(function () use ($deletedBy) {
@@ -372,7 +461,11 @@ class BeatmapDiscussion extends Model
     public function scopeOfType($query, $types)
     {
         foreach ((array) $types as $type) {
-            $intTypes[] = static::MESSAGE_TYPES[$type];
+            $intType = static::MESSAGE_TYPES[$type] ?? null;
+
+            if ($intType !== null) {
+                $intTypes[] = $intType;
+            }
         }
 
         $query->whereIn('message_type', $intTypes);

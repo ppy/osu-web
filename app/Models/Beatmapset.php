@@ -134,6 +134,7 @@ class Beatmapset extends Model
         'filesize' => ['type' => 'long'],
         'filesize_novideo' => ['type' => 'long'],
         'genre_id' => ['type' => 'long'],
+        'hype' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
         'offset' => ['type' => 'long'],
@@ -169,7 +170,7 @@ class Beatmapset extends Model
 
     public function setApprovedDateAttribute($value)
     {
-        $this->attributes['approved_date'] = parse_time_to_carbon($value)->addHours(8);
+        $this->attributes['approved_date'] = $value !== null ? parse_time_to_carbon($value)->addHours(8) : null;
     }
 
     public function getSubmitDateAttribute($value)
@@ -301,7 +302,10 @@ class Beatmapset extends Model
 
     public function scopeRankedOrApproved($query)
     {
-        return $query->whereIn('approved', [self::STATES['ranked'], self::STATES['approved']]);
+        return $query->whereIn(
+            'approved',
+            [self::STATES['ranked'], self::STATES['approved'], self::STATES['qualified']]
+        );
     }
 
     public function scopeActive($query)
@@ -375,6 +379,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
+            'hype' => 'hype',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
@@ -414,11 +419,7 @@ class Beatmapset extends Model
             'type' => 'beatmaps',
             'size' => $params['limit'],
             'from' => $params['offset'],
-            'body' => [
-                'sort' => [
-                    $params['sort_field'] => ['order' => $params['sort_order']],
-                ],
-            ],
+            'body' => ['sort' => static::searchSortParamsES($params)],
             'fields' => 'id',
         ];
 
@@ -555,56 +556,11 @@ class Beatmapset extends Model
         ];
     }
 
-    public static function searchDB(array $params = [])
-    {
-        $query = static::where('title', 'like', '%'.$params['query'].'%');
-
-        if ($params['mode'] !== null) {
-            $query->whereHas('beatmaps', function ($query) use ($params) {
-                $query->where('playmode', '=', $params['mode']);
-            });
-        }
-
-        if ($params['genre'] !== null) {
-            $query->where('genre_id', '=', $params['genre']);
-        }
-
-        if ($params['language'] !== null) {
-            $query->where('language_id', '=', $params['language']);
-        }
-
-        if (!empty($params['extra'])) {
-            foreach ($params['extra'] as $val) {
-                switch ($val) {
-                    case 'video':
-                        $query->where('video', '=', 1);
-                        break;
-                    case 'storyboard':
-                        $query->where('storyboard', '=', 1);
-                        break;
-                }
-            }
-        }
-
-        $ids = $query->take($params['limit'])->skip($params['offset'])
-            ->orderBy($params['sort_field'], $params['sort_order'])
-            ->get()->pluck('beatmapset_id')->toArray();
-
-        $total = $query->count();
-
-        return compact('ids', 'total');
-    }
-
     public static function search(array $params = [])
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-
-        if (empty(config('elasticsearch.hosts'))) {
-            $result = static::searchDB($params);
-        } else {
-            $result = static::searchES($params);
-        }
+        $result = static::searchES($params);
 
         $data = count($result['ids']) > 0
             ? static
@@ -622,6 +578,38 @@ class Beatmapset extends Model
         return [
             'data' => $data,
             'total' => $result['total'],
+        ];
+    }
+
+    /**
+     * Generate sort parameters for the elasticsearch query.
+     */
+    public static function searchSortParamsES(array $params)
+    {
+        static $fields = [
+            'artist' => 'artist.raw',
+            'title' => 'title.raw',
+        ];
+
+        // additional options
+        static $orderOptions = [
+            'difficultyrating' => [
+                'asc' => ['mode' => 'min'],
+                'desc' => ['mode' => 'max'],
+            ],
+        ];
+
+        $sortField = $params['sort_field'];
+        $sortOrder = $params['sort_order'];
+
+        $field = $fields[$sortField] ?? $sortField;
+        $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
+
+        return [
+            $field => array_merge(
+                ['order' => $sortOrder],
+                $options
+            ),
         ];
     }
 
@@ -1252,5 +1240,20 @@ class Beatmapset extends Model
         }
 
         return Forum\Post::find($topic->topic_first_post_id);
+    }
+
+    public function freshHype()
+    {
+        return $this
+            ->beatmapDiscussions()
+            ->withoutDeleted()
+            ->ofType('hype')
+            ->count();
+    }
+
+    public function refreshCache()
+    {
+        $this->update(['hype' => $this->freshHype()]);
+        $this->esIndexDocument();
     }
 }

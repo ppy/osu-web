@@ -210,7 +210,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     tbn = 'beatmap-discussion-timestamp'
 
     div className: tbn,
-      div(className: "#{tbn}__point") if @props.discussion.timestamp?
+      div(className: "#{tbn}__point") if @props.discussion.timestamp? && @props.isTimelineVisible
       div className: "#{tbn}__icons-container",
         div className: "#{tbn}__icons",
           div className: "#{tbn}__icon",

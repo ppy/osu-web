@@ -38,4 +38,13 @@ return [
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
     ],
+
+    'index' => [
+        'title' => 'Beatmapset Events',
+    ],
+
+    'item' => [
+        'content' => 'Content',
+        'type' => 'Type',
+    ],
 ];

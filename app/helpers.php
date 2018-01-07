@@ -79,6 +79,43 @@ function es_query_escape_with_caveats($query)
     );
 }
 
+/**
+ * Takes an Elasticsearch resultset and retrieves the matching models from the database,
+ *  returning them in the same order as the Elasticsearch results.
+ *
+ *
+ * @param $results Elasticsesarch results.
+ * @param $class Class name of the model.
+ * @return array Records matching the Elasticsearch results.
+ */
+function es_records($results, $class)
+{
+    $keyName = (new $class())->getKeyName();
+
+    $hits = $results['hits']['hits'];
+    $ids = [];
+    foreach ($hits as $hit) {
+        $ids[] = $hit['_id'];
+    }
+
+    $query = $class::whereIn($keyName, $ids);
+    $keyed = [];
+    foreach ($query->get() as $result) {
+        // save for lookup.
+        $keyed[$result->user_id] = $result;
+    }
+
+    // match records with elasticsearch results.
+    $records = [];
+    foreach ($ids as $id) {
+        if (isset($keyed[$id])) {
+            $records[] = $keyed[$id];
+        }
+    }
+
+    return $records;
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -335,6 +372,11 @@ function i18n_view($view)
     }
 }
 
+function is_api_request()
+{
+    return Request::is('api/*');
+}
+
 function is_sql_unique_exception($ex)
 {
     return starts_with(
@@ -381,8 +423,13 @@ function current_action()
     return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
-function link_to_user($user_id, $user_name, $user_color)
+function link_to_user($user_id, $user_name = null, $user_color = null)
 {
+    if ($user_id instanceof App\Models\User) {
+        $user_name = $user_id->username;
+        $user_color = $user_id->user_colour;
+        $user_id = $user_id->getKey();
+    }
     $user_name = e($user_name);
     $style = user_color_style($user_color, 'color');
 
@@ -526,7 +573,7 @@ function footer_landing_links()
             'home' => route('home'),
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
-            'download' => osu_url('home.download'),
+            'download' => route('download'),
             'wiki' => wiki_url('Welcome'),
         ],
         'help' => [
@@ -735,9 +782,9 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
+    } elseif ($string === 1 || $string === '1' || $string === 'on' || $string === 'true') {
         return true;
-    } elseif ($string === '0' || $string === 'false') {
+    } elseif ($string === 0 || $string === '0' || $string === 'false') {
         return false;
     }
 }

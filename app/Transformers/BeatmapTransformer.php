@@ -56,6 +56,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'passcount' => $beatmap->passcount,
             'count_circles' => $beatmap->countNormal,
             'count_sliders' => $beatmap->countSlider,
+            'count_spinners' => $beatmap->countSpinner,
+            'count_total' => $beatmap->countTotal,
             'last_updated' => json_time($beatmap->last_update),
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),

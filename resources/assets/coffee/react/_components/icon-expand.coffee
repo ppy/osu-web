@@ -25,9 +25,9 @@ elem = ({position, icon}) ->
     className: "icon-stack__icon icon-stack__icon--#{position}"
     el Icon, name: icon, modifiers: ['fw']
 
-@IconExpand = ({expand = true}) ->
+@IconExpand = ({expand = true, parentClass = ''}) ->
   span
-    className: 'icon-stack'
+    className: "icon-stack #{parentClass}"
     span className: 'icon-stack__base',
       el Icon, name: 'angle-down', modifiers: ['fw']
     if expand

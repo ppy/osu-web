@@ -19,13 +19,10 @@
  */
 
 return [
+    'months' => 'månader',
+
     'user_search' => [
         'searching' => 'söker...',
         'not_found' => 'Denna användare finns inte',
     ],
-    'duration' => [
-        'months' => ':length månad|:length månader|{0}',
-        'years' => ':length år|:length år|{0}',
-    ],
-    'months' => 'månader',
 ];

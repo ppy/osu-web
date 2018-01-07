@@ -107,6 +107,13 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapDiscussionModerate($user)
+    {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+            return 'ok';
+        }
+    }
+
     public function checkBeatmapDiscussionResolve($user, $discussion)
     {
         $prefix = 'beatmap_discussion.resolve.';

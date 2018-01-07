@@ -59,14 +59,19 @@ Route::group(['prefix' => 'beatmapsets'], function () {
     Route::post('beatmap-discussions/{beatmap_discussion}/restore', 'BeatmapDiscussionsController@restore')->name('beatmap-discussions.restore');
     Route::post('beatmap-discussions/{beatmap_discussion}/deny-kudosu', 'BeatmapDiscussionsController@denyKudosu')->name('beatmap-discussions.deny-kudosu');
     Route::post('beatmap-discussions/{beatmap_discussion}/allow-kudosu', 'BeatmapDiscussionsController@allowKudosu')->name('beatmap-discussions.allow-kudosu');
-    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'show']]);
+    Route::resource('beatmap-discussions', 'BeatmapDiscussionsController', ['only' => ['destroy', 'index', 'show']]);
 
     Route::post('beatmap-discussions-posts/{beatmap_discussion_post}/restore', 'BeatmapDiscussionPostsController@restore')->name('beatmap-discussion-posts.restore');
-    Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'store', 'update']]);
+    Route::resource('beatmap-discussion-posts', 'BeatmapDiscussionPostsController', ['only' => ['destroy', 'index', 'store', 'update']]);
 });
 
 Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
+    Route::resource('events', 'BeatmapsetEventsController', ['only' => ['index']]);
     Route::resource('watches', 'BeatmapsetWatchesController', ['only' => ['index', 'update', 'destroy']]);
+
+    Route::group(['prefix' => 'discussions', 'as' => 'discussions.'], function () {
+        Route::resource('votes', 'BeatmapsetDiscussionVotesController', ['only' => ['index']]);
+    });
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
 Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
@@ -175,6 +180,7 @@ Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled')
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
+Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
@@ -270,6 +276,10 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::get('beatmapsets/{beatmapset}/download', ['uses' => '\App\Http\Controllers\BeatmapsetsController@download']);
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
+
+        // Friends
+        //  GET /api/v2/friends
+        Route::resource('friends', '\App\Http\Controllers\FriendsController', ['only' => ['index']]);
 
         //  GET /api/v2/me
         Route::get('me', '\App\Http\Controllers\UsersController@me');
