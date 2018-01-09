@@ -198,6 +198,7 @@ class Order extends Model
             case 'cancelled':
                 return 'Cancelled';
             case 'checkout':
+            case 'processing':
                 return 'Awaiting Payment';
             case 'incart':
                 return '';
@@ -218,6 +219,16 @@ class Order extends Model
     public function isEmpty()
     {
         return !$this->items()->exists();
+    }
+
+    public function isAwaitingPayment()
+    {
+        return in_array($this->status, ['processing', 'checkout'], true);
+    }
+
+    public function isModifiable()
+    {
+        return in_array($this->status, ['incart'], true);
     }
 
     public function isPaidOrDelivered()
