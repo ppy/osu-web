@@ -365,8 +365,12 @@ class Order extends Model
 
     public function releaseItems()
     {
+        // locking bottleneck
         DB::connection($this->connection)->transaction(function () {
             $items = $this->items()->with('product')->get();
+            $productIds = array_pluck($items, 'product_id');
+            $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+
             foreach ($items as $item) {
                 $item->product->release($item->quantity);
             }
@@ -375,8 +379,12 @@ class Order extends Model
 
     public function reserveItems()
     {
+        // locking bottleneck
         DB::connection($this->connection)->transaction(function () {
             $items = $this->items()->with('product')->get();
+            $productIds = array_pluck($items, 'product_id');
+            $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+
             foreach ($items as $item) {
                 $item->product->reserve($item->quantity);
             }
