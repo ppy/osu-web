@@ -174,8 +174,8 @@ class Product extends Model
         }
 
         $this->decrement('stock', $quantity);
-        $this->fresh();
 
+        // operating under the assumtion that the caller will prevent concurrent updates.
         if ($this->stock < 0) {
             throw new InsufficientStockException();
         }
