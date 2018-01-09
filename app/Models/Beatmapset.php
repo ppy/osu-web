@@ -416,7 +416,6 @@ class Beatmapset extends Model
     {
         $searchParams = [
             'index' => static::esIndexName(),
-            'type' => 'beatmaps',
             'size' => $params['limit'],
             'from' => $params['offset'],
             'body' => ['sort' => static::searchSortParamsES($params)],
