@@ -69,7 +69,7 @@ class @BeatmapDiscussionHelper
         "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
 
 
-  @maxlength: 500
+  @maxlength: 750
 
 
   @messageType:
