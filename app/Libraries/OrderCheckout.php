@@ -72,16 +72,32 @@ class OrderCheckout
         return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
     }
 
+    public function beginCheckout()
+    {
+        DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
+            if ($order->status === 'incart') {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` cannot be checked out: `{$order->status}`"
+                );
+            }
+
+            $order->status = 'processing';
+            $order->reserveItems();
+            $order->saveorExplode();
+        });
+    }
+
     public function completeCheckout()
     {
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
 
             // cart should only be in:
-            // incart -> if user hits the callback first.
+            // processing -> if user hits the callback first.
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
-            if ($order->status === 'incart') {
+            if ($order->status === 'processing') {
                 $order->status = 'checkout';
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
@@ -121,16 +137,6 @@ class OrderCheckout
         }
 
         return $errors;
-    }
-
-    public function releaseItems()
-    {
-        $this->order->releaseItems();
-    }
-
-    public function reserveItems()
-    {
-        $this->order->reserveItems();
     }
 
     /**

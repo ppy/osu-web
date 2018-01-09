@@ -81,7 +81,8 @@ class CheckoutController extends Controller
         }
 
         $checkout = new OrderCheckout($order);
-        $checkout->reserveItems();
+        $checkout->beginCheckout();
+
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
