@@ -358,6 +358,11 @@ class Order extends Model
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
+        if (!$this->isModifiable()) {
+            // FIXME: better handling.
+            return [false, 'Cart cannot be updated at this time.'];
+        }
+
         $params = [
             'id' => array_get($itemForm, 'id'),
             'quantity' => array_get($itemForm, 'quantity'),
