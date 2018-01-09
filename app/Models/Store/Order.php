@@ -320,7 +320,7 @@ class Order extends Model
 
     public function delete()
     {
-        if ($this->status !== 'incart') {
+        if (!$this->isModifiable()) {
             // in most cases this would return a null key because the lookup for the cart
             // would return a new cart anyway?
             throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
