@@ -28,6 +28,19 @@ use DB;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Represents a Store Order.
+ *
+ * A user should only have 1 'active cart'.
+ * The difference between the 'incart', 'processing' and 'checkout' statuses are:
+ * - incart -> order is in cart and can be modified; adding a new item will add to the existing order.
+ * - processing -> order is in cart and should not be modified.
+ * - checkout -> cart is cleared; adding a new item should create a new cart.
+ *
+ * The contents of the cart should not be cleared until the payment request is
+ *  successfully sent to the payment provider.
+ * i.e. it should not be cleared immediately on checking out.
+ */
 class Order extends Model
 {
     use SoftDeletes;
@@ -63,6 +76,11 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeInCart($query)
+    {
+        return $query->whereIn('status', ['incart', 'processing']);
     }
 
     public function scopeWithPayments($query)
@@ -402,7 +420,7 @@ class Order extends Model
     {
         $cart = static::query()
             ->where('user_id', $user->user_id)
-            ->where('status', 'incart')
+            ->inCart()
             ->with('items.product')
             ->first();
 

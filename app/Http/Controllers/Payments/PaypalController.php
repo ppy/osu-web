@@ -58,7 +58,7 @@ class PaypalController extends Controller
         $orderId = Request::input('order_id');
 
         $order = Order::where('user_id', Auth::user()->user_id)
-            ->where('status', 'incart')
+            ->inCart() // TODO: where('status', 'processing') only
             ->findOrFail($orderId);
 
         try {
@@ -77,7 +77,7 @@ class PaypalController extends Controller
     {
         $orderId = Request::input('order_id');
 
-        $order = Order::where('user_id', Auth::user()->user_id)->where('status', 'incart')->findOrFail($orderId);
+        $order = Order::where('user_id', Auth::user()->user_id)->inCart()->findOrFail($orderId); // TODO: where('status', 'processing') only
         $command = new PaypalCreatePayment($order);
         $link = $command->getApprovalLink();
 
