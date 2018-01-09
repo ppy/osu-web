@@ -25,7 +25,6 @@ use Illuminate\Console\Command;
 
 class EsIndexCommand extends Command
 {
-    protected $alias;
     protected $cleanup;
     protected $inplace;
     protected $suffix;
@@ -52,7 +51,12 @@ class EsIndexCommand extends Command
         $this->readOptions();
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
-        $oldIndices = Indexing::getOldIndices($this->alias);
+        $oldIndices = [];
+        foreach ($this->types as $type) {
+            $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
+        }
+
+        $oldIndices = array_flatten($oldIndices);
 
         $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
@@ -69,11 +73,6 @@ class EsIndexCommand extends Command
 
     protected function finish(array $indices, array $oldIndices)
     {
-        // always update osu alias
-        $indicesString = implode(', ', $indices);
-        $this->warn("Aliasing '{$indicesString}' to {$this->alias}...");
-        Indexing::updateAlias($this->alias, $indices);
-
         if (!$this->inplace && $this->cleanup) {
             foreach ($oldIndices as $index) {
                 $this->warn("Removing '{$index}'...");
@@ -131,7 +130,7 @@ class EsIndexCommand extends Command
     {
         if ($this->inplace) {
             $this->warn('Running in-place reindex.');
-            $confirmMessage = "This will reindex in-place (schemas must match) and alias them to {$this->alias}";
+            $confirmMessage = "This will reindex in-place (schemas must match)";
         } else {
             $this->warn('Running index transfer.');
 
@@ -142,7 +141,7 @@ class EsIndexCommand extends Command
                 );
             }
 
-            $confirmMessage = "This will create new indices and alias them to {$this->alias}";
+            $confirmMessage = "This will create new indices";
         }
 
         return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
