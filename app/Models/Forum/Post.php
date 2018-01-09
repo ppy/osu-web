@@ -183,7 +183,7 @@ class Post extends Model
         }
 
         $searchParams = [
-            'index' => config('osu.elasticsearch.index.posts'),
+            'index' => static::esIndexName(),
             'type' => 'posts',
             'size' => $params['limit'],
             'from' => ($params['page'] - 1) * $params['limit'],

@@ -33,11 +33,9 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
+        'prefix' => env('ES_INDEX_PREFIX'),
         'index' => [
-            'beatmaps' => App\Models\Beatmapset::esIndexName(),
-            'posts' => App\Models\Forum\Post::esIndexName(),
-            'users' => App\Models\User::esIndexName(),
-            'wiki_pages' => 'osu:wiki_pages_20171130',
+            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
         ],
     ],
     'emails' => [
