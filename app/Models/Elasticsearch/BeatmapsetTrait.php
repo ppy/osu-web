@@ -37,7 +37,7 @@ trait BeatmapsetTrait
 
     public static function esIndexName()
     {
-        return 'beatmaps';
+        return config('osu.elasticsearch.prefix').'beatmaps';
     }
 
     public static function esIndexingQuery()

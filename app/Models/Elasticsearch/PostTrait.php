@@ -47,7 +47,7 @@ trait PostTrait
 
     public static function esIndexName()
     {
-        return 'posts';
+        return config('osu.elasticsearch.prefix').'posts';
     }
 
     public static function esIndexingQuery()

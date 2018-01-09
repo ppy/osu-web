@@ -33,7 +33,10 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'index' => env('ES_INDEX', 'osu'),
+        'prefix' => env('ES_INDEX_PREFIX'),
+        'index' => [
+            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
+        ],
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
