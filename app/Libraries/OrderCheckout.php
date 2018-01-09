@@ -109,6 +109,22 @@ class OrderCheckout
         });
     }
 
+    public function failCheckout()
+    {
+        DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
+            if ($order->status !== 'processing') {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` failed checkout but is not processing"
+                );
+            }
+
+            $order->status = 'incart';
+            $order->releaseItems();
+            $order->saveorExplode();
+        });
+    }
+
     public function validate()
     {
         $itemErrors = [];
@@ -152,6 +168,23 @@ class OrderCheckout
         $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
         $checkout = new static($order);
         $checkout->completeCheckout();
+
+        return $order;
+    }
+
+    /**
+     * Helper method for failing checkout with just the order number.
+     *
+     * @param string $orderNumber
+     * @return Order
+     */
+    public static function fail($orderNumber)
+    {
+        // select for update will lock the table if the row doesn't exist,
+        // so do a double select.
+        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
+        $checkout = new static($order);
+        $checkout->failCheckout();
 
         return $order;
     }
