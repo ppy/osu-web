@@ -49,6 +49,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   componentWillUnmount: =>
     @throttledUpdatePost.cancel()
+    clearTimeout @state.permalinkTimer if @state.permalinkTimer?
 
     for own _id, xhr of @xhr
       xhr?.abort()
@@ -243,7 +244,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
               href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
               onClick: @permalink
               className: "#{bn}__action #{bn}__action--button"
-              osu.trans('common.buttons.permalink')
+
+              if @state.permalinkTimer?
+                osu.trans('common.buttons.permalink_copied')
+              else
+                osu.trans('common.buttons.permalink')
 
           if @props.canBeEdited
             button
@@ -287,9 +292,20 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+  clearPermalinkClicked: =>
+    @setState permalinkTimer: null
+
 
   permalink: (e) =>
     e.preventDefault()
+
+    # copy url to clipboard
+    clipboard.writeText e.currentTarget.href
+
+    # show feedback
+    permalinkTmer = Timeout.set 2000, @clearPermalinkClicked
+
+    @setState permalinkTimer: permalinkTmer
 
 
   setMessage: (e) =>
