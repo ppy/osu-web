@@ -29,15 +29,22 @@ use Request;
 class OrderCheckout
 {
     private $order;
+    private $provider;
 
-    public function __construct(Order $order)
+    public function __construct(Order $order, $provider = null)
     {
         $this->order = $order;
+        $this->provider = $provider;
     }
 
     public function getOrder()
     {
         return $this->order;
+    }
+
+    public function getProvider()
+    {
+        return $this->provider;
     }
 
     public function allowedCheckoutTypes()
@@ -76,13 +83,14 @@ class OrderCheckout
     {
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
-            if ($order->status === 'incart') {
+            if ($order->status !== 'incart') {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` cannot be checked out: `{$order->status}`"
                 );
             }
 
             $order->status = 'processing';
+            $order->transaction_id = $this->provider;
             $order->reserveItems();
             $order->saveorExplode();
         });

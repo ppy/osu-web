@@ -80,7 +80,9 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart'));
         }
 
-        $checkout = new OrderCheckout($order);
+        $provider = Request::input('provider');
+
+        $checkout = new OrderCheckout($order, $provider);
         $checkout->beginCheckout();
 
         $validationErrors = $checkout->validate();
