@@ -367,9 +367,7 @@ class Order extends Model
     {
         // locking bottleneck
         DB::connection($this->connection)->transaction(function () {
-            $items = $this->items()->with('product')->get();
-            $productIds = array_pluck($items, 'product_id');
-            $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+            list($items, $products) = $this->lockForReserve();
 
             foreach ($items as $item) {
                 $item->product->release($item->quantity);
@@ -381,9 +379,7 @@ class Order extends Model
     {
         // locking bottleneck
         DB::connection($this->connection)->transaction(function () {
-            $items = $this->items()->with('product')->get();
-            $productIds = array_pluck($items, 'product_id');
-            $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+            list($items, $products) = $this->lockForReserve();
 
             foreach ($items as $item) {
                 $item->product->reserve($item->quantity);
@@ -434,6 +430,15 @@ class Order extends Model
 
             return $query->get();
         };
+    }
+
+    private function lockForReserve()
+    {
+        $items = $this->items()->with('product')->lockForUpdate()->get();
+        $productIds = array_pluck($items, 'product_id');
+        $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+
+        return [$items, $products];
     }
 
     private function removeOrderItem(array $params)
