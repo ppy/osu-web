@@ -40,6 +40,5 @@ class EsIndexUsers extends EsIndexCommand
      */
     protected $description = 'Indexes users into Elasticsearch.';
 
-
     protected $types = [User::class];
 }

@@ -130,7 +130,7 @@ class EsIndexCommand extends Command
     {
         if ($this->inplace) {
             $this->warn('Running in-place reindex.');
-            $confirmMessage = "This will reindex in-place (schemas must match)";
+            $confirmMessage = 'This will reindex in-place (schemas must match)';
         } else {
             $this->warn('Running index transfer.');
 
@@ -141,7 +141,7 @@ class EsIndexCommand extends Command
                 );
             }
 
-            $confirmMessage = "This will create new indices";
+            $confirmMessage = 'This will create new indices';
         }
 
         return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");
