@@ -140,7 +140,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
         if targetUrl.pathname == currentUrl.pathname
           # same beatmapset discussion, format: #123
           linkText = targetUrl.hash.replace '/', ''
-          text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
+          text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
           return
         else
           if beatmapset = targetUrl.pathname.match routeRegex
