@@ -251,7 +251,12 @@ class Order extends Model
 
     public function isModifiable()
     {
-        return in_array($this->status, ['incart'], true);
+        return $this->status === 'incart';
+    }
+
+    public function isProcessing()
+    {
+        return $this->status === 'processing';
     }
 
     public function isPaidOrDelivered()
