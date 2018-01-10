@@ -110,7 +110,7 @@ class Order extends Model
         ]);
     }
 
-    public static function scopeWherePaymentTransactionId($query, $transactionId, $provider)
+    public function scopeWherePaymentTransactionId($query, $transactionId, $provider)
     {
         return $query
             ->whereIn('order_id', Payment::select('order_id')
