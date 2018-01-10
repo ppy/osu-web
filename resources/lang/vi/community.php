@@ -51,7 +51,7 @@ return [
             'title' => 'Ồ, Vậy tôi sẽ nhận được gì?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'Truy cập nhanh và dễ dàng để tìm beatmap mà không cần phải thoát phải trò chơi.',
+                'description' => 'Truy cập nhanh và dễ dàng để tìm beatmap mà không cần thoát phải trò chơi.',
             ],
 
             'auto_downloads' => [
