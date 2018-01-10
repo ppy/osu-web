@@ -88,6 +88,13 @@ class PaypalController extends Controller
     // Payment declined by user.
     public function declined()
     {
+        $orderId = Request::input('order_id');
+
+        $order = Order::where('user_id', Auth::user()->user_id)->processing()->find($orderId);
+        if ($order) {
+            (new OrderCheckout($order, 'paypal'))->failCheckout();
+        }
+
         return $this->setAndRedirectCheckoutError(trans('store.checkout.declined'));
     }
 
