@@ -234,6 +234,11 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function canCheckout()
+    {
+        return in_array($this->status, ['incart', 'processing'], true);
+    }
+
     public function isEmpty()
     {
         return !$this->items()->exists();

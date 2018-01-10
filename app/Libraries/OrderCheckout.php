@@ -83,7 +83,7 @@ class OrderCheckout
     {
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
-            if ($order->status !== 'incart') {
+            if (!$order->canCheckout()) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` cannot be checked out: `{$order->status}`"
                 );
@@ -91,7 +91,10 @@ class OrderCheckout
 
             $order->status = 'processing';
             $order->transaction_id = $this->provider;
-            $order->reserveItems();
+            if ($order->isDirty('status')) {
+                $order->reserveItems();
+            }
+
             $order->saveorExplode();
         });
     }
