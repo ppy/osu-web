@@ -60,7 +60,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => '비트맵',
-            'discussion' => 'modding',
+            'discussions' => 'modding',
         ],
         'rankings' => [ // TODO: 확인 후 뒤에 ~별 을 붙일지 결정...
             '_' => '순위',

@@ -60,7 +60,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => '谱面',
-            'discussion' => '修改',
+            'discussions' => '修改',
         ],
         'rankings' => [
             '_' => '排名',

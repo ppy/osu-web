@@ -47,7 +47,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
-            'discussion' => 'modding',
+            'discussions' => 'modding',
         ],
         'rankings' => [
             '_' => 'rankings',

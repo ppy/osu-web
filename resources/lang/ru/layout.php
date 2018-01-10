@@ -57,7 +57,7 @@ return [
         ],
         'beatmapsets' => [
             '_' => 'карты',
-            'discussion' => 'обсуждения',
+            'discussions' => 'обсуждения',
         ],
         'rankings' => [
             '_' => 'рейтинг',
