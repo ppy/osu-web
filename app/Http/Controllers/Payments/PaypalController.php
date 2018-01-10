@@ -22,6 +22,7 @@ namespace App\Http\Controllers\Payments;
 
 use App\Exceptions\InvalidSignatureException;
 use App\Exceptions\ValidationException;
+use App\Libraries\OrderCheckout;
 use App\Libraries\Payments\NotificationType;
 use App\Libraries\Payments\PaypalCreatePayment;
 use App\Libraries\Payments\PaypalExecutePayment;
@@ -58,7 +59,7 @@ class PaypalController extends Controller
         $orderId = Request::input('order_id');
 
         $order = Order::where('user_id', Auth::user()->user_id)
-            ->inCart() // TODO: where('status', 'processing') only
+            ->processing()
             ->findOrFail($orderId);
 
         try {
@@ -77,7 +78,7 @@ class PaypalController extends Controller
     {
         $orderId = Request::input('order_id');
 
-        $order = Order::where('user_id', Auth::user()->user_id)->inCart()->findOrFail($orderId); // TODO: where('status', 'processing') only
+        $order = Order::where('user_id', Auth::user()->user_id)->processing()->findOrFail($orderId);
         $command = new PaypalCreatePayment($order);
         $link = $command->getApprovalLink();
 

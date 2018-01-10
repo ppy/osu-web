@@ -83,6 +83,11 @@ class Order extends Model
         return $query->whereIn('status', ['incart', 'processing']);
     }
 
+    public function scopeProcessing($query)
+    {
+        return $query->where('status', 'processing');
+    }
+
     public function scopeWithPayments($query)
     {
         return $query->with('payments');
