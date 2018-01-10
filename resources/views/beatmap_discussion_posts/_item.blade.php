@@ -20,7 +20,7 @@
     <div class="beatmap-discussion beatmapset-activities__post-grow">
         <div class="beatmap-discussion-timestamp__icons-container">
             <div class="beatmap-discussion-timestamp__icons">
-                <a href="{{ route('beatmapsets.discussion', $post->beatmapDiscussion->beatmapset) }}#/{{ $post->beatmapDiscussion->getKey() }}">
+                <a href="{{ route('beatmapsets.discussions', $post->beatmapDiscussion->beatmapset) }}#/{{ $post->beatmapDiscussion->getKey() }}">
                     <img class='beatmapset-activities__beatmapset-cover'
                         src="{{$post->beatmapDiscussion->beatmapset->coverURL('list')}}"
                         srcSet="{{$post->beatmapDiscussion->beatmapset->coverURL('list')}} 1x, {{$post->beatmapDiscussion->beatmapset->coverURL('list@2x')}} 2x">

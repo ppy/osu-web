@@ -126,7 +126,7 @@ class BeatmapDiscussionsController extends Controller
             abort(404);
         }
 
-        return ujs_redirect(route('beatmapsets.discussion', $discussion->beatmapset).'#/'.$id);
+        return ujs_redirect(route('beatmapsets.discussions', $discussion->beatmapset).'#/'.$id);
     }
 
     public function vote($id)

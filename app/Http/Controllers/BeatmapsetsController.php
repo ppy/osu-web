@@ -134,7 +134,7 @@ class BeatmapsetsController extends Controller
         );
     }
 
-    public function discussion($id)
+    public function discussions($id)
     {
         $returnJson = Request::input('format') === 'json';
         $requestLastUpdated = get_int(Request::input('last_updated'));
@@ -165,7 +165,7 @@ class BeatmapsetsController extends Controller
         if ($returnJson) {
             return $initialData;
         } else {
-            return view('beatmapsets.discussion', compact('beatmapset', 'initialData'));
+            return view('beatmapsets.discussions', compact('beatmapset', 'initialData'));
         }
     }
 

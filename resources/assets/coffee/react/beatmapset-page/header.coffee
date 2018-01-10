@@ -194,7 +194,7 @@ class BeatmapsetPage.Header extends React.Component
                   top: osu.trans 'beatmapsets.show.discussion'
                 icon: 'comments-o'
                 props:
-                  href: laroute.route 'beatmapsets.discussion', beatmapset: @props.beatmapset.id
+                  href: laroute.route 'beatmapsets.discussions', beatmapset: @props.beatmapset.id
             else if @props.beatmapset.legacy_thread_url
               el BigButton,
                 modifiers: ['beatmapset-header']

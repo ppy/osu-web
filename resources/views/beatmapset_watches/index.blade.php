@@ -63,7 +63,7 @@
                                 </div>
                             </td>
                             <td class="beatmapset-watches__col">
-                                <a href="{{ route('beatmapsets.discussion', $watch->beatmapset) }}">
+                                <a href="{{ route('beatmapsets.discussions', $watch->beatmapset) }}">
                                     @if ($watch->isRead())
                                         {{ $watch->beatmapset->title }}
                                     @else
