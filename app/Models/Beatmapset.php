@@ -415,8 +415,7 @@ class Beatmapset extends Model
     public static function searchES(array $params = [])
     {
         $searchParams = [
-            'index' => config('osu.elasticsearch.index'),
-            'type' => 'beatmaps',
+            'index' => static::esIndexName(),
             'size' => $params['limit'],
             'from' => $params['offset'],
             'body' => ['sort' => static::searchSortParamsES($params)],

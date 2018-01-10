@@ -40,6 +40,5 @@ class EsIndexDocuments extends EsIndexCommand
      */
     protected $description = 'Indexes documents into Elasticsearch.';
 
-    protected $alias = 'osu';
     protected $types = [Beatmapset::class, Post::class];
 }
