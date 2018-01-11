@@ -61,8 +61,6 @@ class PostsController extends Controller
                 }
 
                 $topic->removePostOrExplode($post);
-
-                return true;
             });
         } catch (ModelNotSavedException $_e) {
             return error_popup($topic->validationErrors()->toSentence());
