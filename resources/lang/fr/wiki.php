@@ -31,5 +31,10 @@ return [
             'link' => 'Afficher sur GitHub',
             'refresh' => 'Actualiser',
         ],
+
+        'outdated' => [
+            '_' => "Cette page est un ancienne traduction du contenu original. Veuillez vérifier la :default pour plus d'informations (and consider updating the translation if you are able to help out)!",
+            'default' => 'Version anglaise',
+        ],
     ],
 ];

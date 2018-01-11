@@ -21,7 +21,8 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
+            'is_hype' => "Impossible d'annuler le hyping.",
+            'has_reply' => 'Impossible de supprimer une discussion avec des réponses',
         ],
         'nominate' => [
             'exhausted' => 'Vous avez atteint la limite quotidienne de nomination, veuillez réessayer demain.',
@@ -76,6 +77,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => "Impossible d'éditer un post supprimé.",
                 'locked' => "Ce post est verouillé à l'édition.",
                 'no_forum_access' => "L'accès au forum demandé est nécessaire.",
                 'not_owner' => 'Uniquement le posteur peut éditer le post.',

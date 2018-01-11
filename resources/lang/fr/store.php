@@ -24,6 +24,10 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => 'Euh, il y a un problème avec votre panier!',
+        'cart_problems_edit' => "Cliquez ici pour l'éditer.",
+        'declined' => 'Le payement a été annulé.',
+        'error' => 'Il y a eu un problème lors de la récupération :(',
         'pay' => 'Payer avec PayPal',
         'delayed_shipping' => 'Nous sommes surchargés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
     ],
@@ -57,6 +61,7 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => 'don à un joueur',
         'require_login' => [
             '_' => 'Vous devez être un :link pour obtenir a tag supporter !',
             'link_text' => 'connecté',

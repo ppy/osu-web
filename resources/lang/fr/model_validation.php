@@ -19,8 +19,19 @@
  */
 
 return [
+    'not_negative' => ':attribute ne peut pas être négatif.',
     'required' => ':attribute est requis.',
     'wrong_confirmation' => 'La confirmation ne correspond pas.',
+
+    'beatmap_discussion' => [
+        'hype' => [
+            'guest' => 'Doit être connecté pour pouvoir hype.',
+            'hyped' => 'Vous avez déjà hypé cette beatmap.',
+            'limit_exceeded' => 'Vous avez déjà utilisé toute votre hype.',
+            'not_hypeable' => 'Cette beatmap ne peut pas être hypée',
+            'owner' => 'Vous ne pouvez pas hyper votre rpopre beatmap.',
+        ],
+    ],
 
     'beatmap_discussion_post' => [
         'first_post' => 'Impossible de supprimer le post de départ.',
@@ -52,11 +63,15 @@ return [
     'user' => [
         'contains_username' => "Le mot de passe ne doit pas contenir de nom d'utilisateur.",
         'email_already_used' => 'Adresse email déjà utilisée.',
+        'invalid_country' => "Le pays n'est pas dans la base de données.",
         'invalid_email' => 'Ça ne semble pas être une adresse email.',
         'too_short' => 'Le nouveau mot de passe est trop court.',
+        'unknown_duplicate' => "Nom d'utilisateur ou adresse e-mail déjà utilisée.",
+        'username_too_short' => "Le nom d'utilisateur donné est trop court.",
         'weak' => 'Mot de passe interdits.',
         'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
         'wrong_email_confirmation' => "La confirmation de l'email ne correspond pas.",
         'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
+        'too_long' => 'Dépassement de la taille maximale - :limit caractères maximum.',
     ],
 ];

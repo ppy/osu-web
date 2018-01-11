@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regénérer',
+            'regenerating' => 'Regénération...',
+            'remove' => 'Supprimer',
+            'removing' => 'Suppression...',
+        ],
         'show' => [
+            'covers' => 'Gérer la Couverture du Beatmapset',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activer',
