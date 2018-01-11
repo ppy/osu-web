@@ -123,6 +123,7 @@ return [
         'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
         'new_time' => "You'll get another hype at :new_time.",
         'remaining' => 'You have :remaining hype left.',
+        'required-text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],

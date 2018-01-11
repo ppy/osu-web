@@ -48,6 +48,11 @@ class @BeatmapsetPanel extends React.PureComponent
     beatmapset = @props.beatmap
 
     showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
+    if showHypeCounts
+      currentHype = beatmapset.hype.current.toLocaleString()
+      requiredHype = beatmapset.hype.required.toLocaleString()
+      currentNominations = beatmapset.nominations.current.toLocaleString()
+      requiredNominations = beatmapset.nominations.required.toLocaleString()
 
     # arbitrary number
     maxDisplayedDifficulty = 10
@@ -93,11 +98,11 @@ class @BeatmapsetPanel extends React.PureComponent
             div className: 'beatmapset-panel__counts-box',
               if showHypeCounts
                 div null,
-                  div className: 'beatmapset-panel__count',
-                    span className: 'beatmapset-panel__count-number', "#{beatmapset.hype.current.toLocaleString()} / #{beatmapset.hype.required.toLocaleString()}"
+                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required-text', {current: currentHype, required: requiredHype}),
+                    span className: 'beatmapset-panel__count-number', "#{currentHype} / #{requiredHype}"
                     el Icon, name: 'bullhorn', modifiers: ['fw']
-                  div className: 'beatmapset-panel__count',
-                    span className: 'beatmapset-panel__count-number', "#{beatmapset.nominations.current.toLocaleString()} / #{beatmapset.nominations.required.toLocaleString()}"
+                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required-text', {current: currentNominations, required: requiredNominations}),
+                    span className: 'beatmapset-panel__count-number', "#{currentNominations} / #{requiredNominations}"
                     el Icon, name: 'thumbs-up', modifiers: ['fw']
               else
                 div className: 'beatmapset-panel__count',
