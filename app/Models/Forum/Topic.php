@@ -127,37 +127,33 @@ class Topic extends Model
         return $post;
     }
 
-    public function removePost($post, $user = null)
+    public function removePostOrExplode($post, $user = null)
     {
         $this->validationErrors()->reset();
 
-        try {
-            return DB::transaction(function () use ($post, $user) {
-                if ($post->delete() === false) {
-                    $this->validationErrors()->addTranslated('post', $post->validationErrors()->toSentence());
+        return DB::transaction(function () use ($post, $user) {
+            if ($post->delete() === false) {
+                $this->validationErrors()->addTranslated('post', $post->validationErrors()->toSentence());
 
-                    throw new ModelNotSavedException('failed deleting post');
-                }
+                throw new ModelNotSavedException('failed deleting post');
+            }
 
-                if ($this->posts()->exists() === true) {
-                    $this->refreshCache();
-                } else {
-                    $this->delete();
-                }
+            if ($this->posts()->exists() === true) {
+                $this->refreshCache();
+            } else {
+                $this->delete();
+            }
 
-                if ($this->forum !== null) {
-                    $this->forum->refreshCache();
-                }
+            if ($this->forum !== null) {
+                $this->forum->refreshCache();
+            }
 
-                if ($post->user !== null) {
-                    $post->user->refreshForumCache($this->forum, -1);
-                }
+            if ($post->user !== null) {
+                $post->user->refreshForumCache($this->forum, -1);
+            }
 
-                return true;
-            });
-        } catch (ModelNotSavedException $_e) {
-            return false;
-        }
+            return true;
+        });
     }
 
     public function restorePost($post, $user = null)

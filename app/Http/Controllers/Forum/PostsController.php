@@ -60,9 +60,7 @@ class PostsController extends Controller
                     );
                 }
 
-                if ($topic->removePost($post, Auth::user()) === false) {
-                    throw new ModelNotSavedException('failed deleting post');
-                }
+                $topic->removePostOrExplode($post, Auth::user());
 
                 return true;
             });
