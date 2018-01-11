@@ -48,8 +48,8 @@ return [
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'No deleting post used for beatmap metadata.',
-            'beatmapset_post_no_edit' => 'No editing post used for beatmap metadata.',
+            'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
+            'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
         ],
 
         'topic_poll' => [
