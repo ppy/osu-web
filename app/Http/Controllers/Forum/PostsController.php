@@ -115,8 +115,10 @@ class PostsController extends Controller
         priv_check('ForumPostEdit', $post)->ensureCan();
 
         try {
-            $ok = DB::transaction(function () use ($post) {
-                if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
+            DB::transaction(function () use ($post) {
+                $userId = Auth::user() === null ? null : Auth::user()->getKey();
+
+                if ($userId !== $post->poster_id) {
                     $this->logModerate(
                         'LOG_POST_EDITED',
                         [
@@ -127,29 +129,22 @@ class PostsController extends Controller
                     );
                 }
 
-                $body = request('body');
-
-                if ($body !== '') {
-                    if ($post->edit($body, Auth::user()) === false) {
-                        throw new ModelNotSavedException('failed editing post');
-                    }
-                }
-
-                return true;
+                $post
+                    ->fill([
+                        'post_text' => request('body'),
+                        'post_edit_user' => $userId,
+                    ])
+                    ->saveOrExplode();
             });
         } catch (ModelNotSavedException $_e) {
-            $ok = false;
-        }
-
-        if ($ok) {
-            $posts = collect([$post->fresh()]);
-            $topic = $post->topic;
-            $firstPostPosition = $topic->postPosition($post->post_id);
-
-            return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
-        } else {
             return error_popup($post->validationErrors()->toSentence());
         }
+
+        $posts = collect([$post->fresh()]);
+        $topic = $post->topic;
+        $firstPostPosition = $topic->postPosition($post->post_id);
+
+        return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
     }
 
     public function raw($id)

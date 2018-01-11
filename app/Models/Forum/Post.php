@@ -47,6 +47,9 @@ class Post extends Model
 
     private $normalizedUsers = [];
 
+    private $skipBeatmapPostRestrictions = false;
+    private $skipBodyPresenceCheck = false;
+
     /*
     |--------------------------------------------------------------------------
     | Elasticsearch mappings; can't put in a Trait.
@@ -82,6 +85,10 @@ class Post extends Model
 
     public function setPostTextAttribute($value)
     {
+        if ($value === $this->bodyRaw) {
+            return;
+        }
+
         $bbcode = new BBCodeForDB($value);
         $this->attributes['post_text'] = $bbcode->generate();
         $this->attributes['bbcode_uid'] = $bbcode->uid;
@@ -261,29 +268,18 @@ class Post extends Model
         return $this->topic->postPosition($this->post_id);
     }
 
-    public function edit($newBodyRaw, $user, $skipRestrictionCheck = false)
+    public function skipBeatmapPostRestrictions()
     {
-        $this->validationErrors()->reset();
+        $this->skipBeatmapPostRestrictions = true;
 
-        if ($newBodyRaw === $this->bodyRaw) {
-            return true;
-        }
+        return $this;
+    }
 
-        if (!$skipRestrictionCheck) {
-            // don't forget to sync with views.forum.topics._posts
-            if ($this->isBeatmapsetPost()) {
-                $this->validationErrors()->add('base', '.beatmapset_post_no_edit');
+    public function skipBodyPresenceCheck()
+    {
+        $this->skipBodyPresenceCheck = true;
 
-                return false;
-            }
-        }
-
-        return $this->update([
-            'post_text' => $newBodyRaw,
-            'post_edit_time' => Carbon::now(),
-            'post_edit_count' => DB::raw('post_edit_count + 1'),
-            'post_edit_user' => $user->user_id,
-        ]);
+        return $this;
     }
 
     public function delete()
@@ -298,6 +294,43 @@ class Post extends Model
         }
 
         return parent::delete();
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        if (!$this->skipBodyPresenceCheck && !present($this->post_text)) {
+            $this->validationErrors()->add('post_text', 'required');
+        }
+
+        if (!$this->skipBeatmapPostRestrictions) {
+            // don't forget to sync with views.forum.topics._posts
+            if ($this->isBeatmapsetPost()) {
+                $this->validationErrors()->add('base', '.beatmapset_post_no_edit');
+
+                return false;
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        // record edit history
+        if ($this->exists && $this->isDirty('post_text')) {
+            $this->fill([
+                'post_edit_time' => Carbon::now(),
+                'post_edit_count' => DB::raw('post_edit_count + 1'),
+            ]);
+        }
+
+        return parent::save($options);
     }
 
     // don't forget to sync with views.forum.topics._posts
