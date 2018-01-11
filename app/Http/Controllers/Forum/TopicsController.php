@@ -322,7 +322,7 @@ class TopicsController extends Controller
             $poll = (new TopicPoll())->fill($pollParams);
 
             if (!$poll->isValid()) {
-                return error_popup(implode(' ', $poll->validationErrors()->allMessages()));
+                return error_popup($poll->validationErrors()->toSentence());
             }
         }
 
@@ -384,7 +384,7 @@ class TopicsController extends Controller
         if ($topic->vote()->fill($params)->save()) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
-            return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
+            return error_popup($topic->vote()->validationErrors()->toSentence());
         }
     }
 
@@ -398,7 +398,7 @@ class TopicsController extends Controller
         if ($star->getKey() !== null) {
             return ujs_redirect(route('forum.topics.show', $topicId));
         } else {
-            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
+            return error_popup($star->validationErrors()->toSentence());
         }
     }
 
