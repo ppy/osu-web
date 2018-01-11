@@ -38,20 +38,16 @@ class StoreController extends Controller
     {
         $this->middleware('auth', ['only' => [
             'getInvoice',
-            'postUpdateCart',
             'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
-            'postUpdateCart',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
             'getInvoice',
-            'postUpdateCart',
             'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
-            'postUpdateCart',
         ]]);
 
         $this->middleware('verify-user', ['only' => [
@@ -94,17 +90,6 @@ class StoreController extends Controller
     public function missingMethod($parameters = [])
     {
         abort(404);
-    }
-
-    public function postUpdateCart()
-    {
-        $result = $this->userCart()->updateItem(Request::input('item', []));
-
-        if ($result[0]) {
-            return js_view('layout.ujs-reload');
-        } else {
-            return error_popup($result[1]);
-        }
     }
 
     public function postUpdateAddress()
