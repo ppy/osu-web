@@ -91,12 +91,6 @@ class StoreController extends Controller
             ->with('sentViaAddress', $sentViaAddress);
     }
 
-    public function getCart($id = null)
-    {
-        return view('store.cart')
-            ->with('order', $this->userCart());
-    }
-
     public function missingMethod($parameters = [])
     {
         abort(404);

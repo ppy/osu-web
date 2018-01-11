@@ -201,9 +201,8 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
     Route::get('listing', 'StoreController@getListing')->name('products.index');
     Route::get('invoice/{invoice}', 'StoreController@getInvoice')->name('invoice.show');
-    Route::get('cart', 'StoreController@getCart')->name('cart');
 
-    Route::post('update-cart', 'StoreController@postUpdateCart');
+    Route::post('update-cart', 'Store\CartController@store'); // temporarily to avoid 404ing after deploy
     Route::post('update-address', 'StoreController@postUpdateAddress');
     Route::post('new-address', 'StoreController@postNewAddress');
     Route::post('add-to-cart', 'StoreController@postAddToCart');
@@ -213,6 +212,7 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
 
         // Store splitting starts here
+        Route::resource('cart', 'CartController', ['only' => ['index', 'store']]);
         Route::resource('checkout', 'CheckoutController', ['only' => ['index', 'store']]);
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
