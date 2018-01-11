@@ -20,8 +20,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Beatmapset;
 use App\Models\BeatmapDiscussion;
+use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
 class BeatmapsetsHypeSyncCommand extends Command

@@ -1254,7 +1254,7 @@ class Beatmapset extends Model
     {
         $this->fill([
             'hype' => $this->freshHype(),
-            'nominations' => $this->currentNominationCount()
+            'nominations' => $this->currentNominationCount(),
         ]);
 
         if ($this->isDirty()) {
