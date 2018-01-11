@@ -125,12 +125,40 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @setState editing: true, =>
       @textarea.focus()
 
+  discussionLinkify: (text) =>
+    route = laroute.route('beatmapsets.discussion', {'beatmapset': "([0-9]+)"}) # what could possibly go wrong?
+    routeRegex = new RegExp(route.replace('/' , '\/'), 'i')
+
+    matches = text.match osu.urlRegex
+    currentUrl = new URL(window.location)
+
+    _.each matches, (url) ->
+      targetUrl = new URL(url)
+
+      if targetUrl.host == currentUrl.host
+        # target is osu site
+        if targetUrl.pathname == currentUrl.pathname
+          # same beatmapset, format: #123
+          linkText = targetUrl.hash.replace '/', ''
+          text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+          return
+        else
+          if beatmapset = targetUrl.pathname.match routeRegex
+            # different beatmapset, format: 1234#567
+            linkText = "#{beatmapset[1]}#{targetUrl.hash}".replace '#/', '#'
+            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
+            return
+
+      # otherwise just linkify url as normal
+      text = text.replace url, osu.linkify(url)
+
+    return text
 
   formattedMessage: =>
     text = @props.post.message
     text = _.escape text
     text = text.trim()
-    text = osu.linkify text
+    text = @discussionLinkify text
     text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
     # replace newlines with <br>
     # - trim trailing spaces
