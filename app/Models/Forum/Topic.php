@@ -88,7 +88,7 @@ class Topic extends Model
         ]);
 
         DB::transaction(function () use ($forum, $topic, $params, $poll) {
-            $topic->save();
+            $topic->saveOrExplode();
             $topic->addPost($params['user'], $params['body']);
 
             if ($poll !== null) {
