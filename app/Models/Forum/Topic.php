@@ -384,7 +384,7 @@ class Topic extends Model
             if ($this->isDirty($field)) {
                 $val = $this->$field;
 
-                if ($val && mb_strlen($val) > $limit) {
+                if (mb_strlen($val) > $limit) {
                     $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
                 }
             }
