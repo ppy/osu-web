@@ -371,11 +371,6 @@ class Topic extends Model
         return parent::save($options);
     }
 
-    public function validationErrorsTranslationPrefix()
-    {
-        return 'forum.topic';
-    }
-
     public function isValid()
     {
         $this->validationErrors()->reset();
