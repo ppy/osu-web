@@ -169,7 +169,7 @@ class StoreController extends Controller
         $result = $this->userCart()->updateItem(Request::input('item', []), true);
 
         if ($result[0]) {
-            return ujs_redirect('/store/cart');
+            return ujs_redirect(route('store.cart.index'));
         } else {
             return error_popup($result[1]);
         }

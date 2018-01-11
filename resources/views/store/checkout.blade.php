@@ -90,7 +90,7 @@
                     <div class="store-checkout-text--error">
                         <p>@lang('store.checkout.cart_problems')</p>
                         <p>
-                            <a href="{{ route('store.cart') }}">@lang('store.checkout.cart_problems_edit')</a>
+                            <a href="{{ route('store.cart.index') }}">@lang('store.checkout.cart_problems_edit')</a>
                         </p>
                     </div>
                 @else

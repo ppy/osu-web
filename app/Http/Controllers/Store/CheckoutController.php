@@ -56,7 +56,7 @@ class CheckoutController extends Controller
     {
         $order = $this->userCart();
         if (!$order || $order->isEmpty()) {
-            return ujs_redirect(route('store.cart'));
+            return ujs_redirect(route('store.cart.index'));
         }
 
         // TODO: should be able to notify user that items were changed due to stock/price changes.
@@ -77,7 +77,7 @@ class CheckoutController extends Controller
         $order = $this->userCart();
 
         if ($order->isEmpty()) {
-            return ujs_redirect(route('store.cart'));
+            return ujs_redirect(route('store.cart.index'));
         }
 
         $provider = Request::input('provider');
