@@ -116,7 +116,7 @@ return [
         'store' => [
             '_' => 'магазин',
             'getListing' => 'товары',
-            'getCart' => 'корзина',
+            'cart-index' => 'корзина',
 
             'getCheckout' => 'проверка',
             'getInvoice' => 'чек',

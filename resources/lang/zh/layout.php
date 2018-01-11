@@ -120,7 +120,7 @@ return [
             '_' => '商店',
             'checkout-index' => '结账',
             'getListing' => '列表',
-            'getCart' => '购物车',
+            'cart-index' => '购物车',
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',

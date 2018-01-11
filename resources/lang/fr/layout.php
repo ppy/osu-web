@@ -117,7 +117,7 @@ return [
         'store' => [
             '_' => 'magasin',
             'getListing' => 'liste',
-            'getCart' => 'panier',
+            'cart-index' => 'panier',
 
             'getCheckout' => 'acheter',
             'getInvoice' => 'facture',

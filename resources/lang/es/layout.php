@@ -116,7 +116,7 @@ return [
         'store' => [
             '_' => 'tienda',
             'getListing' => 'listado',
-            'getCart' => 'carro',
+            'cart-index' => 'carro',
 
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',

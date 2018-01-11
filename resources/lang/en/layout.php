@@ -124,7 +124,7 @@ return [
             '_' => 'store',
             'checkout-index' => 'checkout',
             'getListing' => 'listing',
-            'getCart' => 'cart',
+            'cart-index' => 'cart',
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',

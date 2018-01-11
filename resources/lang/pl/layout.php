@@ -118,7 +118,7 @@ return [
         'store' => [
             '_' => 'sklep',
             'getListing' => 'przedmioty',
-            'getCart' => 'koszyk',
+            'cart-index' => 'koszyk',
 
             'getCheckout' => 'zapłać',
             'getInvoice' => 'paragon',

@@ -120,7 +120,7 @@ return [
             '_' => 'butik',
             'checkout-index' => 'checka ut',
             'getListing' => 'listning',
-            'getCart' => 'kundvagn',
+            'cart-index' => 'kundvagn',
 
             'getCheckout' => 'checka ut',
             'getInvoice' => 'faktura',
