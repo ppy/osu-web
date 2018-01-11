@@ -47,6 +47,8 @@ class @BeatmapsetPanel extends React.PureComponent
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
+    showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
+
     # arbitrary number
     maxDisplayedDifficulty = 10
 
@@ -89,9 +91,18 @@ class @BeatmapsetPanel extends React.PureComponent
                 beatmapset.artist
 
             div className: 'beatmapset-panel__counts-box',
-              div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
-                el Icon, name: 'play-circle', modifiers: ['fw']
+              if showHypeCounts
+                div null,
+                  div className: 'beatmapset-panel__count',
+                    span className: 'beatmapset-panel__count-number', "#{beatmapset.hype.current.toLocaleString()} / #{beatmapset.hype.required.toLocaleString()}"
+                    el Icon, name: 'bullhorn', modifiers: ['fw']
+                  div className: 'beatmapset-panel__count',
+                    span className: 'beatmapset-panel__count-number', "#{beatmapset.nominations.current.toLocaleString()} / #{beatmapset.nominations.required.toLocaleString()}"
+                    el Icon, name: 'thumbs-up', modifiers: ['fw']
+              else
+                div className: 'beatmapset-panel__count',
+                  span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+                  el Icon, name: 'play-circle', modifiers: ['fw']
 
               div className: 'beatmapset-panel__count',
                 span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
