@@ -22,6 +22,7 @@ return [
     'not_negative' => ':attribute cannot be negative.',
     'required' => ':attribute is required.',
     'wrong_confirmation' => 'Confirmation does not match.',
+    'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
 
     'beatmap_discussion' => [
         'hype' => [
