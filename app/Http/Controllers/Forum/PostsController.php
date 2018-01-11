@@ -51,7 +51,7 @@ class PostsController extends Controller
         $topic = $post->topic()->withTrashed()->first();
 
         try {
-            $ok = DB::transaction(function () use ($post, $topic) {
+            DB::transaction(function () use ($post, $topic) {
                 if ((Auth::user()->user_id ?? null) !== $post->poster_id) {
                     $this->logModerate(
                         'LOG_DELETE_POST',
@@ -65,20 +65,16 @@ class PostsController extends Controller
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
-            $ok = false;
-        }
-
-        if ($ok) {
-            if ($topic->trashed()) {
-                $redirect = route('forum.forums.show', $topic->forum);
-
-                return ujs_redirect($redirect);
-            }
-
-            return js_view('forum.topics.delete', compact('post'));
-        } else {
             return error_popup($topic->validationErrors()->toSentence());
         }
+
+        if ($topic->trashed()) {
+            $redirect = route('forum.forums.show', $topic->forum);
+
+            return ujs_redirect($redirect);
+        }
+
+        return js_view('forum.topics.delete', compact('post'));
     }
 
     public function restore($id)
