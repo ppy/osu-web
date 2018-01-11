@@ -1252,7 +1252,10 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->fill(['hype' => $this->freshHype()]);
+        $this->fill([
+            'hype' => $this->freshHype(),
+            'nominations' => $this->currentNominationCount()
+        ]);
 
         if ($this->isDirty()) {
             $this->save();
