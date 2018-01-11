@@ -104,7 +104,7 @@ trait UserTrait
 
     public static function esIndexName()
     {
-        return 'users';
+        return config('osu.elasticsearch.prefix').'users';
     }
 
     public static function esIndexingQuery()

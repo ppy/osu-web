@@ -117,7 +117,7 @@ class BeatmapDiscussionPost extends Model
     public function hasValidMessage()
     {
         if (is_string($this->message)) {
-            return mb_strlen($this->message) <= 500;
+            return mb_strlen($this->message) <= 750;
         } else {
             return count($this->message) > 0;
         }
