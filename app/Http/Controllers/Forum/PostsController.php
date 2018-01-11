@@ -60,7 +60,7 @@ class PostsController extends Controller
                     );
                 }
 
-                $topic->removePostOrExplode($post, Auth::user());
+                $topic->removePostOrExplode($post);
 
                 return true;
             });
@@ -94,7 +94,7 @@ class PostsController extends Controller
             $post
         );
 
-        $topic->restorePost($post, Auth::user());
+        $topic->restorePost($post);
 
         return js_view('forum.topics.restore', compact('post'));
     }

@@ -127,11 +127,11 @@ class Topic extends Model
         return $post;
     }
 
-    public function removePostOrExplode($post, $user = null)
+    public function removePostOrExplode($post)
     {
         $this->validationErrors()->reset();
 
-        return DB::transaction(function () use ($post, $user) {
+        return DB::transaction(function () use ($post) {
             if ($post->delete() === false) {
                 $this->validationErrors()->addTranslated('post', $post->validationErrors()->toSentence());
 
@@ -156,9 +156,9 @@ class Topic extends Model
         });
     }
 
-    public function restorePost($post, $user = null)
+    public function restorePost($post)
     {
-        DB::transaction(function () use ($post, $user) {
+        DB::transaction(function () use ($post) {
             $post->restore();
 
             if ($this->trashed()) {
