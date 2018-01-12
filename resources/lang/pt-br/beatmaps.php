@@ -102,7 +102,7 @@ return [
         'nominate-confirm' => 'Nomear este beatmap?',
         'qualified' => 'Estimado para ser ranqueado em :date, caso nenhum problema for encontrado.',
         'qualified-soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
-        'required-text' => 'Nomeações: :current/:required',
+        'required_text' => 'Nomeações: :current/:required',
         'title' => 'Estado da nomeação',
     ],
 
