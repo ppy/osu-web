@@ -137,6 +137,7 @@ class Beatmapset extends Model
         'hype' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
+        'nominations' => ['type' => 'long'],
         'offset' => ['type' => 'long'],
         'play_count' => ['type' => 'long'],
         'rating' => ['type' => 'double'],
