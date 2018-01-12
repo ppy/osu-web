@@ -30,6 +30,9 @@ BeatmapDiscussions.BeatmapListItem = (props) ->
   else
     props.beatmap.version
 
+  if props.beatmap.deleted_at?
+    version += ' [deleted]'
+
   div
     className: topClasses
 

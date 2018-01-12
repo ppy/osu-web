@@ -92,12 +92,13 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
               @post reply, 'reply'
 
-          el BeatmapDiscussions.NewReply,
-            currentUser: @props.currentUser
-            beatmapset: @props.beatmapset
-            currentBeatmap: @props.currentBeatmap
-            discussion: @props.discussion
-            userPermissions: @props.userPermissions
+          if !@props.currentBeatmap.deleted_at?
+            el BeatmapDiscussions.NewReply,
+              currentUser: @props.currentUser
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.currentBeatmap
+              discussion: @props.discussion
+              userPermissions: @props.userPermissions
 
         div className: lineClasses
 

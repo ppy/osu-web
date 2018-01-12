@@ -188,10 +188,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapset)
+    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
+        if ($params->get('with_trashed')) {
+            $rel = 'allBeatmaps';
+        } else {
+            $rel = 'beatmaps';
+        }
+
         return $this->collection(
-            $beatmapset->beatmaps,
+            $beatmapset->$rel()->with('beatmapset')->get(),
             new BeatmapTransformer()
         );
     }
