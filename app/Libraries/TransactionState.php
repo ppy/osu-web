@@ -29,14 +29,20 @@ class TransactionState
     private $commits = [];
     private $rollbacks = [];
 
-    public function __construct(ConnectionInterface $connection)
+    public function __construct(ConnectionInterface $connection = null)
     {
         $this->connection = $connection;
     }
 
+    public function isReal()
+    {
+        return $this->connection !== null;
+    }
+
     public function isCompleted()
     {
-        return $this->connection->transactionLevel() === 0;
+        // TODO: throw if null connection instead since it should only run with actual transactions?
+        return $this->connection ? $this->connection->transactionLevel() === 0 : true;
     }
 
     public function addCommittable($committable)

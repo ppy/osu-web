@@ -102,8 +102,9 @@ class AfterCommitTest extends TestCase
         DB::connection('mysql-store')->transaction(function () use ($model) {
             $model->save();
 
-            $this->assertNull($this->getPendingCommits('mysql'));
-            $this->assertNull($this->getPendingCommits('mysql-store'));
+            $this->assertFalse($this->getTransactionState('mysql')->isReal());
+            $this->assertCount(0, $this->getPendingCommits(''));
+            $this->assertCount(0, $this->getPendingCommits('mysql-store'));
             $this->assertSame(1, $model->afterCommitCount);
         });
 

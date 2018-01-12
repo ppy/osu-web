@@ -27,6 +27,12 @@ class TransactionStateManager
 {
     private $states = [];
 
+    public function __construct()
+    {
+        // for handling cases outside of transactions.
+        $this->states[''] = new TransactionState(null);
+    }
+
     public function isCompleted()
     {
         return array_reduce(array_values($this->states), function ($completed, $state) {
@@ -56,7 +62,7 @@ class TransactionStateManager
 
     public function current(string $name)
     {
-        return $this->states[$name] ?? null;
+        return $this->states[$name] ?? $this->states[''];
     }
 
     public function rollback(ConnectionInterface $connection)

@@ -88,8 +88,8 @@ abstract class Model extends BaseModel
 
         $result = parent::delete();
 
-        if ($transaction === null && $this instanceof AfterCommit) {
-            $this->afterCommit();
+        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
+            $transaction->commit();
         }
 
         return $result;
@@ -101,8 +101,8 @@ abstract class Model extends BaseModel
 
         $result = parent::save($options);
 
-        if ($transaction === null && $this instanceof AfterCommit) {
-            $this->afterCommit();
+        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
+            $transaction->commit();
         }
 
         return $result;
@@ -126,12 +126,10 @@ abstract class Model extends BaseModel
     private function enlistCallbacks()
     {
         $transaction = resolve('TransactionState')->current($this->connection);
-        if ($transaction) {
-            if ($this instanceof AfterCommit) {
-                $transaction->addCommittable($this);
-            } elseif ($this instanceof AfterRollback) {
-                $transaction->addRollbackable($this);
-            }
+        if ($this instanceof AfterCommit) {
+            $transaction->addCommittable($this);
+        } elseif ($this instanceof AfterRollback) {
+            $transaction->addRollbackable($this);
         }
 
         return $transaction;
