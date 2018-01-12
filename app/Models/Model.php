@@ -114,7 +114,7 @@ abstract class Model extends BaseModel
 
         if ($result === false) {
             $message = method_exists($this, 'validationErrors') ?
-                implode("\n", $this->validationErrors()->allMessages()) :
+                $this->validationErrors()->toSentence() :
                 'failed saving model';
 
             throw new ModelNotSavedException($message);
