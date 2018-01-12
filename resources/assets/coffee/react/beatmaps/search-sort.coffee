@@ -48,14 +48,15 @@ class Beatmaps.SearchSort extends React.PureComponent
       rating: true
       plays: true
       relevance: false
-      hype: false
+      nominations: false
 
     if !_.isEmpty(@props.filters.query)
       fields.relevance = true
 
     if @props.filters.status in [4, 5]
       fields.updated = true
-      fields.hype = true
+      fields.nominations = true
+      fields.plays = false
     else
       fields.ranked = true
 

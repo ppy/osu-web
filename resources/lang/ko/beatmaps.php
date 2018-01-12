@@ -121,7 +121,7 @@ return [
         'nominate-confirm' => '이 비트맵을 추천할까요?', // Nominate
         'qualified' => '아무런 문제가 발견되지 않으면, :date에 Ranked될 것입니다.',
         'qualified-soon' => '아무런 문제가 발견되지 않으면, 곧 Ranked될 것입니다.',
-        'required-text' => '추천 수: :current/:required',
+        'required_text' => '추천 수: :current/:required',
         'title' => '추천 상태', // Nomination Status
     ],
 

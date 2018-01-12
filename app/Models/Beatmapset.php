@@ -137,6 +137,7 @@ class Beatmapset extends Model
         'hype' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
+        'nominations' => ['type' => 'long'],
         'offset' => ['type' => 'long'],
         'play_count' => ['type' => 'long'],
         'rating' => ['type' => 'double'],
@@ -379,7 +380,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'hype' => 'hype',
+            'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
@@ -604,12 +605,19 @@ class Beatmapset extends Model
         $field = $fields[$sortField] ?? $sortField;
         $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
 
-        return [
+        $sortFields = [
             $field => array_merge(
                 ['order' => $sortOrder],
                 $options
             ),
         ];
+
+        // sub-sorting
+        if ($params['sort_field'] === 'nominations') {
+            $sortFields['hype'] = ['order' => $params['sort_order']];
+        }
+
+        return $sortFields;
     }
 
     public static function latestRankedOrApproved($count = 5)
@@ -683,14 +691,16 @@ class Beatmapset extends Model
         return in_array($coverSize, $validSizes, true);
     }
 
-    public function coverURL($coverSize = 'cover')
+    public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         if (!self::isValidCoverSize($coverSize)) {
             return false;
         }
 
         $timestamp = 0;
-        if ($this->cover_updated_at) {
+        if ($customTimestamp) {
+            $timestamp = $customTimestamp;
+        } elseif ($this->cover_updated_at) {
             $timestamp = $this->cover_updated_at->format('U');
         }
 
@@ -785,14 +795,15 @@ class Beatmapset extends Model
 
                 // upload original image
                 $this->storeCover('raw.jpg', $bgFile);
+                $timestamp = time();
 
                 // upload optimized version
-                $optimized = $processor->optimize($this->coverURL('raw'));
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
                 $this->storeCover('fullsize.jpg', $optimized);
 
                 // use thumbnailer to generate and upload all our variants
                 foreach (self::coverSizes() as $size) {
-                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
 
@@ -878,6 +889,7 @@ class Beatmapset extends Model
             ]);
 
             $this->setApproved('pending', $user);
+            $this->refreshCache();
         });
 
         return true;
@@ -927,6 +939,7 @@ class Beatmapset extends Model
                     $this->qualify($user);
                 }
             }
+            $this->refreshCache();
         });
 
         return [
@@ -1257,7 +1270,10 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->fill(['hype' => $this->freshHype()]);
+        $this->fill([
+            'hype' => $this->freshHype(),
+            'nominations' => $this->currentNominationCount(),
+        ]);
 
         if ($this->isDirty()) {
             $this->save();
