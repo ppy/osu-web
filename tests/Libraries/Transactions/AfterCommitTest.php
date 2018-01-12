@@ -238,9 +238,6 @@ class AfterCommitTest extends TestCase
         try {
             DB::transaction(function () use ($model) {
                 $model->saveOrExplode();
-
-                $this->assertSame(1, count($this->getPendingCommits('mysql')));
-                $this->assertSame(0, $model->afterCommitCount);
             });
         } catch (ModelNotSavedException $e) {
             $thrown = true;

@@ -25,6 +25,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionState;
 use App\Traits\MacroableModel;
+use Exception;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -110,17 +111,26 @@ abstract class Model extends BaseModel
 
     public function saveOrExplode($options = [])
     {
-        $result = $this->save($options);
+        try {
+            $result = $this->save($options);
 
-        if ($result === false) {
-            $message = method_exists($this, 'validationErrors') ?
-                $this->validationErrors()->toSentence() :
-                'failed saving model';
+            if ($result === false) {
+                $message = method_exists($this, 'validationErrors') ?
+                    $this->validationErrors()->toSentence() :
+                    'failed saving model';
 
-            throw new ModelNotSavedException($message);
+                throw new ModelNotSavedException($message);
+            }
+
+            return $result;
+        } catch (Exception $e) {
+            $transaction = resolve('TransactionState')->current($this->connection);
+            if ($this instanceof AfterRollback) {
+                $transaction->rollback();
+            }
+
+            throw $e;
         }
-
-        return $result;
     }
 
     private function enlistCallbacks()
