@@ -591,12 +591,6 @@ class Beatmapset extends Model
             'title' => 'title.raw',
         ];
 
-        // subsorts
-        $subsort = [];
-        if ($params['sort_field'] === 'nominations') {
-            $subsort['hype'] = ['order' => $params['sort_order']];
-        }
-
         // additional options
         static $orderOptions = [
             'difficultyrating' => [
@@ -618,8 +612,9 @@ class Beatmapset extends Model
             ),
         ];
 
-        if (!empty($subsort)) {
-            $sortFields = array_merge($sortFields, $subsort);
+        // sub-sorting
+        if ($params['sort_field'] === 'nominations') {
+            $sortFields['hype'] = ['order' => $params['sort_order']];
         }
 
         return $sortFields;
