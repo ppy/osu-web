@@ -891,6 +891,7 @@ class Beatmapset extends Model
             ]);
 
             $this->setApproved('pending', $user);
+            $this->refreshCache();
         });
 
         return true;
@@ -940,6 +941,7 @@ class Beatmapset extends Model
                     $this->qualify($user);
                 }
             }
+            $this->refreshCache();
         });
 
         return [
