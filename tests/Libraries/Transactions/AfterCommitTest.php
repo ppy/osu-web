@@ -20,7 +20,9 @@
 
 namespace Tests;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Transactions\AfterCommit;
+use App\Libraries\Transactions\AfterRollback;
 use App\Models\Model;
 use DB;
 use Exception;
@@ -227,6 +229,29 @@ class AfterCommitTest extends TestCase
         $this->assertSame(1, $model->afterCommitCount);
     }
 
+    public function testSaveOrExplode()
+    {
+        $model = $this->afterCommittable();
+        $model->result = false;
+        $thrown = false;
+
+        try {
+            DB::transaction(function () use ($model) {
+                $model->saveOrExplode();
+
+                $this->assertSame(1, count($this->getPendingCommits('mysql')));
+                $this->assertSame(0, $model->afterCommitCount);
+            });
+        } catch (ModelNotSavedException $e) {
+            $thrown = true;
+        }
+
+        $this->assertTrue($thrown);
+        $this->assertSame(0, count($this->getPendingCommits('mysql')));
+        $this->assertSame(0, $model->afterCommitCount);
+        $this->assertSame(1, $model->afterRollbackCount);
+    }
+
     private function getPendingCommits(string $connection)
     {
         $state = $this->getTransactionState($connection);
@@ -262,8 +287,10 @@ class AfterCommitTest extends TestCase
 
     private function afterCommittable()
     {
-        return new class extends Model implements AfterCommit {
+        return new class extends Model implements AfterCommit, AfterRollback {
             public $afterCommitCount = 0;
+            public $afterRollbackCount = 0;
+            public $result = true;
 
             protected $connection = 'mysql';
             protected $table = 'test_after_commit';
@@ -271,6 +298,16 @@ class AfterCommitTest extends TestCase
             public function afterCommit()
             {
                 $this->afterCommitCount++;
+            }
+
+            public function afterRollback()
+            {
+                $this->afterRollbackCount++;
+            }
+
+            public function save(array $options = [])
+            {
+                return parent::save($options) && $this->result;
             }
         };
     }
