@@ -20,9 +20,12 @@
 
 namespace App\Models\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
+use App\Models\Beatmapset;
 use App\Models\Log;
 use App\Models\User;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,7 +33,7 @@ use Illuminate\Database\QueryException;
 
 class Topic extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Validatable;
 
     const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
@@ -124,10 +127,16 @@ class Topic extends Model
         return $post;
     }
 
-    public function removePost($post, $user = null)
+    public function removePostOrExplode($post)
     {
-        DB::transaction(function () use ($post, $user) {
-            $post->delete();
+        $this->validationErrors()->reset();
+
+        return DB::transaction(function () use ($post) {
+            if ($post->delete() === false) {
+                $this->validationErrors()->addTranslated('post', $post->validationErrors()->toSentence());
+
+                throw new ModelNotSavedException('failed deleting post');
+            }
 
             if ($this->posts()->exists() === true) {
                 $this->refreshCache();
@@ -142,14 +151,14 @@ class Topic extends Model
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
             }
-        });
 
-        return true;
+            return true;
+        });
     }
 
-    public function restorePost($post, $user = null)
+    public function restorePost($post)
     {
-        DB::transaction(function () use ($post, $user) {
+        DB::transaction(function () use ($post) {
             $post->restore();
 
             if ($this->trashed()) {
@@ -221,6 +230,16 @@ class Topic extends Model
         } else {
             return static::TYPES[$typeIntOrStr] ?? null;
         }
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.topic';
+    }
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class, 'topic_id', 'thread_id');
     }
 
     public function posts()
