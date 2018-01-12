@@ -85,28 +85,16 @@ abstract class Model extends BaseModel
 
     public function delete()
     {
-        $transaction = $this->enlistCallbacks();
-
-        $result = parent::delete();
-
-        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
-            $transaction->commit();
-        }
-
-        return $result;
+        return $this->runAfterCommitWrapper(function () {
+            return parent::delete();
+        });
     }
 
     public function save(array $options = [])
     {
-        $transaction = $this->enlistCallbacks();
-
-        $result = parent::save($options);
-
-        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
-            $transaction->commit();
-        }
-
-        return $result;
+        return $this->runAfterCommitWrapper(function () use ($options) {
+            return parent::save($options);
+        });
     }
 
     public function saveOrExplode($options = [])
@@ -133,17 +121,30 @@ abstract class Model extends BaseModel
         }
     }
 
-    private function enlistCallbacks()
+    private function enlistCallbacks($model, $connection)
     {
-        $transaction = resolve(TransactionStateManager::class)->current($this->connection);
-        if ($this instanceof AfterCommit) {
-            $transaction->addCommittable($this);
+        $transaction = resolve(TransactionStateManager::class)->current($connection);
+        if ($model instanceof AfterCommit) {
+            $transaction->addCommittable($model);
         }
 
-        if ($this instanceof AfterRollback) {
-            $transaction->addRollbackable($this);
+        if ($model instanceof AfterRollback) {
+            $transaction->addRollbackable($model);
         }
 
         return $transaction;
+    }
+
+    private function runAfterCommitWrapper(callable $fn)
+    {
+        $transaction = $this->enlistCallbacks($this, $this->connection);
+
+        $result = $fn();
+
+        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
+            $transaction->commit();
+        }
+
+        return $result;
     }
 }
