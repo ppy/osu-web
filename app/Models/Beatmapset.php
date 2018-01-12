@@ -591,6 +591,12 @@ class Beatmapset extends Model
             'title' => 'title.raw',
         ];
 
+        // subsorts
+        $subsort = [];
+        if ($params['sort_field'] == 'hype') {
+            $subsort['nominations'] = ['order' => $params['sort_order']];
+        }
+
         // additional options
         static $orderOptions = [
             'difficultyrating' => [
@@ -605,12 +611,18 @@ class Beatmapset extends Model
         $field = $fields[$sortField] ?? $sortField;
         $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
 
-        return [
+        $sortFields = [
             $field => array_merge(
                 ['order' => $sortOrder],
                 $options
-            ),
+            )
         ];
+
+        if (!empty($subsort)) {
+            $sortFields = array_merge($sortFields, $subsort);
+        }
+
+        return $sortFields;
     }
 
     public static function latestRankedOrApproved($count = 5)
