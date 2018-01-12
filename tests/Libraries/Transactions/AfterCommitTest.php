@@ -228,14 +228,14 @@ class AfterCommitTest extends TestCase
 
     private function getPendingCommits(string $connection)
     {
-        $state = $this->getTransactionState('mysql');
+        $state = $this->getTransactionState($connection);
 
         return $state ? $this->invokeProperty($state, 'commits') : null;
     }
 
     private function getPendingUniqueCommits(string $connection)
     {
-        $state = $this->getTransactionState('mysql');
+        $state = $this->getTransactionState($connection);
 
         return $state ? $this->invokeMethod($state, 'uniqueCommits') : null;
     }
