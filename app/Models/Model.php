@@ -128,7 +128,7 @@ abstract class Model extends BaseModel
         }
 
         if ($this instanceof AfterRollback) {
-            $this->addRollbackable($this);
+            $transaction->addRollbackable($this);
         }
     }
 }
