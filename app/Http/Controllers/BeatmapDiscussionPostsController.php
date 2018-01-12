@@ -142,7 +142,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            $saved = DB::transaction(function () use ($posts, $discussion, $events, $beatmapset) {
+            $saved = DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -156,8 +156,8 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 // feels like a controller shouldn't be calling refreshCache on a model?
-                if ($beatmapset) {
-                    $beatmapset->refreshCache();
+                if ($resetNominations) {
+                    $discussion->beatmapset->refreshCache();
                 }
 
                 return true;
