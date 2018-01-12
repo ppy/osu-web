@@ -128,7 +128,9 @@ abstract class Model extends BaseModel
         $transaction = resolve('TransactionState')->current($this->connection);
         if ($this instanceof AfterCommit) {
             $transaction->addCommittable($this);
-        } elseif ($this instanceof AfterRollback) {
+        }
+
+        if ($this instanceof AfterRollback) {
             $transaction->addRollbackable($this);
         }
 
