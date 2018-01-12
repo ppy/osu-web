@@ -23,6 +23,7 @@ namespace Tests;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
+use App\Libraries\TransactionStateManager;
 use App\Models\Model;
 use DB;
 use Exception;
@@ -265,7 +266,7 @@ class AfterCommitTest extends TestCase
 
     private function getTransactionState(string $connection)
     {
-        return resolve('TransactionState')->current($connection);
+        return resolve(TransactionStateManager::class)->current($connection);
     }
 
     //

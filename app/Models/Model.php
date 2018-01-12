@@ -23,7 +23,7 @@ namespace App\Models;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
-use App\Libraries\TransactionState;
+use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
 use Exception;
 use Illuminate\Database\Eloquent\Model as BaseModel;
@@ -124,7 +124,7 @@ abstract class Model extends BaseModel
 
             return $result;
         } catch (Exception $e) {
-            $transaction = resolve('TransactionState')->current($this->connection);
+            $transaction = resolve(TransactionStateManager::class)->current($this->connection);
             if ($this instanceof AfterRollback) {
                 $transaction->rollback();
             }
@@ -135,7 +135,7 @@ abstract class Model extends BaseModel
 
     private function enlistCallbacks()
     {
-        $transaction = resolve('TransactionState')->current($this->connection);
+        $transaction = resolve(TransactionStateManager::class)->current($this->connection);
         if ($this instanceof AfterCommit) {
             $transaction->addCommittable($this);
         }
