@@ -92,8 +92,26 @@ abstract class Model extends BaseModel
 
     public function save(array $options = [])
     {
+        $transaction = resolve('TransactionState')->current($this->connection);
+        if ($transaction) {
+            if ($this instanceof AfterCommit) {
+                $transaction->addCommittable($this);
+            }
+
+            if ($this instanceof AfterRollback) {
+                $transaction->addRollbackable($this);
+            }
+        }
+
         $result = parent::save($options);
-        $this->enlistCallbacks();
+
+        if ($transaction === null) {
+            if ($this instanceof AfterCommit && $result === true) {
+                $this->afterCommit();
+            } elseif ($this instanceof AfterRollback && $result === false) {
+                $this->afterRollback();
+            }
+        }
 
         return $result;
     }
@@ -111,24 +129,5 @@ abstract class Model extends BaseModel
         }
 
         return $result;
-    }
-
-    private function enlistCallbacks()
-    {
-        $transaction = resolve('TransactionState')->current($this->connection);
-        // call immediately if not in transaction
-        if ($transaction === null && ($this instanceof AfterCommit)) {
-            $this->afterCommit();
-
-            return;
-        }
-
-        if ($this instanceof AfterCommit) {
-            $transaction->addCommittable($this);
-        }
-
-        if ($this instanceof AfterRollback) {
-            $transaction->addRollbackable($this);
-        }
     }
 }
