@@ -605,7 +605,9 @@ class Beatmapset extends Model
         $field = $fields[$sortField] ?? $sortField;
         $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
 
-        $sortFields = [
+        $sortFields = [];
+
+        $sortFields[] = [
             $field => array_merge(
                 ['order' => $sortOrder],
                 $options
@@ -614,7 +616,7 @@ class Beatmapset extends Model
 
         // sub-sorting
         if ($params['sort_field'] === 'nominations') {
-            $sortFields['hype'] = ['order' => $params['sort_order']];
+            $sortFields[] = ['hype' => ['order' => $params['sort_order']]];
         }
 
         return $sortFields;
