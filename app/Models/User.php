@@ -1175,7 +1175,13 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
         } else {
-            $this->userPage->edit($text, $this);
+            $this
+                ->userPage
+                ->skipBodyPresenceCheck()
+                ->update([
+                    'post_text' => $text,
+                    'post_edit_user' => $this->getKey(),
+                ]);
         }
 
         return $this->fresh();

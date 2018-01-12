@@ -39,6 +39,7 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
 const node_root = 'node_modules';
 
 const vendor = [
+  path.join(node_root, 'clipboard-polyfill/build/clipboard-polyfill.js'),
   path.join(node_root, `url-polyfill/url-polyfill${min}.js`),
   path.join(node_root, 'turbolinks/dist/turbolinks.js'),
   path.join(node_root, `jquery/dist/jquery${min}.js`),

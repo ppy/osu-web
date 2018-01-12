@@ -210,7 +210,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
                 $beatmap->playmode = $modeInt;
                 $beatmap->convert = true;
-                $beatmap->difficultyrating = $difficulty->diff_unified;
+                $beatmap->difficultyrating = $difficulty ? $difficulty->diff_unified : 0;
 
                 array_push($converts, $beatmap);
             }

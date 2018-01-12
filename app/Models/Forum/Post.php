@@ -24,6 +24,7 @@ use App\Libraries\BBCodeForDB;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 use Es;
@@ -31,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use Elasticsearch\PostTrait, SoftDeletes;
+    use Elasticsearch\PostTrait, SoftDeletes, Validatable;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -45,6 +46,9 @@ class Post extends Model
     ];
 
     private $normalizedUsers = [];
+
+    private $skipBeatmapPostRestrictions = false;
+    private $skipBodyPresenceCheck = false;
 
     /*
     |--------------------------------------------------------------------------
@@ -81,6 +85,10 @@ class Post extends Model
 
     public function setPostTextAttribute($value)
     {
+        if ($value === $this->bodyRaw) {
+            return;
+        }
+
         $bbcode = new BBCodeForDB($value);
         $this->attributes['post_text'] = $bbcode->generate();
         $this->attributes['bbcode_uid'] = $bbcode->uid;
@@ -183,8 +191,7 @@ class Post extends Model
         }
 
         $searchParams = [
-            'index' => config('osu.elasticsearch.index'),
-            'type' => 'posts',
+            'index' => static::esIndexName(),
             'size' => $params['limit'],
             'from' => ($params['page'] - 1) * $params['limit'],
         ];
@@ -261,23 +268,84 @@ class Post extends Model
         return $this->topic->postPosition($this->post_id);
     }
 
-    public function edit($body, $user)
+    public function skipBeatmapPostRestrictions()
     {
-        if ($body === $this->bodyRaw) {
-            return true;
+        $this->skipBeatmapPostRestrictions = true;
+
+        return $this;
+    }
+
+    public function skipBodyPresenceCheck()
+    {
+        $this->skipBodyPresenceCheck = true;
+
+        return $this;
+    }
+
+    public function delete()
+    {
+        $this->validationErrors()->reset();
+
+        // don't forget to sync with views.forum.topics._posts
+        if ($this->isBeatmapsetPost()) {
+            $this->validationErrors()->add('base', '.beatmapset_post_no_delete');
+
+            return false;
         }
 
-        $updates = [
-            'post_text' => $body,
-        ];
+        return parent::delete();
+    }
 
-        $updates = array_merge($updates, [
-            'post_edit_time' => Carbon::now(),
-            'post_edit_count' => DB::raw('post_edit_count + 1'),
-            'post_edit_user' => $user->user_id,
-        ]);
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
 
-        return $this->update($updates);
+        if (!$this->skipBodyPresenceCheck && !present($this->post_text)) {
+            $this->validationErrors()->add('post_text', 'required');
+        }
+
+        if (!$this->skipBeatmapPostRestrictions) {
+            // don't forget to sync with views.forum.topics._posts
+            if ($this->isBeatmapsetPost()) {
+                $this->validationErrors()->add('base', '.beatmapset_post_no_edit');
+
+                return false;
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        // record edit history
+        if ($this->exists && $this->isDirty('post_text')) {
+            $this->fill([
+                'post_edit_time' => Carbon::now(),
+                'post_edit_count' => DB::raw('post_edit_count + 1'),
+            ]);
+        }
+
+        return parent::save($options);
+    }
+
+    // don't forget to sync with views.forum.topics._posts
+    public function isBeatmapsetPost()
+    {
+        if ($this->topic !== null) {
+            return
+                $this->getKey() === $this->topic->topic_first_post_id &&
+                $this->topic->beatmapset()->exists();
+        }
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.post';
     }
 
     public function getBodyHTMLAttribute()

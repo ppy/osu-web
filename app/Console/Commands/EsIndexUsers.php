@@ -23,6 +23,7 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 
+// TODO: combine with EsIndexDocuments and add a type filter options
 class EsIndexUsers extends EsIndexCommand
 {
     /**
@@ -38,8 +39,6 @@ class EsIndexUsers extends EsIndexCommand
      * @var string
      */
     protected $description = 'Indexes users into Elasticsearch.';
-
-    protected $alias = 'users';
 
     protected $types = [User::class];
 }

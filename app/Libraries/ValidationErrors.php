@@ -92,4 +92,9 @@ class ValidationErrors
 
         return $result;
     }
+
+    public function toSentence($separator = "\n")
+    {
+        return implode($separator, $this->allMessages());
+    }
 }

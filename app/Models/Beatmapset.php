@@ -415,8 +415,7 @@ class Beatmapset extends Model
     public static function searchES(array $params = [])
     {
         $searchParams = [
-            'index' => config('osu.elasticsearch.index'),
-            'type' => 'beatmaps',
+            'index' => static::esIndexName(),
             'size' => $params['limit'],
             'from' => $params['offset'],
             'body' => ['sort' => static::searchSortParamsES($params)],
@@ -684,14 +683,16 @@ class Beatmapset extends Model
         return in_array($coverSize, $validSizes, true);
     }
 
-    public function coverURL($coverSize = 'cover')
+    public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         if (!self::isValidCoverSize($coverSize)) {
             return false;
         }
 
         $timestamp = 0;
-        if ($this->cover_updated_at) {
+        if ($customTimestamp) {
+            $timestamp = $customTimestamp;
+        } elseif ($this->cover_updated_at) {
             $timestamp = $this->cover_updated_at->format('U');
         }
 
@@ -786,14 +787,15 @@ class Beatmapset extends Model
 
                 // upload original image
                 $this->storeCover('raw.jpg', $bgFile);
+                $timestamp = time();
 
                 // upload optimized version
-                $optimized = $processor->optimize($this->coverURL('raw'));
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
                 $this->storeCover('fullsize.jpg', $optimized);
 
                 // use thumbnailer to generate and upload all our variants
                 foreach (self::coverSizes() as $size) {
-                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
 
@@ -1191,7 +1193,12 @@ class Beatmapset extends Model
         $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
         $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
 
-        return $post->edit($newBody, $user);
+        return $post
+            ->skipBeatmapPostRestrictions()
+            ->update([
+                'post_text' => $newBody,
+                'post_edit_user' => $user === null ? null : $user->getKey(),
+            ]);
     }
 
     public function toMetaDescription()
@@ -1253,7 +1260,11 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->update(['hype' => $this->freshHype()]);
-        $this->esIndexDocument();
+        $this->fill(['hype' => $this->freshHype()]);
+
+        if ($this->isDirty()) {
+            $this->save();
+            $this->esIndexDocument();
+        }
     }
 }
