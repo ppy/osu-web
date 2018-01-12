@@ -84,33 +84,25 @@ abstract class Model extends BaseModel
 
     public function delete()
     {
+        $transaction = $this->enlistCallbacks();
+
         $result = parent::delete();
-        $this->enlistCallbacks();
+
+        if ($transaction === null && $this instanceof AfterCommit) {
+            $this->afterCommit();
+        }
 
         return $result;
     }
 
     public function save(array $options = [])
     {
-        $transaction = resolve('TransactionState')->current($this->connection);
-        if ($transaction) {
-            if ($this instanceof AfterCommit) {
-                $transaction->addCommittable($this);
-            }
-
-            if ($this instanceof AfterRollback) {
-                $transaction->addRollbackable($this);
-            }
-        }
+        $transaction = $this->enlistCallbacks();
 
         $result = parent::save($options);
 
-        if ($transaction === null) {
-            if ($this instanceof AfterCommit && $result === true) {
-                $this->afterCommit();
-            } elseif ($this instanceof AfterRollback && $result === false) {
-                $this->afterRollback();
-            }
+        if ($transaction === null && $this instanceof AfterCommit) {
+            $this->afterCommit();
         }
 
         return $result;
@@ -129,5 +121,19 @@ abstract class Model extends BaseModel
         }
 
         return $result;
+    }
+
+    private function enlistCallbacks()
+    {
+        $transaction = resolve('TransactionState')->current($this->connection);
+        if ($transaction) {
+            if ($this instanceof AfterCommit) {
+                $transaction->addCommittable($this);
+            } elseif ($this instanceof AfterRollback) {
+                $transaction->addRollbackable($this);
+            }
+        }
+
+        return $transaction;
     }
 }
