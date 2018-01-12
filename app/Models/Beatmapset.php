@@ -593,7 +593,7 @@ class Beatmapset extends Model
 
         // subsorts
         $subsort = [];
-        if ($params['sort_field'] == 'hype') {
+        if ($params['sort_field'] === 'hype') {
             $subsort['nominations'] = ['order' => $params['sort_order']];
         }
 
@@ -615,7 +615,7 @@ class Beatmapset extends Model
             $field => array_merge(
                 ['order' => $sortOrder],
                 $options
-            )
+            ),
         ];
 
         if (!empty($subsort)) {
