@@ -683,14 +683,16 @@ class Beatmapset extends Model
         return in_array($coverSize, $validSizes, true);
     }
 
-    public function coverURL($coverSize = 'cover')
+    public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         if (!self::isValidCoverSize($coverSize)) {
             return false;
         }
 
         $timestamp = 0;
-        if ($this->cover_updated_at) {
+        if ($customTimestamp) {
+            $timestamp = $customTimestamp;
+        } elseif ($this->cover_updated_at) {
             $timestamp = $this->cover_updated_at->format('U');
         }
 
@@ -785,14 +787,15 @@ class Beatmapset extends Model
 
                 // upload original image
                 $this->storeCover('raw.jpg', $bgFile);
+                $timestamp = time();
 
                 // upload optimized version
-                $optimized = $processor->optimize($this->coverURL('raw'));
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
                 $this->storeCover('fullsize.jpg', $optimized);
 
                 // use thumbnailer to generate and upload all our variants
                 foreach (self::coverSizes() as $size) {
-                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
 
