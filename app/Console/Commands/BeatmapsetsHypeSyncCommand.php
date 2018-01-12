@@ -51,7 +51,7 @@ class BeatmapsetsHypeSyncCommand extends Command
     {
         $this->info('Synchronising hype and nomination counts...');
 
-        $beatmapsets = Beatmapset::whereIn('beatmapset_id', BeatmapDiscussion::selectRaw('distinct(beatmapset_id)'));
+        $beatmapsets = Beatmapset::whereIn('beatmapset_id', BeatmapDiscussion::select('beatmapset_id')->distinct());
         $this->progress = $this->output->createProgressBar($beatmapsets->count());
 
         $beatmapsets->chunkById(1000, function ($sets) {
