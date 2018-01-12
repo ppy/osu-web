@@ -96,6 +96,7 @@ class BeatmapDiscussionPostsController extends Controller
     public function store()
     {
         $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
+        $beatmapset = null;
 
         if ($discussion->exists) {
             $discussionFilters = ['resolved:bool'];
@@ -141,7 +142,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            $saved = DB::transaction(function () use ($posts, $discussion, $events) {
+            $saved = DB::transaction(function () use ($posts, $discussion, $events, $beatmapset) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -155,7 +156,9 @@ class BeatmapDiscussionPostsController extends Controller
                 }
 
                 // feels like a controller shouldn't be calling refreshCache on a model?
-                $beatmapset->refreshCache();
+                if ($beatmapset) {
+                    $beatmapset->refreshCache();
+                }
 
                 return true;
             });
