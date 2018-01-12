@@ -125,7 +125,7 @@ return [
         'nominate-confirm' => '提名这张谱面？',
         'qualified' => '如果没有问题，预计将于 :date 被 Ranked',
         'qualified-soon' => '如果没有问题，预计不久将被 Ranked',
-        'required-text' => '提名数: :current/:required',
+        'required_text' => '提名数: :current/:required',
         'title' => '提名状态',
     ],
 
