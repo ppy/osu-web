@@ -380,7 +380,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'hype' => 'hype',
+            'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
@@ -593,8 +593,8 @@ class Beatmapset extends Model
 
         // subsorts
         $subsort = [];
-        if ($params['sort_field'] === 'hype') {
-            $subsort['nominations'] = ['order' => $params['sort_order']];
+        if ($params['sort_field'] === 'nominations') {
+            $subsort['hype'] = ['order' => $params['sort_order']];
         }
 
         // additional options
