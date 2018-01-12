@@ -154,6 +154,9 @@ class BeatmapDiscussionPostsController extends Controller
                     BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
                 }
 
+                // feels like a controller shouldn't be calling refreshCache on a model?
+                $beatmapset->refreshCache();
+
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
