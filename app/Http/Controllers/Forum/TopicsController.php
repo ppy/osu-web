@@ -333,17 +333,17 @@ class TopicsController extends Controller
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
-        $topic = Topic::createNew($forum, $params, $poll ?? null);
-
-        if ($topic->topic_id !== null) {
-            if (!app()->runningUnitTests()) {
-                event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
-            }
-
-            return ujs_redirect(route('forum.topics.show', $topic));
-        } else {
+        try {
+            $topic = Topic::createNew($forum, $params, $poll ?? null);
+        } catch (ModelNotSavedException $_e) {
             abort(422);
         }
+
+        if (!app()->runningUnitTests()) {
+            event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+        }
+
+        return ujs_redirect(route('forum.topics.show', $topic));
     }
 
     public function update($id)

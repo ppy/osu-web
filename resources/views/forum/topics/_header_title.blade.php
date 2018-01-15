@@ -15,8 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@php
-@endphp
 <div class="forum-topic-title">
     <div class="js-forum-topic-title--main forum-topic-title__group">
         <a href="{{ route("forum.topics.show", $topic->topic_id) }}" class="forum-topic-title__title js-forum-topic-title--title">
@@ -43,6 +41,7 @@
             class="forum-topic-title__input js-forum-topic-title--input"
             value="{{ $topic->topic_title }}"
             data-url="{{ route('forum.topics.update', $topic->getKey()) }}"
+            maxlength="{{ App\Models\Forum\Topic::MAX_FIELD_LENGTHS['topic_title'] }}"
             name="forum_topic[topic_title]"
         >
 
