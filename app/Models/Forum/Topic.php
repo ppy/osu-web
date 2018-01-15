@@ -55,6 +55,10 @@ class Topic extends Model
         'resolved',
     ];
 
+    const MAX_FIELD_LENGTHS = [
+        'topic_title' => 100,
+    ];
+
     protected $table = 'phpbb_topics';
     protected $primaryKey = 'topic_id';
     protected $guarded = [];
@@ -84,7 +88,7 @@ class Topic extends Model
         ]);
 
         DB::transaction(function () use ($forum, $topic, $params, $poll) {
-            $topic->save();
+            $topic->saveOrExplode();
             $topic->addPost($params['user'], $params['body']);
 
             if ($poll !== null) {
@@ -356,6 +360,32 @@ class Topic extends Model
     {
         // also functions for casting null to string
         $this->attributes['topic_last_poster_colour'] = ltrim($value, '#');
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+
+                if (mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
+                }
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function titleNormalized()
