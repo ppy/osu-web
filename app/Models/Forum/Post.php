@@ -60,6 +60,7 @@ class Post extends Model
         'poster_id' => ['type' => 'long'],
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
+        'topic_title' => ['type' => 'string'],
         'post_text' => ['type' => 'string'],
     ];
 
@@ -113,6 +114,13 @@ class Post extends Model
     public function getPostEditTimeAttribute($value)
     {
         return get_time_or_null($value);
+    }
+
+    public function getTopicTitleAttribute($value)
+    {
+        if ($this->topic) {
+            return $this->topic->topic_title;
+        }
     }
 
     public static function lastUnreadByUser($topic, $user)
