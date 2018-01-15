@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => 'Paramètres de compte <strong>Compte</strong>',
+        'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
 
         'avatar' => [
