@@ -13,9 +13,13 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function register()
     {
         Passport::ignoreMigrations();
+    }
+
+    public function boot()
+    {
         Passport::tokensExpireIn(Carbon::now()->addDays(1));
         Passport::refreshTokensExpireIn(Carbon::now()->addMonths(3));
 
