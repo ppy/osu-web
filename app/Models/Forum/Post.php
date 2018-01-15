@@ -116,9 +116,14 @@ class Post extends Model
         return get_time_or_null($value);
     }
 
+    /*
+     * Returns topic title.
+     * Used for es index. Only for first post of a topic to prevent returning
+     * multiple posts from same topic because of matching title.
+     */
     public function getTopicTitleAttribute($value)
     {
-        if ($this->topic) {
+        if ($this->topic && $this->topic->topic_first_post_id === $this->getKey()) {
             return $this->topic->topic_title;
         }
     }
