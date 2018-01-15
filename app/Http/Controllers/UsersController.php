@@ -475,6 +475,7 @@ class UsersController extends Controller
     private function scoresBest($user, $mode, $perPage = 10, $offset = 0)
     {
         $scores = $user->scoresBest($mode, true)
+            ->has('beatmap.beatmapset')
             ->orderBy('pp', 'DESC')
             ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
 
@@ -486,6 +487,7 @@ class UsersController extends Controller
     private function scoresFirsts($user, $mode, $perPage = 10, $offset = 0)
     {
         $scores = $user->scoresFirst($mode, true)
+            ->has('beatmap.beatmapset')
             ->orderBy('score_id', 'desc')
             ->with('beatmap', 'beatmap.beatmapset')
             ->limit($perPage)
@@ -500,6 +502,7 @@ class UsersController extends Controller
     private function scoresRecent($user, $mode, $perPage = 10, $offset = 0)
     {
         $scores = $user->scores($mode, true)
+            ->has('beatmap.beatmapset')
             ->with('beatmap', 'beatmap.beatmapset')
             ->limit($perPage)
             ->offset($offset)
