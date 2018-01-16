@@ -40,16 +40,28 @@ class CheckoutController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
+            'destroy',
             'store',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
+            'destroy',
             'store',
         ]]);
 
         $this->middleware('verify-user');
 
         return parent::__construct();
+    }
+
+    public function destroy($id = null)
+    {
+        // ignore dummy parameter for now, just release the current cart.
+        $order = $this->userCart();
+        $checkout = new OrderCheckout($order);
+        $checkout->failCheckout();
+
+        return ujs_redirect(route('store.products.index'));
     }
 
     public function index()

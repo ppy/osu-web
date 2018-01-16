@@ -39,6 +39,21 @@
                 </div>
             @endif
 
+            @if ($order->isProcessing())
+                <div class="alert alert-danger">
+                    <p>A previous checkout was started but did not finish.<br>
+                       Resume your checkout by selecting a payment method, or click
+                        <a href="{{ route('store.checkout.destroy', ['checkout' => 'cancel']) }}"
+                           data-method="DELETE"
+                           data-confirm="Are you sure?"
+                           data-remote="1"
+                        >
+                            here
+                        </a>
+                    to cancel.</p>
+                </div>
+            @endif
+
             @include("store.objects.order", ['order' => $order, "table_class" => "table-fancy"])
 
             <div class="store-cart-footer">

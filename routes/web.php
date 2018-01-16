@@ -213,7 +213,7 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
 
         // Store splitting starts here
         Route::resource('cart', 'CartController', ['only' => ['index', 'store']]);
-        Route::resource('checkout', 'CheckoutController', ['only' => ['index', 'store']]);
+        Route::resource('checkout', 'CheckoutController', ['only' => ['destroy', 'index', 'store']]);
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
     });
