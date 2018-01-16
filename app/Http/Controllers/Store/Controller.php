@@ -42,4 +42,11 @@ abstract class Controller extends BaseController
             return $cart->isProcessing();
         }
     }
+
+    protected function redirectIfPendingCheckout()
+    {
+        if ($this->hasPendingCheckout()) {
+            return ujs_redirect(route('store.checkout.index'));
+        }
+    }
 }

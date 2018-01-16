@@ -67,6 +67,10 @@ class StoreController extends Controller
 
     public function getListing()
     {
+        if ($this->hasPendingCheckout()) {
+            return ujs_redirect(route('store.checkout.index'));
+        }
+
         return view('store.index')
             ->with('cart', $this->userCart())
             ->with('products', Store\Product::latest()->simplePaginate(30));
