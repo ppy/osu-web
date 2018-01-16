@@ -28,6 +28,7 @@
     "laravelcollective/html": "5.5.*",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "*",
+    "league/commonmark": "0.16.*",
     "lord/laroute": "*",
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
