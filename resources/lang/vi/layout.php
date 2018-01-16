@@ -215,7 +215,7 @@ return [
         ],
         '503' => [
             'error' => 'Đang bảo trì!',
-            'description' => 'Thông thường bảo trì sẽ tốn từ 5 giây đến 10 phút ở bất cứ đâu. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.',
+            'description' => 'Thông thường bảo trì sẽ tốn khoảng 5 giây đến 10 phút. Nếu chúng tôi vẫn chưa trở lại sau khoảng thời gian trên, truy cập :link để biết thêm thông tin.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
