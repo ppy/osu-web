@@ -15,6 +15,7 @@
     }
   ],
   "require": {
+    "chaseconey/laravel-datadog-helper": "*",
     "doctrine/dbal": "*",
     "elasticsearch/elasticsearch": "~2.0",
     "ezyang/htmlpurifier": "*",
@@ -26,20 +27,20 @@
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "5.5.*",
+    "league/commonmark": "0.16.*",
     "league/flysystem-aws-s3-v3": "^1.0",
     "league/fractal": "*",
-    "league/commonmark": "0.16.*",
     "lord/laroute": "*",
     "maknz/slack": "dev-laravel-5.4",
     "mariuzzo/laravel-js-localization": "*",
+    "paypal/rest-api-sdk-php": "*",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "*",
     "shift31/laravel-elasticsearch": "~2.0",
-    "webuni/commonmark-table-extension": "*",
-    "chaseconey/laravel-datadog-helper": "*",
+    "symfony/yaml": "^4.0",
     "tumblr/tumblr": "*",
-    "xsolla/xsolla-sdk-php": "*",
-    "paypal/rest-api-sdk-php": "*"
+    "webuni/commonmark-table-extension": "*",
+    "xsolla/xsolla-sdk-php": "*"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
