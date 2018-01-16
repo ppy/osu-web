@@ -256,7 +256,8 @@ class Order extends Model
 
     public function isModifiable()
     {
-        return $this->status === 'incart';
+        // new cart is status = null
+        return in_array($this->status, ['incart', null], true);
     }
 
     public function isProcessing()
