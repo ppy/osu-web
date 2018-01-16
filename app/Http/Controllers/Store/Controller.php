@@ -34,4 +34,12 @@ abstract class Controller extends BaseController
             return Order::cart(Auth::user());
         }
     }
+
+    protected function hasPendingCheckout()
+    {
+        $cart = $this->userCart();
+        if ($cart) {
+            return $cart->isProcessing();
+        }
+    }
 }
