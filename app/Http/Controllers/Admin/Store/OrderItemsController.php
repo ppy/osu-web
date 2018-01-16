@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Store;
 
 use App\Http\Controllers\Admin\Controller;
-use App\Models\Store;
+use App\Models\Store\OrderItem;
 use Request;
 
 class OrderItemsController extends Controller
@@ -12,7 +12,7 @@ class OrderItemsController extends Controller
 
     public function update($orderId, $orderItemId)
     {
-        $item = Store\OrderItem::findOrFail($orderItemId);
+        $item = OrderItem::findOrFail($orderItemId);
 
         if ($item->order_id !== (int) $orderId) {
             return error_popup('invalid order id for this item.');
