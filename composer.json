@@ -37,7 +37,7 @@
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "*",
     "shift31/laravel-elasticsearch": "~2.0",
-    "symfony/yaml": "^4.0",
+    "symfony/yaml": "*",
     "tumblr/tumblr": "*",
     "webuni/commonmark-table-extension": "*",
     "xsolla/xsolla-sdk-php": "*"
