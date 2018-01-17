@@ -40,17 +40,22 @@
             @endif
 
             @if ($order->isProcessing())
+                @php
+                    $cancelLink = Html::link(
+                        route('store.checkout.destroy', ['checkout' => 'cancel']),
+                        trans('store.checkout.pending_checkout.link_text'),
+                        [
+                            'data-method' => 'DELETE',
+                            'data-confirm' => 'Are you sure?',
+                            'data-remote' => '1',
+                        ]
+                    );
+                @endphp
                 <div class="alert alert-danger">
-                    <p>A previous checkout was started but did not finish.<br>
-                       Resume your checkout by selecting a payment method, or click
-                        <a href="{{ route('store.checkout.destroy', ['checkout' => 'cancel']) }}"
-                           data-method="DELETE"
-                           data-confirm="Are you sure?"
-                           data-remote="1"
-                        >
-                            here
-                        </a>
-                    to cancel.</p>
+                    <p>
+                        @lang('store.checkout.pending_checkout.line_1')<br>
+                        @lang('store.checkout.pending_checkout.line_2', ['link' => $cancelLink])
+                    </p>
                 </div>
             @endif
 
