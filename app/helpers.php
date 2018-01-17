@@ -131,6 +131,9 @@ function es_search($params)
     } catch (Elasticsearch\Common\Exceptions\BadRequest400Exception $e) {
         // invalid query
         $error = $e;
+    } catch (Elasticsearch\Common\Exceptions\Missing404Exception $e) {
+        // index is missing ?_?
+        $error = $e;
     }
 
     Log::debug($error);
