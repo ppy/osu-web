@@ -440,7 +440,7 @@ class Order extends Model
     public function switchItems($orderItem, $newProduct)
     {
         DB::connection($this->connection)->transaction(function () use ($orderItem, $newProduct) {
-            list($items, $products) = $this->lockForReserve();
+            $this->lockForReserve([$orderItem->product_id, $newProduct->product_id]);
 
             $quantity = $orderItem->quantity;
             $orderItem->product->release($quantity);
@@ -496,9 +496,14 @@ class Order extends Model
         };
     }
 
-    private function lockForReserve()
+    private function lockForReserve(array $productIds = null)
     {
-        $items = $this->items()->with('product')->lockForUpdate()->get();
+        $query = $this->items()->with('product')->lockForUpdate();
+        if ($productIds) {
+            $query->whereIn('product_id', $productIds);
+        }
+
+        $items = $query->get();
         $productIds = array_pluck($items, 'product_id');
         $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
 
