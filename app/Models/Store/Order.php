@@ -336,7 +336,7 @@ class Order extends Model
 
     public function delete()
     {
-        if (!$this->isModifiable()) {
+        if ($this->isModifiable() == false) {
             // in most cases this would return a null key because the lookup for the cart
             // would return a new cart anyway?
             throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
@@ -374,7 +374,7 @@ class Order extends Model
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
-        if (!$this->isModifiable()) {
+        if ($this->isModifiable() === false) {
             // FIXME: better handling.
             return [false, 'Cart cannot be updated at this time.'];
         }
