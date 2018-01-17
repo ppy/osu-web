@@ -22,7 +22,7 @@
     "graham-campbell/github": "*",
     "graham-campbell/markdown": "*",
     "guzzlehttp/guzzle": "*",
-    "itsgoingd/clockwork": "~1.9",
+    "itsgoingd/clockwork": "*",
     "laravel/framework": "5.5.*",
     "laravel/passport": "*",
     "laravel/tinker": "~1.0",

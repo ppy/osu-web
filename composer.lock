@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6828f1d43d22ce2b42b331016786cfd",
+    "content-hash": "02c31e643852ed5845d9b45f72c6f915",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1637,20 +1637,20 @@
         },
         {
             "name": "itsgoingd/clockwork",
-            "version": "v1.14.5",
+            "version": "v2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itsgoingd/clockwork.git",
-                "reference": "55ec557cc8cc60944de0eefbe27f905d538a8f70"
+                "reference": "2f3eb28da288d82d21fa4638f8b2296f06b79017"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/55ec557cc8cc60944de0eefbe27f905d538a8f70",
-                "reference": "55ec557cc8cc60944de0eefbe27f905d538a8f70",
+                "url": "https://api.github.com/repos/itsgoingd/clockwork/zipball/2f3eb28da288d82d21fa4638f8b2296f06b79017",
+                "reference": "2f3eb28da288d82d21fa4638f8b2296f06b79017",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9",
+                "php": ">=5.4",
                 "psr/log": "1.*"
             },
             "type": "library",
@@ -1677,18 +1677,21 @@
                 {
                     "name": "itsgoingd",
                     "email": "itsgoingd@luzer.sk",
-                    "homepage": "http://twitter.com/itsgoingd"
+                    "homepage": "https://twitter.com/itsgoingd"
                 }
             ],
-            "description": "Server-side component of Clockwork, a Chrome extension for PHP development",
-            "homepage": "http://github.com/itsgoingd/clockwork",
+            "description": "php dev tools integrated to your browser",
+            "homepage": "https://underground.works/clockwork",
             "keywords": [
+                "Devtools",
                 "debugging",
                 "laravel",
                 "logging",
-                "profiling"
+                "lumen",
+                "profiling",
+                "slim"
             ],
-            "time": "2017-09-15T14:50:14+00:00"
+            "time": "2017-12-12T20:30:32+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
