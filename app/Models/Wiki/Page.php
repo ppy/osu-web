@@ -25,7 +25,6 @@ use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Carbon\Carbon;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Es;
 
 class Page
@@ -108,7 +107,7 @@ class Page
             ],
         ];
 
-        $results = Es::search($searchParams);
+        $results = es_search($searchParams);
 
         $pages = [];
 
@@ -162,7 +161,7 @@ class Page
             ],
         ];
 
-        $results = Es::search($params)['hits']['hits'];
+        $results = es_search($params)['hits']['hits'];
 
         if (count($results) === 0) {
             return;
@@ -260,11 +259,7 @@ class Page
                     ],
                 ]);
 
-                try {
-                    $search = Es::search($config)['hits']['hits'];
-                } catch (Missing404Exception $e) {
-                    // hopefully just the index not yet created
-                }
+                $search = es_search($config)['hits']['hits'];
 
                 $page = null;
                 $fetch = true;

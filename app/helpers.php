@@ -116,6 +116,35 @@ function es_records($results, $class)
     return $records;
 }
 
+function es_search($params)
+{
+    try {
+        return Es::search(array_merge_recursive([
+            'client' => [
+                'timeout' => 10,
+                'connect_timeout' => 5,
+            ],
+        ], $params));
+    } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
+        // all servers down
+        $error = $e;
+    } catch (Elasticsearch\Common\Exceptions\BadRequest400Exception $e) {
+        // invalid query
+        $error = $e;
+    }
+
+    Log::debug($error);
+
+    // default return on failure
+    return [
+        'hits' => [
+            'hits' => [],
+            'total' => 0,
+        ],
+        'error' => $error ?? null,
+    ];
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
