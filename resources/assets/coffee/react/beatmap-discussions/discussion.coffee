@@ -118,11 +118,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    topClasses += " #{vbn}--disabled" if @isOwner() || (type == 'down' && !@canDownvote())
+    disabled = @isOwner() || (type == 'down' && !@canDownvote()) || @props.currentBeatmap.deleted_at?
 
     button
       className: topClasses
       'data-score': score
+      disabled: disabled
       onClick: @doVote
       el Icon, name: icon
       span className: "#{vbn}__count",
@@ -131,7 +132,6 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
   doVote: (e) =>
     downvoting = e.currentTarget.dataset.score == '-1'
-    return if @isOwner() || (downvoting && !@canDownvote())
 
     LoadingOverlay.show()
 

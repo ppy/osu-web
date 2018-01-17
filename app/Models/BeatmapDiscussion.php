@@ -346,6 +346,10 @@ class BeatmapDiscussion extends Model
 
     public function vote($params)
     {
+        if (!$this->hasValidBeatmap()) {
+            return false;
+        }
+
         return DB::transaction(function () use ($params) {
             $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
             $previousScore = $vote->score ?? 0;
