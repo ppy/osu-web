@@ -28,25 +28,41 @@ use Request;
 
 class OrderCheckout
 {
+    /**
+     * @var Order
+     */
     private $order;
+
+    /**
+     * @var string|null
+     */
     private $provider;
 
-    public function __construct(Order $order, $provider = null)
+    public function __construct(Order $order, string $provider = null)
     {
         $this->order = $order;
         $this->provider = $provider;
     }
 
+    /**
+     * @return Order
+     */
     public function getOrder()
     {
         return $this->order;
     }
 
+    /**
+     * @return string|null
+     */
     public function getProvider()
     {
         return $this->provider;
     }
 
+    /**
+     * @return string[]
+     */
     public function allowedCheckoutTypes()
     {
         $allowed = ['paypal'];
@@ -61,6 +77,9 @@ class OrderCheckout
         return $allowed;
     }
 
+    /**
+     * @return string
+     */
     public function getCentiliPaymentLink()
     {
         $params = [
@@ -74,6 +93,9 @@ class OrderCheckout
         return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
+    /**
+     * @return boolean
+     */
     public function isShippingDelayed()
     {
         return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
@@ -139,6 +161,9 @@ class OrderCheckout
         });
     }
 
+    /**
+     * @return array
+     */
     public function validate()
     {
         $itemErrors = [];
@@ -203,6 +228,9 @@ class OrderCheckout
         return $order;
     }
 
+    /**
+     * @return boolean
+     */
     private function allowCentiliPayment()
     {
         // Geolocation header from Cloudflare
@@ -213,6 +241,9 @@ class OrderCheckout
             && Request::input('intl') !== '1';
     }
 
+    /**
+     * @return boolean
+     */
     private function allowXsollaPayment()
     {
         return !$this->order->requiresShipping();
