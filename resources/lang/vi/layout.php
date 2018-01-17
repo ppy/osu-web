@@ -222,7 +222,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => 'Khi cần thiết, đây là một đoạn code bạn có thể đưa cho người giúp đỡ!',
+        'reference' => 'Khi cần thiết, đây là một đoạn code bạn có thể cung cấp để được hỗ trợ!',
     ],
 
     'popup_login' => [
