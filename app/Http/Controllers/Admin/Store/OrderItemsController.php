@@ -13,11 +13,7 @@ class OrderItemsController extends Controller
 
     public function update($orderId, $orderItemId)
     {
-        $item = OrderItem::findOrFail($orderItemId);
-
-        if ($item->order_id !== (int) $orderId) {
-            return error_popup('invalid order id for this item.');
-        }
+        $item = OrderItem::where('order_id', $orderId)->findOrFail($orderItemId);
 
         if ($item->order->status !== 'paid') {
             return error_popup("order status {$item->order->status} is invalid.");
