@@ -21,6 +21,7 @@ return [
     | inside of your prefix. A common naming scheme is something like app.<app-name>.
     |
     */
+    'prefix' => '',
     'prefix_web' => env('DATADOG_PREFIX', 'osu.web'), // different key to revert to manually prefixed tags
     'api_key' => env('DATADOG_API_KEY'),
     'application_key' => env('DATADOG_APP_KEY'),
