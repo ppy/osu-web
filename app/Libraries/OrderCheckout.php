@@ -94,7 +94,7 @@ class OrderCheckout
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isShippingDelayed()
     {
@@ -229,7 +229,7 @@ class OrderCheckout
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     private function allowCentiliPayment()
     {
@@ -242,7 +242,7 @@ class OrderCheckout
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     private function allowXsollaPayment()
     {

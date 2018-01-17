@@ -20,13 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Events\Fulfillments\PaymentEvent;
-use App\Libraries\OrderCheckout;
-use App\Traits\CheckoutErrorSettable;
-use App\Traits\StoreNotifiable;
 use Auth;
-use DB;
-use Exception;
 use Request;
 use View;
 
