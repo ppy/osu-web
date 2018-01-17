@@ -20,9 +20,7 @@
 
 namespace App\Http\Controllers\Store;
 
-use Auth;
 use Request;
-use View;
 
 class CartController extends Controller
 {
