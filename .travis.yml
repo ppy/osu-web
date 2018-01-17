@@ -17,7 +17,7 @@ matrix:
 env:
   global:
     - DB_USERNAME=root
-    - SLACK_ENDPOINT=http://myconan.net/null/
+    - SLACK_ENDPOINT=https://myconan.net/null/
     - PATH=$HOME/.yarn/bin:$PATH
     - APP_ENV=testing
     - SESSION_DRIVER=array
