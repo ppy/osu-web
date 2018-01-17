@@ -437,6 +437,20 @@ class Order extends Model
         });
     }
 
+    public function switchItems($orderItem, $newProduct)
+    {
+        DB::connection($this->connection)->transaction(function () use ($orderItem, $newProduct) {
+            list($items, $products) = $this->lockForReserve();
+
+            $quantity = $orderItem->quantity;
+            $orderItem->product->release($quantity);
+            $orderItem->product()->associate($newProduct);
+            $newProduct->reserve($quantity);
+
+            $orderItem->saveOrExplode();
+        });
+    }
+
     public static function cart($user)
     {
         $cart = static::query()
