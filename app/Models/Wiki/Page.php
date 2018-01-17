@@ -22,6 +22,8 @@ namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
+use App\Jobs\EsDeleteDocument;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Carbon\Carbon;
@@ -198,7 +200,7 @@ class Page
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
-    public function indexAdd()
+    public function esIndexDocument()
     {
         $params = static::searchIndexConfig();
 
@@ -229,7 +231,7 @@ class Page
         return Es::index($params);
     }
 
-    public function indexRemove()
+    public function esDeleteDocument()
     {
         return Es::delete(static::searchIndexConfig([
             'id' => $this->pagePath(),
@@ -296,7 +298,7 @@ class Page
                 $this->cache['page'] = $page;
 
                 if ($fetch) {
-                    $this->indexAdd();
+                    dispatch(new EsIndexDocument($this));
                 }
 
                 if ($page !== null) {
@@ -315,7 +317,7 @@ class Page
 
     public function refresh()
     {
-        return $this->indexRemove();
+        dispatch(new EsDeleteDocument($this));
     }
 
     public function title($withSubtitle = false)
