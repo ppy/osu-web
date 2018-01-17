@@ -232,13 +232,10 @@ class Page
 
     public function indexRemove()
     {
-        try {
-            return Es::delete(static::searchIndexConfig([
-                'id' => $this->pagePath(),
-            ]));
-        } catch (Missing404Exception $_e) {
-            // do nothing
-        }
+        return Es::delete(static::searchIndexConfig([
+            'id' => $this->pagePath(),
+            'client' => ['ignore' => 404],
+        ]));
     }
 
     public function isOutdated()
