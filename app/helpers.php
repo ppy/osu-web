@@ -141,7 +141,7 @@ function es_search($params)
             'hits' => [],
             'total' => 0,
         ],
-        'error' => $error ?? null,
+        'exception' => $error ?? null,
     ];
 }
 
