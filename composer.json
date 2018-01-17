@@ -38,7 +38,6 @@
     "sentry/sentry-laravel": "*",
     "shift31/laravel-elasticsearch": "~2.0",
     "symfony/yaml": "*",
-    "tumblr/tumblr": "*",
     "webuni/commonmark-table-extension": "*",
     "xsolla/xsolla-sdk-php": "*"
   },
