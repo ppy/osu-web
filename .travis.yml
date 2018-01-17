@@ -4,7 +4,8 @@ cache:
     - node_modules
     - $HOME/.yarn-cache
 
-sudo: true
+dist: trusty
+sudo: false
 
 language: php
 
@@ -14,10 +15,18 @@ php:
 matrix:
   fast_finish: true
 
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb http://repo.mysql.com/apt/ubuntu/ trusty mysql-5.7'
+        key_url: 'https://gist.githubusercontent.com/nanaya/8c435175aa56da449f7ca485efdbac0f/raw/aac9f8352a91323fee72d8417fccaf8b3027f813/mysql-2017.key'
+    packages:
+      - mysql-community-server
+
 env:
   global:
     - DB_USERNAME=root
-    - SLACK_ENDPOINT=http://myconan.net/null/
+    - SLACK_ENDPOINT=https://myconan.net/null/
     - PATH=$HOME/.yarn/bin:$PATH
     - APP_ENV=testing
     - SESSION_DRIVER=array
@@ -26,18 +35,20 @@ env:
     - ES_VERSION=1.7.6 ES_DOWNLOAD_URL=https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-${ES_VERSION}.zip
 
 install:
-  - sudo ./bin/mysql_debian_install
-  - nvm install 6.11
-  - nvm use 6.11
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.27.5
-  - ./bin/db_setup.sh
-  - ./build.sh
-
-  # elasticsearch setup
+  # elasticsearch setup (part 1)
   - wget "${ES_DOWNLOAD_URL}"
   - unzip "elasticsearch-${ES_VERSION}.zip"
   - ./"elasticsearch-${ES_VERSION}/bin/elasticsearch" &
-  - sleep 10 # wait until the server is up
+
+  - nvm install 8.9
+  - nvm use 8.9
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.3.2
+  - ./bin/db_setup.sh
+  - ./build.sh
+
+  # elasticsearch setup (part 2)
+  # wait until es server is up
+  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
   - php artisan es:index-users --yes
   - php artisan es:index-documents --yes
 
