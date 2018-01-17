@@ -44,6 +44,7 @@ trait BeatmapsetTrait
     {
         return static::on('mysql-readonly')
             ->withoutGlobalScopes()
+            ->active()
             ->with('beatmaps'); // note that the with query will run with the default scopes.
     }
 

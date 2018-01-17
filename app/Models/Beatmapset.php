@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
@@ -137,6 +138,7 @@ class Beatmapset extends Model
         'hype' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
+        'nominations' => ['type' => 'long'],
         'offset' => ['type' => 'long'],
         'play_count' => ['type' => 'long'],
         'rating' => ['type' => 'double'],
@@ -379,7 +381,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'hype' => 'hype',
+            'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
@@ -571,7 +573,7 @@ class Beatmapset extends Model
 
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
-            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
+            Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
         }
 
         return [
@@ -604,12 +606,19 @@ class Beatmapset extends Model
         $field = $fields[$sortField] ?? $sortField;
         $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
 
-        return [
+        $sortFields = [
             $field => array_merge(
                 ['order' => $sortOrder],
                 $options
             ),
         ];
+
+        // sub-sorting
+        if ($params['sort_field'] === 'nominations') {
+            $sortFields['hype'] = ['order' => $params['sort_order']];
+        }
+
+        return $sortFields;
     }
 
     public static function latestRankedOrApproved($count = 5)
@@ -881,6 +890,7 @@ class Beatmapset extends Model
             ]);
 
             $this->setApproved('pending', $user);
+            $this->refreshCache();
         });
 
         return true;
@@ -930,6 +940,7 @@ class Beatmapset extends Model
                     $this->qualify($user);
                 }
             }
+            $this->refreshCache();
         });
 
         return [
@@ -1260,11 +1271,16 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->fill(['hype' => $this->freshHype()]);
+        $this->fill([
+            'hype' => $this->freshHype(),
+            'nominations' => $this->currentNominationCount(),
+        ]);
 
         if ($this->isDirty()) {
             $this->save();
-            $this->esIndexDocument();
+            // calling EsIndexDocument::dispatch queues and
+            // runs the previously dispatched job... ಠ_ಠ
+            dispatch(new EsIndexDocument($this));
         }
     }
 }

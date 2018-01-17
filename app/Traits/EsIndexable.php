@@ -38,26 +38,26 @@ trait EsIndexable
 
     public function esDeleteDocument(array $options = [])
     {
-        return Es::delete(
-            array_merge([
-                'index' => static::esIndexName(),
-                'type' => static::esType(),
-                'id' => $this->getKey(),
-                'client' => ['ignore' => 404],
-            ], $options)
-        );
+        $document = array_merge([
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
+            'id' => $this->getKey(),
+            'client' => ['ignore' => 404],
+        ], $options);
+
+        return Es::delete($document);
     }
 
     public function esIndexDocument(array $options = [])
     {
-        $json = [
+        $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
             'id' => $this->getKey(),
             'body' => $this->toEsJson(),
-        ];
+        ], $options);
 
-        return Es::index(array_merge($json, $options));
+        return Es::index($document);
     }
 
     public static function esCreateIndex(string $name = null)

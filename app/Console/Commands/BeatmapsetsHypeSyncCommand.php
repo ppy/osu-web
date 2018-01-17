@@ -20,6 +20,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
 use Illuminate\Console\Command;
 
@@ -37,7 +38,7 @@ class BeatmapsetsHypeSyncCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Synchronises hype count cache for all beatmapsets.';
+    protected $description = 'Synchronises hype and nomination count caches for all beatmapsets.';
 
     private $progress;
 
@@ -48,11 +49,12 @@ class BeatmapsetsHypeSyncCommand extends Command
      */
     public function handle()
     {
-        $this->info('Synchronising hype counts...');
+        $this->info('Synchronising hype and nomination counts...');
 
-        $this->progress = $this->output->createProgressBar(Beatmapset::count());
+        $beatmapsets = Beatmapset::whereIn('beatmapset_id', BeatmapDiscussion::select('beatmapset_id')->distinct());
+        $this->progress = $this->output->createProgressBar($beatmapsets->count());
 
-        Beatmapset::chunkById(1000, function ($sets) {
+        $beatmapsets->chunkById(1000, function ($sets) {
             foreach ($sets as $set) {
                 $set->refreshCache();
                 $this->progress->advance();

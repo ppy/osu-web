@@ -33,7 +33,6 @@ php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 php artisan config:cache
 php artisan route:cache
-php artisan optimize
 
 command -v yarn || npm install -g yarn
 yarn

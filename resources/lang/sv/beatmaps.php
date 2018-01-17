@@ -127,7 +127,7 @@ return [
         'qualified' => 'Beräknad tid när den är rankad är :date, om inga fel hittas.',
         'qualified-soon' => 'Beräknat att den rankas snart, om inga fel hittas.',
         'reset-confirm' => 'Är du säker? Lägga upp ett nytt problem kommer återställa nomineringar.',
-        'required-text' => 'Nomineringar: :current/:required',
+        'required_text' => 'Nomineringar: :current/:required',
         'title' => 'Nominering Status',
     ],
 

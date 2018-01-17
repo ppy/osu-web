@@ -117,7 +117,7 @@ class Handler extends ExceptionHandler
         return $response->setStatusCode($this->statusCode($e));
     }
 
-    protected function unauthenticated($request, $exception)
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
             return response(['authentication' => 'basic'], 401);
