@@ -266,7 +266,7 @@ class Page
                 $page = null;
                 $fetch = true;
 
-                if (isset($search) && count($search) > 0) {
+                if (count($search) > 0) {
                     $result = $search[0]['_source'];
                     $expired = Carbon
                         ::parse($result['indexed_at'])
