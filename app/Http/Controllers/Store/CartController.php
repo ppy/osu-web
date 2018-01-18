@@ -42,12 +42,11 @@ class CartController extends Controller
 
     public function index()
     {
-        $order = $this->userCart();
-        if ($order->isModifiable() === false) {
+        if ($this->hasPendingCheckout()) {
             return ujs_redirect(route('store.checkout.index'));
         }
 
-        return view('store.cart')->with('order', $order);
+        return view('store.cart')->with('order', $this->userCart());
     }
 
     public function store()
