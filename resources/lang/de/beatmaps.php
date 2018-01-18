@@ -44,8 +44,8 @@ return [
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
         'require-login' => 'Zum Beitragen oder Antworten bitte einloggen',
-        'resolved' => '<Resolved>',
-        'restore' => 'restore',
+        'resolved' => 'Gelöst',
+        'restore' => 'wiederherstellen',
         'title' => 'Diskussionen',
 
         'collapse' => [
@@ -101,13 +101,13 @@ return [
             'mine' => 'Meine',
             'pending' => 'Ausstehend',
             'praises' => 'Lob',
-            'resolved' => '<Resolved>',
+            'resolved' => 'Gelöst',
             'total' => 'Alle',
         ],
 
         'status-messages' => [
             'approved' => 'Diese Beatmap wurde am :date <approved>!',
-            'graveyard' => "Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...",
+            'graveyard' => 'Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...',
             'loved' => 'Diese Beatmap wurde am :date zu <loved> hinzugefügt!',
             'ranked' => 'Diese Beatmap wurde am :date zu <ranked> hinzugefügt!',
             'wip' => 'Anmerkung: Diese Beatmap ist vom Mapper als \'Work-In-Progress\' gekennzeichnet',
@@ -118,10 +118,10 @@ return [
     'hype' => [
         'button' => 'Beatmap hypen!',
         'button_done' => 'Schon gehypet!',
-        'confirm' => "Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.",
+        'confirm' => 'Sicher? Dies wird eins deiner letzten :n Hypes verwenden und kann nicht rückgängig gemacht werden.',
         'explanation' => 'Hype diese Beatmap, um sie für Nominierungen und <ranked> sichtbarer zu machen!',
         'explanation_guest' => 'Einloggen und diese Beatmap hypen, um sie für Nominierungen und <ranked> sichtbarer zu machen!',
-        'new_time' => "Um :new_time wirst du deinen nächsten Hype erhalten.",
+        'new_time' => 'Um :new_time wirst du deinen nächsten Hype erhalten.',
         'remaining' => 'Du hast noch :remaining Hypes übrig.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
@@ -142,7 +142,7 @@ return [
         'reset-confirm' => 'Sicher? Alle Nominierungen werden zurückgesetzt, wenn ein neues <issue> angemerkt wird.',
         'required_text' => 'Nominierungen: :current/:required',
         'title' => 'Nominierungsstatus',
-        'unresolved_issues' => 'Es existieren noch <issues>, die <resolved> werden müssen.',
+        'unresolved_issues' => 'Es existieren noch <issues>, die gelöst werden müssen.',
     ],
 
     'listing' => [

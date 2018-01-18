@@ -1,28 +1,28 @@
 # Todo
 
-## General questions
-
-- should roles be translated (BN, QAT etc.)? NO
-- should mods be translated (e.g. search filter in beatmaps.php)? NO
-
 ## What is...
 
+- beatmapset.covers.regenerate
 - artist.songs.count
 - authorization.user.page (osu.ppy.sh/u/[id]? so a profile, basically?)
 - beatmap_discussions.nearby_posts.notice
 
+## Solved issues that have to be changed
+
+- [X] resolved -> gelöst
+- [X] topic & thread -> Thread
+
+## General things
+
+- do not translate roles (BN, WAT) and mod names (EZ, HR, DT)
+
 ## Translation issues (you should know German to help with this)
 
-### Suche nach Übersetzung bzw. so ok?
+### Suche nach Übersetzung
 
 - Beatmap abkürzbar zu Map? Sollte okay sein, oder? (bisher nicht)
-- restricted
-  - wörtlich wäre restringiert (schlecht)
-  - eingeschränkt vllt.?
-  - beschränkt (meh)
-- Forum Cover -> Forencover ok?
-- map cleared (in beatmappacks.show.item)
-- beatmaps
+- map cleared (z.B. in beatmappacks.show.item)
+- Die verschiedenen Beatmapstatus (einfach so lassen?)
   - approved
   - graveyard
   - loved
@@ -31,7 +31,6 @@
 - beatmapsets.show.details.favourited_count
 - star difficulty
 - points of failure
-- topic
 
 ### Unsicher
 
@@ -39,3 +38,4 @@
 - beatmap_discussion_posts.index.title (wort sehr lang)
 - beatmaps.discussions.message_placeholder
 - "Einsendung" bei contests
+- forum.topics.show.feature_vote.do

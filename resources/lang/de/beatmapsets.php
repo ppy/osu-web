@@ -39,7 +39,7 @@ return [
             'updated' => 'letztes update an ',
             'ranked' => '<ranked> an ',
             'approved' => '<approved> an ',
-            'qualified' => '<qualifziert> an ',
+            'qualified' => 'qualifziert an ',
             'loved' => '<loved> on ',
             'logged-out' => 'Zum Herunterladen von Beatmaps muss man eingeloggt sein!',
             'download' => [

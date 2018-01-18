@@ -22,20 +22,18 @@ return [
     'beatmap_discussion' => [
         'destroy' => [
             'is_hype' => 'Hypen kann nicht rückgängig gemacht werden.',
-            'has_reply' => 'Diskussion mit Antworten kann nicht gelöscht werden',
+            'has_reply' => 'Eine Diskussion mit Antworten kann nicht gelöscht werden',
         ],
         'nominate' => [
             'exhausted' => 'Dein Nominierungslimit für heute wurde erreicht, bitte versuche es morgen erneut.',
         ],
         'resolve' => [
-            // todo: gute übersetzung für 'resolve'..
-            // diskussion für beendet / gelöst erklären? auflösen? klären?
-            'not_owner' => 'Nur der Threadersteller und Beatmapbesitzer können die Diskussion .',
+            'not_owner' => 'Nur der Thread- oder Beatmapersteller kann die Diskussion für gelöst erklären.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Bitte warte eine Weile, bevor du mehr Stimmen abgibst',
-            'owner' => 'Man kann nicht bei der eigenen Diskussion abstimmen!',
+            'owner' => 'Man kann nicht in der eigenen Diskussion abstimmen!',
         ],
     ],
 
@@ -49,14 +47,14 @@ return [
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Zugang zum angeforderten Channel wurde verwehrt.',
+                'no_access' => 'Zugang zum angeforderten Kanal wurde verwehrt.',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
                     'no_access' => 'Zugang zum Kanal wurde verwehrt.',
-                    'moderated' => 'Der Kanal ist momentan moderiert.',
+                    'moderated' => 'Der Kanal wird momentan moderiert.',
                     'not_lazer' => 'Momentan kannst du nur in #lazer sprechen.',
                 ],
 
@@ -73,37 +71,37 @@ return [
         'post' => [
             'delete' => [
                 'only_last_post' => 'Nur der letzte Beitrag kann gelöscht werden.',
-                'locked' => 'Beiträge in <locked> <topics> können nicht gelöscht werden.',
+                'locked' => 'Beiträge in gesperrten Threads können nicht gelöscht werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag löschen',
             ],
 
             'edit' => [
                 'deleted' => 'Can not edit deleted post.',
-                'locked' => 'Dieser Beitrag ist <locked> und kann nicht bearbeitet werden.',
+                'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
-                'topic_locked' => 'Beiträge in <locked> <topics> können nicht bearbeitet werden.',
+                'topic_locked' => 'Beiträge in gesperrten Threads können nicht bearbeitet werden.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du hast gerade erst einen Beitrag gesendet! Warte kurz oder bearbeite deinen letzten Beitrag.',
-                'locked' => 'Auf <locked> Threads kann nicht geantwortet werden.',
+                'double_post' => 'Du hast gerade erst einen Beitrag erstellt! Warte kurz oder bearbeite deinen letzten Beitrag.',
+                'locked' => 'Auf gesperrte Threads kann nicht geantwortet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'no_permission' => 'Keine Berechtigung zum Antworten.',
 
                 'user' => [
                     'require_login' => 'Zum Antworten bitte einloggen.',
-                    'restricted' => "Man kann nicht antworten, während man <restriced> ist.",
-                    'silenced' => "Man kann nicht antworten, während man stummgeschaltet ist.",
+                    'restricted' => 'Man kann nicht antworten, während man <restricted> ist.',
+                    'silenced' => 'Man kann nicht antworten, während man stummgeschaltet ist.',
                 ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
-                'no_permission' => 'Keine Berechtigung, um ein neues <topic> zu erstellen.',
+                'no_permission' => 'Keine Berechtigung, einen neuen Thread zu erstellen.',
                 'forum_closed' => 'Das Forum ist geschlossen. Man kann nicht mehr beitragen.',
             ],
 
@@ -114,8 +112,8 @@ return [
 
                 'user' => [
                     'require_login' => 'Zum Abstimmen bitte einloggen.',
-                    'restricted' => "Man kann nicht abstimmen, während man <restriced> ist.",
-                    'silenced' => "Man kann nicht abstimmen, während man stummgeschaltet ist.",
+                    'restricted' => 'Man kann nicht abstimmen, während man <restricted> ist.',
+                    'silenced' => 'Man kann nicht abstimmen, während man stummgeschaltet ist.',
                 ],
             ],
 
@@ -140,15 +138,14 @@ return [
 
     'unauthorized' => 'Zugang verwehrt.',
 
-    'silenced' => "Während Stummschaltung nicht möglich.",
+    'silenced' => 'Während Stummschaltung nicht möglich.',
 
-    // todo: als nomen ok?
-    'restricted' => "Während Restriktion nicht möglich.",
+    'restricted' => 'Während <restriction> nicht möglich.',
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'Dieses Profil ist <locked>.',
+                'locked' => 'Dieses Profil ist gesperrt.',
                 'not_owner' => 'Nur das eigene Profil kann bearbeitet werden.',
                 'require_supporter_tag' => 'Ein Supporter-Tag ist hierzu erforderlich.',
             ],

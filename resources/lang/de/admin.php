@@ -51,7 +51,7 @@ return [
                     'save' => 'Speichern',
                     'update' => 'Aktualisieren',
                 ],
-                
+
                 'title' => 'Liste der Forenbanner',
 
                 'type-title' => [
@@ -64,8 +64,7 @@ return [
 
     'logs' => [
         'index' => [
-            // todo: evtl. ein wort für "viewer" finden
-            'title' => 'Logs',
+            'title' => 'Logs einsehen',
         ],
     ],
 
@@ -91,8 +90,7 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            // todo: übersetzung 'restricted'
-            'title' => 'Dieser Benutzer ist momentan ',
+            'title' => 'Dieser Benutzer ist momentan <restricted>',
             'message' => '(nur admins können dies sehen)',
         ],
     ],

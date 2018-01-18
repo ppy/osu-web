@@ -23,10 +23,10 @@ return [
         'blurb' => [
             'important' => 'VOR DEM HERUNTERLADEN BITTE LESEN',
             'instruction' => [
-                '_' => "Installation: Sobald das Paket heruntergeladen wurde, entpacke das .rar-Archiv in dein osu! \"Songs\"-Verzeichnis.
+                '_' => 'Installation: Sobald das Paket heruntergeladen wurde, entpacke das .rar-Archiv in dein osu! "Songs"-Verzeichnis.
                     Alle Lieder sind innerhalb des Pakets noch einmal als .zip oder .osz-Archiv verpackt, deshalb muss osu! die Beatmaps beim nächsten Start noch einmal entpacken.
                     Entpacke die .zip/.osz-Dateien :scary selbst,
-                    oder die Beatmaps werden in osu! nicht richtig funktionieren.",
+                    oder die Beatmaps werden in osu! nicht richtig funktionieren.',
                 'scary' => 'NICHT',
             ],
             'note' => [

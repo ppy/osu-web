@@ -64,7 +64,7 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => 'Von :user als <resolved> markiert',
+            'true' => 'Von :user als gelöst erklärt',
             'false' => 'Von :user wiedereröffnet',
         ],
     ],

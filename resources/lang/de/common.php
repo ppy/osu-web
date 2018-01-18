@@ -36,7 +36,7 @@ return [
         'post' => 'Senden',
         'reply' => 'Antworten',
         'reply_reopen' => 'Antworten und wiedereröffnen',
-        'reply_resolve' => 'Antworten und <resolve>',
+        'reply_resolve' => 'Antworten und lösen',
         'reset' => 'Zurücksetzen',
         'save' => 'Speichernn',
         'saving' => 'Speichert...',

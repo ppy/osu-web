@@ -68,7 +68,6 @@ return [
                 'description' => 'Zugriff auf frühere Updates, in denen man neue Features ausprobieren kann, bevor sie veröffentlich werden!',
             ],
 
-            // hier weiter
             'customisation' => [
                 'title' => 'Anpassung',
                 'description' => 'Füge deinem Profil eine persönliche Note hinzu, indem du eine komplett anpassbare Seite hinzufügst.',

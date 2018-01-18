@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Accounteinstellungen</strong>',
+        'title' => '<strong>Account</strong>einstellungen',
         'title_compact' => 'einstellungen',
 
         'avatar' => [
@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! Bestätigung zum E-Mail-Wechsel',
         'update' => 'speichern',
-        'updated' => 'E-Mail aktualisiert',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! Bestätigung zum Passwortwechsel',
         'update' => 'speichern',
-        'updated' => 'Passwort aktualisiert',
     ],
 
     'playstyles' => [
