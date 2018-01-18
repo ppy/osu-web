@@ -990,6 +990,11 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
+    public function allBeatmaps()
+    {
+        return $this->hasMany(Beatmap::class, 'beatmapset_id')->withTrashed();
+    }
+
     public function events()
     {
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
@@ -1091,9 +1096,15 @@ class Beatmapset extends Model
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson($options = [])
     {
-        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
+        $includes = ['current_user_attributes', 'nominations'];
+
+        if ($options['withTrashedBeatmaps'] ?? false) {
+            $includes[] = 'beatmaps:with_trashed';
+        } else {
+            $includes[] = 'beatmaps';
+        }
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }
