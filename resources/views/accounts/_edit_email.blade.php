@@ -84,7 +84,7 @@
                 <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
-                            {{ trans('accounts.update_password.update') }}
+                            {{ trans('accounts.update_email.update') }}
                         </div>
 
                         <div class="btn-osu-big__icon">
