@@ -156,9 +156,8 @@ class OrderCheckout
 
             $order->status = 'incart';
             $order->transaction_id = "{$this->provider}-failed";
-            if ($order->isDirty('status')) {
-                $order->releaseItems();
-            }
+            $order->releaseItems();
+
             $order->saveorExplode();
 
             return $order;
