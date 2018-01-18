@@ -51,18 +51,9 @@ class BeatmapPack extends Model
             ->where("{$itemsTable}.pack_id", '=', $this->pack_id);
     }
 
-    public function downloadUrls()
+    public function downloadUrl()
     {
-        $array = [];
-        foreach (explode(',', $this->url) as $url) {
-            preg_match('@^https?://(?<host>[^/]+)@i', $url, $matches);
-            $array[] = [
-                'url' => $url,
-                'host' => $matches['host'],
-            ];
-        }
-
-        return $array;
+        return $this->downloadUrls()[0];
     }
 
     public static function getPacks($type)
@@ -82,5 +73,19 @@ class BeatmapPack extends Model
         }
 
         return $packs;
+    }
+
+    private function downloadUrls()
+    {
+        $array = [];
+        foreach (explode(',', $this->url) as $url) {
+            preg_match('@^https?://(?<host>[^/]+)@i', $url, $matches);
+            $array[] = [
+                'url' => $url,
+                'host' => $matches['host'],
+            ];
+        }
+
+        return $array;
     }
 }
