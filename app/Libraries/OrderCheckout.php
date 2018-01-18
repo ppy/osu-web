@@ -123,7 +123,7 @@ class OrderCheckout
 
     public function completeCheckout()
     {
-        DB::connection('mysql-store')->transaction(function () {
+        return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
 
             // cart should only be in:
@@ -139,12 +139,14 @@ class OrderCheckout
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
                 );
             }
+
+            return $order;
         });
     }
 
     public function failCheckout()
     {
-        DB::connection('mysql-store')->transaction(function () {
+        return DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
             if ($order->isProcessing() === false) {
                 throw new InvalidOrderStateException(
@@ -158,6 +160,8 @@ class OrderCheckout
                 $order->releaseItems();
             }
             $order->saveorExplode();
+
+            return $order;
         });
     }
 
@@ -195,37 +199,11 @@ class OrderCheckout
     }
 
     /**
-     * Helper method for completing checkout with just the order number.
-     *
-     * @param string $orderNumber
-     * @return Order
+     * Helper method for creating an OrderCheckout with just the order number.
      */
-    public static function complete($orderNumber)
+    public static function for(?string $orderNumber) : OrderCheckout
     {
-        // select for update will lock the table if the row doesn't exist,
-        // so do a double select.
-        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
-        $checkout = new static($order);
-        $checkout->completeCheckout();
-
-        return $order;
-    }
-
-    /**
-     * Helper method for failing checkout with just the order number.
-     *
-     * @param string $orderNumber
-     * @return Order
-     */
-    public static function fail($orderNumber)
-    {
-        // select for update will lock the table if the row doesn't exist,
-        // so do a double select.
-        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
-        $checkout = new static($order);
-        $checkout->failCheckout();
-
-        return $order;
+        return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
     }
 
     /**
