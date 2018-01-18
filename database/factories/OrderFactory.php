@@ -8,6 +8,12 @@ $factory->define(App\Models\Store\Order::class, function (Faker\Generator $faker
     ];
 });
 
+$factory->state(App\Models\Store\Order::class, 'incart', function (Faker\Generator $faker) {
+    return [
+        'status' => 'incart',
+    ];
+});
+
 $factory->state(App\Models\Store\Order::class, 'processing', function (Faker\Generator $faker) {
     return [
         'status' => 'processing',
