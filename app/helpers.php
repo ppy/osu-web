@@ -121,8 +121,8 @@ function es_search($params)
     try {
         return Es::search(array_merge_recursive([
             'client' => [
-                'timeout' => 10,
-                'connect_timeout' => 5,
+                'timeout' => config('elasticsearch.search_timeout'),
+                'connect_timeout' => config('elasticsearch.search_connect_timeout'),
             ],
         ], $params));
     } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
