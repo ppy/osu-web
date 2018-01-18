@@ -1,8 +1,0 @@
-#!/bin/sh
-
-echo mysql-apt-config mysql-apt-config/select-server select mysql-5.7 | debconf-set-selections
-wget https://dev.mysql.com/get/mysql-apt-config_0.8.3-1_all.deb
-dpkg --install mysql-apt-config_0.8.3-1_all.deb
-apt-get update -q
-apt-get install -q -y -o Dpkg::Options::=--force-confnew mysql-server
-mysql_upgrade

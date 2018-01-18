@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
@@ -1288,7 +1289,9 @@ class Beatmapset extends Model
 
         if ($this->isDirty()) {
             $this->save();
-            $this->esIndexDocument();
+            // calling EsIndexDocument::dispatch queues and
+            // runs the previously dispatched job... ಠ_ಠ
+            dispatch(new EsIndexDocument($this));
         }
     }
 }
