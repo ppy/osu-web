@@ -46,7 +46,7 @@
                         trans('store.checkout.pending_checkout.link_text'),
                         [
                             'data-method' => 'DELETE',
-                            'data-confirm' => 'Are you sure?',
+                            'data-confirm' => trans('common.confirmation'),
                             'data-remote' => '1',
                         ]
                     );
