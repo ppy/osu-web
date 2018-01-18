@@ -42,7 +42,7 @@ export class StoreCheckout
       LoadingOverlay.show.flush()
 
       init[provider]?.then =>
-        $.post laroute.route('store.checkout.store')
+        $.post laroute.route('store.checkout.store'), provider: provider
         .done =>
           @startPayment(event.target.dataset)
 

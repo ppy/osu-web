@@ -117,9 +117,9 @@ class XsollaPaymentProcessorTest extends TestCase
         $this->runSubject($subject);
     }
 
-    public function testWhenOrderIncartState()
+    public function testWhenOrderProcessingState()
     {
-        $this->order = factory(Order::class)->states('incart')->create();
+        $this->order = factory(Order::class)->states('processing')->create();
         $params = $this->getTestParams();
         $subject = new XsollaPaymentProcessor($params, $this->validSignature());
         $subject->run();
