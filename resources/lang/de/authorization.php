@@ -126,8 +126,8 @@ return [
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Ungültiges Cover ausgewählt.',
-                'not_owner' => 'Nur der Besitzer kann das Cover bearbeiten.',
+                'uneditable' => 'Ungültiges Banner ausgewählt.',
+                'not_owner' => 'Nur der Besitzer kann das Banner bearbeiten.',
             ],
         ],
 

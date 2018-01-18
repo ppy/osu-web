@@ -22,14 +22,14 @@ return [
 
     'covers' => [
         'create' => [
-            '_' => 'Coverbild festlegen',
+            '_' => 'Banner festlegen',
             'button' => 'Bild hochladen',
-            'info' => 'Das Coverbild sollte :dimensions groß sein. Hier kannst du es auch ablegen, um es hochzuladen.',
+            'info' => 'Das Bild sollte :dimensions groß sein. Hier kannst du es auch ablegen, um es hochzuladen.',
         ],
 
         'destroy' => [
-            '_' => 'Coverbild entfernen',
-            'confirm' => 'Bist du dir sicher, dass du das Coverbild entfernen willst?',
+            '_' => 'Banner entfernen',
+            'confirm' => 'Bist du dir sicher, dass du das Banner entfernen willst?',
         ],
     ],
 

@@ -27,7 +27,7 @@ return [
             'removing' => 'Entfernt...',
         ],
         'show' => [
-            'covers' => 'Beatmapset-Covers bearbeiten',
+            'covers' => 'Beatmapset-Banner bearbeiten',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'aktivieren',
@@ -45,18 +45,18 @@ return [
 
                 'forum-name' => 'Forum #:id: :name',
 
-                'no-cover' => 'Kein Cover ausgewählt',
+                'no-cover' => 'Kein Banner ausgewählt',
 
                 'submit' => [
                     'save' => 'Speichern',
                     'update' => 'Aktualisieren',
                 ],
                 
-                'title' => 'Liste der Forencover',
+                'title' => 'Liste der Forenbanner',
 
                 'type-title' => [
-                    'default-topic' => 'Standard-Forencover',
-                    'main' => 'Forencover',
+                    'default-topic' => 'Standard-Forenbanner',
+                    'main' => 'Forenbanner',
                 ],
             ],
         ],
