@@ -159,14 +159,11 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
   changeSort: (e) =>
     e.preventDefault()
-    if @state.sortField == 'updated_at'
-      if @props.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
 
-    else
-      @setState sortField: 'updated_at'
+    @setState sortField: if @state.sortField == 'updated_at'
+                           if @props.mode == 'timeline' then 'timeline' else 'created_at'
+                         else
+                           'updated_at'
 
 
   expand: (e) =>
