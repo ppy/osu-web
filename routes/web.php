@@ -312,6 +312,7 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
 
 // Callbacks for legacy systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
+    Route::post('/refresh-beatmapset-cache/{beatmapset}', ['uses' => 'LegacyInterOpController@refreshBeatmapsetCache']);
     Route::post('/regenerate-beatmapset-covers/{beatmapset}', ['uses' => 'LegacyInterOpController@regenerateBeatmapsetCovers']);
     Route::get('/news', ['uses' => 'LegacyInterOpController@news']);
 });
