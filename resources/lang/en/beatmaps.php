@@ -40,7 +40,7 @@ return [
         'edited' => 'Last edited by :editor :update_time.',
         'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder' => 'Type here to post',
-        'message_placeholder_deleted_beatmap' => 'Posting on deleted difficulty is not allowed.',
+        'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
         'reply_placeholder' => 'Type your response here',
