@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! - Confirmación de cambio de correo electrónico',
         'update' => 'actualizar',
-        'updated' => 'Correo electrónico actualizado',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! - Confirmación de cambio de contraseña',
         'update' => 'actualizar',
-        'updated' => 'Contraseña actualizada',
     ],
 
     'playstyles' => [

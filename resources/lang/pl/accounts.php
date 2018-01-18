@@ -55,12 +55,10 @@ return [
     'update_email' => [
         'email_subject' => 'potwierdź zmianę maila',
         'update' => 'zaktualizuj',
-        'updated' => 'Mail został zaktualizowany',
     ],
     'update_password' => [
         'email_subject' => 'potwierdź zmianę hasła',
         'update' => 'zaktualizuj',
-        'updated' => 'Hasło zostało zaktualizowane',
     ],
     'playstyles' => [
         'title' => 'Style gry',
