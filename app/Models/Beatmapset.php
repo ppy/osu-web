@@ -30,8 +30,6 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -535,14 +533,7 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        try {
-            $results = Es::search($searchParams);
-        } catch (ElasticsearchBadRequest $e) {
-            $results = ['hits' => [
-                'hits' => [],
-                'total' => 0,
-            ]];
-        }
+        $results = es_search($searchParams);
 
         $beatmapsetIds = array_map(
             function ($e) {

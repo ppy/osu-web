@@ -116,6 +116,38 @@ function es_records($results, $class)
     return $records;
 }
 
+function es_search($params)
+{
+    try {
+        return Es::search(array_merge_recursive([
+            'client' => [
+                'timeout' => config('elasticsearch.search_timeout'),
+                'connect_timeout' => config('elasticsearch.search_connect_timeout'),
+            ],
+        ], $params));
+    } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
+        // all servers down
+        $error = $e;
+    } catch (Elasticsearch\Common\Exceptions\BadRequest400Exception $e) {
+        // invalid query
+        $error = $e;
+    } catch (Elasticsearch\Common\Exceptions\Missing404Exception $e) {
+        // index is missing ?_?
+        $error = $e;
+    }
+
+    Log::debug($error);
+
+    // default return on failure
+    return [
+        'hits' => [
+            'hits' => [],
+            'total' => 0,
+        ],
+        'exception' => $error ?? null,
+    ];
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -786,6 +818,17 @@ function get_bool($string)
         return true;
     } elseif ($string === 0 || $string === '0' || $string === 'false') {
         return false;
+    }
+}
+
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed float value of it, otherwise return null.
+ */
+function get_float($string)
+{
+    if (present($string)) {
+        return (float) $string;
     }
 }
 

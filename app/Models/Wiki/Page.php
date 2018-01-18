@@ -22,10 +22,11 @@ namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
+use App\Jobs\EsDeleteDocument;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
 use Carbon\Carbon;
-use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Es;
 
 class Page
@@ -108,7 +109,7 @@ class Page
             ],
         ];
 
-        $results = Es::search($searchParams);
+        $results = es_search($searchParams);
 
         $pages = [];
 
@@ -162,7 +163,7 @@ class Page
             ],
         ];
 
-        $results = Es::search($params)['hits']['hits'];
+        $results = es_search($params)['hits']['hits'];
 
         if (count($results) === 0) {
             return;
@@ -199,7 +200,7 @@ class Page
         return 'https://github.com/'.OsuWiki::USER.'/'.OsuWiki::REPOSITORY.'/tree/master/wiki/'.$this->pagePath();
     }
 
-    public function indexAdd()
+    public function esIndexDocument()
     {
         $params = static::searchIndexConfig();
 
@@ -230,15 +231,12 @@ class Page
         return Es::index($params);
     }
 
-    public function indexRemove()
+    public function esDeleteDocument()
     {
-        try {
-            return Es::delete(static::searchIndexConfig([
-                'id' => $this->pagePath(),
-            ]));
-        } catch (Missing404Exception $_e) {
-            // do nothing
-        }
+        return Es::delete(static::searchIndexConfig([
+            'id' => $this->pagePath(),
+            'client' => ['ignore' => 404],
+        ]));
     }
 
     public function isOutdated()
@@ -263,16 +261,12 @@ class Page
                     ],
                 ]);
 
-                try {
-                    $search = Es::search($config)['hits']['hits'];
-                } catch (Missing404Exception $e) {
-                    // hopefully just the index not yet created
-                }
+                $search = es_search($config)['hits']['hits'];
 
                 $page = null;
                 $fetch = true;
 
-                if (isset($search) && count($search) > 0) {
+                if (count($search) > 0) {
                     $result = $search[0]['_source'];
                     $expired = Carbon
                         ::parse($result['indexed_at'])
@@ -304,7 +298,7 @@ class Page
                 $this->cache['page'] = $page;
 
                 if ($fetch) {
-                    $this->indexAdd();
+                    dispatch(new EsIndexDocument($this));
                 }
 
                 if ($page !== null) {
@@ -323,7 +317,7 @@ class Page
 
     public function refresh()
     {
-        return $this->indexRemove();
+        dispatch(new EsDeleteDocument($this));
     }
 
     public function title($withSubtitle = false)
