@@ -28,6 +28,9 @@ abstract class Controller extends BaseController
 {
     protected $section = 'store';
 
+    /**
+     * @return Order
+     */
     protected function userCart()
     {
         if (Auth::check()) {
@@ -35,11 +38,13 @@ abstract class Controller extends BaseController
         }
     }
 
+    /**
+     * @return bool
+     */
     protected function hasPendingCheckout()
     {
         $cart = $this->userCart();
-        if ($cart) {
-            return $cart->isProcessing();
-        }
+
+        return $cart === null ? false : $cart->isProcessing();
     }
 }
