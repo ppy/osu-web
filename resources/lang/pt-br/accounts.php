@@ -63,12 +63,10 @@ return [
     'update_email' => [
         'email_subject' => 'Confirmação de alteração de endereço de e-mail do osu!',
         'update' => 'atualizar',
-        'updated' => 'E-mail atualizado',
     ],
 
     'update_password' => [
         'email_subject' => 'Confirmação de alteração de senha do osu!',
         'update' => 'atualizar',
-        'updated' => 'Senha atualizada',
     ],
 ];
