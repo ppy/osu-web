@@ -19,11 +19,8 @@
 
 <div class="beatmap-pack-download">
     @if(Auth::check())
-        <ul class="beatmap-pack-download__list">
-            <li>
-                <a href="{{ $pack->downloadUrl()['url'] }}"
-                   class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a>
-        </ul>
+        <a href="{{ $pack->downloadUrl()['url'] }}"
+            class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a>
     @else
         {!! require_login('beatmappacks.require_login._', 'beatmappacks.require_login.link_text') !!}
     @endif
