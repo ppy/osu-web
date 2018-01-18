@@ -76,7 +76,7 @@ class AccountControllerTest extends TestCase
                     'user_email_confirmation' => $newEmail,
                 ],
             ])
-            ->assertStatus(200);
+            ->assertSuccessful();
 
         $this->assertSame($newEmail, $this->user->fresh()->user_email);
 
@@ -112,7 +112,7 @@ class AccountControllerTest extends TestCase
                     'password_confirmation' => $newPassword,
                 ],
             ])
-            ->assertStatus(200);
+            ->assertSuccessful();
 
         $this->assertTrue(Hash::check($newPassword, $this->user->fresh()->user_password));
     }

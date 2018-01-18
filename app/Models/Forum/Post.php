@@ -27,7 +27,6 @@ use App\Models\User;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
@@ -205,7 +204,7 @@ class Post extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        $resultEs = Es::search($searchParams);
+        $resultEs = es_search($searchParams);
 
         $ids = [];
 

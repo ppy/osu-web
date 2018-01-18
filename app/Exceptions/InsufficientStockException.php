@@ -18,37 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Http\Controllers\Store;
+namespace App\Exceptions;
 
-use App\Http\Controllers\Controller as BaseController;
-use App\Models\Store\Order;
-use Auth;
+use Exception;
 
-abstract class Controller extends BaseController
+class InsufficientStockException extends Exception
 {
-    protected $section = 'store';
-
-    /**
-     * Gets the cart of the currently logged in user.
-     *
-     * TODO: should probably memoize this
-     *
-     * @return Order|null cart of the current user if logged in; null, if not logged in.
-     */
-    protected function userCart()
-    {
-        if (Auth::check()) {
-            return Order::cart(Auth::user());
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    protected function hasPendingCheckout()
-    {
-        $cart = $this->userCart();
-
-        return $cart === null ? false : $cart->isProcessing();
-    }
 }

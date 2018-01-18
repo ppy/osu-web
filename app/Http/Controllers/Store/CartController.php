@@ -20,40 +20,43 @@
 
 namespace App\Http\Controllers\Store;
 
-use App\Models\Store\Product;
-use Auth;
+use Request;
 
-class ProductsController extends Controller
+class CartController extends Controller
 {
     protected $layout = 'master';
-    protected $actionPrefix = 'products-';
+    protected $actionPrefix = 'cart-';
 
-    public function show($id)
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => [
+            'store',
+        ]]);
+
+        $this->middleware('check-user-restricted', ['only' => [
+            'store',
+        ]]);
+
+        return parent::__construct();
+    }
+
+    public function show()
     {
         if ($this->hasPendingCheckout()) {
             return ujs_redirect(route('store.checkout.show'));
         }
 
-        $product = $this->getProduct($id);
-        $cart = $this->userCart();
-
-        $requestedNotification = Auth::check()
-            ? $product->notificationRequests()->where('user_id', Auth::user()->user_id)->exists()
-            : false;
-
-        return view('store.products.show', compact('cart', 'product', 'requestedNotification'));
+        return view('store.cart')->with('order', $this->userCart());
     }
 
-    private function getProduct($id)
+    public function store()
     {
-        $product = Product::with('masterProduct')->where('enabled', true);
+        $result = $this->userCart()->updateItem(Request::input('item', []));
 
-        return is_numeric($id)
-            ? $product->findOrFail($id)
-            : $product
-                ->customClass($id)
-                ->where('master_product_id', null)
-                ->orderBy('product_id', 'desc')
-                ->firstOrFail();
+        if ($result[0]) {
+            return js_view('layout.ujs-reload');
+        } else {
+            return error_popup($result[1]);
+        }
     }
 }
