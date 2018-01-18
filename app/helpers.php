@@ -823,6 +823,17 @@ function get_bool($string)
 
 /*
  * Parses a string. If it's not an empty string or null,
+ * return parsed float value of it, otherwise return null.
+ */
+function get_float($string)
+{
+    if (present($string)) {
+        return (float) $string;
+    }
+}
+
+/*
+ * Parses a string. If it's not an empty string or null,
  * return parsed integer value of it, otherwise return null.
  */
 function get_int($string)
