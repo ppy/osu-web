@@ -130,7 +130,7 @@ class OrderCheckout
             // processing -> if user hits the callback first.
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
-            if ($order->status === 'processing') {
+            if ($order->isProcessing()) {
                 $order->status = 'checkout';
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
@@ -146,7 +146,7 @@ class OrderCheckout
     {
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
-            if ($order->status !== 'processing') {
+            if ($order->isProcessing() === false) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` failed checkout but is not processing"
                 );
