@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
@@ -29,8 +30,6 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -534,14 +533,7 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        try {
-            $results = Es::search($searchParams);
-        } catch (ElasticsearchBadRequest $e) {
-            $results = ['hits' => [
-                'hits' => [],
-                'total' => 0,
-            ]];
-        }
+        $results = es_search($searchParams);
 
         $beatmapsetIds = array_map(
             function ($e) {
@@ -1277,7 +1269,9 @@ class Beatmapset extends Model
 
         if ($this->isDirty()) {
             $this->save();
-            $this->esIndexDocument();
+            // calling EsIndexDocument::dispatch queues and
+            // runs the previously dispatched job... ಠ_ಠ
+            dispatch(new EsIndexDocument($this));
         }
     }
 }

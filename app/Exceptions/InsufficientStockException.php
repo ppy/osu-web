@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,14 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-pack-download {
-  line-height: 1.75;
-  border-bottom: 1px solid #ccc;
-  padding: @beatmappack-listing--gutter;
+namespace App\Exceptions;
 
-  &__link {
-    .link-pink-dark();
-    font-size: 120%;
-    font-weight: bold;
-  }
+use Exception;
+
+class InsufficientStockException extends Exception
+{
 }

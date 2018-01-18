@@ -57,15 +57,10 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
     super props
 
     @state =
-      sortField: if @props.mode == 'timeline' then 'timeline' else 'created_at'
-
-
-  componentWillReceiveProps: (nextProps) =>
-    if _.includes(['created_at', 'timeline'], @state.sortField)
-      if nextProps.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
+      sort:
+        generalAll: 'updated_at'
+        general: 'updated_at'
+        timeline: 'timeline'
 
 
   render: =>
@@ -87,9 +82,9 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               onClick: @changeSort
               span className: "#{bn}__toolbar-link-content", osu.trans('beatmaps.discussions.sort._')
               el Icon,
-                name: sortPresets[@state.sortField].icon
+                name: sortPresets[@currentSort()].icon
                 parentClass: "#{bn}__toolbar-link-content"
-              span className: "#{bn}__toolbar-link-content", sortPresets[@state.sortField].text
+              span className: "#{bn}__toolbar-link-content", sortPresets[@currentSort()].text
 
             a
               href: '#'
@@ -159,14 +154,18 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
   changeSort: (e) =>
     e.preventDefault()
-    if @state.sortField == 'updated_at'
-      if @props.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
 
-    else
-      @setState sortField: 'updated_at'
+    sort = {}
+    sort[@props.mode] = if @currentSort() == 'updated_at'
+                          if @props.mode == 'timeline' then 'timeline' else 'created_at'
+                        else
+                          'updated_at'
+
+    @setState sort: _.assign({}, @state.sort, sort)
+
+
+  currentSort: =>
+    @state.sort[@props.mode]
 
 
   expand: (e) =>
@@ -184,12 +183,12 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
 
   isTimelineVisible: =>
-    @props.mode == 'timeline' && @state.sortField == 'timeline'
+    @props.mode == 'timeline' && @currentSort() == 'timeline'
 
 
   sortedDisussions: ->
     discussions = @props.currentDiscussions[@props.mode].slice(0)
-    discussions.sort sortPresets[@state.sortField].sort
+    discussions.sort sortPresets[@currentSort()].sort
 
 
   timelineCircle: =>

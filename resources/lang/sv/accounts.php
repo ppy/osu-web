@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'ändring av osu! email bekräftelse',
         'update' => 'uppdatera',
-        'updated' => 'Email uppdaterad',
     ],
 
     'update_password' => [
         'email_subject' => 'ändring av osu! lösenord bekräftelse',
         'update' => 'uppdatera',
-        'updated' => 'Lösenord uppdaterat',
     ],
 
     'playstyles' => [

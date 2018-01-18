@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,14 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.beatmap-pack-download {
-  line-height: 1.75;
-  border-bottom: 1px solid #ccc;
-  padding: @beatmappack-listing--gutter;
+namespace App\Jobs;
 
-  &__link {
-    .link-pink-dark();
-    font-size: 120%;
-    font-weight: bold;
-  }
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+
+class EsDeleteDocument implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $model;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        $this->model->esDeleteDocument();
+    }
 }

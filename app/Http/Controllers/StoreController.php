@@ -38,20 +38,16 @@ class StoreController extends Controller
     {
         $this->middleware('auth', ['only' => [
             'getInvoice',
-            'postUpdateCart',
             'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
-            'postUpdateCart',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
             'getInvoice',
-            'postUpdateCart',
             'postAddToCart',
             'postNewAddress',
             'postUpdateAddress',
-            'postUpdateCart',
         ]]);
 
         $this->middleware('verify-user', ['only' => [
@@ -71,6 +67,10 @@ class StoreController extends Controller
 
     public function getListing()
     {
+        if ($this->hasPendingCheckout()) {
+            return ujs_redirect(route('store.checkout.show'));
+        }
+
         return view('store.index')
             ->with('cart', $this->userCart())
             ->with('products', Store\Product::latest()->simplePaginate(30));
@@ -91,26 +91,9 @@ class StoreController extends Controller
             ->with('sentViaAddress', $sentViaAddress);
     }
 
-    public function getCart($id = null)
-    {
-        return view('store.cart')
-            ->with('order', $this->userCart());
-    }
-
     public function missingMethod($parameters = [])
     {
         abort(404);
-    }
-
-    public function postUpdateCart()
-    {
-        $result = $this->userCart()->updateItem(Request::input('item', []));
-
-        if ($result[0]) {
-            return js_view('layout.ujs-reload');
-        } else {
-            return error_popup($result[1]);
-        }
     }
 
     public function postUpdateAddress()
@@ -190,7 +173,7 @@ class StoreController extends Controller
         $result = $this->userCart()->updateItem(Request::input('item', []), true);
 
         if ($result[0]) {
-            return ujs_redirect('/store/cart');
+            return ujs_redirect(route('store.cart.show'));
         } else {
             return error_popup($result[1]);
         }
