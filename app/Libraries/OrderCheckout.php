@@ -201,7 +201,7 @@ class OrderCheckout
     /**
      * Helper method for creating an OrderCheckout with just the order number.
      */
-    public static function for(?string $orderNumber) : OrderCheckout
+    public static function for(?string $orderNumber) : self
     {
         return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
     }
