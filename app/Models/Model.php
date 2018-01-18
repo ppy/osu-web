@@ -25,6 +25,7 @@ use App\Libraries\Transactions\AfterCommit;
 use App\Libraries\Transactions\AfterRollback;
 use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
+use DB;
 use Exception;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
@@ -99,7 +100,7 @@ abstract class Model extends BaseModel
 
     public function saveOrExplode($options = [])
     {
-        try {
+        return DB::connection($this->connection)->transaction(function () use ($options) {
             $result = $this->save($options);
 
             if ($result === false) {
@@ -111,14 +112,7 @@ abstract class Model extends BaseModel
             }
 
             return $result;
-        } catch (Exception $e) {
-            $transaction = resolve(TransactionStateManager::class)->current($this->connection);
-            if ($this instanceof AfterRollback) {
-                $transaction->rollback();
-            }
-
-            throw $e;
-        }
+        });
     }
 
     private function enlistCallbacks($model, $connection)
