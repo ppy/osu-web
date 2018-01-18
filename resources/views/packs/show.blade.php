@@ -23,7 +23,7 @@
             @foreach ($pack->downloadUrls() as $download)
                 <li>
                     <a href="{{ $download['url'] }}"
-                        class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a> {{ $download['host'] }}
+                        class="beatmap-pack-download__link">{{ trans('beatmappacks.show.download') }}</a>
             @endforeach
         </ul>
     @else
