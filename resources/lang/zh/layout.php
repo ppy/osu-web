@@ -118,9 +118,9 @@ return [
         ],
         'store' => [
             '_' => '商店',
-            'checkout-index' => '结账',
+            'checkout-show' => '结账',
             'getListing' => '列表',
-            'cart-index' => '购物车',
+            'cart-show' => '购物车',
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',

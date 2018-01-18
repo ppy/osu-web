@@ -40,10 +40,10 @@ class CartController extends Controller
         return parent::__construct();
     }
 
-    public function index()
+    public function show()
     {
         if ($this->hasPendingCheckout()) {
-            return ujs_redirect(route('store.checkout.index'));
+            return ujs_redirect(route('store.checkout.show'));
         }
 
         return view('store.cart')->with('order', $this->userCart());

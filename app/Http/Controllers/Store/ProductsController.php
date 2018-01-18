@@ -31,7 +31,7 @@ class ProductsController extends Controller
     public function show($id)
     {
         if ($this->hasPendingCheckout()) {
-            return ujs_redirect(route('store.checkout.index'));
+            return ujs_redirect(route('store.checkout.show'));
         }
 
         $product = $this->getProduct($id);

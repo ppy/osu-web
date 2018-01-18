@@ -68,7 +68,7 @@ class StoreController extends Controller
     public function getListing()
     {
         if ($this->hasPendingCheckout()) {
-            return ujs_redirect(route('store.checkout.index'));
+            return ujs_redirect(route('store.checkout.show'));
         }
 
         return view('store.index')
@@ -173,7 +173,7 @@ class StoreController extends Controller
         $result = $this->userCart()->updateItem(Request::input('item', []), true);
 
         if ($result[0]) {
-            return ujs_redirect(route('store.cart.index'));
+            return ujs_redirect(route('store.cart.show'));
         } else {
             return error_popup($result[1]);
         }

@@ -594,7 +594,7 @@ class Order extends Model
         } elseif (!$product->enabled) {
             return [false, 'invalid item'];
         } elseif ($item->quantity > $product->max_quantity) {
-            $route = route('store.cart.index');
+            $route = route('store.cart.show');
 
             return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
         }

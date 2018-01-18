@@ -42,7 +42,7 @@
             @if ($order->isProcessing())
                 @php
                     $cancelLink = Html::link(
-                        route('store.checkout.destroy', ['checkout' => 'cancel']),
+                        route('store.checkout.destroy'),
                         trans('store.checkout.pending_checkout.link_text'),
                         [
                             'data-method' => 'DELETE',
@@ -110,7 +110,7 @@
                     <div class="store-checkout-text--error">
                         <p>@lang('store.checkout.cart_problems')</p>
                         <p>
-                            <a href="{{ route('store.cart.index') }}">@lang('store.checkout.cart_problems_edit')</a>
+                            <a href="{{ route('store.cart.show') }}">@lang('store.checkout.cart_problems_edit')</a>
                         </p>
                     </div>
                 @else

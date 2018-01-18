@@ -94,7 +94,7 @@ return [
         'store' => [
             '_' => 'winkel',
             'getListing' => 'index',
-            'cart-index' => 'winkelwagen',
+            'cart-show' => 'winkelwagen',
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',

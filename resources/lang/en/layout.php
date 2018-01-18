@@ -122,9 +122,9 @@ return [
         ],
         'store' => [
             '_' => 'store',
-            'checkout-index' => 'checkout',
+            'checkout-show' => 'checkout',
             'getListing' => 'listing',
-            'cart-index' => 'cart',
+            'cart-show' => 'cart',
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',

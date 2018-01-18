@@ -119,7 +119,7 @@ return [
         'store' => [
             '_' => '상점',
             'getListing' => '목록',
-            'cart-index' => '장바구니',
+            'cart-show' => '장바구니',
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',

@@ -212,8 +212,13 @@ Route::group(['as' => 'store.', 'prefix' => 'store'], function () {
         Route::delete('products/{product}/notification-request', 'NotificationRequestsController@destroy');
 
         // Store splitting starts here
-        Route::resource('cart', 'CartController', ['only' => ['index', 'store']]);
-        Route::resource('checkout', 'CheckoutController', ['only' => ['destroy', 'index', 'store']]);
+        Route::get('cart', 'CartController@show')->name('cart.show');
+        Route::resource('cart', 'CartController', ['only' => ['store']]);
+
+        Route::delete('checkout', 'CheckoutController@destroy')->name('checkout.destroy');
+        Route::get('checkout', 'CheckoutController@show')->name('checkout.show');
+        Route::resource('checkout', 'CheckoutController', ['only' => ['store']]);
+
         route_redirect('product/{product}', 'store.products.show');
         Route::resource('products', 'ProductsController', ['only' => ['show']]);
     });

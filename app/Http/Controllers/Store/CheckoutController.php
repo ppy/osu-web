@@ -54,7 +54,7 @@ class CheckoutController extends Controller
         return parent::__construct();
     }
 
-    public function destroy($id = null)
+    public function destroy()
     {
         // ignore dummy parameter for now, just release the current cart.
         $order = $this->userCart();
@@ -64,11 +64,11 @@ class CheckoutController extends Controller
         return ujs_redirect(route('store.products.index'));
     }
 
-    public function index()
+    public function show()
     {
         $order = $this->userCart();
         if (!$order || $order->isEmpty()) {
-            return ujs_redirect(route('store.cart.index'));
+            return ujs_redirect(route('store.cart.show'));
         }
 
         // TODO: should be able to notify user that items were changed due to stock/price changes.
@@ -89,7 +89,7 @@ class CheckoutController extends Controller
         $order = $this->userCart();
 
         if ($order->isEmpty()) {
-            return ujs_redirect(route('store.cart.index'));
+            return ujs_redirect(route('store.cart.show'));
         }
 
         $provider = Request::input('provider');
