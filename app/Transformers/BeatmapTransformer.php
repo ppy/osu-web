@@ -38,6 +38,10 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             return [];
         }
 
+        if (!priv_check('BeatmapShow', $beatmap)->can()) {
+            return [];
+        }
+
         return [
             'id' => $beatmap->beatmap_id,
             'beatmapset_id' => $beatmap->beatmapset_id,
@@ -62,6 +66,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
+            'deleted_at' => $beatmap->deleted_at,
         ];
     }
 
