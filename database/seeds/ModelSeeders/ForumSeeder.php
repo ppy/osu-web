@@ -70,7 +70,7 @@ class ForumSeeder extends Seeder
             ]);
 
             $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
-                'forum_id' => 70,
+                'forum_id' => config('osu.user.user_page_forum_id'),
                 'parent_id' => $f->forum_id,
                 'forum_name' => 'User Pages',
             ]));
