@@ -99,10 +99,10 @@ class @BeatmapsetPanel extends React.PureComponent
               if showHypeCounts
                 div null,
                   div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required_text', {current: currentHype, required: requiredHype}),
-                    span className: 'beatmapset-panel__count-number', "#{currentHype} / #{requiredHype}"
+                    span className: 'beatmapset-panel__count-number', currentHype
                     el Icon, name: 'bullhorn', modifiers: ['fw']
                   div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
-                    span className: 'beatmapset-panel__count-number', "#{currentNominations} / #{requiredNominations}"
+                    span className: 'beatmapset-panel__count-number', currentNominations
                     el Icon, name: 'thumbs-up', modifiers: ['fw']
               else
                 div className: 'beatmapset-panel__count',

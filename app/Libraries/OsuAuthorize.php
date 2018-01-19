@@ -312,6 +312,21 @@ class OsuAuthorize
         return 'ok';
     }
 
+    public function checkBeatmapsetResetNominations($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isBNG() && !$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
+            return 'beatmap_discussion.nominate.incorrect-state';
+        }
+
+        return 'ok';
+    }
+
     public function checkBeatmapsetDescriptionEdit($user, $beatmapset)
     {
         $this->ensureLoggedIn($user);
