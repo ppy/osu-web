@@ -30,7 +30,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @checkNewTimeoutMax = 60000
     @cache = {}
 
-    beatmaps = BeatmapHelper.group props.initial.beatmapsetDiscussion.beatmapset.beatmaps
+    beatmaps = @groupBeatmaps props.initial.beatmapsetDiscussion
 
     @state =
       beatmapset: @props.initial.beatmapsetDiscussion.beatmapset
@@ -53,7 +53,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmap:select.beatmapDiscussions', @setCurrentBeatmapId
     $.subscribe 'playmode:set.beatmapDiscussions', @setCurrentPlaymode
     $.subscribe 'beatmapsetDiscussion:update.beatmapDiscussions', @setBeatmapsetDiscussion
-    $.subscribe 'beatmapset:update.beatmapDiscussions', @setBeatmapset
+    $.subscribe 'beatmapsetWatch:update.beatmapDiscussions', @setWatchStatus
     $.subscribe 'beatmapDiscussion:jump.beatmapDiscussions', @jumpTo
     $.subscribe 'beatmapDiscussion:setMode.beatmapDiscussions', @setMode
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
@@ -247,6 +247,16 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache.currentDiscussions
 
 
+  groupBeatmaps: (discussionSet) =>
+    hasDiscussion = {}
+    hasDiscussion[d.beatmap_id] = true for d in discussionSet.beatmap_discussions
+
+    filteredBeatmaps = discussionSet.beatmapset.beatmaps.filter (beatmap) =>
+      !beatmap.deleted_at? || hasDiscussion[beatmap.id]
+
+    BeatmapHelper.group filteredBeatmaps
+
+
   jumpByHash: =>
     target = BeatmapDiscussionHelper.hashParse()
 
@@ -313,20 +323,17 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @setState readPostIds: @state.readPostIds.concat(id)
 
 
-  setBeatmapset: (_e, {beatmapset, callback}) =>
-    @setState
-      beatmapset: beatmapset
-      beatmaps: BeatmapHelper.group beatmapset.beatmaps
-      callback
+  setWatchStatus: (_e, {watching}) =>
+    beatmapset = _.assign {}, @state.beatmapset, is_watched: watching
+    @setState {beatmapset}
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) =>
-    @setBeatmapset null,
+    @setState
+      beatmapsetDiscussion: beatmapsetDiscussion
       beatmapset: beatmapsetDiscussion.beatmapset
-      callback: =>
-        @setState
-          beatmapsetDiscussion: beatmapsetDiscussion
-          callback
+      beatmaps: @groupBeatmaps beatmapsetDiscussion
+      callback
 
   setCurrentBeatmapId: (_e, {id, callback}) =>
     return callback?() if !id?
