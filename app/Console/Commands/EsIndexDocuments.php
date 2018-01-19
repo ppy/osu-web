@@ -21,8 +21,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Beatmapset;
-use App\Models\User;
 use App\Models\Forum\Post;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends EsIndexCommand
