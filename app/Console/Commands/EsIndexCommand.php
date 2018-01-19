@@ -23,7 +23,7 @@ namespace App\Console\Commands;
 use App\Libraries\Elasticsearch\Indexing;
 use Illuminate\Console\Command;
 
-class EsIndexCommand extends Command
+abstract class EsIndexCommand extends Command
 {
     protected $cleanup;
     protected $inplace;
