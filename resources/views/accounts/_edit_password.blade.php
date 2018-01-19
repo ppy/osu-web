@@ -36,7 +36,7 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-form-clear--target"
+                    class="account-edit-entry__input"
                     name="user[current_password]"
                     type="password"
                     required
@@ -53,7 +53,7 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[password]"
                     type="password"
                     required
@@ -71,7 +71,7 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[password_confirmation]"
                     type="password"
                     required

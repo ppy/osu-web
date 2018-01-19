@@ -36,7 +36,7 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-form-clear--target"
+                    class="account-edit-entry__input"
                     name="user[current_password]"
                     type="password"
                     required
@@ -53,7 +53,7 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[user_email]"
                     required
                 >
@@ -70,7 +70,7 @@
                 </div>
 
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[user_email_confirmation]"
                     required
                 >
@@ -84,7 +84,7 @@
                 <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">
-                            {{ trans('accounts.update_password.update') }}
+                            {{ trans('accounts.update_email.update') }}
                         </div>
 
                         <div class="btn-osu-big__icon">

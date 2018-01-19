@@ -592,7 +592,7 @@ function nav_links()
     ];
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
-        'getCart' => action('StoreController@getCart'),
+        'cart-show' => route('store.cart.show'),
     ];
 
     return $links;

@@ -98,13 +98,18 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                 el TextareaAutosize,
                   key: 'input'
                   minRows: 3
-                  disabled: @state.posting?
+                  disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
                   value: @state.message
                   onChange: @setMessage
                   onKeyDown: @handleEnter
                   onFocus: @setSticky
-                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
+                  placeholder:
+                    if @canPost()
+                      osu.trans 'beatmaps.discussions.message_placeholder'
+                    else
+                      # FIXME: reason should be passed from beatmap state
+                      osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
                   inputRef: (el) => @input = el
 
                 el BeatmapDiscussions.MessageLengthCounter,
@@ -190,6 +195,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                   el Icon, name: 'check'
 
               osu.trans('beatmap_discussions.nearby_posts.confirm')
+
+
+  canPost: =>
+    !@props.currentBeatmap.deleted_at?
 
 
   checkStickability: (_e, target) =>

@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! 帐户邮箱更改',
         'update' => '更新',
-        'updated' => '邮箱已更改',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! 帐户密码更改',
         'update' => '更新',
-        'updated' => '密码已更改',
     ],
 
     'playstyles' => [
