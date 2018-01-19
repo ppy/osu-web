@@ -148,8 +148,6 @@ return [
                 'locked' => 'User page is locked.',
                 'not_owner' => 'Can only edit own user page.',
                 'require_supporter_tag' => 'Supporter tag is required.',
-                'silenced' => "Can't edit your userpage while silenced.",
-                'restricted' => "Can't edit your userpage while restricted.",
             ],
         ],
     ],

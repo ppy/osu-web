@@ -725,7 +725,7 @@ class OsuAuthorize
         $prefix = 'user.page.edit.';
 
         $this->ensureLoggedIn($user);
-        $this->ensureCleanRecord($user, $prefix);
+        $this->ensureCleanRecord($user);
 
         $page = $pageOwner->userPage;
 
