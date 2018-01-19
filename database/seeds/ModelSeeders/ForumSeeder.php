@@ -66,7 +66,7 @@ class ForumSeeder extends Seeder
             // Create userpage threads
             $f = factory(App\Models\Forum\Forum::class, 'parent')->create([
                 'forum_name' => 'User Pages',
-                'forum_desc' => 'Your user profile pages go here!'
+                'forum_desc' => 'Your user profile pages go here!',
             ]);
 
             $f->subforums()->save(factory(App\Models\Forum\Forum::class, 'child')->make([
