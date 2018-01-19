@@ -21,17 +21,24 @@
 namespace App\Console\Commands;
 
 use App\Models\Beatmapset;
+use App\Models\User;
 use App\Models\Forum\Post;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends EsIndexCommand
 {
+    const ALLOWED_TYPES = [
+        'beatmapsets' => Beatmapset::class,
+        'posts' => Post::class,
+        'users' => User::class,
+    ];
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.
@@ -40,5 +47,21 @@ class EsIndexDocuments extends EsIndexCommand
      */
     protected $description = 'Indexes documents into Elasticsearch.';
 
-    protected $types = [Beatmapset::class, Post::class];
+    protected function readOptions()
+    {
+        parent::readOptions();
+
+        if ($this->option('types')) {
+            $types = explode(',', $this->option('types'));
+            $this->types = [];
+            foreach ($types as $type) {
+                $class = static::ALLOWED_TYPES[$type] ?? null;
+                if ($class) {
+                    $this->types[] = $class;
+                }
+            }
+        } else {
+            $this->types = array_values(static::ALLOWED_TYPES);
+        }
+    }
 }
