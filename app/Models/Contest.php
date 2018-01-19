@@ -238,11 +238,9 @@ class Contest extends Model
             if (!$this->show_votes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
-                    $sorted_entries = $contestJson['entries'];
-                    uasort($sorted_entries, function ($a, $b) {
+                    usort($contestJson['entries'], function ($a, $b) {
                         return strnatcasecmp($a['title'], $b['title']);
                     });
-                    $contestJson['entries'] = array_values($sorted_entries);
                 } else {
                     // We want the results to appear randomized to the user but be
                     // deterministic (i.e. we don't want the rows shuffling each time
