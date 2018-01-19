@@ -66,5 +66,6 @@
                 @endforeach
             </div>
         </div>
+        @include('objects._pagination', ['object' => $packs, 'modifier' => 'type'])
     </div>
 @endsection
