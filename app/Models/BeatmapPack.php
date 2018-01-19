@@ -62,17 +62,9 @@ class BeatmapPack extends Model
             return;
         }
 
-        static $packIdSortable = ['standard', 'chart'];
-
         $tag = static::$tagMappings[$type];
-        $packs = static::where('tag', 'like', "{$tag}%");
-        if (in_array($type, $packIdSortable, true)) {
-            $packs->orderBy('pack_id', 'desc');
-        } else {
-            $packs->orderBy('name', 'asc');
-        }
 
-        return $packs;
+        return static::where('tag', 'like', "{$tag}%")->orderBy('pack_id', 'desc');
     }
 
     private function downloadUrls()

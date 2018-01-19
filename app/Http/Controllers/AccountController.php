@@ -52,6 +52,7 @@ class AccountController extends Controller
                 'edit',
                 'reissueCode',
                 'updateEmail',
+                'updatePage',
                 'updatePassword',
                 'verify',
             ],
