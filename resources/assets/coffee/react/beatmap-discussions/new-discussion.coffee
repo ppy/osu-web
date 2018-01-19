@@ -97,7 +97,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               [
                 el TextareaAutosize,
                   key: 'input'
-                  minRows: 3
                   disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
                   value: @state.message
@@ -110,7 +109,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
                     else
                       # FIXME: reason should be passed from beatmap state
                       osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
-                  inputRef: (el) => @input = el
 
                 el BeatmapDiscussions.MessageLengthCounter,
                   key: 'counter'
