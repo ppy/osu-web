@@ -238,8 +238,9 @@ class Contest extends Model
             if (!$this->show_votes) {
                 if ($this->unmasked) {
                     // For unmasked contests, we sort alphabetically.
-                    $sorted_entries = array_sort($contestJson['entries'], function ($item) {
-                        return $item['title'];
+                    $sorted_entries = $contestJson['entries'];
+                    uasort($sorted_entries, function ($a, $b) {
+                        return strnatcasecmp($a['title'], $b['title']);
                     });
                     $contestJson['entries'] = array_values($sorted_entries);
                 } else {
