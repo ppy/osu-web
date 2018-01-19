@@ -32,7 +32,9 @@ return [
     ],
 
     'index' => [
+        'deleted_beatmap' => 'deleted',
         'title' => 'Beatmap Discussions',
+
         'form' => [
             'deleted' => 'Include deleted discussions',
 

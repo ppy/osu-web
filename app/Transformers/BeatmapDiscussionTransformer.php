@@ -107,8 +107,6 @@ class BeatmapDiscussionTransformer extends Fractal\TransformerAbstract
 
     public function isVisible($discussion)
     {
-        return
-            ($discussion->beatmap_id === null || $discussion->beatmap !== null) &&
-            priv_check('BeatmapDiscussionShow', $discussion)->can();
+        return priv_check('BeatmapDiscussionShow', $discussion)->can();
     }
 }
