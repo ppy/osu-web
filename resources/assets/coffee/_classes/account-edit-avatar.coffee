@@ -26,6 +26,9 @@ class @AccountEditAvatar
     $(document).on 'dragenter', '.js-account-edit-avatar', @overlayEnter
     $(document).on 'dragover', '.js-account-edit-avatar', @overlayHover
 
+    $(document).on 'ajax:send', '.js-account-edit-avatar__remove', @savingStart
+    $(document).on 'ajax:success', '.js-account-edit-avatar__remove', @removeAvatar
+
     @main = document.getElementsByClassName('js-account-edit-avatar')
 
 
@@ -46,7 +49,7 @@ class @AccountEditAvatar
       dropZone: @$main
 
       submit: =>
-        @main[0].classList.add 'js-account-edit-avatar--saving'
+        @savingStart()
         $.publish 'dragendGlobal'
 
       done: (_e, data) =>
@@ -55,7 +58,7 @@ class @AccountEditAvatar
       fail: osu.fileuploadFailCallback(@$button)
 
       complete: =>
-        @main[0].classList.remove 'js-account-edit-avatar--saving'
+        @savingEnd()
 
 
   overlayEnd: =>
@@ -88,6 +91,19 @@ class @AccountEditAvatar
 
     @main[0].classList.add 'js-account-edit-avatar--start'
 
+  savingStart: =>
+    return if !@isAvailable
+
+    @main[0].classList.add 'js-account-edit-avatar--saving'
+
+  savingEnd: =>
+    return if !@isAvailable
+
+    @main[0].classList.remove 'js-account-edit-avatar--saving'
+
+  removeAvatar: (e, data) =>
+    $.publish 'user:update', data
+    @savingEnd()
 
   rollback: =>
     return if !@isAvailable
