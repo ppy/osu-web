@@ -211,7 +211,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 else
                   span null, osu.trans 'beatmaps.nominations.qualified-soon'
 
-            if (mapCanBeNominated || mapIsQualified) && nominators.length > 0
+            if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
                 dangerouslySetInnerHTML:
