@@ -55,6 +55,8 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
     menuItemClasses = "#{bn}__item"
     menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
 
+    count = if beatmap.deleted_at? then null else @props.currentDiscussions.countsByBeatmap[beatmap.id]
+
     a
       href: BeatmapDiscussionHelper.hash beatmapId: beatmap.id
       className: menuItemClasses
@@ -64,7 +66,7 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
       el BeatmapDiscussions.BeatmapListItem,
         beatmap: beatmap
         mode: 'version'
-        count: @props.currentDiscussions.countsByBeatmap[beatmap.id]
+        count: count
 
 
   hideSelector: (e) =>

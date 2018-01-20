@@ -56,7 +56,7 @@ class BeatmapsetWatchesController extends Controller
             }
         }
 
-        return $beatmapset->defaultJson();
+        return response([], 204);
     }
 
     public function destroy($beatmapsetId)
@@ -65,6 +65,6 @@ class BeatmapsetWatchesController extends Controller
 
         $beatmapset->watches()->where('user_id', '=', Auth::user()->getKey())->delete();
 
-        return $beatmapset->defaultJson();
+        return response([], 204);
     }
 }
