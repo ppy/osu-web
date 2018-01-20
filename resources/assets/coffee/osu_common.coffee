@@ -268,7 +268,7 @@
 
     message ?= xhr?.responseJSON?.error
 
-    if !message?
+    if !message? || message == ''
       errorKey = "errors.codes.http-#{xhr?.status}"
       message = osu.trans errorKey
       message = osu.trans 'errors.unknown' if message == errorKey
