@@ -34,226 +34,227 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] Neue Antwort auf <topic> ":title"',
+        'new_reply' => '[osu!] Neue Antwort auf Thread ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'Keine <topics>!',
+            'empty' => 'Keine Threads!',
         ],
     ],
 
-    'pinned_topics' => 'Angepinnte <Topics>',
+    'pinned_topics' => 'Angepinnte Threads',
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'confirm_destroy' => 'Beitrag wirklich entfernen?',
+        'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
+        'edited' => 'Zuletzt von :user an :when bearbeitet, insgesamt :count Mal bearbeitet.',
+        'posted_at' => 'erstellt am :when',
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => 'Beitrag löschen',
+            'restore' => 'Beitrag wiederherstellen',
+            'edit' => 'Beitrag bearbeiten',
         ],
     ],
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => 'Gehe zu Beitrag',
+        'post_number_input' => 'Beitragsnummer hier eingeben',
+        'total_posts' => 'Insgesamt :posts_count Beiträge',
     ],
-    'subforums' => 'Subforums',
+    'subforums' => 'Subforen',
     'title' => 'osu!community',
-    'slogan' => "it's dangerous to play alone.",
+    // sorry for butchering this, but the first zelda doesn't exist in german
+    'slogan' => "es ist gefährlich, alleine zu gehen.",
     'topic' => [
         'create' => [
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'Beitragsinhalt hier eingeben',
+                'title' => 'Hier klicken, um den Titel festzulegen',
             ],
-            'preview' => 'Preview',
+            'preview' => 'Vorschau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
+            'preview_hide' => 'Bearbeiten',
+            'submit' => 'Erstellen',
         ],
-        'go_to_latest' => 'view latest post',
+        'go_to_latest' => 'letzten beitrag anschauen',
         'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'enter' => 'hier klicken, um eine beitragsnummer einzugeben',
+            'first' => 'zum ersten beitrag',
+            'last' => 'zum letzten beitrag',
+            'next' => '10 beiträge vor',
+            'previous' => '10 beiträge zurück',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+        'latest_post' => ':when von :user',
+        'latest_reply_by' => 'letzte antwort von :user',
+        'new_topic' => 'Neuen Thread erstellen',
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'Abbrechen',
+            'post' => 'Speichern',
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'post_reply' => 'Antworten',
+        'reply_box_placeholder' => 'Hier eingeben, um zu antworten',
+        'started_by' => 'von :user',
     ],
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
-            'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
+            'title' => 'Forenabonnements',
+            'title_compact' => 'forenabos',
+            'title_main' => 'Foren<strong>abonnenements</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => 'Abonnierte Threads',
+                'unread' => 'Threads mit ungelesenen Antworten',
             ],
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => 'Du hast :total Threads abonniert.',
+                'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => 'Thread deabonnieren?',
+                'title' => 'Deabonnieren',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'Threads',
 
         'actions' => [
-            'reply' => 'Reply',
-            'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'reply' => 'Antworten',
+            'reply_with_quote' => 'Beitrag in der Antwort zitieren',
+            'search' => 'Suchen',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => 'Abstimmung erstellen',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => 'Erstelle eine Abstimmung',
+                'remove' => 'Brich die Abstimmungserstellung ab',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => 'Abstimmung offen für',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
+                'length_days_suffix' => 'Tage',
+                'length_info' => 'Nichts eingeben für eine nie endende Abstimmung',
+                'max_options' => 'Antworten pro Benutzer',
+                'max_options_info' => 'Dies ist die Anzahl an Antworten, die jeder maximal Benutzer wählen kann.',
+                'options' => 'Antworten',
+                'options_info' => 'Platziere jede Antwort in einer neuen Zeile. Du kannst maximal 10 Antworten eingeben.',
                 'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'vote_change' => 'Erlaube Antwortänderungen.',
+                'vote_change_info' => 'Wenn aktiv, können Benutzer ihre Antworten ändern.',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => 'Titel bearbeiten',
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => 'Aufrufe',
+            'replies' => 'Antworten',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
-            'state-0' => 'Removed "added" tag',
-            'state-1' => 'Added "added" tag',
+            'action-0' => 'Tag "added" entfernen',
+            'action-1' => 'Tag "added" hinzufügen',
+            'state-0' => 'Tag "added" entfernt',
+            'state-1' => 'Tag "added" hinzugefügt',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
-            'state-0' => 'Removed "assigned" tag',
-            'state-1' => 'Added "assigned" tag',
+            'action-0' => 'Tag "assigned" entfernen',
+            'action-1' => 'Tag "assigned" hinzufügen',
+            'state-0' => 'Tag "assigned" entfernt',
+            'state-1' => 'Tag "assigned" hinzugefügt',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
-            'state-0' => 'Removed "confirmed" tag',
-            'state-1' => 'Added "confirmed" tag',
+            'action-0' => 'Tag "confirmed" entfernen',
+            'action-1' => 'Tag "confirmed" hinzufügen',
+            'state-0' => 'Tag "confirmed" entfernt',
+            'state-1' => 'Tag "confirmed" hinzugefügt',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
-            'state-0' => 'Removed "duplicate" tag',
-            'state-1' => 'Added "duplicate" tag',
+            'action-0' => 'Tag "duplicate" entfernen',
+            'action-1' => 'Tag "duplicate" hinzufügen',
+            'state-0' => 'Tag "duplicate" entfernt',
+            'state-1' => 'Tag "duplicate" hinzugefügt',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
-            'state-0' => 'Removed "invalid" tag',
-            'state-1' => 'Added "invalid" tag',
+            'action-0' => 'Tag "invalid" entfernen',
+            'action-1' => 'Tag "invalid" hinzufügen',
+            'state-0' => 'Tag "invalid" entfernt',
+            'state-1' => 'Tag "invalid" hinzugefügt',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
-            'state-0' => 'Removed "resolved" tag',
-            'state-1' => 'Added "resolved" tag',
+            'action-0' => 'Tag "resolved" entfernen',
+            'action-1' => 'Tag "resolved" hinzufügen',
+            'state-0' => 'Tag "resolved" entfernt',
+            'state-1' => 'Tag "resolved" hinzugefügt',
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
+            'lock-0' => 'Thread entsperren',
+            'lock-1' => 'Thread sperren',
+            'state-0' => 'Thread wurde entsperrt',
+            'state-1' => 'Thread wurde gesperrt',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'In ein anderes Forum bewegen',
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
-            'state-2' => 'Topic has been pinned and marked as announcement',
+            'pin-0' => 'Thread von den angepinnten Threads entfernen',
+            'pin-1' => 'Thread anpinnen',
+            'pin-2' => 'Thread anpinnen und als Ankündigung markieren',
+            'state-0' => 'Thread wurde von den angepinnten Threads entfernt',
+            'state-1' => 'Thread wurde angepinnt',
+            'state-2' => 'Thread wurde angepinnt und als Ankündigung markiert',
         ],
 
         'show' => [
-            'total_posts' => 'Total Posts',
-            'deleted-posts' => 'Deleted Posts',
+            'total_posts' => 'Beiträge insgesamt',
+            'deleted-posts' => 'Gelöschte Beiträge',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => 'Aktuelle Priorität: +:count',
+                'do' => 'Priorität hinzufügen',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'current' => 'Du hast noch :votes.',
+                    'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
+                    'not_enough' => "Du hast keine Stimmen mehr",
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => 'Abstimmung',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
-                    'end_time' => 'Polling will end at :time',
+                    'total' => 'Stimmen insgesamt: :count',
+                    'ended' => 'Abstimmung beendet am :time',
+                    'end_time' => 'Abstimmung endet am :time',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'state-0' => 'Thread deabonniert',
+            'state-1' => 'Thread abonniert',
+            'watch-0' => 'Thread deabonnieren',
+            'watch-1' => 'Thread abonnieren',
         ],
     ],
 

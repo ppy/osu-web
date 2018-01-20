@@ -6,6 +6,8 @@
 - artist.songs.count
 - authorization.user.page (osu.ppy.sh/u/[id]? so a profile, basically?)
 - beatmap_discussions.nearby_posts.notice
+- layout.menu.rankings.charts (what is meant by charts?)
+- layout.menu.user.beatmapset_activities
 
 ## Solved issues that have to be changed
 
