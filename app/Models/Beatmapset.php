@@ -418,7 +418,7 @@ class Beatmapset extends Model
             'size' => $params['limit'],
             'from' => $params['offset'],
             'body' => ['sort' => static::searchSortParamsES($params)],
-            'fields' => 'id',
+            '_source' => 'id',
         ];
 
         $matchParams = [];
