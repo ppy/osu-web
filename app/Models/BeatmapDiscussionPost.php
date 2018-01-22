@@ -129,7 +129,15 @@ class BeatmapDiscussionPost extends Model
      */
     public function isValid()
     {
-        return $this->hasValidMessage();
+        if ($this->exists) {
+            $hasValidBeatmap = true;
+        } else {
+            $hasValidBeatmap =
+                $this->beatmapDiscussion !== null &&
+                $this->beatmapDiscussion->hasValidBeatmap();
+        }
+
+        return $hasValidBeatmap && $this->hasValidMessage();
     }
 
     public function getMessageAttribute($value)

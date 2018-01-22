@@ -29,6 +29,6 @@ trait CheckoutErrorSettable
         Session::flash('checkout.error.message', $message);
         Session::flash('checkout.error.errors', $errors);
 
-        return ujs_redirect(route('store.checkout.index'), 422);
+        return ujs_redirect(route('store.checkout.show'), 422);
     }
 }

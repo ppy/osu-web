@@ -110,7 +110,7 @@ return [
         'store' => [
             '_' => 'loja',
             'getListing' => 'catálogo',
-            'getCart' => 'carrinho',
+            'cart-show' => 'carrinho',
 
             'getCheckout' => 'pagar',
             'getInvoice' => 'fatura',

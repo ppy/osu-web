@@ -14,6 +14,12 @@ $factory->state(App\Models\Store\Order::class, 'incart', function (Faker\Generat
     ];
 });
 
+$factory->state(App\Models\Store\Order::class, 'processing', function (Faker\Generator $faker) {
+    return [
+        'status' => 'processing',
+    ];
+});
+
 $factory->state(App\Models\Store\Order::class, 'checkout', function (Faker\Generator $faker) {
     return [
         'status' => 'checkout',

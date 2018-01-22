@@ -30,8 +30,6 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -535,14 +533,7 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        try {
-            $results = Es::search($searchParams);
-        } catch (ElasticsearchBadRequest $e) {
-            $results = ['hits' => [
-                'hits' => [],
-                'total' => 0,
-            ]];
-        }
+        $results = es_search($searchParams);
 
         $beatmapsetIds = array_map(
             function ($e) {
@@ -999,6 +990,11 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
+    public function allBeatmaps()
+    {
+        return $this->hasMany(Beatmap::class, 'beatmapset_id')->withTrashed();
+    }
+
     public function events()
     {
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
@@ -1100,9 +1096,15 @@ class Beatmapset extends Model
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson($options = [])
     {
-        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
+        $includes = ['current_user_attributes', 'nominations'];
+
+        if ($options['withTrashedBeatmaps'] ?? false) {
+            $includes[] = 'beatmaps:with_trashed';
+        } else {
+            $includes[] = 'beatmaps';
+        }
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }

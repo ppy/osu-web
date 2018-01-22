@@ -44,7 +44,7 @@ abstract class Model extends BaseModel
     /**
      * Locks the current model for update with `select for update`.
      *
-     * @return Model
+     * @return $this
      */
     public function lockSelf()
     {

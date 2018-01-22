@@ -118,9 +118,9 @@ return [
         ],
         'store' => [
             '_' => 'butik',
-            'checkout-index' => 'checka ut',
+            'checkout-show' => 'checka ut',
             'getListing' => 'listning',
-            'getCart' => 'kundvagn',
+            'cart-show' => 'kundvagn',
 
             'getCheckout' => 'checka ut',
             'getInvoice' => 'faktura',

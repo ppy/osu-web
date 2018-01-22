@@ -18,27 +18,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Console\Commands;
+namespace App\Exceptions;
 
-use App\Models\User;
-use Illuminate\Console\Command;
+use Exception;
 
-// TODO: combine with EsIndexDocuments and add a type filter options
-class EsIndexUsers extends EsIndexCommand
+class InsufficientStockException extends Exception
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'es:index-users {--inplace} {--cleanup} {--yes}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Indexes users into Elasticsearch.';
-
-    protected $types = [User::class];
 }
