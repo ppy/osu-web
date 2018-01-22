@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "664f8b23751fb627547cb286e7838413",
+    "content-hash": "7d8e6bfcf9eae06bb55273cb334d01e1",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2713,7 +2713,7 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
             "time": "2017-02-16T06:27:23+00:00"
         },
@@ -4353,50 +4353,6 @@
                 "sentry"
             ],
             "time": "2017-08-11T17:29:14+00:00"
-        },
-        {
-            "name": "shift31/laravel-elasticsearch",
-            "version": "2.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shift31/laravel-elasticsearch.git",
-                "reference": "090aa2bfb76120ee12aa5dfb42b226d1507bcc00"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shift31/laravel-elasticsearch/zipball/090aa2bfb76120ee12aa5dfb42b226d1507bcc00",
-                "reference": "090aa2bfb76120ee12aa5dfb42b226d1507bcc00",
-                "shasum": ""
-            },
-            "require": {
-                "elasticsearch/elasticsearch": "~2.0",
-                "laravel/framework": "~4|~5",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "squizlabs/php_codesniffer": "^2.8"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Shift31\\LaravelElasticsearch": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Shift 31 Consulting",
-                    "email": "code@shift31.com"
-                }
-            ],
-            "description": "A Laravel Service Provider for the Elasticsearch API client",
-            "time": "2017-02-28T09:30:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
