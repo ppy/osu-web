@@ -21,6 +21,7 @@
 namespace App\Providers;
 
 use Elasticsearch\ClientBuilder;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class ElasticsearchServiceProvider extends ServiceProvider
@@ -40,9 +41,9 @@ class ElasticsearchServiceProvider extends ServiceProvider
             return ClientBuilder::fromConfig($this->loadConfig());
         });
 
-        // $this->app->booting(function () {
-        //     AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        // });
+        $this->app->booting(function () {
+            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
+        });
     }
 
     private function loadConfig()

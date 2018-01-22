@@ -271,8 +271,6 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 
-        'Es' => App\Libraries\Elasticsearch\Es::class,
-
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'GitHub' => GrahamCampbell\GitHub\Facades\GitHub::class,
 
