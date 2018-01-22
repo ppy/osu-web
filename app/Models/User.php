@@ -92,15 +92,15 @@ class User extends Model implements AuthenticatableContract, Messageable
         'is_old' => ['type' => 'boolean'],
         'user_lastvisit' => ['type' => 'date'],
         'username' => [
-            'type' => 'string',
+            'type' => 'text',
             'analyzer' => 'username_lower',
             'fields' => [
                 // for exact match
-                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                'raw' => ['type' => 'keyword'],
                 // try match sloppy search guesses
-                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
                 // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'string', 'analyzer' => 'whitespace'],
+                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
             ],
         ],
         'user_warnings' => ['type' => 'short'],
