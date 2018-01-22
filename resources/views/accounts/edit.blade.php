@@ -90,6 +90,23 @@
                                 data-url="{{ route('account.avatar') }}"
                             >
                         </label>
+
+                        <a
+                            class="js-account-edit-avatar__remove btn-osu-big btn-osu-big--account-edit"
+                            href="{{ route('account.avatar') }}"
+                            data-remote="true"
+                            data-method="POST"
+                        >
+                            <div class="btn-osu-big__content">
+                                <div class="btn-osu-big__left">
+                                    {{ trans('common.buttons.remove_avatar') }}
+                                </div>
+
+                                <div class="btn-osu-big__icon">
+                                    <i class="fa fa-trash"></i>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

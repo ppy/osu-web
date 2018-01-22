@@ -42,6 +42,7 @@ return [
         'saving' => 'Saving...',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
+        'remove_avatar' => 'remove avatar',
     ],
 
     'count' => [

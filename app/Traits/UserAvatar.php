@@ -71,6 +71,6 @@ trait UserAvatar
             }
         }
 
-        return $this->update(['user_avatar' => $entry ?? null]);
+        return $this->update(['user_avatar' => $entry ?? '']);
     }
 }
