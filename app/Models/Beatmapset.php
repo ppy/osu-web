@@ -25,6 +25,7 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
+use App\Libraries\Transactions\AfterCommit;
 use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
@@ -33,7 +34,7 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
-class Beatmapset extends Model
+class Beatmapset extends Model implements AfterCommit
 {
     use Elasticsearch\BeatmapsetTrait, SoftDeletes;
 
@@ -1281,16 +1282,14 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->fill([
+        return $this->update([
             'hype' => $this->freshHype(),
             'nominations' => $this->currentNominationCount(),
         ]);
+    }
 
-        if ($this->isDirty()) {
-            $this->save();
-            // calling EsIndexDocument::dispatch queues and
-            // runs the previously dispatched job... ಠ_ಠ
-            dispatch(new EsIndexDocument($this));
-        }
+    public function afterCommit()
+    {
+        dispatch(new EsIndexDocument($this));
     }
 }
