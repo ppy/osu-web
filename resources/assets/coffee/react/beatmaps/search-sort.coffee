@@ -43,8 +43,8 @@ class Beatmaps.SearchSort extends React.PureComponent
       title: true
       artist: true
       difficulty: true
-      ranked: false
       updated: false
+      ranked: false
       rating: true
       plays: true
       relevance: false
@@ -57,8 +57,12 @@ class Beatmaps.SearchSort extends React.PureComponent
       fields.updated = true
       fields.nominations = true
       fields.plays = false
+    else if @props.filters.status == 6
+      fields.updated = true
+      fields.ranked = true
     else
       fields.ranked = true
+
 
     field for own field, enabled of fields when enabled
 
