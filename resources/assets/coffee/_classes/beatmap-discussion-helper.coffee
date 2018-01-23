@@ -90,7 +90,7 @@ class @BeatmapDiscussionHelper
     url.toString()
 
 
-  # see @hash
+  # see @url
   @urlParse: (urlString, discussions) ->
     url = new URL(urlString ? document.location.href)
     params = url.searchParams
