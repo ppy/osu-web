@@ -167,7 +167,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         if @nearbyPosts().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
           timestamps = @nearbyPosts().map (p) ->
-            osu.link BeatmapDiscussionHelper.hash(discussionId: p.id),
+            osu.link BeatmapDiscussionHelper.url(discussionId: p.id),
               BeatmapDiscussionHelper.formatTimestamp(p.timestamp)
               classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
           timestampsString = osu.transArray(timestamps)

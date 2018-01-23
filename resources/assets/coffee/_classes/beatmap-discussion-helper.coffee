@@ -17,6 +17,9 @@
 ###
 
 class @BeatmapDiscussionHelper
+  DEFAULT_PAGE = 'timeline'
+  DEFAULT_FILTER = 'total'
+
   @formatTimestamp: (value) =>
     return unless value?
 
@@ -26,41 +29,6 @@ class @BeatmapDiscussionHelper
     m = Math.floor(value / 1000 / 60)
 
     "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"
-
-
-  # don't forget to update BeatmapDiscussionsController@show
-  # when changing this.
-  @hash: ({beatmapId, discussionId, isEvents} = {}) =>
-    if discussionId?
-      "#/#{discussionId}"
-    else if beatmapId?
-      "#:#{beatmapId}"
-    else if isEvents
-      '#events'
-    else
-      ''
-
-
-  # see @hash
-  @hashParse: (url = document.location.href) ->
-    hashStart = url.indexOf('#')
-
-    hash =
-      if hashStart == -1
-        ''
-      else
-        url.substr(hashStart + 1)
-
-    id = parseInt(hash[1..], 10)
-
-    if hash[0] == '/'
-      discussionId: id
-    else if hash[0] == ':'
-      beatmapId: id
-    else if hash == 'events'
-      mode: 'events'
-    else
-      {}
 
 
   @linkTimestamp: (text, classNames = []) =>
@@ -97,6 +65,56 @@ class @BeatmapDiscussionHelper
         when user.isAdmin then 'admin'
         when user.isQAT then 'qat'
         when user.isBNG then 'bng'
+
+
+  # don't forget to update BeatmapDiscussionsController@show
+  # when changing this.
+  @url: ({discussionId, beatmapId, page, filter} = {}) =>
+    params = new URLSearchParams
+
+    if beatmapId?
+      params.set 'beatmap_id', beatmapId
+
+    if page? && page != DEFAULT_PAGE
+      params.set 'page', page
+
+    if filter? && filter != DEFAULT_FILTER
+      params.set 'filter', filter
+
+    hash = if discussionId? then "#/#{discussionId}" else ''
+
+    url = new URL(document.location)
+    url.hash = hash
+    url.search = params.toString()
+
+    url.toString()
+
+
+  # see @hash
+  @urlParse: (urlString, discussions) ->
+    url = new URL(urlString ? document.location.href)
+    params = url.searchParams
+
+    beatmapId = parseInt(params.get('beatmap_id'), 10)
+    beatmapId = null if !isFinite(beatmapId)
+
+    ret =
+      beatmapId: beatmapId
+      page: params.get('page') ? DEFAULT_PAGE
+      filter: params.get('filter') ? DEFAULT_FILTER
+
+    if url.hash[1] == '/'
+      discussionId = parseInt(url.hash[2..], 10)
+
+      if isFinite(discussionId) && discussions?
+        discussion = _.find discussions, id: discussionId
+
+        if discussion?
+          ret.discussionId = discussion.id
+          ret.beatmapId = discussion.beatmap_id
+          ret.page = if discussion.timestamp? then 'timeline' else 'general'
+
+    ret
 
 
   @validMessageLength: (message) =>

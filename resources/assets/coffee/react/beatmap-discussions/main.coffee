@@ -23,9 +23,6 @@ modeSwitcher = document.getElementsByClassName('js-mode-switcher')
 newDiscussion = document.getElementsByClassName('js-new-discussion')
 
 class BeatmapDiscussions.Main extends React.PureComponent
-  DEFAULT_PAGE = 'timeline'
-  DEFAULT_FILTER = 'total'
-
   constructor: (props) ->
     super props
 
@@ -33,7 +30,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @checkNewTimeoutMax = 60000
     @cache = {}
 
-    query = @queryFromLocation()
+    query = @queryFromLocation(props.initial.beatmapsetDiscussion.beatmap_discussions)
     mode = query.page
     currentFilter = query.filter
     if query.beatmapId?
@@ -78,7 +75,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     queryString = @queryStringFromState()
 
     if document.location.search != queryString
-      url = encodeURI "#{document.location.pathname}#{queryString}#{document.location.hash}"
+      url = encodeURI "#{document.location.pathname}#{queryString}"
       Turbolinks.controller.advanceHistory url
 
 
@@ -105,6 +102,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
+        currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
 
@@ -182,7 +180,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   currentBeatmap: =>
-    @state.currentBeatmap ? @defaultBeatmap()
+    @state.currentBeatmap ? BeatmapHelper.default(group: @groupedBeatmaps())
 
 
   currentDiscussions: =>
@@ -274,10 +272,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache.currentDiscussions
 
 
-  defaultBeatmap: =>
-    BeatmapHelper.default group: @groupedBeatmaps()
-
-
   groupedBeatmaps: (discussionSet) =>
     return @cache.groupedBeatmaps if @cache.groupedBeatmaps?
 
@@ -285,7 +279,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   jumpByHash: =>
-    target = BeatmapDiscussionHelper.hashParse()
+    target = BeatmapDiscussionHelper.urlParse(null, @state.beatmapsetDiscussion.beatmap_discussions)
 
     if target.discussionId?
       return $.publish 'beatmapDiscussion:jump', id: target.discussionId
@@ -339,7 +333,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     e.preventDefault()
     url = e.currentTarget.getAttribute('href')
 
-    id = BeatmapDiscussionHelper.hashParse(url).discussionId
+    id = BeatmapDiscussionHelper.urlParse(url, @state.beatmapsetDiscussion.beatmap_discussions).discussionId
 
     @jumpTo null, {id}
 
@@ -350,27 +344,16 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @setState readPostIds: @state.readPostIds.concat(id)
 
 
-  queryFromLocation: =>
-    pageQueryParams = new URLSearchParams(document.location.search)
-
-    beatmapId: parseInt(pageQueryParams.get('beatmap_id'))
-    page: pageQueryParams.get('page') ? DEFAULT_PAGE
-    filter: pageQueryParams.get('filter') ? DEFAULT_FILTER
+  queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
+    BeatmapDiscussionHelper.urlParse(null, discussions)
 
 
   queryStringFromState: =>
-    beatmapId = @state.currentBeatmap.id
+    beatmapId = @currentBeatmap().id
     page = @state.mode
     filter = @state.currentFilter
 
-    opts = {}
-    opts.beatmap_id = beatmapId if beatmapId != @defaultBeatmap().id
-    opts.page = page if page != DEFAULT_PAGE
-    opts.filter = filter if filter != DEFAULT_FILTER
-
-    query = (new URLSearchParams(opts)).toString()
-
-    if query == '' then query else "?#{query}"
+    BeatmapDiscussionHelper.url({beatmapId, page, filter})
 
 
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) =>
@@ -378,6 +361,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
       beatmapsetDiscussion: beatmapsetDiscussion
       beatmapset: beatmapsetDiscussion.beatmapset
       callback
+
 
   setCurrentBeatmapId: (_e, {id, callback}) =>
     return callback?() if !id?
