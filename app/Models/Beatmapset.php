@@ -399,7 +399,7 @@ class Beatmapset extends Model
                 $params['sort_field'] = '_score';
                 $params['sort_order'] = 'desc';
             } else {
-                if ($params['status'] === 4 || $params['status'] === 5) {
+                if (in_array($params['status'], [4, 5, 6], true)) {
                     $params['sort_field'] = 'last_update';
                     $params['sort_order'] = 'desc';
                 } else {
