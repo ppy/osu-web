@@ -22,7 +22,6 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use Auth;
