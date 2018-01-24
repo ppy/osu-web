@@ -23,15 +23,16 @@ namespace App\Console\Commands;
 use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends Command
 {
     const ALLOWED_TYPES = [
-        'beatmapsets' => Beatmapset::class,
-        'posts' => Post::class,
-        'users' => User::class,
+        'beatmapsets' => [Beatmapset::class],
+        'posts' => [Topic::class, Post::class],
+        'users' => [User::class],
     ];
 
     /**
@@ -50,6 +51,7 @@ class EsIndexDocuments extends Command
 
     protected $cleanup;
     protected $inplace;
+    protected $groups;
     protected $suffix;
     protected $types;
     protected $yes;
@@ -140,15 +142,15 @@ class EsIndexDocuments extends Command
 
         if ($this->option('types')) {
             $types = explode(',', $this->option('types'));
-            $this->types = [];
+            $this->groups = [];
             foreach ($types as $type) {
-                $class = static::ALLOWED_TYPES[$type] ?? null;
-                if ($class) {
-                    $this->types[] = $class;
+                $group = static::ALLOWED_TYPES[$type] ?? null;
+                if ($group) {
+                    $this->groups[] = $group;
                 }
             }
         } else {
-            $this->types = array_values(static::ALLOWED_TYPES);
+            $this->groups = static::ALLOWED_TYPES;
         }
     }
 
