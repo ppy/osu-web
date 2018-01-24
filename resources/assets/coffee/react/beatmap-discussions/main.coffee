@@ -72,11 +72,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache = {}
 
   componentDidUpdate: =>
-    queryString = @queryStringFromState()
+    url = @urlFromState()
 
-    if document.location.search != queryString
-      url = encodeURI "#{document.location.pathname}#{queryString}"
-      Turbolinks.controller.advanceHistory url
+    if document.location.href != url
+      Turbolinks.controller.advanceHistory encodeURI(url)
 
 
   componentWillUnmount: =>
@@ -348,14 +347,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
     BeatmapDiscussionHelper.urlParse(null, discussions)
 
 
-  queryStringFromState: =>
-    beatmapId = @currentBeatmap().id
-    page = @state.mode
-    filter = @state.currentFilter
-
-    BeatmapDiscussionHelper.url({beatmapId, page, filter})
-
-
   setBeatmapsetDiscussion: (_e, {beatmapsetDiscussion, callback}) =>
     @setState
       beatmapsetDiscussion: beatmapsetDiscussion
@@ -413,6 +404,14 @@ class BeatmapDiscussions.Main extends React.PureComponent
   setWatchStatus: (_e, {watching}) =>
     beatmapset = _.assign {}, @state.beatmapset, is_watched: watching
     @setState {beatmapset}
+
+
+  urlFromState: =>
+    beatmapId = @currentBeatmap().id
+    page = @state.mode
+    filter = @state.currentFilter
+
+    BeatmapDiscussionHelper.url({beatmapId, page, filter})
 
 
   users: =>
