@@ -61,6 +61,10 @@ class AfterCommitTest extends TestCase
     public function tearDown()
     {
         Schema::drop('test_after_commit');
+        // prevents PDOException at the end and transactions between tests getting mixed up.
+        $this->beforeApplicationDestroyed(function () {
+            DB::disconnect();
+        });
 
         parent::tearDown();
     }
@@ -211,25 +215,24 @@ class AfterCommitTest extends TestCase
         $this->assertSame(0, $model->afterCommitCount);
     }
 
-    // This test breaks Travis :|
-    // public function testRollbackExplictlyCalled()
-    // {
-    //     $model = $this->afterCommittable();
+    public function testRollbackExplictlyCalled()
+    {
+        $model = $this->afterCommittable();
 
-    //     // Explictly rolling back single transaction level should still allow
-    //     // after commit to run at the end.
-    //     // Same behaviour as Rails without enlisting a new transaction.
-    //     DB::transaction(function () use ($model) {
-    //         $model->save();
+        // Explictly rolling back single transaction level should still allow
+        // after commit to run at the end.
+        // Same behaviour as Rails without enlisting a new transaction.
+        DB::transaction(function () use ($model) {
+            $model->save();
 
-    //         $this->assertSame(0, $model->afterCommitCount);
-    //         DB::transaction(function () use ($model) {
-    //             DB::rollBack(); // this breaks the tests at the end when running on Travis
-    //         });
-    //     });
+            $this->assertSame(0, $model->afterCommitCount);
+            DB::transaction(function () use ($model) {
+                DB::rollBack(); // this breaks the tests at the end when running on Travis
+            });
+        });
 
-    //     $this->assertSame(1, $model->afterCommitCount);
-    // }
+        $this->assertSame(1, $model->afterCommitCount);
+    }
 
     public function testSaveOrExplode()
     {
