@@ -73,10 +73,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   componentDidUpdate: =>
-    url = @urlFromState()
-
-    if document.location.href != url
-      Turbolinks.controller.advanceHistory encodeURI(url)
+    Turbolinks.controller.advanceHistory "#{@urlFromState()}#{document.location.hash}"
 
 
   componentWillUnmount: =>
@@ -113,6 +110,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
           el BeatmapDiscussions.Events,
             events: @state.beatmapsetDiscussion.beatmapset_events
             users: @users()
+            discussions: @discussions()
 
       else
         div
@@ -273,6 +271,11 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache.currentDiscussions
 
 
+  discussions: =>
+    @cache.discussions ?=
+      _.keyBy @state.beatmapsetDiscussion.beatmap_discussions, 'id'
+
+
   groupedBeatmaps: (discussionSet) =>
     return @cache.groupedBeatmaps if @cache.groupedBeatmaps?
 
@@ -293,7 +296,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   jumpTo: (_e, {id}) =>
-    discussion = _.find @state.beatmapsetDiscussion.beatmap_discussions, id: id
+    discussion = @discussions()[id]
 
     return if !discussion?
 
@@ -309,12 +312,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
       else
         'total'
 
-    setFilter = =>
-      @setFilter null, filter: filter, callback: setMode
-    setMode = =>
-      @setMode null, mode: mode, callback: setCurrentBeatmapId
     setCurrentBeatmapId = =>
-      @setCurrentBeatmapId null, id: discussion.beatmap_id, callback: jump
+      @setCurrentBeatmapId null, id: discussion.beatmap_id, callback: setMode
+    setMode = =>
+      @setMode null, mode: mode, callback: setFilter
+    setFilter = =>
+      @setFilter null, filter: filter, callback: jump
     jump = =>
       $.publish 'beatmapDiscussionEntry:highlight', id: discussion.id
 
@@ -327,15 +330,17 @@ class BeatmapDiscussions.Main extends React.PureComponent
       $(window).stop().scrollTo target, 500,
         offset: offset
 
-    setFilter()
+    setCurrentBeatmapId()
 
 
   jumpToClick: (e) =>
-    e.preventDefault()
     url = e.currentTarget.getAttribute('href')
-
     id = BeatmapDiscussionHelper.urlParse(url, @state.beatmapsetDiscussion.beatmap_discussions).discussionId
 
+    return if !@discussions()[id]?
+
+    Turbolinks.controller.advanceHistory url
+    e.preventDefault()
     @jumpTo null, {id}
 
 

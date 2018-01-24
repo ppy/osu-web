@@ -68,8 +68,24 @@ class @BeatmapDiscussionHelper
         when user.isBNG then 'bng'
 
 
+  @stateFromDiscussion: (discussion) =>
+    return {} if !discussion?
+
+    discussionId: discussion.id
+    beatmapsetId: discussion.beatmapset_id
+    beatmapId: discussion.beatmap_id ? DEFAULT_BEATMAP_ID
+    page:
+      if discussion.beatmap_id?
+        if discussion.timestamp?
+          'timeline'
+        else
+          'general'
+      else
+        'generalAll'
+
+
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
-  @url: ({beatmapsetId, beatmapId, page, filter, discussionId} = {}) =>
+  @url: ({beatmapsetId, beatmapId, page, filter, discussionId, discussions, discussion} = {}) =>
     params = {}
 
     params.beatmapset = beatmapsetId
@@ -84,14 +100,22 @@ class @BeatmapDiscussionHelper
     if filter? && filter != DEFAULT_FILTER && params.page != 'events'
       params.filter = filter
 
+    if discussion?
+      discussionId = discussion.id
+
+    if discussionId?
+      if !discussion? && discussions?
+        discussion = _.find discussions, id: discussionId
+
+      if discussion?
+        discussionState = @stateFromDiscussion(discussion) if discussion?
+        params.beatmapset = discussionState.beatmapsetId
+        params.beatmap = discussionState.beatmapId
+        params.page = discussionState.page
+
     url = new URL(document.location)
     url.pathname = laroute.route 'beatmapsets.discussion', params
-
-    url.hash =
-      if discussionId?
-        url.hash = "/#{discussionId}"
-      else
-        ''
+    url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
 
     url.toString()
 
@@ -117,10 +141,7 @@ class @BeatmapDiscussionHelper
       if isFinite(discussionId) && discussions?
         discussion = _.find discussions, id: discussionId
 
-        if discussion?
-          ret.discussionId = discussion.id
-          ret.beatmapId = discussion.beatmap_id
-          ret.page = if discussion.timestamp? then 'timeline' else 'general'
+        _.assign ret, @stateFromDiscussion(discussion)
 
     ret
 

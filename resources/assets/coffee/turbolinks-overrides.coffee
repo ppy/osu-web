@@ -45,6 +45,8 @@ Turbolinks.HttpRequest.prototype.requestLoaded = ->
 
 # may or may not actually work
 Turbolinks.Controller.prototype.advanceHistory = (url) ->
+  return if url == document.location.href
+
   @cacheSnapshot()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()

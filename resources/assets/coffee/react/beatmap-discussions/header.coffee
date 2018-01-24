@@ -158,10 +158,8 @@ class BeatmapDiscussions.Header extends React.PureComponent
       area = @refs.chartArea
       length = @props.currentBeatmap.total_length * 1000
 
-      @_chart = new BeatmapDiscussionsChart(area, length, @props.beatmapset.id)
+      @_chart = new BeatmapDiscussionsChart(area, length)
 
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
-    @_chart.loadData
-      beatmapId: @props.currentBeatmap.id
-      data: _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)
+    @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)
