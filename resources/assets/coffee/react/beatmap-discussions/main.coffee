@@ -73,7 +73,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   componentDidUpdate: =>
-    Turbolinks.controller.advanceHistory "#{@urlFromState()}#{document.location.hash}"
+    Turbolinks.controller.advanceHistory @urlFromState()
 
 
   componentWillUnmount: =>
@@ -339,7 +339,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     return if !@discussions()[id]?
 
-    Turbolinks.controller.advanceHistory url
     e.preventDefault()
     @jumpTo null, {id}
 
