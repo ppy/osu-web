@@ -70,7 +70,8 @@ class @BeatmapDiscussionHelper
   # don't forget to update BeatmapDiscussionsController@show
   # when changing this.
   @url: ({discussionId, beatmapId, page, filter} = {}) =>
-    params = new URLSearchParams
+    url = new URL(document.location)
+    params = url.searchParams
 
     if beatmapId?
       params.set 'beatmap_id', beatmapId
@@ -81,11 +82,8 @@ class @BeatmapDiscussionHelper
     if filter? && filter != DEFAULT_FILTER
       params.set 'filter', filter
 
-    hash = if discussionId? then "#/#{discussionId}" else ''
-
-    url = new URL(document.location)
-    url.hash = hash
-    url.search = params.toString()
+    if discussionId?
+      url.hash = "/#{discussionId}"
 
     url.toString()
 
