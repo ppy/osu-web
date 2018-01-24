@@ -67,8 +67,8 @@ class EsIndexDocuments extends Command
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
         $oldIndices = [];
-        foreach ($this->types as $type) {
-            $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
+        foreach ($this->groups as $name => $types) {
+            $oldIndices[] = Indexing::getOldIndices($types[0]::esIndexName());
         }
 
         $oldIndices = array_flatten($oldIndices);
