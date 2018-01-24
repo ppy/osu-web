@@ -119,7 +119,15 @@
                     {!! $page->page()['output'] !!}
                 @else
                     <div class="wiki-content">
-                        {{ trans('wiki.show.missing') }}
+                        <p>
+                            {{ trans('wiki.show.missing', ['keyword' => $page->path ]) }}
+                        </p>
+
+                        <p>
+                            {!! trans('wiki.show.search', ['link' =>
+                                link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)
+                            ]) !!}
+                        </p>
                     </div>
                 @endif
             </div>
