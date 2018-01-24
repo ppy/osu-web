@@ -36,12 +36,17 @@ trait EsIndexable
 
     abstract public function toEsJson();
 
+    public function getEsId()
+    {
+        return $this->getKey();
+    }
+
     public function esDeleteDocument(array $options = [])
     {
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
-            'id' => $this->getKey(),
+            'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
         ], $options);
 
@@ -53,7 +58,7 @@ trait EsIndexable
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
-            'id' => $this->getKey(),
+            'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
         ], $options);
 
@@ -120,7 +125,7 @@ trait EsIndexable
             foreach ($models as $model) {
                 $next = $model;
                 // bulk API am speshul.
-                $metadata = ['_id' => $model->getKey()];
+                $metadata = ['_id' => $model->getEsId()];
 
                 if ($isSoftDeleting && $model->trashed()) {
                     $actions[] = ['delete' => $metadata];
