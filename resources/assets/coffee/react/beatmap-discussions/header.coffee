@@ -94,6 +94,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
           className: "#{bn}__filters"
 
           el BeatmapDiscussions.BeatmapList,
+            beatmapset: @props.beatmapset
             currentBeatmap: @props.currentBeatmap
             currentDiscussions: @props.currentDiscussions
             beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
@@ -131,7 +132,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
       a
         key: type
-        href: BeatmapDiscussionHelper.url(filter: type, beatmapId: @props.currentBeatmap.id, page: @props.mode)
+        href: BeatmapDiscussionHelper.url
+          filter: type
+          beatmapsetId: @props.beatmapset.id
+          beatmapId: @props.currentBeatmap.id
+          page: @props.mode
         className: topClasses
         'data-type': type
         onClick: @setFilter
