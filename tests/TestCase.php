@@ -25,7 +25,10 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected $connectionsToTransact = [
         'mysql',
+        'mysql-chat',
+        'mysql-mp',
         'mysql-store',
+        'mysql-updates',
     ];
 
     protected $baseUrl = 'http://localhost';

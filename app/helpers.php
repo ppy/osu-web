@@ -170,13 +170,13 @@ function get_valid_locale($requestedLocale)
 
 function html_excerpt($body, $limit = 300)
 {
-    $body = replace_tags_with_spaces($body);
+    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
 
-    if (strlen($body) < $limit) {
-        return $body;
+    if (strlen($body) >= $limit) {
+        $body = mb_substr($body, 0, $limit).'...';
     }
 
-    return mb_substr($body, 0, $limit).'...';
+    return e($body);
 }
 
 function json_date($date)
