@@ -73,11 +73,7 @@ class @BeatmapDiscussionHelper
     params = {}
 
     params.beatmapset = beatmapsetId
-    params.page =
-      if discussionId?
-        'timeline'
-      else
-        page ? DEFAULT_PAGE
+    params.page = page ? DEFAULT_PAGE
 
     params.beatmap =
       if !beatmapId? || params.page in ['events', 'generalAll']
