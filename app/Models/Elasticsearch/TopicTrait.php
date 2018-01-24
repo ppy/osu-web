@@ -21,35 +21,29 @@
 namespace App\Models\Elasticsearch;
 
 use App\Models\Forum\Forum;
+use App\Models\Forum\Post;
 use App\Traits\EsIndexable;
 use Carbon\Carbon;
 
-trait PostTrait
+trait TopicTrait
 {
     use EsIndexable;
 
     public function getEsId()
     {
-        return "post-{$this->post_id}";
+        return "topic-{$this->post_id}";
     }
 
     public function toEsJson()
     {
-        $mappings = static::ES_MAPPINGS;
-
-        $values = [];
-        foreach ($mappings as $field => $mapping) {
-            $value = $this[$field];
-            if ($value instanceof Carbon) {
-                $value = $value->toIso8601String();
-            }
-
-            $values[$field] = $value;
-        }
-
-        $values['type'] = [
-            'name' => 'posts',
-            'parent' => "topic-{$this->topic_id}"
+        $values = [
+            'post_id' => $this->topic_first_post_id,
+            'topic_id' => $this->topic_id,
+            'poster_id' => $this->topic_poster,
+            'forum_id' => $this->forum_id,
+            'post_time' => $this->topic_time->toIso8601String(),
+            'title' => $this->topic_title,
+            'type' => 'topic',
         ];
 
         return $values;
@@ -57,26 +51,12 @@ trait PostTrait
 
     public static function esAnalysisSettings()
     {
-        static $settings = [
-            'analyzer' => [
-                'remove_html' => [
-                    'tokenizer' => 'standard',
-                    'char_filter' => ['remove_html_filter']
-                ],
-            ],
-            'char_filter' => [
-                'remove_html_filter' => [
-                    'type' => 'html_strip',
-                ],
-            ],
-        ];
-
-        return $settings;
+        return Post::esAnalysisSettings();
     }
 
     public static function esIndexName()
     {
-        return config('osu.elasticsearch.prefix').'posts';
+        return Post::esIndexName();
     }
 
     public static function esIndexingQuery()
@@ -88,11 +68,11 @@ trait PostTrait
 
     public static function esMappings()
     {
-        return static::ES_MAPPINGS;
+        return Post::esMappings();
     }
 
     public static function esType()
     {
-        return 'posts';
+        return 'topics';
     }
 }

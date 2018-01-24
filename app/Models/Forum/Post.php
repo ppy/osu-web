@@ -55,11 +55,14 @@ class Post extends Model
     |--------------------------------------------------------------------------
     */
     const ES_MAPPINGS = [
+        'post_id' => ['type' => 'long'],
         'topic_id' => ['type' => 'long'],
         'poster_id' => ['type' => 'long'],
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
         'post_text' => ['type' => 'text'],
+        'title' => ['type' => 'text'],
+        'type' => ['type' => 'join', 'relations' => ['topic' => 'post']]
     ];
 
     public function forum()
