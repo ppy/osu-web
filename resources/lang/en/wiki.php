@@ -22,9 +22,10 @@ return [
     'show' => [
         'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
         'languages' => 'Languages',
-        'missing' => 'Requested page could not be found.',
+        'missing' => 'Requested page ":keyword" could not be found.',
         'missing_title' => 'Not Found',
         'missing_translation' => 'Requested page could not be found for currently selected language.',
+        'search' => 'Search existing pages for :link.',
         'toc' => 'Contents',
 
         'edit' => [
