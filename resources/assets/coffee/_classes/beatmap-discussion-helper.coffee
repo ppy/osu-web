@@ -97,7 +97,7 @@ class @BeatmapDiscussionHelper
       else
         ''
 
-    url
+    url.toString()
 
 
   # see @url
