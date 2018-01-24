@@ -924,7 +924,7 @@ class Beatmapset extends Model
         }
 
         DB::transaction(function () use ($user) {
-            $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id);
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
@@ -1050,7 +1050,7 @@ class Beatmapset extends Model
 
     public function currentNominationCount()
     {
-        return count($this->recentEvents()->nominations()->get());
+        return $this->nominationsSinceReset()->count();
     }
 
     public function hasNominations()
@@ -1073,22 +1073,26 @@ class Beatmapset extends Model
         return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
-    public function recentEvents()
+    public function resetEvent()
     {
-        // relevant events differ depending on state of beatmapset
-        $events = $this->events();
-        switch ($this->approved) {
-            case self::STATES['pending']:
-            case self::STATES['qualified']:
-                // last 'disqualify' or 'nomination reset' event (if any) and all events since
-                $resetEvent = $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+    }
 
-                if ($resetEvent) {
-                    $events->where('id', '>=', $resetEvent->id);
-                }
+    public function eventsSinceReset()
+    {
+        $events = $this->events();
+
+        $resetEvent = $this->resetEvent();
+        if ($resetEvent) {
+            $events->where('id', '>=', $resetEvent->id);
         }
 
         return $events;
+    }
+
+    public function nominationsSinceReset()
+    {
+        return $this->eventsSinceReset()->nominations();
     }
 
     public function status()
