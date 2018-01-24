@@ -83,7 +83,6 @@ class Beatmapset extends Model
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
 
-    const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
