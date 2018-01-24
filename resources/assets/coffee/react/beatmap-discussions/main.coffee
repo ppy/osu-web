@@ -71,6 +71,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
   componentWillUpdate: =>
     @cache = {}
 
+
   componentDidUpdate: =>
     url = @urlFromState()
 
@@ -101,6 +102,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.mode
+        beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
         currentFilter: @state.currentFilter
@@ -407,11 +409,12 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
 
   urlFromState: =>
+    beatmapsetId = @state.beatmapset.id
     beatmapId = @currentBeatmap().id
     page = @state.mode
     filter = @state.currentFilter
 
-    BeatmapDiscussionHelper.url({beatmapId, page, filter})
+    BeatmapDiscussionHelper.url({beatmapsetId, beatmapId, page, filter})
 
 
   users: =>

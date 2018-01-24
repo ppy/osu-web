@@ -17,6 +17,7 @@
 ###
 
 class @BeatmapDiscussionHelper
+  DEFAULT_BEATMAP_ID = '-'
   DEFAULT_PAGE = 'timeline'
   DEFAULT_FILTER = 'total'
 
@@ -67,39 +68,52 @@ class @BeatmapDiscussionHelper
         when user.isBNG then 'bng'
 
 
-  # don't forget to update BeatmapDiscussionsController@show
-  # when changing this.
-  @url: ({discussionId, beatmapId, page, filter} = {}) =>
+  # Don't forget to update BeatmapDiscussionsController@show when changing this.
+  @url: ({beatmapsetId, beatmapId, page, filter, discussionId} = {}) =>
+    params = {}
+
+    params.beatmapset = beatmapsetId
+    params.page =
+      if discussionId?
+        'timeline'
+      else
+        page ? DEFAULT_PAGE
+
+    params.beatmap =
+      if !beatmapId? || params.page in ['events', 'generalAll']
+        DEFAULT_BEATMAP_ID
+      else
+        beatmapId
+
+    if filter? && filter != DEFAULT_FILTER && params.page != 'events'
+      params.filter = filter
+
     url = new URL(document.location)
-    params = url.searchParams
+    url.pathname = laroute.route 'beatmapsets.discussion', params
 
-    if beatmapId?
-      params.set 'beatmap_id', beatmapId
+    url.hash =
+      if discussionId?
+        url.hash = "/#{discussionId}"
+      else
+        ''
 
-    if page? && page != DEFAULT_PAGE
-      params.set 'page', page
-
-    if filter? && filter != DEFAULT_FILTER
-      params.set 'filter', filter
-
-    if discussionId?
-      url.hash = "/#{discussionId}"
-
-    url.toString()
+    url
 
 
   # see @url
   @urlParse: (urlString, discussions) ->
     url = new URL(urlString ? document.location.href)
     params = url.searchParams
+    [__, __, beatmapsetId, __, beatmapId, page, filter] = url.pathname.split '/'
 
-    beatmapId = parseInt(params.get('beatmap_id'), 10)
-    beatmapId = null if !isFinite(beatmapId)
+    beatmapsetId = parseInt(beatmapsetId, 10)
+    beatmapId = parseInt(beatmapId, 10)
 
     ret =
-      beatmapId: beatmapId
-      page: params.get('page') ? DEFAULT_PAGE
-      filter: params.get('filter') ? DEFAULT_FILTER
+      beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
+      beatmapId: if isFinite(beatmapId) then beatmapId
+      page: page ? DEFAULT_PAGE
+      filter: filter ? DEFAULT_FILTER
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)

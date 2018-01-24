@@ -19,7 +19,7 @@
 bn = 'beatmap-discussions-chart'
 
 class @BeatmapDiscussionsChart
-  constructor: (area, @length) ->
+  constructor: (area, @length, @beatmapsetId) ->
     @id = Math.floor(Math.random() * 1000)
     @dimensions =
       chartHeight: 120
@@ -97,7 +97,7 @@ class @BeatmapDiscussionsChart
       .tickSizeOuter 0
 
 
-  loadData: (data) =>
+  loadData: ({data, @beatmapId}) =>
     @data = _.orderBy data, 'timestamp'
 
     @svgPoints = @svgPointsContainer
@@ -137,7 +137,10 @@ class @BeatmapDiscussionsChart
 
     @svgPoints
       .attr 'xlink:href', (d) =>
-        BeatmapDiscussionHelper.url discussionId: d.id
+        BeatmapDiscussionHelper.url
+          discussionId: d.id
+          beatmapsetId: @beatmapsetId
+          beatmapId: @beatmapId
       .attr 'class', (d) ->
         type = if d.resolved then 'resolved' else _.kebabCase(d.message_type)
         "js-beatmap-discussion--jump #{bn}__point #{bn}__point--#{type}"

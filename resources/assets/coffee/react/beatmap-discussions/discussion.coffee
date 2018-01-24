@@ -176,6 +176,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     el BeatmapDiscussions[elementName],
       key: post.id
       beatmapset: @props.beatmapset
+      beatmap: @props.currentBeatmap
       discussion: @props.discussion
       post: post
       type: type

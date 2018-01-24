@@ -268,7 +268,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
           className: "#{bn}__actions-group"
           if @props.type == 'discussion'
             a
-              href: BeatmapDiscussionHelper.url discussionId: @props.discussion.id
+              href: BeatmapDiscussionHelper.url
+                beatmapsetId: @props.beatmapset.id
+                beatmapId: @props.beatmap.id
+                discussionId: @props.discussion.id
               onClick: @permalink
               className: "#{bn}__action #{bn}__action--button"
 
