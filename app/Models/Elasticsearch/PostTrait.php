@@ -45,6 +45,25 @@ trait PostTrait
         return $values;
     }
 
+    public static function esAnalysisSettings()
+    {
+        static $settings = [
+            'analyzer' => [
+                'remove_html' => [
+                    'tokenizer' => 'standard',
+                    'char_filter' => ['remove_html_filter']
+                ],
+            ],
+            'char_filter' => [
+                'remove_html_filter' => [
+                    'type' => 'html_strip',
+                ],
+            ],
+        ];
+
+        return $settings;
+    }
+
     public static function esIndexName()
     {
         return config('osu.elasticsearch.prefix').'posts';
