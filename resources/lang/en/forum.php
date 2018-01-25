@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'deleted topic',
         'go_to_latest' => 'view latest post',
         'latest_post' => ':when by :user',
         'latest_reply_by' => 'latest reply by :user',
