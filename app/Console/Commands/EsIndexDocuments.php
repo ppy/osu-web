@@ -66,8 +66,9 @@ class EsIndexDocuments extends Command
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
         $oldIndices = [];
-        foreach ($this->groups as $name => $types) {
-            $oldIndices[] = Indexing::getOldIndices($types[0]::esIndexName());
+        foreach ($this->groups as $name) {
+            $type = static::ALLOWED_TYPES[$name][0];
+            $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
         }
 
         $oldIndices = array_flatten($oldIndices);
@@ -103,13 +104,12 @@ class EsIndexDocuments extends Command
     protected function index()
     {
         $indices = [];
-        foreach ($this->groups as $name => $_types) {
+        foreach ($this->groups as $name) {
             $indices = array_merge($indices, $this->indexGroup($name));
         }
 
         return $indices;
     }
-
 
     private function indexGroup($name)
     {
@@ -164,13 +164,12 @@ class EsIndexDocuments extends Command
             $types = explode(',', $this->option('types'));
             $this->groups = [];
             foreach ($types as $type) {
-                $group = static::ALLOWED_TYPES[$type] ?? null;
-                if ($group) {
-                    $this->groups[] = $group;
+                if (array_key_exists($type, static::ALLOWED_TYPES)) {
+                    $this->groups[] = $type;
                 }
             }
         } else {
-            $this->groups = static::ALLOWED_TYPES;
+            $this->groups = array_keys(static::ALLOWED_TYPES);
         }
     }
 
