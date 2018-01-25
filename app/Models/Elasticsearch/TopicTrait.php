@@ -31,7 +31,7 @@ trait TopicTrait
 
     public function getEsId()
     {
-        return "topic-{$this->post_id}";
+        return "topic-{$this->topic_id}";
     }
 
     public function toEsJson()
