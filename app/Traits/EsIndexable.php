@@ -141,6 +141,7 @@ trait EsIndexable
                     'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
                     'body' => $actions,
+                    'client' => ['timeout' => 0],
                 ]);
 
                 $count += count($result['items']);
