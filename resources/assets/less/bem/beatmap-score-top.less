@@ -18,24 +18,22 @@
 
 .beatmap-score-top {
   @_top: beatmap-score-top;
-  @avatar-size: 60px;
+  @avatar-size: 70px;
 
-  .default-border-radius();
-  .default-box-shadow();
 
   display: flex;
   flex-direction: column;
 
-  margin: 20px 7.5px;
+  margin: 10px 0px;
 
   &:hover {
     background-color: #eee;
   }
 
-  &--with-outline {
-    @border-size: 3px;
-    box-shadow: 0 0 0 @border-size @yellow, 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
-  }
+  // &--with-outline {
+  //   @border-size: 3px;
+  //   box-shadow: 0 0 0 @border-size @yellow, 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
+  // }
 
   &__achieved {
     font-size: @font-size--small-2;
@@ -51,8 +49,7 @@
     flex: none;
     width: @avatar-size;
     height: @avatar-size;
-    margin-bottom: -10px;
-    margin-right: 10px;
+    margin: 0px 10px;
 
     // clip avatar div following border radius
     overflow: hidden;
@@ -66,8 +63,7 @@
 
   &__position {
     text-align: right;
-    font-size: @font-size--large-2;
-    font-style: italic;
+    font-size: @font-size--title;
     font-weight: 700;
     line-height: 1;
 
@@ -88,46 +84,52 @@
   &__section {
     width: 100%;
     padding: 10px;
+    display: flex;
 
-    &--top {
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 20px;
-    }
+    .default-border-radius();
+    .default-box-shadow();
 
-    &--bottom {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-
-      background-color: #eee;
-      border-radius: 0 0 @border-radius-base @border-radius-base;
-      border-top: 1px solid #ccc;
-    }
+    align-items: center;
   }
 
   &__stat {
     display: flex;
     flex-direction: column;
-    margin: 0 10px;
+    // margin: 0 2.5px;
+    margin-right: 10px;
   }
 
   &__stat-header {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
 
     padding-bottom: 2px;
+
+    border-bottom: 2px solid #BBB;
+    text-transform: uppercase;
+
+    width: 50px;
+
+    &--wider {
+      min-width: 80px;
+      width: 100%;
+    }
   }
 
   &__stat-value {
     font-size: 22px;
     font-weight: 300;
-    font-style: italic;
-    color: @purple-dark;
+    color: #555;
+    margin-top: 4px;
 
     line-height: 0.9;
 
     &--score {
+      // font-weight: 500;
+    }
+
+    &--smaller {
+      font-size: 16px;
       font-weight: 500;
     }
   }
@@ -135,7 +137,6 @@
   &__stats {
     flex: 1;
     display: flex;
-    margin: 0 -10px;
   }
 
   &__stats-top {
@@ -149,11 +150,11 @@
   }
 
   &__username {
-    font-size: @font-size--large;
+    font-size: 18px;
     font-style: italic;
     font-weight: 700;
     padding-bottom: 5px;
-    color: @blue-darker;
+    color: #555;
     display: block;
   }
 }

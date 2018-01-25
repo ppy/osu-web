@@ -26,12 +26,16 @@
   @mod-width-normal: (@mod-height-normal / @mod-height * @mod-width);
 
   flex: none;
-  width: (@mod-width-normal * 3);
+  width: (@mod-width-normal * 2.5);
   height: @mod-height-normal;
   padding: 0 (@mod-width-normal / 2);
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+
+  &--scoreboard {
+    width: 80px;
+  }
 
   &--small {
     width: (@mod-width-small * 3);

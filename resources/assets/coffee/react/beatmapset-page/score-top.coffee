@@ -27,10 +27,25 @@ BeatmapsetPage.ScoreTop = (props) ->
 
   hits = Hits.generate score: props.score, playmode: props.playmode
 
+  hitHeaders = switch props.playmode
+    when 'osu'
+      [['300', '300'], ['100', '100'], ['50', '50']]
+    when 'taiko'
+      [['great', '300'], ['good', '100']]
+    when 'fruits'
+      [['fruits', '300'], ['ticks', '100'], ['droplets', '50']]
+    when 'mania'
+      [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
+
+  console.log hitHeaders
+
   div className: "#{bn} #{topClasses}",
     div className: "#{bn}__section #{bn}__section--top",
-      div
-        className: "#{bn}__avatar"
+      div className: "#{bn}__position", "##{props.position}"
+      # div className: "#{bn}__rank",
+      #   div className: "badge-rank badge-rank--medium badge-rank--#{props.score.rank}"
+
+      div className: "#{bn}__avatar",
         div
           className: "avatar avatar--full"
           style:
@@ -46,47 +61,40 @@ BeatmapsetPage.ScoreTop = (props) ->
           country: props.countries[props.score.user.country_code]
           classModifiers: ['scoreboard']
 
-      div className: "#{bn}__position",
-        "##{props.position}"
-        div className: "#{bn}__achieved",
-          osu.trans 'beatmapsets.show.scoreboard.achieved', when: moment(props.score.created_at).fromNow()
+      div className: "#{bn}__stats",
+        div className: "#{bn}__stat",
+          div className: "#{bn}__stat-header #{bn}__stat-header--wider",
+            osu.trans 'beatmapsets.show.scoreboard.stats.score'
+          div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            props.score.score.toLocaleString()
 
-    div className: "#{bn}__section #{bn}__section--bottom",
-      div className: "#{bn}__stats-top",
-        div className: "#{bn}__rank",
-          div className: "badge-rank badge-rank--medium badge-rank--#{props.score.rank}"
+        div className: "#{bn}__stat",
+          div className: "#{bn}__stat-header #{bn}__stat-header--wider",
+            osu.trans 'beatmapsets.show.scoreboard.stats.accuracy'
+          div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            "#{_.round props.score.accuracy * 100, 2}%"
 
-        div className: "#{bn}__stats",
+        div className: "#{bn}__stat hidden-xs",
+          div className: "#{bn}__stat-header #{bn}__stat-header--wider",
+            osu.trans 'beatmapsets.show.scoreboard.stats.combo'
+          div className: "#{bn}__stat-value #{bn}__stat-value--score",
+            "#{props.score.max_combo.toLocaleString()}x"
+
+        for stat in hitHeaders
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.stats.score'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
-              props.score.score.toLocaleString()
+              stat[0]
+            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+              props.score.statistics["count_#{stat[1]}"].toLocaleString()
 
-          div className: "#{bn}__stat",
-            div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.stats.accuracy'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
-              "#{_.round props.score.accuracy * 100, 2}%"
+        div className: "#{bn}__stat hidden-xs",
+          div className: "#{bn}__stat-header",
+            osu.trans 'beatmapsets.show.scoreboard.stats.misses'
+          div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+            props.score.statistics.count_miss
 
-          div className: "#{bn}__stat hidden-xs",
-            div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.stats.combo'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
-              "#{props.score.max_combo.toLocaleString()}x"
-
-          div className: "#{bn}__stat",
-            div className: "#{bn}__stat-header",
-              hits.header
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
-              hits.values
-
-          div className: "#{bn}__stat hidden-xs",
-            div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.stats.misses'
-            div className: "#{bn}__stat-value #{bn}__stat-value--score",
-              props.score.statistics.count_miss
-
-      if props.score.mods.length != 0
-        div className: "#{bn}__mods",
-          el Mods, mods: props.score.mods
+        div className: "#{bn}__stat hidden-xs",
+          div className: "#{bn}__stat-header #{bn}__stat-header--wider",
+            "mods"
+          div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+            el Mods, modifiers: ['scoreboard'], mods: props.score.mods

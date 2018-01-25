@@ -79,25 +79,17 @@ class BeatmapsetPage.Scoreboard extends React.Component
           div {},
             div className: 'beatmap-scoreboard-top',
               div className: 'beatmap-scoreboard-top__item',
-                h2 className: 'beatmap-scoreboard-top__title',
-                  osu.trans('beatmapsets.show.scoreboard.score.first')
                 @scoreItem score: @props.scores[0], rank: 1, itemClass: 'ScoreTop', modifiers: ['with-outline']
 
               if @props.userScore?
                 div className: 'beatmap-scoreboard-top__item',
-                  h2 className: 'beatmap-scoreboard-top__title',
-                    osu.trans('beatmapsets.show.scoreboard.score.own')
                   @scoreItem score: @props.userScore, rank: @props.userScorePosition, itemClass: 'ScoreTop'
 
-            for score, i in @props.scores[1..]
+            for score, i in @props.scores
               @scoreItem
                 score: score
-                rank: i + 2
-                itemClass:
-                  if score.user.id == currentUser.id
-                    'ScoreBig'
-                  else
-                    'Score'
+                rank: i + 1
+                itemClass: 'Score'
 
         else if !@props.hasScores
           p

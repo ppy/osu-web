@@ -105,9 +105,9 @@ return [
             ],
             'stats' => [
                 'accuracy' => 'Accuracy',
-                'combo' => 'Combo',
+                'combo' => 'Max Combo',
                 'misses' => 'Miss',
-                'score' => 'Score',
+                'score' => 'Total Score',
             ],
         ],
     ],
