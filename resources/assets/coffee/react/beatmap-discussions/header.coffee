@@ -136,7 +136,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
           filter: type
           beatmapsetId: @props.beatmapset.id
           beatmapId: @props.currentBeatmap.id
-          page: @props.mode
+          mode: @props.mode
         className: topClasses
         'data-type': type
         onClick: @setFilter

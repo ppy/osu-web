@@ -62,7 +62,7 @@ class BeatmapDiscussions.ModeSwitcher extends React.PureComponent
                   className: "page-mode-link #{'page-mode-link--is-active' if @props.mode == mode}"
                   onClick: @switch
                   href: BeatmapDiscussionHelper.url
-                    page: mode
+                    mode: mode
                     beatmapId: @props.currentBeatmap.id
                     beatmapsetId: @props.beatmapset.id
                   'data-mode': mode

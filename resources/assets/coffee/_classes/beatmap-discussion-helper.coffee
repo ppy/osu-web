@@ -18,7 +18,7 @@
 
 class @BeatmapDiscussionHelper
   DEFAULT_BEATMAP_ID = '-'
-  DEFAULT_PAGE = 'timeline'
+  DEFAULT_MODE = 'timeline'
   DEFAULT_FILTER = 'total'
 
   @formatTimestamp: (value) =>
@@ -74,7 +74,7 @@ class @BeatmapDiscussionHelper
     discussionId: discussion.id
     beatmapsetId: discussion.beatmapset_id
     beatmapId: discussion.beatmap_id ? DEFAULT_BEATMAP_ID
-    page:
+    mode:
       if discussion.beatmap_id?
         if discussion.timestamp?
           'timeline'
@@ -85,19 +85,19 @@ class @BeatmapDiscussionHelper
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
-  @url: ({beatmapsetId, beatmapId, page, filter, discussionId, discussions, discussion} = {}) =>
+  @url: ({beatmapsetId, beatmapId, mode, filter, discussionId, discussions, discussion} = {}) =>
     params = {}
 
     params.beatmapset = beatmapsetId
-    params.page = page ? DEFAULT_PAGE
+    params.mode = mode ? DEFAULT_MODE
 
     params.beatmap =
-      if !beatmapId? || params.page in ['events', 'generalAll']
+      if !beatmapId? || params.mode in ['events', 'generalAll']
         DEFAULT_BEATMAP_ID
       else
         beatmapId
 
-    if filter? && filter != DEFAULT_FILTER && params.page != 'events'
+    if filter? && filter != DEFAULT_FILTER && params.mode != 'events'
       params.filter = filter
 
     if discussion?
@@ -111,7 +111,7 @@ class @BeatmapDiscussionHelper
         discussionState = @stateFromDiscussion(discussion) if discussion?
         params.beatmapset = discussionState.beatmapsetId
         params.beatmap = discussionState.beatmapId
-        params.page = discussionState.page
+        params.mode = discussionState.mode
 
     url = new URL(document.location)
     url.pathname = laroute.route 'beatmapsets.discussion', params
@@ -124,7 +124,7 @@ class @BeatmapDiscussionHelper
   @urlParse: (urlString, discussions) ->
     url = new URL(urlString ? document.location.href)
     params = url.searchParams
-    [__, __, beatmapsetId, __, beatmapId, page, filter] = url.pathname.split '/'
+    [__, __, beatmapsetId, __, beatmapId, mode, filter] = url.pathname.split '/'
 
     beatmapsetId = parseInt(beatmapsetId, 10)
     beatmapId = parseInt(beatmapId, 10)
@@ -132,7 +132,7 @@ class @BeatmapDiscussionHelper
     ret =
       beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
       beatmapId: if isFinite(beatmapId) then beatmapId
-      page: page ? DEFAULT_PAGE
+      mode: mode ? DEFAULT_MODE
       filter: filter ? DEFAULT_FILTER
 
     if url.hash[1] == '/'

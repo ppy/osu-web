@@ -31,7 +31,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache = {}
 
     query = @queryFromLocation(props.initial.beatmapsetDiscussion.beatmap_discussions)
-    mode = query.page
+    mode = query.mode
     currentFilter = query.filter
     if query.beatmapId?
       currentBeatmap = _.find props.initial.beatmapsetDiscussion.beatmapset.beatmaps, id: query.beatmapId
@@ -415,10 +415,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
   urlFromState: =>
     beatmapsetId = @state.beatmapset.id
     beatmapId = @currentBeatmap().id
-    page = @state.mode
+    mode = @state.mode
     filter = @state.currentFilter
 
-    BeatmapDiscussionHelper.url({beatmapsetId, beatmapId, page, filter})
+    BeatmapDiscussionHelper.url({beatmapsetId, beatmapId, mode, filter})
 
 
   users: =>
