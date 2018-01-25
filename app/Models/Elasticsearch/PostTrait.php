@@ -28,6 +28,12 @@ trait PostTrait
 {
     use EsIndexable;
 
+    public function esRouting()
+    {
+        // Post and Topic should have the same routing for relationships to work.
+        return $this->topic_id;
+    }
+
     public function getEsId()
     {
         return "post-{$this->post_id}";
