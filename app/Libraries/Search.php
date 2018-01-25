@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\ForumSearch;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
 use App\Models\User;
@@ -35,7 +36,7 @@ class Search
         // also display order
         'user' => User::class,
         'beatmapset' => Beatmapset::class,
-        'forum_post' => ForumPost::class,
+        'forum_post' => ForumSearch::class, // ForumPost::class,
         'wiki_page' => WikiPage::class,
     ];
 
@@ -94,6 +95,16 @@ class Search
 
         if ($class === null) {
             return;
+        }
+
+        if ($class === ForumSearch::class) {
+            $result = ForumSearch::search($this->params['query']);
+
+            return [
+                'data' => $result,
+                'total' => $result['hits']['total'],
+                'params' => $this->params,
+            ];
         }
 
         if ($this->mode !== static::DEFAULT_MODE && $this->mode !== $mode) {
