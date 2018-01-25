@@ -53,7 +53,6 @@ class EsIndexDocuments extends Command
     protected $inplace;
     protected $groups;
     protected $suffix;
-    protected $types;
     protected $yes;
 
     /**
@@ -104,31 +103,41 @@ class EsIndexDocuments extends Command
     protected function index()
     {
         $indices = [];
-        foreach ($this->types as $type) {
-            $count = $type::esIndexingQuery()->count();
-            $bar = $this->output->createProgressBar($count);
+        foreach ($this->groups as $name => $types) {
+            foreach ($types as $type) {
+                $count = $type::esIndexingQuery()->count();
+                $bar = $this->output->createProgressBar($count);
 
-            if (!$this->inplace) {
-                $indexName = "{$type::esIndexName()}{$this->suffix}";
+                if (!$this->inplace) {
+                    $indexName = "{$type::esIndexName()}{$this->suffix}";
 
-                $this->info("Indexing {$type} into {$indexName}");
+                    $this->info("Indexing {$type} into {$indexName}");
 
-                $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
-                    $bar->setProgress($progress);
-                });
+                    // create new index if the first type for this index, otherwise
+                    // index in place.
+                    if (static::ALLOWED_TYPES[$name][0] === $type) {
+                        $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
+                            $bar->setProgress($progress);
+                        });
 
-                $indices[] = $indexName;
-            } else {
-                $this->info("In-place indexing {$type} into {$type::esIndexName()}");
-                $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
-                    $bar->setProgress($progress);
-                });
+                        $indices[] = $indexName;
+                    } else {
+                        $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
+                            $bar->setProgress($progress);
+                        });
+                    }
+                } else {
+                    $this->info("In-place indexing {$type} into {$type::esIndexName()}");
+                    $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
+                        $bar->setProgress($progress);
+                    });
 
-                $indices[] = $type::esIndexName();
+                    $indices[] = $type::esIndexName();
+                }
+
+                $bar->finish();
+                $this->line("\n");
             }
-
-            $bar->finish();
-            $this->line("\n");
         }
 
         return $indices;
