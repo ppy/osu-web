@@ -43,7 +43,7 @@ trait TopicTrait
             'forum_id' => $this->forum_id,
             'post_time' => $this->topic_time->toIso8601String(),
             'title' => $this->topic_title,
-            'type' => 'topic',
+            'type' => 'topics',
         ];
 
         return $values;
@@ -73,6 +73,6 @@ trait TopicTrait
 
     public static function esType()
     {
-        return 'topics';
+        return Post::esType();
     }
 }
