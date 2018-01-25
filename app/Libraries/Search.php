@@ -36,7 +36,8 @@ class Search
         // also display order
         'user' => User::class,
         'beatmapset' => Beatmapset::class,
-        'forum_post' => ForumSearch::class, // ForumPost::class,
+        'forum_threaded' => ForumSearch::class,
+        // 'forum_post' => ForumSearch::class, // ForumPost::class,
         'wiki_page' => WikiPage::class,
     ];
 
@@ -101,9 +102,10 @@ class Search
             $result = ForumSearch::search($this->params['query']);
 
             return [
+                'source' => 'elasticsearch',
                 'data' => $result,
                 'total' => $result['hits']['total'],
-                'params' => $this->params,
+                'params' => array_merge($this->params, ['limit' => 10, 'page' => 1]),
             ];
         }
 

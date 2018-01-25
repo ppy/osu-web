@@ -32,11 +32,15 @@
             @else
                 <div class="search-result__row search-result__row--entries-container">
                     <div class="search-result__entries">
-                        @foreach ($result['data'] as $entry)
-                            <div class="search-result__entry">
-                                @include("home._search_{$mode}", compact('entry'))
-                            </div>
-                        @endforeach
+                        @if (($result['source'] ?? null) === 'elasticsearch')
+                            @include("home._search_{$mode}", ['result' => $result['data']['hits']['hits']])
+                        @else
+                            @foreach ($result['data'] as $entry)
+                                <div class="search-result__entry">
+                                    @include("home._search_{$mode}", compact('entry'))
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
 
                     <a
