@@ -25,7 +25,6 @@ use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
-use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use Datadog;
@@ -1096,17 +1095,13 @@ class Beatmapset extends Model
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson($options = [])
+    public function defaultJson()
     {
-        $includes = ['current_user_attributes', 'nominations'];
-
-        if ($options['withTrashedBeatmaps'] ?? false) {
-            $includes[] = 'beatmaps:with_trashed';
-        } else {
-            $includes[] = 'beatmaps';
-        }
-
-        return json_item($this, new BeatmapsetTransformer, $includes);
+        return json_item($this, 'Beatmapset', [
+            'beatmaps',
+            'current_user_attributes',
+            'nominations',
+        ]);
     }
 
     public function defaultDiscussionJson()
@@ -1118,14 +1113,17 @@ class Beatmapset extends Model
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
-            'BeatmapsetDiscussion',
+            'Beatmapset',
             [
-                'beatmapset',
-                'beatmap_discussions.beatmap_discussion_posts',
-                'beatmap_discussions.current_user_attributes',
-                'beatmapset_events',
-                'users',
-                'users.groups',
+                'beatmaps:with_trashed',
+                'current_user_attributes',
+                'discussions',
+                'discussions.current_user_attributes',
+                'discussions.posts',
+                'events',
+                'nominations',
+                'related_users',
+                'related_users.groups',
             ]
         );
     }

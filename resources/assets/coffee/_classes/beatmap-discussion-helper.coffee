@@ -17,9 +17,19 @@
 ###
 
 class @BeatmapDiscussionHelper
-  DEFAULT_BEATMAP_ID = '-'
-  DEFAULT_MODE = 'timeline'
-  DEFAULT_FILTER = 'total'
+  @DEFAULT_BEATMAP_ID: '-'
+  @DEFAULT_MODE: 'timeline'
+  @DEFAULT_FILTER: 'total'
+
+  @discussionMode: (discussion) ->
+    if discussion.beatmap_id?
+      if discussion.timestamp?
+        'timeline'
+      else
+        'general'
+    else
+      'generalAll'
+
 
   @formatTimestamp: (value) =>
     return unless value?
@@ -73,31 +83,39 @@ class @BeatmapDiscussionHelper
 
     discussionId: discussion.id
     beatmapsetId: discussion.beatmapset_id
-    beatmapId: discussion.beatmap_id ? DEFAULT_BEATMAP_ID
-    mode:
-      if discussion.beatmap_id?
-        if discussion.timestamp?
-          'timeline'
-        else
-          'general'
-      else
-        'generalAll'
+    beatmapId: discussion.beatmap_id ? @DEFAULT_BEATMAP_ID
+    mode: @discussionMode(discussion)
 
 
   # Don't forget to update BeatmapDiscussionsController@show when changing this.
-  @url: ({beatmapsetId, beatmapId, mode, filter, discussionId, discussions, discussion} = {}) =>
+  @url: (options = {}) =>
+    {
+      beatmapsetId
+      beatmapId
+      beatmap
+      mode
+      filter
+      discussionId
+      discussions # for validating discussionId and getting relevant params
+      discussion
+    } = options
+
     params = {}
 
+    if beatmap?
+      beatmapsetId = beatmap.beatmapset_id
+      beatmapId = beatmap.id
+
     params.beatmapset = beatmapsetId
-    params.mode = mode ? DEFAULT_MODE
+    params.mode = mode ? @DEFAULT_MODE
 
     params.beatmap =
       if !beatmapId? || params.mode in ['events', 'generalAll']
-        DEFAULT_BEATMAP_ID
+        @DEFAULT_BEATMAP_ID
       else
         beatmapId
 
-    if filter? && filter != DEFAULT_FILTER && params.mode != 'events'
+    if filter? && filter != @DEFAULT_FILTER && params.mode != 'events'
       params.filter = filter
 
     if discussion?
@@ -132,8 +150,8 @@ class @BeatmapDiscussionHelper
     ret =
       beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
       beatmapId: if isFinite(beatmapId) then beatmapId
-      mode: mode ? DEFAULT_MODE
-      filter: filter ? DEFAULT_FILTER
+      mode: mode ? @DEFAULT_MODE
+      filter: filter ? @DEFAULT_FILTER
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)

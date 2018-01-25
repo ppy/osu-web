@@ -58,7 +58,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
       div className: "#{bn}__content #{bn}__content--nomination",
         el BeatmapDiscussions.Nominations,
           beatmapset: @props.beatmapset
-          events: @props.beatmapsetDiscussion.beatmapset_events
+          events: @props.events
           users: @props.users
           currentUser: @props.currentUser
           currentDiscussions: @props.currentDiscussions
@@ -114,7 +114,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
   setFilter: (e) =>
     e.preventDefault()
-    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type
+    $.publish 'beatmapsetDiscussions:update', filter: e.currentTarget.dataset.type
 
 
   stats: =>
