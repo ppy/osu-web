@@ -30,11 +30,6 @@
     background-color: #eee;
   }
 
-  // &--with-outline {
-  //   @border-size: 3px;
-  //   box-shadow: 0 0 0 @border-size @yellow, 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
-  // }
-
   &__achieved {
     font-size: @font-size--small-2;
     color: #777;
@@ -90,13 +85,20 @@
     .default-box-shadow();
 
     align-items: center;
+
+    @media @mobile {
+      flex-direction: column;
+    }
   }
 
   &__stat {
     display: flex;
     flex-direction: column;
-    // margin: 0 2.5px;
     margin-right: 10px;
+
+    @media @mobile {
+      margin-bottom: 10px;
+    }
   }
 
   &__stat-header {
@@ -114,6 +116,12 @@
       min-width: 80px;
       width: 100%;
     }
+
+    &--mods {
+      // max-width: 45px;
+      width: 100%;
+      min-width: 30px;
+    }
   }
 
   &__stat-value {
@@ -124,10 +132,6 @@
 
     line-height: 0.9;
 
-    &--score {
-      // font-weight: 500;
-    }
-
     &--smaller {
       font-size: 16px;
       font-weight: 500;
@@ -137,6 +141,10 @@
   &__stats {
     flex: 1;
     display: flex;
+
+    @media @mobile {
+      flex-direction: column;
+    }
   }
 
   &__stats-top {
@@ -147,6 +155,11 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+
+    @media @mobile {
+      align-items: center;
+      padding-bottom: 10px;
+    }
   }
 
   &__username {

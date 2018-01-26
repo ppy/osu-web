@@ -1,0 +1,152 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-scoreboard-table {
+  @_top: beatmap-scoreboard-table;
+
+  width: 100%;
+  overflow-x: auto;
+
+  &__table {
+    width: 100%;
+    min-width: 800px;
+  }
+
+  &__header {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+
+    &-rank {
+      width: 40px;
+    }
+
+    &-grade {
+      width: 70px;
+    }
+
+    &-score {
+      width: 70px;
+    }
+
+    &-accuracy {
+      width: 70px;
+    }
+
+    &-flag {
+      width: 25px;
+    }
+
+    &-player {
+      // width: 50px;
+    }
+
+    &-maxcombo {
+      width: 100px;
+    }
+
+    &-hitstat {
+      max-width: 45px;
+      min-width: 30px;
+    }
+
+    &-miss {
+      width: 70px;
+    }
+
+    &-pp {
+      width: 30px;
+    }
+
+    &-mods {
+      min-width: 50px;
+      padding-left: 5px;
+    }
+
+    th {
+      padding-bottom: 5px;
+    }
+
+    th:first-child {
+      text-align: right;
+    }
+  }
+
+  &__body {
+    font-size: 12px;
+    tr {
+      height: 1.8em;
+
+      &:hover {
+        background-color: #ccc;
+      }
+
+      td:first-child {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+      }
+      td:last-child {
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding-left: 5px;
+      }
+    }
+    tr:nth-child(odd) {
+      background-color: #eee;
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+
+    a {
+      color: #555;
+    }
+  }
+
+  &__rank {
+    font-weight: 700;
+    text-align: right;
+  }
+
+  &__score {
+    .@{_top}--first & {
+      font-weight: 700;
+    }
+  }
+
+  &__grade {
+    text-align: center;
+    div {
+      margin: 0 auto;
+    }
+  }
+
+  &__mods {
+    width: 1%;
+    padding-right: 5px;
+  }
+
+
+  &__perfect {
+    color: @green;
+  }
+
+  &__zero {
+    color: #aaa;
+  }
+}

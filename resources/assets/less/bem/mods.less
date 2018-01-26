@@ -26,7 +26,7 @@
   @mod-width-normal: (@mod-height-normal / @mod-height * @mod-width);
 
   flex: none;
-  width: (@mod-width-normal * 2.5);
+  width: (@mod-width-normal * 3);
   height: @mod-height-normal;
   padding: 0 (@mod-width-normal / 2);
 
@@ -34,7 +34,10 @@
   justify-content: space-around;
 
   &--scoreboard {
-    width: 80px;
+    width: auto;
+    height: @mod-height-small;
+    padding: 0px;
+    justify-content: flex-start;
   }
 
   &--small {
@@ -57,10 +60,19 @@
     width: 0;
     display: flex;
     justify-content: center;
+
+    .@{top}--scoreboard & {
+      width: auto;
+      margin-right: 1px;
+    }
   }
 
   &__mod-image {
     min-width: @mod-width-normal;
+
+    .@{top}--scoreboard & {
+      min-width: 25px;
+    }
 
     .@{top}--small & {
       min-width: @mod-width-small;

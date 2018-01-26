@@ -37,13 +37,11 @@ BeatmapsetPage.ScoreTop = (props) ->
     when 'mania'
       [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
 
-  console.log hitHeaders
-
   div className: "#{bn} #{topClasses}",
     div className: "#{bn}__section #{bn}__section--top",
-      div className: "#{bn}__position", "##{props.position}"
-      # div className: "#{bn}__rank",
-      #   div className: "badge-rank badge-rank--medium badge-rank--#{props.score.rank}"
+      div className: "#{bn}__position",
+        "##{props.position}"
+        div className: "badge-rank badge-rank--tiny badge-rank--#{props.score.rank}"
 
       div className: "#{bn}__avatar",
         div
@@ -59,7 +57,7 @@ BeatmapsetPage.ScoreTop = (props) ->
 
         el FlagCountry,
           country: props.countries[props.score.user.country_code]
-          classModifiers: ['scoreboard']
+          classModifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__stats",
         div className: "#{bn}__stat",
@@ -94,7 +92,7 @@ BeatmapsetPage.ScoreTop = (props) ->
             props.score.statistics.count_miss
 
         div className: "#{bn}__stat hidden-xs",
-          div className: "#{bn}__stat-header #{bn}__stat-header--wider",
+          div className: "#{bn}__stat-header #{bn}__stat-header--mods",
             "mods"
           div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
             el Mods, modifiers: ['scoreboard'], mods: props.score.mods
