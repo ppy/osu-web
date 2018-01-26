@@ -130,9 +130,13 @@ class Post extends Model
         // just don't want tags to go into index because they mess up the highlighting.
 
         // doesn't stip the ones with '=' inside tag yet.
-        static $bbcodeExp = '#\[/?(audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(:[a-zA-Z0-9]{1,5})?\]#';
+        static $bbcodeExp = '#\[/?(audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
 
-        return preg_replace($bbcodeExp, '', html_entity_decode($this->post_text));
+        return preg_replace(
+            $bbcodeExp,
+            '',
+            strip_tags(html_entity_decode($this->post_text, ENT_QUOTES | ENT_HTML5))
+        );
     }
 
     public static function lastUnreadByUser($topic, $user)
