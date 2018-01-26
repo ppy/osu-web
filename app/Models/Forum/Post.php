@@ -117,6 +117,23 @@ class Post extends Model
         return get_time_or_null($value);
     }
 
+    /**
+     * Gets a preview of the post_text by stripping anything that
+     * looks like bbcode or html.
+     *
+     * @return string
+     */
+    public function getPostPreview()
+    {
+        // Don't care if too many characters are stripped;
+        // just don't want tags to go into index because they mess up the highlighting.
+
+        // doesn't stip the ones with '=' inside tag yet.
+        static $bbcodeExp = '#\[/?(audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(:[a-zA-Z0-9]{1,5})?\]#';
+
+        return preg_replace($bbcodeExp, '', html_entity_decode($this->post_text));
+    }
+
     public static function lastUnreadByUser($topic, $user)
     {
         if ($user === null) {
