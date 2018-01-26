@@ -372,13 +372,17 @@ class BeatmapDiscussion extends Model
 
     public function title()
     {
-        if ($this->beatmap_id === null) {
-            return $this->beatmapset ? $this->beatmapset->title : '[deleted beatmap]';
-        } elseif ($this->beatmap === null) {
-            return '[deleted beatmap]';
+        if ($this->beatmapset !== null) {
+            if ($this->beatmap_id === null) {
+                return $this->beatmapset->title;
+            }
+
+            if ($this->beatmap !== null) {
+                return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+            }
         }
 
-        return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+        return '[deleted beatmap]';
     }
 
     public function url()
