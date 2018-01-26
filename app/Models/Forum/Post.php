@@ -124,7 +124,7 @@ class Post extends Model
      *
      * @return string
      */
-    public function getPostPreview()
+    public function getPostPreviewAttribute()
     {
         // Don't care if too many characters are stripped;
         // just don't want tags to go into index because they mess up the highlighting.
