@@ -27,13 +27,20 @@ return [
         'home' => [
             '_' => 'início',
             'account-edit' => 'configurações',
-            'getChangelog' => 'registro de alterações',
-            'getDownload' => 'download',
+            'friends' => 'amigos',
+            'friends-index' => 'amigos',
+            'changelog-index' => 'registro de mudanças',
+            'changelog-show' => 'build',
+            'getDownload' => 'baixar',
             'getIcons' => 'ícones',
-            'getNews' => 'notícias',
+            'groups-show' => 'grupos',
             'index' => 'osu!',
-            'supportTheGame' => 'apoie o jogo',
+            'legal-show' => 'informação',
+            'news-index' => 'notícias',
+            'news-show' => 'notícias',
             'password-reset-index' => 'redefinir senha',
+            'search' => 'busca',
+            'supportTheGame' => 'apoie o jogo',
         ],
         'help' => [
             '_' => 'ajuda',
@@ -43,12 +50,16 @@ return [
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'lista',
+            '_' => 'mapas',
             'artists' => 'artistas em destaque',
-            // 'getPacks' => 'pacotes',
-            // 'getCharts' => 'gráficos',
+            'beatmap_discussion_posts-index' => 'postagens de discussão de mapas',
+            'beatmap_discussions-index' => 'discussões de mapas',
+            'beatmapset-watches-index' => 'supervisão de modding',
+            'beatmapset_discussion_votes-index' => 'votos na discussão de mapas',
+            'beatmapset_events-index' => 'eventos do mapa',
+            'index' => 'listagem',
+            'packs' => 'pacotes',
+            'show' => 'informação',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -58,7 +69,8 @@ return [
             '_' => 'colocações',
             'index' => 'desempenho',
             'performance' => 'desempenho',
-            'charts' => 'gráficos',
+            'charts' => 'tabelas',
+            'score' => 'pontuação',
             'country' => 'país',
             'kudosu' => 'kudosu',
         ],
@@ -106,9 +118,11 @@ return [
             'settings' => 'Configurações',
             'logout' => 'Finalizar sessão',
             'help' => 'Ajuda',
+            'beatmapset_activities' => 'atividades de mapa de usuário',
         ],
         'store' => [
             '_' => 'loja',
+            'checkout-show' => 'compra',
             'getListing' => 'catálogo',
             'cart-show' => 'carrinho',
 
@@ -132,11 +146,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'root' => 'índice',
+            'beatmapsets-covers' => 'capas do mapa',
             'logs-index' => 'registro',
+            'root' => 'índice',
+
             'beatmapsets' => [
-                '_' => 'beatmapsets',
-                'covers' => 'capas',
+                '_' => 'mapas',
                 'show' => 'detalhes',
             ],
         ],
@@ -147,7 +162,7 @@ return [
             '_' => 'Geral',
             'home' => 'Início',
             'changelog' => 'Registro de alterações',
-            'beatmaps' => 'Listas de beatmaps',
+            'beatmaps' => 'Lista de mapas',
             'download' => 'Baixar osu!',
             'wiki' => 'Wiki',
         ],
@@ -237,6 +252,7 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configurações',
+            'friends' => 'Amigos',
             'logout' => 'Finalizar sessão',
             'profile' => 'Perfil',
         ],
@@ -244,5 +260,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Digite para buscar!',
+        'retry' => 'Falha na busca. Clique para tentar novamente.',
     ],
 ];

@@ -89,10 +89,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Salvar',
-            'zoom' => [
-                'start' => 'Tela cheia',
-                'end' => 'Sair da tela cheia',
-            ],
         ],
         'post_reply' => 'Publicar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
@@ -127,7 +123,9 @@ return [
         '_' => 'Tópicos',
 
         'actions' => [
-            'reply_with_quote' => 'Citar na resposta',
+            'reply' => 'Responder',
+            'reply_with_quote' => 'Citar postagem na resposta',
+            'search' => 'Procurar',
         ],
 
         'create' => [
@@ -151,6 +149,10 @@ return [
                 'vote_change' => 'Permitir alteração de voto.',
                 'vote_change_info' => 'Caso ativado, usuários poderão alterar o voto.',
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Editar título',
         ],
 
         'index' => [
@@ -215,8 +217,10 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Desafixar tópico',
             'pin-1' => 'Fixar tópico',
+            'pin-2' => 'Fixar tópico e marcar como anúncio',
             'state-0' => 'Tópico desafixado',
             'state-1' => 'Tópico fixado',
+            'state-2' => 'Tópico fixado e marcado como anúncio',
         ],
 
         'show' => [

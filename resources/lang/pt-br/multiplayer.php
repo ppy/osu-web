@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Partidas multijogadores',
+        'header' => 'Partidas multiplayer',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -59,7 +59,7 @@ return [
         'difference' => 'por :difference',
         'loading-events' => 'Carregando eventos...',
         'more-events' => 'ver tudo...',
-        'beatmap-deleted' => 'beatmap excluído',
+        'beatmap-deleted' => 'mapa excluído',
     ],
     'game' => [
         'scoring-type' => [
