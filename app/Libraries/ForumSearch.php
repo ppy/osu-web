@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\SearchResults;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -48,7 +49,7 @@ class ForumSearch
         return $body;
     }
 
-    public static function hasChildQuery($source = 'post_text')
+    public static function hasChildQuery($source = 'post_preview')
     {
         return [
             'type' => 'posts',
@@ -57,7 +58,7 @@ class ForumSearch
                 '_source' => $source,
                 'highlight' => [
                     'fields' => [
-                        'post_text' => new \stdClass(),
+                        'post_preview' => new \stdClass(),
                     ],
                 ],
             ],
@@ -81,9 +82,12 @@ class ForumSearch
             ],
         ];
 
-        return Es::search([
-            'index' => Post::esIndexName(),
-            'body' => $body,
-        ]);
+        return new SearchResults(
+            Es::search([
+                'index' => Post::esIndexName(),
+                'body' => $body,
+            ]),
+            'posts'
+        );
     }
 }
