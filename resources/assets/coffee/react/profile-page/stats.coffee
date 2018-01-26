@@ -39,7 +39,7 @@ ProfilePage.Stats = ({stats}) ->
       div null, rankCount.toLocaleString()
 
   div className: 'profile-stats',
-    div className: 'profile-stats__row profile-stats__row--compact',
+    div className: 'profile-stats__row profile-stats__row--compact profile-stats__row--playcount',
       div className: 'profile-badge profile-badge--level',
         span className: 'profile-badge__number', stats.level.current
 
