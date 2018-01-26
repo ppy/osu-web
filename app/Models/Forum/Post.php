@@ -60,7 +60,8 @@ class Post extends Model
         'poster_id' => ['type' => 'long'],
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'text'],
+        'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
+        'post_preview' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
         'title' => ['type' => 'text'],
         'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']]
     ];

@@ -65,13 +65,13 @@ trait PostTrait
     {
         static $settings = [
             'analyzer' => [
-                'remove_html' => [
+                'post_text_analyzer' => [
                     'tokenizer' => 'standard',
-                    'char_filter' => ['remove_html_filter']
+                    'char_filter' => ['html_filter']
                 ],
             ],
             'char_filter' => [
-                'remove_html_filter' => [
+                'html_filter' => [
                     'type' => 'html_strip',
                 ],
             ],
