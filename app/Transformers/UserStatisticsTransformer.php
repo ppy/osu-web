@@ -105,7 +105,8 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
         return $this->item($stats->user, new UserCompactTransformer);
     }
 
-    public function includePlaytime(UserStatistics\Model $stats = null) {
+    public function includePlaytime(UserStatistics\Model $stats = null)
+    {
         if ($stats === null) {
             $stats = new UserStatistics\Osu();
         }
