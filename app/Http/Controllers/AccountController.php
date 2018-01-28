@@ -52,6 +52,7 @@ class AccountController extends Controller
                 'edit',
                 'reissueCode',
                 'updateEmail',
+                'updatePage',
                 'updatePassword',
                 'verify',
             ],
@@ -149,7 +150,7 @@ class AccountController extends Controller
         if ($ok) {
             return Auth::user()->defaultJson();
         } else {
-            return error_popup(implode("\n", Auth::user()->validationErrors()->allMessages()));
+            return error_popup(Auth::user()->validationErrors()->toSentence());
         }
     }
 
@@ -168,7 +169,7 @@ class AccountController extends Controller
                 Mail::to($address)->send(new UserEmailUpdated($user));
             }
 
-            return ['message' => trans('accounts.update_email.updated')];
+            return response([], 204);
         } else {
             return response(['form_error' => [
                 'user' => $user->validationErrors()->all(),
@@ -197,7 +198,7 @@ class AccountController extends Controller
                 Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
             }
 
-            return ['message' => trans('accounts.update_password.updated')];
+            return response([], 204);
         } else {
             return response(['form_error' => [
                 'user' => $user->validationErrors()->all(),

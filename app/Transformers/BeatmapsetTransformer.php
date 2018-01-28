@@ -22,7 +22,6 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
-use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use Auth;
@@ -73,6 +72,14 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'can_be_hyped' => $beatmapset->canBeHyped(),
+            'hype' => [
+                'current' => $beatmapset->hype,
+                'required' => $beatmapset->requiredHype(),
+            ],
+            'nominations' => [
+                'current' => $beatmapset->nominations,
+                'required' => $beatmapset->requiredNominationCount(),
+            ],
             'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
         ];
     }
@@ -127,29 +134,15 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
-
-            $nominations = $beatmapset->recentEvents()->get();
-
-            foreach ($nominations as $nomination) {
-                if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
-                    $disqualifyEvent = $nomination;
-                }
-
-                if ($currentUser !== null &&
-                    $nomination->user_id === $currentUser->user_id &&
-                    $nomination->type === BeatmapsetEvent::NOMINATE) {
-                    $alreadyNominated = true;
-                }
-            }
-
-            if (isset($disqualifyEvent)) {
+            $disqualifyEvent = $beatmapset->resetEvent();
+            if ($disqualifyEvent) {
                 $result['disqualification'] = [
                     'reason' => $disqualifyEvent->comment,
                     'created_at' => json_time($disqualifyEvent->created_at),
                 ];
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $alreadyNominated ?? false;
+                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
@@ -180,10 +173,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapset)
+    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
+        if ($params->get('with_trashed')) {
+            $rel = 'allBeatmaps';
+        } else {
+            $rel = 'beatmaps';
+        }
+
         return $this->collection(
-            $beatmapset->beatmaps,
+            $beatmapset->$rel()->with('beatmapset')->get(),
             new BeatmapTransformer()
         );
     }

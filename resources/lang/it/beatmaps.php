@@ -82,7 +82,7 @@ return [
     'nominations' => [
         'disqualify' => 'Squalifica',
         'nominate' => 'Nomina',
-        'required-text' => 'Nominazioni: :current/:required',
+        'required_text' => 'Nominazioni: :current/:required',
         'disqualifed-at' => 'squalificata :time_ago',
         'disqualification-prompt' => 'Ragioni della squalifica?',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',

@@ -60,6 +60,23 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
+    public function checkBeatmapShow($user, $beatmap)
+    {
+        if (!$beatmap->trashed()) {
+            return 'ok';
+        }
+
+        if ($user !== null) {
+            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+                return 'ok';
+            }
+
+            if ($user->getKey() === $beatmap->beatmapset->user_id) {
+                return 'ok';
+            }
+        }
+    }
+
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
         if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
@@ -146,7 +163,13 @@ class OsuAuthorize
     public function checkBeatmapDiscussionShow($user, $discussion)
     {
         if ($discussion->deleted_at === null) {
-            return 'ok';
+            if ($discussion->beatmap_id === null) {
+                return 'ok';
+            }
+
+            if ($this->doCheckUser($user, 'BeatmapShow', $discussion->beatmap)->can()) {
+                return 'ok';
+            }
         }
 
         if ($user !== null && ($user->isGMT() || $user->isQAT())) {
@@ -282,8 +305,23 @@ class OsuAuthorize
             return 'beatmap_discussion.nominate.incorrect-state';
         }
 
-        if ($user->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
             return 'beatmap_discussion.nominate.exhausted';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetResetNominations($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isBNG() && !$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
+            return 'beatmap_discussion.nominate.incorrect-state';
         }
 
         return 'ok';

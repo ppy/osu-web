@@ -30,7 +30,6 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
-use Es;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -334,7 +333,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public static function searchUsername(string $username, $from, $size)
     {
-        return Es::search([
+        return es_search([
             'index' => static::esIndexName(),
             'from' => $from,
             'size' => $size,
@@ -1175,7 +1174,13 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
         } else {
-            $this->userPage->edit($text, $this);
+            $this
+                ->userPage
+                ->skipBodyPresenceCheck()
+                ->update([
+                    'post_text' => $text,
+                    'post_edit_user' => $this->getKey(),
+                ]);
         }
 
         return $this->fresh();

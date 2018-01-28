@@ -28,10 +28,27 @@ abstract class Controller extends BaseController
 {
     protected $section = 'store';
 
+    /**
+     * Gets the cart of the currently logged in user.
+     *
+     * TODO: should probably memoize this
+     *
+     * @return Order|null cart of the current user if logged in; null, if not logged in.
+     */
     protected function userCart()
     {
         if (Auth::check()) {
             return Order::cart(Auth::user());
         }
+    }
+
+    /**
+     * @return bool
+     */
+    protected function hasPendingCheckout()
+    {
+        $cart = $this->userCart();
+
+        return $cart === null ? false : $cart->isProcessing();
     }
 }

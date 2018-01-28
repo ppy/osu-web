@@ -112,7 +112,7 @@ class BeatmapDiscussion extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id');
+        return $this->belongsTo(Beatmap::class, 'beatmap_id')->withTrashed();
     }
 
     public function beatmapset()
@@ -281,7 +281,7 @@ class BeatmapDiscussion extends Model
     {
         return
             $this->beatmap_id === null ||
-            ($this->beatmap && $this->beatmap->beatmapset_id === $this->beatmapset_id);
+            ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
     }
 
     public function hasValidMessageType()
@@ -346,6 +346,10 @@ class BeatmapDiscussion extends Model
 
     public function vote($params)
     {
+        if (!$this->hasValidBeatmap()) {
+            return false;
+        }
+
         return DB::transaction(function () use ($params) {
             $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
             $previousScore = $vote->score ?? 0;
@@ -368,13 +372,17 @@ class BeatmapDiscussion extends Model
 
     public function title()
     {
-        if ($this->beatmap_id === null) {
-            return $this->beatmapset ? $this->beatmapset->title : '[deleted beatmap]';
-        } elseif ($this->beatmap === null) {
-            return '[deleted beatmap]';
+        if ($this->beatmapset !== null) {
+            if ($this->beatmap_id === null) {
+                return $this->beatmapset->title;
+            }
+
+            if ($this->beatmap !== null) {
+                return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+            }
         }
 
-        return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+        return '[deleted beatmap]';
     }
 
     public function url()

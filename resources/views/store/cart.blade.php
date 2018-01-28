@@ -77,7 +77,7 @@
 
             <div class="osu-layout__sub-row">
                 <div class="big-button">
-                    <a href="{{ route('store.checkout.index') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
+                    <a href="{{ route('store.checkout.show') }}" class="btn-osu btn-osu-default" name="checkout">Checkout</a>
                 </div>
             </div>
         </div>

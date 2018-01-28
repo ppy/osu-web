@@ -39,19 +39,19 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     hypeMessage = $('.js-hype--explanation')
     flashClass = 'js-flash-border--on'
 
-    @focusPraiseInput ->
+    # switch to generalAll tab, set current filter to praises
+    $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'
+    $.publish 'beatmapDiscussion:filter', filter: 'praises'
+
+    @focusNewDiscussion ->
       # flash border of hype description to emphasize input is required
       $(hypeMessage).addClass(flashClass)
       @hypeFocusTimeout = Timeout.set 1000, ->
         $(hypeMessage).removeClass(flashClass)
 
 
-  focusPraiseInput: (callback) ->
+  focusNewDiscussion: (callback) ->
     inputBox = $('.js-hype--input')
-
-    # switch to generalAll tab, set current filter to praises
-    $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'
-    $.publish 'beatmapDiscussion:filter', filter: 'praises'
 
     osu.focus(inputBox)
 
@@ -59,7 +59,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     $.scrollTo inputBox, 200,
       interrupt: true
       offset: -100
-      onAfter: -> callback() if typeof(callback) == 'function'
+      onAfter: -> callback?()
 
 
   nominationButton: (disabled = false) =>
@@ -125,7 +125,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 text: 'Leave Feedback'
                 icon: 'bullhorn'
                 props:
-                  onClick: @focusPraiseInput
+                  onClick: @focusNewDiscussion
 
       # show hype meter and nominations when beatmapset is: wip, pending or qualified
       else
@@ -211,7 +211,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 else
                   span null, osu.trans 'beatmaps.nominations.qualified-soon'
 
-            if (mapCanBeNominated || mapIsQualified) && nominators.length > 0
+            if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
                 dangerouslySetInnerHTML:

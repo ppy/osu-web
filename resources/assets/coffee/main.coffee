@@ -53,7 +53,6 @@ $(document).on 'turbolinks:load', ->
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
-@landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
 @navSearch ?= new NavSearch

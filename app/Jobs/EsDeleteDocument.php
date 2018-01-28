@@ -18,27 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Console\Commands;
+namespace App\Jobs;
 
-use App\Models\User;
-use Illuminate\Console\Command;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 
-// TODO: combine with EsIndexDocuments and add a type filter options
-class EsIndexUsers extends EsIndexCommand
+class EsDeleteDocument implements ShouldQueue
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'es:index-users {--inplace} {--cleanup} {--yes}';
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    protected $model;
 
     /**
-     * The console command description.
+     * Create a new job instance.
      *
-     * @var string
+     * @return void
      */
-    protected $description = 'Indexes users into Elasticsearch.';
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
 
-    protected $types = [User::class];
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        $this->model->esDeleteDocument();
+    }
 }

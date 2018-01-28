@@ -45,5 +45,20 @@
         color: #666;
       });
     }
+
+    .beatmap-packs__pager & {
+      color: @gray-dark;
+
+      &--current {
+        color: @gray-darker;
+      }
+
+      &--disabled {
+        color: darken(@gray-lighter, 10%);
+        .link-hover({
+          color: darkern(@gray-lighter, 10%);
+        });
+      }
+    }
   }
 }

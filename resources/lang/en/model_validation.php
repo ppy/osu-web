@@ -21,6 +21,7 @@
 return [
     'not_negative' => ':attribute cannot be negative.',
     'required' => ':attribute is required.',
+    'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmap_discussion' => [
@@ -45,6 +46,11 @@ return [
 
         'poll_vote' => [
             'invalid' => 'Invalid option specified.',
+        ],
+
+        'post' => [
+            'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
+            'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
         ],
 
         'topic_poll' => [

@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
@@ -29,8 +30,6 @@ use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
-use Elasticsearch\Common\Exceptions\BadRequest400Exception as ElasticsearchBadRequest;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
@@ -84,7 +83,6 @@ class Beatmapset extends Model
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
 
-    const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
@@ -137,6 +135,7 @@ class Beatmapset extends Model
         'hype' => ['type' => 'long'],
         'language_id' => ['type' => 'long'],
         'last_update' => ['type' => 'date'],
+        'nominations' => ['type' => 'long'],
         'offset' => ['type' => 'long'],
         'play_count' => ['type' => 'long'],
         'rating' => ['type' => 'double'],
@@ -379,7 +378,7 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'hype' => 'hype',
+            'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
@@ -399,7 +398,7 @@ class Beatmapset extends Model
                 $params['sort_field'] = '_score';
                 $params['sort_order'] = 'desc';
             } else {
-                if ($params['status'] === 4 || $params['status'] === 5) {
+                if (in_array($params['status'], [4, 5, 6], true)) {
                     $params['sort_field'] = 'last_update';
                     $params['sort_order'] = 'desc';
                 } else {
@@ -533,14 +532,7 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        try {
-            $results = Es::search($searchParams);
-        } catch (ElasticsearchBadRequest $e) {
-            $results = ['hits' => [
-                'hits' => [],
-                'total' => 0,
-            ]];
-        }
+        $results = es_search($searchParams);
 
         $beatmapsetIds = array_map(
             function ($e) {
@@ -571,7 +563,7 @@ class Beatmapset extends Model
 
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
-            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
+            Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
         }
 
         return [
@@ -604,12 +596,19 @@ class Beatmapset extends Model
         $field = $fields[$sortField] ?? $sortField;
         $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
 
-        return [
+        $sortFields = [
             $field => array_merge(
                 ['order' => $sortOrder],
                 $options
             ),
         ];
+
+        // sub-sorting
+        if ($params['sort_field'] === 'nominations') {
+            $sortFields['hype'] = ['order' => $params['sort_order']];
+        }
+
+        return $sortFields;
     }
 
     public static function latestRankedOrApproved($count = 5)
@@ -683,14 +682,16 @@ class Beatmapset extends Model
         return in_array($coverSize, $validSizes, true);
     }
 
-    public function coverURL($coverSize = 'cover')
+    public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         if (!self::isValidCoverSize($coverSize)) {
             return false;
         }
 
         $timestamp = 0;
-        if ($this->cover_updated_at) {
+        if ($customTimestamp) {
+            $timestamp = $customTimestamp;
+        } elseif ($this->cover_updated_at) {
             $timestamp = $this->cover_updated_at->format('U');
         }
 
@@ -785,14 +786,15 @@ class Beatmapset extends Model
 
                 // upload original image
                 $this->storeCover('raw.jpg', $bgFile);
+                $timestamp = time();
 
                 // upload optimized version
-                $optimized = $processor->optimize($this->coverURL('raw'));
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
                 $this->storeCover('fullsize.jpg', $optimized);
 
                 // use thumbnailer to generate and upload all our variants
                 foreach (self::coverSizes() as $size) {
-                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
 
@@ -878,6 +880,7 @@ class Beatmapset extends Model
             ]);
 
             $this->setApproved('pending', $user);
+            $this->refreshCache();
         });
 
         return true;
@@ -920,13 +923,14 @@ class Beatmapset extends Model
         }
 
         DB::transaction(function () use ($user) {
-            $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id);
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
                 }
             }
+            $this->refreshCache();
         });
 
         return [
@@ -985,6 +989,11 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
+    public function allBeatmaps()
+    {
+        return $this->hasMany(Beatmap::class, 'beatmapset_id')->withTrashed();
+    }
+
     public function events()
     {
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
@@ -1040,7 +1049,7 @@ class Beatmapset extends Model
 
     public function currentNominationCount()
     {
-        return count($this->recentEvents()->nominations()->get());
+        return $this->nominationsSinceReset()->count();
     }
 
     public function hasNominations()
@@ -1063,22 +1072,26 @@ class Beatmapset extends Model
         return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
-    public function recentEvents()
+    public function resetEvent()
     {
-        // relevant events differ depending on state of beatmapset
-        $events = $this->events();
-        switch ($this->approved) {
-            case self::STATES['pending']:
-            case self::STATES['qualified']:
-                // last 'disqualify' or 'nomination reset' event (if any) and all events since
-                $resetEvent = $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+    }
 
-                if ($resetEvent) {
-                    $events->where('id', '>=', $resetEvent->id);
-                }
+    public function eventsSinceReset()
+    {
+        $events = $this->events();
+
+        $resetEvent = $this->resetEvent();
+        if ($resetEvent) {
+            $events->where('id', '>=', $resetEvent->id);
         }
 
         return $events;
+    }
+
+    public function nominationsSinceReset()
+    {
+        return $this->eventsSinceReset()->nominations();
     }
 
     public function status()
@@ -1086,9 +1099,15 @@ class Beatmapset extends Model
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson($currentUser = null)
+    public function defaultJson($options = [])
     {
-        $includes = ['beatmaps', 'current_user_attributes', 'nominations'];
+        $includes = ['current_user_attributes', 'nominations'];
+
+        if ($options['withTrashedBeatmaps'] ?? false) {
+            $includes[] = 'beatmaps:with_trashed';
+        } else {
+            $includes[] = 'beatmaps';
+        }
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }
@@ -1190,7 +1209,12 @@ class Beatmapset extends Model
         $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
         $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
 
-        return $post->edit($newBody, $user);
+        return $post
+            ->skipBeatmapPostRestrictions()
+            ->update([
+                'post_text' => $newBody,
+                'post_edit_user' => $user === null ? null : $user->getKey(),
+            ]);
     }
 
     public function toMetaDescription()
@@ -1252,7 +1276,16 @@ class Beatmapset extends Model
 
     public function refreshCache()
     {
-        $this->update(['hype' => $this->freshHype()]);
-        $this->esIndexDocument();
+        $this->fill([
+            'hype' => $this->freshHype(),
+            'nominations' => $this->currentNominationCount(),
+        ]);
+
+        if ($this->isDirty()) {
+            $this->save();
+            // calling EsIndexDocument::dispatch queues and
+            // runs the previously dispatched job... ಠ_ಠ
+            dispatch(new EsIndexDocument($this));
+        }
     }
 }

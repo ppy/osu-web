@@ -101,7 +101,7 @@ return [
         'store' => [
             '_' => 'negozio',
             'getListing' => 'lista',
-            'getCart' => 'carrello',
+            'cart-show' => 'carrello',
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',

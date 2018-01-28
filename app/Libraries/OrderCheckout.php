@@ -28,18 +28,41 @@ use Request;
 
 class OrderCheckout
 {
+    /**
+     * @var Order
+     */
     private $order;
 
-    public function __construct(Order $order)
+    /**
+     * @var string|null
+     */
+    private $provider;
+
+    public function __construct(Order $order, string $provider = null)
     {
         $this->order = $order;
+        $this->provider = $provider;
     }
 
+    /**
+     * @return Order
+     */
     public function getOrder()
     {
         return $this->order;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getProvider()
+    {
+        return $this->provider;
+    }
+
+    /**
+     * @return string[]
+     */
     public function allowedCheckoutTypes()
     {
         $allowed = ['paypal'];
@@ -54,6 +77,9 @@ class OrderCheckout
         return $allowed;
     }
 
+    /**
+     * @return string
+     */
     public function getCentiliPaymentLink()
     {
         $params = [
@@ -67,21 +93,44 @@ class OrderCheckout
         return config('payments.centili.widget_url').'?'.http_build_query($params);
     }
 
+    /**
+     * @return bool
+     */
     public function isShippingDelayed()
     {
         return Order::where('orders.status', 'paid')->count() > config('osu.store.delayed_shipping_order_threshold');
     }
 
-    public function completeCheckout()
+    public function beginCheckout()
     {
         DB::connection('mysql-store')->transaction(function () {
             $order = $this->order->lockSelf();
+            if (!$order->canCheckout()) {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` cannot be checked out: `{$order->status}`"
+                );
+            }
+
+            $order->status = 'processing';
+            $order->transaction_id = $this->provider;
+            if ($order->isDirty('status')) {
+                $order->reserveItems();
+            }
+
+            $order->saveorExplode();
+        });
+    }
+
+    public function completeCheckout()
+    {
+        return DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
 
             // cart should only be in:
-            // incart -> if user hits the callback first.
+            // processing -> if user hits the callback first.
             // paid -> if payment provider hits the callback first.
             // any other state should be considered invalid.
-            if ($order->status === 'incart') {
+            if ($order->isProcessing()) {
                 $order->status = 'checkout';
                 $order->saveorExplode();
             } elseif (!$order->isPaidOrDelivered()) {
@@ -90,9 +139,34 @@ class OrderCheckout
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
                 );
             }
+
+            return $order;
         });
     }
 
+    public function failCheckout()
+    {
+        return DB::connection('mysql-store')->transaction(function () {
+            $order = $this->order->lockSelf();
+            if ($order->isProcessing() === false) {
+                throw new InvalidOrderStateException(
+                    "`Order {$order->order_id}` failed checkout but is not processing"
+                );
+            }
+
+            $order->status = 'incart';
+            $order->transaction_id = "{$this->provider}-failed";
+            $order->releaseItems();
+
+            $order->saveorExplode();
+
+            return $order;
+        });
+    }
+
+    /**
+     * @return array
+     */
     public function validate()
     {
         $itemErrors = [];
@@ -124,22 +198,16 @@ class OrderCheckout
     }
 
     /**
-     * Helper method for completing checkout with just the order number.
-     *
-     * @param string $orderNumber
-     * @return Order
+     * Helper method for creating an OrderCheckout with just the order number.
      */
-    public static function complete($orderNumber)
+    public static function for(?string $orderNumber) : self
     {
-        // select for update will lock the table if the row doesn't exist,
-        // so do a double select.
-        $order = Order::whereOrderNumber($orderNumber)->firstOrFail();
-        $checkout = new static($order);
-        $checkout->completeCheckout();
-
-        return $order;
+        return new static(Order::whereOrderNumber($orderNumber)->firstOrFail());
     }
 
+    /**
+     * @return bool
+     */
     private function allowCentiliPayment()
     {
         // Geolocation header from Cloudflare
@@ -150,6 +218,9 @@ class OrderCheckout
             && Request::input('intl') !== '1';
     }
 
+    /**
+     * @return bool
+     */
     private function allowXsollaPayment()
     {
         return !$this->order->requiresShipping();
