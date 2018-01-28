@@ -25,6 +25,7 @@ if (!function_exists('generateStats')) {
           'exit_count' => rand($playcount * 0.2, $playcount * 0.3),
           'ranked_score' => $score,
           'total_score' => $score * 1.4,
+          'total_seconds_played' => rand($playcount * 120 * 0.3, $playcount * 120 * 0.7),
           'x_rank_count' => round($playcount * 0.001),
           'xh_rank_count' => round($playcount * 0.0003),
           's_rank_count' => round($playcount * 0.05),
