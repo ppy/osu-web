@@ -18,37 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Jobs;
+namespace App\Libraries\Transactions;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
-
-class EsDeleteDocument implements ShouldQueue
+interface AfterRollback
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    protected $model;
-
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct($model)
-    {
-        $this->model = $model;
-    }
-
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        $this->model->esDeleteDocument();
-    }
+    public function afterRollback();
 }

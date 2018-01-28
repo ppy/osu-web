@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Nålade Ämnen',
+    'slogan' => 'det är farligt att spela ensam.',
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,47 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Nålade Ämnen',
     'post' => [
         'confirm_destroy' => 'Verkligen radera inlägg?',
         'confirm_restore' => 'Verkligen återställa inlägg?',
         'edited' => 'Senast redigerad av :user den :when, redigerad :count gånger totalt.',
         'posted_at' => 'upplagd :when',
+
         'actions' => [
             'destroy' => 'Radera inlägg',
             'restore' => 'Återställ inlägg',
             'edit' => 'Redigera inlägg',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Gå till inlägg',
         'post_number_input' => 'skriv inläggs nummer',
         'total_posts' => ':posts_count inlägg totalt',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
-    'slogan' => 'det är farligt att spela ensam.',
+
     'topic' => [
+        'go_to_latest' => 'visa senaste inlägg',
+        'latest_post' => ':when av :user',
+        'latest_reply_by' => 'senaste svar av :user',
+        'new_topic' => 'Lägg upp nytt ämne',
+        'post_reply' => 'Lägg upp',
+        'reply_box_placeholder' => 'Tryck här för att svara',
+        'started_by' => 'av :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Skriv ditt inläggs innehåll här',
-                'title' => 'Klicka här för att sätta titel',
-            ],
             'preview' => 'Förhandsvisning',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Skriv',
             'submit' => 'Lägg upp',
+
+            'placeholder' => [
+                'body' => 'Skriv ditt inläggs innehåll här',
+                'title' => 'Klicka här för att sätta titel',
+            ],
         ],
-        'go_to_latest' => 'visa senaste inlägg',
+
         'jump' => [
             'enter' => 'klicka för att skriva ett specifik inläggs nummer',
             'first' => 'gå till första inlägget',
@@ -83,16 +95,11 @@ return [
             'next' => 'hoppa över nästa 10 inlägg',
             'previous' => 'gå bakåt 10 inlägg',
         ],
-        'latest_post' => ':when av :user',
-        'latest_reply_by' => 'senaste svar av :user',
-        'new_topic' => 'Lägg upp nytt ämne',
+
         'post_edit' => [
             'cancel' => 'Avbryt',
             'post' => 'Spara',
         ],
-        'post_reply' => 'Lägg upp',
-        'reply_box_placeholder' => 'Tryck här för att svara',
-        'started_by' => 'av :user',
     ],
 
     'topic_watches' => [
@@ -105,6 +112,7 @@ return [
                 'total' => 'Ämne prenumererade',
                 'unread' => 'Ämnen med nya svar',
             ],
+
             'info' => [
                 'total' => 'Du prenumererade till :total ämnen.',
                 'unread' => 'Du har :unread olästa svar till prenumererade ämnen.',
@@ -156,8 +164,8 @@ return [
         ],
 
         'index' => [
-            'views' => 'visningar',
             'replies' => 'svar',
+            'views' => 'visningar',
         ],
 
         'issue_tag_added' => [
@@ -224,16 +232,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Totala Inlägg',
             'deleted-posts' => 'Raderade Inlägg',
+            'total_posts' => 'Totala Inlägg',
 
             'feature_vote' => [
                 'current' => 'Nuvarande Prioritet: +:count',
                 'do' => 'Uppmuntra denna begäran',
 
                 'user' => [
-                    'current' => 'Du har :votes kvar.',
                     'count' => '{0} ingen röst|{1} :count röst|[2,*] :count röster',
+                    'current' => 'Du har :votes kvar.',
                     'not_enough' => 'Du har inga röster kvar',
                 ],
             ],
@@ -242,9 +250,9 @@ return [
                 'vote' => 'Rösta',
 
                 'detail' => [
-                    'total' => 'Totala röster: :count',
-                    'ended' => 'Enkät avslutades :time',
                     'end_time' => 'Enkät kommer avslutas :time',
+                    'ended' => 'Enkät avslutades :time',
+                    'total' => 'Totala röster: :count',
                 ],
             ],
         ],
@@ -256,5 +264,4 @@ return [
             'watch-1' => 'Prenumerera på ämne',
         ],
     ],
-
 ];
