@@ -29,6 +29,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
         'rank',
         'scoreRanks',
         'user',
+        'playtime',
     ];
 
     public function transform(UserStatistics\Model $stats = null)
@@ -48,6 +49,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->accuracy_new,
             'play_count' => $stats->playcount,
+            'play_time_seconds' => $stats->total_seconds_played,
             'total_score' => $stats->total_score,
             'total_hits' => $stats->totalHits(),
             'maximum_combo' => $stats->max_combo,
@@ -101,5 +103,27 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
         }
 
         return $this->item($stats->user, new UserCompactTransformer);
+    }
+
+    public function includePlaytime(UserStatistics\Model $stats = null) {
+        if ($stats === null) {
+            $stats = new UserStatistics\Osu();
+        }
+
+        return $this->item($stats, function ($stats) {
+            $s = $stats->total_seconds_played;
+
+            $minutes = floor($s / 60);
+            $seconds = $s % 60;
+
+            $hours = floor($minutes / 60);
+            $minutes = $minutes % 60;
+
+            return [
+                'hours' => $hours,
+                'minutes' => $minutes,
+                'seconds' => $seconds,
+            ];
+        });
     }
 }
