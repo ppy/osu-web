@@ -68,7 +68,7 @@ class Post extends Model
 
     public function forum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+        return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
     }
 
     public function topic()
@@ -78,12 +78,12 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'poster_id', 'user_id');
+        return $this->belongsTo(User::class, 'poster_id', 'user_id');
     }
 
     public function lastEditor()
     {
-        return $this->belongsTo("App\Models\User", 'post_edit_user', 'user_id');
+        return $this->belongsTo(User::class, 'post_edit_user', 'user_id');
     }
 
     public function setPostTextAttribute($value)
