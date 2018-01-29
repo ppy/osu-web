@@ -40,7 +40,7 @@
                     <a class="search-entry" href="{{ $post_url }}">
                         <div class="search-entry__row search-entry__row--excerpt">
                             @foreach ($highlights as $highlight)
-                                <span>{!! $highlight !!}</span>
+                                <span class="search-entry__highlight">{!! $highlight !!}</span>
                             @endforeach
                         </div>
                     </a>
