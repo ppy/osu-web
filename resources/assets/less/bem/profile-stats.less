@@ -41,28 +41,28 @@
 
   &__playtime-box {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: column;
-
-    margin-bottom: 10px;
   }
 
   &__playtime {
     color: @yellow;
-    font-size: 15px;
-    letter-spacing: 2px;
-    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
 
-    &--number {
-      font-weight: 600;
+    &--unit {
+      font-weight: 200;
+
+      &:nth-child(even) {
+        &::after {
+          content: ' ';
+        }
+      }
     }
 
-    &--small {
-      font-size: 12px;
-    }
-
-    &:nth-child(even) {
-      padding-right: 4px;
+    &--large {
+      font-size: 18px;
     }
   }
 
@@ -87,9 +87,6 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-
-      // to account for the level badge having padding embedded in the image
-      padding-right: 17px;
     }
   }
 
