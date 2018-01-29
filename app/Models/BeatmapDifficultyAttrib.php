@@ -34,6 +34,6 @@ class BeatmapDifficultyAttrib extends Model
 
     public function scopeMaxCombo($query)
     {
-        return $query->where('attrib_id', 9)->first();
+        return $query->where('attrib_id', 9);
     }
 }
