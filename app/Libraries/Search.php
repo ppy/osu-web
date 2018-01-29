@@ -98,16 +98,6 @@ class Search
             return;
         }
 
-        if ($class === ForumSearch::class) {
-            $result = ForumSearch::search($this->params['query']);
-
-            return [
-                'data' => $result,
-                'total' => $result->total(),
-                'params' => array_merge($this->params, ['limit' => 10, 'page' => 1]),
-            ];
-        }
-
         if ($this->mode !== static::DEFAULT_MODE && $this->mode !== $mode) {
             return;
         }
@@ -117,7 +107,21 @@ class Search
         if (!array_key_exists($key, $this->cache)) {
             $startTime = microtime(true);
 
-            $this->cache[$key] = $class::search($this->params);
+            $params = array_merge(['limit' => 50, 'page' => 1], $this->params);
+            if ($class === ForumSearch::class) {
+                $result = ForumSearch::search(
+                    $this->params['query'],
+                    $params
+                );
+
+                $this->cache[$key] = [
+                    'data' => $result,
+                    'total' => $result->total(),
+                    'params' => $params,
+                ];
+            } else {
+                $this->cache[$key] = $class::search($this->params);
+            }
 
             if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;

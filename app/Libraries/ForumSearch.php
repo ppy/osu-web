@@ -67,6 +67,10 @@ class ForumSearch
 
     public static function search($query, array $options = [])
     {
+        $page = max(1, $options['page'] ?? 1);
+        $size = clamp($options['size'] ?? $options['limit'] ?? 50, 1, 50);
+        $from = ($page - 1) * $size;
+
         if (is_string($query)) {
             $body = static::buildQuery($query, 'should', 'topics');
         }
@@ -81,6 +85,9 @@ class ForumSearch
                 'title' => new \stdClass(),
             ],
         ];
+
+        $body['size'] = $size;
+        $body['from'] = $from;
 
         return new SearchResults(
             Es::search([
