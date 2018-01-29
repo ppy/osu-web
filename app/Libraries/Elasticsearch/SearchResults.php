@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class SearchResults implements \ArrayAccess, \Countable
+class SearchResults implements \ArrayAccess, \Countable, \Iterator
 {
     /**
      * @var string
@@ -37,10 +37,14 @@ class SearchResults implements \ArrayAccess, \Countable
      */
     private $results;
 
+    private $index;
+
     public function __construct(array $results, ?string $innerHitsName = null)
     {
         $this->innerHitsName = $innerHitsName;
         $this->results = $results;
+
+        $this->index = 0;
     }
 
     public function hits()
@@ -86,5 +90,30 @@ class SearchResults implements \ArrayAccess, \Countable
     public function offsetUnset($key)
     {
         throw new \BadMethodCallException('not supported');
+    }
+
+    public function current()
+    {
+        return $this[$this->index];
+    }
+
+    public function key()
+    {
+        return $this->index;
+    }
+
+    public function next()
+    {
+        ++$this->index;
+    }
+
+    public function rewind()
+    {
+        $this->index = 0;
+    }
+
+    public function valid()
+    {
+        return $this->offsetExists($this->index);
     }
 }
