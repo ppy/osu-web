@@ -18,100 +18,115 @@
 
 .beatmap-scoreboard-table {
   @_top: beatmap-scoreboard-table;
+  @row-height: 1.8em;
+
 
   width: 100%;
   overflow-x: auto;
 
   &__table {
     width: 100%;
-    min-width: 685px;
+    min-width: 800px;
+    font-size: 12px;
+  }
+
+  &__grade {
+    width: 100%;
+    height: @row-height;
+    .center-content();
   }
 
   &__header {
     font-size: 10px;
-    text-transform: uppercase;
     font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 5px;
 
-    &-rank {
+    // in order of columns
+    &--rank {
       width: 40px;
+      text-align: right;
     }
 
-    &-grade {
+    &--grade {
       width: 70px;
     }
 
-    &-score {
+    &--score {
       width: 70px;
     }
 
-    &-accuracy {
+    &--accuracy {
       width: 70px;
     }
 
-    &-flag {
+    &--flag {
       width: 25px;
     }
 
-    &-maxcombo {
+    &--maxcombo {
       width: 100px;
     }
 
-    &-hitstat {
+    &--hitstat {
       max-width: 45px;
       min-width: 30px;
     }
 
-    &-miss {
+    &--miss {
       width: 70px;
     }
 
-    &-pp {
+    &--pp {
       width: 30px;
     }
 
-    &-mods {
+    &--mods {
       min-width: 50px;
       padding-left: 5px;
     }
+  }
 
-    th {
-      padding-bottom: 5px;
+  &__body-row {
+    height: @row-height;
+
+    // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
+    &:nth-child(odd) {
+      td {
+        background-color: #eee;
+      }
+      &:hover {
+        td {
+          background-color: #ccc;
+        }
+      }
     }
 
-    th:first-child {
-      text-align: right;
+    td:first-child {
+      // rounded corners for left side
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    td:last-child {
+      // ...and right side
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding-right: 10px;
+    }
+
+    &:hover {
+      td {
+        background-color: #ccc;
+      }
     }
   }
 
-  &__body {
-    font-size: 12px;
-    tr {
-      height: 1.8em;
+  &__mods {
+    width: 1%; // don't let the column expand unless required
+  }
 
-      &:hover {
-        background-color: #ccc;
-      }
-
-      td:first-child {
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-      }
-      td:last-child {
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        padding-left: 5px;
-      }
-    }
-    tr:nth-child(odd) {
-      background-color: #eee;
-      &:hover {
-        background-color: #ccc;
-      }
-    }
-
-    a {
-      color: #555;
-    }
+  &__perfect {
+    color: @green;
   }
 
   &__rank {
@@ -120,26 +135,13 @@
   }
 
   &__score {
-    .@{_top}--first & {
+    .@{_top}__row--first & {
       font-weight: 700;
     }
   }
 
-  &__grade {
-    text-align: center;
-    div {
-      margin: 0 auto;
-    }
-  }
-
-  &__mods {
-    width: 1%;
-    padding-right: 5px;
-  }
-
-
-  &__perfect {
-    color: @green;
+  &__user-link {
+    color: #555;
   }
 
   &__zero {

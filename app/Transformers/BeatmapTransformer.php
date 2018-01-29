@@ -118,6 +118,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             if ($maxCombo === null) {
                 return [];
             }
+
             return [$maxCombo->getAttribute('value')];
         });
     }

@@ -25,23 +25,11 @@ BeatmapsetPage.ScoreTop = (props) ->
     .map (m) -> "#{bn}--#{m}"
     .join ' '
 
-  hits = Hits.generate score: props.score, playmode: props.playmode
-
-  hitHeaders = switch props.playmode
-    when 'osu'
-      [['300', '300'], ['100', '100'], ['50', '50']]
-    when 'taiko'
-      [['great', '300'], ['good', '100']]
-    when 'fruits'
-      [['fruits', '300'], ['ticks', '100'], ['droplets', '50']]
-    when 'mania'
-      [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
-
   div className: "#{bn} #{topClasses}",
     div className: "#{bn}__section",
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
-          "##{props.position}"
+          div className: "#{bn}__position-number", "##{props.position}"
           div className: "badge-rank badge-rank--tiny badge-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
@@ -82,8 +70,10 @@ BeatmapsetPage.ScoreTop = (props) ->
               "#{props.score.max_combo.toLocaleString()}x"
 
         div className: "#{bn}__stats",
-          for stat in hitHeaders
-            div className: "#{bn}__stat",
+          for stat in props.hitTypeMapping
+            div
+              key: stat[0]
+              className: "#{bn}__stat"
               div className: "#{bn}__stat-header",
                 stat[0]
               div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",

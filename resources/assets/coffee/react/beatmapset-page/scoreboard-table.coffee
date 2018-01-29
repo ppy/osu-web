@@ -21,48 +21,41 @@ el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
 BeatmapsetPage.ScoreboardTable = (props) ->
-  # mapping of [displayed text, internal stat name] for each mode
-  hitHeaders = switch props.beatmap.mode
-    when 'osu'
-      [['300', '300'], ['100', '100'], ['50', '50']]
-    when 'taiko'
-      [['great', '300'], ['good', '100']]
-    when 'fruits'
-      [['fruits', '300'], ['ticks', '100'], ['droplets', '50']]
-    when 'mania'
-      [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
-
   div className: "#{bn}",
     table
       className: "#{bn}__table"
-      thead className: "#{bn}__header",
+      thead {},
         tr {},
-          th className: "#{bn}__header-rank", 'rank'
-          th className: "#{bn}__header-grade", ''
-          th className: "#{bn}__header-score", 'score'
-          th className: "#{bn}__header-accuracy", 'accuracy'
-          th className: "#{bn}__header-flag", ''
-          th className: "#{bn}__header-player", 'player'
-          th className: "#{bn}__header-maxcombo", 'max combo'
-          for stat in hitHeaders
-            th key: stat[0], className: "#{bn}__header-hitstat", stat[0]
-          th className: "#{bn}__header-miss", 'miss'
-          th className: "#{bn}__header-pp", 'pp'
-          th className: "#{bn}__header-mods", 'mods'
+          th className: "#{bn}__header #{bn}__header--rank", 'rank'
+          th className: "#{bn}__header #{bn}__header--grade", ''
+          th className: "#{bn}__header #{bn}__header--score", 'score'
+          th className: "#{bn}__header #{bn}__header--accuracy", 'accuracy'
+          th className: "#{bn}__header #{bn}__header--flag", ''
+          th className: "#{bn}__header #{bn}__header--player", 'player'
+          th className: "#{bn}__header #{bn}__header--maxcombo", 'max combo'
+          for stat in props.hitTypeMapping
+            th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
+          th className: "#{bn}__header #{bn}__header--miss", 'miss'
+          th className: "#{bn}__header #{bn}__header--pp", 'pp'
+          th className: "#{bn}__header #{bn}__header--mods", 'mods'
 
       tbody className: "#{bn}__body",
         for score, i in props.scores
           tr
-            className: (if i == 0 then "#{bn}--first" else '')
+            className: "#{bn}__body-row#{(if i == 0 then " #{bn}__row--first" else '')}"
             key: i,
 
             td className: "#{bn}__rank", "##{i+1}"
+
             td className: "#{bn}__grade",
               div className: "badge-rank badge-rank--tiny badge-rank--#{score.rank}"
+
             td className: "#{bn}__score",
               score.score.toLocaleString()
+
             td className: (if score.accuracy == 1 then "#{bn}__perfect" else ''),
               "#{_.round(score.accuracy * 100, 2).toFixed(2)}%"
+
             td {},
               if score.user.country_code
                 el FlagCountry,
@@ -70,11 +63,14 @@ BeatmapsetPage.ScoreboardTable = (props) ->
                   classModifiers: ['scoreboard', 'small-box']
             td {},
               a
+                className: "#{bn}__user-link"
                 href: laroute.route 'users.show', user: score.user.id
                 score.user.username
+
             td className: (if score.max_combo == props.beatmap.maxCombo?[0] then "#{bn}__perfect" else ''),
               "#{score.max_combo.toLocaleString()}x"
-            for stat in hitHeaders
+
+            for stat in props.hitTypeMapping
               td
                 key: stat[0]
                 className: (if score.statistics["count_#{stat[1]}"] == 0 then "#{bn}__zero" else ''),
@@ -82,6 +78,8 @@ BeatmapsetPage.ScoreboardTable = (props) ->
 
             td className: (if score.statistics.count_miss == 0 then "#{bn}__zero" else ''),
               score.statistics.count_miss
+
             td {}, _.round score.pp
+
             td className: "#{bn}__mods",
               el Mods, modifiers: ['scoreboard'], mods: score.mods

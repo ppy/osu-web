@@ -24,6 +24,18 @@ class BeatmapsetPage.Scoreboard extends React.Component
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
   MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
 
+  hitTypeMapping: =>
+    # mapping of [displayed text, internal name] for each mode
+    switch @props.beatmap.mode
+      when 'osu'
+        [['300', '300'], ['100', '100'], ['50', '50']]
+      when 'taiko'
+        [['great', '300'], ['good', '100']]
+      when 'fruits'
+        [['fruits', '300'], ['ticks', '100'], ['droplets', '50']]
+      when 'mania'
+        [['max', 'geki'], ['300', '300'], ['200', 'katu'], ['100', '100'], ['50', '50']]
+
   constructor: (props) ->
     super props
 
@@ -89,6 +101,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
               beatmap: @props.beatmap
               scores: @props.scores
               countries: @props.countries
+              hitTypeMapping: @hitTypeMapping()
 
         else if !@props.hasScores
           p
@@ -119,3 +132,4 @@ class BeatmapsetPage.Scoreboard extends React.Component
       playmode: @props.beatmap.mode
       countries: @props.countries
       modifiers: modifiers
+      hitTypeMapping: @hitTypeMapping()
