@@ -34,7 +34,10 @@ class ForumSearch
             'query' => [
                 'bool' => [
                     $bool => [
-                        ['query_string' => ['query' => es_query_and_words($queryString)]],
+                        ['query_string' => [
+                            'fields' => ['post_preview', 'title'],
+                            'query' => $queryString,
+                        ]],
                     ],
                 ]
             ],
