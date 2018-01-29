@@ -67,6 +67,7 @@ class ForumSearch
 
     public static function search($query, array $options = [])
     {
+        // FIXME: extract all the page-limit mapping junk away
         $page = max(1, $options['page'] ?? 1);
         $size = clamp($options['size'] ?? $options['limit'] ?? 50, 1, 50);
         $from = ($page - 1) * $size;
@@ -90,12 +91,15 @@ class ForumSearch
         $body['size'] = $size;
         $body['from'] = $from;
 
-        return new SearchResults(
-            Es::search([
-                'index' => Post::esIndexName(),
-                'body' => $body,
-            ]),
-            'posts'
-        );
+        return [
+            new SearchResults(
+                Es::search([
+                    'index' => Post::esIndexName(),
+                    'body' => $body,
+                ]),
+                'posts'
+            ),
+            ['limit' => $size, 'page' => $page],
+        ];
     }
 }

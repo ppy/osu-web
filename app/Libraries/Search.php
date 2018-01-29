@@ -107,17 +107,16 @@ class Search
         if (!array_key_exists($key, $this->cache)) {
             $startTime = microtime(true);
 
-            $params = array_merge(['limit' => 50, 'page' => 1], $this->params);
             if ($class === ForumSearch::class) {
-                $result = ForumSearch::search(
+                list($result, $pagination) = ForumSearch::search(
                     $this->params['query'],
-                    $params
+                    $this->params
                 );
 
                 $this->cache[$key] = [
                     'data' => $result,
                     'total' => $result->total(),
-                    'params' => $params,
+                    'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
                 ];
             } else {
                 $this->cache[$key] = $class::search($this->params);
