@@ -279,7 +279,7 @@ class UsersController extends Controller
         $statistics = json_item(
             $user->statistics($currentMode),
             'UserStatistics',
-            ['rank', 'scoreRanks', 'playtime']
+            ['rank', 'scoreRanks']
         );
 
         $rankHistoryData = $user->rankHistories()

@@ -38,16 +38,18 @@ ProfilePage.Stats = ({stats}) ->
         className: "badge-rank badge-rank--small badge-rank--#{name}"
       div null, rankCount.toLocaleString()
 
+  playtime = moment.duration stats.play_time, 'seconds'
+
   div className: 'profile-stats',
     div className: 'profile-stats__row profile-stats__row--compact profile-stats__row--playtime',
       div className: 'profile-stats__playtime-box',
         div className: 'profile-stats__key', osu.trans 'users.show.stats.play_time.label'
         div {},
-          span className: 'profile-stats__playtime profile-stats__playtime--number', stats.playtime.hours
+          span className: 'profile-stats__playtime profile-stats__playtime--number', Math.floor playtime.asHours()
           span className: 'profile-stats__playtime', osu.trans 'users.show.stats.play_time.hours'
-          span className: 'profile-stats__playtime profile-stats__playtime--small profile-stats__playtime--number', stats.playtime.minutes
+          span className: 'profile-stats__playtime profile-stats__playtime--small profile-stats__playtime--number', playtime.minutes()
           span className: 'profile-stats__playtime profile-stats__playtime--small', osu.trans 'users.show.stats.play_time.minutes'
-          span className: 'profile-stats__playtime profile-stats__playtime--small profile-stats__playtime--number', stats.playtime.seconds
+          span className: 'profile-stats__playtime profile-stats__playtime--small profile-stats__playtime--number', playtime.seconds()
           span className: 'profile-stats__playtime profile-stats__playtime--small', osu.trans 'users.show.stats.play_time.seconds'
       div className: 'profile-badge profile-badge--level',
         span className: 'profile-badge__number', stats.level.current
