@@ -24,6 +24,7 @@ use App\Libraries\Elasticsearch\SearchResults;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
+use Carbon\Carbon;
 use Es;
 
 class ForumSearch
@@ -81,8 +82,27 @@ class ForumSearch
         }
 
         $childQuery = static::hasChildQuery();
+        $innerQuery = static::buildQuery($query, 'must');
+        $scoring = [
+            'function_score' => array_merge($innerQuery, [
+                'functions' => [
+                    [
+                        'gauss' => [
+                            'post_time' => [
+                                'origin' => Carbon::now()->toIso8601String(),
+                                'scale' => '7d',
+                                'offset' => '7d',
+                                'decay' => '0.01',
+                            ],
+                        ],
+                    ],
+                ],
+                'score_mode' => 'multiply',
+            ]),
+        ];
+
         $body['query']['bool']['should'][] = [
-            'has_child' => array_merge($childQuery, static::buildQuery($query, 'must')),
+            'has_child' => array_merge($childQuery, ['query' => $scoring]),
         ];
 
         $body['highlight'] = [
