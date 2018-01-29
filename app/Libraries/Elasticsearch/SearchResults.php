@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class SearchResults implements \ArrayAccess
+class SearchResults implements \ArrayAccess, \Countable
 {
     /**
      * @var string
@@ -61,6 +61,11 @@ class SearchResults implements \ArrayAccess
     public function raw()
     {
         return $this->results;
+    }
+
+    public function count()
+    {
+        return count($this->hits());
     }
 
     public function offsetExists($key)
