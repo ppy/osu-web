@@ -29,7 +29,12 @@
             @foreach ($innerHits as $innerHit)
                 <div class="search-entry__row">
                     @php
-                        $highlights = $innerHit['highlight']['post_preview'];
+                        if (isset($innerHit['highlight'])) {
+                            $highlights = $innerHit['highlight']['post_preview'];
+                        } else {
+                            $highlights = [html_excerpt($innerHit['_source']['post_preview'])];
+                        }
+
                         $post_url = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
                     @endphp
                     <a class="search-entry search-entry--inner"
