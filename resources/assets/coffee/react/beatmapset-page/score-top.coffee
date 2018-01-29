@@ -39,7 +39,7 @@ BeatmapsetPage.ScoreTop = (props) ->
 
   div className: "#{bn} #{topClasses}",
     div className: "#{bn}__section",
-      div className: "#{bn}__wrapping-container",
+      div className: "#{bn}__wrapping-container #{bn}__wrapping-container--left",
         div className: "#{bn}__position",
           "##{props.position}"
           div className: "badge-rank badge-rank--tiny badge-rank--#{props.score.rank}"
@@ -68,6 +68,7 @@ BeatmapsetPage.ScoreTop = (props) ->
             div className: "#{bn}__stat-value #{bn}__stat-value--score",
               props.score.score.toLocaleString()
 
+        div className: "#{bn}__stats",
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
               osu.trans 'beatmapsets.show.scoreboard.stats.accuracy'

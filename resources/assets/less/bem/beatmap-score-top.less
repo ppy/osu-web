@@ -160,7 +160,6 @@
     flex-direction: column;
 
     @media @mobile {
-      align-items: center;
       padding-bottom: 10px;
     }
   }
@@ -179,6 +178,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+
+    &--left {
+      flex-shrink: 0;
+    }
 
     &--right {
       flex-wrap: wrap;
