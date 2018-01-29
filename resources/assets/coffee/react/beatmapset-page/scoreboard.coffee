@@ -79,7 +79,7 @@ class BeatmapsetPage.Scoreboard extends React.Component
           div {},
             div className: 'beatmap-scoreboard-top',
               div className: 'beatmap-scoreboard-top__item',
-                @scoreItem score: @props.scores[0], rank: 1, itemClass: 'ScoreTop', modifiers: ['with-outline']
+                @scoreItem score: @props.scores[0], rank: 1, itemClass: 'ScoreTop'
 
               if @props.userScore?
                 div className: 'beatmap-scoreboard-top__item',

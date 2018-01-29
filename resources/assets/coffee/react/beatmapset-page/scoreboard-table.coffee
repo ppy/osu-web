@@ -21,6 +21,7 @@ el = React.createElement
 bn = 'beatmap-scoreboard-table'
 
 BeatmapsetPage.ScoreboardTable = (props) ->
+  # mapping of [displayed text, internal stat name] for each mode
   hitHeaders = switch props.beatmap.mode
     when 'osu'
       [['300', '300'], ['100', '100'], ['50', '50']]
