@@ -73,6 +73,7 @@ class ForumSearch
 
         if (is_string($query)) {
             $body = static::buildQuery($query, 'should', 'topics');
+            $body['query']['bool']['minimum_should_match'] = 1;
         }
 
         $childQuery = static::hasChildQuery();
