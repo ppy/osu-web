@@ -35,21 +35,21 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
     /**
      * @var array
      */
-    private $results;
+    private $raw;
 
     private $index;
 
     public function __construct(array $results, ?string $innerHitsName = null)
     {
         $this->innerHitsName = $innerHitsName;
-        $this->results = $results;
+        $this->raw = $results;
 
         $this->index = 0;
     }
 
     public function hits()
     {
-        return $this->results['hits']['hits'];
+        return $this->raw['hits']['hits'];
     }
 
     public function innerHits($index)
@@ -64,7 +64,7 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
 
     public function raw()
     {
-        return $this->results;
+        return $this->raw;
     }
 
     public function count()
