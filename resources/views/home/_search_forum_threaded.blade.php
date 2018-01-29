@@ -22,27 +22,27 @@
         $innerHits = $results->innerHits($index);
     @endphp
     <div class="search-result__entry">
-        <div class="search-entry search-entry--threaded">
+        <div class="search-entry">
             <h1 class="search-entry__row search-entry__row--title">
                 {{ $source['title'] }}
             </h1>
             @foreach ($innerHits as $innerHit)
-                <div class="search-entry__row">
-                    @php
-                        if (isset($innerHit['highlight'])) {
-                            $highlights = $innerHit['highlight']['post_preview'];
-                        } else {
-                            $highlights = [html_excerpt($innerHit['_source']['post_preview'])];
-                        }
+                @php
+                    if (isset($innerHit['highlight'])) {
+                        $highlights = $innerHit['highlight']['post_preview'];
+                    } else {
+                        $highlights = [html_excerpt($innerHit['_source']['post_preview'])];
+                    }
 
-                        $post_url = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
-                    @endphp
-                    <a class="search-entry search-entry--inner"
-                       href="{{ $post_url }}"
-                    >
-                        @foreach ($highlights as $highlight)
-                            <span>{!! $highlight !!}</span>
-                        @endforeach
+                    $post_url = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
+                @endphp
+                <div class="search-result__entry">
+                    <a class="search-entry" href="{{ $post_url }}">
+                        <div class="search-entry__row search-entry__row--excerpt">
+                            @foreach ($highlights as $highlight)
+                                <span>{!! $highlight !!}</span>
+                            @endforeach
+                        </div>
                     </a>
                 </div>
             @endforeach
