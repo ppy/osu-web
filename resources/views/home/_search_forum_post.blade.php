@@ -20,7 +20,7 @@
     href="{{ post_url($entry->topic_id, $entry->getKey()) }}"
 >
     <h1 class="search-entry__row search-entry__row--title">
-        {{ $entry->topic->topic_title }}
+        {{ $entry->topic === null ? '['.trans('forum.topic.deleted').']' : $entry->topic->topic_title }}
     </h1>
 
     <p class="search-entry__row search-entry__row--excerpt">
