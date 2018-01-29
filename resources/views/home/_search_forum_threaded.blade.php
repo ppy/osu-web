@@ -16,28 +16,34 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-<ul>
-    @foreach ($results as $index => $hit)
-        @php
-            $source = $hit['_source'];
-            $innerHits = $results->innerHits($index);
-        @endphp
-        <li>
-            <div>
-                <header>{{ $source['title'] }}</header>
-                <section>
-                    <ul>
-                        @foreach ($innerHits as $innerHit)
-                            @php
-                                $highlights = $innerHit['highlight']['post_preview'];
-                            @endphp
-                            @foreach ($highlights as $highlight)
-                                <li>{!! $highlight !!}
-                            @endforeach
+@foreach ($results as $index => $hit)
+    @php
+        $source = $hit['_source'];
+        $innerHits = $results->innerHits($index);
+    @endphp
+    <div class="search-result__entry">
+        <div class="search-entry search-entry--threaded">
+            <h1 class="search-entry__row search-entry__row--title">
+                {{ $source['title'] }}
+            </h1>
+            @foreach ($innerHits as $innerHit)
+                <div class="search-entry__row">
+                    @php
+                        $highlights = $innerHit['highlight']['post_preview'];
+                        $post_url = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
+                    @endphp
+                    <a class="search-entry search-entry--inner"
+                       href="{{ $post_url }}"
+                    >
+                        @foreach ($highlights as $highlight)
+                            <span>{!! $highlight !!}</span>
                         @endforeach
-                    </ul>
-                </section>
-            </div>
-        </li>
-    @endforeach
-</ul>
+                    </a>
+                </div>
+            @endforeach
+            <p class="search-entry__row search-entry__row--footer">
+                {{ route('forum.topics.show', $source['topic_id']) }}
+            </p>
+        </div>
+    </div>
+@endforeach

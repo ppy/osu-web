@@ -49,7 +49,7 @@ class ForumSearch
         return $body;
     }
 
-    public static function hasChildQuery($source = 'post_preview')
+    public static function hasChildQuery($source = ['topic_id', 'post_id', 'post_preview'])
     {
         return [
             'type' => 'posts',
