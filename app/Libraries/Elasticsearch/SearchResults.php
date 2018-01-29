@@ -67,6 +67,11 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
         return $this->raw;
     }
 
+    public function total()
+    {
+        return $this->raw()['hits']['total'];
+    }
+
     public function count()
     {
         return count($this->hits());

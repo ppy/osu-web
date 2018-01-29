@@ -16,4 +16,28 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-{!! print_r($result) !!}
+<ul>
+    @foreach ($results as $index => $hit)
+        @php
+            $source = $hit['_source'];
+            $innerHits = $results->innerHits($index);
+        @endphp
+        <li>
+            <div>
+                <header>{{ $source['title'] }}</header>
+                <section>
+                    <ul>
+                        @foreach ($innerHits as $innerHit)
+                            @php
+                                $highlights = $innerHit['highlight']['post_preview'];
+                            @endphp
+                            @foreach ($highlights as $highlight)
+                                <li>{!! $highlight !!}
+                            @endforeach
+                        @endforeach
+                    </ul>
+                </section>
+            </div>
+        </li>
+    @endforeach
+</ul>

@@ -102,9 +102,8 @@ class Search
             $result = ForumSearch::search($this->params['query']);
 
             return [
-                'source' => 'elasticsearch',
                 'data' => $result,
-                'total' => $result['hits']['total'],
+                'total' => $result->total(),
                 'params' => array_merge($this->params, ['limit' => 10, 'page' => 1]),
             ];
         }
