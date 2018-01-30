@@ -52,13 +52,13 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
         return $this->raw['hits']['hits'];
     }
 
-    public function innerHits($index)
+    public function innerHits($index, ?string $name = null)
     {
         $results = $this->hits()[$index] ?? null;
-        $results = $results['inner_hits'][$this->innerHitsName];
+        $results = $results['inner_hits'][$name ?? $this->innerHitsName];
 
         if ($results) {
-            return new static($results, $this->innerHitsName);
+            return new static($results, $name ?? $this->innerHitsName);
         }
     }
 

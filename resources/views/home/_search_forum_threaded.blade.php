@@ -20,12 +20,18 @@
     @php
         $source = $hit['_source'];
         $innerHits = $results->innerHits($index);
+        $firstPost = $results->innerHits($index, 'first_post');
     @endphp
     <div class="search-result__entry">
         <div class="search-entry">
             <h1 class="search-entry__row search-entry__row--title">
                 {{ $source['title'] }}
             </h1>
+            <div class="search-entry__row search-entry__row--excerpt">
+                @foreach ($firstPost as $post)
+                    <span>{!! html_excerpt($post['_source']['post_preview']) !!}</span>
+                @endforeach
+            </div>
             @foreach ($innerHits as $innerHit)
                 @php
                     if (isset($innerHit['highlight'])) {
