@@ -51,19 +51,37 @@ class ForumSearch
         return $query;
     }
 
-    public static function hasChildQuery($source = ['topic_id', 'post_id', 'post_preview'])
+    public static function childQuery($queryString)
     {
         return [
             'type' => 'posts',
             'score_mode' => 'max',
             'inner_hits' => [
-                '_source' => $source,
+                '_source' => ['topic_id', 'post_id', 'post_preview'],
+                'name' => 'posts',
+                'size' => 3,
                 'highlight' => [
                     'fields' => [
                         'post_preview' => new \stdClass(),
                     ],
                 ],
             ],
+            'query' => static::buildQuery($queryString, 'must'),
+        ];
+    }
+
+    public static function firstPostQuery()
+    {
+        return [
+            'type' => 'posts',
+            'score_mode' => 'none',
+            'inner_hits' => [
+                '_source' => 'post_preview',
+                'name' => 'first_post',
+                'size' => 1,
+                'sort' => [['post_id' => ['order' => 'asc']]],
+            ],
+            'query' => ['match_all' => new \stdClass()],
         ];
     }
 
@@ -93,13 +111,13 @@ class ForumSearch
 
         $query = static::buildQuery($queryString, 'should', 'topics');
         $query['bool']['minimum_should_match'] = 1;
+        $query['bool']['should'][] = ['has_child' => static::childQuery($queryString)];
 
-        $childQuery = static::hasChildQuery();
-        $innerQuery = static::buildQuery($queryString, 'must');
+        if (!isset($query['bool']['must'])) {
+            $query['bool']['must'] = [];
+        }
 
-        $query['bool']['should'][] = [
-            'has_child' => array_merge($childQuery, ['query' => $innerQuery]),
-        ];
+        $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
 
         $body = [
             'highlight' => ['fields' => ['title' => new \stdClass()]],
@@ -107,8 +125,6 @@ class ForumSearch
             'from' => $from,
             'query' => $query,
         ];
-
-
 
         return [
             new SearchResults(
