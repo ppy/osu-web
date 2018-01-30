@@ -305,7 +305,7 @@ class OsuAuthorize
             return 'beatmap_discussion.nominate.incorrect-state';
         }
 
-        if ($user->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
             return 'beatmap_discussion.nominate.exhausted';
         }
 

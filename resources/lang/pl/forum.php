@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Przypięte wątki',
+    'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
+    'subforums' => 'Podfora',
+    'title' => 'Społeczność osu!',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,47 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Przypięte wątki',
     'post' => [
         'confirm_destroy' => 'Na pewno usunąć odpowiedź?',
         'confirm_restore' => 'Na pewno przywrócić odpowiedź?',
         'edited' => 'Ostatnio edytowe przez :user :when, łącznie edytowane :count razy.',
         'posted_at' => 'opublikowane :when',
+
         'actions' => [
             'destroy' => 'Usuń odpowiedź',
             'restore' => 'Przywróć odpowiedź',
             'edit' => 'Edytuj odpowiedź',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Przejdź do odpowiedzi',
         'post_number_input' => 'wprowadź numer odpowiedzi',
         'total_posts' => 'łącznie :posts_count odpowiedzi',
     ],
-    'subforums' => 'Podfora',
-    'title' => 'Społeczność osu!',
-    'slogan' => 'samodzielna rozgrywka jest niebezpieczna.',
+
     'topic' => [
+        'go_to_latest' => 'pokaż najnowszą odpowiedź',
+        'latest_post' => ':when przez :user',
+        'latest_reply_by' => 'ostatnia odpowiedź od :user',
+        'new_topic' => 'Stwórz nowy wątek',
+        'post_reply' => 'Opublikuj',
+        'reply_box_placeholder' => 'Tutaj napisz swoją odpowiedź',
+        'started_by' => 'przez :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Tutaj wpisz zawartość wątku',
-                'title' => 'Naciśnij, aby wprowadzić tytuł',
-            ],
             'preview' => 'Podgląd',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Napisz',
             'submit' => 'Opublikuj',
+
+            'placeholder' => [
+                'body' => 'Tutaj wpisz zawartość wątku',
+                'title' => 'Naciśnij, aby wprowadzić tytuł',
+            ],
         ],
-        'go_to_latest' => 'pokaż najnowszą odpowiedź',
+
         'jump' => [
             'enter' => 'kliknij, aby przejść do specyficznej odpowiedzi',
             'first' => 'przejdź do pierwszej odpowiedzi',
@@ -83,9 +95,7 @@ return [
             'next' => 'pomiń następne 10 odpowiedzi',
             'previous' => 'cofnij się o 10 odpowiedzi',
         ],
-        'latest_post' => ':when przez :user',
-        'latest_reply_by' => 'ostatnia odpowiedź od :user',
-        'new_topic' => 'Stwórz nowy wątek',
+
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',
@@ -94,9 +104,6 @@ return [
                 'end' => 'Wyjdź z trybu pełnoekranowego',
             ],
         ],
-        'post_reply' => 'Opublikuj',
-        'reply_box_placeholder' => 'Tutaj napisz swoją odpowiedź',
-        'started_by' => 'przez :user',
     ],
 
     'topic_watches' => [
@@ -221,16 +228,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Wszystkie odpowiedzi',
             'deleted-posts' => 'Usunięte odpowiedzi',
+            'total_posts' => 'Wszystkie odpowiedzi',
 
             'feature_vote' => [
                 'current' => 'Priorytet: +:count',
                 'do' => 'Wspomóż tę prośbę',
 
                 'user' => [
-                    'current' => 'Pozostało ci :votes głosów.',
                     'count' => '{0} brak głosów|{1} :count głos|[2,*] :count głosów',
+                    'current' => 'Pozostało ci :votes głosów.',
                     'not_enough' => 'Nie posiadasz żadnych głosów',
                 ],
             ],
@@ -239,9 +246,9 @@ return [
                 'vote' => 'Zagłosuj',
 
                 'detail' => [
-                    'total' => 'Wszystkich głosów: :count',
-                    'ended' => 'Ankieta zakończona :time',
                     'end_time' => 'Ankieta zakończy się :time',
+                    'ended' => 'Ankieta zakończona :time',
+                    'total' => 'Wszystkich głosów: :count',
                 ],
             ],
         ],

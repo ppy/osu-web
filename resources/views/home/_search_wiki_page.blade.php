@@ -24,7 +24,7 @@
     </h1>
 
     <p class="search-entry__row search-entry__row--excerpt">
-        {{ html_excerpt($entry->page()['output']) }}
+        {!! html_excerpt($entry->page()['output']) !!}
     </p>
 
     <p class="search-entry__row search-entry__row--footer">

@@ -30,6 +30,7 @@ export class StoreCheckout
       provider = element.dataset.provider
       orderNumber = element.dataset.orderNumber
       switch provider
+        when 'centili' then init['centili'] = Promise.resolve()
         when 'free' then init['free'] = Promise.resolve()
         when 'paypal' then init['paypal'] = Promise.resolve()
         when 'xsolla' then init['xsolla'] = StoreXsolla.promiseInit(orderNumber)
@@ -60,6 +61,9 @@ export class StoreCheckout
 
   @startPayment: (params) ->
     switch params.provider
+      when 'centili'
+        window.location = params.url
+
       when 'free'
         $.post laroute.route('store.checkout.store', completed: '1')
 

@@ -96,7 +96,7 @@ class Post extends Model
 
     public function setPostTimeAttribute($value)
     {
-        $this->attributes['post_time'] = $value->timestamp;
+        $this->attributes['post_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostTimeAttribute($value)
@@ -106,7 +106,7 @@ class Post extends Model
 
     public function setPostEditTimeAttribute($value)
     {
-        $this->attributes['post_edit_time'] = $value->timestamp;
+        $this->attributes['post_edit_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostEditTimeAttribute($value)

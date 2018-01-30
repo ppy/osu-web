@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,43 +18,9 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.tooltip-default {
-  @top: tooltip-default;
+namespace App\Libraries\Transactions;
 
-  .default-border-radius();
-
-  background-color: fade(#000, 70%);
-  border: 0 solid transparent;
-
-  color: #fff;
-
-  pointer-events: none;
-
-  &--fixed {
-    position: fixed;
-  }
-
-  &--time {
-    background-color: #444;
-    font-size: @font-size--normal;
-    line-height: 1.1;
-    padding: 2px 10px;
-  }
-
-  .qtip-content {
-    text-align: center;
-
-    .@{top}--extra-padding& {
-      padding: 7px 10px;
-    }
-  }
-
-  &__date {
-    font-weight: bold;
-    color: #fff;
-  }
-
-  &__time {
-    color: #ccc;
-  }
+interface AfterRollback
+{
+    public function afterRollback();
 }
