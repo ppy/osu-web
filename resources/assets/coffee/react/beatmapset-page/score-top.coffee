@@ -70,7 +70,7 @@ BeatmapsetPage.ScoreTop = (props) ->
             div className: "#{bn}__stat-value #{bn}__stat-value--score",
               "#{props.score.max_combo.toLocaleString()}x"
 
-        div className: "#{bn}__stats",
+        div className: "#{bn}__stats #{bn}__stats--wrappable",
           for stat in props.hitTypeMapping
             div
               key: stat[0]
@@ -86,7 +86,6 @@ BeatmapsetPage.ScoreTop = (props) ->
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
               props.score.statistics.count_miss.toLocaleString()
 
-        div className: "#{bn}__stats",
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
               osu.trans 'beatmapsets.show.scoreboard.headers.pp'
