@@ -19,7 +19,7 @@
 {div, h2, p} = ReactDOMFactories
 el = React.createElement
 
-class BeatmapsetPage.Scoreboard extends React.Component
+class BeatmapsetPage.Scoreboard extends React.PureComponent
   DEFAULT_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'HD', 'FL', 'SO']
   MANIA_KEY_MODS = ['4K', '5K', '6K', '7K', '8K', '9K']
   MANIA_MODS = ['NM', 'EZ', 'NF', 'HT', 'HR', 'SD', 'PF', 'DT', 'NC', 'FI', 'HD', 'FL']
