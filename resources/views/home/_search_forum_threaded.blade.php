@@ -41,12 +41,7 @@
         <div class="search-entry__row search-entry__row--inner">
             @foreach ($innerHits as $innerHit)
                 @php
-                    if (isset($innerHit['highlight'])) {
-                        $highlights = $innerHit['highlight']['post_preview'];
-                    } else {
-                        $highlights = [html_excerpt($innerHit['_source']['post_preview'])];
-                    }
-
+                    $highlights = es_highlight($innerHit, 'post_preview');
                     $postUrl = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
                 @endphp
 

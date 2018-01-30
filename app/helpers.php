@@ -42,6 +42,22 @@ function background_image($url, $proxy = true)
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
+/**
+ * Gets the highlights of the specified field, if any;
+ * otherwise returns a html_excerpt of the field.
+ *
+ * @return array
+ */
+function es_highlight($hit, $field)
+{
+    if (isset($hit['highlight'])) {
+        return $hit['highlight']['post_preview'];
+    }
+
+    // highlights are stored in an array, so return an array as well.
+    return [html_excerpt($hit['_source']['post_preview'])];
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
