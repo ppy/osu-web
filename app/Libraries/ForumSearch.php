@@ -109,12 +109,29 @@ class ForumSearch
         $size = clamp($options['size'] ?? $options['limit'] ?? 50, 1, 50);
         $from = ($page - 1) * $size;
 
+        $forumId = get_int($options['forum_id'] ?? null);
+        $includeChildren = get_bool($options['forum_children'] ?? false);
+        $posterName = $options['username'] ?? null;
+
         $query = static::buildQuery($queryString, 'should', 'topics');
         $query['bool']['minimum_should_match'] = 1;
-        $query['bool']['should'][] = ['has_child' => static::childQuery($queryString)];
+        $query['bool']['should'][] = ['has_child' => static::childQuery($queryString, $forumId)];
 
         if (!isset($query['bool']['must'])) {
             $query['bool']['must'] = [];
+        }
+
+        if ($forumId !== null) {
+            $forumIds = $includeChildren ? Forum::findOrFail($forumId)->allSubForums() : [$forumId];
+            $forumQuery = [
+                'bool' => [
+                    'should' => [
+                        ['terms' => ['forum_id' => $forumIds]],
+                    ],
+                ],
+            ];
+
+            $query['bool']['must'][] = $forumQuery;
         }
 
         $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
