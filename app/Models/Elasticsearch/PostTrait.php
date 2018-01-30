@@ -67,6 +67,7 @@ trait PostTrait
             'analyzer' => [
                 'post_text_analyzer' => [
                     'tokenizer' => 'standard',
+                    'filter' => ['lowercase'],
                     'char_filter' => ['html_filter']
                 ],
             ],
