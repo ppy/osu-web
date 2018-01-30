@@ -96,16 +96,9 @@ class ForumSearch
 
         $childQuery = static::hasChildQuery();
         $innerQuery = static::buildQuery($queryString, 'must');
-        $scoring = [
-            'function_score' => [
-                'query' => $innerQuery,
-                'functions' => static::scoringFunctions(),
-                'score_mode' => 'multiply',
-            ],
-        ];
 
         $query['bool']['should'][] = [
-            'has_child' => array_merge($childQuery, ['query' => $scoring]),
+            'has_child' => array_merge($childQuery, ['query' => $innerQuery]),
         ];
 
         $body = [
