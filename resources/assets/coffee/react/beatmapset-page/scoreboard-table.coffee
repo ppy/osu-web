@@ -42,7 +42,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
       tbody className: "#{bn}__body",
         for score, i in props.scores
           tr
-            className: "#{bn}__body-row#{(if i == 0 then " #{bn}__row--first" else '')}"
+            className: "#{bn}__body-row#{(if i == 0 then " #{bn}__body-row--first" else '')}"
             key: i,
 
             td className: "#{bn}__rank", "##{i+1}"
@@ -54,7 +54,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
               score.score.toLocaleString()
 
             td className: (if score.accuracy == 1 then "#{bn}__perfect" else ''),
-              "#{_.round(score.accuracy * 100, 2).toFixed(2)}%"
+              "#{(score.accuracy * 100).toFixed(2)}%"
 
             td {},
               if score.user.country_code
@@ -78,7 +78,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
                 score.statistics["count_#{stat[1]}"].toLocaleString()
 
             td className: (if score.statistics.count_miss == 0 then "#{bn}__zero" else ''),
-              score.statistics.count_miss
+              score.statistics.count_miss.toLocaleString()
 
             td {}, _.round score.pp
 
