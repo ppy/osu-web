@@ -134,13 +134,13 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
-            $disqualifyEvent = $beatmapset->resetEvent();
-            if ($disqualifyEvent) {
-                $result['disqualification'] = [
-                    'type' => $disqualifyEvent->type,
-                    'reason' => $disqualifyEvent->comment,
-                    'created_at' => json_time($disqualifyEvent->created_at),
-                ];
+            $disqualificationEvent = $beatmapset->disqualificationEvent();
+            $resetEvent = $beatmapset->resetEvent();
+            if ($resetEvent !== null) {
+                $result['reset'] = json_item($resetEvent, 'BeatmapsetEvent');
+            }
+            if ($disqualificationEvent !== null) {
+                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
                 $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();

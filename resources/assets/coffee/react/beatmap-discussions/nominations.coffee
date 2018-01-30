@@ -94,6 +94,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       nominations = @props.beatmapset.nominations
       if !mapIsQualified
         disqualification = nominations.disqualification
+        reset = nominations.reset
 
     nominators = []
     for event in @props.events by -1
@@ -102,18 +103,11 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       else if event.type == 'nominate'
         nominators.push(@props.users[event.user_id])
 
-    if disqualification?
-      switch disqualification.type
-        when 'disqualify'
-          reason = disqualification.reason
-        when 'nomination_reset'
-          discussionId = disqualification.reason?.beatmap_discussion_id
-          if discussionId?
-            url = BeatmapDiscussionHelper.hash discussionId: discussionId
-            discussionLink = osu.link url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump']
-            reason = osu.trans('beatmaps.nominations.disqualified_reason_issue', discussion: discussionLink)
+    if reset? && reset.type == 'nomination_reset'
+      resetDiscussionId = reset.comment.beatmap_discussion_id
+      url = BeatmapDiscussionHelper.hash discussionId: resetDiscussionId
+      resetDiscussionLink = osu.link url, "##{resetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
 
-      reason ?= osu.trans('beatmaps.nominations.disqualified_no_reason')
 
     div className: bn,
       # hide hype meter and nominations when beatmapset is: ranked, approved, loved or graveyarded
@@ -209,14 +203,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
             key: 'footer'
             div className: "#{bn}__note #{bn}__note--disqualification",
-              # implies mapCanBeNominated
-              if disqualification
-                span
-                  dangerouslySetInnerHTML:
-                    __html: osu.trans 'beatmaps.nominations.disqualified_at',
-                      time_ago: osu.timeago(disqualification.created_at)
-                      reason: reason
-              else if mapIsQualified
+              if mapIsQualified
                 if rankingETA
                   span null,
                     osu.trans 'beatmaps.nominations.qualified',
@@ -224,6 +211,23 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 else
                   span null, osu.trans 'beatmaps.nominations.qualified_soon'
 
+              # implies mapCanBeNominated
+              else
+                span null,
+                  if disqualification?
+                    span null,
+                      span
+                        dangerouslySetInnerHTML:
+                          __html: osu.trans 'beatmaps.nominations.disqualified_at',
+                            time_ago: osu.timeago(disqualification.created_at)
+                            reason: disqualification.comment ? osu.trans('beatmaps.nominations.disqualified_no_reason')
+                      ' ' # spacer
+                  if resetDiscussionLink?
+                    span
+                      dangerouslySetInnerHTML:
+                        __html: osu.trans 'beatmaps.nominations.reset_at',
+                          time_ago: osu.timeago(reset.created_at)
+                          discussion: resetDiscussionLink
             if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"

@@ -1072,6 +1072,11 @@ class Beatmapset extends Model
         return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
+    public function disqualificationEvent()
+    {
+        return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+    }
+
     public function resetEvent()
     {
         return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
