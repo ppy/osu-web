@@ -115,14 +115,14 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => '于 :time_ago 被 DQ (:reason)', //disqualifed现在好像没有很合适的翻译，姑且先写作DQ了
-        'disqualifed_no_reason' => '没有指定原因',
         'disqualification-prompt' => 'DQ 的理由？',
+        'disqualified-at' => '于 :time_ago 被 DQ (:reason)', //disqualified现在好像没有很合适的翻译，姑且先写作DQ了
+        'disqualified_no_reason' => '没有指定原因',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作出错了，请刷新页面。',
         'nominate' => '提名',
-        'nominated-by' => '被 :users 提名',
         'nominate-confirm' => '提名这张谱面？',
+        'nominated-by' => '被 :users 提名',
         'qualified' => '如果没有问题，预计将于 :date 被 Ranked',
         'qualified-soon' => '如果没有问题，预计不久将被 Ranked',
         'required_text' => '提名数: :current/:required',

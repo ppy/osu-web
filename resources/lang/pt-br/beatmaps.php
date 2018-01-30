@@ -93,9 +93,9 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'desqualificado :time_ago (:reason).',
-        'disqualifed_no_reason' => 'nenhuma razão especificada',
         'disqualification-prompt' => 'Motivo da desqualificação?',
+        'disqualified-at' => 'desqualificado :time_ago (:reason).',
+        'disqualified_no_reason' => 'nenhuma razão especificada',
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao executar essa ação, tente atualizar a página.',
         'nominate' => 'Nomear',

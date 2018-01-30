@@ -95,9 +95,9 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'zdyskwalifkowane :time_ago (:reason).',
-        'disqualifed_no_reason' => 'brak określonego powodu',
         'disqualification-prompt' => 'Powód dyskwalifikacji?',
+        'disqualified-at' => 'zdyskwalifkowane :time_ago (:reason).',
+        'disqualified_no_reason' => 'brak określonego powodu',
         'disqualify' => 'Zdyskwalifikuj',
         'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'nominate' => 'Nominuj',

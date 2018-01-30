@@ -114,7 +114,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             discussionLink = osu.link url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump']
             reason = osu.trans('beatmaps.nominations.disqualified_reason_issue', discussion: discussionLink)
 
-      reason ?= osu.trans('beatmaps.nominations.disqualifed_no_reason')
+      reason ?= osu.trans('beatmaps.nominations.disqualified_no_reason')
 
     div className: bn,
       # hide hype meter and nominations when beatmapset is: ranked, approved, loved or graveyarded
@@ -214,7 +214,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               if disqualification
                 span
                   dangerouslySetInnerHTML:
-                    __html: osu.trans 'beatmaps.nominations.disqualifed-at',
+                    __html: osu.trans 'beatmaps.nominations.disqualified-at',
                       time_ago: osu.timeago(disqualification.created_at)
                       reason: reason
               else if mapIsQualified

@@ -93,9 +93,9 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'дисквалифицирован :time_ago (:reason).',
-        'disqualifed_no_reason' => 'причина не указана',
         'disqualification-prompt' => 'Причина для дисквалификации?',
+        'disqualified-at' => 'дисквалифицирован :time_ago (:reason).',
+        'disqualified_no_reason' => 'причина не указана',
         'disqualify' => 'Дисквалифицировать',
         'incorrect_state' => 'Не удалось выполнить данную задачу, пробовал перезагрузить страницу?',
         'nominate' => 'Номинировать',
