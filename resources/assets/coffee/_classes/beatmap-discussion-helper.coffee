@@ -139,10 +139,14 @@ class @BeatmapDiscussionHelper
 
 
   # see @url
-  @urlParse: (urlString, discussions) ->
+  @urlParse: (urlString, discussions, options = {}) ->
+    options.forceDiscussionId ?= false
+
     url = new URL(urlString ? document.location.href)
     params = url.searchParams
-    [__, __, beatmapsetId, __, beatmapId, mode, filter] = url.pathname.split '/'
+    [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split '/'
+
+    return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
 
     beatmapsetId = parseInt(beatmapsetId, 10)
     beatmapId = parseInt(beatmapId, 10)
@@ -156,10 +160,13 @@ class @BeatmapDiscussionHelper
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)
 
-      if isFinite(discussionId) && discussions?
-        discussion = _.find discussions, id: discussionId
+      if isFinite(discussionId)
+        if discussions?
+          discussion = _.find discussions, id: discussionId
 
-        _.assign ret, @stateFromDiscussion(discussion)
+          _.assign ret, @stateFromDiscussion(discussion)
+        else if forceDiscussionId
+          ret.discussionId = discussionId
 
     ret
 
