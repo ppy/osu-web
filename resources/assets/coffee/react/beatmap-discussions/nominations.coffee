@@ -214,7 +214,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
               if disqualification
                 span
                   dangerouslySetInnerHTML:
-                    __html: osu.trans 'beatmaps.nominations.disqualified-at',
+                    __html: osu.trans 'beatmaps.nominations.disqualified_at',
                       time_ago: osu.timeago(disqualification.created_at)
                       reason: reason
               else if mapIsQualified
@@ -223,13 +223,13 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     osu.trans 'beatmaps.nominations.qualified',
                       date: moment(rankingETA).format(dateFormat)
                 else
-                  span null, osu.trans 'beatmaps.nominations.qualified-soon'
+                  span null, osu.trans 'beatmaps.nominations.qualified_soon'
 
             if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
                 dangerouslySetInnerHTML:
-                  __html: osu.trans 'beatmaps.nominations.nominated-by',
+                  __html: osu.trans 'beatmaps.nominations.nominated_by',
                     users: nominators.map (user) ->
                         osu.link laroute.route('users.show', user: user.id), user.username,
                           classNames: ['js-usercard']
@@ -255,7 +255,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   disqualify: =>
-    reason = prompt osu.trans('beatmaps.nominations.disqualification-prompt')
+    reason = prompt osu.trans('beatmaps.nominations.disqualification_prompt')
     return unless reason
 
     @doAjax 'disqualify', reason
@@ -283,6 +283,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   nominate: =>
-    return unless confirm(osu.trans('beatmaps.nominations.nominate-confirm'))
+    return unless confirm(osu.trans('beatmaps.nominations.nominate_confirm'))
 
     @doAjax 'nominate'

@@ -80,13 +80,13 @@ return [
     ],
 
     'nominations' => [
-        'disqualification-prompt' => 'Ragioni della squalifica?',
-        'disqualified-at' => 'squalificata :time_ago',
+        'disqualification_prompt' => 'Ragioni della squalifica?',
+        'disqualified_at' => 'squalificata :time_ago',
         'disqualify' => 'Squalifica',
         'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'nominate' => 'Nomina',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
-        'qualified-soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
+        'qualified_soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
         'required_text' => 'Nominazioni: :current/:required',
     ],
 
