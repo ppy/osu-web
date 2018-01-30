@@ -80,12 +80,18 @@ BeatmapsetPage.ScoreTop = (props) ->
               div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
                 props.score.statistics["count_#{stat[1]}"].toLocaleString()
 
-        div className: "#{bn}__stats",
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
               osu.trans 'beatmapsets.show.scoreboard.stats.misses'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
               props.score.statistics.count_miss.toLocaleString()
+
+        div className: "#{bn}__stats",
+          div className: "#{bn}__stat",
+            div className: "#{bn}__stat-header",
+              osu.trans 'pp'
+            div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
+              _.round props.score.pp
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
