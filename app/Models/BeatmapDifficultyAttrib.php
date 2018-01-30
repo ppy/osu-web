@@ -36,4 +36,9 @@ class BeatmapDifficultyAttrib extends Model
     {
         return $query->where('attrib_id', 9);
     }
+
+    public function scopeNoMods($query)
+    {
+        return $query->where('mods', 0);
+    }
 }

@@ -68,7 +68,7 @@ BeatmapsetPage.ScoreboardTable = (props) ->
                 href: laroute.route 'users.show', user: score.user.id
                 score.user.username
 
-            td className: (if score.max_combo == props.beatmap.maxCombo?[0] then "#{bn}__perfect" else ''),
+            td className: (if score.max_combo == props.beatmap.max_combo?[0] then "#{bn}__perfect" else ''),
               "#{score.max_combo.toLocaleString()}x"
 
             for stat in props.hitTypeMapping
