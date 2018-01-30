@@ -26,18 +26,18 @@ BeatmapsetPage.ScoreboardTable = (props) ->
       className: "#{bn}__table"
       thead {},
         tr {},
-          th className: "#{bn}__header #{bn}__header--rank", 'rank'
+          th className: "#{bn}__header #{bn}__header--rank", osu.trans('beatmapsets.show.scoreboard.headers.rank')
           th className: "#{bn}__header #{bn}__header--grade", ''
-          th className: "#{bn}__header #{bn}__header--score", 'score'
-          th className: "#{bn}__header #{bn}__header--accuracy", 'accuracy'
+          th className: "#{bn}__header #{bn}__header--score", osu.trans('beatmapsets.show.scoreboard.headers.score')
+          th className: "#{bn}__header #{bn}__header--accuracy", osu.trans('beatmapsets.show.scoreboard.headers.accuracy')
           th className: "#{bn}__header #{bn}__header--flag", ''
-          th className: "#{bn}__header #{bn}__header--player", 'player'
-          th className: "#{bn}__header #{bn}__header--maxcombo", 'max combo'
+          th className: "#{bn}__header #{bn}__header--player", osu.trans('beatmapsets.show.scoreboard.headers.player')
+          th className: "#{bn}__header #{bn}__header--maxcombo", osu.trans('beatmapsets.show.scoreboard.headers.combo')
           for stat in props.hitTypeMapping
             th key: stat[0], className: "#{bn}__header #{bn}__header--hitstat", stat[0]
-          th className: "#{bn}__header #{bn}__header--miss", 'miss'
-          th className: "#{bn}__header #{bn}__header--pp", 'pp'
-          th className: "#{bn}__header #{bn}__header--mods", 'mods'
+          th className: "#{bn}__header #{bn}__header--miss", osu.trans('beatmapsets.show.scoreboard.headers.miss')
+          th className: "#{bn}__header #{bn}__header--pp", osu.trans('beatmapsets.show.scoreboard.headers.pp')
+          th className: "#{bn}__header #{bn}__header--mods", osu.trans('beatmapsets.show.scoreboard.headers.mods')
 
       tbody className: "#{bn}__body",
         for score, i in props.scores

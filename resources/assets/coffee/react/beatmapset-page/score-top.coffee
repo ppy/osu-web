@@ -53,20 +53,20 @@ BeatmapsetPage.ScoreTop = (props) ->
         div className: "#{bn}__stats",
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
-              osu.trans 'beatmapsets.show.scoreboard.stats.score'
+              osu.trans 'beatmapsets.show.scoreboard.headers.score_total'
             div className: "#{bn}__stat-value #{bn}__stat-value--score",
               props.score.score.toLocaleString()
 
         div className: "#{bn}__stats",
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
-              osu.trans 'beatmapsets.show.scoreboard.stats.accuracy'
+              osu.trans 'beatmapsets.show.scoreboard.headers.accuracy'
             div className: "#{bn}__stat-value #{bn}__stat-value--score",
               "#{_.round props.score.accuracy * 100, 2}%"
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--wider",
-              osu.trans 'beatmapsets.show.scoreboard.stats.combo'
+              osu.trans 'beatmapsets.show.scoreboard.headers.combo'
             div className: "#{bn}__stat-value #{bn}__stat-value--score",
               "#{props.score.max_combo.toLocaleString()}x"
 
@@ -82,19 +82,19 @@ BeatmapsetPage.ScoreTop = (props) ->
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
-              osu.trans 'beatmapsets.show.scoreboard.stats.misses'
+              osu.trans 'beatmapsets.show.scoreboard.headers.miss'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
               props.score.statistics.count_miss.toLocaleString()
 
         div className: "#{bn}__stats",
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header",
-              osu.trans 'pp'
+              osu.trans 'beatmapsets.show.scoreboard.headers.pp'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
               _.round props.score.pp
 
           div className: "#{bn}__stat",
             div className: "#{bn}__stat-header #{bn}__stat-header--mods",
-              "mods"
+              osu.trans 'beatmapsets.show.scoreboard.headers.mods'
             div className: "#{bn}__stat-value #{bn}__stat-value--score #{bn}__stat-value--smaller",
               el Mods, modifiers: ['scoreboard'], mods: props.score.mods

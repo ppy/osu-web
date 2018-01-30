@@ -86,12 +86,18 @@ return [
             'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Accuracy',
-                'player-header' => 'Player',
-                'rank-header' => 'Rank',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
                 'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
                 'friend' => 'None of your friends has set a score on this map yet!',
@@ -102,12 +108,6 @@ return [
             'score' => [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
-            ],
-            'stats' => [
-                'accuracy' => 'Accuracy',
-                'combo' => 'Max Combo',
-                'misses' => 'Miss',
-                'score' => 'Total Score',
             ],
         ],
     ],
