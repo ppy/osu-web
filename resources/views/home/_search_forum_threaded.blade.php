@@ -21,9 +21,10 @@
         $source = $hit['_source'];
         $innerHits = $results->innerHits($index);
         $firstPost = $results->innerHits($index, 'first_post');
+        $firstPostUrl = route('forum.topics.show', $source['topic_id']);
     @endphp
-    <div class="search-result__entry">
-        <div class="search-entry">
+    <div class="search-result__entry search-result__entry--threaded">
+        <a class="search-entry" href="{{ $firstPostUrl }}">
             <h1 class="search-entry__row search-entry__row--title">
                 {{ $source['title'] }}
             </h1>
@@ -32,6 +33,12 @@
                     <span>{!! html_excerpt($post['_source']['post_preview']) !!}</span>
                 @endforeach
             </div>
+            <p class="search-entry__row search-entry__row--footer">
+                {{ $firstPostUrl }}
+            </p>
+        </a>
+
+        <div class="search-entry__row search-entry__row--inner">
             @foreach ($innerHits as $innerHit)
                 @php
                     if (isset($innerHit['highlight'])) {
@@ -40,21 +47,20 @@
                         $highlights = [html_excerpt($innerHit['_source']['post_preview'])];
                     }
 
-                    $post_url = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
+                    $postUrl = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
                 @endphp
-                <div class="search-result__entry">
-                    <a class="search-entry" href="{{ $post_url }}">
-                        <div class="search-entry__row search-entry__row--excerpt">
-                            @foreach ($highlights as $highlight)
-                                <span class="search-entry__highlight">{!! $highlight !!}</span>
-                            @endforeach
-                        </div>
-                    </a>
-                </div>
+
+                <a class="search-entry search-entry--inner" href="{{ $postUrl }}">
+                    <div class="search-entry__row search-entry__row--excerpt">
+                        @foreach ($highlights as $highlight)
+                            <span class="search-entry__highlight">{!! $highlight !!}</span>
+                        @endforeach
+                    </div>
+                    <p class="search-entry__row search-entry__row--footer">
+                        {{ $postUrl }}
+                    </p>
+                </a>
             @endforeach
-            <p class="search-entry__row search-entry__row--footer">
-                {{ route('forum.topics.show', $source['topic_id']) }}
-            </p>
         </div>
     </div>
 @endforeach
