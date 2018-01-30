@@ -38,6 +38,16 @@ class Forum extends Model
         'enable_sigs' => 'boolean',
     ];
 
+    public function getForumLastPostTimeAttribute($value)
+    {
+        return get_time_or_null($value);
+    }
+
+    public function setForumLastPostTimeAttribute($value)
+    {
+        $this->attributes['forum_last_post_time'] = get_timestamp_or_zero($value);
+    }
+
     public function categorySlug()
     {
         return 'category-'.str_slug($this->category());
@@ -210,7 +220,7 @@ class Forum extends Model
 
         if ($lastTopic === null) {
             $this->forum_last_post_id = 0;
-            $this->forum_last_post_time = 0;
+            $this->forum_last_post_time = null;
             $this->forum_last_post_subject = '';
             $this->forum_last_poster_id = 0;
             $this->forum_last_poster_name = '';
