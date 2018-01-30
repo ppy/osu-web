@@ -20,6 +20,15 @@
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
   urlRegex: /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?)/ig
 
+  bottomPage: ->
+    osu.bottomPageDistance == 0
+
+
+  bottomPageDistance: ->
+    body = document.documentElement ? document.body.parent ? document.body
+    (body.scrollHeight - body.scrollTop) - body.clientHeight
+
+
   executeAction: (element) =>
     if !element?
       osu.reloadPage()
@@ -45,11 +54,6 @@
     return if newUrl == location.href
 
     history.replaceState history.state, null, newUrl
-
-
-  bottomPage: ->
-    body = document.documentElement ? document.body.parent ? document.body
-    body.clientHeight == (body.scrollHeight - body.scrollTop)
 
 
   ajaxError: (xhr) ->
