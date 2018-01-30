@@ -31,26 +31,24 @@ class ForumSearch
 {
     public static function buildQuery(string $queryString, string $bool = 'must', ?string $type = null)
     {
-        $body = [
-            'query' => [
-                'bool' => [
-                    $bool => [
-                        ['query_string' => [
-                            'fields' => ['post_preview', 'title'],
-                            'query' => $queryString,
-                        ]],
-                    ],
-                ]
-            ],
+        $query = [
+            'bool' => [
+                $bool => [
+                    ['query_string' => [
+                        'fields' => ['post_preview', 'title'],
+                        'query' => $queryString,
+                    ]],
+                ],
+            ]
         ];
 
         if ($type !== null) {
-            $body['query']['bool']['filter'] = [
+            $query['bool']['filter'] = [
                 ['term' => ['type' => $type]],
             ];
         }
 
-        return $body;
+        return $query;
     }
 
     public static function hasChildQuery($source = ['topic_id', 'post_id', 'post_preview'])
@@ -69,30 +67,28 @@ class ForumSearch
         ];
     }
 
-    public static function search($query, array $options = [])
+    public static function search($queryString, array $options = [])
     {
         // FIXME: extract all the page-limit mapping junk away
         $page = max(1, $options['page'] ?? 1);
         $size = clamp($options['size'] ?? $options['limit'] ?? 50, 1, 50);
         $from = ($page - 1) * $size;
 
-        if (is_string($query)) {
-            $body = static::buildQuery($query, 'should', 'topics');
-            $body['query']['bool']['minimum_should_match'] = 1;
-        }
+        $query = static::buildQuery($queryString, 'should', 'topics');
+        $query['bool']['minimum_should_match'] = 1;
 
         $childQuery = static::hasChildQuery();
-        $innerQuery = static::buildQuery($query, 'must');
+        $innerQuery = static::buildQuery($queryString, 'must');
         $scoring = [
-            'function_score' => array_merge($innerQuery, [
+            'function_score' => array_merge(['query' => $innerQuery], [
                 'functions' => [
                     [
-                        'gauss' => [
+                        'linear' => [
                             'post_time' => [
                                 'origin' => Carbon::now()->toIso8601String(),
-                                'scale' => '7d',
-                                'offset' => '7d',
-                                'decay' => '0.01',
+                                'scale' => '30d',
+                                'offset' => '30d',
+                                'decay' => '0.99',
                             ],
                         ],
                     ],
@@ -101,18 +97,18 @@ class ForumSearch
             ]),
         ];
 
-        $body['query']['bool']['should'][] = [
+        $query['bool']['should'][] = [
             'has_child' => array_merge($childQuery, ['query' => $scoring]),
         ];
 
-        $body['highlight'] = [
-            'fields' => [
-                'title' => new \stdClass(),
-            ],
+        $body = [
+            'highlight' => ['fields' => ['title' => new \stdClass()]],
+            'size' => $size,
+            'from' => $from,
+            'query' => $query,
         ];
 
-        $body['size'] = $size;
-        $body['from'] = $from;
+
 
         return [
             new SearchResults(
