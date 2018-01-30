@@ -48,7 +48,7 @@
 
 
   bottomPage: ->
-    document.body.clientHeight == (document.body.scrollHeight - document.body.scrollTop)
+    window.innerHeight == (document.body.scrollHeight - window.pageYOffset)
 
 
   ajaxError: (xhr) ->
