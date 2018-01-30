@@ -36,8 +36,7 @@ class Search
         // also display order
         'user' => User::class,
         'beatmapset' => Beatmapset::class,
-        'forum_threaded' => ForumSearch::class,
-        // 'forum_post' => ForumSearch::class, // ForumPost::class,
+        'forum_post' => ForumSearch::class,
         'wiki_page' => WikiPage::class,
     ];
 
