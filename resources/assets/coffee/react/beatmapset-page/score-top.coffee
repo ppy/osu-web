@@ -40,7 +40,8 @@ BeatmapsetPage.ScoreTop = (props) ->
 
         div className: "#{bn}__user-box",
           a
-            className: "#{bn}__username"
+            className: "#{bn}__username js-usercard"
+            'data-user-id': props.score.user.id
             href: laroute.route 'users.show', user: props.score.user.id
             props.score.user.username
 

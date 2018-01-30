@@ -63,7 +63,8 @@ BeatmapsetPage.ScoreboardTable = (props) ->
                   classModifiers: ['scoreboard', 'small-box']
             td {},
               a
-                className: "#{bn}__user-link"
+                className: "#{bn}__user-link js-usercard"
+                'data-user-id': score.user.id
                 href: laroute.route 'users.show', user: score.user.id
                 score.user.username
 
