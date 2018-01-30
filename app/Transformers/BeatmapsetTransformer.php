@@ -137,6 +137,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $disqualifyEvent = $beatmapset->resetEvent();
             if ($disqualifyEvent) {
                 $result['disqualification'] = [
+                    'type' => $disqualifyEvent->type,
                     'reason' => $disqualifyEvent->comment,
                     'created_at' => json_time($disqualifyEvent->created_at),
                 ];

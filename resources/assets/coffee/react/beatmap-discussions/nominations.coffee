@@ -98,13 +98,12 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     nominators = []
     for event in @props.events by -1
       if event.type == 'disqualify' || event.type == 'nomination_reset'
-        disqualificationType = event.type
         break
       else if event.type == 'nominate'
         nominators.push(@props.users[event.user_id])
 
     if disqualification?
-      switch disqualificationType
+      switch disqualification.type
         when 'disqualify'
           reason = disqualification.reason
         when 'nomination_reset'
