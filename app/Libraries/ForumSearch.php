@@ -67,6 +67,23 @@ class ForumSearch
         ];
     }
 
+    public static function scoringFunctions()
+    {
+        return [
+            [
+                'linear' => [
+                    'post_time' => [
+                        'origin' => Carbon::now()->toIso8601String(),
+                        'scale' => '30d',
+                        'offset' => '30d',
+                        'decay' => '0.99',
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
     public static function search($queryString, array $options = [])
     {
         // FIXME: extract all the page-limit mapping junk away
@@ -80,21 +97,11 @@ class ForumSearch
         $childQuery = static::hasChildQuery();
         $innerQuery = static::buildQuery($queryString, 'must');
         $scoring = [
-            'function_score' => array_merge(['query' => $innerQuery], [
-                'functions' => [
-                    [
-                        'linear' => [
-                            'post_time' => [
-                                'origin' => Carbon::now()->toIso8601String(),
-                                'scale' => '30d',
-                                'offset' => '30d',
-                                'decay' => '0.99',
-                            ],
-                        ],
-                    ],
-                ],
+            'function_score' => [
+                'query' => $innerQuery,
+                'functions' => static::scoringFunctions(),
                 'score_mode' => 'multiply',
-            ]),
+            ],
         ];
 
         $query['bool']['should'][] = [
