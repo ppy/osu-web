@@ -34,9 +34,9 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
       div className: 'profile-info__flags',
         a
           href: laroute.route 'rankings',
-            mode: currentMode,
-            country: user.country.code,
-            type: 'performance'
+          mode: currentMode,
+          country: user.country.code,
+          type: 'performance'
           el FlagCountry, country: user.country
     div
       className: 'profile-info__bar hidden-xs'
