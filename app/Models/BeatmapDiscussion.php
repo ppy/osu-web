@@ -112,7 +112,12 @@ class BeatmapDiscussion extends Model
 
     public function beatmap()
     {
-        return $this->belongsTo(Beatmap::class, 'beatmap_id')->withTrashed();
+        return $this->visibleBeatmap()->withTrashed();
+    }
+
+    public function visibleBeatmap()
+    {
+        return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
 
     public function beatmapset()
@@ -486,7 +491,7 @@ class BeatmapDiscussion extends Model
             ->whereIn('message_type', static::RESOLVABLE_TYPES)
             ->where(function ($query) {
                 $query
-                    ->has('beatmap')
+                    ->has('visibleBeatmap')
                     ->orWhereNull('beatmap_id');
             })
             ->where('resolved', '=', false);
