@@ -94,6 +94,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       nominations = @props.beatmapset.nominations
       if !mapIsQualified
         disqualification = nominations.disqualification
+        nominationReset = nominations.nomination_reset
 
     nominators = []
     for event in @props.events by -1
@@ -101,6 +102,12 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         break
       else if event.type == 'nominate'
         nominators.push(@props.users[event.user_id])
+
+    if nominationReset?
+      nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
+      url = BeatmapDiscussionHelper.hash discussionId: nominationResetDiscussionId
+      nominationResetDiscussionLink = osu.link url, "##{nominationResetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
+
 
     div className: bn,
       # hide hype meter and nominations when beatmapset is: ranked, approved, loved or graveyarded
@@ -196,26 +203,36 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             className: "#{bn}__footer #{if mapCanBeNominated then "#{bn}__footer--extended" else ''}",
             key: 'footer'
             div className: "#{bn}__note #{bn}__note--disqualification",
-              # implies mapCanBeNominated
-              if disqualification
-                span
-                  dangerouslySetInnerHTML:
-                    __html: osu.trans 'beatmaps.nominations.disqualifed-at',
-                      time_ago: osu.timeago(disqualification.created_at)
-                      reason: disqualification.reason ? osu.trans('beatmaps.nominations.disqualifed_no_reason')
-              else if mapIsQualified
+              if mapIsQualified
                 if rankingETA
                   span null,
                     osu.trans 'beatmaps.nominations.qualified',
                       date: moment(rankingETA).format(dateFormat)
                 else
-                  span null, osu.trans 'beatmaps.nominations.qualified-soon'
+                  span null, osu.trans 'beatmaps.nominations.qualified_soon'
 
+              # implies mapCanBeNominated
+              else
+                span null,
+                  if disqualification?
+                    span null,
+                      span
+                        dangerouslySetInnerHTML:
+                          __html: osu.trans 'beatmaps.nominations.disqualified_at',
+                            time_ago: osu.timeago(disqualification.created_at)
+                            reason: disqualification.comment ? osu.trans('beatmaps.nominations.disqualified_no_reason')
+                      ' ' # spacer
+                  if nominationResetDiscussionLink?
+                    span
+                      dangerouslySetInnerHTML:
+                        __html: osu.trans 'beatmaps.nominations.reset_at',
+                          time_ago: osu.timeago(nominationReset.created_at)
+                          discussion: nominationResetDiscussionLink
             if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
                 dangerouslySetInnerHTML:
-                  __html: osu.trans 'beatmaps.nominations.nominated-by',
+                  __html: osu.trans 'beatmaps.nominations.nominated_by',
                     users: nominators.map (user) ->
                         osu.link laroute.route('users.show', user: user.id), user.username,
                           classNames: ['js-usercard']
@@ -241,7 +258,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   disqualify: =>
-    reason = prompt osu.trans('beatmaps.nominations.disqualification-prompt')
+    reason = prompt osu.trans('beatmaps.nominations.disqualification_prompt')
     return unless reason
 
     @doAjax 'disqualify', reason
@@ -269,6 +286,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
 
   nominate: =>
-    return unless confirm(osu.trans('beatmaps.nominations.nominate-confirm'))
+    return unless confirm(osu.trans('beatmaps.nominations.nominate_confirm'))
 
     @doAjax 'nominate'
