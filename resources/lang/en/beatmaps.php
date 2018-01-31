@@ -141,7 +141,7 @@ return [
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
         'required_text' => 'Nominations: :current/:required',
-        'reset_at' => 'Reset :time_ago by discussion :discussion.',
+        'reset_at' => 'Nominations reset :time_ago by new problem :discussion.',
         'reset_confirm' => 'Are you sure? Posting a new problem will reset nominations.',
         'title' => 'Nomination Status',
         'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
