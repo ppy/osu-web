@@ -30,6 +30,8 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -1476,8 +1478,9 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if (present($this->user_email)) {
-            if (strpos($this->user_email, '@') === false) {
+        if ($this->isDirty('user_email') && present($this->user_email)) {
+            $emailValidator = new EmailValidator;
+            if (!$emailValidator->isValid($this->user_email, new RFCValidation)) {
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 

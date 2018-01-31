@@ -17,6 +17,8 @@
  */
 
 .tooltip-default {
+  @top: tooltip-default;
+
   .default-border-radius();
 
   background-color: fade(#000, 70%);
@@ -39,6 +41,10 @@
 
   .qtip-content {
     text-align: center;
+
+    .@{top}--extra-padding& {
+      padding: 7px 10px;
+    }
   }
 
   &__date {
