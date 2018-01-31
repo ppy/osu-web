@@ -115,7 +115,7 @@ abstract class Model extends BaseModel
     {
         return function ($query) {
             $limit = config('osu.beatmaps.max-scores');
-            $newQuery = (clone $query)->limit($limit * 3);
+            $newQuery = (clone $query)->with('user')->limit($limit * 3);
             $newQuery->getQuery()->orders = null;
 
             $baseResult = $newQuery->orderBy('score', 'desc')->get();
@@ -278,7 +278,10 @@ abstract class Model extends BaseModel
 
     public function scopeDefault($query)
     {
-        return $query->where('hidden', 0);
+        return $query
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
     }
 
     public function scopeDefaultListing($query)
