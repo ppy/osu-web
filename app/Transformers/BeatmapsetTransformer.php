@@ -22,6 +22,7 @@ namespace App\Transformers;
 
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
+use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
 use Auth;
@@ -136,8 +137,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $currentUser = Auth::user();
             $disqualificationEvent = $beatmapset->disqualificationEvent();
             $resetEvent = $beatmapset->resetEvent();
-            if ($resetEvent !== null && $resetEvent->getKey() !== $disqualificationEvent->getKey()) {
-                $result['reset'] = json_item($resetEvent, 'BeatmapsetEvent');
+
+            if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
+                $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
             if ($disqualificationEvent !== null) {
                 $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');

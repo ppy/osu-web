@@ -94,7 +94,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       nominations = @props.beatmapset.nominations
       if !mapIsQualified
         disqualification = nominations.disqualification
-        reset = nominations.reset
+        nominationReset = nominations.nomination_reset
 
     nominators = []
     for event in @props.events by -1
@@ -103,10 +103,10 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       else if event.type == 'nominate'
         nominators.push(@props.users[event.user_id])
 
-    if reset? && reset.type == 'nomination_reset'
-      resetDiscussionId = reset.comment.beatmap_discussion_id
-      url = BeatmapDiscussionHelper.hash discussionId: resetDiscussionId
-      resetDiscussionLink = osu.link url, "##{resetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
+    if nominationReset?
+      nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
+      url = BeatmapDiscussionHelper.hash discussionId: nominationResetDiscussionId
+      nominationResetDiscussionLink = osu.link url, "##{nominationResetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
 
 
     div className: bn,
@@ -222,12 +222,12 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                             time_ago: osu.timeago(disqualification.created_at)
                             reason: disqualification.comment ? osu.trans('beatmaps.nominations.disqualified_no_reason')
                       ' ' # spacer
-                  if resetDiscussionLink?
+                  if nominationResetDiscussionLink?
                     span
                       dangerouslySetInnerHTML:
                         __html: osu.trans 'beatmaps.nominations.reset_at',
-                          time_ago: osu.timeago(reset.created_at)
-                          discussion: resetDiscussionLink
+                          time_ago: osu.timeago(nominationReset.created_at)
+                          discussion: nominationResetDiscussionLink
             if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
