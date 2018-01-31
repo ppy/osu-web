@@ -61,7 +61,7 @@ return [
 
         'message_hint' => [
             'in_general' => 'Essa postagem vai para a discussão geral do mapa. Para fazer uma sugestão nesse mapa, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
-            'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste váarias marcações (uma postagem por marcação de tempo).',
+            'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma postagem por marcação de tempo).',
         ],
 
         'message_type' => [
