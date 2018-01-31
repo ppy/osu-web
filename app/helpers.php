@@ -170,13 +170,13 @@ function get_valid_locale($requestedLocale)
 
 function html_excerpt($body, $limit = 300)
 {
-    $body = replace_tags_with_spaces($body);
+    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
 
-    if (strlen($body) < $limit) {
-        return $body;
+    if (strlen($body) >= $limit) {
+        $body = mb_substr($body, 0, $limit).'...';
     }
 
-    return mb_substr($body, 0, $limit).'...';
+    return e($body);
 }
 
 function json_date($date)
@@ -992,15 +992,25 @@ function model_pluck($builder, $key, $class = null)
     return $result;
 }
 
-// Returns null if timestamp is null or 0.
-// Technically it's not null if 0 but some tables have not null constraints
-// despite null being a valid value. Instead it's filled in with 0 so this
-// helper returns null if it's 0 and parses the timestamp otherwise.
+/*
+ * Returns null if $timestamp is null or 0.
+ * Used for table which has not null constraints but accepts "empty" value (0).
+ */
 function get_time_or_null($timestamp)
 {
     if ($timestamp !== 0) {
         return parse_time_to_carbon($timestamp);
     }
+}
+
+/*
+ * Get unix timestamp of a DateTime (or Carbon\Carbon).
+ * Returns 0 if $time is null so mysql doesn't explode because of not null
+ * constraints.
+ */
+function get_timestamp_or_zero(DateTime $time = null) : int
+{
+    return $time === null ? 0 : $time->getTimestamp();
 }
 
 function parse_time_to_carbon($value)

@@ -21,7 +21,11 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\Transactions\AfterCommit;
+use App\Libraries\Transactions\AfterRollback;
+use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
+use DB;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -79,16 +83,59 @@ abstract class Model extends BaseModel
         $query->whereRaw('false');
     }
 
+    public function delete()
+    {
+        return $this->runAfterCommitWrapper(function () {
+            return parent::delete();
+        });
+    }
+
+    public function save(array $options = [])
+    {
+        return $this->runAfterCommitWrapper(function () use ($options) {
+            return parent::save($options);
+        });
+    }
+
     public function saveOrExplode($options = [])
     {
-        $result = $this->save($options);
+        return DB::connection($this->connection)->transaction(function () use ($options) {
+            $result = $this->save($options);
 
-        if ($result === false) {
-            $message = method_exists($this, 'validationErrors') ?
-                implode("\n", $this->validationErrors()->allMessages()) :
-                'failed saving model';
+            if ($result === false) {
+                $message = method_exists($this, 'validationErrors') ?
+                    $this->validationErrors()->toSentence() :
+                    'failed saving model';
 
-            throw new ModelNotSavedException($message);
+                throw new ModelNotSavedException($message);
+            }
+
+            return $result;
+        });
+    }
+
+    private function enlistCallbacks($model, $connection)
+    {
+        $transaction = resolve(TransactionStateManager::class)->current($connection);
+        if ($model instanceof AfterCommit) {
+            $transaction->addCommittable($model);
+        }
+
+        if ($model instanceof AfterRollback) {
+            $transaction->addRollbackable($model);
+        }
+
+        return $transaction;
+    }
+
+    private function runAfterCommitWrapper(callable $fn)
+    {
+        $transaction = $this->enlistCallbacks($this, $this->connection);
+
+        $result = $fn();
+
+        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
+            $transaction->commit();
         }
 
         return $result;

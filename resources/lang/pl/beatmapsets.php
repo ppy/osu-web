@@ -101,10 +101,6 @@ return [
                 'first' => 'Najlepszy wynik',
                 'own' => 'Twój wynik',
             ],
-            'stats' => [
-                'accuracy' => 'Celność',
-                'score' => 'Wynik',
-            ],
         ],
     ],
 ];

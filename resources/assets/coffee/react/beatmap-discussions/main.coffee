@@ -200,8 +200,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
         # - deleted beatmap
         continue if _.isEmpty(d)
 
-        if !d.deleted_at && d.can_be_resolved && !d.resolved
-          unresolvedIssues++
+        if !d.deleted_at? && d.can_be_resolved && !d.resolved
+          if !d.beatmap_id? || !@beatmaps()[d.beatmap_id]?.deleted_at?
+            unresolvedIssues++
+
           if d.beatmap_id?
             countsByBeatmap[d.beatmap_id] ?= 0
             countsByBeatmap[d.beatmap_id]++

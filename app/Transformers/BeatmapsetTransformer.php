@@ -135,29 +135,17 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
+            $disqualificationEvent = $beatmapset->disqualificationEvent();
+            $resetEvent = $beatmapset->resetEvent();
 
-            $nominations = $beatmapset->recentEvents()->get();
-
-            foreach ($nominations as $nomination) {
-                if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
-                    $disqualifyEvent = $nomination;
-                }
-
-                if ($currentUser !== null &&
-                    $nomination->user_id === $currentUser->user_id &&
-                    $nomination->type === BeatmapsetEvent::NOMINATE) {
-                    $alreadyNominated = true;
-                }
+            if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
+                $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
-
-            if (isset($disqualifyEvent)) {
-                $result['disqualification'] = [
-                    'reason' => $disqualifyEvent->comment,
-                    'created_at' => json_time($disqualifyEvent->created_at),
-                ];
+            if ($disqualificationEvent !== null) {
+                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $alreadyNominated ?? false;
+                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();

@@ -83,7 +83,6 @@ class Beatmapset extends Model
     ];
     const HYPEABLE_STATES = [-1, 0, 3];
 
-    const NOMINATIONS_PER_DAY = 3;
     const RANKED_PER_DAY = 8;
     const MINIMUM_DAYS_FOR_RANKING = 7;
     const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
@@ -399,7 +398,7 @@ class Beatmapset extends Model
                 $params['sort_field'] = '_score';
                 $params['sort_order'] = 'desc';
             } else {
-                if ($params['status'] === 4 || $params['status'] === 5) {
+                if (in_array($params['status'], [4, 5, 6], true)) {
                     $params['sort_field'] = 'last_update';
                     $params['sort_order'] = 'desc';
                 } else {
@@ -924,7 +923,7 @@ class Beatmapset extends Model
         }
 
         DB::transaction(function () use ($user) {
-            $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id);
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
@@ -1050,7 +1049,7 @@ class Beatmapset extends Model
 
     public function currentNominationCount()
     {
-        return count($this->recentEvents()->nominations()->get());
+        return $this->nominationsSinceReset()->count();
     }
 
     public function hasNominations()
@@ -1073,22 +1072,31 @@ class Beatmapset extends Model
         return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
-    public function recentEvents()
+    public function disqualificationEvent()
     {
-        // relevant events differ depending on state of beatmapset
-        $events = $this->events();
-        switch ($this->approved) {
-            case self::STATES['pending']:
-            case self::STATES['qualified']:
-                // last 'disqualify' or 'nomination reset' event (if any) and all events since
-                $resetEvent = $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+        return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+    }
 
-                if ($resetEvent) {
-                    $events->where('id', '>=', $resetEvent->id);
-                }
+    public function resetEvent()
+    {
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+    }
+
+    public function eventsSinceReset()
+    {
+        $events = $this->events();
+
+        $resetEvent = $this->resetEvent();
+        if ($resetEvent) {
+            $events->where('id', '>=', $resetEvent->id);
         }
 
         return $events;
+    }
+
+    public function nominationsSinceReset()
+    {
+        return $this->eventsSinceReset()->nominations();
     }
 
     public function status()

@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Tópicos fixados',
+    'slogan' => 'é perigoso jogar sozinho.',
+    'subforums' => 'Subfóruns',
+    'title' => 'comunidade osu!',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,47 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Tópicos fixados',
     'post' => [
         'confirm_destroy' => 'Excluir mesmo a publicação?',
         'confirm_restore' => 'Restaurar mesmo a publicação?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
         'posted_at' => 'publicado :when',
+
         'actions' => [
             'destroy' => 'Excluir publicação',
             'restore' => 'Restaurar publicação',
             'edit' => 'Editar publicação',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Ir para a publicação',
         'post_number_input' => 'insira o número da publicação',
         'total_posts' => ':posts_count publicações no total',
     ],
-    'subforums' => 'Subfóruns',
-    'title' => 'comunidade osu!',
-    'slogan' => 'é perigoso jogar sozinho.',
+
     'topic' => [
+        'go_to_latest' => 'ver a última publicação',
+        'latest_post' => ':when por :user',
+        'latest_reply_by' => 'última resposta por :user',
+        'new_topic' => 'Criar novo tópico',
+        'post_reply' => 'Publicar',
+        'reply_box_placeholder' => 'Escreva aqui para responder',
+        'started_by' => 'por :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Escreva o conteúdo da publicação aqui',
-                'title' => 'Clique aqui para definir o título',
-            ],
             'preview' => 'Pré-visualizar',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
             'submit' => 'Publicar',
+
+            'placeholder' => [
+                'body' => 'Escreva o conteúdo da publicação aqui',
+                'title' => 'Clique aqui para definir o título',
+            ],
         ],
-        'go_to_latest' => 'ver a última publicação',
+
         'jump' => [
             'enter' => 'clique para inserir um número de publicação específico',
             'first' => 'ir para a primeira publicação',
@@ -83,16 +95,11 @@ return [
             'next' => 'pular as próximas 10 publicações',
             'previous' => 'voltar 10 publicações',
         ],
-        'latest_post' => ':when por :user',
-        'latest_reply_by' => 'última resposta por :user',
-        'new_topic' => 'Criar novo tópico',
+
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Salvar',
         ],
-        'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Escreva aqui para responder',
-        'started_by' => 'por :user',
     ],
 
     'topic_watches' => [
@@ -224,16 +231,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Total de publicações',
             'deleted-posts' => 'Publicações excluídas',
+            'total_posts' => 'Total de publicações',
 
             'feature_vote' => [
                 'current' => 'Prioridade atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'user' => [
-                    'current' => 'Você tem :votes restantes.',
                     'count' => '{0} sem votos|{1} :count voto|[2,*] :count votos',
+                    'current' => 'Você tem :votes restantes.',
                     'not_enough' => 'Você não tem mais votos restantes',
                 ],
             ],
@@ -242,9 +249,9 @@ return [
                 'vote' => 'Votar',
 
                 'detail' => [
-                    'total' => 'Total de votos: :count',
-                    'ended' => 'Votação encerrada :time',
                     'end_time' => 'A votação encerrará às :time',
+                    'ended' => 'Votação encerrada :time',
+                    'total' => 'Total de votos: :count',
                 ],
             ],
         ],
@@ -256,5 +263,4 @@ return [
             'watch-1' => 'Inscrever-se no tópico',
         ],
     ],
-
 ];

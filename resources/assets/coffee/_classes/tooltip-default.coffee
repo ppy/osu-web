@@ -51,12 +51,15 @@ class @TooltipDefault
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
       when 'right center' then 'left center'
+      when 'bottom center' then 'top center'
 
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
     if isTime
       classes += ' tooltip-default--time'
+    if el.dataset.tooltipModifiers?
+      classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
 
     options =
       overwrite: false

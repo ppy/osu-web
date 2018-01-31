@@ -18,23 +18,14 @@
 
 .beatmap-score-top {
   @_top: beatmap-score-top;
-  @avatar-size: 60px;
+  @avatar-size: 70px;
 
-  .default-border-radius();
-  .default-box-shadow();
 
   display: flex;
   flex-direction: column;
 
-  margin: 20px 7.5px;
-
   &:hover {
     background-color: #eee;
-  }
-
-  &--with-outline {
-    @border-size: 3px;
-    box-shadow: 0 0 0 @border-size @yellow, 0 (@border-size + @box-shadow-y) @box-shadow-radius @box-shadow-color;
   }
 
   &__achieved {
@@ -51,8 +42,7 @@
     flex: none;
     width: @avatar-size;
     height: @avatar-size;
-    margin-bottom: -10px;
-    margin-right: 10px;
+    margin: 0px 10px;
 
     // clip avatar div following border radius
     overflow: hidden;
@@ -66,14 +56,13 @@
 
   &__position {
     text-align: right;
-    font-size: @font-size--large-2;
-    font-style: italic;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1;
+  }
 
-    .@{_top}--with-outline & {
-      color: @yellow-dark;
-    }
+  &__position-number {
+    padding-bottom: 5px;
   }
 
   &__rank {
@@ -88,72 +77,113 @@
   &__section {
     width: 100%;
     padding: 10px;
+    display: flex;
 
-    &--top {
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 20px;
-    }
+    .default-border-radius();
+    .default-box-shadow();
 
-    &--bottom {
-      display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media @mobile {
       flex-direction: column;
-      justify-content: flex-end;
-
-      background-color: #eee;
-      border-radius: 0 0 @border-radius-base @border-radius-base;
-      border-top: 1px solid #ccc;
     }
   }
 
   &__stat {
     display: flex;
     flex-direction: column;
-    margin: 0 10px;
+    margin-right: 10px;
+
+    @media @mobile {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
   }
 
   &__stat-header {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
 
     padding-bottom: 2px;
+
+    border-bottom: 2px solid #BBB;
+    text-transform: uppercase;
+
+    width: 50px;
+
+    &--wider {
+      min-width: 80px;
+      width: 100%;
+    }
+
+    &--mods {
+      width: 100%;
+      min-width: 30px;
+    }
   }
 
   &__stat-value {
     font-size: 22px;
     font-weight: 300;
-    font-style: italic;
-    color: @purple-dark;
+    color: #555;
+    margin-top: 4px;
 
     line-height: 0.9;
 
-    &--score {
+    &--smaller {
+      font-size: 16px;
       font-weight: 500;
     }
   }
 
   &__stats {
-    flex: 1;
     display: flex;
-    margin: 0 -10px;
-  }
+    flex-shrink: 1;
+    justify-content: space-around;
 
-  &__stats-top {
-    display: flex;
+    @media @desktop {
+      margin: 5px 10px 5px 0px;
+      justify-content: flex-end;
+    }
+
+    &--wrappable {
+      flex-wrap: wrap;
+    }
   }
 
   &__user-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    flex: none;
   }
 
   &__username {
-    font-size: @font-size--large;
+    font-size: 18px;
     font-style: italic;
     font-weight: 700;
     padding-bottom: 5px;
-    color: @blue-darker;
+    color: #555;
     display: block;
+    margin-right: 10px;
+  }
+
+  &__wrapping-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &--left {
+      flex-shrink: 0;
+    }
+
+    &--right {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: flex-start;
+      width: 100%; // 'cuz ie is a poop
+
+      @media @mobile {
+        justify-content: space-around;
+      }
+    }
   }
 }
