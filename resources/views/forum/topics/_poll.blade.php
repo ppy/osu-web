@@ -59,7 +59,7 @@
         @if (!priv_check('ForumTopicVote', $topic)->can())
             {{ priv_check('ForumTopicVote', $topic)->message() }}
         @else
-            <button class="btn-osu-lite btn-osu-lite--default js-checkbox-validation--submit">
+            <button class="btn-osu-lite btn-osu-lite--default js-checkbox-validation--submit" disabled>
                 {{ trans('forum.topics.show.poll.vote') }}
             </button>
         @endif
