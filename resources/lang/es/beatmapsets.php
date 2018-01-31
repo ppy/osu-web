@@ -101,10 +101,6 @@ return [
                 'first' => 'Liderando',
                 'own' => 'Tu mejor puntuación',
             ],
-            'stats' => [
-                'accuracy' => 'Precisión',
-                'score' => 'Puntuación',
-            ],
         ],
     ],
 ];
