@@ -85,10 +85,6 @@ return [
                 'global' => 'Nessun punteggio al momento. Perchè non provi a farne uno?',
                 'loading' => 'Caricamento punteggi...',
             ],
-            'stats' => [
-                'accuracy' => 'Precisione',
-                'score' => 'Punteggio',
-            ],
         ],
     ],
 ];
