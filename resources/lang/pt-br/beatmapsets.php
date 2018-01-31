@@ -86,12 +86,18 @@ return [
             'supporter-only' => 'Você precisa de uma supporter tag para acessar rankings de amigos e de países!',
             'title' => 'Placar',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Precisão',
-                'player-header' => 'Jogador',
-                'rank-header' => 'Colocação',
+                'combo' => 'Combo máximo',
+                'miss' => 'Erro',
+                'mods' => 'Mods',
+                'player' => 'Jogador',
+                'pp' => 'pp',
+                'rank' => 'Colocação',
+                'score_total' => 'Pontuação total',
                 'score' => 'Pontuação',
             ],
+
             'no_scores' => [
                 'country' => 'Ninguém do seu país fez uma pontuação nesse mapa ainda!',
                 'friend' => 'Nenhum de seus amigos fez uma pontuação nesse mapa ainda',
@@ -100,14 +106,8 @@ return [
                 'unranked' => 'Mapa não ranqueado.',
             ],
             'score' => [
-                'first' => 'Na liderança',
-                'own' => 'Seu melhor',
-            ],
-            'stats' => [
-                'accuracy' => 'Precisão',
-                'combo' => 'Combo',
-                'misses' => 'Erros',
-                'score' => 'Pontuação',
+                'first' => 'In the Lead',
+                'own' => 'Your Best',
             ],
         ],
     ],
