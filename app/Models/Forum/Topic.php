@@ -650,7 +650,7 @@ class Topic extends Model
 
         if ($lastPost === null) {
             $this->topic_last_post_id = 0;
-            $this->topic_last_post_time = 0;
+            $this->topic_last_post_time = null;
 
             $this->topic_last_poster_id = 0;
             $this->topic_last_poster_name = '';
