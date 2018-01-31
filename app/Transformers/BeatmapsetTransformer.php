@@ -136,7 +136,7 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             $currentUser = Auth::user();
             $disqualificationEvent = $beatmapset->disqualificationEvent();
             $resetEvent = $beatmapset->resetEvent();
-            if ($resetEvent !== null) {
+            if ($resetEvent !== null && $resetEvent->getKey() !== $disqualificationEvent->getKey()) {
                 $result['reset'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
             if ($disqualificationEvent !== null) {
