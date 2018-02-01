@@ -122,24 +122,27 @@ class ForumSearch
             $user = User::where('username', '=', $posterName)->first();
             $userQuery = ['term' => ['user_id' => $user ? $user->user_id : -1]];
 
-            if (!isset($childQuery['query']['bool']['must'])) {
-                $childQuery['query']['bool']['must'] = [];
+            if (!isset($childQuery['query']['bool']['filter'])) {
+                $childQuery['query']['bool']['filter'] = [];
             }
-
-            $childQuery['query']['bool']['must'][] = ['term' => ['poster_id' => $user ? $user->user_id : -1]];
+            $childQuery['query']['bool']['filter'][] = ['term' => ['poster_id' => $user ? $user->user_id : -1]];
         }
 
         $query['bool']['should'][] = ['has_child' => $childQuery];
 
-        if (!isset($query['bool']['must'])) {
-            $query['bool']['must'] = [];
+        if (!isset($query['bool']['filter'])) {
+            $query['bool']['filter'] = [];
         }
 
         if ($forumId !== null) {
             $forumIds = $includeChildren ? Forum::findOrFail($forumId)->allSubForums() : [$forumId];
             $forumQuery = ['terms' => ['forum_id' => $forumIds]];
 
-            $query['bool']['must'][] = $forumQuery;
+            $query['bool']['filter'][] = $forumQuery;
+        }
+
+        if (!isset($query['bool']['must'])) {
+            $query['bool']['must'] = [];
         }
 
         $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
