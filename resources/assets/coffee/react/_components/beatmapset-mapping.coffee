@@ -22,41 +22,42 @@ el = React.createElement
 bn = 'beatmapset-mapping'
 dateFormat = 'LL'
 
-@BeatmapsetMapping = ({user, beatmapset}) ->
-  user ?= beatmapset.user
+class @BeatmapsetMapping extends React.PureComponent
+  render: =>
+    user = @props.user ? @props.beatmapset.user
 
-  div className: bn,
-    div
-      className: 'avatar avatar--beatmapset'
-      style:
-        backgroundImage: "url(#{user.avatar_url})"
+    div className: bn,
+      div
+        className: 'avatar avatar--beatmapset'
+        style:
+          backgroundImage: "url(#{user.avatar_url})"
 
-    div className: "#{bn}__content",
-      div className: "#{bn}__mapper",
-        osu.trans 'beatmapsets.show.details.made-by'
-        a
-          className: "#{bn}__user"
-          href: laroute.route 'users.show', user: user.id
-          user.username
+      div className: "#{bn}__content",
+        div className: "#{bn}__mapper",
+          osu.trans 'beatmapsets.show.details.made-by'
+          a
+            className: "#{bn}__user"
+            href: laroute.route 'users.show', user: user.id
+            user.username
 
-      div null,
-        osu.trans 'beatmapsets.show.details.submitted'
-        time
-          className: "#{bn}__date timeago"
-          datetime: beatmapset.submitted_date
-          moment(beatmapset.submitted_date).format dateFormat
-
-      if beatmapset.ranked > 0
         div null,
-          osu.trans "beatmapsets.show.details.#{beatmapset.status}"
+          osu.trans 'beatmapsets.show.details.submitted'
           time
             className: "#{bn}__date timeago"
-            datetime: beatmapset.submitted_date
-            moment(beatmapset.ranked_date).format dateFormat
-      else
-        div null,
-          osu.trans 'beatmapsets.show.details.updated'
-          time
-            className: "#{bn}__date timeago"
-            datetime: beatmapset.submitted_date
-            moment(beatmapset.last_updated).format dateFormat
+            datetime: @props.beatmapset.submitted_date
+            moment(@props.beatmapset.submitted_date).format dateFormat
+
+        if @props.beatmapset.ranked > 0
+          div null,
+            osu.trans "beatmapsets.show.details.#{@props.beatmapset.status}"
+            time
+              className: "#{bn}__date timeago"
+              datetime: @props.beatmapset.submitted_date
+              moment(@props.beatmapset.ranked_date).format dateFormat
+        else
+          div null,
+            osu.trans 'beatmapsets.show.details.updated'
+            time
+              className: "#{bn}__date timeago"
+              datetime: @props.beatmapset.submitted_date
+              moment(@props.beatmapset.last_updated).format dateFormat
