@@ -52,7 +52,7 @@ class ForumSearch
         ];
 
         if ($type !== null) {
-            $query['bool']['filter'] = [
+            $query['bool']['filter'][] = [
                 ['term' => ['type' => $type]],
             ];
         }
