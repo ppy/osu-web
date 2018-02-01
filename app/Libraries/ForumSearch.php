@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\SearchResults;
+use App\Libraries\Elasticsearch\Query;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -35,14 +36,7 @@ class ForumSearch
         string $bool = 'must',
         ?string $type = null
     ) : array {
-        $query = [
-            'bool' => [
-                'should' => [],
-                'must' => [],
-                'must_not' => [],
-                'filter' => [],
-            ],
-        ];
+        $query = Query::newBoolQuery();
 
         $query['bool'][$bool][] = [
             'query_string' => [
