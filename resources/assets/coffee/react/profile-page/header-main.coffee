@@ -77,9 +77,10 @@ class ProfilePage.HeaderMain extends React.Component
           className: 'profile-header__column'
           el ProfilePage.HeaderInfo, user: @props.user
 
-        div
-          className: 'profile-header__column'
-          el ProfilePage.Stats, stats: @props.stats
+        if !@props.user.isBot
+          div
+            className: 'profile-header__column'
+            el ProfilePage.Stats, stats: @props.stats
 
       div
         className: 'profile-header__actions',

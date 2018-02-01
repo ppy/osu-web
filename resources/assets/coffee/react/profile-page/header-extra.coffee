@@ -166,7 +166,7 @@ class ProfilePage.HeaderExtra extends React.Component
               url: "https://last.fm/user/#{@props.user.lastfm}"
 
         div
-          className: "#{bn}__column #{bn}__column--chart"
+          className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.isBot}"
           div className: "#{bn}__rank-box",
             div null,
               div className: "#{bn}__rank-global",
@@ -210,6 +210,8 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   rankChartHover: (_e, {data} = {}) =>
+    return if @props.user.isBot
+
     if data?
       hoverLine1 = "##{(-data.y).toLocaleString()}"
       hoverLine2 =
@@ -224,6 +226,8 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   rankChartUpdate: =>
+    return if @props.user.isBot
+
     if !@rankChart?
       options =
         scales:
