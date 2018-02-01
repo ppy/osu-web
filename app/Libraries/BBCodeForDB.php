@@ -161,7 +161,7 @@ class BBCodeForDB
             "#\[heading]((.|\n|\r)*?)\[/heading\]#",
             "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
             $text
-        )
+        );
 
         return $text;
     }
