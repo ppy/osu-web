@@ -107,7 +107,7 @@ class ProfilePage.HeaderExtra extends React.Component
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))
+                      date: rowValue osu.timeago @props.user.join_date, moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
