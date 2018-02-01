@@ -34,7 +34,6 @@ class UserRegistration
     public function __construct($params)
     {
         $this->user = new User(array_merge([
-            'username_clean' => $params['username'] ?? '',
             'user_permissions' => '',
             'user_interests' => '',
             'user_occ' => '',
