@@ -129,7 +129,7 @@ class Post extends Model
         // Don't care if too many characters are stripped;
         // just don't want tags to go into index because they mess up the highlighting.
 
-        static $bbcodeExp = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+        static $bbcodePattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
 
         static $metadataPattern = '/^(.*?)-{15}/s';
 
@@ -138,18 +138,12 @@ class Post extends Model
         // unescape html entities
         // strip remaining bbcode
         // strip any html tags left
-        return strip_tags(
-            preg_replace(
-                $bbcodeExp,
-                '',
-                html_entity_decode(
-                    static::removeBlockQuotes(
-                        preg_replace($metadataPattern, '', $this->post_text)
-                    ),
-                    ENT_QUOTES | ENT_HTML5
-                )
-            )
-        );
+        $text = preg_replace($metadataPattern, '', $this->post_text);
+        $text = static::removeBlockQuotes($text);
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5);
+        $text = preg_replace($bbcodePattern, '', $text);
+
+        return strip_tags($text);
     }
 
     public static function lastUnreadByUser($topic, $user)
