@@ -98,7 +98,7 @@ class BBCodeForDB
     {
         return preg_replace(
             ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\]((.|\n|\r)*?)\[(/color)\],",
-            "[\\1:{$this->uid}]\\2[\\3\\4\\5\\1:{$this->uid}]",
+            "[\\1:{$this->uid}]\\2[\\4\\5\:{$this->uid}]",
             $text
         );
     }
