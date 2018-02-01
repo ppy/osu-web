@@ -118,9 +118,21 @@ class @TooltipDefault
       .text time.format('LL')
     $timeEl = $('<span>')
       .addClass 'tooltip-default__time'
-      .text time.format('LT')
+      .text "#{time.format('LT')} #{@tzString(time)}"
 
     $('<span>')
       .append $dateEl
       .append ' '
       .append $timeEl
+
+
+  tzString: (time) ->
+    offset = time.utcOffset()
+
+    offsetString =
+      if offset % 60 == 0
+        "#{if offset >= 0 then '+' else ''}#{offset / 60}"
+      else
+        time.format('Z')
+
+    "UTC#{offsetString}"
