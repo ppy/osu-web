@@ -30,8 +30,11 @@ use Es;
 
 class ForumSearch
 {
-    public static function buildQuery(string $queryString, string $bool = 'must', ?string $type = null)
-    {
+    public static function buildQuery(
+        string $queryString,
+        string $bool = 'must',
+        ?string $type = null
+    ) : array {
         $query = [
             'bool' => [
                 'should' => [],
@@ -57,7 +60,7 @@ class ForumSearch
         return $query;
     }
 
-    public static function childQuery($queryString)
+    public static function childQuery(string $queryString) : array
     {
         return [
             'type' => 'posts',
@@ -76,7 +79,7 @@ class ForumSearch
         ];
     }
 
-    public static function firstPostQuery()
+    public static function firstPostQuery() : array
     {
         return [
             'type' => 'posts',
@@ -91,24 +94,7 @@ class ForumSearch
         ];
     }
 
-    public static function scoringFunctions()
-    {
-        return [
-            [
-                'linear' => [
-                    'post_time' => [
-                        'origin' => Carbon::now()->toIso8601String(),
-                        'scale' => '30d',
-                        'offset' => '30d',
-                        'decay' => '0.99',
-                    ],
-                ],
-            ],
-        ];
-    }
-
-
-    public static function search($queryString, array $options = [])
+    public static function search(string $queryString, array $options = []) : array
     {
         // FIXME: extract all the page-limit mapping junk away
         $page = max(1, $options['page'] ?? 1);
