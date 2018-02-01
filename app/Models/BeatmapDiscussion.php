@@ -284,6 +284,10 @@ class BeatmapDiscussion extends Model
 
     public function hasValidBeatmap()
     {
+        if ($this->exists && count(array_diff(array_keys($this->getDirty()), ['kudosu_denied', 'kudosu_denied_by_id'])) === 0) {
+            return true;
+        }
+
         return
             $this->beatmap_id === null ||
             ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
