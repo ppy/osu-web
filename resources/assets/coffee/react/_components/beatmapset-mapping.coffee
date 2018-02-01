@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, span, a, ol, li} = ReactDOMFactories
+{div, span, a, time} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmapset-mapping'
@@ -41,19 +41,22 @@ bn = 'beatmapset-mapping'
 
       div null,
         osu.trans 'beatmapsets.show.details.submitted'
-        span
-          className: "#{bn}__date"
+        time
+          className: "#{bn}__date timeago"
+          datetime: beatmapset.submitted_date
           moment(beatmapset.submitted_date).format dateFormat
 
       if beatmapset.ranked > 0
         div null,
           osu.trans "beatmapsets.show.details.#{beatmapset.status}"
-          span
-            className: "#{bn}__date"
+          time
+            className: "#{bn}__date timeago"
+            datetime: beatmapset.submitted_date
             moment(beatmapset.ranked_date).format dateFormat
       else
         div null,
           osu.trans 'beatmapsets.show.details.updated'
-          span
-            className: "#{bn}__date"
+          time
+            className: "#{bn}__date timeago"
+            datetime: beatmapset.submitted_date
             moment(beatmapset.last_updated).format dateFormat
