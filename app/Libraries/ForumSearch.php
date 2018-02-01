@@ -24,6 +24,7 @@ use App\Libraries\Elasticsearch\SearchResults;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
+use App\Models\User;
 use Carbon\Carbon;
 use Es;
 
@@ -111,11 +112,24 @@ class ForumSearch
 
         $forumId = get_int($options['forum_id'] ?? null);
         $includeChildren = get_bool($options['forum_children'] ?? false);
-        $posterName = $options['username'] ?? null;
+        $posterName = presence($options['username'] ?? null);
 
         $query = static::buildQuery($queryString, 'should', 'topics');
         $query['bool']['minimum_should_match'] = 1;
-        $query['bool']['should'][] = ['has_child' => static::childQuery($queryString, $forumId)];
+        $childQuery = static::childQuery($queryString, $forumId);
+
+        if ($posterName !== null) {
+            $user = User::where('username', '=', $posterName)->first();
+            $userQuery = ['term' => ['user_id' => $user ? $user->user_id : -1]];
+
+            if (!isset($childQuery['query']['bool']['must'])) {
+                $childQuery['query']['bool']['must'] = [];
+            }
+
+            $childQuery['query']['bool']['must'][] = ['term' => ['poster_id' => $user ? $user->user_id : -1]];
+        }
+
+        $query['bool']['should'][] = ['has_child' => $childQuery];
 
         if (!isset($query['bool']['must'])) {
             $query['bool']['must'] = [];
@@ -123,13 +137,7 @@ class ForumSearch
 
         if ($forumId !== null) {
             $forumIds = $includeChildren ? Forum::findOrFail($forumId)->allSubForums() : [$forumId];
-            $forumQuery = [
-                'bool' => [
-                    'should' => [
-                        ['terms' => ['forum_id' => $forumIds]],
-                    ],
-                ],
-            ];
+            $forumQuery = ['terms' => ['forum_id' => $forumIds]];
 
             $query['bool']['must'][] = $forumQuery;
         }
