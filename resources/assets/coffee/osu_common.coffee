@@ -134,13 +134,11 @@
     return text.replace(osu.urlRegex, '<a href="$1" rel="nofollow">$1</a>')
 
 
-  timeago: (time, text = null) ->
-    text = time if text == null
-
+  timeago: (time) ->
     el = document.createElement('time')
     el.classList.add 'timeago'
     el.setAttribute 'datetime', time
-    el.textContent = text
+    el.textContent = time
     el.outerHTML
 
 
