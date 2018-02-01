@@ -140,7 +140,7 @@ class LocaleCheck extends Command
             $baseEntries = trans($head, [], $locale);
             // trans returns plain string if the file is empty.
             if (is_array($baseEntries)) {
-                $entries = array_merge($entries, array_dot($baseEntries));
+                $entries = array_merge($entries, array_dot([$head => $baseEntries]));
             }
         }
 
