@@ -131,7 +131,6 @@ class UsernameChangeFulfillmentTest extends TestCase
     {
         factory(User::class)->create([
             'username' => 'new_username',
-            'username_clean' => 'new_username',
             'user_lastvisit' => time(),
         ]);
 

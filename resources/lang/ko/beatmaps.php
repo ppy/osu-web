@@ -112,15 +112,15 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => ':time_ago에 실격처리 되었습니다 (:reason).',
-        'disqualifed_no_reason' => '사유가 명시되지 않았습니다',
-        'disqualification-prompt' => '실격시키려는 사유는요?',
+        'disqualification_prompt' => '실격시키려는 사유는요?',
+        'disqualified_at' => ':time_ago에 실격처리 되었습니다 (:reason).',
+        'disqualified_no_reason' => '사유가 명시되지 않았습니다',
         'disqualify' => '실격시키기',
         'incorrect-state' => '작업을 처리하는 과정에서 문제가 발생했습니다, 페이지를 새로고침 해보세요.',
         'nominate' => '추천하기', // Nominate
-        'nominate-confirm' => '이 비트맵을 추천할까요?', // Nominate
+        'nominate_confirm' => '이 비트맵을 추천할까요?', // Nominate
         'qualified' => '아무런 문제가 발견되지 않으면, :date에 Ranked될 것입니다.',
-        'qualified-soon' => '아무런 문제가 발견되지 않으면, 곧 Ranked될 것입니다.',
+        'qualified_soon' => '아무런 문제가 발견되지 않으면, 곧 Ranked될 것입니다.',
         'required_text' => '추천 수: :current/:required',
         'title' => '추천 상태', // Nomination Status
     ],
