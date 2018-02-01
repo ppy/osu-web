@@ -144,13 +144,24 @@ class BBCodeForDB
     */
     public function parseInlineSimple($text)
     {
-        foreach (['b', 'i', 'strike', 's', 'u', 'heading'] as $tag) {
+        foreach (['b', 'i', 'strike', 's', 'u'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}](.*?)\[/{$tag}\]#",
+                "#\[{$tag}]((.|\n|\r)*?)\[/{$tag}\]#",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
         }
+
+        return $text;
+    }
+
+    public function parseHeading($text)
+    {
+        $text = preg_replace(
+            "#\[heading]((.|\n|\r)*?)\[/heading\]#",
+            "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
+            $text
+        )
 
         return $text;
     }
@@ -239,7 +250,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\](.+?)\[(/size)\]#",
+            "#\[(size=(?:\d+))\]((.|\n|\r)*?)\[(/size)\]#",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -318,6 +329,7 @@ class BBCodeForDB
         $text = $this->parseBlockSimple($text);
         $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
+        $text = $this->parseHeading($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);
