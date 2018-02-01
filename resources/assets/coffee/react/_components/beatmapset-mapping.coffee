@@ -43,21 +43,21 @@ class @BeatmapsetMapping extends React.PureComponent
         div null,
           osu.trans 'beatmapsets.show.details.submitted'
           time
-            className: "#{bn}__date timeago"
-            datetime: @props.beatmapset.submitted_date
+            className: "#{bn}__date js-tooltip-time"
+            dateTime: @props.beatmapset.submitted_date
             moment(@props.beatmapset.submitted_date).format dateFormat
 
         if @props.beatmapset.ranked > 0
           div null,
             osu.trans "beatmapsets.show.details.#{@props.beatmapset.status}"
             time
-              className: "#{bn}__date timeago"
-              datetime: @props.beatmapset.submitted_date
+              className: "#{bn}__date js-tooltip-time"
+              dateTime: @props.beatmapset.submitted_date
               moment(@props.beatmapset.ranked_date).format dateFormat
         else
           div null,
             osu.trans 'beatmapsets.show.details.updated'
             time
-              className: "#{bn}__date timeago"
-              datetime: @props.beatmapset.submitted_date
+              className: "#{bn}__date js-tooltip-time"
+              dateTime: @props.beatmapset.submitted_date
               moment(@props.beatmapset.last_updated).format dateFormat
