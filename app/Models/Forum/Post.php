@@ -61,8 +61,7 @@ class Post extends Model
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
         'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'post_preview' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'title' => ['type' => 'text'],
+        'search_content' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
         'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']]
     ];
 
@@ -124,7 +123,7 @@ class Post extends Model
      *
      * @return string
      */
-    public function getPostPreviewAttribute()
+    public function getSearchContentAttribute()
     {
         // Don't care if too many characters are stripped;
         // just don't want tags to go into index because they mess up the highlighting.
