@@ -568,7 +568,7 @@ class Beatmapset extends Model
 
         return [
             'data' => $data,
-            'total' => $result['total'],
+            'total' => min($result['total'], 10000),
         ];
     }
 

@@ -152,7 +152,7 @@ class Post extends Model
 
         return [
             'data' => $query->get(),
-            'total' => $result['total'],
+            'total' => min($result['total'], 10000),
             'params' => $params,
         ];
     }

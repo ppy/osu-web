@@ -326,7 +326,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $data = es_records($results, get_called_class());
 
         return [
-            'total' => $total,
+            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
             'over_limit' => $total > $max,
             'data' => $data,
             'params' => $params,
