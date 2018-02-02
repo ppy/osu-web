@@ -21,6 +21,28 @@
 return [
     'deleted' => '[被删除的用户]', //TODO 需要上下文
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => '最近打开的讨论', //上下文
+        ],
+
+        'events' => [
+            'title_recent' => '最近事件',
+        ],
+
+        'posts' => [
+            'title_recent' => '最近帖子',
+        ],
+
+        'votes_received' => [
+            'title_most' => '得赞最多（最近三个月）',
+        ],
+
+        'votes_made' => [
+            'title_most' => '赞数最多（最近三个月）',
+        ],
+    ],
+
     'login' => [
         '_' => '登录',
         'locked_ip' => 'IP 已被锁定，请稍等几分钟',
@@ -208,7 +230,13 @@ return [
             'hit_accuracy' => '准确率',
             'level' => '等级 :level',
             'maximum_combo' => '最大连击',
-            'play_count' => '游玩次数',
+            'play_count' => '游戏次数',
+            'play_time' => [
+                'label' => '游戏时间',
+                'hours' => '小时',
+                'minutes' => '分钟',
+                'seconds' => '秒',
+            ],
             'ranked_score' => 'Ranked 谱面总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',

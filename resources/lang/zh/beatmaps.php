@@ -111,7 +111,7 @@ return [
         'button' => '推荐这张谱面',
         'button_done' => '已经推荐！',
         'section_title' => '推荐进度',
-        'title' => 'Hype',
+        'title' => '推荐',
     ],
 
     'nominations' => [

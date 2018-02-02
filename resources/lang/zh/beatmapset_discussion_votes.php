@@ -18,37 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'breadcrumbs' => [
-        'news-index' => '列表',
-        'news-show' => '新闻', //未使用字段
-    ],
-
+return [ //上下文
     'index' => [
-        'title' => 'osu!新闻',
-
-        'nav' => [
-            'newer' => '下一条新闻',
-            'older' => '上一条新闻',
-        ],
+        'title' => '谱面讨论投票',
     ],
 
-    'show' => [
-        'posted' => ':time 推送',
-
-        'nav' => [
-            'newer' => '下一条新闻',
-            'older' => '上一条新闻',
-        ],
-    ],
-
-    'store' => [
-        'button' => '更新', //未使用字段
-        'ok' => '列表已更新.', //未使用字段
-    ],
-
-    'update' => [
-        'button' => '更新',
-        'ok' => '新闻已更新.', //未使用字段
+    'item' => [
+        'score' => '得分', 
     ],
 ];

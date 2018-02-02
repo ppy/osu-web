@@ -85,12 +85,18 @@ return [
             'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
             'title' => '排行榜',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => '准确率',
-                'player-header' => '玩家',
-                'rank-header' => '排名',
+                'combo' => '最大连击',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => '玩家',
+                'pp' => 'pp',
+                'rank' => '排名',
+                'score_total' => '得分',
                 'score' => '得分',
             ],
+
             'no_scores' => [
                 'country' => '还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',

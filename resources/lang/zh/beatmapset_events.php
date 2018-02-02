@@ -37,4 +37,13 @@ return [
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
     ],
+
+    'index' => [
+        'title' => '谱面事件',
+    ],
+
+    'item' => [ //上下文
+        'content' => '内容',
+        'type' => '类型',
+    ],
 ];

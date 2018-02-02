@@ -20,8 +20,19 @@
 
 return [
     'not_negative' => ':attribute 不能为负数。',
-    'required' => '需要 :attribute。',
+    'required' => '需要 :attribute 。',
+    'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符.',
     'wrong_confirmation' => '确认信息不匹配。',
+
+    'beatmap_discussion' => [
+        'hype' => [
+            'guest' => '登录后才能推荐',
+            'hyped' => '你已经推荐了这张谱面',
+            'limit_exceeded' => '你已经用光了推荐次数',
+            'not_hypeable' => '这张谱面无法推荐',
+            'owner' => '不能推荐你自己的谱面',
+        ],
+    ],
 
     'beatmap_discussion_post' => [
         'first_post' => '无法删除第一个提交。',
