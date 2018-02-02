@@ -38,7 +38,7 @@ class ElasticsearchServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig($this->loadConfig());
+            return ClientBuilder::fromConfig(config('elasticsearch'));
         });
 
         $this->app->booting(function () {
