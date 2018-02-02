@@ -95,7 +95,7 @@ class @BeatmapDiscussionHelper
     else
       switch
         when user.is_admin then 'admin'
-        when user.isQAT then 'qat'
+        when user.is_qat then 'qat'
         when user.isBNG then 'bng'
 
 
