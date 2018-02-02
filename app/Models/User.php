@@ -639,6 +639,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isGroup(UserGroup::GROUPS['default']);
     }
 
+    public function isBot()
+    {
+        return $this->group_id === UserGroup::GROUPS['bot'];
+    }
+
     public function hasSupported()
     {
         return $this->osu_subscriptionexpiry !== null;
