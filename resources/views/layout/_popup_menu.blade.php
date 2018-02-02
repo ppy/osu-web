@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="hidden-xs nav-popup nav-popup--main">
+<div class="js-nav-popup-auto-size hidden-xs nav-popup nav-popup--main">
     @foreach (nav_links() as $section => $links)
         <div class="nav-popup__menu">
             <a
@@ -27,7 +27,7 @@
                 "
                 data-menu-default="{{ $current_section === $section }}"
                 data-menu-target="header--{{ $section }}"
-                href="{{ array_values($links)[0] }}"
+                href="{{ $links['_'] ?? array_values($links)[0] }}"
             >
                 <div class="nav-popup__menu-head-bar">
                     <span class="bar bar--double"></span>
@@ -49,6 +49,9 @@
                     data-visibility-animation="none"
                 >
                     @foreach ($links as $action => $link)
+                        @if ($action === '_')
+                            @continue
+                        @endif
                         <a class="nav-popup__link" href="{{ $link }}">
                             {{ trans("layout.menu.$section.$action") }}
 

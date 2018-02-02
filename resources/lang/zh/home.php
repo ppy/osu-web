@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => '下载',
         'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
-
-        'download' => [
-            '_' => '下载',
-            'soon' => '适用于其它操作系统的 osu! 即将到来',
-            'for' => ':os 版',
-            'other' => '点击这里下载 :os1 或 :os2 版',
-        ],
 
         'slogan' => [
             'main' => '免费音乐游戏',
@@ -84,30 +78,6 @@ return [
             'more_simple' => '查看更多搜索结果',
             'title' => 'Wiki',
         ],
-    ],
-
-    'download' => [
-      'header' => [
-          '1' => '让我们',
-          '2' => '开始吧',
-          '3' => '下载 osu! Windows 版',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => '第一步',
-              'content' => '下载 osu!',
-          ],
-          '2' => [
-              'name' => '第二步',
-              'content' => '注册 osu! 账户',
-          ],
-          '3' => [
-              'name' => '第三步',
-              'content' => '???',
-          ],
-      ],
-      'more' => '想了解更多？',
-      'more_text' => '查看 <a href="https://www.youtube.com/user/osuacademy/">osu! 学院 YouTube 频道</a>（国内用户可能访问有困难）获取最新的教程',
     ],
 
     'user' => [

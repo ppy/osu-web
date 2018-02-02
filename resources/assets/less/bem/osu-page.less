@@ -65,6 +65,21 @@
     }
   }
 
+  &--download {
+    .width(20px);
+    .default-box-shadow();
+
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+
+    background-color: #333;
+
+    @media @desktop {
+      .width-desktop(20px);
+    }
+  }
+
   &--forum-pippi {
     margin-bottom: 10px;
   }
@@ -129,6 +144,13 @@
   &--stg-block {
     .default-box-shadow();
     margin: 10px 0;
+  }
+
+  &--tournament {
+    @media @desktop {
+      .width-desktop(20px);
+      margin-bottom: 10px;
+    }
   }
 
   &--users-show-header {

@@ -18,8 +18,11 @@
 
 class @Timeago
   constructor: ->
-    @observer = new MutationObserver (mutations) =>
-      mutations.forEach (mutation) =>
+    @observer = new MutationObserver (mutations) ->
+      # Third-party scripts may init conflicting versions of jquery
+      return unless $.fn.timeago
+
+      mutations.forEach (mutation) ->
         $nodes = $(mutation.addedNodes)
         $nodes.find('.timeago').add($nodes.filter('.timeago')).timeago()
 

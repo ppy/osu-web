@@ -118,11 +118,11 @@ return [
         'store' => [
             '_' => 'sklep',
             'getListing' => 'przedmioty',
-            'getCart' => 'koszyk',
+            'cart-show' => 'koszyk',
 
             'getCheckout' => 'zapłać',
             'getInvoice' => 'paragon',
-            'getProduct' => 'produkt',
+            'products-show' => 'produkt',
 
             'new' => 'nowy',
             'home' => 'strona główna',

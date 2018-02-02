@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BeatmapDiscussion;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class BeatmapDiscussionsController extends Controller
@@ -77,6 +78,36 @@ class BeatmapDiscussionsController extends Controller
         }
     }
 
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $params = request();
+
+        // for when the priv_check lock above is removed
+        if (!priv_check('BeatmapDiscussionModerate')->can()) {
+            $params['with_deleted'] = false;
+        }
+
+        $search = BeatmapDiscussion::search($params);
+        $discussions = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapset',
+                    'startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => route('beatmap-discussions.index'),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmap_discussions.index', compact('discussions', 'search'));
+    }
+
     public function restore($id)
     {
         $discussion = BeatmapDiscussion::whereNotNull('deleted_at')->findOrFail($id);
@@ -106,6 +137,10 @@ class BeatmapDiscussionsController extends Controller
 
         $params = get_params(Request::all(), 'beatmap_discussion_vote', ['score:int']);
         $params['user_id'] = Auth::user()->user_id;
+
+        if ($params['score'] < 0) {
+            priv_check('BeatmapDiscussionVoteDown', $discussion)->ensureCan();
+        }
 
         if ($discussion->vote($params)) {
             return $discussion->beatmapset->defaultDiscussionJson();

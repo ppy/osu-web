@@ -24,6 +24,21 @@ class @SyncHeight
     $(document).on 'turbolinks:load osu:page:change', @sync
     $(window).on 'throttled-resize', @sync
 
+    @observe()
+
+  observe: =>
+    config =
+      attributes: true
+      subtree: true
+
+    @observer = new MutationObserver(@onResize)
+    @observer.observe document, config
+
+
+  onResize: (mutations) =>
+    for mutation in mutations
+      return @sync() if mutation.target.tagName == 'TEXTAREA'
+
 
   sync: =>
     heights = {}

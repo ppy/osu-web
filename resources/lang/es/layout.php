@@ -116,11 +116,11 @@ return [
         'store' => [
             '_' => 'tienda',
             'getListing' => 'listado',
-            'getCart' => 'carro',
+            'cart-show' => 'carro',
 
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',
-            'getProduct' => 'producto',
+            'products-show' => 'producto',
 
             'new' => 'nuevo',
             'home' => 'inicio',

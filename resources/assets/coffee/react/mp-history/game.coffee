@@ -54,7 +54,7 @@ class MPHistory.Game extends React.Component
       if showTeams && @props.event.game.end_time
         div {},
           div className: 'mp-history-game__team-scores',
-            ['blue', 'red'].map (m) =>
+            ['red', 'blue'].map (m) =>
               div className: "mp-history-game__team-score mp-history-game__team-score--#{m}", key: m,
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--name', osu.trans "multiplayer.match.teams.#{m}"
                 span className: 'mp-history-game__team-score-text mp-history-game__team-score-text--score', @props.teamScores[m].toLocaleString()

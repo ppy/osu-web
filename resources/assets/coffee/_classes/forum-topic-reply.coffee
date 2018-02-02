@@ -21,18 +21,16 @@ class @ForumTopicReply
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
     @input = document.getElementsByClassName('js-forum-topic-reply--input')
-    @closeButton = document.getElementsByClassName('js-forum-topic-reply--close')
+    @stickButtons = document.getElementsByClassName('js-forum-topic-reply--stick')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
 
     $(document).on 'ajax:success', '.js-forum-topic-reply', @posted
 
-    $(document).on 'click', '.js-forum-topic-reply--close', @deactivate
-    $(document).on 'click', '.js-forum-topic-reply--new', @activate
+    $(document).on 'click', '.js-forum-topic-reply--stick', @toggle
     $(document).on 'ajax:success', '.js-forum-topic-reply--quote', @activateWithReply
 
     $(document).on 'focus', '.js-forum-topic-reply--input', @activate
     $(document).on 'input change', '.js-forum-topic-reply--input', _.debounce(@inputChange, 500)
-    $(document).on 'click', @deactivateIfBlank
 
     $.subscribe 'stickyFooter', @stickOrUnstick
 
@@ -70,6 +68,7 @@ class @ForumTopicReply
     e.preventDefault() if e
 
     @setState 'active', '1'
+    button.classList.add 'js-activated' for button in @stickButtons
 
     @stickyFooter.markerEnable @marker()
     $.publish 'stickyFooter:check'
@@ -95,20 +94,8 @@ class @ForumTopicReply
 
     @stickyFooter.markerDisable @marker()
     @setState 'active', '0'
+    button.classList.remove 'js-activated' for button in @stickButtons
     $.publish 'stickyFooter:check'
-
-
-  deactivateIfBlank: (e) =>
-    return unless @available() &&
-      @getState('active') == '1' &&
-      @input[0].value == ''
-
-    $target = $(e.target)
-
-    return unless $target.closest('.js-forum-topic-reply').length == 0 &&
-        $target.closest('.js-forum-topic-reply--new').length == 0
-
-    @deactivate()
 
 
   inputChange: =>
@@ -144,7 +131,6 @@ class @ForumTopicReply
     inputFocused = $input.is(':focus')
 
     @fixedBar[0].insertBefore(@box[0], @fixedBar[0].firstChild)
-    @closeButton[0].classList.remove 'hidden'
 
     $input.focus() if inputFocused
 
@@ -155,7 +141,6 @@ class @ForumTopicReply
     @deleteState 'sticking'
 
     @container[0].insertBefore(@box[0], @container[0].firstChild)
-    @closeButton[0].classList.add 'hidden'
 
 
   stickOrUnstick: (_e, target) =>
@@ -163,3 +148,11 @@ class @ForumTopicReply
       @stick()
     else
       @unstick()
+
+
+  toggle: =>
+    if @getState('active') == '1'
+      @deactivate()
+    else
+      @activate()
+      @$input().focus()

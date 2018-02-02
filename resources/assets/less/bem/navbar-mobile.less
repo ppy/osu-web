@@ -24,6 +24,8 @@
     float: none;
     padding: 0 10px;
     height: auto;
+    min-width: 0;
+    line-height: 1.5; // avoid clipping
   }
 
   &__header {
@@ -41,9 +43,15 @@
   &__header-section {
     display: flex;
     align-items: center;
+    min-width: 0;
+
+    &--buttons {
+      flex: none;
+    }
   }
 
   &__logo {
+    flex: none;
     display: inline-block;
     background-image: url('/images/layout/osu-logo.png');
     background-size: 100%;
@@ -74,6 +82,7 @@
   }
 
   &__toggle {
+    flex: none;
     float: none;
     width: @navbar-mobile--content-height;
     height: @navbar-mobile--content-height;

@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => '收藏这张谱面',
             'unfavourite' => '取消收藏',
+            'favourited_count' => '还有很多人...',
         ],
         'stats' => [
             'cs' => '缩圈大小',
@@ -100,10 +101,6 @@ return [
             'score' => [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
-            ],
-            'stats' => [
-                'accuracy' => '准确率',
-                'score' => '得分',
             ],
         ],
     ],

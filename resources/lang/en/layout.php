@@ -51,11 +51,15 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'listing',
             'artists' => 'featured artists',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussions-index' => 'beatmap discussions',
+            'beatmapset-watches-index' => 'modding watchlist',
+            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmapset_events-index' => 'beatmapset events',
+            'index' => 'listing',
             'packs' => 'packs',
-            // 'getCharts' => 'charts',
+            'show' => 'info',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -114,15 +118,17 @@ return [
             'settings' => 'Settings',
             'logout' => 'Log Out',
             'help' => 'Help',
+            'beatmapset_activities' => 'user beatmapset activities',
         ],
         'store' => [
             '_' => 'store',
+            'checkout-show' => 'checkout',
             'getListing' => 'listing',
-            'getCart' => 'cart',
+            'cart-show' => 'cart',
 
             'getCheckout' => 'checkout',
             'getInvoice' => 'invoice',
-            'getProduct' => 'product',
+            'products-show' => 'product',
 
             'new' => 'new',
             'home' => 'home',
@@ -140,11 +146,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'root' => 'index',
+            'beatmapsets-covers' => 'beatmapset covers',
             'logs-index' => 'log',
+            'root' => 'index',
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
-                'covers' => 'covers',
                 'show' => 'detail',
             ],
         ],

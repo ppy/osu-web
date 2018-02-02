@@ -29,7 +29,7 @@
                 {!! trans('community.support.header.small_description') !!}
             </p>
 
-            <a class="stg-header__button" href="{{ osu_url('support-the-game') }}">
+            <a class="stg-header__button" href="{{ route('store.products.show', 'supporter-tag') }}">
                 {!! trans('community.support.header.support_button') !!}
                 <span class="stg-header__button-icon">
                     <span class="fa fa-heart"></span>
@@ -116,7 +116,7 @@
                 {{ trans('community.support.convinced.title') }}
             </h3>
 
-            <a class="icon-fancy" href="{{ osu_url('support-the-game') }}">
+            <a class="icon-fancy" href="{{ route('store.products.show', 'supporter-tag') }}">
                 <span class="fa fa-heart"></span>
             </a>
 

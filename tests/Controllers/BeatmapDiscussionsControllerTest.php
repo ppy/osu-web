@@ -5,6 +5,7 @@ use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionVote;
 use App\Models\Beatmapset;
 use App\Models\User;
+use App\Models\UserGroup;
 
 class BeatmapDiscussionsControllerTest extends TestCase
 {
@@ -12,19 +13,22 @@ class BeatmapDiscussionsControllerTest extends TestCase
     {
         parent::setUp();
 
+        $this->mapper = factory(User::class)->create();
         $this->user = factory(User::class)->create();
         $this->anotherUser = factory(User::class)->create();
+        $this->bngUser = factory(User::class)->create();
+        $this->bngUserGroup($this->bngUser);
         $this->beatmapset = factory(Beatmapset::class)->create([
-            'user_id' => $this->user->user_id,
+            'user_id' => $this->mapper->user_id,
             'discussion_enabled' => true,
         ]);
         $this->beatmap = $this->beatmapset->beatmaps()->save(factory(Beatmap::class)->make([
-            'user_id' => $this->user->user_id,
+            'user_id' => $this->mapper->user_id,
         ]));
         $this->beatmapDiscussion = BeatmapDiscussion::create([
             'beatmapset_id' => $this->beatmapset->getKey(),
             'timestamp' => 0,
-            'message_type' => 'praise',
+            'message_type' => 'problem',
             'beatmap_id' => $this->beatmap->beatmap_id,
             'user_id' => $this->user->user_id,
         ]);
@@ -62,7 +66,27 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this->assertSame($currentScore + 1, $this->currentScore($this->beatmapDiscussion));
     }
 
-    // voting again only changes the score
+    // changing vote (as BNG) only changes the score
+    public function testPutVoteChangeBNG()
+    {
+        $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->bngUser->user_id]);
+
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
+
+        $this
+            ->actingAs($this->bngUser)
+            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
+                'beatmap_discussion_vote' => ['score' => '-1'],
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+    }
+
+    // voting again has no effect
     public function testPutVoteChange()
     {
         $this->beatmapDiscussion->vote(['score' => 1, 'user_id' => $this->anotherUser->user_id]);
@@ -73,12 +97,12 @@ class BeatmapDiscussionsControllerTest extends TestCase
         $this
             ->actingAs($this->anotherUser)
             ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
-                'beatmap_discussion_vote' => ['score' => '-1'],
+                'beatmap_discussion_vote' => ['score' => '1'],
             ])
             ->assertStatus(200);
 
         $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
-        $this->assertSame($currentScore - 2, $this->currentScore($this->beatmapDiscussion));
+        $this->assertSame($currentScore, $this->currentScore($this->beatmapDiscussion));
     }
 
     // voting 0 will remove the vote
@@ -103,5 +127,60 @@ class BeatmapDiscussionsControllerTest extends TestCase
     private function currentScore($discussion)
     {
         return (int) $discussion->fresh()->beatmapDiscussionVotes()->sum('score');
+    }
+
+    // downvote by regular user should fail
+    public function testPutVoteDownChange()
+    {
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
+
+        $this
+            ->actingAs($this->anotherUser)
+            ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
+                'beatmap_discussion_vote' => ['score' => '-1'],
+            ])
+            ->assertStatus(403);
+
+        $this->assertSame($currentVotes, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore, $this->currentScore($this->beatmapDiscussion));
+    }
+
+    // downvote by BNG user should NOT fail
+    public function testPutVoteDownChangeBNG()
+    {
+        $currentVotes = BeatmapDiscussionVote::count();
+        $currentScore = $this->currentScore($this->beatmapDiscussion);
+
+        $this
+            ->actingAs($this->bngUser)
+            ->withSession(['verified' => \App\Libraries\UserVerification::VERIFIED])
+            ->put(route('beatmap-discussions.vote', $this->beatmapDiscussion), [
+                'beatmap_discussion_vote' => ['score' => '-1'],
+            ])
+            ->assertStatus(200);
+
+        $this->assertSame($currentVotes + 1, BeatmapDiscussionVote::count());
+        $this->assertSame($currentScore - 1, $this->currentScore($this->beatmapDiscussion));
+    }
+
+    private function bngUserGroup($user)
+    {
+        $table = (new UserGroup)->getTable();
+
+        $conditions = [
+            'user_id' => $user->user_id,
+            'group_id' => UserGroup::GROUPS['bng'],
+        ];
+
+        $existingUserGroup = UserGroup::where($conditions)->first();
+
+        if ($existingUserGroup !== null) {
+            return $existingUserGroup;
+        }
+
+        DB::table($table)->insert($conditions);
+
+        return UserGroup::where($conditions)->first();
     }
 }

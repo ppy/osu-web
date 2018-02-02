@@ -115,7 +115,7 @@
         <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
             {!! Form::open([
                 "url" => route("forum.topics.reply", $topic->topic_id),
-                "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element js-editor-zoom",
+                "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element",
                 "data-remote" => true,
                 "data-sync-height-target" => "forum-topic-reply",
                 'data-force-reload' => Auth::check() === false ? '1' : '0',
@@ -172,14 +172,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="forum-post__actions forum-post__actions--reply js-editor-zoom--hidden">
-                                <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <span class="btn-circle__content">
-                                        <i class="fa fa-close"></i>
-                                    </span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -365,12 +357,18 @@
                 @if (priv_check('ForumTopicReply', $topic)->can())
                     <button
                         type="button"
-                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--new"
-                        data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.actions.reply') }}"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
                     >
-                        <span class="btn-circle__content">
-                            <i class="fa fa-plus"></i>
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fa fa-comment"></i>
+                            </span>
+
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.reply') }}
+                                </span>
+                            </span>
                         </span>
                     </button>
                 @endif

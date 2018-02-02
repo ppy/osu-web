@@ -32,6 +32,7 @@ $(document).on 'submit', 'form', (e) ->
 $(document).on 'turbolinks:load', ->
   BeatmapPack.initialize()
   StoreSupporterTag.initialize()
+  StoreCheckout.initialize()
 
 @accountEdit ?= new AccountEdit
 @accountEditPlaystyle ?= new AccountEditPlaystyle
@@ -40,7 +41,6 @@ $(document).on 'turbolinks:load', ->
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
 @currentUserObserver ?= new CurrentUserObserver
-@editorZoom ?= new EditorZoom
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
 @formError ?= new FormError
@@ -53,7 +53,6 @@ $(document).on 'turbolinks:load', ->
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
-@landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
 @navSearch ?= new NavSearch
@@ -70,6 +69,7 @@ $(document).on 'turbolinks:load', ->
 @syncHeight ?= new SyncHeight
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
+@tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer

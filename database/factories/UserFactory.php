@@ -42,7 +42,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
     return [
         'username' => $username,
-        'username_clean' => $username,
         'user_id' => $userid,
         'user_password' => password_hash(md5('password'), PASSWORD_BCRYPT),
         'user_email' => $faker->safeEmail,
@@ -58,10 +57,13 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'user_website' => 'http://www.google.com/',
         'user_twitter' => 'ppy',
         'user_permissions' => '',
-        'user_interests' => $faker->bs,
-        'user_occ' => $faker->catchPhrase,
-        'user_sig' => $faker->realText(155),
-        'user_from' => $faker->country,
+        'user_interests' => substr($faker->bs, 30),
+        'user_occ' => substr($faker->catchPhrase, 30),
+        'user_sig' => function () use ($faker) {
+            // avoids running if user_sig is supplied.
+            return $faker->realText(155);
+        },
+        'user_from' => substr($faker->country, 30),
         'user_regdate' => $faker->dateTimeBetween('-6 years', 'now'),
     ];
 });

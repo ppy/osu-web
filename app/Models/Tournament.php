@@ -42,6 +42,11 @@ class Tournament extends Model
         return $this->start_date < $now && $this->end_date > $now;
     }
 
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'tournament_id');
+    }
+
     public function registrations()
     {
         return $this->hasMany('App\Models\TournamentRegistration', 'tournament_id');

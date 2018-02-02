@@ -43,6 +43,8 @@ return [
 
     'count' => [
         'item' => ':count 个',
+        'months' => ':count 个月',
+        'years' => ':count 年',
     ],
 
     'datetime' => [

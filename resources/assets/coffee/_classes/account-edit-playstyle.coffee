@@ -17,40 +17,64 @@
 ###
 
 class @AccountEditPlaystyle
-  checkboxes: document.getElementsByClassName('js-account-edit-playstyle')
+  checkboxFields: document.getElementsByClassName('js-account-edit-playstyle')
 
   constructor: ->
-    $(document).on 'change', '.js-account-edit-playstyle', @update
+    @debouncedUpdate = _.debounce @update, 500
+    $(document).on 'change', '.js-account-edit-playstyle', @change
 
-  saved: (el) =>
-    el.dataset.accountEditState = 'saved'
 
-    Timeout.set 3000, =>
-      @clearState el
+  change: (e) =>
+    target = e.currentTarget
+    target.dataset.playstyleUpdating = '1'
 
-  clearState: (el) =>
-    el.dataset.accountEditState = ''
+    @setState 'saving'
+    @debouncedUpdate()
 
-  saving: (el) =>
-    el.dataset.accountEditState = 'saving'
 
-  update: (e) =>
-    input = e.currentTarget
-    $main = $(input).closest('.js-account-edit')
+  clearState: =>
+    for field in @checkboxFields
+      # internet explorer doesn't redraw when using .dataset
+      field.setAttribute 'data-account-edit-state', ''
 
+
+  saved: =>
+    @setState 'saved'
+    @setStateTimeout = Timeout.set 3000, @clearState
+
+
+  setState: (state) =>
+    Timeout.clear @setStateTimeout
+
+    for field in @checkboxFields
+      # internet explorer doesn't redraw when using .dataset
+      field.setAttribute 'data-account-edit-state',
+        if field.dataset.playstyleUpdating == '1'
+          state
+        else
+          ''
+
+
+  update: =>
     arr = [""]
-    for checkbox in @checkboxes
-      arr.push checkbox.value if checkbox.checked
+    for field in @checkboxFields
+      checkbox = field.getElementsByTagName('input')[0]
+      arr.push field.dataset.playstyle if checkbox.checked
 
-    @saving $main[0]
-
-    $.ajax laroute.route('account.update'),
+    @xhr?.abort()
+    @xhr = $.ajax laroute.route('account.update'),
       method: 'PUT'
       data:
         user: osu_playstyle: arr
     .done =>
-      @saved $main[0]
+      @saved()
+    .fail (xhr, status) =>
+      return if status == 'abort'
 
-    .fail (xhr) =>
       osu.ajaxError xhr
-      @clearState $main[0]
+      @clearState()
+
+    .always (_xhr, status) =>
+      if status != 'abort'
+        for field in @checkboxFields
+          field.dataset.playstyleUpdating = '0'

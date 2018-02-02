@@ -19,7 +19,12 @@
 .beatmap-discussion-system-post {
   @resolved-color: @green;
 
-  margin: 15px @beatmap-discussion--reply-padding;
+  margin: 15px 15px;
+
+  @media @desktop {
+    margin-left: @beatmap-discussion--reply-padding;
+    margin-right: @beatmap-discussion--reply-padding;
+  }
 
   font-size: @font-size--small;
   font-weight: 600;
@@ -37,5 +42,11 @@
       height: 1px;
       margin-left: 10px;
     }
+  }
+
+  // overrides all modifiers
+  &--deleted {
+    opacity: 0.75;
+    font-style: italic;
   }
 }

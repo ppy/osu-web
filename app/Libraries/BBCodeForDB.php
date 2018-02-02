@@ -97,7 +97,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.+?)\[(/color)\],",
+            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );

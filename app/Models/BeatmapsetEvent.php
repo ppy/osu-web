@@ -34,6 +34,7 @@ class BeatmapsetEvent extends Model
     const KUDOSU_DENY = 'kudosu_deny';
     const KUDOSU_GAIN = 'kudosu_gain';
     const KUDOSU_LOST = 'kudosu_lost';
+    const KUDOSU_RECALCULATE = 'kudosu_recalculate';
 
     const ISSUE_RESOLVE = 'issue_resolve';
     const ISSUE_REOPEN = 'issue_reopen';
@@ -43,6 +44,34 @@ class BeatmapsetEvent extends Model
 
     const DISCUSSION_POST_DELETE = 'discussion_post_delete';
     const DISCUSSION_POST_RESTORE = 'discussion_post_restore';
+
+    const NOMINATION_RESET = 'nomination_reset';
+
+    // =D
+    const TYPES = [
+        'nominate',
+        'qualify',
+        'disqualify',
+        'approve',
+        'rank',
+
+        'kudosu_allow',
+        'kudosu_deny',
+        'kudosu_gain',
+        'kudosu_lost',
+        'kudosu_recalculate',
+
+        'issue_resolve',
+        'issue_reopen',
+
+        'discussion_delete',
+        'discussion_restore',
+
+        'discussion_post_delete',
+        'discussion_post_restore',
+
+        'nomination_reset',
+    ];
 
     public static function log($type, $user, $object, $extraData = [])
     {
@@ -68,6 +97,52 @@ class BeatmapsetEvent extends Model
         ]);
     }
 
+    public static function search($rawParams = [])
+    {
+        $params = [
+            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
+            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+        ];
+
+        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+
+        if (isset($rawParams['user'])) {
+            $params['user'] = $rawParams['user'];
+            $user = User::lookup($params['user']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->where('user_id', '=', $user->getKey());
+            }
+        }
+
+        if (isset($rawParams['sort'])) {
+            $sort = explode('-', strtolower($rawParams['sort']));
+
+            if (in_array($sort[0] ?? null, ['id'], true)) {
+                $sortField = $sort[0];
+            }
+
+            if (in_array($sort[1] ?? null, ['asc', 'desc'], true)) {
+                $sortOrder = $sort[1];
+            }
+        }
+
+        $sortField ?? ($sortField = 'id');
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $query->orderBy($sortField, $sortOrder);
+
+        if (isset($rawParams['type'])) {
+            $params['type'] = $rawParams['type'];
+            $query->where('type', '=', $params['type']);
+        }
+
+        return ['query' => $query, 'params' => $params];
+    }
+
     public function beatmapset()
     {
         return $this->belongsTo(Beatmapset::class, 'beatmapset_id');
@@ -83,20 +158,19 @@ class BeatmapsetEvent extends Model
         return $query->where('type', self::NOMINATE);
     }
 
+    public function scopeNominationResets($query)
+    {
+        return $query->where('type', self::NOMINATION_RESET);
+    }
+
     public function scopeDisqualifications($query)
     {
         return $query->where('type', self::DISQUALIFY);
     }
 
-    public function hasArrayComment()
+    public function scopeDisqualificationAndNominationResetEvents($query)
     {
-        return !in_array($this->type, [
-            static::NOMINATE,
-            static::QUALIFY,
-            static::DISQUALIFY,
-            static::APPROVE,
-            static::RANK,
-        ], true);
+        return $query->whereIn('type', [self::DISQUALIFY, self::NOMINATION_RESET]);
     }
 
     public function getCommentAttribute($value)
@@ -111,5 +185,16 @@ class BeatmapsetEvent extends Model
         }
 
         $this->attributes['comment'] = $value;
+    }
+
+    public function hasArrayComment()
+    {
+        return !in_array($this->type, [
+            static::NOMINATE,
+            static::QUALIFY,
+            static::DISQUALIFY,
+            static::APPROVE,
+            static::RANK,
+        ], true);
     }
 }

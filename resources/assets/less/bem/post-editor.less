@@ -1,0 +1,95 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+// TODO: rename to bbcode-editor
+.post-editor {
+  @padding--large: 20px;
+  @padding--small: 10px;
+
+  &__action {
+    min-width: 120px;
+    & + & {
+      margin-left: @padding--small;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1 0 auto;
+
+    @media @mobile {
+      justify-content: center;
+      width: 100%; // force container to wrap.
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex: 1 0 auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    padding: @padding--small;
+
+    background-color: @gray-lighter;
+    background-image: linear-gradient(fade(#000, 30%), transparent 3px);
+
+    // not part of bbcode-editor
+    &--profile-page {
+      padding: @page-extra-side-padding--small;
+      margin: 0 -@page-extra-side-padding--small -(2 * @page-extra-side-padding--small);
+
+      .beatmapset-description-editor__container & {
+        padding: @padding--small @padding--large @padding--large;
+      }
+
+      @media @desktop {
+        margin-left: -@page-extra-side-padding--large;
+        margin-right: -@page-extra-side-padding--large;
+        padding-left: @page-extra-side-padding--large;
+        padding-right: @page-extra-side-padding--large;
+      }
+    }
+  }
+
+  &__textarea {
+    .reset-input();
+    padding: @padding--small;
+    max-height: ~'calc(100vh - 200px)';
+    min-height: 200px;
+    width: 100%;
+    resize: vertical;
+
+    .beatmapset-description-editor__container & {
+      padding: @padding--large;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: flex-start;
+    margin-bottom: @padding--small;
+
+    @media @mobile {
+      justify-content: center;
+      width: 100%; // force container to wrap.
+    }
+  }
+}

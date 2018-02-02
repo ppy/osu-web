@@ -28,6 +28,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'beatmap_discussions',
+        'beatmapset',
         'beatmapset_events',
         'users',
     ];
@@ -35,7 +36,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     public function transform(Beatmapset $beatmapset)
     {
         return [
-            'id' => $beatmapset->id,
+            'id' => $beatmapset->getKey(),
             'updated_at' => json_time($beatmapset->lastDiscussionTime()),
         ];
     }
@@ -43,13 +44,16 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapDiscussions(Beatmapset $beatmapset)
     {
         return $this->collection(
-            $beatmapset->beatmapDiscussions()->with([
-                'beatmap',
-                'beatmapDiscussionPosts',
-                'beatmapDiscussionVotes',
-            ])->get(),
+            $beatmapset->beatmapDiscussions,
             new BeatmapDiscussionTransformer()
         );
+    }
+
+    public function includeBeatmapset(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset, function () use ($beatmapset) {
+            return $beatmapset->defaultJson(['withTrashedBeatmaps' => true]);
+        });
     }
 
     public function includeBeatmapsetEvents(Beatmapset $beatmapset)

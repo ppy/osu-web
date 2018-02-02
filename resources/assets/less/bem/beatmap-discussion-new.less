@@ -24,7 +24,6 @@
   display: flex;
   background-color: #fff;
   flex-direction: column;
-  margin-bottom: 10px;
 
   &__avatar {
     flex: none;
@@ -57,8 +56,8 @@
     .default-border-radius();
 
     &--right {
-      flex: 1;
       justify-content: flex-end;
+      flex: 1 0 auto;
     }
   }
 
@@ -75,8 +74,30 @@
     .reset-input();
     resize: vertical;
     width: 100%;
+    max-height: 70vh;
+    min-height: 3em;
 
     flex: 1 0 auto;
+    font-size: @font-size--phone-input;
+
+    @media @desktop {
+      font-size: inherit;
+    }
+  }
+
+  &__message-counter {
+    font-size: @font-size--normal;
+    text-align: right;
+    margin-top: 5px;
+
+    &--almost-over {
+      color: @yellow-dark;
+    }
+
+    &--over {
+      color: @red;
+      font-weight: 700;
+    }
   }
 
   &__notice {
@@ -84,6 +105,11 @@
     padding: 5px @_side-padding;
     color: #fff;
     font-size: @font-size--normal;
+  }
+
+  &__notice-checkbox {
+    text-transform: initial;
+    font-weight: initial;
   }
 
   &__notice-link {

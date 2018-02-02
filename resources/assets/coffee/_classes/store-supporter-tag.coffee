@@ -35,18 +35,29 @@ class @StoreSupporterTag
     @discountElement = @el.querySelector('.js-discount')
     @slider = @el.querySelector('.js-slider')
     @sliderPresets = @el.querySelectorAll('.js-slider-preset')
+    @targetIdElement = @el.querySelector('input[name="item[extra_data][target_id]"]')
     @usernameInput = @el.querySelector('.js-username-input')
-    @inputFeedback = @el.querySelector('.js-input-feedback')
+    @usercard = @el.querySelector('.js-avatar')
 
     @user =
+      userId: @targetIdElement.value
+
+    @currentUser =
       userId: @el.dataset.userId
       username: @el.dataset.username
-      avatarUrl: @el.dataset.avatarUrl
+      cardHtml: @el.dataset.cardHtml ? @usercard.innerHTML
+    # save/restore current user card html
+    $(document).on 'turbolinks:before-cache', =>
+      @el.dataset.cardHtml = @currentUser.cardHtml
+
+    delete @el.dataset.cardHtml
 
     @cost = @calculate(@initializeSlider().slider('value'))
     @initializeSliderPresets()
     @initializeUsernameInput()
     @updateCostDisplay()
+    @setUserInteraction(@user?.userId)
+
 
   initializeSlider: =>
     # remove leftover from previous initialization
@@ -72,13 +83,19 @@ class @StoreSupporterTag
     $(@usernameInput).on 'input', @onInput
 
   getUser: (username) =>
+    if !username # reset to current user on empty
+      @user = @currentUser
+      @searching = false
+      @updateSearchResult()
+      return
+
     $.post laroute.route('users.check-username-exists'), username: username
     .done (data) =>
       # make a User DTO?
       @user =
         userId: data.user_id
         username: data.username
-        avatarUrl: data.avatar_url
+        cardHtml: data.card_html
 
     .fail (xhr) =>
       @user = null
@@ -114,21 +131,17 @@ class @StoreSupporterTag
 
   updateSearchResult: =>
     if @searching
-      @inputFeedback.textContent = osu.trans('supporter_tag.user_search.searching')
+      @usercard.innerHTML = $('#js-usercard__loading-template').html()
       return @setUserInteraction(false)
 
-    [avatarUrl, text] = if @user
-                          [@user.avatarUrl, '']
-                        else
-                          ['', osu.trans("supporter_tag.user_search.not_found")]
+    if @user
+      @targetIdElement.value = @user.userId
+      @usercard.innerHTML = @user.cardHtml
+      reactTurbolinks.boot()
+    else
+      @targetIdElement.value = null
 
-    @inputFeedback.textContent = text
-    # Avoid setting value to undefined
-    @el.querySelector('input[name="item[extra_data][target_id]"]').value = @user?.userId ? null
-    $(@el.querySelectorAll('.js-avatar')).css
-      'background-image': "url(#{avatarUrl})"
-
-    @setUserInteraction(@user?)
+    @setUserInteraction(@user?.userId)
 
   updateCostDisplay: =>
     @el.querySelector('input[name="item[cost]"]').value = @cost.price()

@@ -12,6 +12,18 @@
 |
 */
 
+$factory->define(App\Models\Store\Product::class, function (Faker\Generator $faker) {
+    return  [
+        'name' => 'Imagination / '.$faker->colorName,
+        'cost' => 16.00,
+        'weight' => 100,
+        'base_shipping' => 5.00,
+        'next_shipping' => 4.00,
+        'stock' => rand(1, 100),
+        'max_quantity' => 1,
+    ];
+});
+
 $factory->defineAs(App\Models\Store\Product::class, 'master_tshirt', function (Faker\Generator $faker) {
     return  [
         'name' => 'osu! t-shirt (triangles) / '.$faker->colorName,
@@ -57,5 +69,27 @@ $factory->defineAs(App\Models\Store\Product::class, 'child_tshirt', function (Fa
         'next_shipping' => 4.00,
         'stock' => rand(1, 100),
         'max_quantity' => 5,
+    ];
+});
+
+$factory->defineAs(App\Models\Store\Product::class, 'child_banners', function (Faker\Generator $faker) {
+    $params = [
+        // 'name' => 'supply your own name',
+        'cost' => 5.00,
+        'weight' => null,
+        'stock' => null,
+        'base_shipping' => 0.00,
+        'next_shipping' => 0.00,
+        'max_quantity' => 1,
+        'display_order' => -10,
+        'custom_class' => 'mwc7-supporter',
+    ];
+
+    return $params;
+});
+
+$factory->state(App\Models\Store\Product::class, 'disabled', function (Faker\Generator $faker) {
+    return [
+        'enabled' => false,
     ];
 });

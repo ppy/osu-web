@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\ChangeUsernameException;
+use App\Exceptions\ModelNotSavedException;
 use App\Interfaces\Messageable;
 use App\Libraries\BBCodeForDB;
 use App\Models\Chat\PrivateMessage;
@@ -28,16 +30,19 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\QueryException as QueryException;
 use Laravel\Passport\HasApiTokens;
 use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -74,6 +79,34 @@ class User extends Model implements AuthenticatableContract, Messageable
         ],
     ];
 
+    const MAX_FIELD_LENGTHS = [
+        'user_msnm' => 255,
+        'user_twitter' => 255,
+        'user_website' => 200,
+        'user_from' => 30,
+        'user_occ' => 30,
+        'user_interests' => 30,
+    ];
+
+    const ES_MAPPINGS = [
+        'is_old' => ['type' => 'boolean'],
+        'user_lastvisit' => ['type' => 'date'],
+        'username' => [
+            'type' => 'string',
+            'analyzer' => 'username_lower',
+            'fields' => [
+                // for exact match
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                // try match sloppy search guesses
+                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                // for people who like to use too many dashes and brackets in their username
+                '_whitespace' => ['type' => 'string', 'analyzer' => 'whitespace'],
+            ],
+        ],
+        'user_warnings' => ['type' => 'short'],
+        'user_type' => ['type' => 'short'],
+    ];
+
     private $memoized = [];
 
     private $validateCurrentPassword = false;
@@ -106,12 +139,105 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
     }
 
+    public function revertUsername($type = 'revert')
+    {
+        // TODO: validation errors instead?
+        if ($this->user_id <= 1) {
+            throw new ChangeUsernameException(['user_id is not valid']);
+        }
+
+        if (!presence($this->username_previous)) {
+            throw new ChangeUsernameException(['username_previous is blank.']);
+        }
+
+        $this->updateUsername($this->username_previous, null, $type);
+        \Log::debug("username reverted: {$this->username}");
+    }
+
+    public function changeUsername($newUsername, $type = 'support')
+    {
+        // TODO: validation errors instead?
+        if ($this->user_id <= 1) {
+            throw new ChangeUsernameException(['user_id is not valid']);
+        }
+
+        $errors = static::validateUsername($newUsername, $this->username);
+        if (count($errors) > 0) {
+            throw new ChangeUsernameException($errors);
+        }
+
+        DB::transaction(function () use ($newUsername, $type) {
+            // check for an exsiting inactive username and renames it.
+            static::renameUsernameIfInactive($newUsername);
+
+            $this->updateUsername($newUsername, $this->username, $type);
+            \Log::debug("username changed: {$this->username}");
+        });
+    }
+
+    private function tryUpdateUsername($try, $newUsername, $oldUsername, $type)
+    {
+        $name = $try > 0 ? "{$newUsername}_{$try}" : $newUsername;
+
+        try {
+            return $this->updateUsername($name, $oldUsername, $type);
+        } catch (QueryException $ex) {
+            if (!is_sql_unique_exception($ex) || $try > 9) {
+                throw $ex;
+            }
+
+            return $this->tryUpdateUsername($try + 1, $newUsername, $oldUsername, $type);
+        }
+    }
+
+    private function updateUsername($newUsername, $oldUsername, $type)
+    {
+        $this->username_previous = $oldUsername;
+        $this->username = $newUsername;
+
+        DB::transaction(function () use ($newUsername, $oldUsername, $type) {
+            Forum\Forum::where('forum_last_poster_id', $this->user_id)->update(['forum_last_poster_name' => $newUsername]);
+            // DB::table('phpbb_moderator_cache')->where('user_id', $this->user_id)->update(['username' => $newUsername]);
+            Forum\Post::where('poster_id', $this->user_id)->update(['post_username' => $newUsername]);
+            Forum\Topic::where('topic_poster', $this->user_id)
+                ->update(['topic_first_poster_name' => $newUsername]);
+            Forum\Topic::where('topic_last_poster_id', $this->user_id)
+                ->update(['topic_last_poster_name' => $newUsername]);
+
+            $history = new UsernameChangeHistory();
+            $history->username = $newUsername;
+            $history->username_last = $oldUsername;
+            $history->type = $type;
+
+            if (!$this->usernameChangeHistory()->save($history)) {
+                throw new ModelNotSavedException('failed saving model');
+            }
+
+            $skipValidations = in_array($type, ['inactive', 'revert'], true);
+            $this->saveOrExplode(['skipValidations' => $skipValidations]);
+        });
+    }
+
+    public static function cleanUsername($username)
+    {
+        return strtolower($username);
+    }
+
+    public static function findByUsernameForInactive($username)
+    {
+        return static::whereIn(
+            'username',
+            [str_replace(' ', '_', $username), str_replace('_', ' ', $username)]
+        )->first();
+    }
+
     public static function checkWhenUsernameAvailable($username)
     {
-        $user = self::whereIn('username', [str_replace(' ', '_', $username), str_replace('_', ' ', $username)])->first();
+        $user = static::findByUsernameForInactive($username);
 
         if ($user === null) {
             $lastUsage = UsernameChangeHistory::where('username_last', $username)
+                ->where('type', '<>', 'inactive') // don't include changes caused by inactives; this validation needs to be removed on normal save.
                 ->orderBy('change_id', 'desc')
                 ->first();
 
@@ -195,35 +321,32 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['query'] = presence($rawParams['query'] ?? null);
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
+        $size = $params['limit'];
+        $from = ($params['page'] - 1) * $size;
 
-        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
-            ->where('username', 'NOT LIKE', '%\_old')
-            ->default();
+        $results = static::searchUsername($params['query'], $from, $size);
 
-        $overLimit = (clone $query)->limit(1)->offset($max)->exists();
-        $total = $overLimit ? $max : $query->count();
-        $end = $params['page'] * $params['limit'];
-        // Actual limit for query.
-        // Don't change the params because it's used for pagination.
-        $limit = $params['limit'];
-        if ($end > $max) {
-            // Ensure $max is honored.
-            $limit -= ($end - $max);
-            // Avoid negative limit.
-            $limit = max(0, $limit);
-        }
-        $offset = $end - $limit;
+        $total = $results['hits']['total'];
+        $data = es_records($results, get_called_class());
 
         return [
             'total' => $total,
-            'over_limit' => $overLimit,
-            'data' => $query
-                ->orderBy('user_id', 'ASC')
-                ->limit($limit)
-                ->offset($offset)
-                ->get(),
+            'over_limit' => $total > $max,
+            'data' => $data,
             'params' => $params,
         ];
+    }
+
+    public static function searchUsername(string $username, $from, $size)
+    {
+        return es_search([
+            'index' => static::esIndexName(),
+            'from' => $from,
+            'size' => $size,
+            'body' => [
+                'query' => static::usernameSearchQuery($username ?? ''),
+            ],
+        ]);
     }
 
     public function validateUsernameChangeTo($username)
@@ -261,12 +384,11 @@ class User extends Model implements AuthenticatableContract, Messageable
                 break;
 
             default:
-                if (is_numeric($username_or_id)) {
-                    $user = self::where('user_id', $username_or_id);
-                } else {
-                    $user = self::where('username', $username_or_id)->orWhere('username_clean', '=', $username_or_id);
+                if (ctype_digit((string) $username_or_id)) {
+                    $user = static::lookup($username_or_id, 'id', $find_all);
                 }
-                break;
+
+                return $user ?? static::lookup($username_or_id, 'string', $find_all);
         }
 
         if (!$find_all) {
@@ -321,7 +443,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function setUserWebsiteAttribute($value)
     {
         $value = trim($value);
-        if (!starts_with($value, ['http://', 'https://'])) {
+        if ($value !== '' && !starts_with($value, ['http://', 'https://'])) {
             $value = "https://{$value}";
         }
 
@@ -339,6 +461,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         $this->attributes['osu_playstyle'] = $styles;
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = $value;
+        $this->username_clean = static::cleanUsername($value);
     }
 
     public function isSpecial()
@@ -423,6 +551,19 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         // also functions for casting null to string
         $this->attributes['user_colour'] = ltrim($value, '#');
+    }
+
+    public function getOsuSubscriptionexpiryAttribute($value)
+    {
+        if (present($value)) {
+            return Carbon::parse($value);
+        }
+    }
+
+    public function setOsuSubscriptionexpiryAttribute($value)
+    {
+        // strip time component
+        $this->attributes['osu_subscriptionexpiry'] = $value->startOfDay();
     }
 
     // return a user's API details
@@ -533,6 +674,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->user_type === 1;
     }
 
+    public function isOld()
+    {
+        return preg_match('/_old(_\d+)?$/', $this->username) === 1;
+    }
+
     public function isRestricted()
     {
         return $this->isBanned() || $this->user_warnings > 0;
@@ -596,9 +742,19 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(BeatmapDiscussionVote::class, 'user_id');
     }
 
+    public function beatmapDiscussions()
+    {
+        return $this->hasMany(BeatmapDiscussion::class, 'user_id');
+    }
+
     public function beatmapsets()
     {
         return $this->hasMany(Beatmapset::class, 'user_id');
+    }
+
+    public function beatmapsetWatches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'user_id');
     }
 
     public function beatmaps()
@@ -613,7 +769,13 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function favouriteBeatmapsets()
     {
-        return Beatmapset::whereIn('beatmapset_id', $this->favourites()->select('beatmapset_id')->get());
+        $favouritesTable = (new FavouriteBeatmapset)->getTable();
+        $beatmapsetsTable = (new Beatmapset)->getTable();
+
+        return Beatmapset::select("{$beatmapsetsTable}.*")
+            ->join($favouritesTable, "{$favouritesTable}.beatmapset_id", '=', "{$beatmapsetsTable}.beatmapset_id")
+            ->where("{$favouritesTable}.user_id", '=', $this->user_id)
+            ->orderby("{$favouritesTable}.dateadded", 'desc');
     }
 
     public function beatmapsetNominations()
@@ -634,6 +796,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function apiKey()
     {
         return $this->hasOne(ApiKey::class, 'user_id');
+    }
+
+    public function profileBanners()
+    {
+        return $this->hasMany(ProfileBanner::class, 'user_id');
     }
 
     public function storeAddresses()
@@ -843,6 +1010,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return self::whereIn('user_id', $this->relations()->friends()->pluck('zebra_id'));
     }
 
+    public function maxFriends()
+    {
+        return $this->osu_subscriber ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+    }
+
     public function uncachedFollowerCount()
     {
         return UserRelation::where('zebra_id', $this->user_id)->where('friend', 1)->count();
@@ -926,6 +1098,39 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->favourites->contains('beatmapset_id', $beatmapset->getKey());
     }
 
+    public function remainingHype()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $hyped = $this
+                ->beatmapDiscussions()
+                ->withoutDeleted()
+                ->ofType('hype')
+                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->count();
+
+            $this->memoized[__FUNCTION__] = config('osu.beatmapset.user_weekly_hype') - $hyped;
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
+    public function newHypeTime()
+    {
+        if (!array_key_exists(__FUNCTION__, $this->memoized)) {
+            $earliestWeeklyHype = $this
+                ->beatmapDiscussions()
+                ->withoutDeleted()
+                ->ofType('hype')
+                ->where('created_at', '>', Carbon::now()->subWeek())
+                ->orderBy('created_at')
+                ->first();
+
+            $this->memoized[__FUNCTION__] = $earliestWeeklyHype === null ? null : $earliestWeeklyHype->created_at->addWeek();
+        }
+
+        return $this->memoized[__FUNCTION__];
+    }
+
     public function flags()
     {
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
@@ -981,7 +1186,13 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
         } else {
-            $this->userPage->edit($text, $this);
+            $this
+                ->userPage
+                ->skipBodyPresenceCheck()
+                ->update([
+                    'post_text' => $text,
+                    'post_edit_user' => $this->getKey(),
+                ]);
         }
 
         return $this->fresh();
@@ -1059,7 +1270,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         ]);
     }
 
-    public function receiveMessage(User $sender, $body, $isAction = false)
+    public function receiveMessage(self $sender, $body, $isAction = false)
     {
         $message = new PrivateMessage();
         $message->user_id = $sender->user_id;
@@ -1201,6 +1412,20 @@ class User extends Model implements AuthenticatableContract, Messageable
             ->with('beatmaps');
     }
 
+    public function profileBeatmapsetsUnranked()
+    {
+        return $this->beatmapsets()
+            ->unranked()
+            ->with('beatmaps');
+    }
+
+    public function profileBeatmapsetsGraveyard()
+    {
+        return $this->beatmapsets()
+            ->graveyard()
+            ->with('beatmaps');
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -1253,8 +1478,9 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if (present($this->user_email)) {
-            if (strpos($this->user_email, '@') === false) {
+        if ($this->isDirty('user_email') && present($this->user_email)) {
+            $emailValidator = new EmailValidator;
+            if (!$emailValidator->isValid($this->user_email, new RFCValidation)) {
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 
@@ -1272,11 +1498,47 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
+        foreach (self::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+                if ($val && mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, '.too_long', ['limit' => $limit]);
+                }
+            }
+        }
+
         return $this->validationErrors()->isEmpty();
     }
 
     public function validationErrorsTranslationPrefix()
     {
         return 'user';
+    }
+
+    public function save(array $options = [])
+    {
+        if ($options['skipValidations'] ?? false) {
+            return parent::save($options);
+        }
+
+        return $this->isValid() && parent::save($options);
+    }
+
+    /**
+     * Check for an exsiting inactive username and renames it if
+     * considered inactive.
+     *
+     * @return User if renamed; nil otherwise.
+     */
+    private static function renameUsernameIfInactive($username)
+    {
+        $existing = static::findByUsernameForInactive($username);
+        $available = static::checkWhenUsernameAvailable($username) <= Carbon::now();
+        if ($existing !== null && $available) {
+            $newUsername = "{$existing->username}_old";
+            $existing->tryUpdateUsername(0, $newUsername, $existing->username, 'inactive');
+
+            return $existing;
+        }
     }
 }

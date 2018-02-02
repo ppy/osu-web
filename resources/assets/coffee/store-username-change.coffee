@@ -26,7 +26,7 @@ checkUsernameValidity = ->
 
   $.post '/users/check-username-availability', username: requestedUsername
   .done (data) ->
-    return unless data.username == requestedUsername
+    return unless data.username == $('#username.form-control').val()
 
     if data.available
       $('.js-store-add-to-cart').attr 'disabled', false

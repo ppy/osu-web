@@ -64,7 +64,11 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            if ($user->user_id === $topic->last_poster_id) {
+            if ($event->user !== null && $event->user->getKey() === $user->user_id) {
+                continue;
+            }
+
+            if ($user->user_id === $topic->topic_last_poster_id) {
                 continue;
             }
 

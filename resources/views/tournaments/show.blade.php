@@ -15,58 +15,83 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends("master")
+@extends('master', [
+    'current_section' => 'community',
+    'current_action' => 'tournaments',
+    'title' => $tournament->name,
+    'body_additional_classes' => 'osu-layout--body-darker'
+])
 
 @section("content")
-<div class="osu-layout__row osu-layout__row--page-compact">
-    <div class="osu-page-header osu-page-header--tournaments">
-        <h1 class="osu-page-header__title">{{ $tournament->name }}</h1>
-        <h2 class="osu-page-header__title osu-page-header__title--small">
-            {{ $tournament->start_date->toFormattedDateString() }} ~ {{ $tournament->end_date->toFormattedDateString() }}
-        </h2>
+    @include('objects.css-override', ['mapping' => ['.tournament__banner' => $tournament->header_banner]])
+
+    <div class="osu-layout__row">
+        <div class="osu-page-header-v2 osu-page-header-v2--tournaments">
+            <div class="osu-page-header-v2__overlay"></div>
+            <div class="osu-page-header-v2__title">{{$tournament->name}}</div>
+            <div class="osu-page-header-v2__subtitle">{{
+                trans('tournament.tournament_period', [
+                    'start' => i18n_date($tournament->start_date),
+                    'end' => i18n_date($tournament->end_date)
+                ])
+            }}</div>
+        </div>
     </div>
-</div>
 
-<div class='osu-layout__row osu-layout__row--page tournaments'>
-    {!! Markdown::convertToHtml($tournament->description) !!}
-</div>
+    <div class="osu-page osu-page--tournament">
+        <div class="tournament">
+            <div class='tournament__banner'></div>
 
-@if($tournament->isRegistrationOpen())
-<div class="osu-layout__row osu-layout__row--page">
-    <h1>Registration</h1>
+            <div class='tournament__description'>
+                {!! Markdown::convertToHtml($tournament->description) !!}
+                {{trans('tournament.show.registration_ends', ['date' => i18n_date($tournament->signup_close)])}}.
+            </div>
+            @if($tournament->isRegistrationOpen())
+                <div class='tournament__countdown-timer'>
+                    <div class='js-react--countdownTimer' data-deadline='{{json_time($tournament->signup_close)}}'></div>
+                </div>
+            @endif
 
-    @if (!Auth::user())
-        <div>
-        Please <a href="#" class="js-user-link" title="{{ trans("users.anonymous.login_link") }}">login</a> to view registration details!
-        </div>
-    @else
-        <div>
-            @if($tournament->isSignedUp(Auth::user()))
-            <p>
-            Your registration has been processed. Please note that this does <strong>not</strong> mean you are assigned to a team; further instructions will be sent to you via email closer to the tournament date. Please make sure your osu! account email address is valid.
-            </p>
-            @else
-            <p>
-            You have not yet submitted a registration for this tournament. Registrations close on <strong>{{ $tournament->signup_close->toFormattedDateString() }}</strong>.
-            </p>
+            @if($tournament->isRegistrationOpen())
+                <div class="tournament__body">
+                    @if (!Auth::user())
+                        <div>{!!
+                            trans('tournament.show.login_to_register', [
+                                'login' => '<a href="#" class="js-user-link" title="'.trans("users.anonymous.login_link").'">'.trans("users.anonymous.login_text").'</a>'
+                            ])
+                        !!}</div>
+                    @else
+                        @if($tournament->isValidRank(Auth::user()))
+                            @if($tournament->isSignedUp(Auth::user()))
+                                <div>{!!trans('tournament.show.entered')!!}</div>
+                            @else
+                                <div>{{trans('tournament.show.not_yet_entered')}}</div>
+                            @endif
+                            @if($tournament->isSignedUp(Auth::user()))
+                                <a
+                                    href="{{route("tournaments.unregister", $tournament) }}"
+                                    class="btn-osu btn-osu-danger btn-osu--giant"
+                                    data-method="post"
+                                    data-remote="1"
+                                >
+                                    {{trans('tournament.show.button.cancel')}}
+                                </a>
+                            @else
+                                <a
+                                    href="{{ route("tournaments.register", $tournament) }}"
+                                    class="btn-osu btn-osu-default btn-osu--giant"
+                                    data-method="post"
+                                    data-remote="1"
+                                >
+                                    {{trans('tournament.show.button.register')}}
+                                </a>
+                            @endif
+                        @else
+                            <div>{{trans('tournament.show.rank_too_low')}}</div>
+                        @endif
+                    @endif
+                </div>
             @endif
         </div>
-
-        @if($tournament->isValidRank(Auth::user()))
-        <div class="big-button">
-            @if($tournament->isSignedUp(Auth::user()))
-            <a href="{{ route("tournaments.unregister", $tournament) }}" class="btn-osu btn-osu-danger" data-method="post" data-remote="1">Cancel Registration</a>
-            @else
-            <a href="{{ route("tournaments.register", $tournament) }}" class="btn-osu btn-osu-default" data-method="post" data-remote="1">Sign me up!</a>
-            @endif
-        </div>
-        @else
-        <div class='alert-inline alert-danger'>
-            Sorry, you do not meet the rank requirements for this tournament!
-        </div>
-        @endif
-    @endif
-</div>
-@endif
-
+    </div>
 @stop

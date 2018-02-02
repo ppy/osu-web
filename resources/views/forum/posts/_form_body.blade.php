@@ -21,7 +21,6 @@
     class="
         js-ujs-submit-disable
         js-quick-submit
-        js-editor-zoom--box
         forum-post-content
         forum-post-content--editor
         {{ $postBody['extraClasses'] or '' }}

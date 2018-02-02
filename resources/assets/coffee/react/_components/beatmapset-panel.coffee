@@ -47,6 +47,13 @@ class @BeatmapsetPanel extends React.PureComponent
     # this is actually "beatmapset"
     beatmapset = @props.beatmap
 
+    showHypeCounts = _.includes ['wip', 'pending', 'graveyard'], beatmapset.status
+    if showHypeCounts
+      currentHype = beatmapset.hype.current.toLocaleString()
+      requiredHype = beatmapset.hype.required.toLocaleString()
+      currentNominations = beatmapset.nominations.current.toLocaleString()
+      requiredNominations = beatmapset.nominations.required.toLocaleString()
+
     # arbitrary number
     maxDisplayedDifficulty = 10
 
@@ -89,12 +96,21 @@ class @BeatmapsetPanel extends React.PureComponent
                 beatmapset.artist
 
             div className: 'beatmapset-panel__counts-box',
-              div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.play_count
-                el Icon, name: 'play-circle', modifiers: ['fw']
+              if showHypeCounts
+                div null,
+                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.hype.required_text', {current: currentHype, required: requiredHype}),
+                    span className: 'beatmapset-panel__count-number', currentHype
+                    el Icon, name: 'bullhorn', modifiers: ['fw']
+                  div className: 'beatmapset-panel__count', title: osu.trans('beatmaps.nominations.required_text', {current: currentNominations, required: requiredNominations}),
+                    span className: 'beatmapset-panel__count-number', currentNominations
+                    el Icon, name: 'thumbs-up', modifiers: ['fw']
+              else
+                div className: 'beatmapset-panel__count',
+                  span className: 'beatmapset-panel__count-number', beatmapset.play_count.toLocaleString()
+                  el Icon, name: 'play-circle', modifiers: ['fw']
 
               div className: 'beatmapset-panel__count',
-                span className: 'beatmapset-panel__count-number', beatmapset.favourite_count
+                span className: 'beatmapset-panel__count-number', beatmapset.favourite_count.toLocaleString()
                 el Icon, name: 'heart', modifiers: ['fw']
 
             div

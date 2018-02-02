@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => 'Favourite this beatmapset',
             'unfavourite' => 'Unfavourite this beatmapset',
+            'favourited_count' => '+ 1 other!|+ :count others!',
         ],
         'stats' => [
             'cs' => 'Circle Size',
@@ -80,16 +81,23 @@ return [
             'country' => 'Country Ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
+            'miss_count' => ':count miss',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
             'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Accuracy',
-                'player-header' => 'Player',
-                'rank-header' => 'Rank',
+                'combo' => 'Max Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Player',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Total Score',
                 'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'No one from your country has set a score on this map yet!',
                 'friend' => 'None of your friends has set a score on this map yet!',
@@ -100,10 +108,6 @@ return [
             'score' => [
                 'first' => 'In the Lead',
                 'own' => 'Your Best',
-            ],
-            'stats' => [
-                'accuracy' => 'Accuracy',
-                'score' => 'Score',
             ],
         ],
     ],

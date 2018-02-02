@@ -1,0 +1,50 @@
+<?php
+
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+return [
+    'button' => [
+        'action' => [
+            'to_0' => '取消关注',
+            'to_1' => '关注',
+        ],
+    ],
+
+    'index' => [
+        'description' => '这里是你关注的谱面，你会在它们更新或者有新讨论的时候收到通知。',
+        'title_compact' => '摸图',
+        'title_main' => '摸图',
+
+        'table' => [
+            'empty' => '没有正在关注的谱面',
+            'open_issues' => '打开的问题',
+            'state' => '状态',
+            'title' => '标题',
+        ],
+    ],
+
+    'mail' => [
+        'update' => '谱面“:title”有更新',
+    ],
+
+    'status' => [
+        'read' => '已读',
+        'unread' => '未读',
+    ],
+];

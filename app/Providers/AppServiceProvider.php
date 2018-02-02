@@ -22,10 +22,8 @@ namespace App\Providers;
 
 use App\Http\Middleware\StartSession;
 use App\Libraries\OsuAuthorize;
-use App\Models\BeatmapDiscussion;
 use App\Models\BeatmapDiscussionPost;
 use App\Models\Forum\PollVote as ForumPollVote;
-use App\Models\User;
 use Datadog;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
@@ -46,10 +44,6 @@ class AppServiceProvider extends ServiceProvider
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
         });
 
-        BeatmapDiscussion::saving(function ($discussion) {
-            return $discussion->isValid();
-        });
-
         BeatmapDiscussionPost::saving(function ($post) {
             return $post->isValid();
         });
@@ -58,13 +52,9 @@ class AppServiceProvider extends ServiceProvider
             return $vote->isValid();
         });
 
-        User::saving(function ($user) {
-            return $user->isValid();
-        });
-
         Queue::after(function (JobProcessed $event) {
             if (config('datadog-helper.enabled')) {
-                Datadog::increment(config('datadog-helper.prefix').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
+                Datadog::increment(config('datadog-helper.prefix_web').'.queue.run', 1, ['queue' => $event->job->getQueue()]);
             }
         });
     }

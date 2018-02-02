@@ -8,7 +8,7 @@ The future face of osu!.
 Requirements
 ------------
 
-- A PHP 7.0 (or equivalent) environment
+- A PHP 7.1+ (or equivalent) environment
 - MySQL 5.7+
 
 For full support, we also recommend
@@ -39,7 +39,7 @@ There are a few different options to get started:
 ### Creating user
 
     $ php artisan tinker
-    >>> App\Models\User::create(["username" => "yourusername", "user_password" => password_hash(md5("yourpassword"), PASSWORD_BCRYPT)]);
+    >>> (new App\Libraries\UserRegistration(["username" => "yourusername", "user_email" => "your@email.com", "password" => "yourpassword"]))->save();
 
 ### Generating assets
 

@@ -59,9 +59,9 @@
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === ($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
                             >
-                                {{ str_repeat('&ndash;', $forum->currentDepth()) }}
+                                {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
                             </option>
                         @endif
@@ -74,21 +74,23 @@
             </div>
         </label>
 
-        <span class="search-advanced-forum-post__input-group">
-            <label class="osu-checkbox">
+        <label class="search-advanced-forum-post__input-group">
+            <div class="osu-checkbox">
                 <input
                     type="checkbox"
                     name="forum_children"
                     {{ ($search->urlParams()['forum_children'] ?? false) ? 'checked' : '' }}
                     class="osu-checkbox__input"
                 >
+                <span class="osu-checkbox__box"></span>
                 <span class="osu-checkbox__tick">
                     <span class="fa fa-check"></span>
                 </span>
 
-                {{ trans('home.search.forum_post.label.forum_children') }}
-            </label>
-        </span>
+            </div>
+
+            {{ trans('home.search.forum_post.label.forum_children') }}
+        </label>
     @endif
 
     <div class="search-advanced-forum-post__input-group search-advanced-forum-post__input-group--buttons">

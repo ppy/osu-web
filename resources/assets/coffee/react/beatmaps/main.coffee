@@ -65,14 +65,14 @@ class Beatmaps.Main extends React.PureComponent
         background: searchBackground
         availableFilters: @props.availableFilters
         filters: @state.filters
-        filterDefaults: BeatmapsetFilter.defaults
+        filterDefaults: BeatmapsetFilter.getDefaults(@state.filters)
         expand: @expand
         isExpanded: @state.isExpanded
 
       div className: 'osu-layout__row osu-layout__row--page-compact',
         div className: "beatmapsets #{'beatmapsets--dimmed' if @state.loading}",
           if currentUser.id?
-            el Beatmaps.SearchSort, sorting: @sorting()
+            el Beatmaps.SearchSort, sorting: @sorting(), filters: @state.filters
 
           div
             className: 'beatmapsets__content'
@@ -105,7 +105,7 @@ class Beatmaps.Main extends React.PureComponent
     charParams = {}
 
     for own key, value of params
-      if value? && BeatmapsetFilter.defaults[key] != value
+      if value? && BeatmapsetFilter.getDefault(params, key) != value
         charParams[keyToChar[key]] = value
 
     delete charParams[keyToChar['rank']] if !currentUser.isSupporter
@@ -195,10 +195,11 @@ class Beatmaps.Main extends React.PureComponent
 
 
   stateFromUrl: =>
-    state = _.extend {}, BeatmapsetFilter.defaults
     params = location.search.substr(1).split('&')
 
     expand = false
+
+    filters = {}
 
     for part in params
       [key, value] = part.split('=')
@@ -210,14 +211,19 @@ class Beatmaps.Main extends React.PureComponent
       value = BeatmapsetFilter.castFromString[key](value) if BeatmapsetFilter.castFromString[key]
       expand = true if key in BeatmapsetFilter.expand
 
-      state[key] = value
+      filters[key] = value
 
-    filters: state
+    filters: BeatmapsetFilter.fillDefaults(filters)
     isExpanded: expand
 
 
   updateFilters: (_e, newFilters) =>
     newFilters = _.extend {}, @state.filters, newFilters
+
+    if @state.filters.query != newFilters.query || @state.filters.status != newFilters.status
+      newFilters.sort = null
+
+    newFilters = BeatmapsetFilter.fillDefaults(newFilters)
 
     if !_.isEqual @state.filters, newFilters
       @setState filters: newFilters, ->

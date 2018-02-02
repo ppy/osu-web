@@ -101,11 +101,11 @@ return [
         'store' => [
             '_' => 'negozio',
             'getListing' => 'lista',
-            'getCart' => 'carrello',
+            'cart-show' => 'carrello',
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
-            'getProduct' => 'prodotto',
+            'products-show' => 'prodotto',
 
             'new' => 'nuovo',
             'home' => 'home',

@@ -92,10 +92,12 @@ return [
         'es',
         'fr',
         'it',
+        'ko',
         'nl',
         'pl',
         'pt-br',
         'ru',
+        'sv',
         'zh',
     ],
 
@@ -203,6 +205,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /*
+         * After DB transaction commit support
+         */
+        App\Providers\TransactionStateServiceProvider::class,
 
         /*
          * OAuth2 Setup

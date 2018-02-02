@@ -32,7 +32,7 @@
     <meta name="ga-tracking-id" content="{{ config("services.ga.tracking_id") }}">
 @endif
 
-<link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Exo+2:300,300italic,200,200italic,400,400italic,500,500italic,600,600italic,700,700italic,900' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" media="all" href="{{ mix("css/app.css") }}" data-turbolinks-track="reload">
@@ -47,7 +47,24 @@
 @if(config('services.sentry.public_dsn') !== '')
     <script src="//cdn.ravenjs.com/3.17.0/raven.min.js" crossorigin="anonymous"></script>
     <script>
-        Raven.config('{{ config('services.sentry.public_dsn') }}', {release: '{{ config('osu.git-sha') }}'}).install();
+        var ravenOptions = {
+            release: '{{ config('osu.git-sha') }}',
+            ignoreErrors: [
+                // Random plugins/extensions
+                'top.GLOBALS'
+            ],
+            ignoreUrls: [
+                // Chrome/Firefox extensions
+                /extensions\//i,
+                /^chrome:\/\//i,
+                /^resource:\/\//i,
+                // Disqus
+                /embed\.js$/i,
+                // Errors caused by spyware/adware junk
+                /^\/loaders\//i
+            ]
+        }
+        Raven.config('{{ config('services.sentry.public_dsn') }}', ravenOptions).install();
         Raven.setUserContext({lang: currentLocale});
     </script>
 @endif

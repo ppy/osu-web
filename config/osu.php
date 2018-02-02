@@ -21,6 +21,11 @@ return [
         'thumbnailer' => env('BM_PROCESSOR_THUMBNAILER', 'http://localhost:4001'),
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
+    'beatmapset' => [
+        'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
+        'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
+    ],
     'camo' => [
         'key' => env('CAMO_KEY'),
         'prefix' => env('CAMO_PREFIX', 'https://i.ppy.sh/'),
@@ -29,7 +34,10 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'index' => env('ES_INDEX', 'osu'),
+        'prefix' => env('ES_INDEX_PREFIX'),
+        'index' => [
+            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
+        ],
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',
@@ -59,7 +67,7 @@ return [
         'shared_interop_secret' => env('SHARED_INTEROP_SECRET', ''),
     ],
     'search' => [
-        'minimum_length' => 3,
+        'minimum_length' => get_int(env('SEARCH_MINIMUM_LENGTH', 2)),
 
         'max' => [
             'user' => 100,
@@ -78,6 +86,10 @@ return [
         'base' => 'https://osu.ppy.sh',
         'dev' => 'https://discord.gg/ppy',
         'installer' => 'https://m1.ppy.sh/r/osu!install.exe',
+        'installer-mirror' => 'https://m2.ppy.sh/r/osu!install.exe',
+        'osx' => 'https://osx.ppy.sh',
+        'youtube-tutorial-playlist' => 'PLmWVQsxi34bMYwAawZtzuptfMmszUa_tl',
+        'legacy-forum-thread-prefix' => '/forum/t/',
         'smilies' => '/forum/images/smilies',
         'support-the-game' => '/p/support#transactionarea',
 
@@ -113,6 +125,7 @@ return [
         'verification_key_length_hex' => 8,
         'verification_key_tries_limit' => 8,
         'max_friends' => 250,
+        'max_friends_supporter' => 500,
         'online_window' => intval(env('USER_ONLINE_WINDOW', 10)),
         'password_reset' => [
             'expires_hour' => 2,

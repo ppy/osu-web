@@ -57,8 +57,17 @@ class ProfilePage.Main extends React.PureComponent
       beatmapPlaycounts: @props.beatmapsets.most_played
       favouriteBeatmapsets: @props.beatmapsets.favourite
       rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
+      unrankedBeatmapsets: @props.beatmapsets.unranked
+      graveyardBeatmapsets: @props.beatmapsets.graveyard
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
+
+    for own elem, perPage of @props.perPage
+      @state.showMorePagination[elem] ?= {}
+      @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
+
+      if @state.showMorePagination[elem].hasMore
+        @state[elem].pop()
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
@@ -106,7 +115,7 @@ class ProfilePage.Main extends React.PureComponent
 
 
   render: =>
-    withMePage = @state.userPage.html != '' || @props.withEdit
+    withMePage = @state.userPage.initialRaw.trim() != '' || @props.withEdit
 
     extraPageParams =
       me:
@@ -142,9 +151,13 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
           favouriteBeatmapsets: @state.favouriteBeatmapsets
           rankedAndApprovedBeatmapsets: @state.rankedAndApprovedBeatmapsets
+          unrankedBeatmapsets: @state.unrankedBeatmapsets
+          graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
             favouriteBeatmapsets: @state.user.favouriteBeatmapsetCount[0]
             rankedAndApprovedBeatmapsets: @state.user.rankedAndApprovedBeatmapsetCount[0]
+            unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
+            graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
           pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 
@@ -165,7 +178,7 @@ class ProfilePage.Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: ProfilePage.Historical
 
-    div className: 'osu-layout__section',
+    div className: 'osu-layout osu-layout--full',
       el ProfilePage.Header,
         user: @state.user
         stats: @props.statistics
@@ -243,12 +256,15 @@ class ProfilePage.Main extends React.PureComponent
     paginationState[propertyName].loading = true
 
     @setState showMorePagination: paginationState, ->
-      $.get osu.updateQueryString('offset', offset, url), (data) =>
+      $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[propertyName]).concat(data)
+        hasMore = data.length > perPage && state.length < 100
+
+        state.pop() if hasMore
 
         paginationState = _.cloneDeep @state.showMorePagination
         paginationState[propertyName].loading = false
-        paginationState[propertyName].hasMore = data.length == perPage && state.length < maxResults
+        paginationState[propertyName].hasMore = hasMore
 
         @setState
           "#{propertyName}": state

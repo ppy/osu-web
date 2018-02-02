@@ -22,29 +22,26 @@
     .default-border-radius();
 
     background-color: #eee;
-    color: #555;
+    color: #333;
     padding: 4px 8px;
     text-align: center;
-    min-width: 14em;
-  }
+    width: @usercard-width;
 
-  &__input-feedback {
-    display: inline-block; // prevent collapsing of empty block
-    font-size: 13px;
-    font-weight: 600;
-    color: #555;
-    text-align: center;
-  }
-
-  &__user-icon {
-    margin: 8px;
+    &::placeholder {
+      font-style: italic;
+    }
   }
 
   &__user-search {
     margin: 8px;
+    .js-store--disabled & {
+      .usercard {
+        pointer-events: none;
+      }
+    }
   }
 
   .ui-slider {
-    margin: 85px 50px 24px 50px;
+    margin: 105px 4px 24px 4px;
   }
 }

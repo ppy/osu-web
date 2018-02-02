@@ -76,10 +76,10 @@
                         {!! suffixed_number_format_tag($score->ranked_score) !!}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->x_rank_count)) }}
+                        {{ number_format(max(0, $score->x_rank_count + $score->xh_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->s_rank_count)) }}
+                        {{ number_format(max(0, $score->s_rank_count + $score->sh_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format(max(0, $score->a_rank_count)) }}

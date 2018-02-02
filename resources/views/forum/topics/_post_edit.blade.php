@@ -19,7 +19,7 @@
     'url' => route('forum.posts.update', $post),
     'method' => 'patch',
     'data-remote' => true,
-    'class' => 'js-editor-zoom js-forum-post-edit forum-post '.($post->userNormalized()->isSpecial() ? 'forum-post--special' : ''),
+    'class' => 'js-forum-post-edit forum-post '.($post->userNormalized()->isSpecial() ? 'forum-post--special' : ''),
     'data-post-position' => $post->postPosition,
 ]) !!}
     @if ($post->userNormalized()->isSpecial())

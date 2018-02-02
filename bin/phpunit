@@ -1,0 +1,8 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/../app/framework_helper_overrides.php';
+
+// This will print the first shebang line in the file because it's called
+// from here instead of shell.
+require_once __DIR__.'/../vendor/bin/phpunit';

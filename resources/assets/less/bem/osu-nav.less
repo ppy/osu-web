@@ -68,7 +68,8 @@
     }
 
     &--title {
-      flex: 1 0 auto;
+      flex: 1;
+      min-width: 0;
     }
   }
 
@@ -85,13 +86,11 @@
 
   &__title {
     padding-bottom: 10px;
-    display: flex;
-    align-items: flex-end;
   }
 
   &__title-separator {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 5px;
     opacity: 0.5;
   }
 }

@@ -31,18 +31,30 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+        Commands\EsIndexDocuments::class,
+
         // modding stuff
         Commands\ModdingQueueUpdateCommand::class,
         Commands\ModdingRankCommand::class,
         Commands\ModdingScoreIndexCommand::class,
 
         Commands\UserForumStatSyncCommand::class,
+        Commands\BeatmapsetsHypeSyncCommand::class,
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
         Commands\BuildsUpdatePropagationHistory::class,
 
+        // leaderboard recalculation
         Commands\RankingsRecalculateCountryStats::class,
+
+        // moddingv2 kudosu recalculation
+        Commands\KudosuRecalculateDiscussionsGrants::class,
+
+        // fix username change fail :D
+        Commands\FixUsernameChangeTopicCache::class,
+
+        Commands\UserRecalculateRankCounts::class,
     ];
 
     /**

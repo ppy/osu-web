@@ -20,6 +20,8 @@
 
 namespace App\Models\Store;
 
+use App\Exceptions\InsufficientStockException;
+
 class Product extends Model
 {
     protected $primaryKey = 'product_id';
@@ -136,6 +138,17 @@ class Product extends Model
             ->orderBy('display_order', 'desc');
     }
 
+    public function scopeCustomClass($query, $name)
+    {
+        return $query
+            ->where('custom_class', $name);
+    }
+
+    public function scopeEnabled($query)
+    {
+        return $query->where('enabled', true);
+    }
+
     public function productsInRange()
     {
         if (!($mappings = $this->typeMappings())) {
@@ -143,6 +156,29 @@ class Product extends Model
         }
 
         return self::whereIn('product_id', array_keys($mappings))->get();
+    }
+
+    public function release($quantity)
+    {
+        if ($this->stock === null) {
+            return true;
+        }
+
+        $this->increment('stock', $quantity);
+    }
+
+    public function reserve($quantity)
+    {
+        if ($this->stock === null) {
+            return true;
+        }
+
+        $this->decrement('stock', $quantity);
+
+        // operating under the assumtion that the caller will prevent concurrent updates.
+        if ($this->stock < 0) {
+            throw new InsufficientStockException();
+        }
     }
 
     public function types()

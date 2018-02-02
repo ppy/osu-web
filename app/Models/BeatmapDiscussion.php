@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use Cache;
 use Carbon\Carbon;
 use DB;
 
@@ -28,20 +29,93 @@ class BeatmapDiscussion extends Model
     protected $guarded = [];
 
     protected $casts = [
+        'kudosu_denied' => 'boolean',
         'resolved' => 'boolean',
     ];
 
     protected $dates = ['deleted_at'];
 
-    const KUDOSU_STEPS = [5, 10, 15];
+    const KUDOSU_STEPS = [1, 2, 5];
 
     const MESSAGE_TYPES = [
         'praise' => 0,
         'suggestion' => 1,
         'problem' => 2,
+        'mapper_note' => 3,
+        'hype' => 4,
     ];
 
+    const RESOLVABLE_TYPES = [1, 2];
+    const KUDOSUABLE_TYPES = [1, 2];
+
+    public static function search($rawParams = [])
+    {
+        $params = [
+            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
+            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+        ];
+
+        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+
+        if (present($rawParams['user'] ?? null)) {
+            $params['user'] = $rawParams['user'];
+            $user = User::lookup($params['user']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->where('user_id', '=', $user->getKey());
+            }
+        } else {
+            $params['user'] = null;
+        }
+
+        if (isset($rawParams['sort'])) {
+            $sort = explode('-', strtolower($rawParams['sort']));
+
+            if (in_array($sort[0] ?? null, ['id'], true)) {
+                $sortField = $sort[0];
+            }
+
+            if (in_array($sort[1] ?? null, ['asc', 'desc'], true)) {
+                $sortOrder = $sort[1];
+            }
+        }
+
+        $sortField ?? ($sortField = 'id');
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $query->orderBy($sortField, $sortOrder);
+
+        if (isset($rawParams['message_types'])) {
+            $params['message_types'] = get_arr($rawParams['message_types'], 'get_string');
+
+            $query->ofType($params['message_types']);
+        } else {
+            $params['message_types'] = array_keys(static::MESSAGE_TYPES);
+        }
+
+        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+
+        if (!$params['with_deleted']) {
+            $query->withoutDeleted();
+        }
+
+        // TODO: readd this when content becomes public
+        // $query->whereHas('user', function ($userQuery) {
+        //     $userQuery->default();
+        // });
+
+        return ['query' => $query, 'params' => $params];
+    }
+
     public function beatmap()
+    {
+        return $this->visibleBeatmap()->withTrashed();
+    }
+
+    public function visibleBeatmap()
     {
         return $this->belongsTo(Beatmap::class, 'beatmap_id');
     }
@@ -56,6 +130,18 @@ class BeatmapDiscussion extends Model
         return $this->hasMany(BeatmapDiscussionPost::class);
     }
 
+    public function startingPost()
+    {
+        return $this->hasOne(BeatmapDiscussionPost::class)->whereNotExists(function ($query) {
+            $table = (new BeatmapDiscussionPost)->getTable();
+
+            $query->selectRaw(1)
+                ->from(DB::raw("{$table} d"))
+                ->where('beatmap_discussion_id', $this->beatmap_discussion_id)
+                ->whereRaw("d.id < {$table}.id");
+        });
+    }
+
     public function beatmapDiscussionVotes()
     {
         return $this->hasMany(BeatmapDiscussionVote::class);
@@ -64,6 +150,11 @@ class BeatmapDiscussion extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function kudosuHistory()
+    {
+        return $this->morphMany(KudosuHistory::class, 'kudosuable');
     }
 
     public function getMessageTypeAttribute($value)
@@ -87,52 +178,54 @@ class BeatmapDiscussion extends Model
             $value = false;
         }
 
-        $this->attributes['resolved'] = $value;
+        // Ensure isDirty works as expected.
+        // Reference: https://github.com/laravel/internals/issues/349
+        $this->attributes['resolved'] = $value ? 1 : 0;
     }
 
     public function canBeResolved()
     {
-        return in_array($this->message_type, ['suggestion', 'problem'], true);
+        return in_array($this->attributes['message_type'] ?? null, static::RESOLVABLE_TYPES, true);
     }
 
-    public function refreshKudosu($event)
+    public function canGrantKudosu()
     {
-        // no kudosu for praises...?
-        if ($this->message_type === 'praise') {
-            return;
-        }
+        return
+            in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
+            $this->user_id !== $this->beatmapset->user_id &&
+            !$this->isDeleted() &&
+            !$this->kudosu_denied;
+    }
 
-        // cleanup of own votes
+    public function refreshKudosu($event, $eventExtraData = [])
+    {
+        // remove own votes
         $this->beatmapDiscussionVotes()->where([
             'user_id' => $this->user_id,
         ])->delete();
 
         // inb4 timing problem
-        $currentVotes = $this->currentVotes();
-        $previousVotes = $this->kudosu_refresh_votes ?? 0;
-        $votesChange = $currentVotes - $previousVotes;
+        $currentVotes = $this->canGrantKudosu() ?
+            (int) $this->beatmapDiscussionVotes()->sum('score') :
+            0;
+        $kudosuGranted = (int) $this->kudosuHistory()->sum('amount');
+        $targetKudosu = 0;
 
-        $change = 0;
-
-        if ($votesChange > 0) {
-            foreach (static::KUDOSU_STEPS as $step) {
-                if ($previousVotes < $step && $currentVotes >= $step) {
-                    $change += 1;
-                }
-            }
-        } else {
-            foreach (static::KUDOSU_STEPS as $step) {
-                if ($currentVotes < $step && $previousVotes >= $step) {
-                    $change -= 1;
-                }
+        foreach (static::KUDOSU_STEPS as $step) {
+            if ($currentVotes >= $step) {
+                $targetKudosu++;
+            } else {
+                break;
             }
         }
+
+        $change = $targetKudosu - $kudosuGranted;
 
         if ($change === 0) {
             return;
         }
 
-        DB::transaction(function () use ($change, $event, $currentVotes) {
+        DB::transaction(function () use ($change, $event, $eventExtraData, $currentVotes) {
             if ($event === 'vote') {
                 if ($change > 0) {
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_GAIN;
@@ -140,7 +233,16 @@ class BeatmapDiscussion extends Model
                     $beatmapsetEventType = BeatmapsetEvent::KUDOSU_LOST;
                 }
 
-                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this)->saveOrExplode();
+                $eventExtraData['votes'] = $this
+                    ->beatmapDiscussionVotes
+                    ->map
+                    ->forEvent();
+            } elseif ($event === 'recalculate') {
+                $beatmapsetEventType = BeatmapsetEvent::KUDOSU_RECALCULATE;
+            }
+
+            if (isset($beatmapsetEventType)) {
+                BeatmapsetEvent::log($beatmapsetEventType, $this->user, $this, $eventExtraData)->saveOrExplode();
             }
 
             KudosuHistory::create([
@@ -154,9 +256,7 @@ class BeatmapDiscussion extends Model
                     'event' => $event,
                 ],
             ]);
-            $this->update([
-                'kudosu_refresh_votes' => $currentVotes,
-            ]);
+
             $this->user->update([
                 'osu_kudostotal' => DB::raw("osu_kudostotal + {$change}"),
                 'osu_kudosavailable' => DB::raw("osu_kudosavailable + {$change}"),
@@ -164,30 +264,67 @@ class BeatmapDiscussion extends Model
         });
     }
 
-    public function currentVotes()
+    public function refreshResolved()
     {
-        return ($this->isDeleted() || $this->kudosu_denied)
-            ? 0
-            : $this->beatmapDiscussionVotes()->sum('score');
+        $systemPosts = $this
+            ->beatmapDiscussionPosts()
+            ->withoutDeleted()
+            ->where('system', '=', true)
+            ->orderBy('id', 'DESC')
+            ->get();
+
+        foreach ($systemPosts as $post) {
+            if ($post->message['type'] === 'resolved') {
+                return $this->update(['resolved' => $post->message['value']]);
+            }
+        }
+
+        return $this->update(['resolved' => false]);
     }
 
     public function hasValidBeatmap()
     {
         return
             $this->beatmap_id === null ||
-            ($this->beatmap && $this->beatmap->beatmapset_id === $this->beatmapset_id);
+            ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
     }
 
     public function hasValidMessageType()
     {
-        return $this->message_type !== null;
+        if ($this->message_type === null) {
+            return false;
+        }
+
+        if (!$this->isDirty('message_type')) {
+            return true;
+        }
+
+        $validTypes = ['praise', 'problem', 'suggestion'];
+
+        if ($this->user_id === $this->beatmapset->user_id) {
+            $validTypes[] = 'mapper_note';
+        } else {
+            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)['result']) {
+                $validTypes[] = 'hype';
+            }
+        }
+
+        return in_array($this->message_type, $validTypes, true);
     }
 
     public function hasValidTimestamp()
     {
+        if ($this->timestamp === null) {
+            return true;
+        }
+
+        // skip validation if not changed
+        if (!$this->isDirty('timestamp')) {
+            return true;
+        }
+
         return
-            ($this->timestamp === null) ||
-            ($this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length) * 1000);
+            $this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length) * 1000;
     }
 
     public function votesSummary()
@@ -205,11 +342,6 @@ class BeatmapDiscussion extends Model
         return $votes;
     }
 
-    /*
-     * Called before saving. The callback definition is located in
-     * App\Providers\AppServiceProvider. Don't ask me why it's there;
-     * ask Laravel.
-     */
     public function isValid()
     {
         return $this->hasValidBeatmap() &&
@@ -219,20 +351,24 @@ class BeatmapDiscussion extends Model
 
     public function vote($params)
     {
+        if (!$this->hasValidBeatmap()) {
+            return false;
+        }
+
         return DB::transaction(function () use ($params) {
             $vote = $this->beatmapDiscussionVotes()->where(['user_id' => $params['user_id']])->firstOrNew([]);
             $previousScore = $vote->score ?? 0;
             $vote->fill($params);
-            $scoreChange = $vote->score - $previousScore;
 
-            if ($scoreChange !== 0) {
+            if ($previousScore !== $vote->score) {
                 if ($vote->score === 0) {
                     $vote->delete();
                 } else {
                     $vote->save();
                 }
 
-                $this->refreshKudosu('vote');
+                $this->userRecentVotesCount($vote->user, true);
+                $this->refreshKudosu('vote', ['new_vote' => $vote->forEvent()]);
             }
 
             return true;
@@ -241,11 +377,17 @@ class BeatmapDiscussion extends Model
 
     public function title()
     {
-        if ($this->beatmap === null) {
-            return '[deleted beatmap]';
+        if ($this->beatmapset !== null) {
+            if ($this->beatmap_id === null) {
+                return $this->beatmapset->title;
+            }
+
+            if ($this->beatmap !== null) {
+                return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+            }
         }
 
-        return "{$this->beatmapset->title} [{$this->beatmap->version}]";
+        return '[deleted beatmap]';
     }
 
     public function url()
@@ -279,6 +421,19 @@ class BeatmapDiscussion extends Model
         return $this->deleted_at !== null;
     }
 
+    public function userRecentVotesCount($user, $increment = false)
+    {
+        $key = "beatmapDiscussion:{$this->getKey()}:votes:{$user->getKey()}";
+
+        if ($increment) {
+            Cache::add($key, 0, 60);
+
+            return Cache::increment($key);
+        } else {
+            return get_int(Cache::get($key)) ?? 0;
+        }
+    }
+
     public function restore($restoredBy)
     {
         DB::transaction(function () use ($restoredBy) {
@@ -288,6 +443,18 @@ class BeatmapDiscussion extends Model
             $this->update(['deleted_at' => null]);
             $this->refreshKudosu('restore');
         });
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        $ret = parent::save($options);
+        $this->beatmapset->refreshCache();
+
+        return $ret;
     }
 
     public function softDelete($deletedBy)
@@ -302,6 +469,32 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function scopeOfType($query, $types)
+    {
+        foreach ((array) $types as $type) {
+            $intType = static::MESSAGE_TYPES[$type] ?? null;
+
+            if ($intType !== null) {
+                $intTypes[] = $intType;
+            }
+        }
+
+        $query->whereIn('message_type', $intTypes);
+    }
+
+    public function scopeOpenIssues($query)
+    {
+        $query
+            ->withoutDeleted()
+            ->whereIn('message_type', static::RESOLVABLE_TYPES)
+            ->where(function ($query) {
+                $query
+                    ->has('visibleBeatmap')
+                    ->orWhereNull('beatmap_id');
+            })
+            ->where('resolved', '=', false);
     }
 
     public function scopeWithoutDeleted($query)

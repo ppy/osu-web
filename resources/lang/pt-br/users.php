@@ -74,7 +74,7 @@ return [
                     'button' => 'Enviar imagem',
                     'dropzone' => 'Arraste aqui para enviar',
                     'dropzone_info' => 'Você também pode arrastar a sua imagem aqui para enviar',
-                    'restriction_info' => "Envio de imagem disponível apenas para <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => "Envio de imagem disponível apenas para <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'O tamanho da capa deve ser 2000x700',
                     'too_large' => 'O arquivo enviado é muito grande.',
                     'unsupported_format' => 'Formato não suportado.',
@@ -87,7 +87,15 @@ return [
                 'achieved-on' => 'Alcançada em :date',
             ],
             'beatmaps' => [
+                'none' => 'Nenhum... ainda.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Beatmaps favoritos (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Beatmaps ranqueados e aprovados (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Sem histórico de desempenho. :(',
@@ -141,22 +149,12 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'conseguiu: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Beatmaps favoritos (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Beatmaps ranqueados e aprovados (:count)',
-                ],
-                'none' => 'Nenhum... ainda.',
-            ],
         ],
         'page' => [
             'description' => '<strong>eu!</strong> é uma área pessoal personalizável na sua página de perfil.',
             'edit_big' => 'Editar eu!',
             'placeholder' => 'Escreva o conteúdo da página aqui',
-            'restriction_info' => "Você precisa ser um <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
+            'restriction_info' => "Você precisa ser um <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear essa função.",
         ],
         'rank' => [
             'country' => 'Rank de país para :mode',

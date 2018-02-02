@@ -21,20 +21,22 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\EsIndexDocument;
+use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
+use App\Libraries\Transactions\AfterCommit;
 use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use Datadog;
 use DB;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
-class Beatmapset extends Model
+class Beatmapset extends Model implements AfterCommit
 {
-    use SoftDeletes;
+    use Elasticsearch\BeatmapsetTrait, SoftDeletes;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -80,24 +82,80 @@ class Beatmapset extends Model
         'qualified' => 3,
         'loved' => 4,
     ];
+    const HYPEABLE_STATES = [-1, 0, 3];
 
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'mode' => null,
-        'sort_order' => 'desc',
-        'sort_field' => 'approved_date',
-        'rank' => '',
-        'status' => 0,
-        'genre' => null,
-        'language' => null,
-        'extra' => '',
-        'limit' => 20,
-        'page' => 1,
+    const RANKED_PER_DAY = 8;
+    const MINIMUM_DAYS_FOR_RANKING = 7;
+    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
+
+    /*
+    |--------------------------------------------------------------------------
+    | Elasticsearch mappings; can't put in a Trait.
+    |--------------------------------------------------------------------------
+    */
+    const ES_MAPPINGS_BEATMAPS = [
+        'approved' => ['type' => 'long'],
+        'beatmap_id' => ['type' => 'long'],
+        'countNormal' => ['type' => 'long'],
+        'countSlider' => ['type' => 'long'],
+        'countSpinner' => ['type' => 'long'],
+        'countTotal' => ['type' => 'long'],
+        'diff_approach' => ['type' => 'double'],
+        'diff_drain' => ['type' => 'double'],
+        'diff_overall' => ['type' => 'double'],
+        'diff_size' => ['type' => 'double'],
+        'difficultyrating' => ['type' => 'double'],
+        'hit_length' => ['type' => 'long'],
+        'passcount' => ['type' => 'long'],
+        'playcount' => ['type' => 'long'],
+        'playmode' => ['type' => 'long'],
+        'total_length' => ['type' => 'long'],
+        'version' => ['type' => 'string'],
     ];
 
-    const NOMINATIONS_PER_DAY = 3;
-    const QUALIFICATIONS_PER_DAY = 6;
-    const BUNDLED_IDS = [3756, 163112, 140662, 151878, 190390, 123593, 241526, 299224];
+    const ES_MAPPINGS_BEATMAPSETS = [
+        'approved' => ['type' => 'long'],
+        'approved_date' => ['type' => 'date'],
+        'artist' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+        'artist_unicode' => ['type' => 'string'],
+        'bpm' => ['type' => 'double'],
+        'creator' => ['type' => 'string'],
+        'difficulty_names' => ['type' => 'string'],
+        'download_disabled' => ['type' => 'boolean'],
+        'epilepsy' => ['type' => 'boolean'],
+        'favourite_count' => ['type' => 'long'],
+        'filename' => ['type' => 'string'],
+        'filesize' => ['type' => 'long'],
+        'filesize_novideo' => ['type' => 'long'],
+        'genre_id' => ['type' => 'long'],
+        'hype' => ['type' => 'long'],
+        'language_id' => ['type' => 'long'],
+        'last_update' => ['type' => 'date'],
+        'nominations' => ['type' => 'long'],
+        'offset' => ['type' => 'long'],
+        'play_count' => ['type' => 'long'],
+        'rating' => ['type' => 'double'],
+        'source' => ['type' => 'string'],
+        'star_priority' => ['type' => 'long'],
+        'storyboard' => ['type' => 'boolean'],
+        'submit_date' => ['type' => 'date'],
+        'tags' => ['type' => 'string'],
+        'thread_id' => ['type' => 'long'],
+        'title' => [
+            'type' => 'string',
+            'fields' => [
+                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+            ],
+        ],
+        'title_unicode' => ['type' => 'string'],
+        'user_id' => ['type' => 'long'],
+        'video' => ['type' => 'boolean'],
+    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -110,19 +168,44 @@ class Beatmapset extends Model
         return (new Carbon($value))->subHours(8);
     }
 
+    public function setApprovedDateAttribute($value)
+    {
+        $this->attributes['approved_date'] = $value !== null ? parse_time_to_carbon($value)->addHours(8) : null;
+    }
+
     public function getSubmitDateAttribute($value)
     {
         return (new Carbon($value))->subHours(8);
     }
 
-    // ranking functions for the set
+    public function setSubmitDateAttribute($value)
+    {
+        $this->attributes['submit_date'] = parse_time_to_carbon($value)->addHours(8);
+    }
 
     public function beatmapDiscussions()
     {
         return $this->hasMany(BeatmapDiscussion::class, 'beatmapset_id', 'beatmapset_id');
     }
 
-    // Beatmapset::rankable();
+    public function recentFavourites($limit = 50)
+    {
+        $favourites = FavouriteBeatmapset::where('beatmapset_id', $this->beatmapset_id)
+            ->with('user')
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            })
+            ->orderBy('dateadded', 'desc')
+            ->limit($limit)
+            ->get();
+
+        return $favourites->pluck('user');
+    }
+
+    public function watches()
+    {
+        return $this->hasMany(BeatmapsetWatch::class, 'beatmapset_id', 'beatmapset_id');
+    }
 
     public function lastDiscussionTime()
     {
@@ -199,7 +282,7 @@ class Beatmapset extends Model
 
     public function scopeUnranked($query)
     {
-        return $query->where('approved', '=', self::STATES['pending']);
+        return $query->whereIn('approved', [static::STATES['pending'], static::STATES['wip']]);
     }
 
     public function scopeRanked($query)
@@ -219,7 +302,10 @@ class Beatmapset extends Model
 
     public function scopeRankedOrApproved($query)
     {
-        return $query->whereIn('approved', [self::STATES['ranked'], self::STATES['approved']]);
+        return $query->whereIn(
+            'approved',
+            [self::STATES['ranked'], self::STATES['approved'], self::STATES['qualified']]
+        );
     }
 
     public function scopeActive($query)
@@ -266,11 +352,25 @@ class Beatmapset extends Model
 
     public static function searchParams(array $params = [])
     {
+        // simple stuff
+        $params['query'] = presence($params['query'] ?? null);
+        $params['status'] = get_int($params['status'] ?? null) ?? 0;
+        $params['genre'] = get_int($params['genre'] ?? null);
+        $params['language'] = get_int($params['language'] ?? null);
+        $params['extra'] = explode('.', $params['extra'] ?? null);
+        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
+        $params['page'] = max(1, get_int($params['page'] ?? 1));
+        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
+
+        // rank
+        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
 
         // sort_order, sort_field (and clear up sort)
         $sort = explode('_', array_pull($params, 'sort'));
@@ -279,31 +379,35 @@ class Beatmapset extends Model
             'artist' => 'artist',
             'creator' => 'creator',
             'difficulty' => 'difficultyrating',
-            'plays' => 'playcount',
+            'nominations' => 'nominations',
+            'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
+            'relevance' => '_score',
             'title' => 'title',
+            'updated' => 'last_update',
         ];
-        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? 'approved_date';
+        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
 
         $params['sort_order'] = $sort[1] ?? null;
         if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
             $params['sort_order'] = 'desc';
         }
 
-        // rank
-        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
-
-        // the rest, oneliner
-        $params['query'] = presence($params['query'] ?? null);
-        $params['status'] = get_int($params['status'] ?? 0);
-        $params['genre'] = get_int($params['genre'] ?? null);
-        $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode('.', $params['extra'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
-        $params['offset'] = ($params['page'] - 1) * $params['limit'];
+        if ($params['sort_field'] === null) {
+            if (present($params['query'])) {
+                $params['sort_field'] = '_score';
+                $params['sort_order'] = 'desc';
+            } else {
+                if (in_array($params['status'], [4, 5, 6], true)) {
+                    $params['sort_field'] = 'last_update';
+                    $params['sort_order'] = 'desc';
+                } else {
+                    $params['sort_field'] = 'approved_date';
+                    $params['sort_order'] = 'desc';
+                }
+            }
+        }
 
         return $params;
     }
@@ -311,15 +415,10 @@ class Beatmapset extends Model
     public static function searchES(array $params = [])
     {
         $searchParams = [
-            'index' => config('osu.elasticsearch.index'),
-            'type' => 'beatmaps',
+            'index' => static::esIndexName(),
             'size' => $params['limit'],
             'from' => $params['offset'],
-            'body' => [
-                'sort' => [
-                    $params['sort_field'] => ['order' => $params['sort_order']],
-                ],
-            ],
+            'body' => ['sort' => static::searchSortParamsES($params)],
             'fields' => 'id',
         ];
 
@@ -348,7 +447,7 @@ class Beatmapset extends Model
         }
 
         if (present($params['query'])) {
-            $query = es_query_and_words($params['query']);
+            $query = es_query_escape_with_caveats($params['query']);
             $matchParams[] = ['query_string' => ['query' => $query]];
         }
 
@@ -394,13 +493,13 @@ class Beatmapset extends Model
                 $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                 break;
             case 2: // Favourites
-                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id');
+                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', self::class);
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
-            case 3: // Mod Requests
-                $maps = model_pluck(ModQueue::select(), 'beatmapset_id');
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
-                $matchParams[] = ['match' => ['approved' => self::STATES['pending']]];
+            case 3: // Qualified
+                $shouldParams[] = [
+                    ['match' => ['approved' => self::STATES['qualified']]],
+                ];
                 break;
             case 4: // Pending
                 $shouldParams[] = [
@@ -434,7 +533,8 @@ class Beatmapset extends Model
             $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
         }
 
-        $results = Es::search($searchParams);
+        $results = es_search($searchParams);
+
         $beatmapsetIds = array_map(
             function ($e) {
                 return $e['_id'];
@@ -448,56 +548,11 @@ class Beatmapset extends Model
         ];
     }
 
-    public static function searchDB(array $params = [])
-    {
-        $query = static::where('title', 'like', '%'.$params['query'].'%');
-
-        if ($params['mode'] !== null) {
-            $query->whereHas('beatmaps', function ($query) use ($params) {
-                $query->where('playmode', '=', $params['mode']);
-            });
-        }
-
-        if ($params['genre'] !== null) {
-            $query->where('genre_id', '=', $params['genre']);
-        }
-
-        if ($params['language'] !== null) {
-            $query->where('language_id', '=', $params['language']);
-        }
-
-        if (!empty($params['extra'])) {
-            foreach ($params['extra'] as $val) {
-                switch ($val) {
-                    case 'video':
-                        $query->where('video', '=', 1);
-                        break;
-                    case 'storyboard':
-                        $query->where('storyboard', '=', 1);
-                        break;
-                }
-            }
-        }
-
-        $ids = $query->take($params['limit'])->skip($params['offset'])
-            ->orderBy($params['sort_field'], $params['sort_order'])
-            ->get()->pluck('beatmapset_id')->toArray();
-
-        $total = $query->count();
-
-        return compact('ids', 'total');
-    }
-
     public static function search(array $params = [])
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-
-        if (empty(config('elasticsearch.hosts'))) {
-            $result = static::searchDB($params);
-        } else {
-            $result = static::searchES($params);
-        }
+        $result = static::searchES($params);
 
         $data = count($result['ids']) > 0
             ? static
@@ -509,13 +564,52 @@ class Beatmapset extends Model
 
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
-            Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
+            Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
         }
 
         return [
             'data' => $data,
             'total' => $result['total'],
         ];
+    }
+
+    /**
+     * Generate sort parameters for the elasticsearch query.
+     */
+    public static function searchSortParamsES(array $params)
+    {
+        static $fields = [
+            'artist' => 'artist.raw',
+            'title' => 'title.raw',
+        ];
+
+        // additional options
+        static $orderOptions = [
+            'difficultyrating' => [
+                'asc' => ['mode' => 'min'],
+                'desc' => ['mode' => 'max'],
+            ],
+        ];
+
+        $sortField = $params['sort_field'];
+        $sortOrder = $params['sort_order'];
+
+        $field = $fields[$sortField] ?? $sortField;
+        $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
+
+        $sortFields = [
+            $field => array_merge(
+                ['order' => $sortOrder],
+                $options
+            ),
+        ];
+
+        // sub-sorting
+        if ($params['sort_field'] === 'nominations') {
+            $sortFields['hype'] = ['order' => $params['sort_order']];
+        }
+
+        return $sortFields;
     }
 
     public static function latestRankedOrApproved($count = 5)
@@ -589,14 +683,16 @@ class Beatmapset extends Model
         return in_array($coverSize, $validSizes, true);
     }
 
-    public function coverURL($coverSize = 'cover')
+    public function coverURL($coverSize = 'cover', $customTimestamp = null)
     {
         if (!self::isValidCoverSize($coverSize)) {
             return false;
         }
 
         $timestamp = 0;
-        if ($this->cover_updated_at) {
+        if ($customTimestamp) {
+            $timestamp = $customTimestamp;
+        } elseif ($this->cover_updated_at) {
             $timestamp = $this->cover_updated_at->format('U');
         }
 
@@ -627,6 +723,17 @@ class Beatmapset extends Model
         return $this->_storage;
     }
 
+    public function removeCovers()
+    {
+        try {
+            $this->storage()->deleteDirectory($this->coverPath());
+        } catch (\Exception $e) {
+            // ignore errors
+        }
+
+        $this->update(['cover_updated_at' => $this->freshTimestamp()]);
+    }
+
     public function regenerateCovers()
     {
         $tmpBase = sys_get_temp_dir()."/bm/{$this->beatmapset_id}-".time();
@@ -641,6 +748,9 @@ class Beatmapset extends Model
             if (!is_dir($outputFolder)) {
                 mkdir($outputFolder, 0755, true);
             }
+
+            // start by clearing existing covers
+            $this->removeCovers();
 
             // download and extract beatmap
             $osz = "$tmpBase/osz.zip";
@@ -677,14 +787,15 @@ class Beatmapset extends Model
 
                 // upload original image
                 $this->storeCover('raw.jpg', $bgFile);
+                $timestamp = time();
 
                 // upload optimized version
-                $optimized = $processor->optimize($this->coverURL('raw'));
+                $optimized = $processor->optimize($this->coverURL('raw', $timestamp));
                 $this->storeCover('fullsize.jpg', $optimized);
 
                 // use thumbnailer to generate and upload all our variants
                 foreach (self::coverSizes() as $size) {
-                    $resized = $processor->resize($this->coverURL('fullsize'), $size);
+                    $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                     $this->storeCover("$size.jpg", $resized);
                 }
 
@@ -770,6 +881,7 @@ class Beatmapset extends Model
             ]);
 
             $this->setApproved('pending', $user);
+            $this->refreshCache();
         });
 
         return true;
@@ -785,6 +897,9 @@ class Beatmapset extends Model
             $this->events()->create(['type' => BeatmapsetEvent::QUALIFY]);
 
             $this->setApproved('qualified', $user);
+
+            // global event
+            Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
         });
 
         return true;
@@ -793,20 +908,35 @@ class Beatmapset extends Model
     public function nominate(User $user)
     {
         if (!$this->isPending()) {
-            return false;
+            $message = trans('beatmaps.nominations.incorrect_state');
+        }
+
+        // check if there are any outstanding issues still
+        if ($this->beatmapDiscussions()->openIssues()->count() > 0) {
+            $message = trans('beatmaps.nominations.unresolved_issues');
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => $message,
+            ];
         }
 
         DB::transaction(function () use ($user) {
-            $nomination = $this->recentEvents()->nominations()->where('user_id', $user->user_id);
+            $nomination = $this->nominationsSinceReset()->where('user_id', $user->user_id);
             if (!$nomination->exists()) {
                 $this->events()->create(['type' => BeatmapsetEvent::NOMINATE, 'user_id' => $user->user_id]);
                 if ($this->currentNominationCount() >= $this->requiredNominationCount()) {
                     $this->qualify($user);
                 }
             }
+            $this->refreshCache();
         });
 
-        return true;
+        return [
+            'result' => true,
+        ];
     }
 
     public function favourite($user)
@@ -860,6 +990,11 @@ class Beatmapset extends Model
         return $this->hasMany(Beatmap::class, 'beatmapset_id');
     }
 
+    public function allBeatmaps()
+    {
+        return $this->hasMany(Beatmap::class, 'beatmapset_id')->withTrashed();
+    }
+
     public function events()
     {
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
@@ -867,7 +1002,45 @@ class Beatmapset extends Model
 
     public function requiredHype()
     {
-        return 12;
+        return config('osu.beatmapset.required_hype');
+    }
+
+    public function canBeHyped()
+    {
+        return in_array($this->approved, static::HYPEABLE_STATES, true);
+    }
+
+    public function validateHypeBy($user)
+    {
+        if ($user === null) {
+            $message = 'guest';
+        } else {
+            if ($this->user_id === $user->getKey()) {
+                $message = 'owner';
+            } else {
+                $hyped = $this
+                    ->beatmapDiscussions()
+                    ->withoutDeleted()
+                    ->ofType('hype')
+                    ->where('user_id', '=', $user->getKey())
+                    ->exists();
+
+                if ($hyped) {
+                    $message = 'hyped';
+                } elseif ($user->remainingHype() <= 0) {
+                    $message = 'limit_exceeded';
+                }
+            }
+        }
+
+        if (isset($message)) {
+            return [
+                'result' => false,
+                'message' => trans("model_validation.beatmap_discussion.hype.{$message}"),
+            ];
+        } else {
+            return ['result' => true];
+        }
     }
 
     public function requiredNominationCount()
@@ -877,7 +1050,12 @@ class Beatmapset extends Model
 
     public function currentNominationCount()
     {
-        return count($this->recentEvents()->nominations()->get());
+        return $this->nominationsSinceReset()->count();
+    }
+
+    public function hasNominations()
+    {
+        return $this->currentNominationCount() > 0;
     }
 
     public function rankingETA()
@@ -887,36 +1065,55 @@ class Beatmapset extends Model
         }
 
         $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
-        $days = ceil($queueSize / static::QUALIFICATIONS_PER_DAY);
+        $days = ceil($queueSize / static::RANKED_PER_DAY);
 
-        return $days > 0 ? Carbon::now()->addDays($days)->startOfDay() : null;
+        $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
+        $days = max($minDays, $days);
+
+        return $days > 0 ? Carbon::now()->addDays($days) : null;
     }
 
-    public function recentEvents()
+    public function disqualificationEvent()
     {
-        // relevant events differ depending on state of beatmapset
+        return $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
+    }
+
+    public function resetEvent()
+    {
+        return $this->events()->disqualificationAndNominationResetEvents()->orderBy('created_at', 'desc')->first();
+    }
+
+    public function eventsSinceReset()
+    {
         $events = $this->events();
-        switch ($this->approved) {
-            case self::STATES['pending']:
-            case self::STATES['qualified']:
-                // last 'disqualify' event (if any) and all events since
-                $disqualifyEvent = $this->events()->disqualifications()->orderBy('created_at', 'desc')->first();
-                if ($disqualifyEvent) {
-                    $events->where('id', '>=', $disqualifyEvent->id);
-                }
+
+        $resetEvent = $this->resetEvent();
+        if ($resetEvent) {
+            $events->where('id', '>=', $resetEvent->id);
         }
 
         return $events;
     }
 
-    public function status()
+    public function nominationsSinceReset()
     {
-        return array_search($this->approved, self::STATES, true);
+        return $this->eventsSinceReset()->nominations();
     }
 
-    public function defaultJson($currentUser = null)
+    public function status()
     {
-        $includes = ['beatmaps', 'nominations'];
+        return array_search_null($this->approved, static::STATES);
+    }
+
+    public function defaultJson($options = [])
+    {
+        $includes = ['current_user_attributes', 'nominations'];
+
+        if ($options['withTrashedBeatmaps'] ?? false) {
+            $includes[] = 'beatmaps:with_trashed';
+        } else {
+            $includes[] = 'beatmaps';
+        }
 
         return json_item($this, new BeatmapsetTransformer, $includes);
     }
@@ -927,9 +1124,12 @@ class Beatmapset extends Model
             static::with([
                 'beatmapDiscussions.beatmapDiscussionPosts',
                 'beatmapDiscussions.beatmapDiscussionVotes',
+                'beatmapDiscussions.beatmapset',
+                'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
             'BeatmapsetDiscussion',
             [
+                'beatmapset',
                 'beatmap_discussions.beatmap_discussion_posts',
                 'beatmap_discussions.current_user_attributes',
                 'beatmapset_events',
@@ -986,29 +1186,41 @@ class Beatmapset extends Model
 
     public function description()
     {
-        $topic = Forum\Topic::find($this->thread_id);
+        $bbcode = $this->getBBCode();
 
-        if ($topic === null) {
+        return $bbcode ? $bbcode->toHTML() : null;
+    }
+
+    public function editableDescription()
+    {
+        $bbcode = $this->getBBCode();
+
+        return $bbcode ? $bbcode->toEditor() : null;
+    }
+
+    public function updateDescription($bbcode, $user)
+    {
+        $post = $this->getPost();
+        if ($post === null) {
             return;
         }
 
-        $post = Forum\Post::find($topic->topic_first_post_id);
-
-        // Any description (after the first match) that matches
-        // '[-{15}]' within its body doesn't get split anymore,
-        // and gets stored in $split[1] anyways
-        $split = preg_split('[-{15}]', $post->post_text, 2);
-
-        // Return empty description if the pattern was not found
-        // (mostly older beatmapsets)
-        $description = $split[1] ?? '';
+        $split = preg_split('/-{15}/', $post->post_text, 2);
 
         $options = [
             'withGallery' => true,
             'ignoreLineHeight' => true,
         ];
 
-        return (new \App\Libraries\BBCodeFromDB($description, $post->bbcode_uid, $options))->toHTML();
+        $header = new BBCodeFromDB($split[0], $post->bbcode_uid, $options);
+        $newBody = $header->toEditor()."---------------\n".ltrim($bbcode);
+
+        return $post
+            ->skipBeatmapPostRestrictions()
+            ->update([
+                'post_text' => $newBody,
+                'post_edit_user' => $user === null ? null : $user->getKey(),
+            ]);
     }
 
     public function toMetaDescription()
@@ -1016,5 +1228,68 @@ class Beatmapset extends Model
         $section = trans('layout.menu.beatmaps._');
 
         return "osu! » {$section} » {$this->artist} - {$this->title}";
+    }
+
+    private function extractDescription($post)
+    {
+        // Any description (after the first match) that matches
+        // '/-{15}/' within its body doesn't get split anymore,
+        // and gets stored in $split[1] anyways
+        $split = preg_split('/-{15}/', $post->post_text, 2);
+
+        // Return empty description if the pattern was not found
+        // (mostly older beatmapsets)
+        return ltrim($split[1] ?? '');
+    }
+
+    private function getBBCode()
+    {
+        $post = $this->getPost();
+
+        if ($post === null) {
+            return;
+        }
+
+        $description = $this->extractDescription($post);
+
+        $options = [
+            'withGallery' => true,
+            'ignoreLineHeight' => true,
+        ];
+
+        return new BBCodeFromDB($description, $post->bbcode_uid, $options);
+    }
+
+    private function getPost()
+    {
+        $topic = Forum\Topic::find($this->thread_id);
+
+        if ($topic === null) {
+            return;
+        }
+
+        return Forum\Post::find($topic->topic_first_post_id);
+    }
+
+    public function freshHype()
+    {
+        return $this
+            ->beatmapDiscussions()
+            ->withoutDeleted()
+            ->ofType('hype')
+            ->count();
+    }
+
+    public function refreshCache()
+    {
+        return $this->update([
+            'hype' => $this->freshHype(),
+            'nominations' => $this->currentNominationCount(),
+        ]);
+    }
+
+    public function afterCommit()
+    {
+        dispatch(new EsIndexDocument($this));
     }
 }

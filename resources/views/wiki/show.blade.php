@@ -76,9 +76,19 @@
 
     <div class="osu-page osu-page--wiki">
         @if ($page->page() !== null && $page->locale !== $page->requestedLocale)
-            <div class="wiki-fallback-locale">
-                <div class="wiki-fallback-locale__box">
+            <div class="wiki-notice">
+                <div class="wiki-notice__box">
                     {{ trans('wiki.show.fallback_translation', ['language' => locale_name($page->requestedLocale)]) }}
+                </div>
+            </div>
+        @endif
+
+        @if ($page->isOutdated())
+            <div class="wiki-notice">
+                <div class="wiki-notice__box">
+                    {!! trans('wiki.show.outdated._', [
+                        'default' => '<a href="'.e(wiki_url($page->path, config('app.fallback_locale'))).'">'.e(trans('wiki.show.outdated.default')).'</a>',
+                    ]) !!}
                 </div>
             </div>
         @endif
@@ -109,7 +119,15 @@
                     {!! $page->page()['output'] !!}
                 @else
                     <div class="wiki-content">
-                        {{ trans('wiki.show.missing') }}
+                        <p>
+                            {{ trans('wiki.show.missing', ['keyword' => $page->path ]) }}
+                        </p>
+
+                        <p>
+                            {!! trans('wiki.show.search', ['link' =>
+                                link_to(route('search', ['mode' => 'wiki_page', 'query' => $page->path]), $page->path)
+                            ]) !!}
+                        </p>
                     </div>
                 @endif
             </div>

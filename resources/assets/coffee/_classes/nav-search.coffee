@@ -60,9 +60,10 @@ class @NavSearch
 
 
   run: =>
-    query = $('.js-nav-search--input').val().trim()
+    input = document.getElementsByClassName('js-nav-search--input')[0]
+    query = input.value.trim()
 
-    if query.length < 3
+    if query.length < parseInt(input.dataset.minLength)
       $('.js-nav-search--result').text('')
       return @setMode 'initial'
 

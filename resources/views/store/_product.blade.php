@@ -28,7 +28,7 @@
 
 <div class="{{ $_topClass }}" style="order: {{ $_inStock ? '0' : '1' }};">
     <a
-        href="/store/product/{{ $product->product_id }}"
+        href="{{ route('store.products.show', $product) }}"
         class="product-box product-box--{{ $_large ? 'large' : 'small' }}"
         style="background-image: url('{{ $_large ? $product->header_image : $product->image }}')"
     >

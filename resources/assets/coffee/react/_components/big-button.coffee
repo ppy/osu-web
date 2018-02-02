@@ -35,4 +35,5 @@ el = React.createElement
             span className: 'btn-osu-big__text-bottom', text.bottom
       if icon?
         span className: 'btn-osu-big__icon',
-          el Icon, name: icon
+          # ensure no random width change when changing icon
+          el Icon, name: icon, modifiers: ['fw']

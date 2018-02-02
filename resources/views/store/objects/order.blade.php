@@ -15,21 +15,36 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $itemErrors = $validationErrors['orderItems'] ?? [];
+@endphp
+
 <table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
     <tbody>
         @foreach($order->items as $i)
-        <tr>
-            <td>{{{$i->getDisplayName()}}}</td>
-            @if(isset($weight))
-                @if($i->product->weight !== null)
-                    <td>{{{$i->product->weight}}}g</td>
-                @else
-                    <td></td>
+            <tr>
+                <td>
+                    {{ $i->getDisplayName() }}
+
+                    @if (isset($itemErrors[$i->id]))
+                        <ul class="store-order-item__errors">
+                            @foreach ($itemErrors[$i->id] as $message)
+                                <li class="store-order-item__error">{!! $message !!}
+                            @endforeach
+                        </ul>
+                    @endif
+
+                </td>
+                @if(isset($weight))
+                    @if($i->product->weight !== null)
+                        <td>{{{$i->product->weight}}}g</td>
+                    @else
+                        <td></td>
+                    @endif
                 @endif
-            @endif
-            <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
-            <td class="text-right">{{{currency($i->subtotal())}}}</td>
-        </tr>
+                <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
+                <td class="text-right">{{{currency($i->subtotal())}}}</td>
+            </tr>
         @endforeach
     </tbody>
 

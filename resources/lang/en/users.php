@@ -21,6 +21,28 @@
 return [
     'deleted' => '[deleted user]',
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Recently started discussions',
+        ],
+
+        'events' => [
+            'title_recent' => 'Recent events',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Recent posts',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Most upvoted by (last 3 months)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Most upvoted (last 3 months)',
+        ],
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -45,6 +67,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'click to login',
+        'login_text' => 'login',
         'username' => 'Guest',
         'error' => 'You need to be logged in to do this.',
     ],
@@ -79,7 +102,7 @@ return [
                     'button' => 'Upload image',
                     'dropzone' => 'Drop here to upload',
                     'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a> only",
+                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
                     'size_info' => 'Cover size should be 2000x700',
                     'too_large' => 'Uploaded file is too large.',
                     'unsupported_format' => 'Unsupported format.',
@@ -95,7 +118,21 @@ return [
                 'achieved-on' => 'Achieved on :date',
             ],
             'beatmaps' => [
+                'none' => 'None... yet.',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favourite Beatmaps (:count)',
+                ],
+                'graveyard' => [
+                    'title' => 'Graveyarded Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Pending Beatmaps (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
@@ -142,6 +179,11 @@ return [
                             'give' => 'Received :amount from obtaining votes in modding post of :post',
                             'reset' => 'Lost :amount from losing votes in modding post of :post',
                         ],
+
+                        'recalculate' => [
+                            'give' => 'Received :amount from votes recalculation in modding post of :post',
+                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                        ],
                     ],
 
                     'forum_post' => [
@@ -173,22 +215,12 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
-                ],
-                'none' => 'None... yet.',
-            ],
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
@@ -199,6 +231,12 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
+            'play_time' => [
+                'label' => 'Total Play Time',
+                'hours' => 'hrs',
+                'minutes' => 'mins',
+                'seconds' => 'secs',
+            ],
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',

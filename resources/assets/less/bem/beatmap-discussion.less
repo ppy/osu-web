@@ -29,6 +29,7 @@
     flex: none;
 
     display: flex;
+    justify-content: flex-end;
 
     height: @beatmap-discussion--avatar-size;
     margin: 10px;
@@ -115,5 +116,10 @@
   &__top {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 }

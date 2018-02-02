@@ -13,8 +13,8 @@ class NullableCoverJsonOnUserProfileCustomizations extends Migration
     public function up()
     {
         Schema::table('user_profile_customizations', function ($table) {
-            $table->dateTime('created_at')->nullable(false)->default(DB::raw('CURRENT_TIMESTAMP'))->change();
-            $table->dateTime('updated_at')->nullable(false)->default(DB::raw('CURRENT_TIMESTAMP'))->change();
+            $table->dateTime('created_at')->nullable(false)->useCurrent()->change();
+            $table->dateTime('updated_at')->nullable(false)->useCurrent()->change();
             $table->text('cover_json')->nullable()->default('NULL')->change();
         });
     }

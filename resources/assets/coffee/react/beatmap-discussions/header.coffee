@@ -47,10 +47,13 @@ class BeatmapDiscussions.Header extends React.PureComponent
     bn = 'beatmap-discussions-header-bottom'
 
     div className: bn,
-      div className: "#{bn}__content #{bn}__content--mapping",
+      div className: "#{bn}__content #{bn}__content--details",
         el BeatmapsetMapping,
           beatmapset: @props.beatmapset
           user: @props.users[@props.beatmapset.user_id]
+
+        div className: "#{bn}__subscribe",
+          el BeatmapDiscussions.Subscribe, beatmapset: @props.beatmapset
 
       div className: "#{bn}__content #{bn}__content--nomination",
         el BeatmapDiscussions.Nominations,
@@ -70,6 +73,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
       el PlaymodeTabs,
         currentMode: @props.currentBeatmap.mode
         beatmaps: @props.beatmaps
+        counts: @props.currentDiscussions.countsByPlaymode
 
       div
         className: "#{bn}__content"
@@ -91,6 +95,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
           el BeatmapDiscussions.BeatmapList,
             currentBeatmap: @props.currentBeatmap
+            currentDiscussions: @props.currentDiscussions
             beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
 
           div
@@ -106,13 +111,18 @@ class BeatmapDiscussions.Header extends React.PureComponent
               beatmap: @props.currentBeatmap
 
 
+  setFilter: (e) =>
+    e.preventDefault()
+    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type
+
+
   stats: =>
     bn = 'counter-box'
 
-    for type in ['mine', 'resolved', 'pending', 'praises', 'deleted', 'total']
+    for type in ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total']
       continue if type == 'deleted' && !@props.currentUser.isAdmin
 
-      topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{type}"
+      topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{_.kebabCase(type)}"
       topClasses += ' js-active' if @props.mode != 'events' && @props.currentFilter == type
 
       total = 0
@@ -130,7 +140,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
           className: "#{bn}__content"
           div
             className: "#{bn}__title"
-            osu.trans("beatmaps.discussions.stats.#{type}")
+            osu.trans("beatmaps.discussions.stats.#{_.snakeCase(type)}")
           div
             className: "#{bn}__count"
             total
@@ -148,8 +158,3 @@ class BeatmapDiscussions.Header extends React.PureComponent
       $(window).on 'throttled-resize.beatmapDiscussionsOverview', @_chart.resize
 
     @_chart.loadData _.values(@props.currentDiscussions.byFilter[@props.currentFilter].timeline)
-
-
-  setFilter: (e) =>
-    e.preventDefault()
-    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type

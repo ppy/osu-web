@@ -47,7 +47,35 @@ class Event extends Model
     protected $primaryKey = 'event_id';
 
     protected $dates = ['date'];
+    protected $guarded = [];
     public $timestamps = false;
+
+    public static function generate($type, $options)
+    {
+        switch ($type) {
+            case 'beatmapsetApprove':
+                $beatmapset = $options['beatmapset'];
+
+                $beatmapsetUrl = e(route('beatmapsets.show', $beatmapset, false));
+                $beatmapsetTitle = e($beatmapset->title);
+                $userName = e($beatmapset->user->username);
+                $userUrl = e(route('users.show', $beatmapset->user, false));
+                $approval = e($beatmapset->status());
+
+                $params = [
+                    'text' => "<a href='{$beatmapsetUrl}'>{$beatmapsetTitle}</a> by <b><a href='{$userUrl}'>{$userName}</a></b> has just been {$approval}!",
+                    'beatmap_id' => 0,
+                    'beatmapset_id' => $beatmapset->getKey(),
+                    'user_id' => $beatmapset->user->getKey(),
+                    'private' => false,
+                    'epicfactor' => 8,
+                ];
+        }
+
+        if (isset($params)) {
+            return static::create($params);
+        }
+    }
 
     public function user()
     {
@@ -150,13 +178,8 @@ class Event extends Model
 
     public function parseMatchesBeatmapsetApprove($matches)
     {
-        $approval = $matches['approval'];
-        if ($approval === 'ranked') {
-            $approval = 'qualified';
-        }
-
         return [
-            'approval' => $approval,
+            'approval' => $matches['approval'],
             'beatmapset' => $this->arrayBeatmapset($matches),
             'user' => $this->arrayUser($matches),
         ];

@@ -94,11 +94,11 @@ return [
         'store' => [
             '_' => 'winkel',
             'getListing' => 'index',
-            'getCart' => 'winkelwagen',
+            'cart-show' => 'winkelwagen',
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',
-            'getProduct' => 'artikel',
+            'products-show' => 'artikel',
 
             'new' => 'nieuw',
             'home' => 'start',

@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Sujets épinglés',
+    'slogan' => 'Il est dangereux de jouer seul.',
+    'subforums' => 'Sous-forums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,47 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Sujets épinglés',
     'post' => [
         'confirm_destroy' => 'Vraiment supprimer ce post?',
         'confirm_restore' => 'Vraiment restaurer ce post?',
         'edited' => 'Modifié par :user le :when, édité :count fois en tout.',
         'posted_at' => 'posté :when',
+
         'actions' => [
             'destroy' => 'Supprimer le post',
             'restore' => 'Restaurer le post',
             'edit' => 'Modifier le post',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Aller au post',
         'post_number_input' => 'entrer le numéro du post',
         'total_posts' => ':posts_count posts au total',
     ],
-    'subforums' => 'Sous-forums',
-    'title' => 'osu!community',
-    'slogan' => 'Il est dangereux de jouer seul.',
+
     'topic' => [
+        'go_to_latest' => 'voir le dernier post',
+        'latest_post' => ':when par :user',
+        'latest_reply_by' => 'dernière réponse par :user',
+        'new_topic' => 'Poster un nouveau sujet',
+        'post_reply' => 'Poster',
+        'reply_box_placeholder' => 'Tapez ici pour répondre',
+        'started_by' => 'par :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Tapez le contenu du post ici',
-                'title' => 'Cliquez ici pour définir le titre du post',
-            ],
             'preview' => 'Prévisualisation',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Écrire',
             'submit' => 'Poster',
+
+            'placeholder' => [
+                'body' => 'Tapez le contenu du post ici',
+                'title' => 'Cliquez ici pour définir le titre du post',
+            ],
         ],
-        'go_to_latest' => 'voir le dernier post',
+
         'jump' => [
             'enter' => 'cliquez pour entrer un numéro de post spécifique',
             'first' => 'aller au premier post',
@@ -83,20 +95,16 @@ return [
             'next' => 'passer de 10 posts suivants',
             'previous' => 'passer à 10 posts précédents',
         ],
-        'latest_post' => ':when par :user',
-        'latest_reply_by' => 'dernière réponse par :user',
-        'new_topic' => 'Poster un nouveau sujet',
+
         'post_edit' => [
             'cancel' => 'Annuler',
             'post' => 'Sauvegarder',
+
             'zoom' => [
                 'start' => 'Plein écran',
                 'end' => 'Sortir du plein écran',
             ],
         ],
-        'post_reply' => 'Poster',
-        'reply_box_placeholder' => 'Tapez ici pour répondre',
-        'started_by' => 'par :user',
     ],
 
     'topic_watches' => [
@@ -127,7 +135,6 @@ return [
         '_' => 'Sujets',
 
         'actions' => [
-            'reply' => 'Afficher Répondre',
             'reply_with_quote' => 'Citer un post et répondre',
         ],
 
@@ -221,16 +228,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Total des Posts',
             'deleted-posts' => 'Posts Supprimés',
+            'total_posts' => 'Total des Posts',
 
             'feature_vote' => [
                 'current' => 'Priorité : +:count',
                 'do' => 'Promouvoir cette requête',
 
                 'user' => [
-                    'current' => 'Il vous reste :votes.',
                     'count' => '{0} pas de vote|{1} :count vote|[2,*] :count votes',
+                    'current' => 'Il vous reste :votes.',
                     'not_enough' => "Vous n'avez plus de votes disponibles",
                 ],
             ],
@@ -239,9 +246,9 @@ return [
                 'vote' => 'Voter',
 
                 'detail' => [
-                    'total' => 'Total de votes: :count',
-                    'ended' => 'Sondage terminé :time',
                     'end_time' => 'Le sondage termine à :time',
+                    'ended' => 'Sondage terminé :time',
+                    'total' => 'Total de votes: :count',
                 ],
             ],
         ],
@@ -253,5 +260,4 @@ return [
             'watch-1' => "S'abonner au sujet",
         ],
     ],
-
 ];

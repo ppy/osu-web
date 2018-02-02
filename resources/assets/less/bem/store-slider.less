@@ -17,6 +17,17 @@
  */
 
 .store-slider {
+  @preset-font-size: 12px;
+  @preset-height: 20px;
+  @preset-margin: 4px;
+  @preset-width: 36px;
+  @callout-padding: 6px;
+  @callout-extension: 64px;
+
+  // inset slider to prevent overflows making the page wider.
+  // the 2px is to add a gap between the callout and the page edge.
+  padding: 0 ((@callout-extension / 2) - (@callout-padding * 2) + 2px);
+
   &__bigtext { // stupid name
     font-size: @font-size--large;
     font-weight: 600;
@@ -25,7 +36,7 @@
   &__fake-callout {
     position: absolute;
     left: @slider-handle-width / 2;
-    padding: 0 32px @slider-callout--arrow-height 32px;
+    padding-bottom: @slider-callout--arrow-height;
     transform: translateX(-50%);
     bottom: calc(100% ~'+' @slider-callout--arrow-gap);
   }
@@ -38,6 +49,11 @@
     border-radius: 10px;
     padding: 6px;
     width: @slider-callout--width;
+
+    @media @desktop {
+      // make fatter for wider viewports.
+      width: @slider-callout--width + @callout-extension;
+    }
 
     &:after, &:before {
       top: 100%;
@@ -62,11 +78,10 @@
     background-color: #666;
     color: #fff;
     cursor: pointer;
-    font-size: 12px;
-    margin: 4px;
-    height: 20px;
-    width: 36px;
-    line-height: 19px;
+    margin: @preset-margin;
+    height: @preset-height;
+    width: @preset-width;
+    line-height: @preset-height - 1px;
     text-align: center;
     border-radius: 10px;
 
@@ -82,6 +97,15 @@
         background-color: #999;
       }
     }
+  }
+
+  &__presets {
+    align-items: center;
+    font-size: @preset-font-size;
+  }
+
+  &__presets-blurb {
+    margin: 0 @preset-margin;
   }
 
   &__subtext { // stupid name

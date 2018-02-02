@@ -170,10 +170,6 @@ class BeatmapsetPage.Main extends React.Component
     @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
-  componentDidUpdate: ->
-    $.publish 'turbolinksDisqusReload'
-
-
   componentWillUnmount: ->
     $.unsubscribe '.beatmapsetPage'
     @scoreboardXhr?.abort()
@@ -181,7 +177,7 @@ class BeatmapsetPage.Main extends React.Component
 
 
   render: ->
-    div className: 'osu-layout__section',
+    div className: 'osu-layout osu-layout--full',
       div className: 'osu-layout__row osu-layout__row--page-compact',
         el BeatmapsetPage.Header,
           beatmapset: @props.beatmapset

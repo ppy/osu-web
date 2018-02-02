@@ -124,7 +124,7 @@ class ProfilePage.HeaderExtra extends React.Component
                     osu.trans 'users.show.plays_with',
                       devices: rowValue playsWith
 
-        div className: "#{bn}__column #{bn}__column--text",
+        div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
             @fancyLink
               key: 'location'
@@ -200,7 +200,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
     component
       href: url
-      className: "#{bn}__row #{bn}__row--fancy-link"
+      className: "#{bn}__row #{bn}__row--fancy-link u-ellipsis-overflow"
       title: title
       el Icon,
         name: icon ? key

@@ -24,6 +24,9 @@
         class="account-edit-entry__input js-account-edit__input"
         name="user[{{ $field }}]"
         data-last-value="{{ Auth::user()->$field }}"
+        @if (($maxLength = App\Models\User::MAX_FIELD_LENGTHS[$field]) !== null)
+        maxlength="{{ $maxLength }}"
+        @endif
         value="{{ Auth::user()->$field }}"
     >
 

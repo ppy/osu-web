@@ -62,7 +62,7 @@
                     @endif
 
                     <div class="search-result__row search-result__row--paginator">
-                        @include('objects._pagination', ['object' => $pagination])
+                        @include('objects._pagination', ['object' => $pagination, 'modifier' => 'search'])
                     </div>
                 @else
                     <a

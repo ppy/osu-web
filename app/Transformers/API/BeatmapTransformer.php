@@ -27,8 +27,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
 {
     public function transform(Beatmap $beatmap)
     {
-        $difficulty = $beatmap->difficultyAttribs->where('mode', $beatmap->playmode)->where('mods', 0)->where('attrib_id', 9)->first();
-        $diff_attrib = $beatmap->difficulty->where('mode', $beatmap->playmode)->where('mods', 0)->first();
+        $diffAttrib = $beatmap->difficultyAttribs->where('mode', $beatmap->playmode)->where('mods', 0)->where('attrib_id', 9)->first();
+        $difficulty = $beatmap->difficulty->where('mode', $beatmap->playmode)->where('mods', 0)->first();
 
         return [
           //beatmap
@@ -61,8 +61,8 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
           'favourite_count' => $beatmap->beatmapset->favourite_count,
 
           // beatmap difficulty/difficultyattribs
-          'max_combo' => $difficulty ? $difficulty->value : null,
-          'difficultyrating' => $diff_attrib ? $diff_attrib->diff_unified : 0,
+          'max_combo' => $diffAttrib ? $diffAttrib->value : null,
+          'difficultyrating' => $difficulty ? $difficulty->diff_unified : 0,
         ];
     }
 }

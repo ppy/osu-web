@@ -65,6 +65,19 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_apikeys', 'DYNAMIC');
 
+        Schema::create('osu_beatmap_difficulty', function (Blueprint $table) {
+            $table->charset = 'utf8mb4';
+
+            $table->unsignedInteger('beatmap_id');
+            $table->tinyInteger('mode')->default(0);
+            $table->unsignedInteger('mods');
+            $table->float('diff_unified', null, null); // creates a double instead of float.
+            $table->timestamp('last_update')->useCurrent();
+
+            $table->primary(['beatmap_id', 'mode', 'mods'], 'osu_beatmap_difficulty_primary');
+            $table->index(['mode', 'mods', 'diff_unified'], 'diff_sort');
+        });
+
         Schema::create('osu_beatmaps', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -785,6 +798,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -823,6 +837,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -861,6 +876,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -899,6 +915,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -1353,20 +1370,6 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_log', 'COMPRESSED');
 
-        Schema::create('osu_mod_queue', function (Blueprint $table) {
-            $table->charset = 'utf8';
-            $table->collation = 'utf8_bin';
-
-            $table->increments('mod_queue_id');
-            $table->mediumInteger('beatmapset_id');
-            $table->timestamp('timestamp')->useCurrent();
-
-            $table->index('beatmapset_id');
-            $table->index('timestamp');
-        });
-        $this->comment('osu_mod_queue', 'Data table for BanchoBot mod queue ~mm201');
-        $this->setRowFormat('osu_mod_queue', 'DYNAMIC');
-
         Schema::create('phpbb_topics_watch', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1397,6 +1400,7 @@ class BaseTables extends Migration
     {
         Schema::drop('osu_achievements');
         Schema::drop('osu_apikeys');
+        Schema::drop('osu_beatmap_difficulty');
         Schema::drop('osu_beatmaps');
         Schema::drop('osu_beatmapsets');
         Schema::drop('osu_user_beatmapset_ratings');
@@ -1446,7 +1450,6 @@ class BaseTables extends Migration
         Schema::drop('phpbb_users');
         Schema::drop('phpbb_groups');
         Schema::drop('phpbb_log');
-        Schema::drop('osu_mod_queue');
         Schema::drop('phpbb_topics_watch');
         Schema::drop('weak_passwords');
     }

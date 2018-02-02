@@ -58,6 +58,11 @@
 
   &__point {
     font-size: 12px;
+    cursor: pointer;
+
+    &--mapper-note {
+      fill: @beatmap-discussion--color-mapper-note;
+    }
 
     &--praise {
       fill: @beatmap-discussion--color-praise;
@@ -73,6 +78,10 @@
 
     &--suggestion {
       fill: @beatmap-discussion--color-suggestion;
+    }
+
+    &:hover {
+      text-decoration: none;
     }
   }
 

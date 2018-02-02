@@ -67,7 +67,7 @@ return [
                     'button' => 'Upload afbeelding',
                     'dropzone' => 'Drop hier om te uploaden',
                     'dropzone_info' => 'Je kunt je afbeelding ook hier droppen om te uploaden',
-                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporters</a>",
+                    'restriction_info' => "Uploaden alleen beschikbaar voor <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a>",
                     'size_info' => 'Cover grootte moet 2000x700 zijn',
                     'too_large' => 'Het geüploade bestand is te groot.',
                     'unsupported_format' => 'Niet ondersteund formaat.',
@@ -80,7 +80,15 @@ return [
                 'achieved-on' => 'Behaald op :date',
             ],
             'beatmaps' => [
+                'none' => 'Nog geen...',
                 'title' => 'Beatmaps',
+
+                'favourite' => [
+                    'title' => 'Favoriete Beatmaps (:count)',
+                ],
+                'ranked_and_approved' => [
+                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
+                ],
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
@@ -133,22 +141,12 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'gewogen: :pp (:percentage)',
             ],
-            'beatmaps' => [
-                'title' => 'Beatmaps',
-                'favourite' => [
-                    'title' => 'Favoriete Beatmaps (:count)',
-                ],
-                'ranked_and_approved' => [
-                    'title' => 'Gerankte & Goedgekeurde Beatmaps (:count)',
-                ],
-                'none' => 'Nog geen...',
-            ],
         ],
         'page' => [
             'description' => '<strong>ik!</strong> is een persoonlijk bewerkbaar gedeelte van je profiel.',
             'edit_big' => 'Bewerk me!',
             'placeholder' => 'Typ pagina inhoud hier',
-            'restriction_info' => "Je moet een <a href='".osu_url('support-the-game')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
+            'restriction_info' => "Je moet een <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> zijn om dit te gebruiken.",
         ],
         'rank' => [
             'country' => 'Landelijke rank voor :mode',

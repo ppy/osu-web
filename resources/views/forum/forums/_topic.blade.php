@@ -16,7 +16,13 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <li
-    class="u-forum--hover-area forum-topic-entry clickable-row js-forum-topic-entry"
+    class="
+        u-forum--hover-area
+        forum-topic-entry
+        {{ $topic->trashed() ? 'forum-topic-entry--deleted' : '' }}
+        clickable-row
+        js-forum-topic-entry
+    "
     data-topic-id="{{ $topic->topic_id }}"
 >
     <div class="forum-topic-entry__bg"></div>
@@ -42,7 +48,7 @@
     </a>
 
     <div class="forum-topic-entry__col forum-topic-entry__col--main">
-        <div class="forum-topic-entry__content forum-topic-entry__content--left">
+        <div class="forum-topic-entry__content forum-topic-entry__content--left u-ellipsis-overflow-desktop">
             <a
                 href="{{ route("forum.topics.show", $topic->topic_id) }}"
                 class="
