@@ -23,10 +23,14 @@
 
   &__shapes {
     flex: none;
-    width: 40px;
+    width: 10px;
     background-size: cover;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
+
+    @media @desktop{
+      width: 40px;
+    }
   }
 
   &__main {
@@ -82,7 +86,11 @@
     font-size: 18px;
     color: @blue-text;
 
-    padding-right: 20px;
+    padding-right: 10px;
+
+    @media @desktop{
+      padding-right: 20px;
+    }
   }
 
   &__stat-row {
