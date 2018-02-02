@@ -72,10 +72,10 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'profile_colour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->extras_order,
+            'profile_order' => $profileCustomization->extras_order,
             'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
-                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'custom_url' => $profileCustomization->cover()->fileUrl(),
                 'url' => $profileCustomization->cover()->url(),
                 'id' => $profileCustomization->cover()->id(),
             ],
