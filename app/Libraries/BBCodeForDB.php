@@ -158,7 +158,7 @@ class BBCodeForDB
     public function parseHeading($text)
     {
         $text = preg_replace(
-            "#\[heading]([\S\s]*?)\[/heading\]#",
+            "#\[heading](.*?)\[/heading\]#",
             "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
             $text
         );
