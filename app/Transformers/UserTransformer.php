@@ -53,7 +53,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             ],
             'age' => $user->age(),
             'avatar_url' => $user->user_avatar,
-            'isAdmin' => $user->isAdmin(),
+            'is_admin' => $user->isAdmin(),
             'is_supporter' => $user->osu_subscriber,
             'isGMT' => $user->isGMT(),
             'isQAT' => $user->isQAT(),
