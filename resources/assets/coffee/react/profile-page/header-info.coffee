@@ -23,7 +23,7 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
   div className: 'profile-info',
     el UserAvatar, user: user, modifiers: ['profile']
     div className: 'profile-info__details',
-      if user.isSupporter
+      if user.is_supporter
         el Icon,
           name: 'heart'
           parentClass: 'profile-info__supporter-icon'

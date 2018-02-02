@@ -96,7 +96,7 @@ class ProfilePage.HeaderMain extends React.Component
                 el Icon, name: 'pencil'
             if @state.editing
               el ProfilePage.CoverSelector,
-                canUpload: @props.user.isSupporter
+                canUpload: @props.user.is_supporter
                 cover: @props.user.cover
 
 
