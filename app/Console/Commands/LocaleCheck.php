@@ -190,7 +190,7 @@ class LocaleCheck extends Command
         $heads = [];
 
         foreach ($files as $file) {
-            $heads[] = str_replace('/', '.', substr($file, $trimStart, $trimEnd));
+            $heads[] = substr($file, $trimStart, $trimEnd);
         }
 
         return $heads;
