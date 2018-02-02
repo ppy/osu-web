@@ -39,10 +39,11 @@
     padding: 5px 20px 15px 7.5px;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
 
-    @media @mobile{
-      flex-direction: column;
+    @media @desktop{
+      flex-direction: row;
     }
   }
 
@@ -54,17 +55,19 @@
 
     &--user {
       align-items: flex-start;
+      flex-direction: row;
 
-      @media @mobile{
-        flex-direction: row;
+      @media @desktop{
+        flex-direction: column;
       }
     }
 
     &--stats {
       align-items: flex-end;
+      flex-direction: row;
 
-      @media @mobile{
-        flex-direction: row;
+      @media @desktop{
+        flex-direction: column;
       }
     }
   }
@@ -72,11 +75,12 @@
   &__username-box {
     display: flex;
     align-items: baseline;
+    flex-direction: column;
 
     padding-bottom: 5px;
 
-    @media @mobile{
-      flex-direction: column;
+    @media @desktop{
+      flex-direction: row;
     }
   }
 

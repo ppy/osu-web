@@ -242,7 +242,7 @@
 
   &__title {
     .default-text-shadow();
-    font-size: @font-size--header-title;
+    font-size: @font-size--header-title-mobile;
     // avoid clipping
     margin: -5px -5px 5px;
     padding: 5px;
@@ -250,8 +250,8 @@
 
     font-style: italic;
 
-    @media @mobile{
-      font-size: @font-size--header-title-mobile;
+    @media @desktop{
+      font-size: @font-size--header-title;
     }
 
     &--small {
