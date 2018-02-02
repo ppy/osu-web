@@ -92,15 +92,15 @@ class User extends Model implements AuthenticatableContract, Messageable
         'is_old' => ['type' => 'boolean'],
         'user_lastvisit' => ['type' => 'date'],
         'username' => [
-            'type' => 'string',
+            'type' => 'text',
             'analyzer' => 'username_lower',
             'fields' => [
                 // for exact match
-                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                'raw' => ['type' => 'keyword'],
                 // try match sloppy search guesses
-                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
                 // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'string', 'analyzer' => 'whitespace'],
+                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
             ],
         ],
         'user_warnings' => ['type' => 'short'],
@@ -330,7 +330,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $data = es_records($results, get_called_class());
 
         return [
-            'total' => $total,
+            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
             'over_limit' => $total > $max,
             'data' => $data,
             'params' => $params,
@@ -637,6 +637,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isRegistered()
     {
         return $this->isGroup(UserGroup::GROUPS['default']);
+    }
+
+    public function isBot()
+    {
+        return $this->group_id === UserGroup::GROUPS['bot'];
     }
 
     public function hasSupported()

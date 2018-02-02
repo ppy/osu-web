@@ -110,26 +110,26 @@ class Beatmapset extends Model implements AfterCommit
         'playcount' => ['type' => 'long'],
         'playmode' => ['type' => 'long'],
         'total_length' => ['type' => 'long'],
-        'version' => ['type' => 'string'],
+        'version' => ['type' => 'text'],
     ];
 
     const ES_MAPPINGS_BEATMAPSETS = [
         'approved' => ['type' => 'long'],
         'approved_date' => ['type' => 'date'],
         'artist' => [
-            'type' => 'string',
+            'type' => 'text',
             'fields' => [
-                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                'raw' => ['type' => 'keyword'],
             ],
         ],
-        'artist_unicode' => ['type' => 'string'],
+        'artist_unicode' => ['type' => 'text'],
         'bpm' => ['type' => 'double'],
-        'creator' => ['type' => 'string'],
-        'difficulty_names' => ['type' => 'string'],
+        'creator' => ['type' => 'text'],
+        'difficulty_names' => ['type' => 'text'],
         'download_disabled' => ['type' => 'boolean'],
         'epilepsy' => ['type' => 'boolean'],
         'favourite_count' => ['type' => 'long'],
-        'filename' => ['type' => 'string'],
+        'filename' => ['type' => 'text'],
         'filesize' => ['type' => 'long'],
         'filesize_novideo' => ['type' => 'long'],
         'genre_id' => ['type' => 'long'],
@@ -140,19 +140,19 @@ class Beatmapset extends Model implements AfterCommit
         'offset' => ['type' => 'long'],
         'play_count' => ['type' => 'long'],
         'rating' => ['type' => 'double'],
-        'source' => ['type' => 'string'],
+        'source' => ['type' => 'text'],
         'star_priority' => ['type' => 'long'],
         'storyboard' => ['type' => 'boolean'],
         'submit_date' => ['type' => 'date'],
-        'tags' => ['type' => 'string'],
+        'tags' => ['type' => 'text'],
         'thread_id' => ['type' => 'long'],
         'title' => [
-            'type' => 'string',
+            'type' => 'text',
             'fields' => [
-                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                'raw' => ['type' => 'keyword'],
             ],
         ],
-        'title_unicode' => ['type' => 'string'],
+        'title_unicode' => ['type' => 'text'],
         'user_id' => ['type' => 'long'],
         'video' => ['type' => 'boolean'],
     ];
@@ -378,7 +378,7 @@ class Beatmapset extends Model implements AfterCommit
         $validSortFields = [
             'artist' => 'artist',
             'creator' => 'creator',
-            'difficulty' => 'difficultyrating',
+            'difficulty' => 'difficulties.difficultyrating',
             'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
@@ -419,7 +419,7 @@ class Beatmapset extends Model implements AfterCommit
             'size' => $params['limit'],
             'from' => $params['offset'],
             'body' => ['sort' => static::searchSortParamsES($params)],
-            'fields' => 'id',
+            '_source' => 'id',
         ];
 
         $matchParams = [];
@@ -437,10 +437,10 @@ class Beatmapset extends Model implements AfterCommit
             foreach ($params['extra'] as $val) {
                 switch ($val) {
                     case 'video':
-                        $matchParams[] = ['match' => ['video' => 1]];
+                        $matchParams[] = ['match' => ['video' => true]];
                         break;
                     case 'storyboard':
-                        $matchParams[] = ['match' => ['storyboard' => 1]];
+                        $matchParams[] = ['match' => ['storyboard' => true]];
                         break;
                 }
             }
@@ -521,7 +521,7 @@ class Beatmapset extends Model implements AfterCommit
         }
 
         if ($params['mode'] !== null) {
-            $matchParams[] = ['match' => ['playmode' => $params['mode']]];
+            $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
         }
 
         if (!empty($matchParams)) {
@@ -569,7 +569,7 @@ class Beatmapset extends Model implements AfterCommit
 
         return [
             'data' => $data,
-            'total' => $result['total'],
+            'total' => min($result['total'], 10000),
         ];
     }
 
@@ -585,7 +585,7 @@ class Beatmapset extends Model implements AfterCommit
 
         // additional options
         static $orderOptions = [
-            'difficultyrating' => [
+            'difficulties.difficultyrating' => [
                 'asc' => ['mode' => 'min'],
                 'desc' => ['mode' => 'max'],
             ],
