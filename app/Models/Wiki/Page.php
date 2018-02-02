@@ -69,14 +69,14 @@ class Page
                 'should' => [
                     ['constant_score' => [
                         'boost' => 1000,
-                        'query' => [
+                        'filter' => [
                             'match' => [
                                 'locale' => $params['locale'] ?? App::getLocale(),
                             ],
                         ],
                     ]],
                     ['constant_score' => [
-                        'query' => [
+                        'filter' => [
                             'match' => [
                                 'locale' => config('app.fallback_locale'),
                             ],
