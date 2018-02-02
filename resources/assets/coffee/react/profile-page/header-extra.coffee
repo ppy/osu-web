@@ -210,8 +210,6 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   rankChartHover: (_e, {data} = {}) =>
-    return if @props.user.isBot
-
     if data?
       hoverLine1 = "##{(-data.y).toLocaleString()}"
       hoverLine2 =
@@ -226,8 +224,6 @@ class ProfilePage.HeaderExtra extends React.Component
 
 
   rankChartUpdate: =>
-    return if @props.user.isBot
-
     if !@rankChart?
       options =
         scales:
