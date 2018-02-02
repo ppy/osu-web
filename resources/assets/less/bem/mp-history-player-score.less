@@ -100,6 +100,9 @@
   &__stat-row {
     &--first {
       margin-right: 10px;
+      @media @desktop {
+        margin: 2px;
+      }
       @media (min-width: @width) {
         width: 530px;
       }
@@ -123,6 +126,12 @@
     font-weight: 700;
 
     padding-right: 20px;
+
+    display: none;
+
+    @media (min-width: @width) {
+      display: initial;
+    }
   }
 
   &__mods-box {
