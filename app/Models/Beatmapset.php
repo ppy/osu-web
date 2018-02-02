@@ -436,10 +436,10 @@ class Beatmapset extends Model
             foreach ($params['extra'] as $val) {
                 switch ($val) {
                     case 'video':
-                        $matchParams[] = ['match' => ['video' => 1]];
+                        $matchParams[] = ['match' => ['video' => true]];
                         break;
                     case 'storyboard':
-                        $matchParams[] = ['match' => ['storyboard' => 1]];
+                        $matchParams[] = ['match' => ['storyboard' => true]];
                         break;
                 }
             }
