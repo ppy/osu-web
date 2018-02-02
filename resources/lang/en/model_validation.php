@@ -62,6 +62,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => 'Select an option when voting.',
             'too_many' => 'Selected more options than allowed.',
         ],
     ],
