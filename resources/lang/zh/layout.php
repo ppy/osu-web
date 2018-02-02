@@ -54,7 +54,7 @@ return [
             'artists' => '精选艺术家',
             'beatmap_discussion_posts-index' => '谱面讨论帖',
             'beatmap_discussions-index' => '谱面讨论',
-            'beatmapset-watches-index' => '摸图关注列表',
+            'beatmapset-watches-index' => '谱面关注列表',
             'beatmapset_discussion_votes-index' => '谱面讨论投票',
             'beatmapset_events-index' => '谱面事件',
             'index' => '列表',
@@ -152,7 +152,6 @@ return [
 
             'beatmapsets' => [
                 '_' => '谱面',
-                'covers' => '封面',
                 'show' => '详细',
             ],
         ],

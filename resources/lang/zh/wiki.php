@@ -25,7 +25,7 @@ return [
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本',
-        'search' => 'Search existing pages for :link.',
+        'search' => '在wiki中搜索 :link 。',
         'toc' => '目录',
 
         'edit' => [

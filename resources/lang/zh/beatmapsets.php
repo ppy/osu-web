@@ -81,6 +81,7 @@ return [
             'country' => '国内排名',
             'friend' => '好友排名',
             'global' => '全球排名',
+            'miss_count' => ':count miss', //上下文
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
             'title' => '排行榜',

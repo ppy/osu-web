@@ -48,6 +48,11 @@ return [
             'invalid' => '指定的选项无效。',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => '不允许删除谱面信息帖。',
+            'beatmapset_post_no_edit' => '不允许编辑谱面信息帖。',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => '不允许重复的选项。',
             'invalid_max_options' => '每人可选的选项不能超出总选项数。',
@@ -57,6 +62,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => '至少选择一项以投票', //可能有误
             'too_many' => '选项数量超出限制。',
         ],
     ],
