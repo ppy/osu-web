@@ -377,7 +377,7 @@ class Beatmapset extends Model
         $validSortFields = [
             'artist' => 'artist',
             'creator' => 'creator',
-            'difficulty' => 'difficultyrating',
+            'difficulty' => 'difficulties.difficultyrating',
             'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
@@ -520,7 +520,7 @@ class Beatmapset extends Model
         }
 
         if ($params['mode'] !== null) {
-            $matchParams[] = ['match' => ['playmode' => $params['mode']]];
+            $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
         }
 
         if (!empty($matchParams)) {
@@ -584,7 +584,7 @@ class Beatmapset extends Model
 
         // additional options
         static $orderOptions = [
-            'difficultyrating' => [
+            'difficulties.difficultyrating' => [
                 'asc' => ['mode' => 'min'],
                 'desc' => ['mode' => 'max'],
             ],
