@@ -55,7 +55,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'avatar_url' => $user->user_avatar,
             'is_admin' => $user->isAdmin(),
             'is_supporter' => $user->osu_subscriber,
-            'isGMT' => $user->isGMT(),
+            'is_gmt' => $user->isGMT(),
             'isQAT' => $user->isQAT(),
             'isBNG' => $user->isBNG(),
             'is_bot' => $user->isBot(),

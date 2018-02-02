@@ -159,14 +159,14 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
   canDownvote: =>
-    @props.currentUser.is_admin || @props.currentUser.isGMT || @props.currentUser.isQAT || @props.currentUser.isBNG
+    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.isQAT || @props.currentUser.isBNG
 
   post: (post, type) =>
     return if !post.id?
 
     elementName = if post.system then 'SystemPost' else 'Post'
 
-    canModeratePosts = @props.currentUser.is_admin || @props.currentUser.isGMT || @props.currentUser.isQAT
+    canModeratePosts = @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.isQAT
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
