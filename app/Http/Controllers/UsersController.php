@@ -266,7 +266,7 @@ class UsersController extends Controller
             'User',
             [
                 'user_achievements',
-                'followerCount',
+                'follower_count',
                 'page',
                 'recentActivities',
                 'rankedAndApprovedBeatmapsetCount',

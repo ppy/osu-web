@@ -28,7 +28,7 @@ class UserTransformer extends Fractal\TransformerAbstract
     protected $availableIncludes = [
         'user_achievements',
         'defaultStatistics',
-        'followerCount',
+        'follower_count',
         'friends',
         'page',
         'recentActivities',

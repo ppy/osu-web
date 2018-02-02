@@ -75,7 +75,7 @@ class ProfilePage.HeaderExtra extends React.Component
           el FriendButton, user_id: @props.user.id
 
         div className: "#{bn}__follower-count#{if friendButtonHidden then '--no-button' else ''}",
-          osu.transChoice('users.show.extra.followers', @props.user.followerCount[0].toLocaleString())
+          osu.transChoice('users.show.extra.followers', @props.user.follower_count[0].toLocaleString())
 
         if friendState?.mutual
           div className: "#{bn}__follower-mutual-divider", "|"
