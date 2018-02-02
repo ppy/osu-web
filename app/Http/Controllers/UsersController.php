@@ -265,7 +265,7 @@ class UsersController extends Controller
             $user,
             'User',
             [
-                'userAchievements',
+                'user_achievements',
                 'followerCount',
                 'page',
                 'recentActivities',

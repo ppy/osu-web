@@ -26,7 +26,7 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'userAchievements',
+        'user_achievements',
         'defaultStatistics',
         'followerCount',
         'friends',

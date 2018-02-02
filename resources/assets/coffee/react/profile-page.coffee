@@ -21,7 +21,7 @@ reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
 
   user: user
   userPage: user.page
-  userAchievements: user.userAchievements
+  userAchievements: user.user_achievements
   currentMode: osu.parseJson('json-currentMode')
   rankHistory: osu.parseJson('json-rankHistory')
   scores: osu.parseJson('json-scores')
