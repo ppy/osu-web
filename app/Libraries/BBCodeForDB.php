@@ -97,7 +97,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\]((.|\n|\r)*?)\[(/color)\],",
+            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\]([\S\s]*?)\[(/color)\],",
             "[\\1:{$this->uid}]\\2[\\4\\5:{$this->uid}]",
             $text
         );
@@ -146,7 +146,7 @@ class BBCodeForDB
     {
         foreach (['b', 'i', 'strike', 's', 'u'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}]((.|\n|\r)*?)\[/{$tag}\]#",
+                "#\[{$tag}]([\S\s]*?)\[/{$tag}\]#",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
@@ -158,7 +158,7 @@ class BBCodeForDB
     public function parseHeading($text)
     {
         $text = preg_replace(
-            "#\[heading]((.|\n|\r)*?)\[/heading\]#",
+            "#\[heading]([\S\s]*?)\[/heading\]#",
             "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
             $text
         );
@@ -250,7 +250,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\]((.|\n|\r)*?)\[(/size)\]#",
+            "#\[(size=(?:\d+))\]([\S\s]*?)\[(/size)\]#",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
