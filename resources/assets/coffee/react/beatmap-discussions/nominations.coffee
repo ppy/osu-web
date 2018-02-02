@@ -80,7 +80,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       hype = _.min([requiredHype, hypeRaw])
       userAlreadyHyped = _.find(@props.currentDiscussions.byFilter.hype.generalAll, user_id: @props.currentUser.id)?
 
-    userCanNominate = @props.currentUser.is_admin || @props.currentUser.isBNG || @props.currentUser.is_qat
+    userCanNominate = @props.currentUser.is_admin || @props.currentUser.is_bng || @props.currentUser.is_qat
     userCanDisqualify = @props.currentUser.is_admin || @props.currentUser.is_qat
     mapCanBeNominated = @props.beatmapset.status == 'pending' && hypeRaw >= requiredHype
     mapIsQualified = (@props.beatmapset.status == 'qualified')

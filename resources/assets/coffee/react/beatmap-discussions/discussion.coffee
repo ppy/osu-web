@@ -159,7 +159,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
   canDownvote: =>
-    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.isBNG
+    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
 
   post: (post, type) =>
     return if !post.id?

@@ -96,7 +96,7 @@ class @BeatmapDiscussionHelper
       switch
         when user.is_admin then 'admin'
         when user.is_qat then 'qat'
-        when user.isBNG then 'bng'
+        when user.is_bng then 'bng'
 
 
   @validMessageLength: (message) =>
