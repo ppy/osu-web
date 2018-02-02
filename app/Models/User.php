@@ -641,7 +641,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function isBot()
     {
-        return $this->isGroup(UserGroup::GROUPS['bot']);
+        return $this->group_id === UserGroup::GROUPS['bot'];
     }
 
     public function hasSupported()
