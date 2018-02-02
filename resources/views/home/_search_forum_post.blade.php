@@ -26,11 +26,11 @@
     <div class="search-result__entry search-result__entry--threaded">
         <a class="search-entry" href="{{ $firstPostUrl }}">
             <h1 class="search-entry__row search-entry__row--title">
-                {{ $source['title'] }}
+                {{ $source['search_content'] }}
             </h1>
             <div class="search-entry__row search-entry__row--excerpt">
                 @foreach ($firstPost as $post)
-                    <span>{!! html_excerpt($post['_source']['post_preview']) !!}</span>
+                    <span>{!! html_excerpt($post['_source']['search_content']) !!}</span>
                 @endforeach
             </div>
             <p class="search-entry__row search-entry__row--footer">
@@ -41,7 +41,7 @@
         <div class="search-entry__row search-entry__row--inner">
             @foreach ($innerHits as $innerHit)
                 @php
-                    $highlights = es_highlight($innerHit, 'post_preview');
+                    $highlights = es_highlight($innerHit, 'search_content');
                     $postUrl = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
                 @endphp
 

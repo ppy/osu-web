@@ -46,7 +46,7 @@ class ForumSearch
 
         $query['bool'][$bool][] = [
             'query_string' => [
-                'fields' => ['post_preview', 'title'],
+                'fields' => ['search_content'],
                 'query' => $queryString,
             ],
         ];
@@ -66,12 +66,12 @@ class ForumSearch
             'type' => 'posts',
             'score_mode' => 'max',
             'inner_hits' => [
-                '_source' => ['topic_id', 'post_id', 'post_preview'],
+                '_source' => ['topic_id', 'post_id', 'search_content'],
                 'name' => 'posts',
                 'size' => 3,
                 'highlight' => [
                     'fields' => [
-                        'post_preview' => new \stdClass(),
+                        'search_content' => new \stdClass(),
                     ],
                 ],
             ],
@@ -85,7 +85,7 @@ class ForumSearch
             'type' => 'posts',
             'score_mode' => 'none',
             'inner_hits' => [
-                '_source' => 'post_preview',
+                '_source' => 'search_content',
                 'name' => 'first_post',
                 'size' => 1,
                 'sort' => [['post_id' => ['order' => 'asc']]],
@@ -128,7 +128,7 @@ class ForumSearch
         $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
 
         $body = [
-            'highlight' => ['fields' => ['title' => new \stdClass()]],
+            'highlight' => ['fields' => ['search_content' => new \stdClass()]],
             'size' => $size,
             'from' => $from,
             'query' => $query,
