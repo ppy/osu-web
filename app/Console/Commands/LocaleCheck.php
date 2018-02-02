@@ -87,7 +87,7 @@ class LocaleCheck extends Command
 
     public function basePath($locale)
     {
-        return resource_path().'/lang/'.$locale;
+        return resource_path("lang/{$locale}");
     }
 
     public function checkExtraHeads($locale, $baseHeads, $targetHeads)
