@@ -51,11 +51,11 @@ function background_image($url, $proxy = true)
 function es_highlight($hit, $field)
 {
     if (isset($hit['highlight'])) {
-        return $hit['highlight']['post_preview'];
+        return $hit['highlight'][$field];
     }
 
     // highlights are stored in an array, so return an array as well.
-    return [html_excerpt($hit['_source']['post_preview'])];
+    return [html_excerpt($hit['_source'][$field])];
 }
 
 function es_query_and_words($words)
