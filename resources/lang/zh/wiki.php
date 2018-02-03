@@ -25,7 +25,7 @@ return [
         'missing' => '请求的页面未找到',
         'missing_title' => '未找到',
         'missing_translation' => '请求的页面没有当前语言的版本',
-        'search' => '在wiki中搜索 :link 。',
+        'search' => '在 wiki 中搜索 :link 。',
         'toc' => '目录',
 
         'edit' => [
@@ -34,7 +34,7 @@ return [
         ],
 
         'outdated' => [
-            '_' => '本文的内容与原文不同步，请查阅 :default 以获得最准确最新的信息（如果你有能力的话可以来贡献你的翻译)！',
+            '_' => '本文的内容与原文不同步，请查阅 :default 以获得最准确最新的信息！',
             'default' => '英文版本',
         ],
     ],

@@ -92,15 +92,15 @@ return [
         'macos-fallback' => 'macOS 用户',
         'steps' => [
             'register' => [
-                'title' => '注册',
+                'title' => '注册帐号',
                 'description' => '根据游戏提示进行登录或注册',
             ],
             'download' => [
-                'title' => '下载',
+                'title' => '下载游戏',
                 'description' => '点击上面的按钮下载安装器，然后运行它！',
             ],
             'beatmaps' => [
-                'title' => '找图',
+                'title' => '下载谱面',
                 'description' => [
                     '_' => ':browse 玩家们创造的谱面然后开始游戏吧！',
                     'browse' => '浏览',

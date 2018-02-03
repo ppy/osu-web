@@ -21,7 +21,7 @@
 return [
     'not_negative' => ':attribute 不能为负数。',
     'required' => '需要 :attribute 。',
-    'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符.',
+    'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
     'wrong_confirmation' => '确认信息不匹配。',
 
     'beatmap_discussion' => [

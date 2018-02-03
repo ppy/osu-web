@@ -21,8 +21,8 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => '生成',
-            'regenerating' => '生成中。。。',
+            'regenerate' => '重新生成',
+            'regenerating' => '重新生成中。。。',
             'remove' => '移除',
             'removing' => '移除中。。。',
         ],
