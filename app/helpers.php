@@ -119,12 +119,7 @@ function es_records($results, $class)
 function es_search($params)
 {
     try {
-        return Es::search(array_merge_recursive([
-            'client' => [
-                'timeout' => config('elasticsearch.search_timeout'),
-                'connect_timeout' => config('elasticsearch.search_connect_timeout'),
-            ],
-        ], $params));
+        return Es::search($params);
     } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
         // all servers down
         $error = $e;
