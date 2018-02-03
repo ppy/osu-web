@@ -59,7 +59,7 @@ class Post extends Model
         'poster_id' => ['type' => 'long'],
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'string'],
+        'post_text' => ['type' => 'text'],
     ];
 
     public function forum()
@@ -152,7 +152,7 @@ class Post extends Model
 
         return [
             'data' => $query->get(),
-            'total' => $result['total'],
+            'total' => min($result['total'], 10000),
             'params' => $params,
         ];
     }

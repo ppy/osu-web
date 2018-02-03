@@ -166,7 +166,7 @@ class ProfilePage.HeaderExtra extends React.Component
               url: "https://last.fm/user/#{@props.user.lastfm}"
 
         div
-          className: "#{bn}__column #{bn}__column--chart"
+          className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.isBot}"
           div className: "#{bn}__rank-box",
             div null,
               div className: "#{bn}__rank-global",

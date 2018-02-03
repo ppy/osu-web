@@ -323,8 +323,10 @@ class BeatmapDiscussion extends Model
             return true;
         }
 
+        // FIXME: total_length is only for existing hit objects.
+        // FIXME: The chart in discussion page will need to account this as well.
         return
-            $this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length) * 1000;
+            $this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length + 10) * 1000;
     }
 
     public function votesSummary()
