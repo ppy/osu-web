@@ -123,10 +123,6 @@ class BeatmapDiscussionPost extends Model
         }
     }
 
-    /*
-     * Called before saving. Callback definition in
-     * App\Providers\AppServiceProviders.
-     */
     public function isValid()
     {
         if ($this->exists) {
@@ -138,6 +134,11 @@ class BeatmapDiscussionPost extends Model
         }
 
         return $hasValidBeatmap && $this->hasValidMessage();
+    }
+
+    public function save(array $options = [])
+    {
+        return $this->isValid() && parent::save($options);
     }
 
     public function getMessageAttribute($value)
