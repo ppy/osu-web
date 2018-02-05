@@ -26,12 +26,11 @@ use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResults;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use App\Models\User;
 use Carbon\Carbon;
 use Es;
 
-class ForumSearch extends Query
+class ForumSearch extends Search
 {
     protected $includeSubForums = false;
 
@@ -85,7 +84,7 @@ class ForumSearch extends Query
             'query' => $this->queryString,
         ]];
 
-        $this
+        $query = (new Query())
             ->must(static::firstPostQuery()->toArray())
             ->should($match)
             ->should($this->childQuery()->toArray())
@@ -97,8 +96,10 @@ class ForumSearch extends Query
                 ? Forum::findOrFail($this->forumId)->allSubForums()
                 : [$this->forumId];
 
-            $this->filter(['terms' => ['forum_id' => $forumIds]]);
+            $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
+
+        $this->query($query);
 
         return parent::toArray();
     }
@@ -124,26 +125,6 @@ class ForumSearch extends Query
             ->query($query);
     }
 
-    /**
-     * @return Search
-     */
-    public static function search(string $queryString, array $options = []) : Search
-    {
-        $query = (new static())
-            ->queryString($queryString)
-            ->inForum(get_int($options['forum_id'] ?? null))
-            ->includeSubForums(get_bool($options['forum_children'] ?? false))
-            ->byUsername(presence($options['username'] ?? null));
-
-        $search = (new Search(Post::esIndexName()))
-            ->page($options['page'] ?? 1)
-            ->size($options['size'] ?? $options['limit'] ?? 50)
-            ->query($query)
-            ->highlight('search_content');
-
-        return $search;
-    }
-
     private static function firstPostQuery() : HasChild
     {
         return (new HasChild('posts', 'first_post'))
@@ -151,5 +132,20 @@ class ForumSearch extends Query
             ->sort(['post_id' => ['order' => 'asc']])
             ->query(['match_all' => new \stdClass()])
             ->source('search_content');
+    }
+
+    /**
+     * @return $this
+     */
+    public static function search(array $params)
+    {
+        return (new static(Post::esIndexName()))
+            ->page($params['page'] ?? 1)
+            ->size($params['size'] ?? $params['limit'] ?? 50)
+            ->queryString($params['query'])
+            ->inForum(get_int($params['forum_id'] ?? null))
+            ->includeSubForums(get_bool($params['forum_children'] ?? false))
+            ->byUsername(presence($params['username'] ?? null))
+            ->highlight('search_content');
     }
 }
