@@ -97,7 +97,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\]([\S\s]*?)\[(/color)\],",
+            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -140,13 +140,12 @@ class BBCodeForDB
     * - Italic (i)
     * - Strike (strike, s)
     * - Underline (u)
-    * - Heading (heading)
     */
     public function parseInlineSimple($text)
     {
         foreach (['b', 'i', 'strike', 's', 'u'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}]([\S\s]*?)\[/{$tag}\]#",
+                "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
@@ -250,7 +249,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\]([\S\s]*?)\[(/size)\]#",
+            "#\[(size=(?:\d+))\](.*?)\[(/size)\]#s",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
