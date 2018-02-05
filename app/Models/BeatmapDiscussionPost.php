@@ -20,11 +20,16 @@
 
 namespace App\Models;
 
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
 class BeatmapDiscussionPost extends Model
 {
+    use Validatable;
+
+    const MESSAGE_LIMIT = 750;
+
     protected $guarded = [];
 
     protected $touches = ['beatmapDiscussion'];
@@ -114,26 +119,43 @@ class BeatmapDiscussionPost extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function hasValidMessage()
+    public function validateBeatmapsetDiscussion()
     {
-        if (is_string($this->message)) {
-            return mb_strlen($this->message) <= 750;
-        } else {
-            return count($this->message) > 0;
+        if ($this->beatmapDiscussion === null) {
+            $this->validationErrors()->add('beatmap_discussion_id', 'required');
+
+            return;
+        }
+
+        if (!$this->exists) {
+            if (!$this->beatmapDiscussion->hasValidBeatmap()) {
+                $this->validationErrors()->add('beatmap_discussion_id', 'discussion_no_reply');
+            }
         }
     }
 
     public function isValid()
     {
-        if ($this->exists) {
-            $hasValidBeatmap = true;
-        } else {
-            $hasValidBeatmap =
-                $this->beatmapDiscussion !== null &&
-                $this->beatmapDiscussion->hasValidBeatmap();
+        $this->validationErrors()->reset();
+
+        $this->validateBeatmapsetDiscussion();
+
+        if (!$this->system) {
+            if (!present($this->message)) {
+                $this->validationErrors()->add('message', 'required');
+            }
+
+            if (mb_strlen($this->message) > static::MESSAGE_LIMIT) {
+                $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
+            }
         }
 
-        return $hasValidBeatmap && $this->hasValidMessage();
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'beatmapset_discussion_post';
     }
 
     public function save(array $options = [])
