@@ -23,6 +23,77 @@ namespace App\Libraries\Elasticsearch;
 class Query
 {
     /**
+     * @return $this
+     */
+    public function from(?int $from)
+    {
+        $this->from = $from;
+
+        return $this;
+    }
+
+    public function limit(?int $limit)
+    {
+        return $this->size($limit);
+    }
+
+    /**
+     * @return $this
+     */
+    public function size(?int $size)
+    {
+        $this->size = clamp($size ?? 50, 1, 50);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function page(?int $page)
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    /**
+     * page is not returned if using offset query.
+     *
+     * @return array
+     */
+    public function getPageParams()
+    {
+        $params = ['size' => $this->size, 'limit' => $this->size];
+
+        // from overrides page.
+        if (isset($this->from)) {
+            $params['from'] = $this->from;
+        } else {
+            $params['page'] = max(1, $this->page);
+            $params['from'] = ($params['page'] - 1) * $this->size;
+        }
+
+        return $params;
+    }
+
+    /**
+     * @return SearchResults
+     */
+    public function baseSearch(array $params) : SearchResults
+    {
+        return new SearchResults(Es::search($params));
+    }
+
+    /**
+     * @return array
+     */
+    public function toQuery() : array
+    {
+        return [];
+    }
+
+    /**
      * @return array an empty Bool Query with all the keys initialized to empty.
      */
     public static function newBoolQuery() : array

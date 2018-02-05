@@ -28,20 +28,14 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
     private $container;
 
     /**
-     * @var string
-     */
-    private $innerHitsName;
-
-    /**
      * @var array
      */
     private $raw;
 
     private $index;
 
-    public function __construct(array $results, ?string $innerHitsName = null)
+    public function __construct(array $results)
     {
-        $this->innerHitsName = $innerHitsName;
         $this->raw = $results;
 
         $this->index = 0;
@@ -52,13 +46,13 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
         return $this->raw['hits']['hits'];
     }
 
-    public function innerHits($index, ?string $name = null)
+    public function innerHits($index, string $name)
     {
         $results = $this->hits()[$index] ?? null;
-        $results = $results['inner_hits'][$name ?? $this->innerHitsName];
+        $results = $results['inner_hits'][$name];
 
         if ($results) {
-            return new static($results, $name ?? $this->innerHitsName);
+            return new static($results, $name);
         }
     }
 
