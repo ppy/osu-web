@@ -18,35 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Libraries\Elasticsearch;
 
-class UserGroup extends Model
+use Illuminate\Support\Facades\Facade;
+
+/**
+ * @see \Elasticsearch\Client
+ */
+class Es extends Facade
 {
-    protected $table = 'phpbb_user_group';
-    public $timestamps = false;
-    protected $guarded = [];
-
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-        'bot' => 29,
-    ];
-
-    public function group()
+    protected static function getFacadeAccessor()
     {
-        return $this->belongsTo(Group::class, 'group_id');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
+        return 'elasticsearch';
     }
 }
