@@ -139,12 +139,9 @@ class ForumSearch extends Search
             ->source('search_content');
     }
 
-    /**
-     * @return $this
-     */
     public static function search(array $params)
     {
-        return (new static(Post::esIndexName()))
+        $search = (new static(Post::esIndexName()))
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
             ->queryString($params['query'])
@@ -152,5 +149,14 @@ class ForumSearch extends Search
             ->includeSubForums(get_bool($params['forum_children'] ?? false))
             ->byUsername(presence($params['username'] ?? null))
             ->highlight('search_content');
+
+        $results = $search->results();
+        $pagination = $search->getPageParams();
+
+        return [
+            'data' => $results,
+            'total' => min($results->total(), 10000),
+            'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
+        ];
     }
 }

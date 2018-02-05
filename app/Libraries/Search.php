@@ -107,19 +107,7 @@ class Search
         if (!array_key_exists($key, $this->cache)) {
             $startTime = microtime(true);
 
-            if (is_subclass_of($class, EsSearch::class)) {
-                $search = $class::search($this->params);
-                $results = $search->results();
-                $pagination = $search->getPageParams();
-
-                $this->cache[$key] = [
-                    'data' => $results,
-                    'total' => $results->total(),
-                    'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
-                ];
-            } else {
-                $this->cache[$key] = $class::search($this->params);
-            }
+            $this->cache[$key] = $class::search($this->params);
 
             if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;
