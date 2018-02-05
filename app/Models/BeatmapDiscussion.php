@@ -20,12 +20,15 @@
 
 namespace App\Models;
 
+use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
 
 class BeatmapDiscussion extends Model
 {
+    use Validatable;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -289,44 +292,61 @@ class BeatmapDiscussion extends Model
             ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
     }
 
-    public function hasValidMessageType()
+    public function validateMessageType()
     {
         if ($this->message_type === null) {
-            return false;
+            return $this->validationErrors()->add('message_type', 'required');
         }
 
         if (!$this->isDirty('message_type')) {
-            return true;
+            return;
         }
 
-        $validTypes = ['praise', 'problem', 'suggestion'];
+        if ($this->message_type === 'mapper_note') {
+            if ($this->user_id !== $this->beatmapset->user_id) {
+                $this->validationErrors()->add('message_type', '.mapper_note_wrong_user');
+            }
+        } elseif ($this->message_type === 'hype') {
+            if ($this->beatmap_id !== null) {
+                $this->validationErrors()->add('message_type', '.hype_requires_null_beatmap');
+            }
 
-        if ($this->user_id === $this->beatmapset->user_id) {
-            $validTypes[] = 'mapper_note';
-        } else {
-            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)['result']) {
-                $validTypes[] = 'hype';
+            if (!$this->beatmapset->canBeHyped()) {
+                $this->validationErrors()->add('message_type', '.beatmapset_no_hype');
+            }
+
+            $beatmapsetHypeValidate = $this->beatmapset->validateHypeBy($this->user);
+
+            if (!$beatmapsetHypeValidate['result']) {
+                $this->validationErrors()->addTranslated('base', $beatmapsetHypeValidate['message']);
             }
         }
-
-        return in_array($this->message_type, $validTypes, true);
     }
 
-    public function hasValidTimestamp()
+    public function validateTimestamp()
     {
         if ($this->timestamp === null) {
-            return true;
+            return;
         }
 
         // skip validation if not changed
         if (!$this->isDirty('timestamp')) {
-            return true;
+            return;
+        }
+
+        if ($this->beatmap === null) {
+            return $this->validationErrors()->add('beatmap_id', '.beatmap_missing');
+        }
+
+        if ($this->timestamp < 0) {
+            $this->validationErrors()->add('timestamp', '.timestamp_negative');
         }
 
         // FIXME: total_length is only for existing hit objects.
         // FIXME: The chart in discussion page will need to account this as well.
-        return
-            $this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length + 10) * 1000;
+        if ($this->timestamp > ($this->beatmap->total_length + 10) * 1000) {
+            $this->validationErrors()->add('timestamp', '.timestamp_exceeds_beatmapset_length');
+        }
     }
 
     public function votesSummary()
@@ -346,9 +366,21 @@ class BeatmapDiscussion extends Model
 
     public function isValid()
     {
-        return $this->hasValidBeatmap() &&
-            $this->hasValidMessageType() &&
-            $this->hasValidTimestamp();
+        $this->validationErrors()->reset();
+
+        if (!$this->hasValidBeatmap()) {
+            $this->validationErrors()->add('beatmap_id', '.beatmap_mismatch');
+        }
+
+        $this->validateMessageType();
+        $this->validateTimestamp();
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'beatmapset_discussion';
     }
 
     public function vote($params)
