@@ -80,36 +80,35 @@ class ForumSearch extends Query
      */
     public function toArray() : array
     {
-        $query = (new Query())
-            ->should(['query_string' => [
-                'fields' => ['search_content'],
-                'query' => $this->queryString,
-            ]])
-            ->filter(['term' => ['type' => 'topics']])
-            ->shouldMatch(1)
-            ->should($this->childQuery($this->queryString)->toArray());
+        $match = ['query_string' => [
+            'fields' => ['search_content'],
+            'query' => $this->queryString,
+        ]];
 
+        $query = (new Query())
+            ->must(static::firstPostQuery()->toArray())
+            ->should($match)
+            ->should($this->childQuery()->toArray())
+            ->shouldMatch(1)
+            ->filter(['term' => ['type' => 'topics']]);
 
         if (isset($this->forumId)) {
             $forumIds = $this->includeSubForums
                 ? Forum::findOrFail($this->forumId)->allSubForums()
                 : [$this->forumId];
-            $forumQuery = ['terms' => ['forum_id' => $forumIds]];
 
-            $query->filter($forumQuery);
+            $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
-
-        $query->must(static::firstPostQuery()->toArray());
 
         return $query->toArray();
     }
 
-    public function childQuery(string $queryString) : HasChild
+    private function childQuery() : HasChild
     {
         $query = (new Query())
             ->must(['query_string' => [
                 'fields' => ['search_content'],
-                'query' => $queryString,
+                'query' => $this->queryString,
             ]]);
 
         if (isset($this->username)) {
@@ -125,14 +124,6 @@ class ForumSearch extends Query
             ->query($query);
     }
 
-    public static function firstPostQuery() : HasChild
-    {
-        return (new HasChild('posts', 'first_post'))
-            ->size(1)
-            ->sort(['post_id' => ['order' => 'asc']])
-            ->query(['match_all' => new \stdClass()])
-            ->source('search_content');
-    }
 
     public static function search(string $queryString, array $options = []) : array
     {
@@ -152,5 +143,14 @@ class ForumSearch extends Query
             $search->results(),
             $search->getPageParams(),
         ];
+    }
+
+    private static function firstPostQuery() : HasChild
+    {
+        return (new HasChild('posts', 'first_post'))
+            ->size(1)
+            ->sort(['post_id' => ['order' => 'asc']])
+            ->query(['match_all' => new \stdClass()])
+            ->source('search_content');
     }
 }
