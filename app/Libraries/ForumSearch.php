@@ -20,8 +20,9 @@
 
 namespace App\Libraries;
 
-use App\Libraries\Elasticsearch\SearchResults;
 use App\Libraries\Elasticsearch\Query;
+use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Elasticsearch\SearchResults;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -74,20 +75,9 @@ class ForumSearch extends Query
     }
 
     /**
-     * @return SearchResults
-     */
-    public function results()
-    {
-        return $this->baseSearch([
-            'index' => Post::esIndexName(),
-            'body' => $this->toQuery(),
-        ]);
-    }
-
-    /**
      * @inheritDoc
      */
-    public function toQuery() : array
+    public function toArray() : array
     {
         $query = static::buildQuery($this->queryString, 'should', 'topics');
         $query['bool']['minimum_should_match'] = 1;
@@ -113,15 +103,7 @@ class ForumSearch extends Query
 
         $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
 
-        $pageParams = $this->getPageParams();
-        $body = [
-            'highlight' => ['fields' => ['search_content' => new \stdClass()]],
-            'size' => $pageParams['size'],
-            'from' => $pageParams['from'],
-            'query' => $query,
-        ];
-
-        return $body;
+        return $query;
     }
 
     public static function buildQuery(
@@ -183,13 +165,17 @@ class ForumSearch extends Query
 
     public static function search(string $queryString, array $options = []) : array
     {
-        $search = (new static())
-            ->page($options['page'] ?? 1)
-            ->size($options['size'] ?? $options['limit'] ?? 50)
+        $query = (new static())
             ->queryString($queryString)
             ->inForum(get_int($options['forum_id'] ?? null))
             ->includeSubForums(get_bool($options['forum_children'] ?? false))
             ->byUsername(presence($options['username'] ?? null));
+
+        $search = (new Search(Post::esIndexName()))
+            ->page($options['page'] ?? 1)
+            ->size($options['size'] ?? $options['limit'] ?? 50)
+            ->query($query)
+            ->highlight('search_content');
 
         return [
             $search->results(),
