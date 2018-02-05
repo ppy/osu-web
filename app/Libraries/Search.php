@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\Query;
 use App\Libraries\ForumSearch;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
@@ -106,8 +107,8 @@ class Search
         if (!array_key_exists($key, $this->cache)) {
             $startTime = microtime(true);
 
-            if ($class === ForumSearch::class) {
-                $search = ForumSearch::search(
+            if (is_subclass_of($class, Query::class)) {
+                $search = $class::search(
                     $this->params['query'],
                     $this->params
                 );

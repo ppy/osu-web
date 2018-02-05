@@ -85,7 +85,7 @@ class ForumSearch extends Query
             'query' => $this->queryString,
         ]];
 
-        $query = (new Query())
+        $this
             ->must(static::firstPostQuery()->toArray())
             ->should($match)
             ->should($this->childQuery()->toArray())
@@ -97,10 +97,10 @@ class ForumSearch extends Query
                 ? Forum::findOrFail($this->forumId)->allSubForums()
                 : [$this->forumId];
 
-            $query->filter(['terms' => ['forum_id' => $forumIds]]);
+            $this->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
-        return $query->toArray();
+        return parent::toArray();
     }
 
     private function childQuery() : HasChild
