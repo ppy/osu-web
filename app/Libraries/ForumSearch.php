@@ -86,10 +86,15 @@ class ForumSearch extends Search
 
         $query = (new Query())
             ->must(static::firstPostQuery()->toArray())
-            ->should($match)
             ->should($this->childQuery()->toArray())
             ->shouldMatch(1)
             ->filter(['term' => ['type' => 'topics']]);
+
+        // skip the topic search if doing a username; needs a more complicated
+        // query to accurately filter the results which isn't implemented yet.
+        if (!isset($this->username)) {
+            $query->should($match);
+        }
 
         if (isset($this->forumId)) {
             $forumIds = $this->includeSubForums
