@@ -87,15 +87,7 @@ class ForumSearch extends Query
             ->filter(['term' => ['type' => 'topics']])
             ->shouldMatch(1);
 
-        $childQuery = static::childQuery($this->queryString, $this->forumId);
-
-        if (isset($this->username)) {
-            $user = User::where('username', '=', $this->username)->first();
-            $userQuery = ['term' => ['user_id' => $user ? $user->user_id : -1]];
-
-            $childQuery['query']['bool']['filter'][] = ['term' => ['poster_id' => $user ? $user->user_id : -1]];
-        }
-
+        $childQuery = $this->childQuery($this->queryString, $this->forumId);
         $query->should(['has_child' => $childQuery]);
 
         if (isset($this->forumId)) {
@@ -112,13 +104,20 @@ class ForumSearch extends Query
         return $query->toArray();
     }
 
-    public static function childQuery(string $queryString) : array
+    public function childQuery(string $queryString) : array
     {
         $query = (new Query())
             ->must(['query_string' => [
                 'fields' => ['search_content'],
                 'query' => $queryString,
             ]]);
+
+        if (isset($this->username)) {
+            $user = User::where('username', '=', $this->username)->first();
+            $userQuery = ['term' => ['user_id' => $user ? $user->user_id : -1]];
+
+            $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
+        }
 
         return [
             'type' => 'posts',
