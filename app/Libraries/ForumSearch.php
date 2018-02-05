@@ -79,8 +79,13 @@ class ForumSearch extends Query
      */
     public function toArray() : array
     {
-        $query = static::buildQuery($this->queryString, 'should', 'topics');
-        $query->shouldMatch(1);
+        $query = (new Query())
+            ->should(['query_string' => [
+                'fields' => ['search_content'],
+                'query' => $this->queryString,
+            ]])
+            ->filter(['term' => ['type' => 'topics']])
+            ->shouldMatch(1);
 
         $childQuery = static::childQuery($this->queryString, $this->forumId);
 
@@ -107,25 +112,14 @@ class ForumSearch extends Query
         return $query->toArray();
     }
 
-    public static function buildQuery(
-        string $queryString,
-        string $bool = 'must',
-        ?string $type = null
-    ) : Query {
-        $query = (new Query())
-            ->$bool([
-                'query_string' => ['fields' => ['search_content'], 'query' => $queryString],
-            ]);
-
-        if ($type !== null) {
-            $query->filter(['term' => ['type' => $type]]);
-        }
-
-        return $query;
-    }
-
     public static function childQuery(string $queryString) : array
     {
+        $query = (new Query())
+            ->must(['query_string' => [
+                'fields' => ['search_content'],
+                'query' => $queryString,
+            ]]);
+
         return [
             'type' => 'posts',
             'score_mode' => 'max',
@@ -139,7 +133,7 @@ class ForumSearch extends Query
                     ],
                 ],
             ],
-            'query' => static::buildQuery($queryString, 'must')->toArray(),
+            'query' => $query->toArray(),
         ];
     }
 
