@@ -22,26 +22,83 @@ namespace App\Libraries\Elasticsearch;
 
 class Query
 {
+    protected $filters = [];
+    protected $musts = [];
+    protected $mustNots = [];
+    protected $shoulds = [];
+    protected $minimum = null;
+
     /**
-     * @return array
+     * @return $this
      */
-    public function toQuery() : array
+    public function filter(array $clause)
     {
-        return [];
+        $this->filters[] = $clause;
+
+        return $this;
+    }
+
+
+    /**
+     * @return $this
+     */
+    public function must(array $clause)
+    {
+        $this->musts[] = $clause;
+
+        return $this;
     }
 
     /**
-     * @return array an empty Bool Query with all the keys initialized to empty.
+     * @return $this
      */
-    public static function newBoolQuery() : array
+    public function mustNot(array $clause)
     {
-        return [
+        $this->mustNots[] = $clause;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function should(array $clause)
+    {
+        $this->shoulds[] = $clause;
+
+        return $this;
+    }
+
+    /**
+     * minimum_should_match
+     *
+     * @return $this
+     */
+    public function shouldMatch(?int $count)
+    {
+        $this->minimum = $count;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray() : array
+    {
+        $bool = [
             'bool' => [
-                'should' => [],
-                'must' => [],
-                'must_not' => [],
-                'filter' => [],
+                'should' => $this->shoulds,
+                'must' => $this->musts,
+                'must_not' => $this->mustNots,
+                'filter' => $this->filters,
             ],
         ];
+
+        if ($this->minimum !== null) {
+            $bool['bool']['minimum_should_match'] = $this->minimum;
+        }
+
+        return $bool;
     }
 }

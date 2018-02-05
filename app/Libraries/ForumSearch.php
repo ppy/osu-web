@@ -80,7 +80,8 @@ class ForumSearch extends Query
     public function toArray() : array
     {
         $query = static::buildQuery($this->queryString, 'should', 'topics');
-        $query['bool']['minimum_should_match'] = 1;
+        $query->shouldMatch(1);
+
         $childQuery = static::childQuery($this->queryString, $this->forumId);
 
         if (isset($this->username)) {
@@ -90,7 +91,7 @@ class ForumSearch extends Query
             $childQuery['query']['bool']['filter'][] = ['term' => ['poster_id' => $user ? $user->user_id : -1]];
         }
 
-        $query['bool']['should'][] = ['has_child' => $childQuery];
+        $query->should(['has_child' => $childQuery]);
 
         if (isset($this->forumId)) {
             $forumIds = $this->includeSubForums
@@ -98,32 +99,26 @@ class ForumSearch extends Query
                 : [$this->forumId];
             $forumQuery = ['terms' => ['forum_id' => $forumIds]];
 
-            $query['bool']['filter'][] = $forumQuery;
+            $query->filter($forumQuery);
         }
 
-        $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
+        $query->must(['has_child' => static::firstPostQuery()]);
 
-        return $query;
+        return $query->toArray();
     }
 
     public static function buildQuery(
         string $queryString,
         string $bool = 'must',
         ?string $type = null
-    ) : array {
-        $query = Query::newBoolQuery();
-
-        $query['bool'][$bool][] = [
-            'query_string' => [
-                'fields' => ['search_content'],
-                'query' => $queryString,
-            ],
-        ];
+    ) : Query {
+        $query = (new Query())
+            ->$bool([
+                'query_string' => ['fields' => ['search_content'], 'query' => $queryString],
+            ]);
 
         if ($type !== null) {
-            $query['bool']['filter'][] = [
-                ['term' => ['type' => $type]],
-            ];
+            $query->filter(['term' => ['type' => $type]]);
         }
 
         return $query;
@@ -144,7 +139,7 @@ class ForumSearch extends Query
                     ],
                 ],
             ],
-            'query' => static::buildQuery($queryString, 'must'),
+            'query' => static::buildQuery($queryString, 'must')->toArray(),
         ];
     }
 
