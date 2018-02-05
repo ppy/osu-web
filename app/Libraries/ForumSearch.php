@@ -114,8 +114,6 @@ class ForumSearch extends Query
 
         if (isset($this->username)) {
             $user = User::where('username', '=', $this->username)->first();
-            $userQuery = ['term' => ['user_id' => $user ? $user->user_id : -1]];
-
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
