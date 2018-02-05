@@ -20,90 +20,13 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class Search
+class Search extends AbstractSearch
 {
-    protected $highlight;
     protected $index;
-    protected $query;
 
     public function __construct(string $index)
     {
         $this->index = $index;
-    }
-
-    /**
-     * @return $this
-     */
-    public function from(?int $from)
-    {
-        $this->from = $from;
-
-        return $this;
-    }
-
-    public function limit(?int $limit)
-    {
-        return $this->size($limit);
-    }
-
-    /**
-     * @return $this
-     */
-    public function size(?int $size)
-    {
-        $this->size = clamp($size ?? 50, 1, 50);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function page(?int $page)
-    {
-        $this->page = $page;
-
-        return $this;
-    }
-
-    /**
-     * page is not returned if using offset query.
-     *
-     * @return array
-     */
-    public function getPageParams()
-    {
-        $params = ['size' => $this->size, 'limit' => $this->size];
-
-        // from overrides page.
-        if (isset($this->from)) {
-            $params['from'] = $this->from;
-        } else {
-            $params['page'] = max(1, $this->page);
-            $params['from'] = ($params['page'] - 1) * $this->size;
-        }
-
-        return $params;
-    }
-
-    /**
-     * @return $this
-     */
-    public function highlight($highlight)
-    {
-        $this->highlight = $highlight;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function query(Query $query)
-    {
-        $this->query = $query;
-
-        return $this;
     }
 
     /**
@@ -115,27 +38,13 @@ class Search
     }
 
     /**
-     * @return array
+     * @inheritDoc
      */
     public function toArray() : array
     {
-        $pageParams = $this->getPageParams();
+        $json = parent::toArray();
+        $json['index'] = $this->index;
 
-        $body = [
-            'from' => $pageParams['from'],
-            'size' => $pageParams['size'],
-        ];
-
-        if (isset($this->highlight)) {
-            $body['highlight'] = ['fields' => [$this->highlight => new \stdClass()]];
-            // $body['highlight'] = $this->highlight->toArray();
-        }
-
-        $body['query'] = $this->query->toArray();
-
-        return [
-            'index' => $this->index,
-            'body' => $body,
-        ];
+        return $json;
     }
 }
