@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\HasChild;
 use App\Libraries\Elasticsearch\Query;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResults;
@@ -99,7 +100,7 @@ class ForumSearch extends Query
             $query->filter($forumQuery);
         }
 
-        $query->must(['has_child' => static::firstPostQuery()]);
+        $query->must(static::firstPostQuery()->toArray());
 
         return $query->toArray();
     }
@@ -134,19 +135,13 @@ class ForumSearch extends Query
         ];
     }
 
-    public static function firstPostQuery() : array
+    public static function firstPostQuery() : HasChild
     {
-        return [
-            'type' => 'posts',
-            'score_mode' => 'none',
-            'inner_hits' => [
-                '_source' => 'search_content',
-                'name' => 'first_post',
-                'size' => 1,
-                'sort' => [['post_id' => ['order' => 'asc']]],
-            ],
-            'query' => ['match_all' => new \stdClass()],
-        ];
+        return (new HasChild('posts', 'first_post'))
+            ->size(1)
+            ->sort(['post_id' => ['order' => 'asc']])
+            ->query(['match_all' => new \stdClass()])
+            ->source('search_content');
     }
 
     public static function search(string $queryString, array $options = []) : array

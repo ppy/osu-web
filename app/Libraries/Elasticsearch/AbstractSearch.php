@@ -24,6 +24,8 @@ abstract class AbstractSearch
 {
     protected $highlight;
     protected $query;
+    protected $sort = [];
+    protected $source;
     protected $type;
 
     /**
@@ -74,7 +76,7 @@ abstract class AbstractSearch
         if (isset($this->from)) {
             $params['from'] = $this->from;
         } else {
-            $params['page'] = max(1, $this->page);
+            $params['page'] = max(1, $this->page ?? 1);
             $params['from'] = ($params['page'] - 1) * $this->size;
         }
 
@@ -94,9 +96,26 @@ abstract class AbstractSearch
     /**
      * @return $this
      */
-    public function query(Query $query)
+    public function query($query)
     {
         $this->query = $query;
+
+        return $this;
+    }
+
+    public function source($fields)
+    {
+        $this->source = $fields;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function sort(array $sort)
+    {
+        $this->sort[] = $sort;
 
         return $this;
     }
@@ -121,6 +140,7 @@ abstract class AbstractSearch
         $body = [
             'from' => $pageParams['from'],
             'size' => $pageParams['size'],
+            'sort' => $this->sort,
         ];
 
         if (isset($this->highlight)) {
@@ -128,7 +148,11 @@ abstract class AbstractSearch
             // $body['highlight'] = $this->highlight->toArray();
         }
 
-        $body['query'] = $this->query->toArray();
+        if (isset($this->source)) {
+            $body['_source'] = $this->source;
+        }
+
+        $body['query'] = is_array($this->query) ? $this->query : $this->query->toArray();
 
         $json = ['body' => $body];
 
