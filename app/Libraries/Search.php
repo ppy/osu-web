@@ -107,14 +107,17 @@ class Search
             $startTime = microtime(true);
 
             if ($class === ForumSearch::class) {
-                list($result, $pagination) = ForumSearch::search(
+                $search = ForumSearch::search(
                     $this->params['query'],
                     $this->params
                 );
 
+                $results = $search->results();
+                $pagination = $search->getPageParams();
+
                 $this->cache[$key] = [
-                    'data' => $result,
-                    'total' => $result->total(),
+                    'data' => $results,
+                    'total' => $results->total(),
                     'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
                 ];
             } else {

@@ -124,8 +124,10 @@ class ForumSearch extends Query
             ->query($query);
     }
 
-
-    public static function search(string $queryString, array $options = []) : array
+    /**
+     * @return Search
+     */
+    public static function search(string $queryString, array $options = []) : Search
     {
         $query = (new static())
             ->queryString($queryString)
@@ -139,10 +141,7 @@ class ForumSearch extends Query
             ->query($query)
             ->highlight('search_content');
 
-        return [
-            $search->results(),
-            $search->getPageParams(),
-        ];
+        return $search;
     }
 
     private static function firstPostQuery() : HasChild
