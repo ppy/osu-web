@@ -103,6 +103,9 @@ abstract class AbstractSearch
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function source($fields)
     {
         $this->source = $fields;

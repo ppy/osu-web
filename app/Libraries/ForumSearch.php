@@ -86,10 +86,9 @@ class ForumSearch extends Query
                 'query' => $this->queryString,
             ]])
             ->filter(['term' => ['type' => 'topics']])
-            ->shouldMatch(1);
+            ->shouldMatch(1)
+            ->should($this->childQuery($this->queryString)->toArray());
 
-        $childQuery = $this->childQuery($this->queryString, $this->forumId);
-        $query->should(['has_child' => $childQuery]);
 
         if (isset($this->forumId)) {
             $forumIds = $this->includeSubForums
@@ -105,7 +104,7 @@ class ForumSearch extends Query
         return $query->toArray();
     }
 
-    public function childQuery(string $queryString) : array
+    public function childQuery(string $queryString) : HasChild
     {
         $query = (new Query())
             ->must(['query_string' => [
@@ -118,21 +117,12 @@ class ForumSearch extends Query
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
-        return [
-            'type' => 'posts',
-            'score_mode' => 'max',
-            'inner_hits' => [
-                '_source' => ['topic_id', 'post_id', 'search_content'],
-                'name' => 'posts',
-                'size' => 3,
-                'highlight' => [
-                    'fields' => [
-                        'search_content' => new \stdClass(),
-                    ],
-                ],
-            ],
-            'query' => $query->toArray(),
-        ];
+        return (new HasChild('posts', 'posts'))
+            ->size(3)
+            ->scoreMode('max')
+            ->source(['topic_id', 'post_id', 'search_content'])
+            ->highlight('search_content')
+            ->query($query);
     }
 
     public static function firstPostQuery() : HasChild
