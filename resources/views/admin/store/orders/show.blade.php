@@ -128,7 +128,7 @@
 
             <table class='table order-line-items {{ $table_class or "table-striped" }}'>
                 <tbody>
-                    @foreach($o->items as $i)
+                    @foreach($o->items()->hasShipping()->with('product')->get() as $i)
                     <tr>
                         <td class="product_{{ $i->product_id }} {{ $i->quantity > 1 ? "bold" : "" }}">
                             {!! Form::open(['route' => ['admin.store.orders.items.update', $o->order_id, $i->id], 'method' => 'put', 'data-remote' => true]) !!}
