@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'Bekræftelse for opdatering af osu! email-adresse',
         'update' => 'opdater',
-        'updated' => 'Email-adresse opdateret',
     ],
 
     'update_password' => [
         'email_subject' => 'Bekræftelse for opdatering af osu! adgangskode',
         'update' => 'opdater',
-        'updated' => 'Adgangskode opdateret',
     ],
 
     'playstyles' => [

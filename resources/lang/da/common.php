@@ -45,6 +45,8 @@ return [
 
     'count' => [
         'item' => ':count unit|:count units',
+        'months' => ':count måned|:count måneder',
+        'years' => ':count år|:count år',
     ],
 
     'datetime' => [

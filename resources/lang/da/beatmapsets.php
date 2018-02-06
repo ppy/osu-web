@@ -86,12 +86,15 @@ return [
             'supporter-only' => 'Du skal være supporter for at få adgang til venne- og landerangering!',
             'title' => 'Scoreboard',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Præcision',
-                'player-header' => 'Spiller',
-                'rank-header' => 'Rank',
+                'combo' => 'Combo',
+                'miss' => 'Miss',
+                'player' => 'Spiller',
+                'rank' => 'Rank',
                 'score' => 'Score',
             ],
+
             'no_scores' => [
                 'country' => 'Ingen fra dit land har sat en score på dette map endnu!',
                 'friend' => 'Ingen af dine venner har sat en score på dette map endnu!',
@@ -99,15 +102,10 @@ return [
                 'loading' => 'Indlæser scores...',
                 'unranked' => 'Ikke-ranked beatmap.',
             ],
+
             'score' => [
                 'first' => 'I førerpositionen',
                 'own' => 'Dit bedste',
-            ],
-            'stats' => [
-                'accuracy' => 'Præcision',
-                'combo' => 'Combo',
-                'misses' => 'Miss',
-                'score' => 'Score',
             ],
         ],
     ],

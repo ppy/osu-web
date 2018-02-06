@@ -118,9 +118,9 @@ return [
         ],
         'store' => [
             '_' => 'butik',
-            'checkout-index' => 'betaling',
+            'checkout-show' => 'betaling',
             'getListing' => 'katalog',
-            'getCart' => 'indkøbskurv',
+            'cart-show' => 'indkøbskurv',
 
             'getCheckout' => 'betaling',
             'getInvoice' => 'faktura',
