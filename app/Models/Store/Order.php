@@ -485,15 +485,17 @@ class Order extends Model
             $orderItem = new OrderItem();
             $product = new Product();
 
-            $select = DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity, name, {$orderItem->qualifyColumn('product_id')}");
-
             $query
                 ->join($orderItem->getTable(), $order->qualifyColumn('order_id'), '=', $orderItem->qualifyColumn('order_id'))
                 ->join($product->getTable(), $orderItem->qualifyColumn('product_id'), '=', $product->qualifyColumn('product_id'))
                 ->whereNotNull($product->qualifyColumn('weight'))
                 ->groupBy($orderItem->qualifyColumn('product_id'))
                 ->groupBy('name')
-                ->select($select);
+                ->select(
+                    DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
+                    'name',
+                    $orderItem->qualifyColumn('product_id')
+                );
 
             return $query->get();
         };
