@@ -481,17 +481,19 @@ class Order extends Model
         return function ($query) {
             $query = clone $query;
 
-            $ordersTable = (new Order)->getTable();
-            $orderItemsTable = (new OrderItem)->getTable();
-            $productsTable = (new Product)->getTable();
+            $order = new Order();
+            $orderItem = new OrderItem();
+            $product = new Product();
+
+            $select = DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity, name, {$orderItem->qualifyColumn('product_id')}");
 
             $query
-                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
-                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
-                ->whereNotNull("{$productsTable}.weight")
-                ->groupBy("{$orderItemsTable}.product_id")
+                ->join($orderItem->getTable(), $order->qualifyColumn('order_id'), '=', $orderItem->qualifyColumn('order_id'))
+                ->join($product->getTable(), $orderItem->qualifyColumn('product_id'), '=', $product->qualifyColumn('product_id'))
+                ->whereNotNull($product->qualifyColumn('weight'))
+                ->groupBy($orderItem->qualifyColumn('product_id'))
                 ->groupBy('name')
-                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+                ->select($select);
 
             return $query->get();
         };
