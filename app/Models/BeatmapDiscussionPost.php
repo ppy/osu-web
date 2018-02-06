@@ -104,6 +104,18 @@ class BeatmapDiscussionPost extends Model
         return ['query' => $query, 'params' => $params];
     }
 
+    public static function generateLogResolveChange($user, $resolved)
+    {
+        return new static([
+            'user_id' => $user->user_id,
+            'system' => true,
+            'message' => [
+                'type' => 'resolved',
+                'value' => $resolved,
+            ],
+        ]);
+    }
+
     public function beatmapset()
     {
         return $this->beatmapDiscussion->beatmapset();
@@ -180,18 +192,6 @@ class BeatmapDiscussionPost extends Model
         }
 
         $this->attributes['message'] = trim($value);
-    }
-
-    public static function generateLogResolveChange($user, $resolved)
-    {
-        return new static([
-            'user_id' => $user->user_id,
-            'system' => true,
-            'message' => [
-                'type' => 'resolved',
-                'value' => $resolved,
-            ],
-        ]);
     }
 
     public function isFirstPost()
