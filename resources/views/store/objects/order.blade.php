@@ -49,7 +49,7 @@
     </tbody>
 
     <tfoot>
-        @if((!isset($shipping) || $shipping === true) && $order->shipping > 0)
+        @if((!isset($checkout) || $checkout === true) && $order->shipping > 0)
         <tr class="warning">
             <td>Subtotal</td>
             <td></td>
@@ -67,7 +67,7 @@
             <td>Total</td>
             <td></td>
             @if(isset($weight))<td></td>@endif
-            @if((!isset($shipping) || $shipping === true) && $order->shipping > 0)
+            @if((!isset($checkout) || $checkout === true) && $order->shipping > 0)
             <td class="text-right">{{{currency($order->getTotal())}}}</td>
             @else
             <td class="text-right">{{{currency($order->getSubtotal())}}}</td>
