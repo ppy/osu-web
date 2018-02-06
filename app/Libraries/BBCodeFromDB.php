@@ -39,6 +39,7 @@ class BBCodeFromDB
             'withGallery' => false,
             'ignoreLineHeight' => false,
             'withoutImageDimensions' => false,
+            'extraClasses' => '',
         ];
 
         $this->text = $text;
@@ -328,6 +329,10 @@ class BBCodeFromDB
         $text = CleanHTML::purify($text);
 
         $className = 'bbcode';
+
+        if (present($this->options['extraClasses'])) {
+            $className .= " {$this->options['extraClasses']}";
+        }
 
         if ($this->options['ignoreLineHeight']) {
             $className .= ' bbcode--normal-line-height';

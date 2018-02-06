@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,54 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll {
-  @_top: forum-poll;
+namespace App\Providers;
 
-  .default-box-shadow();
-  background-color: #fff;
+use Elasticsearch\ClientBuilder;
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider;
 
-  margin-bottom: 5px;
-  padding: 20px 30px 0;
-  font-size: @font-size--normal;
-
-  display: flex;
-  flex-direction: column;
-
-  @media @desktop {
-    padding-left: 60px;
-    padding-right: 60px;
-  }
-
-  &__row {
-    margin: 0 0 20px;
-    text-align: center;
-
-    &--details {
-      margin-bottom: (20px - 5px);
+class ElasticsearchServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
     }
 
-    &--options {
-      width: calc(100% ~'+' 10px);
-      margin-left: -5px;
-      margin-right: -5px;
-      text-align: left;
-      overflow-x: auto;
+    public function provides()
+    {
+        return ['elasticsearch'];
     }
 
-    &--title {
-      color: inherit;
-      font-style: normal;
-      font-size: @font-size--title-small;
-    }
-  }
+    public function register()
+    {
+        $this->app->singleton('elasticsearch', function () {
+            return ClientBuilder::fromConfig(config('elasticsearch'));
+        });
 
-  &__detail {
-    font-weight: bold;
-    margin: 0 0 5px;
-
-    &--sub {
-      font-size: @font-size--small;
-      color: #777;
+        $this->app->booting(function () {
+            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
+        });
     }
-  }
+
+    private function loadConfig()
+    {
+        return $this->app->files->getRequire(base_path('config/elasticsearch.php'));
+    }
 }
