@@ -18,35 +18,36 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
+namespace App\Providers;
 
-class UserGroup extends Model
+use Elasticsearch\ClientBuilder;
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider;
+
+class ElasticsearchServiceProvider extends ServiceProvider
 {
-    protected $table = 'phpbb_user_group';
-    public $timestamps = false;
-    protected $guarded = [];
-
-    // taken from current forum
-    const GROUPS = [
-        'default' => 2,
-        'gmt' => 4,
-        'admin' => 5,
-        'qat' => 7,
-        'dev' => 11,
-        'alumni' => 16,
-        'hax' => 17,
-        'mod' => 18,
-        'bng' => 28,
-        'bot' => 29,
-    ];
-
-    public function group()
+    public function boot()
     {
-        return $this->belongsTo(Group::class, 'group_id');
     }
 
-    public function user()
+    public function provides()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return ['elasticsearch'];
+    }
+
+    public function register()
+    {
+        $this->app->singleton('elasticsearch', function () {
+            return ClientBuilder::fromConfig(config('elasticsearch'));
+        });
+
+        $this->app->booting(function () {
+            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
+        });
+    }
+
+    private function loadConfig()
+    {
+        return $this->app->files->getRequire(base_path('config/elasticsearch.php'));
     }
 }

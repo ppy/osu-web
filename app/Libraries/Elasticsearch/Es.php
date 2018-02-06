@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,25 +18,17 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.profile-badge {
-  height: @profile-badge-size;
-  width: @profile-badge-size;
-  text-align: center;
-  background-repeat: no-repeat;
-  margin: 0 -3px;
+namespace App\Libraries\Elasticsearch;
 
-  &--level {
-    .at2x("/images/badges/levelbadge.png", @profile-badge-size, @profile-badge-size);
-  }
+use Illuminate\Support\Facades\Facade;
 
-  &--achievements {
-    .at2x("/images/badges/achievements.png", @profile-badge-size, @profile-badge-size);
-  }
-
-  &__number {
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    top: 6px;
-  }
+/**
+ * @see \Elasticsearch\Client
+ */
+class Es extends Facade
+{
+    protected static function getFacadeAccessor()
+    {
+        return 'elasticsearch';
+    }
 }

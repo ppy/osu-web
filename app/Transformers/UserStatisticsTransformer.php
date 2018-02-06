@@ -48,6 +48,7 @@ class UserStatisticsTransformer extends Fractal\TransformerAbstract
             'ranked_score' => $stats->ranked_score,
             'hit_accuracy' => $stats->accuracy_new,
             'play_count' => $stats->playcount,
+            'play_time' => $stats->total_seconds_played,
             'total_score' => $stats->total_score,
             'total_hits' => $stats->totalHits(),
             'maximum_combo' => $stats->max_combo,

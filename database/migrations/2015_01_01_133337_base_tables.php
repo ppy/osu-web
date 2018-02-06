@@ -798,6 +798,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -836,6 +837,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -874,6 +876,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
@@ -912,6 +915,7 @@ class BaseTables extends Migration
             $table->bigInteger('accuracy_count')->unsigned();
             $table->float('accuracy');
             $table->mediumInteger('playcount');
+            $table->bigInteger('total_seconds_played')->default(0);
             $table->bigInteger('ranked_score');
             $table->bigInteger('total_score');
             $table->mediumInteger('x_rank_count');
