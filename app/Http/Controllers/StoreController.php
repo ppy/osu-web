@@ -78,7 +78,10 @@ class StoreController extends Controller
 
     public function getInvoice($id = null)
     {
-        $order = Store\Order::where('status', '<>', 'incart')->findOrFail($id);
+        $order = Store\Order::where('status', '<>', 'incart')
+            ->with('items.product')
+            ->findOrFail($id);
+
         if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
