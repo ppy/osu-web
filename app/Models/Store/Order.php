@@ -490,10 +490,10 @@ class Order extends Model
                 ->join($product->getTable(), $orderItem->qualifyColumn('product_id'), '=', $product->qualifyColumn('product_id'))
                 ->whereNotNull($product->qualifyColumn('weight'))
                 ->groupBy($orderItem->qualifyColumn('product_id'))
-                ->groupBy('name')
+                ->groupBy($product->qualifyColumn('name'))
                 ->select(
                     DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
-                    'name',
+                    $product->qualifyColumn('name'),
                     $orderItem->qualifyColumn('product_id')
                 );
 
