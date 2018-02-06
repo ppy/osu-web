@@ -44,7 +44,7 @@ return [
             'not_hypeable' => 'This beatmap can not be hyped',
             'owner' => 'No hyping your own beatmap.',
         ],
-     ],
+    ],
 
     'forum' => [
         'feature_vote' => [
