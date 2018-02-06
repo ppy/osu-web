@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,46 +18,33 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll-row {
-  @_top: forum-poll-row;
+return [
+    'button' => [
+        'action' => [
+            'to_0' => 'Unwatch',
+            'to_1' => 'Watch',
+        ],
+    ],
 
-  &--voted {
-    font-weight: bold;
-  }
+    'index' => [
+        'description' => 'Disse beatmap diskussioner følger du. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
+        'title_compact' => 'modding watchlist',
+        'title_main' => 'Modding Watchlist',
 
-  &__column {
-    padding: 5px;
-    white-space: nowrap;
+        'table' => [
+            'empty' => 'Ingen beatmap diskussioner watched.',
+            'open_issues' => 'Åbne problemer',
+            'state' => 'Tilstand',
+            'title' => 'Titel',
+        ],
+    ],
 
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
+    'mail' => [
+        'update' => 'Ny opdatering for beatmap ":title"',
+    ],
 
-    &--option-text {
-      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
-    }
-
-    &--percentage {
-      color: @pink-darker;
-
-      .@{_top}--voted & {
-        color: @purple-darker;
-      }
-    }
-  }
-
-  &__option-text {
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  &__option-text-container {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
-  }
-}
+    'status' => [
+        'read' => 'Læst',
+        'unread' => 'Ulæst',
+    ],
+];

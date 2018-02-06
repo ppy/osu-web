@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,46 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll-row {
-  @_top: forum-poll-row;
-
-  &--voted {
-    font-weight: bold;
-  }
-
-  &__column {
-    padding: 5px;
-    white-space: nowrap;
-
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
-
-    &--option-text {
-      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
-    }
-
-    &--percentage {
-      color: @pink-darker;
-
-      .@{_top}--voted & {
-        color: @purple-darker;
-      }
-    }
-  }
-
-  &__option-text {
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  &__option-text-container {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
-  }
-}
+return [
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => 'Tak, osu! <3 dig!',
+        ],
+        'supporter_gift' => [
+            'subject' => 'Du har et osu! supporter tag!',
+        ],
+    ],
+];

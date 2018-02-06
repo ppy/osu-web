@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,46 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll-row {
-  @_top: forum-poll-row;
+return [
+    'buttons' => [
+      'add' => 'tilføj ven',
+      'remove' => 'fjern ven',
+    ],
 
-  &--voted {
-    font-weight: bold;
-  }
+    'state' => [
+      'friends' => 'venner',
+      'mutual' => 'fælles',
+    ],
 
-  &__column {
-    padding: 5px;
-    white-space: nowrap;
+    'title' => 'Venner',
+    'title_compact' => 'venner',
 
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
-
-    &--option-text {
-      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
-    }
-
-    &--percentage {
-      color: @pink-darker;
-
-      .@{_top}--voted & {
-        color: @purple-darker;
-      }
-    }
-  }
-
-  &__option-text {
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  &__option-text-container {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
-  }
-}
+    'too_many' => 'Maksimale antal venner nået.',
+];

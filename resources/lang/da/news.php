@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,46 +18,37 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll-row {
-  @_top: forum-poll-row;
+return [
+    'breadcrumbs' => [
+        'news-index' => 'liste',
+        'news-show' => 'opslag',
+    ],
 
-  &--voted {
-    font-weight: bold;
-  }
+    'index' => [
+        'title' => 'osu!news',
 
-  &__column {
-    padding: 5px;
-    white-space: nowrap;
+        'nav' => [
+            'newer' => 'Nyere indlæg',
+            'older' => 'Ældre indlæg',
+        ],
+    ],
 
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
+    'show' => [
+        'posted' => 'slået op :time',
 
-    &--option-text {
-      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
-    }
+        'nav' => [
+            'newer' => 'Nyere indlæg',
+            'older' => 'Ældre indlæg',
+        ],
+    ],
 
-    &--percentage {
-      color: @pink-darker;
+    'store' => [
+        'button' => 'Opdatér',
+        'ok' => 'Liste opdateret.',
+    ],
 
-      .@{_top}--voted & {
-        color: @purple-darker;
-      }
-    }
-  }
-
-  &__option-text {
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  &__option-text-container {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
-  }
-}
+    'update' => [
+        'button' => 'Opdatér',
+        'ok' => 'Opslag opdateret.',
+    ],
+];

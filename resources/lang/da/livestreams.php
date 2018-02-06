@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,46 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll-row {
-  @_top: forum-poll-row;
-
-  &--voted {
-    font-weight: bold;
-  }
-
-  &__column {
-    padding: 5px;
-    white-space: nowrap;
-
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
-
-    &--option-text {
-      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
-    }
-
-    &--percentage {
-      color: @pink-darker;
-
-      .@{_top}--voted & {
-        color: @purple-darker;
-      }
-    }
-  }
-
-  &__option-text {
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  &__option-text-container {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
-  }
-}
+return [
+    'top-headers' => [
+        'headline' => 'Livestreams',
+        'description' => 'Dataen her er hentet fra twitch.tv hvert femte minut baseret på listen over livestreams. Begynd bare at streame løs for at få dig selv på listen! For mere information om, hvordan du kommer i gang, tjek vores livestreaming wikiside ud.',
+    ],
+    'headers' => [
+        'regular' => 'Streamer i øjeblikket',
+    ],
+];

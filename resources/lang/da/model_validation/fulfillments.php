@@ -1,3 +1,5 @@
+<?php
+
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -16,46 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.forum-poll-row {
-  @_top: forum-poll-row;
-
-  &--voted {
-    font-weight: bold;
-  }
-
-  &__column {
-    padding: 5px;
-    white-space: nowrap;
-
-    &--bar {
-      width: 100%;
-      min-width: 100px;
-    }
-
-    &--option-text {
-      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
-    }
-
-    &--percentage {
-      color: @pink-darker;
-
-      .@{_top}--voted & {
-        color: @purple-darker;
-      }
-    }
-  }
-
-  &__option-text {
-    margin-left: 5px;
-    overflow: hidden;
-  }
-
-  &__option-text-container {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    text-transform: none;
-  }
-}
+return [
+    'username_change' => [
+        'only_one' => 'Kun ét brugernavnsskift er tilladt pr. ordre.',
+        'insufficient_paid' => 'Brugernavnsskifte koster mere, end der er blevet betalt (:expected > :actual)',
+        'reverting_username_mismatch' => 'Det nuværende brugernavn (:current) er ikke det samme i modsætning til (:username)',
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'Donationen er mindre end det er påkrævet for et supporter tag (:actual > :expected)',
+    ],
+];
