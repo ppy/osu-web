@@ -26,9 +26,9 @@
     }
 @endphp
 
-<table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
+<table class='table order-line-items {{ $table_class or "table-striped" }}'>
     <tbody>
-        @foreach($order->items as $i)
+        @foreach ($order->items as $i)
             @if (!$forShipping || $i->product->requiresShipping())
                 <tr>
                     <td>
@@ -43,43 +43,43 @@
                         @endif
 
                     </td>
-                    @if(isset($weight))
-                        @if($i->product->weight !== null)
-                            <td>{{{$i->product->weight}}}g</td>
+                    @if (isset($weight))
+                        @if ($i->product->weight !== null)
+                            <td>{{ $i->product->weight }}g</td>
                         @else
                             <td></td>
                         @endif
                     @endif
                     <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
-                    <td class="text-right">{{{currency($i->subtotal())}}}</td>
+                    <td class="text-right">{{ currency($i->subtotal()) }}</td>
                 </tr>
             @endif
         @endforeach
     </tbody>
 
     <tfoot>
-        @if($checkout && $order->shipping > 0)
-        <tr class="warning">
-            <td>Subtotal</td>
-            <td></td>
-            @if(isset($weight))<td></td>@endif
-            <td class="text-right">{{{currency($order->getSubtotal())}}}</td>
-        </tr>
-        <tr class="warning">
-            <td>Shipping &amp; Handling</td>
-            <td></td>
-            @if(isset($weight))<td></td>@endif
-            <td class="text-right">{{{currency($order->shipping)}}}</td>
-        </tr>
+        @if ($checkout && $order->shipping > 0)
+            <tr class="warning">
+                <td>Subtotal</td>
+                <td></td>
+                @if (isset($weight))<td></td>@endif
+                <td class="text-right">{{ currency($order->getSubtotal()) }}</td>
+            </tr>
+            <tr class="warning">
+                <td>Shipping &amp; Handling</td>
+                <td></td>
+                @if (isset($weight))<td></td>@endif
+                <td class="text-right">{{ currency($order->shipping) }}</td>
+            </tr>
         @endif
         <tr class="warning total">
             <td>Total</td>
             <td></td>
-            @if(isset($weight))<td></td>@endif
-            @if($checkout && $order->shipping > 0)
-            <td class="text-right">{{{currency($order->getTotal())}}}</td>
+            @if (isset($weight))<td></td>@endif
+            @if ($checkout && $order->shipping > 0)
+                <td class="text-right">{{ currency($order->getTotal()) }}</td>
             @else
-            <td class="text-right">{{{currency($order->getSubtotal($forShipping))}}}</td>
+                <td class="text-right">{{ currency($order->getSubtotal($forShipping)) }}</td>
             @endif
         </tr>
     </tfoot>
