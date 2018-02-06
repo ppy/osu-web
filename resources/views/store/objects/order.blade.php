@@ -20,34 +20,40 @@
     if (!isset($checkout)) {
         $checkout = true;
     }
+
+    if (!isset($shippable)) {
+        $shippable = false;
+    }
 @endphp
 
 <table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
     <tbody>
         @foreach($order->items as $i)
-            <tr>
-                <td>
-                    {{ $i->getDisplayName() }}
+            @if (!$shippable || $i->product->requiresShipping())
+                <tr>
+                    <td>
+                        {{ $i->getDisplayName() }}
 
-                    @if (isset($itemErrors[$i->id]))
-                        <ul class="store-order-item__errors">
-                            @foreach ($itemErrors[$i->id] as $message)
-                                <li class="store-order-item__error">{!! $message !!}
-                            @endforeach
-                        </ul>
-                    @endif
+                        @if (isset($itemErrors[$i->id]))
+                            <ul class="store-order-item__errors">
+                                @foreach ($itemErrors[$i->id] as $message)
+                                    <li class="store-order-item__error">{!! $message !!}
+                                @endforeach
+                            </ul>
+                        @endif
 
-                </td>
-                @if(isset($weight))
-                    @if($i->product->weight !== null)
-                        <td>{{{$i->product->weight}}}g</td>
-                    @else
-                        <td></td>
+                    </td>
+                    @if(isset($weight))
+                        @if($i->product->weight !== null)
+                            <td>{{{$i->product->weight}}}g</td>
+                        @else
+                            <td></td>
+                        @endif
                     @endif
-                @endif
-                <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
-                <td class="text-right">{{{currency($i->subtotal())}}}</td>
-            </tr>
+                    <td>{{ trans_choice('common.count.item', $i->quantity) }}</td>
+                    <td class="text-right">{{{currency($i->subtotal())}}}</td>
+                </tr>
+            @endif
         @endforeach
     </tbody>
 
@@ -73,7 +79,7 @@
             @if($checkout && $order->shipping > 0)
             <td class="text-right">{{{currency($order->getTotal())}}}</td>
             @else
-            <td class="text-right">{{{currency($order->getSubtotal())}}}</td>
+            <td class="text-right">{{{currency($order->getSubtotal($shippable))}}}</td>
             @endif
         </tr>
     </tfoot>

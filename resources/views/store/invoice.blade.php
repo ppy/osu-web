@@ -101,7 +101,12 @@
 
         <div class="grid">
             <div class="grid-cell">
-                @include("store.objects.order", ['order' => $order, 'weight' => true, 'checkout' => false])
+                @include('store.objects.order', [
+                    'order' => $order,
+                    'weight' => true,
+                    'checkout' => false,
+                    'shippable' => $shippable,
+                ])
             </div>
         </div>
 

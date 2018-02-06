@@ -156,10 +156,14 @@ class Order extends Model
         return studly_case(explode('-', $this->transaction_id)[0]);
     }
 
-    public function getSubtotal()
+    public function getSubtotal($shippable = false)
     {
         $total = 0;
         foreach ($this->items as $i) {
+            if ($shippable && !$i->product->requiresShipping()) {
+                continue;
+            }
+
             $total += $i->subtotal();
         }
 
