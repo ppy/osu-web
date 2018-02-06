@@ -155,7 +155,7 @@ class ForumSearch extends Search
 
         return [
             'data' => $results,
-            'total' => min($results->total(), 10000),
+            'total' => min($results->total(), static::MAX_RESULTS),
             'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
         ];
     }

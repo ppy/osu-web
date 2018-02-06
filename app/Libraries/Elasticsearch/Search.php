@@ -22,6 +22,9 @@ namespace App\Libraries\Elasticsearch;
 
 class Search extends AbstractSearch
 {
+    // maximum number of total results allowed when not using the scroll API.
+    const MAX_RESULTS = 10000;
+
     protected $index;
 
     public function __construct(string $index)
