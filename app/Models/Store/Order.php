@@ -486,8 +486,18 @@ class Order extends Model
             $product = new Product();
 
             $query
-                ->join($orderItem->getTable(), $order->qualifyColumn('order_id'), '=', $orderItem->qualifyColumn('order_id'))
-                ->join($product->getTable(), $orderItem->qualifyColumn('product_id'), '=', $product->qualifyColumn('product_id'))
+                ->join(
+                    $orderItem->getTable(),
+                    $order->qualifyColumn('order_id'),
+                    '=',
+                    $orderItem->qualifyColumn('order_id')
+                )
+                ->join(
+                    $product->getTable(),
+                    $orderItem->qualifyColumn('product_id'),
+                    '=',
+                    $product->qualifyColumn('product_id')
+                )
                 ->whereNotNull($product->qualifyColumn('weight'))
                 ->groupBy($orderItem->qualifyColumn('product_id'))
                 ->groupBy($product->qualifyColumn('name'))
