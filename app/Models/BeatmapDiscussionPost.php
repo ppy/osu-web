@@ -20,6 +20,7 @@
 
 namespace App\Models;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
@@ -116,6 +117,19 @@ class BeatmapDiscussionPost extends Model
         ]);
     }
 
+    public static function parseTimestamp($message)
+    {
+        preg_match('/\b(\d{2,}):(\d{2})[:.](\d{3})\b/', $message, $matches);
+
+        if (count($matches) === 4) {
+            $m = (int) $matches[1];
+            $s = (int) $matches[2];
+            $ms = (int) $matches[3];
+
+            return ($m * 60 + $s) * 1000 + $ms;
+        }
+    }
+
     public function beatmapset()
     {
         return $this->beatmapDiscussion->beatmapset();
@@ -172,7 +186,23 @@ class BeatmapDiscussionPost extends Model
 
     public function save(array $options = [])
     {
-        return $this->isValid() && parent::save($options);
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        try {
+            return $this->getConnection()->transaction(function () use ($options) {
+                if (!parent::save($options)) {
+                    throw new ModelNotSavedException;
+                }
+
+                $this->beatmapDiscussion->refreshTimestampOrExplode();
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
+            return false;
+        }
     }
 
     public function getMessageAttribute($value)
@@ -269,6 +299,11 @@ class BeatmapDiscussionPost extends Model
 
             return true;
         });
+    }
+
+    public function timestamp()
+    {
+        return static::parseTimestamp($this->message);
     }
 
     public function scopeWithoutDeleted($query)

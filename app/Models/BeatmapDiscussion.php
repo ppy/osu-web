@@ -285,6 +285,17 @@ class BeatmapDiscussion extends Model
         return $this->update(['resolved' => false]);
     }
 
+    public function refreshTimestampOrExplode()
+    {
+        if ($this->timestamp === null) {
+            return;
+        }
+
+        return $this->fill([
+            'timestamp' => $this->startingPost->timestamp() ?? null,
+        ])->saveOrExplode();
+    }
+
     public function hasValidBeatmap()
     {
         return
@@ -325,12 +336,12 @@ class BeatmapDiscussion extends Model
 
     public function validateTimestamp()
     {
-        if ($this->timestamp === null) {
+        // skip validation if not changed
+        if (!$this->isDirty('timestamp')) {
             return;
         }
 
-        // skip validation if not changed
-        if (!$this->isDirty('timestamp')) {
+        if ($this->timestamp === null) {
             return;
         }
 
