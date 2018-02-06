@@ -91,8 +91,8 @@
                     @else
                         -
                     @endif
-                    <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'shipping' => 1]) }}">invoice</a>
-                    <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'shipping' => 1, 'copies' => 2]) }}" target="_blank">(print)</a>
+                    <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'for_shipping' => 1]) }}">invoice</a>
+                    <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'for_shipping' => 1, 'copies' => 2]) }}" target="_blank">(print)</a>
                 </small>
                 </h3>
             </div>

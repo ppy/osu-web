@@ -21,15 +21,15 @@
         $checkout = true;
     }
 
-    if (!isset($shippable)) {
-        $shippable = false;
+    if (!isset($forShipping)) {
+        $forShipping = false;
     }
 @endphp
 
 <table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
     <tbody>
         @foreach($order->items as $i)
-            @if (!$shippable || $i->product->requiresShipping())
+            @if (!$forShipping || $i->product->requiresShipping())
                 <tr>
                     <td>
                         {{ $i->getDisplayName() }}
@@ -79,7 +79,7 @@
             @if($checkout && $order->shipping > 0)
             <td class="text-right">{{{currency($order->getTotal())}}}</td>
             @else
-            <td class="text-right">{{{currency($order->getSubtotal($shippable))}}}</td>
+            <td class="text-right">{{{currency($order->getSubtotal($forShipping))}}}</td>
             @endif
         </tr>
     </tfoot>

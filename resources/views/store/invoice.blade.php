@@ -105,7 +105,7 @@
                     'order' => $order,
                     'weight' => true,
                     'checkout' => false,
-                    'shippable' => $shippable,
+                    'forShipping' => $forShipping,
                 ])
             </div>
         </div>
