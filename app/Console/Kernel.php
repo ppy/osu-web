@@ -39,6 +39,7 @@ class Kernel extends ConsoleKernel
         Commands\ModdingScoreIndexCommand::class,
 
         Commands\UserForumStatSyncCommand::class,
+        Commands\BeatmapsetsHypeSyncCommand::class,
 
         // parsing html with regexp
         Commands\StoreCheckOrderTrackingStatus::class,
@@ -54,6 +55,8 @@ class Kernel extends ConsoleKernel
         Commands\FixUsernameChangeTopicCache::class,
 
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\LocaleCheck::class,
     ];
 
     /**

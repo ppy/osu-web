@@ -23,6 +23,7 @@ return [
     ],
     'beatmapset' => [
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
+        'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
     ],
     'camo' => [
@@ -33,7 +34,10 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
-        'index' => env('ES_INDEX', 'osu'),
+        'prefix' => env('ES_INDEX_PREFIX'),
+        'index' => [
+            'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
+        ],
     ],
     'emails' => [
         'account' => 'accounts@ppy.sh',

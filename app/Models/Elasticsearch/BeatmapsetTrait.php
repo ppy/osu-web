@@ -37,13 +37,14 @@ trait BeatmapsetTrait
 
     public static function esIndexName()
     {
-        return 'beatmaps';
+        return config('osu.elasticsearch.prefix').'beatmaps';
     }
 
     public static function esIndexingQuery()
     {
         return static::on('mysql-readonly')
             ->withoutGlobalScopes()
+            ->active()
             ->with('beatmaps'); // note that the with query will run with the default scopes.
     }
 

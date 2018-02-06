@@ -79,6 +79,70 @@ function es_query_escape_with_caveats($query)
     );
 }
 
+/**
+ * Takes an Elasticsearch resultset and retrieves the matching models from the database,
+ *  returning them in the same order as the Elasticsearch results.
+ *
+ *
+ * @param $results Elasticsesarch results.
+ * @param $class Class name of the model.
+ * @return array Records matching the Elasticsearch results.
+ */
+function es_records($results, $class)
+{
+    $keyName = (new $class())->getKeyName();
+
+    $hits = $results['hits']['hits'];
+    $ids = [];
+    foreach ($hits as $hit) {
+        $ids[] = $hit['_id'];
+    }
+
+    $query = $class::whereIn($keyName, $ids);
+    $keyed = [];
+    foreach ($query->get() as $result) {
+        // save for lookup.
+        $keyed[$result->user_id] = $result;
+    }
+
+    // match records with elasticsearch results.
+    $records = [];
+    foreach ($ids as $id) {
+        if (isset($keyed[$id])) {
+            $records[] = $keyed[$id];
+        }
+    }
+
+    return $records;
+}
+
+function es_search($params)
+{
+    try {
+        return Es::search($params);
+    } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
+        // all servers down
+        $error = $e;
+    } catch (Elasticsearch\Common\Exceptions\BadRequest400Exception $e) {
+        // invalid query
+        $error = $e;
+    } catch (Elasticsearch\Common\Exceptions\Missing404Exception $e) {
+        // index is missing ?_?
+        $error = $e;
+    }
+
+    Log::debug($error);
+
+    // default return on failure
+    return [
+        'hits' => [
+            'hits' => [],
+            'total' => 0,
+        ],
+        'exception' => $error ?? null,
+    ];
+}
+
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
@@ -101,13 +165,13 @@ function get_valid_locale($requestedLocale)
 
 function html_excerpt($body, $limit = 300)
 {
-    $body = replace_tags_with_spaces($body);
+    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
 
-    if (strlen($body) < $limit) {
-        return $body;
+    if (strlen($body) >= $limit) {
+        $body = mb_substr($body, 0, $limit).'...';
     }
 
-    return mb_substr($body, 0, $limit).'...';
+    return e($body);
 }
 
 function json_date($date)
@@ -335,6 +399,11 @@ function i18n_view($view)
     }
 }
 
+function is_api_request()
+{
+    return Request::is('api/*');
+}
+
 function is_sql_unique_exception($ex)
 {
     return starts_with(
@@ -381,8 +450,13 @@ function current_action()
     return explode('@', Route::currentRouteAction(), 2)[1] ?? null;
 }
 
-function link_to_user($user_id, $user_name, $user_color)
+function link_to_user($user_id, $user_name = null, $user_color = null)
 {
+    if ($user_id instanceof App\Models\User) {
+        $user_name = $user_id->username;
+        $user_color = $user_id->user_colour;
+        $user_id = $user_id->getKey();
+    }
     $user_name = e($user_name);
     $style = user_color_style($user_color, 'color');
 
@@ -513,7 +587,7 @@ function nav_links()
     ];
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
-        'getCart' => action('StoreController@getCart'),
+        'cart-show' => route('store.cart.show'),
     ];
 
     return $links;
@@ -526,7 +600,7 @@ function footer_landing_links()
             'home' => route('home'),
             'changelog-index' => route('changelog.index'),
             'beatmaps' => action('BeatmapsetsController@index'),
-            'download' => osu_url('home.download'),
+            'download' => route('download'),
             'wiki' => wiki_url('Welcome'),
         ],
         'help' => [
@@ -735,10 +809,21 @@ function get_bool($string)
 {
     if (is_bool($string)) {
         return $string;
-    } elseif ($string === '1' || $string === 'on' || $string === 'true') {
+    } elseif ($string === 1 || $string === '1' || $string === 'on' || $string === 'true') {
         return true;
-    } elseif ($string === '0' || $string === 'false') {
+    } elseif ($string === 0 || $string === '0' || $string === 'false') {
         return false;
+    }
+}
+
+/*
+ * Parses a string. If it's not an empty string or null,
+ * return parsed float value of it, otherwise return null.
+ */
+function get_float($string)
+{
+    if (present($string)) {
+        return (float) $string;
     }
 }
 
@@ -902,15 +987,25 @@ function model_pluck($builder, $key, $class = null)
     return $result;
 }
 
-// Returns null if timestamp is null or 0.
-// Technically it's not null if 0 but some tables have not null constraints
-// despite null being a valid value. Instead it's filled in with 0 so this
-// helper returns null if it's 0 and parses the timestamp otherwise.
+/*
+ * Returns null if $timestamp is null or 0.
+ * Used for table which has not null constraints but accepts "empty" value (0).
+ */
 function get_time_or_null($timestamp)
 {
     if ($timestamp !== 0) {
         return parse_time_to_carbon($timestamp);
     }
+}
+
+/*
+ * Get unix timestamp of a DateTime (or Carbon\Carbon).
+ * Returns 0 if $time is null so mysql doesn't explode because of not null
+ * constraints.
+ */
+function get_timestamp_or_zero(DateTime $time = null) : int
+{
+    return $time === null ? 0 : $time->getTimestamp();
 }
 
 function parse_time_to_carbon($value)

@@ -36,48 +36,65 @@ trait EsIndexable
 
     abstract public function toEsJson();
 
+    public function getEsId()
+    {
+        return $this->getKey();
+    }
+
     public function esDeleteDocument(array $options = [])
     {
-        return Es::delete(
-            array_merge([
-                'index' => static::esIndexName(),
-                'type' => static::esType(),
-                'id' => $this->getKey(),
-                'client' => ['ignore' => 404],
-            ], $options)
-        );
+        $document = array_merge([
+            'index' => static::esIndexName(),
+            'type' => static::esType(),
+            'id' => $this->getEsId(),
+            'client' => ['ignore' => 404],
+        ], $options);
+
+        return Es::delete($document);
     }
 
     public function esIndexDocument(array $options = [])
     {
-        $json = [
+        $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
-            'id' => $this->getKey(),
+            'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
-        ];
+        ], $options);
 
-        return Es::index(array_merge($json, $options));
+        return Es::index($document);
     }
 
     public static function esCreateIndex(string $name = null)
     {
         $type = static::esType();
-        $params = [
-            'index' => $name ?? static::esIndexName(),
-            'body' => [
-                'mappings' => [
-                    $type => [
-                        'properties' => static::esMappings(),
-                    ],
+        $body = [
+            'mappings' => [
+                $type => [
+                    'properties' => static::esMappings(),
                 ],
             ],
+        ];
+
+        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
+            $settings = [
+                'settings' => [
+                    'analysis' => static::esAnalysisSettings(),
+                ],
+            ];
+
+            $body = array_merge($body, $settings);
+        }
+
+        $params = [
+            'index' => $name ?? static::esIndexName(),
+            'body' => $body,
         ];
 
         return Es::indices()->create($params);
     }
 
-    public static function esIndexIntoNew($batchSize = 1000, $name = null)
+    public static function esIndexIntoNew($batchSize = 1000, $name = null, callable $progress = null)
     {
         $newIndex = $name ?? static::esIndexName().'_'.time();
         Log::info("Creating new index {$newIndex}");
@@ -87,13 +104,13 @@ trait EsIndexable
             'index' => $newIndex,
         ];
 
-        static::esReindexAll($batchSize, 0, $options);
+        static::esReindexAll($batchSize, 0, $options, $progress);
         Indexing::updateAlias(static::esIndexName(), [$newIndex]);
 
         return $newIndex;
     }
 
-    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [])
+    public static function esReindexAll($batchSize = 1000, $fromId = 0, array $options = [], callable $progress = null)
     {
         $dummy = new static();
         $isSoftDeleting = method_exists($dummy, 'getDeletedAtColumn');
@@ -102,13 +119,13 @@ trait EsIndexable
         $baseQuery = static::esIndexingQuery()->where($dummy->getKeyName(), '>', $fromId);
         $count = 0;
 
-        $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count) {
+        $baseQuery->chunkById($batchSize, function ($models) use ($options, $isSoftDeleting, &$count, $progress) {
             $actions = [];
 
             foreach ($models as $model) {
                 $next = $model;
                 // bulk API am speshul.
-                $metadata = ['_id' => $model->getKey()];
+                $metadata = ['_id' => $model->getEsId()];
 
                 if ($isSoftDeleting && $model->trashed()) {
                     $actions[] = ['delete' => $metadata];
@@ -124,15 +141,19 @@ trait EsIndexable
                     'index' => $options['index'] ?? static::esIndexName(),
                     'type' => static::esType(),
                     'body' => $actions,
+                    'client' => ['timeout' => 0],
                 ]);
 
                 $count += count($result['items']);
             }
 
-            Log::info("next: {$models->last()->getKey()}");
+            Log::info(static::class." next: {$models->last()->getKey()}");
+            if ($progress) {
+                $progress($count);
+            }
         });
 
         $duration = time() - $startTime;
-        Log::info("Indexed {$count} records in {$duration} s.");
+        Log::info(static::class." Indexed {$count} records in {$duration} s.");
     }
 }

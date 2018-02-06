@@ -72,10 +72,6 @@ return [
                 'global' => 'Nog geen scores. Probeer er een paar te halen?',
                 'loading' => 'Scoren aan het laden...',
             ],
-            'stats' => [
-                'accuracy' => 'Precisie',
-                'score' => 'Score',
-            ],
         ],
     ],
 ];

@@ -61,7 +61,7 @@ class CentiliController extends Controller
     public function completed()
     {
         $orderNumber = Request::input('reference') ?? '';
-        $order = OrderCheckout::complete($orderNumber);
+        $order = OrderCheckout::for($orderNumber)->completeCheckout();
 
         return redirect(route('store.invoice.show', ['invoice' => $order->order_id, 'thanks' => 1]));
     }
@@ -71,6 +71,6 @@ class CentiliController extends Controller
         // FIXME: show a message to the user
         Request::session()->flash('status', 'An error occured while processing the payment.');
 
-        return redirect(route('store.checkout.index'));
+        return redirect(route('store.checkout.show'));
     }
 }

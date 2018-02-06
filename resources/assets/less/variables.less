@@ -107,6 +107,7 @@
 @font-size--wiki: 14px;
 
 @font-size--header-title: 32px;
+@font-size--header-title-mobile: 24px;
 @font-size--header-subtitle: 16px;
 @font-size--header-description: 12px;
 
@@ -252,10 +253,14 @@
 
 // difficulty colours
 @diff-easy: @green;
-@diff-normal: @yellow;
-@diff-hard: @pink;
-@diff-insane: @purple;
-@diff-expert: #000;
+@diff-normal: @blue;
+@diff-hard: @yellow;
+@diff-insane: @pink;
+@diff-expert: @purple;
+@diff-expert--light: @purple-light;
+@diff-expert-plus: #000;
+// for when black text won't just work on dark background
+@diff-expert-plus--light: #999;
 
 // user profile detail-row
 @detail-row--bottom-min-height: 18px;

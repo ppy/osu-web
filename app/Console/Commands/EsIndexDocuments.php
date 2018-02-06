@@ -23,16 +23,23 @@ namespace App\Console\Commands;
 use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
+use App\Models\User;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends Command
 {
+    const ALLOWED_TYPES = [
+        'beatmapsets' => Beatmapset::class,
+        'posts' => Post::class,
+        'users' => User::class,
+    ];
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'es:index-documents {--inplace} {--cleanup} {--yes}';
+    protected $signature = 'es:index-documents {--types=} {--inplace} {--cleanup} {--yes}';
 
     /**
      * The console command description.
@@ -41,21 +48,11 @@ class EsIndexDocuments extends Command
      */
     protected $description = 'Indexes documents into Elasticsearch.';
 
-    private $cleanup;
-    private $inplace;
-    private $types;
-    private $suffix;
-    private $yes;
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $cleanup;
+    protected $inplace;
+    protected $suffix;
+    protected $types;
+    protected $yes;
 
     /**
      * Execute the console command.
@@ -65,29 +62,30 @@ class EsIndexDocuments extends Command
     public function handle()
     {
         $this->readOptions();
-        $this->types = [Beatmapset::class, Post::class];
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
-        $oldIndices = Indexing::getOldIndices('osu');
+        $oldIndices = [];
+        foreach ($this->types as $type) {
+            $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
+        }
+
+        $oldIndices = array_flatten($oldIndices);
 
         $continue = $this->starterMessage($oldIndices);
         if (!$continue) {
             return $this->error('User aborted!');
         }
 
+        $start = time();
+
         $indices = $this->index();
 
         $this->finish($indices, $oldIndices);
-        $this->warn("\nIndexing completed.");
+        $this->warn("\nIndexing completed in ".(time() - $start).'s');
     }
 
-    private function finish(array $indices, array $oldIndices)
+    protected function finish(array $indices, array $oldIndices)
     {
-        // always update osu alias
-        $indicesString = implode(', ', $indices);
-        $this->warn("Aliasing '{$indicesString}' to 'osu'...");
-        Indexing::updateAlias('osu', $indices);
-
         if (!$this->inplace && $this->cleanup) {
             foreach ($oldIndices as $index) {
                 $this->warn("Removing '{$index}'...");
@@ -101,40 +99,64 @@ class EsIndexDocuments extends Command
      *
      * @return array names of the indices indexed to.
      */
-    private function index()
+    protected function index()
     {
         $indices = [];
         foreach ($this->types as $type) {
+            $count = $type::esIndexingQuery()->count();
+            $bar = $this->output->createProgressBar($count);
+
             if (!$this->inplace) {
                 $indexName = "{$type::esIndexName()}{$this->suffix}";
 
                 $this->info("Indexing {$type} into {$indexName}");
-                $type::esIndexIntoNew(1000, $indexName);
+
+                $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
+                    $bar->setProgress($progress);
+                });
 
                 $indices[] = $indexName;
             } else {
                 $this->info("In-place indexing {$type} into {$type::esIndexName()}");
-                $type::esReindexAll(1000);
+                $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
+                    $bar->setProgress($progress);
+                });
 
                 $indices[] = $type::esIndexName();
             }
+
+            $bar->finish();
+            $this->line("\n");
         }
 
         return $indices;
     }
 
-    private function readOptions()
+    protected function readOptions()
     {
         $this->inplace = $this->option('inplace');
         $this->cleanup = $this->option('cleanup');
         $this->yes = $this->option('yes');
+
+        if ($this->option('types')) {
+            $types = explode(',', $this->option('types'));
+            $this->types = [];
+            foreach ($types as $type) {
+                $class = static::ALLOWED_TYPES[$type] ?? null;
+                if ($class) {
+                    $this->types[] = $class;
+                }
+            }
+        } else {
+            $this->types = array_values(static::ALLOWED_TYPES);
+        }
     }
 
-    private function starterMessage(array $oldIndices)
+    protected function starterMessage(array $oldIndices)
     {
         if ($this->inplace) {
             $this->warn('Running in-place reindex.');
-            $confirmMessage = "This will reindex in-place (schemas must match) and alias them to 'osu'";
+            $confirmMessage = 'This will reindex in-place (schemas must match)';
         } else {
             $this->warn('Running index transfer.');
 
@@ -145,7 +167,7 @@ class EsIndexDocuments extends Command
                 );
             }
 
-            $confirmMessage = "This will create new indices and alias them to 'osu'";
+            $confirmMessage = 'This will create new indices';
         }
 
         return $this->yes || $this->confirm("{$confirmMessage}, begin indexing?");

@@ -27,7 +27,8 @@
   }
 
   &__page {
-    margin: 0 13px;
+    margin: 0 5px;
+    padding: 0 8px;
     font-size: @font-size--paginator;
     .center-content();
 
@@ -44,6 +45,21 @@
       .link-hover({
         color: #666;
       });
+    }
+
+    .beatmap-packs__pager & {
+      color: @gray-dark;
+
+      &--current {
+        color: @gray-darker;
+      }
+
+      &--disabled {
+        color: darken(@gray-lighter, 10%);
+        .link-hover({
+          color: darkern(@gray-lighter, 10%);
+        });
+      }
     }
   }
 }

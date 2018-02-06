@@ -63,7 +63,7 @@ class PaypalExecutePayment
 
             // prevent concurrent updates
             $order = $this->order->lockSelf();
-            if ($order->status !== 'incart') {
+            if ($order->isProcessing() === false) {
                 throw new InvalidOrderStateException(
                     "`Order {$order->order_id}` in wrong state: `{$order->status}`"
                 );

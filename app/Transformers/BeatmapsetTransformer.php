@@ -73,6 +73,14 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'discussion_enabled' => $beatmapset->discussion_enabled,
             'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'can_be_hyped' => $beatmapset->canBeHyped(),
+            'hype' => [
+                'current' => $beatmapset->hype,
+                'required' => $beatmapset->requiredHype(),
+            ],
+            'nominations' => [
+                'current' => $beatmapset->nominations,
+                'required' => $beatmapset->requiredNominationCount(),
+            ],
             'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
         ];
     }
@@ -127,29 +135,17 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
+            $disqualificationEvent = $beatmapset->disqualificationEvent();
+            $resetEvent = $beatmapset->resetEvent();
 
-            $nominations = $beatmapset->recentEvents()->get();
-
-            foreach ($nominations as $nomination) {
-                if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
-                    $disqualifyEvent = $nomination;
-                }
-
-                if ($currentUser !== null &&
-                    $nomination->user_id === $currentUser->user_id &&
-                    $nomination->type === BeatmapsetEvent::NOMINATE) {
-                    $alreadyNominated = true;
-                }
+            if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
+                $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
-
-            if (isset($disqualifyEvent)) {
-                $result['disqualification'] = [
-                    'reason' => $disqualifyEvent->comment,
-                    'created_at' => json_time($disqualifyEvent->created_at),
-                ];
+            if ($disqualificationEvent !== null) {
+                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $alreadyNominated ?? false;
+                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
@@ -180,10 +176,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapset)
+    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
+        if ($params->get('with_trashed')) {
+            $rel = 'allBeatmaps';
+        } else {
+            $rel = 'beatmaps';
+        }
+
         return $this->collection(
-            $beatmapset->beatmaps,
+            $beatmapset->$rel()->with('beatmapset')->get(),
             new BeatmapTransformer()
         );
     }
@@ -192,20 +194,25 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     {
         $converts = [];
 
-        foreach (Beatmap::MODES as $modeStr => $modeInt) {
-            if ($modeStr === 'osu') {
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($beatmap->mode !== 'osu') {
                 continue;
             }
 
-            foreach ($beatmapset->beatmaps as $beatmap) {
-                if ($beatmap->mode !== 'osu') {
+            $difficulties = $beatmap->difficulty;
+
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                if ($modeStr === 'osu') {
                     continue;
                 }
+
+                $difficulty = $difficulties->where('mode', $modeInt)->where('mods', 0)->first();
 
                 $beatmap = clone $beatmap;
 
                 $beatmap->playmode = $modeInt;
                 $beatmap->convert = true;
+                $beatmap->difficultyrating = $difficulty ? $difficulty->diff_unified : 0;
 
                 array_push($converts, $beatmap);
             }

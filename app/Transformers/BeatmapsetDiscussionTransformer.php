@@ -36,7 +36,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     public function transform(Beatmapset $beatmapset)
     {
         return [
-            'id' => $beatmapset->id,
+            'id' => $beatmapset->getKey(),
             'updated_at' => json_time($beatmapset->lastDiscussionTime()),
         ];
     }
@@ -52,7 +52,7 @@ class BeatmapsetDiscussionTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapset(Beatmapset $beatmapset)
     {
         return $this->item($beatmapset, function () use ($beatmapset) {
-            return $beatmapset->defaultJson();
+            return $beatmapset->defaultJson(['withTrashedBeatmaps' => true]);
         });
     }
 

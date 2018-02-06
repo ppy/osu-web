@@ -49,6 +49,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
   componentWillUnmount: =>
     @throttledUpdatePost.cancel()
+    clearTimeout @state.permalinkTimer if @state.permalinkTimer?
 
     for own _id, xhr of @xhr
       xhr?.abort()
@@ -112,8 +113,10 @@ class BeatmapDiscussions.Post extends React.PureComponent
         @messageEditor()
 
 
-  editEnd: =>
-    @setState editing: false
+  editCancel: =>
+    @setState
+      editing: false
+      message: @props.post.message
 
 
   editStart: =>
@@ -122,12 +125,40 @@ class BeatmapDiscussions.Post extends React.PureComponent
     @setState editing: true, =>
       @textarea.focus()
 
+  discussionLinkify: (text) =>
+    route = laroute.route('beatmapsets.discussion', {'beatmapset': "([0-9]+)"}) # what could possibly go wrong?
+    routeRegex = new RegExp(route.replace('/' , '\/'), 'i')
+
+    matches = text.match osu.urlRegex
+    currentUrl = new URL(window.location)
+
+    _.each matches, (url) ->
+      targetUrl = new URL(url)
+
+      if targetUrl.host == currentUrl.host
+        # target is osu site
+        if targetUrl.pathname == currentUrl.pathname
+          # same beatmapset, format: #123
+          linkText = targetUrl.hash.replace '/', ''
+          text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+          return
+        else
+          if beatmapset = targetUrl.pathname.match routeRegex
+            # different beatmapset, format: 1234#567
+            linkText = "#{beatmapset[1]}#{targetUrl.hash}".replace '#/', '#'
+            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
+            return
+
+      # otherwise just linkify url as normal
+      text = text.replace url, osu.linkify(url)
+
+    return text
 
   formattedMessage: =>
     text = @props.post.message
     text = _.escape text
     text = text.trim()
-    text = osu.linkify text
+    text = @discussionLinkify text
     text = BeatmapDiscussionHelper.linkTimestamp text, ["#{bn}__timestamp"]
     # replace newlines with <br>
     # - trim trailing spaces
@@ -159,13 +190,12 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     div className: "#{bn}__message-container #{'hidden' if !@state.editing}",
       el TextareaAutosize,
-        minRows: 3
         disabled: @state.posting
         className: "#{bn}__message #{bn}__message--editor"
         onChange: @setMessage
         onKeyDown: @handleEnter
         value: @state.message
-        inputRef: (el) => @textarea = el
+        innerRef: (el) => @textarea = el
       el BeatmapDiscussions.MessageLengthCounter, message: @state.message
 
       div className: "#{bn}__actions",
@@ -176,8 +206,8 @@ class BeatmapDiscussions.Post extends React.PureComponent
             el BigButton,
               text: osu.trans 'common.buttons.cancel'
               props:
-                onClick: @editEnd
-                disabled: !canPost
+                onClick: @editCancel
+                disabled: @state.posting
 
           div className: "#{bn}__action",
             el BigButton,
@@ -241,7 +271,11 @@ class BeatmapDiscussions.Post extends React.PureComponent
               href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
               onClick: @permalink
               className: "#{bn}__action #{bn}__action--button"
-              osu.trans('common.buttons.permalink')
+
+              if @state.permalinkTimer?
+                osu.trans('common.buttons.permalink_copied')
+              else
+                osu.trans('common.buttons.permalink')
 
           if @props.canBeEdited
             button
@@ -285,9 +319,20 @@ class BeatmapDiscussions.Post extends React.PureComponent
                 'data-confirm': osu.trans('common.confirmation')
                 osu.trans('beatmaps.discussions.allow_kudosu')
 
+  clearPermalinkClicked: =>
+    @setState permalinkTimer: null
+
 
   permalink: (e) =>
     e.preventDefault()
+
+    # copy url to clipboard
+    clipboard.writeText e.currentTarget.href
+
+    # show feedback
+    permalinkTmer = Timeout.set 2000, @clearPermalinkClicked
+
+    @setState permalinkTimer: permalinkTmer
 
 
   setMessage: (e) =>

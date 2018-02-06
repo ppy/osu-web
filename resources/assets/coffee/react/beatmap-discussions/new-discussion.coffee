@@ -97,15 +97,18 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               [
                 el TextareaAutosize,
                   key: 'input'
-                  minRows: 3
-                  disabled: @state.posting?
+                  disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
                   value: @state.message
                   onChange: @setMessage
                   onKeyDown: @handleEnter
                   onFocus: @setSticky
-                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
-                  inputRef: (el) => @input = el
+                  placeholder:
+                    if @canPost()
+                      osu.trans 'beatmaps.discussions.message_placeholder'
+                    else
+                      # FIXME: reason should be passed from beatmap state
+                      osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
 
                 el BeatmapDiscussions.MessageLengthCounter,
                   key: 'counter'
@@ -192,6 +195,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
 
+  canPost: =>
+    !@props.currentBeatmap.deleted_at?
+
+
   checkStickability: (_e, target) =>
     # depends on ModeSwitcher
     newState = (target == 'page-extra-tabs')
@@ -248,7 +255,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     userCanResetNominations = currentUser.isAdmin || currentUser.isQAT || currentUser.isBNG
 
     if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
-      return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
+      return unless confirm(osu.trans('beatmaps.nominations.reset_confirm'))
 
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))

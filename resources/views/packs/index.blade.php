@@ -64,6 +64,10 @@
                         <div class="beatmap-pack__body js-accordion__item-body"></div>
                     </div>
                 @endforeach
+
+                <div class="beatmap-packs__pager">
+                    @include('objects._pagination', ['object' => $packs])
+                </div>
             </div>
         </div>
     </div>

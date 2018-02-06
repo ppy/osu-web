@@ -30,6 +30,8 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -40,7 +42,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -84,6 +86,25 @@ class User extends Model implements AuthenticatableContract, Messageable
         'user_from' => 30,
         'user_occ' => 30,
         'user_interests' => 30,
+    ];
+
+    const ES_MAPPINGS = [
+        'is_old' => ['type' => 'boolean'],
+        'user_lastvisit' => ['type' => 'date'],
+        'username' => [
+            'type' => 'text',
+            'analyzer' => 'username_lower',
+            'fields' => [
+                // for exact match
+                'raw' => ['type' => 'keyword'],
+                // try match sloppy search guesses
+                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                // for people who like to use too many dashes and brackets in their username
+                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
+            ],
+        ],
+        'user_warnings' => ['type' => 'short'],
+        'user_type' => ['type' => 'short'],
     ];
 
     private $memoized = [];
@@ -172,7 +193,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     private function updateUsername($newUsername, $oldUsername, $type)
     {
         $this->username_previous = $oldUsername;
-        $this->username_clean = strtolower($newUsername);
         $this->username = $newUsername;
 
         DB::transaction(function () use ($newUsername, $oldUsername, $type) {
@@ -196,6 +216,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
         });
+    }
+
+    public static function cleanUsername($username)
+    {
+        return strtolower($username);
     }
 
     public static function findByUsernameForInactive($username)
@@ -296,35 +321,32 @@ class User extends Model implements AuthenticatableContract, Messageable
         $params['query'] = presence($rawParams['query'] ?? null);
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
+        $size = $params['limit'];
+        $from = ($params['page'] - 1) * $size;
 
-        $query = static::where('username', 'LIKE', mysql_escape_like($params['query']).'%')
-            ->where('username', 'NOT LIKE', '%\_old')
-            ->default();
+        $results = static::searchUsername($params['query'], $from, $size);
 
-        $overLimit = (clone $query)->limit(1)->offset($max)->exists();
-        $total = $overLimit ? $max : $query->count();
-        $end = $params['page'] * $params['limit'];
-        // Actual limit for query.
-        // Don't change the params because it's used for pagination.
-        $limit = $params['limit'];
-        if ($end > $max) {
-            // Ensure $max is honored.
-            $limit -= ($end - $max);
-            // Avoid negative limit.
-            $limit = max(0, $limit);
-        }
-        $offset = $end - $limit;
+        $total = $results['hits']['total'];
+        $data = es_records($results, get_called_class());
 
         return [
-            'total' => $total,
-            'over_limit' => $overLimit,
-            'data' => $query
-                ->orderBy('user_id')
-                ->limit($limit)
-                ->offset($offset)
-                ->get(),
+            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
+            'over_limit' => $total > $max,
+            'data' => $data,
             'params' => $params,
         ];
+    }
+
+    public static function searchUsername(string $username, $from, $size)
+    {
+        return es_search([
+            'index' => static::esIndexName(),
+            'from' => $from,
+            'size' => $size,
+            'body' => [
+                'query' => static::usernameSearchQuery($username ?? ''),
+            ],
+        ]);
     }
 
     public function validateUsernameChangeTo($username)
@@ -439,6 +461,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         $this->attributes['osu_playstyle'] = $styles;
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = $value;
+        $this->username_clean = static::cleanUsername($value);
     }
 
     public function isSpecial()
@@ -611,6 +639,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->isGroup(UserGroup::GROUPS['default']);
     }
 
+    public function isBot()
+    {
+        return $this->group_id === UserGroup::GROUPS['bot'];
+    }
+
     public function hasSupported()
     {
         return $this->osu_subscriptionexpiry !== null;
@@ -644,6 +677,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isBanned()
     {
         return $this->user_type === 1;
+    }
+
+    public function isOld()
+    {
+        return preg_match('/_old(_\d+)?$/', $this->username) === 1;
     }
 
     public function isRestricted()
@@ -1153,7 +1191,13 @@ class User extends Model implements AuthenticatableContract, Messageable
                 $this->update(['userpage_post_id' => $topic->topic_first_post_id]);
             });
         } else {
-            $this->userPage->edit($text, $this);
+            $this
+                ->userPage
+                ->skipBodyPresenceCheck()
+                ->update([
+                    'post_text' => $text,
+                    'post_edit_user' => $this->getKey(),
+                ]);
         }
 
         return $this->fresh();
@@ -1439,8 +1483,9 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if (present($this->user_email)) {
-            if (strpos($this->user_email, '@') === false) {
+        if ($this->isDirty('user_email') && present($this->user_email)) {
+            $emailValidator = new EmailValidator;
+            if (!$emailValidator->isValid($this->user_email, new RFCValidation)) {
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 

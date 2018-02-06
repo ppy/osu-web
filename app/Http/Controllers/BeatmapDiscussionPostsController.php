@@ -29,6 +29,7 @@ use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use Auth;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class BeatmapDiscussionPostsController extends Controller
@@ -56,6 +57,32 @@ class BeatmapDiscussionPostsController extends Controller
         }
     }
 
+    public function index()
+    {
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $search = BeatmapDiscussionPost::search(request());
+        $posts = new LengthAwarePaginator(
+            $search['query']->with([
+                    'user',
+                    'beatmapset',
+                    'beatmapDiscussion',
+                    'beatmapDiscussion.beatmapset',
+                    'beatmapDiscussion.user',
+                    'beatmapDiscussion.startingPost',
+                ])->get(),
+            $search['query']->realCount(),
+            $search['params']['limit'],
+            $search['params']['page'],
+            [
+                'path' => route('beatmap-discussion-posts.index'),
+                'query' => $search['params'],
+            ]
+        );
+
+        return view('beatmap_discussion_posts.index', compact('posts'));
+    }
+
     public function restore($id)
     {
         $post = BeatmapDiscussionPost::whereNotNull('deleted_at')->findOrFail($id);
@@ -69,6 +96,7 @@ class BeatmapDiscussionPostsController extends Controller
     public function store()
     {
         $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
+        $beatmapset = null;
 
         if ($discussion->exists) {
             $discussionFilters = ['resolved:bool'];
@@ -101,7 +129,7 @@ class BeatmapDiscussionPostsController extends Controller
             $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             $discussion->message_type === 'problem' &&
-            priv_check('BeatmapsetNominate', $beatmapset)->can();
+            priv_check('BeatmapsetResetNominations', $beatmapset)->can();
 
         if ($resetNominations) {
             $events[] = BeatmapsetEvent::NOMINATION_RESET;
@@ -114,7 +142,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            $saved = DB::transaction(function () use ($posts, $discussion, $events) {
+            $saved = DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -125,6 +153,11 @@ class BeatmapDiscussionPostsController extends Controller
 
                 foreach ($events as $event) {
                     BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
+                }
+
+                // feels like a controller shouldn't be calling refreshCache on a model?
+                if ($resetNominations) {
+                    $discussion->beatmapset->refreshCache();
                 }
 
                 return true;

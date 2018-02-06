@@ -30,6 +30,10 @@ BeatmapDiscussions.BeatmapListItem = (props) ->
   else
     props.beatmap.version
 
+  if props.beatmap.deleted_at?
+    topClasses += " #{bn}--deleted"
+    version += " [#{osu.trans 'beatmap_discussions.index.deleted_beatmap'}]"
+
   div
     className: topClasses
 

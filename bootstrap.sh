@@ -26,16 +26,16 @@ apt-get install \
     mysql-community-server \
     nginx \
     nodejs \
-    php7.0-curl \
-    php7.0-fpm \
-    php7.0-gd \
-    php7.0-intl \
-    php7.0-json \
-    php7.0-mbstring \
-    php7.0-mcrypt \
-    php7.0-mysql \
-    php7.0-xml \
-    php7.0-zip \
+    php7.1-curl \
+    php7.1-fpm \
+    php7.1-gd \
+    php7.1-intl \
+    php7.1-json \
+    php7.1-mbstring \
+    php7.1-mcrypt \
+    php7.1-mysql \
+    php7.1-xml \
+    php7.1-zip \
     redis-server \
     tmux \
     vim \
@@ -44,7 +44,7 @@ apt-get install \
 
 npm install -g yarn
 
-update-rc.d php7.0-fpm defaults
+update-rc.d php7.1-fpm defaults
 
 rm /etc/nginx/sites-enabled/default
 ln -s /vagrant/conf/nginx-osu-next /etc/nginx/sites-available/nginx-osu-next
@@ -62,7 +62,7 @@ sed -i 's/bind-address/#bind-address/' /etc/mysql/my.cnf
 sed -i 's/sendfile on/sendfile off/' /etc/nginx/nginx.conf
 
 service mysql restart
-service php7.0-fpm restart
+service php7.1-fpm restart
 service nginx restart
 
 ./bin/db_setup.sh

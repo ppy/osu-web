@@ -32,6 +32,7 @@ return [
         'cancel' => 'Cancel',
         'delete' => 'Delete',
         'permalink' => 'permalink',
+        'permalink_copied' => 'link copied',
         'post' => 'Post',
         'reply' => 'Reply',
         'reply_reopen' => 'Reply and Reopen',
@@ -45,6 +46,8 @@ return [
 
     'count' => [
         'item' => ':count unit|:count units',
+        'months' => ':count month|:count months',
+        'years' => ':count year|:count years',
     ],
 
     'datetime' => [

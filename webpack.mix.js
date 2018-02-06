@@ -39,6 +39,7 @@ const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
 const node_root = 'node_modules';
 
 const vendor = [
+  path.join(node_root, 'clipboard-polyfill/build/clipboard-polyfill.js'),
   path.join(node_root, `url-polyfill/url-polyfill${min}.js`),
   path.join(node_root, 'turbolinks/dist/turbolinks.js'),
   path.join(node_root, `jquery/dist/jquery${min}.js`),
@@ -61,7 +62,6 @@ const vendor = [
   path.join(node_root, 'react-dom-factories/index.js'),
   path.join(node_root, `react-dom/dist/react-dom${min}.js`),
   path.join(node_root, `prop-types/prop-types${min}.js`),
-  path.join(node_root, `react-textarea-autosize/dist/react-textarea-autosize${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),
   path.join(node_root, `d3/build/d3${min}.js`),

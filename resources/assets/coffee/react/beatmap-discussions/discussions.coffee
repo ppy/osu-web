@@ -27,35 +27,40 @@ sortPresets =
     icon: 'calendar'
     text: osu.trans('beatmaps.discussions.sort.updated_at')
     sort: (a, b) ->
-      if Date.parse(a.updated_at) < Date.parse(b.updated_at) then 1 else -1
+      if a.updated_at == b.updated_at
+        b.id - a.id
+      else
+        Date.parse(b.updated_at) - Date.parse(a.updated_at)
 
   created_at:
     icon: 'folder-o'
     text: osu.trans('beatmaps.discussions.sort.created_at')
     sort: (a, b) ->
-      if Date.parse(a.created_at) > Date.parse(b.created_at) then 1 else -1
+      if a.created_at == b.created_at
+        a.id - b.id
+      else
+        Date.parse(a.created_at) - Date.parse(b.created_at)
 
   # there's obviously no timeline field
   timeline:
     icon: 'barcode'
     text: osu.trans('beatmaps.discussions.sort.timeline')
     sort: (a, b) ->
-      0
+      if a.timestamp == b.timestamp
+        a.id - b.id
+      else
+        a.timestamp - b.timestamp
+
 
 class BeatmapDiscussions.Discussions extends React.PureComponent
   constructor: (props) ->
     super props
 
     @state =
-      sortField: if @props.mode == 'timeline' then 'timeline' else 'created_at'
-
-
-  componentWillReceiveProps: (nextProps) =>
-    if _.includes(['created_at', 'timeline'], @state.sortField)
-      if nextProps.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
+      sort:
+        generalAll: 'updated_at'
+        general: 'updated_at'
+        timeline: 'timeline'
 
 
   render: =>
@@ -77,9 +82,9 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
               onClick: @changeSort
               span className: "#{bn}__toolbar-link-content", osu.trans('beatmaps.discussions.sort._')
               el Icon,
-                name: sortPresets[@state.sortField].icon
+                name: sortPresets[@currentSort()].icon
                 parentClass: "#{bn}__toolbar-link-content"
-              span className: "#{bn}__toolbar-link-content", sortPresets[@state.sortField].text
+              span className: "#{bn}__toolbar-link-content", sortPresets[@currentSort()].text
 
             a
               href: '#'
@@ -149,14 +154,18 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
   changeSort: (e) =>
     e.preventDefault()
-    if @state.sortField == 'updated_at'
-      if @props.mode == 'timeline'
-        @setState sortField: 'timeline'
-      else
-        @setState sortField: 'created_at'
 
-    else
-      @setState sortField: 'updated_at'
+    sort = {}
+    sort[@props.mode] = if @currentSort() == 'updated_at'
+                          if @props.mode == 'timeline' then 'timeline' else 'created_at'
+                        else
+                          'updated_at'
+
+    @setState sort: _.assign({}, @state.sort, sort)
+
+
+  currentSort: =>
+    @state.sort[@props.mode]
 
 
   expand: (e) =>
@@ -174,12 +183,23 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
 
   isTimelineVisible: =>
-    @props.mode == 'timeline' && @state.sortField == 'timeline'
+    @props.mode == 'timeline' && @currentSort() == 'timeline'
 
 
   sortedDisussions: ->
-    discussions = @props.currentDiscussions[@props.mode].slice(0)
-    discussions.sort sortPresets[@state.sortField].sort
+    @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
+      mapperNoteCompare =
+        # no sticky for timeline sort
+        @currentSort() != 'timeline' &&
+        # stick the mapper note
+        'mapper_note' in [a.message_type, b.message_type] &&
+        # but if both are mapper note, do base comparison
+        a.message_type != b.message_type
+
+      if mapperNoteCompare
+        if a.message_type == 'mapper_note' then -1 else 1
+      else
+        sortPresets[@currentSort()].sort(a, b)
 
 
   timelineCircle: =>
