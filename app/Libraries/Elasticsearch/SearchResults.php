@@ -61,6 +61,30 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
         return $this->raw;
     }
 
+    /**
+     * Returns an array of ids extracted from the search response.
+     *
+     * The _id field is the default field used for ids; a custom field can be
+     * specified to be used as the id field instead. If a custom field is used,
+     * the _source for that field must be included in the query.
+     *
+     * @param string $field The field to use as the id field.
+     *
+     * @return array
+     */
+    public function ids(string $field = '_id')
+    {
+        if ($field === '_id') {
+            return array_map(function ($hit) use ($field) {
+                return $hit[$field];
+            }, $this->hits());
+        } else {
+            return array_map(function ($hit) use ($field) {
+                return $hit['_source'][$field];
+            }, $this->hits());
+        }
+    }
+
     public function total()
     {
         return $this->raw()['hits']['total'];
