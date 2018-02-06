@@ -17,6 +17,9 @@
 --}}
 @php
     $itemErrors = $validationErrors['orderItems'] ?? [];
+    if (!isset($checkout)) {
+        $checkout = true;
+    }
 @endphp
 
 <table class='table order-line-items {{{ $table_class or "table-striped" }}}'>
@@ -49,7 +52,7 @@
     </tbody>
 
     <tfoot>
-        @if((!isset($checkout) || $checkout === true) && $order->shipping > 0)
+        @if($checkout && $order->shipping > 0)
         <tr class="warning">
             <td>Subtotal</td>
             <td></td>
@@ -67,7 +70,7 @@
             <td>Total</td>
             <td></td>
             @if(isset($weight))<td></td>@endif
-            @if((!isset($checkout) || $checkout === true) && $order->shipping > 0)
+            @if($checkout && $order->shipping > 0)
             <td class="text-right">{{{currency($order->getTotal())}}}</td>
             @else
             <td class="text-right">{{{currency($order->getSubtotal())}}}</td>
