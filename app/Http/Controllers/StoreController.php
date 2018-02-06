@@ -84,11 +84,10 @@ class StoreController extends Controller
         }
 
         $sentViaAddress = Store\Address::sender();
+        $shipping = Auth::user()->isAdmin() && get_bool(Request::input('shipping'));
+        $copies = get_int(Request::input('copies', 1));
 
-        return view('store.invoice')
-            ->with('order', $order)
-            ->with('copies', Request::input('copies', 1))
-            ->with('sentViaAddress', $sentViaAddress);
+        return view('store.invoice', compact('order', 'shipping', 'copies', 'sentViaAddress'));
     }
 
     public function missingMethod($parameters = [])
