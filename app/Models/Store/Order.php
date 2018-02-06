@@ -488,6 +488,7 @@ class Order extends Model
             $query
                 ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
                 ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
+                ->whereNotNull("{$productsTable}.weight")
                 ->groupBy("{$orderItemsTable}.product_id")
                 ->groupBy('name')
                 ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
