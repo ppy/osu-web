@@ -26,10 +26,18 @@ class Search extends AbstractSearch
     const MAX_RESULTS = 10000;
 
     protected $index;
+    protected $recordClass = null;
 
     public function __construct(string $index)
     {
         $this->index = $index;
+    }
+
+    public function recordClass($class)
+    {
+        $this->recordClass = $class;
+
+        return $this;
     }
 
     /**
@@ -37,7 +45,10 @@ class Search extends AbstractSearch
      */
     public function results() : SearchResults
     {
-        return new SearchResults(Es::search($this->toArray()));
+        return new SearchResults(
+            Es::search($this->toArray()),
+            ['recordClass' => $this->recordClass]
+        );
     }
 
     /**

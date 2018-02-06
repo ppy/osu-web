@@ -26,6 +26,7 @@ use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResults;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\User;
 use Carbon\Carbon;
 use Es;
@@ -142,6 +143,7 @@ class ForumSearch extends Search
     public static function search(array $params)
     {
         $search = (new static(Post::esIndexName()))
+            ->recordClass(Topic::class)
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
             ->queryString($params['query'])

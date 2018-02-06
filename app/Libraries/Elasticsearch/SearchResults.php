@@ -33,9 +33,11 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
     private $raw;
 
     private $index;
+    private $options;
 
-    public function __construct(array $results)
+    public function __construct(array $results, $options = [])
     {
+        $this->options = $options;
         $this->raw = $results;
 
         $this->index = 0;
@@ -83,6 +85,19 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
                 return $hit['_source'][$field];
             }, $this->hits());
         }
+    }
+
+    public function records(string $field = '_id')
+    {
+        $class = $this->options['recordClass'] ?? null;
+        if ($class === null) {
+            return;
+        }
+
+        $key = (new $class)->getKeyName();
+        $ids = $this->ids($field);
+
+        return $class::whereIn($key, $ids)->orderByField($key, $ids);
     }
 
     public function total()
