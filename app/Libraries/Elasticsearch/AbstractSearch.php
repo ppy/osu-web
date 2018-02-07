@@ -38,6 +38,9 @@ abstract class AbstractSearch
         return $this;
     }
 
+    /**
+     * @return $this
+     */
     public function limit(?int $limit)
     {
         return $this->size($limit);
@@ -94,6 +97,11 @@ abstract class AbstractSearch
     }
 
     /**
+     * The query for the search.
+     * array is supported for compatiblity and more complicated/unimplemented stuff.
+     *
+     * @param array|Query
+     *
      * @return $this
      */
     public function query($query)
@@ -146,9 +154,9 @@ abstract class AbstractSearch
             'sort' => $this->sort,
         ];
 
+        // TODO: accept more variations
         if (isset($this->highlight)) {
             $body['highlight'] = ['fields' => [$this->highlight => new \stdClass()]];
-            // $body['highlight'] = $this->highlight->toArray();
         }
 
         if (isset($this->source)) {
