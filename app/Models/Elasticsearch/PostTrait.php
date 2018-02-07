@@ -55,7 +55,7 @@ trait PostTrait
 
         $values['type'] = [
             'name' => 'posts',
-            'parent' => "topic-{$this->topic_id}"
+            'parent' => "topic-{$this->topic_id}",
         ];
 
         return $values;
@@ -68,7 +68,7 @@ trait PostTrait
                 'post_text_analyzer' => [
                     'tokenizer' => 'standard',
                     'filter' => ['lowercase'],
-                    'char_filter' => ['html_filter']
+                    'char_filter' => ['html_filter'],
                 ],
             ],
             'char_filter' => [

@@ -20,10 +20,7 @@
 
 namespace App\Libraries;
 
-use App\Libraries\Elasticsearch\Search as EsSearch;
-use App\Libraries\ForumSearch;
 use App\Models\Beatmapset;
-use App\Models\Forum\Post as ForumPost;
 use App\Models\User;
 use App\Models\Wiki\Page as WikiPage;
 use Datadog;

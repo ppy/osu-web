@@ -45,7 +45,6 @@ trait EsIndexable
     public function esRouting()
     {
         // null will be omitted when used as routing.
-        return null;
     }
 
     public function getEsId()

@@ -327,9 +327,9 @@ class Post extends Model
 
             if (present($match['start'][0])) {
                 $marker = $match['start'][1] + mb_strlen($match['start'][0]);
-                ++$level;
+                $level++;
             } elseif (present($match['end'][0])) {
-                --$level;
+                $level--;
                 $marker = $match['end'][1] + mb_strlen($match['end'][0]);
                 if ($level === 0) {
                     $text = mb_substr($text, $marker, mb_strlen($text) - $marker);

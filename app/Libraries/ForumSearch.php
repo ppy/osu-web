@@ -23,13 +23,10 @@ namespace App\Libraries;
 use App\Libraries\Elasticsearch\HasChild;
 use App\Libraries\Elasticsearch\Query;
 use App\Libraries\Elasticsearch\Search;
-use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
-use Carbon\Carbon;
-use Es;
 
 class ForumSearch extends Search
 {
@@ -48,7 +45,7 @@ class ForumSearch extends Search
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function toArray() : array
     {

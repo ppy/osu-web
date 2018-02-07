@@ -70,7 +70,7 @@ class Query
     }
 
     /**
-     * minimum_should_match
+     * minimum_should_match.
      *
      * @return $this
      */

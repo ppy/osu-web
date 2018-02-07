@@ -43,7 +43,7 @@ class Search extends AbstractSearch
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function toArray() : array
     {
