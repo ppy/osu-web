@@ -318,7 +318,7 @@ class BeatmapDiscussion extends Model
             count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0 &&
             $this->isLocked()
         ) {
-                $this->validationErrors()->add('base', '.locked');
+            $this->validationErrors()->add('base', '.locked');
         }
     }
 
