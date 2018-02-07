@@ -42,7 +42,7 @@ class HasChild extends AbstractSearch
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray() : array
     {

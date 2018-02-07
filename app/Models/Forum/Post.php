@@ -62,7 +62,7 @@ class Post extends Model
         'post_time' => ['type' => 'date'],
         'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
         'search_content' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
-        'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']]
+        'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']],
     ];
 
     public function forum()

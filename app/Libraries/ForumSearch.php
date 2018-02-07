@@ -45,7 +45,7 @@ class ForumSearch extends Search
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function toArray() : array
     {

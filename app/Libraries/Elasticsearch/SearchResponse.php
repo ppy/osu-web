@@ -31,7 +31,6 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
     private $idField = '_id';
     private $recordType = null;
 
-
     public function __construct(array $results)
     {
         $this->raw = $results;
@@ -167,7 +166,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 
     public function next()
     {
-        ++$this->index;
+        $this->index++;
     }
 
     public function rewind()
