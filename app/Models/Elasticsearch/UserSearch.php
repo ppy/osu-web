@@ -72,6 +72,7 @@ trait UserSearch
         ];
 
         return (new Query())
+            ->shouldMatch(1)
             ->should(['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]])
             ->should(['multi_match' => array_merge(['query' => $username], $lowercase_stick)])
             ->should(['multi_match' => array_merge(['query' => $username], $whitespace_stick)])
