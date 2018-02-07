@@ -185,7 +185,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         return new static([
             'hits' => [
                 'hits' => [],
-                'total' => 0
+                'total' => 0,
             ],
         ]);
     }
