@@ -23,10 +23,14 @@
 
   &__shapes {
     flex: none;
-    width: 40px;
+    width: 10px;
     background-size: cover;
 
     border-radius: @border-radius-base 0 0 @border-radius-base;
+
+    @media @desktop {
+      width: 40px;
+    }
   }
 
   &__main {
@@ -35,7 +39,12 @@
     padding: 5px 20px 15px 7.5px;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
   &__info-box {
@@ -46,18 +55,33 @@
 
     &--user {
       align-items: flex-start;
+      flex-direction: row;
+
+      @media @desktop {
+        flex-direction: column;
+      }
     }
 
     &--stats {
       align-items: flex-end;
+      flex-direction: row;
+
+      @media @desktop {
+        flex-direction: column;
+      }
     }
   }
 
   &__username-box {
     display: flex;
     align-items: baseline;
+    flex-direction: column;
 
     padding-bottom: 5px;
+
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
   &__username {
@@ -66,19 +90,34 @@
     font-size: 18px;
     color: @blue-text;
 
-    padding-right: 20px;
+    padding-right: 5px;
+
+    @media @desktop {
+      padding-right: 20px;
+    }
   }
 
   &__stat-row {
     &--first {
+      margin-right: 10px;
+      @media @desktop {
+        margin: 2px;
+      }
       @media (min-width: @width) {
         width: 530px;
       }
     }
 
+    margin: 2px;
     display: flex;
     justify-content: flex-end;
     align-items: baseline;
+    flex-direction: column;
+    flex-grow: 1;
+
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
   &__failed {
@@ -97,12 +136,6 @@
 
   &__mods-box {
     padding-right: 20px;
-
-    display: none;
-
-    @media (min-width: @width) {
-      display: initial;
-    }
   }
 
   &__stat {
@@ -156,8 +189,12 @@
     }
 
     &--large {
-      font-size: 25px;
+      font-size: 20px;
       color: @pink-darker;
+
+      @media @desktop {
+        font-size: 25px;
+      }
     }
   }
 }

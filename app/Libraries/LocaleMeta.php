@@ -23,6 +23,10 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'da' => [
+            'name' => 'Dansk',
+            'flag' => 'DK',
+        ],
         'de' => [
             'name' => 'Deutsch',
             'flag' => 'DE',
