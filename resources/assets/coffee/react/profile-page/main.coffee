@@ -62,6 +62,9 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
+    if @props.user.isBot
+      @state.profileOrder = ['me']
+
     for own elem, perPage of @props.perPage
       @state.showMorePagination[elem] ?= {}
       @state.showMorePagination[elem].hasMore = @state[elem].length > perPage

@@ -23,13 +23,17 @@
   padding-bottom: 5px;
 
   &__time {
-    width: 85px;
+    width: 65px;
     margin-right: 10px;
     text-align: right;
 
     font-weight: 700;
     font-size: 10px;
     color: #999;
+
+    @media @desktop {
+      width: 85px;
+    }
   }
 
   &__type {

@@ -91,8 +91,8 @@
                     @else
                         -
                     @endif
-                    <a href='/store/invoice/{{ $o->order_id }}'>invoice</a>
-                    <a href='/store/invoice/{{ $o->order_id }}?copies=2' target='_blank'>(print)</a>
+                    <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'for_shipping' => 1]) }}">invoice</a>
+                    <a href="{{ route('store.invoice.show', ['invoice' => $o->getKey(), 'for_shipping' => 1, 'copies' => 2]) }}" target="_blank">(print)</a>
                 </small>
                 </h3>
             </div>
@@ -128,7 +128,7 @@
 
             <table class='table order-line-items {{ $table_class or "table-striped" }}'>
                 <tbody>
-                    @foreach($o->items as $i)
+                    @foreach($o->items()->hasShipping()->with('product')->get() as $i)
                     <tr>
                         <td class="product_{{ $i->product_id }} {{ $i->quantity > 1 ? "bold" : "" }}">
                             {!! Form::open(['route' => ['admin.store.orders.items.update', $o->order_id, $i->id], 'method' => 'put', 'data-remote' => true]) !!}

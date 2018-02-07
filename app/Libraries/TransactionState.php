@@ -81,11 +81,45 @@ class TransactionState
 
     private function uniqueCommits()
     {
-        return array_unique($this->commits);
+        return static::uniqueModels($this->commits);
     }
 
     private function uniqueRollbacks()
     {
-        return array_unique($this->rollbacks);
+        return static::uniqueModels($this->rollbacks);
+    }
+
+    private static function uniqueModels(array $models)
+    {
+        $array = [];
+
+        foreach ($models as $model) {
+            if (static::uniqueIn($model, $array)) {
+                $array[] = $model;
+            }
+        }
+
+        return $array;
+    }
+
+    private static function uniqueIn($model, $array)
+    {
+        // use model's uniqueness test if model is persisted and has a primary key.
+        // otherwise use a reference comparison.
+        if ($model->exists && $model->getKey() !== null) {
+            foreach ($array as $obj) {
+                if ($model->is($obj)) {
+                    return false;
+                }
+            }
+        } else {
+            foreach ($array as $obj) {
+                if ($model === $obj) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
