@@ -35,8 +35,6 @@ return [
         'hype_requires_null_beatmap' => 'Hype must be done on general all section.',
         'locked' => 'Discussion is locked.',
         'mapper_note_wrong_user' => 'Only beatmap owner can post mapper note.',
-        'timestamp_exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
-        'timestamp_negative' => "Timestamp can't be negative.",
 
         'beatmap_id' => [
             'missing' => 'Associated beatmap is somehow gone.',
@@ -49,6 +47,11 @@ return [
             'limit_exceeded' => 'You have used all your hype.',
             'not_hypeable' => 'This beatmap can not be hyped',
             'owner' => 'No hyping your own beatmap.',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
+            'negative' => "Timestamp can't be negative.",
         ],
     ],
 
