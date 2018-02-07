@@ -360,10 +360,6 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        if ($this->timestamp === null) {
-            return;
-        }
-
         if ($this->beatmap === null) {
             return $this->validationErrors()->add('beatmap_id', '.beatmap_missing');
         }
