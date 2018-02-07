@@ -31,13 +31,15 @@
         {!! $topic->pollTitleHTML() !!}
     </h2>
 
-    <table class="forum-poll__row forum-poll__row--options">
-        <tbody>
-            @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
-                @include('forum.topics._poll_row', compact($pollOptionId, $pollOption, $pollSummary))
-            @endforeach
-        </tbody>
-    </table>
+    <div class="forum-poll__row forum-poll__row--options">
+        <table>
+            <tbody>
+                @foreach ($pollSummary['options'] as $pollOptionId => $pollOption)
+                    @include('forum.topics._poll_row', compact($pollOptionId, $pollOption, $pollSummary))
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
     <div class="forum-poll__row forum-poll__row--details">
         <div class="forum-poll__detail">
