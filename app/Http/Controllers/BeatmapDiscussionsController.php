@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Models\BeatmapDiscussion;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -41,12 +42,12 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->allowKudosu(Auth::user());
+        try {
+            $discussion->allowKudosu(Auth::user());
 
-        if ($error === null) {
             return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
     }
 
@@ -55,12 +56,12 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::findOrFail($id);
         priv_check('BeatmapDiscussionAllowOrDenyKudosu', $discussion)->ensureCan();
 
-        $error = $discussion->denyKudosu(Auth::user());
+        try {
+            $discussion->denyKudosu(Auth::user());
 
-        if ($error === null) {
             return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
     }
 
