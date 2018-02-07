@@ -360,21 +360,6 @@ class BeatmapDiscussion extends Model
         }
     }
 
-    public function votesSummary()
-    {
-        $votes = ['up' => 0, 'down' => 0];
-
-        foreach ($this->beatmapDiscussionVotes as $vote) {
-            if ($vote->score === 1) {
-                $votes['up'] += 1;
-            } elseif ($vote->score === -1) {
-                $votes['down'] += 1;
-            }
-        }
-
-        return $votes;
-    }
-
     public function isValid()
     {
         $this->validationErrors()->reset();
@@ -392,6 +377,21 @@ class BeatmapDiscussion extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset_discussion';
+    }
+
+    public function votesSummary()
+    {
+        $votes = ['up' => 0, 'down' => 0];
+
+        foreach ($this->beatmapDiscussionVotes as $vote) {
+            if ($vote->score === 1) {
+                $votes['up'] += 1;
+            } elseif ($vote->score === -1) {
+                $votes['down'] += 1;
+            }
+        }
+
+        return $votes;
     }
 
     public function vote($params)
