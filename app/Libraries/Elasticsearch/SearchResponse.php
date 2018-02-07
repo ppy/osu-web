@@ -27,15 +27,13 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
      */
     private $raw;
     private $index;
-    private $options;
 
     private $idField = '_id';
     private $recordType = null;
 
 
-    public function __construct(array $results, $options = [])
+    public function __construct(array $results)
     {
-        $this->options = $options;
         $this->raw = $results;
 
         $this->index = 0;
