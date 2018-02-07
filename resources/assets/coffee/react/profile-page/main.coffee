@@ -95,6 +95,8 @@ class ProfilePage.Main extends React.PureComponent
       scrollSpeed: 0
       update: @updateOrder
       start: =>
+        # Somehow click event still goes through when dragging.
+        # This prevents triggering @tabClick.
         Timeout.clear @draggingTabTimeout
         @draggingTab = true
       stop: =>
@@ -350,6 +352,7 @@ class ProfilePage.Main extends React.PureComponent
   tabClick: (e) =>
     e.preventDefault()
 
+    # See $(@tabs).sortable.
     return if @draggingTab
 
     @pageJump null, e.currentTarget.dataset.pageId
