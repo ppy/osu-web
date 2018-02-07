@@ -122,12 +122,11 @@ class ForumSearch extends Search
         ];
 
         $search = (new static(Post::esIndexName(), $options))
-            ->recordClass(Topic::class)
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
             ->highlight('search_content');
 
-        $results = $search->response();
+        $results = $search->response()->recordType(Topic::class)->idField('topic_id');
         $pagination = $search->getPageParams();
 
         return [

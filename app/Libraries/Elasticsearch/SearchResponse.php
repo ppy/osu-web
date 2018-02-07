@@ -23,17 +23,15 @@ namespace App\Libraries\Elasticsearch;
 class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 {
     /**
-     * @var string
-     */
-    private $container;
-
-    /**
      * @var array
      */
     private $raw;
-
     private $index;
     private $options;
+
+    private $idField = '_id';
+    private $recordType = null;
+
 
     public function __construct(array $results, $options = [])
     {
@@ -41,6 +39,26 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         $this->raw = $results;
 
         $this->index = 0;
+    }
+
+    /**
+     * @return $this
+     */
+    public function idField($field)
+    {
+        $this->idField = $field;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function recordType($class)
+    {
+        $this->recordType = $class;
+
+        return $this;
     }
 
     public function hits()
@@ -74,8 +92,10 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
      *
      * @return array
      */
-    public function ids(string $field = '_id')
+    public function ids(string $field = null)
     {
+        $field = $field ?? $this->idField;
+
         if ($field === '_id') {
             return array_map(function ($hit) use ($field) {
                 return $hit[$field];
@@ -87,17 +107,16 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
-    public function records(string $field = '_id')
+    public function records()
     {
-        $class = $this->options['recordClass'] ?? null;
-        if ($class === null) {
+        if ($this->recordType === null) {
             return;
         }
 
-        $key = (new $class)->getKeyName();
-        $ids = $this->ids($field);
+        $key = (new $this->recordType)->getKeyName();
+        $ids = $this->ids($this->idField);
 
-        return $class::whereIn($key, $ids)->orderByField($key, $ids);
+        return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
     }
 
     public function total()

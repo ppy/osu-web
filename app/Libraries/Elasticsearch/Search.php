@@ -27,7 +27,6 @@ class Search extends AbstractSearch
 
     protected $index;
     protected $options;
-    protected $recordClass = null;
 
     public function __construct(string $index, array $options = [])
     {
@@ -35,22 +34,12 @@ class Search extends AbstractSearch
         $this->options = $options;
     }
 
-    public function recordClass($class)
-    {
-        $this->recordClass = $class;
-
-        return $this;
-    }
-
     /**
      * @return SearchResponse
      */
     public function response() : SearchResponse
     {
-        return new SearchResponse(
-            Es::search($this->toArray()),
-            ['recordClass' => $this->recordClass]
-        );
+        return new SearchResponse(Es::search($this->toArray()));
     }
 
     /**
