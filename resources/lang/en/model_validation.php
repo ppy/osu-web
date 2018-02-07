@@ -25,6 +25,7 @@ return [
     'wrong_confirmation' => 'Confirmation does not match.',
 
     'beatmap_discussion_post' => [
+        'discussion_locked' => 'Discussion is locked.',
         'first_post' => 'Can not delete starting post.',
     ],
 

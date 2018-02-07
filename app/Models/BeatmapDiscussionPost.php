@@ -154,7 +154,7 @@ class BeatmapDiscussionPost extends Model
         }
 
         if ($this->beatmapDiscussion->isLocked()) {
-            $this->validationErrors()->add('beatmap_discussion_id', 'discussion_no_reply');
+            $this->validationErrors()->add('beatmap_discussion_id', '.discussion_locked');
         }
     }
 
