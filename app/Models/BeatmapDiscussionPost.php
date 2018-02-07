@@ -153,10 +153,8 @@ class BeatmapDiscussionPost extends Model
             return;
         }
 
-        if (!$this->exists) {
-            if (!$this->beatmapDiscussion->hasValidBeatmap()) {
-                $this->validationErrors()->add('beatmap_discussion_id', 'discussion_no_reply');
-            }
+        if ($this->beatmapDiscussion->isLocked()) {
+            $this->validationErrors()->add('beatmap_discussion_id', 'discussion_no_reply');
         }
     }
 

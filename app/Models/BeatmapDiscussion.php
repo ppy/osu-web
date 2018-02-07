@@ -296,11 +296,17 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    public function hasValidBeatmap()
+    public function validateBeatmap()
     {
-        return
-            $this->beatmap_id === null ||
-            ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
+        if ($this->beatmap_id !== null) {
+            if ($this->beatmap === null) {
+                $this->validationErrors()->add('beatmap_id', '.beatmap_id.missing');
+            } elseif ($this->beatmap->trashed()) {
+                $this->validationErrors()->add('beatmap_id', '.beatmap_id.deleted');
+            } elseif ($this->beatmap->beatmapset_id !== $this->beatmapset_id) {
+                $this->validationErrors()->add('beatmap_id', '.beatmap_id.mismatch');
+            }
+        }
     }
 
     public function validateMessageType()
@@ -364,10 +370,7 @@ class BeatmapDiscussion extends Model
     {
         $this->validationErrors()->reset();
 
-        if (!$this->hasValidBeatmap()) {
-            $this->validationErrors()->add('beatmap_id', '.beatmap_mismatch');
-        }
-
+        $this->validateBeatmap();
         $this->validateMessageType();
         $this->validateTimestamp();
 
@@ -377,6 +380,32 @@ class BeatmapDiscussion extends Model
     public function validationErrorsTranslationPrefix()
     {
         return 'beatmapset_discussion';
+    }
+
+    /*
+     * Applies to:
+     * - voting
+     * - saving posts (editing, creating)
+     */
+    public function isLocked()
+    {
+        if ($this->trashed()) {
+            return true;
+        }
+
+        if ($this->beatmapset !== null) {
+            if ($this->beatmapset->trashed()) {
+                return true;
+            }
+        }
+
+        if ($this->beatmap_id !== null) {
+            if ($this->beatmap === null || $this->beatmap->trashed()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function votesSummary()
@@ -396,7 +425,7 @@ class BeatmapDiscussion extends Model
 
     public function vote($params)
     {
-        if (!$this->hasValidBeatmap()) {
+        if ($this->isLocked()) {
             return false;
         }
 
@@ -514,6 +543,11 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function trashed()
+    {
+        return $this->deleted_at !== null;
     }
 
     public function scopeOfType($query, $types)
