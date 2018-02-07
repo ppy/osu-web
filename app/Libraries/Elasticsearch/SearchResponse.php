@@ -41,6 +41,16 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         $this->index = 0;
     }
 
+    public function count()
+    {
+        return count($this->hits());
+    }
+
+    public function hits()
+    {
+        return $this->raw['hits']['hits'];
+    }
+
     /**
      * @return $this
      */
@@ -49,36 +59,6 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         $this->idField = $field;
 
         return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function recordType($class)
-    {
-        $this->recordType = $class;
-
-        return $this;
-    }
-
-    public function hits()
-    {
-        return $this->raw['hits']['hits'];
-    }
-
-    public function innerHits($index, string $name)
-    {
-        $results = $this->hits()[$index] ?? null;
-        $results = $results['inner_hits'][$name];
-
-        if ($results) {
-            return new static($results, $name);
-        }
-    }
-
-    public function raw()
-    {
-        return $this->raw;
     }
 
     /**
@@ -107,6 +87,21 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
+    public function innerHits($index, string $name)
+    {
+        $results = $this->hits()[$index] ?? null;
+        $results = $results['inner_hits'][$name];
+
+        if ($results) {
+            return new static($results, $name);
+        }
+    }
+
+    public function raw()
+    {
+        return $this->raw;
+    }
+
     public function records()
     {
         if ($this->recordType === null) {
@@ -119,15 +114,24 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
     }
 
+    /**
+     * @return $this
+     */
+    public function recordType($class)
+    {
+        $this->recordType = $class;
+
+        return $this;
+    }
+
     public function total()
     {
         return $this->raw()['hits']['total'];
     }
 
-    public function count()
-    {
-        return count($this->hits());
-    }
+    //================
+    // ArrayAccess
+    //================
 
     public function offsetExists($key)
     {
@@ -148,6 +152,10 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
     {
         throw new \BadMethodCallException('not supported');
     }
+
+    //================
+    // Iterator
+    //================
 
     public function current()
     {
