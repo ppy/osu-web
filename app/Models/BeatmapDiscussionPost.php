@@ -119,7 +119,7 @@ class BeatmapDiscussionPost extends Model
 
     public static function parseTimestamp($message)
     {
-        preg_match('/\b(\d{2,}):(\d{2})[:.](\d{3})\b/', $message, $matches);
+        preg_match('/\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/', $message, $matches);
 
         if (count($matches) === 4) {
             $m = (int) $matches[1];

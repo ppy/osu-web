@@ -238,7 +238,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   parseTimestamp: (message) =>
-    timestampRe = message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
+    timestampRe = message.match /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/
 
     if timestampRe?
       timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
