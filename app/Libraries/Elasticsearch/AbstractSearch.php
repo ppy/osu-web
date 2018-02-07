@@ -22,8 +22,10 @@ namespace App\Libraries\Elasticsearch;
 
 abstract class AbstractSearch
 {
+    protected $from;
     protected $highlight;
     protected $query;
+    protected $size = 10;
     protected $sort = [];
     protected $source;
     protected $type;
