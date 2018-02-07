@@ -20,6 +20,10 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Elasticsearch\Common\Exceptions\BadRequest400Exception;
+use Elasticsearch\Common\Exceptions\Missing404Exception;
+use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
+
 class Search extends AbstractSearch
 {
     // maximum number of total results allowed when not using the scroll API.
@@ -39,7 +43,20 @@ class Search extends AbstractSearch
      */
     public function response() : SearchResponse
     {
-        return new SearchResponse(Es::search($this->toArray()));
+        try {
+            return new SearchResponse(Es::search($this->toArray()));
+        } catch (NoNodesAvailableException $e) {
+            // all servers down
+            $error = $e;
+        } catch (BadRequest400Exception $e) {
+            // invalid query
+            $error = $e;
+        } catch (Missing404Exception $e) {
+            // index is missing ?_?
+            $error = $e;
+        }
+
+        return SearchResponse::failed($error);
     }
 
     /**
