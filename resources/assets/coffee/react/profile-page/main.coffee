@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, li, ul} = ReactDOMFactories
+{a, div, h2, li, ul} = ReactDOMFactories
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -203,16 +203,18 @@ class ProfilePage.Main extends React.PureComponent
           className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
           'data-sync-height-target': 'page-extra-tabs'
           div className: 'osu-page',
-            ul
+            div
               className: 'page-mode page-mode--page-extra-tabs'
               ref: (el) => @tabs = el
               for m in @state.profileOrder
                 continue if m == 'me' && !withMePage
 
-                li
+                a
                   className: 'page-mode__item'
                   key: m
                   'data-page-id': m
+                  onClick: @tabClick
+                  href: "##{m}"
                   el ProfilePage.ExtraTab,
                     page: m
                     currentPage: @state.currentPage
@@ -338,6 +340,12 @@ class ProfilePage.Main extends React.PureComponent
       return callback()
 
     @setState currentPage: page, callback
+
+
+  tabClick: (e) =>
+    e.preventDefault()
+
+    @pageJump null, e.currentTarget.dataset.pageId
 
 
   updateOrder: (event) =>
