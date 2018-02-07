@@ -94,6 +94,10 @@ class ProfilePage.Main extends React.PureComponent
       revert: 150
       scrollSpeed: 0
       update: @updateOrder
+      start: =>
+        @draggingTab = true
+      stop: =>
+        Timeout.set 500, => @draggingTab = false
 
     osu.pageChange()
 
@@ -344,6 +348,8 @@ class ProfilePage.Main extends React.PureComponent
 
   tabClick: (e) =>
     e.preventDefault()
+
+    return if @draggingTab
 
     @pageJump null, e.currentTarget.dataset.pageId
 
