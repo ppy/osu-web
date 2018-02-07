@@ -298,18 +298,27 @@ class BeatmapDiscussion extends Model
 
     public function validateBeatmap()
     {
-        if ($this->exists && count(array_diff(array_keys($this->getDirty()), ['kudosu_denied', 'kudosu_denied_by_id'])) === 0) {
-            return;
-        }
-
         if ($this->beatmap_id !== null) {
             if ($this->beatmap === null) {
                 $this->validationErrors()->add('beatmap_id', '.beatmap_id.missing');
-            } elseif ($this->beatmap->trashed()) {
-                $this->validationErrors()->add('beatmap_id', '.beatmap_id.deleted');
             } elseif ($this->beatmap->beatmapset_id !== $this->beatmapset_id) {
                 $this->validationErrors()->add('beatmap_id', '.beatmap_id.mismatch');
             }
+        }
+    }
+
+    public function validateLockStatus()
+    {
+        static $modifiableWhenLocked = [
+            'kudosu_denied',
+            'kudosu_denied_by_id',
+        ];
+
+        if ($this->exists &&
+            count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0 &&
+            $this->isLocked()
+        ) {
+                $this->validationErrors()->add('base', '.locked');
         }
     }
 
@@ -374,6 +383,7 @@ class BeatmapDiscussion extends Model
     {
         $this->validationErrors()->reset();
 
+        $this->validateLockStatus();
         $this->validateBeatmap();
         $this->validateMessageType();
         $this->validateTimestamp();
