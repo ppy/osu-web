@@ -364,6 +364,10 @@ class BeatmapDiscussion extends Model
             return $this->validationErrors()->add('beatmap_id', '.beatmap_missing');
         }
 
+        if ($this->timestamp === null) {
+            $this->validationErrors()->add('timestamp', 'required');
+        }
+
         if ($this->timestamp < 0) {
             $this->validationErrors()->add('timestamp', '.timestamp_negative');
         }
