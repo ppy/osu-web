@@ -397,7 +397,7 @@ class BeatmapDiscussion extends Model
     }
 
     /*
-     * Applies to:
+     * Also applies to:
      * - voting
      * - saving posts (editing, creating)
      */
