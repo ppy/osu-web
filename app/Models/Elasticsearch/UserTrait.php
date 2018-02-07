@@ -124,38 +124,4 @@ trait UserTrait
     {
         return 'users';
     }
-
-    public static function usernameSearchQuery(string $username)
-    {
-        static $lowercase_stick = [
-            'analyzer' => 'username_lower',
-            'type' => 'most_fields',
-            'fields' => ['username', 'username._*'],
-        ];
-
-        static $whitespace_stick = [
-            'analyzer' => 'whitespace',
-            'type' => 'most_fields',
-            'fields' => ['username', 'username._*'],
-        ];
-
-        return [
-            'bool' => [
-                'minimum_should_match' => 1,
-                'should' => [
-                    ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
-                    ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
-                    ['multi_match' => array_merge(['query' => $username], $whitespace_stick)],
-                    ['match_phrase' => ['username._slop' => $username]],
-                ],
-                'must_not' => [
-                    ['term' => ['is_old' => true]],
-                ],
-                'filter' => [
-                    ['term' => ['user_warnings' => 0]],
-                    ['term' => ['user_type' => 0]],
-                ],
-            ],
-        ];
-    }
 }

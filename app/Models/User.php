@@ -42,7 +42,8 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserSearch, Elasticsearch\UserTrait;
+    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -311,42 +312,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return [];
-    }
-
-    public static function search($rawParams)
-    {
-        $max = config('osu.search.max.user');
-
-        $params = [];
-        $params['query'] = presence($rawParams['query'] ?? null);
-        $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
-        $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
-        $size = $params['limit'];
-        $from = ($params['page'] - 1) * $size;
-
-        $results = static::searchUsername($params['query'], $from, $size);
-
-        $total = $results['hits']['total'];
-        $data = es_records($results, get_called_class());
-
-        return [
-            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
-            'over_limit' => $total > $max,
-            'data' => $data,
-            'params' => $params,
-        ];
-    }
-
-    public static function searchUsername(string $username, $from, $size)
-    {
-        return es_search([
-            'index' => static::esIndexName(),
-            'from' => $from,
-            'size' => $size,
-            'body' => [
-                'query' => static::usernameSearchQuery($username ?? ''),
-            ],
-        ]);
     }
 
     public function validateUsernameChangeTo($username)
