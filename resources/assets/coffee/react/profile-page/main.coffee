@@ -95,9 +95,10 @@ class ProfilePage.Main extends React.PureComponent
       scrollSpeed: 0
       update: @updateOrder
       start: =>
+        Timeout.clear @draggingTabTimeout
         @draggingTab = true
       stop: =>
-        Timeout.set 500, => @draggingTab = false
+        @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
     osu.pageChange()
 
