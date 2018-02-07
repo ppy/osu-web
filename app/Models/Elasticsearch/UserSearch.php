@@ -21,6 +21,7 @@
 namespace App\Models\Elasticsearch;
 
 use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Elasticsearch\Query;
 
 trait UserSearch
 {
@@ -70,22 +71,13 @@ trait UserSearch
             'fields' => ['username', 'username._*'],
         ];
 
-        return [
-            'bool' => [
-                'should' => [
-                    ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
-                    ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
-                    ['multi_match' => array_merge(['query' => $username], $whitespace_stick)],
-                    ['match_phrase' => ['username._slop' => $username]],
-                ],
-                'must_not' => [
-                    ['term' => ['is_old' => true]],
-                ],
-                'filter' => [
-                    ['term' => ['user_warnings' => 0]],
-                    ['term' => ['user_type' => 0]],
-                ],
-            ],
-        ];
+        return (new Query())
+            ->should(['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]])
+            ->should(['multi_match' => array_merge(['query' => $username], $lowercase_stick)])
+            ->should(['multi_match' => array_merge(['query' => $username], $whitespace_stick)])
+            ->should(['match_phrase' => ['username._slop' => $username]])
+            ->mustNot(['term' => ['is_old' => true]])
+            ->filter(['term' => ['user_warnings' => 0]])
+            ->filter(['term' => ['user_type' => 0]]);
     }
 }
