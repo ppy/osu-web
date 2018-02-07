@@ -35,29 +35,25 @@ trait UserSearch
         $size = $params['limit'];
         $from = ($params['page'] - 1) * $size;
 
-        $results = static::searchUsername($params['query'], $from, $size);
+        $search = static::searchUsername($params['query'], $from, $size);
+        $response = $search->response()->recordType(get_called_class());
 
-        $total = $results['hits']['total'];
-        $data = es_records($results, get_called_class());
+        $total = $response->total();
 
         return [
-            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
+            'total' => min($total, Search::MAX_RESULTS), // FIXME: apply the cap somewhere more sensible?
             'over_limit' => $total > $max,
-            'data' => $data,
+            'data' => $response->records()->get(),
             'params' => $params,
         ];
     }
 
-    public static function searchUsername(string $username, $from, $size)
+    public static function searchUsername(string $username, $from, $size) : Search
     {
-        return es_search([
-            'index' => static::esIndexName(),
-            'from' => $from,
-            'size' => $size,
-            'body' => [
-                'query' => static::usernameSearchQuery($username ?? ''),
-            ],
-        ]);
+        return (new Search(static::esIndexName()))
+            ->query(static::usernameSearchQuery($username ?? ''))
+            ->from($from)
+            ->size($size);
     }
 
     public static function usernameSearchQuery(string $username)
