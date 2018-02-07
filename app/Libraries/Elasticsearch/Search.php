@@ -26,11 +26,13 @@ class Search extends AbstractSearch
     const MAX_RESULTS = 10000;
 
     protected $index;
+    protected $options;
     protected $recordClass = null;
 
-    public function __construct(string $index)
+    public function __construct(string $index, array $options = [])
     {
         $this->index = $index;
+        $this->options = $options;
     }
 
     public function recordClass($class)

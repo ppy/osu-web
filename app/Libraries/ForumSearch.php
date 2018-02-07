@@ -33,46 +33,18 @@ use Es;
 
 class ForumSearch extends Search
 {
-    protected $includeSubForums = false;
+    protected $includeSubforums;
+    protected $username;
+    protected $forumId;
 
-    /**
-     * @return $this
-     */
-    public function queryString(string $queryString)
+    public function __construct(string $index, array $options = [])
     {
-        $this->queryString = $queryString;
+        parent::__construct($index, $options);
 
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function byUsername(?string $username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function includeSubForums(bool $flag)
-    {
-        $this->includeSubForums = $flag;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function inForum(?int $forumId)
-    {
-        $this->forumId = $forumId;
-
-        return $this;
+        $this->queryString = $options['query'];
+        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
+        $this->username = presence($options['username'] ?? null);
+        $this->forumId = get_int($options['forumId'] ?? null);
     }
 
     /**
@@ -98,7 +70,7 @@ class ForumSearch extends Search
         }
 
         if (isset($this->forumId)) {
-            $forumIds = $this->includeSubForums
+            $forumIds = $this->includeSubforums
                 ? Forum::findOrFail($this->forumId)->allSubForums()
                 : [$this->forumId];
 
@@ -142,14 +114,17 @@ class ForumSearch extends Search
 
     public static function search(array $params)
     {
-        $search = (new static(Post::esIndexName()))
+        $options = [
+            'query' => $params['query'],
+            'forumId' => $params['forum_id'] ?? null,
+            'includeSubforums' => $params['forum_children'] ?? false,
+            'username' => $params['username'] ?? null,
+        ];
+
+        $search = (new static(Post::esIndexName(), $options))
             ->recordClass(Topic::class)
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
-            ->queryString($params['query'])
-            ->inForum(get_int($params['forum_id'] ?? null))
-            ->includeSubForums(get_bool($params['forum_children'] ?? false))
-            ->byUsername(presence($params['username'] ?? null))
             ->highlight('search_content');
 
         $results = $search->response();
