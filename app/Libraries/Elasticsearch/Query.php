@@ -38,7 +38,6 @@ class Query
         return $this;
     }
 
-
     /**
      * @return $this
      */
