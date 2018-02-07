@@ -20,6 +20,7 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\Search as EsSearch;
 use App\Libraries\ForumSearch;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post as ForumPost;
@@ -106,20 +107,7 @@ class Search
         if (!array_key_exists($key, $this->cache)) {
             $startTime = microtime(true);
 
-            if ($class === ForumSearch::class) {
-                list($result, $pagination) = ForumSearch::search(
-                    $this->params['query'],
-                    $this->params
-                );
-
-                $this->cache[$key] = [
-                    'data' => $result,
-                    'total' => $result->total(),
-                    'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
-                ];
-            } else {
-                $this->cache[$key] = $class::search($this->params);
-            }
+            $this->cache[$key] = $class::search($this->params);
 
             if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;

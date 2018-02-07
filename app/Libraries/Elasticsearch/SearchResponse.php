@@ -20,31 +20,45 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class SearchResults implements \ArrayAccess, \Countable, \Iterator
+class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 {
-    /**
-     * @var string
-     */
-    private $container;
-
-    /**
-     * @var string
-     */
-    private $innerHitsName;
-
     /**
      * @var array
      */
     private $raw;
-
     private $index;
+    private $options;
 
-    public function __construct(array $results, ?string $innerHitsName = null)
+    private $idField = '_id';
+    private $recordType = null;
+
+
+    public function __construct(array $results, $options = [])
     {
-        $this->innerHitsName = $innerHitsName;
+        $this->options = $options;
         $this->raw = $results;
 
         $this->index = 0;
+    }
+
+    /**
+     * @return $this
+     */
+    public function idField($field)
+    {
+        $this->idField = $field;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function recordType($class)
+    {
+        $this->recordType = $class;
+
+        return $this;
     }
 
     public function hits()
@@ -52,19 +66,57 @@ class SearchResults implements \ArrayAccess, \Countable, \Iterator
         return $this->raw['hits']['hits'];
     }
 
-    public function innerHits($index, ?string $name = null)
+    public function innerHits($index, string $name)
     {
         $results = $this->hits()[$index] ?? null;
-        $results = $results['inner_hits'][$name ?? $this->innerHitsName];
+        $results = $results['inner_hits'][$name];
 
         if ($results) {
-            return new static($results, $name ?? $this->innerHitsName);
+            return new static($results, $name);
         }
     }
 
     public function raw()
     {
         return $this->raw;
+    }
+
+    /**
+     * Returns an array of ids extracted from the search response.
+     *
+     * The _id field is the default field used for ids; a custom field can be
+     * specified to be used as the id field instead. If a custom field is used,
+     * the _source for that field must be included in the query.
+     *
+     * @param string $field The field to use as the id field.
+     *
+     * @return array
+     */
+    public function ids(string $field = null)
+    {
+        $field = $field ?? $this->idField;
+
+        if ($field === '_id') {
+            return array_map(function ($hit) use ($field) {
+                return $hit[$field];
+            }, $this->hits());
+        } else {
+            return array_map(function ($hit) use ($field) {
+                return $hit['_source'][$field];
+            }, $this->hits());
+        }
+    }
+
+    public function records()
+    {
+        if ($this->recordType === null) {
+            return;
+        }
+
+        $key = (new $this->recordType)->getKeyName();
+        $ids = $this->ids($this->idField);
+
+        return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
     }
 
     public function total()

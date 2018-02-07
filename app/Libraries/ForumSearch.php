@@ -20,7 +20,10 @@
 
 namespace App\Libraries;
 
-use App\Libraries\Elasticsearch\SearchResults;
+use App\Libraries\Elasticsearch\HasChild;
+use App\Libraries\Elasticsearch\Query;
+use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -28,121 +31,108 @@ use App\Models\User;
 use Carbon\Carbon;
 use Es;
 
-class ForumSearch
+class ForumSearch extends Search
 {
-    public static function buildQuery(
-        string $queryString,
-        string $bool = 'must',
-        ?string $type = null
-    ) : array {
-        $query = [
-            'bool' => [
-                'should' => [],
-                'must' => [],
-                'must_not' => [],
-                'filter' => [],
-            ],
-        ];
+    protected $includeSubforums;
+    protected $username;
+    protected $forumId;
 
-        $query['bool'][$bool][] = [
-            'query_string' => [
+    public function __construct(string $index, array $options = [])
+    {
+        parent::__construct($index, $options);
+
+        $this->queryString = $options['query'];
+        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
+        $this->username = presence($options['username'] ?? null);
+        $this->forumId = get_int($options['forumId'] ?? null);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray() : array
+    {
+        $match = ['query_string' => [
+            'fields' => ['search_content'],
+            'query' => $this->queryString,
+        ]];
+
+        $query = (new Query())
+            ->must(static::firstPostQuery()->toArray())
+            ->should($this->childQuery()->toArray())
+            ->shouldMatch(1)
+            ->filter(['term' => ['type' => 'topics']]);
+
+        // skip the topic search if doing a username; needs a more complicated
+        // query to accurately filter the results which isn't implemented yet.
+        if (!isset($this->username)) {
+            $query->should($match);
+        }
+
+        if (isset($this->forumId)) {
+            $forumIds = $this->includeSubforums
+                ? Forum::findOrFail($this->forumId)->allSubForums()
+                : [$this->forumId];
+
+            $query->filter(['terms' => ['forum_id' => $forumIds]]);
+        }
+
+        $this->query($query);
+
+        return parent::toArray();
+    }
+
+    private function childQuery() : HasChild
+    {
+        $query = (new Query())
+            ->must(['query_string' => [
                 'fields' => ['search_content'],
-                'query' => $queryString,
-            ],
-        ];
+                'query' => $this->queryString,
+            ]]);
 
-        if ($type !== null) {
-            $query['bool']['filter'][] = [
-                ['term' => ['type' => $type]],
-            ];
+        if (isset($this->username)) {
+            $user = User::where('username', '=', $this->username)->first();
+            $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
-        return $query;
+        return (new HasChild('posts', 'posts'))
+            ->size(3)
+            ->scoreMode('max')
+            ->source(['topic_id', 'post_id', 'search_content'])
+            ->highlight('search_content')
+            ->query($query);
     }
 
-    public static function childQuery(string $queryString) : array
+    private static function firstPostQuery() : HasChild
     {
-        return [
-            'type' => 'posts',
-            'score_mode' => 'max',
-            'inner_hits' => [
-                '_source' => ['topic_id', 'post_id', 'search_content'],
-                'name' => 'posts',
-                'size' => 3,
-                'highlight' => [
-                    'fields' => [
-                        'search_content' => new \stdClass(),
-                    ],
-                ],
-            ],
-            'query' => static::buildQuery($queryString, 'must'),
-        ];
+        return (new HasChild('posts', 'first_post'))
+            ->size(1)
+            ->sort(['post_id' => ['order' => 'asc']])
+            ->query(['match_all' => new \stdClass()])
+            ->source('search_content');
     }
 
-    public static function firstPostQuery() : array
+    public static function search(array $params)
     {
-        return [
-            'type' => 'posts',
-            'score_mode' => 'none',
-            'inner_hits' => [
-                '_source' => 'search_content',
-                'name' => 'first_post',
-                'size' => 1,
-                'sort' => [['post_id' => ['order' => 'asc']]],
-            ],
-            'query' => ['match_all' => new \stdClass()],
-        ];
-    }
-
-    public static function search(string $queryString, array $options = []) : array
-    {
-        // FIXME: extract all the page-limit mapping junk away
-        $page = max(1, $options['page'] ?? 1);
-        $size = clamp($options['size'] ?? $options['limit'] ?? 50, 1, 50);
-        $from = ($page - 1) * $size;
-
-        $forumId = get_int($options['forum_id'] ?? null);
-        $includeChildren = get_bool($options['forum_children'] ?? false);
-        $posterName = presence($options['username'] ?? null);
-
-        $query = static::buildQuery($queryString, 'should', 'topics');
-        $query['bool']['minimum_should_match'] = 1;
-        $childQuery = static::childQuery($queryString, $forumId);
-
-        if ($posterName !== null) {
-            $user = User::where('username', '=', $posterName)->first();
-            $userQuery = ['term' => ['user_id' => $user ? $user->user_id : -1]];
-
-            $childQuery['query']['bool']['filter'][] = ['term' => ['poster_id' => $user ? $user->user_id : -1]];
-        }
-
-        $query['bool']['should'][] = ['has_child' => $childQuery];
-
-        if ($forumId !== null) {
-            $forumIds = $includeChildren ? Forum::findOrFail($forumId)->allSubForums() : [$forumId];
-            $forumQuery = ['terms' => ['forum_id' => $forumIds]];
-
-            $query['bool']['filter'][] = $forumQuery;
-        }
-
-        $query['bool']['must'][] = ['has_child' => static::firstPostQuery()];
-
-        $body = [
-            'highlight' => ['fields' => ['search_content' => new \stdClass()]],
-            'size' => $size,
-            'from' => $from,
-            'query' => $query,
+        $options = [
+            'query' => $params['query'],
+            'forumId' => $params['forum_id'] ?? null,
+            'includeSubforums' => $params['forum_children'] ?? false,
+            'username' => $params['username'] ?? null,
         ];
 
+        $search = (new static(Post::esIndexName(), $options))
+            ->page($params['page'] ?? 1)
+            ->size($params['size'] ?? $params['limit'] ?? 50)
+            ->highlight('search_content');
+
+        $results = $search->response()->recordType(Topic::class)->idField('topic_id');
+        $pagination = $search->getPageParams();
+
         return [
-            new SearchResults(
-                Es::search([
-                    'index' => Post::esIndexName(),
-                    'body' => $body,
-                ]),
-                'posts'
-            ),
-            ['limit' => $size, 'page' => $page],
+            'data' => $results,
+            'total' => min($results->total(), static::MAX_RESULTS),
+            'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
         ];
     }
 }

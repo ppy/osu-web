@@ -19,7 +19,7 @@
 @foreach ($results as $index => $hit)
     @php
         $source = $hit['_source'];
-        $innerHits = $results->innerHits($index);
+        $innerHits = $results->innerHits($index, 'posts');
         $firstPost = $results->innerHits($index, 'first_post');
         $firstPostUrl = route('forum.topics.show', $source['topic_id']);
     @endphp
