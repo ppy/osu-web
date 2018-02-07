@@ -23,7 +23,7 @@ namespace App\Libraries;
 use App\Libraries\Elasticsearch\HasChild;
 use App\Libraries\Elasticsearch\Query;
 use App\Libraries\Elasticsearch\Search;
-use App\Libraries\Elasticsearch\SearchResults;
+use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -152,7 +152,7 @@ class ForumSearch extends Search
             ->byUsername(presence($params['username'] ?? null))
             ->highlight('search_content');
 
-        $results = $search->results();
+        $results = $search->response();
         $pagination = $search->getPageParams();
 
         return [

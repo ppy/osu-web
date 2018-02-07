@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class SearchResults implements \ArrayAccess, \Countable, \Iterator
+class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 {
     /**
      * @var string

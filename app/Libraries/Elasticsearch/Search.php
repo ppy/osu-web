@@ -41,11 +41,11 @@ class Search extends AbstractSearch
     }
 
     /**
-     * @return SearchResults
+     * @return SearchResponse
      */
-    public function results() : SearchResults
+    public function response() : SearchResponse
     {
-        return new SearchResults(
+        return new SearchResponse(
             Es::search($this->toArray()),
             ['recordClass' => $this->recordClass]
         );
