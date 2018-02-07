@@ -48,15 +48,15 @@ ProfilePage.Stats = ({stats}) ->
           span className: 'profile-stats__playtime-main',
             Math.floor playtime.asHours()
             span className: 'profile-stats__playtime-unit',
-              osu.transChoice 'common.count.hour_short_unit', count: Math.floor playtime.asHours()
+              osu.transChoice 'common.count.hour_short_unit', Math.floor playtime.asHours()
 
           playtime.minutes()
           span className: 'profile-stats__playtime-unit',
-            osu.transChoice 'common.count.minute_short_unit', count: playtime.minutes()
+            osu.transChoice 'common.count.minute_short_unit', playtime.minutes()
 
           playtime.seconds()
           span className: 'profile-stats__playtime-unit',
-            osu.transChoice 'common.count.second_short_unit', count: playtime.seconds()
+            osu.transChoice 'common.count.second_short_unit', playtime.seconds()
       div className: 'profile-badge profile-badge--level',
         span className: 'profile-badge__number', stats.level.current
 
