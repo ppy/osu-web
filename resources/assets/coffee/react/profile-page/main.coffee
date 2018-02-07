@@ -88,8 +88,7 @@ class ProfilePage.Main extends React.PureComponent
       update: @updateOrder
 
     $(@tabs).sortable
-      items: '[data-page-id]'
-      tolerance: 'pointer'
+      containment: 'parent'
       cursor: 'move'
       disabled: !@props.withEdit
       revert: 150
@@ -191,7 +190,6 @@ class ProfilePage.Main extends React.PureComponent
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
-        ref: (el) => @tabs = el
 
         div
           className: 'js-sticky-header'
@@ -207,12 +205,14 @@ class ProfilePage.Main extends React.PureComponent
           div className: 'osu-page',
             ul
               className: 'page-mode page-mode--page-extra-tabs'
+              ref: (el) => @tabs = el
               for m in @state.profileOrder
                 continue if m == 'me' && !withMePage
 
                 li
                   className: 'page-mode__item'
                   key: m
+                  'data-page-id': m
                   el ProfilePage.ExtraTab,
                     page: m
                     currentPage: @state.currentPage

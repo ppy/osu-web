@@ -23,13 +23,11 @@
   background-color: #333;
   color: #ccc;
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  display: block;
+  text-align: center;
 
   padding: 20px 10px 0;
   list-style: none;
-  flex-wrap: wrap;
   margin: 0;
   font-size: 15px;
   overflow: hidden;
@@ -61,7 +59,8 @@
   }
 
   &__item {
-    display: flex;
+    display: inline-flex;
+    vertical-align: bottom;
     line-height: 1;
 
     margin: 0 @_gutter;

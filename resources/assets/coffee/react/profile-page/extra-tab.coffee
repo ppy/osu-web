@@ -36,7 +36,6 @@ class ProfilePage.ExtraTab extends React.Component
       href: "##{@props.page}"
       className: className
       onClick: @pageSwitch
-      'data-page-id': @props.page
       span
         className: 'fake-bold'
         'data-content': osu.trans("users.show.extra.#{@props.page}.title")
