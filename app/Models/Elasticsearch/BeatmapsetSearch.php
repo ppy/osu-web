@@ -117,33 +117,31 @@ trait BeatmapsetSearch
 
     public static function searchES(array $params = [])
     {
-        $matchParams = [];
-        $shouldParams = [];
+        $query = (new Query())->shouldMatch(1);
 
         if ($params['genre'] !== null) {
-            $matchParams[] = ['match' => ['genre_id' => $params['genre']]];
+            $query->must(['match' => ['genre_id' => $params['genre']]]);
         }
 
         if ($params['language'] !== null) {
-            $matchParams[] = ['match' => ['language_id' => $params['language']]];
+            $query->must(['match' => ['language_id' => $params['language']]]);
         }
 
         if (is_array($params['extra'])) {
             foreach ($params['extra'] as $val) {
                 switch ($val) {
                     case 'video':
-                        $matchParams[] = ['match' => ['video' => true]];
+                        $query->must(['match' => ['video' => true]]);
                         break;
                     case 'storyboard':
-                        $matchParams[] = ['match' => ['storyboard' => true]];
+                        $query->must(['match' => ['storyboard' => true]]);
                         break;
                 }
             }
         }
 
         if (present($params['query'])) {
-            $query = es_query_escape_with_caveats($params['query']);
-            $matchParams[] = ['query_string' => ['query' => $query]];
+            $query->must(['query_string' => ['query' => es_query_escape_with_caveats($params['query'])]]);
         }
 
         if (!empty($params['rank'])) {
@@ -171,43 +169,43 @@ trait BeatmapsetSearch
             $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
             $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
 
-            $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]];
+            $query->must(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
         }
 
         switch ($params['status']) {
             case 0: // Ranked & Approved
-                $shouldParams[] = [
+                $query->should([
                     ['match' => ['approved' => self::STATES['ranked']]],
                     ['match' => ['approved' => self::STATES['approved']]],
-                ];
+                ]);
                 break;
             case 1: // Approved
-                $matchParams[] = ['match' => ['approved' => self::STATES['approved']]];
+                $query->must(['match' => ['approved' => self::STATES['approved']]]);
                 break;
             case 8: // Loved
-                $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
+                $query->must(['match' => ['approved' => self::STATES['loved']]]);
                 break;
             case 2: // Favourites
                 $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', self::class);
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
+                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $favs]]);
                 break;
             case 3: // Qualified
-                $shouldParams[] = [
+                $query->should([
                     ['match' => ['approved' => self::STATES['qualified']]],
-                ];
+                ]);
                 break;
             case 4: // Pending
-                $shouldParams[] = [
+                $query->should([
                     ['match' => ['approved' => self::STATES['wip']]],
                     ['match' => ['approved' => self::STATES['pending']]],
-                ];
+                ]);
                 break;
             case 5: // Graveyard
-                $matchParams[] = ['match' => ['approved' => self::STATES['graveyard']]];
+                $query->must(['match' => ['approved' => self::STATES['graveyard']]]);
                 break;
             case 6: // My Maps
                 $maps = model_pluck($params['user']->beatmapsets(), 'beatmapset_id');
-                $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $maps]];
+                $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps]]);
                 break;
             case 7: // Explicit Any
                 break;
@@ -216,7 +214,7 @@ trait BeatmapsetSearch
         }
 
         if ($params['mode'] !== null) {
-            $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
+            $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
         $search = (new Search(static::esIndexName()))
@@ -224,13 +222,7 @@ trait BeatmapsetSearch
             ->from($params['offset'])
             ->sort(static::searchSortParamsES($params))
             ->source('_id')
-            ->query([
-                'bool' => [
-                    'must' => $matchParams,
-                    'should' => $shouldParams,
-                    'minimum_should_match' => 1,
-                ]
-            ]);
+            ->query($query);
 
         $response = $search->response();
         $beatmapsetIds = $response->ids();
