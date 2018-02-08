@@ -19,19 +19,11 @@
  */
 
 return [
-    'header' => 'Classificação de :type',
-    'type' => [
-        'performance' => 'Desempenho',
-        'charts' => 'Gráficos',
-        'score' => 'Pontuação',
-        'country' => 'País',
+    'index' => [
+        'title' => 'Postagens de discussão do mapa',
     ],
-    'stat' => [
-        'accuracy' => 'Precisão',
-        'play_count' => 'Vezes jogadas',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'item' => [
+        'content' => 'Conteúdo',
     ],
 ];
