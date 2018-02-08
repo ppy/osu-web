@@ -32,6 +32,7 @@
             @include('forum.topics._post', [
                 'post' => $post,
                 'options' => [
+                    'preview' => 'true',
                     'signature' => $forum->enable_sigs,
                     'contentExtraClasses' => 'js-post-preview--body',
                 ],

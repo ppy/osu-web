@@ -20,6 +20,7 @@
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
+    if (!isset($options['preview'])) { $options['preview'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
     if (!isset($options['large'])) {
         $options['large'] = $options['postPosition'] === ($post->trashed() ? 0 : 1);
@@ -42,7 +43,7 @@
 
         <div class="forum-post__body">
             <div class="forum-post__content forum-post__content--header">
-                <a class="js-post-url link link--gray" href="{{ route('forum.posts.show', $post->post_id) }}">
+                <a class="js-post-url link link--gray" href="{{ $options['preview'] ? '#' : route('forum.posts.show', $post->post_id) }}">
                     {!! trans("forum.post.posted_at", ["when" => timeago($post->post_time)]) !!}
                 </a>
             </div>
