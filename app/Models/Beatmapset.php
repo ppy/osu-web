@@ -124,7 +124,12 @@ class Beatmapset extends Model implements AfterCommit
         ],
         'artist_unicode' => ['type' => 'text'],
         'bpm' => ['type' => 'double'],
-        'creator' => ['type' => 'text'],
+        'creator' => [
+            'type' => 'text',
+            'fields' => [
+                'raw' => ['type' => 'keyword'],
+            ],
+        ],
         'difficulty_names' => ['type' => 'text'],
         'download_disabled' => ['type' => 'boolean'],
         'epilepsy' => ['type' => 'boolean'],
@@ -580,6 +585,7 @@ class Beatmapset extends Model implements AfterCommit
     {
         static $fields = [
             'artist' => 'artist.raw',
+            'creator' => 'creator.raw',
             'title' => 'title.raw',
         ];
 
