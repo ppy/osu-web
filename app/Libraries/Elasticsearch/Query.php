@@ -29,41 +29,49 @@ class Query
     protected $minimum = null;
 
     /**
+     * @param array|Query $clause
+     *
      * @return $this
      */
-    public function filter(array $clause)
+    public function filter($clause)
     {
-        $this->filters[] = $clause;
+        $this->filters[] = static::clauseToArray($clause);
 
         return $this;
     }
 
     /**
+     * @param array|Query $clause
+     *
      * @return $this
      */
-    public function must(array $clause)
+    public function must($clause)
     {
-        $this->musts[] = $clause;
+        $this->musts[] = static::clauseToArray($clause);
 
         return $this;
     }
 
     /**
+     * @param array|Query $clause
+     *
      * @return $this
      */
-    public function mustNot(array $clause)
+    public function mustNot($clause)
     {
-        $this->mustNots[] = $clause;
+        $this->mustNots[] = static::clauseToArray($clause);
 
         return $this;
     }
 
     /**
+     * @param array|Query $clause
+     *
      * @return $this
      */
-    public function should(array $clause)
+    public function should($clause)
     {
-        $this->shoulds[] = $clause;
+        $this->shoulds[] = static::clauseToArray($clause);
 
         return $this;
     }
@@ -99,5 +107,15 @@ class Query
         }
 
         return $bool;
+    }
+
+    /**
+     * @param array|Query $clause
+     *
+     * @return array
+     */
+    public static function clauseToArray($clause) : array
+    {
+        return is_array($clause) ? $clause : $clause->toArray();
     }
 }
