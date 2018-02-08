@@ -39,6 +39,7 @@ class BBCodeFromDB
             'withGallery' => false,
             'ignoreLineHeight' => false,
             'withoutImageDimensions' => false,
+            'extraClasses' => '',
         ];
 
         $this->text = $text;
@@ -84,7 +85,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
@@ -328,6 +329,10 @@ class BBCodeFromDB
         $text = CleanHTML::purify($text);
 
         $className = 'bbcode';
+
+        if (present($this->options['extraClasses'])) {
+            $className .= " {$this->options['extraClasses']}";
+        }
 
         if ($this->options['ignoreLineHeight']) {
             $className .= ' bbcode--normal-line-height';

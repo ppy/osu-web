@@ -57,7 +57,7 @@ class UserCompactTransformer extends Fractal\TransformerAbstract
             $profileCustomization = $user->userProfileCustomization;
 
             return [
-                'customUrl' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
+                'custom_url' => $profileCustomization ? $profileCustomization->cover()->fileUrl() : null,
                 'url' => $profileCustomization ? $profileCustomization->cover()->url() : null,
                 'id' => $profileCustomization ? $profileCustomization->cover()->id() : null,
             ];

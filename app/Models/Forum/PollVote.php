@@ -58,4 +58,9 @@ class PollVote extends Model
 
         return $this->validationErrors()->isEmpty();
     }
+
+    public function save(array $options = [])
+    {
+        return $this->isValid() && parent::save($options);
+    }
 }

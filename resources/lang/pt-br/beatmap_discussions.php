@@ -21,16 +21,60 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Você precisa iniciar a sessão para editar.',
-            'system_generated' => 'Publicações geradas pelo sistema não podem ser editadas.',
-            'wrong_user' => 'Somente o autor da publicação pode editá-la.',
+            'null_user' => 'Precisa conectar-se para editar.',
+            'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
+            'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
+        ],
+    ],
+
+    'events' => [
+        'empty' => 'Nada aconteceu... ainda.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'excluído',
+        'title' => 'Discussão do mapa',
+
+        'form' => [
+            'deleted' => 'Incluir discussões excluídas',
+
+            'user' => [
+                'label' => 'Usuário',
+                'overview' => 'Supervisão de atividades',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Data de postagem',
+        'deleted_at' => 'Data de exclusão',
+        'message_type' => 'Tipo',
+        'permalink' => 'Copiar link da postagem',
+    ],
+
+    'nearby_posts' => [
+        'confirm' => 'Nenhuma das postagens corresponde ao que procuro',
+        'notice' => 'Existem postagens próximas de :timestamp (:existing_timestamps). Por favor, visualize-as antes de postar.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Conecte-se para responder',
+            'user' => 'Responder',
         ],
     ],
 
     'system' => [
         'resolved' => [
             'true' => 'Marcada como resolvida por :user',
-            'false' => 'Reaberta por :user',
+            'false' => 'Reaberto por :user',
         ],
+    ],
+
+    'user' => [
+        'admin' => 'admin',
+        'bng' => 'nominator',
+        'owner' => 'mapper',
+        'qat' => 'qat',
     ],
 ];
