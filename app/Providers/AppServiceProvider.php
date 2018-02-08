@@ -22,8 +22,6 @@ namespace App\Providers;
 
 use App\Http\Middleware\StartSession;
 use App\Libraries\OsuAuthorize;
-use App\Models\BeatmapDiscussionPost;
-use App\Models\Forum\PollVote as ForumPollVote;
 use Datadog;
 use Illuminate\Queue\Events\JobProcessed;
 use Illuminate\Support\ServiceProvider;
@@ -42,14 +40,6 @@ class AppServiceProvider extends ServiceProvider
         //
         Validator::extend('mixture', function ($attribute, $value, $parameters, $validator) {
             return preg_match('/[\d]/', $value) === 1 && preg_match('/[^\d\s]/', $value) === 1;
-        });
-
-        BeatmapDiscussionPost::saving(function ($post) {
-            return $post->isValid();
-        });
-
-        ForumPollVote::saving(function ($vote) {
-            return $vote->isValid();
         });
 
         Queue::after(function (JobProcessed $event) {

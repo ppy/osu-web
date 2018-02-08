@@ -20,12 +20,15 @@
 
 namespace App\Models;
 
+use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
 
 class BeatmapDiscussion extends Model
 {
+    use Validatable;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -282,55 +285,156 @@ class BeatmapDiscussion extends Model
         return $this->update(['resolved' => false]);
     }
 
-    public function hasValidBeatmap()
+    public function refreshTimestampOrExplode()
     {
-        if ($this->exists && count(array_diff(array_keys($this->getDirty()), ['kudosu_denied', 'kudosu_denied_by_id'])) === 0) {
-            return true;
+        if ($this->timestamp === null) {
+            return;
         }
 
-        return
-            $this->beatmap_id === null ||
-            ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
+        if ($this->startingPost === null) {
+            return;
+        }
+
+        return $this->fill([
+            'timestamp' => $this->startingPost->timestamp() ?? null,
+        ])->saveOrExplode();
     }
 
-    public function hasValidMessageType()
+    public function fixBeatmapsetId()
+    {
+        if (!$this->isDirty('beatmap_id') || $this->beatmap === null) {
+            return;
+        }
+
+        $this->beatmapset_id = $this->beatmap->beatmapset_id;
+    }
+
+    public function validateLockStatus()
+    {
+        static $modifiableWhenLocked = [
+            'kudosu_denied',
+            'kudosu_denied_by_id',
+        ];
+
+        if ($this->exists &&
+            count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0 &&
+            $this->isLocked()
+        ) {
+            $this->validationErrors()->add('base', '.locked');
+        }
+    }
+
+    public function validateMessageType()
     {
         if ($this->message_type === null) {
-            return false;
+            return $this->validationErrors()->add('message_type', 'required');
         }
 
         if (!$this->isDirty('message_type')) {
-            return true;
+            return;
         }
 
-        $validTypes = ['praise', 'problem', 'suggestion'];
+        if ($this->message_type === 'mapper_note') {
+            if ($this->user_id !== $this->beatmapset->user_id) {
+                $this->validationErrors()->add('message_type', '.mapper_note_wrong_user');
+            }
+        } elseif ($this->message_type === 'hype') {
+            if ($this->beatmap_id !== null) {
+                $this->validationErrors()->add('message_type', '.hype_requires_null_beatmap');
+            }
 
-        if ($this->user_id === $this->beatmapset->user_id) {
-            $validTypes[] = 'mapper_note';
-        } else {
-            if ($this->beatmap_id === null && $this->beatmapset->canBeHyped() && $this->beatmapset->validateHypeBy($this->user)['result']) {
-                $validTypes[] = 'hype';
+            if (!$this->beatmapset->canBeHyped()) {
+                $this->validationErrors()->add('message_type', '.beatmapset_no_hype');
+            }
+
+            $beatmapsetHypeValidate = $this->beatmapset->validateHypeBy($this->user);
+
+            if (!$beatmapsetHypeValidate['result']) {
+                $this->validationErrors()->addTranslated('base', $beatmapsetHypeValidate['message']);
             }
         }
-
-        return in_array($this->message_type, $validTypes, true);
     }
 
-    public function hasValidTimestamp()
+    public function validateParents()
     {
-        if ($this->timestamp === null) {
-            return true;
+        if ($this->beatmap_id !== null && $this->beatmap === null) {
+            $this->validationErrors()->add('beatmap_id', '.invalid_beatmap_id');
         }
 
+        if ($this->beatmapset_id === null) {
+            $this->validationErrors()->add('beatmapset_id', 'required');
+        } elseif ($this->beatmapset === null) {
+            $this->validationErrors()->add('beatmap_id', '.invalid_beatmapset_id');
+        }
+    }
+
+    public function validateTimestamp()
+    {
         // skip validation if not changed
         if (!$this->isDirty('timestamp')) {
-            return true;
+            return;
+        }
+
+        if ($this->beatmap === null) {
+            return $this->validationErrors()->add('beatmap_id', '.beatmap_missing');
+        }
+
+        if ($this->timestamp === null) {
+            $this->validationErrors()->add('timestamp', 'required');
+        }
+
+        if ($this->timestamp < 0) {
+            $this->validationErrors()->add('timestamp', '.timestamp.negative');
         }
 
         // FIXME: total_length is only for existing hit objects.
         // FIXME: The chart in discussion page will need to account this as well.
-        return
-            $this->beatmap_id !== null && $this->timestamp >= 0 && $this->timestamp <= ($this->beatmap->total_length + 10) * 1000;
+        if ($this->timestamp > ($this->beatmap->total_length + 10) * 1000) {
+            $this->validationErrors()->add('timestamp', '.timestamp.exceeds_beatmapset_length');
+        }
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        $this->validateLockStatus();
+        $this->validateParents();
+        $this->validateMessageType();
+        $this->validateTimestamp();
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'beatmapset_discussion';
+    }
+
+    /*
+     * Also applies to:
+     * - voting
+     * - saving posts (editing, creating)
+     */
+    public function isLocked()
+    {
+        if ($this->trashed()) {
+            return true;
+        }
+
+        if ($this->beatmapset !== null) {
+            if ($this->beatmapset->trashed()) {
+                return true;
+            }
+        }
+
+        if ($this->beatmap_id !== null) {
+            if ($this->beatmap === null || $this->beatmap->trashed()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function votesSummary()
@@ -348,16 +452,9 @@ class BeatmapDiscussion extends Model
         return $votes;
     }
 
-    public function isValid()
-    {
-        return $this->hasValidBeatmap() &&
-            $this->hasValidMessageType() &&
-            $this->hasValidTimestamp();
-    }
-
     public function vote($params)
     {
-        if (!$this->hasValidBeatmap()) {
+        if ($this->isLocked()) {
             return false;
         }
 
@@ -453,6 +550,8 @@ class BeatmapDiscussion extends Model
 
     public function save(array $options = [])
     {
+        $this->fixBeatmapsetId();
+
         if (!$this->isValid()) {
             return false;
         }
@@ -475,6 +574,11 @@ class BeatmapDiscussion extends Model
             ]);
             $this->refreshKudosu('delete');
         });
+    }
+
+    public function trashed()
+    {
+        return $this->deleted_at !== null;
     }
 
     public function scopeOfType($query, $types)

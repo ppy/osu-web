@@ -1042,7 +1042,7 @@ class Beatmapset extends Model implements AfterCommit
         if (isset($message)) {
             return [
                 'result' => false,
-                'message' => trans("model_validation.beatmap_discussion.hype.{$message}"),
+                'message' => trans("model_validation.beatmapset_discussion.hype.{$message}"),
             ];
         } else {
             return ['result' => true];
