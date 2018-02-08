@@ -21,7 +21,7 @@ el = React.createElement
 
 bn = 'profile-header-extra'
 
-rowValue = (value, className, title) ->
+rowValue = (value) ->
   "<strong>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
