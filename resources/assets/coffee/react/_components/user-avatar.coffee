@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div} = ReactDOMFactories
+{a, div} = ReactDOMFactories
 
 bn = 'avatar'
 
@@ -28,10 +28,19 @@ bn = 'avatar'
 
   className = "#{bn} #{modifiers}"
 
-  if props.user.id?
+  avatar =
     div
       className: className
       style:
         backgroundImage: "url('#{props.user.avatar_url}')"
+
+  if props.user.id?
+    if props.user.id == currentUser.id && _.includes modifiers, 'profile'
+      a
+        href: laroute.route('account.edit') + '#avatar-edit'
+        title: osu.trans 'users.show.change_avatar'
+        avatar
+    else
+      avatar
   else
     div className: "#{className} #{bn}--guest"
