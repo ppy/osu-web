@@ -117,14 +117,6 @@ trait BeatmapsetSearch
 
     public static function searchES(array $params = [])
     {
-        $searchParams = [
-            'index' => static::esIndexName(),
-            'size' => $params['limit'],
-            'from' => $params['offset'],
-            'body' => ['sort' => static::searchSortParamsES($params)],
-            '_source' => 'id',
-        ];
-
         $matchParams = [];
         $shouldParams = [];
 
@@ -227,27 +219,25 @@ trait BeatmapsetSearch
             $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
         }
 
-        if (!empty($matchParams)) {
-            $searchParams['body']['query']['bool']['must'] = $matchParams;
-        }
+        $search = (new Search(static::esIndexName()))
+            ->size($params['limit'])
+            ->from($params['offset'])
+            ->sort(static::searchSortParamsES($params))
+            ->source('_id')
+            ->query([
+                'bool' => [
+                    'must' => $matchParams,
+                    'should' => $shouldParams,
+                    'minimum_should_match' => 1,
+                ]
+            ]);
 
-        if (!empty($shouldParams)) {
-            $searchParams['body']['query']['bool']['should'] = $shouldParams;
-            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
-        }
-
-        $results = es_search($searchParams);
-
-        $beatmapsetIds = array_map(
-            function ($e) {
-                return $e['_id'];
-            },
-            $results['hits']['hits']
-        );
+        $response = $search->response();
+        $beatmapsetIds = $response->ids();
 
         return [
             'ids' => $beatmapsetIds,
-            'total' => $results['hits']['total'],
+            'total' => $response->total(),
         ];
     }
 
