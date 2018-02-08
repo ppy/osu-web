@@ -252,7 +252,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     type = e.currentTarget.dataset.type
 
-    userCanResetNominations = currentUser.isAdmin || currentUser.isQAT || currentUser.isBNG
+    userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
 
     if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
       return unless confirm(osu.trans('beatmaps.nominations.reset_confirm'))
