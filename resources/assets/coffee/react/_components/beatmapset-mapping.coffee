@@ -40,22 +40,18 @@ class @BeatmapsetMapping extends React.PureComponent
             href: laroute.route 'users.show', user: user.id
             user.username
 
-        div null,
-          osu.trans 'beatmapsets.show.details.submitted'
-          @renderDate @props.beatmapset.submitted_date
+        @renderDate 'submitted', 'submitted_date'
 
         if @props.beatmapset.ranked > 0
-          div null,
-            osu.trans "beatmapsets.show.details.#{@props.beatmapset.status}"
-            @renderDate @props.beatmapset.ranked_date
+          @renderDate @props.beatmapset.status, 'ranked_date'
         else
-          div null,
-            osu.trans 'beatmapsets.show.details.updated'
-            @renderDate @props.beatmapset.last_updated
+          @renderDate 'updated', 'last_updated'
 
 
-  renderDate: (date) =>
-    time
-      className: "#{bn}__date js-tooltip-time"
-      dateTime: date
-      moment(date).format dateFormat
+  renderDate: (key, attribute) =>
+    div null,
+      osu.trans "beatmapsets.show.details.#{key}"
+      time
+        className: "#{bn}__date js-tooltip-time"
+        dateTime: @props.beatmapset[attribute]
+        moment(@props.beatmapset[attribute]).format dateFormat
