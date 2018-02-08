@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'Não é possível desfazer o hype.',
             'has_reply' => 'Não é possível excluir uma discussão com respostas',
         ],
         'nominate' => [
@@ -76,6 +77,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'Não é possível editar uma publicação excluida.',
                 'locked' => 'A edição desta publicação está bloqueada',
                 'no_forum_access' => 'O acesso ao fórum solicitado é obrigatório.',
                 'not_owner' => 'Somente o autor da publicação pode editar a publicação.',
@@ -144,8 +146,8 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'A página do usuário está trancada.',
-                'not_owner' => 'Só é possível editar a própria página de usuário.',
-                'require_supporter_tag' => 'Supporter tag é necessária.',
+                'not_owner' => 'Só é possível editar sua própria página de usuário.',
+                'require_supporter_tag' => 'Uma supporter tag é necessária.',
             ],
         ],
     ],
