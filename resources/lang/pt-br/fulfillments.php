@@ -19,19 +19,12 @@
  */
 
 return [
-    'header' => 'Classificação de :type',
-    'type' => [
-        'performance' => 'Desempenho',
-        'charts' => 'Gráficos',
-        'score' => 'Pontuação',
-        'country' => 'País',
-    ],
-    'stat' => [
-        'accuracy' => 'Precisão',
-        'play_count' => 'Vezes jogadas',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => 'Obrigado, osu! <3 você',
+        ],
+        'supporter_gift' => [
+            'subject' => 'Você tem uma supporter tag do osu!',
+        ],
     ],
 ];

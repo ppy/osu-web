@@ -19,19 +19,18 @@
  */
 
 return [
-    'header' => 'Classificação de :type',
-    'type' => [
-        'performance' => 'Desempenho',
-        'charts' => 'Gráficos',
-        'score' => 'Pontuação',
-        'country' => 'País',
+    'buttons' => [
+      'add' => 'adicionar amigo',
+      'remove' => 'remover amigo',
     ],
-    'stat' => [
-        'accuracy' => 'Precisão',
-        'play_count' => 'Vezes jogadas',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
+
+    'state' => [
+      'friends' => 'amigos',
+      'mutual' => 'mutual',
     ],
+
+    'title' => 'Amigos',
+    'title_compact' => 'amigos',
+
+    'too_many' => 'Limite de amigos atingido.',
 ];

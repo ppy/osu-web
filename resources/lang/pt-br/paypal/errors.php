@@ -19,19 +19,7 @@
  */
 
 return [
-    'header' => 'Classificação de :type',
-    'type' => [
-        'performance' => 'Desempenho',
-        'charts' => 'Gráficos',
-        'score' => 'Pontuação',
-        'country' => 'País',
-    ],
-    'stat' => [
-        'accuracy' => 'Precisão',
-        'play_count' => 'Vezes jogadas',
-        'performance' => 'Performance',
-        'ss' => 'SS',
-        's' => 'S',
-        'a' => 'A',
-    ],
+    'instrument_declined' => 'O método de pagamento selecionado foi rejeitado pelo Paypal.',
+    'invalid_resource_id' => 'Nenhuma informação de pagamento foi encontrada.',
+    'unknown' => 'O pagamento foi rejeitado, mas não temos certeza do motivo.',
 ];
