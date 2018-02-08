@@ -94,9 +94,9 @@ class @BeatmapDiscussionHelper
       _.intersection(user.groups, ['admin', 'qat', 'bng'])[0]
     else
       switch
-        when user.isAdmin then 'admin'
-        when user.isQAT then 'qat'
-        when user.isBNG then 'bng'
+        when user.is_admin then 'admin'
+        when user.is_qat then 'qat'
+        when user.is_bng then 'bng'
 
 
   @validMessageLength: (message) =>

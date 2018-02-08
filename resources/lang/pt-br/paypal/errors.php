@@ -18,31 +18,8 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
-
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-
-class ElasticsearchServiceProvider extends ServiceProvider
-{
-    public function boot()
-    {
-    }
-
-    public function provides()
-    {
-        return ['elasticsearch'];
-    }
-
-    public function register()
-    {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
-    }
-}
+return [
+    'instrument_declined' => 'O método de pagamento selecionado foi rejeitado pelo Paypal.',
+    'invalid_resource_id' => 'Nenhuma informação de pagamento foi encontrada.',
+    'unknown' => 'O pagamento foi rejeitado, mas não temos certeza do motivo.',
+];

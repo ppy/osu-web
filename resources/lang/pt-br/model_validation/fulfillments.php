@@ -18,31 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
-
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-
-class ElasticsearchServiceProvider extends ServiceProvider
-{
-    public function boot()
-    {
-    }
-
-    public function provides()
-    {
-        return ['elasticsearch'];
-    }
-
-    public function register()
-    {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
-    }
-}
+return [
+    'username_change' => [
+        'only_one' => 'apenas 1 troca de nome de usuário é permitida por compra.',
+        'insufficient_paid' => 'O custo para trocar de nome de usuário ultrapassa a quantia oferecida (:expected > :actual)',
+        'reverting_username_mismatch' => 'O atual nome de usuário (:current) não é o mesmo escolhido ao revogar (:username)',
+    ],
+    'supporter_tag' => [
+        'insufficient_paid' => 'O valor doado é menor que o mínimo necessário para uma supporter tag (:actual > :expected)',
+    ],
+];

@@ -18,31 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
+return [
+    'index' => [
+        'title' => 'Votos da discussão do mapa',
+    ],
 
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-
-class ElasticsearchServiceProvider extends ServiceProvider
-{
-    public function boot()
-    {
-    }
-
-    public function provides()
-    {
-        return ['elasticsearch'];
-    }
-
-    public function register()
-    {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
-    }
-}
+    'item' => [
+        'score' => 'Pontuação',
+    ],
+];

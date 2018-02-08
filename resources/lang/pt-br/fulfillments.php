@@ -18,31 +18,13 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
-
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
-
-class ElasticsearchServiceProvider extends ServiceProvider
-{
-    public function boot()
-    {
-    }
-
-    public function provides()
-    {
-        return ['elasticsearch'];
-    }
-
-    public function register()
-    {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
-    }
-}
+return [
+    'mail' => [
+        'donation_thanks' => [
+            'subject' => 'Obrigado, osu! <3 você',
+        ],
+        'supporter_gift' => [
+            'subject' => 'Você tem uma supporter tag do osu!',
+        ],
+    ],
+];

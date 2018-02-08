@@ -50,7 +50,7 @@ class ProfilePage.Main extends React.PureComponent
         editing: false
         selection: [0, 0]
       tabsSticky: false
-      profileOrder: props.user.profileOrder[..]
+      profileOrder: props.user.profile_order[..]
       scoresBest: @props.scores.best
       scoresFirsts: @props.scores.firsts
       scoresRecent: @props.scores.recent
@@ -62,7 +62,7 @@ class ProfilePage.Main extends React.PureComponent
       recentlyReceivedKudosu: @props.recentlyReceivedKudosu
       showMorePagination: {}
 
-    if @props.user.isBot
+    if @props.user.is_bot
       @state.profileOrder = ['me']
 
     for own elem, perPage of @props.perPage
@@ -163,10 +163,10 @@ class ProfilePage.Main extends React.PureComponent
           unrankedBeatmapsets: @state.unrankedBeatmapsets
           graveyardBeatmapsets: @state.graveyardBeatmapsets
           counts:
-            favouriteBeatmapsets: @state.user.favouriteBeatmapsetCount[0]
-            rankedAndApprovedBeatmapsets: @state.user.rankedAndApprovedBeatmapsetCount[0]
-            unrankedBeatmapsets: @state.user.unrankedBeatmapsetCount[0]
-            graveyardBeatmapsets: @state.user.graveyardBeatmapsetCount[0]
+            favouriteBeatmapsets: @state.user.favourite_beatmapset_count[0]
+            rankedAndApprovedBeatmapsets: @state.user.ranked_and_approved_beatmapset_count[0]
+            unrankedBeatmapsets: @state.user.unranked_beatmapset_count[0]
+            graveyardBeatmapsets: @state.user.graveyard_beatmapset_count[0]
           pagination: @state.showMorePagination
         component: ProfilePage.Beatmaps
 

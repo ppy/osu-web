@@ -18,31 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Providers;
+return [
+    'buttons' => [
+      'add' => 'adicionar amigo',
+      'remove' => 'remover amigo',
+    ],
 
-use Elasticsearch\ClientBuilder;
-use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\ServiceProvider;
+    'state' => [
+      'friends' => 'amigos',
+      'mutual' => 'mutual',
+    ],
 
-class ElasticsearchServiceProvider extends ServiceProvider
-{
-    public function boot()
-    {
-    }
+    'title' => 'Amigos',
+    'title_compact' => 'amigos',
 
-    public function provides()
-    {
-        return ['elasticsearch'];
-    }
-
-    public function register()
-    {
-        $this->app->singleton('elasticsearch', function () {
-            return ClientBuilder::fromConfig(config('elasticsearch'));
-        });
-
-        $this->app->booting(function () {
-            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
-        });
-    }
-}
+    'too_many' => 'Limite de amigos atingido.',
+];

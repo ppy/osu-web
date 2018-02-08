@@ -77,7 +77,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
             type: type
             active: @props.type == type
 
-      if currentUser.isSupporter && @props.hasScores
+      if currentUser.is_supporter && @props.hasScores
         div className: 'beatmapset-scoreboard__mods-wrapper',
           div className: modsClassName,
             for mod in mods
@@ -108,7 +108,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
             className: 'beatmapset-scoreboard__notice beatmapset-scoreboard__notice--no-scores'
             osu.trans 'beatmapsets.show.scoreboard.no_scores.unranked'
 
-        else if currentUser.isSupporter || @props.type == 'global'
+        else if currentUser.is_supporter || @props.type == 'global'
           translationKey = if @state.loading then 'loading' else @props.type
 
           p
