@@ -42,6 +42,13 @@ class OrderItem extends Model
     //     ...additional fields
     // ]
 
+    public function scopeHasShipping($query)
+    {
+        return $query->whereHas('product', function ($q) {
+            return $q->hasShipping();
+        });
+    }
+
     public function isValid()
     {
         $this->validationErrors()->reset();
