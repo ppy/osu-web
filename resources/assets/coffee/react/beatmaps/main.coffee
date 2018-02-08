@@ -108,7 +108,7 @@ class Beatmaps.Main extends React.PureComponent
       if value? && BeatmapsetFilter.getDefault(params, key) != value
         charParams[keyToChar[key]] = value
 
-    delete charParams[keyToChar['rank']] if !currentUser.isSupporter
+    delete charParams[keyToChar['rank']] if !currentUser.is_supporter
 
     charParams
 

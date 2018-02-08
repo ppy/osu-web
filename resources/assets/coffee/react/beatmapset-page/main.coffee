@@ -70,7 +70,7 @@ class BeatmapsetPage.Main extends React.Component
     @setState
       currentScoreboardType: scoreboardType
 
-    if scoreboardType != 'global' && !currentUser.isSupporter
+    if scoreboardType != 'global' && !currentUser.is_supporter
       @setState scores: []
       return
 

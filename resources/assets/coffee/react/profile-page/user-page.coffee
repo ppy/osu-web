@@ -51,7 +51,7 @@ class ProfilePage.UserPage extends React.Component
       button
         className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
-        disabled: !@props.user.isSupporter
+        disabled: !@props.user.is_supporter
         osu.trans 'users.show.page.edit_big'
 
       p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
@@ -62,7 +62,7 @@ class ProfilePage.UserPage extends React.Component
         dangerouslySetInnerHTML:
           __html: osu.trans 'users.show.page.description'
 
-      if !@props.user.isSupporter
+      if !@props.user.is_supporter
         p
           className: 'profile-extra-user-page__new-content'
           dangerouslySetInnerHTML:

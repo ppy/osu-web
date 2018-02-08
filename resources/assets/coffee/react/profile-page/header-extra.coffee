@@ -75,7 +75,7 @@ class ProfilePage.HeaderExtra extends React.Component
           el FriendButton, user_id: @props.user.id
 
         div className: "#{bn}__follower-count#{if friendButtonHidden then '--no-button' else ''}",
-          osu.transChoice('users.show.extra.followers', @props.user.followerCount[0].toLocaleString())
+          osu.transChoice('users.show.extra.followers', @props.user.follower_count[0].toLocaleString())
 
         if friendState?.mutual
           div className: "#{bn}__follower-mutual-divider", "|"
@@ -166,7 +166,7 @@ class ProfilePage.HeaderExtra extends React.Component
               url: "https://last.fm/user/#{@props.user.lastfm}"
 
         div
-          className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.isBot}"
+          className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.is_bot}"
           div className: "#{bn}__rank-box",
             div null,
               div className: "#{bn}__rank-global",
