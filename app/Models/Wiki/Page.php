@@ -22,6 +22,8 @@ namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
+use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\Search;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\OsuMarkdownProcessor;
@@ -57,69 +59,59 @@ class Page
             return [];
         }
 
-        $searchParams = static::searchIndexConfig([
-            'size' => $params['limit'],
-            'from' => ($params['page'] - 1) * $params['limit'],
-        ]);
-        $searchParams['body']['query']['bool']['must'] = [];
-
-        $searchParams['body']['query']['bool']['must'][] = [
-            'bool' => [
-                'minimum_should_match' => 1,
-                'should' => [
-                    ['constant_score' => [
-                        'boost' => 1000,
-                        'filter' => [
-                            'match' => [
-                                'locale' => $params['locale'] ?? App::getLocale(),
-                            ],
-                        ],
-                    ]],
-                    ['constant_score' => [
-                        'filter' => [
-                            'match' => [
-                                'locale' => config('app.fallback_locale'),
-                            ],
-                        ],
-                    ]],
+        $langQuery = (new Query())
+            ->shouldMatch(1)
+            ->should(['constant_score' => [
+                'boost' => 1000,
+                'filter' => [
+                    'match' => [
+                        'locale' => $params['locale'] ?? App::getLocale(),
+                    ],
                 ],
-            ],
-        ];
-
-        $searchParams['body']['query']['bool']['must'][] = [
-            'bool' => [
-                'minimum_should_match' => 1,
-                'should' => [
-                    ['match' => [
-                        'tags' => [
-                            'query' => $params['query'],
-                            'boost' => 10,
-                        ],
-                    ]],
-                    ['match' => [
-                        'title' => [
-                            'query' => $params['query'],
-                            'boost' => 10,
-                        ],
-                    ]],
-                    ['match' => [
-                        'path_clean' => [
-                            'query' => $params['query'],
-                            'boost' => 9,
-                        ],
-                    ]],
-                    ['match' => [
-                        'page_text' => $params['query'],
-                    ]],
+            ]])
+            ->should(['constant_score' => [
+                'filter' => [
+                    'match' => [
+                        'locale' => config('app.fallback_locale'),
+                    ],
                 ],
-            ],
-        ];
+            ]]);
 
-        $results = es_search($searchParams);
+        $matchQuery = (new Query())
+            ->shouldMatch(1)
+            ->should(['match' => [
+                'tags' => [
+                    'query' => $params['query'],
+                    'boost' => 10,
+                ],
+            ]])
+            ->should(['match' => [
+                'title' => [
+                    'query' => $params['query'],
+                    'boost' => 10,
+                ],
+            ]])
+            ->should(['match' => [
+                'path_clean' => [
+                    'query' => $params['query'],
+                    'boost' => 9,
+                ],
+            ]])
+            ->should(['match' => [
+                'page_text' => $params['query'],
+            ]]);
+
+        $query = (new Query)->must($langQuery)->must($matchQuery);
+        $search = (new Search(config('osu.elasticsearch.index.wiki_pages')))
+            ->size($params['limit'])
+            ->page($params['page'])
+            ->query($query);
+
+        $response = $search->response();
 
         $pages = [];
 
-        foreach ($results['hits']['hits'] as $hit) {
+        foreach ($response->hits() as $hit) {
             $document = $hit['_source'];
             $page = new static(null, null, $document);
 
@@ -128,7 +120,7 @@ class Page
 
         return [
             'data' => $pages,
-            'total' => $results['hits']['total'],
+            'total' => $response->total(),
             'params' => $params,
         ];
     }
@@ -155,42 +147,41 @@ class Page
     {
         $searchPath = static::cleanupPath($path);
 
-        $params = static::searchIndexConfig();
-        $params['_source'] = 'path';
-        $params['size'] = 10;
-        $params['body']['query']['bool']['must'][] = [
-            'match' => [
-                'path_clean' => es_query_and_words($searchPath),
-            ],
+        $localeQuery = [
+            ['constant_score' => [
+                'boost' => 1000,
+                'filter' => [
+                    'match' => [
+                        'locale' => $locale ?? App::getLocale(),
+                    ],
+                ],
+            ]],
+            ['constant_score' => [
+                'filter' => [
+                    'match' => [
+                        'locale' => config('app.fallback_locale'),
+                    ],
+                ],
+            ]],
         ];
-        $params['body']['query']['bool']['must'][] = ['bool' => [
-            'minimum_should_match' => 1,
-            'should' => [
-                ['constant_score' => [
-                    'boost' => 1000,
-                    'filter' => [
-                        'match' => [
-                            'locale' => $locale ?? App::getLocale(),
-                        ],
-                    ],
-                ]],
-                ['constant_score' => [
-                    'filter' => [
-                        'match' => [
-                            'locale' => config('app.fallback_locale'),
-                        ],
-                    ],
-                ]],
-            ],
-        ]];
 
-        $results = es_search($params)['hits']['hits'];
+        $query = (new BoolQuery())
+            ->must(['match' => ['path_clean' => es_query_and_words($searchPath)]])
+            ->should($localeQuery)
+            ->shouldMatch(1);
 
-        if (count($results) === 0) {
+
+        $search = (new Search(config('osu.elasticsearch.index.wiki_pages')))
+            ->source('path')
+            ->query($query);
+
+        $response = $search->response();
+
+        if ($response->total() === 0) {
             return;
         }
 
-        foreach ($results as $result) {
+        foreach ($response->hits() as $result) {
             $resultPath = static::cleanupPath($result['_source']['path']);
 
             if ($resultPath === $searchPath) {
