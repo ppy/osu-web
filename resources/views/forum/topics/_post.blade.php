@@ -18,7 +18,6 @@
 <?php
     if (!isset($options['deleteLink'])) { $options['deleteLink'] = false; }
     if (!isset($options['editLink'])) { $options['editLink'] = false; }
-    if (!isset($options['overlay'])) { $options['overlay'] = false; }
     if (!isset($options['signature'])) { $options['signature'] = true; }
     if (!isset($options['replyLink'])) { $options['replyLink'] = false; }
     if (!isset($options['postPosition'])) { $options['postPosition'] = 1; }
@@ -116,9 +115,5 @@
                 @endif
             </div>
         </div>
-
-        @if($options["overlay"] === true)
-            <div class="forum-post__overlay"></div>
-        @endif
     </div>
 </div>
