@@ -25,7 +25,6 @@ return [
         'charts' => 'Gráficos',
         'score' => 'Pontuação',
         'country' => 'País',
-        'kudosu' => 'Kudosu',
     ],
     'stat' => [
         'accuracy' => 'Precisão',
