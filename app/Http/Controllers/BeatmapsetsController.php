@@ -99,6 +99,7 @@ class BeatmapsetsController extends Controller
                 'availability',
                 'beatmaps',
                 'beatmaps.failtimes',
+                'beatmaps.max_combo',
                 'converts',
                 'converts.failtimes',
                 $descriptionInclude,

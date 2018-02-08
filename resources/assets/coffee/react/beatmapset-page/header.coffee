@@ -181,7 +181,7 @@ class BeatmapsetPage.Header extends React.Component
                   topTextKey: 'direct'
                   osuDirect: true
                   href:
-                    if currentUser.isSupporter
+                    if currentUser.is_supporter
                       Url.beatmapDownloadDirect @props.beatmapset.id
                     else
                       laroute.route 'support-the-game'

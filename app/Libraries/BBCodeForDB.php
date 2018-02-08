@@ -97,7 +97,7 @@ class BBCodeForDB
     public function parseColour($text)
     {
         return preg_replace(
-            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],",
+            ",\[(color=(?:#[[:xdigit:]]{6}|[[:alpha:]]+))\](.*?)\[(/color)\],s",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -140,17 +140,27 @@ class BBCodeForDB
     * - Italic (i)
     * - Strike (strike, s)
     * - Underline (u)
-    * - Heading (heading)
     */
     public function parseInlineSimple($text)
     {
-        foreach (['b', 'i', 'strike', 's', 'u', 'heading'] as $tag) {
+        foreach (['b', 'i', 'strike', 's', 'u'] as $tag) {
             $text = preg_replace(
-                "#\[{$tag}](.*?)\[/{$tag}\]#",
+                "#\[{$tag}](.*?)\[/{$tag}\]#s",
                 "[{$tag}:{$this->uid}]\\1[/{$tag}:{$this->uid}]",
                 $text
             );
         }
+
+        return $text;
+    }
+
+    public function parseHeading($text)
+    {
+        $text = preg_replace(
+            "#\[heading](.*?)\[/heading\]#",
+            "[heading:{$this->uid}]\\1[/heading:{$this->uid}]",
+            $text
+        );
 
         return $text;
     }
@@ -239,7 +249,7 @@ class BBCodeForDB
     public function parseSize($text)
     {
         return preg_replace(
-            "#\[(size=(?:\d+))\](.+?)\[(/size)\]#",
+            "#\[(size=(?:\d+))\](.*?)\[(/size)\]#s",
             "[\\1:{$this->uid}]\\2[\\3:{$this->uid}]",
             $text
         );
@@ -318,6 +328,7 @@ class BBCodeForDB
         $text = $this->parseBlockSimple($text);
         $text = $this->parseImage($text);
         $text = $this->parseInlineSimple($text);
+        $text = $this->parseHeading($text);
         $text = $this->parseAudio($text);
         $text = $this->parseEmail($text);
         $text = $this->parseUrl($text);

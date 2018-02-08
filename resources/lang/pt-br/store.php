@@ -20,15 +20,24 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Depósito',
+        'warehouse' => 'Armazém',
     ],
 
     'checkout' => [
-        'pay' => 'Pague com PayPal',
-        'delayed_shipping' => 'Nós estamos com muitos pedidos! Você pode fazer o seu pedido, mas espere um **atraso adicional de 1-2 semanas** enquanto processamos os pedidos já existentes.',
+        'cart_problems' => 'Ops, seu carrinho parece ter alguns problemas!',
+        'cart_problems_edit' => 'Clique aqui para editá-lo.',
+        'declined' => 'O pagamento foi cancelado.',
+        'error' => 'Tem um problema com a sua compra :(',
+        'pay' => 'Pagar com o Paypal',
+        'pending_checkout' => [
+            'line_1' => 'Uma compra antiga foi atualizado, mas não foi finalizado.',
+            'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
+            'link_text' => 'clique aqui',
+        ],
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode requisitar seu pedido, mas espere um atraso adicional de **1-2 semanas** enquaanto nós tentamos alcançar os pedidos mais recentes.',
     ],
 
-    'discount' => 'desconto de :percent%',
+    'discount' => 'economize :percent%',
 
     'order' => [
         'item' => [
@@ -43,30 +52,31 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Atualmente fora de estoque :(. Volte em breve.',
-            'out_with_alternative' => 'Esta variação está fora de estoque :(. Tente outra ou volte em breve.',
+            'out' => 'Esse item está fora de estoque. Volte mais tarde!',
+            'out_with_alternative' => 'Infelizmente esse item está fora de estoque. Por favor, selecione outro ou tente novamente mais tarde!',
         ],
 
         'add_to_cart' => 'Adicionar ao carrinho',
-        'notify' => 'Avise-me quando estiver disponível!',
+        'notify' => 'Me notifique quando estiver disponível!',
 
-        'notification_success' => 'você será avisado quando tivermos estoque. clique :link para cancelar',
+        'notification_success' => 'você será notificado quando tivermos um novo estoque. clique :link para cancelar',
         'notification_remove_text' => 'aqui',
 
-        'notification_in_stock' => 'Este produto já está em estoque!',
+        'notification_in_stock' => 'Esse produto já está no estoque!',
     ],
 
     'supporter_tag' => [
+        'gift' => 'dar de presente',
         'require_login' => [
-            '_' => 'Você precisa estar :link para pegar uma tag de supporter!',
-            'link_text' => 'logado',
+            '_' => 'Você precisa estar :link para comprar uma supporter tag!',
+            'link_text' => 'conectado',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'Você precisa estar :link para mudar seu nome!',
-            'link_text' => 'logado',
+            '_' => 'Você precisa estar :link para mudar o seu nome!',
+            'link_text' => 'conectado',
         ],
     ],
 ];

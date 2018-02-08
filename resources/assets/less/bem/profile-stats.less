@@ -39,6 +39,31 @@
     margin-right: 30px;
   }
 
+  &__playtime {
+    color: @yellow;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  &__playtime-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__playtime-main {
+    font-size: 18px;
+  }
+
+  &__playtime-unit {
+    font-weight: 200;
+
+    &::after {
+      content: ' ';
+    }
+  }
+
   &__rank {
     display: inline-block;
     text-align: center;
@@ -54,6 +79,12 @@
     &--compact {
       padding-top: 5px;
       padding-bottom: 5px;
+    }
+
+    &--playtime {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
     }
   }
 

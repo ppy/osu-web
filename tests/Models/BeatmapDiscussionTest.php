@@ -104,7 +104,8 @@ class BeatmapDiscussionTest extends TestCase
         $otherBeatmapset = factory(Beatmapset::class)->create();
         $otherBeatmap = $otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
 
-        $invalidTimestamp = $beatmap->total_length * 1000 + 1;
+        $validTimestamp = ($beatmap->total_length + 10) * 1000;
+        $invalidTimestamp = $validTimestamp + 1;
 
         // blank everything not fine
         $discussion = $this->newDiscussion($beatmapset);
@@ -130,17 +131,17 @@ class BeatmapDiscussionTest extends TestCase
 
         // complete data is fine as well
         $discussion = $this->newDiscussion($beatmapset);
+        $discussion->fill(['timestamp' => $validTimestamp, 'message_type' => 'praise', 'beatmap_id' => $beatmap->beatmap_id]);
+        $this->assertTrue($discussion->isValid());
+
+        // Including timestamp 0
+        $discussion = $this->newDiscussion($beatmapset);
         $discussion->fill(['timestamp' => 0, 'message_type' => 'praise', 'beatmap_id' => $beatmap->beatmap_id]);
         $this->assertTrue($discussion->isValid());
 
         // just timestamp is not valid
         $discussion = $this->newDiscussion($beatmapset);
-        $discussion->fill(['timestamp' => 0]);
-        $this->assertFalse($discussion->isValid());
-
-        // nor is wrong beatmap_id
-        $discussion = $this->newDiscussion($beatmapset);
-        $discussion->fill(['timestamp' => 0, 'message_type' => 'praise', 'beatmap_id' => $otherBeatmap->beatmap_id]);
+        $discussion->fill(['timestamp' => $validTimestamp]);
         $this->assertFalse($discussion->isValid());
 
         // nor is wrong timestamp
