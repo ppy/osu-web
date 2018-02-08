@@ -32,15 +32,9 @@ trait BeatmapsetSearch
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-        $result = static::searchES($params);
+        $response = static::searchES($params)->response();
 
-        $data = count($result['ids']) > 0
-            ? static
-                ::with('beatmaps')
-                ->whereIn('beatmapset_id', $result['ids'])
-                ->orderByField('beatmapset_id', $result['ids'])
-                ->get()
-            : [];
+        $data = $response->recordType(get_called_class())->records()->with('beatmaps')->get();
 
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
@@ -49,7 +43,7 @@ trait BeatmapsetSearch
 
         return [
             'data' => $data,
-            'total' => min($result['total'], 10000),
+            'total' => min($response->total(), 10000),
         ];
     }
 
@@ -217,20 +211,12 @@ trait BeatmapsetSearch
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
-        $search = (new Search(static::esIndexName()))
+        return (new Search(static::esIndexName()))
             ->size($params['limit'])
             ->from($params['offset'])
             ->sort(static::searchSortParamsES($params))
             ->source('_id')
             ->query($query);
-
-        $response = $search->response();
-        $beatmapsetIds = $response->ids();
-
-        return [
-            'ids' => $beatmapsetIds,
-            'total' => $response->total(),
-        ];
     }
 
     /**
