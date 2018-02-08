@@ -21,8 +21,8 @@ el = React.createElement
 
 bn = 'profile-header-extra'
 
-rowValue = (value, className = '', title = '') ->
-  "<strong class='#{className}' title='#{title}'>#{value}</strong>"
+rowValue = (value, className, title) ->
+  "<strong>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
   constructor: (props) ->
@@ -107,7 +107,7 @@ class ProfilePage.HeaderExtra extends React.Component
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment')), 'js-tooltip-time', @props.user.join_date
+                      date: rowValue "<time class='js-tooltip-time' datetime='#{@props.user.join_date}' title='#{@props.user.join_date}'>#{moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))}</time>"
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
