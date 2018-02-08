@@ -33,15 +33,12 @@ return [
         'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
         'beatmapset_no_hype' => "Beatmap can't be hyped.",
         'hype_requires_null_beatmap' => 'Hype must be done on general all section.',
+        'invalid_beatmap_id' => 'Invalid difficulty specified.',
+        'invalid_beatmapset_id' => 'Invalid beatmap specified.',
         'locked' => 'Discussion is locked.',
         'mapper_note_wrong_user' => 'Only beatmap owner can post mapper note.',
         'timestamp_exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
         'timestamp_negative' => "Timestamp can't be negative.",
-
-        'beatmap_id' => [
-            'missing' => 'Associated beatmap is somehow gone.',
-            'mismatch' => "Difficulty and beatmap don't match.",
-        ],
 
         'hype' => [
             'guest' => 'Must be logged in to hype.',

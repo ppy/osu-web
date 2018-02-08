@@ -296,15 +296,13 @@ class BeatmapDiscussion extends Model
         ])->saveOrExplode();
     }
 
-    public function validateBeatmap()
+    public function fixBeatmapsetId()
     {
-        if ($this->beatmap_id !== null) {
-            if ($this->beatmap === null) {
-                $this->validationErrors()->add('beatmap_id', '.beatmap_id.missing');
-            } elseif ($this->beatmap->beatmapset_id !== $this->beatmapset_id) {
-                $this->validationErrors()->add('beatmap_id', '.beatmap_id.mismatch');
-            }
+        if (!$this->isDirty('beatmap_id') || $this->beatmap === null) {
+            return;
         }
+
+        $this->beatmapset_id = $this->beatmap->beatmapset_id;
     }
 
     public function validateLockStatus()
@@ -353,6 +351,19 @@ class BeatmapDiscussion extends Model
         }
     }
 
+    public function validateParents()
+    {
+        if ($this->beatmap_id !== null && $this->beatmap === null) {
+            $this->validationErrors()->add('beatmap_id', '.invalid_beatmap_id');
+        }
+
+        if ($this->beatmapset_id === null) {
+            $this->validationErrors()->add('beatmapset_id', 'required');
+        } elseif ($this->beatmapset === null) {
+            $this->validationErrors()->add('beatmap_id', '.invalid_beatmapset_id');
+        }
+    }
+
     public function validateTimestamp()
     {
         // skip validation if not changed
@@ -384,7 +395,7 @@ class BeatmapDiscussion extends Model
         $this->validationErrors()->reset();
 
         $this->validateLockStatus();
-        $this->validateBeatmap();
+        $this->validateParents();
         $this->validateMessageType();
         $this->validateTimestamp();
 
@@ -535,6 +546,8 @@ class BeatmapDiscussion extends Model
 
     public function save(array $options = [])
     {
+        $this->fixBeatmapsetId();
+
         if (!$this->isValid()) {
             return false;
         }
