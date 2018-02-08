@@ -77,9 +77,10 @@ class ProfilePage.HeaderMain extends React.Component
           className: 'profile-header__column'
           el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
 
-        div
-          className: 'profile-header__column'
-          el ProfilePage.Stats, stats: @props.stats
+        if !@props.user.is_bot
+          div
+            className: 'profile-header__column'
+            el ProfilePage.Stats, stats: @props.stats
 
       div
         className: 'profile-header__actions',
@@ -95,7 +96,7 @@ class ProfilePage.HeaderMain extends React.Component
                 el Icon, name: 'pencil'
             if @state.editing
               el ProfilePage.CoverSelector,
-                canUpload: @props.user.isSupporter
+                canUpload: @props.user.is_supporter
                 cover: @props.user.cover
 
 

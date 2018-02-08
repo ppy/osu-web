@@ -55,6 +55,8 @@ class Kernel extends ConsoleKernel
         Commands\FixUsernameChangeTopicCache::class,
 
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\LocaleCheck::class,
     ];
 
     /**

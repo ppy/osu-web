@@ -61,8 +61,8 @@ class ProfilePage.CoverUploader extends React.Component
 
     el 'div', className: 'profile-cover-uploader',
       el ProfilePage.CoverSelection,
-        url: @props.cover.customUrl
-        thumbUrl: @props.cover.customUrl
+        url: @props.cover.custom_url
+        thumbUrl: @props.cover.custom_url
         isSelected: !@props.cover.id?
         name: -1
 

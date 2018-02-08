@@ -89,6 +89,7 @@ return [
         'en',
 
         // sort by name
+        'da',
         'es',
         'fr',
         'it',
@@ -193,7 +194,6 @@ return [
         GrahamCampbell\GitHub\GitHubServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class,
-        Shift31\LaravelElasticsearch\ElasticsearchServiceProvider::class,
         Lord\Laroute\LarouteServiceProvider::class,
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
@@ -204,6 +204,7 @@ return [
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\ElasticsearchServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         /*
