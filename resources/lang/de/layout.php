@@ -168,7 +168,7 @@ return [
         ],
         'help' => [
             '_' => 'Hilfe & Community',
-            'faq' => '"Frequently Asked Questions"',
+            'faq' => ''Frequently Asked Questions'',
             'forum' => 'Community-Foren',
             'livestreams' => 'Livestreams',
             'report' => 'Einen Fehler melden',
@@ -190,62 +190,62 @@ return [
     'errors' => [
         '404' => [
             'error' => 'Seite fehlt',
-            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
+            'description' => 'Sorry, aber die angeforderte Seite existiert nicht!',
             'link' => false,
         ],
         '403' => [
-            'error' => "Du solltest nicht hier sein.",
+            'error' => 'Du solltest nicht hier sein.',
             'description' => 'Du könntest versuchen, zurückzugehen.',
             'link' => false,
         ],
         '401' => [
-            'error' => "Du solltest nicht hier sein.",
+            'error' => 'Du solltest nicht hier sein.',
             'description' => 'Du könntest versuchen, zurückzugehen. Oder dich einloggen.',
             'link' => false,
         ],
         '405' => [
             'error' => 'Seite fehlt',
-            'description' => "Sorry, aber die angeforderte Seite existiert nicht!",
+            'description' => 'Sorry, aber die angeforderte Seite existiert nicht!',
             'link' => false,
         ],
         '500' => [
             'error' => 'Oh nein! Irgendwas ist schief gelaufen! ;_;',
-            'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
+            'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
             'link' => false,
         ],
         'fatal' => [
             'error' => 'Oh no! Irgendwas ist extrem schief gelaufen! ;_;',
-            'description' => "Wir werden automatisch über jeden Fehler benachrichtigt.",
+            'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
             'link' => false,
         ],
         '503' => [
             'error' => 'Wegen Wartung nicht erreichbar !',
-            'description' => "Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.",
+            'description' => 'Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => "Nur zur Sicherheit ist hier noch ein Code, den du dem Support geben kannst!",
+        'reference' => 'Nur zur Sicherheit ist hier noch ein Code, den du dem Support geben kannst!',
     ],
 
     'popup_login' => [
         'login' => [
             'email' => 'e-mail-adresse',
-            'forgot' => "Passwort vergessen",
+            'forgot' => 'Passwort vergessen',
             'password' => 'passwort',
             'title' => 'Zum Fortfahren einloggen',
 
             'error' => [
-                'email' => "Nutzername oder E-Mail-Adresse existiert nicht",
+                'email' => 'Nutzername oder E-Mail-Adresse existiert nicht',
                 'password' => 'Falsches Passwort',
             ],
         ],
 
         'register' => [
-            'info' => "Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?",
-            'title' => "Kein Account?",
+            'info' => 'Sie brauchen einen Account, Sir. Warum besitzen Sie noch keinen?',
+            'title' => 'Kein Account?',
         ],
     ],
 

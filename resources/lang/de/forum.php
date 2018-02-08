@@ -63,7 +63,7 @@ return [
     'subforums' => 'Subforen',
     'title' => 'osu!community',
     // sorry for butchering this, but the first zelda doesn't exist in german
-    'slogan' => "es ist gefährlich, alleine zu gehen.",
+    'slogan' => 'es ist gefährlich, alleine zu gehen.',
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -235,7 +235,7 @@ return [
                 'user' => [
                     'current' => 'Du hast noch :votes.',
                     'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
-                    'not_enough' => "Du hast keine Stimmen mehr",
+                    'not_enough' => 'Du hast keine Stimmen mehr',
                 ],
             ],
 

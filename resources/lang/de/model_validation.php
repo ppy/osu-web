@@ -70,7 +70,7 @@ return [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
-        'invalid_email' => "Scheint keine E-Mail-Adresse zu seín.",
+        'invalid_email' => 'Scheint keine E-Mail-Adresse zu sein.',
         'too_short' => 'Das neue Passwort ist zu kurz.',
         'unknown_duplicate' => 'Nutzername oder E-Mail-Adresse wird bereits verwendet.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',
