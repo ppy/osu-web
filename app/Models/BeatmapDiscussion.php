@@ -291,6 +291,10 @@ class BeatmapDiscussion extends Model
             return;
         }
 
+        if ($this->startingPost === null) {
+            return;
+        }
+
         return $this->fill([
             'timestamp' => $this->startingPost->timestamp() ?? null,
         ])->saveOrExplode();
@@ -371,22 +375,22 @@ class BeatmapDiscussion extends Model
             return;
         }
 
-        if ($this->timestamp === null) {
-            return;
-        }
-
         if ($this->beatmap === null) {
             return $this->validationErrors()->add('beatmap_id', '.beatmap_missing');
         }
 
+        if ($this->timestamp === null) {
+            $this->validationErrors()->add('timestamp', 'required');
+        }
+
         if ($this->timestamp < 0) {
-            $this->validationErrors()->add('timestamp', '.timestamp_negative');
+            $this->validationErrors()->add('timestamp', '.timestamp.negative');
         }
 
         // FIXME: total_length is only for existing hit objects.
         // FIXME: The chart in discussion page will need to account this as well.
         if ($this->timestamp > ($this->beatmap->total_length + 10) * 1000) {
-            $this->validationErrors()->add('timestamp', '.timestamp_exceeds_beatmapset_length');
+            $this->validationErrors()->add('timestamp', '.timestamp.exceeds_beatmapset_length');
         }
     }
 
