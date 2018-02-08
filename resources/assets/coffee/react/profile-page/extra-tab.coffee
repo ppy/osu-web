@@ -16,27 +16,18 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, span} = ReactDOMFactories
+{span} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.ExtraTab extends React.Component
-  pageSwitch: (e) =>
-    e.preventDefault()
-
-    $.publish 'profile:page:jump', @props.page
-
-
+class ProfilePage.ExtraTab extends React.PureComponent
   render: =>
     className = 'page-mode-link'
 
     if @props.page == @props.currentPage
       className += ' page-mode-link--is-active'
 
-    a
-      href: "##{@props.page}"
+    span
       className: className
-      onClick: @pageSwitch
-      'data-page-id': @props.page
       span
         className: 'fake-bold'
         'data-content': osu.trans("users.show.extra.#{@props.page}.title")

@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, li, ul} = ReactDOMFactories
+{a, div, h2, li, ul} = ReactDOMFactories
 el = React.createElement
 
 pages = document.getElementsByClassName("js-switchable-mode-page--scrollspy")
@@ -88,13 +88,19 @@ class ProfilePage.Main extends React.PureComponent
       update: @updateOrder
 
     $(@tabs).sortable
-      items: '[data-page-id]'
-      tolerance: 'pointer'
+      containment: 'parent'
       cursor: 'move'
       disabled: !@props.withEdit
       revert: 150
       scrollSpeed: 0
       update: @updateOrder
+      start: =>
+        # Somehow click event still goes through when dragging.
+        # This prevents triggering @tabClick.
+        Timeout.clear @draggingTabTimeout
+        @draggingTab = true
+      stop: =>
+        @draggingTabTimeout = Timeout.set 500, => @draggingTab = false
 
     osu.pageChange()
 
@@ -191,7 +197,6 @@ class ProfilePage.Main extends React.PureComponent
 
       div
         className: "hidden-xs page-extra-tabs #{'page-extra-tabs--floating' if @state.tabsSticky}"
-        ref: (el) => @tabs = el
 
         div
           className: 'js-sticky-header'
@@ -205,14 +210,18 @@ class ProfilePage.Main extends React.PureComponent
           className: 'page-extra-tabs__floatable js-sync-height--reference js-switchable-mode-page--scrollspy-offset'
           'data-sync-height-target': 'page-extra-tabs'
           div className: 'osu-page',
-            ul
+            div
               className: 'page-mode page-mode--page-extra-tabs'
+              ref: (el) => @tabs = el
               for m in @state.profileOrder
                 continue if m == 'me' && !withMePage
 
-                li
+                a
                   className: 'page-mode__item'
                   key: m
+                  'data-page-id': m
+                  onClick: @tabClick
+                  href: "##{m}"
                   el ProfilePage.ExtraTab,
                     page: m
                     currentPage: @state.currentPage
@@ -338,6 +347,15 @@ class ProfilePage.Main extends React.PureComponent
       return callback()
 
     @setState currentPage: page, callback
+
+
+  tabClick: (e) =>
+    e.preventDefault()
+
+    # See $(@tabs).sortable.
+    return if @draggingTab
+
+    @pageJump null, e.currentTarget.dataset.pageId
 
 
   updateOrder: (event) =>

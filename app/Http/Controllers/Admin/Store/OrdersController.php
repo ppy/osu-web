@@ -28,7 +28,7 @@ class OrdersController extends Controller
 
         $ordersItemsQuantities = $orders->itemsQuantities();
 
-        $orders = $orders->orderBy('created_at')->get();
+        $orders = $orders->orderBy('paid_at', 'asc')->get();
 
         $productId = (int) Request::input('product');
         if ($productId) {

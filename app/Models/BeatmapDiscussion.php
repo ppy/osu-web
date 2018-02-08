@@ -284,6 +284,10 @@ class BeatmapDiscussion extends Model
 
     public function hasValidBeatmap()
     {
+        if ($this->exists && count(array_diff(array_keys($this->getDirty()), ['kudosu_denied', 'kudosu_denied_by_id'])) === 0) {
+            return true;
+        }
+
         return
             $this->beatmap_id === null ||
             ($this->beatmap && !$this->beatmap->trashed() && $this->beatmap->beatmapset_id === $this->beatmapset_id);
@@ -401,7 +405,7 @@ class BeatmapDiscussion extends Model
     {
         DB::transaction(function () use ($allowedBy) {
             BeatmapsetEvent::log(BeatmapsetEvent::KUDOSU_ALLOW, $allowedBy, $this)->saveOrExplode();
-            $this->update(['kudosu_denied' => false]);
+            $this->fill(['kudosu_denied' => false])->saveOrExplode();
             $this->refreshKudosu('allow_kudosu');
         });
     }
@@ -410,10 +414,10 @@ class BeatmapDiscussion extends Model
     {
         DB::transaction(function () use ($deniedBy) {
             BeatmapsetEvent::log(BeatmapsetEvent::KUDOSU_DENY, $deniedBy, $this)->saveOrExplode();
-            $this->update([
+            $this->fill([
                 'kudosu_denied_by_id' => $deniedBy->user_id ?? null,
                 'kudosu_denied' => true,
-            ]);
+            ])->saveOrExplode();
             $this->refreshKudosu('deny_kudosu');
         });
     }

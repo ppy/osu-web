@@ -156,10 +156,14 @@ class Order extends Model
         return studly_case(explode('-', $this->transaction_id)[0]);
     }
 
-    public function getSubtotal()
+    public function getSubtotal($forShipping = false)
     {
         $total = 0;
         foreach ($this->items as $i) {
+            if ($forShipping && !$i->product->requiresShipping()) {
+                continue;
+            }
+
             $total += $i->subtotal();
         }
 
@@ -481,16 +485,31 @@ class Order extends Model
         return function ($query) {
             $query = clone $query;
 
-            $ordersTable = (new Order)->getTable();
-            $orderItemsTable = (new OrderItem)->getTable();
-            $productsTable = (new Product)->getTable();
+            $order = new Order();
+            $orderItem = new OrderItem();
+            $product = new Product();
 
             $query
-                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
-                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
-                ->groupBy("{$orderItemsTable}.product_id")
-                ->groupBy('name')
-                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+                ->join(
+                    $orderItem->getTable(),
+                    $order->qualifyColumn('order_id'),
+                    '=',
+                    $orderItem->qualifyColumn('order_id')
+                )
+                ->join(
+                    $product->getTable(),
+                    $orderItem->qualifyColumn('product_id'),
+                    '=',
+                    $product->qualifyColumn('product_id')
+                )
+                ->whereNotNull($product->qualifyColumn('weight'))
+                ->groupBy($orderItem->qualifyColumn('product_id'))
+                ->groupBy($product->qualifyColumn('name'))
+                ->select(
+                    DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
+                    $product->qualifyColumn('name'),
+                    $orderItem->qualifyColumn('product_id')
+                );
 
             return $query->get();
         };

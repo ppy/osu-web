@@ -29,6 +29,11 @@
 
     &--bar {
       width: 100%;
+      min-width: 100px;
+    }
+
+    &--option-text {
+      max-width: 450px; // less than (@screen-sm-min - (<bar size> + <extras>))
     }
 
     &--percentage {
@@ -42,6 +47,7 @@
 
   &__option-text {
     margin-left: 5px;
+    overflow: hidden;
   }
 
   &__option-text-container {
