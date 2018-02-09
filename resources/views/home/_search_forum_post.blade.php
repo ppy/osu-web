@@ -16,11 +16,11 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@foreach ($results as $index => $hit)
+@foreach ($results as $hit)
     @php
         $source = $hit['_source'];
-        $innerHits = $results->innerHits($index, 'posts');
-        $firstPost = $results->innerHits($index, 'first_post');
+        $innerHits = $hit->innerHits('posts');
+        $firstPost = $hit->innerHits('first_post');
         $firstPostUrl = route('forum.topics.show', $source['topic_id']);
     @endphp
     <div class="search-result__entry search-result__entry--threaded">

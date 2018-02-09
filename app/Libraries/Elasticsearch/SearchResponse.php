@@ -137,7 +137,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
 
     public function offsetGet($key)
     {
-        return data_get($this->hits(), $key);
+        return new Hit(data_get($this->hits(), $key));
     }
 
     public function offsetSet($key, $value)
