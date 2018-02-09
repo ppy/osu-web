@@ -16,46 +16,45 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
-@foreach ($results as $hit)
-    @php
-        $source = $hit['_source'];
-        $innerHits = $hit->innerHits('posts');
-        $firstPost = $hit->innerHits('first_post');
-        $firstPostUrl = route('forum.topics.show', $source['topic_id']);
-    @endphp
-    <div class="search-result__entry search-result__entry--threaded">
-        <a class="search-entry" href="{{ $firstPostUrl }}">
-            <h1 class="search-entry__row search-entry__row--title">
-                {{ $source['search_content'] }}
-            </h1>
-            <div class="search-entry__row search-entry__row--excerpt">
-                @foreach ($firstPost as $post)
-                    <span>{!! html_excerpt($post['_source']['search_content']) !!}</span>
-                @endforeach
-            </div>
-            <p class="search-entry__row search-entry__row--footer">
-                {{ $firstPostUrl }}
-            </p>
-        </a>
-
-        <div class="search-entry__row search-entry__row--inner">
-            @foreach ($innerHits as $innerHit)
-                @php
-                    $highlights = es_highlight($innerHit, 'search_content');
-                    $postUrl = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
-                @endphp
-
-                <a class="search-entry search-entry--inner" href="{{ $postUrl }}">
-                    <div class="search-entry__row search-entry__row--excerpt">
-                        @foreach ($highlights as $highlight)
-                            <span class="search-entry__highlight">{!! $highlight !!}</span>
-                        @endforeach
-                    </div>
-                    <p class="search-entry__row search-entry__row--footer">
-                        {{ $postUrl }}
-                    </p>
-                </a>
+@php
+    // $entry should be of type App\Libraries\Elasticsearch\Hit
+    $source = $entry['_source'];
+    $innerHits = $entry->innerHits('posts');
+    $firstPost = $entry->innerHits('first_post');
+    $firstPostUrl = route('forum.topics.show', $source['topic_id']);
+@endphp
+<div class="search-result__entry search-result__entry--threaded">
+    <a class="search-entry" href="{{ $firstPostUrl }}">
+        <h1 class="search-entry__row search-entry__row--title">
+            {{ $source['search_content'] }}
+        </h1>
+        <div class="search-entry__row search-entry__row--excerpt">
+            @foreach ($firstPost as $post)
+                <span>{!! html_excerpt($post['_source']['search_content']) !!}</span>
             @endforeach
         </div>
+        <p class="search-entry__row search-entry__row--footer">
+            {{ $firstPostUrl }}
+        </p>
+    </a>
+
+    <div class="search-entry__row search-entry__row--inner">
+        @foreach ($innerHits as $innerHit)
+            @php
+                $highlights = es_highlight($innerHit, 'search_content');
+                $postUrl = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
+            @endphp
+
+            <a class="search-entry search-entry--inner" href="{{ $postUrl }}">
+                <div class="search-entry__row search-entry__row--excerpt">
+                    @foreach ($highlights as $highlight)
+                        <span class="search-entry__highlight">{!! $highlight !!}</span>
+                    @endforeach
+                </div>
+                <p class="search-entry__row search-entry__row--footer">
+                    {{ $postUrl }}
+                </p>
+            </a>
+        @endforeach
     </div>
-@endforeach
+</div>

@@ -32,15 +32,11 @@
             @else
                 <div class="search-result__row search-result__row--entries-container">
                     <div class="search-result__entries">
-                        @if (!is_array($result['data']) && get_class($result['data']) === 'App\Libraries\Elasticsearch\SearchResponse')
-                            @include("home._search_{$mode}", ['results' => $result['data']])
-                        @else
-                            @foreach ($result['data'] as $entry)
-                                <div class="search-result__entry">
-                                    @include("home._search_{$mode}", compact('entry'))
-                                </div>
-                            @endforeach
-                        @endif
+                        @foreach ($result['data'] as $entry)
+                            <div class="search-result__entry">
+                                @include("home._search_{$mode}", compact('entry'))
+                            </div>
+                        @endforeach
                     </div>
 
                     <a
