@@ -92,6 +92,7 @@ return [
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
+        'change_avatar' => 'change your avatar!',
 
         'edit' => [
             'cover' => [
