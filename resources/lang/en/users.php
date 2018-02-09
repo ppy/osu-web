@@ -231,12 +231,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
-            'play_time' => [
-                'label' => 'Total Play Time',
-                'hours' => 'hrs',
-                'minutes' => 'mins',
-                'seconds' => 'secs',
-            ],
+            'play_time' => 'Total Play Time',
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',

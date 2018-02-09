@@ -91,6 +91,12 @@ class Page
                 'minimum_should_match' => 1,
                 'should' => [
                     ['match' => [
+                        'tags' => [
+                            'query' => $params['query'],
+                            'boost' => 10,
+                        ],
+                    ]],
+                    ['match' => [
                         'title' => [
                             'query' => $params['query'],
                             'boost' => 10,
@@ -212,6 +218,7 @@ class Page
                 'path' => null,
                 'path_clean' => null,
                 'title' => null,
+                'tags' => [],
             ];
         } else {
             $params['body'] = [
@@ -221,6 +228,7 @@ class Page
                 'path' => $this->path,
                 'path_clean' => static::cleanupPath($this->path),
                 'title' => $this->title(),
+                'tags' => $this->tags(),
             ];
         }
 
@@ -318,6 +326,11 @@ class Page
     public function refresh()
     {
         dispatch(new EsDeleteDocument($this));
+    }
+
+    public function tags()
+    {
+        return $this->page()['header']['tags'] ?? [];
     }
 
     public function title($withSubtitle = false)

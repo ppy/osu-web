@@ -26,7 +26,7 @@ class @BeatmapsetDownloadObserver
 
 
   quotaCheck: (e) =>
-    return if currentUser?.isSupporter
+    return if currentUser?.is_supporter
     return if (e.type == 'mouseup' && e.which != 2) # we only use mouseup to catch middle-click
 
     $.ajax laroute.route('download-quota-check')

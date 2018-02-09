@@ -120,7 +120,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
     bn = 'counter-box'
 
     for type in ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total']
-      continue if type == 'deleted' && !@props.currentUser.isAdmin
+      continue if type == 'deleted' && !@props.currentUser.is_admin
 
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{_.kebabCase(type)}"
       topClasses += ' js-active' if @props.mode != 'events' && @props.currentFilter == type
