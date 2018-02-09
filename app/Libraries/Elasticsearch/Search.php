@@ -32,10 +32,18 @@ class Search extends AbstractSearch
     protected $index;
     protected $options;
 
+    private $error;
+    private $response;
+
     public function __construct(string $index, array $options = [])
     {
         $this->index = $index;
         $this->options = $options;
+    }
+
+    public function getError()
+    {
+        return $this->error;
     }
 
     /**
@@ -43,20 +51,11 @@ class Search extends AbstractSearch
      */
     public function response() : SearchResponse
     {
-        try {
-            return new SearchResponse(Es::search($this->toArray()));
-        } catch (NoNodesAvailableException $e) {
-            // all servers down
-            $error = $e;
-        } catch (BadRequest400Exception $e) {
-            // invalid query
-            $error = $e;
-        } catch (Missing404Exception $e) {
-            // index is missing ?_?
-            $error = $e;
+        if (!isset($this->response)) {
+            $this->response = $this->fetch();
         }
 
-        return SearchResponse::failed($error);
+        return $this->response;
     }
 
     /**
@@ -68,5 +67,23 @@ class Search extends AbstractSearch
         $json['index'] = $this->index;
 
         return $json;
+    }
+
+    private function fetch()
+    {
+        try {
+            return new SearchResponse(Es::search($this->toArray()));
+        } catch (NoNodesAvailableException $e) {
+            // all servers down
+            $this->error = $e;
+        } catch (BadRequest400Exception $e) {
+            // invalid query
+            $this->error = $e;
+        } catch (Missing404Exception $e) {
+            // index is missing ?_?
+            $this->error = $e;
+        }
+
+        return SearchResponse::failed();
     }
 }
