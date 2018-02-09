@@ -20,32 +20,34 @@
 
 namespace App\Libraries;
 
-use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Query;
+use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score;
 use Datadog;
 
-class BeatmapsetSearch extends Search
+class BeatmapsetSearch extends RecordSearch
 {
+    public function records()
+    {
+        return $this->response()->records()->with('beatmaps')->get();
+    }
+
     public static function search(array $params = [])
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-        $response = static::searchES($params)->response();
 
-        $data = $response->recordType(Beatmapset::class)->records()->with('beatmaps')->get();
+        $search = static::searchES($params);
 
+        // TODO: fix timing
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
             Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
         }
 
-        return [
-            'data' => $data,
-            'total' => min($response->total(), 10000),
-        ];
+        return $search;
     }
 
     public static function searchParams(array $params = [])
@@ -212,7 +214,7 @@ class BeatmapsetSearch extends Search
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
-        return (new static(Beatmapset::esIndexName()))
+        return (new static(Beatmapset::esIndexName(), Beatmapset::class))
             ->size($params['limit'])
             ->from($params['offset'])
             ->sort(static::searchSortParamsES($params))

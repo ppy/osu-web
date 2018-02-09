@@ -20,11 +20,11 @@
 
 namespace App\Libraries;
 
-use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Query;
+use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\User;
 
-class UserSearch extends Search
+class UserSearch extends RecordSearch
 {
     const SEARCH_DEFAULTS = [
         'query' => null,
@@ -46,19 +46,12 @@ class UserSearch extends Search
         $search = static::searchUsername($params['query'], $from, $size);
         $response = $search->response()->recordType(User::class);
 
-        $total = $response->total();
-
-        return [
-            'total' => min($total, Search::MAX_RESULTS), // FIXME: apply the cap somewhere more sensible?
-            'over_limit' => $total > $max,
-            'data' => $response->records()->get(),
-            'params' => $params,
-        ];
+        return $search;
     }
 
-    public static function searchUsername(string $username, $from, $size) : Search
+    public static function searchUsername(string $username, $from, $size) : self
     {
-        return (new static(User::esIndexName()))
+        return (new static(User::esIndexName(), User::class))
             ->query(static::usernameSearchQuery($username ?? ''))
             ->from($from)
             ->size($size);
