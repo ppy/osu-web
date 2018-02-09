@@ -58,10 +58,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
       div className: "#{bn}__content #{bn}__content--nomination",
         el BeatmapDiscussions.Nominations,
           beatmapset: @props.beatmapset
+          currentDiscussions: @props.currentDiscussions
+          currentUser: @props.currentUser
+          discussions: @props.discussions
           events: @props.events
           users: @props.users
-          currentUser: @props.currentUser
-          currentDiscussions: @props.currentDiscussions
 
 
   headerTop: =>

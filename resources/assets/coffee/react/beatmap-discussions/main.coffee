@@ -87,15 +87,16 @@ class BeatmapDiscussions.Main extends React.PureComponent
   render: =>
     div className: 'osu-layout osu-layout--full',
       el BeatmapDiscussions.Header,
-        beatmapset: @state.beatmapset
         beatmaps: @groupedBeatmaps()
+        beatmapset: @state.beatmapset
         currentBeatmap: @currentBeatmap()
         currentDiscussions: @currentDiscussions()
-        currentUser: @state.currentUser
         currentFilter: @state.currentFilter
+        currentUser: @state.currentUser
+        discussions: @discussions()
         events: @state.beatmapset.events
-        users: @users()
         mode: @state.currentMode
+        users: @users()
 
       el BeatmapDiscussions.ModeSwitcher,
         mode: @state.currentMode

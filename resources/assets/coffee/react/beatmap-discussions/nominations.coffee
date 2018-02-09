@@ -106,7 +106,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     if nominationReset?
       nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
-      url = BeatmapDiscussionHelper.hash discussionId: nominationResetDiscussionId
+      url = BeatmapDiscussionHelper.url discussion: @props.discussions[nominationResetDiscussionId]
       nominationResetDiscussionLink = osu.link url, "##{nominationResetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
 
 
