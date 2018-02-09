@@ -18,15 +18,16 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Elasticsearch;
+namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Query;
 use App\Models\Beatmap;
+use App\Models\Beatmapset;
 use App\Models\Score;
 use Datadog;
 
-trait BeatmapsetSearch
+class BeatmapsetSearch extends Search
 {
     public static function search(array $params = [])
     {
@@ -34,7 +35,7 @@ trait BeatmapsetSearch
         $params = static::searchParams($params);
         $response = static::searchES($params)->response();
 
-        $data = $response->recordType(get_called_class())->records()->with('beatmaps')->get();
+        $data = $response->recordType(Beatmapset::class)->records()->with('beatmaps')->get();
 
         if (config('datadog-helper.enabled')) {
             $searchDuration = microtime(true) - $startTime;
@@ -169,33 +170,33 @@ trait BeatmapsetSearch
         switch ($params['status']) {
             case 0: // Ranked & Approved
                 $query->should([
-                    ['match' => ['approved' => self::STATES['ranked']]],
-                    ['match' => ['approved' => self::STATES['approved']]],
+                    ['match' => ['approved' => Beatmapset::STATES['ranked']]],
+                    ['match' => ['approved' => Beatmapset::STATES['approved']]],
                 ]);
                 break;
             case 1: // Approved
-                $query->must(['match' => ['approved' => self::STATES['approved']]]);
+                $query->must(['match' => ['approved' => Beatmapset::STATES['approved']]]);
                 break;
             case 8: // Loved
-                $query->must(['match' => ['approved' => self::STATES['loved']]]);
+                $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
                 break;
             case 2: // Favourites
-                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', self::class);
+                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $favs]]);
                 break;
             case 3: // Qualified
                 $query->should([
-                    ['match' => ['approved' => self::STATES['qualified']]],
+                    ['match' => ['approved' => Beatmapset::STATES['qualified']]],
                 ]);
                 break;
             case 4: // Pending
                 $query->should([
-                    ['match' => ['approved' => self::STATES['wip']]],
-                    ['match' => ['approved' => self::STATES['pending']]],
+                    ['match' => ['approved' => Beatmapset::STATES['wip']]],
+                    ['match' => ['approved' => Beatmapset::STATES['pending']]],
                 ]);
                 break;
             case 5: // Graveyard
-                $query->must(['match' => ['approved' => self::STATES['graveyard']]]);
+                $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 6: // My Maps
                 $maps = model_pluck($params['user']->beatmapsets(), 'beatmapset_id');
@@ -211,7 +212,7 @@ trait BeatmapsetSearch
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
-        return (new Search(static::esIndexName()))
+        return (new static(Beatmapset::esIndexName()))
             ->size($params['limit'])
             ->from($params['offset'])
             ->sort(static::searchSortParamsES($params))

@@ -42,8 +42,7 @@ use Request;
 
 class User extends Model implements AuthenticatableContract, Messageable
 {
-    use Elasticsearch\UserSearch, Elasticsearch\UserTrait;
-    use HasApiTokens, Authenticatable, UserAvatar, Validatable;
+    use Elasticsearch\UserTrait, HasApiTokens, Authenticatable, UserAvatar, Validatable;
 
     protected $table = 'phpbb_users';
     protected $primaryKey = 'user_id';
@@ -65,12 +64,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         'keyboard' => 2,
         'tablet' => 4,
         'touch' => 8,
-    ];
-
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'limit' => 20,
-        'page' => 1,
     ];
 
     const CACHING = [

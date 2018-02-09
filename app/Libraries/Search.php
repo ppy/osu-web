@@ -32,8 +32,8 @@ class Search
         'all' => null,
 
         // also display order
-        'user' => User::class,
-        'beatmapset' => Beatmapset::class,
+        'user' => UserSearch::class,
+        'beatmapset' => BeatmapsetSearch::class,
         'forum_post' => ForumSearch::class,
         'wiki_page' => WikiPage::class,
     ];

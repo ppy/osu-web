@@ -32,10 +32,11 @@ use Datadog;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
+use App\Libraries\BeatmapsetSearch;
 
 class Beatmapset extends Model implements AfterCommit
 {
-    use Elasticsearch\BeatmapsetSearch, Elasticsearch\BeatmapsetTrait, SoftDeletes;
+    use Elasticsearch\BeatmapsetTrait, SoftDeletes;
 
     protected $_storage = null;
     protected $table = 'osu_beatmapsets';
@@ -390,7 +391,7 @@ class Beatmapset extends Model implements AfterCommit
 
     public static function listing()
     {
-        return static::search()['data'];
+        return BeatmapsetSearch::search()['data'];
     }
 
     public static function coverSizes()
@@ -1001,5 +1002,10 @@ class Beatmapset extends Model implements AfterCommit
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    public static function search($params)
+    {
+        return BeatmapsetSearch::search($params);
     }
 }

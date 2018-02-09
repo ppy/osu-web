@@ -18,13 +18,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models\Elasticsearch;
+namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\Query;
+use App\Models\User;
 
-trait UserSearch
+class UserSearch extends Search
 {
+    const SEARCH_DEFAULTS = [
+        'query' => null,
+        'limit' => 20,
+        'page' => 1,
+    ];
+
     public static function search($rawParams)
     {
         $max = config('osu.search.max.user');
@@ -37,7 +44,7 @@ trait UserSearch
         $from = ($params['page'] - 1) * $size;
 
         $search = static::searchUsername($params['query'], $from, $size);
-        $response = $search->response()->recordType(get_called_class());
+        $response = $search->response()->recordType(User::class);
 
         $total = $response->total();
 
@@ -51,7 +58,7 @@ trait UserSearch
 
     public static function searchUsername(string $username, $from, $size) : Search
     {
-        return (new Search(static::esIndexName()))
+        return (new static(User::esIndexName()))
             ->query(static::usernameSearchQuery($username ?? ''))
             ->from($from)
             ->size($size);
