@@ -27,18 +27,7 @@ class @FriendButton extends React.PureComponent
 
     @eventId = "friendButton-#{@props.user_id}-#{osu.uuid()}"
     @state =
-      hover: false
       friend: _.find(currentUser.friends, (o) -> o.target_id == props.user_id)
-
-
-  hover: =>
-    @setState
-      hover: true
-
-
-  unhover: =>
-    @setState
-      hover: false
 
 
   requestDone: =>
@@ -59,20 +48,19 @@ class @FriendButton extends React.PureComponent
 
     if @state.friend
       #un-friending
-      $.ajax
+      @xhr = $.ajax
         type: "DELETE"
         url: laroute.route 'friends.destroy', friend: @props.user_id
-        success: @updateFriends
-        error: osu.emitAjaxError(@button)
-        complete: @requestDone
     else
       #friending
-      $.ajax
+      @xhr = $.ajax
         type: "POST"
         url: laroute.route 'friends.store', target: @props.user_id
-        success: @updateFriends
-        error: osu.emitAjaxError(@button)
-        complete: @requestDone
+
+    @xhr
+    .done @updateFriends
+    .fail osu.emitAjaxError(@button)
+    .always @requestDone
 
 
   refresh: (e) =>
@@ -87,6 +75,7 @@ class @FriendButton extends React.PureComponent
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
+    @xhr?.abort()
 
 
   render: =>
@@ -108,8 +97,6 @@ class @FriendButton extends React.PureComponent
     a
       className: blockClass
       href: '#'
-      onMouseEnter: @hover
-      onMouseLeave: @unhover
       onClick: @clicked
       ref: (el) => @button = el
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
@@ -118,16 +105,19 @@ class @FriendButton extends React.PureComponent
         el Icon, name: 'refresh', modifiers: ['spin']
       else
         if @state.friend
-          if @state.hover
-            el Icon, name: 'user-times'
-          else
+          div null,
+            span
+              className: "#{bn}__icon #{bn}__icon--hover-visible"
+              el Icon, name: 'user-times'
             if @state.friend.mutual
-              [
-                el Icon, name: 'user', key: 1
-                el Icon, name: 'user', key: 2
-              ]
+              span
+                className: "#{bn}__icon #{bn}__icon--hover-hidden"
+                el Icon, name: 'user'
+                el Icon, name: 'user'
             else
-              el Icon, name: 'user'
+              span
+                className: "#{bn}__icon #{bn}__icon--hover-hidden"
+                el Icon, name: 'user'
         else
           el Icon, name: 'user-plus'
 

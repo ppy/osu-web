@@ -18,7 +18,7 @@
 
 class @TooltipDefault
   constructor: ->
-    $(document).on 'mouseover', '[title]:not(iframe), .js-tooltip-time', @onMouseOver
+    $(document).on 'mouseover', '[title]:not(iframe)', @onMouseOver
     $(document).on 'mouseenter touchstart', '.u-ellipsis-overflow, .u-ellipsis-overflow-desktop', @autoAddTooltip
     $(document).on 'turbolinks:before-cache', @rollback
 
@@ -29,7 +29,7 @@ class @TooltipDefault
     title = el.getAttribute 'title'
     el.removeAttribute 'title'
 
-    return if _.size(title) == 0 && !el.classList.contains('js-tooltip-time')
+    return if _.size(title) == 0
 
     isTime = el.classList.contains('timeago') || el.classList.contains('js-tooltip-time')
 
