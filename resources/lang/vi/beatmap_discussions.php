@@ -46,13 +46,13 @@ return [
     'system' => [
         'resolved' => [
             'true' => 'Đã được giải quyết bởi :user',
-            'false' => 'Bị mở lại bởi :user',
+            'false' => 'Đã mở lại bởi :user',
         ],
     ],
 
     'user' => [
         'admin' => 'admin',
-        'bng' => 'nominator',
+        'bng' => 'người đề cử',
         'owner' => 'mapper',
         'qat' => 'qat',
     ],

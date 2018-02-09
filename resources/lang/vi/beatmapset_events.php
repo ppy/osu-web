@@ -20,22 +20,31 @@
 
 return [
     'event' => [
-        'approve' => 'Approved.',
-        'discussion_delete' => 'Moderator deleted discussion :discussion.',
-        'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
-        'discussion_post_restore' => 'Moderator restored post from discussion :discussion.',
-        'discussion_restore' => 'Moderator restored discussion :discussion.',
-        'disqualify' => 'Disqualified by :user. Reason: :text.',
-        'issue_reopen' => 'Resolved issue :discussion reopened.',
-        'issue_resolve' => 'Issue :discussion marked as resolved.',
-        'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
-        'kudosu_deny' => 'Discussion :discussion denied for kudosu.',
-        'kudosu_gain' => 'Discussion :discussion by :user obtained enough votes for kudosu.',
-        'kudosu_lost' => 'Discussion :discussion by :user lost votes and granted kudosu has been removed.',
-        'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
-        'nominate' => 'Nominated by :user.',
-        'nomination_reset' => 'New problem :discussion triggered a nomination reset.',
+        'approve' => 'Được Chấp Nhận.',
+        'discussion_delete' => 'Moderator đã xóa cuộc thảo luận :discussion.',
+        'discussion_post_delete' => 'Moderator đã xóa bài viết từ cuộc thảo luận :discussion.',
+        'discussion_post_restore' => 'Moderator đã phục hồi bài viết từ cuộc thảo luận :discussion.',
+        'discussion_restore' => 'Moderator đã phục hồi cuộc thảo luận :discussion.',
+        'disqualify' => 'Disqualified bởi :user. Reason: :text.',
+        'issue_reopen' => 'Vấn đề đã giải quyết :discussion được mở lại.',
+        'issue_resolve' => 'Vấn đề :discussion đã được giải quyết.',
+        'kudosu_allow' => 'Kudosu của cuộc thảo luận :discussion đã không còn bị từ chối nữa.',
+        'kudosu_deny' => 'Cuộc thảo luận :discussion đã bị từ chối kudosu.',
+        'kudosu_gain' => 'Cuộc thảo luận :discussion bởi :user đã nhận được đủ votes để có kudosu.',
+        'kudosu_lost' => 'Cuộc thảo luận :discussion bởi :user đã mất votes và kudosu đã nhận được bị loại bỏ.',
+        'kudosu_recalculate' => 'Kudosu của cuộc thảo luận :discussion đã được tính lại.',
+        'nominate' => 'Được đề cử (nominated) bởi :user.',
+        'nomination_reset' => 'Vấn đề mới :discussion đã khiến cho đề cử bị hoàn lại.',
         'qualify' => 'Qualified.',
-        'rank' => 'Ranked.',
+        'rank' => 'Đã được xếp hạng (Ranked).',
+    ],
+
+        'index' => [
+        'title' => 'Những Sự Kiện Của Beatmapset',
+    ],
+
+    'item' => [
+        'content' => 'Nội dung',
+        'type' => 'Loại',
     ],
 ];

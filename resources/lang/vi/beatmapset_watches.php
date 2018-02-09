@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
+            'to_0' => 'Bỏ theo dõi',
+            'to_1' => 'Theo dõi',
         ],
     ],
 
     'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'description' => 'Đây là những cuộc thảo luận beatmap mà bạn đang theo dõi. Bạn sẽ được thông báo khi bài viết mới được đăng hoặc những cập nhật.',
+        'title_compact' => 'danh sách theo dõi modding',
+        'title_main' => 'Danh Sách Theo Dõi Modding',
 
         'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
+            'empty' => 'Bạn chưa theo dõi cuộc thảo luận nào.',
+            'open_issues' => 'Vấn đề đang mở',
+            'state' => 'Trạng thái',
+            'title' => 'Tiêu đề',
         ],
     ],
 
     'mail' => [
-        'update' => 'New update for beatmap ":title"',
+        'update' => 'Có cập nhật mới cho beatmap ":title"',
     ],
 
     'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
+        'read' => 'Đã đọc',
+        'unread' => 'Chưa đọc',
     ],
 ];
