@@ -49,98 +49,12 @@ class Page
         return strtolower(str_replace(['-', '/', '_'], ' ', $path));
     }
 
-    public static function search($rawParams, $locale = null)
-    {
-        $locale ?? ($locale = config('app.fallback_locale'));
-        $params = static::searchParams($rawParams);
-        $matchParams = [];
-
-        if (!present($params['query'])) {
-            return [];
-        }
-
-        $langQuery = (new Query())
-            ->shouldMatch(1)
-            ->should(['constant_score' => [
-                'boost' => 1000,
-                'filter' => [
-                    'match' => [
-                        'locale' => $params['locale'] ?? App::getLocale(),
-                    ],
-                ],
-            ]])
-            ->should(['constant_score' => [
-                'filter' => [
-                    'match' => [
-                        'locale' => config('app.fallback_locale'),
-                    ],
-                ],
-            ]]);
-
-        $matchQuery = (new Query())
-            ->shouldMatch(1)
-            ->should(['match' => [
-                'tags' => [
-                    'query' => $params['query'],
-                    'boost' => 10,
-                ],
-            ]])
-            ->should(['match' => [
-                'title' => [
-                    'query' => $params['query'],
-                    'boost' => 10,
-                ],
-            ]])
-            ->should(['match' => [
-                'path_clean' => [
-                    'query' => $params['query'],
-                    'boost' => 9,
-                ],
-            ]])
-            ->should(['match' => [
-                'page_text' => $params['query'],
-            ]]);
-
-        $query = (new Query)->must($langQuery)->must($matchQuery);
-        $search = (new Search(config('osu.elasticsearch.index.wiki_pages')))
-            ->size($params['limit'])
-            ->page($params['page'])
-            ->query($query);
-
-        $response = $search->response();
-
-        $pages = [];
-
-        foreach ($response->hits() as $hit) {
-            $document = $hit['_source'];
-            $page = new static(null, null, $document);
-
-            $pages[] = $page;
-        }
-
-        return [
-            'data' => $pages,
-            'total' => $response->total(),
-            'params' => $params,
-        ];
-    }
-
     public static function searchIndexConfig($params = [])
     {
         return array_merge([
             'index' => config('osu.elasticsearch.index.wiki_pages'),
             'type' => 'wiki_page',
         ], $params);
-    }
-
-    public static function searchParams($params)
-    {
-        $params['query'] = presence($params['query'] ?? null);
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
-        $params['locale'] = $params['locale'] ?? null;
-
-        return $params;
     }
 
     public static function searchPath($path, $locale)

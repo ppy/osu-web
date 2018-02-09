@@ -35,7 +35,7 @@ class Search
         'user' => UserSearch::class,
         'beatmapset' => BeatmapsetSearch::class,
         'forum_post' => ForumSearch::class,
-        'wiki_page' => WikiPage::class,
+        'wiki_page' => WikiSearch::class,
     ];
 
     const DEFAULT_MODE = 'all';
