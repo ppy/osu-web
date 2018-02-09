@@ -93,6 +93,7 @@ return [
             'created_at' => 'thời gian tạo',
             'timeline' => 'mốc thời gian',
             'updated_at' => 'cập nhật gần đây',
+        ],
 
         'stats' => [
             'deleted' => 'Đã xóa',
@@ -254,4 +255,4 @@ return [
         'C' => 'C',
         'D' => 'D',
     ],
-],
+];
