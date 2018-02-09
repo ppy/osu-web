@@ -233,7 +233,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 className: "#{bn}__note #{bn}__note--nominators"
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'beatmaps.nominations.nominated_by',
-                    users: nominators.map (user) ->
+                    users: nominators.reverse().map (user) ->
                         osu.link laroute.route('users.show', user: user.id), user.username,
                           classNames: ['js-usercard']
                           props:
