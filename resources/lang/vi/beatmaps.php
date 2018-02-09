@@ -143,7 +143,6 @@ return [
         'title' => 'Trạng Thái Đề Cử',
         'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
     ],
-    
     /*TL note:
     Rank = xếp hạng
     Nominate = đề cử
@@ -151,7 +150,6 @@ return [
     Qualify = <giữ nguyên>
     Disqualified = <giữ nguyên>
     Approved = được chấp nhận*/
-
     'listing' => [
         'search' => [
             'prompt' => 'nhập từ khóa...',
