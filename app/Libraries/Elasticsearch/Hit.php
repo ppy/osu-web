@@ -50,6 +50,15 @@ class Hit implements \ArrayAccess
         return $this->raw;
     }
 
+    public function source($key = null)
+    {
+        if ($key === null) {
+            return $this->raw['_source'] ?? null;
+        }
+
+        return ($this->raw['_source'] ?? null)[$key] ?? null;
+    }
+
     //================
     // ArrayAccess
     //================

@@ -18,19 +18,18 @@
 
 @php
     // $entry should be of type App\Libraries\Elasticsearch\Hit
-    $source = $entry['_source'];
     $innerHits = $entry->innerHits('posts');
     $firstPost = $entry->innerHits('first_post');
-    $firstPostUrl = route('forum.topics.show', $source['topic_id']);
+    $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
 @endphp
 <div class="search-result__entry search-result__entry--threaded">
     <a class="search-entry" href="{{ $firstPostUrl }}">
         <h1 class="search-entry__row search-entry__row--title">
-            {{ $source['search_content'] }}
+            {{ $entry->source('search_content') }}
         </h1>
         <div class="search-entry__row search-entry__row--excerpt">
             @foreach ($firstPost as $post)
-                <span>{!! html_excerpt($post['_source']['search_content']) !!}</span>
+                <span>{!! html_excerpt($post->source('search_content')) !!}</span>
             @endforeach
         </div>
         <p class="search-entry__row search-entry__row--footer">
@@ -42,7 +41,7 @@
         @foreach ($innerHits as $innerHit)
             @php
                 $highlights = es_highlight($innerHit, 'search_content');
-                $postUrl = post_url($innerHit['_source']['topic_id'], $innerHit['_source']['post_id']);
+                $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
             @endphp
 
             <a class="search-entry search-entry--inner" href="{{ $postUrl }}">
