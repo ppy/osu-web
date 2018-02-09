@@ -49,6 +49,9 @@ BeatmapsetPage.ScoreboardTable = (props) ->
           if props.scoreboardType != 'friend' && osu.currentUserIsFriendsWith(score.user.id)
             rowClasses += " #{bn}__body-row--friend"
 
+          if score.user.id == currentUser.id
+            rowClasses += " #{bn}__body-row--self"
+
           tr
             className: rowClasses
             key: i,
