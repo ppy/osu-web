@@ -32,7 +32,6 @@
             @include('forum.topics._post', [
                 'post' => $post,
                 'options' => [
-                    'overlay' => true,
                     'signature' => $forum->enable_sigs,
                     'contentExtraClasses' => 'js-post-preview--body',
                 ],
