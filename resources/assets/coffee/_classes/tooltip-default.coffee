@@ -31,11 +31,12 @@ class @TooltipDefault
 
     return if _.size(title) == 0
 
-    isTime = el.classList.contains('timeago') || el.classList.contains('js-tooltip-time')
+    isDateTime = el.classList.contains('timeago') || el.classList.contains('js-tooltip-datetime')
+    isDate = el.classList.contains 'js-tooltip-date'
 
     $content =
-      if isTime
-        @timeagoTip el, title
+      if isDateTime || isDate
+        @timeagoTip el, title, dateOnly: isDate
       else
         $('<span>').text(title)
 
@@ -56,7 +57,7 @@ class @TooltipDefault
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
-    if isTime
+    if isDateTime || isDate
       classes += ' tooltip-default--time'
     if el.dataset.tooltipModifiers?
       classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
@@ -108,7 +109,7 @@ class @TooltipDefault
       el.setAttribute 'title', el.dataset.origTitle
 
 
-  timeagoTip: (el, title) =>
+  timeagoTip: (el, title, {dateOnly = false}) =>
     timeString = el.getAttribute('datetime') ? title ? el.textContent
 
     time = moment(timeString)
@@ -120,10 +121,15 @@ class @TooltipDefault
       .addClass 'tooltip-default__time'
       .text "#{time.format('LT')} #{@tzString(time)}"
 
-    $('<span>')
+    $span = $('<span>')
       .append $dateEl
-      .append ' '
-      .append $timeEl
+
+    if !dateOnly
+      $span
+        .append ' '
+        .append $timeEl
+
+    $span
 
 
   tzString: (time) ->

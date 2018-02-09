@@ -30,7 +30,7 @@ class BeatmapDiscussions.Event extends React.PureComponent
     div className: 'beatmapset-event',
       div className: "beatmapset-event__icon beatmapset-event__icon--#{_.kebabCase @props.event.type}"
       time
-        className: 'beatmapset-event__time js-tooltip-time'
+        className: 'beatmapset-event__time js-tooltip-datetime'
         dateTime: @props.event.created_at
         title: @props.event.created_at
         eventTime.format 'LT'
