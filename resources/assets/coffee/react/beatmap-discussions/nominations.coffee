@@ -101,7 +101,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       if event.type == 'disqualify' || event.type == 'nomination_reset'
         break
       else if event.type == 'nominate'
-        nominators.push(@props.users[event.user_id])
+        nominators.unshift @props.users[event.user_id]
 
     if nominationReset?
       nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
@@ -233,7 +233,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                 className: "#{bn}__note #{bn}__note--nominators"
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'beatmaps.nominations.nominated_by',
-                    users: nominators.reverse().map (user) ->
+                    users: nominators.map (user) ->
                         osu.link laroute.route('users.show', user: user.id), user.username,
                           classNames: ['js-usercard']
                           props:
