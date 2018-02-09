@@ -102,6 +102,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
               scores: @props.scores
               countries: @props.countries
               hitTypeMapping: @hitTypeMapping()
+              scoreboardType: @props.type
 
         else if !@props.hasScores
           p
