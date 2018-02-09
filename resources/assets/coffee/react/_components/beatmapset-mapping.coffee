@@ -54,4 +54,5 @@ class @BeatmapsetMapping extends React.PureComponent
       time
         className: "#{bn}__date js-tooltip-time"
         dateTime: @props.beatmapset[attribute]
+        title: @props.beatmapset[attribute]
         moment(@props.beatmapset[attribute]).format dateFormat
