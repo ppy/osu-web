@@ -165,7 +165,7 @@ class @BeatmapDiscussionHelper
           discussion = _.find discussions, id: discussionId
 
           _.assign ret, @stateFromDiscussion(discussion)
-        else if forceDiscussionId
+        else if options.forceDiscussionId
           ret.discussionId = discussionId
 
     ret
