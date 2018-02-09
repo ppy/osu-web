@@ -25,7 +25,7 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
   div className: 'profile-info',
     if user.id == currentUser.id
       a
-        href: "#{laroute.route 'account.edit'}#avatar-edit"
+        href: "#{laroute.route 'account.edit'}#avatar"
         title: osu.trans 'users.show.change_avatar'
         avatar
     else
