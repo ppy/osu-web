@@ -100,7 +100,9 @@
   &--mp-history {
     .at2x-simple("/images/headers/mp-history.jpg");
     background-position: center;
-    height: 125px;
+    @media @desktop {
+      height: 125px;
+    }
   }
 
   &--news {
@@ -240,13 +242,17 @@
 
   &__title {
     .default-text-shadow();
-    font-size: @font-size--header-title;
+    font-size: @font-size--header-title-mobile;
     // avoid clipping
     margin: -5px -5px 5px;
     padding: 5px;
     color: #fff;
 
     font-style: italic;
+
+    @media @desktop {
+      font-size: @font-size--header-title;
+    }
 
     &--small {
       font-size: @font-size--header-subtitle;

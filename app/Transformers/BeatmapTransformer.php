@@ -30,6 +30,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         'scoresBest',
         'failtimes',
         'beatmapset',
+        'max_combo',
     ];
 
     public function transform(Beatmap $beatmap = null)
@@ -108,5 +109,22 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapset(Beatmap $beatmap)
     {
         return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
+    }
+
+    public function includeMaxCombo(Beatmap $beatmap)
+    {
+        return $this->item($beatmap, function ($beatmap) {
+            $maxCombo = $beatmap->difficultyAttribs()
+                ->mode($beatmap->playmode)
+                ->noMods()
+                ->maxCombo()
+                ->first();
+
+            if ($maxCombo === null) {
+                return [];
+            }
+
+            return [$maxCombo->getAttribute('value')];
+        });
     }
 }

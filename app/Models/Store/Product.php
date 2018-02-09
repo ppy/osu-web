@@ -149,6 +149,11 @@ class Product extends Model
         return $query->where('enabled', true);
     }
 
+    public function scopeHasShipping($query)
+    {
+        return $query->whereNotNull('weight');
+    }
+
     public function productsInRange()
     {
         if (!($mappings = $this->typeMappings())) {

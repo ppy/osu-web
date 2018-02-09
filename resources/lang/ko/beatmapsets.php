@@ -101,10 +101,6 @@ return [
                 'first' => '순위권', // In the Lead
                 'own' => '내 최고 점수',
             ],
-            'stats' => [
-                'accuracy' => '정확도',
-                'score' => '점수',
-            ],
         ],
     ],
 ];

@@ -31,7 +31,7 @@ class @TooltipDefault
 
     return if _.size(title) == 0
 
-    isTime = el.classList.contains 'timeago'
+    isTime = el.classList.contains('timeago') || el.classList.contains('js-tooltip-time')
 
     $content =
       if isTime
@@ -51,12 +51,15 @@ class @TooltipDefault
       when 'top center' then 'bottom center'
       when 'left center' then 'right center'
       when 'right center' then 'left center'
+      when 'bottom center' then 'top center'
 
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
     if isTime
       classes += ' tooltip-default--time'
+    if el.dataset.tooltipModifiers?
+      classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
 
     options =
       overwrite: false
@@ -80,6 +83,7 @@ class @TooltipDefault
 
     $(el).qtip options, event
 
+
   autoAddTooltip: (e) =>
     # Automagically add qtips when text becomes truncated (and auto-removes
     # them when text becomes... un-truncated)
@@ -95,6 +99,7 @@ class @TooltipDefault
         $target.trigger('mouseover') # immediately trigger qtip magic
     else
       api?.disable()
+
 
   rollback: =>
     $('.qtip').remove()
@@ -113,9 +118,21 @@ class @TooltipDefault
       .text time.format('LL')
     $timeEl = $('<span>')
       .addClass 'tooltip-default__time'
-      .text time.format('LT')
+      .text "#{time.format('LT')} #{@tzString(time)}"
 
     $('<span>')
       .append $dateEl
       .append ' '
       .append $timeEl
+
+
+  tzString: (time) ->
+    offset = time.utcOffset()
+
+    offsetString =
+      if offset % 60 == 0
+        "#{if offset >= 0 then '+' else ''}#{offset / 60}"
+      else
+        time.format('Z')
+
+    "UTC#{offsetString}"

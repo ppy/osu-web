@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "29b56f3ba1dd4bfecee48344879f484f",
+    "content-hash": "87569f1f280af105c239512262a0f6a9",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -868,30 +868,33 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v2.3.2",
+            "version": "v6.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "c57db9da04f4c54c2ca69a52bc618d9120b96d4d"
+                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/c57db9da04f4c54c2ca69a52bc618d9120b96d4d",
-                "reference": "c57db9da04f4c54c2ca69a52bc618d9120b96d4d",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
+                "reference": "b8e3bc9d1fc54d6a18692df0b74956efe7fe241a",
                 "shasum": ""
             },
             "require": {
+                "ext-json": ">=1.3.7",
                 "guzzlehttp/ringphp": "~1.0",
-                "php": ">=5.4",
+                "php": "^7.0",
                 "psr/log": "~1.0"
             },
             "require-dev": {
                 "cpliakas/git-wrapper": "~1.0",
+                "doctrine/inflector": "^1.1",
                 "mockery/mockery": "0.9.4",
-                "phpunit/phpunit": "~4.7",
-                "sami/sami": "~3.2",
-                "symfony/yaml": "2.4.3 as 2.4.2",
-                "twig/twig": "1.*"
+                "phpstan/phpstan-shim": "0.8.3",
+                "phpunit/phpunit": "6.3.0",
+                "squizlabs/php_codesniffer": "3.0.2",
+                "symfony/finder": "^2.8",
+                "symfony/yaml": "^2.8"
             },
             "suggest": {
                 "ext-curl": "*",
@@ -918,7 +921,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2017-12-05T14:05:24+00:00"
+            "time": "2017-12-05T14:15:58+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -2713,7 +2716,7 @@
                 "slack"
             ],
             "support": {
-                "source": "https://github.com/nanaya/slack-php/tree/1.7.1"
+                "source": "https://github.com/nanaya/slack-php/tree/laravel-5.4"
             },
             "time": "2017-02-16T06:27:23+00:00"
         },
@@ -4353,50 +4356,6 @@
                 "sentry"
             ],
             "time": "2017-08-11T17:29:14+00:00"
-        },
-        {
-            "name": "shift31/laravel-elasticsearch",
-            "version": "2.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/shift31/laravel-elasticsearch.git",
-                "reference": "090aa2bfb76120ee12aa5dfb42b226d1507bcc00"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/shift31/laravel-elasticsearch/zipball/090aa2bfb76120ee12aa5dfb42b226d1507bcc00",
-                "reference": "090aa2bfb76120ee12aa5dfb42b226d1507bcc00",
-                "shasum": ""
-            },
-            "require": {
-                "elasticsearch/elasticsearch": "~2.0",
-                "laravel/framework": "~4|~5",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "squizlabs/php_codesniffer": "^2.8"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Shift31\\LaravelElasticsearch": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Shift 31 Consulting",
-                    "email": "code@shift31.com"
-                }
-            ],
-            "description": "A Laravel Service Provider for the Elasticsearch API client",
-            "time": "2017-02-28T09:30:52+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

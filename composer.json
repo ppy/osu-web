@@ -17,7 +17,8 @@
   "require": {
     "chaseconey/laravel-datadog-helper": "*",
     "doctrine/dbal": "*",
-    "elasticsearch/elasticsearch": "~2.0",
+    "egulias/email-validator": "*",
+    "elasticsearch/elasticsearch": "~6.0",
     "ezyang/htmlpurifier": "*",
     "graham-campbell/github": "*",
     "graham-campbell/markdown": "*",
@@ -36,7 +37,6 @@
     "paypal/rest-api-sdk-php": "*",
     "predis/predis": "~1.0",
     "sentry/sentry-laravel": "*",
-    "shift31/laravel-elasticsearch": "~2.0",
     "symfony/yaml": "*",
     "webuni/commonmark-table-extension": "*",
     "xsolla/xsolla-sdk-php": "*"

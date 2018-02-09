@@ -238,7 +238,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
 
   parseTimestamp: (message) =>
-    timestampRe = message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
+    timestampRe = message.match /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/
 
     if timestampRe?
       timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
@@ -252,10 +252,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     type = e.currentTarget.dataset.type
 
-    userCanResetNominations = currentUser.isAdmin || currentUser.isQAT || currentUser.isBNG
+    userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
 
     if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
-      return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
+      return unless confirm(osu.trans('beatmaps.nominations.reset_confirm'))
 
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))

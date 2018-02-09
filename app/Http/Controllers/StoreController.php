@@ -78,17 +78,19 @@ class StoreController extends Controller
 
     public function getInvoice($id = null)
     {
-        $order = Store\Order::where('status', '<>', 'incart')->findOrFail($id);
+        $order = Store\Order::where('status', '<>', 'incart')
+            ->with('items.product')
+            ->findOrFail($id);
+
         if (Auth::user()->user_id !== $order->user_id && !Auth::user()->isAdmin()) {
             abort(403);
         }
 
         $sentViaAddress = Store\Address::sender();
+        $forShipping = Auth::user()->isAdmin() && get_bool(Request::input('for_shipping'));
+        $copies = clamp(get_int(request('copies')), 1, config('store.invoice.max_copies'));
 
-        return view('store.invoice')
-            ->with('order', $order)
-            ->with('copies', Request::input('copies', 1))
-            ->with('sentViaAddress', $sentViaAddress);
+        return view('store.invoice', compact('order', 'forShipping', 'copies', 'sentViaAddress'));
     }
 
     public function missingMethod($parameters = [])
