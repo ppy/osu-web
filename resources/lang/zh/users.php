@@ -92,6 +92,7 @@ return [
         'page_description' => 'osu! - 你想知道的关于 :username 的一切!',
         'plays_with' => '惯用 :devices',
         'title' => ':username 的个人资料',
+        'change_avatar' => '更换你的头像！',
 
         'edit' => [
             'cover' => [
@@ -231,12 +232,7 @@ return [
             'level' => '等级 :level',
             'maximum_combo' => '最大连击',
             'play_count' => '游戏次数',
-            'play_time' => [
-                'label' => '游戏时间',
-                'hours' => '小时',
-                'minutes' => '分钟',
-                'seconds' => '秒',
-            ],
+            'play_time' => '游戏时间',
             'ranked_score' => 'Ranked 谱面总分',
             'replays_watched_by_others' => '回放被观看次数',
             'score_ranks' => '得分等级',

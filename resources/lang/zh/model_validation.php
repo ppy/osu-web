@@ -24,7 +24,20 @@ return [
     'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
     'wrong_confirmation' => '确认信息不匹配。',
 
-    'beatmap_discussion' => [
+    'beatmap_discussion_post' => [
+        'discussion_locked' => '讨论被锁定。',
+        'first_post' => '无法删除第一个讨论。',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '指定了时间戳但是谱面不存在。',
+        'beatmapset_no_hype' => "无法推荐谱面。",
+        'hype_requires_null_beatmap' => '只能在 常规（全难度） 中推荐。',
+        'invalid_beatmap_id' => '指定的难度无效。',
+        'invalid_beatmapset_id' => '指定的谱面无效。',
+        'locked' => '讨论被锁定。',
+        'mapper_note_wrong_user' => '只有谱面作者可以钉上便签。',
+
         'hype' => [
             'guest' => '登录后才能推荐',
             'hyped' => '你已经推荐了这张谱面',
@@ -32,10 +45,11 @@ return [
             'not_hypeable' => '这张谱面无法推荐',
             'owner' => '不能推荐你自己的谱面',
         ],
-    ],
 
-    'beatmap_discussion_post' => [
-        'first_post' => '无法删除第一个提交。',
+        'timestamp' => [
+            'exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
+            'negative' => "Timestamp can't be negative.",
+        ],
     ],
 
     'forum' => [
