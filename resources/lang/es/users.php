@@ -236,6 +236,6 @@ return [
         'saved' => '¡Usuario creado!',
     ],
     'verify' => [
-        'title' => 'Verificación de la Cuenta',
+        'title' => 'Verificación de la cuenta',
     ],
 ];
