@@ -32,7 +32,7 @@ return [
         'kudosu_lost' => 'La discusión :discussion por :user ha perdido votos y su kudosu ganado ha sido removido.',
         'kudosu_recalculate' => 'La discusión :discussion se le ha recalculado los kudosu ganados.',
         'nominate' => 'Nominado por :user.',
-        'nomination_reset' => 'Un nuevo problema :discussion ha desencadenado un reinicio de nominación.',
+        'nomination_reset' => 'Un nuevo problema :discussion ha reiniciado las nominaciones.',
         'qualify' => 'Calificado.',
         'rank' => 'Rankeado.',
     ],
