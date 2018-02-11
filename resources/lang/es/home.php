@@ -22,7 +22,7 @@ return [
     'landing' => [
         'download' => 'Descargar ahora',
         'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> partidas',
-        'peak' => 'Elige, :count usuarios en línea',
+        'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
 
         'slogan' => [
@@ -146,6 +146,6 @@ return [
             'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como la <strong>descarga dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic para más información!',
-        'download-starting' => 'Oh, y no te preocupes - la descarga ya comenzó por ti ;)",
+        'download-starting' => 'Oh, y no te preocupes - la descarga ya comenzó por ti ;)',
     ],
 ];
