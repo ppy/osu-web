@@ -58,7 +58,7 @@ return [
                     'not_lazer' => 'Solo puedes hablar en #lazer en este momento.',
                 ],
 
-                'not_allowed' => 'No se puede enviar un mensaje mientras se esté baneado/restringido/silenciado.',
+                'not_allowed' => 'No se puede enviar un mensaje mientras estés baneado/restringido/silenciado.',
             ],
         ],
     ],
@@ -77,6 +77,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'No puedes editar una publicación eliminada.',
                 'locked' => 'La edición del post está bloqueada.',
                 'no_forum_access' => 'Necesitas acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador del post puede editarlo.',
