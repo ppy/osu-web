@@ -34,7 +34,7 @@ return [
         'beatmapset_no_hype' => 'El beatmap no puede ser hypeado.',
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
-        'invalid_beatmapset_id' => 'Beatmap especificada inválida',
+        'invalid_beatmapset_id' => 'Beatmap especificado inválido',
         'locked' => 'La discusión ha sido bloqueada.',
         'mapper_note_wrong_user' => 'Sólo el dueño del beatmap puede publicar notas del mapper',
         'hype' => [
