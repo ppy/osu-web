@@ -22,7 +22,7 @@ return [
     ],
     'notification_type' => 'notification_type no es un :type válido',
     'order' => [
-        'invalid' => 'La orden no es válida',
+        'invalid' => 'La órden no es válida',
         'items' => [
             'virtual_only' => 'El pago con `:provider` no es válido para productos físicos',
         ],
@@ -32,7 +32,7 @@ return [
         ],
     ],
     'param' => [
-        'invalid' => 'El parámetro `:param` no coinciden',
+        'invalid' => 'El parámetro `:param` no coincide',
     ],
     'paypal' => [
         'not_echeck' => 'El pago pendiente no es un chequeo electrónico. (:actual)',

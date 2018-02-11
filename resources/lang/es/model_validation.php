@@ -30,7 +30,7 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'La estampa de tiempo ha sido especificada pero el beatmap no se encontró.',
+        'beatmap_missing' => 'La marca de tiempo ha sido especificada pero el beatmap no se encontró.',
         'beatmapset_no_hype' => 'El beatmap no puede ser hypeado.',
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
@@ -45,8 +45,8 @@ return [
             'owner' => 'No puedes hypear tu propio mapa.',
         ],
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'La estampa de tiempo especificada está más alla de la duración del mapa.',
-            'negative' => 'La estampa de tiempo no puede ser negativa.',
+            'exceeds_beatmapset_length' => 'La marca de tiempo especificada está más alla de la duración del mapa.',
+            'negative' => 'La marca de tiempo no puede ser negativa.',
         ],
     ],
 

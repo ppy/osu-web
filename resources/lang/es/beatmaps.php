@@ -40,7 +40,7 @@ return [
         'edited' => 'Última edición por :editor :update_time',
         'kudosu_denied' => 'Negado de obtener kudosu.',
         'message_placeholder' => 'Escribe aquí para publicar',
-        'message_placeholder_deleted_beatmap' => 'Esta dificultad ha sido eliminada así que ya no se puede discutirla más.',
+        'message_placeholder_deleted_beatmap' => 'Esta dificultad ha sido eliminada así que ya no se puede discutir.',
         'message_type_select' => 'Seleccionar Tipo de Comentario',
         'reply_notice' => 'Presiona Enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
@@ -60,8 +60,8 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Este post irá a la discusión general de beatmaps. Para moddear este beatmap, empieza un mensaje con una estampa de tiempo (ejemplo: 00:12:345).',
-            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (una publicación por estampa de tiempo).',
+            'in_general' => 'Este post irá a la discusión general de beatmaps. Para moddear este beatmap, empieza un mensaje con una marca de tiempo (ejemplo: 00:12:345).',
+            'in_timeline' => 'Para moddear multiples lineas de tiempo, escríbelas múltiples veces (una publicación por marca de tiempo).',
         ],
 
         'message_type' => [
@@ -80,7 +80,7 @@ return [
         ],
 
         'new' => [
-            'timestamp' => 'Estampa de tiempo',
+            'timestamp' => 'marca de tiempo',
             'timestamp_missing' => '¡Usa Ctrl + C en el modo de edición y pega en tu mensaje para añadir una marca de tiempo!',
             'title' => 'Nueva Discusión',
         ],
@@ -99,7 +99,7 @@ return [
         'stats' => [
             'deleted' => 'Eliminado',
             'mapper_notes' => 'Notas',
-            'mine' => 'Mi autoría',
+            'mine' => 'Mi autoría', //This will display in discussion for the posts you made in that discussion. Using "mío" or "míos" will not work in this case
             'pending' => 'Pendiente',
             'praises' => 'Elogios',
             'resolved' => 'Resuelto',
@@ -107,11 +107,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => '¡Este beatmap fue aprobado en :date!',
+            'approved' => '¡Este beatmap fue aprobado el :date!',
             'graveyard' => 'Este mapa no ha sido actualizado desde el :date y pudo haber sido abandonado por el creador...',
             'loved' => '¡Este beatmap fue marcado como amado el :date!',
-            'ranked' => '¡Este beatmap ha sido rankeado el :date!',
-            'wip' => 'Nota: Este beatmap ha sido marcado como trabajo en proceso por el creador.',
+            'ranked' => '¡Este beatmap fue rankeado el :date!',
+            'wip' => 'Nota: Este beatmap fue marcado como trabajo en proceso por el creador.',
         ],
 
     ],
@@ -121,7 +121,7 @@ return [
         'button_done' => '¡Hypeado!',
         'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacerlo.',
         'explanation' => '¡Hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
-        'explanation_guest' => 'Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
+        'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
         'new_time' => 'Obtendrás otro hype :new_time.',
         'remaining' => 'Te quedan :remaining hypes.',
         'required_text' => 'Hype: :current/:required',
@@ -141,8 +141,8 @@ return [
         'qualified' => 'Se estima que será rankeado :date, si no se encuentra ningún problema.',
         'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema',
         'required_text' => 'Nominaciones: :current/:required',
-        'reset_at' => 'Nominations reset :time_ago by new problem :discussion.',
-        'reset_confirm' => 'Are you sure? Posting a new problem will reset nominations.',
+        'reset_at' => 'Las nominaciones se reiniciaron :time_ago por el nuevo problema :discussion.',
+        'reset_confirm' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
         'title' => 'Estado de Nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben ser resueltos primero.',
     ],

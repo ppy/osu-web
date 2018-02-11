@@ -141,11 +141,11 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
-                'available_info' => 'Los kudosu pueden ser intercambiado por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.',
+                'available_info' => 'Los kudosu pueden ser intercambiados por estrellas kudosu, que ayudarán a tu beatmap a obtener más atención. Este es el número de kudosu que no has intercambiado aún.',
                 'recent_entries' => 'Historial de Kudosu Reciente',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu Total Obtenido',
-                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación del beatmap. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
+                'total_info' => 'Basado en qué tanto ha colaborado el usuario a la moderación de beatmaps. Mira <a href="'.osu_url('user.kudosu').'">esta página</a> para más información.',
                 'entry' => [
                     'amount' => ':amount kudosu',
                     'empty' => '¡Este usuario no ha recibido ningún kudosu!',
