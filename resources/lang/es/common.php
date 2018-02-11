@@ -27,7 +27,7 @@ return [
         'two_words_connector' => ' y ',
         'last_word_connector' => ' y ',
     ],
-    
+
     'buttons' => [
         'cancel' => 'Cancelar',
         'delete' => 'Eliminar',
@@ -52,14 +52,14 @@ return [
         'second_short_unit' => 'seg|segs',
         'years' => ':count año|:count años',
     ],
-    
+
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
         ],
     ],
-    
+
     'device' => [
         'keyboard' => 'Teclado',
         'mouse' => 'Ratón',

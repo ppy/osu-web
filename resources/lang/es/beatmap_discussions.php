@@ -30,33 +30,33 @@ return [
     'events' => [
         'empty' => 'Aún... no ha ocurrido nada.',
     ],
-    
+
     'index' => [
         'deleted_beatmap' => 'eliminado',
         'title' => 'Discusiones del beatmap',
-        
+
         'form' => [
             'deleted' => 'Incluir discusiones eliminadas',
-            
+
             'user' => [
                 'label' => 'Usuario',
                 'overview' => 'Actividades generales',
             ],
         ],
     ],
-    
+
     'item' => [
         'created_at' => 'Fecha de posting',
         'deleted_at' => 'Fecha de eliminación',
         'message_type' => 'Tipo',
         'permalink' => 'Enlace permanente',
     ],
-    
+
     'nearby_posts' => [
         'confirm' => 'Ninguno de estos posts se relaciona con mi caso',
         'notice' => 'Ya hay posts cerca de :timestamp (:existing_timestamps). Por favor revísalos antes de publicar.',
     ],
-    
+
     'reply' => [
         'open' => [
             'guest' => 'Inicia sesión para responder',
@@ -70,7 +70,7 @@ return [
             'false' => 'Reabierto por :user',
         ],
     ],
-    
+
     'user' => [
         'admin' => 'admin',
         'bng' => 'nominador',

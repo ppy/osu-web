@@ -81,7 +81,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "¡vamos a<br>empezar!",
+        'tagline' => '¡vamos a<br>empezar!',
         'action' => 'Descargar osu!',
         'os' => [
             'windows' => 'para Windows',
@@ -109,7 +109,7 @@ return [
         ],
         'video-guide' => 'video guía',
     ],
-    
+
     'user' => [
         'title' => 'novedades',
         'news' => [

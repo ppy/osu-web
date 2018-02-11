@@ -95,7 +95,7 @@ return [
             'timeline' => 'línea de tiempo',
             'updated_at' => 'última actualización',
         ],
-        
+
         'stats' => [
             'deleted' => 'Eliminado',
             'mapper_notes' => 'Notas',
@@ -105,30 +105,30 @@ return [
             'resolved' => 'Resuelto',
             'total' => 'Todo',
         ],
-        
+
         'status-messages' => [
             'approved' => '¡Este beatmap fue aprobado en :date!',
-            'graveyard' => "Este mapa no ha sido actualizado desde el :date y pudo haber sido abandonado por el creador...",
+            'graveyard' => 'Este mapa no ha sido actualizado desde el :date y pudo haber sido abandonado por el creador...',
             'loved' => '¡Este beatmap fue marcado como amado el :date!',
             'ranked' => '¡Este beatmap ha sido rankeado el :date!',
             'wip' => 'Nota: Este beatmap ha sido marcado como trabajo en proceso por el creador.',
         ],
-        
+
     ],
 
    'hype' => [
         'button' => '¡Hypear este beatmap!',
         'button_done' => '¡Hypeado!',
-        'confirm' => "¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacerlo.",
+        'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacerlo.',
         'explanation' => '¡Hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
         'explanation_guest' => 'Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
-        'new_time' => "Obtendrás otro hype :new_time.",
+        'new_time' => 'Obtendrás otro hype :new_time.',
         'remaining' => 'Te quedan :remaining hypes.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Tren del hype',
         'title' => 'Hype',
     ],
-    
+
     'nominations' => [
         'disqualification_prompt' => '¿Motivo de descalificación?',
         'disqualified_at' => 'descalificado :time_ago (:reason).',

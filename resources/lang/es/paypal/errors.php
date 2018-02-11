@@ -19,5 +19,5 @@
 return [
     'instrument_declined' => 'El método de pago seleccionado fue rechazado por Paypal.',
     'invalid_resource_id' => 'La información de pago no fue encontrada.',
-    'unknown' => "El pago fue rechazado, pero no sabemos por qué.",
+    'unknown' => 'El pago fue rechazado, pero no sabemos por qué.',
 ];

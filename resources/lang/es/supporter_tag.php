@@ -20,6 +20,6 @@ return [
     'months' => 'meses',
     'user_search' => [
         'searching' => 'buscando...',
-        'not_found' => "Este usuario no existe",
+        'not_found' => 'Este usuario no existe',
     ],
 ];

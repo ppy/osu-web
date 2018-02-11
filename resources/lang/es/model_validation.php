@@ -28,10 +28,10 @@ return [
         'discussion_locked' => 'La discusión ha sido bloqueada.',
         'first_post' => 'No puedes eliminar la primera publicación.',
     ],
-    
+
     'beatmapset_discussion' => [
         'beatmap_missing' => 'La estampa de tiempo ha sido especificada pero el beatmap no se encontró.',
-        'beatmapset_no_hype' => "El beatmap no puede ser hypeado.",
+        'beatmapset_no_hype' => 'El beatmap no puede ser hypeado.',
         'hype_requires_null_beatmap' => 'El hype debe ser realizado en la sección de General (todas las dificultades).',
         'invalid_beatmap_id' => 'Dificultad especificada inválida.',
         'invalid_beatmapset_id' => 'Beatmap especificada inválida',
@@ -46,7 +46,7 @@ return [
         ],
         'timestamp' => [
             'exceeds_beatmapset_length' => 'La estampa de tiempo especificada está más alla de la duración del mapa.',
-            'negative' => "La estampa de tiempo no puede ser negativa.",
+            'negative' => 'La estampa de tiempo no puede ser negativa.',
         ],
     ],
 
@@ -59,7 +59,7 @@ return [
         'poll_vote' => [
             'invalid' => 'Opción inválida.',
         ],
-        
+
         'post' => [
             'beatmapset_post_no_delete' => 'Eliminar el post de los metadatos del mapa no está permitido.',
             'beatmapset_post_no_edit' => 'Editar el post de los metadatos del mapa no está permitido.',

@@ -163,7 +163,7 @@ return [
         'edit_title' => [
             'start' => 'Editar título',
         ],
-        
+
         'index' => [
             'views' => 'vistas',
             'replies' => 'respuestas',
