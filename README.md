@@ -8,7 +8,7 @@ The future face of osu!.
 Requirements
 ------------
 
-- A PHP 7.1+ (or equivalent) environment
+- A PHP 7.2+ (or equivalent) environment
 - MySQL 5.7+
 
 For full support, we also recommend
@@ -28,7 +28,7 @@ There are a few different options to get started:
 - Use Docker:
   - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/), then run `docker-compose up` in the main directory.
   - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
-  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers: 
+  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers:
   ```
   bash
   _UID=$(id -u) _GID=$(id -g) docker-compose up
