@@ -16,6 +16,7 @@ services:
       DB_HOST: osuweb-mysql
       CACHE_DRIVER: redis
       REDIS_HOST: osuweb-redis
+      ES_HOST: osuweb-es:9200
   nginx:
     image: nginx:latest
     container_name: osuweb-nginx
@@ -67,6 +68,14 @@ services:
   redis:
     image: redis:latest
     container_name: osuweb-redis
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.1
+    container_name: osuweb-es
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
 
 volumes:
   database:
+  elasticsearch:
