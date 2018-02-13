@@ -19,28 +19,28 @@
     @php
         $users = $search->search('user');
     @endphp
-    @if (count($users['data']) > 0)
+    @if (count($users->records()) > 0)
         <div class="nav-search-result__results-container">
             <div class="nav-search-result__results nav-search-result__results--horizontal">
                 <div class="nav-search-result__title">
                     {{ trans('home.search.user.title') }}
                 </div>
 
-                @foreach ($users['data'] as $entry)
+                @foreach ($users->records() as $entry)
                     <div class="nav-search-result__result">
                         @include('home._search_user_quick', compact('entry'))
                     </div>
                 @endforeach
             </div>
 
-            @if (count($users['data']) < $users['total'])
+            @if (count($users->records()) < $users->total())
                 <a
                     href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'user']) }}"
                     class="nav-search-result__more"
                 >
                     {!! trans('home.search.user.more', [
                         'count' =>
-                            '<em class="nav-search-result__count">'.($users['total'] - count($users['data'])).'</em>'
+                            '<em class="nav-search-result__count">'.($users->total() - count($users->records())).'</em>'
                     ]) !!}
                 </a>
             @endif
@@ -50,14 +50,14 @@
     @php
         $beatmapsets = $search->search('beatmapset');
     @endphp
-    @if (count($beatmapsets['data']) > 0)
+    @if (count($beatmapsets->records()) > 0)
         <div class="nav-search-result__results-container">
             <div class="nav-search-result__results">
                 <div class="nav-search-result__title">
                     {{ trans('home.search.beatmapset.title') }}
                 </div>
 
-                @foreach ($beatmapsets['data'] as $beatmapset)
+                @foreach ($beatmapsets->records() as $beatmapset)
                     <div class="nav-search-result__result">
                         @include('home._nav_search_entry', [
                             'url' => route('beatmapsets.show', $beatmapset->getKey()),
@@ -68,14 +68,14 @@
                 @endforeach
             </div>
 
-            @if (count($beatmapsets['data']) < $beatmapsets['total'])
+            @if (count($beatmapsets->records()) < $beatmapsets->total())
                 <a
                     href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'beatmapset']) }}"
                     class="nav-search-result__more"
                 >
                     {!! trans('home.search.beatmapset.more', [
                         'count' =>
-                            '<em class="nav-search-result__count">'.($beatmapsets['total'] - count($beatmapsets['data'])).'</em>'
+                            '<em class="nav-search-result__count">'.($beatmapsets->total() - count($beatmapsets->records())).'</em>'
                     ]) !!}
                 </a>
             @endif

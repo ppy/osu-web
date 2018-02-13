@@ -24,15 +24,14 @@
                 </h2>
             @endif
 
-            {{-- `empty(collect())` is false :D --}}
-            @if (count($result['data']) === 0)
+            @if ($result->total() === 0)
                 <div class="search-result__row search-result__row--notice">
                     @lang('home.search.empty_result')
                 </div>
             @else
                 <div class="search-result__row search-result__row--entries-container">
                     <div class="search-result__entries">
-                        @foreach ($result['data'] as $entry)
+                        @foreach ($result->data() as $entry)
                             <div class="search-result__entry">
                                 @include("home._search_{$mode}", compact('entry'))
                             </div>
@@ -55,7 +54,7 @@
                         $pagination = $search->paginate($mode)->appends($search->urlParams());
                     @endphp
 
-                    @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))
+                    @if (!$pagination->hasMorePages() && ($result->overLimit()))
                         <div class="search-result__row search-result__row--notice">
                             {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
                         </div>

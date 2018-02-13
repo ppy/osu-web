@@ -44,7 +44,7 @@ class BeatmapsetsController extends Controller
         $languages = Language::listing();
         $genres = Genre::listing();
         $beatmaps = json_collection(
-            Beatmapset::search($this->searchParams())['data'],
+            Beatmapset::search($this->searchParams())->records(),
             new BeatmapsetTransformer,
             'beatmaps'
         );
@@ -136,7 +136,7 @@ class BeatmapsetsController extends Controller
         $user = Auth::user();
 
         $params = $this->searchParams();
-        $beatmaps = Beatmapset::search($params)['data'];
+        $beatmaps = Beatmapset::search($params)->records();
 
         return json_collection(
             $beatmaps,

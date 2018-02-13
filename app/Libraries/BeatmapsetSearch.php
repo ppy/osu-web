@@ -34,7 +34,7 @@ class BeatmapsetSearch extends RecordSearch
         return $this->response()->records()->with('beatmaps')->get();
     }
 
-    public static function search(array $params = [])
+    public static function search(array $params = []) : self
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
