@@ -37,7 +37,7 @@ class RecordSearch extends Search implements \ArrayAccess
         return $this->records();
     }
 
-    public function over_limit()
+    public function overLimit()
     {
         return $this->response()->total() > static::MAX_RESULTS;
     }
@@ -78,7 +78,7 @@ class RecordSearch extends Search implements \ArrayAccess
         }
 
         // reroute to method
-        return (new ReflectionObject($this))->getMethod($key)->invoke($this);
+        return (new ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
     }
 
     public function offsetSet($key, $value)
