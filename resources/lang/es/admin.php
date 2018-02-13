@@ -21,7 +21,14 @@
 return [
 
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Regenerar',
+            'regenerating' => 'Regenerando...',
+            'remove' => 'Eliminar',
+            'removing' => 'Eliminando...',
+        ],
         'show' => [
+            'covers' => 'Administrar Portadas de los Beatmap',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activar',
@@ -79,6 +86,13 @@ return [
             'index' => [
                 'title' => 'Listado de Pedidos',
             ],
+        ],
+    ],
+    
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Este usuario está actualmente restringido.',
+            'message' => '(solo los administradores pueden ver esto)',
         ],
     ],
 
