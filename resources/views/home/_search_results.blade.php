@@ -51,7 +51,7 @@
 
                 @if ($search->mode === $mode)
                     @php
-                        $pagination = $search->paginate($mode)->appends($search->urlParams());
+                        $pagination = $result->getPaginator(['path' => route('search')])->appends($search->urlParams());
                     @endphp
 
                     @if (!$pagination->hasMorePages() && ($result->overLimit()))

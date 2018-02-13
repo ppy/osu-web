@@ -75,11 +75,6 @@ class Search
         return mb_strlen(trim($this->params['query'] ?? null)) >= config('osu.search.minimum_length');
     }
 
-    public function paginate($mode)
-    {
-        return $this->search($mode)->getPaginator(['path' => route('search')]);
-    }
-
     public function search($mode)
     {
         $class = static::MODES[$mode];
