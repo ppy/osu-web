@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => 'Marcar como favorito',
             'unfavourite' => 'Desmarcar como favorito',
+            'favourited_count' => '+ ¡1 otro!|+ ¡:count otros!',
         ],
         'stats' => [
             'cs' => 'Tamaño de Círculo',
@@ -80,6 +81,7 @@ return [
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
+            'miss_count' => ':count fallos',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
             'title' => 'Puntuaciones',
