@@ -23,8 +23,9 @@ namespace App\Libraries\Elasticsearch;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class Search implements Queryable
+abstract class Search implements Queryable
 {
     use HasSearch;
 
@@ -43,9 +44,25 @@ class Search implements Queryable
         $this->options = $options;
     }
 
+    // for paginator
+    abstract public function data();
+
     public function getError()
     {
         return $this->error;
+    }
+
+    public function getPaginator(array $options = [])
+    {
+        $page = $this->getPageParams();
+
+        return new LengthAwarePaginator(
+            $this->data(),
+            $this->total(),
+            $page['limit'],
+            $page['page'],
+            $options
+        );
     }
 
     /**

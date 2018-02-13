@@ -24,7 +24,6 @@ use App\Models\Beatmapset;
 use App\Models\User;
 use App\Models\Wiki\Page as WikiPage;
 use Datadog;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class Search
 {
@@ -78,13 +77,7 @@ class Search
 
     public function paginate($mode)
     {
-        return new LengthAwarePaginator(
-            $this->search($mode)['data'],
-            $this->search($mode)['total'],
-            $this->search($mode)['params']['limit'],
-            $this->search($mode)['params']['page'],
-            ['path' => route('search')]
-        );
+        return $this->search($mode)->getPaginator(['path' => route('search')]);
     }
 
     public function search($mode)
