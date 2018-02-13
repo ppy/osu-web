@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -u
 set -e
@@ -32,7 +32,7 @@ fi
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
 
-if [ "${APP_DEBUG:-false}" == "false" ]
+if [ ! "${APP_DEBUG:-false}" = "true" ]
 then
   php artisan config:cache
   php artisan route:cache
