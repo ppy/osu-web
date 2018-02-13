@@ -60,7 +60,6 @@ class BeatmapsetSearch extends RecordSearch
         $params['extra'] = explode('.', $params['extra'] ?? null);
         $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
         $params['page'] = max(1, get_int($params['page'] ?? 1));
-        $params['offset'] = ($params['page'] - 1) * $params['limit'];
 
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
@@ -216,7 +215,7 @@ class BeatmapsetSearch extends RecordSearch
 
         return (new static(Beatmapset::esIndexName(), Beatmapset::class))
             ->size($params['limit'])
-            ->from($params['offset'])
+            ->page($params['page'])
             ->sort(static::searchSortParamsES($params))
             ->source('_id')
             ->query($query);
