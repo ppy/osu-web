@@ -161,6 +161,7 @@ return [
         'general' => [
             '_' => 'General',
             'home' => 'Inicio',
+            'changelog-index' => 'Lista de Cambios',
             'beatmaps' => 'Lista de Beatmaps',
             'download' => 'Descarga osu!',
             'wiki' => 'Wiki',
