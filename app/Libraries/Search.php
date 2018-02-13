@@ -92,7 +92,9 @@ class Search
         if (!array_key_exists($key, $this->cache)) {
             $startTime = microtime(true);
 
-            $this->cache[$key] = $class::search($this->params);
+            $this->cache[$key] = $class::search($this->params)
+                ->paginate($this->params['limit'] ?? null, null, ['path' => route('search')])
+                ->appends($this->urlParams());
 
             if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;

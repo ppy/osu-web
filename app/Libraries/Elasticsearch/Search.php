@@ -55,6 +55,10 @@ abstract class Search implements Queryable
     public function getPaginator(array $options = [])
     {
         $page = $this->getPageParams();
+        if (!isset($page['page'])) {
+            // no laravel paginator if offset-only paging is used
+            return;
+        }
 
         return new LengthAwarePaginator(
             $this->data(),
@@ -63,6 +67,18 @@ abstract class Search implements Queryable
             $page['page'],
             $options
         );
+    }
+
+    /**
+     * Not the same as paginate on laravel's query builder; this one can actually pass options to
+     * the paginator.
+     */
+    public function paginate(int $pageSize = null, int $page = null, array $options = [])
+    {
+        // TODO: default should be based to search type.
+        $this->size($pageSize ?? 8)->page($page ?? LengthAwarePaginator::resolveCurrentPage());
+
+        return $this->getPaginator($options);
     }
 
     /**
