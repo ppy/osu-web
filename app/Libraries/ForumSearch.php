@@ -29,7 +29,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
 
-class ForumSearch extends Search
+class ForumSearch extends Search implements \ArrayAccess
 {
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
@@ -139,10 +139,49 @@ class ForumSearch extends Search
         $results = $search->response()->recordType(Topic::class)->idField('topic_id');
         $pagination = $search->getPageParams();
 
-        return [
-            'data' => $results,
-            'total' => min($results->total(), static::MAX_RESULTS),
-            'params' => ['limit' => $pagination['limit'], 'page' => $pagination['page']],
-        ];
+        return $search;
+    }
+
+    public function data()
+    {
+        return $this->response();
+    }
+
+    public function total()
+    {
+        return min($this->response()->total(), static::MAX_RESULTS);
+    }
+
+    public function params()
+    {
+        return $this->getPageParams();
+    }
+    //================
+    // ArrayAccess
+    //================
+
+    public function offsetExists($key)
+    {
+        return in_array($key, ['data', 'total', 'params'], true);
+    }
+
+    public function offsetGet($key)
+    {
+        if ($this->offsetExists($key) === false) {
+            return null;
+        }
+
+        // reroute to method
+        return (new \ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
+    }
+
+    public function offsetSet($key, $value)
+    {
+        throw new \BadMethodCallException('not supported');
+    }
+
+    public function offsetUnset($key)
+    {
+        throw new \BadMethodCallException('not supported');
     }
 }
