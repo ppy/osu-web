@@ -88,7 +88,7 @@ return [
             ],
         ],
     ],
-    
+
     'users' => [
         'restricted_banner' => [
             'title' => 'Este usuario está actualmente restringido.',
