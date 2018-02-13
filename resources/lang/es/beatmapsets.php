@@ -83,11 +83,15 @@ return [
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
             'title' => 'Puntuaciones',
-
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Precisión',
-                'player-header' => 'Jugador',
-                'rank-header' => 'Rango',
+                'combo' => 'Combo máx.',
+                'miss' => 'Fallos',
+                'mods' => 'Mods',
+                'player' => 'Jugador',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
             'no_scores' => [
