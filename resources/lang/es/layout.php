@@ -150,8 +150,7 @@ return [
             'root' => 'índice',
             'logs-index' => 'registro',
             'beatmapsets' => [
-                '_' => 'beatmapsets',
-                'covers' => 'portadas',
+                '_' => 'sets de beatmaps',
                 'show' => 'detalles',
             ],
         ],
