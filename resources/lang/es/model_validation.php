@@ -91,5 +91,6 @@ return [
         'wrong_current_password' => 'La contraseña actual es incorrecta.',
         'wrong_email_confirmation' => 'La confirmación de correo electrónico no coincide.',
         'wrong_password_confirmation' => 'La confirmación de contraseña no coincide.',
+        'too_long' => 'Se excedió el límite máximo - puedes usar hasta :limit caracteres.',
     ],
 ];
