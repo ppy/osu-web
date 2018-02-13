@@ -1,15 +1,16 @@
-FROM phpdockerio/php72-fpm:latest
+FROM phpdockerio/php71-fpm:latest
 
 RUN apt-get update \
     && apt-get -y --no-install-recommends install \
-        php7.2-curl \
-        php7.2-gd \
-        php7.2-intl \
-        php7.2-json \
-        php7.2-mbstring \
-        php7.2-mysql \
-        php7.2-xml \
-        php7.2-zip
+        php7.1-curl \
+        php7.1-gd \
+        php7.1-intl \
+        php7.1-json \
+        php7.1-mbstring \
+        php7.1-mcrypt \
+        php7.1-mysql \
+        php7.1-xml \
+        php7.1-zip
 
 ARG _uid
 ARG _gid
