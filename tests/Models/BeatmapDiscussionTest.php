@@ -144,11 +144,6 @@ class BeatmapDiscussionTest extends TestCase
         $discussion->fill(['timestamp' => $validTimestamp]);
         $this->assertFalse($discussion->isValid());
 
-        // nor is wrong beatmap_id
-        $discussion = $this->newDiscussion($beatmapset);
-        $discussion->fill(['timestamp' => $validTimestamp, 'message_type' => 'praise', 'beatmap_id' => $otherBeatmap->beatmap_id]);
-        $this->assertFalse($discussion->isValid());
-
         // nor is wrong timestamp
         $discussion = $this->newDiscussion($beatmapset);
         $discussion->fill(['timestamp' => $invalidTimestamp, 'message_type' => 'praise', 'beatmap_id' => $beatmap->beatmap_id]);

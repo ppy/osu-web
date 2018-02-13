@@ -20,10 +20,18 @@
 el = React.createElement
 
 ProfilePage.HeaderInfo = ({user, currentMode}) ->
+  avatar = el UserAvatar, user: user, modifiers: ['profile']
+
   div className: 'profile-info',
-    el UserAvatar, user: user, modifiers: ['profile']
+    if user.id == currentUser.id
+      a
+        href: "#{laroute.route 'account.edit'}#avatar"
+        title: osu.trans 'users.show.change_avatar'
+        avatar
+    else
+      avatar
     div className: 'profile-info__details',
-      if user.isSupporter
+      if user.is_supporter
         el Icon,
           name: 'heart'
           parentClass: 'profile-info__supporter-icon'

@@ -45,9 +45,4 @@ class ElasticsearchServiceProvider extends ServiceProvider
             AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
         });
     }
-
-    private function loadConfig()
-    {
-        return $this->app->files->getRequire(base_path('config/elasticsearch.php'));
-    }
 }

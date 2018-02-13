@@ -42,6 +42,16 @@ function background_image($url, $proxy = true)
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
+function beatmap_timestamp_format($ms)
+{
+    $s = $ms / 1000;
+    $ms = $ms % 1000;
+    $m = $s / 60;
+    $s = $s % 60;
+
+    return sprintf('%02d:%02d.%03d', $m, $s, $ms);
+}
+
 /**
  * Gets the highlights of the specified field, if any;
  * otherwise returns a html_excerpt of the field.

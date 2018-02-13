@@ -24,6 +24,10 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
             'beatmap_id' => $this->beatmap->getKey(),
             'user_id' => $this->user->getKey(),
         ]);
+        $post = factory(BeatmapDiscussionPost::class, 'timeline')->make([
+            'user_id' => $this->user->getKey(),
+        ]);
+        $this->beatmapDiscussionPost = $this->beatmapDiscussion->beatmapDiscussionPosts()->save($post);
 
         $this->otherBeatmapset = factory(Beatmapset::class)->create();
         $this->otherBeatmap = $this->otherBeatmapset->beatmaps()->save(factory(Beatmap::class)->make());
@@ -176,5 +180,42 @@ class BeatmapDiscussionPostsControllerTest extends TestCase
         $beatmapDiscussionPost = $beatmapDiscussionPost->fresh();
 
         $this->assertSame($editedMessage, $beatmapDiscussionPost->message);
+    }
+
+    public function testStartingPostUpdate()
+    {
+        $post = $this->beatmapDiscussionPost;
+        $user = $this->user;
+
+        $previousTimestamp = $post->beatmapDiscussion->timestamp;
+
+        // removing timestamp isn't allowed
+        $this
+            ->actingAs($this->user)
+            ->put(route('beatmap-discussion-posts.update', $post->id), [
+                'beatmap_discussion_post' => [
+                    'message' => 'Missing timestamp.',
+                ],
+            ])
+            ->assertStatus(422);
+
+        $post = $post->fresh();
+        $this->assertSame($previousTimestamp, $post->beatmapDiscussion->timestamp);
+
+        $newTimestamp = $post->beatmapDiscussion->beatmap->total_length * 1000;
+        $newTimestampString = beatmap_timestamp_format($newTimestamp);
+
+        // changing timestamp is allowed
+        $this
+            ->actingAs($this->user)
+            ->put(route('beatmap-discussion-posts.update', $post->id), [
+                'beatmap_discussion_post' => [
+                    'message' => "{$newTimestampString} Edited timestamp.",
+                ],
+            ])
+            ->assertStatus(200);
+
+        $post = $post->fresh();
+        $this->assertSame($newTimestamp, $post->beatmapDiscussion->timestamp);
     }
 }

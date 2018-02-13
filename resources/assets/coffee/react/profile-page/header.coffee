@@ -23,7 +23,7 @@ ProfilePage.Header = (props) ->
   div null,
     div
       className: 'osu-page osu-page--users-show-header'
-      if !props.user.isBot
+      if !props.user.is_bot
         ul className: 'page-mode',
           for mode in BeatmapHelper.modes
             linkClass = 'page-mode-link'
