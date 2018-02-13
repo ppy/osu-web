@@ -8,7 +8,7 @@ The future face of osu!.
 Requirements
 ------------
 
-- A PHP 7.2+ (or equivalent) environment
+- A PHP 7.2 (or equivalent) environment
 - MySQL 5.7+
 
 For full support, we also recommend
