@@ -30,8 +30,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
 
-// FIXME: remove ArrayAccess after refactored
-class ForumSearch extends Search implements \ArrayAccess
+class ForumSearch extends Search
 {
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
@@ -152,39 +151,5 @@ class ForumSearch extends Search implements \ArrayAccess
     public function total()
     {
         return min($this->response()->total(), static::MAX_RESULTS);
-    }
-
-    public function params()
-    {
-        return $this->getPaginationParams();
-    }
-
-    //================
-    // ArrayAccess
-    //================
-
-    public function offsetExists($key)
-    {
-        return in_array($key, ['data', 'total', 'params'], true);
-    }
-
-    public function offsetGet($key)
-    {
-        if ($this->offsetExists($key) === false) {
-            return;
-        }
-
-        // reroute to method
-        return (new \ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
-    }
-
-    public function offsetSet($key, $value)
-    {
-        throw new \BadMethodCallException('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new \BadMethodCallException('not supported');
     }
 }

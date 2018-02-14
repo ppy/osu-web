@@ -20,9 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-use ReflectionObject;
-
-class RecordSearch extends Search implements \ArrayAccess
+class RecordSearch extends Search
 {
     protected $recordType;
 
@@ -42,11 +40,6 @@ class RecordSearch extends Search implements \ArrayAccess
         return $this->response()->total() > static::MAX_RESULTS;
     }
 
-    public function params()
-    {
-        return $this->getPageParams();
-    }
-
     public function records()
     {
         return $this->response()->records()->get();
@@ -60,34 +53,5 @@ class RecordSearch extends Search implements \ArrayAccess
     public function total()
     {
         return min($this->response()->total(), static::MAX_RESULTS);
-    }
-
-    //================
-    // ArrayAccess
-    //================
-
-    public function offsetExists($key)
-    {
-        return in_array($key, ['data', 'total', 'over_limit', 'params'], true);
-    }
-
-    public function offsetGet($key)
-    {
-        if ($this->offsetExists($key) === false) {
-            return null;
-        }
-
-        // reroute to method
-        return (new ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
-    }
-
-    public function offsetSet($key, $value)
-    {
-        throw new \BadMethodCallException('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new \BadMethodCallException('not supported');
     }
 }
