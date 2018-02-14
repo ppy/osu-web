@@ -50,13 +50,14 @@ return [
             ],
             'favourite' => 'Dodaj tę beatmapę do ulubionych',
             'unfavourite' => 'Usuń tę beatmapę z ulubionych',
+            'favourited_count' => '+ 1 inna!|+ :count inne!|+ :count innych!',
         ],
         'stats' => [
             'cs' => 'Wielkość kółek',
             'cs-mania' => 'Ilość klawiszy',
             'drain' => 'Spadek HP',
             'accuracy' => 'Celność',
-            'ar' => 'Approach Rate',
+            'ar' => 'Prędkość otoczki',
             'stars' => 'Trudność',
             'total_length' => 'Długość',
             'bpm' => 'BPM',
@@ -84,12 +85,18 @@ return [
             'supporter-only' => 'Musisz posiadać status donatora, aby uzyskać dostęp do rankingu krajowego i znajomych!',
             'title' => 'Tabela wyników',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Celność',
-                'player-header' => 'Gracz',
-                'rank-header' => 'Miejsce',
+                'combo' => 'Combo',
+                'miss' => 'Pudła',
+                'mods' => 'Modyfikacje',
+                'player' => 'Gracz',
+                'pp' => 'pp',
+                'rank' => 'Pozycja',
+                'score_total' => 'Wynik',
                 'score' => 'Wynik',
             ],
+
             'no_scores' => [
                 'country' => 'Nikt z twojego kraju nie ustanowił jeszcze wyniku na tej beatmapie!',
                 'friend' => 'Żaden z twoich znajomych nie ustanowił jeszcze wyniku na tej beatmapie!',
