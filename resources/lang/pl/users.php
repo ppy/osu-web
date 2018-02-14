@@ -21,6 +21,28 @@
 return [
     'deleted' => '[usunięty użytkownik]',
 
+        'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Ostatnio rozpoczęte dyskusje',
+        ],
+
+        'events' => [
+            'title_recent' => 'Najnowsze wydarzenia',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Najnowsze posty',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Najwięcej otrzymanych głosów (ostatnie 3 miesiące)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Najwięcej nadanych głosów (ostatnie 3 miesiące)',
+        ],
+    ],
+
     'login' => [
         '_' => 'Zaloguj się',
         'locked_ip' => 'Twój adres IP jest zablokowany. Poczekaj kilka minut.',
@@ -47,6 +69,7 @@ return [
 
     'anonymous' => [
         'login_link' => 'kliknij, aby się zalogować',
+        'login_text' => 'zaloguj się',
         'username' => 'Gość',
         'error' => 'Musisz się zalogować.',
     ],
@@ -71,6 +94,7 @@ return [
         'page_description' => 'osu! - Wszystko co chcesz wiedzieć o :username!',
         'plays_with' => 'Gra za pomocą :devices',
         'title' => 'Profil :username',
+        'change_avatar' => 'zmień swój awatar!',
 
         'edit' => [
             'cover' => [
@@ -103,8 +127,14 @@ return [
                 'favourite' => [
                     'title' => 'Ulubione beatmapy (:count)',
                 ],
+                'graveyard' => [
+                    'title' => 'Porzucone beatmapy (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Oczekujące beatmapy (:count)',
                 ],
             ],
             'historical' => [
@@ -199,6 +229,7 @@ return [
             'level' => 'Poziom :level',
             'maximum_combo' => 'Maksymalne combo',
             'play_count' => 'Ilość zagrań',
+            'play_time' => 'Twój czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',
             'replays_watched_by_others' => 'Powtórki obejrzane przez innych',
             'score_ranks' => 'Wyniki',
@@ -209,6 +240,9 @@ return [
     'status' => [
         'online' => 'Online',
         'offline' => 'Offline',
+    ],
+    'store' => [
+        'saved' => 'Użytkownik utworzony', //no context
     ],
     'verify' => [
         'title' => 'Weryfikacja Konta',
