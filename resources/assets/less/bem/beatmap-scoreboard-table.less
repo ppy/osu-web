@@ -107,12 +107,12 @@
   &__body-row {
     height: @row-height;
 
-    td:first-child {
+    > td:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
-    td:last-child {
+    > td:last-child {
       // ...and right side
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
@@ -121,13 +121,13 @@
 
     // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
     &:nth-child(odd) {
-      td {
+      > td {
         background-color: #eee;
       }
     }
 
     &:hover {
-      td {
+      > td {
         background-color: #ccc;
       }
     }
