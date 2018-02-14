@@ -136,8 +136,7 @@ class ForumSearch extends Search implements \ArrayAccess
             ->size($params['size'] ?? $params['limit'] ?? 50)
             ->highlight('search_content');
 
-        $results = $search->response()->recordType(Topic::class)->idField('topic_id');
-        $pagination = $search->getPageParams();
+        $search->response()->recordType(Topic::class)->idField('topic_id');
 
         return $search;
     }

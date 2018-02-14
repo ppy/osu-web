@@ -73,7 +73,7 @@ abstract class AbstractSearch
      *
      * @return array
      */
-    public function getPageParams()
+    protected function getPageParams()
     {
         $params = ['size' => $this->size, 'limit' => $this->size];
 
