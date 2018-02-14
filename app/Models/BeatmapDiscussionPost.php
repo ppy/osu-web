@@ -153,8 +153,16 @@ class BeatmapDiscussionPost extends Model
             return;
         }
 
-        if ($this->beatmapDiscussion->isLocked()) {
-            $this->validationErrors()->add('beatmap_discussion_id', '.discussion_locked');
+        // only applies on saved posts
+        static $modifiableWhenLocked = [
+            'deleted_at',
+            'deleted_by_id',
+        ];
+
+        if (!$this->exists || count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0) {
+            if ($this->beatmapDiscussion->isLocked()) {
+                $this->validationErrors()->add('beatmap_discussion_id', '.discussion_locked');
+            }
         }
     }
 
@@ -297,6 +305,11 @@ class BeatmapDiscussionPost extends Model
 
             return true;
         });
+    }
+
+    public function trashed()
+    {
+        return $this->deleted_at !== null;
     }
 
     public function timestamp()
