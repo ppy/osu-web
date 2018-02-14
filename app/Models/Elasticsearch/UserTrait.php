@@ -141,6 +141,7 @@ trait UserTrait
 
         return [
             'bool' => [
+                'minimum_should_match' => 1,
                 'should' => [
                     ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
                     ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
