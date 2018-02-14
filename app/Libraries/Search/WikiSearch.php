@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Search;
 
 use App;
 use App\Libraries\Elasticsearch\RecordSearch;

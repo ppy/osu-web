@@ -24,6 +24,7 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
+use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use Cache;
@@ -32,7 +33,6 @@ use Datadog;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
-use App\Libraries\BeatmapsetSearch;
 
 class Beatmapset extends Model implements AfterCommit
 {

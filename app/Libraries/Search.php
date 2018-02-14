@@ -31,10 +31,10 @@ class Search
         'all' => null,
 
         // also display order
-        'user' => UserSearch::class,
-        'beatmapset' => BeatmapsetSearch::class,
-        'forum_post' => ForumSearch::class,
-        'wiki_page' => WikiSearch::class,
+        'user' => Search\UserSearch::class,
+        'beatmapset' => Search\BeatmapsetSearch::class,
+        'forum_post' => Search\ForumSearch::class,
+        'wiki_page' => Search\WikiSearch::class,
     ];
 
     const DEFAULT_MODE = 'all';

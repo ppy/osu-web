@@ -52,7 +52,7 @@
                                 ' ... ',
                                 $innerHit->highlights(
                                     'search_content',
-                                    App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                                    App\Libraries\Search\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
                                 )
                             )
                         !!}
