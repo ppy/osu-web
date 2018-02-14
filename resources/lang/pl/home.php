@@ -138,7 +138,7 @@ return [
             'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>pobieranie beatmap w kliencie gry</strong>, które startuje się automatycznie podczas meczów wieloosobowych czy oglądania innych graczy?',
         ],
         'find-out-more' => 'Naciśnij tutaj, aby dowiedzieć się więcej!',
-        'download-starting' => "A, i nie martw się - pobieranie już się rozpoczęło ;)",
+        'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
     ],
     ],
 ];
