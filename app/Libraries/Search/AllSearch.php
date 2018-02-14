@@ -102,6 +102,13 @@ class AllSearch
         return $this->cache[$key];
     }
 
+    public function total($mode)
+    {
+        if ($this->search($mode)) {
+            return $this->search($mode)->total();
+        }
+    }
+
     public function urlParams($newParams = [])
     {
         $newParams['mode'] ?? ($newParams['mode'] = $this->mode);

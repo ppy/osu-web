@@ -50,10 +50,10 @@
                                     {{ trans("home.search.mode.{$mode}") }}
                                 </span>
 
-                                @if ($search->hasQuery() && isset($search->search($mode)['total']))
+                                @if ($search->hasQuery() && $search->total($mode))
                                     <span class="page-mode-link__badge">
-                                        @if ($search->search($mode)['total'] < 100)
-                                            {{ $search->search($mode)['total'] }}
+                                        @if ($search->total($mode) < 100)
+                                            {{ $search->total($mode) }}
                                         @else
                                             99+
                                         @endif
