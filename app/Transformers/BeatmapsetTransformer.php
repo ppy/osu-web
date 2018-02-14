@@ -36,6 +36,8 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'converts',
         'current_user_attributes',
         'description',
+        'genre',
+        'language',
         'nominations',
         'ratings',
         'recent_favourites',
@@ -119,6 +121,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         return $this->item($beatmapset, function () use ($ret) {
             return $ret;
         });
+    }
+
+    public function includeGenre(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset->genre, new GenreTransformer);
+    }
+
+    public function includeLanguage(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset->language, new LanguageTransformer);
     }
 
     public function includeNominations(Beatmapset $beatmapset)
