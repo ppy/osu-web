@@ -31,6 +31,7 @@ abstract class Search implements Queryable
 
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
+    const DEFAULT_PAGE_SIZE = 50;
 
     protected $index;
     protected $options;
@@ -76,7 +77,8 @@ abstract class Search implements Queryable
     public function paginate(int $pageSize = null, int $page = null, array $options = [])
     {
         // TODO: default should be based to search type.
-        $this->size($pageSize ?? 8)->page($page ?? LengthAwarePaginator::resolveCurrentPage());
+        $this->size($pageSize ?? static::DEFAULT_PAGE_SIZE)
+            ->page($page ?? LengthAwarePaginator::resolveCurrentPage());
 
         return $this->getPaginator($options);
     }
