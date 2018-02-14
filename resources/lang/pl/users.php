@@ -171,7 +171,7 @@ return [
                         ],
 
                         'delete' => [
-                            'reset' => 'Stracono :amount za usunięcie wątku :post',
+                            'reset' => 'Utracono :amount za usunięcie wątku :post',
                         ],
 
                         'restore' => [
@@ -180,7 +180,11 @@ return [
 
                         'vote' => [
                             'give' => 'Otrzymano :amount za zdobycie głosów w wątku :post',
-                            'reset' => 'Stracono :amount za utratę głosów w wątku :post',
+                            'reset' => 'Utracono :amount za utratę głosów w wątku :post',
+                        ],
+                        'recalculate' => [
+                            'give' => 'Otrzymano :amount w wyniku przekalkulowania głosów w wątku :post',
+                            'reset' => 'Utracono :amount w wyniku przekalkulowania głosów w wątku :post',
                         ],
                     ],
 

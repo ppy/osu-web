@@ -24,6 +24,7 @@ return [
         'missing' => 'Żądana strona nie została odnaleziona.',
         'missing_title' => 'Nie znaleziono',
         'missing_translation' => 'Żądana strona nie została odnaleziona dla obecnie ustawionego języka.',
+        'search' => 'Przeszukaj istniejące strony używając frazy :link.',
         'toc' => 'Spis treści',
         'edit' => [
             'link' => 'Pokaż na GitHubie',
