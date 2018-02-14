@@ -31,7 +31,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache = {}
     @timeouts = {}
     @xhr = {}
-    @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState)
+    @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
 
     if !@state?
       beatmapset = props.initial.beatmapset
