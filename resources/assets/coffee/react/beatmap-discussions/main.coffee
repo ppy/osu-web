@@ -31,28 +31,30 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache = {}
     @timeouts = {}
     @xhr = {}
+    @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState)
 
-    beatmapset = props.initial.beatmapset
+    if !@state?
+      beatmapset = props.initial.beatmapset
 
-    query = @queryFromLocation(beatmapset.discussions)
-    currentMode = query.mode
-    currentFilter = query.filter
-    currentBeatmapId = query.beatmapId
+      query = @queryFromLocation(beatmapset.discussions)
+      currentMode = query.mode
+      currentFilter = query.filter
+      currentBeatmapId = query.beatmapId
 
-    readPostIds = []
+      readPostIds = []
 
-    for discussion in beatmapset.discussions
-      for post in discussion.posts ? []
-        readPostIds.push post.id
+      for discussion in beatmapset.discussions
+        for post in discussion.posts ? []
+          readPostIds.push post.id
 
-    @state = {
-      beatmapset
-      currentBeatmapId
-      currentUser
-      currentMode
-      readPostIds
-      currentFilter
-    }
+      @state = {
+        beatmapset
+        currentBeatmapId
+        currentUser
+        currentMode
+        readPostIds
+        currentFilter
+      }
 
 
   componentDidMount: =>
@@ -82,6 +84,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
+    @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 
   render: =>
