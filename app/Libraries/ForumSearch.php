@@ -42,6 +42,7 @@ class ForumSearch extends Search
         $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
         $this->username = presence($options['username'] ?? null);
         $this->forumId = get_int($options['forumId'] ?? null);
+        $this->topicId = get_int($options['topicId'] ?? null);
     }
 
     /**
@@ -72,6 +73,10 @@ class ForumSearch extends Search
                 : [$this->forumId];
 
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
+        }
+
+        if (isset($this->topicId)) {
+            $query->filter(['term' => ['topic_id' => $this->topicId]]);
         }
 
         $this->query($query);
@@ -114,6 +119,7 @@ class ForumSearch extends Search
         $options = [
             'query' => $params['query'],
             'forumId' => $params['forum_id'] ?? null,
+            'topicId' => $params['topic_id'] ?? null,
             'includeSubforums' => $params['forum_children'] ?? false,
             'username' => $params['username'] ?? null,
         ];
