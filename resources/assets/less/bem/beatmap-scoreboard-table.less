@@ -24,18 +24,18 @@
   overflow-x: auto;
 
   .row-colour(@colour) {
-    td {
+    > td {
       background-color: lighten(@colour, 20%);
     }
 
     &:nth-child(odd) {
-      td {
+      > td {
         background-color: lighten(@colour, 20%);
       }
     }
 
     &:hover {
-      td {
+      > td {
         background-color: @colour;
       }
     }
