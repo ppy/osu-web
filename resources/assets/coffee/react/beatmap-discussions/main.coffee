@@ -65,6 +65,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
+    $(document).on 'turbolinks:before-cache', @saveStateToContainer
 
     @jumpToDiscussionByHash()
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
@@ -84,7 +85,6 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     Timeout.clear(timeout) for _name, timeout of @timeouts
     xhr?.abort() for _name, xhr of @xhr
-    @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 
   render: =>
@@ -336,6 +336,10 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
   queryFromLocation: (discussions = @state.beatmapsetDiscussion.beatmap_discussions) =>
     BeatmapDiscussionHelper.urlParse(null, discussions)
+
+
+  saveStateToContainer: =>
+    @props.container.dataset.beatmapsetDiscussionState = JSON.stringify(@state)
 
 
   setCurrentPlaymode: (e, {mode}) =>
