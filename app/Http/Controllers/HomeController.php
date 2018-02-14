@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
-use App\Libraries\Search;
+use App\Libraries\Search\AllSearch;
 use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
@@ -136,11 +136,7 @@ class HomeController extends Controller
             'user' => Auth::user(),
         ]);
 
-        $search = new Search($params);
-
-        if ($search->mode === Search::DEFAULT_MODE) {
-            $search->params['limit'] = 8;
-        }
+        $search = new AllSearch($params);
 
         return view('home.search', compact('search'));
     }

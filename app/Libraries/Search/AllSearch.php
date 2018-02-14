@@ -18,23 +18,21 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries;
+namespace App\Libraries\Search;
 
 use App\Models\Beatmapset;
 use App\Models\User;
-use App\Models\Wiki\Page as WikiPage;
-use Datadog;
 
-class Search
+class AllSearch
 {
     const MODES = [
         'all' => null,
 
         // also display order
-        'user' => Search\UserSearch::class,
-        'beatmapset' => Search\BeatmapsetSearch::class,
-        'forum_post' => Search\ForumSearch::class,
-        'wiki_page' => Search\WikiSearch::class,
+        'user' => UserSearch::class,
+        'beatmapset' => BeatmapsetSearch::class,
+        'forum_post' => ForumSearch::class,
+        'wiki_page' => WikiSearch::class,
     ];
 
     const DEFAULT_MODE = 'all';
@@ -53,6 +51,10 @@ class Search
 
         $this->user = array_pull($params, 'user');
         $this->params = $params;
+
+        if ($this->mode === static::DEFAULT_MODE) {
+            $this->params['limit'] = 8;
+        }
     }
 
     public function all()
@@ -95,11 +97,6 @@ class Search
             $this->cache[$key] = $class::search($this->params)
                 ->paginate($this->params['limit'] ?? null, null, ['path' => route('search')])
                 ->appends($this->urlParams());
-
-            if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
-                $searchDuration = microtime(true) - $startTime;
-                Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => $mode]);
-            }
         }
 
         return $this->cache[$key];
