@@ -26,9 +26,17 @@ class ProfilePage.RecentActivities extends React.PureComponent
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if @props.recentActivities.length
-        ul
-          className: 'profile-extra-entries'
-          @props.recentActivities.map @_renderEntry
+        div null,
+          ul
+            className: 'profile-extra-entries'
+            @props.recentActivities.map @_renderEntry
+          div
+            className: 'profile-extra-entries__item profile-extra-entries__item--show-more'
+            el ProfilePage.ShowMoreLink,
+              collection: @props.recentActivities
+              propertyName: 'recentActivities'
+              pagination: @props.pagination['recentActivities']
+              route: laroute.route 'users.recent-activity', user: @props.user.id
       else
         p className: 'profile-extra-entries', osu.trans('events.empty')
 
