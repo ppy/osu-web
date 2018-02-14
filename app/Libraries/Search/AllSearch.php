@@ -125,9 +125,4 @@ class AllSearch
 
         return array_merge($this->params, $newParams);
     }
-
-    public function url($newParams = [])
-    {
-        return route('search', $this->urlParams($newParams));
-    }
 }
