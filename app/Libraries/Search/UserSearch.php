@@ -41,10 +41,7 @@ class UserSearch extends RecordSearch
         $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
         $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
 
-        $search = static::searchUsername($params['query'], $params['page'], $params['limit']);
-        $response = $search->response()->recordType(User::class);
-
-        return $search;
+        return static::searchUsername($params['query'], $params['page'], $params['limit']);
     }
 
     public static function searchUsername(string $username, $page, $size) : self
