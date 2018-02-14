@@ -129,6 +129,7 @@ return [
             'support' => 'Wesprzyj osu!',
             'store' => 'Sklep osu!',
         ],
+    ],
 
     'support-osu' => [
         'title' => 'Wow!',
@@ -139,6 +140,5 @@ return [
         ],
         'find-out-more' => 'Naciśnij tutaj, aby dowiedzieć się więcej!',
         'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
-    ],
     ],
 ];
