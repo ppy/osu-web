@@ -41,6 +41,11 @@ class QuickSearch
         $this->query = trim($query);
     }
 
+    public function currentQuery()
+    {
+        return $this->query;
+    }
+
     public function hasQuery()
     {
         return mb_strlen($this->query) >= config('osu.search.minimum_length');

@@ -72,9 +72,14 @@ class AllSearch
         return $all;
     }
 
+    public function currentQuery()
+    {
+        return trim($this->params['query'] ?? '');
+    }
+
     public function hasQuery()
     {
-        return mb_strlen(trim($this->params['query'] ?? null)) >= config('osu.search.minimum_length');
+        return mb_strlen($this->currentQuery()) >= config('osu.search.minimum_length');
     }
 
     public function search($mode)
