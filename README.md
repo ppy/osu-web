@@ -8,7 +8,7 @@ The future face of osu!.
 Requirements
 ------------
 
-- A PHP 7.1+ (or equivalent) environment
+- A PHP 7.1 (or equivalent) environment
 - MySQL 5.7+
 
 For full support, we also recommend
@@ -28,12 +28,13 @@ There are a few different options to get started:
 - Use Docker:
   - First, install [Docker](https://www.docker.com/community-edition) and [Docker Compose](https://docs.docker.com/compose/install/), then run `docker-compose up` in the main directory.
   - Due to the nature of Docker (a container is killed when the command running in it finishes), the Yarn container will be run in watch mode.
-  - Note that if you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers: 
+  - If you use a non-standard user/group id (for example when your user wasn't the first one created on the system), you need to run the command as follows, with the env variables supplying your ids to the containers:
   ```
   bash
   _UID=$(id -u) _GID=$(id -g) docker-compose up
   ```
-  - To run any of the below commands, make sure you are in the docker container: `$ docker exec -it osuweb-php bash`
+  - Do note that the supplied Elasticsearch container uses a high (1+ GB) amount of RAM. Ensure that your system (or virtual machine, if running on Windows/macOS) has a necessary amount of memory allocated (at least 2 GB). If you can't (or don't want to), you can comment out the relevant elasticsearch lines in `docker-compose.yml`.
+  - To run any of the below commands, make sure you are in the docker container: `$ docker exec -it osuweb-php bash`.
 - Use your existing web dev environment.
 
 ### Creating user

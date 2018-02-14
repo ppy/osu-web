@@ -48,7 +48,7 @@
     </div>
 
     <div class="osu-page osu-page--small">
-        <div class="account-edit">
+        <div class="account-edit" id="avatar">
             <div class="account-edit__section">
                 <h2 class="account-edit__section-title">
                     {{ trans('accounts.edit.avatar.title') }}

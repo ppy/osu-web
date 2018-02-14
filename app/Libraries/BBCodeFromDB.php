@@ -85,7 +85,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
