@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App;
 use App\Libraries\CurrentStats;
 use App\Libraries\Search;
+use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
@@ -117,11 +118,7 @@ class HomeController extends Controller
 
     public function quickSearch()
     {
-        $search = new Search([
-            'query' => Request::input('query'),
-            'limit' => 5,
-        ]);
-
+        $search = new QuickSearch(request('query'));
         if (!$search->hasQuery()) {
             return response([], 204);
         }
