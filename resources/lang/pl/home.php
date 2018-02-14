@@ -74,7 +74,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "rozpocznij swoją<br>przygodę z osu!",
+        'tagline' => "rozpocznij swoją<br>przygodę z osu!',
         'action' => 'Pobierz osu!',
         'os' => [
             'windows' => 'dla systemu Windows',
