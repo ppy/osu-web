@@ -166,7 +166,7 @@ return [
                 'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
                 'title' => 'Médailles',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Activité récente',
             ],
             'top_ranks' => [
