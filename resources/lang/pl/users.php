@@ -168,7 +168,7 @@ return [
                 'empty' => 'Ten użytkownik nie uzyskał jeszcze żadnych medali. ;_;',
                 'title' => 'Medale',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Ostatnie',
             ],
             'top_ranks' => [
