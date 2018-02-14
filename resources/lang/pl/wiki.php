@@ -33,5 +33,6 @@ return [
         'outdated' => [
             '_' => 'Tłumaczenie tego artykułu jest niepełne. Sprawdź :default, aby otrzymać jak najdokładniejsze informacje (i przemyśl samodzielną aktualizację tłumaczenia, jeśli chcesz pomóc)!',
             'default' => 'oryginalną wersję',
+        ],
     ],
 ];
