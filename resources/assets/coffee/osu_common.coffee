@@ -30,7 +30,7 @@
 
 
   currentUserIsFriendsWith: (user_id) ->
-    currentUser && _.find currentUser.friends, (o) -> o.target_id == user_id
+    _.find currentUser.friends, target_id: user_id
 
 
   executeAction: (element) =>
