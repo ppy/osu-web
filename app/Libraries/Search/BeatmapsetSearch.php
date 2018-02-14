@@ -25,7 +25,6 @@ use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score;
-use Datadog;
 
 class BeatmapsetSearch extends RecordSearch
 {
@@ -40,12 +39,6 @@ class BeatmapsetSearch extends RecordSearch
         $params = static::searchParams($params);
 
         $search = static::searchES($params);
-
-        // TODO: fix timing
-        if (config('datadog-helper.enabled')) {
-            $searchDuration = microtime(true) - $startTime;
-            Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => 'beatmapset']);
-        }
 
         return $search;
     }
