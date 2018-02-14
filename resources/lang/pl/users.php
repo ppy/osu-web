@@ -131,7 +131,7 @@ return [
                     'title' => 'Porzucone beatmapy (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Rankingowe & Zatwierdzone beatmapy (:count)',
+                    'title' => 'Rankingowe i zatwierdzone beatmapy (:count)',
                 ],
                 'unranked' => [
                     'title' => 'Oczekujące beatmapy (:count)',
@@ -144,7 +144,7 @@ return [
                     'title' => 'Najczęściej grane beatmapy',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'celność: :percentage',
+                    'accuracy' => 'precyzja: :percentage',
                     'title' => 'Ostatnie wyniki',
                 ],
                 'title' => 'Historia',
@@ -229,7 +229,7 @@ return [
             'global' => 'Pozycja w rankingu światowym dla :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Celność',
+            'hit_accuracy' => 'Precyzja',
             'level' => 'Poziom :level',
             'maximum_combo' => 'Maksymalne combo',
             'play_count' => 'Ilość zagrań',

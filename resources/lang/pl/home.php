@@ -86,7 +86,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'utwórz konto',
-                'description' => 'postępuj zgodnie z instrukcjami podczas otwierania gry, aby się zarejestrować bądź zalogować',
+                'description' => 'postępuj zgodnie z instrukcjami w grze, aby się zarejestrować bądź zalogować',
             ],
             'download' => [
                 'title' => 'pobierz grę',
@@ -96,7 +96,7 @@ return [
                 'title' => 'pobierz beatmapy',
                 'description' => [
                     '_' => ':browse ogromną bibliotekę utworzonych przez społeczność beatmap i rozpocznij grę!',
-                    'browse' => 'przejrzyj',
+                    'browse' => 'sprawdź',
                 ],
             ],
         ],
@@ -135,8 +135,8 @@ return [
         'title' => 'Wow!',
         'subtitle' => 'Wygląda na to, że dobrze się bawisz! :D',
         'body' => [
-            'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane z pieniędzy otrzymanych od graczy?',
-            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>pobieranie beatmap w kliencie gry</strong>, które startuje się automatycznie podczas meczów wieloosobowych czy oglądania innych graczy?',
+            'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
+            'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych, oraz oglądania innych graczy?',
         ],
         'find-out-more' => 'Naciśnij tutaj, aby dowiedzieć się więcej!',
         'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
