@@ -17,6 +17,8 @@
  */
 
 .friend-button {
+  @_top: friend-button;
+
   .center-content();
   .link-plain();
   .link-white();
@@ -42,6 +44,28 @@
     background: fade(@green, 70%);
     &:hover {
       background: fade(lighten(@green, 5%), 70%);
+    }
+  }
+
+  &__icon {
+    .full-size();
+    .center-content();
+    will-change: opacity;
+
+    &--hover-hidden {
+      opacity: 1;
+
+      .@{_top}:hover & {
+        opacity: 0;
+      }
+    }
+
+    &--hover-visible {
+      opacity: 0;
+
+      .@{_top}:hover & {
+        opacity: 1;
+      }
     }
   }
 }

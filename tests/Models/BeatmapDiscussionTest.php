@@ -150,6 +150,42 @@ class BeatmapDiscussionTest extends TestCase
         $this->assertFalse($discussion->isValid());
     }
 
+    public function testSoftDelete()
+    {
+        $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
+        $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
+        $user = factory(User::class)->create();
+        $discussion = BeatmapDiscussion::create([
+            'beatmapset_id' => $beatmapset->getKey(),
+            'beatmap_id' => $beatmap->getKey(),
+            'user_id' => $user->getKey(),
+            'message_type' => 'suggestion',
+        ]);
+
+        $this->assertFalse($discussion->trashed());
+
+        // Soft delete.
+        $discussion->softDelete($user);
+        $discussion = $discussion->fresh();
+        $this->assertTrue($discussion->trashed());
+
+        // Restore.
+        $discussion->restore($user);
+        $discussion = $discussion->fresh();
+        $this->assertFalse($discussion->trashed());
+
+        // Soft delete with deleted beatmap.
+        $beatmap->delete();
+        $discussion->softDelete($user);
+        $discussion = $discussion->fresh();
+        $this->assertTrue($discussion->trashed());
+
+        // Restore with deleted beatmap.
+        $discussion->restore($user);
+        $discussion = $discussion->fresh();
+        $this->assertFalse($discussion->trashed());
+    }
+
     private function newDiscussion($beatmapset)
     {
         return new BeatmapDiscussion(['beatmapset_id' => $beatmapset->getKey()]);

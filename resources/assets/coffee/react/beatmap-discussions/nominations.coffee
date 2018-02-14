@@ -102,7 +102,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       if event.type == 'disqualify' || event.type == 'nomination_reset'
         break
       else if event.type == 'nominate'
-        nominators.push(@props.users[event.user_id])
+        nominators.unshift @props.users[event.user_id]
 
     if nominationReset?
       nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
