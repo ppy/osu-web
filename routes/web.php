@@ -179,6 +179,7 @@ Route::post('users/check-username-exists', 'UsersController@checkUsernameExists'
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
+Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
 Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');

@@ -129,7 +129,7 @@ return [
             'medals' => [
                 'title' => 'Medaglie',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recenti',
             ],
             'top_ranks' => [
