@@ -129,22 +129,23 @@ class ProfilePage.HeaderExtra extends React.Component
             @fancyLink
               key: 'location'
               icon: 'map-marker'
-              title:
-                osu.trans 'users.show.current_location',
-                  location: @props.user.location
+              title: osu.trans 'users.show.info.location'
 
             @fancyLink
               key: 'interests'
               icon: 'heart-o'
+              title: osu.trans 'users.show.info.interests'
 
             @fancyLink
               key: 'occupation'
               icon: 'suitcase'
+              title: osu.trans 'users.show.info.occupation'
 
           div className: "#{bn}__rows",
             @fancyLink
               key: 'twitter'
               url: "https://twitter.com/#{@props.user.twitter}"
+              title: osu.trans 'users.show.info.twitter'
               text:
                 span null,
                   span
@@ -155,14 +156,17 @@ class ProfilePage.HeaderExtra extends React.Component
             @fancyLink
               key: 'website'
               icon: 'globe'
+              title: osu.trans 'users.show.info.website'
               url: @props.user.website
 
             @fancyLink
               key: 'skype'
+              title: osu.trans 'users.show.info.skype'
               url: "skype:#{@props.user.skype}?chat"
 
             @fancyLink
               key: 'lastfm'
+              title: osu.trans 'users.show.info.lastfm'
               url: "https://last.fm/user/#{@props.user.lastfm}"
 
         div
@@ -201,11 +205,11 @@ class ProfilePage.HeaderExtra extends React.Component
     component
       href: url
       className: "#{bn}__row #{bn}__row--fancy-link u-ellipsis-overflow"
-      title: title
       el Icon,
         name: icon ? key
         modifiers: ['fw']
         parentClass: "#{bn}__fancy-link-icon"
+        title: title
       text ? @props.user[key]
 
 
