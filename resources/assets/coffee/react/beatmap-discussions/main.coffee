@@ -36,25 +36,19 @@ class BeatmapDiscussions.Main extends React.PureComponent
     if !@state?
       beatmapset = props.initial.beatmapset
 
-      query = @queryFromLocation(beatmapset.discussions)
-      currentMode = query.mode
-      currentFilter = query.filter
-      currentBeatmapId = query.beatmapId
-
       readPostIds = []
 
       for discussion in beatmapset.discussions
         for post in discussion.posts ? []
           readPostIds.push post.id
 
-      @state = {
-        beatmapset
-        currentBeatmapId
-        currentUser
-        currentMode
-        readPostIds
-        currentFilter
-      }
+      @state = {beatmapset, currentUser, readPostIds}
+
+    # Current url takes priority over saved state.
+    query = @queryFromLocation(@state.beatmapset.discussions)
+    @state.currentMode = query.mode
+    @state.currentFilter = query.filter
+    @state.currentBeatmapId = query.beatmapId if query.beatmapId?
 
 
   componentDidMount: =>
