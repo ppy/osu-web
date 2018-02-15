@@ -1006,6 +1006,16 @@ class Beatmapset extends Model implements AfterCommit
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genre_id');
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
+    }
+
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
