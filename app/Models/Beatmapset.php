@@ -357,6 +357,7 @@ class Beatmapset extends Model implements AfterCommit
     public static function searchParams(array $params = [])
     {
         // simple stuff
+        $params['converts'] = get_bool($params['converts'] ?? false);
         $params['query'] = presence($params['query'] ?? null);
         $params['status'] = get_int($params['status'] ?? null) ?? 0;
         $params['genre'] = get_int($params['genre'] ?? null);
@@ -525,7 +526,11 @@ class Beatmapset extends Model implements AfterCommit
         }
 
         if ($params['mode'] !== null) {
-            $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
+            $modes = [$params['mode']];
+            if ($params['converts'] && $params['mode'] !== Beatmap::MODES['osu']) {
+                $modes[] = Beatmap::MODES['osu'];
+            }
+            $matchParams[] = ['terms' => ['difficulties.playmode' => $modes]];
         }
 
         if (!empty($matchParams)) {
