@@ -17,7 +17,7 @@
  */
 
 .profile-stats {
-  @_top: profile-stats;
+  @_badge: profile-badge--level;
 
   font-size: @font-size--normal;
   display: flex;
@@ -25,10 +25,6 @@
   width: @profile-stats-box-width;
   flex: none;
   margin: -1px 0;
-
-  &__badge {
-    pointer-events: none;
-  }
 
   &__entry {
     display: flex;
@@ -38,14 +34,6 @@
     &--full {
       flex-direction: column;
     }
-  }
-
-  &__hover-target { // for level badge
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    left: 213px;
-    top: 5px;
   }
 
   &__key {
@@ -64,10 +52,9 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    pointer-events: none;
 
     &--playtime {
-      .@{_top}__hover-target:hover ~ & {
+      .@{_badge}:hover ~ & {
         display: none;
       }
     }
@@ -77,7 +64,7 @@
       width: 190px;
       display: none;
 
-      .@{_top}__hover-target:hover ~ & {
+      .@{_badge}:hover ~ & {
         display: flex;
       }
     }

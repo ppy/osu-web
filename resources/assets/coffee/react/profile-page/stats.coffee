@@ -42,7 +42,8 @@ ProfilePage.Stats = ({stats}) ->
 
   div className: 'profile-stats',
     div className: 'profile-stats__row profile-stats__row--compact profile-stats__row--playtime',
-      div className: 'profile-stats__hover-target'
+      div className: 'profile-badge profile-badge--level',
+        span className: 'profile-badge__number', stats.level.current
       div className: 'profile-stats__stat-box profile-stats__stat-box--playtime',
         div className: 'profile-stats__key', osu.trans 'users.show.stats.play_time'
         div className: 'profile-stats__playtime',
@@ -65,8 +66,6 @@ ProfilePage.Stats = ({stats}) ->
             style:
               width: "#{stats.level.progress}%"
         div className: 'profile-stats__value profile-stats__value--level-progress', "#{stats.level.progress}%"
-      div className: 'profile-badge profile-badge--level profile-stats__badge',
-        span className: 'profile-badge__number', stats.level.current
 
     div className: 'profile-stats__row',
       simpleEntry
