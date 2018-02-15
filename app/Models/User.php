@@ -1251,6 +1251,24 @@ class User extends Model implements AuthenticatableContract, Messageable
         return 3;
     }
 
+
+    /**
+     * Recommended star difficulty.
+     *
+     * @param string $mode one of Beatmap::MODES
+     *
+     * @return float
+     */
+    public function recommendedStarDifficulty(string $mode)
+    {
+        $stats = $this->statistics($mode);
+        if ($stats) {
+            return pow($stats->rank_score, 0.4) * 0.195;
+        }
+
+        return 0.0;
+    }
+
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
         if ($forum !== null) {
