@@ -28,4 +28,9 @@ return [
         'fix' => 'fix',
         'misc' => 'miscellanous',
     ],
+
+    'supporter' => [
+        'heading' => 'Loving this game?',
+        'text' => 'Support further development of osu! and <strong><a href=":url">become a supporter</a></strong> today! Not only will you help speed development, but you will also get some extra features and customisations!',
+    ],
 ];

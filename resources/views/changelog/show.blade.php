@@ -64,6 +64,11 @@
                     @each('changelog._changelog_change', $changelogs, 'log')
                 </div>
 
+                @if(!Auth::check() || !Auth::user()->isSupporter())
+                    <p class="changelog__text changelog__text--date">{{ trans('changelog.supporter.heading') }}</p>
+                    <p class="changelog__text changelog__text--supporter">{!! trans('changelog.supporter.text', ['url' => route('support-the-game')]) !!}</p>
+                @endif
+
                 <div
                     class="changelog__disqus js-turbolinks-disqus"
                     data-turbolinks-disqus="{{ json_encode([
