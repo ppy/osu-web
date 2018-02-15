@@ -40,7 +40,6 @@ return [
             'title' => 'Edytuj profil',
             'user' => [
                 'user_from' => 'obecna lokalizacja',
-                'user_interests' => 'zainteresowania',
                 'user_msnm' => 'skype',
                 'user_occ' => 'zajęcia',
                 'user_twitter' => 'twitter',
