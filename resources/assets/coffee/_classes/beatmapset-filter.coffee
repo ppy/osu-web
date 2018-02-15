@@ -31,6 +31,7 @@ class @BeatmapsetFilter
 
 
   @charToKey:
+    c: 'converts'
     m: 'mode'
     s: 'status'
     g: 'genre'
@@ -85,6 +86,7 @@ class @BeatmapsetFilter
 
 
   @keys: [
+    'converts'
     'extra'
     'genre'
     'language'
