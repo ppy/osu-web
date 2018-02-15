@@ -34,6 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
             'owner' => 'Can not vote own discussion!',
+            'wrong_beatmapset_state' => 'Can only vote discussions of pending beatmaps.',
         ],
     ],
 
