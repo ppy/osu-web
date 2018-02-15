@@ -178,7 +178,7 @@ return [
                 'empty' => 'Denne bruger har ikke fået nogle endnu. ;_;',
                 'title' => 'Medaljer',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Seneste',
             ],
             'top_ranks' => [

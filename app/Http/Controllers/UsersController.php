@@ -54,7 +54,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['scores', 'beatmapsets', 'kudosu'],
+            'only' => ['scores', 'beatmapsets', 'kudosu', 'recentActivity'],
         ]);
 
         return parent::__construct();
@@ -268,7 +268,7 @@ class UsersController extends Controller
                 'user_achievements',
                 'follower_count',
                 'page',
-                'recent_activities',
+                'recent_activity',
                 'ranked_and_approved_beatmapset_count',
                 'unranked_beatmapset_count',
                 'graveyard_beatmapset_count',
@@ -390,6 +390,17 @@ class UsersController extends Controller
         } else {
             $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
         }
+    }
+
+    public function recentActivity($id)
+    {
+        return json_collection(
+            $this->user->events()->recent()
+                ->limit($this->perPage)
+                ->offset($this->offset)
+                ->get(),
+            'Event'
+        );
     }
 
     private function recentKudosu($user, $perPage = 10, $offset = 0)

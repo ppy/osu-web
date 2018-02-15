@@ -201,7 +201,7 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
