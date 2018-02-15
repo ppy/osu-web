@@ -43,7 +43,7 @@ return [
         'in-progress' => '(mecz trwa)',
         'score' => [
             'stats' => [
-                'accuracy' => 'Celność',
+                'accuracy' => 'Precyzja',
                 'combo' => 'Combo',
                 'score' => 'Wynik',
             ],
@@ -62,7 +62,7 @@ return [
     'game' => [
         'scoring-type' => [
             'score' => 'Najlepszy wynik',
-            'accuracy' => 'Najwyższa celność',
+            'accuracy' => 'Najwyższa precyzja',
             'combo' => 'Największe combo',
             'scorev2' => 'Score V2',
         ],
