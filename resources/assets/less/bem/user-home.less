@@ -64,11 +64,18 @@
     }
   }
 
-  &__news-posts {
-    &--collapsed {
-      .default-box-shadow();
-      padding: 5px 0;
-      background-color: #222;
+  &__news-posts-group {
+    .default-box-shadow();
+    display: block;
+    padding: 5px 0;
+    background-color: #222;
+    margin-bottom: 5px;
+
+    &--more {
+      .link-pink-light();
+      .link-plain();
+      padding: 20px;
+      text-align: center;
     }
   }
 
