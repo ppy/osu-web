@@ -83,6 +83,13 @@ class Beatmaps.SearchPanel extends React.PureComponent
           el Icon, name: 'search'
 
       el Beatmaps.SearchFilter,
+        name: 'general'
+        title: osu.trans('beatmaps.listing.search.filters.general')
+        options: filters.general
+        default: @props.filterDefaults.general
+        selected: @props.filters.general
+
+      el Beatmaps.SearchFilter,
         name: 'mode'
         title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes

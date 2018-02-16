@@ -50,6 +50,11 @@ class BeatmapsetsController extends Controller
         );
 
         // temporarily put filters here
+        $general = [
+            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
+            ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
+        ];
+
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
         foreach (Beatmap::MODES as $name => $id) {
             $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
@@ -77,7 +82,7 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
+        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
