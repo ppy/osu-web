@@ -531,6 +531,22 @@ class Beatmapset extends Model implements AfterCommit
                 break;
         }
 
+        // recommended difficulty
+        if ($params['recommended'] && $params['user'] !== null) {
+            // TODO: index convert difficulties and handle them.
+            $mode = Beatmap::modeStr($param['mode'] ?? Beatmap::MODES['osu']);
+            $difficulty = $params['user']->recommendedStarDifficulty($mode);
+            $matchParams[] = [
+                'range' => [
+                    'difficulties.difficultyrating' => [
+                        'gte' => $difficulty - 0.5,
+                        'lte' => $difficulty + 0.5
+                    ],
+                ],
+            ];
+        }
+
+        // converts
         if ($params['mode'] !== null) {
             $modes = [$params['mode']];
             if ($params['converts'] && $params['mode'] !== Beatmap::MODES['osu']) {
