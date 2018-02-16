@@ -164,12 +164,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             @submitButton 'suggestion'
             @submitButton 'problem'
 
-        if @nearbyPosts().length > 0
+        if @nearbyDiscussions().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
-          timestamps = @nearbyPosts().map (p) ->
-            osu.link BeatmapDiscussionHelper.hash(discussionId: p.id),
-              BeatmapDiscussionHelper.formatTimestamp(p.timestamp)
-              classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
+          timestamps =
+            for discussion in @nearbyDiscussions()
+              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+                BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+                classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
           timestampsString = osu.transArray(timestamps)
 
           div className: "#{bn}__notice",
@@ -215,26 +216,26 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @state.stickable && @state.sticky
 
 
-  nearbyPosts: =>
+  nearbyDiscussions: =>
     return [] if !@state.timestamp?
 
-    if !@cache.nearbyPosts? || @cache.nearbyPosts.timestamp != @state.timestamp
-      posts = []
+    if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
+      discussions = []
 
-      for post in @props.currentDiscussions.timeline
-        continue if post.message_type not in ['suggestion', 'problem']
-        continue if Math.abs(post.timestamp - @state.timestamp) > 5000
+      for discussion in @props.currentDiscussions.timeline
+        continue if discussion.message_type not in ['suggestion', 'problem']
+        continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
 
-        if post.user_id == @props.currentUser.id
-          continue if moment(post.updated_at).diff(moment(), 'hour') > -24
+        if discussion.user_id == @props.currentUser.id
+          continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
 
-        posts.push(post)
+        discussions.push discussion
 
-      @cache.nearbyPosts =
+      @cache.nearbyDiscussions =
         timestamp: @state.timestamp
-        posts: posts
+        discussions: discussions
 
-    @cache.nearbyPosts.posts
+    @cache.nearbyDiscussions.discussions
 
 
   parseTimestamp: (message) =>
@@ -283,8 +284,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
-      $.publish 'beatmapsetDiscussion:update',
-        beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
 
     .fail osu.ajaxError
 
@@ -340,6 +340,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
 
     if @props.mode == 'timeline'
-      @state.timestamp? && (@nearbyPosts().length == 0 || @state.timestampConfirmed)
+      @state.timestamp? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
     else
       true

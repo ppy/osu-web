@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -17,13 +16,13 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'top-headers' => [
-        'headline' => 'Transmisiones en vivo',
-        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.',
+    'username_change' => [
+        'only_one' => 'solo se permite un cambio de nombre de usuario por cumplimiento de orden.',
+        'insufficient_paid' => 'El costo del cambio de nombre de usuario excede la cantidad pagada (:expected > :actual)',
+        'reverting_username_mismatch' => 'El nombre de usuario actual (:current) no es el mismo que el cambio a revocar (:username)',
     ],
-    'headers' => [
-        'regular' => 'Transmitiendo ahora',
+    'supporter_tag' => [
+        'insufficient_paid' => 'La donación es menor a la requerida para el regalo de una tag de supporter (:actual > :expected)',
     ],
 ];

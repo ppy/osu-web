@@ -180,7 +180,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         message: ''
         editing: false
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
 
     .fail osu.ajaxError
 

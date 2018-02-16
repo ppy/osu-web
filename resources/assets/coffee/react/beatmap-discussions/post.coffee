@@ -126,28 +126,26 @@ class BeatmapDiscussions.Post extends React.PureComponent
       @textarea.focus()
 
   discussionLinkify: (text) =>
-    route = laroute.route('beatmapsets.discussion', {'beatmapset': "([0-9]+)"}) # what could possibly go wrong?
-    routeRegex = new RegExp(route.replace('/' , '\/'), 'i')
-
     matches = text.match osu.urlRegex
     currentUrl = new URL(window.location)
+    currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
 
     _.each matches, (url) ->
       targetUrl = new URL(url)
 
       if targetUrl.host == currentUrl.host
-        # target is osu site
-        if targetUrl.pathname == currentUrl.pathname
-          # same beatmapset, format: #123
-          linkText = targetUrl.hash.replace '/', ''
-          text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
-          return
-        else
-          if beatmapset = targetUrl.pathname.match routeRegex
+        targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
+        if targetBeatmapsetDiscussions?
+          if currentBeatmapsetDiscussions? &&
+              currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
+            # same beatmapset, format: #123
+            linkText = "##{targetBeatmapsetDiscussions.discussionId}"
+            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+          else
             # different beatmapset, format: 1234#567
-            linkText = "#{beatmapset[1]}#{targetUrl.hash}".replace '#/', '#'
+            linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
             text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
-            return
+          return
 
       # otherwise just linkify url as normal
       text = text.replace url, osu.linkify(url)
@@ -268,7 +266,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
           className: "#{bn}__actions-group"
           if @props.type == 'discussion'
             a
-              href: BeatmapDiscussionHelper.hash discussionId: @props.discussion.id
+              href: BeatmapDiscussionHelper.url discussion: @props.discussion
               onClick: @permalink
               className: "#{bn}__action #{bn}__action--button"
 
@@ -355,7 +353,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
 
     .done (data) =>
       @setState editing: false
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data
 
     .fail osu.ajaxError
 

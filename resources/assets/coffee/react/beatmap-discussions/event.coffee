@@ -44,10 +44,16 @@ class BeatmapDiscussions.Event extends React.PureComponent
     discussionId = @props.event.comment?.beatmap_discussion_id
 
     if discussionId?
+      discussion = @props.discussions[discussionId]
+
+      url =
+        if discussion?
+          BeatmapDiscussionHelper.url discussion: discussion
+        else
+          laroute.route 'beatmap-discussions.show', beatmap_discussion: discussionId
+
       # TODO: get discussion starter to show more detail.
-      discussion = osu.link BeatmapDiscussionHelper.hash({discussionId}),
-        "##{discussionId}"
-        classNames: ['js-beatmap-discussion--jump']
+      discussion = osu.link(url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump'])
     else
       text = @props.event.comment
 
