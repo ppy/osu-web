@@ -201,7 +201,7 @@ return [
                 'empty' => '该用户还没有获得成就。;_;',
                 'title' => '成就',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => '最近活动',
             ],
             'top_ranks' => [

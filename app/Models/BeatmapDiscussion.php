@@ -312,6 +312,8 @@ class BeatmapDiscussion extends Model
     public function validateLockStatus()
     {
         static $modifiableWhenLocked = [
+            'deleted_at',
+            'deleted_by_id',
             'kudosu_denied',
             'kudosu_denied_by_id',
         ];

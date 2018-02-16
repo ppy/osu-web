@@ -178,7 +178,7 @@ return [
                 'empty' => 'Denna användare har inte fått några än. ;_;',
                 'title' => 'Medaljer',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Nyligen',
             ],
             'top_ranks' => [
