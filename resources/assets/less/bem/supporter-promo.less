@@ -1,0 +1,90 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.supporter-promo {
+  display: flex;
+  justify-content: space-between;
+
+  padding-left: 65px;
+  padding-right: 75px;
+  height: 200px;
+  background-color: #fff4f9;
+
+  border-radius: 10px;
+  .default-box-shadow;
+
+  &__text-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    padding: 50px 0;
+    padding-right: 50px;
+    height: 100%;
+  }
+
+  &__heading {
+    font-size: @font-size--large;
+    font-style: italic;
+    font-weight: 300;
+    color: @pink-darker;
+  }
+
+  &__heart {
+    .at2x-simple('/images/badges/heart.png');
+    .circle(75px);
+
+    margin-top: 41.5%;
+
+    box-shadow: 0 0 10px 3px @pink;
+  }
+
+  &__pippi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .at2x-simple('/images/layout/pippi.png');
+    background-size: 164px;
+
+    min-width: 164px;
+    height: auto;
+
+    margin-top: -28px;
+    margin-bottom: -5px;
+
+    clip-path: inset(28px 0 5px 0);
+  }
+
+  &__text {
+    font-size: @font-size--title-small;
+    color: @pink-dark;
+
+    a {
+      color: @pink-dark;
+    }
+
+    &--small {
+      font-size: @font-size--normal;
+    }
+
+    &:first-of-type {
+      padding-bottom: 10px;
+    }
+  }
+}

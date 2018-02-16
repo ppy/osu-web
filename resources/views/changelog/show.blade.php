@@ -65,8 +65,19 @@
                 </div>
 
                 @if(!Auth::check() || !Auth::user()->isSupporter())
-                    <p class="changelog__text changelog__text--date">{{ trans('changelog.supporter.heading') }}</p>
-                    <p class="changelog__text changelog__text--supporter">{!! trans('changelog.supporter.text', ['url' => route('support-the-game')]) !!}</p>
+                    <div class="changelog__supporter-promo supporter-promo">
+                        <div class="supporter-promo__text-box">
+                            <p class="supporter-promo__heading">{{ trans('changelog.support.heading') }}
+
+                            <div>
+                                <div class="supporter-promo__text">{!! trans('changelog.support.text-1', ['url' => route('support-the-game')]) !!}</div>
+                                <div class="supporter-promo__text supporter-promo__text--small">{{ trans('changelog.support.text-2') }}</div>
+                            </div>
+                        </div>
+                        <div class="supporter-promo__pippi">
+                            <div class="supporter-promo__heart"></div>
+                        </div>
+                    </div>
                 @endif
 
                 <div
