@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -17,13 +16,8 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'top-headers' => [
-        'headline' => 'Transmisiones en vivo',
-        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.',
-    ],
-    'headers' => [
-        'regular' => 'Transmitiendo ahora',
-    ],
+    'instrument_declined' => 'El método de pago seleccionado fue rechazado por Paypal.',
+    'invalid_resource_id' => 'La información de pago no fue encontrada.',
+    'unknown' => 'El pago fue rechazado, pero no sabemos por qué.',
 ];

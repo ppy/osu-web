@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2018 ppy Pty. Ltd.
  *
@@ -17,13 +16,29 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'top-headers' => [
-        'headline' => 'Transmisiones en vivo',
-        'description' => 'Los datos son recogidos de twitch.tv cada cinco minutos basándose en el listado del directorio. ¡Siéntete libre de empezar a transmitir y ser incluido! Para más información sobre cómo empezar a transmitir, revisa la página de la wiki de transmisiones en vivo.',
+    'button' => [
+        'action' => [
+            'to_0' => 'No mirar',
+            'to_1' => 'Mirar',
+        ],
     ],
-    'headers' => [
-        'regular' => 'Transmitiendo ahora',
+    'index' => [
+        'description' => 'Estos son las discusiones de beatmaps que estás siguiendo. Serás notificado cuando se realize un nuevo post o actualización.',
+        'title_compact' => 'seguimientos de modding',
+        'title_main' => 'Lista de seguimientos de modding',
+        'table' => [
+            'empty' => 'No estás viendo ninguna discusión de un mapa.',
+            'open_issues' => 'Problemas abiertos',
+            'state' => 'Estado',
+            'title' => 'Título',
+        ],
+    ],
+    'mail' => [
+        'update' => 'Nueva actualización para el mapa ":title"',
+    ],
+    'status' => [
+        'read' => 'Leer',
+        'unread' => 'No leer',
     ],
 ];
