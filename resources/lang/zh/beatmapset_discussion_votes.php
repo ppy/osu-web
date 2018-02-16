@@ -18,24 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'show' => [
-        'fallback_translation' => '请求的页面还没有没有被翻译为选中语言 (:language). 正在显示英文版本.',
-        'languages' => '语言',
-        'missing' => '请求的页面未找到',
-        'missing_title' => '未找到',
-        'missing_translation' => '请求的页面没有当前语言的版本',
-        'search' => '在 wiki 中搜索 :link 。',
-        'toc' => '目录',
+return [ //上下文
+    'index' => [
+        'title' => '谱面讨论投票',
+    ],
 
-        'edit' => [
-            'link' => '在 GitHub 上显示',
-            'refresh' => '刷新',
-        ],
-
-        'outdated' => [
-            '_' => '本文的内容与原文不同步，请查阅 :default 以获得最准确最新的信息！',
-            'default' => '英文版本',
-        ],
+    'item' => [
+        'score' => '得分',
     ],
 ];

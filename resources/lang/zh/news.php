@@ -25,7 +25,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'osu! 新闻',
+        'title' => 'osu!新闻',
 
         'nav' => [
             'newer' => '下一条新闻',

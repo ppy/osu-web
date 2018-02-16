@@ -29,6 +29,11 @@ return [
         'declined' => '支付被取消。',
         'error' => '结账时出现错误 :(',
         'pay' => '使用 Paypal 支付',
+        'pending_checkout' => [
+            'line_1' => '先前的订单未完成',
+            'line_2' => '通过选择支付方式以恢复订单，或者 :link 取消订单。',
+            'link_text' => '点击这里',
+        ],
         'delayed_shipping' => '欢迎购买，但是我们正在处理大量的订单，所以订单**可能会有 1-2 周的延迟**。',
     ],
 
