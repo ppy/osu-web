@@ -41,7 +41,7 @@
             </a>
         @endif
         <div class="usercard__card">
-            <div class="usercard__main-card">
+            <div class="usercard__card-body">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
                         <i class="fa fa-fw fa-refresh fa-spin"></i>
