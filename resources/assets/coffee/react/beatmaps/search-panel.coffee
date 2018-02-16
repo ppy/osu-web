@@ -87,6 +87,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         title: osu.trans('beatmaps.listing.search.filters.general')
         options: filters.general
         default: @props.filterDefaults.general
+        multiselect: true
         selected: @props.filters.general
 
       el Beatmaps.SearchFilter,
