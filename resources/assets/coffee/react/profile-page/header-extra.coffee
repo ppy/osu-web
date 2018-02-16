@@ -99,7 +99,7 @@ class ProfilePage.HeaderExtra extends React.Component
             if moment(@props.user.join_date).isBefore moment('2008-01-01')
               div className: "#{bn}__row",
                 time
-                  className: "js-tooltip-date"
+                  className: "js-tooltip-datetime"
                   title: @props.user.join_date
                   dateTime: @props.user.join_date,
                     osu.trans 'users.show.first_members'
@@ -109,7 +109,7 @@ class ProfilePage.HeaderExtra extends React.Component
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue "<time class='js-tooltip-date' datetime='#{@props.user.join_date}' title='#{@props.user.join_date}'>#{moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))}</time>"
+                      date: rowValue "<time class='js-tooltip-datetime' datetime='#{@props.user.join_date}' title='#{@props.user.join_date}'>#{moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))}</time>"
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
