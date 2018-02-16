@@ -165,7 +165,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
