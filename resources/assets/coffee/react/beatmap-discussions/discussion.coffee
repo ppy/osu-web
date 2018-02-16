@@ -43,7 +43,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   render: =>
-    return div() if @props.discussion.beatmap_discussion_posts.length == 0
+    return div() if @props.discussion.posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
@@ -65,7 +65,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion.beatmap_discussion_posts[0], 'discussion'
+          @post @props.discussion.posts[0], 'discussion'
 
           div className: "#{bn}__actions",
             ['up', 'down'].map (direction) =>
@@ -84,7 +84,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
           div
             className: "#{bn}__replies"
-            for reply in @props.discussion.beatmap_discussion_posts.slice(1)
+            for reply in @props.discussion.posts.slice(1)
               if reply.system && reply.message.type == 'resolved'
                 currentResolvedState = reply.message.value
                 continue if lastResolvedState == currentResolvedState
@@ -98,7 +98,6 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
               beatmapset: @props.beatmapset
               currentBeatmap: @props.currentBeatmap
               discussion: @props.discussion
-              userPermissions: @props.userPermissions
 
         div className: lineClasses
 
@@ -144,7 +143,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           score: e.currentTarget.dataset.score
 
     .done (data) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data
 
     .fail osu.ajaxError
 
@@ -176,6 +175,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     el BeatmapDiscussions[elementName],
       key: post.id
       beatmapset: @props.beatmapset
+      beatmap: @props.currentBeatmap
       discussion: @props.discussion
       post: post
       type: type
