@@ -202,15 +202,19 @@ class ProfilePage.HeaderExtra extends React.Component
 
     component = if url? then a else span
 
-    component
-      href: url
-      className: "#{bn}__row #{bn}__row--fancy-link u-ellipsis-overflow"
+    div
+      className: "#{bn}__row #{bn}__row--fancy-link"
+
       el Icon,
         name: icon ? key
         modifiers: ['fw']
         parentClass: "#{bn}__fancy-link-icon"
         title: title
-      text ? @props.user[key]
+
+      component
+        href: url
+        className: "#{bn}__fancy-link-text u-ellipsis-overflow"
+        text ? @props.user[key]
 
 
   rankChartHover: (_e, {data} = {}) =>
