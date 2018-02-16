@@ -111,7 +111,6 @@ return [
     ],
 
     'user' => [
-        'title' => 'novedades',
         'news' => [
             'title' => 'Novedades',
             'error' => 'Error al cargar las novedades, ¿intenta refrescar la página?...',

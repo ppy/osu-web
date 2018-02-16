@@ -79,7 +79,6 @@ return [
     ],
 
     'user' => [
-        'title' => 'nouvelles',
         'news' => [
             'title' => 'Nouvelles',
             'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
