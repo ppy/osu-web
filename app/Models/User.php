@@ -1251,7 +1251,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         return 3;
     }
 
-
     /**
      * Recommended star difficulty.
      *

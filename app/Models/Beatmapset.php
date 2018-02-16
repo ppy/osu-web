@@ -540,7 +540,7 @@ class Beatmapset extends Model implements AfterCommit
                 'range' => [
                     'difficulties.difficultyrating' => [
                         'gte' => $difficulty - 0.5,
-                        'lte' => $difficulty + 0.5
+                        'lte' => $difficulty + 0.5,
                     ],
                 ],
             ];
