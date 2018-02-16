@@ -357,7 +357,6 @@ class Beatmapset extends Model implements AfterCommit
     public static function searchParams(array $params = [])
     {
         // simple stuff
-        $params['converts'] = get_bool($params['converts'] ?? false);
         $params['query'] = presence($params['query'] ?? null);
         $params['status'] = get_int($params['status'] ?? null) ?? 0;
         $params['genre'] = get_int($params['genre'] ?? null);
@@ -366,6 +365,13 @@ class Beatmapset extends Model implements AfterCommit
         $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
         $params['page'] = max(1, get_int($params['page'] ?? 1));
         $params['offset'] = ($params['page'] - 1) * $params['limit'];
+
+        // general
+        $validGenerals = ['recommended', 'converts'];
+        $selectedGenerals = explode('.', $params['general'] ?? null);
+        foreach ($validGenerals as $option) {
+            $params[$option] = in_array($option, $selectedGenerals, true);
+        }
 
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
