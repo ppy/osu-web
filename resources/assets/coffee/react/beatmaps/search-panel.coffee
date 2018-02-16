@@ -90,7 +90,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         selected: @props.filters.mode
 
       el Beatmaps.SearchFilter,
-        name:'status'
+        name: 'status'
         title: osu.trans('beatmaps.listing.search.filters.status')
         options: filters.statuses
         default: @props.filterDefaults.status
@@ -98,10 +98,10 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
       a
         className: 'beatmapsets-search__expand-link'
-        href:'#'
+        href: '#'
         onClick: @props.expand
         div {}, osu.trans('beatmaps.listing.search.options')
-        div {}, i className:'fa fa-angle-down'
+        div {}, i className: 'fa fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
         el Beatmaps.SearchFilter,
