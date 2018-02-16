@@ -167,7 +167,7 @@ return [
                 'empty' => '아직 아무런 업적 메달도 받지 못했네요. ;_;',
                 'title' => '메달',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [

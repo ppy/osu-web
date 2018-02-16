@@ -54,7 +54,7 @@ class UsersController extends Controller
 
             return $next($request);
         }, [
-            'only' => ['scores', 'beatmapsets', 'kudosu'],
+            'only' => ['scores', 'beatmapsets', 'kudosu', 'recentActivity'],
         ]);
 
         return parent::__construct();
@@ -170,7 +170,10 @@ class UsersController extends Controller
                 return $this->scoresBest($this->user, $this->mode, $this->perPage, $this->offset);
 
             case 'firsts':
-                return $this->scoresFirsts($this->user, $this->mode, $this->perPage, $this->offset);
+                // Override per page restriction in parsePageParams.
+                $perPage = $this->sanitizedLimitParam();
+
+                return $this->scoresFirsts($this->user, $this->mode, $perPage, $this->offset);
 
             case 'recent':
                 return $this->scoresRecent($this->user, $this->mode, $this->perPage, $this->offset);
@@ -268,7 +271,7 @@ class UsersController extends Controller
                 'user_achievements',
                 'follower_count',
                 'page',
-                'recent_activities',
+                'recent_activity',
                 'ranked_and_approved_beatmapset_count',
                 'unranked_beatmapset_count',
                 'graveyard_beatmapset_count',
@@ -383,13 +386,29 @@ class UsersController extends Controller
         }
 
         $this->offset = get_int(Request::input('offset')) ?? 0;
-        $perPage = clamp(get_int(request('limit')) ?? 5, 1, 21);
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
         } else {
+            $perPage = $this->sanitizedLimitParam();
             $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
         }
+    }
+
+    private function sanitizedLimitParam()
+    {
+        return clamp(get_int(request('limit')) ?? 5, 1, 21);
+    }
+
+    public function recentActivity($id)
+    {
+        return json_collection(
+            $this->user->events()->recent()
+                ->limit($this->perPage)
+                ->offset($this->offset)
+                ->get(),
+            'Event'
+        );
     }
 
     private function recentKudosu($user, $perPage = 10, $offset = 0)

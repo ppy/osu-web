@@ -25,6 +25,7 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
+use App\Models\User;
 use Auth;
 use League\Fractal;
 
@@ -36,9 +37,14 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'converts',
         'current_user_attributes',
         'description',
+        'discussions',
+        'events',
+        'genre',
+        'language',
         'nominations',
         'ratings',
         'recent_favourites',
+        'related_users',
         'user',
     ];
 
@@ -121,6 +127,24 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeEvents(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->events->all(),
+            new BeatmapsetEventTransformer()
+        );
+    }
+
+    public function includeGenre(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset->genre, new GenreTransformer);
+    }
+
+    public function includeLanguage(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset->language, new LanguageTransformer);
+    }
+
     public function includeNominations(Beatmapset $beatmapset)
     {
         if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
@@ -166,6 +190,14 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
                 ? ['description' => $beatmapset->description(), 'bbcode' => $beatmapset->editableDescription()]
                 : ['description' => $beatmapset->description()];
         });
+    }
+
+    public function includeDiscussions(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->beatmapDiscussions,
+            new BeatmapDiscussionTransformer()
+        );
     }
 
     public function includeUser(Beatmapset $beatmapset)
@@ -232,7 +264,42 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $beatmapset->recentFavourites(),
-            new \App\Transformers\UserCompactTransformer()
+            new UserCompactTransformer
         );
+    }
+
+    public function includeRelatedUsers(Beatmapset $beatmapset)
+    {
+        $userIds = [$beatmapset->user_id];
+
+        foreach ($beatmapset->beatmapDiscussions as $discussion) {
+            if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+                continue;
+            }
+
+            $userIds[] = $discussion->user_id;
+            $userIds[] = $discussion->deleted_by_id;
+
+            foreach ($discussion->beatmapDiscussionPosts as $post) {
+                if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
+                    continue;
+                }
+
+                $userIds[] = $post->user_id;
+                $userIds[] = $post->last_editor_id;
+                $userIds[] = $post->deleted_by_id;
+            }
+        }
+
+        foreach ($beatmapset->events as $event) {
+            if (priv_check('BeatmapsetEventViewUserId', $event)->can()) {
+                $userIds[] = $event->user_id;
+            }
+        }
+
+        $userIds = array_unique($userIds);
+        $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
+
+        return $this->collection($users, new UserCompactTransformer);
     }
 }

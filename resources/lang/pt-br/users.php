@@ -200,7 +200,7 @@ return [
                 'empty' => 'Esse usuário não conseguiu nada recentemente. ;_;',
                 'title' => 'Medalhas',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recente',
             ],
             'top_ranks' => [

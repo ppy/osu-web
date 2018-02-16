@@ -67,13 +67,13 @@ return [
             'rating-spread' => 'Rating Spread',
         ],
         'info' => [
+            'description' => 'Description',
+            'genre' => 'Genre',
+            'language' => 'Language',
             'no_scores' => 'Unranked beatmap',
             'points-of-failure' => 'Points of Failure',
-            'success-rate' => 'Success Rate',
-
-            'description' => 'Description',
-
             'source' => 'Source',
+            'success-rate' => 'Success Rate',
             'tags' => 'Tags',
         ],
         'scoreboard' => [

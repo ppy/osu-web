@@ -20,9 +20,9 @@
 
 return [
     'pinned_topics' => '置顶主题',
+    'slogan' => '独乐乐不如众乐乐~',
     'subforums' => '子版块',
     'title' => 'osu! 社区',
-    'slogan' => '独乐乐不如众乐乐~',
 
     'covers' => [
         'create' => [
@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => '已删除的主题',
         'go_to_latest' => '查看最后的帖子',
         'latest_post' => ':when :user',
         'latest_reply_by' => '最后回复: :user',
@@ -129,6 +130,7 @@ return [
         '_' => '主题',
 
         'actions' => [
+            'reply' => '回复',
             'reply_with_quote' => '引用以回复',
             'search' => '搜索',
         ],
@@ -161,8 +163,8 @@ return [
         ],
 
         'index' => [
-            'replies' => '回复数',
             'views' => '查看数',
+            'replies' => '回复数',
         ],
 
         'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文

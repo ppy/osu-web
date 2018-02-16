@@ -20,9 +20,26 @@
   @_top: beatmap-scoreboard-table;
   @row-height: 1.8em;
 
-
   width: 100%;
   overflow-x: auto;
+
+  .row-colour(@colour) {
+    > td {
+      background-color: lighten(@colour, 20%);
+    }
+
+    &:nth-child(odd) {
+      > td {
+        background-color: lighten(@colour, 20%);
+      }
+    }
+
+    &:hover {
+      > td {
+        background-color: @colour;
+      }
+    }
+  }
 
   &__table {
     width: 100%;
@@ -90,29 +107,37 @@
   &__body-row {
     height: @row-height;
 
-    // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
-    &:nth-child(odd) {
-      td {
-        background-color: #eee;
-      }
-    }
-
-    td:first-child {
+    > td:first-child {
       // rounded corners for left side
       border-top-left-radius: 5px;
       border-bottom-left-radius: 5px;
     }
-    td:last-child {
+    > td:last-child {
       // ...and right side
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       padding-right: 10px;
     }
 
+    // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
+    &:nth-child(odd) {
+      > td {
+        background-color: #eee;
+      }
+    }
+
     &:hover {
-      td {
+      > td {
         background-color: #ccc;
       }
+    }
+
+    &--friend {
+      .row-colour(@yellow-light);
+    }
+
+    &--self {
+      .row-colour(@green-light);
     }
   }
 

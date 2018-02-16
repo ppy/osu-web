@@ -34,7 +34,17 @@ return [
         'kudosu_lost' => '讨论 :discussion 失去了票数，并且所得 kudosu 已被移除。',
         'kudosu_recalculate' => '讨论 :discussion 所得的 kudosu 已经重新计算。',
         'nominate' => 'Nominated.',
+        'nomination_reset' => '新问题 :discussion 导致提名被重置。',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
+    ],
+
+    'index' => [
+        'title' => '谱面事件',
+    ],
+
+    'item' => [ //上下文
+        'content' => '内容',
+        'type' => '类型',
     ],
 ];

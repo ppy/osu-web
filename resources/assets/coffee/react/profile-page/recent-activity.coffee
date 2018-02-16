@@ -19,16 +19,24 @@
 {div, li, p, ul} = ReactDOMFactories
 el = React.createElement
 
-class ProfilePage.RecentActivities extends React.PureComponent
+class ProfilePage.RecentActivity extends React.PureComponent
   render: =>
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
-      if @props.recentActivities.length
-        ul
-          className: 'profile-extra-entries'
-          @props.recentActivities.map @_renderEntry
+      if @props.recentActivity.length
+        div null,
+          ul
+            className: 'profile-extra-entries'
+            @props.recentActivity.map @_renderEntry
+          div
+            className: 'profile-extra-entries__item profile-extra-entries__item--show-more'
+            el ProfilePage.ShowMoreLink,
+              collection: @props.recentActivity
+              propertyName: 'recentActivity'
+              pagination: @props.pagination['recentActivity']
+              route: laroute.route 'users.recent-activity', user: @props.user.id
       else
         p className: 'profile-extra-entries', osu.trans('events.empty')
 

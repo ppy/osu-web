@@ -92,6 +92,7 @@ return [
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
+        'change_avatar' => 'change your avatar!',
 
         'edit' => [
             'cover' => [
@@ -200,7 +201,7 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [

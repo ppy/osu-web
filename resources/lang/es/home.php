@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,9 +20,9 @@
 
 return [
     'landing' => [
-        'download' => 'Descarga ya',
-        'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> juegos',
-        'peak' => 'Pico, :count usuarios en línea',
+        'download' => 'Descargar ahora',
+        'online' => '<strong>:players</strong> actualmente en línea en <strong>:games</strong> partidas',
+        'peak' => ':count usuarios en línea',
         'players' => '<strong>:count</strong> usuarios registrados',
 
         'slogan' => [
@@ -53,6 +53,7 @@ return [
             'label' => [
                 'forum' => 'buscar en los foros',
                 'forum_children' => 'incluir subforos',
+                'topic_id' => 'tema #',
                 'username' => 'autor',
             ],
         ],
@@ -68,6 +69,7 @@ return [
         'user' => [
             'more' => ':count jugadores más coinciden con la búsqueda',
             'more_simple' => 'Ver más resultados de los jugadores',
+            'more_hidden' => 'La búsqueda de jugadores está limitada a :max jugadores. Refine tus términos de búsqueda.',
             'title' => 'Jugadores',
         ],
 
@@ -78,14 +80,44 @@ return [
         ],
     ],
 
+    'download' => [
+        'tagline' => '¡vamos a<br>empezar!',
+        'action' => 'Descargar osu!',
+        'os' => [
+            'windows' => 'para Windows',
+            'macos' => 'para macOS',
+            'linux' => 'para Linux',
+        ],
+        'mirror' => 'respaldo',
+        'macos-fallback' => 'usuarios de macOS',
+        'steps' => [
+            'register' => [
+                'title' => 'crea una cuenta',
+                'description' => 'sigue las instrucciones cuando empiezes el juego para iniciar sesión o crear una cuenta',
+            ],
+            'download' => [
+                'title' => 'descarga el juego',
+                'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
+            ],
+            'beatmaps' => [
+                'title' => 'obtén beatmaps',
+                'description' => [
+                    '_' => ':browse a la gran librería de beatmaps creados por otros usuarios y ¡empieza a jugar!',
+                    'browse' => 'echa un vistazo',
+                ],
+            ],
+        ],
+        'video-guide' => 'video guía',
+    ],
+
     'user' => [
         'title' => 'novedades',
         'news' => [
             'title' => 'Novedades',
-            'error' => 'Error al cargar las novedades, ¿intenta recargar la página?...',
+            'error' => 'Error al cargar las novedades, ¿intenta refrescar la página?...',
         ],
         'header' => [
-            'welcome' => 'Hola, <strong>:username</strong>!',
+            'welcome' => '¡Hola, <strong>:username</strong>!',
             'messages' => 'Tienes 1 nuevo mensaje|Tienes :count nuevos mensajes',
             'stats' => [
                 'friends' => 'Amigos en línea',
@@ -104,5 +136,16 @@ return [
             'support' => 'Apoya osu!',
             'store' => 'osu!store',
         ],
+    ],
+
+    'support-osu' => [
+        'title' => '¡Wow!',
+        'subtitle' => '¡Parece que estás teniendo un buen rato! :D',
+        'body' => [
+            'part-1' => '¿Sabías que osu! está activo sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
+            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como la <strong>descarga dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+        ],
+        'find-out-more' => '¡Haz clic para más información!',
+        'download-starting' => 'Oh, y no te preocupes - la descarga ya comenzó por ti ;)',
     ],
 ];

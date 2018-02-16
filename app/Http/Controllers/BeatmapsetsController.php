@@ -85,8 +85,13 @@ class BeatmapsetsController extends Controller
     public function show($id)
     {
         $beatmapset = Beatmapset
-            ::with('beatmaps.failtimes', 'user')
-            ->with('beatmaps.difficulty')
+            ::with([
+                'beatmaps.difficulty',
+                'beatmaps.failtimes',
+                'genre',
+                'language',
+                'user',
+            ])
             ->findOrFail($id);
 
         $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
@@ -103,6 +108,8 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 $descriptionInclude,
+                'genre',
+                'language',
                 'ratings',
                 'recent_favourites',
                 'user',
@@ -158,7 +165,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());

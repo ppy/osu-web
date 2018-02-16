@@ -50,12 +50,14 @@
                 <div class="forum__user-flags forum__info-row">
                     @foreach ($user->flags() as $flagType => $flagValue)
                         @if ($flagType === "country")
-                            <img
-                                class="forum__user-flag forum__user-flag--country"
-                                src="{{ flag_path($flagValue[0]) }}"
-                                alt="{{ $flagValue[0] }}"
-                                title="{{ $flagValue[1] }}"
-                            />
+                            <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => $flagValue[0]])}}">
+                                <img
+                                    class="forum__user-flag forum__user-flag--country"
+                                    src="{{ flag_path($flagValue[0]) }}"
+                                    alt="{{ $flagValue[0] }}"
+                                    title="{{ $flagValue[1] }}"
+                                />
+                            </a>
                         @endif
                     @endforeach
                 </div>
