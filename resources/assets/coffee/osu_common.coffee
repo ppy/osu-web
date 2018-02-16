@@ -29,6 +29,10 @@
     (body.scrollHeight - body.scrollTop) - body.clientHeight
 
 
+  currentUserIsFriendsWith: (user_id) ->
+    _.find currentUser.friends, target_id: user_id
+
+
   executeAction: (element) =>
     if !element?
       osu.reloadPage()

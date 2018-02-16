@@ -40,8 +40,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     flashClass = 'js-flash-border--on'
 
     # switch to generalAll tab, set current filter to praises
-    $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'
-    $.publish 'beatmapDiscussion:filter', filter: 'praises'
+    $.publish 'beatmapsetDiscussions:update',
+      mode: 'generalAll'
+      filter: 'praises'
 
     @focusNewDiscussion ->
       # flash border of hype description to emphasize input is required
@@ -105,7 +106,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
 
     if nominationReset?
       nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
-      url = BeatmapDiscussionHelper.hash discussionId: nominationResetDiscussionId
+      url = BeatmapDiscussionHelper.url discussion: @props.discussions[nominationResetDiscussionId]
       nominationResetDiscussionLink = osu.link url, "##{nominationResetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
 
 
@@ -279,7 +280,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response
+      $.publish 'beatmapsetDiscussions:update', beatmapset: response
 
     .fail osu.ajaxError
     .always LoadingOverlay.hide

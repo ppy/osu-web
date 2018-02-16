@@ -126,7 +126,7 @@ return [
             'medals' => [
                 'title' => 'Medailles',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [

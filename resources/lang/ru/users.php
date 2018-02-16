@@ -161,7 +161,7 @@ return [
                 'empty' => 'Этот пользователь ничего не получил. ;_;',
                 'title' => 'Медали',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Последняя активность',
             ],
             'top_ranks' => [

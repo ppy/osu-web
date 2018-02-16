@@ -189,7 +189,7 @@ return [
                 'empty' => 'Este usuario aún no ha conseguido ninguna. ;_;',
                 'title' => 'Medallas',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Reciente',
             ],
             'top_ranks' => [
