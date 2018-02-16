@@ -99,10 +99,10 @@ return [
 
             'no_scores' => [
                 'country' => 'Chưa có ai từ quốc gia của bạn lập điểm số tại beatmap này!',
-                'friend' => 'Chưa có bạn bèn nào của bạn lập điểm số tại beatmap này!',
+                'friend' => 'Chưa có bạn bè nào của bạn lập điểm số tại beatmap này!',
                 'global' => 'Chưa có điểm số. Hãy thử lập một vài điểm số xem?',
                 'loading' => 'Đang tải điểm số...',
-                'unranked' => 'Beatmap chưa xếp hạng.',
+                'unranked' => 'Beatmap chưa được xếp hạng.',
             ],
             'score' => [
                 'first' => 'Dẫn Đầu',
