@@ -97,11 +97,12 @@ class ProfilePage.HeaderExtra extends React.Component
 
           div className: "#{bn}__rows",
             if moment(@props.user.join_date).isBefore moment('2008-01-01')
-              time
-                className: "#{bn}__row js-tooltip-date"
-                title: @props.user.join_date
-                dateTime: @props.user.join_date,
-                  osu.trans 'users.show.first_members'
+              div className: "#{bn}__row",
+                time
+                  className: "js-tooltip-date"
+                  title: @props.user.join_date
+                  dateTime: @props.user.join_date,
+                    osu.trans 'users.show.first_members'
             else
               div
                 className: "#{bn}__row"
