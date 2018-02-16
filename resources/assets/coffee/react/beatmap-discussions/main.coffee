@@ -140,7 +140,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @cache.beatmaps ?=
       _(@state.beatmapset.beatmaps)
       .filter (beatmap) ->
-        !beatmap.deleted_at? || hasDiscussion[beatmap.id]?
+        !_.isEmpty(beatmap) && (!beatmap.deleted_at? || hasDiscussion[beatmap.id]?)
       .keyBy 'id'
       .value()
 
