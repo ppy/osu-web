@@ -170,7 +170,10 @@ class UsersController extends Controller
                 return $this->scoresBest($this->user, $this->mode, $this->perPage, $this->offset);
 
             case 'firsts':
-                return $this->scoresFirsts($this->user, $this->mode, $this->perPage, $this->offset);
+                // Override per page restriction in parsePageParams.
+                $perPage = $this->sanitizedLimitParam();
+
+                return $this->scoresFirsts($this->user, $this->mode, $perPage, $this->offset);
 
             case 'recent':
                 return $this->scoresRecent($this->user, $this->mode, $this->perPage, $this->offset);
@@ -383,13 +386,18 @@ class UsersController extends Controller
         }
 
         $this->offset = get_int(Request::input('offset')) ?? 0;
-        $perPage = clamp(get_int(request('limit')) ?? 5, 1, 21);
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
         } else {
+            $perPage = $this->sanitizedLimitParam();
             $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
         }
+    }
+
+    private function sanitizedLimitParam()
+    {
+        return clamp(get_int(request('limit')) ?? 5, 1, 21);
     }
 
     public function recentActivity($id)
