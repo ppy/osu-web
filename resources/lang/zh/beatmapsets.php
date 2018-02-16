@@ -67,13 +67,13 @@ return [
             'rating-spread' => '评分情况',
         ],
         'info' => [
+            'description' => '介绍',
+            'genre' => '流派',
+            'language' => '语言',
             'no_scores' => 'Unranked 谱面',
             'points-of-failure' => '失败位置',
-            'success-rate' => '成功率',
-
-            'description' => '介绍',
-
             'source' => '来源',
+            'success-rate' => '成功率',
             'tags' => '标签',
         ],
         'scoreboard' => [

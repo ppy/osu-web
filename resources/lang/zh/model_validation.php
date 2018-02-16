@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => '指定了时间戳但是谱面不存在。',
-        'beatmapset_no_hype' => "无法推荐谱面。",
+        'beatmapset_no_hype' => '无法推荐谱面。',
         'hype_requires_null_beatmap' => '只能在 常规（全难度） 中推荐。',
         'invalid_beatmap_id' => '指定的难度无效。',
         'invalid_beatmapset_id' => '指定的谱面无效。',
@@ -47,8 +47,8 @@ return [
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
-            'negative' => "Timestamp can't be negative.",
+            'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
+            'negative' => '无法定位时间戳。',
         ],
     ],
 
