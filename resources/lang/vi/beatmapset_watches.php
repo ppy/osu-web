@@ -32,7 +32,7 @@ return [
         'title_main' => 'Danh Sách Theo Dõi Modding',
 
         'table' => [
-            'empty' => 'Bạn chưa theo dõi cuộc thảo luận nào.',
+            'empty' => 'Chưa theo dõi cuộc thảo luận nào.',
             'open_issues' => 'Vấn đề đang mở',
             'state' => 'Trạng thái',
             'title' => 'Tiêu đề',

@@ -185,7 +185,7 @@ return [
         'qualified' => 'Qualified',
         'loved' => 'Được Love',
         'faves' => 'Yêu Thích',
-        'pending' => 'Pending',
+        'pending' => 'Đang Chờ',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Map Của Tôi',
     ],
