@@ -218,7 +218,7 @@ function locale_for_moment($locale)
         return;
     }
 
-    if ($locale === 'zh') {
+    if ($locale === 'zh-hans' || $locale === 'zh-hant') {
         return 'zh-cn';
     }
 
@@ -227,7 +227,7 @@ function locale_for_moment($locale)
 
 function locale_for_timeago($locale)
 {
-    if ($locale === 'zh') {
+    if ($locale === 'zh-hans' || $locale === 'zh-hant') {
         return 'zh-CN';
     }
 
