@@ -124,7 +124,7 @@ return [
                     'title' => 'Beatmaps Rankeados & Aprobados (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Beatmaps pendientes (:count)',
+                    'title' => 'Beatmaps Pendientes (:count)',
                 ],
             ],
             'historical' => [
