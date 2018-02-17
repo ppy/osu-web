@@ -22,108 +22,108 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Love osu!?<br/>
-                                Support the osu! dev :D',
+            'big_description' => '喜歡 osu! 嗎！？<br/>
+                                那就支持 osu! 開發者吧 (￣3￣)',
             'small_description' => '',
-            'support_button' => 'I want to support osu!',
+            'support_button' => '我想支持 osu!',
         ],
 
-        'dev_quote' => 'osu! is a completely free-to-play game, but running it is most definitely not so free. Between the cost of commissioning servers and high quality international bandwidth, the time spent maintaining the system and community, providing prizes for competitions, answering support questions and generally keeping people happy, osu! consumes quite a hefty amount of money! Oh, and don\'t forget the fact that we do it without any advertising or partnering with silly toolbars and the likes!
-            <br/><br/>osu! is at the end of the day largely run by myself, to which you may know best as "peppy".
-            I have had to quit my day job in order to keep up with osu!,
-            and do at times struggle to maintain the standards I strive for.
-            I would like to offer my personal thanks to those who have supported osu! thus far,
-            and just as much to those who continue to support this amazing game and community into the future :).',
+        'dev_quote' => 'osu! 是一款完全免費的遊戲，但是經營它卻不是免費的。在我們租用服務器和高速網絡、維護系統及社區、向比賽提供獎品、提供疑難解答以及讓玩家們開心的同時，osu! 已經消耗了大量的金錢！噢，別忘了我們是憑着愛好在做 osu! ，沒有任何的廣告合作！
+            <br/><br/>osu! 由我一個人運營着，
+            爲了維護 osu! 我已經辭去了我的日常工作，
+            而我時常感受到使 osu! 維持我所期望的質量是一件很艱難的事情，
+            我以個人的名義感謝至今爲止所有支持 osu! 的人，
+            也包括繼續支持 osu! 的所有人 :)。',
 
         'why_support' => [
-            'title' => 'Why should I support osu!?',
+            'title' => '爲什麼要支持 osu! ？',
             'blocks' => [
-                'dev' => 'Developed and maintained predominantly by one guy in Australia',
-                'time' => 'Takes so much time to keep running that it\'s no longer possible to call it a "hobby".',
-                'ads' => 'No ads anywhere. <br/><br/>
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
-                'goodies' => 'You get some extra goodies!',
+                'dev' => 'osu! 最初是 ppy 個人開發和維護的',
+                'time' => '運營它的成本和投入的精力已經超出了“興趣”的範圍',
+                'ads' => '無廣告 <br/><br/>
+                        不像 99.95% 的網站，我們不推送廣告，也沒有從中獲利。',
+                'goodies' => '解鎖更多高級功能！',
             ],
         ],
 
         'perks' => [
-            'title' => 'Oh? What do I get?!',
+            'title' => '我能得到什麼？',
             'osu_direct' => [
-                'title' => 'osu!direct',
-                'description' => 'quick and easy access to search beatmaps without leaving the game.',
+                'title' => 'osu!direct', //不翻譯
+                'description' => '在遊戲客戶端內搜索和下載譜面。',
             ],
 
             'auto_downloads' => [
-                'title' => 'Auto Downloads',
-                'description' => 'Automatic downloads when playing multiplayer, spectating others, or clicking links in chat!',
+                'title' => '自動下載',
+                'description' => '本地沒有需要的譜面時，osu! 會自動下載！',
             ],
 
             'upload_more' => [
-                'title' => 'Upload More',
-                'description' => 'Additional pending beatmap slots (per ranked beatmap) up to a max of 10.',
+                'title' => '上傳更多譜面',
+                'description' => '譜面集中 Pending 譜面上限增加到 10 張。',
             ],
 
             'early_access' => [
-                'title' => 'Early Access',
-                'description' => 'Access to early releases, where you can try new features before they go public!',
+                'title' => '搶先體驗',
+                'description' => '搶先體驗正在測試中的新特性！',
             ],
 
             'customisation' => [
-                'title' => 'Customisation',
-                'description' => 'Customise your profile by adding a fully customisable user page.',
+                'title' => '個性化',
+                'description' => '自定義個人資料頁。',
             ],
 
             'beatmap_filters' => [
-                'title' => 'Beatmap Filters',
-                'description' => 'Filter beatmap searches by played and unplayed maps and rank achieved (if any).',
+                'title' => '譜面篩選器',
+                'description' => '更多角度的去篩選譜面。',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Yellow Fellow',
-                'description' => 'Be recognised in-game with your new bright yellow chat username colour.',
+                'title' => '高亮用戶名',
+                'description' => '聊天時，用戶名會變成亮黃色。',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Speedy Downloads',
-                'description' => 'More lenient download restrictions, especially when using osu!direct.',
+                'title' => '高速下載',
+                'description' => '更快的下載速度，尤其是使用 osu!direct 時。',
             ],
 
             'change_username' => [
-                'title' => 'Change Username',
-                'description' => 'The ability to change your username without additional costs. (once max)',
+                'title' => '修改用戶名',
+                'description' => '修改用戶名而不需要支付費用（最多 1 次）。',
             ],
 
             'skinnables' => [
-                'title' => 'Skinnables',
-                'description' => 'Extra in-game skinnables, like the main menu background.',
+                'title' => '更多的定製',
+                'description' => '自定義更多的遊戲界面元素，例如主菜單的背景。',
             ],
 
             'feature_votes' => [
-                'title' => 'Feature Votes',
-                'description' => 'Votes for feature requests. (2 per month)',
+                'title' => '新特性投票',
+                'description' => '爲新特性請求投票（每月 2 票）。',
             ],
 
             'sort_options' => [
-                'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'title' => '排名',
+                'description' => '查看排名時可按 國家/好友/所選MOD 進行排名。',
             ],
 
             'feel_special' => [
-                'title' => 'Feel Special',
-                'description' => 'The warm and fuzzy feeling of doing your part to keep osu! running smoothly!',
+                'title' => '滿足感',
+                'description' => '對 “幫助 osu! 繼續運營” 感到滿足！',
             ],
 
             'more_to_come' => [
-                'title' => 'More to come',
+                'title' => '更多特性即將到來',
                 'description' => '',
             ],
         ],
 
         'convinced' => [
-            'title' => 'I\'m convinced! :D',
-            'support' => 'support osu!',
-            'gift' => 'or gift support to other players',
-            'instructions' => 'click the heart button to proceed to the osu!store',
+            'title' => '可以可以，買買買！',
+            'support' => '支持 osu!',
+            'gift' => '或者以禮物方式贈送給其它玩家',
+            'instructions' => '點擊愛心前往 osu! 商店',
         ],
     ],
 ];

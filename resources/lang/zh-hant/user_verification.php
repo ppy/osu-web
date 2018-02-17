@@ -20,30 +20,30 @@
 
 return [
     'box' => [
-        'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
-        'verifying' => 'Verifying...',
-        'issuing' => 'Issuing new code...',
+        'sent' => '一封包含驗證碼的郵件已經發送到 :mail ，請輸入該驗證碼。',
+        'title' => '賬戶認證',
+        'verifying' => '認證中',
+        'issuing' => '正在生成新的驗證碼',
 
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
-            'recover_link' => 'email recovery process here',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
-            'reissue_link' => 'request another code',
-            'logout_link' => 'logout',
+            'check_spam' => '如果找不到這封郵件，請檢查垃圾箱。',
+            'recover' => '無法登錄郵箱或者忘記了所使用的郵箱？:link.',
+            'recover_link' => '點擊此處',
+            'reissue' => '也可以 :reissue_link 或者 :logout_link.',
+            'reissue_link' => '重發驗證碼',
+            'logout_link' => '退出',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'osu! 賬戶認證',
     ],
 
     'errors' => [
-        'expired' => 'Verification code expired, new verification email sent.',
-        'incorrect_key' => 'Incorrect verification code.',
-        'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
-        'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
+        'expired' => '該驗證碼已經過期，新驗證碼已經重新發送。',
+        'incorrect_key' => '驗證碼錯誤。',
+        'retries_exceeded' => '驗證碼錯誤次數超過限定次數，新驗證碼已經重新發送。',
+        'reissued' => '新驗證碼已經重新發送。',
+        'unknown' => '發生了未知的錯誤，新驗證碼已經重新發送。',
     ],
 ];

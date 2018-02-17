@@ -21,30 +21,30 @@
 return [
     'event' => [
         'approve' => 'Approved.',
-        'discussion_delete' => 'Moderator deleted discussion :discussion.',
-        'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
-        'discussion_post_restore' => 'Moderator restored post from discussion :discussion.',
-        'discussion_restore' => 'Moderator restored discussion :discussion.',
-        'disqualify' => 'Disqualified by :user. Reason: :text.',
-        'issue_reopen' => 'Resolved issue :discussion reopened.',
-        'issue_resolve' => 'Issue :discussion marked as resolved.',
-        'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
-        'kudosu_deny' => 'Discussion :discussion denied for kudosu.',
-        'kudosu_gain' => 'Discussion :discussion by :user obtained enough votes for kudosu.',
-        'kudosu_lost' => 'Discussion :discussion by :user lost votes and granted kudosu has been removed.',
-        'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
-        'nominate' => 'Nominated by :user.',
-        'nomination_reset' => 'New problem :discussion triggered a nomination reset.',
+        'discussion_delete' => '管理員刪除了 :discussion 。',
+        'discussion_post_delete' => '管理員在 :discussion 中刪除了這條回覆。',
+        'discussion_post_restore' => '管理員在 :discussion 中恢復了這條回覆。',
+        'discussion_restore' => '管理員恢復了 :discussion 。',
+        'disqualify' => '該譜面因爲 :text 被 DQ',
+        'issue_reopen' => '問題 :discussion 被重新打開。',
+        'issue_resolve' => '問題 :discussion 被標記爲 “已解決”。',
+        'kudosu_allow' => '討論 :discussion 的 kudosu 移除操作已被重置。',
+        'kudosu_deny' => '討論 :discussion 所得的 kudosu 被移除。',
+        'kudosu_gain' => '討論 :discussion 獲得了足夠的票數而被給予 kudosu 。',
+        'kudosu_lost' => '討論 :discussion 失去了票數，並且所得 kudosu 已被移除。',
+        'kudosu_recalculate' => '討論 :discussion 所得的 kudosu 已經重新計算。',
+        'nominate' => 'Nominated.',
+        'nomination_reset' => '新問題 :discussion 導致提名被重置。',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
     ],
 
     'index' => [
-        'title' => 'Beatmapset Events',
+        'title' => '譜面事件',
     ],
 
-    'item' => [
-        'content' => 'Content',
-        'type' => 'Type',
+    'item' => [ //上下文
+        'content' => '內容',
+        'type' => '類型',
     ],
 ];

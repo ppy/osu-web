@@ -20,33 +20,33 @@
 
 return [
     'signature' => [
-        'not_match' => 'Signatures do not match',
+        'not_match' => '簽名不一致',
     ],
-    'notification_type' => 'notification_type is not valid :type',
+    'notification_type' => 'notification_type 不可用 :type', //需要幫助
     'order' => [
-        'invalid' => 'Order is not valid',
+        'invalid' => '訂單不可用',
         'items' => [
-            'virtual_only' => '`:provider` payment is not valid for physical items.',
+            'virtual_only' => '`:provider` 支付方式無法在實物訂單中使用。',
         ],
         'status' => [
-            'not_checkout' => 'Trying to accept payment for an order in the wrong state `:state`.',
-            'not_paid' => 'Trying to refund payment for an order in the wrong state `:state`.',
+            'not_checkout' => '嘗試在異常訂單中支付 `:state`.', //需要幫助
+            'not_paid' => '嘗試在異常訂單中退款 `:state`.', //需要幫助
         ],
     ],
     'param' => [
-        'invalid' => '`:param` param does not match',
+        'invalid' => '`:param` 參數不匹配',
     ],
     'paypal' => [
-        'not_echeck' => 'Pending payment is not an echeck. (:actual)',
+        'not_echeck' => '訂單未付款。（:actual）',
     ],
     'purchase' => [
         'checkout' => [
-            'amount' => 'Payment amount does not match: :actual != :expected',
-            'currency' => 'Payment is not in USD. (:type)',
+            'amount' => '支付金額不符： :actual != :expected',
+            'currency' => '未以美元結算（:type）', //需要幫助
         ],
     ],
     'order_number' => [
-        'malformed' => 'Received order transaction id is malformed',
-        'user_id_mismatch' => 'external_id contains wrong user id',
+        'malformed' => '訂單 ID 格式錯誤',
+        'user_id_mismatch' => 'external_id 包含了錯誤的用戶 ID', //需要幫助
     ],
 ];

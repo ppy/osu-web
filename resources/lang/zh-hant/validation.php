@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+return [ //TODO 需要上下文
+    'mixture' => ':attribute 缺少數字或字母',
+    'required' => ':attribute 是必填的',
 ];

@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'title' => 'status',
-        'description' => 'whats going on mah dude?',
+        'title' => '狀態',
+        'description' => '發生了什麼？',
     ],
 
     'incidents' => [
-        'title' => 'Active Incidents',
-        'automated' => 'automated',
+        'title' => '活動事件',
+        'automated' => '自動',
     ],
 
     'online' => [
         'title' => [
-            'users' => 'Online Users in the last 24 Hours',
-            'score' => 'Score Submissions in the last 24 Hours',
+            'users' => '最近 24 小時的在線用戶',
+            'score' => '最近 24 小時的分數上傳',
         ],
-        'current' => 'Current Online Users',
-        'score' => 'Score Submissions per Second',
+        'current' => '當前在線用戶',
+        'score' => '每秒提交分數',
     ],
 
     'recent' => [
         'incidents' => [
-            'title' => 'Recent Incidents',
+            'title' => '最近事件',
             'state' => [
-                'resolved' => 'Resolved',
-                'resolving' => 'Resolving',
-                'unknown' => 'Unknown',
+                'resolved' => '已解決',
+                'resolving' => '解決中',
+                'unknown' => '未知',
             ],
         ],
 
         'uptime' => [
-            'title' => 'Uptime',
+            'title' => '運行時間',
             'graphs' => [
-                'server' => 'server',
-                'web' => 'web',
+                'server' => '服務器',
+                'web' => '網頁',
             ],
         ],
 
         'when' => [
-            'today' => 'today',
-            'week' => 'week',
-            'month' => 'month',
-            'all_time' => 'all time',
-            'last_week' => 'last week',
-            'weeks_ago' => ':count week ago|:count weeks ago',
+            'today' => '今日',
+            'week' => '本週',
+            'month' => '本月',
+            'all_time' => '所有時間',
+            'last_week' => '上週',
+            'weeks_ago' => ':count 周前',
         ],
     ],
 ];

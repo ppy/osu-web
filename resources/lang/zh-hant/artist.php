@@ -19,30 +19,30 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'osu! 精選藝術家',
+    'title' => '精選藝術家',
 
     'admin' => [
-        'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
+        'hidden' => '當前藝術家已被隱藏',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        '_' => '譜面',
+        'download' => '下載譜面模版',
+        'download-na' => '譜面模版暫時不可用',
     ],
 
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => '爲了給 osu! 帶來新的原創歌曲，我們正在和一些藝術家合作。他們的部分專輯被 osu! 團隊選中作爲制譜的絕佳素材。有的藝術家還爲 osu! 提供了高質量的新專輯。<br><br>這些專輯均提供了預先準備的 .osz 文件，並且已經獲得了官方授權(在 osu! 及其周邊內容中使用)',
     ],
 
     'links' => [
-        'site' => 'Official Website',
+        'site' => '官方網站',
     ],
 
     'songs' => [
-        '_' => 'Songs',
-        'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
+        '_' => '音樂',
+        'count' => ':count 首音樂',
+        'exclusive' => 'osu! 獨享',
     ],
 ];

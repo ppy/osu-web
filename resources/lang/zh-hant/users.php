@@ -19,235 +19,235 @@
  */
 
 return [
-    'deleted' => '[deleted user]',
+    'deleted' => '[被刪除的用戶]', //TODO 需要上下文
 
     'beatmapset_activities' => [
         'discussions' => [
-            'title_recent' => 'Recently started discussions',
+            'title_recent' => '最近打開的討論', //上下文
         ],
 
         'events' => [
-            'title_recent' => 'Recent events',
+            'title_recent' => '最近事件',
         ],
 
         'posts' => [
-            'title_recent' => 'Recent posts',
+            'title_recent' => '最近帖子',
         ],
 
         'votes_received' => [
-            'title_most' => 'Most upvoted by (last 3 months)',
+            'title_most' => '得贊最多（最近三個月）',
         ],
 
         'votes_made' => [
-            'title_most' => 'Most upvoted (last 3 months)',
+            'title_most' => '贊數最多（最近三個月）',
         ],
     ],
 
     'login' => [
-        '_' => 'Sign in',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
-        'button' => 'Sign in',
-        'button_posting' => 'Signing in...',
-        'remember' => 'Remember this computer',
-        'title' => 'Please login to proceed',
-        'failed' => 'Incorrect login',
-        'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
-        'beta' => [
-            'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+        '_' => '登錄',
+        'locked_ip' => 'IP 已被鎖定，請稍等幾分鐘',
+        'username' => '用戶名',
+        'password' => '密碼',
+        'button' => '登錄',
+        'button_posting' => '登錄中...',
+        'remember' => '記住此電腦',
+        'title' => '登錄以繼續',
+        'failed' => '登錄失敗',
+        'register' => '沒有 osu! 賬戶？現在就註冊一個！',
+        'forgot' => '忘記密碼？',
+        'beta' => [ //已棄用(?)
+            'main' => 'Beta 僅限於特定用戶訪問',
+            'small' => '（捐贈玩家將在不久開放）',
         ],
 
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => '這裏', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
     ],
     'signup' => [
-        '_' => 'Register',
+        '_' => '註冊',
     ],
     'anonymous' => [
-        'login_link' => 'click to login',
-        'login_text' => 'login',
-        'username' => 'Guest',
-        'error' => 'You need to be logged in to do this.',
+        'login_link' => '點擊登錄',
+        'login_text' => '登錄',
+        'username' => '遊客',
+        'error' => '請先登錄',
     ],
-    'logout_confirm' => 'Are you sure you want to log out? :(',
+    'logout_confirm' => '確定要退出嗎？o(TヘTo)',
     'restricted_banner' => [
-        'title' => 'Your account has been restricted!',
-        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+        'title' => '賬戶進入限制模式！',
+        'message' => '在被限制時，無法與其他玩家互動，分數只有自己可見。該限制通常由系統自動給予，並將在24小時內解除。需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支持團隊</a>.',
     ],
     'show' => [
-        '404' => 'User not found! ;_;',
-        'age' => ':age years old',
-        'current_location' => 'Currently in :location',
-        'first_members' => 'Here since the beginning',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Joined :date',
-        'lastvisit' => 'Last seen :date',
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
-        'origin_age' => ':age',
-        'origin_country' => 'From :country',
-        'origin_country_age' => ':age from :country',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
-        'plays_with' => 'Plays with :devices',
-        'title' => ":username's profile",
-        'change_avatar' => 'change your avatar!',
+        '404' => '找不到指定的用戶',
+        'age' => ':age 歲',
+        'current_location' => '位於 :location',
+        'first_members' => '元老玩家',
+        'is_developer' => 'osu! 開發者',
+        'is_supporter' => 'osu! 支持者',
+        'joined_at' => '註冊時間：:date',
+        'lastvisit' => '上次登錄：:date',
+        'missingtext' => '未找到用戶！（或者該用戶已經被 ban）',
+        'origin_age' => ':age 歲',
+        'origin_country' => '來自 :country',
+        'origin_country_age' => ':age，來自 :country',
+        'page_description' => 'osu! - 你想知道的關於 :username 的一切!',
+        'plays_with' => '慣用 :devices',
+        'title' => ':username 的個人資料',
+        'change_avatar' => '更換你的頭像！',
 
         'edit' => [
             'cover' => [
-                'button' => 'Change Profile Cover',
-                'defaults_info' => 'More cover options will be available in the future',
+                'button' => '更換個人資料皮膚',
+                'defaults_info' => '在將來會有更多皮膚可用',
                 'upload' => [
-                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
-                    'button' => 'Upload image',
-                    'dropzone' => 'Drop here to upload',
-                    'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be 2000x700',
-                    'too_large' => 'Uploaded file is too large.',
-                    'unsupported_format' => 'Unsupported format.',
+                    'broken_file' => '上傳失敗.請檢查上傳的圖片然後重試.',
+                    'button' => '上傳圖片',
+                    'dropzone' => '拖拽到此處',
+                    'dropzone_info' => '將圖片拖動到這裏也可以上傳',
+                    'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
+                    'size_info' => '圖片尺寸應爲2000x500',
+                    'too_large' => '上傳的圖片過大.',
+                    'unsupported_format' => '不支持的格式.',
                 ],
             ],
         ],
         'extra' => [
-            'followers' => '1 follower|:count followers',
-            'unranked' => 'No recent plays',
+            'followers' => '關注者：:count',
+            'unranked' => '最近沒有玩過',
 
             'achievements' => [
-                'title' => 'Achievements',
-                'achieved-on' => 'Achieved on :date',
+                'title' => '成就',
+                'achieved-on' => '達成於 :date',
             ],
             'beatmaps' => [
-                'none' => 'None... yet.',
-                'title' => 'Beatmaps',
+                'none' => '暫時沒有...',
+                'title' => '譜面',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => '收藏的譜面 (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => '墳場裏的譜面 (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'Ranked 並且得到讚的譜面 (:count)',
                 ],
                 'unranked' => [
                     'title' => 'Pending Beatmaps (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
+                'empty' => '沒有遊戲記錄。:(',
                 'most_played' => [
-                    'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'count' => '遊玩次數',
+                    'title' => '玩得最多的譜面',
                 ],
                 'recent_plays' => [
-                    'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'accuracy' => '準確率：:percentage',
+                    'title' => '最近24小時遊玩',
                 ],
-                'title' => 'Historical',
+                'title' => '歷史記錄',
             ],
             'kudosu' => [
-                'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'recent_entries' => 'Recent Kudosu History',
+                'available' => '可用 kudosu',
+                'available_info' => 'kudosu 可以兌換爲 kudosu 星,它可以讓你的譜面更引人注意。這是你還沒有兌換的 kudosu 數。',
+                'recent_entries' => '最近 Kudosu 記錄',
                 'title' => 'Kudosu!',
-                'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total' => '總共獲得 kudosu',
+                'total_info' => '取決於你對制譜的貢獻如何。查看 <a href="'.osu_url('user.kudosu').'">這個頁面</a> 以得到更多信息。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => '該用戶還沒有收到過 kudosu ！',
 
-                    'beatmap_discussion' => [
+                    'beatmap_discussion' => [ //TODO 專有名詞太多,需要幫助
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => '因討論帖 :post 的 kudosu 移除操作的撤銷而獲得 :amount',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => '在討論帖 :post 中被移除 :amount',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => '因討論帖 :post 被刪除而失去 :amount',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => '因討論帖 :post 被恢復而獲得 :amount',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => '因在討論帖 :post 中得到了足夠票數而獲得 :amount',
+                            'reset' => '因在討論帖 :post 中丟失了票數而失去 :amount',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Received :amount from votes recalculation in modding post of :post',
-                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                            'give' => '因討論帖 :post 的投票重新計算而獲得 :amount',
+                            'reset' => '因討論帖 :post 的投票重新計算而失去 :amount',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => '在帖子 :post 中被 :giver 給予 :amount ',
+                        'reset' => '在帖子 :post 中被 :giver 重置 kudosu ',
+                        'revoke' => '在帖子 :post 中被 :giver 移除 kudosu ',
                     ],
                 ],
             ],
             'me' => [
-                'title' => 'me!',
+                'title' => '個人介紹',
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => '該用戶還沒有獲得成就。;_;',
+                'title' => '成就',
             ],
             'recent_activity' => [
-                'title' => 'Recent',
+                'title' => '最近活動',
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Best Performance',
+                    'title' => '最好成績',
                 ],
-                'empty' => 'No awesome performance records yet. :(',
+                'empty' => '還沒有上傳過成績。 :(',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => '第一名',
                 ],
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
+                'title' => '成績',
+                'weighted_pp' => '權重：:pp (:percentage)',
             ],
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>個人介紹</strong> 是您可以自定義的展示區.',
+            'edit_big' => '編輯',
+            'placeholder' => '在這裏編輯',
+            'restriction_info' => "需要成爲 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 以解鎖該特性.",
         ],
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => ':mode 模式的國內排名',
+            'global' => ':mode 模式的全球排名',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Accuracy',
-            'level' => 'Level :level',
-            'maximum_combo' => 'Maximum Combo',
-            'play_count' => 'Play Count',
-            'play_time' => 'Total Play Time',
-            'ranked_score' => 'Ranked Score',
-            'replays_watched_by_others' => 'Replays Watched by Others',
-            'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'hit_accuracy' => '準確率',
+            'level' => '等級 :level',
+            'maximum_combo' => '最大連擊',
+            'play_count' => '遊戲次數',
+            'play_time' => '遊戲時間',
+            'ranked_score' => 'Ranked 譜面總分',
+            'replays_watched_by_others' => '回放被觀看次數',
+            'score_ranks' => '得分等級',
+            'total_hits' => '總命中次數',
+            'total_score' => '總分',
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => '在線',
+        'offline' => '離線',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => '賬戶已創建',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => '賬戶認證',
     ],
 ];

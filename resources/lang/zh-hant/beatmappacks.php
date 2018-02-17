@@ -21,40 +21,40 @@
 return [
     'index' => [
         'blurb' => [
-            'important' => 'READ THIS BEFORE DOWNLOADING',
+            'important' => '下載前必讀',
             'instruction' => [
-                '_' => "Installation: Once a pack has been downloaded, extract the .rar into your osu! Songs directory.
-                    All songs are still .zip'd and/or .osz'd inside the pack, so osu! will need to extract the beatmaps itself the next time you go into Play mode.
-                    :scary extract the zip's/osz's yourself,
-                    or the beatmaps will display incorrectly in osu and will not function properly.",
-                'scary' => 'Do NOT',
+                '_' => '安裝：下載好曲包之後,直接解壓 .rar 文件到你的 osu! 的 Songs 文件夾下。
+                    所有的譜面此時都是 .zip 或 .osz 文件, osu! 會在你下一次啓動時自動載入這些譜面，
+                    因此 :scary 自己解壓這些譜面。
+                    否則這些譜面可能無法正常遊玩。',
+                'scary' => '不要',
             ],
             'note' => [
-                '_' => 'Also note that it is highly recommended to :scary, since the oldest maps are of much lower quality than most recent maps.',
-                'scary' => 'download the packs from latest to earliest',
+                '_' => '強烈建議 :scary，因爲舊譜面的質量可能不如現在。',
+                'scary' => '下載最新的曲包',
             ],
         ],
-        'title' => 'Beatmap Packs',
-        'description' => 'Pre-packaged collections of beatmaps based around a common theme.',
+        'title' => '曲包',
+        'description' => '圍繞某個相同主題打包好的曲包',
     ],
 
     'show' => [
-        'download' => 'Download',
+        'download' => '下載',
         'item' => [
-            'cleared' => 'cleared',
-            'not_cleared' => 'not cleared',
+            'cleared' => '玩過',
+            'not_cleared' => '未玩',
         ],
     ],
 
     'mode' => [
-        'artist' => 'Artist/Album',
-        'chart' => 'Chart',
-        'standard' => 'Standard',
-        'theme' => 'Theme',
+        'artist' => '藝術家/專輯',
+        'chart' => '月賽',
+        'standard' => '標準',
+        'theme' => '主題',
     ],
 
     'require_login' => [
-        '_' => 'You need to be :link to download',
-        'link_text' => 'logged in',
+        '_' => '需要 :link 才能下載',
+        'link_text' => '登錄',
     ],
 ];

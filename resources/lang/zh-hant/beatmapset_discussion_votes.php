@@ -18,12 +18,12 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
+return [ //上下文
     'index' => [
-        'title' => 'Beatmap Discussion Votes',
+        'title' => '譜面討論投票',
     ],
 
     'item' => [
-        'score' => 'Score',
+        'score' => '得分',
     ],
 ];

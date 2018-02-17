@@ -21,133 +21,133 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Can not undo hyping.',
-            'has_reply' => 'Can not delete discussion with replies',
+            'is_hype' => '無法撤銷推薦',
+            'has_reply' => '無法刪除有回覆的討論。',
         ],
         'nominate' => [
-            'exhausted' => 'You have reached your nomination limit for the day, please try again tomorrow.',
+            'exhausted' => '你今天的提名次數已達上限，請明天再試。',
         ],
         'resolve' => [
-            'not_owner' => 'Only thread starter and beatmap owner can resolve a discussion.',
+            'not_owner' => '只有樓主和譜面所有者才能標記爲已解決。',
         ],
 
         'vote' => [
-            'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'limit_exceeded' => '在投更多票之前請稍等一會。',
+            'owner' => '不能爲自己的討論投票！',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatically generated post can not be edited.',
-            'not_owner' => 'Only the poster can edit post.',
+            'system_generated' => '無法編輯自動回覆。',
+            'not_owner' => '只有作者可以編輯。',
         ],
     ],
 
     'chat' => [
         'channel' => [
             'read' => [
-                'no_access' => 'Access to requested channel is not permitted.',
+                'no_access' => '沒有權限進入該頻道。',
             ],
         ],
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => 'Access to target channel is required.',
-                    'moderated' => 'Channel is currently moderated.',
-                    'not_lazer' => 'You can only speak in #lazer at this time.',
+                    'no_access' => '需要有指定頻道的權限。',
+                    'moderated' => '頻道已滿。',
+                    'not_lazer' => '當前只能在 #lazer 聊天。',
                 ],
 
-                'not_allowed' => 'Can not send message while banned/restricted/silenced.',
+                'not_allowed' => '賬戶處於限制模式，無法發言。',
             ],
         ],
     ],
 
     'contest' => [
-        'voting_over' => 'You cannot change your vote after the voting period for this contest has ended.',
+        'voting_over' => '投票已結束，無法修改投票。',
     ],
 
     'forum' => [
         'post' => [
             'delete' => [
-                'only_last_post' => 'Only last post can be deleted.',
-                'locked' => 'Can not delete post of a locked topic.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can delete the post.',
+                'only_last_post' => '只有最後的回覆可以被刪除。',
+                'locked' => '無法刪除被鎖定主題的回覆。',
+                'no_forum_access' => '沒有權限進入該板塊。',
+                'not_owner' => '只有作者能刪除此回覆。',
             ],
 
             'edit' => [
-                'deleted' => 'Can not edit deleted post.',
-                'locked' => 'The post is locked from editing.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'not_owner' => 'Only poster can edit the post.',
-                'topic_locked' => 'Can not edit post of a locked topic.',
+                'deleted' => '無法編輯已刪除的回覆。',
+                'locked' => '此回覆已被鎖定。',
+                'no_forum_access' => '沒有權限進入該板塊。',
+                'not_owner' => '只有作者能編輯此回覆。',
+                'topic_locked' => '無法編輯被鎖定主題的回覆。',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'You just posted. Wait a bit or edit your last post.',
-                'locked' => 'Can not reply to a locked thread.',
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to reply.',
+                'double_post' => '剛剛已經發表回覆了，喝口水休息會兒，或者編輯之前的回覆。',
+                'locked' => '無法回覆被鎖定的主題。',
+                'no_forum_access' => '沒有權限，無法進入該板塊。',
+                'no_permission' => '沒有權限，無法回覆。',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
-                    'restricted' => "Can't reply while restricted.",
-                    'silenced' => "Can't reply while silenced.",
+                    'require_login' => '回覆前請先登錄。',
+                    'restricted' => '賬戶處於限制模式，無法回覆。',
+                    'silenced' => '賬戶被禁言，無法回覆。',
                 ],
             ],
 
             'store' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'no_permission' => 'No permission to create new topic.',
-                'forum_closed' => 'Forum is closed and can not be posted to.',
+                'no_forum_access' => '沒有權限，無法進入該板塊。',
+                'no_permission' => '沒有權限，無法創建新主題。',
+                'forum_closed' => '該板塊已關閉，無法發表新主題。',
             ],
 
             'vote' => [
-                'no_forum_access' => 'Access to requested forum is required.',
-                'over' => 'Polling is over and can not be voted on anymore.',
-                'voted' => 'Changing vote is not allowed.',
+                'no_forum_access' => '沒有權限，無法進入該板塊。',
+                'over' => '投票已結束！',
+                'voted' => '不允許修改投票。',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
-                    'restricted' => "Can't vote while restricted.",
-                    'silenced' => "Can't vote while silenced.",
+                    'require_login' => '投票前請先登錄。',
+                    'restricted' => '賬戶處於限制模式，無法投票。',
+                    'silenced' => '賬戶被禁言，無法投票。',
                 ],
             ],
 
             'watch' => [
-                'no_forum_access' => 'Access to requested forum is required.',
+                'no_forum_access' => '沒有權限，無法進入該板塊。',
             ],
         ],
 
         'topic_cover' => [
             'edit' => [
-                'uneditable' => 'Invalid cover specified.',
-                'not_owner' => 'Only owner can edit cover.',
+                'uneditable' => '指定的封面不可用。',
+                'not_owner' => '只有樓主可以編輯封面。',
             ],
         ],
 
         'view' => [
-            'admin_only' => 'Only admin can view this forum.',
+            'admin_only' => '該板塊僅限管理員查看。',
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => '登錄以繼續。',
 
-    'unauthorized' => 'Access denied.',
+    'unauthorized' => '沒有權限。',
 
-    'silenced' => "Can't do that while silenced.",
+    'silenced' => '賬戶被禁言，無法進行該操作。',
 
-    'restricted' => "Can't do that while restricted.",
+    'restricted' => '賬戶處於限制模式，無法進行該操作。',
 
     'user' => [
         'page' => [
             'edit' => [
-                'locked' => 'User page is locked.',
-                'not_owner' => 'Can only edit own user page.',
-                'require_supporter_tag' => 'Supporter tag is required.',
+                'locked' => '個人頁面被鎖定。',
+                'not_owner' => '只能編輯自己的個人頁面。',
+                'require_supporter_tag' => '需要成爲支持者。',
             ],
         ],
     ],

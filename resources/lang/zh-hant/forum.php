@@ -19,250 +19,248 @@
  */
 
 return [
-    'pinned_topics' => 'Pinned Topics',
-    'slogan' => "it's dangerous to play alone.",
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'pinned_topics' => '置頂主題',
+    'slogan' => '獨樂樂不如衆樂樂~',
+    'subforums' => '子版塊',
+    'title' => 'osu! 社區',
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            '_' => '設置封面',
+            'button' => '上傳圖片',
+            'info' => '圖片尺寸應爲 :dimensions. 也可以將圖片拖動到這裏上傳.',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => '移除封面',
+            'confirm' => '移除這個封面？',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
+        'new_reply' => '[osu!] 主題 ":title" 有新回覆',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => '沒有主題！',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'confirm_destroy' => '刪除此回覆？',
+        'confirm_restore' => '恢復此回覆？',
+        'edited' => '最後由 :user 於 :when 編輯，總共編輯了 :count 次。',
+        'posted_at' => '發表於 :when',
 
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => '刪除回覆',
+            'restore' => '恢復回覆',
+            'edit' => '編輯回覆',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => '前往該樓層',
+        'post_number_input' => '輸入樓層數',
+        'total_posts' => '一共有 :posts_count 樓',
     ],
 
     'topic' => [
-        'deleted' => 'deleted topic',
-        'go_to_latest' => 'view latest post',
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'deleted' => '已刪除的主題',
+        'go_to_latest' => '查看最後的帖子',
+        'latest_post' => ':when :user',
+        'latest_reply_by' => '最後回覆: :user',
+        'new_topic' => '發表新主題',
+        'post_reply' => '發表',
+        'reply_box_placeholder' => '輸入回覆',
+        'started_by' => '發帖人： :user',
 
         'create' => [
-            'preview' => 'Preview',
-            // TL note: this is used in the topic reply preview, when
-            // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
+            'preview' => '預覽',
+            'preview_hide' => '編輯',
+            'submit' => '發表',
 
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => '在這裏輸入正文',
+                'title' => '點擊這裏設置標題',
             ],
         ],
 
         'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'enter' => '點擊這裏跳轉到指定回覆',
+            'first' => '跳轉到第一條回覆',
+            'last' => '跳轉到最後一條回覆',
+            'next' => '向後 10 條',
+            'previous' => '向前 10 條',
         ],
 
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => '取消',
+            'post' => '保存',
         ],
     ],
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
-            'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
+            'title' => '訂閱的主題',
+            'title_compact' => '訂閱',
+            'title_main' => '<strong>訂閱</strong>主題',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => '訂閱的主題',
+                'unread' => '主題有新回覆',
             ],
 
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => '共訂閱了 :total 個主題',
+                'unread' => '有 :unread 個未讀回覆',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => '取消訂閱該主題？',
+                'title' => '取消訂閱',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => '主題',
 
         'actions' => [
-            'reply' => 'Reply',
-            'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'reply' => '回覆',
+            'reply_with_quote' => '引用以回覆',
+            'search' => '搜索',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => '創建投票',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => '創建投票',
+                'remove' => '取消創建投票',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => '投票持續',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length_days_suffix' => '天',
+                'length_info' => '如果無期限則留空',
+                'max_options' => '最大可選數',
+                'max_options_info' => '填寫每個人最多可以選的選項數。',
+                'options' => '選項',
+                'options_info' => '一個選項佔一行，最多10個選項。',
+                'title' => '問題',
+                'vote_change' => '允許修改',
+                'vote_change_info' => '如果選中，則用戶可以更改他們的投票。',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => '編輯標題',
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => '查看數',
+            'replies' => '回覆數',
         ],
 
-        'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
-            'state-0' => 'Removed "added" tag',
-            'state-1' => 'Added "added" tag',
+        'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
+            'action-0' => '移除 "added" 標籤',
+            'action-1' => '添加 "added" 標籤',
+            'state-0' => '已移除 "added" 標籤',
+            'state-1' => '已添加 "added" 標籤',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
-            'state-0' => 'Removed "assigned" tag',
-            'state-1' => 'Added "assigned" tag',
+            'action-0' => '移除 "assigned" 標籤',
+            'action-1' => '添加 "assigned" 標籤',
+            'state-0' => '已移除 "assigned" 標籤',
+            'state-1' => '已添加 "assigned" 標籤',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
-            'state-0' => 'Removed "confirmed" tag',
-            'state-1' => 'Added "confirmed" tag',
+            'action-0' => '移除 "confirmed" 標籤',
+            'action-1' => '添加 "confirmed" 標籤',
+            'state-0' => '已移除 "confirmed" 標籤',
+            'state-1' => '已添加 "confirmed" 標籤',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
-            'state-0' => 'Removed "duplicate" tag',
-            'state-1' => 'Added "duplicate" tag',
+            'action-0' => '移除 "duplicate" 標籤',
+            'action-1' => '添加 "duplicate" 標籤',
+            'state-0' => '已移除 "duplicate" 標籤',
+            'state-1' => '已添加 "duplicate" 標籤',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
-            'state-0' => 'Removed "invalid" tag',
-            'state-1' => 'Added "invalid" tag',
+            'action-0' => '移除 "invalid" 標籤',
+            'action-1' => '添加 "invalid" 標籤',
+            'state-0' => '已移除 "invalid" 標籤',
+            'state-1' => '已添加 "invalid" 標籤',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
-            'state-0' => 'Removed "resolved" tag',
-            'state-1' => 'Added "resolved" tag',
+            'action-0' => '移除 "resolved" 標籤',
+            'action-1' => '添加 "resolved" 標籤',
+            'state-0' => '已移除 "resolved" 標籤',
+            'state-1' => '已添加 "resolved" 標籤',
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'is_locked' => '主題已被鎖定，不能回覆',
+            'lock-0' => '解鎖主題',
+            'lock-1' => '鎖定主題',
+            'state-0' => '主題已經解鎖',
+            'state-1' => '主題已被鎖定',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => '將主題移動到其他板塊',
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
-            'state-2' => 'Topic has been pinned and marked as announcement',
+            'pin-0' => '取消置頂',
+            'pin-1' => '置頂',
+            'pin-2' => '置頂並標記爲公告',
+            'state-0' => '該主題已取消置頂',
+            'state-1' => '該主題已置頂',
+            'state-2' => '該主題已置頂並標記爲公告',
         ],
 
         'show' => [
-            'deleted-posts' => 'Deleted Posts',
-            'total_posts' => 'Total Posts',
+            'deleted-posts' => '刪除主題',
+            'total_posts' => '總主題數量',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => '當前優先級: +:count',
+                'do' => '提升這個請求',
 
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'current' => 'You have :votes remaining.',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'count' => '{0} 沒有票|[1,*] :count 票',
+                    'current' => '還有 :votes 票.',
+                    'not_enough' => '沒有票了',
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => '投票',
 
                 'detail' => [
-                    'end_time' => 'Polling will end at :time',
-                    'ended' => 'Polling ended :time',
-                    'total' => 'Total votes: :count',
+                    'end_time' => '將於 :time 結束',
+                    'ended' => '結束於 :time',
+                    'total' => '總票數: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'state-0' => '已取消訂閱！',
+            'state-1' => '訂閱成功！',
+            'watch-0' => '取消訂閱',
+            'watch-1' => '訂閱',
         ],
     ],
 ];

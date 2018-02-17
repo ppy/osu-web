@@ -20,10 +20,10 @@
 
 return [
     'index' => [
-        'title' => 'Beatmap Discussion Posts',
+        'title' => '譜面討論貼',
     ],
 
     'item' => [
-        'content' => 'Content',
+        'content' => '正文', //需要上下文
     ],
 ];

@@ -20,22 +20,22 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
-        'languages' => 'Languages',
-        'missing' => 'Requested page ":keyword" could not be found.',
-        'missing_title' => 'Not Found',
-        'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'search' => 'Search existing pages for :link.',
-        'toc' => 'Contents',
+        'fallback_translation' => '請求的頁面還沒有沒有被翻譯爲選中語言 (:language). 正在顯示英文版本.',
+        'languages' => '語言',
+        'missing' => '請求的頁面未找到',
+        'missing_title' => '未找到',
+        'missing_translation' => '請求的頁面沒有當前語言的版本',
+        'search' => '在 wiki 中搜索 :link 。',
+        'toc' => '目錄',
 
         'edit' => [
-            'link' => 'Show on GitHub',
-            'refresh' => 'Refresh',
+            'link' => '在 GitHub 上顯示',
+            'refresh' => '刷新',
         ],
 
         'outdated' => [
-            '_' => 'This page contains an outdated translation of the original content. Please check the :default for the most accurate information (and consider updating the translation if you are able to help out)!',
-            'default' => 'English version',
+            '_' => '本文的內容與原文不同步，請查閱 :default 以獲得最準確最新的信息！',
+            'default' => '英文版本',
         ],
     ],
 ];

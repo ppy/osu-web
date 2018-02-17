@@ -19,7 +19,7 @@
  */
 
 return [
-    'instrument_declined' => 'The selected payment method was rejected by Paypal.',
-    'invalid_resource_id' => 'No payment information was found.',
-    'unknown' => "The payment was rejected, but we're not sure why.",
+    'instrument_declined' => '選擇的支付方式被 Paypal 拒絕。',
+    'invalid_resource_id' => '找不到支付信息。',
+    'unknown' => '由於未知原因，支付被拒絕。',
 ];

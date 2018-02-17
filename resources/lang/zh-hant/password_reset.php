@@ -19,41 +19,41 @@
  */
 
 return [
-    'title' => 'Reset Password',
+    'title' => '重置密碼',
 
     'button' => [
-        'cancel' => 'Cancel',
-        'resend' => 'Resend verification email',
-        'set' => 'Set password',
-        'start' => 'Start',
+        'cancel' => '取消',
+        'resend' => '重新發送確認郵件',
+        'set' => '設置密碼',
+        'start' => '開始',
     ],
 
     'email' => [
-        'subject' => 'osu! account recover',
+        'subject' => 'osu! 賬戶找回',
     ],
 
     'error' => [
-        'contact_support' => 'Please contact support to recover account.',
-        'is_privileged' => 'Contact peppy lulz.',
-        'missing_key' => 'Required.',
-        'too_many_tries' => 'Too many failed attempts.',
-        'user_not_found' => 'Requested user does not exist.',
-        'wrong_key' => 'Incorrect code.',
+        'contact_support' => '請聯繫支持團隊以找回賬戶',
+        'is_privileged' => '聯繫 peppy（笑）',
+        'missing_key' => '必填',
+        'too_many_tries' => '重試次數過多',
+        'user_not_found' => '請求的用戶不存在',
+        'wrong_key' => '不正確的驗證碼',
     ],
 
     'notice' => [
-        'sent' => 'Check your email for the verification code.',
-        'saved' => 'New password saved!',
+        'sent' => '檢查您郵箱中的驗證碼',
+        'saved' => '新密碼已經保存！',
     ],
 
     'started' => [
-        'password' => 'New password',
-        'password_confirmation' => 'Password confirmation',
-        'title' => 'Resetting password for account <strong>:username</strong>.',
-        'verification_key' => 'Verification code',
+        'password' => '新密碼',
+        'password_confirmation' => '確認新密碼',
+        'title' => '爲 <strong>:username</strong> 重置密碼',
+        'verification_key' => '驗證碼',
     ],
 
     'starting' => [
-        'username' => 'Enter email address or username',
+        'username' => '輸入郵箱或用戶名',
     ],
 ];

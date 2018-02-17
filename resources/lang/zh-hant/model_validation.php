@@ -19,80 +19,80 @@
  */
 
 return [
-    'not_negative' => ':attribute cannot be negative.',
-    'required' => ':attribute is required.',
-    'too_long' => ':attribute exceeded maximum length - can only be up to :limit characters.',
-    'wrong_confirmation' => 'Confirmation does not match.',
+    'not_negative' => ':attribute 不能爲負數。',
+    'required' => '需要 :attribute 。',
+    'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
+    'wrong_confirmation' => '確認信息不匹配。',
 
     'beatmap_discussion_post' => [
-        'discussion_locked' => 'Discussion is locked.',
-        'first_post' => 'Can not delete starting post.',
+        'discussion_locked' => '討論被鎖定。',
+        'first_post' => '無法刪除第一個討論。',
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'Timestamp is specified but beatmap is missing.',
-        'beatmapset_no_hype' => "Beatmap can't be hyped.",
-        'hype_requires_null_beatmap' => 'Hype must be done in the General (all difficulties) section.',
-        'invalid_beatmap_id' => 'Invalid difficulty specified.',
-        'invalid_beatmapset_id' => 'Invalid beatmap specified.',
-        'locked' => 'Discussion is locked.',
-        'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
+        'beatmap_missing' => '指定了時間戳但是譜面不存在。',
+        'beatmapset_no_hype' => '無法推薦譜面。',
+        'hype_requires_null_beatmap' => '只能在 常規（全難度） 中推薦。',
+        'invalid_beatmap_id' => '指定的難度無效。',
+        'invalid_beatmapset_id' => '指定的譜面無效。',
+        'locked' => '討論被鎖定。',
+        'mapper_note_wrong_user' => '只有譜面作者可以釘上便籤。',
 
         'hype' => [
-            'guest' => 'Must be logged in to hype.',
-            'hyped' => 'You have already hyped this beatmap.',
-            'limit_exceeded' => 'You have used all your hype.',
-            'not_hypeable' => 'This beatmap can not be hyped',
-            'owner' => 'No hyping your own beatmap.',
+            'guest' => '登錄後才能推薦',
+            'hyped' => '你已經推薦了這張譜面',
+            'limit_exceeded' => '你已經用光了推薦次數',
+            'not_hypeable' => '這張譜面無法推薦',
+            'owner' => '不能推薦你自己的譜面',
         ],
 
         'timestamp' => [
-            'exceeds_beatmapset_length' => 'Specified timestamp is beyond the length of the beatmap.',
-            'negative' => "Timestamp can't be negative.",
+            'exceeds_beatmapset_length' => '指定的時間戳不在譜面範圍內。',
+            'negative' => '無法定位時間戳。',
         ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Can only vote a feature request.',
-            'not_enough_feature_votes' => 'Not enough votes.',
+            'not_feature_topic' => '只能給新特性請求投票。',
+            'not_enough_feature_votes' => '票數不足。',
         ],
 
         'poll_vote' => [
-            'invalid' => 'Invalid option specified.',
+            'invalid' => '指定的選項無效。',
         ],
 
         'post' => [
-            'beatmapset_post_no_delete' => 'Deleting beatmap metadata post is not allowed.',
-            'beatmapset_post_no_edit' => 'Editing beatmap metadata post is not allowed.',
+            'beatmapset_post_no_delete' => '不允許刪除譜面信息帖。',
+            'beatmapset_post_no_edit' => '不允許編輯譜面信息帖。',
         ],
 
         'topic_poll' => [
-            'duplicate_options' => 'Duplicated option is not allowed.',
-            'invalid_max_options' => 'Option per user may not exceed the number of available options.',
-            'minimum_one_selection' => 'A minimum of one option per user is required.',
-            'minimum_two_options' => 'Need at least two options.',
-            'too_many_options' => 'Exceeded maximum number of allowed options.',
+            'duplicate_options' => '不允許重複的選項。',
+            'invalid_max_options' => '每人可選的選項不能超出總選項數。',
+            'minimum_one_selection' => '每人至少可選一項。',
+            'minimum_two_options' => '需要至少兩個選項。',
+            'too_many_options' => '選項數量超出限制。',
         ],
 
         'topic_vote' => [
-            'required' => 'Select an option when voting.',
-            'too_many' => 'Selected more options than allowed.',
+            'required' => '至少選擇一項以投票', //可能有誤
+            'too_many' => '選項數量超出限制。',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'Password may not contain username.',
-        'email_already_used' => 'Email address already used.',
-        'invalid_country' => 'Country not in database.',
-        'invalid_email' => "Doesn't seem to be a valid email address.",
-        'too_short' => 'New password is too short.',
-        'unknown_duplicate' => 'Username or email address already used.',
-        'username_too_short' => 'The requested username is too short.',
-        'weak' => 'Blacklisted password.',
-        'wrong_current_password' => 'Current password is incorrect.',
-        'wrong_email_confirmation' => 'Email confirmation does not match.',
-        'wrong_password_confirmation' => 'Password confirmation does not match.',
-        'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
+        'contains_username' => '密碼不能包含用戶名。',
+        'email_already_used' => '郵箱已被使用。',
+        'invalid_country' => '國家未被數據庫收錄。',
+        'invalid_email' => '無效的郵箱地址。',
+        'too_short' => '新密碼太短。',
+        'unknown_duplicate' => '用戶名或郵箱已被使用。',
+        'username_too_short' => '用戶名太短。',
+        'weak' => '弱密碼。',
+        'wrong_current_password' => '當前密碼錯誤。',
+        'wrong_email_confirmation' => '重複新郵箱與新郵箱不一致。',
+        'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
+        'too_long' => '超出長度限制——最多爲 :limit 個字符。',
     ],
 ];

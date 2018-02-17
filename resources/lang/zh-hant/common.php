@@ -19,62 +19,61 @@
  */
 
 return [
-    'confirmation' => 'Are you sure?',
-    'saved' => 'Saved',
+    'confirmation' => '確定？',
+    'saved' => '已保存',
 
     'array_and' => [
-        'words_connector' => ', ',
-        'two_words_connector' => ' and ',
-        'last_word_connector' => ', and ',
+        'words_connector' => '，',
+        'two_words_connector' => '和',
+        'last_word_connector' => '和',
     ],
 
     'buttons' => [
-        'cancel' => 'Cancel',
-        'delete' => 'Delete',
-        'permalink' => 'permalink',
-        'permalink_copied' => 'link copied',
-        'post' => 'Post',
-        'reply' => 'Reply',
-        'reply_reopen' => 'Reply and Reopen',
-        'reply_resolve' => 'Reply and Resolve',
-        'reset' => 'Reset',
-        'save' => 'Save',
-        'saving' => 'Saving...',
-        'see_more' => 'see more',
-        'show_more' => 'show more',
-        'upload_image' => 'upload image',
+        'cancel' => '取消',
+        'delete' => '刪除',
+        'permalink' => '靜態鏈接',
+        'permalink_copied' => '鏈接已複製',
+        'post' => '發送',
+        'reply' => '回覆',
+        'reply_reopen' => '回覆並重新打開',
+        'reply_resolve' => '回覆並標記爲已解決',
+        'reset' => '重置',
+        'save' => '保存',
+        'saving' => '保存中...',
+        'show_more' => '顯示更多',
+        'upload_image' => '上傳圖片',
     ],
 
     'count' => [
-        'hour_short_unit' => 'hr|hrs',
-        'item' => ':count unit|:count units',
-        'minute_short_unit' => 'min|mins',
-        'months' => ':count month|:count months',
-        'second_short_unit' => 'sec|secs',
-        'years' => ':count year|:count years',
+        'hour_short_unit' => '小時',
+        'item' => ':count 個',
+        'minute_short_unit' => '分鐘',
+        'months' => ':count 個月',
+        'second_short_unit' => '秒',
+        'years' => ':count 年',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => 'YYYY年 MMMM',
+            'php' => 'y年 MMMM',
         ],
     ],
 
     'device' => [
-        'keyboard' => 'Keyboard',
-        'mouse' => 'Mouse',
-        'tablet' => 'Tablet',
-        'touch' => 'Touch Screen',
+        'keyboard' => '鍵盤',
+        'mouse' => '鼠標',
+        'tablet' => '數位板',
+        'touch' => '觸摸屏',
     ],
 
     'dropzone' => [
-        'target' => 'drop here to upload',
+        'target' => '拖動到此處以上傳',
     ],
 
     'pagination' => [
-        'previous' => 'prev',
-        'next' => 'next',
+        'previous' => '上一頁',
+        'next' => '下一頁',
     ],
 
     'score_count' => [
@@ -87,13 +86,13 @@ return [
     ],
 
     'time' => [
-        'days_ago' => ':count day ago|:count days ago',
-        'hours_ago' => ':count hour ago|:count hours ago',
-        'now' => 'now',
-        'remaining' => 'Time Remaining',
+        'days_ago' => ':count 天前',
+        'hours_ago' => ':count 小時前',
+        'now' => '現在',
+        'remaining' => '剩餘時間',
     ],
 
     'title' => [
-        'notice' => 'Notice',
+        'notice' => '提醒',
     ],
 ];

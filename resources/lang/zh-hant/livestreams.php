@@ -20,10 +20,10 @@
 
 return [
     'top-headers' => [
-        'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'headline' => '直播中心',
+        'description' => '每 5 分鐘從 twitch.tv 更新一次列表，想要出現在列表中？快來直播吧！更多相關信息，請查閱我們的 Wiki 界面。', //翻譯可能不準確
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => '正在直播',
     ],
 ];

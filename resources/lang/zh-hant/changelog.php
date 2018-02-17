@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -19,13 +18,13 @@
  */
 
 return [
-    'feed_title' => 'feed',
-    'generic' => 'Bug fixes and minor improvements.',
-    'users-online' => '1 user online|:users users online',
+    'feed_title' => '詳細',
+    'generic' => '修復已知問題並做了小改動.',
+    'users-online' => ':users 在線',
 
     'prefixes' => [
-        'add' => 'addition',
-        'fix' => 'fix',
-        'misc' => 'miscellanous',
+        'add' => '添加',
+        'fix' => '修復',
+        'misc' => '雜項',
     ],
 ];

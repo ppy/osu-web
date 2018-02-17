@@ -19,10 +19,10 @@
  */
 
 return [
-    'months' => 'months',
+    'months' => '月',
 
     'user_search' => [
-        'searching' => 'searching...',
-        'not_found' => "This user doesn't exist",
+        'searching' => '搜索中..',
+        'not_found' => '該用戶不存在',
     ],
 ];

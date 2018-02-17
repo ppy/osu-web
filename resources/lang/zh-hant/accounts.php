@@ -20,61 +20,61 @@
 
 return [
     'edit' => [
-        'title' => '<strong>Account</strong> Settings',
-        'title_compact' => 'settings',
+        'title' => '賬戶設置',
+        'title_compact' => '設置',
 
         'avatar' => [
-            'title' => 'Edit Avatar',
+            'title' => '編輯頭像',
         ],
 
         'email' => [
-            'current' => 'current email',
-            'new' => 'new email',
-            'new_confirmation' => 'email confirmation',
-            'title' => 'Email',
+            'current' => '當前郵箱地址',
+            'new' => '新郵箱地址',
+            'new_confirmation' => '確認新郵箱地址',
+            'title' => '郵箱',
         ],
 
         'password' => [
-            'current' => 'current password',
-            'new' => 'new password',
-            'new_confirmation' => 'password confirmation',
-            'title' => 'Password',
+            'current' => '當前密碼',
+            'new' => '新密碼',
+            'new_confirmation' => '確認新密碼',
+            'title' => '密碼',
         ],
 
         'profile' => [
-            'title' => 'Edit Profile',
+            'title' => '編輯個人資料',
 
             'user' => [
-                'user_from' => 'current location',
-                'user_interests' => 'interest',
-                'user_msnm' => 'skype',
-                'user_occ' => 'occupation',
-                'user_twitter' => 'twitter',
-                'user_website' => 'website',
+                'user_from' => '當前位置',
+                'user_interests' => '興趣愛好',
+                'user_msnm' => 'Skype',
+                'user_occ' => '職業',
+                'user_twitter' => '推特',
+                'user_website' => '個人主頁',
             ],
         ],
 
         'signature' => [
-            'title' => 'Signature',
-            'update' => 'update',
+            'title' => '簽名',
+            'update' => '更新',
         ],
     ],
 
     'update_email' => [
-        'email_subject' => 'osu! email change confirmation',
-        'update' => 'update',
+        'email_subject' => 'osu! 帳戶郵箱更改',
+        'update' => '更新',
     ],
 
     'update_password' => [
-        'email_subject' => 'osu! password change confirmation',
-        'update' => 'update',
+        'email_subject' => 'osu! 帳戶密碼更改',
+        'update' => '更新',
     ],
 
     'playstyles' => [
-        'title' => 'Playstyles',
-        'mouse' => 'mouse',
-        'keyboard' => 'keyboard',
-        'tablet' => 'tablet',
-        'touch' => 'touch',
+        'title' => '遊戲方式',
+        'mouse' => '鼠標',
+        'keyboard' => '鍵盤',
+        'tablet' => '數位板',
+        'touch' => '觸摸屏',
     ],
 ];

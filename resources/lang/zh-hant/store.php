@@ -20,63 +20,63 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Warehouse',
+        'warehouse' => '倉庫',
     ],
 
     'checkout' => [
-        'cart_problems' => 'Uh oh, there are problems with your cart!',
-        'cart_problems_edit' => 'Click here to go edit it.',
-        'declined' => 'The payment was cancelled.',
-        'error' => 'There was a problem completing your checkout :(',
-        'pay' => 'Checkout with Paypal',
+        'cart_problems' => '啊哦，你的購物車中存在問題！',
+        'cart_problems_edit' => '點擊此處以編輯。',
+        'declined' => '支付被取消。',
+        'error' => '結賬時出現錯誤 :(',
+        'pay' => '使用 Paypal 支付',
         'pending_checkout' => [
-            'line_1' => 'A previous checkout was started but did not finish.',
-            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
-            'link_text' => 'click here',
+            'line_1' => '先前的訂單未完成',
+            'line_2' => '通過選擇支付方式以恢復訂單，或者 :link 取消訂單。',
+            'link_text' => '點擊這裏',
         ],
-        'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
+        'delayed_shipping' => '歡迎購買，但是我們正在處理大量的訂單，所以訂單**可能會有 1-2 周的延遲**。',
     ],
 
-    'discount' => 'save :percent%',
+    'discount' => '節省 :percent%',
 
     'order' => [
         'item' => [
             'display_name' => [
-                'supporter_tag' => ':name for :username (:duration)',
+                'supporter_tag' => ':name 給 :username （:duration）',
             ],
-            'quantity' => 'Quantity',
+            'quantity' => '數量',
         ],
     ],
 
     'product' => [
-        'name' => 'Name',
+        'name' => '名稱',
 
         'stock' => [
-            'out' => 'This item is currently out of stock. Check back later!',
-            'out_with_alternative' => 'Unfortunately this item is out of stock. Use the dropdown to choose a different type or check back later!',
+            'out' => '賣完了呢( ´_ゝ｀) 過段時間再回來看看吧。',
+            'out_with_alternative' => '選擇的類型已售罄(´；ω；`) 試試另外幾種或者過段時間再回來看看吧。',
         ],
 
-        'add_to_cart' => 'Add to Cart',
-        'notify' => 'Notify me when available!',
+        'add_to_cart' => '添加到購物車',
+        'notify' => '當可以購買時提醒我！',
 
-        'notification_success' => 'you will be notified when we have new stock. click :link to cancel',
-        'notification_remove_text' => 'here',
+        'notification_success' => '當商品有貨時會收到提醒，點擊 :link 以取消該提醒',
+        'notification_remove_text' => '這裏',
 
-        'notification_in_stock' => 'This product is already in stock!',
+        'notification_in_stock' => '新貨到，快來買買買！',
     ],
 
     'supporter_tag' => [
-        'gift' => 'gift to player',
+        'gift' => '要贈與的玩家',
         'require_login' => [
-            '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            '_' => '你需要 :link 以獲得 Supporter 標籤！',
+            'link_text' => '登錄',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
-            '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            '_' => '需要 :link 才能改變用戶名！',
+            'link_text' => '登錄',
         ],
     ],
 ];

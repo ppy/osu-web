@@ -21,19 +21,19 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerate',
-            'regenerating' => 'Regenerating...',
-            'remove' => 'Remove',
-            'removing' => 'Removing...',
+            'regenerate' => '重新生成',
+            'regenerating' => '重新生成中。。。',
+            'remove' => '移除',
+            'removing' => '移除中。。。',
         ],
         'show' => [
-            'covers' => 'Manage Beatmapset Covers',
+            'covers' => '管理譜面封面',
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                'activate' => '啓用',
+                'activate_confirm' => '確認要爲這個譜面啓用 Modding v2 嗎?',
+                'active' => '已啓用',
+                'inactive' => '未啓用',
             ],
         ],
     ],
@@ -41,22 +41,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => '刪除',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => '論壇 #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => '沒有封面',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => '保存',
+                    'update' => '更新',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => '論壇封面列表',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => '默認板塊封面',
+                    'main' => '論壇封面',
                 ],
             ],
         ],
@@ -64,18 +64,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => '日誌查看器',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => '管理員控制檯',
 
             'sections' => [
-                'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'forum' => '論壇',
+                'general' => '常規',
+                'store' => '商店',
             ],
         ],
     ],
@@ -83,15 +83,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => '訂單列表',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => '該賬戶當前處於限制模式',
+            'message' => '（只有管理員能看見這條信息）',
         ],
     ],
 

@@ -21,30 +21,30 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Unwatch',
-            'to_1' => 'Watch',
+            'to_0' => '取消關注',
+            'to_1' => '關注',
         ],
     ],
 
     'index' => [
-        'description' => 'These are the beatmap discussions you are following. You will be notified when there are new posts or updates.',
-        'title_compact' => 'modding watchlist',
-        'title_main' => 'Modding Watchlist',
+        'description' => '這裏是你關注的譜面，你會在它們更新或者有新討論的時候收到通知。',
+        'title_compact' => '摸圖',
+        'title_main' => '摸圖',
 
         'table' => [
-            'empty' => 'No beatmap discussions watched.',
-            'open_issues' => 'Open issues',
-            'state' => 'State',
-            'title' => 'Title',
+            'empty' => '沒有正在關注的譜面',
+            'open_issues' => '打開的問題',
+            'state' => '狀態',
+            'title' => '標題',
         ],
     ],
 
     'mail' => [
-        'update' => 'New update for beatmap ":title"',
+        'update' => '譜面“:title”有更新',
     ],
 
     'status' => [
-        'read' => 'Read',
-        'unread' => 'Unread',
+        'read' => '已讀',
+        'unread' => '未讀',
     ],
 ];
