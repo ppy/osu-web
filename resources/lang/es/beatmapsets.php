@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Este beatmap no está actualmente disponible para descargar.',
-        'parts-removed' => 'Partes de este beatmap han sido removidas por solicitud de su creador o un titular de derechos.',
+        'parts-removed' => 'Partes de este beatmap han sido removidas por solicitud de su creador o un titular de derechos de autor.',
         'more-info' => 'Más información.',
     ],
 
@@ -67,12 +67,12 @@ return [
             'rating-spread' => 'Desglose de valoraciones',
         ],
         'info' => [
+            'description' => 'Descripción',
+            'genre' => 'Género',
+            'language' => 'Idioma',
             'no_scores' => 'Beatmap no rankeado',
             'points-of-failure' => 'Puntos de Fracaso',
             'success-rate' => 'Tasa de éxito',
-
-            'description' => 'Descripción',
-
             'source' => 'Fuente',
             'tags' => 'Etiquetas',
         ],
