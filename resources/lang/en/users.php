@@ -79,7 +79,7 @@ return [
     'show' => [
         '404' => 'User not found! ;_;',
         'age' => ':age years old',
-        'current_location' => 'Currently in :location',
+        'change_avatar' => 'change your avatar!',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -87,12 +87,11 @@ return [
         'lastvisit' => 'Last seen :date',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'origin_age' => ':age',
-        'origin_country' => 'From :country',
         'origin_country_age' => ':age from :country',
+        'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
-        'change_avatar' => 'change your avatar!',
 
         'edit' => [
             'cover' => [
@@ -222,6 +221,15 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
+        ],
+        'info' => [
+            'interests' => 'Interests',
+            'lastfm' => 'Last.fm',
+            'location' => 'Current Location',
+            'occupation' => 'Occupation',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Website',
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',

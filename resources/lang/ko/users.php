@@ -57,7 +57,6 @@ return [
     'show' => [
         '404' => '사용자를 찾을 수 없습니다! ;_;',
         'age' => ':age살',
-        'current_location' => ':location에 거주',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!개발진',
         'is_supporter' => 'osu!서포터',

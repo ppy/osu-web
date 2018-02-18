@@ -81,7 +81,6 @@ return [
     'show' => [
         '404' => 'Nie znaleziono gracza! ;_;',
         'age' => 'Ma :age lat',
-        'current_location' => 'Obecnie w :location',
         'first_members' => 'Od samego początku',
         'is_developer' => 'programista osu!',
         'is_supporter' => 'donator osu!',
