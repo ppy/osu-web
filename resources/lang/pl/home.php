@@ -104,7 +104,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'wiadomości',
+        'title' => 'przegląd',
         'news' => [
             'title' => 'Wiadomości',
             'error' => 'Wystąpił błąd, spróbuj odświeżyć stronę.',

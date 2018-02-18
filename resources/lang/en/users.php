@@ -108,7 +108,13 @@ return [
                     'unsupported_format' => 'Unsupported format.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'default game mode',
+                'set' => 'set :mode as profile default game mode',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 follower|:count followers',
             'unranked' => 'No recent plays',

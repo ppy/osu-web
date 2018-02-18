@@ -47,7 +47,7 @@ class BeatmapDiscussions.Subscribe extends React.PureComponent
       type: if @props.beatmapset.is_watched then 'DELETE' else 'PUT'
       dataType: 'json'
     .done (data) =>
-      $.publish 'beatmapsetWatch:update', watching: !@props.beatmapset.is_watched
+      $.publish 'beatmapsetDiscussions:update', watching: !@props.beatmapset.is_watched
     .fail (xhr) =>
       osu.emitAjaxError() xhr
     .always =>

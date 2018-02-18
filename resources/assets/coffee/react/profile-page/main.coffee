@@ -273,7 +273,7 @@ class ProfilePage.Main extends React.PureComponent
     @setState showMorePagination: paginationState, ->
       $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[propertyName]).concat(data)
-        hasMore = data.length > perPage && state.length < 100
+        hasMore = data.length > perPage
 
         state.pop() if hasMore
 
