@@ -122,7 +122,7 @@ return [
         'confirm' => "Are you sure? This will use one out of your remaining :n hype and can't be undone.",
         'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking!',
         'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
-        'new_time' => "You'll get another hype at :new_time.",
+        'new_time' => "You'll get another hype :new_time.",
         'remaining' => 'You have :remaining hype left.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Hype Train',
