@@ -40,6 +40,7 @@ return [
         'reset' => 'Reiniciar',
         'save' => 'Guardar',
         'saving' => 'Guardando...',
+        'see_more' => 'ver más',
         'show_more' => 'mostrar más',
         'upload_image' => 'subir imagen',
     ],
@@ -55,8 +56,8 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM YYYY',
-            'php' => 'MMMM y',
+            'moment' => 'MMMM de YYYY',
+            'php' => 'MMMM de y',
         ],
     ],
 
