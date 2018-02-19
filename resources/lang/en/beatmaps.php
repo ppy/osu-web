@@ -128,6 +128,10 @@ return [
         'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
+   
+    'feedback' => [
+        'button' => 'Leave Feedback',
+    ],
 
     'nominations' => [
         'disqualification_prompt' => 'Reason for disqualification?',
