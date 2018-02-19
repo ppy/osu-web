@@ -1431,6 +1431,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function profileBeatmapsetsFavourite()
     {
         return $this->favouriteBeatmapsets()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1438,6 +1439,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->unranked()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1445,6 +1447,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->graveyard()
+            ->active()
             ->with('beatmaps');
     }
 
