@@ -92,7 +92,7 @@ return [
                 'mods' => 'Mods',
                 'player' => 'Người Chơi',
                 'pp' => 'pp',
-                'rank' => 'Rank',
+                'rank' => 'Xếp Hạng',
                 'score_total' => 'Tổng Điểm',
                 'score' => 'Điểm',
             ],
