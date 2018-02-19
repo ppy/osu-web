@@ -366,6 +366,13 @@ class Beatmapset extends Model implements AfterCommit
         $params['page'] = max(1, get_int($params['page'] ?? 1));
         $params['offset'] = ($params['page'] - 1) * $params['limit'];
 
+        // general
+        $validGenerals = ['recommended', 'converts'];
+        $selectedGenerals = explode('.', $params['general'] ?? null);
+        foreach ($validGenerals as $option) {
+            $params[$option] = in_array($option, $selectedGenerals, true);
+        }
+
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
@@ -524,8 +531,28 @@ class Beatmapset extends Model implements AfterCommit
                 break;
         }
 
+        // recommended difficulty
+        if ($params['recommended'] && $params['user'] !== null) {
+            // TODO: index convert difficulties and handle them.
+            $mode = Beatmap::modeStr($params['mode'] ?? Beatmap::MODES['osu']);
+            $difficulty = $params['user']->recommendedStarDifficulty($mode);
+            $matchParams[] = [
+                'range' => [
+                    'difficulties.difficultyrating' => [
+                        'gte' => $difficulty - 0.5,
+                        'lte' => $difficulty + 0.5,
+                    ],
+                ],
+            ];
+        }
+
+        // converts
         if ($params['mode'] !== null) {
-            $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
+            $modes = [$params['mode']];
+            if ($params['converts'] && $params['mode'] !== Beatmap::MODES['osu']) {
+                $modes[] = Beatmap::MODES['osu'];
+            }
+            $matchParams[] = ['terms' => ['difficulties.playmode' => $modes]];
         }
 
         if (!empty($matchParams)) {

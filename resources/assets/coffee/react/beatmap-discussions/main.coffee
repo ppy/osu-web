@@ -315,8 +315,8 @@ class BeatmapDiscussions.Main extends React.PureComponent
   lastUpdate: =>
     lastUpdate = _.max [
       @state.beatmapset.last_updated
-      _.maxBy @state.beatmapset.discussions, 'updated_at'
-      _.maxBy @state.beatmapset.events, 'updated_at'
+      _.maxBy(@state.beatmapset.discussions, 'updated_at')?.updated_at
+      _.maxBy(@state.beatmapset.events, 'created_at')?.created_at
     ]
 
     moment(lastUpdate) if lastUpdate?
