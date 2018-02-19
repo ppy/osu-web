@@ -31,6 +31,7 @@ class UserBanHistory extends Model
     public $timestamps = false;
 
     const BAN_STATUSES = [
+        1 => 'restriction',
         2 => 'silence',
     ];
 
