@@ -82,11 +82,12 @@
 
     &::before {
       .full-size();
+      content: ' ';
+
+      background-image: linear-gradient(to bottom, fade(#000, 25%), fade(#000, 75%));
+
       @media @desktop {
         background-image: linear-gradient(to bottom, fade(#000, 0%), fade(#000, 75%));
-      }
-      @media @mobile {
-        background-image: linear-gradient(to bottom, fade(#000, 25%), fade(#000, 75%));
       }
     }
 
