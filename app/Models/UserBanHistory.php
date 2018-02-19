@@ -40,6 +40,11 @@ class UserBanHistory extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
+    public function banner()
+    {
+        return $this->belongsTo(User::class, 'banner_id', 'user_id');
+    }
+
     public function endTime()
     {
         return $this->timestamp->addSeconds($this->period);

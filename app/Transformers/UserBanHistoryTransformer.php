@@ -25,6 +25,10 @@ use League\Fractal;
 
 class UserBanHistoryTransformer extends Fractal\TransformerAbstract
 {
+    protected $availableIncludes = [
+        'banner',
+    ];
+
     public function transform(UserBanHistory $bh)
     {
         return [
@@ -33,5 +37,10 @@ class UserBanHistoryTransformer extends Fractal\TransformerAbstract
             'timestamp' => $bh->timestamp,
             'period' => $bh->period,
         ];
+    }
+
+    public function includeBanner(UserBanHistory $bh)
+    {
+        return $this->item($bh->banner, new UserCompactTransformer);
     }
 }
