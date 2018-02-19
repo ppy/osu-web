@@ -129,6 +129,10 @@ return [
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Leave Feedback',
+    ],
+
     'nominations' => [
         'disqualification_prompt' => 'Reason for disqualification?',
         'disqualified_at' => 'Disqualified :time_ago (:reason).',

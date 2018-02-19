@@ -130,7 +130,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             div className: "#{bn}__row-right",
               el BigButton,
                 modifiers: ['full']
-                text: 'Leave Feedback'
+                text: osu.trans 'beatmaps.feedback.button'
                 icon: 'bullhorn'
                 props:
                   onClick: @focusNewDiscussion
