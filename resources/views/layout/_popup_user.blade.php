@@ -27,11 +27,13 @@
 
         <div class="nav-popup__row nav-popup__row--with-gutter">
             @if (Auth::user()->country !== null)
-                <img
-                    class="nav-popup__flag"
-                    src="{{ flag_path(Auth::user()->country_acronym) }}"
-                    title="{{ Auth::user()->country->name }}"
-                />
+                <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => Auth::user()->country_acronym])}}">
+                    <img
+                        class="nav-popup__flag"
+                        src="{{ flag_path(Auth::user()->country_acronym) }}"
+                        title="{{ Auth::user()->country->name }}"
+                    />
+                </a>
             @endif
         </div>
     </div>

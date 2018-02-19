@@ -111,7 +111,6 @@ return [
     ],
 
     'user' => [
-        'title' => 'nyheter',
         'news' => [
             'title' => 'Nyheter',
             'error' => 'Fel med att ladda in nyheter, försök ladda om sidan?...',

@@ -1095,7 +1095,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setPlaymodeAttribute($value)
     {
-        $this->osu_playmode = Beatmap::modeInt($attribute);
+        $this->osu_playmode = Beatmap::modeInt($value);
     }
 
     public function hasFavourited($beatmapset)

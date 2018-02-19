@@ -46,7 +46,6 @@ return [
 
             'user' => [
                 'user_from' => 'ubicación actual',
-                'user_interests' => 'intereses',
                 'user_msnm' => 'skype',
                 'user_occ' => 'ocupación',
                 'user_twitter' => 'twitter',

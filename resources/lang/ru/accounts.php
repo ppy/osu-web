@@ -46,7 +46,6 @@ return [
 
             'user' => [
                 'user_from' => 'проживание',
-                'user_interests' => 'интересы',
                 'user_msnm' => 'скайп',
                 'user_occ' => 'профессия',
                 'user_twitter' => 'твиттер',

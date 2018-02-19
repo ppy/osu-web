@@ -20,11 +20,36 @@
 
 return [
     'not_negative' => ':attribute 不能为负数。',
-    'required' => '需要 :attribute。',
+    'required' => '需要 :attribute 。',
+    'too_long' => ':attribute 超出最大长度——最多允许 :limit 个字符。',
     'wrong_confirmation' => '确认信息不匹配。',
 
     'beatmap_discussion_post' => [
-        'first_post' => '无法删除第一个提交。',
+        'discussion_locked' => '讨论被锁定。',
+        'first_post' => '无法删除第一个讨论。',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => '指定了时间戳但是谱面不存在。',
+        'beatmapset_no_hype' => '无法推荐谱面。',
+        'hype_requires_null_beatmap' => '只能在 常规（全难度） 中推荐。',
+        'invalid_beatmap_id' => '指定的难度无效。',
+        'invalid_beatmapset_id' => '指定的谱面无效。',
+        'locked' => '讨论被锁定。',
+        'mapper_note_wrong_user' => '只有谱面作者可以钉上便签。',
+
+        'hype' => [
+            'guest' => '登录后才能推荐',
+            'hyped' => '你已经推荐了这张谱面',
+            'limit_exceeded' => '你已经用光了推荐次数',
+            'not_hypeable' => '这张谱面无法推荐',
+            'owner' => '不能推荐你自己的谱面',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => '指定的时间戳不在谱面范围内。',
+            'negative' => '无法定位时间戳。',
+        ],
     ],
 
     'forum' => [
@@ -37,6 +62,11 @@ return [
             'invalid' => '指定的选项无效。',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => '不允许删除谱面信息帖。',
+            'beatmapset_post_no_edit' => '不允许编辑谱面信息帖。',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => '不允许重复的选项。',
             'invalid_max_options' => '每人可选的选项不能超出总选项数。',
@@ -46,6 +76,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => '至少选择一项以投票', //可能有误
             'too_many' => '选项数量超出限制。',
         ],
     ],

@@ -39,7 +39,6 @@ return [
             'title' => '프로필 수정',
             'user' => [
                 'user_from' => '지역',
-                'user_interests' => '취미',
                 'user_msnm' => '스카이프',
                 'user_occ' => '직업',
                 'user_twitter' => '트위터',

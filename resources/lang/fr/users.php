@@ -56,7 +56,6 @@ return [
     'show' => [
         '404' => 'Utilisateur non trouvé! ;_;',
         'age' => 'Âgé de :age',
-        'current_location' => 'Actuellement à :location',
         'first_members' => 'Ici depuis le début',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',

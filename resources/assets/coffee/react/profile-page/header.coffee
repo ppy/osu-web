@@ -38,6 +38,12 @@ ProfilePage.Header = (props) ->
                   user: props.user.id
                   mode: mode
                 osu.trans "beatmaps.mode.#{mode}"
+                if props.user.playmode == mode
+                  span className: 'page-mode__item-icon',
+                    '\u00A0'
+                    el Icon,
+                      name: 'star'
+                      title: osu.trans('users.show.edit.default_playmode.is_default_tooltip')
                 span className: 'page-mode-link__stripe'
 
       el ProfilePage.HeaderMain, props
