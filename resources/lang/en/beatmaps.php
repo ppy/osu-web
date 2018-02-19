@@ -158,6 +158,7 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'general' => 'General',
                 'mode' => 'Mode',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
@@ -171,6 +172,10 @@ return [
         'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
+    ],
+    'general' => [
+        'recommended' => 'Recommended difficulty',
+        'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
         'any' => 'Any',
