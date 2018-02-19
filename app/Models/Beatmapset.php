@@ -534,7 +534,7 @@ class Beatmapset extends Model implements AfterCommit
         // recommended difficulty
         if ($params['recommended'] && $params['user'] !== null) {
             // TODO: index convert difficulties and handle them.
-            $mode = Beatmap::modeStr($param['mode'] ?? Beatmap::MODES['osu']);
+            $mode = Beatmap::modeStr($params['mode'] ?? Beatmap::MODES['osu']);
             $difficulty = $params['user']->recommendedStarDifficulty($mode);
             $matchParams[] = [
                 'range' => [
