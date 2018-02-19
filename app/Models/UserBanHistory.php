@@ -30,6 +30,10 @@ class UserBanHistory extends Model
     protected $dates = ['timestamp'];
     public $timestamps = false;
 
+    const BAN_STATUSES = [
+        2 => 'silence',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
@@ -38,6 +42,17 @@ class UserBanHistory extends Model
     public function endTime()
     {
         return $this->timestamp->addSeconds($this->period);
+    }
+
+    public function getBanStatusAttribute($value)
+    {
+        echo($value);
+
+        if (array_key_exists($value, self::BAN_STATUSES)) {
+            return self::BAN_STATUSES[$value];
+        } else {
+            return 'note';
+        }
     }
 
     public function scopeBans($query)
