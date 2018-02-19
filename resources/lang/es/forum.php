@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Temas Fijos',
+    'pinned_topics' => 'Temas Fijados',
     'slogan' => 'es peligroso jugar solo.',
     'subforums' => 'Subforos',
     'title' => 'osu!community',
@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'tema eliminado',
         'go_to_latest' => 'ver la última publicación',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última respuesta por :user',
@@ -77,8 +78,8 @@ return [
 
         'create' => [
             'preview' => 'Previsualizar',
-            //
-            //
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escribir',
             'submit' => 'Publicar',
 
@@ -99,11 +100,6 @@ return [
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Guardar',
-
-            'zoom' => [
-                'start' => 'Pantalla Completa',
-                'end' => 'Salir de Pantalla Completa',
-            ],
         ],
     ],
 
@@ -136,7 +132,9 @@ return [
         '_' => 'Temas',
 
         'actions' => [
-            'reply_with_quote' => 'Citar y responder publicación',
+            'reply' => 'Responder',
+            'reply_with_quote' => 'Citar y responder',
+            'search' => 'Buscar',
         ],
 
         'create' => [
@@ -160,6 +158,10 @@ return [
                 'vote_change' => 'Permitir volver a votar.',
                 'vote_change_info' => 'Si está activado, los usuarios podrán cambiar su voto.',
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Editar título',
         ],
 
         'index' => [
@@ -224,8 +226,10 @@ return [
         'moderate_pin' => [
             'pin-0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
             'pin-1' => 'Fijar tema',
+            'pin-2' => 'Fijar tema y marcar como anuncio',
             'state-0' => 'El tema ya no está fijado',
-            'state-1' => 'El tema ha sido fijado',
+            'state-1' => 'El tema ya ha sido fijado',
+            'state-2' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
         'show' => [

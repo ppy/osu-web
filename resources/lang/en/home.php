@@ -111,7 +111,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'news',
+        'title' => 'dashboard',
         'news' => [
             'title' => 'News',
             'error' => 'Error loading news, try refreshing the page?...',

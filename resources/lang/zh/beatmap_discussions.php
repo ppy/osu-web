@@ -27,6 +27,31 @@ return [
         ],
     ],
 
+    'events' => [
+        'empty' => '还没有事件。。。',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => '删除',
+        'title' => '谱面讨论',
+
+        'form' => [
+            'deleted' => '包含已经删除的讨论',
+
+            'user' => [ //上下文
+                'label' => '用户',
+                'overview' => '活动总览',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => '发帖时间',
+        'deleted_at' => '删帖时间',
+        'message_type' => '类型',
+        'permalink' => '静态链接',
+    ],
+
     'nearby_posts' => [
         'confirm' => '在这个时间点上没有相关的讨论记录。',
         'notice' => '在 :timestamp 附近（:existing_timestamps）有讨论记录，发表前请检查。',

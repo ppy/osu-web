@@ -26,7 +26,6 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
-use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use Datadog;
@@ -1006,6 +1005,16 @@ class Beatmapset extends Model implements AfterCommit
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genre_id');
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
+    }
+
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
@@ -1111,17 +1120,13 @@ class Beatmapset extends Model implements AfterCommit
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson($options = [])
+    public function defaultJson()
     {
-        $includes = ['current_user_attributes', 'nominations'];
-
-        if ($options['withTrashedBeatmaps'] ?? false) {
-            $includes[] = 'beatmaps:with_trashed';
-        } else {
-            $includes[] = 'beatmaps';
-        }
-
-        return json_item($this, new BeatmapsetTransformer, $includes);
+        return json_item($this, 'Beatmapset', [
+            'beatmaps',
+            'current_user_attributes',
+            'nominations',
+        ]);
     }
 
     public function defaultDiscussionJson()
@@ -1133,14 +1138,17 @@ class Beatmapset extends Model implements AfterCommit
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
-            'BeatmapsetDiscussion',
+            'Beatmapset',
             [
-                'beatmapset',
-                'beatmap_discussions.beatmap_discussion_posts',
-                'beatmap_discussions.current_user_attributes',
-                'beatmapset_events',
-                'users',
-                'users.groups',
+                'beatmaps:with_trashed',
+                'current_user_attributes',
+                'discussions',
+                'discussions.current_user_attributes',
+                'discussions.posts',
+                'events',
+                'nominations',
+                'related_users',
+                'related_users.groups',
             ]
         );
     }

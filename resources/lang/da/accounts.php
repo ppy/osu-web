@@ -46,7 +46,6 @@ return [
 
             'user' => [
                 'user_from' => 'nuværende placering',
-                'user_interests' => 'interesser',
                 'user_msnm' => 'skype',
                 'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
