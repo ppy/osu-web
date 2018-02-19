@@ -32,6 +32,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'friends',
         'page',
         'recent_activity',
+        'recent_infringements',
         'ranked_and_approved_beatmapset_count',
         'unranked_beatmapset_count',
         'graveyard_beatmapset_count',
@@ -136,6 +137,14 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user->events()->recent()->get(),
             new EventTransformer()
+        );
+    }
+
+    public function includeRecentInfringements(User $user)
+    {
+        return $this->collection(
+            $user->banHistories()->default()->get(),
+            new UserBanHistoryTransformer()
         );
     }
 

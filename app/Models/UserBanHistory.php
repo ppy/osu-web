@@ -20,6 +20,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class UserBanHistory extends Model
 {
     protected $table = 'osu_user_banhistory';
@@ -41,5 +43,19 @@ class UserBanHistory extends Model
     public function scopeBans($query)
     {
         return $query->where('ban_status', '>', 0)->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeAdmin($query)
+    {
+        return $query
+            ->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.infringement_persist_days')))
+            ->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query
+            ->admin()
+            ->where('ban_status', 2);
     }
 }
