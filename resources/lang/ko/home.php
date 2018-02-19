@@ -81,7 +81,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'news',
+        'title' => 'dashboard',
         'news' => [
             'title' => '뉴스',
             'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',

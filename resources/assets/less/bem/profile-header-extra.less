@@ -103,6 +103,10 @@
     color: @blue-light;
   }
 
+  &__fancy-link-text {
+    .link-white();
+  }
+
   &__rank-box {
     font-style: italic;
     text-align: center;
@@ -134,7 +138,7 @@
     color: @blue-light;
 
     &--fancy-link {
-      .link-white();
+      display: flex;
       font-style: italic;
       max-width: 400px;
     }

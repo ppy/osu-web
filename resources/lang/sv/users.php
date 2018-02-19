@@ -57,7 +57,6 @@ return [
     'show' => [
         '404' => 'Användare hittades inte! ;_;',
         'age' => ':age år gammal',
-        'current_location' => 'Just nu i :location',
         'first_members' => 'Här sen början',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
