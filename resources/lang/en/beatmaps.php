@@ -128,7 +128,7 @@ return [
         'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
-   
+
     'feedback' => [
         'button' => 'Leave Feedback',
     ],
