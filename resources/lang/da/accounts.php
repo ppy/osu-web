@@ -24,7 +24,7 @@ return [
         'title_compact' => 'indstillinger',
 
         'avatar' => [
-            'title' => 'Ændr Avatar',
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Ændr Profil',
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'nuværende placering',
