@@ -19,10 +19,20 @@
 .supporter-promo {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 
-  padding-left: 65px;
-  padding-right: 75px;
-  height: 200px;
+  @media @desktop {
+    flex-direction: row;
+    padding-left: 65px;
+    padding-right: 75px;
+    height: 200px;
+  }
+
+  @media @mobile {
+    align-items: center;
+    padding: 20px 60px;
+  }
+
   background-color: #fff4f9;
 
   border-radius: 10px;
@@ -33,9 +43,15 @@
     justify-content: space-between;
     flex-direction: column;
 
-    padding: 50px 0;
-    padding-right: 50px;
-    height: 100%;
+    @media @desktop {
+     padding: 50px 0;
+     padding-right: 50px;
+     height: 100%;
+    }
+
+    @media @mobile {
+      text-align: center;
+    }
   }
 
   &__heading {
@@ -48,6 +64,7 @@
   &__heart {
     .at2x-simple('/images/badges/heart.png');
     .circle(75px);
+    background-size: 75px 75px;
 
     margin-top: 41.5%;
 
@@ -60,12 +77,22 @@
     align-items: center;
 
     .at2x-simple('/images/layout/pippi.png');
-    background-size: 164px;
 
-    min-width: 164px;
-    height: auto;
+    width: 164px;
+    height: 234px;
 
-    background-position-y: -28px;
+    background-size: 164px 234px;
+
+    @media @desktop {
+      min-width: 164px;
+      height: 200px;
+      background-size: 164px;
+      background-position-y: -28px;
+    }
+
+    @media @mobile {
+      order: -1;
+    }
   }
 
   &__text {
