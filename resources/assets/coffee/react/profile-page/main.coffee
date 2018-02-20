@@ -190,6 +190,11 @@ class ProfilePage.Main extends React.PureComponent
           pagination: @state.showMorePagination
         component: ProfilePage.Historical
 
+      account_standing:
+        props:
+          user: @state.user
+        component: ProfilePage.AccountStanding
+
     div className: 'osu-layout osu-layout--full',
       el ProfilePage.Header,
         user: @state.user
@@ -237,6 +242,8 @@ class ProfilePage.Main extends React.PureComponent
           ref: (el) => @pages = el
           for name in @state.profileOrder
             @extraPage name, extraPageParams[name]
+
+          @extraPage 'account_standing', extraPageParams.account_standing
 
 
   _tabsStick: (_e, target) =>

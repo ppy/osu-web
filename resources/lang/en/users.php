@@ -221,6 +221,9 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
+            'account_standing' => [
+                'title' => 'Account Standing',
+            ],
         ],
         'info' => [
             'interests' => 'Interests',
