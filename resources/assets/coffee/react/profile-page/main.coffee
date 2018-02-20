@@ -51,7 +51,7 @@ class ProfilePage.Main extends React.PureComponent
         selection: [0, 0]
       tabsSticky: false
       profileOrder: props.user.profile_order[..]
-      recentActivity: @props.user.recent_activity
+      recentActivity: @props.extras.recentActivity
       scoresBest: @props.extras.scoresBest
       scoresFirsts: @props.extras.scoresFirsts
       scoresRecent: @props.extras.scoresRecent

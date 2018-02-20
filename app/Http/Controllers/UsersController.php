@@ -268,7 +268,6 @@ class UsersController extends Controller
                 'user_achievements',
                 'follower_count',
                 'page',
-                'recent_activity',
                 'ranked_and_approved_beatmapset_count',
                 'unranked_beatmapset_count',
                 'graveyard_beatmapset_count',
@@ -314,6 +313,7 @@ class UsersController extends Controller
                 'unrankedBeatmapsets' => 6,
                 'graveyardBeatmapsets' => 2,
 
+                'recentActivity' => 5,
                 'recentlyReceivedKudosu' => 5,
             ];
 

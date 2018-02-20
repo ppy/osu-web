@@ -26,7 +26,6 @@ reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
   rankHistory: osu.parseJson('json-rankHistory')
   statistics: osu.parseJson('json-statistics')
   withEdit: user.id == window.currentUser.id
-  recentActivity: user.recent_activity
   achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
   perPage: osu.parseJson('json-perPage')
   extras: osu.parseJson('json-extras')
