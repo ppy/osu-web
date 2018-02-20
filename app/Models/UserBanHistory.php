@@ -52,8 +52,6 @@ class UserBanHistory extends Model
 
     public function getBanStatusAttribute($value)
     {
-        echo($value);
-
         if (array_key_exists($value, self::BAN_STATUSES)) {
             return self::BAN_STATUSES[$value];
         } else {
