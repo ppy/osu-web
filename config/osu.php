@@ -133,7 +133,7 @@ return [
             'tries' => 8,
         ],
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
-        'infringement_persist_days' => intval(env('INFRINGEMENT_PERSIST_DAYS', 28)),
+        'infringement_persist_days' => intval(env('INFRINGEMENT_PERSIST_DAYS', 14)),
     ],
     'changelog' => [
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),
