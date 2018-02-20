@@ -21,7 +21,6 @@
 namespace App\Libraries;
 
 use Illuminate\Database\ConnectionInterface;
-use Log;
 
 class TransactionStateManager
 {
@@ -43,7 +42,6 @@ class TransactionStateManager
     public function begin(ConnectionInterface $connection)
     {
         $name = $connection->getName();
-        Log::debug("begin transaction {$name}");
 
         $this->push($name, new TransactionState($connection));
     }
@@ -51,7 +49,6 @@ class TransactionStateManager
     public function commit(ConnectionInterface $connection)
     {
         $name = $connection->getName();
-        Log::debug("committing {$name}");
 
         if ($this->isCompleted()) {
             foreach ($this->states as $name => $connection) {
@@ -68,7 +65,6 @@ class TransactionStateManager
     public function rollback(ConnectionInterface $connection)
     {
         $name = $connection->getName();
-        Log::debug("rolling back {$name}");
 
         if ($this->isCompleted()) {
             foreach ($this->states as $name => $connection) {
@@ -82,7 +78,5 @@ class TransactionStateManager
         if (!isset($this->states[$name])) {
             $this->states[$name] = $item;
         }
-
-        Log::debug("pushed {$name}");
     }
 }
