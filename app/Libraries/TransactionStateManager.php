@@ -48,8 +48,6 @@ class TransactionStateManager
 
     public function commit(ConnectionInterface $connection)
     {
-        $name = $connection->getName();
-
         if ($this->isCompleted()) {
             foreach ($this->states as $name => $connection) {
                 $connection->commit();
@@ -64,8 +62,6 @@ class TransactionStateManager
 
     public function rollback(ConnectionInterface $connection)
     {
-        $name = $connection->getName();
-
         if ($this->isCompleted()) {
             foreach ($this->states as $name => $connection) {
                 $connection->rollback();
