@@ -264,20 +264,26 @@ class UsersController extends Controller
             abort(404);
         }
 
+        $userIncludes = [
+            'user_achievements',
+            'follower_count',
+            'page',
+            'recent_activity',
+            'recent_infringements',
+            'ranked_and_approved_beatmapset_count',
+            'unranked_beatmapset_count',
+            'graveyard_beatmapset_count',
+            'favourite_beatmapset_count',
+        ];
+
+        if (priv_check('UserSilenceShowExtendedInfo')->can()) {
+            $userIncludes[] = 'recent_infringements.banner';
+        }
+
         $userArray = json_item(
             $user,
             'User',
-            [
-                'user_achievements',
-                'follower_count',
-                'page',
-                'recent_activity',
-                'recent_infringements',
-                'ranked_and_approved_beatmapset_count',
-                'unranked_beatmapset_count',
-                'graveyard_beatmapset_count',
-                'favourite_beatmapset_count',
-            ]
+            $userIncludes
         );
 
         $statistics = json_item(
