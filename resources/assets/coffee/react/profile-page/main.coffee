@@ -384,7 +384,7 @@ class ProfilePage.Main extends React.PureComponent
       .fail (xhr) =>
         osu.emitAjaxError() xhr
 
-        @setState profileOrder: @state.user.profileOrder
+        @setState profileOrder: @state.user.profile_order
 
       .always LoadingOverlay.hide
 
