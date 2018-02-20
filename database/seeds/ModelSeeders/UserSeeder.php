@@ -98,6 +98,15 @@ class UserSeeder extends Seeder
             }
             // END RANK HISTORY
 
+
+            // INFRINGEMENTS
+
+            // silence
+            $u->banHistories()->save(factory(App\Models\UserBanHistory::class)->states('silence')->make());
+
+            // note
+            $u->banHistories()->save(factory(App\Models\UserBanHistory::class)->states('note')->make());
+
             // USER GROUP
             $u->userGroups()->save(new App\Models\UserGroup(['group_id' => App\Models\UserGroup::GROUPS['default']]));
         }); // end each user
