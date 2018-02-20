@@ -46,11 +46,11 @@ class TransactionStateManager
         $this->push($name, new TransactionState($connection));
     }
 
-    public function commit(ConnectionInterface $connection)
+    public function commit(ConnectionInterface $_connection)
     {
         if ($this->isCompleted()) {
-            foreach ($this->states as $name => $connection) {
-                $connection->commit();
+            foreach ($this->states as $name => $state) {
+                $state->commit();
             }
         }
     }
@@ -60,11 +60,11 @@ class TransactionStateManager
         return $this->states[$name] ?? $this->states[''];
     }
 
-    public function rollback(ConnectionInterface $connection)
+    public function rollback(ConnectionInterface $_connection)
     {
         if ($this->isCompleted()) {
-            foreach ($this->states as $name => $connection) {
-                $connection->rollback();
+            foreach ($this->states as $name => $state) {
+                $state->rollback();
             }
         }
     }
