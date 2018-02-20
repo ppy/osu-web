@@ -41,6 +41,8 @@ class UserBanHistoryTransformer extends Fractal\TransformerAbstract
 
     public function includeBanner(UserBanHistory $bh)
     {
-        return $this->item($bh->banner, new UserCompactTransformer);
+        if ($bh->banner !== null) {
+            return $this->item($bh->banner, new UserCompactTransformer);
+        }
     }
 }
