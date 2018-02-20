@@ -22,12 +22,12 @@ class TransactionStateServiceProvider extends ServiceProvider
             resolve(TransactionStateManager::class)->begin($event->connection);
         });
 
-        Event::listen(TransactionCommitted::class, function ($event) {
-            resolve(TransactionStateManager::class)->commit($event->connection);
+        Event::listen(TransactionCommitted::class, function ($_event) {
+            resolve(TransactionStateManager::class)->commit();
         });
 
-        Event::listen(TransactionRolledBack::class, function ($event) {
-            resolve(TransactionStateManager::class)->rollback($event->connection);
+        Event::listen(TransactionRolledBack::class, function ($_event) {
+            resolve(TransactionStateManager::class)->rollback();
         });
     }
 
