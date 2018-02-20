@@ -13,6 +13,7 @@
 
 - [X] resolved -> gelöst
 - [X] topic & thread -> Thread
+- [ ] Beitrag -> Post mgl., Verb "posten" bietet sich an
 
 ## General things
 
@@ -33,6 +34,7 @@
 - beatmapsets.show.details.favourited_count
 - star difficulty
 - points of failure
+- host (würde ich einfach so lassen, 'Gastgeber' klingt na ja)
 
 ### Unsicher
 

@@ -21,7 +21,7 @@
 return [
     'landing' => [
         'download' => 'Jetzt herunterladen',
-        'online' => '<strong>:players</strong> aktuell online in <strong>:games</strong> Spielen',
+        'online' => 'aktuell <strong>:players</strong> online in <strong>:games</strong> Spielen',
         'peak' => 'Maximum, :count Benutzer online',
         'players' => '<strong>:count</strong> registrierte Spieler',
 
