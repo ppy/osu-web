@@ -64,7 +64,6 @@ class TransactionStateManager
     {
         if ($this->isCompleted()) {
             foreach ($this->states as $name => $state) {
-                // \Log::debug(null); // uncomment to fix if phpunit errors on osx :best:
                 $state->rollback();
             }
         }

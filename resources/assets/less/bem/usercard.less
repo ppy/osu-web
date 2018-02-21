@@ -62,6 +62,10 @@
     .default-border-radius();
   }
 
+  &__background-container {
+    .full-size();
+  }
+
   &__background-overlay  {
     .full-size();
     background-color: fade(#000, 75%);
@@ -99,7 +103,7 @@
     flex-direction: column;
   }
 
-  &__card-body {
+  &__card-content {
     display: flex;
     flex-direction: row;
     height: @usercard-height - @status-bar-size;

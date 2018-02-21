@@ -21,8 +21,11 @@ el = React.createElement
 
 bn = 'profile-header-extra'
 
-rowValue = (value) ->
-  "<strong>#{value}</strong>"
+rowValue = (value, attributes) ->
+  attributesString = ''
+  attributesString += " #{k}='#{_.escape v}'" for own k, v of attributes
+
+  "<strong#{attributesString}>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
   constructor: (props) ->
@@ -63,6 +66,9 @@ class ProfilePage.HeaderExtra extends React.Component
         osu.trans "common.device.#{s}"
       .join ', '
 
+    joinDate = moment(@props.user.join_date)
+    joinDateTitle = joinDate.format('LL')
+
     div
       className:
         """
@@ -96,18 +102,18 @@ class ProfilePage.HeaderExtra extends React.Component
                         age: rowValue osu.trans('users.show.age', age: @props.user.age)
 
           div className: "#{bn}__rows",
-            if moment(@props.user.join_date).isBefore moment('2008-01-01')
+            if joinDate.isBefore moment('2008-01-01')
               div
                 className: "#{bn}__row"
-                title: moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment')),
-                  osu.trans 'users.show.first_members'
+                title: joinDateTitle
+                osu.trans 'users.show.first_members'
             else
               div
                 className: "#{bn}__row"
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))
+                      date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')), title: joinDateTitle
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:

@@ -24,7 +24,6 @@ return [
         'title_compact' => 'настройки',
 
         'avatar' => [
-            'title' => 'Аватар',
         ],
 
         'email' => [
@@ -42,7 +41,6 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Профиль',
 
             'user' => [
                 'user_from' => 'проживание',
