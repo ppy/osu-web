@@ -196,16 +196,26 @@ class UsersController extends Controller
     public function beatmapsets($_userId, $type)
     {
         static $mapping = [
-            'most_played' => 'beatmapPlaycounts',
             'favourite' => 'favouriteBeatmapsets',
+            'graveyard' => 'graveyardBeatmapsets',
+            'most_played' => 'beatmapPlaycounts',
             'ranked_and_approved' => 'rankedAndApprovedBeatmapsets',
             'unranked' => 'unrankedBeatmapsets',
-            'graveyard' => 'graveyardBeatmapsets',
         ];
 
         $page = $mapping[$type] ?? abort(404);
 
         return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+    }
+
+    public function kudosu()
+    {
+        return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
+    }
+
+    public function recentActivity()
+    {
+        return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
     public function scores($_userId, $type)
@@ -226,16 +236,6 @@ class UsersController extends Controller
         }
 
         return $this->getExtra($this->user, $page, ['mode' => $this->mode], $perPage, $this->offset);
-    }
-
-    public function kudosu()
-    {
-        return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
-    }
-
-    public function recentActivity()
-    {
-        return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
 
     public function me()
@@ -387,68 +387,73 @@ class UsersController extends Controller
 
     private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
     {
+        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
         switch ($page) {
-            case 'recentActivity':
-                $query = $user->events()->recent();
-                $transformer = 'Event';
-                break;
-            case 'recentlyReceivedKudosu':
-                $query = $user->receivedKudosu()
-                    ->with('post', 'post.topic', 'giver', 'kudosuable')
-                    ->orderBy('exchange_id', 'desc');
-                $transformer = 'KudosuHistory';
-                break;
             case 'beatmapPlaycounts':
+                $transformer = 'BeatmapPlaycount';
                 $query = $user->beatmapPlaycounts()
                     ->with('beatmap', 'beatmap.beatmapset')
                     ->whereHas('beatmap.beatmapset')
                     ->orderBy('playcount', 'desc')
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
-                $transformer = 'BeatmapPlaycount';
                 break;
-            case 'rankedAndApprovedBeatmapsets':
-                $query = $user->profileBeatmapsetsRankedAndApproved()
-                    ->orderBy('approved_date', 'desc');
-                $transformer = 'BeatmapsetCompact';
-                $includes = ['beatmaps'];
-                break;
+
             case 'favouriteBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsFavourite();
-                $transformer = 'BeatmapsetCompact';
-                $includes = ['beatmaps'];
-                break;
-            case 'unrankedBeatmapsets':
-                $query = $user->profileBeatmapsetsUnranked()
-                    ->orderBy('last_update', 'desc');
-                $transformer = 'BeatmapsetCompact';
-                $includes = ['beatmaps'];
                 break;
             case 'graveyardBeatmapsets':
-                $query = $user->profileBeatmapsetsGraveyard()
-                    ->orderBy('last_update', 'desc');
                 $transformer = 'BeatmapsetCompact';
                 $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsGraveyard()
+                    ->orderBy('last_update', 'desc');
                 break;
+            case 'rankedAndApprovedBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsRankedAndApproved()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'unrankedBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsUnranked()
+                    ->orderBy('last_update', 'desc');
+                break;
+
+            case 'recentActivity':
+                $transformer = 'Event';
+                $query = $user->events()->recent();
+                break;
+
+            case 'recentlyReceivedKudosu':
+                $transformer = 'KudosuHistory';
+                $query = $user->receivedKudosu()
+                    ->with('post', 'post.topic', 'giver', 'kudosuable')
+                    ->orderBy('exchange_id', 'desc');
+                break;
+
             case 'scoresBest':
+                $transformer = 'Score';
+                $includes = ['beatmap', 'beatmapset', 'weight'];
                 $collection = $user->scoresBest($options['mode'], true)
                     ->orderBy('pp', 'DESC')
                     ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
-                $transformer = 'Score';
                 $withScoresPosition = true;
-                $includes = ['beatmap', 'beatmapset', 'weight'];
                 break;
             case 'scoresFirsts':
+                $transformer = 'Score';
+                $includes = ['beatmap', 'beatmapset'];
                 $query = $user->scoresFirst($options['mode'], true)
                     ->orderBy('score_id', 'desc')
                     ->with('beatmap', 'beatmap.beatmapset');
-                $transformer = 'Score';
-                $includes = ['beatmap', 'beatmapset'];
                 break;
             case 'scoresRecent':
-                $query = $user->scores($options['mode'], true)
-                    ->with('beatmap', 'beatmap.beatmapset');
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset'];
+                $query = $user->scores($options['mode'], true)
+                    ->with('beatmap', 'beatmap.beatmapset');
                 break;
         }
 
