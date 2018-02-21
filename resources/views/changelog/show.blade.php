@@ -70,8 +70,8 @@
                             <h2 class="supporter-promo__heading">{{ trans('changelog.support.heading') }}</h2>
 
                             <div>
-                                <p class="supporter-promo__text">{!! trans('changelog.support.text-1', ['url' => route('support-the-game')]) !!}</p>
-                                <p class="supporter-promo__text supporter-promo__text--small">{{ trans('changelog.support.text-2') }}</p>
+                                <p class="supporter-promo__text">{!! trans('changelog.support.text_1', ['url' => route('support-the-game')]) !!}</p>
+                                <p class="supporter-promo__text supporter-promo__text--small">{{ trans('changelog.support.text_2') }}</p>
                             </div>
                         </div>
                         <div class="supporter-promo__pippi">
