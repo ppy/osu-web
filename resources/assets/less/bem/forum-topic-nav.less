@@ -21,6 +21,10 @@
 
   @_content-height: 30px;
   @_main-height: (@_content-height + 20px);
+  @_seek-bar-height: 10px;
+  @_seek-bar-height-desktop: 5px;
+  @_seek-bar-height-desktop-hover: 15px;
+  @_seek-tooltip-arrow-height: 10px;
   width: 100%;
   background-image: linear-gradient(to top, @gray-dark @_main-height, transparent @_main-height);
 
@@ -147,9 +151,10 @@
     cursor: pointer;
     backface-visibility: hidden;
 
-    height: 10px;
+    height: @_seek-bar-height;
+
     @media @desktop {
-      height: 5px;
+      height: @_seek-bar-height-desktop;
     }
 
     &::before {
@@ -175,7 +180,7 @@
 
     .@{_top}:hover & {
       @media @desktop {
-        height: 15px;
+        height: @_seek-bar-height-desktop-hover;
       }
     }
 
@@ -210,7 +215,7 @@
 
   &__seek-tooltip {
     position: absolute;
-    bottom: (@_main-height + 30px);
+    bottom: (@_main-height + @_seek-bar-height-desktop-hover + @_seek-tooltip-arrow-height);
 
     display: flex;
     width: 0;
@@ -232,7 +237,7 @@
       left: 50%;
       margin-left: -8px;
 
-      border-width: 10px 8px 0 8px;
+      border-width: @_seek-tooltip-arrow-height 8px 0 8px;
       border-style: solid;
       border-color: transparent;
       border-top-color: @gray-dark;
