@@ -208,12 +208,12 @@ class UsersController extends Controller
         return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
     }
 
-    public function kudosu()
+    public function kudosu($_userId)
     {
         return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
     }
 
-    public function recentActivity()
+    public function recentActivity($_userId)
     {
         return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
     }
