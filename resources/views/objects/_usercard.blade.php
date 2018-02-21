@@ -31,7 +31,7 @@
         @if (isset($loading))
             <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
         @else
-            <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__background">
+            <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__background-container">
                 @if ($user->cover() === null)
                     <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
                 @else
@@ -41,7 +41,7 @@
             </a>
         @endif
         <div class="usercard__card">
-            <div class="usercard__card-body">
+            <div class="usercard__card-content">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
                         <i class="fa fa-fw fa-refresh fa-spin"></i>
