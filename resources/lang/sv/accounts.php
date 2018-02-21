@@ -24,6 +24,7 @@ return [
         'title_compact' => 'inställningar',
 
         'avatar' => [
+            'title' => 'Avatar',
         ],
 
         'email' => [
@@ -41,6 +42,7 @@ return [
         ],
 
         'profile' => [
+            'title' => 'Profil',
 
             'user' => [
                 'user_from' => 'nuvarande position',

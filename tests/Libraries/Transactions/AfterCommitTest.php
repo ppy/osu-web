@@ -61,6 +61,10 @@ class AfterCommitTest extends TestCase
     public function tearDown()
     {
         Schema::drop('test_after_commit');
+        // prevents PDOException at the end and transactions between tests getting mixed up.
+        $this->beforeApplicationDestroyed(function () {
+            DB::disconnect();
+        });
 
         parent::tearDown();
     }

@@ -56,6 +56,8 @@ class @TooltipDefault
     classes = 'qtip tooltip-default'
     if el.dataset.tooltipFloat == 'fixed'
       classes += ' tooltip-default--fixed'
+    if isTime
+      classes += ' tooltip-default--time'
     if el.dataset.tooltipModifiers?
       classes += " tooltip-default--#{el.dataset.tooltipModifiers}"
 
@@ -111,7 +113,8 @@ class @TooltipDefault
 
     time = moment(timeString)
 
-    $dateEl = $('<strong>')
+    $dateEl = $('<span>')
+      .addClass 'tooltip-default__date'
       .text time.format('LL')
     $timeEl = $('<span>')
       .addClass 'tooltip-default__time'

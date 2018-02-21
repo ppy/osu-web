@@ -24,6 +24,7 @@ return [
         'title_compact' => '设置',
 
         'avatar' => [
+            'title' => '头像',
         ],
 
         'email' => [
@@ -41,6 +42,7 @@ return [
         ],
 
         'profile' => [
+            'title' => '轮廓',
 
             'user' => [
                 'user_from' => '当前位置',
