@@ -20,11 +20,12 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  margin: 0 10px 20px;
 
   @media @desktop {
     flex-direction: row;
-    padding-left: 65px;
-    padding-right: 75px;
+    padding: 0 75px;
+    margin: 0 55px 20px;
     height: 200px;
   }
 
@@ -35,7 +36,7 @@
 
   background-color: #fff4f9;
 
-  border-radius: 10px;
+  border-radius: @border-radius-large;
   .default-box-shadow;
 
   &__text-box {
@@ -59,7 +60,7 @@
     font-style: italic;
     font-weight: 300;
     color: @pink-darker;
-    margin: 0 0 10px;
+    margin: 0 0 20px;
   }
 
   &__heart {
@@ -67,7 +68,11 @@
     .circle(75px);
     background-size: 75px 75px;
 
-    margin-top: 41.5%;
+    margin-top: 98px;
+
+    @media @desktop {
+      margin-top: 70px;
+    }
 
     box-shadow: 0 0 10px 3px @pink;
   }
@@ -85,14 +90,11 @@
     background-size: 164px 234px;
 
     @media @desktop {
-      min-width: 164px;
-      height: 200px;
+      flex: none;
+      order: 1;
+      height: auto;
       background-size: 164px;
       background-position-y: -28px;
-    }
-
-    @media @mobile {
-      order: -1;
     }
   }
 
