@@ -389,6 +389,7 @@ class UsersController extends Controller
     {
         // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
         switch ($page) {
+            // BeatmapPlaycount
             case 'beatmapPlaycounts':
                 $transformer = 'BeatmapPlaycount';
                 $query = $user->beatmapPlaycounts()
@@ -398,6 +399,7 @@ class UsersController extends Controller
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
                 break;
 
+            // BeatmapsetCompact
             case 'favouriteBeatmapsets':
                 $transformer = 'BeatmapsetCompact';
                 $includes = ['beatmaps'];
@@ -422,11 +424,13 @@ class UsersController extends Controller
                     ->orderBy('last_update', 'desc');
                 break;
 
+            // Event
             case 'recentActivity':
                 $transformer = 'Event';
                 $query = $user->events()->recent();
                 break;
 
+            // KudosuHistory
             case 'recentlyReceivedKudosu':
                 $transformer = 'KudosuHistory';
                 $query = $user->receivedKudosu()
@@ -434,6 +438,7 @@ class UsersController extends Controller
                     ->orderBy('exchange_id', 'desc');
                 break;
 
+            // Score
             case 'scoresBest':
                 $transformer = 'Score';
                 $includes = ['beatmap', 'beatmapset', 'weight'];
