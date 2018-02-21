@@ -74,9 +74,9 @@
 
                             <div>
                                 <p class="supporter-promo__text">
-                                    {{ trans('changelog.support.text_1') }}
-                                    <a href="{{ route('support-the-game') }}" class="supporter-promo__text supporter-promo__text--link">{{ trans('changelog.support.text_1_link') }}</a>
-                                    {{ trans('changelog.support.text_1_end') }}
+                                    {!! trans('changelog.support.text_1', ['link' =>
+                                        link_to(route('support-the-game'), trans('changelog.support.text_1_link'), ['class' => 'supporter-promo__text supporter-promo__text--link'])
+                                    ]) !!}
                                 </p>
                                 <p class="supporter-promo__text supporter-promo__text--small">{{ trans('changelog.support.text_2') }}</p>
                             </div>
