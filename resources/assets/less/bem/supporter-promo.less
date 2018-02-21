@@ -102,8 +102,12 @@
     font-size: @font-size--title-small;
     color: @pink-dark;
 
-    a {
-      color: @pink-dark;
+    &--link {
+      font-weight: 700;
+
+      &:link, &:visited, &:hover, &:active {
+        color: @pink-dark;
+      }
     }
 
     &--small {
