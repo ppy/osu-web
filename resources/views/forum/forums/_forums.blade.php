@@ -45,7 +45,6 @@
                             <a
                                 class="forums__forum-topic-link u-forum--link u-ellipsis-overflow"
                                 href="{{ post_url($forum->lastTopic()->topic_id, "unread", false) }}"
-                                title="{{ $forum->lastTopic()->topic_title }}"
                             >
                                 {{ $forum->lastTopic()->topic_title }}
                             </a>
