@@ -42,20 +42,21 @@
                 <div class="right hidden-xs">
                     <div class="right-content">
                         @if ($forum->lastTopic())
-                        <div class="last-post">
                             <a
-                                class="u-forum--link title"
+                                class="forums__forum-topic-link u-forum--link u-ellipsis-overflow"
                                 href="{{ post_url($forum->lastTopic()->topic_id, "unread", false) }}"
-                                title="{{ $forum->lastTopic()->topic_title }}"
                             >
                                 {{ $forum->lastTopic()->topic_title }}
                             </a>
-                        </div>
-                        <div class="when-post">
-                            {!! trans("forum.topic.latest_post", ["when" => timeago($forum->lastTopic()->topic_last_post_time), "user" => link_to_user($forum->lastTopic()->topic_last_poster_id, $forum->lastTopic()->topic_last_poster_name, $forum->lastTopic()->topic_last_poster_colour)]) !!}
-                        </div>
+
+                            <div>
+                                {!! trans("forum.topic.latest_post", [
+                                    "when" => timeago($forum->lastTopic()->topic_last_post_time),
+                                    "user" => link_to_user($forum->lastTopic()->topic_last_poster_id, $forum->lastTopic()->topic_last_poster_name, $forum->lastTopic()->topic_last_poster_colour)
+                                ]) !!}
+                            </div>
+                        @endif
                     </div>
-                    @endif
                 </div>
             @elseif ($forum->forum_type === 2)
                 <div class="forums__hover-bar hidden-xs">
