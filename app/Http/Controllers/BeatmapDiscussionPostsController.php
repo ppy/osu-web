@@ -178,7 +178,7 @@ class BeatmapDiscussionPostsController extends Controller
             ]);
 
             return [
-                'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
+                'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,
             ];

@@ -57,7 +57,7 @@ return [
     'device' => [
         'keyboard' => 'klawiatury',
         'mouse' => 'myszki',
-        'tablet' => 'tableta',
+        'tablet' => 'tabletu',
         'touch' => 'ekranu dotykowego',
     ],
 

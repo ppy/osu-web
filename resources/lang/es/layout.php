@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,7 +20,7 @@
 
 return [
     'defaults' => [
-        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia!  Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
+        'page_description' => 'osu! - ¡El ritmo está a solo un *clic* de distancia! Con Ouendan/EBA, Taiko y modos de juego originales, así como un editor de niveles totalmente funcional.',
     ],
 
     'menu' => [
@@ -29,9 +29,11 @@ return [
             'account-edit' => 'ajustes',
             'friends' => 'amigos',
             'friends-index' => 'amigos',
-            'getChangelog' => 'listado de cambios',
+            'changelog-index' => 'listado de cambios',
+            'changelog-show' => 'compilación',
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
+            'groups-show' => 'grupos',
             'index' => 'osu!',
             'legal-show' => 'información',
             'news-index' => 'novedades',
@@ -49,11 +51,15 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'información',
-            'index' => 'listado',
             'artists' => 'artistas destacados',
-            // 'getPacks' => 'packs',
-            // 'getCharts' => 'charts',
+            'beatmap_discussion_posts-index' => 'posts de discusión del beatmap',
+            'beatmap_discussions-index' => 'discusiones del beatmap',
+            'beatmapset-watches-index' => 'seguimiento de modding',
+            'beatmapset_discussion_votes-index' => 'votos de la discusión del beatmap',
+            'beatmapset_events-index' => 'eventos del beatmap',
+            'index' => 'listado',
+            'packs' => 'paquetes',
+            'show' => 'información',
         ],
         'beatmapsets' => [
             '_' => 'beatmapsets',
@@ -74,7 +80,7 @@ return [
             'getForum' => 'foro',
             'getChat' => 'chat',
             'getSupport' => 'soporte',
-            'getLive' => 'live',
+            'getLive' => 'en vivo',
             'contests' => 'concursos',
             'profile' => 'perfil',
             'tournaments' => 'torneos',
@@ -87,15 +93,15 @@ return [
             'forum-forums-show' => 'foro',
         ],
         'multiplayer' => [
-            '_' => 'multiplayer',
-            'show' => 'match',
+            '_' => 'multijugador',
+            'show' => 'partida',
         ],
         'error' => [
             '_' => 'error',
             '404' => 'no encontrado',
             '403' => 'prohibido',
             '401' => 'no autorizado',
-            '405' => 'no encontrado',
+            '405' => 'falta algo',
             '500' => 'algo va mal',
             '503' => 'mantenimiento',
         ],
@@ -112,11 +118,13 @@ return [
             'settings' => 'Opciones',
             'logout' => 'Salir',
             'help' => 'Ayuda',
+            'beatmapset_activities' => 'actividades del usuario en el beatmap',
         ],
         'store' => [
             '_' => 'tienda',
+            'checkout-show' => 'factura',
             'getListing' => 'listado',
-            'cart-show' => 'carro',
+            'cart-show' => 'carrito',
 
             'getCheckout' => 'caja',
             'getInvoice' => 'factura',
@@ -134,15 +142,15 @@ return [
         'admin-store' => [
             '_' => 'admin::store',
             'orders-index' => 'órdenes',
-            'orders-show' => 'órdenes',
+            'orders-show' => 'órden',
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => 'portadas de los beatmap',
             'root' => 'índice',
             'logs-index' => 'registro',
             'beatmapsets' => [
-                '_' => 'beatmapsets',
-                'covers' => 'portadas',
+                '_' => 'sets de beatmaps',
                 'show' => 'detalles',
             ],
         ],
@@ -152,7 +160,7 @@ return [
         'general' => [
             '_' => 'General',
             'home' => 'Inicio',
-            'changelog' => 'Listado de Cambios',
+            'changelog-index' => 'Lista de Cambios',
             'beatmaps' => 'Lista de Beatmaps',
             'download' => 'Descarga osu!',
             'wiki' => 'Wiki',
@@ -171,7 +179,7 @@ return [
         ],
         'legal' => [
             '_' => 'Estatus Legal',
-            'copyright' => 'Copyright (DMCA)',
+            'copyright' => 'Drechos de autor (DMCA)',
             'osu_status' => '@osustatus',
             'server_status' => 'Estado del Servidor',
             'terms' => 'Términos de Servicio',
@@ -191,7 +199,7 @@ return [
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque podrías intentar volver atrás. O iniciar sesión.',
+            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.',
             'link' => false,
         ],
         '405' => [
@@ -211,7 +219,7 @@ return [
         ],
         '503' => [
             'error' => '¡En mantenimiento!',
-            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, haz clic en :link para más información.',
+            'description' => 'El mantenimiento normalmente tarda entre 5 segundos y 10 minutos. Si continúa pasado ese tiempo, síguenos en :link para más información.',
             'link' => [
                 'text' => '@osustatus',
                 'href' => 'https://twitter.com/osustatus',

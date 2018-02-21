@@ -42,7 +42,9 @@ ProfilePage.Stats = ({stats}) ->
 
   div className: 'profile-stats',
     div className: 'profile-stats__row profile-stats__row--compact profile-stats__row--playtime',
-      div className: 'profile-stats__playtime-box',
+      div className: 'profile-badge profile-badge--level',
+        span className: 'profile-badge__number', stats.level.current
+      div className: 'profile-stats__stat-box profile-stats__stat-box--playtime',
         div className: 'profile-stats__key', osu.trans 'users.show.stats.play_time'
         div className: 'profile-stats__playtime',
           span className: 'profile-stats__playtime-main',
@@ -57,8 +59,13 @@ ProfilePage.Stats = ({stats}) ->
           playtime.seconds()
           span className: 'profile-stats__playtime-unit',
             osu.transChoice 'common.count.second_short_unit', playtime.seconds()
-      div className: 'profile-badge profile-badge--level',
-        span className: 'profile-badge__number', stats.level.current
+      div className: 'profile-stats__stat-box profile-stats__stat-box--experience-bar',
+        div className: 'bar bar--user-profile',
+          div
+            className: 'bar__fill'
+            style:
+              width: "#{stats.level.progress}%"
+        div className: 'profile-stats__value profile-stats__value--level-progress', "#{stats.level.progress}%"
 
     div className: 'profile-stats__row',
       simpleEntry
