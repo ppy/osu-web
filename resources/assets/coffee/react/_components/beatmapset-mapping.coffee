@@ -52,7 +52,7 @@ class @BeatmapsetMapping extends React.PureComponent
     div null,
       osu.trans "beatmapsets.show.details.#{key}"
       time
-        className: "#{bn}__date js-tooltip-time"
+        className: "#{bn}__date js-tooltip-datetime"
         dateTime: @props.beatmapset[attribute]
         title: @props.beatmapset[attribute]
         moment(@props.beatmapset[attribute]).format dateFormat

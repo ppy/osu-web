@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span} = ReactDOMFactories
+{a, div, span, time} = ReactDOMFactories
 el = React.createElement
 
 bn = 'profile-header-extra'
@@ -97,17 +97,19 @@ class ProfilePage.HeaderExtra extends React.Component
 
           div className: "#{bn}__rows",
             if moment(@props.user.join_date).isBefore moment('2008-01-01')
-              div
-                className: "#{bn}__row"
-                title: moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment')),
-                  osu.trans 'users.show.first_members'
+              div className: "#{bn}__row",
+                time
+                  className: "js-tooltip-datetime"
+                  title: @props.user.join_date
+                  dateTime: @props.user.join_date,
+                    osu.trans 'users.show.first_members'
             else
               div
                 className: "#{bn}__row"
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))
+                      date: rowValue "<time class='js-tooltip-datetime' datetime='#{@props.user.join_date}' title='#{@props.user.join_date}'>#{moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))}</time>"
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
