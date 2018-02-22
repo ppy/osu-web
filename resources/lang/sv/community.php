@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sortering Inställningar',
-                'description' => 'NYTT: Möjligheten att visa beatmap land / vän / mod-specifika rankningar i spelet.',
+                'description' => 'Möjligheten att visa beatmap land / vän / mod-specifika rankningar i spelet.',
             ],
 
             'feel_special' => [
