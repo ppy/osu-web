@@ -985,7 +985,7 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $selectKey = (new $class)->getTable().'.'.$key;
+        $selectKey = (new $class)->qualifyColumn($key);
     }
 
     $result = [];
