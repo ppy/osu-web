@@ -504,7 +504,9 @@ class Beatmapset extends Model implements AfterCommit
                 $matchParams[] = ['match' => ['approved' => self::STATES['loved']]];
                 break;
             case 2: // Favourites
-                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', self::class);
+                $favs = $params['user']
+                    ->favouriteBeatmapsets()
+                    ->pluck((new self)->getTable().'.beatmapset_id');
                 $matchParams[] = ['ids' => ['type' => 'beatmaps', 'values' => $favs]];
                 break;
             case 3: // Qualified
