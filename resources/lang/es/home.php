@@ -111,6 +111,7 @@ return [
     ],
 
     'user' => [
+        'title' => 'panel',
         'news' => [
             'title' => 'Novedades',
             'error' => 'Error al cargar las novedades, ¿intenta refrescar la página?...',
@@ -139,10 +140,10 @@ return [
 
     'support-osu' => [
         'title' => '¡Wow!',
-        'subtitle' => '¡Parece que estás teniendo un buen rato! :D',
+        'subtitle' => '¡Parece que estás pasando un buen rato! :D',
         'body' => [
             'part-1' => '¿Sabías que osu! está activo sin publicidad y confía en sus jugadores para apoyar su desarrollo y costos de mantenimiento?',
-            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como la <strong>descarga dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
+            'part-2' => '¿También sabías que con apoyar osu! obtienes varias funciones útiles, como <strong>descargar beatmaps dentro del juego</strong> que automáticamente se activará en partidas multijugador y de espectador?',
         ],
         'find-out-more' => '¡Haz clic para más información!',
         'download-starting' => 'Oh, y no te preocupes - la descarga ya comenzó por ti ;)',
