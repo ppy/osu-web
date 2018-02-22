@@ -51,16 +51,16 @@ class ProfilePage.Main extends React.PureComponent
         selection: [0, 0]
       tabsSticky: false
       profileOrder: props.user.profile_order[..]
-      recentActivity: @props.user.recent_activity
-      scoresBest: @props.scores.best
-      scoresFirsts: @props.scores.firsts
-      scoresRecent: @props.scores.recent
-      beatmapPlaycounts: @props.beatmapsets.most_played
-      favouriteBeatmapsets: @props.beatmapsets.favourite
-      rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
-      unrankedBeatmapsets: @props.beatmapsets.unranked
-      graveyardBeatmapsets: @props.beatmapsets.graveyard
-      recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+      recentActivity: @props.extras.recentActivity
+      scoresBest: @props.extras.scoresBest
+      scoresFirsts: @props.extras.scoresFirsts
+      scoresRecent: @props.extras.scoresRecent
+      beatmapPlaycounts: @props.extras.beatmapPlaycounts
+      favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
+      rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+      unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+      graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
+      recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
       showMorePagination: {}
 
     if @props.user.is_bot
