@@ -66,7 +66,7 @@ return [
         'message_type' => [
             'hype' => 'Hype!',
             'mapper_note' => 'Ghi chú',
-            'praise' => 'Khen',
+            'praise' => 'Khen ngợi',
             'problem' => 'Vấn đề',
             'suggestion' => 'Đề nghị',
         ],
@@ -88,21 +88,28 @@ return [
             'title' => ':title được map bởi :mapper',
         ],
 
+        'sort' => [
+            '_' => 'Sắp xếp bởi:',
+            'created_at' => 'thời gian tạo',
+            'timeline' => 'mốc thời gian',
+            'updated_at' => 'cập nhật gần đây',
+        ],
+
         'stats' => [
             'deleted' => 'Đã xóa',
             'mapper_notes' => 'Ghi chú',
             'mine' => 'Của tôi',
             'pending' => 'Chưa giải quyết',
-            'praises' => 'Khen',
+            'praises' => 'Khen ngợi',
             'resolved' => 'Đã giải quyết',
             'total' => 'Tất cả',
         ],
 
         'status-messages' => [
-            'approved' => 'Beatmap này đã được approve vào :date!',
-            'graveyard' => 'Beatmap này chưa được update từ :date và có thể đã bị bỏ rơi bởi mapper...',
-            'loved' => 'Beatmap này đã được love vào :date!',
-            'ranked' => 'Beatmap này đã được rank vào :date!',
+            'approved' => 'Beatmap này đã được chấp nhận (approved) vào :date!',
+            'graveyard' => 'Beatmap này chưa được cập nhật từ :date và có thể đã bị bỏ rơi bởi mapper...',
+            'loved' => 'Beatmap này đã được loved vào :date!',
+            'ranked' => 'Beatmap này đã được xếp hạng (ranked) vào :date!',
             'wip' => 'Ghi chú: Beatmap này được đánh dấu là đang thực hiện bởi mapper.',
         ],
 
@@ -111,9 +118,9 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button-done' => 'Đã Được Hype!',
-        'confirm' => 'Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn bà không thể hủy bỏ.',
-        'explanation' => 'Hype beatmap này để làm nó có khả năng được nominate và rank!',
-        'explanation_guest' => 'Đăng nhập hype beatmap này để nó có khả năng được nominate và rank!',
+        'confirm' => 'Bạn chắc không? Việc này sẽ dùng một trong :n hype còn lại của bạn và không thể hủy bỏ.',
+        'explanation' => 'Hype beatmap này để làm nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
+        'explanation_guest' => 'Đăng nhập và hype beatmap này để nó có khả năng được đề cử (nominate) và xếp hạng (rank)!',
         'new_time' => 'Bạn sẽ nhận được đợt hype khác vào :new_time.',
         'remaining' => 'Bạn còn :remaining hype.',
         'section_title' => 'Hype Train',
@@ -121,21 +128,28 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'Bị disqualify :time_ago (:reason).',
+        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
         'disqualifed_no_reason' => 'không đưa ra lí do',
         'disqualification-prompt' => 'Lí do để qualify?',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Có lỗi khi thực hiện việc đó, hãy thử tải lại trang.',
-        'nominate' => 'Nominate',
-        'nominated-by' => 'được nomimate bởi :users',
-        'nominate-confirm' => 'Nominate beatmap này?',
-        'qualified' => 'Dự tính sẽ rank vào :date, nếu không tìm thấy vấn đề gì.',
-        'qualified-soon' => 'Dự tính sẽ sớm được rank, nếu không tìm thấy vấn đề gì.',
-        'reset-confirm' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại nomination.',
-        'required-text' => 'Nominations: :current/:required',
-        'title' => 'Trạng Thái Nominate',
+        'incorrect-state' => 'Có lỗi khi thực hiện việc này, hãy thử tải lại trang.',
+        'nominate' => 'Đề Cử',
+        'nominated-by' => 'được đề cử (nomimated) bởi :users',
+        'nominate-confirm' => 'Đề cử (nominate) beatmap này?',
+        'qualified' => 'Dự tính sẽ xếp hạng (rank) vào :date, nếu không tìm thấy vấn đề gì.',
+        'qualified-soon' => 'Dự tính sẽ sớm được xếp hạng (rank), nếu không tìm thấy vấn đề gì.',
+        'reset-confirm' => 'Bạn chắc không? Đăng một vấn đề mới sẽ thiết lập lại mọi đề cử (nomination).',
+        'required-text' => 'Trạng thái đề cử: :current/:required',
+        'title' => 'Trạng Thái Đề Cử',
+        'unresolved_issues' => 'Vẫn còn một số vấn đề chưa giải quyết cần được xem lại trước.',
     ],
-
+    /*TL note:
+    Rank = xếp hạng
+    Nominate = đề cử
+    Love = <giữ nguyên>
+    Qualify = <giữ nguyên>
+    Disqualified = <giữ nguyên>
+    Approved = được chấp nhận*/
     'listing' => [
         'search' => [
             'prompt' => 'nhập từ khóa...',
@@ -144,16 +158,16 @@ return [
             'not-found-quote' => '... không, chả có gì cả.',
             'filters' => [
                 'mode' => 'Chế Độ',
-                'status' => 'Trạng Thái Rank',
+                'status' => 'Trạng Thái Xếp Hạng',
                 'genre' => 'Thể Loại',
                 'language' => 'Ngôn Ngữ',
                 'extra' => 'thêm',
-                'rank' => 'Thứ Hạng',
+                'rank' => 'Thứ Hạng Đạt Được',
             ],
         ],
         'mode' => 'Chế Độ',
-        'status' => 'Trạng Thái Rank',
-        'mapped-by' => 'được map bởi :mapper',
+        'status' => 'Trạng Thái Xếp Hạng',
+        'mapped-by' => 'được tạo bởi :mapper',
         'source' => 'từ :source',
         'load-more' => 'Tải thêm...',
     ],
@@ -166,12 +180,12 @@ return [
     ],
     'status' => [
         'any' => 'Bất Kì',
-        'ranked-approved' => 'Được Rank & Approve',
-        'approved' => 'Được Approve',
-        'qualified' => 'Được Qualify',
+        'ranked-approved' => 'Được Xếp Hạng & Được Chấp Nhận',
+        'approved' => 'Được Chấp Nhận',
+        'qualified' => 'Qualified',
         'loved' => 'Được Love',
         'faves' => 'Yêu Thích',
-        'pending' => 'Pending',
+        'pending' => 'Đang Chờ',
         'graveyard' => 'Graveyard',
         'my-maps' => 'Map Của Tôi',
     ],
