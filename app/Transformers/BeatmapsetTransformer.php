@@ -77,7 +77,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
-            'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'can_be_hyped' => $beatmapset->canBeHyped(),
             'hype' => [
                 'current' => $beatmapset->hype,
@@ -118,8 +117,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         $ret = [
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
-            'remaining_hype' => $currentUser->remainingHype(),
+            'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'new_hype_time' => json_time($currentUser->newHypeTime()),
+            'remaining_hype' => $currentUser->remainingHype(),
         ];
 
         return $this->item($beatmapset, function () use ($ret) {
