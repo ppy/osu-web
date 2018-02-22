@@ -65,6 +65,11 @@ class Beatmaps.SearchSort extends React.PureComponent
 
     if @props.filters.status == 6
       fields.creator = false
+      
+    if @props.filters.status in [2, 6]
+      fields.ranked = true
+      fields.rating = true
+      fileds.plays = true
 
 
     field for own field, enabled of fields when enabled
