@@ -19,7 +19,7 @@
 @extends('master', [
     'body_additional_classes' => 'osu-layout--body-333',
     'title' => null,
-    'titleAppend' => $page->title(true),
+    'titlePrepend' => $page->title(true),
 ])
 
 @section('content')
