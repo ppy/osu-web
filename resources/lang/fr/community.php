@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Options de filtrage',
-                'description' => 'NOUVEAU: La capacité de filtrer le classement par pays / amis / mods spécifiques.',
+                'description' => 'La capacité de filtrer le classement par pays / amis / mods spécifiques.',
             ],
 
             'feel_special' => [

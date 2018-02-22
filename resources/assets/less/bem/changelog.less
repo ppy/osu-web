@@ -17,12 +17,7 @@
  */
 
 .changelog {
-  padding: 20px;
-
-  @media @desktop {
-    padding-left: @padding-big;
-    padding-right: @padding-big;
-  }
+  padding: 20px 0;
 
   &__build-link {
     display: inline-block;
@@ -31,6 +26,20 @@
 
   &__list {
     margin-bottom: 50px;
+
+    padding: 0 20px;
+
+    @media @desktop {
+      padding: 0 @padding-big;
+    }
+  }
+
+  &__disqus {
+    padding: 0 20px;
+
+    @media @desktop {
+      padding: 0 @padding-big;
+    }
   }
 
   &__text {
