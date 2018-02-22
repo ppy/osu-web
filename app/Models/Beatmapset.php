@@ -410,11 +410,11 @@ class Beatmapset extends Model implements AfterCommit
                 $params['sort_field'] = '_score';
                 $params['sort_order'] = 'desc';
             } else {
-                if (in_array($params['status'], [4, 5, 6], true)) {
-                    $params['sort_field'] = 'last_update';
+                if (in_array($params['status'], [0, 1, 3, 8], true)) {
+                    $params['sort_field'] = 'approved_date';
                     $params['sort_order'] = 'desc';
                 } else {
-                    $params['sort_field'] = 'approved_date';
+                    $params['sort_field'] = 'last_update';
                     $params['sort_order'] = 'desc';
                 }
             }

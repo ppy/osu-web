@@ -42,26 +42,29 @@ class Beatmaps.SearchSort extends React.PureComponent
     fields =
       title: true
       artist: true
+      creator: true
       difficulty: true
-      updated: false
+      updated: true
       ranked: false
-      rating: true
-      plays: true
-      relevance: false
+      rating: false
+      plays: false
       nominations: false
+      relevance: false
 
     if !_.isEmpty(@props.filters.query)
       fields.relevance = true
 
+    if @props.filters.status in [0, 1, 3, 8]
+      fields.updated = false
+      fields.ranked = true
+      fields.rating = true
+      fields.plays = true
+
     if @props.filters.status in [4, 5]
-      fields.updated = true
       fields.nominations = true
-      fields.plays = false
-    else if @props.filters.status == 6
-      fields.updated = true
-      fields.ranked = true
-    else
-      fields.ranked = true
+
+    if @props.filters.status == 6
+      fields.creator = false
 
 
     field for own field, enabled of fields when enabled
