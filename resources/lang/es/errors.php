@@ -26,7 +26,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta recargando la página.',
+            'generic' => 'Ha ocurrido un error. Intenta refrescando la página.',
         ],
     ],
     'beatmaps' => [
@@ -37,7 +37,7 @@ return [
         'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
     ],
     'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.',
-    'supporter_only' => 'Debes de ser supporter para usar esta característica.',
+    'supporter_only' => 'Debes ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
     'unknown' => 'Ha ocurrido un error desconocido.',
 ];
