@@ -112,7 +112,7 @@ return [
 
             'messages' => 'Wiadomości',
             'settings' => 'Ustawienia',
-            'logout' => 'Wyloguj się',
+            'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Pomoc',
         ],
         'store' => [
@@ -245,7 +245,7 @@ return [
         'links' => [
             'account-edit' => 'Ustawienia',
             'friends' => 'Znajomi',
-            'logout' => 'Wyloguj się',
+            'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Mój profil',
         ],
     ],
