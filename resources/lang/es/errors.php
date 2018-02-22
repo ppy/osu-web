@@ -26,7 +26,7 @@ return [
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta recargando la página.',
+            'generic' => 'Ha ocurrido un error. Intenta refrescando la página.',
         ],
     ],
     'beatmaps' => [
