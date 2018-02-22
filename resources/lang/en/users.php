@@ -223,6 +223,24 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Account Standing',
+                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
+                'remaining_silence' => "<strong>:username</strong> can't speak for another :duration hours.",
+
+                'recent_infringements' => [
+                    'title' => 'Recent Infringements',
+                    'date' => 'date',
+                    'action' => 'action',
+                    'length' => 'length',
+                    'length_permament' => 'Permament',
+                    'description' => 'description',
+                    'banner' => 'by :username',
+
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Silence',
+                        'note' => 'Note'
+                    ],
+                ],
             ],
         ],
         'info' => [

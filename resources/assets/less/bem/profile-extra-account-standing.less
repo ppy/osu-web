@@ -1,0 +1,111 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-extra-account-standing {
+  &__box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+
+    &--action, &--length {
+      padding-left: 15px;
+    }
+
+    &--info {
+      background-color: #ccc;
+    }
+
+    &--large {
+      height: 40px;
+      margin-bottom: 6px;
+      padding-left: 15px;
+      border-radius: 20px;
+      font-size: 15px;
+    }
+
+    &--note {
+      background-color: @blue;
+    }
+
+    &--restriction {
+        background-color: @red;
+      color: #fff;
+    }
+
+    &--silence {
+      background-color: @yellow;
+    }
+
+    &--small {
+      height: 26px;
+      border-radius: 13px;
+
+      margin-bottom: 8px;
+
+      font-size: 13px;
+    }
+
+    &--warning {
+      background-color: @red-dark;
+      color: #fff;
+    }
+
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 800px;
+
+    &--notes {
+      margin-top: 30px;
+    }
+  }
+
+  &__table-box {
+    overflow-x: scroll;
+  }
+
+  &__table-cell {
+    padding-right: 20px;
+
+    &--action, &--length {
+      width: 155px;
+    }
+
+    &--date {
+      width: 170px;
+    }
+
+    &--description {
+      min-width: 65px;
+    }
+  }
+
+  &__table-header {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+
+    &--action, &--length {
+      padding-left: 15px;
+    }
+  }
+}
