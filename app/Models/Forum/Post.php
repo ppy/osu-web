@@ -21,6 +21,7 @@
 namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
+use App\Libraries\BBCodeFromDB;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
@@ -138,7 +139,7 @@ class Post extends Model
         // strip remaining bbcode
         // strip any html tags left
         $text = preg_replace($metadataPattern, '', $this->post_text);
-        $text = static::removeBlockQuotes($text);
+        $text = BBCodeFromDB::removeBlockQuotes($text);
         $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5);
         $text = preg_replace($bbcodePattern, '', $text);
 
@@ -311,43 +312,6 @@ class Post extends Model
     {
         if ($showDeleted) {
             $query->withTrashed();
-        }
-    }
-
-    public static function removeBlockQuotes($text)
-    {
-        $level = 0;
-        $marker = 0;
-
-        while ($marker >= 0 && $marker < mb_strlen($text) && $level >= 0) {
-            $match = static::scanForNextQuoteTag($text, $marker);
-            if ($match === null) {
-                return $text;
-            }
-
-            if (present($match['start'][0])) {
-                $marker = $match['start'][1] + mb_strlen($match['start'][0]);
-                $level++;
-            } elseif (present($match['end'][0])) {
-                $level--;
-                $marker = $match['end'][1] + mb_strlen($match['end'][0]);
-                if ($level === 0) {
-                    $text = mb_substr($text, $marker, mb_strlen($text) - $marker);
-                }
-            } else {
-                $marker = -1;
-            }
-        }
-
-        return $text;
-    }
-
-    private static function scanForNextQuoteTag(string $text, $from = 0)
-    {
-        static $pattern = '#(?<start>\[quote(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\])|(?<end>\[/quote(:[a-zA-Z0-9]{1,5})?\])#';
-
-        if (preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $from) === 1) {
-            return $matches;
         }
     }
 }
