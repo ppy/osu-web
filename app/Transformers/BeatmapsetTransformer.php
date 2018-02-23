@@ -77,7 +77,6 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
-            'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'can_be_hyped' => $beatmapset->canBeHyped(),
             'hype' => [
                 'current' => $beatmapset->hype,
@@ -118,8 +117,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         $ret = [
             'can_hype' => $hypeValidation['result'],
             'can_hype_reason' => $hypeValidation['message'] ?? null,
-            'remaining_hype' => $currentUser->remainingHype(),
+            'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
             'new_hype_time' => json_time($currentUser->newHypeTime()),
+            'remaining_hype' => $currentUser->remainingHype(),
         ];
 
         return $this->item($beatmapset, function () use ($ret) {
@@ -210,16 +210,9 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
     public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-        if ($params->get('with_trashed')) {
-            $rel = 'allBeatmaps';
-        } else {
-            $rel = 'beatmaps';
-        }
+        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
 
-        return $this->collection(
-            $beatmapset->$rel()->with('beatmapset')->get(),
-            new BeatmapTransformer()
-        );
+        return $this->collection($beatmapset->$rel, new BeatmapTransformer);
     }
 
     public function includeConverts(Beatmapset $beatmapset)

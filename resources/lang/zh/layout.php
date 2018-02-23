@@ -116,7 +116,7 @@ return [
 
             'messages' => '信息',
             'settings' => '设置',
-            'logout' => '退出',
+            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => '帮助',
             'beatmapset_activities' => '玩家谱面活动', //需要上下文
         ],
@@ -253,7 +253,7 @@ return [
         'links' => [
             'account-edit' => '设置',
             'friends' => '好友',
-            'logout' => '退出',
+            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => '我的资料',
         ],
     ],

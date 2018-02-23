@@ -110,7 +110,7 @@ return [
 
             'messages' => 'Сообщения',
             'settings' => 'Настройки',
-            'logout' => 'Выход',
+            'logout' => 'Выход', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Помощь',
         ],
         'store' => [
@@ -244,7 +244,7 @@ return [
         'links' => [
             'account-edit' => 'Настройки',
             'friends' => 'Друзья',
-            'logout' => 'Выйти',
+            'logout' => 'Выйти', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Мой профиль',
         ],
     ],
