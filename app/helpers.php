@@ -58,7 +58,7 @@ function beatmap_timestamp_format($ms)
  *
  * @return array
  */
-function es_highlight($hit, $field)
+function es_highlights($hit, $field)
 {
     if (isset($hit['highlight'])) {
         return $hit['highlight'][$field];

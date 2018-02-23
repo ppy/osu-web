@@ -40,14 +40,14 @@
     <div class="search-entry-thread__sub-items">
         @foreach ($innerHits as $innerHit)
             @php
-                $highlights = es_highlight($innerHit, 'search_content');
+                $highlights = es_highlights($innerHit, 'search_content');
                 $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
             @endphp
 
             <a class="search-entry" href="{{ $postUrl }}">
                 <div class="search-entry__row search-entry__row--excerpt">
                     @foreach ($highlights as $highlight)
-                        <span class="search-entry__highlight">{!! $highlight !!}</span>
+                        <span class="search-entry__highlight">{!! str_limit($highlight, 100, '...') !!}</span>
                     @endforeach
                 </div>
                 <p class="search-entry__row search-entry__row--footer">

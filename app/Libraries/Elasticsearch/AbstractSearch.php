@@ -158,7 +158,10 @@ abstract class AbstractSearch
 
         // TODO: accept more variations
         if (isset($this->highlight)) {
-            $body['highlight'] = ['fields' => [$this->highlight => new \stdClass()]];
+            $body['highlight'] = [
+                'fragment_size' => 50,
+                'fields' => [$this->highlight => new \stdClass()],
+            ];
         }
 
         if (isset($this->source)) {
