@@ -245,7 +245,7 @@ class BeatmapDiscussions.Post extends React.PureComponent
                   classNames: ["#{bn}__info-user"]
                 delete_time: osu.timeago @props.post.deleted_at
 
-        if @props.post.updated_at != @props.post.created_at && @props.post.updated_at != @props.post.deleted_at && @props.lastEditor?.id
+        if @props.post.updated_at != @props.post.created_at && @props.lastEditor?.id
           span
             className: "#{bn}__info #{bn}__info--edited"
             dangerouslySetInnerHTML:
