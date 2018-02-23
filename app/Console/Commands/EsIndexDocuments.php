@@ -121,22 +121,16 @@ class EsIndexDocuments extends Command
             $bar = $this->output->createProgressBar($count);
 
             $indexName = "{$type::esIndexName()}{$this->suffix}";
-            if (!$this->inplace) {
-                $this->info("Indexing {$type} into {$indexName}");
+            $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
+            $this->info("{$pretext} {$type} into {$indexName}");
 
+            if (!$this->inplace && $i === 0) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                if ($i === 0) {
-                    $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
-                        $bar->setProgress($progress);
-                    });
-                } else {
-                    $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
-                        $bar->setProgress($progress);
-                    });
-                }
+                $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
+                    $bar->setProgress($progress);
+                });
             } else {
-                $this->info("In-place indexing {$type} into {$indexName}");
                 $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
