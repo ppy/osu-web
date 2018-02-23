@@ -25,6 +25,7 @@ return [
         'missing' => 'Requested page could not be found.',
         'missing_title' => 'Not Found',
         'missing_translation' => 'Requested page could not be found for currently selected language.',
+        'search' => 'Search existing pages for :link.',
         'toc' => 'Contents',
 
         'edit' => [

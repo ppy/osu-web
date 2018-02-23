@@ -51,12 +51,15 @@ return [
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
-            'show' => 'thông tin',
-            'index' => 'danh sách',
             'artists' => 'nghệ sĩ tiêu biểu',
-            'packs' => 'gói',
+            'beatmap_discussion_posts-index' => 'beatmap discussion posts',
+            'beatmap_discussions-index' => 'beatmap discussions',
             'beatmapset-watches-index' => 'theo dõi modding',
-            // 'getCharts' => 'charts',
+            'beatmapset_discussion_votes-index' => 'beatmap discussion votes',
+            'beatmapset_events-index' => 'beatmapset events',
+            'index' => 'danh sách',
+            'packs' => 'gói',
+            'show' => 'thông tin',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -115,12 +118,13 @@ return [
             'settings' => 'Cài Đặt',
             'logout' => 'Đăng Xuất',
             'help' => 'Trợ Giúp',
+            'beatmapset_activities' => 'user beatmapset activities',
         ],
         'store' => [
             '_' => 'store',
             'checkout-index' => 'thanh toán',
             'getListing' => 'danh sách',
-            'getCart' => 'giỏ hàng',
+            'cart-show' => 'giỏ hàng',
 
             'getCheckout' => 'thanh toán',
             'getInvoice' => 'hóa đơn',
@@ -143,8 +147,9 @@ return [
         'admin' => [
             '_' => 'admin',
             'beatmapsets-covers' => 'bìa beatmapset',
-            'root' => 'mục lục',
             'logs-index' => 'log',
+            'root' => 'mục lục',
+            
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'show' => 'chi tiết',

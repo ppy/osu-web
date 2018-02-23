@@ -111,7 +111,7 @@ return [
     ],
 
     'user' => [
-        'title' => 'tin tức',
+        'title' => 'tổng quan',
         'news' => [
             'title' => 'Tin Tức',
             'error' => 'Có lỗi khi tải tin tức, thử tải lại trang xem?...',

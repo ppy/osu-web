@@ -67,13 +67,13 @@ return [
             'rating-spread' => 'Phân Loại Đánh Giá',
         ],
         'info' => [
+            'description' => 'Mô Tả',
+            'genre' => 'Genre',
+            'language' => 'Language',
             'no_scores' => 'Beatmap chưa được xếp hạng',
             'points-of-failure' => 'Tỉ Lệ Thất Bại',
-            'success-rate' => 'Tỉ Lệ Thành Công',
-
-            'description' => 'Mô Tả',
-
             'source' => 'Nguồn',
+            'success-rate' => 'Tỉ Lệ Thành Công',
             'tags' => 'Tags',
         ],
         'scoreboard' => [
@@ -81,6 +81,7 @@ return [
             'country' => 'Hạng Quốc Gia',
             'friend' => 'Hạng Bạn Bè',
             'global' => 'Hạng Toàn Cầu',
+            'miss_count' => ':count miss',
             'supporter-link' => 'Bấm vào <a href=":link">đây</a> để biết thêm những tính năng bạn có thể nhận!',
             'supporter-only' => 'Bạn cần là người ủng hộ để truy cập xếp hạng bạn bè và quốc gia!',
             'title' => 'Bảng Xếp hạng',

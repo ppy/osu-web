@@ -21,6 +21,28 @@
 return [
     'deleted' => '[deleted user]',
 
+    'beatmapset_activities' => [
+        'discussions' => [
+            'title_recent' => 'Recently started discussions',
+        ],
+
+        'events' => [
+            'title_recent' => 'Recent events',
+        ],
+
+        'posts' => [
+            'title_recent' => 'Recent posts',
+        ],
+
+        'votes_received' => [
+            'title_most' => 'Most upvoted by (last 3 months)',
+        ],
+
+        'votes_made' => [
+            'title_most' => 'Most upvoted (last 3 months)',
+        ],
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -57,7 +79,7 @@ return [
     'show' => [
         '404' => 'User not found! ;_;',
         'age' => ':age years old',
-        'current_location' => 'Currently in :location',
+        'change_avatar' => 'change your avatar!',
         'first_members' => 'Here since the beginning',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -65,8 +87,8 @@ return [
         'lastvisit' => 'Last seen :date',
         'missingtext' => 'You might have made a typo! (or the user may have been banned)',
         'origin_age' => ':age',
-        'origin_country' => 'From :country',
         'origin_country_age' => ':age from :country',
+        'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
@@ -86,7 +108,13 @@ return [
                     'unsupported_format' => 'Unsupported format.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'default game mode',
+                'set' => 'set :mode as profile default game mode',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 follower|:count followers',
             'unranked' => 'No recent plays',
@@ -178,7 +206,7 @@ return [
                 'empty' => "This user hasn't gotten any yet. ;_;",
                 'title' => 'Medals',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [
@@ -193,6 +221,15 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
+        ],
+        'info' => [
+            'interests' => 'Interests',
+            'lastfm' => 'Last.fm',
+            'location' => 'Current Location',
+            'occupation' => 'Occupation',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Website',
         ],
         'page' => [
             'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
@@ -209,6 +246,7 @@ return [
             'level' => 'Level :level',
             'maximum_combo' => 'Maximum Combo',
             'play_count' => 'Play Count',
+            'play_time' => 'Total Play Time',
             'ranked_score' => 'Ranked Score',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',

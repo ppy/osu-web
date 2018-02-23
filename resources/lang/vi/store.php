@@ -29,6 +29,11 @@ return [
         'declined' => 'The payment was cancelled.',
         'error' => 'There was a problem completing your checkout :(',
         'pay' => 'Checkout with Paypal',
+        'pending_checkout' => [
+            'line_1' => 'A previous checkout was started but did not finish.',
+            'line_2' => 'Resume your checkout by selecting a payment method, or :link to cancel.',
+            'link_text' => 'click here',
+        ],
         'delayed_shipping' => 'We are currently overwhelmed with orders! You are welcome to place your order, but please expect an **additional 1-2 week delay** while we catch up with existing orders.',
     ],
 
@@ -47,8 +52,8 @@ return [
         'name' => 'Name',
 
         'stock' => [
-            'out' => 'Currently out of stock :(. Check back soon.',
-            'out_with_alternative' => 'This type is currently out of stock :(. Try other type or check back soon.',
+            'out' => 'This item is currently out of stock. Check back later!',
+            'out_with_alternative' => 'Unfortunately this item is out of stock. Use the dropdown to choose a different type or check back later!',
         ],
 
         'add_to_cart' => 'Add to Cart',
