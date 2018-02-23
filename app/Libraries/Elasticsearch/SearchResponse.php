@@ -179,9 +179,8 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         return $this->offsetExists($this->index);
     }
 
-    public static function failed($_error)
+    public static function failed()
     {
-        // TODO: do something with error
         return new static([
             'hits' => [
                 'hits' => [],
