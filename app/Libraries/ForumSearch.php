@@ -24,6 +24,7 @@ use App\Libraries\Elasticsearch\HasChild;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Query;
 use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -131,19 +132,20 @@ class ForumSearch extends Search implements \ArrayAccess
             'username' => $params['username'] ?? null,
         ];
 
-        $search = (new static(Post::esIndexName(), $options))
+        return (new static(Post::esIndexName(), $options))
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
             ->highlight('search_content');
-
-        $search->response()->recordType(Topic::class)->idField('topic_id');
-
-        return $search;
     }
 
     public function data()
     {
         return $this->response();
+    }
+
+    public function response() : SearchResponse
+    {
+        return parent::response()->recordType(Topic::class)->idField('topic_id');
     }
 
     public function total()
