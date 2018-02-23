@@ -348,7 +348,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     if watching?
       newState.beatmapset ?= _.assign {}, @state.beatmapset
-      newState.beatmapset.is_watched = watching
+      newState.beatmapset.current_user_attributes.is_watching = watching
 
     if playmode?
       beatmap = BeatmapHelper.default items: @groupedBeatmaps()[playmode]
