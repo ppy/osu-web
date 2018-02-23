@@ -157,6 +157,7 @@ class ForumSearch extends Search implements \ArrayAccess
     {
         return $this->getPageParams();
     }
+
     //================
     // ArrayAccess
     //================
@@ -169,7 +170,7 @@ class ForumSearch extends Search implements \ArrayAccess
     public function offsetGet($key)
     {
         if ($this->offsetExists($key) === false) {
-            return null;
+            return;
         }
 
         // reroute to method
