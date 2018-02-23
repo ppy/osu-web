@@ -36,15 +36,16 @@
                         ></div>
                     </a>
 
-                    <a
+                    <button
                         class="logo-menu__user-slice logo-menu__user-slice--session logo-menu__user-slice--bg js-logout-link"
-                        href="{{ route('logout') }}"
+                        type="button"
+                        data-url="{{ route('logout') }}"
                         data-method="delete"
                         data-confirm="{{ trans('users.logout_confirm') }}"
                         data-remote="1"
                     >
                         <i class="fa fa-sign-out"></i>
-                    </a>
+                    </button>
                 </div>
             @else
                 <a

@@ -56,18 +56,60 @@
 
   &__container {
     min-height: @profile-header-height;
-    padding: 30px 40px 0;
+    padding: 70px 40px 0; // padding-top also avoids collision with default mode button
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
 
     @media @desktop {
+      padding-top: 30px;
       flex-direction: row;
       align-items: flex-end;
       justify-content: space-between;
     }
   }
+
+  &__default-mode {
+    .reset-input();
+    background-color: #333;
+    position: absolute;
+
+    top: 20px;
+    left: 20px;
+    border: 2px solid transparent;
+
+    font-size: @font-size--normal;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 10000px; // rounded corner
+    transition: 120ms ease-in-out border-color;
+
+    &:focus {
+      border-color: #555;
+    }
+
+    &:hover {
+      border-color: @yellow;
+    }
+
+    &:active {
+      border-color: @yellow-dark;
+    }
+
+    @media @desktop {
+      top: 10px;
+      left: 50px; // padding + content gutter
+    }
+
+    &--disabled {
+      &, &:focus, &:hover, &:active {
+        border-color: transparent;
+        color: #ccc;
+      }
+    }
+  }
+
   &__spinner {
     .full-size();
     .center-content();

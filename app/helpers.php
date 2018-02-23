@@ -1001,12 +1001,12 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $key = (new $class)->getTable().'.'.$key;
+        $selectKey = (new $class)->qualifyColumn($key);
     }
 
     $result = [];
 
-    foreach ($builder->select($key)->get() as $el) {
+    foreach ($builder->select($selectKey ?? $key)->get() as $el) {
         $result[] = $el->$key;
     }
 

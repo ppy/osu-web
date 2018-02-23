@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opzioni di Ordinamento',
-                'description' => 'NUOVO: La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
+                'description' => 'La possibilità di vedere i rank per paese / amici / specifiche mod in gioco.',
             ],
 
             'feel_special' => [

@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,7 +22,7 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => '¿¡Amas osu!?<br/>
+            'big_description' => '¿Amas osu!?<br/>
                                 Ayuda a su desarrollo :D',
             'small_description' => '',
             'support_button' => '¡Quiero ayudar a osu!',
@@ -36,7 +36,7 @@ return [
             y también a aquellos que continúen apoyando este increíble juego y a la comunidad en el futuro :).',
 
         'why_support' => [
-            'title' => '¿¡Por qué debo apoyar osu!?',
+            'title' => '¿Por qué debo apoyar osu!?',
             'blocks' => [
                 'dev' => 'Desarollado y mantenido principalmente por un hombre en Australia',
                 'time' => 'Toma demasiado tiempo mantenerlo funcionando al punto de no poder llamarlo un "hobby".',
@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Opciones de Orden',
-                'description' => 'NUEVO: La habilidad de ver rankings nacionales / amigos / por mod de un beatmap dentro del juego.',
+                'description' => 'La habilidad de ver rankings nacionales / amigos / por mod de un beatmap dentro del juego.',
             ],
 
             'feel_special' => [

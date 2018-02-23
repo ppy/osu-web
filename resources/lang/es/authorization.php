@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'No se puede deshacer el hyping.',
             'has_reply' => 'No es posible eliminar una discusión con respuestas',
         ],
         'nominate' => [
@@ -33,6 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
             'owner' => '¡No puedes votar discusiones propias!',
+            'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de beatmaps pendientes.',
         ],
     ],
 
@@ -57,7 +59,7 @@ return [
                     'not_lazer' => 'Solo puedes hablar en #lazer en este momento.',
                 ],
 
-                'not_allowed' => 'No se puede enviar un mensaje mientras se esté baneado/restringido/silenciado.',
+                'not_allowed' => 'No se puede enviar un mensaje mientras estés baneado/restringido/silenciado.',
             ],
         ],
     ],
@@ -76,6 +78,7 @@ return [
             ],
 
             'edit' => [
+                'deleted' => 'No puedes editar una publicación eliminada.',
                 'locked' => 'La edición del post está bloqueada.',
                 'no_forum_access' => 'Necesitas acceso al foro solicitado.',
                 'not_owner' => 'Solo el creador del post puede editarlo.',

@@ -104,7 +104,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sorteringsmuligheder',
-                'description' => 'NY: Muligheden for at vise et beatmap specificeret efter land-, venne og mod rangeringer i spillet.',
+                'description' => 'Muligheden for at vise et beatmap specificeret efter land-, venne og mod rangeringer i spillet.',
             ],
 
             'feel_special' => [

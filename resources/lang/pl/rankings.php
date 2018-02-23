@@ -27,7 +27,7 @@ return [
         'country' => 'Krajowy',
     ],
     'stat' => [
-        'accuracy' => 'Celność',
+        'accuracy' => 'Precyzja',
         'active_users' => 'Aktywni użytkownicy',
         'country' => 'Kraj',
         'play_count' => 'Ilość zagrań',

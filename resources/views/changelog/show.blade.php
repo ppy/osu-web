@@ -64,6 +64,26 @@
                     @each('changelog._changelog_change', $changelogs, 'log')
                 </div>
 
+                @if(!Auth::check() || !Auth::user()->isSupporter())
+                    <div class="supporter-promo">
+                       <div class="supporter-promo__pippi">
+                            <div class="supporter-promo__heart"></div>
+                       </div>
+                       <div class="supporter-promo__text-box">
+                            <h2 class="supporter-promo__heading">{{ trans('changelog.support.heading') }}</h2>
+
+                            <div>
+                                <p class="supporter-promo__text">
+                                    {!! trans('changelog.support.text_1', ['link' =>
+                                        link_to(route('support-the-game'), trans('changelog.support.text_1_link'), ['class' => 'supporter-promo__text supporter-promo__text--link'])
+                                    ]) !!}
+                                </p>
+                                <p class="supporter-promo__text supporter-promo__text--small">{{ trans('changelog.support.text_2') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div
                     class="changelog__disqus js-turbolinks-disqus"
                     data-turbolinks-disqus="{{ json_encode([

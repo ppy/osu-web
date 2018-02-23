@@ -61,16 +61,15 @@
                 [],
                 ['class' => 'js-user-verification--reissue user-verification__link']
             ),
-            'logout_link' => link_to_route(
-                'logout',
-                trans('user_verification.box.info.logout_link'),
-                [],
-                [
-                    'class' => 'js-logout-link user-verification__link',
-                    'data-method' => 'delete',
-                    'data-remote' => '1',
-                ]
-            ),
+            'logout_link' =>
+                "<button
+                    class='js-logout-link user-verification__link'
+                    type='button'
+                    data-method='delete'
+                    data-remote='1'
+                    data-url='".route('logout')."'
+                >".trans('user_verification.box.info.logout_link')."
+                </button>",
         ]) !!}
     </p>
 </div>

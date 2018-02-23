@@ -31,6 +31,7 @@ class @BeatmapsetFilter
 
 
   @charToKey:
+    c: 'general'
     m: 'mode'
     s: 'status'
     g: 'genre'
@@ -42,6 +43,7 @@ class @BeatmapsetFilter
 
 
   @defaults:
+    general: ''
     extra: ''
     genre: null
     language: null
@@ -85,6 +87,7 @@ class @BeatmapsetFilter
 
 
   @keys: [
+    'general'
     'extra'
     'genre'
     'language'
