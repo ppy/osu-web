@@ -144,7 +144,9 @@ class EsIndexDocuments extends Command
                     $bar->setProgress($progress);
                 });
 
-                $indices[] = $type::esIndexName();
+                if ($i === 0) {
+                    $indices[] = $type::esIndexName();
+                }
             }
 
             $bar->finish();
