@@ -116,7 +116,7 @@ class EsIndexDocuments extends Command
         $indices = [];
         $types = static::ALLOWED_TYPES[$name];
 
-        foreach ($types as $type) {
+        foreach ($types as $i => $type) {
             $count = $type::esIndexingQuery()->count();
             $bar = $this->output->createProgressBar($count);
 
@@ -127,7 +127,7 @@ class EsIndexDocuments extends Command
 
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                if (static::ALLOWED_TYPES[$name][0] === $type) {
+                if ($i === 0) {
                     $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
                         $bar->setProgress($progress);
                     });
