@@ -105,7 +105,10 @@ class ForumSearch extends Search
             ->scoreMode('max')
             ->source(['topic_id', 'post_id', 'search_content'])
             ->highlight(
-                (new Highlight)->field('search_content')->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                (new Highlight)
+                    ->field('search_content')
+                    ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                    ->numberOfFragments(3)
             )->query($query);
     }
 

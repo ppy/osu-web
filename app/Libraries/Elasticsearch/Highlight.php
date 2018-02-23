@@ -28,6 +28,7 @@ class Highlight
 {
     protected $fields = [];
     protected $numberOfFragments = 100;
+    protected $fragmentSize = 5;
 
     /**
      * @return $this
@@ -54,6 +55,12 @@ class Highlight
         return $this;
     }
 
+    /**
+     * @return $this
+     */
+    public function numberOfFragments(int $count)
+    {
+        $this->numberOfFragments = $count;
 
         return $this;
     }
@@ -69,8 +76,9 @@ class Highlight
         }
 
         return [
-            'fragment_size' => $this->size,
+            'fragment_size' => $this->fragmentSize,
             'fields' => $fields,
+            'number_of_fragments' => $this->numberOfFragments,
         ];
     }
 }
