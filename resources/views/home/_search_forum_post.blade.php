@@ -47,7 +47,7 @@
             <a class="search-entry" href="{{ $postUrl }}">
                 <div class="search-entry__row search-entry__row--excerpt">
                     @foreach ($highlights as $highlight)
-                        <span class="search-entry__highlight">{!! str_limit($highlight, 100, '...') !!}</span>
+                        <span class="search-entry__highlight">{!! $highlight !!}</span>
                     @endforeach
                 </div>
                 <p class="search-entry__row search-entry__row--footer">

@@ -61,7 +61,14 @@ function beatmap_timestamp_format($ms)
 function es_highlights($hit, $field)
 {
     if (isset($hit['highlight'])) {
-        return $hit['highlight'][$field];
+        return array_map(function ($text) {
+            return str_limit(
+                $text,
+                // try not to truncate in some weird position...
+                \App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2,
+                '...'
+            );
+        }, $hit['highlight'][$field]);
     }
 
     // highlights are stored in an array, so return an array as well.

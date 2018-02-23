@@ -21,6 +21,7 @@
 namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\HasChild;
+use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Query;
 use App\Libraries\Elasticsearch\Search;
 use App\Models\Forum\Forum;
@@ -30,6 +31,8 @@ use App\Models\User;
 
 class ForumSearch extends Search
 {
+    const HIGHLIGHT_FRAGMENT_SIZE = 50;
+
     protected $includeSubforums;
     protected $username;
     protected $forumId;
@@ -101,8 +104,9 @@ class ForumSearch extends Search
             ->size(3)
             ->scoreMode('max')
             ->source(['topic_id', 'post_id', 'search_content'])
-            ->highlight('search_content')
-            ->query($query);
+            ->highlight(
+                (new Highlight)->field('search_content')->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+            )->query($query);
     }
 
     private static function firstPostQuery() : HasChild

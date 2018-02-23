@@ -89,11 +89,13 @@ abstract class AbstractSearch
     }
 
     /**
+     * @param Highlight|string $highlight A Highlight object or the field to highlight.
+     *
      * @return $this
      */
     public function highlight($highlight)
     {
-        $this->highlight = $highlight;
+        $this->highlight = is_string($highlight) ? (new Highlight)->field($highlight) : $highlight;
 
         return $this;
     }
@@ -158,10 +160,7 @@ abstract class AbstractSearch
 
         // TODO: accept more variations
         if (isset($this->highlight)) {
-            $body['highlight'] = [
-                'fragment_size' => 50,
-                'fields' => [$this->highlight => new \stdClass()],
-            ];
+            $body['highlight'] = $this->highlight->toArray();
         }
 
         if (isset($this->source)) {

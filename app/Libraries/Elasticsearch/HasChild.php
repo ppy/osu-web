@@ -59,10 +59,7 @@ class HasChild extends AbstractSearch
         ];
 
         if (isset($this->highlight)) {
-            $inner['highlight'] = [
-                'fragment_size' => 50,
-                'fields' => [$this->highlight => new \stdClass()],
-            ];
+            $inner['highlight'] = $this->highlight->toArray();
         }
 
         if (isset($this->source)) {
