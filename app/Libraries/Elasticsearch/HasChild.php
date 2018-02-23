@@ -20,8 +20,10 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class HasChild extends AbstractSearch
+class HasChild
 {
+    use AbstractSearch;
+
     protected $name;
     protected $scoreMode;
 
@@ -42,7 +44,7 @@ class HasChild extends AbstractSearch
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
     public function toArray() : array
     {

@@ -24,8 +24,10 @@ use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
 
-class Search extends AbstractSearch
+class Search
 {
+    use AbstractSearch;
+
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
@@ -59,12 +61,34 @@ class Search extends AbstractSearch
     }
 
     /**
-     * {@inheritdoc}
+     * @return array
      */
     public function toArray() : array
     {
-        $json = parent::toArray();
-        $json['index'] = $this->index;
+        $pageParams = $this->getPageParams();
+
+        $body = [
+            'from' => $pageParams['from'],
+            'size' => $pageParams['size'],
+            'sort' => $this->sort,
+        ];
+
+        // TODO: accept more variations
+        if (isset($this->highlight)) {
+            $body['highlight'] = $this->highlight->toArray();
+        }
+
+        if (isset($this->source)) {
+            $body['_source'] = $this->source;
+        }
+
+        $body['query'] = is_array($this->query) ? $this->query : $this->query->toArray();
+
+        $json = ['body' => $body, 'index' => $this->index];
+
+        if (isset($this->type)) {
+            $json['type'] = $this->type;
+        }
 
         return $json;
     }

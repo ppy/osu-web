@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-abstract class AbstractSearch
+trait AbstractSearch
 {
     protected $from;
     protected $highlight;
@@ -143,38 +143,5 @@ abstract class AbstractSearch
         $this->type = $type;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray() : array
-    {
-        $pageParams = $this->getPageParams();
-
-        $body = [
-            'from' => $pageParams['from'],
-            'size' => $pageParams['size'],
-            'sort' => $this->sort,
-        ];
-
-        // TODO: accept more variations
-        if (isset($this->highlight)) {
-            $body['highlight'] = $this->highlight->toArray();
-        }
-
-        if (isset($this->source)) {
-            $body['_source'] = $this->source;
-        }
-
-        $body['query'] = is_array($this->query) ? $this->query : $this->query->toArray();
-
-        $json = ['body' => $body];
-
-        if (isset($this->type)) {
-            $json['type'] = $this->type;
-        }
-
-        return $json;
     }
 }
