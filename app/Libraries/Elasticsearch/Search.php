@@ -26,7 +26,7 @@ use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
 
 class Search
 {
-    use AbstractSearch;
+    use HasSearch;
 
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;

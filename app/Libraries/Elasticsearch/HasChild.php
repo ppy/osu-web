@@ -22,7 +22,7 @@ namespace App\Libraries\Elasticsearch;
 
 class HasChild
 {
-    use AbstractSearch;
+    use HasSearch;
 
     protected $name;
     protected $scoreMode;

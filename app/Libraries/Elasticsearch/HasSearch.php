@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-trait AbstractSearch
+trait HasSearch
 {
     protected $from;
     protected $highlight;
