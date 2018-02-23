@@ -40,6 +40,7 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'see_more' => 'see more',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
     ],

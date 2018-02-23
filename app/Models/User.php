@@ -1095,7 +1095,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setPlaymodeAttribute($value)
     {
-        $this->osu_playmode = Beatmap::modeInt($attribute);
+        $this->osu_playmode = Beatmap::modeInt($value);
     }
 
     public function hasFavourited($beatmapset)
@@ -1249,6 +1249,23 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return 3;
+    }
+
+    /**
+     * Recommended star difficulty.
+     *
+     * @param string $mode one of Beatmap::MODES
+     *
+     * @return float
+     */
+    public function recommendedStarDifficulty(string $mode)
+    {
+        $stats = $this->statistics($mode);
+        if ($stats) {
+            return pow($stats->rank_score, 0.4) * 0.195;
+        }
+
+        return 0.0;
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
@@ -1414,6 +1431,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function profileBeatmapsetsFavourite()
     {
         return $this->favouriteBeatmapsets()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1421,6 +1439,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->unranked()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1428,6 +1447,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->graveyard()
+            ->active()
             ->with('beatmaps');
     }
 

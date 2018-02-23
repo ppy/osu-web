@@ -17,35 +17,36 @@
  */
 
 .header-search-box {
-  .default-border-radius();
   margin: 5px 0;
   color: #fff;
-  background-color: fade(#000, 15%);
-  padding: 5px;
-  // let icon do its thing
-  padding-right: 0;
-  display: flex;
-  align-items: center;
-
-  &.js-parent-focus--focus {
-    background-color: fade(#000, 25%);
-  }
 
   &__icon {
-    .link-white();
-    .link-plain();
-    font-size: @font-size--title-small;
-    flex: none;
+    .reset-input();
+    .center-content();
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
     width: @nav-search-icon-width;
-    text-align: center;
+    font-size: @font-size--title-small;
+
+    *:-webkit-autofill ~ & {
+      color: #000;
+    }
   }
 
   &__input {
     .reset-input();
-    flex: none;
-    width: 160px;
+    .default-border-radius();
+    width: (160px + @nav-search-icon-width);
     text-align: right;
     font-size: @font-size-base;
     font-weight: normal;
+    padding: 5px @nav-search-icon-width 5px 5px;
+    background-color: fade(#000, 15%);
+
+    &:focus {
+      background-color: fade(#000, 25%);
+    }
   }
 }

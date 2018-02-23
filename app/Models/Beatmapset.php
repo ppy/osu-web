@@ -26,7 +26,6 @@ use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
-use App\Transformers\BeatmapsetTransformer;
 use Cache;
 use Carbon\Carbon;
 use Datadog;
@@ -367,6 +366,13 @@ class Beatmapset extends Model implements AfterCommit
         $params['page'] = max(1, get_int($params['page'] ?? 1));
         $params['offset'] = ($params['page'] - 1) * $params['limit'];
 
+        // general
+        $validGenerals = ['recommended', 'converts'];
+        $selectedGenerals = explode('.', $params['general'] ?? null);
+        foreach ($validGenerals as $option) {
+            $params[$option] = in_array($option, $selectedGenerals, true);
+        }
+
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
@@ -525,8 +531,28 @@ class Beatmapset extends Model implements AfterCommit
                 break;
         }
 
+        // recommended difficulty
+        if ($params['recommended'] && $params['user'] !== null) {
+            // TODO: index convert difficulties and handle them.
+            $mode = Beatmap::modeStr($params['mode'] ?? Beatmap::MODES['osu']);
+            $difficulty = $params['user']->recommendedStarDifficulty($mode);
+            $matchParams[] = [
+                'range' => [
+                    'difficulties.difficultyrating' => [
+                        'gte' => $difficulty - 0.5,
+                        'lte' => $difficulty + 0.5,
+                    ],
+                ],
+            ];
+        }
+
+        // converts
         if ($params['mode'] !== null) {
-            $matchParams[] = ['match' => ['difficulties.playmode' => $params['mode']]];
+            $modes = [$params['mode']];
+            if ($params['converts'] && $params['mode'] !== Beatmap::MODES['osu']) {
+                $modes[] = Beatmap::MODES['osu'];
+            }
+            $matchParams[] = ['terms' => ['difficulties.playmode' => $modes]];
         }
 
         if (!empty($matchParams)) {
@@ -1006,6 +1032,16 @@ class Beatmapset extends Model implements AfterCommit
         return $this->hasMany(BeatmapsetEvent::class, 'beatmapset_id');
     }
 
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class, 'genre_id');
+    }
+
+    public function language()
+    {
+        return $this->belongsTo(Language::class, 'language_id');
+    }
+
     public function requiredHype()
     {
         return config('osu.beatmapset.required_hype');
@@ -1111,17 +1147,13 @@ class Beatmapset extends Model implements AfterCommit
         return array_search_null($this->approved, static::STATES);
     }
 
-    public function defaultJson($options = [])
+    public function defaultJson()
     {
-        $includes = ['current_user_attributes', 'nominations'];
-
-        if ($options['withTrashedBeatmaps'] ?? false) {
-            $includes[] = 'beatmaps:with_trashed';
-        } else {
-            $includes[] = 'beatmaps';
-        }
-
-        return json_item($this, new BeatmapsetTransformer, $includes);
+        return json_item($this, 'Beatmapset', [
+            'beatmaps',
+            'current_user_attributes',
+            'nominations',
+        ]);
     }
 
     public function defaultDiscussionJson()
@@ -1133,14 +1165,17 @@ class Beatmapset extends Model implements AfterCommit
                 'beatmapDiscussions.beatmapset',
                 'beatmapDiscussions.beatmap',
             ])->find($this->getKey()),
-            'BeatmapsetDiscussion',
+            'Beatmapset',
             [
-                'beatmapset',
-                'beatmap_discussions.beatmap_discussion_posts',
-                'beatmap_discussions.current_user_attributes',
-                'beatmapset_events',
-                'users',
-                'users.groups',
+                'beatmaps:with_trashed',
+                'current_user_attributes',
+                'discussions',
+                'discussions.current_user_attributes',
+                'discussions.posts',
+                'events',
+                'nominations',
+                'related_users',
+                'related_users.groups',
             ]
         );
     }

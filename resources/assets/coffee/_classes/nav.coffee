@@ -27,12 +27,12 @@ class @Nav
     $(window).on 'throttled-scroll throttled-resize', @repositionPopup
     $(document).on 'transitionend', '.js-nav-popup--container', @reset
     $(document).on 'turbolinks:load', @syncAll
+    $(document).on 'menu:showing', '.js-nav-submenu', @resizePopup
 
     @_data = document.getElementsByClassName('js-nav-data')
     @popup = document.getElementsByClassName('js-nav-popup--popup')
     @popupContainer = document.getElementsByClassName('js-nav-popup--container')
     @menus = document.getElementsByClassName('js-nav-switch--menu')
-    @sectionLinks = document.getElementsByClassName('js-nav-section-link')
     @switches = document.getElementsByClassName('js-nav-switch')
     @floatBeacon = document.getElementsByClassName('js-nav-popup--beacon')
 
@@ -128,6 +128,17 @@ class @Nav
 
     @setMode()
     @floatPopup false
+
+
+  resizePopup: (e) =>
+    menu = e.currentTarget
+    # FIXME: Temporary hack until redesign.
+    # 210 is default menu size.
+    # 110 is popup footer + top menu bar + paddings.
+    $last = $(menu).children('a:last')
+    bottom = $last.position().top + $last.height()
+    height = Math.max(210, bottom + 110)
+    $('.js-nav-popup-auto-size').css('height', "#{height}px")
 
 
   setMode: (modeHash = {}) =>

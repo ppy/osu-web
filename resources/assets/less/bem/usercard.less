@@ -51,9 +51,7 @@
   }
 
   &__background {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+    .full-size();
     object-fit: cover;
     .@{top}--popup & {
       opacity: 0;
@@ -62,6 +60,10 @@
     // to prevent annoying white-pixel artefacts appearing due to
     // browsers not handling 'overflow: hidden' properly
     .default-border-radius();
+  }
+
+  &__background-container {
+    .full-size();
   }
 
   &__background-overlay  {
@@ -73,9 +75,16 @@
     }
   }
 
+  &__card {
+    .link-white();
+    .link-plain();
+    pointer-events: none;
+  }
+
   &__icon {
     margin: 0 @flag-gutter;
     display: flex;
+    pointer-events: auto;
 
     &:empty {
       display: none;
@@ -94,9 +103,10 @@
     flex-direction: column;
   }
 
-  &__main-card {
+  &__card-content {
     display: flex;
     flex-direction: row;
+    height: @usercard-height - @status-bar-size;
   }
 
   &__metadata {
@@ -113,9 +123,7 @@
 
   &__avatar {
     .default-border-radius();
-    position: absolute;
-    width: 100%;
-    height: 100%;
+    .full-size();
     object-fit: cover;
 
     &--loader {

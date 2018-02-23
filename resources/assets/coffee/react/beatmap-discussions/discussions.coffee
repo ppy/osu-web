@@ -146,7 +146,6 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
         currentUser: @props.currentUser
         beatmapset: @props.beatmapset
         currentBeatmap: @props.currentBeatmap
-        userPermissions: @props.userPermissions
         readPostIds: @props.readPostIds
         isTimelineVisible: @isTimelineVisible()
         visible: visible

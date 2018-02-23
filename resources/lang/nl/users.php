@@ -45,7 +45,6 @@ return [
     'show' => [
         '404' => 'Gebruiker niet gevonden! ;_;',
         'age' => ':age jaar oud',
-        'current_location' => 'Momenteel in :location',
         'first_members' => 'Hier sinds het begin',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -126,7 +125,7 @@ return [
             'medals' => [
                 'title' => 'Medailles',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [

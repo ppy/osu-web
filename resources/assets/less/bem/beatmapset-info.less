@@ -17,7 +17,8 @@
  */
 
 .beatmapset-info {
-  @height: 220px;
+  @min-height: 220px;
+  @max-height: 270px;
   @box-margin--top: 15px;
   @header-margin--top: 15px;
   @header-margin--bottom: 5px;
@@ -31,7 +32,8 @@
 
   @media @desktop {
     flex-direction: row;
-    height: @height;
+    min-height: @min-height;
+    max-height: @max-height;
   }
 
   &__box {
@@ -41,12 +43,15 @@
     &--description {
       flex: 1;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     &--meta {
       @media @desktop {
         width: 175px;
         overflow: hidden;
+        margin-bottom: 10px;
       }
     }
 
@@ -55,6 +60,20 @@
         width: @beatmapset-float-box-width;
       }
     }
+  }
+
+  &__description {
+    @media @desktop {
+      // to prevent overflow from extending container box
+      .full-size();
+    }
+  }
+
+  &__description-container {
+    min-height: 0;
+    max-height: @max-height;
+    overflow-y: auto;
+    flex: 1;
   }
 
   &__edit-description {
@@ -71,14 +90,12 @@
     }
   }
 
-  &__description {
-    height: @height
-            - @box-margin--top
-            - @header-margin--top
-            - @header-margin--bottom
-            - ceil(@font-size--title-small * 1.1); // 1.1 is line-height from...somewhere;
+  &__half-box {
+    display: flex;
+  }
 
-    overflow-y: auto;
+  &__half-entry {
+    flex: 1;
   }
 
   &__header {

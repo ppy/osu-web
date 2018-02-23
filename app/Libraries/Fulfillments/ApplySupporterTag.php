@@ -79,7 +79,7 @@ class ApplySupporterTag extends OrderItemFulfillment
             $this->updateVotes($this->duration);
             $this->applySubscription();
 
-            $this->donor->supports()->save($donation);
+            $donation->saveOrExplode();
             $this->donor->saveOrExplode();
             $this->target->saveOrExplode();
         });

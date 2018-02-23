@@ -93,7 +93,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
               div className: 'beatmap-scoreboard-top__item',
                 @scoreItem score: @props.scores[0], rank: 1, itemClass: 'ScoreTop'
 
-              if @props.userScore?
+              if @props.userScore? && @props.scores[0].user.id != @props.userScore.user.id
                 div className: 'beatmap-scoreboard-top__item',
                   @scoreItem score: @props.userScore, rank: @props.userScorePosition, itemClass: 'ScoreTop'
 
@@ -102,6 +102,7 @@ class BeatmapsetPage.Scoreboard extends React.PureComponent
               scores: @props.scores
               countries: @props.countries
               hitTypeMapping: @hitTypeMapping()
+              scoreboardType: @props.type
 
         else if !@props.hasScores
           p

@@ -51,15 +51,16 @@ class ProfilePage.Main extends React.PureComponent
         selection: [0, 0]
       tabsSticky: false
       profileOrder: props.user.profile_order[..]
-      scoresBest: @props.scores.best
-      scoresFirsts: @props.scores.firsts
-      scoresRecent: @props.scores.recent
-      beatmapPlaycounts: @props.beatmapsets.most_played
-      favouriteBeatmapsets: @props.beatmapsets.favourite
-      rankedAndApprovedBeatmapsets: @props.beatmapsets.ranked_and_approved
-      unrankedBeatmapsets: @props.beatmapsets.unranked
-      graveyardBeatmapsets: @props.beatmapsets.graveyard
-      recentlyReceivedKudosu: @props.recentlyReceivedKudosu
+      recentActivity: @props.extras.recentActivity
+      scoresBest: @props.extras.scoresBest
+      scoresFirsts: @props.extras.scoresFirsts
+      scoresRecent: @props.extras.scoresRecent
+      beatmapPlaycounts: @props.extras.beatmapPlaycounts
+      favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
+      rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+      unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+      graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
+      recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
       showMorePagination: {}
 
     if @props.user.is_bot
@@ -134,10 +135,12 @@ class ProfilePage.Main extends React.PureComponent
           user: @state.user
         component: ProfilePage.UserPage
 
-      recent_activities:
+      recent_activity:
         props:
-          recentActivities: @props.recentActivities
-        component: ProfilePage.RecentActivities
+          pagination: @state.showMorePagination
+          recentActivity: @state.recentActivity
+          user: @state.user
+        component: ProfilePage.RecentActivity
 
       kudosu:
         props:
@@ -270,7 +273,7 @@ class ProfilePage.Main extends React.PureComponent
     @setState showMorePagination: paginationState, ->
       $.get osu.updateQueryString(url, offset: offset, limit: perPage + 1), (data) =>
         state = _.cloneDeep(@state[propertyName]).concat(data)
-        hasMore = data.length > perPage && state.length < 100
+        hasMore = data.length > perPage
 
         state.pop() if hasMore
 
@@ -381,7 +384,7 @@ class ProfilePage.Main extends React.PureComponent
       .fail (xhr) =>
         osu.emitAjaxError() xhr
 
-        @setState profileOrder: @state.user.profileOrder
+        @setState profileOrder: @state.user.profile_order
 
       .always LoadingOverlay.hide
 

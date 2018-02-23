@@ -31,7 +31,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'page',
-        'recent_activities',
         'ranked_and_approved_beatmapset_count',
         'unranked_beatmapset_count',
         'graveyard_beatmapset_count',
@@ -128,14 +127,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
-        );
-    }
-
-    public function includeRecentActivities(User $user)
-    {
-        return $this->collection(
-            $user->events()->recent()->get(),
-            new EventTransformer()
         );
     }
 

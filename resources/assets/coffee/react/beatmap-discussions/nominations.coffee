@@ -40,8 +40,9 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     flashClass = 'js-flash-border--on'
 
     # switch to generalAll tab, set current filter to praises
-    $.publish 'beatmapDiscussion:setMode', mode: 'generalAll'
-    $.publish 'beatmapDiscussion:filter', filter: 'praises'
+    $.publish 'beatmapsetDiscussions:update',
+      mode: 'generalAll'
+      filter: 'praises'
 
     @focusNewDiscussion ->
       # flash border of hype description to emphasize input is required
@@ -101,11 +102,11 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
       if event.type == 'disqualify' || event.type == 'nomination_reset'
         break
       else if event.type == 'nominate'
-        nominators.push(@props.users[event.user_id])
+        nominators.unshift @props.users[event.user_id]
 
     if nominationReset?
       nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
-      url = BeatmapDiscussionHelper.hash discussionId: nominationResetDiscussionId
+      url = BeatmapDiscussionHelper.url discussion: @props.discussions[nominationResetDiscussionId]
       nominationResetDiscussionLink = osu.link url, "##{nominationResetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
 
 
@@ -128,8 +129,8 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
           if currentUser.id?
             div className: "#{bn}__row-right",
               el BigButton,
-                modifiers: ['full']
-                text: 'Leave Feedback'
+                modifiers: ['full', 'wrap-text']
+                text: osu.trans 'beatmaps.feedback.button'
                 icon: 'bullhorn'
                 props:
                   onClick: @focusNewDiscussion
@@ -162,7 +163,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             if currentUser.id? && currentUser.id != @props.beatmapset.user_id
               div className: "#{bn}__row-right",
                 el BigButton,
-                  modifiers: ['full']
+                  modifiers: ['full', 'wrap-text']
                   text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
                   icon: 'bullhorn'
                   props:
@@ -279,7 +280,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
 
     .done (response) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: response
+      $.publish 'beatmapsetDiscussions:update', beatmapset: response
 
     .fail osu.ajaxError
     .always LoadingOverlay.hide

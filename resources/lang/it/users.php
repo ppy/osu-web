@@ -48,7 +48,6 @@ return [
     'show' => [
         '404' => 'Utente non trovato! ;_;',
         'age' => ':age anni',
-        'current_location' => 'Si trova in :location',
         'first_members' => "Qui dall'inizio",
         'is_developer' => 'sviluppatore di osu!',
         'is_supporter' => 'sostenitore di osu!',
@@ -129,7 +128,7 @@ return [
             'medals' => [
                 'title' => 'Medaglie',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recenti',
             ],
             'top_ranks' => [

@@ -50,6 +50,11 @@ class BeatmapsetsController extends Controller
         );
 
         // temporarily put filters here
+        $general = [
+            ['id' => 'recommended', 'name' => trans('beatmaps.general.recommended')],
+            ['id' => 'converts', 'name' => trans('beatmaps.general.converts')],
+        ];
+
         $modes = [['id' => null, 'name' => trans('beatmaps.mode.any')]];
         foreach (Beatmap::MODES as $name => $id) {
             $modes[] = ['id' => $id, 'name' => trans("beatmaps.mode.{$name}")];
@@ -77,7 +82,7 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = compact('modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
+        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
@@ -85,8 +90,13 @@ class BeatmapsetsController extends Controller
     public function show($id)
     {
         $beatmapset = Beatmapset
-            ::with('beatmaps.failtimes', 'user')
-            ->with('beatmaps.difficulty')
+            ::with([
+                'beatmaps.difficulty',
+                'beatmaps.failtimes',
+                'genre',
+                'language',
+                'user',
+            ])
             ->findOrFail($id);
 
         $editable = priv_check('BeatmapsetDescriptionEdit', $beatmapset)->can();
@@ -103,6 +113,8 @@ class BeatmapsetsController extends Controller
                 'converts',
                 'converts.failtimes',
                 $descriptionInclude,
+                'genre',
+                'language',
                 'ratings',
                 'recent_favourites',
                 'user',
@@ -158,7 +170,7 @@ class BeatmapsetsController extends Controller
         }
 
         $initialData = [
-            'beatmapsetDiscussion' => $beatmapset->defaultDiscussionJson(),
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
         ];
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -290,6 +302,7 @@ class BeatmapsetsController extends Controller
             ];
         } else {
             $params = [
+                'general' => Request::input('c'),
                 'query' => Request::input('q'),
                 'mode' => Request::input('m'),
                 'status' => Request::input('s'),

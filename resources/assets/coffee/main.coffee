@@ -58,7 +58,6 @@ $(document).on 'turbolinks:load', ->
 @navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
-@parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
 @reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview

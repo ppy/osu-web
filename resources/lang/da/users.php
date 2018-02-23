@@ -57,7 +57,6 @@ return [
     'show' => [
         '404' => 'Bruger ikke fundet! ;_;',
         'age' => ':age år gammel',
-        'current_location' => 'Befinder sig i :location',
         'first_members' => 'Var her fra starten',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -178,7 +177,7 @@ return [
                 'empty' => 'Denne bruger har ikke fået nogle endnu. ;_;',
                 'title' => 'Medaljer',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Seneste',
             ],
             'top_ranks' => [
