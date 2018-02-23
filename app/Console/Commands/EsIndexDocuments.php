@@ -35,6 +35,8 @@ class EsIndexDocuments extends Command
         'users' => [User::class],
     ];
 
+    const BATCH_SIZE = 1000;
+
     /**
      * The name and signature of the console command.
      *
@@ -127,11 +129,11 @@ class EsIndexDocuments extends Command
             if (!$this->inplace && $i === 0) {
                 // create new index if the first type for this index, otherwise
                 // index in place.
-                $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
+                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             } else {
-                $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
+                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
             }
