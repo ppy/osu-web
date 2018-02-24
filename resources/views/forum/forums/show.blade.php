@@ -23,7 +23,7 @@
         ],
         'url' => route('forum.forums.search'),
     ],
-    'titleAppend' => $forum->forum_name,
+    'titlePrepend' => $forum->forum_name,
     'pageDescription' => $forum->toMetaDescription(),
 ])
 

@@ -34,7 +34,6 @@ return [
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
-            'index' => 'osu!',
             'legal-show' => '信息',
             'news-index' => '新闻',
             'news-show' => '新闻',

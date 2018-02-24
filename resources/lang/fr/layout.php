@@ -33,7 +33,6 @@ return [
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
-            'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'actualités',
             'news-show' => 'actualités',
