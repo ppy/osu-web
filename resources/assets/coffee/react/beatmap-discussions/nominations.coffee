@@ -129,7 +129,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
           if currentUser.id?
             div className: "#{bn}__row-right",
               el BigButton,
-                modifiers: ['full']
+                modifiers: ['full', 'wrap-text']
                 text: osu.trans 'beatmaps.feedback.button'
                 icon: 'bullhorn'
                 props:
@@ -163,7 +163,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
             if currentUser.id? && currentUser.id != @props.beatmapset.user_id
               div className: "#{bn}__row-right",
                 el BigButton,
-                  modifiers: ['full']
+                  modifiers: ['full', 'wrap-text']
                   text: if userAlreadyHyped then osu.trans('beatmaps.hype.button_done') else osu.trans('beatmaps.hype.button')
                   icon: 'bullhorn'
                   props:

@@ -116,7 +116,7 @@ return [
 
             'messages' => 'Messages',
             'settings' => 'Settings',
-            'logout' => 'Log Out',
+            'logout' => 'Sign Out',
             'help' => 'Help',
             'beatmapset_activities' => 'user beatmapset activities',
         ],
@@ -253,7 +253,7 @@ return [
         'links' => [
             'account-edit' => 'Settings',
             'friends' => 'Friends',
-            'logout' => 'Log Out',
+            'logout' => 'Sign Out',
             'profile' => 'My Profile',
         ],
     ],
