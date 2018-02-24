@@ -101,7 +101,7 @@ return [
             '404' => 'no encontrado',
             '403' => 'prohibido',
             '401' => 'no autorizado',
-            '405' => 'falta algo',
+            '405' => 'página faltante',
             '500' => 'algo va mal',
             '503' => 'mantenimiento',
         ],
