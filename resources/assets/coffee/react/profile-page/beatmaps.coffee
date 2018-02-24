@@ -47,7 +47,7 @@ class ProfilePage.Beatmaps extends React.PureComponent
                   el BeatmapsetPanel, beatmap: beatmapset
 
               div
-                className: 'osu-layout__col text-center',
+                className: 'osu-layout__col',
                 el ProfilePage.ShowMoreLink,
                   collection: beatmapsets
                   propertyName: section
