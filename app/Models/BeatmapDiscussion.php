@@ -566,15 +566,21 @@ class BeatmapDiscussion extends Model
 
     public function softDelete($deletedBy)
     {
-        DB::transaction(function () use ($deletedBy) {
+        return DB::transaction(function () use ($deletedBy) {
             if ($deletedBy->getKey() !== $this->user_id) {
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
             }
+
+            $timestamps = $this->timestamps;
+            $this->timestamps = false;
             $this->update([
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
             ]);
+            $this->timestamps = $timestamps;
             $this->refreshKudosu('delete');
+
+            return true;
         });
     }
 
