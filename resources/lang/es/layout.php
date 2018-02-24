@@ -116,7 +116,7 @@ return [
 
             'messages' => 'Mensajes',
             'settings' => 'Opciones',
-            'logout' => 'Salir', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
             'beatmapset_activities' => 'actividades del usuario en el beatmap',
         ],
@@ -252,7 +252,7 @@ return [
         'links' => [
             'account-edit' => 'Ajustes',
             'friends' => 'Amigos',
-            'logout' => 'Cerrar sesión', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',
         ],
     ],
