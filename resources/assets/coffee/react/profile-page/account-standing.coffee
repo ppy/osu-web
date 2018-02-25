@@ -55,7 +55,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
           className: 'page-extra__title page-extra__title--small'
           osu.trans 'users.show.extra.account_standing.recent_infringements.title'
 
-        div className: "#{bn}__table-box",
+        div className: "#{bn}__table-scroll-container",
           table
             className: "#{bn}__table"
             thead {},
@@ -63,50 +63,50 @@ class ProfilePage.AccountStanding extends React.PureComponent
                 for el in columns
                   th
                     key: el
-                    className: "#{bn}__table-cell #{bn}__table-cell--#{el}"
-                    div
-                      className: "#{bn}__table-header #{bn}__table-header--#{el}"
-                      osu.trans "users.show.extra.account_standing.recent_infringements.#{el}"
+                    className: "#{bn}__table-header #{bn}__table-header--#{el}"
+                    osu.trans "users.show.extra.account_standing.recent_infringements.#{el}"
 
-            @table _.filter @props.user.recent_infringements, (d) -> d.type != 'note'
+            tbody
+              className: "#{bn}__table-body"
+              @table _.filter @props.user.recent_infringements, (d) -> d.type != 'note'
 
-          table
-            className: "#{bn}__table #{bn}__table--notes"
-            @table _.filter @props.user.recent_infringements, (d) -> d.type == 'note'
-
-  cell: (column, event) ->
-    modifier = switch column
-      when 'action' then event.type
-      when 'length'
-        if event.type == 'restriction'
-          'restriction'
-
-    content = switch column
-      when 'date' then time className: 'timeago', dateTime: event.timestamp
-      when 'action' then osu.trans "users.show.extra.account_standing.recent_infringements.actions.#{event.type}"
-      when 'length'
-        if event.type == 'note'
-         ''
-        else if event.type == 'restriction'
-          osu.trans 'users.show.extra.account_standing.recent_infringements.length_permament'
-        else
-          moment(event.timestamp).add(event.length, 'seconds').from(event.timestamp, true)
-      else event[column]
-
-    div
-      className: "#{bn}__box #{bn}__box--small #{bn}__box--#{modifier} #{bn}__box--#{column}"
-      content
+            tbody
+              className: "#{bn}__table-body #{bn}__table-body--notes"
+              @table _.filter @props.user.recent_infringements, (d) -> d.type == 'note'
 
   table: (events) ->
-    tbody {},
-      for event, i in events
-        tr key: i,
-          for el in columns
-            td
-              key: el
-              className: "#{bn}__table-cell #{bn}__table-cell--#{el}"
-              @cell el, event
+    for event, i in events
+      tr
+        key: i
 
+        td
+          className: "#{bn}__table-cell #{bn}__table-cell--date"
+          div
+            className: "#{bn}__box #{bn}__box--small"
+            time className: "timeago", dateTime: event.timestamp
+
+        td
+          className: "#{bn}__table-cell #{bn}__table-cell--action"
+          div
+            className: "#{bn}__box #{bn}__box--small #{bn}__box--#{event.type}"
+            osu.trans "users.show.extra.account_standing.recent_infringements.actions.#{event.type}"
+
+        td
+          className: "#{bn}__table-cell #{bn}__table-cell--length"
+          div
+            className: "#{bn}__box #{bn}__box--small #{'bn__box--restriction' if event.type == 'restriction'}"
+            if event.type == 'restriction'
+              osu.trans 'users.show.extra.account_standing.recent_infringements.length_permament'
+            else if event.type == 'note'
+              ''
+            else
+              moment(event.timestamp).add(event.length, 'seconds').from(event.timestamp, true)
+
+        td
+          className: "#{bn}__table-cell #{bn}__table-cell--description"
+          div
+            className: "#{bn}__box #{bn}__box--small"
+            event.description
 
   remaining: (event) ->
     Math.round moment(event.timestamp).add(event.length, 'seconds').subtract(moment.now()).unix() / 3600

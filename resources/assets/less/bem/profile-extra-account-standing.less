@@ -17,6 +17,8 @@
  */
 
 .profile-extra-account-standing {
+  @_top: profile-extra-account-standing;
+
   &__box {
     display: flex;
     flex-direction: row;
@@ -24,42 +26,8 @@
 
     width: 100%;
 
-    &--action, &--length {
-      padding-left: 10px;
-    }
-
     &--info {
       background-color: #ccc;
-    }
-
-    &--large {
-      height: 30px;
-      margin-bottom: 5px;
-      padding-left: 20px;
-      border-radius: 15px;
-      font-size: 15px;
-    }
-
-    &--note {
-      background-color: @blue;
-    }
-
-    &--restriction {
-        background-color: @red;
-      color: #fff;
-    }
-
-    &--silence {
-      background-color: @yellow;
-    }
-
-    &--small {
-      height: 20px;
-      border-radius: 10px;
-
-      margin-bottom: 7px;
-
-      font-size: 14px;
     }
 
     &--warning {
@@ -67,24 +35,71 @@
       color: #fff;
     }
 
+    &--note {
+      background-color: @blue;
+    }
+
+    &--restriction {
+      background-color: @red;
+      color: #fff;
+    }
+
+    &--silence {
+      background-color: @yellow;
+    }
+
+    &--note, &--restriction, &--silence {
+      padding-left: 10px;
+      width: 100px;
+    }
+
+    &--small {
+      height: 20px;
+      border-radius: 10px;
+    }
+
+    &--large {
+      height: 30px;
+      margin-bottom: 5px;
+      padding-left: 20px;
+      border-radius: 15px;
+    }
   }
 
   &__table {
     width: 100%;
     min-width: 800px;
+    font-size: 14px;
+  }
 
+  &__table-body {
     &--notes {
-      margin-top: 30px;
+      &::before {
+        content: '';
+        display: table-row;
+        height: 30px;
+      }
     }
   }
 
-  &__table-box {
-    overflow-x: scroll;
+  &__table-cell {
+    padding-bottom: 7px;
+
+    &--length :not(.@{_top}__box--restriction) {
+      padding-left: 10px;
+    }
   }
 
-  &__table-cell {
+  &__table-header {
+    font-size: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+
+    padding-bottom: 10px;
+
     &--action {
       width: 105px;
+      padding-left: 10px;
       padding-right: 5px;
     }
 
@@ -95,18 +110,12 @@
 
     &--length {
       width: 140px;
+      padding-left: 10px;
       padding-right: 40px;
     }
   }
 
-  &__table-header {
-    font-size: 10px;
-    font-weight: 900;
-    text-transform: uppercase;
-    padding-bottom: 10px;
-
-    &--action, &--length {
-      padding-left: 10px;
-    }
+  &__table-scroll-container {
+    overflow-x: auto;
   }
 }
