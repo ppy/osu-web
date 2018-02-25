@@ -76,7 +76,7 @@ return [
         'community' => [
             '_' => '社区',
             'dev' => 'osu! 开发',
-            'getForum' => '论坛',
+            'getForum' => '论坛', // Base text changed to plural, please check.
             'getChat' => '聊天',
             'getSupport' => '获取帮助',
             'getLive' => '直播',
@@ -86,10 +86,10 @@ return [
             'tournaments-index' => '官方比赛',
             'tournaments-show' => '官方比赛信息',
             'forum-topic-watches-index' => '订阅',
-            'forum-topics-create' => '论坛',
-            'forum-topics-show' => '论坛',
-            'forum-forums-index' => '论坛',
-            'forum-forums-show' => '论坛',
+            'forum-topics-create' => '论坛', // Base text changed to plural, please check.
+            'forum-topics-show' => '论坛', // Base text changed to plural, please check.
+            'forum-forums-index' => '论坛', // Base text changed to plural, please check.
+            'forum-forums-show' => '论坛', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => '多人游戏',

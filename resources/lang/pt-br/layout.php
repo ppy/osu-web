@@ -76,7 +76,7 @@ return [
         'community' => [
             '_' => 'comunidade',
             'dev' => 'osu!dev',
-            'getForum' => 'fórum',
+            'getForum' => 'fórum', // Base text changed to plural, please check.
             'getChat' => 'conversa',
             'getSupport' => 'suporte',
             'getLive' => 'transmissões',
@@ -86,10 +86,10 @@ return [
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informações de torneios',
             'forum-topic-watches-index' => 'inscrições de tópico',
-            'forum-topics-create' => 'fórum',
-            'forum-topics-show' => 'fórum',
-            'forum-forums-index' => 'fórum',
-            'forum-forums-show' => 'fórum',
+            'forum-topics-create' => 'fórum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'fórum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'fórum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'fórum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multijogador',

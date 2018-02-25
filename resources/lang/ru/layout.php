@@ -70,7 +70,7 @@ return [
         'community' => [
             '_' => 'сообщество',
             'dev' => 'osu!dev',
-            'getForum' => 'форумы',
+            'getForum' => 'форумы', // Base text changed to plural, please check.
             'getChat' => 'чат',
             'getSupport' => 'поддержка',
             'getLive' => 'трансляции по osu!',
@@ -80,10 +80,10 @@ return [
             'tournaments-index' => 'турниры',
             'tournaments-show' => 'информация о турнире',
             'forum-topic-watches-index' => 'подписки',
-            'forum-topics-create' => 'форум',
-            'forum-topics-show' => 'форум',
-            'forum-forums-index' => 'форум',
-            'forum-forums-show' => 'форум',
+            'forum-topics-create' => 'форум', // Base text changed to plural, please check.
+            'forum-topics-show' => 'форум', // Base text changed to plural, please check.
+            'forum-forums-index' => 'форум', // Base text changed to plural, please check.
+            'forum-forums-show' => 'форум', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'мультиплеер',
