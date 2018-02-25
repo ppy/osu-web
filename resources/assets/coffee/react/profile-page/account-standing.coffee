@@ -106,7 +106,16 @@ class ProfilePage.AccountStanding extends React.PureComponent
           className: "#{bn}__table-cell #{bn}__table-cell--description"
           div
             className: "#{bn}__box #{bn}__box--small"
-            event.description
+            span
+              className: "#{bn}__description"
+              event.description
+              if currentUser.is_admin && event.banner?
+                span
+                  className: "#{bn}__description #{bn}__description--banner"
+                  dangerouslySetInnerHTML:
+                    __html: osu.trans 'users.show.extra.account_standing.recent_infringements.banner',
+                      username: osu.link laroute.route('users.show', user: event.banner.id), event.banner.username
+
 
   remaining: (event) ->
     Math.round moment(event.timestamp).add(event.length, 'seconds').subtract(moment.now()).unix() / 3600

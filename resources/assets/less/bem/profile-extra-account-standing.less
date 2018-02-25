@@ -118,4 +118,18 @@
   &__table-scroll-container {
     overflow-x: auto;
   }
+
+  &__description {
+    &--banner {
+      color: #999;
+
+      a, a:hover, a:active, a:link, a:visited {
+        color: #999;
+      }
+
+      &::before {
+        content: ' ';
+      }
+    }
+  }
 }
