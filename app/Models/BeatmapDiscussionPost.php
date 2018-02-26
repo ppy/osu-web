@@ -279,32 +279,34 @@ class BeatmapDiscussionPost extends Model
         });
     }
 
-    public function softDelete($deletedBy)
+    public function softDeleteOrExplode($deletedBy)
     {
-        return DB::transaction(function () use ($deletedBy) {
-            if ($deletedBy->getKey() !== $this->user_id) {
-                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
-            }
+        $timestamps = $this->timestamps;
 
-            // delete related system post
-            $systemPost = $this->relatedSystemPost();
+        try {
+            DB::transaction(function () use ($deletedBy) {
+                if ($deletedBy->getKey() !== $this->user_id) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
+                }
 
-            if ($systemPost !== null) {
-                $systemPost->softDelete($deletedBy);
-            }
+                // delete related system post
+                $systemPost = $this->relatedSystemPost();
 
-            $timestamps = $this->timestamps;
-            $this->timestamps = false;
-            $this->fill([
-                'deleted_by_id' => $deletedBy->user_id,
-                'deleted_at' => Carbon::now(),
-            ])->saveOrExplode();
+                if ($systemPost !== null) {
+                    $systemPost->softDeleteOrExplode($deletedBy);
+                }
+
+                $this->timestamps = false;
+                $this->fill([
+                    'deleted_by_id' => $deletedBy->user_id,
+                    'deleted_at' => Carbon::now(),
+                ])->saveOrExplode();
+
+                $this->beatmapDiscussion->refreshResolved();
+            });
+        } finally {
             $this->timestamps = $timestamps;
-
-            $this->beatmapDiscussion->refreshResolved();
-
-            return true;
-        });
+        }
     }
 
     public function trashed()

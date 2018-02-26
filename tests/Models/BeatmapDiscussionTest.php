@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Exceptions\ModelNotSavedException;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -150,7 +151,7 @@ class BeatmapDiscussionTest extends TestCase
         $this->assertFalse($discussion->isValid());
     }
 
-    public function testSoftDelete()
+    public function testSoftDeleteOrExplode()
     {
         $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
@@ -165,7 +166,7 @@ class BeatmapDiscussionTest extends TestCase
         $this->assertFalse($discussion->trashed());
 
         // Soft delete.
-        $discussion->softDelete($user);
+        $discussion->softDeleteOrExplode($user);
         $discussion = $discussion->fresh();
         $this->assertTrue($discussion->trashed());
 
@@ -176,7 +177,7 @@ class BeatmapDiscussionTest extends TestCase
 
         // Soft delete with deleted beatmap.
         $beatmap->delete();
-        $discussion->softDelete($user);
+        $discussion->softDeleteOrExplode($user);
         $discussion = $discussion->fresh();
         $this->assertTrue($discussion->trashed());
 
