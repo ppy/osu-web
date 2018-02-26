@@ -63,14 +63,18 @@
   }
 
   &__stat {
-    font-size: 14px;
+    .default-text-shadow();
+
+    font-size: @font-size--small;
     font-style: italic;
 
     padding-right: 15px;
 
-    color: #ffffff;
+    color: #fff;
 
-    .default-text-shadow;
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
   }
 
   &__metadata-box {
