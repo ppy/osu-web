@@ -173,9 +173,14 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function html_entity_decode_better($string)
+{
+    return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+}
+
 function html_excerpt($body, $limit = 300)
 {
-    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
+    $body = html_entity_decode_better(replace_tags_with_spaces($body));
 
     if (strlen($body) >= $limit) {
         $body = mb_substr($body, 0, $limit).'...';
@@ -535,7 +540,7 @@ function proxy_image($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode($url));
+    $decoded = urldecode(html_entity_decode_better($url));
 
     if (config('osu.camo.key') === '') {
         return $decoded;
