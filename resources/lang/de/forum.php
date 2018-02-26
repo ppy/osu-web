@@ -97,7 +97,7 @@ return [
             'next' => '10 beiträge vor',
             'previous' => '10 beiträge zurück',
         ],
-        
+
         'post_edit' => [
             'cancel' => 'Abbrechen',
             'post' => 'Speichern',

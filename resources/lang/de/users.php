@@ -95,7 +95,7 @@ return [
         'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
         'plays_with' => 'Spielt mit :devices',
-        'title' => ":usernames Profil",
+        'title' => ':usernames Profil',
 
         'edit' => [
             'cover' => [
@@ -158,7 +158,7 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Verfügbares Kudosu',
-                'available_info' => "Kudosu kann gegen Kudosu-Sterne eingetauscht werden, die deiner Beatmap mehr Aufmerksamkeit bringen. Dies ist die Menge an Kudosu, die du noch nicht eingetauscht hast.",
+                'available_info' => 'Kudosu kann gegen Kudosu-Sterne eingetauscht werden, die deiner Beatmap mehr Aufmerksamkeit bringen. Dies ist die Menge an Kudosu, die du noch nicht eingetauscht hast.',
                 'recent_entries' => 'Kudosu-Geschichte',
                 'title' => 'Kudosu!',
                 'total' => 'Kudosu insgesamt',
@@ -166,7 +166,7 @@ return [
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "Dieser Benutzer hat kein Kudosu erhalten!",
+                    'empty' => 'Dieser Benutzer hat kein Kudosu erhalten!',
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
@@ -227,13 +227,13 @@ return [
             ],
         ],
         'info' => [
-            'interests' => 'Interessen', 
-            'lastfm' => 'Last.fm', 
-            'location' => 'Aktueller Standort', 
-            'occupation' => 'Beschäftigung', 
-            'skype' => 'Skype', 
-            'twitter' => 'Twitter', 
-            'website' => 'Webseite', 
+            'interests' => 'Interessen',
+            'lastfm' => 'Last.fm',
+            'location' => 'Aktueller Standort',
+            'occupation' => 'Beschäftigung',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Webseite',
         ],
         'page' => [
             'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
