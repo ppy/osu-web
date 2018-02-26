@@ -31,7 +31,7 @@
         @if (isset($loading))
             <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
         @else
-            <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__background">
+            <a href="{{route('users.show', ['user' => $user->user_id])}}" class="usercard__background-container">
                 @if ($user->cover() === null)
                     <div class="usercard__background-overlay usercard__background-overlay--guest"></div>
                 @else
@@ -41,7 +41,7 @@
             </a>
         @endif
         <div class="usercard__card">
-            <div class="usercard__card-body">
+            <div class="usercard__card-content">
                 <div class="usercard__avatar-space">
                     <div class="usercard__avatar usercard__avatar--loader js-usercard--avatar-loader">
                         <i class="fa fa-fw fa-refresh fa-spin"></i>
@@ -51,7 +51,7 @@
                     @endif
                 </div>
                 <div class="usercard__metadata">
-                    <div class="usercard__username">{{isset($user) ? $user->username : 'Loading...'}}</div>
+                    <div class="usercard__username">{{ isset($loading) ? trans('users.card.loading') : $user->username }}</div>
                     <div class="usercard__icons">
                         @if (isset($loading))
                             <div class="usercard__icon">
@@ -84,7 +84,7 @@
             </div>
             <div class="usercard__status-bar usercard__status-bar--{{!isset($loading) && $user->isOnline() ? 'online' : 'offline'}}">
                 <span class="fa fa-fw fa-circle-o usercard__status-icon"></span>
-                <span class="usercard__status-message" title="{{isset($loading) || $user->isOnline() ? '' : $user->user_lastvisit ? trans('users.show.lastvisit', ['date' => $user->user_lastvisit->diffForHumans()]) : ''}}">
+                <span class="usercard__status-message" title="{{isset($loading) || $user->isOnline() ? '' : ($user->user_lastvisit ? trans('users.show.lastvisit', ['date' => $user->user_lastvisit->diffForHumans()]) : '')}}">
                     {{!isset($loading) && $user->isOnline() ? trans('users.status.online') : trans('users.status.offline')}}
                 </span>
             </div>

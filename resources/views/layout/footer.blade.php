@@ -23,13 +23,15 @@
     }
 @endphp
 <footer class="{{ $blockClass }}">
-    <div class="footer__row">
-        @foreach (footer_legal_links() as $action => $link)
-            <a class="footer__link" href="{{ $link }}">
-                {{ trans("layout.footer.legal.{$action}") }}
-            </a>
-        @endforeach
-    </div>
+    @if ($withLinks ?? true)
+        <div class="footer__row">
+            @foreach (footer_legal_links() as $action => $link)
+                <a class="footer__link" href="{{ $link }}">
+                    {{ trans("layout.footer.legal.{$action}") }}
+                </a>
+            @endforeach
+        </div>
+    @endif
     <div class="footer__row">ppy powered 2007-{{ date('Y') }}</div>
 
     <div class="js-sync-height--target" data-sync-height-id="permanent-fixed-footer"></div>

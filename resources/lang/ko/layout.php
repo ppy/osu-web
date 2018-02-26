@@ -34,7 +34,6 @@ return [
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
-            'index' => 'osu!',
             'legal-show' => '정보',
             'news-index' => '뉴스',
             'news-show' => '뉴스',
@@ -113,7 +112,7 @@ return [
 
             'messages' => '메세지',
             'settings' => '설정',
-            'logout' => '로그아웃',
+            'logout' => '로그아웃', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => '도움말',
         ],
         'store' => [
@@ -247,7 +246,7 @@ return [
         'links' => [
             'account-edit' => '설정',
             'friends' => '친구',
-            'logout' => '로그아웃',
+            'logout' => '로그아웃', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => '내 프로필',
         ],
     ],

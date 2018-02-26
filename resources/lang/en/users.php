@@ -43,6 +43,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => 'Loading...',
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',

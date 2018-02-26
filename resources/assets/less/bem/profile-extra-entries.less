@@ -30,10 +30,6 @@
     height: @item-height;
     white-space: nowrap;
 
-    &--show-more {
-      justify-content: center;
-    }
-
     &--top-ranks {
       height: auto;
       border-bottom: 1px solid #eee;
@@ -42,6 +38,7 @@
 
       &::before {
         .full-size();
+        content: ' ';
         margin: 0 -10px;
         width: calc(100% ~'+' 20px);
         pointer-events: none;

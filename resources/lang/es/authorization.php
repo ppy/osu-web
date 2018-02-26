@@ -34,6 +34,7 @@ return [
         'vote' => [
             'limit_exceeded' => 'Espera un poco antes de seguir votando',
             'owner' => '¡No puedes votar discusiones propias!',
+            'wrong_beatmapset_state' => 'Solo puedes votar en discusiones de beatmaps pendientes.',
         ],
     ],
 

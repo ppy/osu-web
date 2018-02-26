@@ -79,7 +79,7 @@ body.community {
 }
 
 .forums {
-  @_top: ~"forums";
+  @_top: forums;
 
   background: #fff;
   list-style: none;
@@ -88,10 +88,6 @@ body.community {
 
   .name { font-size: 16px; }
   .description { font-size: 12px; }
-
-  .last-post {
-    font-weight: bold;
-  }
 
   &__colour-stripe {
     .full-size();
@@ -103,6 +99,11 @@ body.community {
     .@{_top}__forum:hover & {
       transform: scaleX(2.5);
     }
+  }
+
+  &__forum-topic-link {
+    font-weight: bold;
+    display: block;
   }
 
   &__hover-bar {
@@ -135,6 +136,7 @@ body.community {
 
     &::before, &::after {
       .full-size();
+      content: ' ';
       pointer-events: none;
       will-change: opacity;
       transition: all 25ms ease-out;

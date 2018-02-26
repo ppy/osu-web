@@ -120,7 +120,8 @@ class ProfilePage.Historical extends React.PureComponent
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
                     { user: bmset.user_id }
-                    class: 'beatmapset-row__title-small'
+                    class: 'beatmapset-row__title-small js-usercard'
+                    'data-user-id': bmset.user_id
           div
             className: 'beatmapset-row__detail-column'
             details[1]

@@ -228,7 +228,7 @@
             </a>
         </div>
 
-        @include('layout.footer', ['modifiers' => ['landing']])
+        @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
     </footer>
 
     @include('layout.popup-container')

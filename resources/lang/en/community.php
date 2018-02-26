@@ -105,7 +105,7 @@ return [
 
             'sort_options' => [
                 'title' => 'Sort Options',
-                'description' => 'NEW: The ability to view beatmap country / friend / mod-specific rankings in-game.',
+                'description' => 'The ability to view beatmap country / friend / mod-specific rankings in-game.',
             ],
 
             'feel_special' => [

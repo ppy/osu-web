@@ -34,7 +34,6 @@ return [
             'getDownload' => 'download',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
-            'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'nyheder',
             'news-show' => 'nyheder',
@@ -113,7 +112,7 @@ return [
 
             'messages' => 'Beskeder',
             'settings' => 'Indstillinger',
-            'logout' => 'Log Ud',
+            'logout' => 'Log Ud', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Hjælp',
         ],
         'store' => [
@@ -248,7 +247,7 @@ return [
         'links' => [
             'account-edit' => 'Indstillinger',
             'friends' => 'Venner',
-            'logout' => 'Log ud',
+            'logout' => 'Log ud', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Min Profil',
         ],
     ],

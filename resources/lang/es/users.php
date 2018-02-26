@@ -101,7 +101,13 @@ return [
                     'unsupported_format' => 'Formato no soportado.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'modo de juego predeterminado',
+                'set' => 'establecer :mode como el modo de juego predeterminado del perfil',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 seguidor|:count seguidores',
             'unranked' => 'No hay partidas recientes',
@@ -203,6 +209,15 @@ return [
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
             ],
+        ],
+        'info' => [
+            'interests' => 'Intereses',
+            'lastfm' => 'Last.fm',
+            'location' => 'Ubicación actual',
+            'occupation' => 'Ocupación',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Sitio web',
         ],
         'page' => [
             'description' => '<strong>¡sobre mi!</strong> es una área personalizable en tu perfil.',

@@ -34,7 +34,6 @@ return [
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
-            'index' => 'osu!',
             'legal-show' => 'informação',
             'news-index' => 'notícias',
             'news-show' => 'notícias',
@@ -116,7 +115,7 @@ return [
 
             'messages' => 'Mensagens',
             'settings' => 'Configurações',
-            'logout' => 'Finalizar sessão',
+            'logout' => 'Finalizar sessão', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Ajuda',
             'beatmapset_activities' => 'atividades de mapa de usuário',
         ],
@@ -253,7 +252,7 @@ return [
         'links' => [
             'account-edit' => 'Configurações',
             'friends' => 'Amigos',
-            'logout' => 'Finalizar sessão',
+            'logout' => 'Finalizar sessão', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Perfil',
         ],
     ],
