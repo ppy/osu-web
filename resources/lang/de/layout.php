@@ -168,7 +168,7 @@ return [
         ],
         'help' => [
             '_' => 'Hilfe & Community',
-            'faq' => ''Frequently Asked Questions'',
+            'faq' => '\'Frequently Asked Questions\'',
             'forum' => 'Community-Foren',
             'livestreams' => 'Livestreams',
             'report' => 'Einen Fehler melden',

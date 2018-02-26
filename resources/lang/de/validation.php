@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,12 +16,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'months' => 'monate',
-
-    'user_search' => [
-        'searching' => 'sucht...',
-        'not_found' => 'Dieser Nutzer existiert nicht',
-    ],
+    'mixture' => ':attribute fehlt eine Zahl oder ein Buchstabe',
+    'required' => ':attribute ist erforderlich',
 ];

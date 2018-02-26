@@ -1,5 +1,4 @@
 <?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,12 +16,17 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 return [
-    'months' => 'monate',
-
-    'user_search' => [
-        'searching' => 'sucht...',
-        'not_found' => 'Dieser Nutzer existiert nicht',
+    'show' => [
+        'fallback_translation' => 'Die angeforderte Seite wurde noch nicht in die ausgewählte Sprache übersetzt (:language). Die englische Version wird angezeigt.',
+        'languages' => 'Sprachen',
+        'missing' => 'Die angeforderte Seite konnte nicht gefunden werden.',
+        'missing_title' => 'Nicht gefunden',
+        'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
+        'toc' => 'Inhalt',
+        'edit' => [
+            'link' => 'Auf GitHub zeigen',
+            'refresh' => 'Aktualisieren',
+        ],
     ],
 ];

@@ -17,19 +17,12 @@
 
 ## General things
 
-- do not translate roles (BN, WAT) and mod names (EZ, HR, DT)
+- do not translate roles (BN, QAT) and mod names (EZ, HR, DT)
 
 ## Translation issues (you should know German to help with this)
 
 ### Suche nach Übersetzung
 
-- Beatmap abkürzbar zu Map? Sollte okay sein, oder? (bisher nicht)
-- map cleared (z.B. in beatmappacks.show.item)
-- Die verschiedenen Beatmapstatus (einfach so lassen?)
-  - approved
-  - graveyard
-  - loved
-  - ranked
 - beatmaps.listing.search.filters.status
 - beatmapsets.show.details.favourited_count
 - star difficulty
