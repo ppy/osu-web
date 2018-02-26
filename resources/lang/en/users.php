@@ -242,7 +242,7 @@ return [
                     'actions' => [
                         'restriction' => 'Ban',
                         'silence' => 'Silence',
-                        'note' => 'Note'
+                        'note' => 'Note',
                     ],
                 ],
             ],

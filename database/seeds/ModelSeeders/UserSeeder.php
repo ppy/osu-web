@@ -98,7 +98,6 @@ class UserSeeder extends Seeder
             }
             // END RANK HISTORY
 
-
             // INFRINGEMENTS
 
             // silence
