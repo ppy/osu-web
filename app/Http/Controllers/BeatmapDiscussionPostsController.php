@@ -48,12 +48,10 @@ class BeatmapDiscussionPostsController extends Controller
         $post = BeatmapDiscussionPost::whereNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionPostDestroy', $post)->ensureCan();
 
-        $error = $post->softDelete(Auth::user());
-
-        if ($error === null) {
+        if ($post->softDelete(Auth::user())) {
             return $post->beatmapset->defaultDiscussionJson();
         } else {
-            return error_popup($error);
+            return error_popup($post->validationErrors()->toSentence());
         }
     }
 

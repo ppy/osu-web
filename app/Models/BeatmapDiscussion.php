@@ -573,10 +573,10 @@ class BeatmapDiscussion extends Model
 
             $timestamps = $this->timestamps;
             $this->timestamps = false;
-            $this->update([
+            $this->fill([
                 'deleted_by_id' => $deletedBy->user_id ?? null,
                 'deleted_at' => Carbon::now(),
-            ]);
+            ])->saveOrExplode();
             $this->timestamps = $timestamps;
             $this->refreshKudosu('delete');
 
