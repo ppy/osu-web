@@ -142,7 +142,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            $saved = DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
+            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -159,8 +159,6 @@ class BeatmapDiscussionPostsController extends Controller
                 if ($resetNominations) {
                     $discussion->beatmapset->refreshCache();
                 }
-
-                return true;
             });
         } catch (ModelNotSavedException $_e) {
             return error_popup(trans('beatmaps.discussion-posts.store.error'));

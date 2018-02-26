@@ -137,9 +137,10 @@ class Topic extends Model
 
         return DB::transaction(function () use ($post) {
             if ($post->delete() === false) {
-                $this->validationErrors()->addTranslated('post', $post->validationErrors()->toSentence());
+                $message = $post->validationErrors()->toSentence();
+                $this->validationErrors()->addTranslated('post', $message);
 
-                throw new ModelNotSavedException('failed deleting post');
+                throw new ModelNotSavedException($message);
             }
 
             if ($this->posts()->exists() === true) {

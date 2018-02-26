@@ -335,8 +335,8 @@ class TopicsController extends Controller
 
         try {
             $topic = Topic::createNew($forum, $params, $poll ?? null);
-        } catch (ModelNotSavedException $_e) {
-            abort(422);
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         if (!app()->runningUnitTests()) {
