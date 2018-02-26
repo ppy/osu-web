@@ -19,6 +19,11 @@
  */
 
 return [
+    'pinned_topics' => 'Angepinnte Threads',
+    // sorry for butchering this, but the first zelda doesn't exist in german
+    'slogan' => 'es ist gefährlich, alleine zu gehen.',
+    'subforums' => 'Subforen',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,40 +48,48 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Angepinnte Threads',
     'post' => [
         'confirm_destroy' => 'Beitrag wirklich entfernen?',
         'confirm_restore' => 'Beitrag wirklich wiederherstellen?',
         'edited' => 'Zuletzt von :user an :when bearbeitet, insgesamt :count Mal bearbeitet.',
         'posted_at' => 'erstellt am :when',
+
         'actions' => [
             'destroy' => 'Beitrag löschen',
             'restore' => 'Beitrag wiederherstellen',
             'edit' => 'Beitrag bearbeiten',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Gehe zu Beitrag',
         'post_number_input' => 'Beitragsnummer hier eingeben',
         'total_posts' => 'Insgesamt :posts_count Beiträge',
     ],
-    'subforums' => 'Subforen',
-    'title' => 'osu!community',
-    // sorry for butchering this, but the first zelda doesn't exist in german
-    'slogan' => 'es ist gefährlich, alleine zu gehen.',
+
     'topic' => [
+        'deleted' => 'gelöschter thread',
+        'go_to_latest' => 'letzten beitrag anschauen',
+        'latest_post' => ':when von :user',
+        'latest_reply_by' => 'letzte antwort von :user',
+        'new_topic' => 'Neuen Thread erstellen',
+        'post_reply' => 'Antworten',
+        'reply_box_placeholder' => 'Zum Antworten hier Text eingeben',
+        'started_by' => 'von :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Beitragsinhalt hier eingeben',
-                'title' => 'Hier klicken, um den Titel festzulegen',
-            ],
             'preview' => 'Vorschau',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Bearbeiten',
             'submit' => 'Erstellen',
+
+            'placeholder' => [
+                'body' => 'Beitragsinhalt hier eingeben',
+                'title' => 'Hier klicken, um den Titel festzulegen',
+            ],
         ],
-        'go_to_latest' => 'letzten beitrag anschauen',
+
         'jump' => [
             'enter' => 'hier klicken, um eine beitragsnummer einzugeben',
             'first' => 'zum ersten beitrag',
@@ -84,16 +97,11 @@ return [
             'next' => '10 beiträge vor',
             'previous' => '10 beiträge zurück',
         ],
-        'latest_post' => ':when von :user',
-        'latest_reply_by' => 'letzte antwort von :user',
-        'new_topic' => 'Neuen Thread erstellen',
+        
         'post_edit' => [
             'cancel' => 'Abbrechen',
             'post' => 'Speichern',
         ],
-        'post_reply' => 'Antworten',
-        'reply_box_placeholder' => 'Hier eingeben, um zu antworten',
-        'started_by' => 'von :user',
     ],
 
     'topic_watches' => [
@@ -106,6 +114,7 @@ return [
                 'total' => 'Abonnierte Threads',
                 'unread' => 'Threads mit ungelesenen Antworten',
             ],
+
             'info' => [
                 'total' => 'Du hast :total Threads abonniert.',
                 'unread' => 'Du hast :unread ungelesene Antworten in abonnierten Threads.',
@@ -225,16 +234,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Beiträge insgesamt',
             'deleted-posts' => 'Gelöschte Beiträge',
+            'total_posts' => 'Beiträge insgesamt',
 
             'feature_vote' => [
                 'current' => 'Aktuelle Priorität: +:count',
                 'do' => 'Priorität hinzufügen',
 
                 'user' => [
-                    'current' => 'Du hast noch :votes.',
                     'count' => '{0} Keine Stimme|{1} :count Stimme|[2,*] :count Stimmen',
+                    'current' => 'Du hast noch :votes.',
                     'not_enough' => 'Du hast keine Stimmen mehr',
                 ],
             ],
@@ -243,9 +252,9 @@ return [
                 'vote' => 'Abstimmung',
 
                 'detail' => [
-                    'total' => 'Stimmen insgesamt: :count',
-                    'ended' => 'Abstimmung beendet am :time',
                     'end_time' => 'Abstimmung endet am :time',
+                    'ended' => 'Abstimmung beendet am :time',
+                    'total' => 'Stimmen insgesamt: :count',
                 ],
             ],
         ],
@@ -257,5 +266,4 @@ return [
             'watch-1' => 'Thread abonnieren',
         ],
     ],
-
 ];

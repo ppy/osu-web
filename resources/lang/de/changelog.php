@@ -28,4 +28,11 @@ return [
         'fix' => 'fix',
         'misc' => 'sonstiges',
     ],
+
+    'support' => [
+        'heading' => 'Dir gefällt, was du siehst?',
+        'text_1' => 'Unterstütze die weitere Entwicklung von osu! und :link!',
+        'text_1_link' => 'werde noch heute Supporter!',
+        'text_2' => 'Damit treibst du nicht nur die Entwicklung schneller voran, sondern erhältst auch einige coole Features und besondere Anpassungsmöglichkeiten!',
+    ],
 ];

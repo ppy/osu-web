@@ -43,6 +43,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => 'Lädt...',
+    ],
+
     'login' => [
         '_' => 'Login',
         'locked_ip' => 'Deine IP-Adresse ist gesperrt. Bitte warte ein paar Minuten.',
@@ -79,7 +83,7 @@ return [
     'show' => [
         '404' => 'Benutzer nicht gefunden! ;_;',
         'age' => ':age Jahre alt',
-        'current_location' => 'Aktuell in :location',
+        'change_avatar' => 'ändere deinen avatar!',
         'first_members' => 'Seit dem Anfang hier',
         'is_developer' => 'osu!-Entwickler',
         'is_supporter' => 'osu!-Supporter',
@@ -87,8 +91,8 @@ return [
         'lastvisit' => 'Zuletzt gesehen am :date',
         'missingtext' => 'Vielleicht hast du dich verschrieben (oder der Benutzer wurde gebannt)!',
         'origin_age' => ':age',
-        'origin_country' => 'Aus :country',
         'origin_country_age' => ':age aus :country',
+        'origin_country' => 'Aus :country',
         'page_description' => 'osu! - Alles, was du jemals über :username wissen wolltest!',
         'plays_with' => 'Spielt mit :devices',
         'title' => ":usernames Profil",
@@ -108,7 +112,13 @@ return [
                     'unsupported_format' => 'Format wird nicht unterstützt.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'standard-spielmodus',
+                'set' => 'wähle :mode als standard-spielmodus',
+            ],
         ],
+
         'extra' => [
             'followers' => '1 Follower|:count Follower',
             'unranked' => 'Keine <Plays> in letzter Zeit',
@@ -200,38 +210,47 @@ return [
                 'empty' => 'Dieser Nutzer hat noch keine erhalten. ;_;',
                 'title' => 'Medaillen',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Neulich',
             ],
             'top_ranks' => [
                 'best' => [
                     'title' => 'Beste Performance',
                 ],
-                'empty' => 'No awesome performance records yet. :(',
+                'empty' => 'Noch keine Performance-Rekorde. :(',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => 'Erster Platz',
                 ],
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
-                'weighted_pp' => 'weighted: :pp (:percentage)',
+                'title' => 'Ränge',
+                'weighted_pp' => 'gewichtet: :pp (:percentage)',
             ],
         ],
+        'info' => [
+            'interests' => 'Interessen', 
+            'lastfm' => 'Last.fm', 
+            'location' => 'Aktueller Standort', 
+            'occupation' => 'Beschäftigung', 
+            'skype' => 'Skype', 
+            'twitter' => 'Twitter', 
+            'website' => 'Webseite', 
+        ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>me!</strong> ist ein persönlicher Bereich auf deinem osu!-Profil, den du nach deinem Belieben anpassen kannst.',
+            'edit_big' => 'me! bearbeiten',
+            'placeholder' => 'Seiteninhalt hier eingeben',
+            'restriction_info' => "Für dieses Feature musst du ein <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> sein.",
         ],
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => 'Länderrang im Modus :mode',
+            'global' => 'Globaler Rang im Modus :mode',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Accuracy',
+            'hit_accuracy' => 'Genauigkeit',
             'level' => 'Level :level',
-            'maximum_combo' => 'Maximum Combo',
-            'play_count' => 'Play Count',
-            'ranked_score' => 'Ranked Score',
+            'maximum_combo' => 'Höchste Combo',
+            'play_count' => '<Play>anzahl',
+            'ranked_score' => 'Punktzahl auf Ranglisten',
             'replays_watched_by_others' => 'Replays Watched by Others',
             'score_ranks' => 'Score Ranks',
             'total_hits' => 'Total Hits',
@@ -243,9 +262,9 @@ return [
         'offline' => 'Offline',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => 'User erstellt',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => 'Accountbestätigung',
     ],
 ];

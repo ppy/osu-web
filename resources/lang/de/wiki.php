@@ -20,9 +20,10 @@ return [
     'show' => [
         'fallback_translation' => 'Die angeforderte Seite wurde noch nicht in die ausgewählte Sprache übersetzt (:language). Die englische Version wird angezeigt.',
         'languages' => 'Sprachen',
-        'missing' => 'Die angeforderte Seite konnte nicht gefunden werden.',
+        'missing' => 'Die angeforderte Seite ":keyword" konnte nicht gefunden werden.',
         'missing_title' => 'Nicht gefunden',
         'missing_translation' => 'Die angeforderte Seite konnte für die ausgewählte Sprache nicht gefunden werden.',
+        'search' => 'Existierende Seiten nach :link durchsuchen.',
         'toc' => 'Inhalt',
         'edit' => [
             'link' => 'Auf GitHub zeigen',

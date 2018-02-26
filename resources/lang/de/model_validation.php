@@ -24,13 +24,31 @@ return [
     'too_long' => ':attribute hat die maximale Länge überschritten - höchstens :limit Zeichen.',
     'wrong_confirmation' => 'Bestätigung stimmt nicht überein.',
 
-    'beatmap_discussion' => [
+    'beatmap_discussion_post' => [
+        'discussion_locked' => 'Diskussion ist <locked>.',
+        'first_post' => 'Der erste Post kann nicht gelöscht werden.',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => 'Ein Zeitpunkt ist angegeben, aber die Beatmap fehlt.', 
+        'beatmapset_no_hype' => "Diese Beatmap kann nicht gehypt werden.", 
+        'hype_requires_null_beatmap' => 'Hypen muss in der "Generell"-Sektion (für alle Schwierigkeitsstufen) stattfinden.', 
+        'invalid_beatmap_id' => 'Ungültige Schwierigkeitsstufe gewählt.', 
+        'invalid_beatmapset_id' => 'Ungültige Beatmap gewählt.', 
+        'locked' => 'Die Diskussion ist <locked>.', 
+        'mapper_note_wrong_user' => 'Nur der Besitzer der Beatmap kann Notizen posten.', 
+
         'hype' => [
             'guest' => 'Zum Hypen muss man eingeloggt sein.',
             'hyped' => 'Du hast diese Beatmap bereits gehypt.',
             'limit_exceeded' => 'Du hast all dein Hype verbraucht.',
             'not_hypeable' => 'Diese Beatmap kann nicht gehypt werden',
             'owner' => 'Du kannst deine eigene Beatmap nicht hypen.',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => 'Der gewählte Zeitpunkt ist nach dem Ende der Beatmap.', 
+            'negative' => 'Der Zeitpunkt muss positiv sein.', 
         ],
     ],
 
@@ -62,6 +80,7 @@ return [
         ],
 
         'topic_vote' => [
+            'required' => 'Es muss eine Antwort gewählt sein.',
             'too_many' => 'Mehr Antworten als erlaubt ausgewählt.',
         ],
     ],
@@ -70,7 +89,7 @@ return [
         'contains_username' => 'Das Passwort darf den Nutzernamen nicht enthalten.',
         'email_already_used' => 'E-Mail-Adresse wird bereits verwendet.',
         'invalid_country' => 'Das Land ist nicht in der Datenbank.',
-        'invalid_email' => 'Scheint keine E-Mail-Adresse zu sein.',
+        'invalid_email' => 'Scheint keine gültige E-Mail-Adresse zu sein.',
         'too_short' => 'Das neue Passwort ist zu kurz.',
         'unknown_duplicate' => 'Nutzername oder E-Mail-Adresse wird bereits verwendet.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',

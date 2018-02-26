@@ -40,6 +40,7 @@ return [
         'edited' => 'Zuletzt bearbeitet von :editor (:update_time).',
         'kudosu_denied' => 'Dir wurde kudosu verweigert.',
         'message_placeholder' => 'Beitrag hier eingeben',
+        'message_placeholder_deleted_beatmap' => 'Diese Schwierigkeitsstufe wurde gelöscht und kann nicht mehr diskutiert werden.',
         'message_type_select' => 'Kommentartyp auswählen',
         'reply_notice' => 'Zum Antworten Enter drücken.',
         'reply_placeholder' => 'Antwort hier eingeben',
@@ -128,19 +129,24 @@ return [
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Feedback abgeben',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'Disqualifiziert vor :time_ago (:reason).',
+        'disqualification_prompt' => 'Grund für die Disqualifizierung?',
+        'disqualifed_at' => 'Disqualifiziert vor :time_ago (:reason).',
         'disqualifed_no_reason' => 'kein grund angegeben',
-        'disqualification-prompt' => 'Grund für die Disqualifizierung?',
         'disqualify' => 'Disqualifizieren',
         'incorrect_state' => 'Ein Fehler ist aufgetreten, versuche die Seite zu aktualisieren.',
         'nominate' => 'Nominieren',
-        'nominated-by' => 'Nominiert von :users',
-        'nominate-confirm' => 'Diese Beatmap nominieren?',
+        'nominate_confirm' => 'Diese Beatmap nominieren?',
+        'nominated_by' => 'Nominiert von :users',
         'qualified' => 'Die Beatmap wird voraussichtlich am :date <ranked>, wenn keine <issues> gefunden werden.',
-        'qualified-soon' => 'Die Beatmap wird bald <ranked>, wenn keine <issues> gefunden werden.',
-        'reset-confirm' => 'Sicher? Alle Nominierungen werden zurückgesetzt, wenn ein neues <issue> angemerkt wird.',
+        'qualified_soon' => 'Die Beatmap wird bald <ranked>, wenn keine <issues> gefunden werden.',
         'required_text' => 'Nominierungen: :current/:required',
+        'reset_at' => 'Nominierungen vor :time_ago von :discussion zurückgesetzt.',
+        'reset_confirm' => 'Sicher? Alle Nominierungen werden zurückgesetzt, wenn ein neues <issue> angemerkt wird.',
         'title' => 'Nominierungsstatus',
         'unresolved_issues' => 'Es existieren noch <issues>, die gelöst werden müssen.',
     ],
@@ -152,6 +158,7 @@ return [
             'not-found' => 'keine ergebnisse',
             'not-found-quote' => '... nope, nichts gefunden.',
             'filters' => [
+                'general' => 'Generell',
                 'mode' => 'Modus',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
@@ -165,6 +172,10 @@ return [
         'mapped-by' => 'Von :mapper gemappt',
         'source' => 'von/aus :source',
         'load-more' => 'Mehr laden...',
+    ],
+    'general' => [
+        'recommended' => 'Empfohlene Schwierigkeit',
+        'converts' => 'Konvertierte Beatmaps miteinbeziehen',
     ],
     'mode' => [
         'any' => 'Alle',

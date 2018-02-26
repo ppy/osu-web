@@ -67,13 +67,13 @@ return [
             'rating-spread' => 'Bewertungsverteilung',
         ],
         'info' => [
+            'description' => 'Beschreibung',
+            'genre' => 'Genre',
+            'language' => 'Sprache',
             'no_scores' => 'Unranked beatmap',
             'points-of-failure' => 'Points of Failure',
-            'success-rate' => 'Erfolgsrate',
-
-            'description' => 'Beschreibung',
-
             'source' => 'Quelle',
+            'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',
         ],
         'scoreboard' => [
@@ -86,10 +86,15 @@ return [
             'supporter-only' => 'Du musst Supporter sein, um Freundes- und Länderranglisten zu sehen!',
             'title' => 'Ranglisten',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Genauigkeit',
-                'player-header' => 'Spieler',
-                'rank-header' => 'Rang',
+                'combo' => 'Combo',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => 'Spieler',
+                'pp' => 'PP',
+                'rank' => 'Rang',
+                'score_total' => 'Gesamtpunktzahl',
                 'score' => 'Punktzahl',
             ],
             'no_scores' => [
@@ -102,12 +107,6 @@ return [
             'score' => [
                 'first' => 'An der Spitze',
                 'own' => 'Dein bester Rang',
-            ],
-            'stats' => [
-                'accuracy' => 'Genauigkeit',
-                'combo' => 'Combo',
-                'misses' => 'Miss',
-                'score' => 'Punktzahl',
             ],
         ],
     ],

@@ -32,6 +32,7 @@ return [
     ],
 
     'index' => [
+        'deleted_beatmap' => 'gelöscht',
         'title' => 'Beatmapdiskussion',
         'form' => [
             'deleted' => 'Gelöschte Diskussionen einbeziehen',

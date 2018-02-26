@@ -40,13 +40,17 @@ return [
         'reset' => 'Zurücksetzen',
         'save' => 'Speichernn',
         'saving' => 'Speichert...',
+        'see_more' => 'mehr sehen (?)',
         'show_more' => 'mehr zeigen',
         'upload_image' => 'bild hochladen',
     ],
 
     'count' => [
+        'hour_short_unit' => 'std.|std.',
         'item' => ':count einheit|:count einheiten',
+        'minute_short_unit' => 'min.|min.',
         'months' => ':count monat|:count monate',
+        'second_short_unit' => 'sek.|sek.',
         'years' => ':count jahr|:count jahre',
     ],
 
