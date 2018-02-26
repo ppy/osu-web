@@ -51,7 +51,7 @@
                     @endif
                 </div>
                 <div class="usercard__metadata">
-                    <div class="usercard__username">{{ isset($loading) ? 'Loading...' : $user->username }}</div>
+                    <div class="usercard__username">{{ isset($loading) ? trans('users.card.loading') : $user->username }}</div>
                     <div class="usercard__icons">
                         @if (isset($loading))
                             <div class="usercard__icon">
