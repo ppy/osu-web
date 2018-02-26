@@ -129,7 +129,7 @@ class BeatmapDiscussionPostsController extends Controller
             $beatmapset->isPending() &&
             $beatmapset->hasNominations() &&
             $discussion->message_type === 'problem' &&
-            priv_check('BeatmapsetNominate', $beatmapset)->can();
+            priv_check('BeatmapsetResetNominations', $beatmapset)->can();
 
         if ($resetNominations) {
             $events[] = BeatmapsetEvent::NOMINATION_RESET;
@@ -178,7 +178,7 @@ class BeatmapDiscussionPostsController extends Controller
             ]);
 
             return [
-                'beatmapset_discussion' => $posts[0]->beatmapset->defaultDiscussionJson(),
+                'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
                 'beatmap_discussion_post_ids' => $postIds,
                 'beatmap_discussion_id' => $discussion->id,
             ];
@@ -195,8 +195,15 @@ class BeatmapDiscussionPostsController extends Controller
 
         $params = get_params(request(), 'beatmap_discussion_post', ['message']);
         $params['last_editor_id'] = Auth::user()->user_id;
-        $post->update($params);
+        if ($post->update($params)) {
+            return $post->beatmapset->defaultDiscussionJson();
+        } else {
+            $message = trim(implode(' ', [
+                $post->validationErrors()->toSentence(),
+                $post->beatmapDiscussion->validationErrors()->toSentence(),
+            ]));
 
-        return $post->beatmapset->defaultDiscussionJson();
+            return error_popup(presence($message, trans('beatmaps.discussion-posts.store.error')));
+        }
     }
 }

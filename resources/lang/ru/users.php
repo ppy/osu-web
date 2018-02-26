@@ -52,7 +52,6 @@ return [
     'show' => [
         '404' => 'Пользователь не найден! ;_;',
         'age' => ':age лет',
-        'current_location' => 'Проживает в :location',
         'first_members' => 'Зарегистрирован тут с самого начала',
         'is_developer' => 'osu!разработчик',
         'is_supporter' => 'osu!саппортер',
@@ -161,7 +160,7 @@ return [
                 'empty' => 'Этот пользователь ничего не получил. ;_;',
                 'title' => 'Медали',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Последняя активность',
             ],
             'top_ranks' => [

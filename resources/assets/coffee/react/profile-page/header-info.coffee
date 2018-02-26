@@ -16,14 +16,22 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, span} = ReactDOMFactories
+{div, h1, span, a} = ReactDOMFactories
 el = React.createElement
 
-ProfilePage.HeaderInfo = ({user}) ->
+ProfilePage.HeaderInfo = ({user, currentMode}) ->
+  avatar = el UserAvatar, user: user, modifiers: ['profile']
+
   div className: 'profile-info',
-    el UserAvatar, user: user, modifiers: ['profile']
+    if user.id == currentUser.id
+      a
+        href: "#{laroute.route 'account.edit'}#avatar"
+        title: osu.trans 'users.show.change_avatar'
+        avatar
+    else
+      avatar
     div className: 'profile-info__details',
-      if user.isSupporter
+      if user.is_supporter
         el Icon,
           name: 'heart'
           parentClass: 'profile-info__supporter-icon'
@@ -32,7 +40,12 @@ ProfilePage.HeaderInfo = ({user}) ->
       # hard space if no title
       span className: 'profile-info__title', user.title ? '\u00A0'
       div className: 'profile-info__flags',
-        el FlagCountry, country: user.country
+        a
+          href: laroute.route 'rankings',
+          mode: currentMode,
+          country: user.country.code,
+          type: 'performance'
+          el FlagCountry, country: user.country
     div
       className: 'profile-info__bar hidden-xs'
       style:

@@ -30,6 +30,8 @@ use App\Traits\Validatable;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Egulias\EmailValidator\EmailValidator;
+use Egulias\EmailValidator\Validation\RFCValidation;
 use Exception;
 use Hash;
 use Illuminate\Auth\Authenticatable;
@@ -90,15 +92,15 @@ class User extends Model implements AuthenticatableContract, Messageable
         'is_old' => ['type' => 'boolean'],
         'user_lastvisit' => ['type' => 'date'],
         'username' => [
-            'type' => 'string',
+            'type' => 'text',
             'analyzer' => 'username_lower',
             'fields' => [
                 // for exact match
-                'raw' => ['type' => 'string', 'index' => 'not_analyzed'],
+                'raw' => ['type' => 'keyword'],
                 // try match sloppy search guesses
-                '_slop' => ['type' => 'string', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
+                '_slop' => ['type' => 'text', 'analyzer' => 'username_slop', 'search_analyzer' => 'username_lower'],
                 // for people who like to use too many dashes and brackets in their username
-                '_whitespace' => ['type' => 'string', 'analyzer' => 'whitespace'],
+                '_whitespace' => ['type' => 'text', 'analyzer' => 'whitespace'],
             ],
         ],
         'user_warnings' => ['type' => 'short'],
@@ -191,7 +193,6 @@ class User extends Model implements AuthenticatableContract, Messageable
     private function updateUsername($newUsername, $oldUsername, $type)
     {
         $this->username_previous = $oldUsername;
-        $this->username_clean = strtolower($newUsername);
         $this->username = $newUsername;
 
         DB::transaction(function () use ($newUsername, $oldUsername, $type) {
@@ -215,6 +216,11 @@ class User extends Model implements AuthenticatableContract, Messageable
             $skipValidations = in_array($type, ['inactive', 'revert'], true);
             $this->saveOrExplode(['skipValidations' => $skipValidations]);
         });
+    }
+
+    public static function cleanUsername($username)
+    {
+        return strtolower($username);
     }
 
     public static function findByUsernameForInactive($username)
@@ -324,7 +330,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         $data = es_records($results, get_called_class());
 
         return [
-            'total' => $total,
+            'total' => min($total, 10000), // FIXME: apply the cap somewhere more sensible?
             'over_limit' => $total > $max,
             'data' => $data,
             'params' => $params,
@@ -455,6 +461,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         $this->attributes['osu_playstyle'] = $styles;
+    }
+
+    public function setUsernameAttribute($value)
+    {
+        $this->attributes['username'] = $value;
+        $this->username_clean = static::cleanUsername($value);
     }
 
     public function isSpecial()
@@ -625,6 +637,11 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function isRegistered()
     {
         return $this->isGroup(UserGroup::GROUPS['default']);
+    }
+
+    public function isBot()
+    {
+        return $this->group_id === UserGroup::GROUPS['bot'];
     }
 
     public function hasSupported()
@@ -1078,7 +1095,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function setPlaymodeAttribute($value)
     {
-        $this->osu_playmode = Beatmap::modeInt($attribute);
+        $this->osu_playmode = Beatmap::modeInt($value);
     }
 
     public function hasFavourited($beatmapset)
@@ -1232,6 +1249,23 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         return 3;
+    }
+
+    /**
+     * Recommended star difficulty.
+     *
+     * @param string $mode one of Beatmap::MODES
+     *
+     * @return float
+     */
+    public function recommendedStarDifficulty(string $mode)
+    {
+        $stats = $this->statistics($mode);
+        if ($stats) {
+            return pow($stats->rank_score, 0.4) * 0.195;
+        }
+
+        return 0.0;
     }
 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
@@ -1397,6 +1431,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function profileBeatmapsetsFavourite()
     {
         return $this->favouriteBeatmapsets()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1404,6 +1439,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->unranked()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1411,6 +1447,7 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         return $this->beatmapsets()
             ->graveyard()
+            ->active()
             ->with('beatmaps');
     }
 
@@ -1466,8 +1503,9 @@ class User extends Model implements AuthenticatableContract, Messageable
             }
         }
 
-        if (present($this->user_email)) {
-            if (strpos($this->user_email, '@') === false) {
+        if ($this->isDirty('user_email') && present($this->user_email)) {
+            $emailValidator = new EmailValidator;
+            if (!$emailValidator->isValid($this->user_email, new RFCValidation)) {
                 $this->validationErrors()->add('user_email', '.invalid_email');
             }
 

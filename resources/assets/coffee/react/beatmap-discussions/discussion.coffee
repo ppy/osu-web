@@ -43,7 +43,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
 
   render: =>
-    return div() if @props.discussion.beatmap_discussion_posts.length == 0
+    return div() if @props.discussion.posts.length == 0
 
     topClasses = "#{bn} js-beatmap-discussion-jump"
     topClasses += " #{bn}--highlighted" if @state.highlighted
@@ -65,7 +65,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
       div className: "#{bn}__discussion",
         div className: "#{bn}__top",
-          @post @props.discussion.beatmap_discussion_posts[0], 'discussion'
+          @post @props.discussion.posts[0], 'discussion'
 
           div className: "#{bn}__actions",
             ['up', 'down'].map (direction) =>
@@ -84,7 +84,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           className: "#{bn}__expanded #{'hidden' if @state.collapsed}"
           div
             className: "#{bn}__replies"
-            for reply in @props.discussion.beatmap_discussion_posts.slice(1)
+            for reply in @props.discussion.posts.slice(1)
               if reply.system && reply.message.type == 'resolved'
                 currentResolvedState = reply.message.value
                 continue if lastResolvedState == currentResolvedState
@@ -92,12 +92,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
               @post reply, 'reply'
 
-          el BeatmapDiscussions.NewReply,
-            currentUser: @props.currentUser
-            beatmapset: @props.beatmapset
-            currentBeatmap: @props.currentBeatmap
-            discussion: @props.discussion
-            userPermissions: @props.userPermissions
+          if !@props.currentBeatmap.deleted_at?
+            el BeatmapDiscussions.NewReply,
+              currentUser: @props.currentUser
+              beatmapset: @props.beatmapset
+              currentBeatmap: @props.currentBeatmap
+              discussion: @props.discussion
 
         div className: lineClasses
 
@@ -117,11 +117,12 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
     topClasses = "#{vbn} #{vbn}--#{type}"
     topClasses += " #{vbn}--inactive" if score != 0
-    topClasses += " #{vbn}--disabled" if @isOwner() || (type == 'down' && !@canDownvote())
+    disabled = @isOwner() || (type == 'down' && !@canDownvote()) || @props.currentBeatmap.deleted_at?
 
     button
       className: topClasses
       'data-score': score
+      disabled: disabled
       onClick: @doVote
       el Icon, name: icon
       span className: "#{vbn}__count",
@@ -130,7 +131,6 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
 
   doVote: (e) =>
     downvoting = e.currentTarget.dataset.score == '-1'
-    return if @isOwner() || (downvoting && !@canDownvote())
 
     LoadingOverlay.show()
 
@@ -143,7 +143,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
           score: e.currentTarget.dataset.score
 
     .done (data) =>
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data
 
     .fail osu.ajaxError
 
@@ -158,14 +158,14 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     @props.currentUser.id? && object.user_id == @props.currentUser.id
 
   canDownvote: =>
-    @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT || @props.currentUser.isBNG
+    @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat || @props.currentUser.is_bng
 
   post: (post, type) =>
     return if !post.id?
 
     elementName = if post.system then 'SystemPost' else 'Post'
 
-    canModeratePosts = @props.currentUser.isAdmin || @props.currentUser.isGMT || @props.currentUser.isQAT
+    canModeratePosts = @props.currentUser.is_admin || @props.currentUser.is_gmt || @props.currentUser.is_qat
     canBeDeleted =
       if type == 'discussion'
         @props.discussion.current_user_attributes?.can_destroy
@@ -175,6 +175,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     el BeatmapDiscussions[elementName],
       key: post.id
       beatmapset: @props.beatmapset
+      beatmap: @props.currentBeatmap
       discussion: @props.discussion
       post: post
       type: type
@@ -182,7 +183,7 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
       users: @props.users
       user: @props.users[post.user_id]
       lastEditor: @props.users[post.last_editor_id]
-      canBeEdited: @props.currentUser.isAdmin || @isOwner(post)
+      canBeEdited: @props.currentUser.is_admin || @isOwner(post)
       canBeDeleted: canBeDeleted
       canBeRestored: canModeratePosts
       currentUser: @props.currentUser

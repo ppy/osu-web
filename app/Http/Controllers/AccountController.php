@@ -52,6 +52,7 @@ class AccountController extends Controller
                 'edit',
                 'reissueCode',
                 'updateEmail',
+                'updatePage',
                 'updatePassword',
                 'verify',
             ],
@@ -115,14 +116,15 @@ class AccountController extends Controller
             Request::all(),
             'user',
             [
+                'osu_playstyle:string[]',
+                'playmode:string',
                 'user_from:string',
                 'user_interests:string',
                 'user_msnm:string',
                 'user_occ:string',
+                'user_sig:string',
                 'user_twitter:string',
                 'user_website:string',
-                'user_sig:string',
-                'osu_playstyle:string[]',
             ]
         );
 

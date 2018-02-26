@@ -146,7 +146,6 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
         currentUser: @props.currentUser
         beatmapset: @props.beatmapset
         currentBeatmap: @props.currentBeatmap
-        userPermissions: @props.userPermissions
         readPostIds: @props.readPostIds
         isTimelineVisible: @isTimelineVisible()
         visible: visible
@@ -187,8 +186,19 @@ class BeatmapDiscussions.Discussions extends React.PureComponent
 
 
   sortedDisussions: ->
-    discussions = @props.currentDiscussions[@props.mode].slice(0)
-    discussions.sort sortPresets[@currentSort()].sort
+    @props.currentDiscussions[@props.mode].slice().sort (a, b) =>
+      mapperNoteCompare =
+        # no sticky for timeline sort
+        @currentSort() != 'timeline' &&
+        # stick the mapper note
+        'mapper_note' in [a.message_type, b.message_type] &&
+        # but if both are mapper note, do base comparison
+        a.message_type != b.message_type
+
+      if mapperNoteCompare
+        if a.message_type == 'mapper_note' then -1 else 1
+      else
+        sortPresets[@currentSort()].sort(a, b)
 
 
   timelineCircle: =>

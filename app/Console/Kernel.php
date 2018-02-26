@@ -32,7 +32,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\EsIndexDocuments::class,
-        Commands\EsIndexUsers::class,
 
         // modding stuff
         Commands\ModdingQueueUpdateCommand::class,
@@ -56,6 +55,8 @@ class Kernel extends ConsoleKernel
         Commands\FixUsernameChangeTopicCache::class,
 
         Commands\UserRecalculateRankCounts::class,
+
+        Commands\LocaleCheck::class,
     ];
 
     /**

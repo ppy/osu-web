@@ -97,15 +97,18 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               [
                 el TextareaAutosize,
                   key: 'input'
-                  minRows: 3
-                  disabled: @state.posting?
+                  disabled: @state.posting? || !@canPost()
                   className: "#{bn}__message-area js-hype--input"
                   value: @state.message
                   onChange: @setMessage
                   onKeyDown: @handleEnter
                   onFocus: @setSticky
-                  placeholder: osu.trans 'beatmaps.discussions.message_placeholder'
-                  inputRef: (el) => @input = el
+                  placeholder:
+                    if @canPost()
+                      osu.trans 'beatmaps.discussions.message_placeholder'
+                    else
+                      # FIXME: reason should be passed from beatmap state
+                      osu.trans 'beatmaps.discussions.message_placeholder_deleted_beatmap'
 
                 el BeatmapDiscussions.MessageLengthCounter,
                   key: 'counter'
@@ -161,12 +164,13 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
             @submitButton 'suggestion'
             @submitButton 'problem'
 
-        if @nearbyPosts().length > 0
+        if @nearbyDiscussions().length > 0
           currentTimestamp = BeatmapDiscussionHelper.formatTimestamp @state.timestamp
-          timestamps = @nearbyPosts().map (p) ->
-            osu.link BeatmapDiscussionHelper.hash(discussionId: p.id),
-              BeatmapDiscussionHelper.formatTimestamp(p.timestamp)
-              classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
+          timestamps =
+            for discussion in @nearbyDiscussions()
+              osu.link BeatmapDiscussionHelper.url(discussion: discussion),
+                BeatmapDiscussionHelper.formatTimestamp(discussion.timestamp)
+                classNames: ['js-beatmap-discussion--jump', "#{bn}__notice-link"]
           timestampsString = osu.transArray(timestamps)
 
           div className: "#{bn}__notice",
@@ -192,6 +196,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
               osu.trans('beatmap_discussions.nearby_posts.confirm')
 
 
+  canPost: =>
+    !@props.currentBeatmap.deleted_at?
+
+
   checkStickability: (_e, target) =>
     # depends on ModeSwitcher
     newState = (target == 'page-extra-tabs')
@@ -208,30 +216,30 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     @state.stickable && @state.sticky
 
 
-  nearbyPosts: =>
+  nearbyDiscussions: =>
     return [] if !@state.timestamp?
 
-    if !@cache.nearbyPosts? || @cache.nearbyPosts.timestamp != @state.timestamp
-      posts = []
+    if !@cache.nearbyDiscussions? || @cache.nearbyDiscussions.timestamp != @state.timestamp
+      discussions = []
 
-      for post in @props.currentDiscussions.timeline
-        continue if post.message_type not in ['suggestion', 'problem']
-        continue if Math.abs(post.timestamp - @state.timestamp) > 5000
+      for discussion in @props.currentDiscussions.timeline
+        continue if discussion.message_type not in ['suggestion', 'problem']
+        continue if Math.abs(discussion.timestamp - @state.timestamp) > 5000
 
-        if post.user_id == @props.currentUser.id
-          continue if moment(post.updated_at).diff(moment(), 'hour') > -24
+        if discussion.user_id == @props.currentUser.id
+          continue if moment(discussion.updated_at).diff(moment(), 'hour') > -24
 
-        posts.push(post)
+        discussions.push discussion
 
-      @cache.nearbyPosts =
+      @cache.nearbyDiscussions =
         timestamp: @state.timestamp
-        posts: posts
+        discussions: discussions
 
-    @cache.nearbyPosts.posts
+    @cache.nearbyDiscussions.discussions
 
 
   parseTimestamp: (message) =>
-    timestampRe = message.match /\b(\d{2,}):(\d{2})[:.](\d{3})\b/
+    timestampRe = message.match /\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/
 
     if timestampRe?
       timestamp = timestampRe.slice(1).map (x) => parseInt x, 10
@@ -245,10 +253,10 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     type = e.currentTarget.dataset.type
 
-    userCanResetNominations = currentUser.isAdmin || currentUser.isQAT || currentUser.isBNG
+    userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
 
     if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
-      return unless confirm(osu.trans('beatmaps.nominations.reset-confirm'))
+      return unless confirm(osu.trans('beatmaps.nominations.reset_confirm'))
 
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
@@ -276,8 +284,7 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
         timestamp: null
 
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_id
-      $.publish 'beatmapsetDiscussion:update',
-        beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
 
     .fail osu.ajaxError
 
@@ -333,6 +340,6 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
     return false if !BeatmapDiscussionHelper.validMessageLength(@state.message)
 
     if @props.mode == 'timeline'
-      @state.timestamp? && (@nearbyPosts().length == 0 || @state.timestampConfirmed)
+      @state.timestamp? && (@nearbyDiscussions().length == 0 || @state.timestampConfirmed)
     else
       true

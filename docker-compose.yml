@@ -14,6 +14,9 @@ services:
       - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
     environment:
       DB_HOST: osuweb-mysql
+      CACHE_DRIVER: redis
+      REDIS_HOST: osuweb-redis
+      ES_HOST: osuweb-es:9200
   nginx:
     image: nginx:latest
     container_name: osuweb-nginx
@@ -46,6 +49,7 @@ services:
       - ./docker/php/overrides.conf:/etc/php/7.1/fpm/pool.d/zz-overrides.conf
     environment:
       DB_HOST: osuweb-mysql
+      APP_DEBUG:
     user: osuweb
     working_dir: /data/osuweb
     command: bash -c "mkdir -p node_modules && cp -n .env.example .env && ./build.sh"
@@ -61,6 +65,17 @@ services:
     user: osuweb
     working_dir: /data/osuweb
     command: bash -c "yarn && yarn run watch"
+  redis:
+    image: redis:latest
+    container_name: osuweb-redis
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.1
+    container_name: osuweb-es
+    volumes:
+      - elasticsearch:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
 
 volumes:
   database:
+  elasticsearch:

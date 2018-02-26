@@ -26,9 +26,13 @@ BeatmapDiscussions.BeatmapListItem = (props) ->
   topClasses += " #{bn}--large" if props.large
 
   version = if props.beatmap.mode == 'mania'
-    "[#{props.beatmap.difficulty_size}k] #{props.beatmap.version}"
+    "[#{props.beatmap.difficulty_size}K] #{props.beatmap.version}"
   else
     props.beatmap.version
+
+  if props.beatmap.deleted_at?
+    topClasses += " #{bn}--deleted"
+    version += " [#{osu.trans 'beatmap_discussions.index.deleted_beatmap'}]"
 
   div
     className: topClasses

@@ -74,7 +74,7 @@ Route::group(['prefix' => 'beatmapsets', 'as' => 'beatmapsets.'], function () {
     });
 });
 Route::get('beatmapsets/search/{filters?}', 'BeatmapsetsController@search')->name('beatmapsets.search');
-Route::get('beatmapsets/{beatmapset}/discussion', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
+Route::get('beatmapsets/{beatmapset}/discussion/{beatmap?}/{mode?}/{filter?}', 'BeatmapsetsController@discussion')->name('beatmapsets.discussion');
 Route::get('beatmapsets/{beatmapset}/download', 'BeatmapsetsController@download')->name('beatmapsets.download');
 Route::put('beatmapsets/{beatmapset}/nominate', 'BeatmapsetsController@nominate')->name('beatmapsets.nominate');
 Route::put('beatmapsets/{beatmapset}/disqualify', 'BeatmapsetsController@disqualify')->name('beatmapsets.disqualify');
@@ -178,10 +178,14 @@ Route::post('users/check-username-availability', 'UsersController@checkUsernameA
 Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
+
+// extras
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');
+Route::get('users/{user}/recent_activity', 'UsersController@recentActivity')->name('users.recent-activity');
 Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.scores');
-Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
+
+Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
 
@@ -299,6 +303,8 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
         Route::get('users/{user}/scores/{type}', '\App\Http\Controllers\UsersController@scores');
         //  GET /api/v2/users/:user_id/beatmapsets/:type [most_played, favourite, ranked_and_approved, unranked, graveyard]
         Route::get('users/{user}/beatmapsets/{type}', '\App\Http\Controllers\UsersController@beatmapsets');
+        // GET /api/v2/users/:user_id/recent_activity
+        Route::get('users/{user}/recent_activity', '\App\Http\Controllers\UsersController@recentActivity');
         //  GET /api/v2/users/:user_id/:mode [osu, taiko, fruits, mania]
         Route::get('users/{user}/{mode?}', '\App\Http\Controllers\UsersController@show');
     });

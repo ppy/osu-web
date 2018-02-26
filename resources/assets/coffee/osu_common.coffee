@@ -20,6 +20,19 @@
   isIos: /iPad|iPhone|iPod/.test(navigator.platform)
   urlRegex: /(https?:\/\/(?:(?:[a-z0-9]\.|[a-z0-9][a-z0-9-]*[a-z0-9]\.)*[a-z][a-z0-9-]*[a-z0-9](?::\d+)?)(?:(?:(?:\/+(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)*(?:\?(?:[a-z0-9$_\.\+!\*',;:@&=-]|%[0-9a-f]{2})*)?)?(?:#(?:[a-z0-9$_\.\+!\*',;:@&=/?-]|%[0-9a-f]{2})*)?)?)/ig
 
+  bottomPage: ->
+    osu.bottomPageDistance == 0
+
+
+  bottomPageDistance: ->
+    body = document.documentElement ? document.body.parent ? document.body
+    (body.scrollHeight - body.scrollTop) - body.clientHeight
+
+
+  currentUserIsFriendsWith: (user_id) ->
+    _.find currentUser.friends, target_id: user_id
+
+
   executeAction: (element) =>
     if !element?
       osu.reloadPage()
@@ -45,10 +58,6 @@
     return if newUrl == location.href
 
     history.replaceState history.state, null, newUrl
-
-
-  bottomPage: ->
-    document.body.clientHeight == (document.body.scrollHeight - document.body.scrollTop)
 
 
   ajaxError: (xhr) ->
@@ -177,28 +186,6 @@
       window.scrollTo position[0], position[1]
 
 
-  getOS: (fallback='Windows') ->
-    nAgnt = navigator.userAgent
-    os = undefined
-    if /Windows (.*)/.test(nAgnt)
-      return 'Windows'
-    # Test for mobile first
-    if /Mobile|mini|Fennec|Android|iP(ad|od|hone)/.test(navigator.appVersion)
-      return fallback
-    if /(macOS|Mac OS X|MacPPC|MacIntel|Mac_PowerPC|Macintosh)/.test(nAgnt)
-      return 'macOS'
-    if /(Linux|X11)/.test(nAgnt)
-      return 'Linux'
-    fallback
-
-
-  otherOS: (os) ->
-    choices = ['macOS', 'Linux', 'Windows']
-    index = choices.indexOf os
-    choices.splice index, 1
-    choices
-
-
   popup: (message, type = 'info') ->
     $popup = $('#popup-container')
     $alert = $('.popup-clone').clone()
@@ -268,7 +255,7 @@
 
     message ?= xhr?.responseJSON?.error
 
-    if !message?
+    if !message? || message == ''
       errorKey = "errors.codes.http-#{xhr?.status}"
       message = osu.trans errorKey
       message = osu.trans 'errors.unknown' if message == errorKey

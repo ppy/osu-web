@@ -33,6 +33,10 @@
     background-size: cover;
 
     border-radius: @border-radius-base @border-radius-base 0 0;
+
+    @media @desktop {
+      height: 150px;
+    }
   }
 
   &__header-overlay {
@@ -47,27 +51,41 @@
 
   &__stats-box {
     display: flex;
+    flex-direction: column;
 
     position: absolute;
     left: 10px;
     top: 10px;
+
+    @media @desktop {
+      flex-direction: row;
+    }
   }
 
   &__stat {
-    font-size: 14px;
+    .default-text-shadow();
+
+    font-size: @font-size--small;
     font-style: italic;
 
     padding-right: 15px;
 
-    color: #ffffff;
+    color: #fff;
 
-    .default-text-shadow;
+    @media @desktop {
+      font-size: @font-size--title-small;
+    }
   }
 
   &__metadata-box {
+    width: ~"calc(100% - 70px)";
     position: absolute;
     left: 10px;
     bottom: 10px;
+
+    @media @desktop {
+      width: auto;
+    }
   }
 
   &__metadata {
@@ -78,7 +96,15 @@
     margin: 0;
 
     &--title {
-      font-size: 20px;
+      font-size: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: normal;
+
+      @media @desktop {
+        font-size: 20px;
+      }
     }
 
     &--artist {
@@ -115,6 +141,7 @@
 
   &__player-score {
     width: 100%;
+    height: 125px;
 
     background-color: #ffffff;
 
@@ -122,10 +149,15 @@
 
     .default-border-radius();
     .default-box-shadow();
+
+    @media @desktop {
+      height: auto;
+    }
   }
 
   &__team-scores {
     display: flex;
+    flex-direction: row;
 
     width: 100%;
     background-color: #eee;
@@ -135,24 +167,20 @@
       height: 90px;
     }
 
-    @media @mobile {
-      flex-direction: column;
-    }
-
     border-radius: 0 0 @border-radius-base @border-radius-base;
   }
 
   &__team-score {
     display: flex;
+    align-items: center;
     flex-direction: column;
+    width: 50%;
 
     padding: 20px;
 
-    @media @mobile {
-      align-items: center;
-    }
 
     @media @desktop {
+      width: unset;
       &--blue {
         align-items: flex-start;
       }
@@ -164,8 +192,9 @@
   }
 
   &__team-score-text {
-    @media @mobile {
-      text-align: center;
+    text-align: center;
+    @media @desktop {
+      text-align: left;
     }
 
     &--name {
@@ -174,9 +203,13 @@
     }
 
     &--score {
-      font-size: 30px;
+      font-size: 26px;
       font-style: italic;
       color: @pink-text;
+
+      @media @desktop {
+        font-size: 30px;
+      }
     }
   }
 
@@ -194,13 +227,17 @@
   }
 
   &__results-text {
-    font-size: 20px;
+    font-size: 18px;
     font-style: italic;
     font-weight: 600;
 
     text-align: center;
 
     padding-right: 5px;
+
+    @media @desktop {
+      font-size: 20px;
+    }
 
     &--score {
       font-weight: 400;

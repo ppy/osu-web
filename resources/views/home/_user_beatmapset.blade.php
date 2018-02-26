@@ -25,11 +25,18 @@
         <div class='user-home-beatmapset__title u-ellipsis-overflow'>{{$beatmapset->title}}</div>
         <div class='user-home-beatmapset__artist u-ellipsis-overflow'>{{$beatmapset->artist}}</div>
         <div class='user-home-beatmapset__creator u-ellipsis-overflow'>
-            @if ($type === 'new')
-                {{ trans('home.user.beatmaps.by') }} {{$beatmapset->creator}}, <span class='user-home-beatmapset__playcount'>{!! timeago($beatmapset->approved_date) !!}</span>
-            @elseif ($type === 'popular')
-                {{ trans('home.user.beatmaps.by') }} {{$beatmapset->creator}}, <span class='user-home-beatmapset__playcount'>{{ trans('home.user.beatmaps.plays', ['count' => number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])]) }}</span>
+            {{ trans('home.user.beatmaps.by') }}
+            <span class="js-usercard" data-user-id="{{ $beatmapset->user_id}}">{{$beatmapset->creator}}</span>,
+
+            <span class='user-home-beatmapset__playcount'>
+                @if ($type === 'new')
+                    {!! timeago($beatmapset->approved_date) !!}
+                @elseif ($type === 'popular')
+                    {{ trans('home.user.beatmaps.plays', [
+                        'count' => number_format($popularBeatmapsetsPlaycount[$beatmapset->beatmapset_id])
+                    ]) }}
             @endif
+            </span>
         </div>
     </div>
     <div class='user-home-beatmapset__chevron'><i class='fa fa-chevron-right'></i></div>

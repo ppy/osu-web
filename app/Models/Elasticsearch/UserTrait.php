@@ -140,19 +140,16 @@ trait UserTrait
         ];
 
         return [
-            'filtered' => [
-                'query' => [
-                    'bool' => [
-                        'should' => [
-                            ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
-                            ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
-                            ['multi_match' => array_merge(['query' => $username], $whitespace_stick)],
-                            ['match' => ['username._slop' => ['query' => $username, 'type' => 'phrase']]],
-                        ],
-                        'must_not' => [
-                            ['term' => ['is_old' => true]],
-                        ],
-                    ],
+            'bool' => [
+                'minimum_should_match' => 1,
+                'should' => [
+                    ['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]],
+                    ['multi_match' => array_merge(['query' => $username], $lowercase_stick)],
+                    ['multi_match' => array_merge(['query' => $username], $whitespace_stick)],
+                    ['match_phrase' => ['username._slop' => $username]],
+                ],
+                'must_not' => [
+                    ['term' => ['is_old' => true]],
                 ],
                 'filter' => [
                     ['term' => ['user_warnings' => 0]],

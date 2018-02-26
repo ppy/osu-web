@@ -29,7 +29,6 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icone',
-            'index' => 'notizie',
             'supportTheGame' => 'sostieni il gioco',
         ],
         'help' => [
@@ -95,7 +94,7 @@ return [
 
             'messages' => 'Messaggi',
             'settings' => 'Impostazioni',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Aiuto',
         ],
         'store' => [
@@ -227,7 +226,7 @@ return [
     'popup_user' => [
         'links' => [
             'profile' => 'Mio Profilo',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
         ],
     ],
 ];

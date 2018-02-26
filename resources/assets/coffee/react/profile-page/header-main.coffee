@@ -27,6 +27,7 @@ class ProfilePage.HeaderMain extends React.Component
       editing: false
       coverUrl: props.user.cover_url
       isCoverUpdating: false
+      settingDefaultMode: false
 
     @debouncedCoverSet = _.debounce @coverSet, 300
 
@@ -50,6 +51,7 @@ class ProfilePage.HeaderMain extends React.Component
 
     @closeEdit()
     @debouncedCoverSet.cancel()
+    @xhr?.abort()
 
 
   render: =>
@@ -75,11 +77,21 @@ class ProfilePage.HeaderMain extends React.Component
         className: 'profile-header__container'
         div
           className: 'profile-header__column'
-          el ProfilePage.HeaderInfo, user: @props.user
+          el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
 
-        div
-          className: 'profile-header__column'
-          el ProfilePage.Stats, stats: @props.stats
+        if !@props.user.is_bot
+          div
+            className: 'profile-header__column'
+            el ProfilePage.Stats, stats: @props.stats
+
+      if @props.withEdit && @props.user.playmode != @props.currentMode
+        button
+          className: "profile-header__default-mode #{'profile-header__default-mode--disabled' if @state.settingDefaultMode}"
+          type: 'button'
+          onClick: @setDefaultMode
+          dangerouslySetInnerHTML:
+            __html:
+              osu.trans 'users.show.edit.default_playmode.set', mode: "<strong>#{osu.trans "beatmaps.mode.#{@props.currentMode}"}</strong>"
 
       div
         className: 'profile-header__actions',
@@ -95,7 +107,7 @@ class ProfilePage.HeaderMain extends React.Component
                 el Icon, name: 'pencil'
             if @state.editing
               el ProfilePage.CoverSelector,
-                canUpload: @props.user.isSupporter
+                canUpload: @props.user.is_supporter
                 cover: @props.user.cover
 
 
@@ -137,3 +149,21 @@ class ProfilePage.HeaderMain extends React.Component
       @closeEdit()
     else
       @openEdit()
+
+
+  setDefaultMode: =>
+    @setState settingDefaultMode: true
+
+    @xhr = $.ajax laroute.route('account.update'),
+      method: 'PUT'
+      data:
+        user:
+          playmode: @props.currentMode
+    .done (data) ->
+      $.publish 'user:update', data
+    .fail (xhr, status) ->
+      return if status == 'abort'
+
+      osu.emitAjaxError() xhr
+    .always =>
+      @setState settingDefaultMode: false

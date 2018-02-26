@@ -59,7 +59,7 @@ class Post extends Model
         'poster_id' => ['type' => 'long'],
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'string'],
+        'post_text' => ['type' => 'text'],
     ];
 
     public function forum()
@@ -96,7 +96,7 @@ class Post extends Model
 
     public function setPostTimeAttribute($value)
     {
-        $this->attributes['post_time'] = $value->timestamp;
+        $this->attributes['post_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostTimeAttribute($value)
@@ -106,7 +106,7 @@ class Post extends Model
 
     public function setPostEditTimeAttribute($value)
     {
-        $this->attributes['post_edit_time'] = $value->timestamp;
+        $this->attributes['post_edit_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostEditTimeAttribute($value)
@@ -152,7 +152,7 @@ class Post extends Model
 
         return [
             'data' => $query->get(),
-            'total' => $result['total'],
+            'total' => min($result['total'], 10000),
             'params' => $params,
         ];
     }

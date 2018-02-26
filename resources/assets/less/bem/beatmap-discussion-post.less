@@ -55,6 +55,7 @@
   &--unread {
     &::before {
       .full-size();
+      content: ' ';
       background-color: @blue-darker;
       width: 5px;
     }
@@ -224,6 +225,7 @@
       .reset-input();
       width: 100%;
       resize: vertical;
+      min-height: 3em;
 
       // --reply part to override top modifier
       &, .@{_top}--reply & {

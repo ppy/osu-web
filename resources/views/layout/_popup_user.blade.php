@@ -27,11 +27,13 @@
 
         <div class="nav-popup__row nav-popup__row--with-gutter">
             @if (Auth::user()->country !== null)
-                <img
-                    class="nav-popup__flag"
-                    src="{{ flag_path(Auth::user()->country_acronym) }}"
-                    title="{{ Auth::user()->country->name }}"
-                />
+                <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => Auth::user()->country_acronym])}}">
+                    <img
+                        class="nav-popup__flag"
+                        src="{{ flag_path(Auth::user()->country_acronym) }}"
+                        title="{{ Auth::user()->country->name }}"
+                    />
+                </a>
             @endif
         </div>
     </div>
@@ -64,19 +66,20 @@
             {{ trans('layout.popup_user.links.account-edit') }}
         </a>
 
-        <a
+        <button
             class="js-logout-link nav-popup__link"
-            href="{{ route('logout') }}"
+            type="button"
+            data-url="{{ route('logout') }}"
             data-confirm="{{ trans('users.logout_confirm') }}"
             data-method="delete"
             data-remote="1"
         >
-            <div class="nav-popup__link-marker">
+            <span class="nav-popup__link-marker">
                 <i class="fa fa-angle-right"></i>
-            </div>
+            </span>
 
             {{ trans('layout.popup_user.links.logout') }}
-        </a>
+        </button>
     </div>
 
     <div class="nav-popup__bar">

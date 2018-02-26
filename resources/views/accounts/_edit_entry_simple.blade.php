@@ -15,11 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<label class="account-edit-entry js-account-edit js-parent-focus" data-account-edit-auto-submit="1">
-    <div class="account-edit-entry__label">
-        {{ trans("accounts.edit.profile.user.{$field}") }}
-    </div>
-
+<label class="account-edit-entry js-account-edit" data-account-edit-auto-submit="1">
     <input
         class="account-edit-entry__input js-account-edit__input"
         name="user[{{ $field }}]"
@@ -29,6 +25,10 @@
         @endif
         value="{{ Auth::user()->$field }}"
     >
+
+    <div class="account-edit-entry__label">
+        {{ trans("accounts.edit.profile.user.{$field}") }}
+    </div>
 
     @include('accounts._edit_entry_status')
 </label>

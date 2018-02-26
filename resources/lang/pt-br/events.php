@@ -20,6 +20,8 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> alcançou a conquista "<strong>:achievement</strong>"!',
+    'beatmap_playcount' => ':beatmap foi jogado :count vezes!',
+    'beatmapset_approve' => ':beatmapset feito por <strong>:user</strong> foi :approval!',
     'beatmapset_delete' => ':beatmapset foi excluído.',
     'beatmapset_revive' => ':beatmapset foi revivido do cemitério por <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> atualizou o beatmap "<em>:beatmapset</em>"',

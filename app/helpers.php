@@ -42,6 +42,16 @@ function background_image($url, $proxy = true)
     return sprintf(' style="background-image:url(\'%s\');" ', e($url));
 }
 
+function beatmap_timestamp_format($ms)
+{
+    $s = $ms / 1000;
+    $ms = $ms % 1000;
+    $m = $s / 60;
+    $s = $s % 60;
+
+    return sprintf('%02d:%02d.%03d', $m, $s, $ms);
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
@@ -119,12 +129,7 @@ function es_records($results, $class)
 function es_search($params)
 {
     try {
-        return Es::search(array_merge_recursive([
-            'client' => [
-                'timeout' => config('elasticsearch.search_timeout'),
-                'connect_timeout' => config('elasticsearch.search_connect_timeout'),
-            ],
-        ], $params));
+        return Es::search($params);
     } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
         // all servers down
         $error = $e;
@@ -170,13 +175,13 @@ function get_valid_locale($requestedLocale)
 
 function html_excerpt($body, $limit = 300)
 {
-    $body = replace_tags_with_spaces($body);
+    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
 
-    if (strlen($body) < $limit) {
-        return $body;
+    if (strlen($body) >= $limit) {
+        $body = mb_substr($body, 0, $limit).'...';
     }
 
-    return mb_substr($body, 0, $limit).'...';
+    return e($body);
 }
 
 function json_date($date)
@@ -980,27 +985,37 @@ function array_rand_val($array)
 function model_pluck($builder, $key, $class = null)
 {
     if ($class) {
-        $key = (new $class)->getTable().'.'.$key;
+        $selectKey = (new $class)->qualifyColumn($key);
     }
 
     $result = [];
 
-    foreach ($builder->select($key)->get() as $el) {
+    foreach ($builder->select($selectKey ?? $key)->get() as $el) {
         $result[] = $el->$key;
     }
 
     return $result;
 }
 
-// Returns null if timestamp is null or 0.
-// Technically it's not null if 0 but some tables have not null constraints
-// despite null being a valid value. Instead it's filled in with 0 so this
-// helper returns null if it's 0 and parses the timestamp otherwise.
+/*
+ * Returns null if $timestamp is null or 0.
+ * Used for table which has not null constraints but accepts "empty" value (0).
+ */
 function get_time_or_null($timestamp)
 {
     if ($timestamp !== 0) {
         return parse_time_to_carbon($timestamp);
     }
+}
+
+/*
+ * Get unix timestamp of a DateTime (or Carbon\Carbon).
+ * Returns 0 if $time is null so mysql doesn't explode because of not null
+ * constraints.
+ */
+function get_timestamp_or_zero(DateTime $time = null) : int
+{
+    return $time === null ? 0 : $time->getTimestamp();
 }
 
 function parse_time_to_carbon($value)

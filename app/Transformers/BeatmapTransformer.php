@@ -30,11 +30,16 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         'scoresBest',
         'failtimes',
         'beatmapset',
+        'max_combo',
     ];
 
     public function transform(Beatmap $beatmap = null)
     {
         if ($beatmap === null) {
+            return [];
+        }
+
+        if (!priv_check('BeatmapShow', $beatmap)->can()) {
             return [];
         }
 
@@ -62,6 +67,7 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
+            'deleted_at' => $beatmap->deleted_at,
         ];
     }
 
@@ -103,5 +109,22 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapset(Beatmap $beatmap)
     {
         return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
+    }
+
+    public function includeMaxCombo(Beatmap $beatmap)
+    {
+        return $this->item($beatmap, function ($beatmap) {
+            $maxCombo = $beatmap->difficultyAttribs()
+                ->mode($beatmap->playmode)
+                ->noMods()
+                ->maxCombo()
+                ->first();
+
+            if ($maxCombo === null) {
+                return [];
+            }
+
+            return [$maxCombo->getAttribute('value')];
+        });
     }
 }

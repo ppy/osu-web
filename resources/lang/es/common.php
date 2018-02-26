@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -22,21 +22,43 @@ return [
     'confirmation' => '¿Estás seguro?',
     'saved' => 'Guardado',
 
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' y ',
+        'last_word_connector' => ' y ',
+    ],
+
     'buttons' => [
         'cancel' => 'Cancelar',
         'delete' => 'Eliminar',
         'permalink' => 'enlace permanente',
+        'permalink_copied' => 'enlace copiado',
         'post' => 'Publicar',
         'reply' => 'Responder',
+        'reply_reopen' => 'Responder y reabrir',
+        'reply_resolve' => 'Responder y resolver',
         'reset' => 'Reiniciar',
         'save' => 'Guardar',
         'saving' => 'Guardando...',
+        'see_more' => 'ver más',
         'show_more' => 'mostrar más',
         'upload_image' => 'subir imagen',
     ],
 
     'count' => [
+        'hour_short_unit' => 'hr|hrs',
         'item' => ':count unidad|:count unidades',
+        'minute_short_unit' => 'min|mins',
+        'months' => ':count mes|:count meses',
+        'second_short_unit' => 'seg|segs',
+        'years' => ':count año|:count años',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM de YYYY',
+            'php' => 'MMMM de y',
+        ],
     ],
 
     'device' => [

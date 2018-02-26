@@ -26,16 +26,15 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'userAchievements',
+        'user_achievements',
         'defaultStatistics',
-        'followerCount',
+        'follower_count',
         'friends',
         'page',
-        'recentActivities',
-        'rankedAndApprovedBeatmapsetCount',
-        'unrankedBeatmapsetCount',
-        'graveyardBeatmapsetCount',
-        'favouriteBeatmapsetCount',
+        'ranked_and_approved_beatmapset_count',
+        'unranked_beatmapset_count',
+        'graveyard_beatmapset_count',
+        'favourite_beatmapset_count',
         'disqus_auth',
     ];
 
@@ -53,11 +52,12 @@ class UserTransformer extends Fractal\TransformerAbstract
             ],
             'age' => $user->age(),
             'avatar_url' => $user->user_avatar,
-            'isAdmin' => $user->isAdmin(),
-            'isSupporter' => $user->osu_subscriber,
-            'isGMT' => $user->isGMT(),
-            'isQAT' => $user->isQAT(),
-            'isBNG' => $user->isBNG(),
+            'is_admin' => $user->isAdmin(),
+            'is_supporter' => $user->osu_subscriber,
+            'is_gmt' => $user->isGMT(),
+            'is_qat' => $user->isQAT(),
+            'is_bng' => $user->isBNG(),
+            'is_bot' => $user->isBot(),
             'is_active' => $user->isActive(),
             'interests' => $user->user_interests,
             'occupation' => $user->user_occ,
@@ -71,10 +71,10 @@ class UserTransformer extends Fractal\TransformerAbstract
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
             'profile_colour' => $user->user_colour,
-            'profileOrder' => $profileCustomization->extras_order,
+            'profile_order' => $profileCustomization->extras_order,
             'cover_url' => $profileCustomization->cover()->url(),
             'cover' => [
-                'customUrl' => $profileCustomization->cover()->fileUrl(),
+                'custom_url' => $profileCustomization->cover()->fileUrl(),
                 'url' => $profileCustomization->cover()->url(),
                 'id' => $profileCustomization->cover()->id(),
             ],
@@ -127,14 +127,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
-        );
-    }
-
-    public function includeRecentActivities(User $user)
-    {
-        return $this->collection(
-            $user->events()->recent()->get(),
-            new EventTransformer()
         );
     }
 

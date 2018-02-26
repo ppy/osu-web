@@ -31,6 +31,7 @@ class @BeatmapsetFilter
 
 
   @charToKey:
+    c: 'general'
     m: 'mode'
     s: 'status'
     g: 'genre'
@@ -42,6 +43,7 @@ class @BeatmapsetFilter
 
 
   @defaults:
+    general: ''
     extra: ''
     genre: null
     language: null
@@ -69,7 +71,7 @@ class @BeatmapsetFilter
       if filters.query?.trim().length > 0
         'relevance_desc'
       else
-        if filters.status in [4, 5]
+        if filters.status in [4, 5, 6]
           'updated_desc'
         else
           'ranked_desc'
@@ -85,6 +87,7 @@ class @BeatmapsetFilter
 
 
   @keys: [
+    'general'
     'extra'
     'genre'
     'language'

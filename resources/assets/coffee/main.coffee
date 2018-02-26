@@ -53,13 +53,11 @@ $(document).on 'turbolinks:load', ->
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
-@landingHero ?= new LandingHero
 @menu ?= new Menu
 @nav ?= new Nav
 @navSearch ?= new NavSearch
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
-@parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
 @reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview

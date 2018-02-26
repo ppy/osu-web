@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -21,7 +21,7 @@
 return [
     'availability' => [
         'disabled' => 'Este beatmap no está actualmente disponible para descargar.',
-        'parts-removed' => 'Partes de este beatmap han sido removidas por solicitud de su creador o un titular de derechos.',
+        'parts-removed' => 'Partes de este beatmap han sido removidas por solicitud de su creador o un titular de derechos de autor.',
         'more-info' => 'Más información.',
     ],
 
@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => 'Marcar como favorito',
             'unfavourite' => 'Desmarcar como favorito',
+            'favourited_count' => '+ ¡1 otro!|+ ¡:count otros!',
         ],
         'stats' => [
             'cs' => 'Tamaño de Círculo',
@@ -66,12 +67,12 @@ return [
             'rating-spread' => 'Desglose de valoraciones',
         ],
         'info' => [
+            'description' => 'Descripción',
+            'genre' => 'Género',
+            'language' => 'Idioma',
             'no_scores' => 'Beatmap no rankeado',
             'points-of-failure' => 'Puntos de Fracaso',
             'success-rate' => 'Tasa de éxito',
-
-            'description' => 'Descripción',
-
             'source' => 'Fuente',
             'tags' => 'Etiquetas',
         ],
@@ -80,14 +81,19 @@ return [
             'country' => 'Ranking Nacional',
             'friend' => 'Ranking de Amigos',
             'global' => 'Ranking Global',
+            'miss_count' => ':count fallos',
             'supporter-link' => '¡Clic <a href=":link">aquí</a> para ver todas las increíbles características que obtienes!',
             'supporter-only' => '¡Necesitas ser supporter para acceder a los rankings entre amigos y de tu país!',
             'title' => 'Puntuaciones',
-
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Precisión',
-                'player-header' => 'Jugador',
-                'rank-header' => 'Rango',
+                'combo' => 'Combo máx.',
+                'miss' => 'Fallos',
+                'mods' => 'Mods',
+                'player' => 'Jugador',
+                'pp' => 'pp',
+                'rank' => 'Rank',
+                'score_total' => 'Puntuación total',
                 'score' => 'Puntuación',
             ],
             'no_scores' => [
@@ -100,10 +106,6 @@ return [
             'score' => [
                 'first' => 'Liderando',
                 'own' => 'Tu mejor puntuación',
-            ],
-            'stats' => [
-                'accuracy' => 'Precisión',
-                'score' => 'Puntuación',
             ],
         ],
     ],

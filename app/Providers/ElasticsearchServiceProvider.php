@@ -18,27 +18,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Console\Commands;
+namespace App\Providers;
 
-use App\Models\User;
-use Illuminate\Console\Command;
+use Elasticsearch\ClientBuilder;
+use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider;
 
-// TODO: combine with EsIndexDocuments and add a type filter options
-class EsIndexUsers extends EsIndexCommand
+class ElasticsearchServiceProvider extends ServiceProvider
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'es:index-users {--inplace} {--cleanup} {--yes}';
+    public function boot()
+    {
+    }
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Indexes users into Elasticsearch.';
+    public function provides()
+    {
+        return ['elasticsearch'];
+    }
 
-    protected $types = [User::class];
+    public function register()
+    {
+        $this->app->singleton('elasticsearch', function () {
+            return ClientBuilder::fromConfig(config('elasticsearch'));
+        });
+
+        $this->app->booting(function () {
+            AliasLoader::getInstance()->alias('Es', 'App\Libraries\Elasticsearch\Es');
+        });
+    }
 }

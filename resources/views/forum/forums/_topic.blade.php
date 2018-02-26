@@ -43,7 +43,11 @@
     >
         <i class="
             fa
-            fa-{{ $topic->topic_type === 2 ? 'exclamation-triangle' : 'comment-o' }}
+            fa-{{
+                $topic->topic_type === 2 ?
+                    'exclamation-triangle' :
+                    (($topicReadStatus[$topic->topic_id] ?? null) ? 'comment-o' : 'comment')
+            }}
         "></i>
     </a>
 

@@ -40,13 +40,17 @@ return [
         'reset' => 'Reset',
         'save' => 'Save',
         'saving' => 'Saving...',
+        'see_more' => 'see more',
         'show_more' => 'show more',
         'upload_image' => 'upload image',
     ],
 
     'count' => [
+        'hour_short_unit' => 'hr|hrs',
         'item' => ':count unit|:count units',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count month|:count months',
+        'second_short_unit' => 'sec|secs',
         'years' => ':count year|:count years',
     ],
 

@@ -68,7 +68,7 @@ class ProfilePage.Kudosu extends React.Component
                 div className: 'profile-extra-entries__time', dangerouslySetInnerHTML:
                   __html: osu.timeago(kudosu.created_at)
 
-            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+            li className: 'profile-extra-entries__item',
               el ProfilePage.ShowMoreLink,
                 collection: @props.recentlyReceivedKudosu
                 propertyName: 'recentlyReceivedKudosu'

@@ -102,10 +102,6 @@ return [
                 'first' => 'Leder',
                 'own' => 'Ditt Bästa',
             ],
-            'stats' => [
-                'accuracy' => 'Precision',
-                'score' => 'Poäng',
-            ],
         ],
     ],
 ];

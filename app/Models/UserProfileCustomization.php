@@ -29,7 +29,7 @@ class UserProfileCustomization extends Model
      */
     const SECTIONS = [
         'me',
-        'recent_activities',
+        'recent_activity',
         'top_ranks',
         'medals',
         'historical',

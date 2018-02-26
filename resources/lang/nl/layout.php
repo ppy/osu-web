@@ -88,7 +88,7 @@ return [
 
             'messages' => 'Berichten',
             'settings' => 'Instellingen',
-            'logout' => 'Uitloggen',
+            'logout' => 'Uitloggen', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Help',
         ],
         'store' => [

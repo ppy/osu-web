@@ -23,13 +23,11 @@
   background-color: #333;
   color: #ccc;
 
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  display: block;
+  text-align: center;
 
   padding: 20px 10px 0;
   list-style: none;
-  flex-wrap: wrap;
   margin: 0;
   font-size: 15px;
   overflow: hidden;
@@ -61,7 +59,9 @@
   }
 
   &__item {
-    display: flex;
+    .link-plain();
+    display: inline-flex;
+    vertical-align: bottom;
     line-height: 1;
 
     margin: 0 @_gutter;
@@ -78,6 +78,13 @@
       margin-top: 5px;
       vertical-align: middle;
     }
+  }
+
+  &__item-icon {
+    // A bit too tall if same as the text.
+    // And looks like crap at other size. Or maybe at this size as well
+    // depending on zoom level and star alignment.
+    font-size: 89%;
   }
 
   &__underline {

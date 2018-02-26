@@ -33,7 +33,6 @@ return [
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
-            'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'actualités',
             'news-show' => 'actualités',
@@ -111,7 +110,7 @@ return [
 
             'messages' => 'Messages',
             'settings' => 'Paramètres',
-            'logout' => 'Se déconnecter',
+            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Aide',
         ],
         'store' => [
@@ -245,7 +244,7 @@ return [
         'links' => [
             'account-edit' => 'Paramètres',
             'friends' => 'Amis',
-            'logout' => 'Se déconnecter',
+            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Mon profil',
         ],
     ],

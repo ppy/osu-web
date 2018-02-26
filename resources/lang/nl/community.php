@@ -103,7 +103,7 @@ Ik wil degene die osu! tot nu toe hebben ondersteund persoonlijk bedanken maar n
 
             'sort_options' => [
                 'title' => 'Sorteeropties',
-                'description' => 'NIEUW: De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
+                'description' => 'De mogelijkheid om beatmaps scores per land / vrienden / mod-specifiek in-game te zien.',
             ],
 
             'feel_special' => [

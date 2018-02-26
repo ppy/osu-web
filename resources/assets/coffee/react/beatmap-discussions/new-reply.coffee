@@ -58,14 +58,13 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
         div className: "#{bn}__message-container",
           el TextareaAutosize,
-            minRows: 3
             disabled: @state.posting?
             className: "#{bn}__message #{bn}__message--editor"
             value: @state.message
             onChange: @setMessage
             onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
-            inputRef: (el) => @box = el
+            innerRef: (el) => @box = el
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"
@@ -181,7 +180,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         message: ''
         editing: false
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
 
     .fail osu.ajaxError
 
