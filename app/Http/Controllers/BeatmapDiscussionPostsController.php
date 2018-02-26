@@ -163,28 +163,23 @@ class BeatmapDiscussionPostsController extends Controller
                 return true;
             });
         } catch (ModelNotSavedException $_e) {
-            $saved = false;
+            return error_popup(trans('beatmaps.discussion-posts.store.error'));
         }
 
         $postIds = array_pluck($posts, 'id');
+        $beatmapset = $discussion->beatmapset;
 
-        if ($saved === true) {
-            $beatmapset = $discussion->beatmapset;
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        NotifyBeatmapsetUpdate::dispatch([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]);
 
-            BeatmapsetWatch::markRead($beatmapset, Auth::user());
-            NotifyBeatmapsetUpdate::dispatch([
-                'user' => Auth::user(),
-                'beatmapset' => $beatmapset,
-            ]);
-
-            return [
-                'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
-                'beatmap_discussion_post_ids' => $postIds,
-                'beatmap_discussion_id' => $discussion->id,
-            ];
-        } else {
-            return error_popup(trans('beatmaps.discussion-posts.store.error'));
-        }
+        return [
+            'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
+            'beatmap_discussion_post_ids' => $postIds,
+            'beatmap_discussion_id' => $discussion->id,
+        ];
     }
 
     public function update($id)

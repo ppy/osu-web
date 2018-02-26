@@ -44,11 +44,11 @@ class BeatmapDiscussionsController extends Controller
 
         try {
             $discussion->allowKudosu(Auth::user());
-
-            return $discussion->beatmapset->defaultDiscussionJson();
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function denyKudosu($id)
@@ -58,11 +58,11 @@ class BeatmapDiscussionsController extends Controller
 
         try {
             $discussion->denyKudosu(Auth::user());
-
-            return $discussion->beatmapset->defaultDiscussionJson();
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function destroy($id)
