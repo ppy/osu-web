@@ -39,9 +39,9 @@ class ForumSearch extends Search implements \ArrayAccess
     protected $username;
     protected $forumId;
 
-    public function __construct(string $index, array $options = [])
+    public function __construct(array $options = [])
     {
-        parent::__construct($index, $options);
+        parent::__construct(Post::esIndexName(), $options);
 
         $this->queryString = $options['query'];
         $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
@@ -133,7 +133,7 @@ class ForumSearch extends Search implements \ArrayAccess
             'username' => $params['username'] ?? null,
         ];
 
-        return (new static(Post::esIndexName(), $options))
+        return (new static($options))
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
             ->highlight('search_content');
