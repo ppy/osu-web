@@ -1259,9 +1259,9 @@ class User extends Model implements AuthenticatableContract, Messageable
      * @return float
      */
     public function recommendedStarDifficulty(string $mode)
-{
-    $stats = $this->statistics($mode);
-    if ($stats) {
+    {
+        $stats = $this->statistics($mode);
+        if ($stats) {
         if ($mode == osu){
             return pow($stats->rank_score, 0.4) * 0.195;
         }elseif ($mode == taiko){
@@ -1272,9 +1272,9 @@ class User extends Model implements AuthenticatableContract, Messageable
             return pow($stats->rank_score, 0.4) * 0.175;
         }else{
             return 0.0;
+            }
         }
     }
-}
  
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
