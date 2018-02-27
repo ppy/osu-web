@@ -51,7 +51,7 @@ class HasChildQuery implements Queryable
         // some of the paramters that normally go in body get moved into
         // inner_hits in join queries.
 
-        $pageParams = $this->getPageParams();
+        $pageParams = $this->getPaginationParams();
 
         $inner = [
             'name' => $this->name,

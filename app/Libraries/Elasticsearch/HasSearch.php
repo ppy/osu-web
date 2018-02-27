@@ -73,7 +73,7 @@ trait HasSearch
      *
      * @return array
      */
-    protected function getPageParams()
+    protected function getPaginationParams()
     {
         $params = ['size' => $this->size, 'limit' => $this->size];
 

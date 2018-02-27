@@ -155,7 +155,7 @@ class ForumSearch extends Search implements \ArrayAccess
 
     public function params()
     {
-        return $this->getPageParams();
+        return $this->getPaginationParams();
     }
 
     //================

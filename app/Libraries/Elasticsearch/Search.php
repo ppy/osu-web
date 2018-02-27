@@ -65,7 +65,7 @@ class Search implements Queryable
      */
     public function toArray() : array
     {
-        $pageParams = $this->getPageParams();
+        $pageParams = $this->getPaginationParams();
 
         $body = [
             'from' => $pageParams['from'],
