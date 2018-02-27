@@ -60,11 +60,11 @@ class ProfilePage.AccountStanding extends React.PureComponent
             className: "#{bn}__table"
             thead {},
               tr {},
-                for el in columns
+                for column in columns
                   th
-                    key: el
-                    className: "#{bn}__table-header #{bn}__table-header--#{el}"
-                    osu.trans "users.show.extra.account_standing.recent_infringements.#{el}"
+                    key: column
+                    className: "#{bn}__table-header #{bn}__table-header--#{column}"
+                    osu.trans "users.show.extra.account_standing.recent_infringements.#{column}"
 
             tbody
               className: "#{bn}__table-body"
