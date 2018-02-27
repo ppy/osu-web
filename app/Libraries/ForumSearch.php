@@ -21,7 +21,7 @@
 namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Elasticsearch\HasChild;
+use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
@@ -88,7 +88,7 @@ class ForumSearch extends Search implements \ArrayAccess
         return parent::toArray();
     }
 
-    private function childQuery() : HasChild
+    private function childQuery() : HasChildQuery
     {
         $query = (new BoolQuery())
             ->must(['query_string' => [
@@ -101,7 +101,7 @@ class ForumSearch extends Search implements \ArrayAccess
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
-        return (new HasChild('posts', 'posts'))
+        return (new HasChildQuery('posts', 'posts'))
             ->size(3)
             ->scoreMode('max')
             ->source(['topic_id', 'post_id', 'search_content'])
@@ -113,9 +113,9 @@ class ForumSearch extends Search implements \ArrayAccess
             )->query($query);
     }
 
-    private static function firstPostQuery() : HasChild
+    private static function firstPostQuery() : HasChildQuery
     {
-        return (new HasChild('posts', 'first_post'))
+        return (new HasChildQuery('posts', 'first_post'))
             ->size(1)
             ->sort(['post_id' => ['order' => 'asc']])
             ->query(['match_all' => new \stdClass()])

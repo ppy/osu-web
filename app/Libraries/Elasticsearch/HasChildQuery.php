@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class HasChild implements Queryable
+class HasChildQuery implements Queryable
 {
     use HasSearch;
 
