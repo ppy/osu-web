@@ -1259,23 +1259,22 @@ class User extends Model implements AuthenticatableContract, Messageable
      * @return float
      */
     public function recommendedStarDifficulty(string $mode)
-    {
-        $stats = $this->statistics($mode);
-        if ($stats) {
-            if ($mode == osu){
-                return pow($stats->rank_score, 0.4) * 0.195;
-            }elseif ($mode == taiko){
-                return pow($stats->rank_score, 0.4) * 0.165;
-            }elseif ($mode == fruits){
-                return pow($stats->rank_score, 0.4) * 0.155;
-            }elseif ($mode == mania){
-                return pow($stats->rank_score, 0.4) * 0.175;
-                    }
-        else{
-                return 0.0;
-            }
+{
+    $stats = $this->statistics($mode);
+    if ($stats) {
+        if ($mode == osu){
+            return pow($stats->rank_score, 0.4) * 0.195;
+        }elseif ($mode == taiko){
+            return pow($stats->rank_score, 0.4) * 0.165;
+        }elseif ($mode == fruits){
+            return pow($stats->rank_score, 0.4) * 0.155;
+        }elseif ($mode == mania){
+            return pow($stats->rank_score, 0.4) * 0.175;
+        }else{
+            return 0.0;
         }
-            
+    }
+}
  
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
