@@ -126,11 +126,6 @@ class Post extends Model
      */
     public function getSearchContentAttribute()
     {
-        // Don't care if too many characters are stripped;
-        // just don't want tags to go into index because they mess up the highlighting.
-
-        static $bbcodePattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
-
         static $metadataPattern = '/^(.*?)-{15}/s';
 
         // remove metadata
@@ -140,8 +135,8 @@ class Post extends Model
         // strip any html tags left
         $text = preg_replace($metadataPattern, '', $this->post_text);
         $text = BBCodeFromDB::removeBlockQuotes($text);
-        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5);
-        $text = preg_replace($bbcodePattern, '', $text);
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5); // TODO: html_entity_decode_better
+        $text = BBCodeFromDB::removeBBCodeTags($text);
 
         return strip_tags($text);
     }
