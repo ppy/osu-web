@@ -48,7 +48,7 @@ class HasChildQuery implements Queryable
      */
     public function toArray() : array
     {
-        // some of the paramters that normally go in body get moved into
+        // some of the parameters that normally go in body get moved into
         // inner_hits in join queries.
 
         $pageParams = $this->getPaginationParams();
