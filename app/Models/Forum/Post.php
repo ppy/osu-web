@@ -22,6 +22,7 @@ namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
+use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
@@ -126,14 +127,12 @@ class Post extends Model
      */
     public function getSearchContentAttribute()
     {
-        static $metadataPattern = '/^(.*?)-{15}/s';
-
         // remove metadata
         // remove blockquotes
         // unescape html entities
         // strip remaining bbcode
         // strip any html tags left
-        $text = preg_replace($metadataPattern, '', $this->post_text);
+        $text = Beatmapset::removeMetadataText($this->post_text);
         $text = BBCodeFromDB::removeBlockQuotes($text);
         $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5); // TODO: html_entity_decode_better
         $text = BBCodeFromDB::removeBBCodeTags($text);
