@@ -36,6 +36,29 @@ class Hit implements \ArrayAccess
         $this->raw = $raw;
     }
 
+    /**
+     * Gets the highlights of the specified field, if any;
+     * otherwise returns a html_excerpt of the _source field.
+     *
+     * @return array
+     */
+    public function highlights(string $field, ?int $limit = null)
+    {
+        if (isset($this['highlight'])) {
+            $highlights = $this['highlight'][$field];
+            if ($limit === null) {
+                return $highlights;
+            }
+
+            return array_map(function ($text) use ($limit) {
+                return str_limit($text, $limit, '...');
+            }, $highlights);
+        }
+
+        // highlights are stored in an array, so return an array as well.
+        return [html_excerpt($this['_source'][$field])];
+    }
+
     public function innerHits(string $name)
     {
         $results = $this->raw['inner_hits'][$name] ?? null;

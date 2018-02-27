@@ -52,29 +52,6 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
-/**
- * Gets the highlights of the specified field, if any;
- * otherwise returns a html_excerpt of the field.
- *
- * @return array
- */
-function es_highlights($hit, $field)
-{
-    if (isset($hit['highlight'])) {
-        return array_map(function ($text) {
-            return str_limit(
-                $text,
-                // try not to truncate in some weird position...
-                \App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2,
-                '...'
-            );
-        }, $hit['highlight'][$field]);
-    }
-
-    // highlights are stored in an array, so return an array as well.
-    return [html_excerpt($hit['_source'][$field])];
-}
-
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);

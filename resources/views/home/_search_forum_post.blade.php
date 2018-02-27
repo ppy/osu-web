@@ -47,7 +47,15 @@
             <a class="search-entry" href="{{ $postUrl }}">
                 <div class="search-entry__row search-entry__row--excerpt">
                     <span class="search-entry__highlight">
-                        {!! implode(' ... ', es_highlights($innerHit, 'search_content')) !!}
+                        {!!
+                            implode(
+                                ' ... ',
+                                $innerHit->highlights(
+                                    'search_content',
+                                    App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                                )
+                            )
+                        !!}
                     </span>
                 </div>
                 <p class="search-entry__row search-entry__row--footer">
