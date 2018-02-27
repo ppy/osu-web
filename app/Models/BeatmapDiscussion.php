@@ -564,24 +564,26 @@ class BeatmapDiscussion extends Model
         return $ret;
     }
 
-    public function softDelete($deletedBy)
+    public function softDeleteOrExplode($deletedBy)
     {
-        return DB::transaction(function () use ($deletedBy) {
-            if ($deletedBy->getKey() !== $this->user_id) {
-                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
-            }
+        $timestamps = $this->timestamps;
 
-            $timestamps = $this->timestamps;
-            $this->timestamps = false;
-            $this->update([
-                'deleted_by_id' => $deletedBy->user_id ?? null,
-                'deleted_at' => Carbon::now(),
-            ]);
+        try {
+            DB::transaction(function () use ($deletedBy) {
+                if ($deletedBy->getKey() !== $this->user_id) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_DELETE, $deletedBy, $this)->saveOrExplode();
+                }
+
+                $this->timestamps = false;
+                $this->fill([
+                    'deleted_by_id' => $deletedBy->user_id ?? null,
+                    'deleted_at' => Carbon::now(),
+                ])->saveOrExplode();
+                $this->refreshKudosu('delete');
+            });
+        } finally {
             $this->timestamps = $timestamps;
-            $this->refreshKudosu('delete');
-
-            return true;
-        });
+        }
     }
 
     public function trashed()
