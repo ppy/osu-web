@@ -134,7 +134,7 @@ class Post extends Model
         // strip any html tags left
         $text = Beatmapset::removeMetadataText($this->post_text);
         $text = BBCodeFromDB::removeBlockQuotes($text);
-        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5); // TODO: html_entity_decode_better
+        $text = html_entity_decode_better($text);
         $text = BBCodeFromDB::removeBBCodeTags($text);
 
         return strip_tags($text);
