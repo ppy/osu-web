@@ -97,8 +97,8 @@ class Event extends Model
         $beatmapTitle = presence($matches['beatmapTitle'], '(no title)');
 
         return [
-            'title' => html_entity_decode($beatmapTitle),
-            'url' => html_entity_decode($matches['beatmapUrl']),
+            'title' => html_entity_decode_better($beatmapTitle),
+            'url' => html_entity_decode_better($matches['beatmapUrl']),
         ];
     }
 
@@ -107,16 +107,16 @@ class Event extends Model
         $beatmapsetTitle = presence($matches['beatmapsetTitle'], '(no title)');
 
         return [
-            'title' => html_entity_decode($beatmapsetTitle),
-            'url' => html_entity_decode($matches['beatmapsetUrl']),
+            'title' => html_entity_decode_better($beatmapsetTitle),
+            'url' => html_entity_decode_better($matches['beatmapsetUrl']),
         ];
     }
 
     public function arrayUser($matches)
     {
         if (isset($matches['userName'])) {
-            $username = html_entity_decode($matches['userName']);
-            $userUrl = html_entity_decode($matches['userUrl']);
+            $username = html_entity_decode_better($matches['userName']);
+            $userUrl = html_entity_decode_better($matches['userUrl']);
         } else {
             $user = $this->user;
             $username = $user->username;
@@ -258,7 +258,7 @@ class Event extends Model
         return [
             'user' => array_merge(
                 $this->arrayUser($matches),
-                ['previousUsername' => html_entity_decode($matches['previousUsername'])]
+                ['previousUsername' => html_entity_decode_better($matches['previousUsername'])]
             ),
         ];
     }
