@@ -20,6 +20,8 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Exception;
+
 class BoolQuery implements Queryable
 {
     protected $filters = [];
@@ -116,6 +118,14 @@ class BoolQuery implements Queryable
      */
     public static function clauseToArray($clause) : array
     {
-        return is_array($clause) ? $clause : $clause->toArray();
+        if (is_array($clause)) {
+            return $clause;
+        }
+
+        if (is_object($clause) && $clause instanceof Queryable) {
+            return $clause->toArray();
+        }
+
+        throw new Exception('$clause should be array or Queryable.');
     }
 }
