@@ -175,7 +175,8 @@ function get_valid_locale($requestedLocale)
 
 function html_entity_decode_better($string)
 {
-    return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
+    // ENT_HTML5 to handle more named entities (&apos;, etc?).
+    return html_entity_decode($string, ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
 
 function html_excerpt($body, $limit = 300)
