@@ -30,6 +30,7 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
 
+// FIXME: remove ArrayAccess after refactored
 class ForumSearch extends Search implements \ArrayAccess
 {
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
