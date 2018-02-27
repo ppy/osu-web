@@ -97,7 +97,7 @@ class ForumSearch extends Search implements \ArrayAccess
             ]]);
 
         if (isset($this->username)) {
-            $user = User::where('username', '=', $this->username)->first();
+            $user = User::lookup($this->username);
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
