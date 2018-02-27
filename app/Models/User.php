@@ -1271,11 +1271,12 @@ class User extends Model implements AuthenticatableContract, Messageable
             }elseif ($mode == mania){
                 return pow($stats->rank_score, 0.4) * 0.175;
                     }
-                }
-            else{
+        else{
                 return 0.0;
             }
         }
+            
+ 
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
         if ($forum !== null) {
