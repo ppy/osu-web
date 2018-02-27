@@ -20,9 +20,9 @@
 
 namespace App\Libraries;
 
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\HasChild;
 use App\Libraries\Elasticsearch\Highlight;
-use App\Libraries\Elasticsearch\Query;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
@@ -59,7 +59,7 @@ class ForumSearch extends Search implements \ArrayAccess
             'query' => $this->queryString,
         ]];
 
-        $query = (new Query())
+        $query = (new BoolQuery())
             ->must(static::firstPostQuery()->toArray())
             ->should($this->childQuery()->toArray())
             ->shouldMatch(1)
@@ -90,7 +90,7 @@ class ForumSearch extends Search implements \ArrayAccess
 
     private function childQuery() : HasChild
     {
-        $query = (new Query())
+        $query = (new BoolQuery())
             ->must(['query_string' => [
                 'fields' => ['search_content'],
                 'query' => $this->queryString,

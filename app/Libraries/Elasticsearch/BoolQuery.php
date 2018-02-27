@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class Query
+class BoolQuery
 {
     protected $filters = [];
     protected $musts = [];
@@ -29,7 +29,7 @@ class Query
     protected $minimum = null;
 
     /**
-     * @param array|Query $clause
+     * @param array|BoolQuery $clause
      *
      * @return $this
      */
@@ -41,7 +41,7 @@ class Query
     }
 
     /**
-     * @param array|Query $clause
+     * @param array|BoolQuery $clause
      *
      * @return $this
      */
@@ -53,7 +53,7 @@ class Query
     }
 
     /**
-     * @param array|Query $clause
+     * @param array|BoolQuery $clause
      *
      * @return $this
      */
@@ -65,7 +65,7 @@ class Query
     }
 
     /**
-     * @param array|Query $clause
+     * @param array|BoolQuery $clause
      *
      * @return $this
      */
@@ -110,7 +110,7 @@ class Query
     }
 
     /**
-     * @param array|Query $clause
+     * @param array|BoolQuery $clause
      *
      * @return array
      */
