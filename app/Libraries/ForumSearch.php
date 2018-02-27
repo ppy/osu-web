@@ -36,6 +36,7 @@ class ForumSearch extends Search implements \ArrayAccess
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
     protected $includeSubforums;
+    protected $queryString;
     protected $username;
     protected $forumId;
 
