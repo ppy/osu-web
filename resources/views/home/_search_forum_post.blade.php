@@ -37,12 +37,13 @@
         </p>
     </a>
 
-    <div class="search-entry-thread__sub-items">
-        @foreach ($innerHits as $innerHit)
-            @php
-                $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
-            @endphp
 
+    @foreach ($innerHits as $innerHit)
+        @php
+            $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
+        @endphp
+
+        <div class="search-entry-thread__sub-item">
             <a class="search-entry" href="{{ $postUrl }}">
                 <div class="search-entry__row search-entry__row--excerpt">
                     <span class="search-entry__highlight">
@@ -53,6 +54,6 @@
                     {{ $postUrl }}
                 </p>
             </a>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
 </div>
