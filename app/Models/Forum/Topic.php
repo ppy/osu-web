@@ -89,7 +89,7 @@ class Topic extends Model
 
         DB::transaction(function () use ($forum, $topic, $params, $poll) {
             $topic->saveOrExplode();
-            $topic->addPost($params['user'], $params['body']);
+            $topic->addPostOrExplode($params['user'], $params['body']);
 
             if ($poll !== null) {
                 $topic->poll($poll)->save();
@@ -104,18 +104,19 @@ class Topic extends Model
         return $topic->fresh();
     }
 
-    public function addPost($poster, $body)
+    public function addPostOrExplode($poster, $body)
     {
         $post = new Post([
             'post_text' => $body,
             'post_username' => $poster->username,
             'poster_id' => $poster->user_id,
             'forum_id' => $this->forum_id,
+            'topic_id' => $this->getKey(),
             'post_time' => Carbon::now(),
         ]);
 
         DB::transaction(function () use ($post) {
-            $this->posts()->save($post);
+            $post->saveOrExplode();
 
             $this->refreshCache();
 

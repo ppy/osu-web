@@ -162,7 +162,7 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        $post = $topic->addPost(Auth::user(), Request::input('body'));
+        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
