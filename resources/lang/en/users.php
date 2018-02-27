@@ -94,6 +94,7 @@ return [
         'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+        'post_count' => 'Contributed :count forum posts',
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
