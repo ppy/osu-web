@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class BoolQuery
+class BoolQuery implements Queryable
 {
     protected $filters = [];
     protected $musts = [];
@@ -29,7 +29,7 @@ class BoolQuery
     protected $minimum = null;
 
     /**
-     * @param array|BoolQuery $clause
+     * @param array|Queryable $clause
      *
      * @return $this
      */
@@ -41,7 +41,7 @@ class BoolQuery
     }
 
     /**
-     * @param array|BoolQuery $clause
+     * @param array|Queryable $clause
      *
      * @return $this
      */
@@ -53,7 +53,7 @@ class BoolQuery
     }
 
     /**
-     * @param array|BoolQuery $clause
+     * @param array|Queryable $clause
      *
      * @return $this
      */
@@ -65,7 +65,7 @@ class BoolQuery
     }
 
     /**
-     * @param array|BoolQuery $clause
+     * @param array|Queryable $clause
      *
      * @return $this
      */
@@ -89,7 +89,7 @@ class BoolQuery
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toArray() : array
     {
@@ -110,7 +110,7 @@ class BoolQuery
     }
 
     /**
-     * @param array|BoolQuery $clause
+     * @param array|Queryable $clause
      *
      * @return array
      */

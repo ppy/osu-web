@@ -24,7 +24,7 @@ namespace App\Libraries\Elasticsearch;
  * Wrapper around a SearchResponse hit to help make it
  * easier to iterate over a SearchResponse without crazy index nesting.
  */
-class Highlight
+class Highlight implements Queryable
 {
     protected $fields = [];
     protected $numberOfFragments = 100;
@@ -66,7 +66,7 @@ class Highlight
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toArray() : array
     {

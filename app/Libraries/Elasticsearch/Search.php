@@ -24,7 +24,7 @@ use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
 
-class Search
+class Search implements Queryable
 {
     use HasSearch;
 
@@ -61,7 +61,7 @@ class Search
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toArray() : array
     {

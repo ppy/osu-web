@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class HasChild
+class HasChild implements Queryable
 {
     use HasSearch;
 
@@ -44,7 +44,7 @@ class HasChild
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function toArray() : array
     {
