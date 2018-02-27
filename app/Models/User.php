@@ -1275,7 +1275,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             else{
                 return 0.0;
             }
-
+        }
     public function refreshForumCache($forum = null, $postsChangeCount = 0)
     {
         if ($forum !== null) {
