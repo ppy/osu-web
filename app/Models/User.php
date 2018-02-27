@@ -1262,13 +1262,13 @@ class User extends Model implements AuthenticatableContract, Messageable
     {
         $stats = $this->statistics($mode);
         if ($stats) {
-            if ($mode == Osu){
+            if ($mode == osu){
                 return pow($stats->rank_score, 0.4) * 0.195;
-            }elseif ($mode == Taiko){
+            }elseif ($mode == taiko){
                 return pow($stats->rank_score, 0.4) * 0.165;
-            }elseif ($mode == Catch){
+            }elseif ($mode == fruits){
                 return pow($stats->rank_score, 0.4) * 0.155;
-            }elseif ($mode == Mania){
+            }elseif ($mode == mania){
                 return pow($stats->rank_score, 0.4) * 0.175;
                     }
                 }
