@@ -153,7 +153,7 @@ class BBCodeFromDB
         $index = 0;
 
         foreach ($images as $i) {
-            $proxiedSrc = proxy_image(html_entity_decode($i['url']));
+            $proxiedSrc = proxy_image(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
 
@@ -363,7 +363,7 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text, ENT_QUOTES);
+        return html_entity_decode_better($text);
     }
 
     public static function removeBBCodeTags($text)

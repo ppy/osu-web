@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'titleAppend' => trans('beatmaps.discussions.show.title', [
+    'titlePrepend' => trans('beatmaps.discussions.show.title', [
         'title' => $beatmapset->title,
         'mapper' => $beatmapset->user->username ?? '?',
     ]),

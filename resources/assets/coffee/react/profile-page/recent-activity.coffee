@@ -31,7 +31,7 @@ class ProfilePage.RecentActivity extends React.PureComponent
             className: 'profile-extra-entries'
             @props.recentActivity.map @_renderEntry
           div
-            className: 'profile-extra-entries__item profile-extra-entries__item--show-more'
+            className: 'profile-extra-entries__item'
             el ProfilePage.ShowMoreLink,
               collection: @props.recentActivity
               propertyName: 'recentActivity'

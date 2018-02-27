@@ -29,7 +29,6 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icone',
-            'index' => 'notizie',
             'supportTheGame' => 'sostieni il gioco',
         ],
         'help' => [

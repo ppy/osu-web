@@ -34,7 +34,7 @@ return [
             'getDownload' => 'download',
             'getIcons' => 'icons',
             'groups-show' => 'groups',
-            'index' => 'osu!',
+            'index' => 'dashboard',
             'legal-show' => 'information',
             'news-index' => 'news',
             'news-show' => 'news',

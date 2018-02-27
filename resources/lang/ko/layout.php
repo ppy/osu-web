@@ -34,7 +34,6 @@ return [
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
-            'index' => 'osu!',
             'legal-show' => '정보',
             'news-index' => '뉴스',
             'news-show' => '뉴스',

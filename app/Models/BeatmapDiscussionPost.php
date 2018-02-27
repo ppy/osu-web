@@ -281,7 +281,7 @@ class BeatmapDiscussionPost extends Model
             return trans('model_validation.beatmap_discussion_post.first_post');
         }
 
-        DB::transaction(function () use ($deletedBy) {
+        return DB::transaction(function () use ($deletedBy) {
             if ($deletedBy->getKey() !== $this->user_id) {
                 BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
             }
@@ -293,13 +293,13 @@ class BeatmapDiscussionPost extends Model
                 $systemPost->softDelete($deletedBy);
             }
 
-            $time = Carbon::now();
-
+            $timestamps = $this->timestamps;
+            $this->timestamps = false;
             $this->update([
                 'deleted_by_id' => $deletedBy->user_id,
-                'deleted_at' => $time,
-                'updated_at' => $time,
+                'deleted_at' => Carbon::now(),
             ]);
+            $this->timestamps = $timestamps;
 
             $this->beatmapDiscussion->refreshResolved();
 

@@ -32,7 +32,6 @@ return [
             'getChangelog' => 'список изменений',
             'getDownload' => 'скачать',
             'getIcons' => 'иконки',
-            'index' => 'osu!',
             'legal-show' => 'информация',
             'news-index' => 'новости',
             'news-show' => 'новости',
