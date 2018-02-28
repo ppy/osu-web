@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Elasticsearch;
 
-use Exception;
-
 class BoolQuery implements Queryable
 {
     protected $filters = [];

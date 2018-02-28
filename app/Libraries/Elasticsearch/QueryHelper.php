@@ -20,6 +20,8 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Exception;
+
 class QueryHelper
 {
     /**
