@@ -94,10 +94,6 @@ return [
         'origin_country_age' => ':age from :country',
         'origin_country' => 'From :country',
         'page_description' => 'osu! - Everything you ever wanted to know about :username!',
-        'post_count' => [
-            '_' => 'Contributed :count',
-            'count' => ':count forum posts',
-        ],
         'plays_with' => 'Plays with :devices',
         'title' => ":username's profile",
 
@@ -244,6 +240,10 @@ return [
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+        ],
+        'post_count' => [
+            '_' => 'Contributed :count',
+            'count' => ':count forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
