@@ -69,6 +69,8 @@ class ProfilePage.HeaderExtra extends React.Component
     joinDate = moment(@props.user.join_date)
     joinDateTitle = joinDate.format('LL')
 
+    postCount = osu.trans 'users.show.post_count.count', count: @props.user.post_count
+
     div
       className:
         """
@@ -133,7 +135,8 @@ class ProfilePage.HeaderExtra extends React.Component
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
                 __html:
-                  osu.trans 'users.show.post_count', count: rowValue @props.user.post_count
+                  osu.trans 'users.show.post_count._',
+                    count: rowValue postCount
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
