@@ -89,13 +89,13 @@ trait HasSearch
     }
 
     /**
-     * @param Highlight|string $highlight A Highlight object or the field to highlight.
+     * @param Highlight $highlight the fields and settings for highlighting. Set to null to remove.
      *
      * @return $this
      */
-    public function highlight($highlight)
+    public function highlight(?Highlight $highlight)
     {
-        $this->highlight = is_string($highlight) ? (new Highlight)->field($highlight) : $highlight;
+        $this->highlight = $highlight;
 
         return $this;
     }

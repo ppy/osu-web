@@ -73,7 +73,6 @@ class Search implements Queryable
             'sort' => $this->sort,
         ];
 
-        // TODO: accept more variations
         if (isset($this->highlight)) {
             $body['highlight'] = $this->highlight->toArray();
         }

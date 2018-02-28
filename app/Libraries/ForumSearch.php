@@ -137,7 +137,12 @@ class ForumSearch extends Search implements \ArrayAccess
         return (new static($options))
             ->page($params['page'] ?? 1)
             ->size($params['size'] ?? $params['limit'] ?? 50)
-            ->highlight('search_content');
+            ->highlight(
+                (new Highlight)
+                    ->field('search_content')
+                    ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                    ->numberOfFragments(3)
+            );
     }
 
     public function data()
