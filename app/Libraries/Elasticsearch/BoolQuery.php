@@ -37,7 +37,7 @@ class BoolQuery implements Queryable
      */
     public function filter($clause)
     {
-        $this->filters[] = static::clauseToArray($clause);
+        $this->filters[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
@@ -49,7 +49,7 @@ class BoolQuery implements Queryable
      */
     public function must($clause)
     {
-        $this->musts[] = static::clauseToArray($clause);
+        $this->musts[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
@@ -61,7 +61,7 @@ class BoolQuery implements Queryable
      */
     public function mustNot($clause)
     {
-        $this->mustNots[] = static::clauseToArray($clause);
+        $this->mustNots[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
@@ -73,7 +73,7 @@ class BoolQuery implements Queryable
      */
     public function should($clause)
     {
-        $this->shoulds[] = static::clauseToArray($clause);
+        $this->shoulds[] = QueryHelper::clauseToArray($clause);
 
         return $this;
     }
@@ -109,23 +109,5 @@ class BoolQuery implements Queryable
         }
 
         return $bool;
-    }
-
-    /**
-     * @param array|Queryable $clause
-     *
-     * @return array
-     */
-    public static function clauseToArray($clause) : array
-    {
-        if (is_array($clause)) {
-            return $clause;
-        }
-
-        if (is_object($clause) && $clause instanceof Queryable) {
-            return $clause->toArray();
-        }
-
-        throw new Exception('$clause should be array or Queryable.');
     }
 }

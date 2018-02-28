@@ -82,7 +82,7 @@ class Search implements Queryable
             $body['_source'] = $this->source;
         }
 
-        $body['query'] = is_array($this->query) ? $this->query : $this->query->toArray();
+        $body['query'] = QueryHelper::clauseToArray($this->query);
 
         $json = ['body' => $body, 'index' => $this->index];
 

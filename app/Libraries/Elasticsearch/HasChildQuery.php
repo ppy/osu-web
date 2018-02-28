@@ -71,7 +71,7 @@ class HasChildQuery implements Queryable
         $body = [
             'type' => $this->type,
             'inner_hits' => $inner,
-            'query' => is_array($this->query) ? $this->query : $this->query->toArray(),
+            'query' => QueryHelper::clauseToArray($this->query),
         ];
 
         if (isset($this->scoreMode)) {

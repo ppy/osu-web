@@ -104,7 +104,7 @@ trait HasSearch
      * The query for the search.
      * array is supported for compatiblity and more complicated/unimplemented stuff.
      *
-     * @param array|Query
+     * @param array|Queryable
      *
      * @return $this
      */
