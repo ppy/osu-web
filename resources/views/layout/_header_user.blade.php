@@ -29,7 +29,7 @@
     <div
         class="
             avatar
-            avatar--full-rounded
+            avatar--full
             {{ Auth::user() === null ? 'avatar--guest' : '' }}
             js-nav-avatar
             js-current-user-avatar

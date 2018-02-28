@@ -48,13 +48,13 @@ class BeatmapDiscussionPostsController extends Controller
         $post = BeatmapDiscussionPost::whereNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionPostDestroy', $post)->ensureCan();
 
-        $error = $post->softDelete(Auth::user());
-
-        if ($error === null) {
-            return $post->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $post->softDeleteOrExplode(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $post->beatmapset->defaultDiscussionJson();
     }
 
     public function index()
@@ -142,7 +142,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            $saved = DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
+            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -159,32 +159,25 @@ class BeatmapDiscussionPostsController extends Controller
                 if ($resetNominations) {
                     $discussion->beatmapset->refreshCache();
                 }
-
-                return true;
             });
         } catch (ModelNotSavedException $_e) {
-            $saved = false;
+            return error_popup(trans('beatmaps.discussion-posts.store.error'));
         }
 
         $postIds = array_pluck($posts, 'id');
+        $beatmapset = $discussion->beatmapset;
 
-        if ($saved === true) {
-            $beatmapset = $discussion->beatmapset;
+        BeatmapsetWatch::markRead($beatmapset, Auth::user());
+        NotifyBeatmapsetUpdate::dispatch([
+            'user' => Auth::user(),
+            'beatmapset' => $beatmapset,
+        ]);
 
-            BeatmapsetWatch::markRead($beatmapset, Auth::user());
-            NotifyBeatmapsetUpdate::dispatch([
-                'user' => Auth::user(),
-                'beatmapset' => $beatmapset,
-            ]);
-
-            return [
-                'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
-                'beatmap_discussion_post_ids' => $postIds,
-                'beatmap_discussion_id' => $discussion->id,
-            ];
-        } else {
-            return error_popup(trans('beatmaps.discussion-posts.store.error'));
-        }
+        return [
+            'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
+            'beatmap_discussion_post_ids' => $postIds,
+            'beatmap_discussion_id' => $discussion->id,
+        ];
     }
 
     public function update($id)
