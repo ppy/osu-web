@@ -70,6 +70,7 @@ class UserTransformer extends Fractal\TransformerAbstract
             'website' => $user->user_website,
             'playstyle' => $user->osu_playstyle,
             'playmode' => $user->playmode,
+            'post_count' => $user->user_posts,
             'profile_colour' => $user->user_colour,
             'profile_order' => $profileCustomization->extras_order,
             'cover_url' => $profileCustomization->cover()->url(),
