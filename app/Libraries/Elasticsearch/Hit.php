@@ -40,6 +40,12 @@ class Hit implements \ArrayAccess
      * Gets the highlights of the specified field, if any;
      * otherwise returns a html_excerpt of the _source field.
      *
+     * If the end of the highlight is past the end of the cutoff,
+     * the end of the highlight will be used as the cutoff instead.
+     *
+     * @param string $field name of the field to extract the highlight from.
+     * @param int $limit length to cutoff the highlight fragment at.
+     *
      * @return array
      */
     public function highlights(string $field, ?int $limit = null)
@@ -51,6 +57,11 @@ class Hit implements \ArrayAccess
             }
 
             return array_map(function ($text) use ($limit) {
+                // ensure cutoff is after the end of the highlight, if any.
+                // TODO: look at storing offsets in index and using those to build highlights instead?
+                $cap = strpos($text, '</em>') + 5;
+                $limit = $cap === false ?: max($cap, $limit);
+
                 return str_limit($text, $limit, '...');
             }, $highlights);
         }
