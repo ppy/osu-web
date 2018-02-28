@@ -232,7 +232,7 @@ return [
 
     'popup_login' => [
         'login' => [
-            'email' => 'email address',
+            'email' => 'username or email address',
             'forgot' => "I've forgotten my details",
             'password' => 'password',
             'title' => 'Sign In To Proceed',
