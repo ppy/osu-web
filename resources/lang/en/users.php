@@ -243,7 +243,7 @@ return [
         ],
         'post_count' => [
             '_' => 'Contributed :count',
-            'count' => ':count forum posts',
+            'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',
