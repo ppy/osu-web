@@ -54,6 +54,9 @@ class PostSearch extends Search implements \ArrayAccess
 
         $this->query($query);
 
+        // default sort
+        $this->sort(['post_time' => 'desc']);
+
         return parent::toArray();
     }
 
