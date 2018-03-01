@@ -23,6 +23,7 @@ namespace App\Models\Forum;
 use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
 use App\Models\Beatmapset;
+use App\Models\Elasticsearch;
 use App\Models\Log;
 use App\Models\User;
 use App\Traits\Validatable;
@@ -33,7 +34,7 @@ use Illuminate\Database\QueryException;
 
 class Topic extends Model
 {
-    use SoftDeletes, Validatable;
+    use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
     const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 

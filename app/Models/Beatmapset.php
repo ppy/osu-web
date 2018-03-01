@@ -1279,4 +1279,13 @@ class Beatmapset extends Model implements AfterCommit
     {
         dispatch(new EsIndexDocument($this));
     }
+
+    public static function removeMetadataText($text)
+    {
+        // TODO: see if can be combined with description extraction thingy without
+        // exploding
+        static $pattern = '/^(.*?)-{15}/s';
+
+        return preg_replace($pattern, '', $text);
+    }
 }
