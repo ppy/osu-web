@@ -21,8 +21,8 @@
 namespace App\Libraries\Search;
 
 use App;
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
-use App\Libraries\Elasticsearch\Query;
 use App\Models\Wiki\Page;
 
 class WikiSearch extends RecordSearch
@@ -52,7 +52,7 @@ class WikiSearch extends RecordSearch
             return [];
         }
 
-        $langQuery = (new Query())
+        $langQuery = (new BoolQuery())
             ->shouldMatch(1)
             ->should(['constant_score' => [
                 'boost' => 1000,
@@ -70,7 +70,7 @@ class WikiSearch extends RecordSearch
                 ],
             ]]);
 
-        $matchQuery = (new Query())
+        $matchQuery = (new BoolQuery())
             ->shouldMatch(1)
             ->should(['match' => [
                 'tags' => [
@@ -94,7 +94,7 @@ class WikiSearch extends RecordSearch
                 'page_text' => $params['query'],
             ]]);
 
-        $query = (new Query)->must($langQuery)->must($matchQuery);
+        $query = (new BoolQuery)->must($langQuery)->must($matchQuery);
         $search = (new static(config('osu.elasticsearch.index.wiki_pages'), Page::class))
             ->size($params['limit'])
             ->page($params['page'])

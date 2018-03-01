@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Search;
 
-use App\Libraries\Elasticsearch\Query;
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\User;
 
@@ -66,7 +66,7 @@ class UserSearch extends RecordSearch
             'fields' => ['username', 'username._*'],
         ];
 
-        return (new Query())
+        return (new BoolQuery())
             ->shouldMatch(1)
             ->should(['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]])
             ->should(['multi_match' => array_merge(['query' => $username], $lowercase_stick)])

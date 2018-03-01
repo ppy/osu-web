@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Search;
 
-use App\Libraries\Elasticsearch\Query;
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
