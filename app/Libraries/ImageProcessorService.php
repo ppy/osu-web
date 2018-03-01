@@ -25,9 +25,8 @@ use App\Models\Beatmapset;
 
 class ImageProcessorService
 {
-    public function __construct($workingFolder = null, $endpoint = null)
+    public function __construct($endpoint = null)
     {
-        $this->workingFolder = $workingFolder ?? sys_get_temp_dir();
         $this->endpoint = $endpoint ?? config('osu.beatmap_processor.thumbnailer');
     }
 
@@ -50,12 +49,13 @@ class ImageProcessorService
         return $this->process("thumb/$format", $src);
     }
 
+    // returns a handle instead of a filename to keep tmpfile alive
     public function process($method, $src)
     {
         $src = preg_replace("/https?:\/\//", '', $src);
-        $tmpFile = tempnam($this->workingFolder, 'ips').'.jpg';
         try {
-            $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
+            $tmpFile = tmpfile();
+            $bytesWritten = fwrite($tmpFile, file_get_contents($this->endpoint."/{$method}/{$src}"));
         } catch (\ErrorException $e) {
             if (strpos($e->getMessage(), 'HTTP request failed!') !== false) {
                 throw new BeatmapProcessorException('HTTP request failed!');
@@ -66,7 +66,7 @@ class ImageProcessorService
             }
         }
 
-        if (!$ok || filesize($tmpFile) < 100) {
+        if ($bytesWritten === false || $bytesWritten < 100) {
             throw new BeatmapProcessorException("Error retrieving processed image: $method");
         }
 
