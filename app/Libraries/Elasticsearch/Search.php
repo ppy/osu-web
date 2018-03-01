@@ -55,7 +55,7 @@ abstract class Search implements Queryable
 
     public function getPaginator(array $options = [])
     {
-        $page = $this->getPageParams();
+        $page = $this->getPaginationParams();
         if (!isset($page['page'])) {
             // no laravel paginator if offset-only paging is used
             return;
