@@ -40,6 +40,16 @@ class BeatmapsetSearch extends RecordSearch
         return $this->response()->records()->with('beatmaps')->get();
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function sort(array $sort)
+    {
+        $this->sort[] = static::normalizeSort($sort);
+
+        return $this;
+    }
+
     public function toArray() : array
     {
         $params = $this->options;
@@ -221,17 +231,23 @@ class BeatmapsetSearch extends RecordSearch
 
     public static function searchES(array $params = [])
     {
+        // extract sort-related keys
+        $sort = [
+            'sort_field' => $params['sort_field'],
+            'sort_order' => $params['sort_order'],
+        ];
+
         return (new static($params))
             ->size($params['limit'])
             ->page($params['page'])
-            ->sort(static::searchSortParamsES($params))
+            ->sort($sort)
             ->source('_id');
     }
 
     /**
      * Generate sort parameters for the elasticsearch query.
      */
-    public static function searchSortParamsES(array $params)
+    public static function normalizeSort(array $params)
     {
         static $fields = [
             'artist' => 'artist.raw',
