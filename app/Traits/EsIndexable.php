@@ -36,6 +36,17 @@ trait EsIndexable
 
     abstract public function toEsJson();
 
+    /**
+     * The value for _routing.
+     * Override to provide a routing value; null by default.
+     *
+     * @return string|null
+     */
+    public function esRouting()
+    {
+        // null will be omitted when used as routing.
+    }
+
     public function getEsId()
     {
         return $this->getKey();
@@ -46,6 +57,7 @@ trait EsIndexable
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
+            'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
         ], $options);
@@ -58,6 +70,7 @@ trait EsIndexable
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
+            'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
         ], $options);
@@ -125,7 +138,10 @@ trait EsIndexable
             foreach ($models as $model) {
                 $next = $model;
                 // bulk API am speshul.
-                $metadata = ['_id' => $model->getEsId()];
+                $metadata = [
+                    '_id' => $model->getEsId(),
+                    '_routing' => $model->esRouting(),
+                ];
 
                 if ($isSoftDeleting && $model->trashed()) {
                     $actions[] = ['delete' => $metadata];

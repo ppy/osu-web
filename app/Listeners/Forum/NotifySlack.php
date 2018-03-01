@@ -64,7 +64,7 @@ class NotifySlack implements ShouldQueue
         $this->topic = $event->topic;
         $this->user = $event->user;
         $this->prefix = $options['prefix'];
-        $this->message = html_entity_decode($options['message'], ENT_QUOTES | ENT_XML1, 'UTF-8');
+        $this->message = html_entity_decode_better($options['message']);
 
         return Slack::to('dev')
             ->attach([

@@ -23,16 +23,19 @@ namespace App\Console\Commands;
 use App\Libraries\Elasticsearch\Indexing;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
+use App\Models\Forum\Topic;
 use App\Models\User;
 use Illuminate\Console\Command;
 
 class EsIndexDocuments extends Command
 {
     const ALLOWED_TYPES = [
-        'beatmapsets' => Beatmapset::class,
-        'posts' => Post::class,
-        'users' => User::class,
+        'beatmapsets' => [Beatmapset::class],
+        'posts' => [Topic::class, Post::class],
+        'users' => [User::class],
     ];
+
+    const BATCH_SIZE = 1000;
 
     /**
      * The name and signature of the console command.
@@ -50,8 +53,8 @@ class EsIndexDocuments extends Command
 
     protected $cleanup;
     protected $inplace;
+    protected $groups;
     protected $suffix;
-    protected $types;
     protected $yes;
 
     /**
@@ -65,7 +68,8 @@ class EsIndexDocuments extends Command
         $this->suffix = !$this->inplace ? '_'.time() : '';
 
         $oldIndices = [];
-        foreach ($this->types as $type) {
+        foreach ($this->groups as $name) {
+            $type = static::ALLOWED_TYPES[$name][0];
             $oldIndices[] = Indexing::getOldIndices($type::esIndexName());
         }
 
@@ -102,26 +106,39 @@ class EsIndexDocuments extends Command
     protected function index()
     {
         $indices = [];
-        foreach ($this->types as $type) {
+        foreach ($this->groups as $name) {
+            $indices = array_merge($indices, $this->indexGroup($name));
+        }
+
+        return $indices;
+    }
+
+    private function indexGroup($name)
+    {
+        $indices = [];
+        $types = static::ALLOWED_TYPES[$name];
+
+        foreach ($types as $i => $type) {
             $count = $type::esIndexingQuery()->count();
             $bar = $this->output->createProgressBar($count);
 
-            if (!$this->inplace) {
-                $indexName = "{$type::esIndexName()}{$this->suffix}";
+            $indexName = "{$type::esIndexName()}{$this->suffix}";
+            $pretext = $this->inplace ? 'In-place indexing' : 'Indexing';
+            $this->info("{$pretext} {$type} into {$indexName}");
 
-                $this->info("Indexing {$type} into {$indexName}");
-
-                $type::esIndexIntoNew(1000, $indexName, function ($progress) use ($bar) {
+            if (!$this->inplace && $i === 0) {
+                // create new index if the first type for this index, otherwise
+                // index in place.
+                $type::esIndexIntoNew(static::BATCH_SIZE, $indexName, function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
-
-                $indices[] = $indexName;
             } else {
-                $this->info("In-place indexing {$type} into {$type::esIndexName()}");
-                $type::esReindexAll(1000, 0, [], function ($progress) use ($bar) {
+                $type::esReindexAll(static::BATCH_SIZE, 0, [], function ($progress) use ($bar) {
                     $bar->setProgress($progress);
                 });
+            }
 
+            if ($i === 0) {
                 $indices[] = $type::esIndexName();
             }
 
@@ -140,15 +157,14 @@ class EsIndexDocuments extends Command
 
         if ($this->option('types')) {
             $types = explode(',', $this->option('types'));
-            $this->types = [];
+            $this->groups = [];
             foreach ($types as $type) {
-                $class = static::ALLOWED_TYPES[$type] ?? null;
-                if ($class) {
-                    $this->types[] = $class;
+                if (array_key_exists($type, static::ALLOWED_TYPES)) {
+                    $this->groups[] = $type;
                 }
             }
         } else {
-            $this->types = array_values(static::ALLOWED_TYPES);
+            $this->groups = array_keys(static::ALLOWED_TYPES);
         }
     }
 
