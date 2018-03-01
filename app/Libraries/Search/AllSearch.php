@@ -37,10 +37,11 @@ class AllSearch
 
     const DEFAULT_MODE = 'all';
 
-    private $cache = [];
     public $params;
     public $user;
     public $requestedLocale;
+
+    private $cache = [];
 
     public function __construct($params)
     {
