@@ -133,11 +133,9 @@ class UserTransformer extends Fractal\TransformerAbstract
 
     public function includeRecentInfringements(User $user)
     {
-        $banHistories = $user->banHistories();
+        $banHistories = $user->banHistories()->recent();
 
-        if (priv_check('UserSilenceShowExtendedInfo')->can()) {
-            $banHistories->extended();
-        } else {
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
             $banHistories->default();
         }
 
