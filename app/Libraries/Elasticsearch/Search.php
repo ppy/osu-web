@@ -71,6 +71,16 @@ abstract class Search implements Queryable
     }
 
     /**
+     * Returns if the query string is considered valid. Does not account for query errors.
+     *
+     * @return bool true if the query string is valid; false, otherwise.
+     */
+    public function isValidQueryString() : bool
+    {
+        return true;
+    }
+
+    /**
      * Not the same as paginate on laravel's query builder; this one can actually pass options to
      * the paginator.
      */
