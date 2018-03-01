@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
-            'friends' => '好友',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
             'changelog-show' => '版本',
@@ -44,7 +43,7 @@ return [
         'help' => [
             '_' => '帮助',
             'getFaq' => '常见问题',
-            'getSupport' => '获取帮助',
+            'getSupport' => '获取帮助', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -78,7 +77,6 @@ return [
             'dev' => 'osu! 开发',
             'getForum' => '论坛',
             'getChat' => '聊天',
-            'getSupport' => '获取帮助',
             'getLive' => '直播',
             'contests' => '评选',
             'profile' => '个人资料',

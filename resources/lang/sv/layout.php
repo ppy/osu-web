@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'hem',
             'account-edit' => 'inställningar',
-            'friends' => 'vänner',
             'friends-index' => 'vänner',
             'changelog-index' => 'ändringslogg',
             'changelog-show' => 'build',
@@ -44,7 +43,7 @@ return [
         'help' => [
             '_' => 'hjälp',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -75,7 +74,6 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'chatt',
-            'getSupport' => 'support',
             'getLive' => 'live',
             'contests' => 'tävlingar',
             'profile' => 'profil',
