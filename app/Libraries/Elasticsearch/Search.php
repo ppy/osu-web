@@ -64,7 +64,7 @@ abstract class Search implements Queryable
         return new LengthAwarePaginator(
             $this->data(),
             $this->total(),
-            $page['limit'],
+            $page['size'],
             $page['page'],
             $options
         );
