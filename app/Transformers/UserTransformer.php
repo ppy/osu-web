@@ -31,7 +31,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'follower_count',
         'friends',
         'page',
-        'recent_infringements',
+        'recent_ban_history',
         'ranked_and_approved_beatmapset_count',
         'unranked_beatmapset_count',
         'graveyard_beatmapset_count',
@@ -131,7 +131,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeRecentInfringements(User $user)
+    public function includeRecentBanHistory(User $user)
     {
         $banHistories = $user->banHistories()->recent();
 

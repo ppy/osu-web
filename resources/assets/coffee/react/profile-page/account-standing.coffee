@@ -24,7 +24,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
   columns = ['date', 'action', 'length', 'description']
 
   render: ->
-    most_recent = _.first @props.user.recent_infringements
+    most_recent = _.first @props.user.recent_ban_history
 
     div
       className: 'page-extra'
@@ -68,11 +68,11 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
             tbody
               className: "#{bn}__table-body"
-              @table _.filter @props.user.recent_infringements, (d) -> d.type != 'note'
+              @table _.filter @props.user.recent_ban_history, (d) -> d.type != 'note'
 
             tbody
               className: "#{bn}__table-body #{bn}__table-body--notes"
-              @table _.filter @props.user.recent_infringements, (d) -> d.type == 'note'
+              @table _.filter @props.user.recent_ban_history, (d) -> d.type == 'note'
 
   table: (events) ->
     for event, i in events

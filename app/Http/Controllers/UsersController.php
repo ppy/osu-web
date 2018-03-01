@@ -265,7 +265,7 @@ class UsersController extends Controller
             'user_achievements',
             'follower_count',
             'page',
-            'recent_infringements',
+            'recent_ban_history',
             'ranked_and_approved_beatmapset_count',
             'unranked_beatmapset_count',
             'graveyard_beatmapset_count',
@@ -273,7 +273,7 @@ class UsersController extends Controller
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {
-            $userIncludes[] = 'recent_infringements.banner';
+            $userIncludes[] = 'recent_ban_history.banner';
         }
 
         $userArray = json_item(
