@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
-            'friends' => 'znajomi',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-show' => 'kompilacja',
@@ -46,7 +45,7 @@ return [
             '_' => 'pomoc',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'pomoc techniczna',
+            'getSupport' => 'pomoc techniczna', //obsolete
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
@@ -75,7 +74,6 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'czat',
-            'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
             'contests' => 'konkursy',
             'profile' => 'profil',

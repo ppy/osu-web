@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => '메인',
             'account-edit' => '설정',
-            'friends' => '친구',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
             'changelog-show' => '빌드 버전',
@@ -44,7 +43,7 @@ return [
         'help' => [
             '_' => '도움말',
             'getFaq' => 'FAQ',
-            'getSupport' => '지원 센터', // osu!support와 혼동될까봐 "센터"를 추가
+            'getSupport' => '지원 센터', // osu!support와 혼동될까봐 "센터"를 추가 (obsolete)
             'getWiki' => '위키',
             'wiki-show' => '위키',
         ],
@@ -75,7 +74,6 @@ return [
             'dev' => 'osu!개발진',
             'getForum' => '포럼',
             'getChat' => '채팅',
-            'getSupport' => '지원',
             'getLive' => '라이브 스트림',
             'contests' => '콘테스트',
             'profile' => '프로필',
