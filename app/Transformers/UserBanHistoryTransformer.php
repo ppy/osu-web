@@ -34,8 +34,8 @@ class UserBanHistoryTransformer extends Fractal\TransformerAbstract
         return [
             'description' => $bh->reason,
             'type' => $bh->ban_status,
-            'timestamp' => $bh->timestamp->toIso8601String(),
-            'end_time' => $bh->endTime()->toIso8601String(),
+            'timestamp' => json_time($bh->timestamp),
+            'end_time' => json_time($bh->endTime()),
             'length' => $bh->period,
         ];
     }
