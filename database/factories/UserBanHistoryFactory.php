@@ -4,7 +4,8 @@
 $factory->define(App\Models\UserBanHistory::class, function (Faker\Generator $faker) {
     return [
         'reason' => $faker->bs,
-        'period' => 300 << $faker->numberBetween(0, 10),
+        // 5 minutes (300 seconds) times 2 to the nth power (as in the standard osu silence durations)
+        'period' => 300 * (2 ** $faker->numberBetween(1, 10)),
         'banner_id' => App\Models\User::inRandomOrder()->first()->user_id,
     ];
 });
