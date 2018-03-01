@@ -28,6 +28,11 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
+    public function __construct(array $options = [])
+    {
+        parent::__construct(Beatmapset::esIndexName(), Beatmapset::class, $options);
+    }
+
     public function records()
     {
         return $this->response()->records()->with('beatmaps')->get();
@@ -206,7 +211,7 @@ class BeatmapsetSearch extends RecordSearch
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
-        return (new static(Beatmapset::esIndexName(), Beatmapset::class))
+        return (new static($params))
             ->size($params['limit'])
             ->page($params['page'])
             ->sort(static::searchSortParamsES($params))
