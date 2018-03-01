@@ -97,7 +97,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
           div
             className: "#{bn}__box #{bn}__box--small #{'bn__box--restriction' if event.type == 'restriction'}"
             if event.type == 'restriction'
-              osu.trans 'users.show.extra.account_standing.recent_infringements.length_permament'
+              osu.trans 'users.show.extra.account_standing.recent_infringements.length_permanent'
             else if event.type == 'note'
               ''
             else

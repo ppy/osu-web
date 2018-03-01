@@ -235,7 +235,7 @@ return [
                     'date' => 'date',
                     'action' => 'action',
                     'length' => 'length',
-                    'length_permament' => 'Permament',
+                    'length_permanent' => 'Permanent',
                     'description' => 'description',
                     'banner' => 'by :username',
 
