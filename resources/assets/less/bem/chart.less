@@ -81,12 +81,11 @@
   }
 
   &__tooltip-container {
-    .default-border-radius();
-    flex: none;
-    padding: 10px 20px;
-    background-color: @pink-darker;
-    color: #fff;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 0;
 
     &::before {
       content: ' ';
@@ -97,6 +96,14 @@
       border-right: 5px solid transparent;
       border-top: 10px solid @pink-darker;
     }
+  }
+
+  &__tooltip-content {
+    .default-border-radius();
+    flex: none;
+    padding: 10px 20px;
+    background-color: @pink-darker;
+    color: #fff;
   }
 
   &__tooltip-text {

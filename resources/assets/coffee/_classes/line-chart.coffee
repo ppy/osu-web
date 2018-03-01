@@ -18,6 +18,14 @@
 
 class @LineChart
   constructor: (area, @options = {}) ->
+    @margins =
+      top: 20
+      right: 20
+      bottom: 50
+      left: 80
+
+    _.assign @margins, @options.margins
+
     @id = Math.floor(Math.random() * 1000)
     @options.scales ||= {}
     @options.scales.x ||= d3.scaleTime()
@@ -59,10 +67,13 @@ class @LineChart
     @tooltipContainer = @tooltip.append 'div'
       .classed 'chart__tooltip-container', true
 
-    @tooltipY = @tooltipContainer.append 'div'
+    @tooltipContent = @tooltipContainer.append 'div'
+      .classed 'chart__tooltip-content', true
+
+    @tooltipY = @tooltipContent.append 'div'
       .classed 'chart__tooltip-text chart__tooltip-text--y', true
 
-    @tooltipX = @tooltipContainer.append 'div'
+    @tooltipX = @tooltipContent.append 'div'
       .classed 'chart__tooltip-text chart__tooltip-text--x', true
 
     @xAxis = d3.axisBottom()
@@ -73,14 +84,7 @@ class @LineChart
     @yAxis = d3.axisLeft().ticks(4)
 
     @line = d3.line()
-      .curve(d3.curveMonotoneX)
-
-
-  margins:
-    top: 20
-    right: 20
-    bottom: 50
-    left: 80
+      .curve(@options.curve ? d3.curveMonotoneX)
 
 
   loadData: (data) =>
@@ -236,13 +240,6 @@ class @LineChart
     @tooltipY.html (@options.tooltipFormats?.y || @options.formats.y)(d.y)
     @tooltip
       .style 'transform', "translate(#{coordsTooltip.join(', ')})"
-
-    unless @tooltipContainer.attr('data-width-set') == '1'
-      width = @tooltipContainer.node().getBoundingClientRect().width * 1.2
-      @tooltipContainer
-        .attr 'data-width-set', '1'
-        .style 'width', "#{width}px"
-        .style 'margin-left', "-#{width / 2}px"
 
 
   lookupIndexFromX: (x) =>
