@@ -50,7 +50,8 @@
                 </div>
 
                 @if ($search->mode === $mode)
-                    @if (!$page->hasMorePages() && ($page->overLimit()))
+                    {{-- overLimit call needs fixing --}}
+                    @if (!$page->hasMorePages())
                         <div class="search-result__row search-result__row--notice">
                             {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
                         </div>
