@@ -67,7 +67,7 @@ class UserBanHistory extends Model
     public function scopeRecent($query)
     {
         return $query
-            ->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.infringement_persist_days')))
+            ->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.ban_persist_days')))
             ->orderBy('timestamp', 'desc');
     }
 
