@@ -31,6 +31,8 @@ class BeatmapsetSearch extends RecordSearch
     public function __construct(array $options = [])
     {
         parent::__construct(Beatmapset::esIndexName(), Beatmapset::class, $options);
+
+        $this->queryString = $options['query'];
     }
 
     public function records()
@@ -38,80 +40,10 @@ class BeatmapsetSearch extends RecordSearch
         return $this->response()->records()->with('beatmaps')->get();
     }
 
-    public static function search(array $params = []) : self
+    public function toArray() : array
     {
-        $startTime = microtime(true);
-        $params = static::searchParams($params);
-
-        $search = static::searchES($params);
-
-        return $search;
-    }
-
-    public static function searchParams(array $params = [])
-    {
-        // simple stuff
-        $params['query'] = presence($params['query'] ?? null);
-        $params['status'] = get_int($params['status'] ?? null) ?? 0;
-        $params['genre'] = get_int($params['genre'] ?? null);
-        $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode('.', $params['extra'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
-
-        // mode
-        $params['mode'] = get_int($params['mode'] ?? null);
-        if (!in_array($params['mode'], Beatmap::MODES, true)) {
-            $params['mode'] = null;
-        }
-
-        // rank
-        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
-
-        // sort_order, sort_field (and clear up sort)
-        $sort = explode('_', array_pull($params, 'sort'));
-
-        $validSortFields = [
-            'artist' => 'artist',
-            'creator' => 'creator',
-            'difficulty' => 'difficulties.difficultyrating',
-            'nominations' => 'nominations',
-            'plays' => 'play_count',
-            'ranked' => 'approved_date',
-            'rating' => 'rating',
-            'relevance' => '_score',
-            'title' => 'title',
-            'updated' => 'last_update',
-        ];
-        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
-
-        $params['sort_order'] = $sort[1] ?? null;
-        if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
-            $params['sort_order'] = 'desc';
-        }
-
-        if ($params['sort_field'] === null) {
-            if (present($params['query'])) {
-                $params['sort_field'] = '_score';
-                $params['sort_order'] = 'desc';
-            } else {
-                if (in_array($params['status'], [4, 5, 6], true)) {
-                    $params['sort_field'] = 'last_update';
-                    $params['sort_order'] = 'desc';
-                } else {
-                    $params['sort_field'] = 'approved_date';
-                    $params['sort_order'] = 'desc';
-                }
-            }
-        }
-
-        return $params;
-    }
-
-    public static function searchES(array $params = [])
-    {
-        $query = (new Query())->shouldMatch(1);
+        $params = $this->options;
+        $query = (new BoolQuery())->shouldMatch(1);
 
         if ($params['genre'] !== null) {
             $query->must(['match' => ['genre_id' => $params['genre']]]);
@@ -211,12 +143,89 @@ class BeatmapsetSearch extends RecordSearch
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
+        $this->query($query);
+
+        return parent::toArray();
+    }
+
+    public static function search(array $params = []) : self
+    {
+        $startTime = microtime(true);
+        $params = static::searchParams($params);
+
+        $search = static::searchES($params);
+
+        return $search;
+    }
+
+    public static function searchParams(array $params = [])
+    {
+        // simple stuff
+        $params['query'] = presence($params['query'] ?? null);
+        $params['status'] = get_int($params['status'] ?? null) ?? 0;
+        $params['genre'] = get_int($params['genre'] ?? null);
+        $params['language'] = get_int($params['language'] ?? null);
+        $params['extra'] = explode('.', $params['extra'] ?? null);
+        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
+        $params['page'] = max(1, get_int($params['page'] ?? 1));
+
+        // mode
+        $params['mode'] = get_int($params['mode'] ?? null);
+        if (!in_array($params['mode'], Beatmap::MODES, true)) {
+            $params['mode'] = null;
+        }
+
+        // rank
+        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
+
+        // sort_order, sort_field (and clear up sort)
+        $sort = explode('_', array_pull($params, 'sort'));
+
+        $validSortFields = [
+            'artist' => 'artist',
+            'creator' => 'creator',
+            'difficulty' => 'difficulties.difficultyrating',
+            'nominations' => 'nominations',
+            'plays' => 'play_count',
+            'ranked' => 'approved_date',
+            'rating' => 'rating',
+            'relevance' => '_score',
+            'title' => 'title',
+            'updated' => 'last_update',
+        ];
+        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
+
+        $params['sort_order'] = $sort[1] ?? null;
+        if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
+            $params['sort_order'] = 'desc';
+        }
+
+        if ($params['sort_field'] === null) {
+            if (present($params['query'])) {
+                $params['sort_field'] = '_score';
+                $params['sort_order'] = 'desc';
+            } else {
+                if (in_array($params['status'], [4, 5, 6], true)) {
+                    $params['sort_field'] = 'last_update';
+                    $params['sort_order'] = 'desc';
+                } else {
+                    $params['sort_field'] = 'approved_date';
+                    $params['sort_order'] = 'desc';
+                }
+            }
+        }
+
+        return $params;
+    }
+
+    public static function searchES(array $params = [])
+    {
         return (new static($params))
             ->size($params['limit'])
             ->page($params['page'])
             ->sort(static::searchSortParamsES($params))
-            ->source('_id')
-            ->query($query);
+            ->source('_id');
     }
 
     /**
