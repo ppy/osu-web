@@ -24,7 +24,8 @@ class ProfilePage.AccountStanding extends React.PureComponent
   columns = ['date', 'action', 'length', 'description']
 
   render: ->
-    most_recent = _.first @props.user.recent_ban_history
+    latest = _.first @props.user.recent_ban_history
+    bans = _.partition @props.user.recent_ban_history, (d) -> d.type != 'note'
 
     div
       className: 'page-extra'
@@ -33,7 +34,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
       div
         className: "#{bn}"
 
-        if most_recent?
+        if latest?
           div
             className: "#{bn}__box #{bn}__box--large #{bn}__box--warning"
             span
@@ -41,14 +42,14 @@ class ProfilePage.AccountStanding extends React.PureComponent
                 __html: osu.trans 'users.show.extra.account_standing.bad_standing',
                   username: @props.user.username
 
-        if most_recent? && moment(most_recent.end_time).isAfter(moment.now())
+        if latest? && moment(latest.end_time).isAfter(moment.now())
           div
             className: "#{bn}__box #{bn}__box--large #{bn}__box--info"
             span
               dangerouslySetInnerHTML:
                 __html: osu.trans 'users.show.extra.account_standing.remaining_silence',
                   username: @props.user.username
-                  duration: @remaining most_recent
+                  duration: @remaining latest
 
       div {},
         h3
@@ -68,11 +69,11 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
             tbody
               className: "#{bn}__table-body"
-              @table _.filter @props.user.recent_ban_history, (d) -> d.type != 'note'
+              @table bans[0]
 
             tbody
               className: "#{bn}__table-body #{bn}__table-body--notes"
-              @table _.filter @props.user.recent_ban_history, (d) -> d.type == 'note'
+              @table bans[1]
 
   table: (events) ->
     for event, i in events
