@@ -110,7 +110,3 @@ class ProfilePage.AccountStanding extends React.PureComponent
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'users.show.extra.account_standing.recent_infringements.actor',
                     username: osu.link laroute.route('users.show', user: event.actor.id), event.actor.username
-
-
-  remaining: (event) ->
-    Math.round moment(event.timestamp).add(event.length, 'seconds').subtract(moment.now()).unix() / 3600
