@@ -572,15 +572,15 @@ function nav_links()
     $links['home'] = [
         '_' => route('home'),
         'news-index' => route('news.index'),
-        'friends' => route('friends.index'),
+        'team' => wiki_url('Team'),
         'changelog-index' => route('changelog.index'),
         'getDownload' => route('download'),
         'search' => route('search'),
     ];
-    $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
-        'getFaq' => wiki_url('FAQ'),
-        'getSupport' => wiki_url('Help_Center'),
+    $links['beatmaps'] = [
+        'index' => route('beatmapsets.index'),
+        'artists' => route('artists.index'),
+        'packs' => route('packs.index'),
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
@@ -588,11 +588,6 @@ function nav_links()
         'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
         'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
-    ];
-    $links['beatmaps'] = [
-        'index' => route('beatmapsets.index'),
-        'artists' => route('artists.index'),
-        'packs' => route('packs.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
@@ -604,6 +599,12 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'cart-show' => route('store.cart.show'),
+    ];
+    $links['help'] = [
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
+        'getRules' => wiki_url('Rules'),
+        'getSupport' => wiki_url('Help_Center'),
     ];
 
     return $links;
