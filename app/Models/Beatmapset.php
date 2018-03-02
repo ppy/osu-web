@@ -685,7 +685,7 @@ class Beatmapset extends Model implements AfterCommit
 
     public static function coverSizes()
     {
-        $shapes = ['cover', 'card', 'list'];
+        $shapes = ['cover', 'card', 'list', 'slimcover'];
         $scales = ['', '@2x'];
 
         $sizes = [];
