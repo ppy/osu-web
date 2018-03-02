@@ -47,7 +47,7 @@ return [
             'getFaq' => 'faq',
             'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
-            'getWiki' => 'wiki',                       
+            'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
