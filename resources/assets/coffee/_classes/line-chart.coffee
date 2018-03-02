@@ -69,7 +69,6 @@ class @LineChart
       .classed 'chart__tooltip-text chart__tooltip-text--x', true
 
     @xAxis = d3.axisBottom()
-      .ticks 15
       .tickSizeOuter 0
       .tickPadding 5
 
@@ -126,6 +125,7 @@ class @LineChart
     @xAxis
       .scale @options.scales.x
       .tickSizeInner -@height
+      .ticks @options.ticks?.x ? 15
       .tickFormat @options.formats?.x
       .tickValues @options.tickValues?.x
 

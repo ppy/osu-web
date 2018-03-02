@@ -28,6 +28,7 @@ class ProfilePage.Historical extends React.PureComponent
 
 
   componentDidMount: =>
+    $(window).on "throttled-resize.#{@id}", @resizeCharts
     @monthlyPlaycountsChartUpdate()
     @replaysWatchedCountsChartUpdate()
 
@@ -205,16 +206,11 @@ class ProfilePage.Historical extends React.PureComponent
         tooltipFormats:
           x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
         tickValues: {}
+        ticks: {}
 
       @charts[attribute] = new LineChart(area, options)
-      $(window).on "throttled-resize.#{@id}", @charts[attribute].resize
 
-    @charts[attribute].options.tickValues.x =
-      if data.length < 10
-        data.map (d) -> d.x
-      else
-        null
-
+    @updateTicks @charts[attribute], data
     @charts[attribute].loadData data
 
 
@@ -236,6 +232,27 @@ class ProfilePage.Historical extends React.PureComponent
     return if !@hasReplaysWatchedCounts()
 
     @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea
+
+
+  updateTicks: (chart, data) =>
+    if osu.isDesktop()
+      chart.options.ticks.x = null
+
+      data ?= chart.data
+      chart.options.tickValues.x =
+        if data.length < 10
+          data.map (d) -> d.x
+        else
+          null
+    else
+      chart.options.ticks.x = 6
+      chart.options.tickValues.x = null
+
+
+  resizeCharts: =>
+    for own _name, chart of @charts
+      @updateTicks chart
+      chart.resize()
 
 
   setMonthlyPlaycountsChartArea: (ref) =>
