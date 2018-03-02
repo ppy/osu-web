@@ -262,14 +262,16 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
-            'user_achievements',
+            'favourite_beatmapset_count',
             'follower_count',
+            'graveyard_beatmapset_count',
+            'monthly_playcounts',
             'page',
             'recent_ban_history',
             'ranked_and_approved_beatmapset_count',
+            'replays_watched_counts',
             'unranked_beatmapset_count',
-            'graveyard_beatmapset_count',
-            'favourite_beatmapset_count',
+            'user_achievements',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {

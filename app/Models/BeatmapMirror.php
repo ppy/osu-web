@@ -61,6 +61,10 @@ class BeatmapMirror extends Model
 
     public function generateURL(Beatmapset $beatmapset, $skipVideo = false)
     {
+        if ($beatmapset->download_disabled) {
+            return false;
+        }
+
         $noVideo = $skipVideo ? '1' : '0';
         $diskFilename = $beatmapset->filename;
         $serveFilename = "{$beatmapset->beatmapset_id} {$beatmapset->artist} - {$beatmapset->title}";

@@ -135,6 +135,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Sem registro de performance. :(',
+                'title' => 'Histórico',
+
                 'most_played' => [
                     'count' => 'vezes jogadas',
                     'title' => 'Mapas mais jogados',
@@ -143,7 +145,6 @@ return [
                     'accuracy' => 'precisão: :percentage',
                     'title' => 'Jogados recentemente (24h)',
                 ],
-                'title' => 'Histórico',
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponível',

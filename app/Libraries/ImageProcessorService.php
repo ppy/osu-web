@@ -20,14 +20,13 @@
 
 namespace App\Libraries;
 
-use App\Exceptions\BeatmapProcessorException;
+use App\Exceptions\ImageProcessorServiceException;
 use App\Models\Beatmapset;
 
 class ImageProcessorService
 {
-    public function __construct($workingFolder = null, $endpoint = null)
+    public function __construct($endpoint = null)
     {
-        $this->workingFolder = $workingFolder ?? sys_get_temp_dir();
         $this->endpoint = $endpoint ?? config('osu.beatmap_processor.thumbnailer');
     }
 
@@ -44,30 +43,31 @@ class ImageProcessorService
     public function resize($src, $format)
     {
         if (!self::isValidFormat($format)) {
-            throw new BeatmapProcessorException('Invalid format requested.');
+            throw new ImageProcessorServiceException('Invalid format requested.');
         }
 
         return $this->process("thumb/$format", $src);
     }
 
+    // returns a handle instead of a filename to keep tmpfile alive
     public function process($method, $src)
     {
         $src = preg_replace("/https?:\/\//", '', $src);
-        $tmpFile = tempnam($this->workingFolder, 'ips').'.jpg';
         try {
-            $ok = copy($this->endpoint."/{$method}/{$src}", $tmpFile);
+            $tmpFile = tmpfile();
+            $bytesWritten = fwrite($tmpFile, file_get_contents($this->endpoint."/{$method}/{$src}"));
         } catch (\ErrorException $e) {
             if (strpos($e->getMessage(), 'HTTP request failed!') !== false) {
-                throw new BeatmapProcessorException('HTTP request failed!');
+                throw new ImageProcessorServiceException('HTTP request failed!');
             } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
-                throw new BeatmapProcessorException('Connection refused');
+                throw new ImageProcessorServiceException('Connection refused.');
             } else {
                 throw $e;
             }
         }
 
-        if (!$ok || filesize($tmpFile) < 100) {
-            throw new BeatmapProcessorException("Error retrieving processed image: $method");
+        if ($bytesWritten === false || $bytesWritten < 100) {
+            throw new ImageProcessorServiceException("Error retrieving processed image: $method.");
         }
 
         return $tmpFile;

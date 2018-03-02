@@ -20,11 +20,17 @@
   font-size: @font-size--normal;
   display: flex;
   margin: 2px 0;
-  align-items: center;
+  align-items: baseline;
+
+  &__content {
+    word-wrap: break-word;
+    min-width: 0;
+  }
 
   &__icon {
     border-radius: 3px;
     width: 8px;
+    flex: none;
     align-self: stretch;
 
     .type(@name, @bg-color) {
@@ -54,6 +60,7 @@
 
   &__time {
     width: 80px;
+    flex: none;
     padding: 0 10px;
   }
 }

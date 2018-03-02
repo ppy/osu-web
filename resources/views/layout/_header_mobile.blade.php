@@ -82,4 +82,13 @@
             @include('layout.header_mobile.locale')
         </ul>
     </div>
+
+    @if (Auth::check() && !($current_section === 'home' && $current_action === 'search'))
+        <form action="{{ route('search') }}" class="navbar-mobile-search">
+            <input class="navbar-mobile-search__input" name="query" />
+            <button class="navbar-mobile-search__icon">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    @endif
 </div>

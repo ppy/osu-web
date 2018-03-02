@@ -69,6 +69,8 @@ class ProfilePage.HeaderExtra extends React.Component
     joinDate = moment(@props.user.join_date)
     joinDateTitle = joinDate.format('LL')
 
+    postCount = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
+
     div
       className:
         """
@@ -121,14 +123,20 @@ class ProfilePage.HeaderExtra extends React.Component
                   osu.trans 'users.show.lastvisit',
                     date: rowValue osu.timeago(@props.user.lastvisit)
 
-          if @props.user.playstyle?
-            div className: "#{bn}__rows",
+          div className: "#{bn}__rows",
+            if @props.user.playstyle?
               div
                 className: "#{bn}__row"
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.plays_with',
                       devices: rowValue playsWith
+            div
+              className: "#{bn}__row"
+              dangerouslySetInnerHTML:
+                __html:
+                  osu.trans 'users.show.post_count._',
+                    count: rowValue postCount
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",

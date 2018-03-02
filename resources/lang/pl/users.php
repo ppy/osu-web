@@ -138,6 +138,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
+                'title' => 'Historia',
+
                 'most_played' => [
                     'count' => 'ilość zagrań',
                     'title' => 'Najczęściej grane beatmapy',
@@ -146,7 +148,6 @@ return [
                     'accuracy' => 'precyzja: :percentage',
                     'title' => 'Ostatnie wyniki',
                 ],
-                'title' => 'Historia',
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',
@@ -222,6 +223,9 @@ return [
             'edit_big' => 'Edytuj mnie!',
             'placeholder' => 'Pisz tutaj',
             'restriction_info' => "Musisz posiadać <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
+        ],
+        'post_count' => [
+            'count' => ':count forum post|:count forum posts|:count forum posts', // needs translation; here to stop Lang.js from returning undefined
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',

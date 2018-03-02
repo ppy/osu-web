@@ -36,7 +36,7 @@ return [
             '_' => 'hulp',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'ondersteuning',
+            'getSupport' => 'ondersteuning', //obsolete
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -57,7 +57,6 @@ return [
             '_' => 'community',
             'getForum' => 'forum',
             'getChat' => 'chat',
-            'getSupport' => 'ondersteuning',
             'getLive' => 'live',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',

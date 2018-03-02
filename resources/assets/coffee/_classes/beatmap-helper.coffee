@@ -67,6 +67,6 @@ class @BeatmapHelper
     sortBy = ['convert', 'difficulty_rating']
 
     if beatmaps[0].mode == 'mania'
-      sortBy.unshift 'difficulty_size'
+      sortBy.unshift 'cs'
 
     _.sortBy beatmaps, sortBy
