@@ -129,11 +129,8 @@ class ProfilePage.Main extends React.PureComponent
   render: =>
     withMePage = @state.userPage.initialRaw.trim() != '' || @props.withEdit
 
-    profileOrder =
-      if _.isEmpty @state.user.account_history
-        @state.profileOrder
-      else
-        _.concat @state.profileOrder, 'account_standing'
+    profileOrder = @state.profileOrder.slice()
+    profileOrder.push 'account_standing' if !_.isEmpty @state.user.account_history
 
     extraPageParams =
       me:
