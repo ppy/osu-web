@@ -50,12 +50,12 @@ class BeatmapsetArchive
 
     public function osuFileList()
     {
-        return preg_grep("/\.osu$/i", $this->fileList());
+        return preg_grep('/\.osu$/i', $this->fileList());
     }
 
     public function readFile(string $filename)
     {
-        if (!presence($filename)) {
+        if (!present($filename)) {
             return false;
         }
 
