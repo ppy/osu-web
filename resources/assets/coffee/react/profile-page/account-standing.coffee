@@ -18,7 +18,7 @@
 {div, span, h3, table, thead, tbody, tr, th, td, time} = ReactDOMFactories
 el = React.createElement
 
-bn = 'profile-extra-account-standing'
+bn = 'profile-extra-recent-infringements'
 
 class ProfilePage.AccountStanding extends React.PureComponent
   columns = ['date', 'action', 'length', 'description']
@@ -30,45 +30,41 @@ class ProfilePage.AccountStanding extends React.PureComponent
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: false
 
+      if latest?
+        div
+          className: "page-extra__alert page-extra__alert--warning"
+          span
+            dangerouslySetInnerHTML:
+              __html: osu.trans 'users.show.extra.account_standing.bad_standing',
+                username: @props.user.username
+
+      if latest? && moment(latest.end_time).isAfter(moment.now())
+        div
+          className: "page-extra__alert page-extra__alert--info"
+          span
+            dangerouslySetInnerHTML:
+              __html: osu.trans 'users.show.extra.account_standing.remaining_silence',
+                username: @props.user.username
+                duration: osu.timeago moment(latest.timestamp).add(latest.length, 'seconds').format()
+
+      h3
+        className: 'page-extra__title page-extra__title--small'
+        osu.trans 'users.show.extra.account_standing.recent_infringements.title'
+
       div
         className: "#{bn}"
+        table
+          className: "#{bn}__table"
+          thead {},
+            tr {},
+              for column in columns
+                th
+                  key: column
+                  className: "#{bn}__table-header #{bn}__table-header--#{column}"
+                  osu.trans "users.show.extra.account_standing.recent_infringements.#{column}"
 
-        if latest?
-          div
-            className: "#{bn}__alert #{bn}__alert--warning"
-            span
-              dangerouslySetInnerHTML:
-                __html: osu.trans 'users.show.extra.account_standing.bad_standing',
-                  username: @props.user.username
-
-        if latest? && moment(latest.end_time).isAfter(moment.now())
-          div
-            className: "#{bn}__alert #{bn}__alert--info"
-            span
-              dangerouslySetInnerHTML:
-                __html: osu.trans 'users.show.extra.account_standing.remaining_silence',
-                  username: @props.user.username
-                  duration: osu.timeago moment(latest.timestamp).add(latest.length, 'seconds').format()
-
-      div {},
-        h3
-          className: 'page-extra__title page-extra__title--small'
-          osu.trans 'users.show.extra.account_standing.recent_infringements.title'
-
-        div className: "#{bn}__table-scroll-container",
-          table
-            className: "#{bn}__table"
-            thead {},
-              tr {},
-                for column in columns
-                  th
-                    key: column
-                    className: "#{bn}__table-header #{bn}__table-header--#{column}"
-                    osu.trans "users.show.extra.account_standing.recent_infringements.#{column}"
-
-            tbody
-              className: "#{bn}__table-body"
-              @table @props.user.account_history
+          tbody {},
+            @table @props.user.account_history
 
   table: (events) ->
     for event, i in events

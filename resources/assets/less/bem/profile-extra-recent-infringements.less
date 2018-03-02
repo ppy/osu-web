@@ -16,39 +16,20 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.profile-extra-account-standing {
-  @_top: profile-extra-account-standing;
+.profile-extra-recent-infringements {
+  @_top: profile-extra-recent-infringements;
 
-  &__alert {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    width: 100%;
-    height: 30px;
-    border-radius: 15px;
-
-    margin-bottom: 5px;
-    padding-left: 20px;
-
-    &--info {
-      background-color: #ccc;
-    }
-
-    &--warning {
-      background-color: @red-dark;
-      color: #fff;
-    }
-  }
+  overflow-x: auto;
 
   &__action {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
     height: 20px;
-    border-radius: 10px;
-    margin: 0 -10px;
+    width: 100%;
+    border-radius: 20px;
+
+    margin-left: -10px;
+    padding: 2px 10px;
+
+    line-height: 1em;
 
     &--note {
       background-color: @blue;
@@ -62,17 +43,11 @@
     &--silence {
       background-color: @yellow;
     }
-
-    &--note, &--restriction, &--silence {
-      padding-left: 10px;
-      width: 100px;
-    }
   }
 
   &__table {
     width: 100%;
     min-width: 800px;
-    font-size: 14px;
   }
 
   &__table-cell {
@@ -80,7 +55,7 @@
   }
 
   &__table-header {
-    font-size: 10px;
+    font-size: @font-size--small;
     font-weight: 900;
     text-transform: uppercase;
 
@@ -100,10 +75,6 @@
       width: 140px;
       padding-right: 40px;
     }
-  }
-
-  &__table-scroll-container {
-    overflow-x: auto;
   }
 
   &__actor {
