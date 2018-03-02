@@ -83,7 +83,8 @@ class ProfilePage.AccountStanding extends React.PureComponent
         td
           className: "#{bn}__table-cell #{bn}__table-cell--date"
           time
-            className: "timeago", dateTime: event.timestamp
+            className: "timeago"
+            dateTime: event.timestamp
             moment(event.timestamp).fromNow()
 
         td
