@@ -18,6 +18,7 @@
 
 .chart {
   @_top: chart;
+  @_marker-radius: 6px;
 
   height: 250px;
 
@@ -29,13 +30,6 @@
   &__hover-area {
     fill: none;
     pointer-events: all;
-  }
-
-  &__hover-mark {
-    fill: #fff;
-    stroke: @pink-darker;
-    stroke-width: 3px;
-    pointer-events: none;
   }
 
   &__line {
@@ -78,25 +72,35 @@
     position: absolute;
     bottom: 100%;
     left: 0;
+
+    margin-bottom: (-@_marker-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 0;
+
+    &::before {
+      .circle(@_marker-radius * 2);
+      content: '';
+      order: 1;
+      background-color: #fff;
+      border: 3px solid @pink-darker;
+    }
+
+    &::after {
+      content: '';
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 10px solid @pink-darker;
+    }
   }
 
-  &__tooltip-container {
+  &__tooltip-content {
     .default-border-radius();
     flex: none;
     padding: 10px 20px;
     background-color: @pink-darker;
     color: #fff;
-    margin-bottom: 20px;
-
-    &::before {
-      content: ' ';
-      position: absolute;
-      left: calc(50% ~'-' 5px);
-      top: 100%;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 10px solid @pink-darker;
-    }
   }
 
   &__tooltip-text {

@@ -91,6 +91,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
+                'title' => 'Historisch',
+
                 'most_played' => [
                     'count' => 'keer gespeeld',
                     'title' => 'Meest Gespeelde Beatmaps',
@@ -99,7 +101,6 @@ return [
                     'accuracy' => 'precisie: :percentage',
                     'title' => 'Recent gespeeld',
                 ],
-                'title' => 'Historisch',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',

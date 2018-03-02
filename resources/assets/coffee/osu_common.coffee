@@ -103,7 +103,10 @@
       false
 
 
-  isMobile: -> ! window.matchMedia('(min-width: 840px)').matches
+  isDesktop: -> window.matchMedia('(min-width: 840px)').matches
+
+
+  isMobile: -> !osu.isDesktop()
 
 
   # mobile safari zooms in on focus of input boxes with font-size < 16px, this works around that

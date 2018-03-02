@@ -138,6 +138,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Brak wyników. :(',
+                'title' => 'Historia',
+
                 'most_played' => [
                     'count' => 'ilość zagrań',
                     'title' => 'Najczęściej grane beatmapy',
@@ -146,7 +148,6 @@ return [
                     'accuracy' => 'precyzja: :percentage',
                     'title' => 'Ostatnie wyniki',
                 ],
-                'title' => 'Historia',
             ],
             'kudosu' => [
                 'available' => 'Dostępne kudosu',

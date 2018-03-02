@@ -261,19 +261,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userArray = json_item(
-            $user,
-            'User',
-            [
-                'user_achievements',
-                'follower_count',
-                'page',
-                'ranked_and_approved_beatmapset_count',
-                'unranked_beatmapset_count',
-                'graveyard_beatmapset_count',
-                'favourite_beatmapset_count',
-            ]
-        );
+        $userArray = json_item($user, 'User', [
+            'favourite_beatmapset_count',
+            'follower_count',
+            'graveyard_beatmapset_count',
+            'monthly_playcounts',
+            'page',
+            'ranked_and_approved_beatmapset_count',
+            'replays_watched_counts',
+            'unranked_beatmapset_count',
+            'user_achievements',
+        ]);
 
         $statistics = json_item(
             $user->statistics($currentMode),
