@@ -33,7 +33,7 @@ class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
     {
         return [
             'description' => $h->reason,
-            'type' => $h->ban_status,
+            'type' => $h->type,
             'timestamp' => json_time($h->timestamp),
             'end_time' => json_time($h->endTime()),
             'length' => $h->period,

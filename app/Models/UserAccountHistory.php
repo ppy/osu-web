@@ -50,8 +50,10 @@ class UserAccountHistory extends Model
         return $this->timestamp->addSeconds($this->period);
     }
 
-    public function getBanStatusAttribute($value)
+    public function getTypeAttribute()
     {
+        $value = $this->ban_status;
+
         if (array_key_exists($value, self::BAN_STATUSES)) {
             return self::BAN_STATUSES[$value];
         } else {
