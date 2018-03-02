@@ -33,7 +33,7 @@ class BeatmapFile
     public static function parse(string $content)
     {
         // check file 'header'
-        if (!presence($content) || substr($content, 0, 17) !== 'osu file format v') {
+        if (!starts_with($content, 'osu file format v')) {
             return false;
         }
 
