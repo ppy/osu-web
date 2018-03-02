@@ -50,16 +50,25 @@ class BeatmapsetArchive
 
     public function osuFileList()
     {
-        return preg_grep("/\.osu$/i", $this->fileList());
+        return preg_grep('/\.osu$/i', $this->fileList());
     }
 
-    public function readFile(string $filename)
+    public function readFile(?string $filename)
     {
-        if (!presence($filename)) {
+        if (!present($filename)) {
             return false;
         }
 
         return $this->zip->getFromName($filename, 0, \ZipArchive::FL_NOCASE);
+    }
+
+    public function hasFile(?string $filename)
+    {
+        if (!present($filename)) {
+            return false;
+        }
+
+        return $this->zip->locateName($filename, \ZipArchive::FL_NOCASE | \ZipArchive::FL_NODIR) !== false;
     }
 
     // Parses given list (of .osu files) and finds background images referenced.
@@ -75,7 +84,6 @@ class BeatmapsetArchive
             return;
         }
 
-        $backgroundFilename = false;
         foreach ($filelist as $file) {
             $content = $this->readFile($file);
             if ($content === false) {
@@ -89,18 +97,13 @@ class BeatmapsetArchive
                 continue;
             }
 
-            // ensure background is present in .osz
+            // return if background is present in .osz
             $backgroundFilename = $osu->backgroundImage();
-            $background = $this->readFile($backgroundFilename);
-            if ($background === false) {
-                $backgroundFilename = false;
-                continue;
+            if ($this->hasFile($backgroundFilename)) {
+                return $backgroundFilename;
             }
-
-            // break after the first image has been found
-            break;
         }
 
-        return $backgroundFilename;
+        return false;
     }
 }
