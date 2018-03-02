@@ -36,7 +36,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
         if latest?
           div
-            className: "#{bn}__box #{bn}__box--large #{bn}__box--warning"
+            className: "#{bn}__alert #{bn}__alert--warning"
             span
               dangerouslySetInnerHTML:
                 __html: osu.trans 'users.show.extra.account_standing.bad_standing',
@@ -44,7 +44,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
         if latest? && moment(latest.end_time).isAfter(moment.now())
           div
-            className: "#{bn}__box #{bn}__box--large #{bn}__box--info"
+            className: "#{bn}__alert #{bn}__alert--info"
             span
               dangerouslySetInnerHTML:
                 __html: osu.trans 'users.show.extra.account_standing.remaining_silence',
@@ -87,14 +87,14 @@ class ProfilePage.AccountStanding extends React.PureComponent
         td
           className: "#{bn}__table-cell #{bn}__table-cell--action"
           div
-            className: "#{bn}__box #{bn}__box--small #{bn}__box--#{event.type}"
+            className: "#{bn}__action #{bn}__action--#{event.type}"
             osu.trans "users.show.extra.account_standing.recent_infringements.actions.#{event.type}"
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--length"
           if event.type == 'restriction'
             div
-              className: "#{bn}__box #{bn}__box--small #{bn}__box--restriction"
+              className: "#{bn}__action #{bn}__action--restriction"
               osu.trans 'users.show.extra.account_standing.recent_infringements.length_permanent'
           else if event.type == 'note'
             ''
