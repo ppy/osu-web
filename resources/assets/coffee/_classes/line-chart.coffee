@@ -55,19 +55,11 @@ class @LineChart
       .on 'mousemove', @positionTooltip
       .on 'drag', @positionTooltip
 
-    @svgHoverMark = @svgWrapper.append 'circle'
-      .classed 'chart__hover-mark', true
-      .attr 'data-visibility', 'hidden'
-      .attr 'r', 5
-
     @tooltip = @area.append 'div'
       .classed 'chart__tooltip', true
       .attr 'data-visibility', 'hidden'
 
-    @tooltipContainer = @tooltip.append 'div'
-      .classed 'chart__tooltip-container', true
-
-    @tooltipContent = @tooltipContainer.append 'div'
+    @tooltipContent = @tooltip.append 'div'
       .classed 'chart__tooltip-content', true
 
     @tooltipY = @tooltipContent.append 'div'
@@ -205,12 +197,10 @@ class @LineChart
 
 
   showTooltip: =>
-    Fade.in @svgHoverMark.node()
     Fade.in @tooltip.node()
 
 
   hideTooltip: =>
-    Fade.out @svgHoverMark.node()
     Fade.out @tooltip.node()
 
 
@@ -233,13 +223,20 @@ class @LineChart
       coords[1] + @margins.top
     ].map (coord) => "#{Math.round coord}px"
 
-    @svgHoverMark
-      .attr 'transform', "translate(#{coords.join(', ')})"
-
     @tooltipX.html (@options.tooltipFormats?.x || @options.formats.x)(d.x)
     @tooltipY.html (@options.tooltipFormats?.y || @options.formats.y)(d.y)
     @tooltip
       .style 'transform', "translate(#{coordsTooltip.join(', ')})"
+
+
+  resetTooltip: =>
+    # Immediately hide so its position can be invisibly reset.
+    @tooltip.style 'transition', 'none'
+    @hideTooltip()
+    @tooltip.style 'transform', null
+    # Out of current loop so browser doesn't optimize out the styling
+    # and ignores previously set transition override.
+    Timeout.set 0, => @tooltip.style 'transition', null
 
 
   lookupIndexFromX: (x) =>
@@ -259,3 +256,5 @@ class @LineChart
 
     @drawAxes()
     @drawLine()
+
+    @resetTooltip()
