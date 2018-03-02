@@ -19,7 +19,7 @@
  */
 
 return [
-	'months' => 'tháng',
+    'months' => 'tháng',
 
     'user_search' => [
         'searching' => 'đang tìm...',
