@@ -107,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'user',
-            'getLogin' => 'login',
+            'getLogin' => 'sign in',
             'disabled' => 'disabled',
 
             'register' => 'register',
@@ -200,7 +200,7 @@ return [
         ],
         '401' => [
             'error' => "You shouldn't be here.",
-            'description' => 'You could try going back, though. Or maybe logging in.',
+            'description' => 'You could try going back, though. Or maybe signing in.',
             'link' => false,
         ],
         '405' => [

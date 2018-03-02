@@ -93,7 +93,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'get an account',
-                'description' => 'follow the prompts when starting the game to login or make a new account',
+                'description' => 'follow the prompts when starting the game to sign in or make a new account',
             ],
             'download' => [
                 'title' => 'download the game',

@@ -39,7 +39,7 @@ return [
         'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
 
         'hype' => [
-            'guest' => 'Must be logged in to hype.',
+            'guest' => 'Must be signed in to hype.',
             'hyped' => 'You have already hyped this beatmap.',
             'limit_exceeded' => 'You have used all your hype.',
             'not_hypeable' => 'This beatmap can not be hyped',

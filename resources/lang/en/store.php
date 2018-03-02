@@ -69,14 +69,14 @@ return [
         'gift' => 'gift to player',
         'require_login' => [
             '_' => 'You need to be :link to get a supporter tag!',
-            'link_text' => 'logged in',
+            'link_text' => 'signed in',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'You need to be :link to change your name!',
-            'link_text' => 'logged in',
+            'link_text' => 'signed in',
         ],
     ],
 ];
