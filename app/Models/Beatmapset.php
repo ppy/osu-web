@@ -817,7 +817,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->storeCover('fullsize.jpg', get_stream_filename($optimized));
 
             // use thumbnailer to generate (and then upload) all our variants
-            foreach (self::coverSizes() as $size) {
+            foreach (static::coverSizes() as $size) {
                 $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                 $this->storeCover("$size.jpg", get_stream_filename($resized));
             }

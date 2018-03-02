@@ -27,7 +27,7 @@ class BeatmapFile
 
     public static function open(string $filename)
     {
-        return self::parse(file_get_contents($filename));
+        return static::parse(file_get_contents($filename));
     }
 
     public static function parse(string $content)
@@ -60,7 +60,7 @@ class BeatmapFile
             }
         }
 
-        $file = new self;
+        $file = new static;
         $file->parsed = true;
 
         if (isset($imageFilename)) {
