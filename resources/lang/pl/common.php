@@ -49,7 +49,7 @@ return [
         'item' => ':count sztuka|:count sztuki|:count sztuk',
         'minute_short_unit' => 'min|min|min',
         'months' => ':count miesiąc|:count miesiące|:count miesięcy',
-        'second_short_unit' => 'sek.|sek.|sek.',
+        'second_short_unit' => 's|s|s',
         'years' => ':count rok|:count lata|:count lat',
     ],
 
