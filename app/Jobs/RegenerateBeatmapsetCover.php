@@ -33,15 +33,17 @@ class RegenerateBeatmapsetCover implements ShouldQueue
 {
     use InteractsWithQueue, Queueable, SerializesModels;
     protected $beatmapset;
+    protected $sizesToRegenerate;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Beatmapset $beatmapset)
+    public function __construct(Beatmapset $beatmapset, array $sizesToRegenerate = null)
     {
         $this->beatmapset = $beatmapset;
+        $this->sizesToRegenerate = $sizesToRegenerate;
     }
 
     /**
@@ -52,13 +54,13 @@ class RegenerateBeatmapsetCover implements ShouldQueue
     public function handle()
     {
         try {
-            echo "Processing {$this->beatmapset->beatmapset_id}... ";
-            $this->beatmapset->regenerateCovers();
+            \Log::info("Processing {$this->beatmapset->beatmapset_id}... ");
+            $this->beatmapset->regenerateCovers($this->sizesToRegenerate);
             Datadog::increment(['thumbdonger.processed', 'thumbdonger.ok']);
-            echo "ok.\n";
+            \Log::info("ok.\n");
         } catch (\Exception $e) {
             Datadog::increment(['thumbdonger.processed', 'thumbdonger.error']);
-            echo "errored.\n";
+            \Log::info("errored.\n");
             if (config('osu.beatmap_processor.sentry')) {
                 $tags = [
                     'beatmapset_id' => $this->beatmapset->beatmapset_id,

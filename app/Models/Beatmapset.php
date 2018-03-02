@@ -783,8 +783,12 @@ class Beatmapset extends Model implements AfterCommit
         return new BeatmapsetArchive(get_stream_filename($oszFile));
     }
 
-    public function regenerateCovers()
+    public function regenerateCovers(array $sizesToRegenerate = null)
     {
+        if (empty($sizesToRegenerate)) {
+            $sizesToRegenerate = static::coverSizes();
+        }
+
         $osz = $this->fetchBeatmapsetArchive();
         if ($osz === false) {
             return false;
@@ -817,7 +821,7 @@ class Beatmapset extends Model implements AfterCommit
             $this->storeCover('fullsize.jpg', get_stream_filename($optimized));
 
             // use thumbnailer to generate (and then upload) all our variants
-            foreach (static::coverSizes() as $size) {
+            foreach ($sizesToRegenerate as $size) {
                 $resized = $processor->resize($this->coverURL('fullsize', $timestamp), $size);
                 $this->storeCover("$size.jpg", get_stream_filename($resized));
             }
