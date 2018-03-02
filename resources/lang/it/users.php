@@ -94,6 +94,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Nessuna registrazione della performance. :(', // record as "registrazione", like "we have no performance data to show you"
+                'title' => 'Storico',
+
                 'most_played' => [
                     'count' => 'volte giocata',
                     'title' => 'Beatmap più Giocate',
@@ -102,7 +104,6 @@ return [
                     'accuracy' => 'precisione: :percentage',
                     'title' => 'Partite recenti',
                 ],
-                'title' => 'Storico',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponibili',

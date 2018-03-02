@@ -113,6 +113,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Inga prestanda uppgifter. :(',
+                'title' => 'Historisk',
+
                 'most_played' => [
                     'count' => 'gånger spelade',
                     'title' => 'Mest Spelade Beatmaps',
@@ -121,7 +123,6 @@ return [
                     'accuracy' => 'precision: :percentage',
                     'title' => 'Senaste spel (24h)',
                 ],
-                'title' => 'Historisk',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tillängligt',
