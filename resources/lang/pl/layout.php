@@ -40,24 +40,30 @@ return [
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
+            'team' => 'załoga',
         ],
         'help' => [
             '_' => 'pomoc',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'pomoc techniczna', //obsolete
+            'getRules' => 'zasady',
+            'getSupport' => 'pomoc techniczna',
+            'getWiki' => 'wiki',                       
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
-            'show' => 'informacje',
-            'index' => 'lista',
             'artists' => 'wyróżnieni artyści',
+            'beatmap_discussion_posts-index' => 'posty w dyskusji',
+            'beatmap_discussions-index' => 'dyskusje',
+            'beatmapset-watches-index' => 'obserwowane dyskusje',
+            'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
+            'beatmapset_events-index' => 'zdarzenia',
+            'index' => 'lista',
             'packs' => 'paczki',
-            // 'getCharts' => 'wyróżnione',
+            'show' => 'informacje',
         ],
         'beatmapsets' => [
-            '_' => 'mapsety',
+            '_' => 'beatmapy',
             'discussion' => 'modowanie',
         ],
         'rankings' => [
@@ -102,7 +108,7 @@ return [
         'user' => [
             '_' => 'użytkownik',
             'getLogin' => 'zaloguj się',
-            'disabled' => 'wyłączono',
+            'disabled' => 'wyłączone',
 
             'register' => 'zarejestruj się',
             'reset' => 'odzyskaj dostęp',
@@ -116,6 +122,7 @@ return [
         'store' => [
             '_' => 'sklep',
             'getListing' => 'przedmioty',
+            'cart-show' => 'koszyk',
             'cart-show' => 'koszyk',
 
             'getCheckout' => 'zapłać',
@@ -141,8 +148,7 @@ return [
             'root' => 'strona główna',
             'logs-index' => 'logi',
             'beatmapsets' => [
-                '_' => 'mapsety',
-                'covers' => 'nagłówki',
+                '_' => 'beatmapy',
                 'show' => 'szczegóły',
             ],
         ],
