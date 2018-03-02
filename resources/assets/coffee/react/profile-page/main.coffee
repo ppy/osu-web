@@ -84,7 +84,7 @@ class ProfilePage.Main extends React.PureComponent
     $(@pages).sortable
       cursor: 'move'
       handle: '.js-profile-page-extra--sortable-handle'
-      items: '.js-sortable--page:not([data-page-id="account_standing"])'
+      items: '.js-sortable--page'
       revert: 150
       scrollSpeed: 10
       update: @updateOrder
@@ -93,7 +93,7 @@ class ProfilePage.Main extends React.PureComponent
       containment: 'parent'
       cursor: 'move'
       disabled: !@props.withEdit
-      items: '.js-sortable--tab:not([data-page-id="account_standing"])'
+      items: '.js-sortable--tab'
       revert: 150
       scrollSpeed: 0
       update: @updateOrder
@@ -230,7 +230,7 @@ class ProfilePage.Main extends React.PureComponent
                 continue if m == 'me' && !withMePage
 
                 a
-                  className: "page-mode__item js-sortable--tab"
+                  className: "page-mode__item #{'js-sortable--tab' if @isSortablePage m}"
                   key: m
                   'data-page-id': m
                   onClick: @tabClick
@@ -255,7 +255,8 @@ class ProfilePage.Main extends React.PureComponent
 
 
   extraPage: (name, {extraClass, props, component}) =>
-    topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page js-sortable--page'
+    topClassName = 'js-switchable-mode-page--scrollspy js-switchable-mode-page--page'
+    topClassName += ' js-sortable--page' if @isSortablePage name
     props.withEdit = @props.withEdit
     props.name = name
 
@@ -417,3 +418,6 @@ class ProfilePage.Main extends React.PureComponent
       mode
     else
       modes[0]
+
+  isSortablePage: (page) ->
+    _.includes @state.profileOrder, page
