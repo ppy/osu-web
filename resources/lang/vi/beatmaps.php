@@ -181,6 +181,7 @@ return [
     'general' => [
         'recommended' => 'Recommended difficulty',
         'converts' => 'Include converted beatmaps',
+    ],
     'mode' => [
         'any' => 'Bất Kì',
         'osu' => 'osu!',

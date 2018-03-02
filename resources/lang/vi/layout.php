@@ -149,7 +149,7 @@ return [
             'beatmapsets-covers' => 'bìa beatmapset',
             'logs-index' => 'log',
             'root' => 'mục lục',
-            
+
             'beatmapsets' => [
                 '_' => 'beatmapsets',
                 'show' => 'chi tiết',
