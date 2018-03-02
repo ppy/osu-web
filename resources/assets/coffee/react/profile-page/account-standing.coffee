@@ -82,7 +82,9 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--date"
-          time className: "timeago", dateTime: event.timestamp
+          time
+            className: "timeago", dateTime: event.timestamp
+            moment(event.timestamp).fromNow()
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--action"
@@ -99,7 +101,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
           else if event.type == 'note'
             ''
           else
-            moment(event.timestamp).add(event.length, 'seconds').from(event.timestamp, true)
+            moment.duration(event.length, 'seconds').humanize()
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--description"
