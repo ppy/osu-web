@@ -23,10 +23,12 @@ namespace App\Jobs;
 use App\Exceptions\SilencedException;
 use App\Models\Beatmapset;
 use Datadog;
+use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Log;
 use Raven_Client;
 
 class RegenerateBeatmapsetCover implements ShouldQueue
@@ -54,13 +56,13 @@ class RegenerateBeatmapsetCover implements ShouldQueue
     public function handle()
     {
         try {
-            \Log::info("Processing {$this->beatmapset->beatmapset_id}... ");
+            Log::info("[beatmapset_id: {$this->beatmapset->beatmapset_id}] Started cover regeneration.");
             $this->beatmapset->regenerateCovers($this->sizesToRegenerate);
             Datadog::increment(['thumbdonger.processed', 'thumbdonger.ok']);
-            \Log::info("ok.\n");
-        } catch (\Exception $e) {
+            Log::info("[beatmapset_id: {$this->beatmapset->beatmapset_id}] Cover regeneration done.");
+        } catch (Exception $e) {
             Datadog::increment(['thumbdonger.processed', 'thumbdonger.error']);
-            \Log::info("errored.\n");
+            Log::warning("[beatmapset_id: {$this->beatmapset->beatmapset_id}] Cover regeneration FAILED.");
             if (config('osu.beatmap_processor.sentry')) {
                 $tags = [
                     'beatmapset_id' => $this->beatmapset->beatmapset_id,
