@@ -20,7 +20,7 @@
 
 namespace App\Libraries;
 
-use App\Exceptions\BeatmapProcessorException;
+use App\Exceptions\ImageProcessorServiceException;
 use App\Models\Beatmapset;
 
 class ImageProcessorService
@@ -43,7 +43,7 @@ class ImageProcessorService
     public function resize($src, $format)
     {
         if (!self::isValidFormat($format)) {
-            throw new BeatmapProcessorException('Invalid format requested.');
+            throw new ImageProcessorServiceException('Invalid format requested.');
         }
 
         return $this->process("thumb/$format", $src);
@@ -58,16 +58,16 @@ class ImageProcessorService
             $bytesWritten = fwrite($tmpFile, file_get_contents($this->endpoint."/{$method}/{$src}"));
         } catch (\ErrorException $e) {
             if (strpos($e->getMessage(), 'HTTP request failed!') !== false) {
-                throw new BeatmapProcessorException('HTTP request failed!');
+                throw new ImageProcessorServiceException('HTTP request failed!');
             } elseif (strpos($e->getMessage(), 'Connection refused') !== false) {
-                throw new BeatmapProcessorException('Connection refused');
+                throw new ImageProcessorServiceException('Connection refused.');
             } else {
                 throw $e;
             }
         }
 
         if ($bytesWritten === false || $bytesWritten < 100) {
-            throw new BeatmapProcessorException("Error retrieving processed image: $method");
+            throw new ImageProcessorServiceException("Error retrieving processed image: $method.");
         }
 
         return $tmpFile;
