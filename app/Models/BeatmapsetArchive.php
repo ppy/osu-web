@@ -84,7 +84,6 @@ class BeatmapsetArchive
             return;
         }
 
-        $backgroundFilename = false;
         foreach ($filelist as $file) {
             $content = $this->readFile($file);
             if ($content === false) {
@@ -98,16 +97,13 @@ class BeatmapsetArchive
                 continue;
             }
 
-            // ensure background is present in .osz
+            // return if background is present in .osz
             $backgroundFilename = $osu->backgroundImage();
             if ($this->hasFile($backgroundFilename)) {
-                // break after the first image has been found
-                break;
-            } else {
-                $backgroundFilename = false;
+                return $backgroundFilename;
             }
         }
 
-        return $backgroundFilename;
+        return false;
     }
 }
