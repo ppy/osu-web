@@ -108,7 +108,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
             event.description
             if currentUser.is_admin && event.banner?
               span
-                className: "#{bn}__description #{bn}__description--banner"
+                className: "#{bn}__banner"
                 dangerouslySetInnerHTML:
                   __html: osu.trans 'users.show.extra.account_standing.recent_infringements.banner',
                     username: osu.link laroute.route('users.show', user: event.banner.id), event.banner.username

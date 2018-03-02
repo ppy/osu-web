@@ -120,17 +120,15 @@
     overflow-x: auto;
   }
 
-  &__description {
-    &--banner {
+  &__banner {
+    color: #999;
+
+    a, a:hover, a:active, a:link, a:visited {
       color: #999;
+    }
 
-      a, a:hover, a:active, a:link, a:visited {
-        color: #999;
-      }
-
-      &::before {
-        content: ' ';
-      }
+    &::before {
+      content: ' ';
     }
   }
 }
