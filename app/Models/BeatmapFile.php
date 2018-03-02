@@ -61,6 +61,8 @@ class BeatmapFile
         if (isset($imageFilename)) {
             // older beatmaps may not have sanitized paths
             $file->backgroundImage = str_replace('\\', '/', $imageFilename);
+        } else {
+            $file->backgroundImage = false;
         }
 
         return $file;

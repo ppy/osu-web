@@ -91,10 +91,12 @@ class BeatmapsetArchive
 
             // ensure background is present in .osz
             $backgroundFilename = $osu->backgroundImage();
-            $background = $this->readFile($backgroundFilename);
-            if ($background === false) {
-                $backgroundFilename = false;
-                continue;
+            if ($backgroundFilename !== false) {
+                $background = $this->readFile($backgroundFilename);
+                if ($background === false) {
+                    $backgroundFilename = false;
+                    continue;
+                }
             }
 
             // break after the first image has been found
