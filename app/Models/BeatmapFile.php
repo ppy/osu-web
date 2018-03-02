@@ -25,11 +25,6 @@ class BeatmapFile
     private $parsed = false;
     private $backgroundImage;
 
-    public static function open(string $filename)
-    {
-        return static::parse(file_get_contents($filename));
-    }
-
     public static function parse(string $content)
     {
         // check file 'header'
