@@ -1163,3 +1163,11 @@ function group_users_by_online_state($users)
         'offline' => $offline,
     ];
 }
+
+// shorthand to return the filename of an open stream/handle
+function get_stream_filename($handle)
+{
+    $meta = stream_get_meta_data($handle);
+
+    return $meta['uri'];
+}
