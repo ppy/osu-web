@@ -33,7 +33,7 @@ return [
             'getDownload' => 'tải xuống',
             'getIcons' => 'biểu tượng',
             'groups-show' => 'nhóm',
-            'index' => 'dashboard',
+            'index' => 'tổng quan',
             'legal-show' => 'thông tin',
             'news-index' => 'tin tức',
             'news-show' => 'tin tức',
