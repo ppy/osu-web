@@ -82,9 +82,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--date"
-          div
-            className: "#{bn}__box #{bn}__box--small"
-            time className: "timeago", dateTime: event.timestamp
+          time className: "timeago", dateTime: event.timestamp
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--action"
@@ -94,28 +92,26 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--length"
-          div
-            className: "#{bn}__box #{bn}__box--small #{'bn__box--restriction' if event.type == 'restriction'}"
-            if event.type == 'restriction'
+          if event.type == 'restriction'
+            div
+              className: "#{bn}__box #{bn}__box--small #{bn}__box--restriction"
               osu.trans 'users.show.extra.account_standing.recent_infringements.length_permanent'
-            else if event.type == 'note'
-              ''
-            else
-              moment(event.timestamp).add(event.length, 'seconds').from(event.timestamp, true)
+          else if event.type == 'note'
+            ''
+          else
+            moment(event.timestamp).add(event.length, 'seconds').from(event.timestamp, true)
 
         td
           className: "#{bn}__table-cell #{bn}__table-cell--description"
-          div
-            className: "#{bn}__box #{bn}__box--small"
-            span
-              className: "#{bn}__description"
-              event.description
-              if currentUser.is_admin && event.banner?
-                span
-                  className: "#{bn}__description #{bn}__description--banner"
-                  dangerouslySetInnerHTML:
-                    __html: osu.trans 'users.show.extra.account_standing.recent_infringements.banner',
-                      username: osu.link laroute.route('users.show', user: event.banner.id), event.banner.username
+          span
+            className: "#{bn}__description"
+            event.description
+            if currentUser.is_admin && event.banner?
+              span
+                className: "#{bn}__description #{bn}__description--banner"
+                dangerouslySetInnerHTML:
+                  __html: osu.trans 'users.show.extra.account_standing.recent_infringements.banner',
+                    username: osu.link laroute.route('users.show', user: event.banner.id), event.banner.username
 
 
   remaining: (event) ->
