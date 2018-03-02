@@ -153,7 +153,7 @@ class BBCodeFromDB
         $index = 0;
 
         foreach ($images as $i) {
-            $proxiedSrc = proxy_image(html_entity_decode($i['url']));
+            $proxiedSrc = proxy_image(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
 
@@ -363,6 +363,53 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text, ENT_QUOTES);
+        return html_entity_decode_better($text);
+    }
+
+    public static function removeBBCodeTags($text)
+    {
+        // Don't care if too many characters are stripped;
+        // just don't want tags to go into index because they mess up the highlighting.
+
+        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+
+        return preg_replace($pattern, '', $text);
+    }
+
+    public static function removeBlockQuotes($text)
+    {
+        $level = 0;
+        $marker = 0;
+
+        while ($marker >= 0 && $marker < mb_strlen($text) && $level >= 0) {
+            $match = static::scanForNextQuoteTag($text, $marker);
+            if ($match === null) {
+                return $text;
+            }
+
+            if (present($match['start'][0])) {
+                $marker = $match['start'][1] + mb_strlen($match['start'][0]);
+                $level++;
+            } elseif (present($match['end'][0])) {
+                $level--;
+                $marker = $match['end'][1] + mb_strlen($match['end'][0]);
+                if ($level === 0) {
+                    $text = mb_substr($text, $marker, mb_strlen($text) - $marker);
+                }
+            } else {
+                $marker = -1;
+            }
+        }
+
+        return $text;
+    }
+
+    private static function scanForNextQuoteTag(string $text, $from = 0)
+    {
+        static $pattern = '#(?<start>\[quote(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\])|(?<end>\[/quote(:[a-zA-Z0-9]{1,5})?\])#';
+
+        if (preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $from) === 1) {
+            return $matches;
+        }
     }
 }

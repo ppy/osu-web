@@ -43,6 +43,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => 'Loading...',
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -236,6 +240,10 @@ return [
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+        ],
+        'post_count' => [
+            '_' => 'Contributed :count',
+            'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',

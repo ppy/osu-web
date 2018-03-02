@@ -27,14 +27,13 @@ return [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
-            'friends' => 'znajomi',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-show' => 'kompilacja',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
-            'index' => 'osu!',
+            'index' => 'przegląd',
             'legal-show' => 'informacje',
             'news-index' => 'wiadomości',
             'news-show' => 'wiadomości',
@@ -46,7 +45,7 @@ return [
             '_' => 'pomoc',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'pomoc techniczna',
+            'getSupport' => 'pomoc techniczna', //obsolete
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
@@ -75,7 +74,6 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'czat',
-            'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
             'contests' => 'konkursy',
             'profile' => 'profil',

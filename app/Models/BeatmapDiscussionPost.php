@@ -170,6 +170,10 @@ class BeatmapDiscussionPost extends Model
     {
         $this->validationErrors()->reset();
 
+        if ($this->deleted_at !== null && $this->isFirstPost()) {
+            $this->validationErrors()->add('base', '.first_post');
+        }
+
         $this->validateBeatmapsetDiscussion();
 
         if (!$this->system) {
@@ -275,36 +279,34 @@ class BeatmapDiscussionPost extends Model
         });
     }
 
-    public function softDelete($deletedBy)
+    public function softDeleteOrExplode($deletedBy)
     {
-        if ($this->isFirstPost()) {
-            return trans('model_validation.beatmap_discussion_post.first_post');
+        $timestamps = $this->timestamps;
+
+        try {
+            DB::transaction(function () use ($deletedBy) {
+                if ($deletedBy->getKey() !== $this->user_id) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
+                }
+
+                // delete related system post
+                $systemPost = $this->relatedSystemPost();
+
+                if ($systemPost !== null) {
+                    $systemPost->softDeleteOrExplode($deletedBy);
+                }
+
+                $this->timestamps = false;
+                $this->fill([
+                    'deleted_by_id' => $deletedBy->user_id,
+                    'deleted_at' => Carbon::now(),
+                ])->saveOrExplode();
+
+                $this->beatmapDiscussion->refreshResolved();
+            });
+        } finally {
+            $this->timestamps = $timestamps;
         }
-
-        DB::transaction(function () use ($deletedBy) {
-            if ($deletedBy->getKey() !== $this->user_id) {
-                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
-            }
-
-            // delete related system post
-            $systemPost = $this->relatedSystemPost();
-
-            if ($systemPost !== null) {
-                $systemPost->softDelete($deletedBy);
-            }
-
-            $time = Carbon::now();
-
-            $this->update([
-                'deleted_by_id' => $deletedBy->user_id,
-                'deleted_at' => $time,
-                'updated_at' => $time,
-            ]);
-
-            $this->beatmapDiscussion->refreshResolved();
-
-            return true;
-        });
     }
 
     public function trashed()

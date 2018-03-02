@@ -25,10 +25,7 @@ BeatmapDiscussions.BeatmapListItem = (props) ->
   topClasses = bn
   topClasses += " #{bn}--large" if props.large
 
-  version = if props.beatmap.mode == 'mania'
-    "[#{props.beatmap.difficulty_size}K] #{props.beatmap.version}"
-  else
-    props.beatmap.version
+  version = props.beatmap.version
 
   if props.beatmap.deleted_at?
     topClasses += " #{bn}--deleted"

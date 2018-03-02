@@ -129,30 +129,23 @@ class AccountController extends Controller
         );
 
         try {
-            $ok = DB::transaction(function () use ($customizationParams, $userParams) {
+            DB::transaction(function () use ($customizationParams, $userParams) {
                 if (count($customizationParams) > 0) {
-                    if (!Auth::user()->profileCustomization()->update($customizationParams)) {
-                        throw new ModelNotSavedException('failed saving model');
-                    }
+                    Auth::user()
+                        ->profileCustomization()
+                        ->fill($customizationParams)
+                        ->saveOrExplode();
                 }
 
                 if (count($userParams) > 0) {
-                    if (!Auth::user()->update($userParams)) {
-                        throw new ModelNotSavedException('failed saving model');
-                    }
+                    Auth::user()->fill($userParams)->saveOrExplode();
                 }
-
-                return true;
             });
-        } catch (ModelNotSavedException $_e) {
-            $ok = false;
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
-        if ($ok) {
-            return Auth::user()->defaultJson();
-        } else {
-            return error_popup(Auth::user()->validationErrors()->toSentence());
-        }
+        return Auth::user()->defaultJson();
     }
 
     public function updateEmail()
