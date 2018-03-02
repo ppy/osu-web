@@ -27,14 +27,12 @@ return [
         'home' => [
             '_' => 'hjem',
             'account-edit' => 'indstillinger',
-            'friends' => 'venner',
             'friends-index' => 'venner',
             'changelog-index' => 'changelog',
             'changelog-show' => 'build',
             'getDownload' => 'download',
             'getIcons' => 'ikoner',
             'groups-show' => 'grupper',
-            'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'nyheder',
             'news-show' => 'nyheder',
@@ -45,7 +43,7 @@ return [
         'help' => [
             '_' => 'hjælp',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -76,7 +74,6 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'forum',
             'getChat' => 'chat',
-            'getSupport' => 'support',
             'getLive' => 'live',
             'contests' => 'konkurrencer',
             'profile' => 'profil',

@@ -162,7 +162,7 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        $post = $topic->addPost(Auth::user(), Request::input('body'));
+        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
@@ -335,8 +335,8 @@ class TopicsController extends Controller
 
         try {
             $topic = Topic::createNew($forum, $params, $poll ?? null);
-        } catch (ModelNotSavedException $_e) {
-            abort(422);
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         if (!app()->runningUnitTests()) {

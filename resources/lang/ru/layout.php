@@ -27,12 +27,10 @@ return [
         'home' => [
             '_' => 'главная',
             'account-edit' => 'настройки',
-            'friends' => 'друзья',
             'friends-index' => 'друзья',
             'getChangelog' => 'список изменений',
             'getDownload' => 'скачать',
             'getIcons' => 'иконки',
-            'index' => 'osu!',
             'legal-show' => 'информация',
             'news-index' => 'новости',
             'news-show' => 'новости',
@@ -43,7 +41,7 @@ return [
         'help' => [
             '_' => 'помощь',
             'getFaq' => 'чаво',
-            'getSupport' => 'поддержка',
+            'getSupport' => 'поддержка', //obsolete
             'getWiki' => 'вики',
             'wiki-show' => 'вики',
         ],
@@ -73,7 +71,6 @@ return [
             'dev' => 'osu!dev',
             'getForum' => 'форумы',
             'getChat' => 'чат',
-            'getSupport' => 'поддержка',
             'getLive' => 'трансляции по osu!',
             'contests' => 'конкурсы',
             'profile' => 'профиль',
