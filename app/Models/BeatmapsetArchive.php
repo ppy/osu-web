@@ -68,7 +68,7 @@ class BeatmapsetArchive
     public function scanBeatmapsForBackground(array $filelist, bool $performFallback = false)
     {
         if ($performFallback) {
-            $filelist = $filelist + $this->osuFileList();
+            $filelist = array_merge($filelist, $this->osuFileList());
         }
 
         if (empty($filelist)) {
