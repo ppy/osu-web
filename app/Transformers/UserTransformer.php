@@ -157,7 +157,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
             $banHistories->default();
         } else {
-            $banHistories->with('banner');
+            $banHistories->with('actor');
         }
 
         return $this->collection(

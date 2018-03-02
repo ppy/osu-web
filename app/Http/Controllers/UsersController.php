@@ -275,7 +275,7 @@ class UsersController extends Controller
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {
-            $userIncludes[] = 'recent_ban_history.banner';
+            $userIncludes[] = 'recent_ban_history.actor';
         }
 
         $userArray = json_item(

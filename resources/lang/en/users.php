@@ -244,7 +244,7 @@ return [
                     'length' => 'length',
                     'length_permanent' => 'Permanent',
                     'description' => 'description',
-                    'banner' => 'by :username',
+                    'actor' => 'by :username',
 
                     'actions' => [
                         'restriction' => 'Ban',

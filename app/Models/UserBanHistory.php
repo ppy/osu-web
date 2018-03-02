@@ -40,7 +40,7 @@ class UserBanHistory extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    public function banner()
+    public function actor()
     {
         return $this->belongsTo(User::class, 'banner_id', 'user_id');
     }

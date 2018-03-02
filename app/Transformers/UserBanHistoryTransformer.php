@@ -26,7 +26,7 @@ use League\Fractal;
 class UserBanHistoryTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
-        'banner',
+        'actor',
     ];
 
     public function transform(UserBanHistory $bh)
@@ -40,10 +40,10 @@ class UserBanHistoryTransformer extends Fractal\TransformerAbstract
         ];
     }
 
-    public function includeBanner(UserBanHistory $bh)
+    public function includeActor(UserBanHistory $bh)
     {
-        if ($bh->banner !== null) {
-            return $this->item($bh->banner, new UserCompactTransformer);
+        if ($bh->actor !== null) {
+            return $this->item($bh->actor, new UserCompactTransformer);
         }
     }
 }
