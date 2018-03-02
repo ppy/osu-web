@@ -49,7 +49,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
               dangerouslySetInnerHTML:
                 __html: osu.trans 'users.show.extra.account_standing.remaining_silence',
                   username: @props.user.username
-                  duration: @remaining latest
+                  duration: osu.timeago moment(latest.timestamp).add(latest.length, 'seconds').format()
 
       div {},
         h3
