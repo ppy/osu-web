@@ -69,7 +69,7 @@ class ProfilePage.HeaderExtra extends React.Component
     joinDate = moment(@props.user.join_date)
     joinDateTitle = joinDate.format('LL')
 
-    postCount = osu.transChoice 'users.show.post_count.count', @props.user.post_count
+    postCount = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
 
     div
       className:
