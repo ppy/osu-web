@@ -101,10 +101,10 @@ class UserSeeder extends Seeder
             // INFRINGEMENTS
 
             // silence
-            $u->banHistories()->save(factory(App\Models\UserAccountHistory::class)->states('silence')->make());
+            $u->accountHistories()->save(factory(App\Models\UserAccountHistory::class)->states('silence')->make());
 
             // note
-            $u->banHistories()->save(factory(App\Models\UserAccountHistory::class)->states('note')->make());
+            $u->accountHistories()->save(factory(App\Models\UserAccountHistory::class)->states('note')->make());
 
             // USER GROUP
             $u->userGroups()->save(new App\Models\UserGroup(['group_id' => App\Models\UserGroup::GROUPS['default']]));

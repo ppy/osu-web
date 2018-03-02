@@ -696,7 +696,7 @@ class User extends Model implements AuthenticatableContract, Messageable
                 return true;
             }
 
-            $lastBan = $this->banHistories()->bans()->first();
+            $lastBan = $this->accountHistories()->bans()->first();
 
             $this->memoized[__FUNCTION__] = $lastBan !== null &&
                 $lastBan->period !== 0 &&
