@@ -22,7 +22,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 
-class UserBanHistory extends Model
+class UserAccountHistory extends Model
 {
     protected $table = 'osu_user_banhistory';
     protected $primaryKey = 'ban_id';

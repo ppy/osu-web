@@ -34,7 +34,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'graveyard_beatmapset_count',
         'monthly_playcounts',
         'page',
-        'recent_ban_history',
+        'account_history',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
         'unranked_beatmapset_count',
@@ -150,19 +150,19 @@ class UserTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeRecentBanHistory(User $user)
+    public function includeAccountHistory(User $user)
     {
-        $banHistories = $user->banHistories()->recent();
+        $histories = $user->accountHistories()->recent();
 
         if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
-            $banHistories->default();
+            $histories->default();
         } else {
-            $banHistories->with('actor');
+            $histories->with('actor');
         }
 
         return $this->collection(
-            $banHistories->get(),
-            new UserBanHistoryTransformer()
+            $histories->get(),
+            new UserAccountHistoryTransformer()
         );
     }
 

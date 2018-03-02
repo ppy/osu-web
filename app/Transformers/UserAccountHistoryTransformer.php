@@ -20,30 +20,30 @@
 
 namespace App\Transformers;
 
-use App\Models\UserBanHistory;
+use App\Models\UserAccountHistory;
 use League\Fractal;
 
-class UserBanHistoryTransformer extends Fractal\TransformerAbstract
+class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
         'actor',
     ];
 
-    public function transform(UserBanHistory $bh)
+    public function transform(UserAccountHistory $h)
     {
         return [
-            'description' => $bh->reason,
-            'type' => $bh->ban_status,
-            'timestamp' => json_time($bh->timestamp),
-            'end_time' => json_time($bh->endTime()),
-            'length' => $bh->period,
+            'description' => $h->reason,
+            'type' => $h->ban_status,
+            'timestamp' => json_time($h->timestamp),
+            'end_time' => json_time($h->endTime()),
+            'length' => $h->period,
         ];
     }
 
-    public function includeActor(UserBanHistory $bh)
+    public function includeActor(UserAccountHistory $h)
     {
-        if ($bh->actor !== null) {
-            return $this->item($bh->actor, new UserCompactTransformer);
+        if ($h->actor !== null) {
+            return $this->item($h->actor, new UserCompactTransformer);
         }
     }
 }

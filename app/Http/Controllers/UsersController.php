@@ -267,7 +267,7 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'monthly_playcounts',
             'page',
-            'recent_ban_history',
+            'account_history',
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'unranked_beatmapset_count',
@@ -275,7 +275,7 @@ class UsersController extends Controller
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {
-            $userIncludes[] = 'recent_ban_history.actor';
+            $userIncludes[] = 'account_history.actor';
         }
 
         $userArray = json_item(
