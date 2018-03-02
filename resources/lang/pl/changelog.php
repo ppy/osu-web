@@ -26,4 +26,11 @@ return [
         'fix' => 'naprawiono',
         'misc' => 'różne',
     ],
+
+    'support' => [
+        'heading' => 'Podoba ci się ta kompilacja?',
+        'text_1' => 'Wspomóż dalszy rozwój osu! i już dzisiaj :link!',
+        'text_1_link' => 'zostań donatorem',
+        'text_2' => 'Nie tylko przyspieszy to rozwój gry, ale otrzymasz także wiele dodatkowych funkcji i korzyści!',
+    ],
 ];
