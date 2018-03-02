@@ -41,8 +41,7 @@ return [
                 'dev' => 'Được phát triển và duy trì một cách vượt trội bởi một người sống ở Úc',
                 'time' => 'Dành quá nhiều thời gian để trò chơi chạy được đến mức không còn gọi nó là một "thú vui" nữa.',
                 'ads' => 'Không có quảng cáo ở bất cứ đâu. <br/><br/>
-                        Khác với 99.95% của web, chúng tôi không kiếm lợi nhuận bẳng cách ném đồ vào mặt bạn 
-                        Unlike 99.95% of the web, we don\'t profit off shoving stuff in your face.',
+                        Khác với 99.95% của web, chúng tôi không kiếm lợi nhuận bẳng cách ném đồ vào mặt bạn.',
                 'goodies' => 'Bạn sẽ được nhận thêm các phần quà hấp dẫn!',
             ],
         ],

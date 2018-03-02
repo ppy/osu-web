@@ -63,13 +63,11 @@ return [
     'update_email' => [
         'email_subject' => 'Xác nhận thay đổi email osu!',
         'update' => 'cập nhật',
-        'updated' => 'Email đã được cập nhật',
     ],
 
     'update_password' => [
         'email_subject' => 'Xác nhận thay đổi mật khẩu osu!',
         'update' => 'cập nhật',
-        'updated' => 'Mật khẩu đã được cập nhật',
     ],
 
     'playstyles' => [

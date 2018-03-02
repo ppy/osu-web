@@ -19,13 +19,10 @@
  */
 
 return [
+    'months' => 'tháng',
+
     'user_search' => [
         'searching' => 'đang tìm...',
         'not_found' => 'Không tồn tại người dùng này',
     ],
-    'duration' => [
-        'months' => ':length tháng|{0}',
-        'years' => ':length năm|{0}',
-    ],
-    'months' => 'tháng',
 ];

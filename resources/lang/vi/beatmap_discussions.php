@@ -31,6 +31,27 @@ return [
         'empty' => 'Chưa có gì... cả.',
     ],
 
+    'index' => [
+        'deleted_beatmap' => 'deleted',
+        'title' => 'Beatmap Discussions',
+
+        'form' => [
+            'deleted' => 'Include deleted discussions',
+
+            'user' => [
+                'label' => 'User',
+                'overview' => 'Activities overview',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Post date',
+        'deleted_at' => 'Deletion date',
+        'message_type' => 'Type',
+        'permalink' => 'Permalink',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'Không bài đăng nào đề cập đến vấn đề của tôi',
         'notice' => 'Có một vài bài đăng xung quanh :timestamp (:existing_timestamps). Hãy kiểm tra trước khi đăng.',
