@@ -21,6 +21,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Jobs\RemoveBeatmapsetCover;
 use App\Models\Beatmapset;
 use Request;
 
@@ -39,7 +40,9 @@ class BeatmapsetsController extends Controller
     public function removeCovers($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
-        $beatmapset->removeCovers();
+
+        $job = (new RemoveBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $this->dispatch($job);
 
         return response([], 204);
     }

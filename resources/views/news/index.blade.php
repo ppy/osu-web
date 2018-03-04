@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master', ['titleAppend' => trans('news.index.title')])
+@extends('master', ['title' => trans('news.index.title')])
 
 @section('content')
     @component('news._header', ['title' => trans('news.index.title')])

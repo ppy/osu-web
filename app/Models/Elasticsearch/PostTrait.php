@@ -28,6 +28,17 @@ trait PostTrait
 {
     use EsIndexable;
 
+    public function esRouting()
+    {
+        // Post and Topic should have the same routing for relationships to work.
+        return $this->topic_id;
+    }
+
+    public function getEsId()
+    {
+        return "post-{$this->post_id}";
+    }
+
     public function toEsJson()
     {
         $mappings = static::ES_MAPPINGS;
@@ -42,7 +53,32 @@ trait PostTrait
             $values[$field] = $value;
         }
 
+        $values['type'] = [
+            'name' => 'posts',
+            'parent' => "topic-{$this->topic_id}",
+        ];
+
         return $values;
+    }
+
+    public static function esAnalysisSettings()
+    {
+        static $settings = [
+            'analyzer' => [
+                'post_text_analyzer' => [
+                    'tokenizer' => 'standard',
+                    'filter' => ['lowercase'],
+                    'char_filter' => ['html_filter'],
+                ],
+            ],
+            'char_filter' => [
+                'html_filter' => [
+                    'type' => 'html_strip',
+                ],
+            ],
+        ];
+
+        return $settings;
     }
 
     public static function esIndexName()

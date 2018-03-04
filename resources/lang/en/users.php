@@ -43,6 +43,10 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => 'Loading...',
+    ],
+
     'login' => [
         '_' => 'Sign in',
         'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
@@ -142,6 +146,11 @@ return [
             ],
             'historical' => [
                 'empty' => 'No performance records. :(',
+                'title' => 'Historical',
+
+                'monthly_playcounts' => [
+                    'title' => 'Play History',
+                ],
                 'most_played' => [
                     'count' => 'times played',
                     'title' => 'Most Played Beatmaps',
@@ -150,7 +159,9 @@ return [
                     'accuracy' => 'accuracy: :percentage',
                     'title' => 'Recent Plays (24h)',
                 ],
-                'title' => 'Historical',
+                'replays_watched_counts' => [
+                    'title' => 'Replays Watched History',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Kudosu Available',
@@ -236,6 +247,10 @@ return [
             'edit_big' => 'Edit me!',
             'placeholder' => 'Type page content here',
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+        ],
+        'post_count' => [
+            '_' => 'Contributed :count',
+            'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [
             'country' => 'Country rank for :mode',

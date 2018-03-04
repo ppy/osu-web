@@ -107,6 +107,8 @@ return [
             ],
             'historical' => [
                 'empty' => '기록된 플레이가 없습니다. :(',
+                'title' => '기록',
+
                 'most_played' => [
                     'count' => '플레이 횟수',
                     'title' => '가장 많이 플레이한 비트맵',
@@ -115,7 +117,6 @@ return [
                     'accuracy' => '정확도: :percentage',
                     'title' => '최근 플레이 (24시간)',
                 ],
-                'title' => '기록',
             ],
             'kudosu' => [
                 'available' => '사용 가능한 Kudosu',

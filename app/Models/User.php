@@ -405,7 +405,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getUserFromAttribute($value)
     {
-        return presence(htmlspecialchars_decode($value));
+        return presence(html_entity_decode_better($value));
     }
 
     public function setUserFromAttribute($value)
@@ -415,7 +415,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getUserInterestsAttribute($value)
     {
-        return presence(htmlspecialchars_decode($value));
+        return presence(html_entity_decode_better($value));
     }
 
     public function setUserInterestsAttribute($value)
@@ -425,7 +425,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function getUserOccAttribute($value)
     {
-        return presence(htmlspecialchars_decode($value));
+        return presence(html_entity_decode_better($value));
     }
 
     public function setUserOccAttribute($value)
@@ -736,6 +736,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     | }
     | return $response;
     */
+
+    public function monthlyPlaycounts()
+    {
+        return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
+    }
+
+    public function replaysWatchedCounts()
+    {
+        return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
+    }
 
     public function userGroups()
     {

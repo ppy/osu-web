@@ -116,6 +116,19 @@ class Beatmap extends Model
         return $value;
     }
 
+    public function getVersionAttribute($value)
+    {
+        if ($this->mode === 'mania') {
+            $keys = $this->diff_size;
+
+            if (strpos($value, "{$keys}k") === false && strpos($value, "{$keys}K") === false) {
+                return "[{$keys}K] {$value}";
+            }
+        }
+
+        return $value;
+    }
+
     public function scopeDefault($query)
     {
         return $query

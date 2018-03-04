@@ -21,6 +21,8 @@
 namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
+use App\Libraries\BBCodeFromDB;
+use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
 use App\Models\User;
@@ -55,16 +57,19 @@ class Post extends Model
     |--------------------------------------------------------------------------
     */
     const ES_MAPPINGS = [
+        'post_id' => ['type' => 'long'],
         'topic_id' => ['type' => 'long'],
         'poster_id' => ['type' => 'long'],
         'forum_id' => ['type' => 'long'],
         'post_time' => ['type' => 'date'],
-        'post_text' => ['type' => 'text'],
+        'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
+        'search_content' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
+        'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']],
     ];
 
     public function forum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+        return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
     }
 
     public function topic()
@@ -74,12 +79,12 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'poster_id', 'user_id');
+        return $this->belongsTo(User::class, 'poster_id', 'user_id');
     }
 
     public function lastEditor()
     {
-        return $this->belongsTo("App\Models\User", 'post_edit_user', 'user_id');
+        return $this->belongsTo(User::class, 'post_edit_user', 'user_id');
     }
 
     public function setPostTextAttribute($value)
@@ -114,6 +119,27 @@ class Post extends Model
         return get_time_or_null($value);
     }
 
+    /**
+     * Gets a preview of the post_text by stripping anything that
+     * looks like bbcode or html.
+     *
+     * @return string
+     */
+    public function getSearchContentAttribute()
+    {
+        // remove metadata
+        // remove blockquotes
+        // unescape html entities
+        // strip remaining bbcode
+        // strip any html tags left
+        $text = Beatmapset::removeMetadataText($this->post_text);
+        $text = BBCodeFromDB::removeBlockQuotes($text);
+        $text = html_entity_decode_better($text);
+        $text = BBCodeFromDB::removeBBCodeTags($text);
+
+        return strip_tags($text);
+    }
+
     public static function lastUnreadByUser($topic, $user)
     {
         if ($user === null) {
@@ -138,97 +164,6 @@ class Post extends Model
         }
 
         return $unreadPostId;
-    }
-
-    public static function search($rawParams)
-    {
-        $params = static::searchParams($rawParams);
-        $result = static::searchEs($params);
-
-        $query = static
-            ::with('topic')
-            ->whereIn('post_id', $result['ids'])
-            ->orderByField('post_id', $result['ids']);
-
-        return [
-            'data' => $query->get(),
-            'total' => min($result['total'], 10000),
-            'params' => $params,
-        ];
-    }
-
-    public static function searchEs($params = [])
-    {
-        $required = [];
-        $any = [];
-
-        if (present($params['query'])) {
-            $required[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
-        }
-
-        if (present($params['username'])) {
-            $user = User::where('username', '=', $params['username'])->first();
-            $any[] = ['match' => ['poster_id' => $user === null ? -1 : $user->getKey()]];
-        }
-
-        if ($params['forum_id']) {
-            if ($params['forum_children']) {
-                $forum = Forum::where('forum_id', '=', $params['forum_id'])->first();
-
-                $forumIds = $forum === null ? [$params['forum_id']] : $forum->allSubForums();
-            } else {
-                $forumIds = [$params['forum_id']];
-            }
-
-            foreach ($forumIds as $forumId) {
-                $any[] = ['match' => ['forum_id' => $forumId]];
-            }
-        }
-
-        if ($params['topic_id'] !== null) {
-            $required[] = ['match' => ['topic_id' => $params['topic_id']]];
-        }
-
-        $searchParams = [
-            'index' => static::esIndexName(),
-            'size' => $params['limit'],
-            'from' => ($params['page'] - 1) * $params['limit'],
-        ];
-
-        if (count($required) > 0) {
-            $searchParams['body']['query']['bool']['must'] = $required;
-        }
-
-        if (count($any) > 0) {
-            $searchParams['body']['query']['bool']['should'] = $any;
-            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
-        }
-
-        $resultEs = es_search($searchParams);
-
-        $ids = [];
-
-        foreach ($resultEs['hits']['hits'] as $post) {
-            $ids[] = get_int($post['_id']);
-        }
-
-        return [
-            'ids' => $ids,
-            'total' => $resultEs['hits']['total'],
-        ];
-    }
-
-    public static function searchParams($params)
-    {
-        $params['query'] = $params['query'] ?? null;
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
-        $params['username'] = get_string($params['username'] ?? null);
-        $params['forum_children'] = get_bool($params['forum_children'] ?? false);
-        $params['forum_id'] = get_int($params['forum_id'] ?? null);
-        $params['topic_id'] = get_int($params['topic_id'] ?? null);
-
-        return $params;
     }
 
     public function normalizeUser($user)

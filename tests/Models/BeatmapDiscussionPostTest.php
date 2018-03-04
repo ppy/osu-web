@@ -17,6 +17,7 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
+use App\Exceptions\ModelNotSavedException;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
 use App\Models\Beatmapset;
@@ -24,7 +25,7 @@ use App\Models\User;
 
 class BeatmapDiscussionPostTest extends TestCase
 {
-    public function testSoftDelete()
+    public function testSoftDeleteOrExplode()
     {
         $beatmapset = factory(Beatmapset::class)->create(['discussion_enabled' => true]);
         $beatmap = $beatmapset->beatmaps()->save(factory(Beatmap::class)->make());
@@ -47,12 +48,16 @@ class BeatmapDiscussionPostTest extends TestCase
         $this->assertFalse($post->trashed());
 
         // No soft delete starting post.
-        $startingPost->softDelete($user);
+        try {
+            $startingPost->softDeleteOrExplode($user);
+        } catch (Exception $e) {
+            $this->assertInstanceOf(ModelNotSavedException::class, $e);
+        }
         $startingPost = $startingPost->fresh();
         $this->assertFalse($startingPost->trashed());
 
         // Soft delete.
-        $post->softDelete($user);
+        $post->softDeleteOrExplode($user);
         $post = $post->fresh();
         $this->assertTrue($post->trashed());
 
@@ -62,8 +67,8 @@ class BeatmapDiscussionPostTest extends TestCase
         $this->assertFalse($post->trashed());
 
         // Soft delete with deleted discussion.
-        $discussion->softDelete($user);
-        $post->softDelete($user);
+        $discussion->softDeleteOrExplode($user);
+        $post->softDeleteOrExplode($user);
         $post = $post->fresh();
         $this->assertTrue($post->trashed());
 

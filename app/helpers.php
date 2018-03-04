@@ -173,9 +173,15 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function html_entity_decode_better($string)
+{
+    // ENT_HTML5 to handle more named entities (&apos;, etc?).
+    return html_entity_decode($string, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+
 function html_excerpt($body, $limit = 300)
 {
-    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
+    $body = html_entity_decode_better(replace_tags_with_spaces($body));
 
     if (strlen($body) >= $limit) {
         $body = mb_substr($body, 0, $limit).'...';
@@ -535,7 +541,7 @@ function proxy_image($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode($url));
+    $decoded = urldecode(html_entity_decode_better($url));
 
     if (config('osu.camo.key') === '') {
         return $decoded;
@@ -566,15 +572,15 @@ function nav_links()
     $links['home'] = [
         '_' => route('home'),
         'news-index' => route('news.index'),
-        'friends' => route('friends.index'),
+        'team' => wiki_url('Team'),
         'changelog-index' => route('changelog.index'),
         'getDownload' => route('download'),
         'search' => route('search'),
     ];
-    $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
-        'getFaq' => wiki_url('FAQ'),
-        'getSupport' => wiki_url('Help_Center'),
+    $links['beatmaps'] = [
+        'index' => route('beatmapsets.index'),
+        'artists' => route('artists.index'),
+        'packs' => route('packs.index'),
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
@@ -582,11 +588,6 @@ function nav_links()
         'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
         'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
-    ];
-    $links['beatmaps'] = [
-        'index' => route('beatmapsets.index'),
-        'artists' => route('artists.index'),
-        'packs' => route('packs.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
@@ -598,6 +599,12 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'cart-show' => route('store.cart.show'),
+    ];
+    $links['help'] = [
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
+        'getRules' => wiki_url('Rules'),
+        'getSupport' => wiki_url('Help_Center'),
     ];
 
     return $links;
@@ -1155,4 +1162,12 @@ function group_users_by_online_state($users)
         'online' => $online,
         'offline' => $offline,
     ];
+}
+
+// shorthand to return the filename of an open stream/handle
+function get_stream_filename($handle)
+{
+    $meta = stream_get_meta_data($handle);
+
+    return $meta['uri'];
 }

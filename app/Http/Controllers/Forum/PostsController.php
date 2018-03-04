@@ -62,8 +62,8 @@ class PostsController extends Controller
 
                 $topic->removePostOrExplode($post);
             });
-        } catch (ModelNotSavedException $_e) {
-            return error_popup($topic->validationErrors()->toSentence());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         if ($topic->trashed()) {
@@ -130,8 +130,8 @@ class PostsController extends Controller
                     ])
                     ->saveOrExplode();
             });
-        } catch (ModelNotSavedException $_e) {
-            return error_popup($post->validationErrors()->toSentence());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
         $posts = collect([$post->fresh()]);

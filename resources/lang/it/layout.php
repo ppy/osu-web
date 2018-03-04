@@ -29,14 +29,13 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icone',
-            'index' => 'notizie',
             'supportTheGame' => 'sostieni il gioco',
         ],
         'help' => [
             '_' => 'aiuto',
             'getWiki' => 'wiki',
             'getFaq' => 'domande comuni',
-            'getSupport' => 'supporto',
+            'getSupport' => 'supporto', //obsolete
         ],
         'beatmaps' => [
             '_' => 'beatmap',
@@ -58,7 +57,6 @@ return [
             '_' => 'comunità',
             'getForum' => 'forum',
             'getChat' => 'chat',
-            'getSupport' => 'supporto',
             'getLive' => 'dirette',
             'contests' => 'concorsi',
             'profile' => 'profilo',

@@ -140,6 +140,9 @@ return [
                 'monthly_playcounts' => [
                     'title' => 'Historial de de juego',
                 ],
+
+                'title' => 'Historial',
+
                 'most_played' => [
                     'count' => 'veces jugado',
                     'title' => 'Beatmaps Más Jugados',
@@ -148,10 +151,12 @@ return [
                     'accuracy' => 'precisión: :percentage',
                     'title' => 'Jugadas Recientes (24h)',
                 ],
+
                 'replays_watched_counts' => [
                     'title' => 'Historial de repeticiones vistas',
                 ],
                 'title' => 'Historial',
+
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',

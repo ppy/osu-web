@@ -127,9 +127,7 @@ class BeatmapsetsController extends Controller
             $countries = json_collection(Country::all(), new CountryTransformer);
             $hasDiscussion = $beatmapset->discussion_enabled;
 
-            $title = trans('layout.menu.beatmaps._').' / '.$beatmapset->artist.' - '.$beatmapset->title;
-
-            return view('beatmapsets.show', compact('set', 'title', 'countries', 'hasDiscussion', 'beatmapset'));
+            return view('beatmapsets.show', compact('set', 'countries', 'hasDiscussion', 'beatmapset'));
         }
     }
 
@@ -207,7 +205,7 @@ class BeatmapsetsController extends Controller
             'mirror_id' => $mirror->mirror_id,
         ]);
 
-        return redirect($mirror->generateUrl($beatmapset, $noVideo));
+        return redirect($mirror->generateURL($beatmapset, $noVideo));
     }
 
     public function nominate($id)

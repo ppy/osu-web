@@ -163,11 +163,26 @@ class Page
                 'path_clean' => es_query_and_words($searchPath),
             ],
         ];
-        $params['body']['query']['bool']['must'][] = [
-            'match' => [
-                'locale' => $locale,
+        $params['body']['query']['bool']['must'][] = ['bool' => [
+            'minimum_should_match' => 1,
+            'should' => [
+                ['constant_score' => [
+                    'boost' => 1000,
+                    'filter' => [
+                        'match' => [
+                            'locale' => $locale ?? App::getLocale(),
+                        ],
+                    ],
+                ]],
+                ['constant_score' => [
+                    'filter' => [
+                        'match' => [
+                            'locale' => config('app.fallback_locale'),
+                        ],
+                    ],
+                ]],
             ],
-        ];
+        ]];
 
         $results = es_search($params)['hits']['hits'];
 
