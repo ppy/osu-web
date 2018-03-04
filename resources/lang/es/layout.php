@@ -34,18 +34,20 @@ return [
             'getDownload' => 'descargar',
             'getIcons' => 'iconos',
             'groups-show' => 'grupos',
-            'index' => 'osu!',
+            'index' => 'panel',
             'legal-show' => 'información',
             'news-index' => 'novedades',
             'news-show' => 'novedades',
             'password-reset-index' => 'reestablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
+            'team' => 'equipo',
         ],
         'help' => [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
-            'getSupport' => 'soporte',
+            'getRules' => 'reglas',
+            'getSupport' => 'no, de veras, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -226,7 +228,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar al soporte técnico!',
+        'reference' => '¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!',
     ],
 
     'popup_login' => [
