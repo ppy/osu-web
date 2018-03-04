@@ -37,6 +37,9 @@ return [
             'title_most' => 'Más votados (últimos 3 meses)',
         ],
     ],
+    'card' => [
+        'loading' => 'Cargando...',
+    ],
     'login' => [
         '_' => 'Iniciar sesión',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
@@ -134,6 +137,9 @@ return [
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
+                'monthly_playcounts' => [
+                    'title' => 'Historial de de juego',
+                ],
                 'most_played' => [
                     'count' => 'veces jugado',
                     'title' => 'Beatmaps Más Jugados',
@@ -141,6 +147,9 @@ return [
                 'recent_plays' => [
                     'accuracy' => 'precisión: :percentage',
                     'title' => 'Jugadas Recientes (24h)',
+                ],
+                'replays_watched_counts' => [
+                    'title' => 'Historial de repeticiones vistas',
                 ],
                 'title' => 'Historial',
             ],
@@ -224,6 +233,10 @@ return [
             'edit_big' => '¡Editar sobre mi!',
             'placeholder' => 'Escribe el contenido aquí',
             'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta función.",
+        ],
+        'post_count' => [
+            '_' => 'Contribuyó con :count',
+            'count' => ':count post en el foro|:count posts en el foro',
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',
