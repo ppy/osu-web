@@ -59,6 +59,9 @@ return [
             'moment' => 'MMMM [de] YYYY',
             'php' => 'MMMM \d\e y',
         ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
+        ],
     ],
 
     'device' => [
