@@ -19,7 +19,7 @@
 
 @section('content')
     <form action="{{ route('search') }}">
-        <input type="hidden" name="mode" value="post_search">
+        <input type="hidden" name="mode" value="forum_post">
 
         <div class="osu-page">
             <div class="search-header">
@@ -54,7 +54,7 @@
                     >
                 </label>
 
-                <div class="search-result search-result--post_search">
+                <div class="search-result search-result--forum_post">
                     <div class="search-result__row search-result__row--entries-container">
                         <div class="search-result__entries">
                             @foreach ($search as $hit)
