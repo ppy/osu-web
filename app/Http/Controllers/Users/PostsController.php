@@ -34,7 +34,10 @@ class PostsController extends Controller
             'userId' => get_int(request('user')),
         ];
 
-        $search = (new PostSearch($options))->paginate(50);
+
+        $search = (new PostSearch($options))
+            ->paginate(50)
+            ->appends(request()->query());
 
         return view('users.posts.index', compact('search'));
     }
