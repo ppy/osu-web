@@ -23,6 +23,7 @@ namespace App\Libraries;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
+use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
@@ -54,11 +55,10 @@ class PostSearch extends Search implements \ArrayAccess
             ->filter(['term' => ['type' => 'posts']]);
 
         if ($this->queryString !== null) {
-            $query->must(['query_string' => [
-                'fields' => ['search_content'],
-                'query' => $this->queryString,
-            ]]);
+            $query->must(QueryHelper::queryString($this->queryString, ['search_content']));
         }
+
+
 
         $this->query($query);
 
