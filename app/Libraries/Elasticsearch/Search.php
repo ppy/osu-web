@@ -74,11 +74,15 @@ abstract class Search implements Queryable
      * Not the same as paginate on laravel's query builder; this one can actually pass options to
      * the paginator.
      */
-    public function paginate(int $pageSize = null, int $page = null, array $options = [])
+    public function paginate(?int $pageSize = null, ?int $page = null, ?array $options = null)
     {
         // TODO: default should be based to search type.
         $this->size($pageSize ?? static::DEFAULT_PAGE_SIZE)
             ->page($page ?? LengthAwarePaginator::resolveCurrentPage());
+
+        if ($options === null) {
+            $options = ['path' => request()->url()];
+        }
 
         return $this->getPaginator($options);
     }
