@@ -29,6 +29,7 @@ abstract class Search implements Queryable
 {
     use HasSearch;
 
+    const DEFAULT_PAGE_SIZE = 50;
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
@@ -55,6 +56,10 @@ abstract class Search implements Queryable
     public function getPaginator(array $options = [])
     {
         $page = $this->getPaginationParams();
+        if (!isset($page['page'])) {
+            // no laravel paginator if offset-only paging is used
+            return;
+        }
 
         return new LengthAwarePaginator(
             $this->data(),
@@ -63,6 +68,19 @@ abstract class Search implements Queryable
             $page['page'],
             $options
         );
+    }
+
+    /**
+     * Not the same as paginate on laravel's query builder; this one can actually pass options to
+     * the paginator.
+     */
+    public function paginate(int $pageSize = null, int $page = null, array $options = [])
+    {
+        // TODO: default should be based to search type.
+        $this->size($pageSize ?? static::DEFAULT_PAGE_SIZE)
+            ->page($page ?? LengthAwarePaginator::resolveCurrentPage());
+
+        return $this->getPaginator($options);
     }
 
     /**
