@@ -41,6 +41,7 @@ class PostSearch extends Search implements \ArrayAccess
         parent::__construct(Post::esIndexName(), $options);
 
         $this->userId = get_int($options['userId'] ?? -1);
+        $this->queryString = presence(trim($options['query'] ?? ''));
     }
 
     /**
@@ -51,6 +52,13 @@ class PostSearch extends Search implements \ArrayAccess
         $query = (new BoolQuery())
             ->must(['term' => ['poster_id' => $this->userId]])
             ->filter(['term' => ['type' => 'posts']]);
+
+        if ($this->queryString !== null) {
+            $query->must(['query_string' => [
+                'fields' => ['search_content'],
+                'query' => $this->queryString,
+            ]]);
+        }
 
         $this->query($query);
 

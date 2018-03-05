@@ -31,9 +31,9 @@ class PostsController extends Controller
     public function index()
     {
         $options = [
+            'query' => request('query'),
             'userId' => get_int(request('user')),
         ];
-
 
         $search = (new PostSearch($options))
             ->paginate(50)
