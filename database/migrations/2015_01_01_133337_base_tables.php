@@ -695,12 +695,16 @@ class BaseTables extends Migration
         $this->comment('osu_username_change_history', 'Stores historical changes to user\'\'s usernames over time.');
 
         Schema::create('osu_user_month_playcount', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
             $table->unsignedMediumInteger('user_id');
             $table->char('year_month', 4);
             $table->unsignedSmallInteger('playcount');
 
             $table->primary(['user_id', 'year_month']);
         });
+        $this->setRowFormat('osu_user_month_playcount', 'COMPRESSED');
 
         Schema::create('osu_user_performance_rank', function (Blueprint $table) {
             $table->integer('user_id')->unsigned();
@@ -805,12 +809,16 @@ class BaseTables extends Migration
         $this->setRowFormat('osu_user_performance_rank', 'DYNAMIC');
 
         Schema::create('osu_user_replayswatched', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
             $table->unsignedMediumInteger('user_id');
             $table->char('year_month', 4);
             $table->unsignedMediumInteger('count');
 
             $table->primary(['user_id', 'year_month']);
         });
+        $this->setRowFormat('osu_user_replayswatched', 'COMPRESSED');
 
         Schema::create('osu_user_stats_fruits', function (Blueprint $table) {
             $table->charset = 'utf8';
