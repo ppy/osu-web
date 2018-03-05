@@ -156,7 +156,7 @@ class HomeController extends Controller
     {
         $options = [
             'query' => request('query'),
-            'userId' => get_int(request('user_id')),
+            'userId' => User::lookup(request('username'))->getKey(),
         ];
 
         $search = (new PostSearch($options))

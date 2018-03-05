@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="" />
+                    <input class="search-header__input" name="query" value="{{ request('query') }}" />
 
                     <button class="search-header__icon">
                         <i class="fa fa-search"></i>
@@ -39,6 +39,21 @@
 
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
+                <div class="page-mode page-mode--search">
+                </div>
+
+                <label class="search-advanced-forum-post__input-group">
+                    <div class="search-advanced-forum-post__label">
+                        {{ trans('home.search.forum_post.label.username') }}
+                    </div>
+
+                    <input
+                        name="username"
+                        value="{{ request('username') }}"
+                        class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
+                    >
+                </label>
+
                 <div class="search-result search-result--post_search">
                     <div class="search-result__row search-result__row--entries-container">
                         <div class="search-result__entries">
