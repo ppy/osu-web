@@ -50,7 +50,7 @@
                                 <div class="search-result__entry">
                                     <a class="search-entry" href="{{ $postUrl }}">
                                         <div class="search-entry__row search-entry__row--excerpt">
-                                            {{ html_excerpt($hit->source('search_content')) }}
+                                            {!! html_excerpt($hit->source('search_content')) !!}
                                         </div>
                                         <p class="search-entry__row search-entry__row--footer">
                                             {{ $postUrl }}
