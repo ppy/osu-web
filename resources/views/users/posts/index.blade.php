@@ -42,7 +42,7 @@
                 <div class="search-result search-result--post-search">
                     <div class="search-result__row search-result__row--entries-container">
                         <div class="search-result__entries">
-                            @foreach ($search->response() as $hit)
+                            @foreach ($search as $hit)
                                 @php
                                     $postUrl = post_url($hit->source('topic_id'), $hit->source('post_id'));
                                 @endphp
@@ -61,6 +61,9 @@
                         </div>
                     </div>
 
+                    <div class="search-result__row search-result__row--paginator">
+                        @include('objects._pagination', ['object' => $search, 'modifier' => 'search'])
+                    </div>
                 </div>
             </div>
         </div>

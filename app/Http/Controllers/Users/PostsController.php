@@ -30,13 +30,11 @@ class PostsController extends Controller
 
     public function index()
     {
-        $page = get_int(request('page'));
-
         $options = [
             'userId' => get_int(request('user')),
         ];
 
-        $search = (new PostSearch($options))->size(50)->page($page);
+        $search = (new PostSearch($options))->paginate(50);
 
         return view('users.posts.index', compact('search'));
     }
