@@ -42,17 +42,7 @@
                 <div class="page-mode page-mode--search">
                 </div>
 
-                <label class="search-advanced-forum-post__input-group">
-                    <div class="search-advanced-forum-post__label">
-                        {{ trans('home.search.forum_post.label.username') }}
-                    </div>
-
-                    <input
-                        name="username"
-                        value="{{ request('username') }}"
-                        class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
-                    >
-                </label>
+                @include('home._search_advanced_forum_post')
 
                 <div class="search-result search-result--forum_post">
                     <div class="search-result__row search-result__row--entries-container">
