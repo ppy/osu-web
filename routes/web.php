@@ -178,7 +178,6 @@ Route::post('users/check-username-availability', 'UsersController@checkUsernameA
 Route::post('users/check-username-exists', 'UsersController@checkUsernameExists')->name('users.check-username-exists');
 Route::get('users/disabled', 'UsersController@disabled')->name('users.disabled');
 Route::get('users/{user}/card', 'UsersController@card')->name('users.card');
-Route::get('users/{user}/posts', 'Users\PostsController@index')->name('users.posts.index');
 
 // extras
 Route::get('users/{user}/kudosu', 'UsersController@kudosu')->name('users.kudosu');

@@ -39,26 +39,18 @@
 
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
-                <div class="search-result search-result--post-search">
+                <div class="search-result search-result--post_search">
                     <div class="search-result__row search-result__row--entries-container">
                         <div class="search-result__entries">
                             @foreach ($search as $hit)
-                                @php
-                                    $postUrl = post_url($hit->source('topic_id'), $hit->source('post_id'));
-                                @endphp
-
                                 <div class="search-result__entry">
-                                    <a class="search-entry" href="{{ $postUrl }}">
-                                        <div class="search-entry__row search-entry__row--excerpt">
-                                            {!! html_excerpt($hit->source('search_content')) !!}
-                                        </div>
-                                        <p class="search-entry__row search-entry__row--footer">
-                                            {{ $postUrl }}
-                                        </p>
-                                    </a>
+                                    @include('home._search_post_search', compact('hit'))
                                 </div>
                             @endforeach
                         </div>
+                        <span class="search-result__more-button search-result__more-button--hidden">
+                            {{-- ...because this element actually affects the layout --}}
+                        </span>
                     </div>
 
                     <div class="search-result__row search-result__row--paginator">
