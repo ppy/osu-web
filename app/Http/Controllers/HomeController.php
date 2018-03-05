@@ -135,12 +135,17 @@ class HomeController extends Controller
         $mode = request('mode');
         if ($mode === 'beatmapset') {
             return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
-        } elseif ($mode === 'post_search') {
-            return $this->searchUserPosts();
+        } elseif (in_array($mode, ['post_search', 'forum_post'], true)) {
+            if (present(request('query'))) {
+                $mode = 'forum_post';
+            } else {
+                return $this->searchUserPosts();
+            }
         }
 
         $params = array_merge(Request::all(), [
             'user' => Auth::user(),
+            'mode' => $mode,
         ]);
 
         $search = new Search($params);
