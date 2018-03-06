@@ -270,7 +270,8 @@ return [
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'post_count' => [
-            '_' => 'Contributed :count',
+            '_' => 'Contributed :link',
+            'link' => '<a href=":url">:count</a>',
             'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [

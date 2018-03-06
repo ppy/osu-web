@@ -136,7 +136,9 @@ class ProfilePage.HeaderExtra extends React.Component
               dangerouslySetInnerHTML:
                 __html:
                   osu.trans 'users.show.post_count._',
-                    count: rowValue postCount
+                    link: osu.trans 'users.show.post_count.link',
+                      url: laroute.route('search', mode: 'forum_post', username: @props.user.id)
+                      count: rowValue postCount
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
