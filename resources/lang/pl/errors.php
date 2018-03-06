@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Zaloguj się, aby kontynuować.', // Base text changed from "log" to "sign"
+        'http-401' => 'Zaloguj się, aby kontynuować.',
         'http-403' => 'Odmowa dostępu.',
         'http-429' => 'Za dużo prób. Spróbuj ponownie później.',
     ],
@@ -36,7 +36,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'Masz za dużo ulubionych beatmap! Usuń jakąś, jeżeli chcesz kontynuować.',
     ],
-    'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.', // Base text changed from "log" to "sign"
+    'logged_out' => 'Wylogowano. Zaloguj się i spróbuj ponownie.',
     'supporter_only' => 'Potrzebujesz statusu donatora, aby używać tej funkcji.',
     'no_restricted_access' => 'Nie możesz wykonać tej operacji, jeśli posiadasz blokadę konta.',
     'unknown' => 'Wystąpił nieoczekiwany błąd.',

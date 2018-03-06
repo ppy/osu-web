@@ -86,7 +86,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'utwórz konto',
-                'description' => 'postępuj zgodnie z instrukcjami w grze, aby się zarejestrować bądź zalogować', // Base text changed from "log" to "sign"
+                'description' => 'postępuj zgodnie z instrukcjami w grze, aby się zarejestrować bądź zalogować',
             ],
             'download' => [
                 'title' => 'pobierz grę',

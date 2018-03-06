@@ -54,6 +54,6 @@ return [
     ],
     'require_login' => [
         '_' => 'Aby pobrać tę paczkę, musisz się :link',
-        'link_text' => 'zalogować', // Base text changed from "log" to "sign"
+        'link_text' => 'zalogować',
     ],
 ];

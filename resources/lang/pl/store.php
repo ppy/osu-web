@@ -59,14 +59,14 @@ return [
     'supporter_tag' => [
         'require_login' => [
             '_' => 'Aby zdobyć status donatora, musisz się :link!',
-            'link_text' => 'zalogować', // Base text changed from "log" to "sign"
+            'link_text' => 'zalogować',
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'Aby zmienić swój pseudonim, musisz się :link!',
-            'link_text' => 'zalogować', // Base text changed from "log" to "sign"
+            'link_text' => 'zalogować',
         ],
     ],
 

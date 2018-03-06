@@ -41,7 +41,7 @@ return [
             'approved' => 'zatwierdzona od ',
             'qualified' => 'zakwalifikowana od ',
             'loved' => 'ulubiona społeczności od ',
-            'logged-out' => 'Zaloguj się, aby móc pobierać beatmapy!', // Base text changed from "log" to "sign"
+            'logged-out' => 'Zaloguj się, aby móc pobierać beatmapy!',
             'download' => [
                 '_' => 'Pobierz',
                 'video' => 'z wideo',

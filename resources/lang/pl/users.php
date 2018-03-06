@@ -51,8 +51,8 @@ return [
         'button' => 'Zaloguj się',
         'button_posting' => 'Logowanie...',
         'remember' => 'Zapamiętaj ten komputer',
-        'title' => 'Zaloguj się, aby kontynuować', // Base text changed from "log" to "sign"
-        'failed' => 'Niepoprawny login/hasło', // Base text changed from "log" to "sign"
+        'title' => 'Zaloguj się, aby kontynuować',
+        'failed' => 'Niepoprawny login/hasło',
         'register' => 'Nie posiadasz konta osu! ? Stwórz nowe',
         'forgot' => 'Zapomniałeś hasła?',
         'beta' => [
@@ -68,12 +68,12 @@ return [
     ],
 
     'anonymous' => [
-        'login_link' => 'kliknij, aby się zalogować', // Base text changed from "log" to "sign"
-        'login_text' => 'zaloguj się', // Base text changed from "log" to "sign"
+        'login_link' => 'kliknij, aby się zalogować',
+        'login_text' => 'zaloguj się',
         'username' => 'Gość',
-        'error' => 'Musisz się zalogować.', // Base text changed from "log" to "sign"
+        'error' => 'Musisz się zalogować.',
     ],
-    'logout_confirm' => 'Na pewno chcesz się wylogować? :(', // Base text changed from "log" to "sign"
+    'logout_confirm' => 'Na pewno chcesz się wylogować? :(',
     'restricted_banner' => [
         'title' => 'Twoje konto zostało zablokowane!',
         'message' => 'Podczas blokady konta, niemożliwa będzie interakcja z innymi użytkownikami, a twoje wyniki będą widoczne tylko dla ciebie. Jest to zazwyczaj zautomatyzowany proces i może być odwrócony w ciągu 24 godzin. Jeżeli chcesz odwołać się od blokady, skontaktuj się z <a href="mailto:accounts@ppy.sh">pomocą techniczną</a>.',

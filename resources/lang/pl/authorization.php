@@ -91,7 +91,7 @@ return [
                 'no_permission' => 'Nie posiadasz uprawnień do odpowiadania.',
 
                 'user' => [
-                    'require_login' => 'Zaloguj się, aby odpowiedzieć.', // Base text changed from "log" to "sign"
+                    'require_login' => 'Zaloguj się, aby odpowiedzieć.',
                     'restricted' => 'Nie można odpowiadać podczas blokady konta.',
                     'silenced' => 'Nie można odpowiadać podczas uciszenia.',
                 ],
@@ -109,7 +109,7 @@ return [
                 'voted' => 'Zmiana głosów jest niemożliwa.',
 
                 'user' => [
-                    'require_login' => 'Zaloguj się, aby zagłosować.', // Base text changed from "log" to "sign"
+                    'require_login' => 'Zaloguj się, aby zagłosować.',
                     'restricted' => 'Nie można głosować podczas blokady konta.',
                     'silenced' => 'Nie można głosować podczas uciszenia.',
                 ],
@@ -132,7 +132,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Zaloguj się, aby kontynuować.', // Base text changed from "log" to "sign"
+    'require_login' => 'Zaloguj się, aby kontynuować.',
 
     'unauthorized' => 'Odmowa dostępu.',
 

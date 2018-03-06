@@ -101,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => 'użytkownik',
-            'getLogin' => 'zaloguj się', // Base text changed from "log" to "sign"
+            'getLogin' => 'zaloguj się',
             'disabled' => 'wyłączono',
 
             'register' => 'zarejestruj się',
@@ -190,7 +190,7 @@ return [
         ],
         '401' => [
             'error' => 'Nie powinieneś tu być.',
-            'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować', // Base text changed from "log" to "sign"
+            'description' => 'Jednakże, możesz spróbować się wrócić. Albo się zalogować',
             'link' => false,
         ],
         '405' => [

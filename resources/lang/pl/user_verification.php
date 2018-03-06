@@ -29,7 +29,7 @@ return [
             'recover_link' => 'odzyskać maila tutaj',
             'reissue' => 'Możesz także :reissue_link lub :logout_link.',
             'reissue_link' => 'poprosić o inny kod',
-            'logout_link' => 'wylogować się', // Base text changed from "log" to "sign"
+            'logout_link' => 'wylogować się',
         ],
     ],
     'email' => [
