@@ -24,7 +24,7 @@ return [
     ],
 
     'checkout' => [
-        'cart_problems' => 'Ah, wystąpił problem z twoim koszykiem!',
+        'cart_problems' => 'O nie, wystąpił problem z twoim koszykiem!',
         'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować',
         'declined' => 'Płatność została anulowana.',
         'error' => 'Wystąpił problem z zatwierdzaniem twojego zamówienia :(',

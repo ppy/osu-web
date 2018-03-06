@@ -61,7 +61,7 @@ return [
         'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
-            'small' => '(supporterzy dostaną go wkrótce)',
+            'small' => '(donatorzy otrzymają go wkrótce)',
         ],
 
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
