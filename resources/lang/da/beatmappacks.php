@@ -55,6 +55,6 @@ return [
 
     'require_login' => [
         '_' => 'Du skal være :link for at kunne downloade',
-        'link_text' => 'logget ind',
+        'link_text' => 'logget ind', // Base text changed from "log" to "sign"
     ],
 ];

@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => 'A votação deste concurso já foi encerrada',
-        'login_required' => 'Por favor, inicie a sessão para votar.',
+        'login_required' => 'Por favor, inicie a sessão para votar.', // Base text changed from "log" to "sign"
         'best_of' => [
             'none_played' => 'Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!',
         ],
     ],
     'entry' => [
         '_' => 'inscrição',
-        'login_required' => 'Por favor, inicie a sessão para participar deste concurso.',
+        'login_required' => 'Por favor, inicie a sessão para participar deste concurso.', // Base text changed from "log" to "sign"
         'silenced_or_restricted' => 'Você não pode participar de concursos enquanto restrito ou silenciado.',
         'preparation' => 'Estamos preparando este concurso. Aguarde pacientemente!',
         'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',

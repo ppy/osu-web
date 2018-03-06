@@ -33,7 +33,7 @@ return [
             'cancel' => 'Cancelar inscrição',
         ],
         'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email quando estiver próximo da data do torneio, então, por favor, certifique-se de que seu entereço de email/conta do osu! são válidos!',
-        'login_to_register' => 'Por favor :login para visualizar os detalhes de inscrição!',
+        'login_to_register' => 'Por favor :login para visualizar os detalhes de inscrição!', // Base text changed from "log" to "sign"
         'not_yet_entered' => 'Você não está registrado nesse torneio.',
         'rank_too_low' => 'Desculpa, você não tem os requisitos mínimos necessários para esse torneio!',
         'registration_ends' => 'Período de inscrição será finalizado em :date',

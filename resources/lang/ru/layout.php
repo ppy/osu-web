@@ -98,7 +98,7 @@ return [
         ],
         'user' => [
             '_' => 'пользователь',
-            'getLogin' => 'логин',
+            'getLogin' => 'логин', // Base text changed from "log" to "sign"
             'disabled' => 'недоступно',
 
             'register' => 'зарегистрироваться',
@@ -188,7 +188,7 @@ return [
         ],
         '401' => [
             'error' => 'Ты не должен быть здесь.',
-            'description' => 'Доступ к этой странице ограничен. Вернись назад или авторизуйся.',
+            'description' => 'Доступ к этой странице ограничен. Вернись назад или авторизуйся.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

@@ -41,7 +41,7 @@ return [
             'approved' => 'approved 于 ',
             'qualified' => 'qualified 于 ',
             'loved' => 'loved 于 ',
-            'logged-out' => '下载谱面前请先登录！',
+            'logged-out' => '下载谱面前请先登录！', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => '下载',
                 'video' => '带视频',

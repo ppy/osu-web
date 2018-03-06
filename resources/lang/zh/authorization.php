@@ -93,7 +93,7 @@ return [
                 'no_permission' => '没有权限，无法回复。',
 
                 'user' => [
-                    'require_login' => '回复前请先登录。',
+                    'require_login' => '回复前请先登录。', // Base text changed from "log" to "sign"
                     'restricted' => '账户处于限制模式，无法回复。',
                     'silenced' => '账户被禁言，无法回复。',
                 ],
@@ -111,7 +111,7 @@ return [
                 'voted' => '不允许修改投票。',
 
                 'user' => [
-                    'require_login' => '投票前请先登录。',
+                    'require_login' => '投票前请先登录。', // Base text changed from "log" to "sign"
                     'restricted' => '账户处于限制模式，无法投票。',
                     'silenced' => '账户被禁言，无法投票。',
                 ],
@@ -134,7 +134,7 @@ return [
         ],
     ],
 
-    'require_login' => '登录以继续。',
+    'require_login' => '登录以继续。', // Base text changed from "log" to "sign"
 
     'unauthorized' => '没有权限。',
 

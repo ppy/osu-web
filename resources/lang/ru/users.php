@@ -29,8 +29,8 @@ return [
         'button' => 'Войти',
         'button_posting' => 'Входим...',
         'remember' => 'Запомнить этот браузер',
-        'title' => 'Пожалуйста войди для продолжения',
-        'failed' => 'Неверный никнейм',
+        'title' => 'Пожалуйста войди для продолжения', // Base text changed from "log" to "sign"
+        'failed' => 'Неверный никнейм', // Base text changed from "log" to "sign"
         'register' => 'У тебя нет аккаунта в osu!? Создай один',
         'forgot' => 'Забыли свой пароль?',
         'beta' => [
@@ -44,11 +44,11 @@ return [
         '_' => 'Регистрация',
     ],
     'anonymous' => [
-        'login_link' => 'нажмите для входа',
+        'login_link' => 'нажмите для входа', // Base text changed from "log" to "sign"
         'username' => 'Гость',
-        'error' => 'Ты должен быть авторизированным, чтобы сделать это.',
+        'error' => 'Ты должен быть авторизированным, чтобы сделать это.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Ты действительно хочешь выйти? :(',
+    'logout_confirm' => 'Ты действительно хочешь выйти? :(', // Base text changed from "log" to "sign"
     'show' => [
         '404' => 'Пользователь не найден! ;_;',
         'age' => ':age лет',

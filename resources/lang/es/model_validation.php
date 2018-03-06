@@ -38,7 +38,7 @@ return [
         'locked' => 'La discusión ha sido bloqueada.',
         'mapper_note_wrong_user' => 'Sólo el dueño del beatmap puede publicar notas del mapper',
         'hype' => [
-            'guest' => 'Debes iniciar sesión para hypear.',
+            'guest' => 'Debes iniciar sesión para hypear.', // Base text changed from "log" to "sign"
             'hyped' => 'Ya hypeaste este mapa.',
             'limit_exceeded' => 'Ya has utilizado todos tus hype.',
             'not_hypeable' => 'Este mapa no puede ser hypeado.',

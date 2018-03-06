@@ -41,7 +41,7 @@ return [
             'approved' => 'approved된 날짜: ',
             'qualified' => 'qualified된 날짜: ',
             'loved' => 'loved된 날짜: ',
-            'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!',
+            'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => '다운로드',
                 'video' => '영상 포함',

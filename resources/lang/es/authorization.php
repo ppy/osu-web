@@ -94,7 +94,7 @@ return [
                 'no_permission' => 'No tienes permisos para responder.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para responder.',
+                    'require_login' => 'Inicia sesión para responder.', // Base text changed from "log" to "sign"
                     'restricted' => 'No puedes responder mientras estés restringido.',
                     'silenced' => 'No puedes responder mientras estés silenciado.',
                 ],
@@ -112,7 +112,7 @@ return [
                 'voted' => 'No se puede cambiar tu voto.',
 
                 'user' => [
-                    'require_login' => 'Inicia sesión para votar.',
+                    'require_login' => 'Inicia sesión para votar.', // Base text changed from "log" to "sign"
                     'restricted' => 'No puedes votar mientras estés restringido.',
                     'silenced' => 'No puedes votar mientras estés silenciado.',
                 ],
@@ -135,7 +135,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Inicia sesión para continuar.',
+    'require_login' => 'Inicia sesión para continuar.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Acceso denegado.',
 

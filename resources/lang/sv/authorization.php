@@ -92,7 +92,7 @@ return [
                 'no_permission' => 'Inget tillstånd att svara.',
 
                 'user' => [
-                    'require_login' => 'Var vänlig logga in för att svara.',
+                    'require_login' => 'Var vänlig logga in för att svara.', // Base text changed from "log" to "sign"
                     'restricted' => 'Kan ej svara när man är begränsad.',
                     'silenced' => 'Kan ej svara när man är tystad.',
                 ],
@@ -110,7 +110,7 @@ return [
                 'voted' => 'Ändra röst är ej tillåtet.',
 
                 'user' => [
-                    'require_login' => 'Var vänlig logga in för att rösta.',
+                    'require_login' => 'Var vänlig logga in för att rösta.', // Base text changed from "log" to "sign"
                     'restricted' => 'Kan ej rösta när man är begränsad.',
                     'silenced' => 'Kan ej rösta när man är tystad.',
                 ],
@@ -133,7 +133,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Var vänlig logga in för att fortsätta.',
+    'require_login' => 'Var vänlig logga in för att fortsätta.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Åtkomst nekad.',
 

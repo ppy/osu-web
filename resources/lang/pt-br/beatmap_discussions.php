@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Precisa conectar-se para editar.',
+            'null_user' => 'Precisa conectar-se para editar.', // Base text changed from "log" to "sign"
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
             'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
         ],
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Conecte-se para responder',
+            'guest' => 'Conecte-se para responder', // Base text changed from "log" to "sign"
             'user' => 'Responder',
         ],
     ],

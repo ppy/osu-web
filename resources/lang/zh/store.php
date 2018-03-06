@@ -69,14 +69,14 @@ return [
         'gift' => '要赠与的玩家',
         'require_login' => [
             '_' => '你需要 :link 以获得 Supporter 标签！',
-            'link_text' => '登录',
+            'link_text' => '登录', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => '需要 :link 才能改变用户名！',
-            'link_text' => '登录',
+            'link_text' => '登录', // Base text changed from "log" to "sign"
         ],
     ],
 ];

@@ -69,14 +69,14 @@ return [
         'gift' => 'dar de presente',
         'require_login' => [
             '_' => 'Você precisa estar :link para comprar uma supporter tag!',
-            'link_text' => 'conectado',
+            'link_text' => 'conectado', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
-            'link_text' => 'conectado',
+            'link_text' => 'conectado', // Base text changed from "log" to "sign"
         ],
     ],
 ];

@@ -41,7 +41,7 @@ return [
             'approved' => 'godkendt på ',
             'qualified' => 'kvalificeret på ',
             'loved' => 'loved på ',
-            'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
+            'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Download',
                 'video' => 'med Video',

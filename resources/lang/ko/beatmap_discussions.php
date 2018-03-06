@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '로그인하셔야 수정하실 수 있습니다.',
+            'null_user' => '로그인하셔야 수정하실 수 있습니다.', // Base text changed from "log" to "sign"
             'system_generated' => '시스템에서 자동으로 만든 답글은 수정할 수 없습니다.',
             'wrong_user' => '답글을 쓴 사람만 수정할 수 있습니다.',
         ],
@@ -34,7 +34,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => '답글을 달려면 로그인하세요', // Login to respond
+            'guest' => '답글을 달려면 로그인하세요', // Base text changed from "log" to "sign"
             'user' => '답글달기', // Respond
         ],
     ],

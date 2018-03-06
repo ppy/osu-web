@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Musisz się zalogować, aby edytować wątek.',
+            'null_user' => 'Musisz się zalogować, aby edytować wątek.', // Base text changed from "log" to "sign"
             'system_generated' => 'Automatycznie generowane wątki nie mogą być edytowane.',
             'wrong_user' => 'Tylko autor może edytować ten wątek.',
         ],

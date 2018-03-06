@@ -104,7 +104,7 @@ return [
         ],
         'user' => [
             '_' => '用户',
-            'getLogin' => '登录',
+            'getLogin' => '登录', // Base text changed from "log" to "sign"
             'disabled' => '禁用',
 
             'register' => '注册',
@@ -197,7 +197,7 @@ return [
         ],
         '401' => [
             'error' => '没有权限',
-            'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面（说不定因为没登录）',
+            'description' => '没有权限访问该页面，建议检查一下再试，或者返回到上一个页面（说不定因为没登录）', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

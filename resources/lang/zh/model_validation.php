@@ -39,7 +39,7 @@ return [
         'mapper_note_wrong_user' => '只有谱面作者可以钉上便签。',
 
         'hype' => [
-            'guest' => '登录后才能推荐',
+            'guest' => '登录后才能推荐', // Base text changed from "log" to "sign"
             'hyped' => '你已经推荐了这张谱面',
             'limit_exceeded' => '你已经用光了推荐次数',
             'not_hypeable' => '这张谱面无法推荐',

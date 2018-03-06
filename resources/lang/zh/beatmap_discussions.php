@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => '编辑前请先登录。',
+            'null_user' => '编辑前请先登录。', // Base text changed from "log" to "sign"
             'system_generated' => '无法编辑系统回复。',
             'wrong_user' => '只有作者可以编辑。',
         ],
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => '登录以回复',
+            'guest' => '登录以回复', // Base text changed from "log" to "sign"
             'user' => '回复',
         ],
     ],

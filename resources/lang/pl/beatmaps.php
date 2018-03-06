@@ -41,7 +41,7 @@ return [
         'message_placeholder' => 'Pisz tutaj',
         'message_type_select' => 'Wybierz typ komentarza',
         'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
-        'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
+        'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę', // Base text changed from "log" to "sign"
         'resolved' => 'Rozwiązane',
         'restore' => 'odzyskaj',
         'title' => 'Dyskusje',

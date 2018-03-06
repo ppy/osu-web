@@ -41,7 +41,7 @@ return [
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
             'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
+            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Descargar',
                 'video' => 'con Video',

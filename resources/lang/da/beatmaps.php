@@ -43,7 +43,7 @@ return [
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
-        'require-login' => 'Log ind for at slå op eller svare',
+        'require-login' => 'Log ind for at slå op eller svare', // Base text changed from "log" to "sign"
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'title' => 'Diskussioner',
@@ -113,7 +113,7 @@ return [
         'button_done' => 'Allerede Hypet!',
         'confirm' => 'Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.',
         'explanation' => 'Hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
-        'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
+        'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!', // Base text changed from "log" to "sign"
         'new_time' => 'Du får en ny hype ved :new_time.',
         'remaining' => 'Du har :remaining hypes tilbage.',
         'section_title' => 'Hype Tog',
