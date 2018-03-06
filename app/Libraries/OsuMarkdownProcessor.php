@@ -220,7 +220,8 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         if (
             !$this->node instanceof Block\Heading ||
             !$this->event->isEntering() ||
-            $this->title === null
+            $this->title === null ||
+            $this->node->getLevel() > 3
         ) {
             return;
         }
