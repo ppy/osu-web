@@ -133,14 +133,10 @@ class HomeController extends Controller
     public function search()
     {
         $mode = request('mode');
-        $userPostSearch =
-            $mode === 'forum_post'
-            && present(request('username'))
-            && !present(request('query'));
 
         if ($mode === 'beatmapset') {
             return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
-        } elseif ($userPostSearch) {
+        } elseif ($mode === 'user_posts') {
             return $this->searchUserPosts();
         }
 

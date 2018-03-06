@@ -19,7 +19,7 @@
 
 @section('content')
     <form action="{{ route('search') }}">
-        <input type="hidden" name="mode" value="forum_post">
+        <input type="hidden" name="mode" value="user_posts">
 
         <div class="osu-page">
             <div class="search-header">
