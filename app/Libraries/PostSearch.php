@@ -34,6 +34,9 @@ use App\Models\User;
 // FIXME: remove ArrayAccess after refactored
 class PostSearch extends Search implements \ArrayAccess
 {
+    protected $forumId;
+    protected $topicId;
+    protected $includeSubforums;
     protected $queryString;
     protected $userId;
 
@@ -43,6 +46,9 @@ class PostSearch extends Search implements \ArrayAccess
 
         $this->userId = get_int($options['userId'] ?? -1);
         $this->queryString = presence(trim($options['query'] ?? ''));
+
+        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
+        $this->forumId = get_int($options['forumId'] ?? null);
     }
 
     /**
@@ -58,7 +64,13 @@ class PostSearch extends Search implements \ArrayAccess
             $query->must(QueryHelper::queryString($this->queryString, ['search_content']));
         }
 
+        if (isset($this->forumId)) {
+            $forumIds = $this->includeSubforums
+                ? Forum::findOrFail($this->forumId)->allSubForums()
+                : [$this->forumId];
 
+            $query->filter(['terms' => ['forum_id' => $forumIds]]);
+        }
 
         $this->query($query);
 

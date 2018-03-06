@@ -160,6 +160,8 @@ class HomeController extends Controller
         $options = [
             'query' => request('query'),
             'userId' => $user !== null ? $user->getKey() : -1,
+            'forumId' => request('forum_id'),
+            'includeSubforums' => get_bool(request('forum_children')),
         ];
 
         $search = (new PostSearch($options))
