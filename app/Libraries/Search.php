@@ -115,21 +115,4 @@ class Search
 
         return $this->cache[$key];
     }
-
-    public function urlParams($newParams = [])
-    {
-        $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
-
-        if ($newParams['mode'] === static::DEFAULT_MODE) {
-            $newParams['mode'] = null;
-            $newParams['limit'] = null;
-        }
-
-        return array_merge($this->params, $newParams);
-    }
-
-    public function url($newParams = [])
-    {
-        return route('search', $this->urlParams($newParams));
-    }
 }

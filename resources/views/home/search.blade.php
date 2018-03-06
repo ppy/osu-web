@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="{{ $search->urlParams()['query'] ?? '' }}" />
+                    <input class="search-header__input" name="query" value="{{ request('query') }}" />
 
                     <button class="search-header__icon">
                         <i class="fa fa-search"></i>
@@ -43,7 +43,7 @@
                     @foreach ($search::MODES as $mode => $_class)
                         <div class="page-mode__item">
                             <a
-                                href="{{ route('search', ['mode' => $mode, 'query' => $search->urlParams()['query'] ?? '']) }}"
+                                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
                                 class="page-mode-link {{ $mode === $search->mode ? 'page-mode-link--is-active' : '' }}"
                             >
                                 <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
