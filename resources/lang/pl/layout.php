@@ -256,6 +256,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Napisz, aby wyszukać!',
-        'retry' => 'Wyszukiwanie nieudane. Naciśnij tutaj, aby spróbować ponownie.',
+        'retry' => 'Wyszukiwanie nieudane. Kliknij tutaj, aby spróbować ponownie.',
     ],
 ];

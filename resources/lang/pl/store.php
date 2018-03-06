@@ -25,14 +25,14 @@ return [
 
     'checkout' => [
         'cart_problems' => 'Ah, wystąpił problem z twoim koszykiem!',
-        'cart_problems_edit' => 'Naciśnij tutaj, aby go zedytować',
+        'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować',
         'declined' => 'Płatność została anulowana.',
         'error' => 'Wystąpił problem z zatwierdzaniem twojego zamówienia :(',
         'pay' => 'Zapłać przez PayPal',
         'pending_checkout' => [
             'line_1' => 'Poprzednio podjęta próba złożenia zamówienia nie została zakończona.',
             'line_2' => 'Wznów proces poprzez wybór metody płatności lub :link, aby przerwać składanie zamówienia.',
-            'link_text' => 'naciśnij tutaj',
+            'link_text' => 'kliknij tutaj',
         ],
         'delayed_shipping' => 'Jesteśmy obecnie przeciążeni zamówieniami! Możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia 1-2 tygodni** dopóki nie uporamy się z obecnymi zamówieniami.',
     ],
