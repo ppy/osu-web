@@ -21,14 +21,12 @@
 namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
-use App\Models\Forum\Topic;
 use App\Models\User;
 
 // FIXME: remove ArrayAccess after refactored
