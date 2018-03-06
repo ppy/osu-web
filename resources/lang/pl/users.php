@@ -43,9 +43,13 @@ return [
         ],
     ],
 
+    'card' => [
+        'loading' => 'Ładowanie...',
+    ],
+
     'login' => [
         '_' => 'Zaloguj się',
-        'locked_ip' => 'Twój adres IP jest zablokowany. Poczekaj kilka minut.',
+        'locked_ip' => 'Twój adres IP został zablokowany. Poczekaj kilka minut.',
         'username' => 'Nazwa użytkownika',
         'password' => 'Hasło',
         'button' => 'Zaloguj się',
@@ -53,8 +57,8 @@ return [
         'remember' => 'Zapamiętaj ten komputer',
         'title' => 'Zaloguj się, aby kontynuować',
         'failed' => 'Niepoprawny login/hasło',
-        'register' => 'Nie posiadasz konta osu! ? Stwórz nowe',
-        'forgot' => 'Zapomniałeś hasła?',
+        'register' => 'Nie posiadasz konta osu!? Utwórz nowe',
+        'forgot' => 'Nie pamiętasz hasła?',
         'beta' => [
             'main' => 'Dostęp do bety jest obecnie ograniczony do wybranych użytkowników.',
             'small' => '(supporterzy dostaną go wkrótce)',
@@ -110,6 +114,11 @@ return [
                     'unsupported_format' => 'To rozszerzenie nie jest wspierane.',
                 ],
             ],
+
+            'default_playmode' => [
+                'is_default_tooltip' => 'domyślny tryb gry',
+                'set' => 'ustaw :mode jako domyślny tryb gry',
+            ],
         ],
         'extra' => [
             'followers' => '1 śledzący|:count śledzących|:count śledzących',
@@ -140,6 +149,9 @@ return [
                 'empty' => 'Brak wyników. :(',
                 'title' => 'Historia',
 
+                'monthly_playcounts' => [
+                    'title' => 'Wykres zagrań',
+                ],
                 'most_played' => [
                     'count' => 'ilość zagrań',
                     'title' => 'Najczęściej grane beatmapy',
@@ -147,6 +159,9 @@ return [
                 'recent_plays' => [
                     'accuracy' => 'precyzja: :percentage',
                     'title' => 'Ostatnie wyniki',
+                ],
+                'replays_watched_counts' => [
+                    'title' => 'Wykres obejrzanych powtórek',
                 ],
             ],
             'kudosu' => [
@@ -218,6 +233,15 @@ return [
                 'weighted_pp' => 'ważone: :pp (:percentage)',
             ],
         ],
+        'info' => [
+            'interests' => 'Zainteresowania',
+            'lastfm' => 'Last.fm',
+            'location' => 'Obecna lokalizacja',
+            'occupation' => 'Zajęcia',
+            'skype' => 'Skype',
+            'twitter' => 'Twitter',
+            'website' => 'Strona internetowa',
+        ],
         'page' => [
             'description' => '<strong>ja!</strong> to twoje osobiste, personalizowalne miejsce na twoim profilu.',
             'edit_big' => 'Edytuj mnie!',
@@ -225,7 +249,8 @@ return [
             'restriction_info' => "Musisz posiadać <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
         ],
         'post_count' => [
-            'count' => ':count forum post|:count forum posts|:count forum posts', // needs translation; here to stop Lang.js from returning undefined
+            '_' => ':count',
+            'count' => ':count post na forum|:count posty na forum|:count postów na forum',
         ],
         'rank' => [
             'country' => 'Pozycja w rankingu krajowym dla :mode',
