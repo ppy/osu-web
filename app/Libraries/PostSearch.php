@@ -32,6 +32,8 @@ use App\Models\User;
 // FIXME: remove ArrayAccess after refactored
 class PostSearch extends Search implements \ArrayAccess
 {
+    const HIGHLIGHT_FRAGMENT_SIZE = 50;
+
     protected $forumId;
     protected $topicId;
     protected $includeSubforums;
@@ -58,8 +60,14 @@ class PostSearch extends Search implements \ArrayAccess
             ->must(['term' => ['poster_id' => $this->userId]])
             ->filter(['term' => ['type' => 'posts']]);
 
-        if ($this->queryString !== null) {
+        if (isset($this->queryString)) {
             $query->must(QueryHelper::queryString($this->queryString, ['search_content']));
+            $this->highlight(
+                (new Highlight)
+                    ->field('search_content')
+                    ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                    ->numberOfFragments(3)
+            );
         }
 
         if (isset($this->forumId)) {

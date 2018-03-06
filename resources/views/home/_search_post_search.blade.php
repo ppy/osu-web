@@ -21,7 +21,17 @@
 
 <a class="search-entry" href="{{ $postUrl }}">
     <div class="search-entry__row search-entry__row--excerpt">
-        {!! html_excerpt($hit->source('search_content')) !!}
+        <span class="search-entry__highlight">
+            {!!
+                implode(
+                    ' ... ',
+                    $hit->highlights(
+                        'search_content',
+                        App\Libraries\PostSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                    )
+                )
+            !!}
+        </span>
     </div>
     <p class="search-entry__row search-entry__row--footer">
         {{ $postUrl }}
