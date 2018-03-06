@@ -28,6 +28,7 @@ use League\CommonMark\Environment;
 use League\CommonMark\Inline\Element as Inline;
 use League\CommonMark\Util\Configuration;
 use League\CommonMark\Util\ConfigurationAwareInterface;
+use Symfony\Component\Yaml\Exception\ParseException as YamlParseException;
 use Symfony\Component\Yaml\Yaml;
 use Webuni\CommonMark\TableExtension;
 
@@ -95,8 +96,14 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         $hasMatch = preg_match('#^(?:---\n(?<header>.+?)\n(?:---|\.\.\.)\n)(?<document>.+)$#s', $input, $matches);
 
         if ($hasMatch === 1) {
+            try {
+                $header = Yaml::parse($matches['header']);
+            } catch (YamlParseException $_e) {
+                $header = null;
+            }
+
             return [
-                'header' => Yaml::parse($matches['header']),
+                'header' => $header,
                 'document' => $matches['document'],
             ];
         }
@@ -220,7 +227,8 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
         if (
             !$this->node instanceof Block\Heading ||
             !$this->event->isEntering() ||
-            $this->title === null
+            $this->title === null ||
+            $this->node->getLevel() > 3
         ) {
             return;
         }
