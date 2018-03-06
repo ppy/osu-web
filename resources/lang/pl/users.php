@@ -261,7 +261,7 @@ return [
             'level' => 'Poziom :level',
             'maximum_combo' => 'Maksymalne combo',
             'play_count' => 'Ilość zagrań',
-            'play_time' => 'Twój czas gry',
+            'play_time' => 'Łączny czas gry',
             'ranked_score' => 'Łączny rankingowy wynik',
             'replays_watched_by_others' => 'Powtórki obejrzane przez innych',
             'score_ranks' => 'Wyniki',
