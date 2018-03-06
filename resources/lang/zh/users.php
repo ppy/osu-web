@@ -51,8 +51,8 @@ return [
         'button' => '登录',
         'button_posting' => '登录中...',
         'remember' => '记住此电脑',
-        'title' => '登录以继续', // Base text changed from "log" to "sign"
-        'failed' => '登录失败', // Base text changed from "log" to "sign"
+        'title' => '登录以继续',
+        'failed' => '登录失败',
         'register' => '没有 osu! 账户？现在就注册一个！',
         'forgot' => '忘记密码？',
         'beta' => [ //已弃用(?)
@@ -66,12 +66,12 @@ return [
         '_' => '注册',
     ],
     'anonymous' => [
-        'login_link' => '点击登录', // Base text changed from "log" to "sign"
-        'login_text' => '登录', // Base text changed from "log" to "sign"
+        'login_link' => '点击登录',
+        'login_text' => '登录',
         'username' => '游客',
-        'error' => '请先登录', // Base text changed from "log" to "sign"
+        'error' => '请先登录',
     ],
-    'logout_confirm' => '确定要退出吗？o(TヘTo)', // Base text changed from "log" to "sign"
+    'logout_confirm' => '确定要退出吗？o(TヘTo)',
     'restricted_banner' => [
         'title' => '账户进入限制模式！',
         'message' => '在被限制时，无法与其他玩家互动，分数只有自己可见。该限制通常由系统自动给予，并将在24小时内解除。需要申诉？请<a href="mailto:accounts@ppy.sh">联系支持团队</a>.',

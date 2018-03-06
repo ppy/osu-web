@@ -44,7 +44,7 @@ return [
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
         'reply_placeholder' => '在此处输入您的回复',
-        'require-login' => '登录以继续', // Base text changed from "log" to "sign"
+        'require-login' => '登录以继续',
         'resolved' => '已解决',
         'restore' => '已修复',
         'title' => '讨论',
@@ -121,7 +121,7 @@ return [
         'button_done' => '已经推荐！',
         'confirm' => '你确定吗？这将会使用你剩下的 :n 次推荐次数并且无法撤销。',
         'explanation' => '推荐这张谱面让它更容易被提名然后 ranked ！',
-        'explanation_guest' => '登录并推荐这张谱面让它更容易被提名然后 ranked ！', // Base text changed from "log" to "sign"
+        'explanation_guest' => '登录并推荐这张谱面让它更容易被提名然后 ranked ！',
         'new_time' => '你将在 :new_time 后获得新的推荐次数。',
         'remaining' => '你还可以推荐 :remaining 次。',
         'required_text' => '推荐进度： :current/:required',

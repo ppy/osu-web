@@ -55,6 +55,6 @@ return [
 
     'require_login' => [
         '_' => '需要 :link 才能下载',
-        'link_text' => '登录', // Base text changed from "log" to "sign"
+        'link_text' => '登录',
     ],
 ];

@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => '这场评选的投票已经结束',
-        'login_required' => '请登录后再投票.', // Base text changed from "log" to "sign"
+        'login_required' => '请登录后再投票.',
         'best_of' => [
             'none_played' => '没有符合此次评选条件的谱面！',
         ],
     ],
     'entry' => [
         '_' => '参加',
-        'login_required' => '请登录后再参加评选。', // Base text changed from "log" to "sign"
+        'login_required' => '请登录后再参加评选。',
         'silenced_or_restricted' => '账户受限时无法参加评选。',
         'preparation' => '我们正在准备这场评选，请耐心等待！',
         'over' => '感谢参与！提交已经关闭，投票即将开始。',

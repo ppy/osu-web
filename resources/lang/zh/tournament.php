@@ -33,7 +33,7 @@ return [
             'cancel' => '取消报名',
         ],
         'entered' => '你已报名此次比赛。<br><br>这不意味着你已经被分组。<br><br>比赛开始前你将收到邮件通知，所以请确保你的 osu! 邮箱可用！',
-        'login_to_register' => '请 :login 以查看报名细节！', // Base text changed from "log" to "sign"
+        'login_to_register' => '请 :login 以查看报名细节！',
         'not_yet_entered' => '你还没有报名此次比赛。',
         'rank_too_low' => '抱歉，你还没有达到本次比赛的排名要求！',
         'registration_ends' => '报名于 :date 结束',

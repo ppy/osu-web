@@ -93,7 +93,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => '注册帐号',
-                'description' => '根据游戏提示进行登录或注册', // Base text changed from "log" to "sign"
+                'description' => '根据游戏提示进行登录或注册',
             ],
             'download' => [
                 'title' => '下载游戏',
