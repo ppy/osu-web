@@ -133,9 +133,14 @@ class HomeController extends Controller
     public function search()
     {
         $mode = request('mode');
+        $userPostSearch =
+            $mode === 'forum_post'
+            && present(request('username'))
+            && !present(request('query'));
+
         if ($mode === 'beatmapset') {
             return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
-        } elseif ($mode === 'forum_post' && !present(request('query'))) {
+        } elseif ($userPostSearch) {
             return $this->searchUserPosts();
         }
 
@@ -155,9 +160,10 @@ class HomeController extends Controller
 
     public function searchUserPosts()
     {
+        $user = User::lookup(request('username'));
         $options = [
             'query' => request('query'),
-            'userId' => User::lookup(request('username'))->getKey(),
+            'userId' => $user !== null ? $user->getKey() : -1,
         ];
 
         $search = (new PostSearch($options))
