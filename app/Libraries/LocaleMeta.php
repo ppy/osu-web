@@ -130,4 +130,11 @@ class LocaleMeta
     {
         return static::MAPPINGS[strtolower($locale)]['name'] ?? '??';
     }
+
+    public static function sanitizeCode($locale)
+    {
+        $ret = strtolower($locale);
+
+        return isset(static::MAPPINGS[$ret]) ? $ret : null;
+    }
 }
