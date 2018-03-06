@@ -27,8 +27,8 @@ namespace App\Libraries\Elasticsearch;
 class Highlight implements Queryable
 {
     protected $fields = [];
-    protected $numberOfFragments = 100;
-    protected $fragmentSize = 5;
+    protected $numberOfFragments = 5;
+    protected $fragmentSize = 100;
 
     /**
      * @return $this
