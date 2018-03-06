@@ -271,7 +271,6 @@ return [
         ],
         'post_count' => [
             '_' => 'Contributed :link',
-            'link' => '<a href=":url">:count</a>',
             'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [
