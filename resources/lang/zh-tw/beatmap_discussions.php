@@ -21,40 +21,40 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
-            'system_generated' => 'System-generated post can not be edited.',
-            'wrong_user' => 'Must be owner of the post to edit.',
+            'null_user' => '編輯前請先登錄。',
+            'system_generated' => '無法編輯系統回覆。',
+            'wrong_user' => '只有作者可以編輯。',
         ],
     ],
 
     'events' => [
-        'empty' => 'Nothing has happened... yet.',
+        'empty' => '還沒有事件⋯⋯',
     ],
 
     'index' => [
-        'deleted_beatmap' => 'deleted',
-        'title' => 'Beatmap Discussions',
+        'deleted_beatmap' => '刪除',
+        'title' => '譜面討論',
 
         'form' => [
-            'deleted' => 'Include deleted discussions',
+            'deleted' => '包含已經刪除的討論',
 
             'user' => [
-                'label' => 'User',
-                'overview' => 'Activities overview',
+                'label' => '用戶',
+                'overview' => '活動總覽',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => 'Post date',
-        'deleted_at' => 'Deletion date',
-        'message_type' => 'Type',
-        'permalink' => 'Permalink',
+        'created_at' => '發帖時間',
+        'deleted_at' => '刪帖時間',
+        'message_type' => '類型',
+        'permalink' => '靜態鏈接',
     ],
 
     'nearby_posts' => [
-        'confirm' => 'None of the posts address my concern',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'confirm' => '在這個時間點上沒有相關的討論記錄',
+        'notice' => '在 :timestamp 附近（:existing_timestamps）有討論記錄，發表前請檢查。',
     ],
 
     'reply' => [
