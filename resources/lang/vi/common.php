@@ -32,7 +32,7 @@ return [
         'cancel' => 'Hủy',
         'delete' => 'Xóa',
         'permalink' => 'permalink',
-        'permalink_copied' => 'đã sao chép link',
+        'permalink_copied' => 'link copied',
         'post' => 'Bài đăng',
         'reply' => 'Trả lời',
         'reply_reopen' => 'Trả lời và mở lại',
@@ -40,18 +40,18 @@ return [
         'reset' => 'Reset',
         'save' => 'Lưu',
         'saving' => 'Đang lưu...',
-        'see_more' => 'xem thêm',
+        'see_more' => 'see more',
         'show_more' => 'hiển thị thêm',
         'upload_image' => 'tải ảnh lên',
     ],
 
     'count' => [
-        'hour_short_unit' => 'giờ',
+        'hour_short_unit' => 'hr|hrs',
         'item' => ':count đơn vị',
-        'minute_short_unit' => 'phút',
-        'months' => ':count tháng',
-        'second_short_unit' => 'giây',
-        'years' => ':count năm',
+        'minute_short_unit' => 'min|mins',
+        'months' => ':count month|:count months',
+        'second_short_unit' => 'sec|secs',
+        'years' => ':count year|:count years',
     ],
 
     'datetime' => [
