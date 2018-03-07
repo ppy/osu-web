@@ -35,7 +35,6 @@ class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
             'description' => $h->reason,
             'type' => $h->type,
             'timestamp' => json_time($h->timestamp),
-            'end_time' => json_time($h->endTime()),
             'length' => $h->period,
         ];
     }

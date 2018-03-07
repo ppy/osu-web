@@ -25,6 +25,7 @@ class ProfilePage.AccountStanding extends React.PureComponent
 
   render: ->
     latest = _.find @props.user.account_history, (d) -> d.type == 'silence'
+    endTime = moment(latest.timestamp).add(latest.length, 'seconds') if latest?
 
     div
       className: 'page-extra'
@@ -38,14 +39,14 @@ class ProfilePage.AccountStanding extends React.PureComponent
               __html: osu.trans 'users.show.extra.account_standing.bad_standing',
                 username: @props.user.username
 
-      if latest? && moment(latest.end_time).isAfter(moment.now())
+      if latest? && endTime.isAfter()
         div
           className: "page-extra__alert page-extra__alert--info"
           span
             dangerouslySetInnerHTML:
               __html: osu.trans 'users.show.extra.account_standing.remaining_silence',
                 username: @props.user.username
-                duration: osu.timeago moment(latest.timestamp).add(latest.length, 'seconds').format()
+                duration: osu.timeago endTime.format()
 
       h3
         className: 'page-extra__title page-extra__title--small'
