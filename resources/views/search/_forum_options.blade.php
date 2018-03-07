@@ -33,44 +33,44 @@ if (isset($fields)) {
 }
 @endphp
 
-<div class="search-advanced-forum-post">
+<div class="search-forum-options">
     @if ($fields['user'] !== false)
-        <label class="search-advanced-forum-post__input-group">
-            <div class="search-advanced-forum-post__label">
+        <label class="search-forum-options__input-group">
+            <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.username') }}
             </div>
 
             <input
                 name="{{ $fields['user'] }}"
                 value="{{ request($fields['user']) }}"
-                class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
+                class="search-forum-options__input search-forum-options__input--text"
             >
         </label>
     @endif
 
     {{-- FIXME: remove querystring check? --}}
     @if ($fields['topicId'] !== false && present(request($fields['topicId'])))
-        <label class="search-advanced-forum-post__input-group">
-            <div class="search-advanced-forum-post__label">
+        <label class="search-forum-options__input-group">
+            <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
             </div>
 
             <input
                 name="{{ $fields['topicId'] }}"
                 value="{{ request($fields['topicId']) }}"
-                class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
+                class="search-forum-options__input search-forum-options__input--text"
             >
         </label>
     @elseif ($fields['forumId'] !== false)
-        <label class="search-advanced-forum-post__input-group">
-            <div class="search-advanced-forum-post__label">
+        <label class="search-forum-options__input-group">
+            <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.forum') }}
             </div>
 
-            <div class="search-advanced-forum-post__input-container">
+            <div class="search-forum-options__input-container">
                 <select
                     name="{{ $fields['forumId'] }}"
-                    class="search-advanced-forum-post__input"
+                    class="search-forum-options__input"
                 >
                     <option value="">
                         {{ trans('home.search.forum_post.all') }}
@@ -89,13 +89,13 @@ if (isset($fields)) {
                     @endforeach
                 </select>
 
-                <div class="search-advanced-forum-post__dropdown-arrow">
+                <div class="search-forum-options__dropdown-arrow">
                     <span class="fa fa-chevron-down"></span>
                 </div>
             </div>
         </label>
 
-        <label class="search-advanced-forum-post__input-group">
+        <label class="search-forum-options__input-group">
             <div class="osu-checkbox">
                 <input
                     type="checkbox"
@@ -114,7 +114,7 @@ if (isset($fields)) {
         </label>
     @endif
 
-    <div class="search-advanced-forum-post__input-group search-advanced-forum-post__input-group--buttons">
+    <div class="search-forum-options__input-group search-forum-options__input-group--buttons">
         <button class="btn-osu-big btn-osu-big--search-advanced">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
@@ -127,7 +127,7 @@ if (isset($fields)) {
             </div>
         </button>
 
-        <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--advanced-forum-post-reset">
+        <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--forum-options-reset">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
                     {{ trans('common.buttons.reset') }}
