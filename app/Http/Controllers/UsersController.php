@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Libraries\UserRegistration;
+use App\Libraries\PostSearch;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
@@ -206,6 +207,23 @@ class UsersController extends Controller
         $page = $mapping[$type] ?? abort(404);
 
         return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+    }
+
+    public function posts()
+    {
+        $user = User::lookup(trim(request('user')));
+        $options = [
+            'query' => trim(request('query')),
+            'userId' => $user !== null ? $user->getKey() : -1,
+            'forumId' => request('forum_id'),
+            'includeSubforums' => get_bool(request('forum_children')),
+        ];
+
+        $search = (new PostSearch($options))
+            ->paginate(50)
+            ->appends(request()->query());
+
+        return view('users.posts', compact('search', 'user'));
     }
 
     public function kudosu($_userId)

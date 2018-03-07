@@ -15,12 +15,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-@extends('master')
+@extends("master", [
+    'current_section' => 'community',
+    'current_action' => 'profile',
+    'title' => trans('users.show.title', ['username' => $user->username]),
+    'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
+])
 
 @section('content')
-    <form action="{{ route('search') }}">
-        <input type="hidden" name="mode" value="user_posts">
-
+    <form action="{{ route('users.posts', $user) }}">
         <div class="osu-page">
             <div class="search-header">
                 <div class="search-header__title">
@@ -49,7 +52,7 @@
                         <div class="search-result__entries">
                             @foreach ($search as $hit)
                                 <div class="search-result__entry">
-                                    @include('home._search_post_search', compact('hit'))
+                                    @include('search._post_search', compact('hit'))
                                 </div>
                             @endforeach
                         </div>

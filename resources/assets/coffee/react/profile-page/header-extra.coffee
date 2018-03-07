@@ -206,7 +206,7 @@ class ProfilePage.HeaderExtra extends React.Component
 
   renderPostCount: =>
     count = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
-    url = laroute.route('search', mode: 'forum_post', username: @props.user.id)
+    url = laroute.route('users.posts', user: @props.user.id)
     link = "<a href=\"#{url}\">#{rowValue count}</a>" # wtb better way of doing this :|.
 
     div

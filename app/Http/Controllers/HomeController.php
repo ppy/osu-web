@@ -22,7 +22,6 @@ namespace App\Http\Controllers;
 
 use App;
 use App\Libraries\CurrentStats;
-use App\Libraries\PostSearch;
 use App\Libraries\Search;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
@@ -136,8 +135,6 @@ class HomeController extends Controller
 
         if ($mode === 'beatmapset') {
             return ujs_redirect(route('beatmapsets.index', ['q' => Request::input('query')]));
-        } elseif ($mode === 'user_posts') {
-            return $this->searchUserPosts();
         }
 
         $params = array_merge(Request::all(), [
@@ -152,16 +149,6 @@ class HomeController extends Controller
         }
 
         return view('home.search', compact('search'));
-    }
-
-    public function searchUserPosts()
-    {
-        $options = PostSearch::paramsFromRequest(request());
-        $search = (new PostSearch($options))
-            ->paginate(50)
-            ->appends(request()->query());
-
-        return view('home.search_posts', compact('search'));
     }
 
     public function setLocale()
