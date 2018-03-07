@@ -17,6 +17,7 @@
 --}}
 @php
 // input field name mappings for view recycling.
+// pass in $inputs to set; set a field to false to remove it.
 $fields = array_merge([
     'forumId' => 'forum_id',
     'topicId' => 'topic_id',
@@ -26,17 +27,19 @@ $fields = array_merge([
 @endphp
 
 <div class="search-advanced-forum-post">
-    <label class="search-advanced-forum-post__input-group">
-        <div class="search-advanced-forum-post__label">
-            {{ trans('home.search.forum_post.label.username') }}
-        </div>
+    @if ($fields['user'] !== false)
+        <label class="search-advanced-forum-post__input-group">
+            <div class="search-advanced-forum-post__label">
+                {{ trans('home.search.forum_post.label.username') }}
+            </div>
 
-        <input
-            name="{{ $fields['user'] }}"
-            value="{{ request($fields['user']) }}"
-            class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
-        >
-    </label>
+            <input
+                name="{{ $fields['user'] }}"
+                value="{{ request($fields['user']) }}"
+                class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
+            >
+        </label>
+    @endif
 
     @if (present(request($fields['topicId'])))
         <label class="search-advanced-forum-post__input-group">

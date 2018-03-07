@@ -209,20 +209,16 @@ class UsersController extends Controller
         return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
     }
 
-    public function posts()
+    public function posts($id)
     {
-        $userQuerystring = presence(request()->query('user'));
-        $user = request()->route('user');
-        if ($userQuerystring !== null && request()->route('user') !== $userQuerystring) {
-            // arrived via search post.
-            return ujs_redirect(route('users.posts', request()->query('user')));
+        $user = User::lookup($id);
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
         }
-
-        $user = User::lookup(trim(request('user'))) ?? abort(404);
 
         $options = [
             'query' => trim(request('query')),
-            'userId' => $user !== null ? $user->getKey() : -1,
+            'userId' => $user->getKey(),
             'forumId' => request('forum_id'),
             'includeSubforums' => get_bool(request('forum_children')),
         ];

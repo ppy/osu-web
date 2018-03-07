@@ -45,7 +45,7 @@
                 <div class="page-mode page-mode--search">
                 </div>
 
-                @include('search._forum_options', ['inputs' => ['user' => 'user']])
+                @include('search._forum_options', ['inputs' => ['user' => false]])
 
                 <div class="search-result search-result--forum_post">
                     <div class="search-result__row search-result__row--entries-container">
