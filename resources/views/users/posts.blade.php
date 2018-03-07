@@ -23,7 +23,7 @@
 ])
 
 @section('content')
-    <form action="{{ route('users.posts', $user) }}">
+    <form action="{{ route('users.posts', request()->route('user')) }}">
         <div class="osu-page">
             <div class="search-header">
                 <div class="search-header__title">

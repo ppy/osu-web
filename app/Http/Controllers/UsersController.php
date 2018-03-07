@@ -211,7 +211,15 @@ class UsersController extends Controller
 
     public function posts()
     {
-        $user = User::lookup(trim(request('user')));
+        $userQuerystring = presence(request()->query('user'));
+        $user = request()->route('user');
+        if ($userQuerystring !== null && request()->route('user') !== $userQuerystring) {
+            // arrived via search post.
+            return ujs_redirect(route('users.posts', request()->query('user')));
+        }
+
+        $user = User::lookup(trim(request('user'))) ?? abort(404);
+
         $options = [
             'query' => trim(request('query')),
             'userId' => $user !== null ? $user->getKey() : -1,
