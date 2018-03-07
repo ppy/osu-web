@@ -20,8 +20,10 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\Beatmap;
 use App\Transformers\BeatmapsetTransformer;
 use Auth;
+use Request;
 
 class BeatmapsetsController extends Controller
 {
@@ -33,5 +35,18 @@ class BeatmapsetsController extends Controller
             $favourites->get(),
             new BeatmapsetTransformer()
         );
+    }
+
+    public function lookup()
+    {
+        $beatmapId = Request::input('beatmap_id');
+
+        if (present($beatmapId)) {
+            $beatmap = Beatmap::findOrFail($beatmapId);
+
+            return app('App\Http\Controllers\BeatmapsetsController')->show($beatmap->beatmapset->beatmapset_id);
+        }
+
+        abort(404);
     }
 }
