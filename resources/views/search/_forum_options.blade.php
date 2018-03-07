@@ -17,13 +17,19 @@
 --}}
 @php
 // input field name mappings for view recycling.
-// pass in $inputs to set; set a field to false to remove it.
-$fields = array_merge([
+// pass in $fields to set; set a field to false to remove it.
+$fieldDefaults = [
     'forumId' => 'forum_id',
     'topicId' => 'topic_id',
     'user' => 'username',
     'includeSubforums' => 'forum_children',
-], $inputs);
+];
+
+if (isset($fields)) {
+    $fields = array_merge($fieldDefaults, $fields);
+} else {
+    $fields = $fieldDefaults;
+}
 @endphp
 
 <div class="search-advanced-forum-post">
@@ -41,7 +47,7 @@ $fields = array_merge([
         </label>
     @endif
 
-    @if (present(request($fields['topicId'])))
+    @if (present(request('topic_id')))
         <label class="search-advanced-forum-post__input-group">
             <div class="search-advanced-forum-post__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
