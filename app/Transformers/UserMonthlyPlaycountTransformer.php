@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -17,20 +17,19 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-return [
-    'feed_title' => 'lista',
-    'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
-    'users-online' => '1 użytkownik online|:users użytkowników online|:users użytkowników online',
-    'prefixes' => [
-        'add' => 'dodano',
-        'fix' => 'naprawiono',
-        'misc' => 'różne',
-    ],
 
-    'support' => [
-        'heading' => 'Podoba ci się ta kompilacja?',
-        'text_1' => 'Wspomóż dalszy rozwój osu! i już dzisiaj :link!',
-        'text_1_link' => 'zostań donatorem',
-        'text_2' => 'Nie tylko przyspieszy to rozwój gry, ale otrzymasz także wiele dodatkowych funkcji i korzyści!',
-    ],
-];
+namespace App\Transformers;
+
+use App\Models\UserMonthlyPlaycount;
+use League\Fractal;
+
+class UserMonthlyPlaycountTransformer extends Fractal\TransformerAbstract
+{
+    public function transform(UserMonthlyPlaycount $playcount)
+    {
+        return [
+            'start_date' => json_time($playcount->startDate()),
+            'count' => $playcount->playcount,
+        ];
+    }
+}

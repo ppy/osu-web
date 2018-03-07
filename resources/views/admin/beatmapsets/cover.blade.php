@@ -42,7 +42,7 @@
                 <i class="fa fa-fw fa-trash"></i>
                 {{trans('admin.beatmapsets.covers.remove')}}
             </button>
-            @foreach ($beatmapset->coverSizes() as $size)
+            @foreach (array_merge(['raw', 'fullsize'], $beatmapset->coverSizes()) as $size)
                 <h3>{{$size}}</h3>
                 <a href="{{$beatmapset->coverURL($size)}}">
                     <div>{{$beatmapset->coverURL($size)}}</div>

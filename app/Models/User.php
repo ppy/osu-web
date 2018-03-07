@@ -737,6 +737,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     | return $response;
     */
 
+    public function monthlyPlaycounts()
+    {
+        return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
+    }
+
+    public function replaysWatchedCounts()
+    {
+        return $this->hasMany(UserReplaysWatchedCount::class, 'user_id');
+    }
+
     public function userGroups()
     {
         return $this->hasMany(UserGroup::class, 'user_id');

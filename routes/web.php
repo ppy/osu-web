@@ -255,34 +255,36 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
     Route::group(['prefix' => 'v2'], function () {
         Route::group(['prefix' => 'chat'], function () {
             //  GET /api/v2/chat/channels
-            Route::get('channels', ['uses' => 'ChatController@channels']);
+            Route::get('channels', 'ChatController@channels');
             //  GET /api/v2/chat/messages
-            Route::get('messages', ['uses' => 'ChatController@messages']);
+            Route::get('messages', 'ChatController@messages');
             //  GET /api/v2/chat/messages/private
-            Route::get('messages/private', ['uses' => 'ChatController@privateMessages']);
+            Route::get('messages/private', 'ChatController@privateMessages');
             // POST /api/v2/chat/messages/new
-            Route::post('messages', ['uses' => 'ChatController@postMessage']);
+            Route::post('messages', 'ChatController@postMessage');
         });
 
         Route::resource('rooms', 'RoomsController', ['only' => ['show']]);
 
         Route::group(['prefix' => 'beatmapsets'], function () {
-            Route::get('favourites', ['uses' => 'BeatmapsetsController@favourites']);     //  GET /api/v2/beatmapsets/favourites
+            Route::get('favourites', 'BeatmapsetsController@favourites');     //  GET /api/v2/beatmapsets/favourites
         });
 
         // Beatmaps
         //   GET /api/v2/beatmaps/:beatmap_id/scores
-        Route::get('beatmaps/{id}/scores', ['uses' => '\App\Http\Controllers\BeatmapsController@scores']);
+        Route::get('beatmaps/{id}/scores', '\App\Http\Controllers\BeatmapsController@scores');
         //   GET /api/v2/beatmaps/lookup
-        Route::get('beatmaps/lookup', ['uses' => 'BeatmapsController@lookup']);
+        Route::get('beatmaps/lookup', 'BeatmapsController@lookup');
         //   GET /api/v2/beatmaps/:beatmap_id
         Route::resource('beatmaps', 'BeatmapsController', ['only' => ['show']]);
-        //   GET /api/v2/beatmapsets/search/:filters
-        Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
 
         // Beatmapsets
+        //   GET /api/v2/beatmapsets/search/:filters
+        Route::get('beatmapsets/search/{filters?}', '\App\Http\Controllers\BeatmapsetsController@search');
+        //   GET /api/v2/beatmapsets/lookup
+        Route::get('beatmapsets/lookup', 'BeatmapsetsController@lookup');
         //   GET /api/v2/beatmapsets/:beatmapset/download
-        Route::get('beatmapsets/{beatmapset}/download', ['uses' => '\App\Http\Controllers\BeatmapsetsController@download']);
+        Route::get('beatmapsets/{beatmapset}/download', '\App\Http\Controllers\BeatmapsetsController@download');
         //   GET /api/v2/beatmapsets/:beatmapset_id
         Route::resource('beatmapsets', '\App\Http\Controllers\BeatmapsetsController', ['only' => ['show']]);
 
@@ -310,22 +312,22 @@ Route::group(['as' => 'api.', 'prefix' => 'api', 'namespace' => 'API', 'middlewa
     });
     // legacy api routes
     Route::group(['prefix' => 'v1'], function () {
-        Route::get('get_match', ['uses' => 'LegacyController@getMatch']);
-        Route::get('get_packs', ['uses' => 'LegacyController@getPacks']);
-        Route::get('get_user', ['uses' => 'LegacyController@getUser']);
-        Route::get('get_user_best', ['uses' => 'LegacyController@getUserBest']);
-        Route::get('get_user_recent', ['uses' => 'LegacyController@getUserRecent']);
-        Route::get('get_replay', ['uses' => 'LegacyController@getReplay']);
-        Route::get('get_scores', ['uses' => 'LegacyController@getScores']);
-        Route::get('get_beatmaps', ['uses' => 'LegacyController@getBeatmaps']);
+        Route::get('get_match', 'LegacyController@getMatch');
+        Route::get('get_packs', 'LegacyController@getPacks');
+        Route::get('get_user', 'LegacyController@getUser');
+        Route::get('get_user_best', 'LegacyController@getUserBest');
+        Route::get('get_user_recent', 'LegacyController@getUserRecent');
+        Route::get('get_replay', 'LegacyController@getReplay');
+        Route::get('get_scores', 'LegacyController@getScores');
+        Route::get('get_beatmaps', 'LegacyController@getBeatmaps');
     });
 });
 
 // Callbacks for legacy systems to interact with
 Route::group(['prefix' => '_lio', 'middleware' => 'lio'], function () {
-    Route::post('/refresh-beatmapset-cache/{beatmapset}', ['uses' => 'LegacyInterOpController@refreshBeatmapsetCache']);
-    Route::post('/regenerate-beatmapset-covers/{beatmapset}', ['uses' => 'LegacyInterOpController@regenerateBeatmapsetCovers']);
-    Route::get('/news', ['uses' => 'LegacyInterOpController@news']);
+    Route::post('/refresh-beatmapset-cache/{beatmapset}', 'LegacyInterOpController@refreshBeatmapsetCache');
+    Route::post('/regenerate-beatmapset-covers/{beatmapset}', 'LegacyInterOpController@regenerateBeatmapsetCovers');
+    Route::get('/news', 'LegacyInterOpController@news');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -347,9 +349,9 @@ route_redirect('wiki/{page?}', 'wiki.show');
 
 // status
 if (Config::get('app.debug')) {
-    Route::get('/status', ['uses' => 'StatusController@getMain']);
+    Route::get('/status', 'StatusController@getMain');
 } else {
     Route::group(['domain' => 'stat.ppy.sh'], function () {
-        Route::get('/', ['uses' => 'StatusController@getMain']);
+        Route::get('/', 'StatusController@getMain');
     });
 }

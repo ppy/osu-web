@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -17,20 +15,33 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-return [
-    'feed_title' => 'lista',
-    'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
-    'users-online' => '1 użytkownik online|:users użytkowników online|:users użytkowników online',
-    'prefixes' => [
-        'add' => 'dodano',
-        'fix' => 'naprawiono',
-        'misc' => 'różne',
-    ],
 
-    'support' => [
-        'heading' => 'Podoba ci się ta kompilacja?',
-        'text_1' => 'Wspomóż dalszy rozwój osu! i już dzisiaj :link!',
-        'text_1_link' => 'zostań donatorem',
-        'text_2' => 'Nie tylko przyspieszy to rozwój gry, ale otrzymasz także wiele dodatkowych funkcji i korzyści!',
-    ],
-];
+.navbar-mobile-search {
+  @_search-icon-width: 40px;
+  background: #222;
+  color: #ccc;
+
+  &__icon {
+    .reset-input();
+    .center-content();
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: @_search-icon-width;
+    font-size: @font-size--title-small-2;
+
+    *:-webkit-autofill ~ & {
+      color: #000;
+    }
+  }
+
+  &__input {
+    .reset-input();
+    width: 100%;
+    font-size: @font-size--phone-input;
+    padding: 10px @_search-icon-width 10px 10px;
+    font-weight: normal;
+    min-width: 0;
+  }
+}

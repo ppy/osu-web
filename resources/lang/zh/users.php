@@ -136,6 +136,8 @@ return [
             ],
             'historical' => [
                 'empty' => '没有游戏记录。:(',
+                'title' => '历史记录',
+
                 'most_played' => [
                     'count' => '游玩次数',
                     'title' => '玩得最多的谱面',
@@ -144,7 +146,6 @@ return [
                     'accuracy' => '准确率：:percentage',
                     'title' => '最近24小时游玩',
                 ],
-                'title' => '历史记录',
             ],
             'kudosu' => [
                 'available' => '可用 kudosu',

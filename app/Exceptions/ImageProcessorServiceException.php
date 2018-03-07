@@ -17,20 +17,12 @@
  *    You should have received a copy of the GNU Affero General Public License
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
-return [
-    'feed_title' => 'lista',
-    'generic' => 'Naprawiono błędy i dodano mniejsze poprawki.',
-    'users-online' => '1 użytkownik online|:users użytkowników online|:users użytkowników online',
-    'prefixes' => [
-        'add' => 'dodano',
-        'fix' => 'naprawiono',
-        'misc' => 'różne',
-    ],
 
-    'support' => [
-        'heading' => 'Podoba ci się ta kompilacja?',
-        'text_1' => 'Wspomóż dalszy rozwój osu! i już dzisiaj :link!',
-        'text_1_link' => 'zostań donatorem',
-        'text_2' => 'Nie tylko przyspieszy to rozwój gry, ale otrzymasz także wiele dodatkowych funkcji i korzyści!',
-    ],
-];
+namespace App\Exceptions;
+
+use Exception;
+
+class ImageProcessorServiceException extends Exception
+{
+    // doesn't really contain anything
+}

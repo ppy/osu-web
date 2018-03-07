@@ -134,6 +134,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
+                'title' => 'Historial',
+
                 'most_played' => [
                     'count' => 'veces jugado',
                     'title' => 'Beatmaps Más Jugados',
@@ -142,7 +144,6 @@ return [
                     'accuracy' => 'precisión: :percentage',
                     'title' => 'Jugadas Recientes (24h)',
                 ],
-                'title' => 'Historial',
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
