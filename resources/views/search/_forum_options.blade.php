@@ -17,12 +17,12 @@
 --}}
 @php
 // input field name mappings for view recycling.
-$fields = [
+$fields = array_merge([
     'forumId' => 'forum_id',
     'topicId' => 'topic_id',
     'user' => 'username',
     'includeSubforums' => 'forum_children',
-]
+], $inputs);
 @endphp
 
 <div class="search-advanced-forum-post">
