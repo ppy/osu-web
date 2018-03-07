@@ -32,23 +32,23 @@ return [
     ],
 
     'index' => [
-        'deleted_beatmap' => 'deleted',
-        'title' => 'Beatmap Discussions',
+        'deleted_beatmap' => 'đã xóa',
+        'title' => 'Góc Thảo Luận Beatmap',
 
         'form' => [
-            'deleted' => 'Include deleted discussions',
+            'deleted' => 'Bao gồm cuộc thảo luận đã xóa',
 
             'user' => [
-                'label' => 'User',
-                'overview' => 'Activities overview',
+                'label' => 'Người dùng',
+                'overview' => 'Tổng quan hoạt động',
             ],
         ],
     ],
 
     'item' => [
-        'created_at' => 'Post date',
-        'deleted_at' => 'Deletion date',
-        'message_type' => 'Type',
+        'created_at' => 'Ngày đăng',
+        'deleted_at' => 'Ngày xóa',
+        'message_type' => 'Loại',
         'permalink' => 'Permalink',
     ],
 

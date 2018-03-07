@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Bài Đăng Thảo Luận Beatmap',
+        'title' => 'Bài Đăng Góc Thảo Luận Beatmap',
     ],
 
     'item' => [
