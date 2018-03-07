@@ -15,6 +15,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+// input field name mappings for view recycling.
+$fields = [
+    'forumId' => 'forum_id',
+    'topicId' => 'topic_id',
+    'user' => 'username',
+    'includeSubforums' => 'forum_children',
+]
+@endphp
+
 <div class="search-advanced-forum-post">
     <label class="search-advanced-forum-post__input-group">
         <div class="search-advanced-forum-post__label">
@@ -22,21 +32,21 @@
         </div>
 
         <input
-            name="username"
-            value="{{ request('username') }}"
+            name="{{ $fields['user'] }}"
+            value="{{ request($fields['user']) }}"
             class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
         >
     </label>
 
-    @if (present(request('topic_id')))
+    @if (present(request($fields['topicId'])))
         <label class="search-advanced-forum-post__input-group">
             <div class="search-advanced-forum-post__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
             </div>
 
             <input
-                name="topic_id"
-                value="{{ request('topic_id') }}"
+                name="{{ $fields['topicId'] }}"
+                value="{{ request($fields['topicId']) }}"
                 class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
             >
         </label>
@@ -48,7 +58,7 @@
 
             <div class="search-advanced-forum-post__input-container">
                 <select
-                    name="forum_id"
+                    name="{{ $fields['forumId'] }}"
                     class="search-advanced-forum-post__input"
                 >
                     <option value="">
@@ -59,7 +69,7 @@
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === get_int(request('forum_id')) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int(request($fields['forumId'])) ? 'selected' : '' }}
                             >
                                 {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
@@ -78,8 +88,8 @@
             <div class="osu-checkbox">
                 <input
                     type="checkbox"
-                    name="forum_children"
-                    {{ request('forum_children') ? 'checked' : '' }}
+                    name="{{ $fields['includeSubforums'] }}"
+                    {{ request($fields['includeSubforums']) ? 'checked' : '' }}
                     class="osu-checkbox__input"
                 >
                 <span class="osu-checkbox__box"></span>
