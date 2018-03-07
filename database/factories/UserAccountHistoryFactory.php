@@ -20,5 +20,5 @@ $factory->state(UserAccountHistory::class, 'restriction', function (Faker\Genera
 });
 
 $factory->state(UserAccountHistory::class, 'note', function (Faker\Generator $faker) {
-    return ['ban_status' => 3];
+    return ['ban_status' => 0];
 });

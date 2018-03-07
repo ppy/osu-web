@@ -30,7 +30,8 @@ class UserAccountHistory extends Model
     protected $dates = ['timestamp'];
     public $timestamps = false;
 
-    const BAN_STATUSES = [
+    const TYPES = [
+        0 => 'note',
         1 => 'restriction',
         2 => 'silence',
     ];
@@ -52,13 +53,7 @@ class UserAccountHistory extends Model
 
     public function getTypeAttribute()
     {
-        $value = $this->ban_status;
-
-        if (array_key_exists($value, self::BAN_STATUSES)) {
-            return self::BAN_STATUSES[$value];
-        } else {
-            return 'note';
-        }
+        return static::TYPES[$this->ban_status] ?? null;
     }
 
     public function scopeBans($query)
