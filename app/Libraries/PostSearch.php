@@ -28,6 +28,7 @@ use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 // FIXME: remove ArrayAccess after refactored
 class PostSearch extends Search implements \ArrayAccess
@@ -45,7 +46,7 @@ class PostSearch extends Search implements \ArrayAccess
         parent::__construct(Post::esIndexName(), $options);
 
         $this->userId = get_int($options['userId'] ?? -1);
-        $this->queryString = presence(trim($options['query'] ?? ''));
+        $this->queryString = presence($options['query'] ?? '');
 
         $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
         $this->forumId = get_int($options['forumId'] ?? null);
@@ -133,5 +134,17 @@ class PostSearch extends Search implements \ArrayAccess
     public function offsetUnset($key)
     {
         throw new \BadMethodCallException('not supported');
+    }
+
+    // FIXME: request-related things should probably not be in the search class.
+    public static function paramsFromRequest(Request $request) : array
+    {
+        $user = User::lookup(trim(request('username')));
+        return [
+            'query' => trim(request('query')),
+            'userId' => $user !== null ? $user->getKey() : -1,
+            'forumId' => request('forum_id'),
+            'includeSubforums' => get_bool(request('forum_children')),
+        ];
     }
 }

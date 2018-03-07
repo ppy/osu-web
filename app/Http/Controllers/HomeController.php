@@ -156,14 +156,7 @@ class HomeController extends Controller
 
     public function searchUserPosts()
     {
-        $user = User::lookup(request('username'));
-        $options = [
-            'query' => request('query'),
-            'userId' => $user !== null ? $user->getKey() : -1,
-            'forumId' => request('forum_id'),
-            'includeSubforums' => get_bool(request('forum_children')),
-        ];
-
+        $options = PostSearch::paramsFromRequest(request());
         $search = (new PostSearch($options))
             ->paginate(50)
             ->appends(request()->query());
