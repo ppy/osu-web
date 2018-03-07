@@ -67,7 +67,7 @@
                     @endforeach
                 </div>
                 @if ($search->mode === 'forum_post')
-                    @include('home._search_advanced_forum_post')
+                    @include('search._forum_options')
                 @endif
 
                 @if ($search->hasQuery())

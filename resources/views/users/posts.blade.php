@@ -45,7 +45,7 @@
                 <div class="page-mode page-mode--search">
                 </div>
 
-                @include('home._search_advanced_forum_post')
+                @include('search._forum_options')
 
                 <div class="search-result search-result--forum_post">
                     <div class="search-result__row search-result__row--entries-container">
