@@ -21,12 +21,15 @@
     $innerHits = $entry->innerHits('posts');
     $firstPost = $entry->innerHits('first_post');
     $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
+
+    // FIXME: this is obviously a terrible idea.
+    $user = App\Models\User::lookup($entry->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
 @endphp
 <div class="search-entry-thread">
     <div class="search-entry">
         <a class="search-forum-post" href="{{ $firstPostUrl }}">
             <div class="search-forum-post__avatar">
-                {{ $entry->source('poster_id') }}
+                <img src="{{ $user->user_avatar }}">
             </div>
             <div class="search-forum-post__content">
                 <h1 class="search-entry__row search-entry__row--title">
@@ -39,7 +42,7 @@
                 </div>
                 <div class="search-entry__row search-entry__row--footer">
                     <span>posted by </span>
-                    <span class="search-forum-post__username">username</span>
+                    <span class="search-forum-post__username">{{ $user->username }}</span>
                     <span class="search-forum-post__link">{{ $firstPostUrl }}</span>
                     <span class="search-forum-post__time">{{ $entry->source('post_time') }}</span>
                 </div>
@@ -50,12 +53,14 @@
     @foreach ($innerHits as $innerHit)
         @php
             $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
+            // FIXME: this is obviously a terrible idea.
+            $user = App\Models\User::lookup($innerHit->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
         @endphp
 
         <div class="search-entry-thread__sub-item">
             <a class="search-forum-post" href="{{ $postUrl }}">
                 <div class="search-forum-post__avatar">
-                    {{ $innerHit->source('poster_id') }}
+                    <img src="{{ $user->user_avatar }}">
                 </div>
                 <div class="search-forum-post__content">
                     <div class="search-entry__row search-entry__row--excerpt">
@@ -73,7 +78,7 @@
                     </div>
                     <div class="search-entry__row search-entry__row--footer">
                         <span>posted by </span>
-                        <span class="search-forum-post__username">username</span>
+                        <span class="search-forum-post__username">{{ $user->username }}</span>
                         <span class="search-forum-post__link">{{ $postUrl }}</span>
                         <span class="search-forum-post__time">{{ $innerHit->source('post_time') }}</span>
                     </div>
