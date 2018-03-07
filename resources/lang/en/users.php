@@ -66,6 +66,12 @@ return [
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s posts',
+        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
+    ],
+
     'signup' => [
         '_' => 'Register',
     ],

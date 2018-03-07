@@ -18,8 +18,8 @@
 @extends("master", [
     'current_section' => 'community',
     'current_action' => 'profile',
-    'title' => trans('users.show.title', ['username' => $user->username]),
-    'pageDescription' => trans('users.show.page_description', ['username' => $user->username])
+    'title' => trans('users.posts.title', ['username' => $user->username]),
+    'pageDescription' => trans('users.posts.page_description', ['username' => $user->username]),
 ])
 
 @section('content')
@@ -27,7 +27,7 @@
         <div class="osu-page">
             <div class="search-header">
                 <div class="search-header__title">
-                    {{ trans('home.search.title') }}
+                    {{ trans('users.posts.title', ['username' => $user->username]) }}
                 </div>
 
                 <div class="search-header__box">
