@@ -106,7 +106,7 @@ class ForumSearch extends Search implements \ArrayAccess
         return (new HasChildQuery('posts', 'posts'))
             ->size(3)
             ->scoreMode('max')
-            ->source(['topic_id', 'post_id', 'search_content'])
+            ->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content'])
             ->highlight(
                 (new Highlight)
                     ->field('search_content')
