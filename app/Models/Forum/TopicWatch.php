@@ -40,22 +40,22 @@ class TopicWatch extends Model
             return 0;
         }
 
-        $thisTable = (new static)->getTable();
-        $trackTable = (new TopicTrack)->getTable();
-        $topicTable = (new Topic)->getTable();
+        $watch = new static;
+        $topic = new Topic;
+        $track = new TopicTrack;
 
         return static
-            ::join($topicTable, "{$topicTable}.topic_id", '=', "{$thisTable}.topic_id")
-            ->leftJoin($trackTable, function ($join) use ($trackTable, $thisTable) {
+            ::join($topic->getTable(), $topic->qualifyColumn('topic_id'), '=', $watch->qualifyColumn('topic_id'))
+            ->leftJoin($track->getTable(), function ($join) use ($track, $watch) {
                 $join
-                    ->on("{$trackTable}.topic_id", '=', "{$thisTable}.topic_id")
-                    ->on("{$trackTable}.user_id", '=', "{$thisTable}.user_id");
+                    ->on($track->qualifyColumn('topic_id'), '=', $watch->qualifyColumn('topic_id'))
+                    ->on($track->qualifyColumn('user_id'), '=', $watch->qualifyColumn('user_id'));
             })
-            ->where("{$thisTable}.user_id", '=', $user->user_id)
-            ->where(function ($query) use ($topicTable, $trackTable) {
+            ->where($watch->qualifyColumn('user_id'), '=', $user->user_id)
+            ->where(function ($query) use ($topic, $track) {
                 $query
-                    ->whereRaw("{$topicTable}.topic_last_post_time > {$trackTable}.mark_time")
-                    ->orWhereNull("{$trackTable}.mark_time");
+                    ->whereRaw("{$topic->qualifyColumn('topic_last_post_time')} > {$track->qualifyColumn('mark_time')}")
+                    ->orWhereNull($track->qualifyColumn('mark_time'));
             })
             ->count();
     }
