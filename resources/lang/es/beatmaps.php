@@ -68,7 +68,7 @@ return [
         ],
 
         'mode' => [
-            'general' => 'General', 
+            'general' => 'General',
             'general_all' => 'General (todas las dificultades)',
             'timeline' => 'Línea de tiempo',
         ], //Original strings changed, please check!
