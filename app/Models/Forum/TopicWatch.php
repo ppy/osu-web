@@ -20,6 +20,7 @@
 
 namespace App\Models\Forum;
 
+use App\Models\User;
 use Illuminate\Database\QueryException;
 
 class TopicWatch extends Model
@@ -101,5 +102,10 @@ class TopicWatch extends Model
     public function topic()
     {
         return $this->belongsTo(Topic::class, 'topic_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
