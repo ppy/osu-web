@@ -168,52 +168,52 @@ return [
         ],
 
         'issue_tag_added' => [ //TODO 所有的issue_tag_xxx都需要上下文
-            'action-0' => '移除 "added" 标签',
-            'action-1' => '添加 "added" 标签',
+            'to_0' => '移除 "added" 标签',
             'to_0_done' => '已移除 "added" 标签',
+            'to_1' => '添加 "added" 标签',
             'to_1_done' => '已添加 "added" 标签',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => '移除 "assigned" 标签',
-            'action-1' => '添加 "assigned" 标签',
+            'to_0' => '移除 "assigned" 标签',
             'to_0_done' => '已移除 "assigned" 标签',
+            'to_1' => '添加 "assigned" 标签',
             'to_1_done' => '已添加 "assigned" 标签',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => '移除 "confirmed" 标签',
-            'action-1' => '添加 "confirmed" 标签',
+            'to_0' => '移除 "confirmed" 标签',
             'to_0_done' => '已移除 "confirmed" 标签',
+            'to_1' => '添加 "confirmed" 标签',
             'to_1_done' => '已添加 "confirmed" 标签',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => '移除 "duplicate" 标签',
-            'action-1' => '添加 "duplicate" 标签',
+            'to_0' => '移除 "duplicate" 标签',
             'to_0_done' => '已移除 "duplicate" 标签',
+            'to_1' => '添加 "duplicate" 标签',
             'to_1_done' => '已添加 "duplicate" 标签',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => '移除 "invalid" 标签',
-            'action-1' => '添加 "invalid" 标签',
+            'to_0' => '移除 "invalid" 标签',
             'to_0_done' => '已移除 "invalid" 标签',
+            'to_1' => '添加 "invalid" 标签',
             'to_1_done' => '已添加 "invalid" 标签',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => '移除 "resolved" 标签',
-            'action-1' => '添加 "resolved" 标签',
+            'to_0' => '移除 "resolved" 标签',
             'to_0_done' => '已移除 "resolved" 标签',
+            'to_1' => '添加 "resolved" 标签',
             'to_1_done' => '已添加 "resolved" 标签',
         ],
 
         'lock' => [
             'is_locked' => '主题已被锁定，不能回复',
-            'lock-0' => '解锁主题',
-            'lock-1' => '锁定主题',
+            'to_0' => '解锁主题',
             'to_0_done' => '主题已经解锁',
+            'to_1' => '锁定主题',
             'to_1_done' => '主题已被锁定',
         ],
 
@@ -222,11 +222,11 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => '取消置顶',
-            'pin-1' => '置顶',
-            'pin-2' => '置顶并标记为公告',
+            'to_0' => '取消置顶',
             'to_0_done' => '该主题已取消置顶',
+            'to_1' => '置顶',
             'to_1_done' => '该主题已置顶',
+            'to_2' => '置顶并标记为公告',
             'to_2_done' => '该主题已置顶并标记为公告',
         ],
 
@@ -257,10 +257,10 @@ return [
         ],
 
         'watch' => [
+            'to_0' => '取消订阅',
             'to_0_done' => '已取消订阅！',
+            'to_1' => '订阅',
             'to_1_done' => '订阅成功！',
-            'watch-0' => '取消订阅',
-            'watch-1' => '订阅',
         ],
     ],
 ];

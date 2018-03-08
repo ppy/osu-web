@@ -170,52 +170,52 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Eliminar etiqueta "agregado"',
-            'action-1' => 'Agregar etiqueta "agregado"',
+            'to_0' => 'Eliminar etiqueta "agregado"',
             'to_0_done' => 'Etiqueta "agregado" eliminada',
+            'to_1' => 'Agregar etiqueta "agregado"',
             'to_1_done' => 'Etiqueta "agregado" agregada',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Eliminar etiqueta "asignado"',
-            'action-1' => 'Agregar etiqueta "asignado"',
+            'to_0' => 'Eliminar etiqueta "asignado"',
             'to_0_done' => 'Etiqueta "asignado" eliminada',
+            'to_1' => 'Agregar etiqueta "asignado"',
             'to_1_done' => 'Etiqueta "asignado" agregada',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Eliminar etiqueta "confirmado"',
-            'action-1' => 'Agregar etiqueta "confirmado"',
+            'to_0' => 'Eliminar etiqueta "confirmado"',
             'to_0_done' => 'Etiqueta "confirmado" eliminada',
+            'to_1' => 'Agregar etiqueta "confirmado"',
             'to_1_done' => 'Etiqueta "confirmado" agregada',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Eliminar etiqueta "duplicado"',
-            'action-1' => 'Agregar etiqueta "duplicado"',
+            'to_0' => 'Eliminar etiqueta "duplicado"',
             'to_0_done' => 'Etiqueta "duplicado" eliminada',
+            'to_1' => 'Agregar etiqueta "duplicado"',
             'to_1_done' => 'Etiqueta "duplicado" agregada',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Eliminar etiqueta "inválido"',
-            'action-1' => 'Agregar etiqueta "inválido"',
+            'to_0' => 'Eliminar etiqueta "inválido"',
             'to_0_done' => 'Etiqueta "inválido" eliminada',
+            'to_1' => 'Agregar etiqueta "inválido"',
             'to_1_done' => 'Etiqueta "inválido" agregada',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Eliminar etiqueta "resuelto"',
-            'action-1' => 'Agregar etiqueta "resuelto"',
+            'to_0' => 'Eliminar etiqueta "resuelto"',
             'to_0_done' => 'Etiqueta "resuelto" eliminada',
+            'to_1' => 'Agregar etiqueta "resuelto"',
             'to_1_done' => 'Etiqueta "resuelto" agregada',
         ],
 
         'lock' => [
             'is_locked' => 'Este tema está bloqueado y no se puede responder',
-            'lock-0' => 'Abrir tema',
-            'lock-1' => 'Cerrar tema',
+            'to_0' => 'Abrir tema',
             'to_0_done' => 'El tema ha sido abierto',
+            'to_1' => 'Cerrar tema',
             'to_1_done' => 'El tema ha sido cerrado',
         ],
 
@@ -224,11 +224,11 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
-            'pin-1' => 'Fijar tema',
-            'pin-2' => 'Fijar tema y marcar como anuncio',
+            'to_0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
             'to_0_done' => 'El tema ya no está fijado',
+            'to_1' => 'Fijar tema',
             'to_1_done' => 'El tema ya ha sido fijado',
+            'to_2' => 'Fijar tema y marcar como anuncio',
             'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
@@ -259,10 +259,10 @@ return [
         ],
 
         'watch' => [
+            'to_0' => 'Desuscribirse del tema',
             'to_0_done' => 'Desuscrito del tema',
+            'to_1' => 'Suscribirse al tema',
             'to_1_done' => 'Suscrito al tema',
-            'watch-0' => 'Desuscribirse del tema',
-            'watch-1' => 'Suscribirse al tema',
         ],
     ],
 ];

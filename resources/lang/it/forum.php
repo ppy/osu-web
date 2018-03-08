@@ -162,9 +162,9 @@ return [
 
         'lock' => [
             'is_locked' => 'Questo topic è bloccato e non può essere risposto',
-            'lock-0' => 'Sblocca topic',
-            'lock-1' => 'Blocca topic',
+            'to_0' => 'Sblocca topic',
             'to_0_done' => 'Il topic è stato sbloccato',
+            'to_1' => 'Blocca topic',
             'to_1_done' => 'Il topic è stato bloccato',
         ],
 
@@ -173,9 +173,9 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Togli dai topic fissati',
-            'pin-1' => 'Fissa topic',
+            'to_0' => 'Togli dai topic fissati',
             'to_0_done' => 'Il topic è stato tolto dai topic fissati',
+            'to_1' => 'Fissa topic',
             'to_1_done' => 'Il topic è stato fissato',
         ],
 
@@ -203,10 +203,10 @@ return [
         ],
 
         'watch' => [
+            'to_0' => 'Disiscriviti dal topic',
             'to_0_done' => 'Disiscritto dal topic',
+            'to_1' => 'Iscriviti al topic',
             'to_1_done' => 'Iscritto al topic',
-            'watch-0' => 'Disiscriviti dal topic',
-            'watch-1' => 'Iscriviti al topic',
         ],
     ],
 ];

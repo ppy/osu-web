@@ -53,7 +53,7 @@
             ]) }}"
             data-remote="1"
             data-method="post"
-            title="{{ trans('forum.topics.moderate_pin.pin-'.$actionInt) }}"
+            title="{{ trans('forum.topics.moderate_pin.to_'.$actionInt) }}"
         >
             <span class="btn-circle__content">
                 <i class="fa fa-{{ $attrs['icon'] }}"></i>

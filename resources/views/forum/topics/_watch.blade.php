@@ -30,7 +30,7 @@
     data-remote="1"
     data-method="post"
     data-topic-id="{{ $topic->topic_id }}"
-    title="{{ trans('forum.topics.watch.watch-'.(int) !$state) }}"
+    title="{{ trans('forum.topics.watch.to_'.(int) !$state) }}"
 >
     <span class="btn-circle__content">
         <i class="fa fa-eye"></i>

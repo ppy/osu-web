@@ -169,52 +169,52 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Ta bort "tillagd" tagg',
-            'action-1' => 'Lägg till "tillagd" tagg',
+            'to_0' => 'Ta bort "tillagd" tagg',
             'to_0_done' => 'Tog bort "tillagd" tagg',
+            'to_1' => 'Lägg till "tillagd" tagg',
             'to_1_done' => 'La till "tillagd" tagg',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Ta bort "tilldelad" tagg',
-            'action-1' => 'Lägg till "tilldelad" tagg',
+            'to_0' => 'Ta bort "tilldelad" tagg',
             'to_0_done' => 'Tog bort "tilldelad" tagg',
+            'to_1' => 'Lägg till "tilldelad" tagg',
             'to_1_done' => 'La till "tilldelad" tagg',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Ta bort "bekräftad" tagg',
-            'action-1' => 'Lägg till "bekräftad" tagg',
+            'to_0' => 'Ta bort "bekräftad" tagg',
             'to_0_done' => 'Tog bort "bekräftad" tagg',
+            'to_1' => 'Lägg till "bekräftad" tagg',
             'to_1_done' => 'La till "bekräftad" tagg',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Ta bort "duplikat" tagg',
-            'action-1' => 'Lägg till "duplikat" tagg',
+            'to_0' => 'Ta bort "duplikat" tagg',
             'to_0_done' => 'Tog bort "duplikat" tagg',
+            'to_1' => 'Lägg till "duplikat" tagg',
             'to_1_done' => 'La till "duplikat" tagg',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Ta bort "ogiltlig" tagg',
-            'action-1' => 'Lägg till "ogiltlig" tagg',
+            'to_0' => 'Ta bort "ogiltlig" tagg',
             'to_0_done' => 'Tog bort "ogiltlig" tagg',
+            'to_1' => 'Lägg till "ogiltlig" tagg',
             'to_1_done' => 'La till "ogiltlig" tagg',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Ta bort "löst" tagg',
-            'action-1' => 'Lägg till "löst" tagg',
+            'to_0' => 'Ta bort "löst" tagg',
             'to_0_done' => 'Tog bort "löst" tagg',
+            'to_1' => 'Lägg till "löst" tagg',
             'to_1_done' => 'La till "löst" tagg',
         ],
 
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
-            'lock-0' => 'Lås upp ämne',
-            'lock-1' => 'Lås ämne',
+            'to_0' => 'Lås upp ämne',
             'to_0_done' => 'Ämne har blivit upplåst',
+            'to_1' => 'Lås ämne',
             'to_1_done' => 'Ämne har blivit låst',
         ],
 
@@ -223,11 +223,11 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Ta bort nålat ämne',
-            'pin-1' => 'Nåla ämne',
-            'pin-2' => 'Nåla ämne och markera som meddelande',
+            'to_0' => 'Ta bort nålat ämne',
             'to_0_done' => 'Nål på ämne har tagits bort',
+            'to_1' => 'Nåla ämne',
             'to_1_done' => 'Ämne har blivit nålat',
+            'to_2' => 'Nåla ämne och markera som meddelande',
             'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 
@@ -258,10 +258,10 @@ return [
         ],
 
         'watch' => [
+            'to_0' => 'Säg upp prenumeration från ämne',
             'to_0_done' => 'Prenumeration sades upp från ämne',
+            'to_1' => 'Prenumerera på ämne',
             'to_1_done' => 'Prenumererade på ämne',
-            'watch-0' => 'Säg upp prenumeration från ämne',
-            'watch-1' => 'Prenumerera på ämne',
         ],
     ],
 ];

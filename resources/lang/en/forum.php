@@ -170,52 +170,52 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
+            'to_0' => 'Remove "added" tag',
             'to_0_done' => 'Removed "added" tag',
+            'to_1' => 'Add "added" tag',
             'to_1_done' => 'Added "added" tag',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
+            'to_0' => 'Remove "assigned" tag',
             'to_0_done' => 'Removed "assigned" tag',
+            'to_1' => 'Add "assigned" tag',
             'to_1_done' => 'Added "assigned" tag',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
+            'to_0' => 'Remove "confirmed" tag',
             'to_0_done' => 'Removed "confirmed" tag',
+            'to_1' => 'Add "confirmed" tag',
             'to_1_done' => 'Added "confirmed" tag',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
+            'to_0' => 'Remove "duplicate" tag',
             'to_0_done' => 'Removed "duplicate" tag',
+            'to_1' => 'Add "duplicate" tag',
             'to_1_done' => 'Added "duplicate" tag',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
+            'to_0' => 'Remove "invalid" tag',
             'to_0_done' => 'Removed "invalid" tag',
+            'to_1' => 'Add "invalid" tag',
             'to_1_done' => 'Added "invalid" tag',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
+            'to_0' => 'Remove "resolved" tag',
             'to_0_done' => 'Removed "resolved" tag',
+            'to_1' => 'Add "resolved" tag',
             'to_1_done' => 'Added "resolved" tag',
         ],
 
         'lock' => [
             'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
+            'to_0' => 'Unlock topic',
             'to_0_done' => 'Topic has been unlocked',
+            'to_1' => 'Lock topic',
             'to_1_done' => 'Topic has been locked',
         ],
 
@@ -224,11 +224,11 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
+            'to_0' => 'Unpin topic',
             'to_0_done' => 'Topic has been unpinned',
+            'to_1' => 'Pin topic',
             'to_1_done' => 'Topic has been pinned',
+            'to_2' => 'Pin topic and mark as announcement',
             'to_2_done' => 'Topic has been pinned and marked as announcement',
         ],
 
@@ -259,10 +259,10 @@ return [
         ],
 
         'watch' => [
+            'to_0' => 'Unsubscribe topic',
             'to_0_done' => 'Unsubscribed from topic',
+            'to_1' => 'Subscribe topic',
             'to_1_done' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
         ],
     ],
 ];

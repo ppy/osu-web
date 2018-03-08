@@ -161,52 +161,52 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Fjern "tilføjet" tag',
-            'action-1' => 'Tilføj "tilføjet" tag',
+            'to_0' => 'Fjern "tilføjet" tag',
             'to_0_done' => 'Fjern "tilføjet" tag',
+            'to_1' => 'Tilføj "tilføjet" tag',
             'to_1_done' => 'Tilføj "tilføjet" tag',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Fjern "tildelelt" tag',
-            'action-1' => 'Tilføj "tildelelt" tag',
+            'to_0' => 'Fjern "tildelelt" tag',
             'to_0_done' => 'Fjern "tildelelt" tag',
+            'to_1' => 'Tilføj "tildelelt" tag',
             'to_1_done' => 'Tilføj "tildelelt" tag',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Fjern "bekræftet" tag',
-            'action-1' => 'Tilføj "bekræftet" tag',
+            'to_0' => 'Fjern "bekræftet" tag',
             'to_0_done' => 'Fjern "bekræftet" tag',
+            'to_1' => 'Tilføj "bekræftet" tag',
             'to_1_done' => 'Tilføj "bekræftet" tag',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Fjern "duplikeret" tag',
-            'action-1' => 'Tilføj "duplikeret" tag',
+            'to_0' => 'Fjern "duplikeret" tag',
             'to_0_done' => 'Fjern "duplikeret" tag',
+            'to_1' => 'Tilføj "duplikeret" tag',
             'to_1_done' => 'Tilføj "duplikeret" tag',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Fjern "ugyldigt" tag',
-            'action-1' => 'Tilføj "ugyldigt" tag',
+            'to_0' => 'Fjern "ugyldigt" tag',
             'to_0_done' => 'Fjern "ugyldigt" tag',
+            'to_1' => 'Tilføj "ugyldigt" tag',
             'to_1_done' => 'Tilføj "ugyldigt" tag',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Fjern "løst" tag',
-            'action-1' => 'Tilføj "løst" tag',
+            'to_0' => 'Fjern "løst" tag',
             'to_0_done' => 'Fjern "løst" tag',
+            'to_1' => 'Tilføj "løst" tag',
             'to_1_done' => 'Tilføj "løst" tag',
         ],
 
         'lock' => [
             'is_locked' => 'Dette emne er arkiveret og kan ikke svares til',
-            'lock-0' => 'Oplås emne',
-            'lock-1' => 'Lås emne',
+            'to_0' => 'Oplås emne',
             'to_0_done' => 'Emnet er blevet oplåst',
+            'to_1' => 'Lås emne',
             'to_1_done' => 'Emnet er blevet låst',
         ],
 
@@ -215,11 +215,11 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Fjern fastgørelse af emne',
-            'pin-1' => 'Fastgør emne',
-            'pin-2' => 'Fastgør emne og marker som en meddelelse',
+            'to_0' => 'Fjern fastgørelse af emne',
             'to_0_done' => 'Emnet er blevet løsgjort',
+            'to_1' => 'Fastgør emne',
             'to_1_done' => 'Emnet er blevet fastgjort',
+            'to_2' => 'Fastgør emne og marker som en meddelelse',
             'to_2_done' => 'Emnet er blevet fastgjort og markeret som en meddelelse',
         ],
 
@@ -250,10 +250,10 @@ return [
         ],
 
         'watch' => [
+            'to_0' => 'Opsagde abonnement for emnet',
             'to_0_done' => 'Opsagde abonnement for emnet',
+            'to_1' => 'Abonnerede på emnet',
             'to_1_done' => 'Abonnerede på emnet',
-            'watch-0' => 'Opsagde abonnement for emnet',
-            'watch-1' => 'Abonnerede på emnet',
         ],
     ],
 
