@@ -71,10 +71,10 @@ return [
         ],
 
         'mode' => [
-            'events' => 'History',
-            'general' => 'General',
-            'general_all' => 'General (all difficulties)',
-            'timeline' => 'Timeline',
+            'events' => 'Changelog',
+            'general' => 'General <small>(This Difficulty)</small>',
+            'general_all' => 'General <small>(All Difficulties)</small>',
+            'timeline' => 'Timecode',
         ],
 
         'new' => [
