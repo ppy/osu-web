@@ -22,5 +22,5 @@ Timeout.set(0, function() {
             'state' => $state
         ])) !!});
 
-    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.state-'.(int) $state)) !!}, 'success');
+    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.(int) $state.'_done')) !!}, 'success');
 });

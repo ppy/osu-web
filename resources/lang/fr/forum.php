@@ -169,51 +169,51 @@ return [
         'issue_tag_added' => [
             'action-0' => 'Supprimer le tag "added"',
             'action-1' => 'Ajouter le tag "added"',
-            'state-0' => 'Tag "added" supprimé',
-            'state-1' => 'Tag "added" ajouté',
+            'to_0_done' => 'Tag "added" supprimé',
+            'to_1_done' => 'Tag "added" ajouté',
         ],
 
         'issue_tag_assigned' => [
             'action-0' => 'Supprimer le tag "assigned"',
             'action-1' => 'Ajouter le tag "assigned"',
-            'state-0' => 'Tag "assigned" supprimé',
-            'state-1' => 'Tag "assigned" ajouté',
+            'to_0_done' => 'Tag "assigned" supprimé',
+            'to_1_done' => 'Tag "assigned" ajouté',
         ],
 
         'issue_tag_confirmed' => [
             'action-0' => 'Supprimer le tag "confirmed"',
             'action-1' => 'Ajouter le tag "confirmed"',
-            'state-0' => 'Tag "confirmed" supprimé',
-            'state-1' => 'Tag "confirmed" ajouté',
+            'to_0_done' => 'Tag "confirmed" supprimé',
+            'to_1_done' => 'Tag "confirmed" ajouté',
         ],
 
         'issue_tag_duplicate' => [
             'action-0' => 'Supprimer le tag "duplicate"',
             'action-1' => 'Ajouter le tag "duplicate"',
-            'state-0' => 'Tag "duplicate" supprimé',
-            'state-1' => 'Tag "duplicate" ajouté',
+            'to_0_done' => 'Tag "duplicate" supprimé',
+            'to_1_done' => 'Tag "duplicate" ajouté',
         ],
 
         'issue_tag_invalid' => [
             'action-0' => 'Supprimer le tag "invalid"',
             'action-1' => 'Ajouter le tag "invalid"',
-            'state-0' => 'Tag "invalid" supprimé',
-            'state-1' => 'Tag "invalid" ajouté',
+            'to_0_done' => 'Tag "invalid" supprimé',
+            'to_1_done' => 'Tag "invalid" ajouté',
         ],
 
         'issue_tag_resolved' => [
             'action-0' => 'Supprimer le tag "resolved"',
             'action-1' => 'Ajouter le tag "resolved"',
-            'state-0' => 'Tag "resolved" supprimé',
-            'state-1' => 'Tag "resolved" ajouté',
+            'to_0_done' => 'Tag "resolved" supprimé',
+            'to_1_done' => 'Tag "resolved" ajouté',
         ],
 
         'lock' => [
             'is_locked' => 'Ce sujet est verouillé, vous ne pouvez pas répondre',
             'lock-0' => 'Déverouiller le sujet',
             'lock-1' => 'Verouiller le sujet',
-            'state-0' => 'Le sujet a été déverouillé',
-            'state-1' => 'Le sujet a été verouillé',
+            'to_0_done' => 'Le sujet a été déverouillé',
+            'to_1_done' => 'Le sujet a été verouillé',
         ],
 
         'moderate_move' => [
@@ -223,8 +223,8 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Désépingler le sujet',
             'pin-1' => 'Épingler le sujet',
-            'state-0' => 'Le sujet a été désépinglé',
-            'state-1' => 'Le sujet a été épinglé',
+            'to_0_done' => 'Le sujet a été désépinglé',
+            'to_1_done' => 'Le sujet a été épinglé',
         ],
 
         'show' => [
@@ -254,8 +254,8 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Vous ne suivez pas ce sujet',
-            'state-1' => 'Vous suivez ce sujet',
+            'to_0_done' => 'Vous ne suivez pas ce sujet',
+            'to_1_done' => 'Vous suivez ce sujet',
             'watch-0' => 'Se désabonner du sujet',
             'watch-1' => "S'abonner au sujet",
         ],

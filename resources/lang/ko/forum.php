@@ -173,51 +173,51 @@ return [
         'issue_tag_added' => [
             'action-0' => '"added" 태그 삭제',
             'action-1' => '"added" 태그 추가',
-            'state-0' => '"added" 태그 삭제됨',
-            'state-1' => '"added" 태그 추가됨',
+            'to_0_done' => '"added" 태그 삭제됨',
+            'to_1_done' => '"added" 태그 추가됨',
         ],
 
         'issue_tag_assigned' => [
             'action-0' => '"assigned" 태그 삭제',
             'action-1' => '"assigned" 태그 추가',
-            'state-0' => '"assigned" 태그 삭제됨',
-            'state-1' => '"assigned" 태그 추가됨',
+            'to_0_done' => '"assigned" 태그 삭제됨',
+            'to_1_done' => '"assigned" 태그 추가됨',
         ],
 
         'issue_tag_confirmed' => [
             'action-0' => '"confirmed" 태그 삭제',
             'action-1' => '"confirmed" 태그 추가',
-            'state-0' => '"confirmed" 태그 삭제됨',
-            'state-1' => '"confirmed" 태그 추가됨',
+            'to_0_done' => '"confirmed" 태그 삭제됨',
+            'to_1_done' => '"confirmed" 태그 추가됨',
         ],
 
         'issue_tag_duplicate' => [
             'action-0' => '"duplicate" 태그 삭제',
             'action-1' => '"duplicate" 태그 추가',
-            'state-0' => '"duplicate" 태그 삭제됨',
-            'state-1' => '"duplicate" 태그 추가됨',
+            'to_0_done' => '"duplicate" 태그 삭제됨',
+            'to_1_done' => '"duplicate" 태그 추가됨',
         ],
 
         'issue_tag_invalid' => [
             'action-0' => '"invalid" 태그 삭제',
             'action-1' => '"invalid" 태그 추가',
-            'state-0' => '"invalid" 태그 삭제됨',
-            'state-1' => '"invalid" 태그 추가됨',
+            'to_0_done' => '"invalid" 태그 삭제됨',
+            'to_1_done' => '"invalid" 태그 추가됨',
         ],
 
         'issue_tag_resolved' => [
             'action-0' => '"resolved" 태그 삭제',
             'action-1' => '"resolved" 태그 추가',
-            'state-0' => '"resolved" 태그 삭제됨',
-            'state-1' => '"resolved" 태그 추가됨',
+            'to_0_done' => '"resolved" 태그 삭제됨',
+            'to_1_done' => '"resolved" 태그 추가됨',
         ],
 
         'lock' => [
             'is_locked' => '주제글이 잠겨있어 답글을 게시할 수 없습니다.',
             'lock-0' => '주제글 잠금 풀기',
             'lock-1' => '주제글 잠그기',
-            'state-0' => '해당 주제의 잠금이 해제되었습니다,',
-            'state-1' => '해당 주제가 잠겼습니다.',
+            'to_0_done' => '해당 주제의 잠금이 해제되었습니다,',
+            'to_1_done' => '해당 주제가 잠겼습니다.',
         ],
 
         'moderate_move' => [
@@ -228,9 +228,9 @@ return [
             'pin-0' => '주제글 고정 해제',
             'pin-1' => '주제글 고정',
             'pin-2' => '주제글을 고정하고 알림글로 나타내기',
-            'state-0' => '해당 주제의 고정이 해제되었습니다.',
-            'state-1' => '해당 주제가 고정되었습니다.',
-            'state-2' => '해당 주제가 고정되고 알림글로 표시됩니다.',
+            'to_0_done' => '해당 주제의 고정이 해제되었습니다.',
+            'to_1_done' => '해당 주제가 고정되었습니다.',
+            'to_2_done' => '해당 주제가 고정되고 알림글로 표시됩니다.',
         ],
 
         'show' => [
@@ -260,8 +260,8 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
+            'to_0_done' => 'Unsubscribed from topic',
+            'to_1_done' => 'Subscribed to topic',
             'watch-0' => '주제 구독 해제하기',
             'watch-1' => '주제 ',
         ],
