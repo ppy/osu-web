@@ -61,7 +61,7 @@ class TopicWatch extends Model
 
     public static function check($topic, $user)
     {
-        if ($user === null) {
+        if ($topic === null || $user === null) {
             return false;
         }
 
