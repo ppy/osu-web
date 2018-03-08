@@ -36,7 +36,7 @@
             'title' => $entry->source('search_content'),
             'highlights' => $excerpt,
             'link' => $firstPostUrl,
-            'time' => i18n_time(parse_time_to_carbon($entry->source('post_time'))),
+            'time' => $entry->source('post_time'),
         ])
     </div>
 
@@ -61,7 +61,7 @@
                     'title' => null,
                     'highlights' => $highlights,
                     'link' => $postUrl,
-                    'time' => i18n_time(parse_time_to_carbon($innerHit->source('post_time'))),
+                    'time' => $innerHit->source('post_time'),
                 ])
             </div>
         </div>
