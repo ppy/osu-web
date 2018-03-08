@@ -21,6 +21,7 @@
 namespace App\Models\Forum;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
 
 class TopicWatch extends Model
@@ -107,5 +108,35 @@ class TopicWatch extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeLookupQuery($query, $topic, $user)
+    {
+        if ($user instanceof User) {
+            $userId = $user->getKey();
+        } elseif (is_string($user) || is_int($user)) {
+            $userId = (int) $user;
+        }
+
+        if ($topic instanceof Topic) {
+            $topicId = $topic->getKey();
+        } elseif (is_string($topic) || is_int($topic)) {
+            $topicId = (int) $topic;
+        }
+
+        if (!isset($userId) || !isset($topicId)) {
+            return $query->none();
+        }
+
+        return $query->where([
+            'topic_id' => $topicId,
+            'user_id' => $userId,
+        ]);
+    }
+
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query->lookupQuery($this->topic_id, $this->user_id);
     }
 }
