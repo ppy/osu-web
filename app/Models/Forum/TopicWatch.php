@@ -65,10 +65,7 @@ class TopicWatch extends Model
             return false;
         }
 
-        return static::where([
-            'topic_id' => $topic->topic_id,
-            'user_id' => $user->user_id,
-        ])->exists();
+        return static::lookupQuery($topic, $user)->exists();
     }
 
     public static function lookup($topic, $user)
