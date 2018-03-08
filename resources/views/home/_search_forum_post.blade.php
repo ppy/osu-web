@@ -32,15 +32,15 @@
                 <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
             </div>
             <div class="search-forum-post__content">
-                <h1 class="search-entry__row search-entry__row--title">
+                <h1 class="search-forum-post__title">
                     {{ $entry->source('search_content') }}
                 </h1>
-                <div class="search-entry__row search-entry__row--excerpt">
+                <div class="search-forum-post__post-text">
                     @foreach ($firstPost as $post)
                         <span>{!! html_excerpt($post->source('search_content')) !!}</span>
                     @endforeach
                 </div>
-                <div class="search-entry__row search-entry__row--footer">
+                <div class="search-forum-post__footer">
                     <div class="search-forum-post__poster">posted by
                         <span class="search-forum-post__username">{{ $user->username }}</span>
                     </div>
@@ -69,7 +69,7 @@
                         <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
                     </div>
                     <div class="search-forum-post__content">
-                        <div class="search-entry__row search-entry__row--excerpt">
+                        <div class="search-forum-post__post-text">
                             <span class="search-entry__highlight">
                                 {!!
                                     implode(
@@ -82,7 +82,7 @@
                                 !!}
                             </span>
                         </div>
-                        <div class="search-entry__row search-entry__row--footer">
+                        <div class="search-forum-post__footer">
                             <div class="search-forum-post__poster">posted by
                                 <span class="search-forum-post__username">{{ $user->username }}</span>
                             </div>
