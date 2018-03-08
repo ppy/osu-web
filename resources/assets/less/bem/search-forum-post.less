@@ -24,6 +24,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  word-break: break-word;
+  word-wrap: break-word;
+  line-height: 1.5;
 
   &__avatar {
     flex: none;
@@ -39,6 +42,7 @@
 
   &__content {
     flex: 1;
+    margin-left: @margin;
   }
 
   &__link {
@@ -56,6 +60,24 @@
 
     @media @mobile {
       display: block;
+    }
+  }
+
+  &__text {
+    &--excrept {
+      color: #ddd;
+      font-size: @font-size--small-2;
+    }
+
+    &--footer {
+      color: #999;
+      font-size: @font-size--small;
+    }
+
+    &--title {
+      color: #fff;
+      font-size: @font-size--title-small-2;
+      margin-bottom: 5px;
     }
   }
 
