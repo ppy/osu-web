@@ -44,10 +44,9 @@ class NotifyEmail implements ShouldQueue
             return;
         }
 
-        TopicWatch::where([
-            'topic_id' => $topic->topic_id,
-            'user_id' => $user->user_id,
-        ])->update(['notify_status' => false]);
+        // Immediately update the status without actually fetching it.
+        TopicWatch::lookupQuery($topic, $user)
+            ->update(['notify_status' => false]);
     }
 
     public function notifyReply($event)
