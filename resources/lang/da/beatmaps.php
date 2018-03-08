@@ -76,7 +76,7 @@ return [
             'general' => 'Generelt',
             'general_all' => 'Generelt (alle sværhedsgrader)',
             'timeline' => 'Tidslinje',
-        ],
+        ], //Original strings changed, please check! 
 
         'new' => [
             'timestamp' => 'Tidsstempel',

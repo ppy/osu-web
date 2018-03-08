@@ -75,7 +75,7 @@ return [
             'general' => 'Allmänt',
             'general_all' => 'Allmänt (alla svårighetsgrader)',
             'timeline' => 'Tidslinje',
-        ],
+        ], //Original strings changed, please check! 
 
         'new' => [
             'timestamp' => 'Tidsstämpel',
