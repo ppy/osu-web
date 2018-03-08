@@ -16,96 +16,50 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
+{{-- more code than template in this view :best: --}}
 @php
     // $entry should be of type App\Libraries\Elasticsearch\Hit
     $innerHits = $entry->innerHits('posts');
-    $firstPost = $entry->innerHits('first_post');
+    $firstPost = $entry->innerHits('first_post'); // instance of App\Libraries\Elasticsearch\SearchResponse
     $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
+    $excerpt = implode('', array_map(function ($post) {
+        return html_excerpt($post->source('search_content'));
+    }, iterator_to_array($firstPost)));
 
     // FIXME: this is obviously a terrible idea.
     $user = App\Models\User::lookup($entry->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
 @endphp
 <div class="search-entry-thread">
-    <a class="search-entry" href="{{ $firstPostUrl }}">
-        <div class="search-forum-post">
-            <div class="search-forum-post__avatar">
-                <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
-            </div>
-            <div class="search-forum-post__content">
-                <div class="search-forum-post__text search-forum-post__text--title">
-                    {{ $entry->source('search_content') }}
-                </div>
-                <div class="search-forum-post__text search-forum-post__text--excrept">
-                    @foreach ($firstPost as $post)
-                        <span>{!! html_excerpt($post->source('search_content')) !!}</span>
-                    @endforeach
-                </div>
-                <div class="search-forum-post__text search-forum-post__text--footer">
-                    <div class="search-forum-post__poster">posted by
-                        <span class="search-forum-post__username">{{ $user->username }}</span>
-                    </div>
-                    <div class="search-forum-post__link">
-                        {{ $firstPostUrl }}
-                    </div>
-                    <time class="search-forum-post__time">
-                        {{ i18n_time(parse_time_to_carbon($entry->source('post_time'))) }}
-                    </time>
-                </div>
-            </div>
-            <div class="search-forum-post__more">
-                <div class="search-result__more-button">
-                    <span class="fa fa-angle-right"></span>
-                </div>
-            </div>
-        </div>
-    </a>
+    @include('objects.search._forum_post', [
+        'user' => $user,
+        'title' => $entry->source('search_content'),
+        'highlights' => $excerpt,
+        'link' => $firstPostUrl,
+        'time' => i18n_time(parse_time_to_carbon($entry->source('post_time'))),
+    ])
 
     @foreach ($innerHits as $innerHit)
         @php
             $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
             // FIXME: this is obviously a terrible idea.
             $user = App\Models\User::lookup($innerHit->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
+            $highlights = implode(
+                ' ... ',
+                $innerHit->highlights(
+                    'search_content',
+                    App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                )
+            )
         @endphp
 
         <div class="search-entry-thread__sub-item">
-            <a class="search-entry" href="{{ $postUrl }}">
-                <div class="search-forum-post">
-                    <div class="search-forum-post__avatar">
-                        <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
-                    </div>
-                    <div class="search-forum-post__content">
-                        <div class="search-forum-post__text search-forum-post__text--excrept">
-                            <span class="search-entry__highlight">
-                                {!!
-                                    implode(
-                                        ' ... ',
-                                        $innerHit->highlights(
-                                            'search_content',
-                                            App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
-                                        )
-                                    )
-                                !!}
-                            </span>
-                        </div>
-                        <div class="search-forum-post__text search-forum-post__text--footer">
-                            <div class="search-forum-post__poster">posted by
-                                <span class="search-forum-post__username">{{ $user->username }}</span>
-                            </div>
-                            <div class="search-forum-post__link">
-                                {{ $postUrl }}
-                            </div>
-                            <time class="search-forum-post__time">
-                                {{ i18n_time(parse_time_to_carbon($innerHit->source('post_time'))) }}
-                            </time>
-                        </div>
-                    </div>
-                    <div class="search-forum-post__more">
-                        <div class="search-result__more-button">
-                            <span class="fa fa-angle-right"></span>
-                        </div>
-                    </div>
-                </div>
-            </a>
+            @include('objects.search._forum_post', [
+                'user' => $user,
+                'title' => null,
+                'highlights' => $highlights,
+                'link' => $postUrl,
+                'time' => i18n_time(parse_time_to_carbon($innerHit->source('post_time'))),
+            ])
         </div>
     @endforeach
 </div>
