@@ -192,13 +192,15 @@ function html_excerpt($body, $limit = 300)
 
 function json_date($date)
 {
-    return json_time($date->startOfDay());
+    if ($date instanceof DateTime) {
+        return $date->format('Y-m-d');
+    }
 }
 
 function json_time($time)
 {
-    if ($time !== null) {
-        return $time->toIso8601String();
+    if ($time instanceof DateTime) {
+        return $time->format(DateTime::ATOM);
     }
 }
 
