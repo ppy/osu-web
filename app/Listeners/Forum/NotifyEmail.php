@@ -69,7 +69,7 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            if (!priv_check_user($user, 'ForumTopicWatchAdd', $topic)->can()) {
+            if (!priv_check_user($user, 'ForumTopicWatch', $topic)->can()) {
                 continue;
             }
 

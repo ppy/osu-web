@@ -406,10 +406,11 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
         $state = get_bool(Request::input('watch'));
-        $privName = 'ForumTopicWatch'.($state ? 'Add' : 'Remove');
         $type = 'watch';
 
-        priv_check($privName, $topic)->ensureCan();
+        if ($state) {
+            priv_check('ForumTopicWatch', $topic)->ensureCan();
+        }
 
         TopicWatch::toggle($topic, Auth::user(), $state);
 
