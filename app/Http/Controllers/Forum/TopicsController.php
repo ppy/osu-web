@@ -36,6 +36,7 @@ use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
 use DB;
+use Exception;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
@@ -406,13 +407,22 @@ class TopicsController extends Controller
     {
         $topic = Topic::findOrFail($id);
         $state = get_bool(Request::input('watch'));
+        $watch = TopicWatch::lookup($topic, Auth::user());
         $type = 'watch';
 
         if ($state) {
             priv_check('ForumTopicWatch', $topic)->ensureCan();
-        }
 
-        TopicWatch::toggle($topic, Auth::user(), $state);
+            try {
+                $watch->save();
+            } catch (Exception $e) {
+                if (!is_sql_unique_exception($e)) {
+                    throw $e;
+                }
+            }
+        } else {
+            $watch->delete();
+        }
 
         switch (Request::input('return')) {
             case 'index':

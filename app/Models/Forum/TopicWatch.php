@@ -22,7 +22,6 @@ namespace App\Models\Forum;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\QueryException;
 
 class TopicWatch extends Model
 {
@@ -60,23 +59,6 @@ class TopicWatch extends Model
             ->count();
     }
 
-    public static function add($topics, $user)
-    {
-        foreach ($topics as $topic) {
-            try {
-                return static::create([
-                    'topic_id' => $topic->topic_id,
-                    'user_id' => $user->user_id,
-                ]);
-            } catch (QueryException $ex) {
-                // Do nothing if already watching. Rethrow everything else.
-                if (!is_sql_unique_exception($ex)) {
-                    throw $ex;
-                }
-            }
-        }
-    }
-
     public static function check($topic, $user)
     {
         if ($user === null) {
@@ -89,18 +71,16 @@ class TopicWatch extends Model
         ])->exists();
     }
 
-    public static function remove($topics, $user)
+    public static function lookup($topic, $user)
     {
-        return static::where('user_id', $user->user_id)
-            ->whereIn('topic_id', array_pluck($topics, 'topic_id'))
-            ->delete();
-    }
-
-    public static function toggle($topic, $user, $isAdd)
-    {
-        $function = $isAdd ? 'add' : 'remove';
-
-        return forward_static_call_array([static::class, $function], [[$topic], $user]);
+        if ($user === null) {
+            return new static(['topic_id' => $topic->getKey()]);
+        } else {
+            return static::lookupQuery($topic, $user)->first() ?? new static([
+                'topic_id' => $topic->getKey(),
+                'user_id' => $user->getKey(),
+            ]);
+        }
     }
 
     public function topic()
