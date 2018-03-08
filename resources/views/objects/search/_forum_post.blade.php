@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $userLink = route('users.show', $user);
+    $userLink = $user->user_id !== null ? route('users.show', $user) : '#';
 @endphp
 
 <div class="search-forum-post">

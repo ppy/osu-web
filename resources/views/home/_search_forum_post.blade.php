@@ -26,8 +26,7 @@
         return html_excerpt($post->source('search_content'));
     }, iterator_to_array($firstPost)));
 
-    // FIXME: this is obviously a terrible idea.
-    $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? App\Models\UserNotFound::instance();
+    $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? new App\Models\DeletedUser();
 @endphp
 <div class="search-entry-thread">
     <div class="search-entry">
@@ -44,7 +43,7 @@
         @php
             $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
             // FIXME: this is obviously a terrible idea.
-            $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? App\Models\UserNotFound::instance();
+            $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? new App\Models\DeletedUser;
             $highlights = implode(
                 ' ... ',
                 $innerHit->highlights(
