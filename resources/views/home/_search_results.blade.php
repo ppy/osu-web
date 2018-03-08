@@ -33,7 +33,10 @@
                 <div class="search-result__row search-result__row--entries-container">
                     <div class="search-result__entries">
                         @php
-                            $users = $result->users();
+                            // FIXME: do something about this in cleanup branch
+                            if ($result instanceof App\Libraries\ForumSearch) {
+                                $users = $result->users();
+                            }
                         @endphp
                         @foreach ($result['data'] as $entry)
                             <div class="search-result__entry">
