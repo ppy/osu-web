@@ -16,6 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function() {
+    $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
     $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
         .replaceWith({!! json_encode(render_to_string('forum.topics._'.$type, [
             'topic' => $topic,
