@@ -18,19 +18,18 @@
 
 .news-post-preview {
   @top: news-post-preview;
+
+  .default-box-shadow();
   margin-bottom: 5px;
 
   &--collapsed {
     margin-bottom: 0px;
+    box-shadow: none;
   }
 
   &__body {
     display: flex;
     background: #222;
-    .default-box-shadow();
-    .@{top}--collapsed & {
-      box-shadow: none;
-    }
   }
 
   &__image {
@@ -59,6 +58,7 @@
     .@{top}--collapsed & {
       flex-direction: row;
       justify-content: flex-end;
+      align-items: baseline;
       margin: 0px 10px;
       padding: 5px 10px;
     }

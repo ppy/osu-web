@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, li, span, ul} = ReactDOMFactories
+{a, div, li, span, ul, time} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapDiscussions.Event extends React.PureComponent
@@ -25,13 +25,15 @@ class BeatmapDiscussions.Event extends React.PureComponent
 
 
   render: =>
-    time = @props.time ? moment(@props.event.created_at)
+    eventTime = @props.time ? moment(@props.event.created_at)
 
     div className: 'beatmapset-event',
       div className: "beatmapset-event__icon beatmapset-event__icon--#{_.kebabCase @props.event.type}"
-      div
-        className: 'beatmapset-event__time'
-        time.format 'LT'
+      time
+        className: 'beatmapset-event__time js-tooltip-time'
+        dateTime: @props.event.created_at
+        title: @props.event.created_at
+        eventTime.format 'LT'
       div
         className: 'beatmapset-event__content'
         dangerouslySetInnerHTML:
@@ -42,8 +44,16 @@ class BeatmapDiscussions.Event extends React.PureComponent
     discussionId = @props.event.comment?.beatmap_discussion_id
 
     if discussionId?
+      discussion = @props.discussions[discussionId]
+
+      url =
+        if discussion?
+          BeatmapDiscussionHelper.url discussion: discussion
+        else
+          laroute.route 'beatmap-discussions.show', beatmap_discussion: discussionId
+
       # TODO: get discussion starter to show more detail.
-      discussion = osu.link(BeatmapDiscussionHelper.hash({discussionId}), "##{discussionId}", ['js-beatmap-discussion--jump'])
+      discussion = osu.link(url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump'])
     else
       text = @props.event.comment
 

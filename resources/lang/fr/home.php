@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => 'Télécharger maintenant',
         'online' => '<strong>:players</strong> connectés en ce moment dans <strong>:games</strong> parties',
         'peak' => 'Pic, :count joueurs connectés',
         'players' => '<strong>:count</strong> joueurs inscrits',
-
-        'download' => [
-            '_' => 'Télécharger maintenant',
-            'soon' => "osu! sera bientôt disponible sur d'autres plateformes",
-            'for' => 'pour :os',
-            'other' => 'cliquez ici pour :os1 ou :os2',
-        ],
 
         'slogan' => [
             'main' => 'jeu de rythme free-to-play',
@@ -84,39 +78,14 @@ return [
         ],
     ],
 
-    'download' => [
-      'header' => [
-          '1' => "C'est parti",
-          '2' => 'pour vous',
-          '3' => 'télécharger le client osu! pour Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Étape 1',
-              'content' => 'Télécharger le client osu!',
-          ],
-          '2' => [
-              'name' => 'Étape 2',
-              'content' => 'Créer un compte osu!',
-          ],
-          '3' => [
-              'name' => 'Étape 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Vous en voulez plus ?',
-      'more_text' => "Passez un coup d'oeil <a href=\"https://www.youtube.com/user/osuacademy/\">sur la chaîne osu!academy</a> pour des tutoriels et des astuces à jour pour profiter au maximum d'osu!",
-    ],
-
     'user' => [
-        'title' => 'nouvelles',
         'news' => [
             'title' => 'Nouvelles',
             'error' => 'Erreur lors du chargement des nouvelles, essayez de recharger la page ?...',
         ],
         'header' => [
             'welcome' => 'Bonjour, <strong>:username</strong> !',
-            'messages' => 'Vous avez 1 nouveau message|Vous avez :count nouveaux messages',
+            'messages' => 'Vous avez :count nouveau message|Vous avez :count nouveaux messages',
             'stats' => [
                 'friends' => 'Amis en ligne',
                 'games' => 'Jeux',

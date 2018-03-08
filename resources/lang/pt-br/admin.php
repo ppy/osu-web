@@ -19,13 +19,19 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Reviver',
+            'regenerating' => 'Revivendo...',
+            'remove' => 'Remover',
+            'removing' => 'Removendo...',
+        ],
         'show' => [
+            'covers' => 'Gerenciar capas',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'ativar',
-                'activate_confirm' => 'ativar modding v2 para este beatmap?',
+                'activate_confirm' => 'deseja ativar o modding v2 neste mapa?',
                 'active' => 'ativo',
                 'inactive' => 'inativo',
             ],
@@ -37,9 +43,9 @@ return [
             'index' => [
                 'delete' => 'Excluir',
 
-                'forum-name' => '#:id do fórum: :name',
+                'forum-name' => 'Fórum #:id: :name',
 
-                'no-cover' => 'Sem capa definida',
+                'no-cover' => 'Nenhuma capa definida',
 
                 'submit' => [
                     'save' => 'Salvar',
@@ -50,7 +56,7 @@ return [
 
                 'type-title' => [
                     'default-topic' => 'Capa padrão de tópico',
-                    'main' => 'Capa do fórum',
+                    'main' => 'Capa do tópico',
                 ],
             ],
         ],
@@ -58,13 +64,13 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Visualizador de registros',
+            'title' => 'Registros',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Coisinha de administração',
+            'title' => 'Coisinha fofa da administração. Desu~',
 
             'sections' => [
                 'forum' => 'Fórum',
@@ -79,6 +85,13 @@ return [
             'index' => [
                 'title' => 'Lista de pedidos',
             ],
+        ],
+    ],
+
+    'users' => [
+        'restricted_banner' => [
+            'title' => 'Este usuário está restrito.',
+            'message' => '(só administradores conseguem ver isto)',
         ],
     ],
 

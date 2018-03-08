@@ -162,7 +162,7 @@ class TopicsController extends Controller
             'body' => 'required',
         ]);
 
-        $post = $topic->addPost(Auth::user(), Request::input('body'));
+        $post = $topic->addPostOrExplode(Auth::user(), Request::input('body'));
 
         if ($post->post_id !== null) {
             $posts = collect([$post]);
@@ -256,7 +256,10 @@ class TopicsController extends Controller
 
         $firstPostId = $topic->posts()
             ->showDeleted($showDeleted)
-            ->min('post_id');
+            ->orderBy('post_id', 'asc')
+            ->select('post_id')
+            ->first()
+            ->post_id;
 
         $firstShownPostId = $posts->first()->post_id;
 
@@ -319,7 +322,7 @@ class TopicsController extends Controller
             $poll = (new TopicPoll())->fill($pollParams);
 
             if (!$poll->isValid()) {
-                return error_popup(implode(' ', $poll->validationErrors()->allMessages()));
+                return error_popup($poll->validationErrors()->toSentence());
             }
         }
 
@@ -330,17 +333,17 @@ class TopicsController extends Controller
             'cover' => TopicCover::findForUse(presence($request->input('cover_id')), Auth::user()),
         ];
 
-        $topic = Topic::createNew($forum, $params, $poll ?? null);
-
-        if ($topic->topic_id !== null) {
-            if (!app()->runningUnitTests()) {
-                event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
-            }
-
-            return ujs_redirect(route('forum.topics.show', $topic));
-        } else {
-            abort(422);
+        try {
+            $topic = Topic::createNew($forum, $params, $poll ?? null);
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        if (!app()->runningUnitTests()) {
+            event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
+        }
+
+        return ujs_redirect(route('forum.topics.show', $topic));
     }
 
     public function update($id)
@@ -381,7 +384,7 @@ class TopicsController extends Controller
         if ($topic->vote()->fill($params)->save()) {
             return ujs_redirect(route('forum.topics.show', $topic->topic_id));
         } else {
-            return error_popup(implode(' ', $topic->vote()->validationErrors()->allMessages()));
+            return error_popup($topic->vote()->validationErrors()->toSentence());
         }
     }
 
@@ -395,7 +398,7 @@ class TopicsController extends Controller
         if ($star->getKey() !== null) {
             return ujs_redirect(route('forum.topics.show', $topicId));
         } else {
-            return error_popup(implode(' ', $star->validationErrors()->allMessages()));
+            return error_popup($star->validationErrors()->toSentence());
         }
     }
 

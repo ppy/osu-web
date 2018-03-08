@@ -101,10 +101,6 @@ return [
                 'first' => 'En Tête',
                 'own' => 'Votre meilleur',
             ],
-            'stats' => [
-                'accuracy' => 'Précision',
-                'score' => 'Score',
-            ],
         ],
     ],
 ];

@@ -21,6 +21,7 @@
 namespace App\Models\Store;
 
 use App\Exceptions\ValidationException;
+use App\Models\SupporterTag;
 use App\Traits\Validatable;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,6 +33,7 @@ class OrderItem extends Model
     protected $primaryKey = 'id';
 
     protected $casts = [
+        'cost' => 'float',
         'extra_data' => 'array',
     ];
     // The format for extra_data is:
@@ -39,6 +41,13 @@ class OrderItem extends Model
     //     'type' => 'custom-extra-info',
     //     ...additional fields
     // ]
+
+    public function scopeHasShipping($query)
+    {
+        return $query->whereHas('product', function ($q) {
+            return $q->hasShipping();
+        });
+    }
 
     public function isValid()
     {
@@ -110,11 +119,7 @@ class OrderItem extends Model
             case 'supporter-tag':
                 // FIXME: probably should move out...somewhere
                 $duration = (int) $this->extra_data['duration'];
-                $years = floor($duration / 12);
-                $months = $duration % 12;
-                $yearsText = trans_choice('supporter_tag.duration.years', $years, ['length' => $years]);
-                $monthsText = trans_choice('supporter_tag.duration.months', $months, ['length' => $months]);
-                $text = implode(', ', array_filter([$yearsText, $monthsText]));
+                $text = SupporterTag::getDurationText($duration);
 
                 return __('store.order.item.display_name.supporter_tag', [
                     'name' => $this->product->name,

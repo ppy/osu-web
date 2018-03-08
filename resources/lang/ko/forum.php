@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => '고정된 주제',
+    'slogan' => '혼자서 놀기엔 너무 위험하지요.',
+    'subforums' => '서브포럼',
+    'title' => 'osu!커뮤니티',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,47 @@ return [
         ],
     ],
 
-    'pinned_topics' => '고정된 주제',
     'post' => [
         'confirm_destroy' => '정말 이 글을 삭제할까요?',
         'confirm_restore' => '정말 이 글을 복원할까요?',
         'edited' => '마지막으로 :user님이 :when에 수정하여, 총 :count회 수정되었습니다.',
         'posted_at' => ':when에 게시됨',
+
         'actions' => [
             'destroy' => '삭제',
             'restore' => '복원',
             'edit' => '수정',
         ],
     ],
+
     'search' => [
         'go_to_post' => '게시글로 이동',
         'post_number_input' => '글 번호를 입력하세요',
         'total_posts' => '총 :posts_count개 글 발견',
     ],
-    'subforums' => '서브포럼',
-    'title' => 'osu!커뮤니티',
-    'slogan' => '혼자서 놀기엔 너무 위험하지요.',
+
     'topic' => [
+        'go_to_latest' => '최근에 올라온 글 보기',
+        'latest_post' => ':when by :user',
+        'latest_reply_by' => 'latest reply by :user',
+        'new_topic' => '새 주제글 작성',
+        'post_reply' => '게시하기',
+        'reply_box_placeholder' => '답글 내용을 입력하세요.',
+        'started_by' => ':user님이 작성함',
+
         'create' => [
-            'placeholder' => [
-                'body' => '글 내용을 입력하세요.',
-                'title' => '이곳을 눌러 제목을 정하세요',
-            ],
             'preview' => '미리보기',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => '계속 쓰기',
             'submit' => '게시하기',
+
+            'placeholder' => [
+                'body' => '글 내용을 입력하세요.',
+                'title' => '이곳을 눌러 제목을 정하세요',
+            ],
         ],
-        'go_to_latest' => '최근에 올라온 글 보기',
+
         'jump' => [
             'enter' => '특정 글로 이동하려면 클릭하세요',
             'first' => '처음 글로 이동하기',
@@ -83,9 +95,7 @@ return [
             'next' => '다음 10개 글 표시',
             'previous' => '이전 10개 글 표시',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => '새 주제글 작성',
+
         'post_edit' => [
             'cancel' => '취소',
             'post' => '저장',
@@ -94,9 +104,6 @@ return [
                 'end' => '전체 화면 나가기',
             ],
         ],
-        'post_reply' => '게시하기',
-        'reply_box_placeholder' => '답글 내용을 입력하세요.',
-        'started_by' => ':user님이 작성함',
     ],
 
     'topic_watches' => [
@@ -127,7 +134,6 @@ return [
         '_' => '주제',
 
         'actions' => [
-            'reply' => '답글 편집 박스 보이기',
             'reply_with_quote' => '이 글을 답글에 인용하기',
             'search' => '검색',
         ],
@@ -228,16 +234,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => '총 게시글',
             'deleted-posts' => '삭제된 게시글',
+            'total_posts' => '총 게시글',
 
             'feature_vote' => [
                 'current' => '현재 우선도: +:count',
                 'do' => '이 요청 옹호',
 
                 'user' => [
-                    'current' => '투표 횟수가 :votes회 남았습니다.',
                     'count' => '{0} 표 없음|{1,*} :count 표',
+                    'current' => '투표 횟수가 :votes회 남았습니다.',
                     'not_enough' => '투표를 모두 사용하여 더이상 투표할 수 없습니다.',
                 ],
             ],
@@ -246,9 +252,9 @@ return [
                 'vote' => '투표',
 
                 'detail' => [
-                    'total' => '총 투표 수: :count회',
-                    'ended' => '여론 투표가 :time에 종료되었습니다.',
                     'end_time' => '여론 투표가 :time에 종료됩니다.',
+                    'ended' => '여론 투표가 :time에 종료되었습니다.',
+                    'total' => '총 투표 수: :count회',
                 ],
             ],
         ],
@@ -260,5 +266,4 @@ return [
             'watch-1' => '주제 ',
         ],
     ],
-
 ];

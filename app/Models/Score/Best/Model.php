@@ -33,8 +33,8 @@ abstract class Model extends BaseModel
     public $position = null;
     public $weight = null;
     public $macros = [
+        'accurateRankCounts',
         'forListing',
-        'rankCounts',
         'userBest',
     ];
 
@@ -119,7 +119,20 @@ abstract class Model extends BaseModel
             $newQuery->getQuery()->orders = null;
 
             $baseResult = $newQuery->orderBy('score', 'desc')->get();
-            $baseResult = $baseResult->sortBy('date')->sortByDesc('score');
+
+            // Sort scores by score desc and then date asc if scores are equal
+            $baseResult = $baseResult->sort(function ($a, $b) {
+                if ($a->score === $b->score) {
+                    if ($a->date->timestamp === $b->date->timestamp) {
+                        // On the rare chance that both were submitted in the same second, default to submission order
+                        return ($a->score_id < $b->score_id) ? -1 : 1;
+                    }
+
+                    return ($a->date->timestamp < $b->date->timestamp) ? -1 : 1;
+                }
+
+                return ($a->score > $b->score) ? -1 : 1;
+            });
 
             $result = [];
             $users = [];
@@ -212,7 +225,15 @@ abstract class Model extends BaseModel
         };
     }
 
-    public function macroRankCounts()
+    /**
+     * Gets up-to-date User score rank counts.
+     *
+     * This can be relatively slow for large numbers of scores, so
+     *  prefer getting the cached counts from one of the UserStatistics objects instead.
+     *
+     * @return array [user_id => [rank => count]]
+     */
+    public function macroAccurateRankCounts()
     {
         return function ($query) {
             $newQuery = clone $query;
@@ -307,7 +328,10 @@ abstract class Model extends BaseModel
 
     public function scopeFriendsOf($query, $user)
     {
-        return $query->whereIn('user_id', $user->friends()->pluck('user_id'));
+        $userIds = $user->friends()->pluck('user_id');
+        $userIds[] = $user->getKey();
+
+        return $query->whereIn('user_id', $userIds);
     }
 
     public function user()

@@ -39,6 +39,26 @@
                 </div>
             @endif
 
+            @if ($order->isProcessing())
+                @php
+                    $cancelLink = Html::link(
+                        route('store.checkout.destroy'),
+                        trans('store.checkout.pending_checkout.link_text'),
+                        [
+                            'data-method' => 'DELETE',
+                            'data-confirm' => trans('common.confirmation'),
+                            'data-remote' => '1',
+                        ]
+                    );
+                @endphp
+                <div class="alert alert-danger">
+                    <p>
+                        @lang('store.checkout.pending_checkout.line_1')<br>
+                        @lang('store.checkout.pending_checkout.line_2', ['link' => $cancelLink])
+                    </p>
+                </div>
+            @endif
+
             @include("store.objects.order", ['order' => $order, "table_class" => "table-fancy"])
 
             <div class="store-cart-footer">
@@ -90,7 +110,7 @@
                     <div class="store-checkout-text--error">
                         <p>@lang('store.checkout.cart_problems')</p>
                         <p>
-                            <a href="{{ route('store.cart') }}">@lang('store.checkout.cart_problems_edit')</a>
+                            <a href="{{ route('store.cart.show') }}">@lang('store.checkout.cart_problems_edit')</a>
                         </p>
                     </div>
                 @else

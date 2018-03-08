@@ -27,14 +27,12 @@ return [
         'home' => [
             '_' => '主页',
             'account-edit' => '设置',
-            'friends' => '好友',
             'friends-index' => '好友',
             'changelog-index' => '更新日志',
             'changelog-show' => '版本',
             'getDownload' => '下载',
             'getIcons' => '图标',
             'groups-show' => '用户组',
-            'index' => 'osu!',
             'legal-show' => '信息',
             'news-index' => '新闻',
             'news-show' => '新闻',
@@ -45,18 +43,21 @@ return [
         'help' => [
             '_' => '帮助',
             'getFaq' => '常见问题',
-            'getSupport' => '获取帮助',
+            'getSupport' => '获取帮助', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => '谱面',
-            'show' => '信息',
-            'index' => '列表',
             'artists' => '精选艺术家',
+            'beatmap_discussion_posts-index' => '谱面讨论帖',
+            'beatmap_discussions-index' => '谱面讨论',
+            'beatmapset-watches-index' => '谱面关注列表',
+            'beatmapset_discussion_votes-index' => '谱面讨论投票',
+            'beatmapset_events-index' => '谱面事件',
+            'index' => '列表',
             'packs' => '曲包',
-            'beatmapset-watches-index' => '摸图',
-            // 'getCharts' => 'charts',
+            'show' => '信息',
         ],
         'beatmapsets' => [
             '_' => '谱面',
@@ -74,9 +75,8 @@ return [
         'community' => [
             '_' => '社区',
             'dev' => 'osu! 开发',
-            'getForum' => '论坛',
+            'getForum' => '论坛', // Base text changed to plural, please check.
             'getChat' => '聊天',
-            'getSupport' => '获取帮助',
             'getLive' => '直播',
             'contests' => '评选',
             'profile' => '个人资料',
@@ -84,10 +84,10 @@ return [
             'tournaments-index' => '官方比赛',
             'tournaments-show' => '官方比赛信息',
             'forum-topic-watches-index' => '订阅',
-            'forum-topics-create' => '论坛',
-            'forum-topics-show' => '论坛',
-            'forum-forums-index' => '论坛',
-            'forum-forums-show' => '论坛',
+            'forum-topics-create' => '论坛', // Base text changed to plural, please check.
+            'forum-topics-show' => '论坛', // Base text changed to plural, please check.
+            'forum-forums-index' => '论坛', // Base text changed to plural, please check.
+            'forum-forums-show' => '论坛', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => '多人游戏',
@@ -113,14 +113,15 @@ return [
 
             'messages' => '信息',
             'settings' => '设置',
-            'logout' => '退出',
+            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => '帮助',
+            'beatmapset_activities' => '玩家谱面活动', //需要上下文
         ],
         'store' => [
             '_' => '商店',
-            'checkout-index' => '结账',
+            'checkout-show' => '结账',
             'getListing' => '列表',
-            'getCart' => '购物车',
+            'cart-show' => '购物车',
 
             'getCheckout' => '结账',
             'getInvoice' => '发票',
@@ -142,11 +143,12 @@ return [
         ],
         'admin' => [
             '_' => '管理',
-            'root' => '主页',
+            'beatmapsets-covers' => '谱面封面',
             'logs-index' => '日志',
+            'root' => '主页',
+
             'beatmapsets' => [
                 '_' => '谱面',
-                'covers' => '封面',
                 'show' => '详细',
             ],
         ],
@@ -248,7 +250,7 @@ return [
         'links' => [
             'account-edit' => '设置',
             'friends' => '好友',
-            'logout' => '退出',
+            'logout' => '退出', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => '我的资料',
         ],
     ],

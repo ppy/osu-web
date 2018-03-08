@@ -21,7 +21,11 @@
 namespace App\Models;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Libraries\Transactions\AfterCommit;
+use App\Libraries\Transactions\AfterRollback;
+use App\Libraries\TransactionStateManager;
 use App\Traits\MacroableModel;
+use DB;
 use Illuminate\Database\Eloquent\Model as BaseModel;
 
 abstract class Model extends BaseModel
@@ -31,17 +35,32 @@ abstract class Model extends BaseModel
 
     public function getMacros()
     {
-        return $this->macros ?? [];
+        $macros = $this->macros ?? [];
+        $macros[] = 'realCount';
+
+        return $macros;
     }
 
     /**
      * Locks the current model for update with `select for update`.
      *
-     * @return Model
+     * @return $this
      */
     public function lockSelf()
     {
         return $this->lockForUpdate()->find($this->getKey());
+    }
+
+    public function macroRealCount()
+    {
+        return function ($baseQuery) {
+            $query = clone $baseQuery;
+            $query->getQuery()->orders = null;
+            $query->getQuery()->offset = null;
+            $query->limit(null);
+
+            return $query->count();
+        };
     }
 
     public function scopeOrderByField($query, $field, $ids)
@@ -59,16 +78,64 @@ abstract class Model extends BaseModel
         $query->orderByRaw($string, $values);
     }
 
+    public function scopeNone($query)
+    {
+        $query->whereRaw('false');
+    }
+
+    public function delete()
+    {
+        return $this->runAfterCommitWrapper(function () {
+            return parent::delete();
+        });
+    }
+
+    public function save(array $options = [])
+    {
+        return $this->runAfterCommitWrapper(function () use ($options) {
+            return parent::save($options);
+        });
+    }
+
     public function saveOrExplode($options = [])
     {
-        $result = $this->save($options);
+        return DB::connection($this->connection)->transaction(function () use ($options) {
+            $result = $this->save($options);
 
-        if ($result === false) {
-            $message = method_exists($this, 'validationErrors') ?
-                implode("\n", $this->validationErrors()->allMessages()) :
-                'failed saving model';
+            if ($result === false) {
+                $message = method_exists($this, 'validationErrors') ?
+                    $this->validationErrors()->toSentence() :
+                    'failed saving model';
 
-            throw new ModelNotSavedException($message);
+                throw new ModelNotSavedException($message);
+            }
+
+            return $result;
+        });
+    }
+
+    private function enlistCallbacks($model, $connection)
+    {
+        $transaction = resolve(TransactionStateManager::class)->current($connection);
+        if ($model instanceof AfterCommit) {
+            $transaction->addCommittable($model);
+        }
+
+        if ($model instanceof AfterRollback) {
+            $transaction->addRollbackable($model);
+        }
+
+        return $transaction;
+    }
+
+    private function runAfterCommitWrapper(callable $fn)
+    {
+        $transaction = $this->enlistCallbacks($this, $this->connection);
+
+        $result = $fn();
+
+        if ($this instanceof AfterCommit && $transaction->isReal() === false) {
+            $transaction->commit();
         }
 
         return $result;

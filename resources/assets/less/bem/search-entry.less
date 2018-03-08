@@ -28,6 +28,7 @@
 
   &::after, &::before {
     .full-size();
+    content: ' ';
     will-change: opacity;
     transition: opacity 120ms;
     pointer-events: none;
@@ -50,6 +51,14 @@
     opacity: 0;
   }
 
+  &__highlight {
+    em {
+      color: @yellow-dark;
+      font-style: normal;
+      font-weight: bold;
+    }
+  }
+
   &__row {
     margin: 5px 0;
     padding: 0;
@@ -64,6 +73,7 @@
     &--excerpt {
       color: #ddd;
       font-size: @font-size--small-2;
+      word-break: break-word;
     }
 
     &--footer {

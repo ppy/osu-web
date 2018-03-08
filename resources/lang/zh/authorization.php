@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => '无法撤销推荐',
             'has_reply' => '无法删除有回复的讨论。',
         ],
         'nominate' => [

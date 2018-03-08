@@ -15,29 +15,29 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a} = ReactDOMFactories
+{a, div} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.ShowMoreLink extends React.PureComponent
   render: =>
     if @props.pagination?.loading
-      el Icon, name: 'refresh', modifiers: ['spin']
+      div className: 'show-more-link',
+        el Icon, name: 'refresh', modifiers: ['spin']
 
     else
       firstLoad = !@props.pagination?
-      perPage = @props.perPage ? 5
-      maxResults = @props.maxResults ? 100
-      hasMore = (firstLoad && (!@props.collection? || @props.collection.length == perPage)) || @props.pagination?.hasMore
+      perPage = @props.perPage ? 20
+      hasMore = (firstLoad && !@props.collection?) || @props.pagination?.hasMore
 
       return null unless hasMore
 
       a
         href: '#'
         'data-show-more': @props.propertyName
-        'data-show-more-max-results': maxResults
         'data-show-more-per-page': perPage
         'data-show-more-url': @props.route
         onClick: @showMore
+        className: 'show-more-link'
         osu.trans('common.buttons.show_more')
 
 

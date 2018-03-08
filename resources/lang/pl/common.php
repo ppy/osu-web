@@ -34,15 +34,23 @@ return [
         'permalink' => 'odnośnik bezpośredni',
         'post' => 'Opublikuj',
         'reply' => 'Odpowiedz',
+        'reply_reopen' => 'Odpowiedz i otwórz ponownie',
+        'reply_resolve' => 'Odpowiedz i rozwiąż',
         'reset' => 'Zresetuj',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
+        'see_more' => 'zobacz więcej',
         'show_more' => 'pokaż więcej',
         'upload_image' => 'prześlij zdjęcie',
     ],
 
     'count' => [
+        'hour_short_unit' => 'godz.|godz.|godz.',
         'item' => ':count sztuka|:count sztuki|:count sztuk',
+        'minute_short_unit' => 'min|min|min',
+        'months' => ':count miesiąc|:count miesiące|:count miesięcy',
+        'second_short_unit' => 's|s|s',
+        'years' => ':count rok|:count lata|:count lat',
     ],
 
     'datetime' => [
@@ -55,7 +63,7 @@ return [
     'device' => [
         'keyboard' => 'klawiatury',
         'mouse' => 'myszki',
-        'tablet' => 'tableta',
+        'tablet' => 'tabletu',
         'touch' => 'ekranu dotykowego',
     ],
 

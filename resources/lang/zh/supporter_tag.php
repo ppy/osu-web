@@ -19,13 +19,10 @@
  */
 
 return [
+    'months' => '月',
+
     'user_search' => [
         'searching' => '搜索中..',
         'not_found' => '该用户不存在',
     ],
-    'duration' => [
-        'months' => ':length 个月|{0}',
-        'years' => ':length 年|{0}',
-    ],
-    'months' => '月',
 ];

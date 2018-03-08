@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => '置顶主题',
+    'slogan' => '独乐乐不如众乐乐~',
+    'subforums' => '子版块',
+    'title' => 'osu! 社区',
 
     'covers' => [
         'create' => [
@@ -43,37 +47,46 @@ return [
         ],
     ],
 
-    'pinned_topics' => '置顶主题',
     'post' => [
         'confirm_destroy' => '删除此回复？',
         'confirm_restore' => '恢复此回复？',
         'edited' => '最后由 :user 于 :when 编辑，总共编辑了 :count 次。',
         'posted_at' => '发表于 :when',
+
         'actions' => [
             'destroy' => '删除回复',
             'restore' => '恢复回复',
             'edit' => '编辑回复',
         ],
     ],
+
     'search' => [
         'go_to_post' => '前往该楼层',
         'post_number_input' => '输入楼层数',
         'total_posts' => '一共有 :posts_count 楼',
     ],
-    'subforums' => '子版块',
-    'title' => 'osu! 社区',
-    'slogan' => '独乐乐不如众乐乐~',
+
     'topic' => [
+        'deleted' => '已删除的主题',
+        'go_to_latest' => '查看最后的帖子',
+        'latest_post' => ':when :user',
+        'latest_reply_by' => '最后回复: :user',
+        'new_topic' => '发表新主题',
+        'post_reply' => '发表',
+        'reply_box_placeholder' => '输入回复',
+        'started_by' => '发帖人： :user',
+
         'create' => [
+            'preview' => '预览',
+            'preview_hide' => '编辑',
+            'submit' => '发表',
+
             'placeholder' => [
                 'body' => '在这里输入正文',
                 'title' => '点击这里设置标题',
             ],
-            'preview' => '预览',
-            'preview_hide' => '编辑',
-            'submit' => '发表',
         ],
-        'go_to_latest' => '查看最后的帖子',
+
         'jump' => [
             'enter' => '点击这里跳转到指定回复',
             'first' => '跳转到第一条回复',
@@ -81,16 +94,11 @@ return [
             'next' => '向后 10 条',
             'previous' => '向前 10 条',
         ],
-        'latest_post' => ':when :user',
-        'latest_reply_by' => '最后回复: :user',
-        'new_topic' => '发表新主题',
+
         'post_edit' => [
             'cancel' => '取消',
             'post' => '保存',
         ],
-        'post_reply' => '发表',
-        'reply_box_placeholder' => '输入回复',
-        'started_by' => '发帖人： :user',
     ],
 
     'topic_watches' => [
@@ -103,6 +111,7 @@ return [
                 'total' => '订阅的主题',
                 'unread' => '主题有新回复',
             ],
+
             'info' => [
                 'total' => '共订阅了 :total 个主题',
                 'unread' => '有 :unread 个未读回复',
@@ -121,7 +130,7 @@ return [
         '_' => '主题',
 
         'actions' => [
-            'reply' => '显示回复盒子',
+            'reply' => '回复',
             'reply_with_quote' => '引用以回复',
             'search' => '搜索',
         ],
@@ -222,16 +231,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => '总主题数量',
             'deleted-posts' => '删除主题',
+            'total_posts' => '总主题数量',
 
             'feature_vote' => [
                 'current' => '当前优先级: +:count',
                 'do' => '提升这个请求',
 
                 'user' => [
-                    'current' => '还有 :votes 票.',
                     'count' => '{0} 没有票|[1,*] :count 票',
+                    'current' => '还有 :votes 票.',
                     'not_enough' => '没有票了',
                 ],
             ],
@@ -240,9 +249,9 @@ return [
                 'vote' => '投票',
 
                 'detail' => [
-                    'total' => '总票数: :count',
-                    'ended' => '结束于 :time',
                     'end_time' => '将于 :time 结束',
+                    'ended' => '结束于 :time',
+                    'total' => '总票数: :count',
                 ],
             ],
         ],
@@ -254,5 +263,4 @@ return [
             'watch-1' => '订阅',
         ],
     ],
-
 ];

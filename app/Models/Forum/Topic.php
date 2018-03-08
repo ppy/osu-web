@@ -20,9 +20,13 @@
 
 namespace App\Models\Forum;
 
+use App\Exceptions\ModelNotSavedException;
 use App\Libraries\BBCodeForDB;
+use App\Models\Beatmapset;
+use App\Models\Elasticsearch;
 use App\Models\Log;
 use App\Models\User;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,7 +34,7 @@ use Illuminate\Database\QueryException;
 
 class Topic extends Model
 {
-    use SoftDeletes;
+    use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
     const DEFAULT_ORDER_COLUMN = 'topic_last_post_time';
 
@@ -50,6 +54,10 @@ class Topic extends Model
         'duplicate',
         'invalid',
         'resolved',
+    ];
+
+    const MAX_FIELD_LENGTHS = [
+        'topic_title' => 100,
     ];
 
     protected $table = 'phpbb_topics';
@@ -81,8 +89,8 @@ class Topic extends Model
         ]);
 
         DB::transaction(function () use ($forum, $topic, $params, $poll) {
-            $topic->save();
-            $topic->addPost($params['user'], $params['body']);
+            $topic->saveOrExplode();
+            $topic->addPostOrExplode($params['user'], $params['body']);
 
             if ($poll !== null) {
                 $topic->poll($poll)->save();
@@ -97,18 +105,19 @@ class Topic extends Model
         return $topic->fresh();
     }
 
-    public function addPost($poster, $body)
+    public function addPostOrExplode($poster, $body)
     {
         $post = new Post([
             'post_text' => $body,
             'post_username' => $poster->username,
             'poster_id' => $poster->user_id,
             'forum_id' => $this->forum_id,
+            'topic_id' => $this->getKey(),
             'post_time' => Carbon::now(),
         ]);
 
         DB::transaction(function () use ($post) {
-            $this->posts()->save($post);
+            $post->saveOrExplode();
 
             $this->refreshCache();
 
@@ -124,10 +133,17 @@ class Topic extends Model
         return $post;
     }
 
-    public function removePost($post, $user = null)
+    public function removePostOrExplode($post)
     {
-        DB::transaction(function () use ($post, $user) {
-            $post->delete();
+        $this->validationErrors()->reset();
+
+        return DB::transaction(function () use ($post) {
+            if ($post->delete() === false) {
+                $message = $post->validationErrors()->toSentence();
+                $this->validationErrors()->addTranslated('post', $message);
+
+                throw new ModelNotSavedException($message);
+            }
 
             if ($this->posts()->exists() === true) {
                 $this->refreshCache();
@@ -142,14 +158,14 @@ class Topic extends Model
             if ($post->user !== null) {
                 $post->user->refreshForumCache($this->forum, -1);
             }
-        });
 
-        return true;
+            return true;
+        });
     }
 
-    public function restorePost($post, $user = null)
+    public function restorePost($post)
     {
-        DB::transaction(function () use ($post, $user) {
+        DB::transaction(function () use ($post) {
             $post->restore();
 
             if ($this->trashed()) {
@@ -223,6 +239,16 @@ class Topic extends Model
         }
     }
 
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.topic';
+    }
+
+    public function beatmapset()
+    {
+        return $this->belongsTo(Beatmapset::class, 'topic_id', 'thread_id');
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class, 'topic_id');
@@ -270,7 +296,7 @@ class Topic extends Model
 
     public function setPollLastVoteAttribute($value)
     {
-        $this->attributes['poll_last_vote'] = $value->timestamp;
+        $this->attributes['poll_last_vote'] = get_timestamp_or_zero($value);
     }
 
     public function getPollStartAttribute($value)
@@ -280,7 +306,7 @@ class Topic extends Model
 
     public function setPollStartAttribute($value)
     {
-        $this->attributes['poll_start'] = $value->timestamp;
+        $this->attributes['poll_start'] = get_timestamp_or_zero($value);
     }
 
     public function getTopicLastPostTimeAttribute($value)
@@ -290,7 +316,7 @@ class Topic extends Model
 
     public function setTopicLastPostTimeAttribute($value)
     {
-        $this->attributes['topic_last_post_time'] = $value->timestamp;
+        $this->attributes['topic_last_post_time'] = get_timestamp_or_zero($value);
     }
 
     public function getTopicLastViewTimeAttribute($value)
@@ -300,7 +326,7 @@ class Topic extends Model
 
     public function setTopicLastViewTimeAttribute($value)
     {
-        $this->attributes['topic_last_view_time'] = $value->timestamp;
+        $this->attributes['topic_last_view_time'] = get_timestamp_or_zero($value);
     }
 
     public function getTopicTimeAttribute($value)
@@ -310,7 +336,7 @@ class Topic extends Model
 
     public function setTopicTimeAttribute($value)
     {
-        $this->attributes['topic_time'] = $value->timestamp;
+        $this->attributes['topic_time'] = get_timestamp_or_zero($value);
     }
 
     public function getTopicFirstPosterColourAttribute($value)
@@ -337,6 +363,32 @@ class Topic extends Model
     {
         // also functions for casting null to string
         $this->attributes['topic_last_poster_colour'] = ltrim($value, '#');
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        return parent::save($options);
+    }
+
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
+
+        foreach (static::MAX_FIELD_LENGTHS as $field => $limit) {
+            if ($this->isDirty($field)) {
+                $val = $this->$field;
+
+                if (mb_strlen($val) > $limit) {
+                    $this->validationErrors()->add($field, 'too_long', ['limit' => $limit]);
+                }
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
     }
 
     public function titleNormalized()
@@ -601,7 +653,7 @@ class Topic extends Model
 
         if ($lastPost === null) {
             $this->topic_last_post_id = 0;
-            $this->topic_last_post_time = 0;
+            $this->topic_last_post_time = null;
 
             $this->topic_last_poster_id = 0;
             $this->topic_last_poster_name = '';

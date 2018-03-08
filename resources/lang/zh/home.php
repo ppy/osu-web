@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => '下载',
         'online' => '<strong>:players</strong> 名在线玩家, <strong>:games</strong> 个游戏房间',
         'peak' => '最高在线人数 :count 人',
         'players' => '<strong>:count</strong> 名已注册玩家',
-
-        'download' => [
-            '_' => '下载',
-            'soon' => '适用于其它操作系统的 osu! 即将到来',
-            'for' => ':os 版',
-            'other' => '点击这里下载 :os1 或 :os2 版',
-        ],
 
         'slogan' => [
             'main' => '免费音乐游戏',
@@ -87,31 +81,36 @@ return [
     ],
 
     'download' => [
-      'header' => [
-          '1' => '让我们',
-          '2' => '开始吧',
-          '3' => '下载 osu! Windows 版',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => '第一步',
-              'content' => '下载 osu!',
-          ],
-          '2' => [
-              'name' => '第二步',
-              'content' => '注册 osu! 账户',
-          ],
-          '3' => [
-              'name' => '第三步',
-              'content' => '???',
-          ],
-      ],
-      'more' => '想了解更多？',
-      'more_text' => '查看 <a href="https://www.youtube.com/user/osuacademy/">osu! 学院 YouTube 频道</a>（国内用户可能访问有困难）获取最新的教程',
+        'tagline' => '让我们<br>开始吧！',
+        'action' => '下载 osu!',
+        'os' => [
+            'windows' => 'Windows 版',
+            'macos' => 'macOS 版',
+            'linux' => 'Linux 版',
+        ],
+        'mirror' => '镜像',
+        'macos-fallback' => 'macOS 用户',
+        'steps' => [
+            'register' => [
+                'title' => '注册帐号',
+                'description' => '根据游戏提示进行登录或注册',
+            ],
+            'download' => [
+                'title' => '下载游戏',
+                'description' => '点击上面的按钮下载安装器，然后运行它！',
+            ],
+            'beatmaps' => [
+                'title' => '下载谱面',
+                'description' => [
+                    '_' => ':browse 玩家们创造的谱面然后开始游戏吧！',
+                    'browse' => '浏览',
+                ],
+            ],
+        ],
+        'video-guide' => '视频教程',
     ],
 
     'user' => [
-        'title' => '新闻',
         'news' => [
             'title' => '新闻',
             'error' => '载入新闻失败，刷新页面试试看？...',

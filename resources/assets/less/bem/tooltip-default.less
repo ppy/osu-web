@@ -17,33 +17,31 @@
  */
 
 .tooltip-default {
+  @top: tooltip-default;
+
   .default-border-radius();
 
   background-color: fade(#000, 70%);
   border: 0 solid transparent;
 
   color: #fff;
-
+  background-color: #444;
+  font-size: @font-size--normal;
+  line-height: 1.1;
+  padding: 2px 10px;
+  text-align: center;
   pointer-events: none;
+
+  &--extra-padding {
+    padding: 7px 10px;
+  }
 
   &--fixed {
     position: fixed;
   }
 
-  &--time {
-    background-color: #444;
-    font-size: @font-size--normal;
-    line-height: 1.1;
-    padding: 2px 10px;
-  }
-
   .qtip-content {
-    text-align: center;
-  }
-
-  &__date {
-    font-weight: bold;
-    color: #fff;
+    text-align: inherit;
   }
 
   &__time {

@@ -27,28 +27,37 @@ return [
         'home' => [
             '_' => 'início',
             'account-edit' => 'configurações',
-            'getChangelog' => 'registro de alterações',
-            'getDownload' => 'download',
+            'friends-index' => 'amigos',
+            'changelog-index' => 'registro de mudanças',
+            'changelog-show' => 'build',
+            'getDownload' => 'baixar',
             'getIcons' => 'ícones',
-            'getNews' => 'notícias',
-            'index' => 'osu!',
-            'supportTheGame' => 'apoie o jogo',
+            'groups-show' => 'grupos',
+            'legal-show' => 'informação',
+            'news-index' => 'notícias',
+            'news-show' => 'notícias',
             'password-reset-index' => 'redefinir senha',
+            'search' => 'busca',
+            'supportTheGame' => 'apoie o jogo',
         ],
         'help' => [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
-            'getSupport' => 'suporte',
+            'getSupport' => 'suporte', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'beatmaps',
-            'show' => 'info',
-            'index' => 'lista',
+            '_' => 'mapas',
             'artists' => 'artistas em destaque',
-            // 'getPacks' => 'pacotes',
-            // 'getCharts' => 'gráficos',
+            'beatmap_discussion_posts-index' => 'postagens de discussão de mapas',
+            'beatmap_discussions-index' => 'discussões de mapas',
+            'beatmapset-watches-index' => 'supervisão de modding',
+            'beatmapset_discussion_votes-index' => 'votos na discussão de mapas',
+            'beatmapset_events-index' => 'eventos do mapa',
+            'index' => 'listagem',
+            'packs' => 'pacotes',
+            'show' => 'informação',
         ],
         'beatmapsets' => [
             '_' => 'beatmaps',
@@ -58,16 +67,16 @@ return [
             '_' => 'colocações',
             'index' => 'desempenho',
             'performance' => 'desempenho',
-            'charts' => 'gráficos',
+            'charts' => 'tabelas',
+            'score' => 'pontuação',
             'country' => 'país',
             'kudosu' => 'kudosu',
         ],
         'community' => [
             '_' => 'comunidade',
             'dev' => 'osu!dev',
-            'getForum' => 'fórum',
+            'getForum' => 'fórum', // Base text changed to plural, please check.
             'getChat' => 'conversa',
-            'getSupport' => 'suporte',
             'getLive' => 'transmissões',
             'contests' => 'concursos',
             'profile' => 'perfil',
@@ -75,10 +84,10 @@ return [
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informações de torneios',
             'forum-topic-watches-index' => 'inscrições de tópico',
-            'forum-topics-create' => 'fórum',
-            'forum-topics-show' => 'fórum',
-            'forum-forums-index' => 'fórum',
-            'forum-forums-show' => 'fórum',
+            'forum-topics-create' => 'fórum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'fórum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'fórum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'fórum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multijogador',
@@ -104,13 +113,15 @@ return [
 
             'messages' => 'Mensagens',
             'settings' => 'Configurações',
-            'logout' => 'Finalizar sessão',
+            'logout' => 'Finalizar sessão', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Ajuda',
+            'beatmapset_activities' => 'atividades de mapa de usuário',
         ],
         'store' => [
             '_' => 'loja',
+            'checkout-show' => 'compra',
             'getListing' => 'catálogo',
-            'getCart' => 'carrinho',
+            'cart-show' => 'carrinho',
 
             'getCheckout' => 'pagar',
             'getInvoice' => 'fatura',
@@ -132,11 +143,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'root' => 'índice',
+            'beatmapsets-covers' => 'capas do mapa',
             'logs-index' => 'registro',
+            'root' => 'índice',
+
             'beatmapsets' => [
-                '_' => 'beatmapsets',
-                'covers' => 'capas',
+                '_' => 'mapas',
                 'show' => 'detalhes',
             ],
         ],
@@ -146,8 +158,8 @@ return [
         'general' => [
             '_' => 'Geral',
             'home' => 'Início',
-            'changelog' => 'Registro de alterações',
-            'beatmaps' => 'Listas de beatmaps',
+            'changelog-index' => 'Registro de alterações',
+            'beatmaps' => 'Lista de mapas',
             'download' => 'Baixar osu!',
             'wiki' => 'Wiki',
         ],
@@ -237,12 +249,14 @@ return [
     'popup_user' => [
         'links' => [
             'account-edit' => 'Configurações',
-            'logout' => 'Finalizar sessão',
+            'friends' => 'Amigos',
+            'logout' => 'Finalizar sessão', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Perfil',
         ],
     ],
 
     'popup_search' => [
         'initial' => 'Digite para buscar!',
+        'retry' => 'Falha na busca. Clique para tentar novamente.',
     ],
 ];

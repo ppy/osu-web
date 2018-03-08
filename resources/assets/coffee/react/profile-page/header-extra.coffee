@@ -21,8 +21,11 @@ el = React.createElement
 
 bn = 'profile-header-extra'
 
-rowValue = (value) ->
-  "<strong>#{value}</strong>"
+rowValue = (value, attributes) ->
+  attributesString = ''
+  attributesString += " #{k}='#{_.escape v}'" for own k, v of attributes
+
+  "<strong#{attributesString}>#{value}</strong>"
 
 class ProfilePage.HeaderExtra extends React.Component
   constructor: (props) ->
@@ -63,6 +66,11 @@ class ProfilePage.HeaderExtra extends React.Component
         osu.trans "common.device.#{s}"
       .join ', '
 
+    joinDate = moment(@props.user.join_date)
+    joinDateTitle = joinDate.format('LL')
+
+    postCount = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
+
     div
       className:
         """
@@ -75,7 +83,7 @@ class ProfilePage.HeaderExtra extends React.Component
           el FriendButton, user_id: @props.user.id
 
         div className: "#{bn}__follower-count#{if friendButtonHidden then '--no-button' else ''}",
-          osu.transChoice('users.show.extra.followers', @props.user.followerCount[0].toLocaleString())
+          osu.transChoice('users.show.extra.followers', @props.user.follower_count[0].toLocaleString())
 
         if friendState?.mutual
           div className: "#{bn}__follower-mutual-divider", "|"
@@ -96,18 +104,18 @@ class ProfilePage.HeaderExtra extends React.Component
                         age: rowValue osu.trans('users.show.age', age: @props.user.age)
 
           div className: "#{bn}__rows",
-            if moment(@props.user.join_date).isBefore moment('2008-01-01')
+            if joinDate.isBefore moment('2008-01-01')
               div
                 className: "#{bn}__row"
-                title: moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment')),
-                  osu.trans 'users.show.first_members'
+                title: joinDateTitle
+                osu.trans 'users.show.first_members'
             else
               div
                 className: "#{bn}__row"
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.joined_at',
-                      date: rowValue moment(@props.user.join_date).format(osu.trans('common.datetime.year_month.moment'))
+                      date: rowValue joinDate.format(osu.trans('common.datetime.year_month.moment')), title: joinDateTitle
             div
               className: "#{bn}__row"
               dangerouslySetInnerHTML:
@@ -115,36 +123,43 @@ class ProfilePage.HeaderExtra extends React.Component
                   osu.trans 'users.show.lastvisit',
                     date: rowValue osu.timeago(@props.user.lastvisit)
 
-          if @props.user.playstyle?
-            div className: "#{bn}__rows",
+          div className: "#{bn}__rows",
+            if @props.user.playstyle?
               div
                 className: "#{bn}__row"
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.plays_with',
                       devices: rowValue playsWith
+            div
+              className: "#{bn}__row"
+              dangerouslySetInnerHTML:
+                __html:
+                  osu.trans 'users.show.post_count._',
+                    count: rowValue postCount
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
             @fancyLink
               key: 'location'
               icon: 'map-marker'
-              title:
-                osu.trans 'users.show.current_location',
-                  location: @props.user.location
+              title: osu.trans 'users.show.info.location'
 
             @fancyLink
               key: 'interests'
               icon: 'heart-o'
+              title: osu.trans 'users.show.info.interests'
 
             @fancyLink
               key: 'occupation'
               icon: 'suitcase'
+              title: osu.trans 'users.show.info.occupation'
 
           div className: "#{bn}__rows",
             @fancyLink
               key: 'twitter'
               url: "https://twitter.com/#{@props.user.twitter}"
+              title: osu.trans 'users.show.info.twitter'
               text:
                 span null,
                   span
@@ -155,18 +170,21 @@ class ProfilePage.HeaderExtra extends React.Component
             @fancyLink
               key: 'website'
               icon: 'globe'
+              title: osu.trans 'users.show.info.website'
               url: @props.user.website
 
             @fancyLink
               key: 'skype'
+              title: osu.trans 'users.show.info.skype'
               url: "skype:#{@props.user.skype}?chat"
 
             @fancyLink
               key: 'lastfm'
+              title: osu.trans 'users.show.info.lastfm'
               url: "https://last.fm/user/#{@props.user.lastfm}"
 
         div
-          className: "#{bn}__column #{bn}__column--chart"
+          className: "#{bn}__column #{bn}__column--chart #{'invisible' if @props.user.is_bot}"
           div className: "#{bn}__rank-box",
             div null,
               div className: "#{bn}__rank-global",
@@ -198,15 +216,19 @@ class ProfilePage.HeaderExtra extends React.Component
 
     component = if url? then a else span
 
-    component
-      href: url
-      className: "#{bn}__row #{bn}__row--fancy-link u-ellipsis-overflow"
-      title: title
+    div
+      className: "#{bn}__row #{bn}__row--fancy-link"
+
       el Icon,
         name: icon ? key
         modifiers: ['fw']
         parentClass: "#{bn}__fancy-link-icon"
-      text ? @props.user[key]
+        title: title
+
+      component
+        href: url
+        className: "#{bn}__fancy-link-text u-ellipsis-overflow"
+        text ? @props.user[key]
 
 
   rankChartHover: (_e, {data} = {}) =>

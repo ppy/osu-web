@@ -95,16 +95,16 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'zdyskwalifkowane :time_ago (:reason).',
-        'disqualifed_no_reason' => 'brak określonego powodu',
-        'disqualification-prompt' => 'Powód dyskwalifikacji?',
+        'disqualification_prompt' => 'Powód dyskwalifikacji?',
+        'disqualified_at' => 'zdyskwalifkowane :time_ago (:reason).',
+        'disqualified_no_reason' => 'brak określonego powodu',
         'disqualify' => 'Zdyskwalifikuj',
-        'incorrect-state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
+        'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'nominate' => 'Nominuj',
-        'nominate-confirm' => 'Nominować tę beatmapę?',
+        'nominate_confirm' => 'Nominować tę beatmapę?',
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną odnalezione żadne błędy.',
-        'qualified-soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną odnalezione żadne błędy.',
-        'required-text' => 'Nominacjes: :current/:required',
+        'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną odnalezione żadne błędy.',
+        'required_text' => 'Nominacjes: :current/:required',
         'title' => 'Status nominacji',
     ],
 

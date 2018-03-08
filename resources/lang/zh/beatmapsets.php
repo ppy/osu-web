@@ -67,13 +67,13 @@ return [
             'rating-spread' => '评分情况',
         ],
         'info' => [
+            'description' => '介绍',
+            'genre' => '流派',
+            'language' => '语言',
             'no_scores' => 'Unranked 谱面',
             'points-of-failure' => '失败位置',
-            'success-rate' => '成功率',
-
-            'description' => '介绍',
-
             'source' => '来源',
+            'success-rate' => '成功率',
             'tags' => '标签',
         ],
         'scoreboard' => [
@@ -81,16 +81,23 @@ return [
             'country' => '国内排名',
             'friend' => '好友排名',
             'global' => '全球排名',
+            'miss_count' => ':count miss', //上下文
             'supporter-link' => '点击 <a href=":link">这里</a> 来查看你可以得到的精彩功能！',
             'supporter-only' => '你需要成为支持者才能查看国内/好友排名！',
             'title' => '排行榜',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => '准确率',
-                'player-header' => '玩家',
-                'rank-header' => '排名',
+                'combo' => '最大连击',
+                'miss' => 'Miss',
+                'mods' => 'Mods',
+                'player' => '玩家',
+                'pp' => 'pp',
+                'rank' => '排名',
+                'score_total' => '得分',
                 'score' => '得分',
             ],
+
             'no_scores' => [
                 'country' => '还没有玩家上传过成绩！',
                 'friend' => '还没有好友上传成绩！',
@@ -101,10 +108,6 @@ return [
             'score' => [
                 'first' => '领衔者',
                 'own' => '你的最佳成绩',
-            ],
-            'stats' => [
-                'accuracy' => '准确率',
-                'score' => '得分',
             ],
         ],
     ],

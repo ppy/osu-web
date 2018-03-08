@@ -20,11 +20,17 @@
 
 namespace App\Models;
 
+use App\Exceptions\ModelNotSavedException;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
 
 class BeatmapDiscussionPost extends Model
 {
+    use Validatable;
+
+    const MESSAGE_LIMIT = 750;
+
     protected $guarded = [];
 
     protected $touches = ['beatmapDiscussion'];
@@ -34,6 +40,95 @@ class BeatmapDiscussionPost extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    public static function search($rawParams = [])
+    {
+        $params = [
+            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
+            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+        ];
+
+        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+
+        if (isset($rawParams['user'])) {
+            $params['user'] = $rawParams['user'];
+            $user = User::lookup($params['user']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->where('user_id', $user->getKey());
+            }
+        }
+
+        // only find replies (i.e. exclude discussion starting-posts)
+        $query->whereExists(function ($postQuery) {
+            $table = (new BeatmapDiscussionPost)->getTable();
+
+            $postQuery->selectRaw(1)
+                ->from(DB::raw("{$table} d"))
+                ->whereRaw('beatmap_discussion_id = beatmap_discussion_posts.beatmap_discussion_id')
+                ->whereRaw("d.id < {$table}.id");
+        });
+
+        $query->where('system', 0);
+
+        if (isset($rawParams['sort'])) {
+            $sort = explode('-', strtolower($rawParams['sort']));
+
+            if (in_array($sort[0] ?? null, ['id'], true)) {
+                $sortField = $sort[0];
+            }
+
+            if (in_array($sort[1] ?? null, ['asc', 'desc'], true)) {
+                $sortOrder = $sort[1];
+            }
+        }
+
+        $sortField ?? ($sortField = 'id');
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $query->orderBy($sortField, $sortOrder);
+
+        $params['with_deleted'] = get_bool($rawParams['with_deleted'] ?? null) ?? false;
+
+        if (!$params['with_deleted']) {
+            $query->withoutDeleted();
+        }
+
+        // TODO: readd this when content becomes public
+        // $query->whereHas('user', function ($userQuery) {
+        //     $userQuery->default();
+        // });
+
+        return ['query' => $query, 'params' => $params];
+    }
+
+    public static function generateLogResolveChange($user, $resolved)
+    {
+        return new static([
+            'user_id' => $user->user_id,
+            'system' => true,
+            'message' => [
+                'type' => 'resolved',
+                'value' => $resolved,
+            ],
+        ]);
+    }
+
+    public static function parseTimestamp($message)
+    {
+        preg_match('/\b(\d{2,}):([0-5]\d)[:.](\d{3})\b/', $message, $matches);
+
+        if (count($matches) === 4) {
+            $m = (int) $matches[1];
+            $s = (int) $matches[2];
+            $ms = (int) $matches[3];
+
+            return ($m * 60 + $s) * 1000 + $ms;
+        }
+    }
 
     public function beatmapset()
     {
@@ -50,22 +145,74 @@ class BeatmapDiscussionPost extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function hasValidMessage()
+    public function validateBeatmapsetDiscussion()
     {
-        if (is_string($this->message)) {
-            return mb_strlen($this->message) <= 500;
-        } else {
-            return count($this->message) > 0;
+        if ($this->beatmapDiscussion === null) {
+            $this->validationErrors()->add('beatmap_discussion_id', 'required');
+
+            return;
+        }
+
+        // only applies on saved posts
+        static $modifiableWhenLocked = [
+            'deleted_at',
+            'deleted_by_id',
+        ];
+
+        if (!$this->exists || count(array_diff(array_keys($this->getDirty()), $modifiableWhenLocked)) > 0) {
+            if ($this->beatmapDiscussion->isLocked()) {
+                $this->validationErrors()->add('beatmap_discussion_id', '.discussion_locked');
+            }
         }
     }
 
-    /*
-     * Called before saving. Callback definition in
-     * App\Providers\AppServiceProviders.
-     */
     public function isValid()
     {
-        return $this->hasValidMessage();
+        $this->validationErrors()->reset();
+
+        if ($this->deleted_at !== null && $this->isFirstPost()) {
+            $this->validationErrors()->add('base', '.first_post');
+        }
+
+        $this->validateBeatmapsetDiscussion();
+
+        if (!$this->system) {
+            if (!present($this->message)) {
+                $this->validationErrors()->add('message', 'required');
+            }
+
+            if (mb_strlen($this->message) > static::MESSAGE_LIMIT) {
+                $this->validationErrors()->add('message', 'too_long', ['limit' => static::MESSAGE_LIMIT]);
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'beatmapset_discussion_post';
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        try {
+            return $this->getConnection()->transaction(function () use ($options) {
+                if (!parent::save($options)) {
+                    throw new ModelNotSavedException;
+                }
+
+                $this->beatmapDiscussion->refreshTimestampOrExplode();
+
+                return true;
+            });
+        } catch (ModelNotSavedException $_e) {
+            return false;
+        }
     }
 
     public function getMessageAttribute($value)
@@ -85,18 +232,6 @@ class BeatmapDiscussionPost extends Model
         }
 
         $this->attributes['message'] = trim($value);
-    }
-
-    public static function generateLogResolveChange($user, $resolved)
-    {
-        return new static([
-            'user_id' => $user->user_id,
-            'system' => true,
-            'message' => [
-                'type' => 'resolved',
-                'value' => $resolved,
-            ],
-        ]);
     }
 
     public function isFirstPost()
@@ -144,36 +279,44 @@ class BeatmapDiscussionPost extends Model
         });
     }
 
-    public function softDelete($deletedBy)
+    public function softDeleteOrExplode($deletedBy)
     {
-        if ($this->isFirstPost()) {
-            return trans('model_validation.beatmap_discussion_post.first_post');
+        $timestamps = $this->timestamps;
+
+        try {
+            DB::transaction(function () use ($deletedBy) {
+                if ($deletedBy->getKey() !== $this->user_id) {
+                    BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
+                }
+
+                // delete related system post
+                $systemPost = $this->relatedSystemPost();
+
+                if ($systemPost !== null) {
+                    $systemPost->softDeleteOrExplode($deletedBy);
+                }
+
+                $this->timestamps = false;
+                $this->fill([
+                    'deleted_by_id' => $deletedBy->user_id,
+                    'deleted_at' => Carbon::now(),
+                ])->saveOrExplode();
+
+                $this->beatmapDiscussion->refreshResolved();
+            });
+        } finally {
+            $this->timestamps = $timestamps;
         }
+    }
 
-        DB::transaction(function () use ($deletedBy) {
-            if ($deletedBy->getKey() !== $this->user_id) {
-                BeatmapsetEvent::log(BeatmapsetEvent::DISCUSSION_POST_DELETE, $deletedBy, $this)->saveOrExplode();
-            }
+    public function trashed()
+    {
+        return $this->deleted_at !== null;
+    }
 
-            // delete related system post
-            $systemPost = $this->relatedSystemPost();
-
-            if ($systemPost !== null) {
-                $systemPost->softDelete($deletedBy);
-            }
-
-            $time = Carbon::now();
-
-            $this->update([
-                'deleted_by_id' => $deletedBy->user_id,
-                'deleted_at' => $time,
-                'updated_at' => $time,
-            ]);
-
-            $this->beatmapDiscussion->refreshResolved();
-
-            return true;
-        });
+    public function timestamp()
+    {
+        return static::parseTimestamp($this->message);
     }
 
     public function scopeWithoutDeleted($query)

@@ -27,38 +27,43 @@ return [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
-            'friends' => 'znajomi',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-show' => 'kompilacja',
             'getDownload' => 'pobierz',
             'getIcons' => 'ikony',
             'groups-show' => 'grupy',
-            'index' => 'osu!',
+            'index' => 'przegląd',
             'legal-show' => 'informacje',
             'news-index' => 'wiadomości',
             'news-show' => 'wiadomości',
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
+            'team' => 'załoga',
         ],
         'help' => [
             '_' => 'pomoc',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
+            'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
+            'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
-            'show' => 'informacje',
-            'index' => 'lista',
             'artists' => 'wyróżnieni artyści',
+            'beatmap_discussion_posts-index' => 'posty w dyskusji',
+            'beatmap_discussions-index' => 'dyskusje',
+            'beatmapset-watches-index' => 'obserwowane dyskusje',
+            'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
+            'beatmapset_events-index' => 'zdarzenia',
+            'index' => 'lista',
             'packs' => 'paczki',
-            // 'getCharts' => 'wyróżnione',
+            'show' => 'informacje',
         ],
         'beatmapsets' => [
-            '_' => 'mapsety',
+            '_' => 'beatmapy',
             'discussion' => 'modowanie',
         ],
         'rankings' => [
@@ -73,9 +78,8 @@ return [
         'community' => [
             '_' => 'społeczność',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'czat',
-            'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
             'contests' => 'konkursy',
             'profile' => 'profil',
@@ -83,10 +87,10 @@ return [
             'tournaments-index' => 'turnieje',
             'tournaments-show' => 'informacje o turnieju',
             'forum-topic-watches-index' => 'subskrybcje',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'tryb wieloosobowy',
@@ -104,7 +108,7 @@ return [
         'user' => [
             '_' => 'użytkownik',
             'getLogin' => 'zaloguj się',
-            'disabled' => 'wyłączono',
+            'disabled' => 'wyłączone',
 
             'register' => 'zarejestruj się',
             'reset' => 'odzyskaj dostęp',
@@ -112,13 +116,14 @@ return [
 
             'messages' => 'Wiadomości',
             'settings' => 'Ustawienia',
-            'logout' => 'Wyloguj się',
+            'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Pomoc',
         ],
         'store' => [
             '_' => 'sklep',
             'getListing' => 'przedmioty',
-            'getCart' => 'koszyk',
+            'cart-show' => 'koszyk',
+            'cart-show' => 'koszyk',
 
             'getCheckout' => 'zapłać',
             'getInvoice' => 'paragon',
@@ -143,8 +148,7 @@ return [
             'root' => 'strona główna',
             'logs-index' => 'logi',
             'beatmapsets' => [
-                '_' => 'mapsety',
-                'covers' => 'nagłówki',
+                '_' => 'beatmapy',
                 'show' => 'szczegóły',
             ],
         ],
@@ -245,7 +249,7 @@ return [
         'links' => [
             'account-edit' => 'Ustawienia',
             'friends' => 'Znajomi',
-            'logout' => 'Wyloguj się',
+            'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Mój profil',
         ],
     ],

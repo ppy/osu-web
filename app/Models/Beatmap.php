@@ -87,6 +87,48 @@ class Beatmap extends Model
         return static::modeStr($this->playmode);
     }
 
+    public function getDiffSizeAttribute($value)
+    {
+        if ($this->mode === 'mania') {
+            // Matches client implementation.
+            // Reference: https://github.com/ppy/osu/blob/8c2cc4c85b369aee4c04b151cc28725cb3280a86/osu.Game.Rulesets.Mania/UI/ManiaRulesetContainer.cs#L87
+            if ($this->convert) {
+                $sliderOrSpinner = $this->countSlider + $this->countSpinner;
+                $total = max(1, $sliderOrSpinner + $this->countNormal);
+                $percentSliderOrSpinner = $sliderOrSpinner / $total;
+
+                $accuracy = (int) round($this->diff_overall);
+
+                if ($percentSliderOrSpinner < 0.2) {
+                    return 7;
+                } elseif ($percentSliderOrSpinner < 0.3 || round($value) >= 5) {
+                    return $accuracy > 5 ? 7 : 5;
+                } elseif ($percentSliderOrSpinner > 0.6) {
+                    return $accuracy > 4 ? 5 : 4;
+                } else {
+                    return clamp($accuracy + 1, 1, 7);
+                }
+            } else {
+                return (int) max(1, round($value));
+            }
+        }
+
+        return $value;
+    }
+
+    public function getVersionAttribute($value)
+    {
+        if ($this->mode === 'mania') {
+            $keys = $this->diff_size;
+
+            if (strpos($value, "{$keys}k") === false && strpos($value, "{$keys}K") === false) {
+                return "[{$keys}K] {$value}";
+            }
+        }
+
+        return $value;
+    }
+
     public function scopeDefault($query)
     {
         return $query

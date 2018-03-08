@@ -21,21 +21,68 @@ el = React.createElement
 
 class ProfilePage.UserPageEditor extends React.Component
   componentDidMount: =>
-    @refs.body.selectionStart = @props.userPage.selection[0]
-    @refs.body.selectionEnd = @props.userPage.selection[1]
-    @refs.body.focus()
+    $(@body)
+      .off 'bbcode:inserted'
+      .on 'bbcode:inserted', @_change
+
+    @body.selectionStart = @props.userPage.selection[0]
+    @body.selectionEnd = @props.userPage.selection[1]
+    @body.focus()
 
 
   componentWillUnmount: =>
+    # FIXME: Doesn't work on page nagivation.
+    #        Looks like the listener has gone when this is triggered.
     $.publish 'user:page:update',
-      selection: [@refs.body.selectionStart, @refs.body.selectionEnd]
+      selection: [@body.selectionStart, @body.selectionEnd]
+
+
+  render: =>
+    el 'form', null,
+      el 'textarea',
+        className: 'profile-extra-user-page-editor'
+        name: 'body'
+        value: @props.userPage.raw
+        onChange: @_change
+        placeholder: osu.trans('users.show.page.placeholder')
+        ref: @setBody
+
+      el 'div', className: 'post-editor__footer post-editor__footer--profile-page',
+        div
+          className: 'post-editor__toolbar'
+          dangerouslySetInnerHTML:
+            __html: postEditorToolbar.html
+
+        el 'div', className: 'post-editor__actions',
+          el 'button',
+            className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
+            type: 'button'
+            onClick: @_cancel
+            osu.trans('common.buttons.cancel')
+
+          el 'button',
+            className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
+            type: 'button'
+            onClick: @_reset
+            osu.trans('common.buttons.reset')
+
+          el 'button',
+            className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
+            type: 'button'
+            onClick: @_save
+            osu.trans('common.buttons.save')
+
+
+  _change: (e) =>
+    $.publish 'user:page:update',
+      raw: e.currentTarget.value
 
 
   _reset: =>
     $.publish 'user:page:update',
       raw: @props.userPage.initialRaw
 
-    @refs.body.focus()
+    @body.focus()
 
 
   _cancel: =>
@@ -63,42 +110,5 @@ class ProfilePage.UserPageEditor extends React.Component
     .always LoadingOverlay.hide
 
 
-  _change: (e) =>
-    $.publish 'user:page:update',
-      raw: e.target.value
-
-
-  render: =>
-    el 'form', null,
-      el 'textarea',
-        className: 'profile-extra-user-page-editor'
-        name: 'body'
-        value: @props.userPage.raw
-        onChange: @_change
-        placeholder: osu.trans('users.show.page.placeholder')
-        ref: 'body'
-
-      el 'div', className: 'post-editor__footer post-editor__footer--profile-page',
-        div
-          className: 'post-editor__toolbar'
-          dangerouslySetInnerHTML:
-            __html: postEditorToolbar.html
-
-        el 'div', className: 'post-editor__actions',
-          el 'button',
-            className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
-            type: 'button'
-            onClick: @_cancel
-            osu.trans('common.buttons.cancel')
-
-          el 'button',
-            className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
-            type: 'button'
-            onClick: @_reset
-            osu.trans('common.buttons.reset')
-
-          el 'button',
-            className: 'btn-osu btn-osu--small btn-osu-default post-editor__action'
-            type: 'button'
-            onClick: @_save
-            osu.trans('common.buttons.save')
+  setBody: (el) =>
+    @body = el

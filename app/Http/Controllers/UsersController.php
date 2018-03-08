@@ -23,6 +23,10 @@ namespace App\Http\Controllers;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
+use App\Models\BeatmapDiscussion;
+use App\Models\BeatmapDiscussionPost;
+use App\Models\BeatmapDiscussionVote;
+use App\Models\BeatmapsetEvent;
 use App\Models\Country;
 use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
@@ -45,14 +49,73 @@ class UsersController extends Controller
 
         $this->middleware('throttle:10,60', ['only' => ['store']]);
 
+        $this->middleware(function ($request, $next) {
+            $this->parsePaginationParams();
+
+            return $next($request);
+        }, [
+            'only' => ['scores', 'beatmapsets', 'kudosu', 'recentActivity'],
+        ]);
+
         return parent::__construct();
+    }
+
+    public function beatmapsetActivities($id)
+    {
+        // FIXME: camelCase
+        $current_action = 'beatmapset_activities';
+
+        priv_check('BeatmapDiscussionModerate')->ensureCan();
+
+        $user = User::lookup($id, 'id', true);
+
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
+        $params = [
+            'limit' => 10,
+            'sort' => 'id-desc',
+            'user' => $user->getKey(),
+        ];
+
+        $discussions = BeatmapDiscussion::search($params);
+        $discussions['items'] = $discussions['query']->with([
+                'user',
+                'beatmapset',
+                'startingPost',
+            ])->get();
+
+        $posts = BeatmapDiscussionPost::search($params);
+        $posts['items'] = $posts['query']->with([
+                'user',
+                'beatmapset',
+                'beatmapDiscussion',
+                'beatmapDiscussion.beatmapset',
+                'beatmapDiscussion.user',
+                'beatmapDiscussion.startingPost',
+            ])->get();
+
+        $events = BeatmapsetEvent::search($params);
+        $events['items'] = $events['query']->with(['user', 'beatmapset'])->get();
+
+        $votes['items'] = BeatmapDiscussionVote::recentlyGivenByUser($user->getKey());
+        $receivedVotes['items'] = BeatmapDiscussionVote::recentlyReceivedByUser($user->getKey());
+
+        return view('users.beatmapset_activities', compact(
+            'current_action',
+            'discussions',
+            'events',
+            'posts',
+            'user',
+            'receivedVotes',
+            'votes'
+        ));
     }
 
     public function card($id)
     {
-        $id = get_int($id);
-
-        $user = User::lookup($id, 'id');
+        $user = User::lookup($id);
 
         list($friend, $mutual) = $this->getFriendStatus($user);
 
@@ -100,25 +163,6 @@ class UsersController extends Controller
         ];
     }
 
-    public function scores($id, $type)
-    {
-        $this->parsePaginationParams(5);
-
-        switch ($type) {
-            case 'best':
-                return $this->scoresBest($this->user, $this->mode, $this->perPage, $this->offset);
-
-            case 'firsts':
-                return $this->scoresFirsts($this->user, $this->mode, $this->perPage, $this->offset);
-
-            case 'recent':
-                return $this->scoresRecent($this->user, $this->mode, $this->perPage, $this->offset);
-
-            default:
-                abort(404);
-        }
-    }
-
     public function store()
     {
         $ip = Request::ip();
@@ -149,40 +193,49 @@ class UsersController extends Controller
         }
     }
 
-    public function beatmapsets($id, $type)
+    public function beatmapsets($_userId, $type)
     {
-        $this->parsePaginationParams(6);
+        static $mapping = [
+            'favourite' => 'favouriteBeatmapsets',
+            'graveyard' => 'graveyardBeatmapsets',
+            'most_played' => 'beatmapPlaycounts',
+            'ranked_and_approved' => 'rankedAndApprovedBeatmapsets',
+            'unranked' => 'unrankedBeatmapsets',
+        ];
 
-        switch ($type) {
-            case 'most_played':
-                $this->parsePaginationParams(5);
+        $page = $mapping[$type] ?? abort(404);
 
-                return $this->mostPlayedBeatmapsets($this->user, $this->perPage, $this->offset);
-
-            case 'favourite':
-                return $this->favouriteBeatmapsets($this->user, $this->perPage, $this->offset);
-
-            case 'ranked_and_approved':
-                return $this->rankedAndApprovedBeatmapsets($this->user, $this->perPage, $this->offset);
-
-            case 'unranked':
-                return $this->unrankedBeatmapsets($this->user, $this->perPage, $this->offset);
-
-            case 'graveyard':
-                $this->parsePaginationParams(2);
-
-                return $this->graveyardBeatmapsets($this->user, $this->perPage, $this->offset);
-
-            default:
-                abort(404);
-        }
+        return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
     }
 
-    public function kudosu($id)
+    public function kudosu($_userId)
     {
-        $this->parsePaginationParams(5);
+        return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
+    }
 
-        return $this->recentKudosu($this->user, $this->perPage, $this->offset);
+    public function recentActivity($_userId)
+    {
+        return $this->getExtra($this->user, 'recentActivity', [], $this->perPage, $this->offset);
+    }
+
+    public function scores($_userId, $type)
+    {
+        static $mapping = [
+            'best' => 'scoresBest',
+            'firsts' => 'scoresFirsts',
+            'recent' => 'scoresRecent',
+        ];
+
+        $page = $mapping[$type] ?? abort(404);
+
+        $perPage = $this->perPage;
+
+        if ($type === 'firsts') {
+            // Override per page restriction in parsePageParams to allow infinite paging
+            $perPage = $this->sanitizedLimitParam();
+        }
+
+        return $this->getExtra($this->user, $page, ['mode' => $this->mode], $perPage, $this->offset);
     }
 
     public function me()
@@ -208,20 +261,17 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userArray = json_item(
-            $user,
-            'User',
-            [
-                'userAchievements',
-                'followerCount',
-                'page',
-                'recentActivities',
-                'rankedAndApprovedBeatmapsetCount',
-                'unrankedBeatmapsetCount',
-                'graveyardBeatmapsetCount',
-                'favouriteBeatmapsetCount',
-            ]
-        );
+        $userArray = json_item($user, 'User', [
+            'favourite_beatmapset_count',
+            'follower_count',
+            'graveyard_beatmapset_count',
+            'monthly_playcounts',
+            'page',
+            'ranked_and_approved_beatmapset_count',
+            'replays_watched_counts',
+            'unranked_beatmapset_count',
+            'user_achievements',
+        ]);
 
         $statistics = json_item(
             $user->statistics($currentMode),
@@ -250,29 +300,35 @@ class UsersController extends Controller
                 'Achievement'
             );
 
-            $beatmapsets = [
-                'most_played' => $this->mostPlayedBeatmapsets($user),
-                'ranked_and_approved' => $this->rankedAndApprovedBeatmapsets($user),
-                'favourite' => $this->favouriteBeatmapsets($user),
-                'unranked' => $this->unrankedBeatmapsets($user),
-                'graveyard' => $this->graveyardBeatmapsets($user),
+            $perPage = [
+                'scoresBest' => 5,
+                'scoresFirsts' => 5,
+                'scoresRecent' => 5,
+
+                'beatmapPlaycounts' => 5,
+                'favouriteBeatmapsets' => 6,
+                'rankedAndApprovedBeatmapsets' => 6,
+                'unrankedBeatmapsets' => 6,
+                'graveyardBeatmapsets' => 2,
+
+                'recentActivity' => 5,
+                'recentlyReceivedKudosu' => 5,
             ];
 
-            $kudosu = $this->recentKudosu($user);
+            $extras = [];
 
-            $scores = [
-                'best' => $this->scoresBest($user, $currentMode),
-                'firsts' => $this->scoresFirsts($user, $currentMode),
-                'recent' => $this->scoresRecent($user, $currentMode),
-            ];
+            foreach ($perPage as $page => $n) {
+                // Fetch perPage + 1 so the frontend can tell if there are more items
+                // by comparing items count and perPage number.
+                $extras[$page] = $this->getExtra($user, $page, ['mode' => $currentMode], $n + 1);
+            }
 
             $jsonChunks = [
                 'achievements' => $achievements,
-                'beatmapsets' => $beatmapsets,
                 'currentMode' => $currentMode,
-                'kudosu' => $kudosu,
+                'extras' => $extras,
+                'perPage' => $perPage,
                 'rankHistory' => $rankHistory,
-                'scores' => $scores,
                 'statistics' => $statistics,
                 'user' => $userArray,
             ];
@@ -300,7 +356,7 @@ class UsersController extends Controller
         return [$friend, $friend->mutual ?? false];
     }
 
-    private function parsePaginationParams($perPage)
+    private function parsePaginationParams()
     {
         $this->user = User::lookup(Request::route('user'), 'id');
         if ($this->user === null || !priv_check('UserShow', $this->user)->can()) {
@@ -312,125 +368,107 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $this->offset = get_int(Request::input('offset'));
+        $this->offset = get_int(Request::input('offset')) ?? 0;
 
         if ($this->offset >= $this->maxResults) {
             $this->perPage = 0;
         } else {
-            $this->perPage = min($perPage, $this->maxResults - $this->offset);
+            $perPage = $this->sanitizedLimitParam();
+            $this->perPage = min($perPage, $this->maxResults + 1 - $this->offset);
         }
     }
 
-    private function recentKudosu($user, $perPage = 5, $offset = 0)
+    private function sanitizedLimitParam()
     {
-        return json_collection(
-            $user->receivedKudosu()
-                ->with('post', 'post.topic', 'giver', 'kudosuable')
-                ->orderBy('exchange_id', 'desc')
-                ->limit($perPage)
-                ->offset($offset)
-                ->get(),
-            'KudosuHistory'
-        );
+        return clamp(get_int(request('limit')) ?? 5, 1, 21);
     }
 
-    private function mostPlayedBeatmapsets($user, $perPage = 5, $offset = 0)
+    private function getExtra($user, $page, $options, $perPage = 10, $offset = 0)
     {
-        $beatmapsets = $user->beatmapPlaycounts()
-            ->with('beatmap', 'beatmap.beatmapset')
-            ->orderBy('playcount', 'desc')
-            ->orderBy('beatmap_id', 'desc') // for consistent sorting
-            ->limit($perPage)
-            ->offset($offset)
-            ->get()
-            ->filter(function ($pc) {
-                return $pc->beatmap !== null && $pc->beatmap->beatmapset !== null;
-            });
+        // Grouped by $transformer and sorted alphabetically ($transformer and then $page).
+        switch ($page) {
+            // BeatmapPlaycount
+            case 'beatmapPlaycounts':
+                $transformer = 'BeatmapPlaycount';
+                $query = $user->beatmapPlaycounts()
+                    ->with('beatmap', 'beatmap.beatmapset')
+                    ->whereHas('beatmap.beatmapset')
+                    ->orderBy('playcount', 'desc')
+                    ->orderBy('beatmap_id', 'desc'); // for consistent sorting
+                break;
 
-        return json_collection($beatmapsets, 'BeatmapPlaycount');
-    }
+            // BeatmapsetCompact
+            case 'favouriteBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsFavourite();
+                break;
+            case 'graveyardBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsGraveyard()
+                    ->orderBy('last_update', 'desc');
+                break;
+            case 'rankedAndApprovedBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsRankedAndApproved()
+                    ->orderBy('approved_date', 'desc');
+                break;
+            case 'unrankedBeatmapsets':
+                $transformer = 'BeatmapsetCompact';
+                $includes = ['beatmaps'];
+                $query = $user->profileBeatmapsetsUnranked()
+                    ->orderBy('last_update', 'desc');
+                break;
 
-    private function rankedAndApprovedBeatmapsets($user, $perPage = 6, $offset = 0)
-    {
-        return json_collection(
-            $user->profileBeatmapsetsRankedAndApproved()
-                ->limit($perPage)
-                ->offset($offset)
-                ->get(),
-            'BeatmapsetCompact',
-            ['beatmaps']
-        );
-    }
+            // Event
+            case 'recentActivity':
+                $transformer = 'Event';
+                $query = $user->events()->recent();
+                break;
 
-    private function favouriteBeatmapsets($user, $perPage = 6, $offset = 0)
-    {
-        return json_collection(
-            $user->profileBeatmapsetsFavourite()
-                ->limit($perPage)
-                ->offset($offset)
-                ->get(),
-            'BeatmapsetCompact',
-            ['beatmaps']
-        );
-    }
+            // KudosuHistory
+            case 'recentlyReceivedKudosu':
+                $transformer = 'KudosuHistory';
+                $query = $user->receivedKudosu()
+                    ->with('post', 'post.topic', 'giver', 'kudosuable')
+                    ->orderBy('exchange_id', 'desc');
+                break;
 
-    private function unrankedBeatmapsets($user, $perPage = 6, $offset = 0)
-    {
-        return json_collection(
-            $user->profileBeatmapsetsUnranked()
-                ->limit($perPage)
-                ->offset($offset)
-                ->get(),
-            'BeatmapsetCompact',
-            ['beatmaps']
-        );
-    }
+            // Score
+            case 'scoresBest':
+                $transformer = 'Score';
+                $includes = ['beatmap', 'beatmapset', 'weight'];
+                $collection = $user->scoresBest($options['mode'], true)
+                    ->orderBy('pp', 'DESC')
+                    ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+                $withScoresPosition = true;
+                break;
+            case 'scoresFirsts':
+                $transformer = 'Score';
+                $includes = ['beatmap', 'beatmapset'];
+                $query = $user->scoresFirst($options['mode'], true)
+                    ->orderBy('score_id', 'desc')
+                    ->with('beatmap', 'beatmap.beatmapset');
+                break;
+            case 'scoresRecent':
+                $transformer = 'Score';
+                $includes = ['beatmap', 'beatmapset'];
+                $query = $user->scores($options['mode'], true)
+                    ->with('beatmap', 'beatmap.beatmapset');
+                break;
+        }
 
-    private function graveyardBeatmapsets($user, $perPage = 2, $offset = 0)
-    {
-        return json_collection(
-            $user->profileBeatmapsetsGraveyard()
-                ->limit($perPage)
-                ->offset($offset)
-                ->get(),
-            'BeatmapsetCompact',
-            ['beatmaps']
-        );
-    }
+        if (!isset($collection)) {
+            $collection = $query->limit($perPage)->offset($offset)->get();
+        }
 
-    private function scoresBest($user, $mode, $perPage = 5, $offset = 0)
-    {
-        $scores = $user->scoresBest($mode, true)
-            ->orderBy('pp', 'DESC')
-            ->userBest($perPage, $offset, ['beatmap', 'beatmap.beatmapset']);
+        if (isset($withScoresPosition)) {
+            // for scores which require pp ('weight' include).
+            ScoreBestModel::fillInPosition($collection);
+        }
 
-        ScoreBestModel::fillInPosition($scores);
-
-        return json_collection($scores, 'Score', ['beatmap', 'beatmapset', 'weight']);
-    }
-
-    private function scoresFirsts($user, $mode, $perPage = 5, $offset = 0)
-    {
-        $scores = $user->scoresFirst($mode, true)
-            ->orderBy('score_id', 'desc')
-            ->with('beatmap', 'beatmap.beatmapset')
-            ->limit($perPage)
-            ->offset($offset)
-            ->get();
-
-        ScoreBestModel::fillInPosition($scores);
-
-        return json_collection($scores, 'Score', ['beatmap', 'beatmapset']);
-    }
-
-    private function scoresRecent($user, $mode, $perPage = 5, $offset = 0)
-    {
-        $scores = $user->scores($mode, true)
-            ->with('beatmap', 'beatmap.beatmapset')
-            ->limit($perPage)
-            ->offset($offset)
-            ->get();
-
-        return json_collection($scores, 'Score', ['beatmap', 'beatmapset']);
+        return json_collection($collection, $transformer, $includes ?? []);
     }
 }

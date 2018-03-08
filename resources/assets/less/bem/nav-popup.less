@@ -33,6 +33,7 @@
   @media @desktop {
     padding-left: (@padding-big - (@_menu-spacing / 2));
     min-height: @height--nav-popup;
+    transition: height 120ms;
   }
 
   &--main {
@@ -92,6 +93,7 @@
   }
 
   &__link {
+    .reset-input();
     color: @yellow;
     font-size: @font-size--nav-popup-link;
     margin: 2.5px 0;
@@ -134,6 +136,7 @@
   &__menu {
     display: flex;
     flex-direction: column;
+    text-transform: lowercase;
   }
 
   &__menu-head {

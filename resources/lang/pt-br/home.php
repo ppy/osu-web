@@ -20,118 +20,131 @@
 
 return [
     'landing' => [
+        'download' => 'Baixar agora',
         'online' => '<strong>:players</strong> jogadores online em <strong>:games</strong> partidas',
         'peak' => 'Pico, :count usuários online',
         'players' => '<strong>:count</strong> jogadores registrados',
 
-        'download' => [
-            '_' => 'Baixe agora',
-            'soon' => 'osu! para outros sistemas operacionais virá em breve',
-            'for' => 'para :os',
-            'other' => 'clique aqui para :os1 ou :os2',
-        ],
-
         'slogan' => [
-            'main' => 'simulador de ritmo gratuito',
+            'main' => 'jogo de ritmo gratuito',
             'sub' => 'o ritmo está a um clique de distância',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Pesquisa Avançada',
-        'button' => 'Pesquisar',
+        'advanced_link' => 'Pesquisa avançada',
+        'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
-        'missing_query' => 'Search :n characters is required',
-        'title' => 'Resultados da Pesquisa',
+        'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
+        'title' => 'Resultados de busca',
 
         'beatmapset' => [
-            'more' => ':count mais resultados de beatmaps',
-            'more_simple' => 'Ver mais resultados de beatmaps',
-            'title' => 'Beatmaps',
+            'more' => ':count mais resultados de mapas',
+            'more_simple' => 'Veja mais resultados de busca de mapas',
+            'title' => 'Mapas',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Pesquisar no forum',
-            'more_simple' => 'Ver mais resultados do forum',
-            'title' => 'Forum',
+            'all' => 'Todos os fóruns',
+            'link' => 'Procurar no fórum',
+            'more_simple' => 'Veja mais resultados de busca nos fóruns',
+            'title' => 'Fórum',
 
             'label' => [
-                'forum' => 'Pesquisar no forum',
-                'forum_children' => 'incluir subforums',
+                'forum' => 'procurar nos fóruns',
+                'forum_children' => 'incluir subfóruns',
+                'topic_id' => 'tópico #',
                 'username' => 'autor',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'player',
+            'all' => 'todos',
+            'beatmapset' => 'mapa',
+            'forum_post' => 'fórum',
+            'user' => 'jogador',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'title' => 'Players',
+            'more' => ':count mais resultados de busca por usuários',
+            'more_simple' => 'Veja mais resultados de busca por usuários',
+            'more_hidden' => 'O limite de busca por jogaodr é limitado em :max. Tente aprofundar mais a sua pesquisa.',
+            'title' => 'Jogadores',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
+            'link' => 'Procurar na wiki',
+            'more_simple' => 'Veja mais resultados de busca na wiki',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-      'header' => [
-          '1' => 'vamos',
-          '2' => 'começar.',
-          '3' => 'baixe o cliente do osu! para Windows',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => 'Passo 1',
-              'content' => 'baixe o cliente do osu!',
-          ],
-          '2' => [
-              'name' => 'Passo 2',
-              'content' => 'crie uma conta no osu!',
-          ],
-          '3' => [
-              'name' => 'Passo 3',
-              'content' => '???',
-          ],
-      ],
-      'more' => 'Quer saber mais?',
-      'more_text' => 'Olhe o canal do <a href="https://www.youtube.com/user/osuacademy/">osu!academy no youtube</a> para ver tutoriais atualizados e dicas em como conseguir o melhor possivel do osu!',
+        'tagline' => 'vamos<br>começar!',
+        'action' => 'Baixar osu!',
+        'os' => [
+            'windows' => 'para Windows',
+            'macos' => 'para macOS',
+            'linux' => 'para Linux',
+        ],
+        'mirror' => 'link alternativo',
+        'macos-fallback' => 'usuários de macOS',
+        'steps' => [
+            'register' => [
+                'title' => 'crie uma conta',
+                'description' => 'siga os comandos quando iniciar o jogo para conectar-se ou criar uma nova conta',
+            ],
+            'download' => [
+                'title' => 'baixar o jogo',
+                'description' => 'clique no botão acima para baixar o instalador, depois execute-o!',
+            ],
+            'beatmaps' => [
+                'title' => 'baixar mapas',
+                'description' => [
+                    '_' => ':browse a vasta coleção de mapas criados por usuários e comece a jogar!',
+                    'browse' => 'procure',
+                ],
+            ],
+        ],
+        'video-guide' => 'guia em vídeo',
     ],
 
     'user' => [
-        'title' => 'notícias',
         'news' => [
             'title' => 'Notícias',
-            'error' => 'Erro ao carregar notícias, tente recarregar a página?...',
+            'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
         ],
         'header' => [
-            'welcome' => 'Olá, <strong>:username</strong>!',
+            'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
             'messages' => 'Você tem 1 nova mensagem|Você tem :count novas mensagens',
             'stats' => [
-                'games' => 'Partidas',
+                'friends' => 'Amigos online',
+                'games' => 'Jogos',
                 'online' => 'Usuários online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos beatmaps aprovados',
-            'popular' => 'Beatmaps populares',
+            'new' => 'Novos mapas aprovados',
+            'popular' => 'Mapas populares',
             'by' => 'por',
-            'plays' => ':count partidas',
+            'plays' => ':count vezes jogadas',
         ],
         'buttons' => [
             'download' => 'Baixar osu!',
-            'support' => 'Apoiar osu!',
+            'support' => 'Apoie o osu!',
             'store' => 'osu!store',
         ],
+    ],
+
+    'support-osu' => [
+        'title' => 'Nossa!',
+        'subtitle' => 'Parece que você está muito bem! :D',
+        'body' => [
+            'part-1' => 'Você sabia que o osu! não tem nenhum anúncio e depende do apoio dos jogadores para cobrir custos de estabilidade e desenvolvimento?',
+            'part-2' => 'Você também sabia que apoiar o osu! te dá um monte de coisas úteis, como <strong>download dentro do jogo</strong> que é automaticamente ativado no modo espectador ou em jogos multiplayers?',
+        ],
+        'find-out-more' => 'Clique aqui para saber mais!',
+        'download-starting' => 'Ah, e não se preocupe - seu download já começou por você ;)',
     ],
 ];

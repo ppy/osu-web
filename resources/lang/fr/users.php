@@ -56,7 +56,6 @@ return [
     'show' => [
         '404' => 'Utilisateur non trouvé! ;_;',
         'age' => 'Âgé de :age',
-        'current_location' => 'Actuellement à :location',
         'first_members' => 'Ici depuis le début',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -87,7 +86,7 @@ return [
             ],
         ],
         'extra' => [
-            'followers' => '1 abonné|:count abonnés',
+            'followers' => ':count abonné|:count abonnés',
             'unranked' => 'Aucune partie récente',
 
             'achievements' => [
@@ -107,6 +106,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Aucun enregistrement de performance. :(',
+                'title' => 'Historique',
+
                 'most_played' => [
                     'count' => 'Nombre de fois jouée',
                     'title' => 'Beatmaps les plus jouées',
@@ -115,7 +116,6 @@ return [
                     'accuracy' => 'Précision: :percentage',
                     'title' => 'Parties récentes',
                 ],
-                'title' => 'Historique',
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
@@ -166,7 +166,7 @@ return [
                 'empty' => "Cet utilsateur n'en a jamais reçu. ;_;",
                 'title' => 'Médailles',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Activité récente',
             ],
             'top_ranks' => [

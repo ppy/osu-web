@@ -25,29 +25,34 @@ class @UserCard
 
   onMouseOver: (event) =>
     el = event.currentTarget
+    userId = el.getAttribute('data-user-id')
 
     # when qtip has already been init for current element
-    if el._tooltip
+    if el._tooltip?
       api = $(el).qtip('api')
 
-      # disable existing cards when entering 'mobile' mode
-      if osu.isMobile()
-        event.preventDefault()
-        api.disable()
-        el._disable_card = true
-      else
-        if el._disable_card
-          el._disable_card = false
-          api.enable()
-          $(el).trigger('mouseover')
+      if el._tooltip == userId
+        # disable existing cards when entering 'mobile' mode
+        if osu.isMobile()
+          event.preventDefault()
+          api.disable()
+          el._disable_card = true
+        else
+          if el._disable_card
+            el._disable_card = false
+            api.enable()
+            $(el).trigger('mouseover')
 
-      return
+        return
+      else
+        # wrong userId, destroy current tooltip
+        api.destroy()
 
     # disable usercards on mobile
     if osu.isMobile()
       return
 
-    el._tooltip = true
+    el._tooltip = userId
 
     at = el.getAttribute('data-tooltip-position') ? 'right center'
     my = switch at
@@ -63,7 +68,6 @@ class @UserCard
         height: 130
       content:
         text: (event, api) =>
-          userId = parseInt(el.getAttribute('data-user-id'))
           $.ajax
             url: laroute.route 'users.card', user: userId
           .done (content) =>

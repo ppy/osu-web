@@ -60,6 +60,23 @@ class OsuAuthorize
         return $this->cache[$cacheKey];
     }
 
+    public function checkBeatmapShow($user, $beatmap)
+    {
+        if (!$beatmap->trashed()) {
+            return 'ok';
+        }
+
+        if ($user !== null) {
+            if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+                return 'ok';
+            }
+
+            if ($user->getKey() === $beatmap->beatmapset->user_id) {
+                return 'ok';
+            }
+        }
+    }
+
     public function checkBeatmapDiscussionAllowOrDenyKudosu($user, $discussion)
     {
         if ($user !== null && ($user->isBNG() || $user->isGMT() || $user->isQAT())) {
@@ -82,11 +99,36 @@ class OsuAuthorize
             return;
         }
 
-        if ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
+        if ($discussion->message_type === 'hype') {
+            return $prefix.'is_hype';
+        }
+
+        if ($discussion->relationLoaded('beatmapDiscussionPosts')) {
+            $visiblePosts = 0;
+
+            foreach ($discussion->beatmapDiscussionPosts as $post) {
+                if ($post->deleted_at !== null || $post->system) {
+                    continue;
+                }
+
+                $visiblePosts++;
+
+                if ($visiblePosts > 1) {
+                    return $prefix.'has_reply';
+                }
+            }
+        } elseif ($discussion->beatmapDiscussionPosts()->withoutDeleted()->withoutSystem()->count() > 1) {
             return $prefix.'has_reply';
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionModerate($user)
+    {
+        if ($user !== null && ($user->isGMT() || $user->isQAT())) {
+            return 'ok';
+        }
     }
 
     public function checkBeatmapDiscussionResolve($user, $discussion)
@@ -121,7 +163,13 @@ class OsuAuthorize
     public function checkBeatmapDiscussionShow($user, $discussion)
     {
         if ($discussion->deleted_at === null) {
-            return 'ok';
+            if ($discussion->beatmap_id === null) {
+                return 'ok';
+            }
+
+            if ($this->doCheckUser($user, 'BeatmapShow', $discussion->beatmap)->can()) {
+                return 'ok';
+            }
         }
 
         if ($user !== null && ($user->isGMT() || $user->isQAT())) {
@@ -135,6 +183,18 @@ class OsuAuthorize
 
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
+
+        static $votableStates = [
+            Beatmapset::STATES['wip'],
+            Beatmapset::STATES['pending'],
+            Beatmapset::STATES['qualified'],
+        ];
+
+        if (!in_array($discussion->beatmapset->approved, $votableStates, true)) {
+            if (!$user->isBNG() && !$user->isGMT() && !$user->isQAT()) {
+                return $prefix.'wrong_beatmapset_state';
+            }
+        }
 
         if ($discussion->user_id === $user->user_id) {
             return $prefix.'owner';
@@ -159,6 +219,24 @@ class OsuAuthorize
         }
 
         return 'ok';
+    }
+
+    public function checkBeatmapDiscussionVoteDown($user, $discussion)
+    {
+        $prefix = 'beatmap_discussion.vote.';
+
+        $this->ensureLoggedIn($user);
+        $this->ensureCleanRecord($user);
+
+        if ($discussion->user_id === $user->user_id) {
+            return $prefix.'owner';
+        }
+
+        if ($user->isBNG() || $user->isGMT() || $user->isQAT()) {
+            return 'ok';
+        }
+
+        return 'unauthorized';
     }
 
     public function checkBeatmapDiscussionPostDestroy($user, $post)
@@ -239,8 +317,23 @@ class OsuAuthorize
             return 'beatmap_discussion.nominate.incorrect-state';
         }
 
-        if ($user->beatmapsetNominationsToday() >= Beatmapset::NOMINATIONS_PER_DAY) {
+        if ($user->beatmapsetNominationsToday() >= config('osu.beatmapset.user_daily_nominations')) {
             return 'beatmap_discussion.nominate.exhausted';
+        }
+
+        return 'ok';
+    }
+
+    public function checkBeatmapsetResetNominations($user, $beatmapset)
+    {
+        $this->ensureLoggedIn($user);
+
+        if (!$user->isBNG() && !$user->isQAT()) {
+            return 'unauthorized';
+        }
+
+        if ($beatmapset->approved !== Beatmapset::STATES['pending']) {
+            return 'beatmap_discussion.nominate.incorrect-state';
         }
 
         return 'ok';

@@ -29,14 +29,13 @@ return [
             'getChangelog' => 'changelog',
             'getDownload' => 'download',
             'getIcons' => 'icone',
-            'index' => 'notizie',
             'supportTheGame' => 'sostieni il gioco',
         ],
         'help' => [
             '_' => 'aiuto',
             'getWiki' => 'wiki',
             'getFaq' => 'domande comuni',
-            'getSupport' => 'supporto',
+            'getSupport' => 'supporto', //obsolete
         ],
         'beatmaps' => [
             '_' => 'beatmap',
@@ -56,9 +55,8 @@ return [
         ],
         'community' => [
             '_' => 'comunità',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'chat',
-            'getSupport' => 'supporto',
             'getLive' => 'dirette',
             'contests' => 'concorsi',
             'profile' => 'profilo',
@@ -66,10 +64,10 @@ return [
             'tournaments-index' => 'tornei',
             'tournaments-show' => 'informazioni sul torneo',
             'forum-topic-watches-index' => 'Iscrizioni ai Topic',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multigiocatore',
@@ -95,13 +93,13 @@ return [
 
             'messages' => 'Messaggi',
             'settings' => 'Impostazioni',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Aiuto',
         ],
         'store' => [
             '_' => 'negozio',
             'getListing' => 'lista',
-            'getCart' => 'carrello',
+            'cart-show' => 'carrello',
 
             'getCheckout' => 'cassa',
             'getInvoice' => 'fattura',
@@ -227,7 +225,7 @@ return [
     'popup_user' => [
         'links' => [
             'profile' => 'Mio Profilo',
-            'logout' => 'Disconnettiti',
+            'logout' => 'Disconnettiti', // Base text changed from "Log Out" to "Sign Out", please check.
         ],
     ],
 ];

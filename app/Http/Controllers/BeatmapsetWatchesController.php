@@ -40,7 +40,7 @@ class BeatmapsetWatchesController extends Controller
     {
         return view('beatmapset_watches.index')
             ->with([
-                'watches' => Auth::user()->beatmapsetWatches()->paginate(50),
+                'watches' => Auth::user()->beatmapsetWatches()->has('beatmapset')->paginate(50),
             ]);
     }
 
@@ -56,7 +56,7 @@ class BeatmapsetWatchesController extends Controller
             }
         }
 
-        return $beatmapset->defaultJson();
+        return response([], 204);
     }
 
     public function destroy($beatmapsetId)
@@ -65,6 +65,6 @@ class BeatmapsetWatchesController extends Controller
 
         $beatmapset->watches()->where('user_id', '=', Auth::user()->getKey())->delete();
 
-        return $beatmapset->defaultJson();
+        return response([], 204);
     }
 }

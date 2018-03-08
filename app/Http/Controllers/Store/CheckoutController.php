@@ -40,10 +40,12 @@ class CheckoutController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => [
+            'destroy',
             'store',
         ]]);
 
         $this->middleware('check-user-restricted', ['only' => [
+            'destroy',
             'store',
         ]]);
 
@@ -52,11 +54,21 @@ class CheckoutController extends Controller
         return parent::__construct();
     }
 
-    public function index()
+    public function destroy()
+    {
+        // ignore dummy parameter for now, just release the current cart.
+        $order = $this->userCart();
+        $checkout = new OrderCheckout($order);
+        $checkout->failCheckout();
+
+        return ujs_redirect(route('store.products.index'));
+    }
+
+    public function show()
     {
         $order = $this->userCart();
         if (!$order || $order->isEmpty()) {
-            return ujs_redirect(route('store.cart'));
+            return ujs_redirect(route('store.cart.show'));
         }
 
         // TODO: should be able to notify user that items were changed due to stock/price changes.
@@ -77,10 +89,14 @@ class CheckoutController extends Controller
         $order = $this->userCart();
 
         if ($order->isEmpty()) {
-            return ujs_redirect(route('store.cart'));
+            return ujs_redirect(route('store.cart.show'));
         }
 
-        $checkout = new OrderCheckout($order);
+        $provider = Request::input('provider');
+
+        $checkout = new OrderCheckout($order, $provider);
+        $checkout->beginCheckout();
+
         $validationErrors = $checkout->validate();
         if (!empty($validationErrors)) {
             return $this->setAndRedirectCheckoutError(
@@ -105,7 +121,7 @@ class CheckoutController extends Controller
                 $checkout->completeCheckout();
                 $order->paid(null);
             } catch (Exception $exception) {
-                $this->notifyError($exception, $order);
+                $this->notifyError($exception, $order, 'store.payments.error.free');
                 throw $exception;
             }
 

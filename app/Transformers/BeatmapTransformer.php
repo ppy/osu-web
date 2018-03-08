@@ -30,11 +30,16 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
         'scoresBest',
         'failtimes',
         'beatmapset',
+        'max_combo',
     ];
 
     public function transform(Beatmap $beatmap = null)
     {
         if ($beatmap === null) {
+            return [];
+        }
+
+        if (!priv_check('BeatmapShow', $beatmap)->can()) {
             return [];
         }
 
@@ -44,7 +49,6 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'mode' => $beatmap->mode,
             'mode_int' => $beatmap->playmode,
             'convert' => $beatmap->convert,
-            'difficulty_size' => $beatmap->diff_size,
             'difficulty_rating' => $beatmap->difficultyrating,
             'version' => $beatmap->version,
             'total_length' => $beatmap->total_length,
@@ -56,10 +60,13 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
             'passcount' => $beatmap->passcount,
             'count_circles' => $beatmap->countNormal,
             'count_sliders' => $beatmap->countSlider,
+            'count_spinners' => $beatmap->countSpinner,
+            'count_total' => $beatmap->countTotal,
             'last_updated' => json_time($beatmap->last_update),
             'ranked' => $beatmap->approved,
             'status' => $beatmap->status(),
             'url' => route('beatmaps.show', ['id' => $beatmap->beatmap_id]),
+            'deleted_at' => $beatmap->deleted_at,
         ];
     }
 
@@ -101,5 +108,22 @@ class BeatmapTransformer extends Fractal\TransformerAbstract
     public function includeBeatmapset(Beatmap $beatmap)
     {
         return $this->item($beatmap->beatmapset, new BeatmapsetTransformer);
+    }
+
+    public function includeMaxCombo(Beatmap $beatmap)
+    {
+        return $this->item($beatmap, function ($beatmap) {
+            $maxCombo = $beatmap->difficultyAttribs()
+                ->mode($beatmap->playmode)
+                ->noMods()
+                ->maxCombo()
+                ->first();
+
+            if ($maxCombo === null) {
+                return [];
+            }
+
+            return [$maxCombo->getAttribute('value')];
+        });
     }
 }

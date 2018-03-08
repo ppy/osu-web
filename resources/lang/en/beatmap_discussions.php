@@ -27,6 +27,31 @@ return [
         ],
     ],
 
+    'events' => [
+        'empty' => 'Nothing has happened... yet.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'deleted',
+        'title' => 'Beatmap Discussions',
+
+        'form' => [
+            'deleted' => 'Include deleted discussions',
+
+            'user' => [
+                'label' => 'User',
+                'overview' => 'Activities overview',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Post date',
+        'deleted_at' => 'Deletion date',
+        'message_type' => 'Type',
+        'permalink' => 'Permalink',
+    ],
+
     'nearby_posts' => [
         'confirm' => 'None of the posts address my concern',
         'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',

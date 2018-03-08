@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Pinned Topics',
+    'slogan' => "it's dangerous to play alone.",
+    'subforums' => 'Subforums',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,48 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Pinned Topics',
     'post' => [
         'confirm_destroy' => 'Really delete post?',
         'confirm_restore' => 'Really restore post?',
         'edited' => 'Last edited by :user on :when, edited :count times in total.',
         'posted_at' => 'posted :when',
+
         'actions' => [
             'destroy' => 'Delete post',
             'restore' => 'Restore post',
             'edit' => 'Edit post',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Go to post',
         'post_number_input' => 'enter post number',
         'total_posts' => ':posts_count posts total',
     ],
-    'subforums' => 'Subforums',
-    'title' => 'osu!community',
-    'slogan' => "it's dangerous to play alone.",
+
     'topic' => [
+        'deleted' => 'deleted topic',
+        'go_to_latest' => 'view latest post',
+        'latest_post' => ':when by :user',
+        'latest_reply_by' => 'latest reply by :user',
+        'new_topic' => 'Post new topic',
+        'post_reply' => 'Post',
+        'reply_box_placeholder' => 'Type here to reply',
+        'started_by' => 'by :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
-            ],
             'preview' => 'Preview',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Write',
             'submit' => 'Post',
+
+            'placeholder' => [
+                'body' => 'Type post content here',
+                'title' => 'Click here to set title',
+            ],
         ],
-        'go_to_latest' => 'view latest post',
+
         'jump' => [
             'enter' => 'click to enter specific post number',
             'first' => 'go to first post',
@@ -83,16 +96,11 @@ return [
             'next' => 'skip next 10 posts',
             'previous' => 'go back 10 posts',
         ],
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
+
         'post_edit' => [
             'cancel' => 'Cancel',
             'post' => 'Save',
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
     ],
 
     'topic_watches' => [
@@ -105,6 +113,7 @@ return [
                 'total' => 'Topics subscribed',
                 'unread' => 'Topics with new replies',
             ],
+
             'info' => [
                 'total' => 'You subscribed to :total topics.',
                 'unread' => 'You have :unread unread replies to subscribed topics.',
@@ -123,7 +132,7 @@ return [
         '_' => 'Topics',
 
         'actions' => [
-            'reply' => 'Show reply box',
+            'reply' => 'Reply',
             'reply_with_quote' => 'Quote post for reply',
             'search' => 'Search',
         ],
@@ -224,16 +233,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Total Posts',
             'deleted-posts' => 'Deleted Posts',
+            'total_posts' => 'Total Posts',
 
             'feature_vote' => [
                 'current' => 'Current Priority: +:count',
                 'do' => 'Promote this request',
 
                 'user' => [
-                    'current' => 'You have :votes remaining.',
                     'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
+                    'current' => 'You have :votes remaining.',
                     'not_enough' => "You don't have any more votes remaining",
                 ],
             ],
@@ -242,9 +251,9 @@ return [
                 'vote' => 'Vote',
 
                 'detail' => [
-                    'total' => 'Total votes: :count',
-                    'ended' => 'Polling ended :time',
                     'end_time' => 'Polling will end at :time',
+                    'ended' => 'Polling ended :time',
+                    'total' => 'Total votes: :count',
                 ],
             ],
         ],
@@ -256,5 +265,4 @@ return [
             'watch-1' => 'Subscribe topic',
         ],
     ],
-
 ];

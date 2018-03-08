@@ -45,7 +45,6 @@ return [
     'show' => [
         '404' => 'Gebruiker niet gevonden! ;_;',
         'age' => ':age jaar oud',
-        'current_location' => 'Momenteel in :location',
         'first_members' => 'Hier sinds het begin',
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
@@ -92,6 +91,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Geen prestatiegegevens. :(',
+                'title' => 'Historisch',
+
                 'most_played' => [
                     'count' => 'keer gespeeld',
                     'title' => 'Meest Gespeelde Beatmaps',
@@ -100,7 +101,6 @@ return [
                     'accuracy' => 'precisie: :percentage',
                     'title' => 'Recent gespeeld',
                 ],
-                'title' => 'Historisch',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Beschikbaar',
@@ -126,7 +126,7 @@ return [
             'medals' => [
                 'title' => 'Medailles',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recent',
             ],
             'top_ranks' => [

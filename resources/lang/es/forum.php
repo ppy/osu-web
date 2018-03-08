@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Temas Fijados',
+    'slogan' => 'es peligroso jugar solo.',
+    'subforums' => 'Subforos',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,48 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Temas Fijos',
     'post' => [
         'confirm_destroy' => '¿Eliminar publicación?',
         'confirm_restore' => '¿Restaurar publicación?',
         'edited' => 'Última edición por :user el :when, editado :count veces en total.',
         'posted_at' => 'publicado :when',
+
         'actions' => [
             'destroy' => 'Eliminar publicación',
             'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Ir a la publicación',
         'post_number_input' => 'introducir número de publicación',
         'total_posts' => ':posts_count publicaciones totales',
     ],
-    'subforums' => 'Subforos',
-    'title' => 'osu!community',
-    'slogan' => 'es peligroso jugar solo.',
+
     'topic' => [
+        'deleted' => 'tema eliminado',
+        'go_to_latest' => 'ver la última publicación',
+        'latest_post' => ':when por :user',
+        'latest_reply_by' => 'última respuesta por :user',
+        'new_topic' => 'Escribir nuevo tema',
+        'post_reply' => 'Publicar',
+        'reply_box_placeholder' => 'Escribe aquí para responder',
+        'started_by' => 'por :user',
+
         'create' => [
+            'preview' => 'Previsualizar',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Escribir',
+            'submit' => 'Publicar',
+
             'placeholder' => [
                 'body' => 'Escribe el contenido de la publicación aquí',
                 'title' => 'Clic aquí para definir un título',
             ],
-            'preview' => 'Previsualizar',
-            //
-            //
-            'preview_hide' => 'Escribir',
-            'submit' => 'Publicar',
         ],
-        'go_to_latest' => 'ver la última publicación',
+
         'jump' => [
             'enter' => 'clic para introducir un número de publicación',
             'first' => 'ir a la primera publicación',
@@ -83,20 +96,11 @@ return [
             'next' => 'saltarse las siguientes 10 publicaciones',
             'previous' => 'ir 10 publicaciones atrás',
         ],
-        'latest_post' => ':when por :user',
-        'latest_reply_by' => 'última respuesta por :user',
-        'new_topic' => 'Escribir nuevo tema',
+
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Guardar',
-            'zoom' => [
-                'start' => 'Pantalla Completa',
-                'end' => 'Salir de Pantalla Completa',
-            ],
         ],
-        'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Escribe aquí para responder',
-        'started_by' => 'por :user',
     ],
 
     'topic_watches' => [
@@ -109,6 +113,7 @@ return [
                 'total' => 'Temas suscritos',
                 'unread' => 'Temas con nuevas respuestas',
             ],
+
             'info' => [
                 'total' => 'Te has suscrito a :total temas.',
                 'unread' => 'Tienes :unread respuestas sin leer a temas suscritos.',
@@ -127,8 +132,9 @@ return [
         '_' => 'Temas',
 
         'actions' => [
-            'reply' => 'Mostrar caja de respuesta',
-            'reply_with_quote' => 'Citar y responder publicación',
+            'reply' => 'Responder',
+            'reply_with_quote' => 'Citar y responder',
+            'search' => 'Buscar',
         ],
 
         'create' => [
@@ -152,6 +158,10 @@ return [
                 'vote_change' => 'Permitir volver a votar.',
                 'vote_change_info' => 'Si está activado, los usuarios podrán cambiar su voto.',
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Editar título',
         ],
 
         'index' => [
@@ -216,21 +226,23 @@ return [
         'moderate_pin' => [
             'pin-0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
             'pin-1' => 'Fijar tema',
+            'pin-2' => 'Fijar tema y marcar como anuncio',
             'state-0' => 'El tema ya no está fijado',
-            'state-1' => 'El tema ha sido fijado',
+            'state-1' => 'El tema ya ha sido fijado',
+            'state-2' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
         'show' => [
-            'total_posts' => 'Publicaciones totales',
             'deleted-posts' => 'Publicaciones eliminadas',
+            'total_posts' => 'Publicaciones totales',
 
             'feature_vote' => [
                 'current' => 'Prioridad actual: +:count',
                 'do' => 'Apoyar esta solicitud',
 
                 'user' => [
-                    'current' => 'Tienes :votes restantes.',
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
+                    'current' => 'Tienes :votes restantes.',
                     'not_enough' => 'No te quedan más votos',
                 ],
             ],
@@ -239,9 +251,9 @@ return [
                 'vote' => 'Votar',
 
                 'detail' => [
-                    'total' => 'Votos totales: :count',
-                    'ended' => 'Encuesta terminada el :time',
                     'end_time' => 'La encuesta terminará el :time',
+                    'ended' => 'Encuesta terminada el :time',
+                    'total' => 'Votos totales: :count',
                 ],
             ],
         ],
@@ -253,5 +265,4 @@ return [
             'watch-1' => 'Suscribirse al tema',
         ],
     ],
-
 ];

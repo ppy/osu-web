@@ -21,16 +21,19 @@
 namespace App\Models\Forum;
 
 use App\Libraries\BBCodeForDB;
+use App\Libraries\BBCodeFromDB;
+use App\Models\Beatmapset;
 use App\Models\DeletedUser;
+use App\Models\Elasticsearch;
 use App\Models\User;
+use App\Traits\Validatable;
 use Carbon\Carbon;
 use DB;
-use Es;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use SoftDeletes;
+    use Elasticsearch\PostTrait, SoftDeletes, Validatable;
 
     protected $table = 'phpbb_posts';
     protected $primaryKey = 'post_id';
@@ -45,9 +48,28 @@ class Post extends Model
 
     private $normalizedUsers = [];
 
+    private $skipBeatmapPostRestrictions = false;
+    private $skipBodyPresenceCheck = false;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Elasticsearch mappings; can't put in a Trait.
+    |--------------------------------------------------------------------------
+    */
+    const ES_MAPPINGS = [
+        'post_id' => ['type' => 'long'],
+        'topic_id' => ['type' => 'long'],
+        'poster_id' => ['type' => 'long'],
+        'forum_id' => ['type' => 'long'],
+        'post_time' => ['type' => 'date'],
+        'post_text' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
+        'search_content' => ['type' => 'text', 'analyzer' => 'post_text_analyzer'],
+        'type' => ['type' => 'join', 'relations' => ['topics' => 'posts']],
+    ];
+
     public function forum()
     {
-        return $this->belongsTo("App\Models\Forum\Forum", 'forum_id', 'forum_id');
+        return $this->belongsTo(Forum::class, 'forum_id', 'forum_id');
     }
 
     public function topic()
@@ -57,16 +79,20 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User", 'poster_id', 'user_id');
+        return $this->belongsTo(User::class, 'poster_id', 'user_id');
     }
 
     public function lastEditor()
     {
-        return $this->belongsTo("App\Models\User", 'post_edit_user', 'user_id');
+        return $this->belongsTo(User::class, 'post_edit_user', 'user_id');
     }
 
     public function setPostTextAttribute($value)
     {
+        if ($value === $this->bodyRaw) {
+            return;
+        }
+
         $bbcode = new BBCodeForDB($value);
         $this->attributes['post_text'] = $bbcode->generate();
         $this->attributes['bbcode_uid'] = $bbcode->uid;
@@ -75,7 +101,7 @@ class Post extends Model
 
     public function setPostTimeAttribute($value)
     {
-        $this->attributes['post_time'] = $value->timestamp;
+        $this->attributes['post_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostTimeAttribute($value)
@@ -85,12 +111,33 @@ class Post extends Model
 
     public function setPostEditTimeAttribute($value)
     {
-        $this->attributes['post_edit_time'] = $value->timestamp;
+        $this->attributes['post_edit_time'] = get_timestamp_or_zero($value);
     }
 
     public function getPostEditTimeAttribute($value)
     {
         return get_time_or_null($value);
+    }
+
+    /**
+     * Gets a preview of the post_text by stripping anything that
+     * looks like bbcode or html.
+     *
+     * @return string
+     */
+    public function getSearchContentAttribute()
+    {
+        // remove metadata
+        // remove blockquotes
+        // unescape html entities
+        // strip remaining bbcode
+        // strip any html tags left
+        $text = Beatmapset::removeMetadataText($this->post_text);
+        $text = BBCodeFromDB::removeBlockQuotes($text);
+        $text = html_entity_decode_better($text);
+        $text = BBCodeFromDB::removeBBCodeTags($text);
+
+        return strip_tags($text);
     }
 
     public static function lastUnreadByUser($topic, $user)
@@ -117,98 +164,6 @@ class Post extends Model
         }
 
         return $unreadPostId;
-    }
-
-    public static function search($rawParams)
-    {
-        $params = static::searchParams($rawParams);
-        $result = static::searchEs($params);
-
-        $query = static
-            ::with('topic')
-            ->whereIn('post_id', $result['ids'])
-            ->orderByField('post_id', $result['ids']);
-
-        return [
-            'data' => $query->get(),
-            'total' => $result['total'],
-            'params' => $params,
-        ];
-    }
-
-    public static function searchEs($params = [])
-    {
-        $required = [];
-        $any = [];
-
-        if (present($params['query'])) {
-            $required[] = ['query_string' => ['query' => es_query_and_words($params['query'])]];
-        }
-
-        if (present($params['username'])) {
-            $user = User::where('username', '=', $params['username'])->first();
-            $any[] = ['match' => ['poster_id' => $user === null ? -1 : $user->getKey()]];
-        }
-
-        if ($params['forum_id']) {
-            if ($params['forum_children']) {
-                $forum = Forum::where('forum_id', '=', $params['forum_id'])->first();
-
-                $forumIds = $forum === null ? [$params['forum_id']] : $forum->allSubForums();
-            } else {
-                $forumIds = [$params['forum_id']];
-            }
-
-            foreach ($forumIds as $forumId) {
-                $any[] = ['match' => ['forum_id' => $forumId]];
-            }
-        }
-
-        if ($params['topic_id'] !== null) {
-            $required[] = ['match' => ['topic_id' => $params['topic_id']]];
-        }
-
-        $searchParams = [
-            'index' => config('osu.elasticsearch.index'),
-            'type' => 'posts',
-            'size' => $params['limit'],
-            'from' => ($params['page'] - 1) * $params['limit'],
-        ];
-
-        if (count($required) > 0) {
-            $searchParams['body']['query']['bool']['must'] = $required;
-        }
-
-        if (count($any) > 0) {
-            $searchParams['body']['query']['bool']['should'] = $any;
-            $searchParams['body']['query']['bool']['minimum_should_match'] = 1;
-        }
-
-        $resultEs = Es::search($searchParams);
-
-        $ids = [];
-
-        foreach ($resultEs['hits']['hits'] as $post) {
-            $ids[] = get_int($post['_id']);
-        }
-
-        return [
-            'ids' => $ids,
-            'total' => $resultEs['hits']['total'],
-        ];
-    }
-
-    public static function searchParams($params)
-    {
-        $params['query'] = $params['query'] ?? null;
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
-        $params['username'] = get_string($params['username'] ?? null);
-        $params['forum_children'] = get_bool($params['forum_children'] ?? false);
-        $params['forum_id'] = get_int($params['forum_id'] ?? null);
-        $params['topic_id'] = get_int($params['topic_id'] ?? null);
-
-        return $params;
     }
 
     public function normalizeUser($user)
@@ -247,23 +202,84 @@ class Post extends Model
         return $this->topic->postPosition($this->post_id);
     }
 
-    public function edit($body, $user)
+    public function skipBeatmapPostRestrictions()
     {
-        if ($body === $this->bodyRaw) {
-            return true;
+        $this->skipBeatmapPostRestrictions = true;
+
+        return $this;
+    }
+
+    public function skipBodyPresenceCheck()
+    {
+        $this->skipBodyPresenceCheck = true;
+
+        return $this;
+    }
+
+    public function delete()
+    {
+        $this->validationErrors()->reset();
+
+        // don't forget to sync with views.forum.topics._posts
+        if ($this->isBeatmapsetPost()) {
+            $this->validationErrors()->add('base', '.beatmapset_post_no_delete');
+
+            return false;
         }
 
-        $updates = [
-            'post_text' => $body,
-        ];
+        return parent::delete();
+    }
 
-        $updates = array_merge($updates, [
-            'post_edit_time' => Carbon::now(),
-            'post_edit_count' => DB::raw('post_edit_count + 1'),
-            'post_edit_user' => $user->user_id,
-        ]);
+    public function isValid()
+    {
+        $this->validationErrors()->reset();
 
-        return $this->update($updates);
+        if (!$this->skipBodyPresenceCheck && !present($this->post_text)) {
+            $this->validationErrors()->add('post_text', 'required');
+        }
+
+        if (!$this->skipBeatmapPostRestrictions) {
+            // don't forget to sync with views.forum.topics._posts
+            if ($this->isBeatmapsetPost()) {
+                $this->validationErrors()->add('base', '.beatmapset_post_no_edit');
+
+                return false;
+            }
+        }
+
+        return $this->validationErrors()->isEmpty();
+    }
+
+    public function save(array $options = [])
+    {
+        if (!$this->isValid()) {
+            return false;
+        }
+
+        // record edit history
+        if ($this->exists && $this->isDirty('post_text')) {
+            $this->fill([
+                'post_edit_time' => Carbon::now(),
+                'post_edit_count' => DB::raw('post_edit_count + 1'),
+            ]);
+        }
+
+        return parent::save($options);
+    }
+
+    // don't forget to sync with views.forum.topics._posts
+    public function isBeatmapsetPost()
+    {
+        if ($this->topic !== null) {
+            return
+                $this->getKey() === $this->topic->topic_first_post_id &&
+                $this->topic->beatmapset()->exists();
+        }
+    }
+
+    public function validationErrorsTranslationPrefix()
+    {
+        return 'forum.post';
     }
 
     public function getBodyHTMLAttribute()

@@ -27,14 +27,12 @@ return [
         'home' => [
             '_' => '메인',
             'account-edit' => '설정',
-            'friends' => '친구',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
             'changelog-show' => '빌드 버전',
             'getDownload' => '다운로드',
             'getIcons' => '아이콘',
             'groups-show' => '그룹',
-            'index' => 'osu!',
             'legal-show' => '정보',
             'news-index' => '뉴스',
             'news-show' => '뉴스',
@@ -45,7 +43,7 @@ return [
         'help' => [
             '_' => '도움말',
             'getFaq' => 'FAQ',
-            'getSupport' => '지원 센터', // osu!support와 혼동될까봐 "센터"를 추가
+            'getSupport' => '지원 센터', // osu!support와 혼동될까봐 "센터"를 추가 (obsolete)
             'getWiki' => '위키',
             'wiki-show' => '위키',
         ],
@@ -74,9 +72,8 @@ return [
         'community' => [
             '_' => '커뮤니티',
             'dev' => 'osu!개발진',
-            'getForum' => '포럼',
+            'getForum' => '포럼', // Base text changed to plural, please check.
             'getChat' => '채팅',
-            'getSupport' => '지원',
             'getLive' => '라이브 스트림',
             'contests' => '콘테스트',
             'profile' => '프로필',
@@ -84,10 +81,10 @@ return [
             'tournaments-index' => '대회',
             'tournaments-show' => '대회 정보',
             'forum-topic-watches-index' => '구독',
-            'forum-topics-create' => '포럼',
-            'forum-topics-show' => '포럼',
-            'forum-forums-index' => '포럼',
-            'forum-forums-show' => '포럼',
+            'forum-topics-create' => '포럼', // Base text changed to plural, please check.
+            'forum-topics-show' => '포럼', // Base text changed to plural, please check.
+            'forum-forums-index' => '포럼', // Base text changed to plural, please check.
+            'forum-forums-show' => '포럼', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => '멀티플레이어', // 'multiplayer'
@@ -113,13 +110,13 @@ return [
 
             'messages' => '메세지',
             'settings' => '설정',
-            'logout' => '로그아웃',
+            'logout' => '로그아웃', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => '도움말',
         ],
         'store' => [
             '_' => '상점',
             'getListing' => '목록',
-            'getCart' => '장바구니',
+            'cart-show' => '장바구니',
 
             'getCheckout' => '결제',
             'getInvoice' => '청구서',
@@ -247,7 +244,7 @@ return [
         'links' => [
             'account-edit' => '설정',
             'friends' => '친구',
-            'logout' => '로그아웃',
+            'logout' => '로그아웃', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => '내 프로필',
         ],
     ],

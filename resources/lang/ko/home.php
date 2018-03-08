@@ -20,16 +20,10 @@
 
 return [
     'landing' => [
+        'download' => '지금 바로 다운로드하기',
         'online' => '<strong>:players</strong>명의 플레이어가 현재 접속 중이며, <strong>:games</strong> 개의 게임이 개설되어 있습니다.',
         'peak' => '최다 동시 접속자 수: :count명',
         'players' => '총 플레이어: <strong>:count</strong>명',
-
-        'download' => [
-            '_' => '지금 바로 다운로드하기',
-            'soon' => 'osu!가 곧 다른 운영체제도 지원 할 거에요',
-            'for' => ':os 용',
-            'other' => ':os1 나, :os2 용은 여기를 눌러주세요',
-        ],
 
         'slogan' => [
             'main' => '무료 리듬 게임',
@@ -86,32 +80,8 @@ return [
         ],
     ],
 
-    'download' => [
-      'header' => [
-          '1' => '같이 한 번', // let's get
-          '2' => '시작해보자구요!', // you started
-          '3' => 'Windows에서 osu! 게임 클라이언트 다운로드 하기',
-      ],
-      'steps' => [
-          '1' => [
-              'name' => '1 단계',
-              'content' => 'osu! 게임 클라이언트를 다운로드하세요',
-          ],
-          '2' => [
-              'name' => '2 단계',
-              'content' => 'osu! 계정을 생성하세요',
-          ],
-          '3' => [
-              'name' => '3 단계',
-              'content' => '???',
-          ],
-      ],
-      'more' => '더 알아보실래요?',
-      'more_text' => '<a href="https://www.youtube.com/user/osuacademy/">osu!아카데미 유튜브 채널</a>을 확인해보세요 osu!를 더 즐길 수 있는 최신 튜토리얼과 팁들이 있습니다!',
-    ],
-
     'user' => [
-        'title' => 'news',
+        'title' => 'dashboard',
         'news' => [
             'title' => '뉴스',
             'error' => '뉴스를 불러오는 도중 문제가 발생했습니다, 페이지를 한 번 새로고침 해보시겠어요?...',

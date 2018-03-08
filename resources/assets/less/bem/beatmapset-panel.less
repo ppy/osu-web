@@ -24,7 +24,7 @@
   color: @text-color;
 
   &__content {
-    height: 70px;
+    height: 75px;
     padding: @padding;
   }
 
@@ -171,10 +171,11 @@
     border-radius: @border-radius-base @border-radius-base 0 0;
     background-position: center;
     background-size: cover;
-    height: 130px;
+    height: 120px;
 
     &::before {
       .full-size();
+      content: ' ';
       background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
     }
   }

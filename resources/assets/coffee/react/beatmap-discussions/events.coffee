@@ -27,24 +27,30 @@ class BeatmapDiscussions.Events extends React.PureComponent
   render: =>
     lastCreatedAtString = null
 
-    div className: 'osu-page osu-page--small osu-page--generic osu-page--full',
+    div className: 'osu-page osu-page--small osu-page--generic',
       div className: 'beatmapset-events',
-        for event in @props.events by -1
-          createdAt = moment(event.created_at)
-          createdAtString = createdAt.format 'LL'
+        if _.isEmpty @props.events
+          div
+            className: 'beatmapset-events__empty'
+            osu.trans('beatmap_discussions.events.empty')
+        else
+          for event in @props.events by -1
+            createdAt = moment(event.created_at)
+            createdAtString = createdAt.format 'LL'
 
-          [
-            if lastCreatedAtString != createdAtString
-              lastCreatedAtString = createdAtString
+            [
+              if lastCreatedAtString != createdAtString
+                lastCreatedAtString = createdAtString
+                div
+                  key: "date-#{lastCreatedAtString}"
+                  className: 'beatmapset-events__title'
+                  lastCreatedAtString
               div
-                key: "date-#{lastCreatedAtString}"
-                className: 'beatmapset-events__title'
-                lastCreatedAtString
-            div
-              key: event.id
-              className: 'beatmapset-events__event'
-              el BeatmapDiscussions.Event,
-                event: event
-                time: createdAt
-                users: @props.users
-          ]
+                key: event.id
+                className: 'beatmapset-events__event'
+                el BeatmapDiscussions.Event,
+                  event: event
+                  time: createdAt
+                  users: @props.users
+                  discussions: @props.discussions
+            ]

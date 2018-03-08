@@ -40,6 +40,7 @@ return [
         'edited' => 'Last edited by :editor :update_time.',
         'kudosu_denied' => 'Denied from obtaining kudosu.',
         'message_placeholder' => 'Type here to post',
+        'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
         'message_type_select' => 'Select Comment Type',
         'reply_notice' => 'Press enter to reply.',
         'reply_placeholder' => 'Type your response here',
@@ -64,6 +65,7 @@ return [
         ],
 
         'message_type' => [
+            'hype' => 'Hype!',
             'mapper_note' => 'Note',
             'praise' => 'Praise',
             'problem' => 'Problem',
@@ -85,6 +87,13 @@ return [
 
         'show' => [
             'title' => ':title mapped by :mapper',
+        ],
+
+        'sort' => [
+            '_' => 'Sorted by:',
+            'created_at' => 'creation time',
+            'timeline' => 'timeline',
+            'updated_at' => 'last update',
         ],
 
         'stats' => [
@@ -109,26 +118,37 @@ return [
 
     'hype' => [
         'button' => 'Hype Beatmap!',
-        'button-done' => 'Already Hyped!',
-        'explanation' => "Adding praise ❤ will raise this beatmap's hype, making it more visible for nomination and ranking!",
-        'section-title' => 'Hype Train',
+        'button_done' => 'Already Hyped!',
+        'confirm' => "Are you sure? This will use one out of your remaining :n hype and can't be undone.",
+        'explanation' => 'Hype this beatmap to make it more visible for nomination and ranking!',
+        'explanation_guest' => 'Login and hype this beatmap to make it more visible for nomination and ranking!',
+        'new_time' => "You'll get another hype :new_time.",
+        'remaining' => 'You have :remaining hype left.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Hype Train',
         'title' => 'Hype',
     ],
 
+    'feedback' => [
+        'button' => 'Leave Feedback',
+    ],
+
     'nominations' => [
-        'disqualifed-at' => 'Disqualified :time_ago (:reason).',
-        'disqualifed_no_reason' => 'no reason specified',
-        'disqualification-prompt' => 'Reason for disqualification?',
+        'disqualification_prompt' => 'Reason for disqualification?',
+        'disqualified_at' => 'Disqualified :time_ago (:reason).',
+        'disqualified_no_reason' => 'no reason specified',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => 'Error performing that action, try refreshing the page.',
+        'incorrect_state' => 'Error performing that action, try refreshing the page.',
         'nominate' => 'Nominate',
-        'nominated-by' => 'nominated by :users',
-        'nominate-confirm' => 'Nominate this beatmap?',
+        'nominate_confirm' => 'Nominate this beatmap?',
+        'nominated_by' => 'nominated by :users',
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
-        'qualified-soon' => 'Estimated to be ranked soon, if no issues are found.',
-        'reset-confirm' => 'Are you sure? Posting a new problem will reset nominations.',
-        'required-text' => 'Nominations: :current/:required',
+        'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
+        'required_text' => 'Nominations: :current/:required',
+        'reset_at' => 'Nominations reset :time_ago by new problem :discussion.',
+        'reset_confirm' => 'Are you sure? Posting a new problem will reset nominations.',
         'title' => 'Nomination Status',
+        'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
     ],
 
     'listing' => [
@@ -138,6 +158,7 @@ return [
             'not-found' => 'no results',
             'not-found-quote' => '... nope, nothing found.',
             'filters' => [
+                'general' => 'General',
                 'mode' => 'Mode',
                 'status' => 'Rank Status',
                 'genre' => 'Genre',
@@ -151,6 +172,10 @@ return [
         'mapped-by' => 'mapped by :mapper',
         'source' => 'from :source',
         'load-more' => 'Load more...',
+    ],
+    'general' => [
+        'recommended' => 'Recommended difficulty',
+        'converts' => 'Include converted beatmaps',
     ],
     'mode' => [
         'any' => 'Any',

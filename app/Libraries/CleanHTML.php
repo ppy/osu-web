@@ -54,6 +54,8 @@ class CleanHTML
         $def->addAttribute('span', 'data-index', 'Text');
         $def->addAttribute('span', 'data-gallery-id', 'Text');
 
+        $def->addAttribute('a', 'data-user-id', 'Text');
+
         return (new HTMLPurifier($config))->purify($text);
     }
 }

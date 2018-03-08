@@ -20,9 +20,108 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+
 class BeatmapDiscussionVote extends Model
 {
     protected $guarded = [];
+
+    public static function recentlyReceivedByUser($userId, $timeframeMonths = 3)
+    {
+        $query = static::with('user')->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
+        $query->whereIn('beatmap_discussion_id', BeatmapDiscussion::where('user_id', '=', $userId)->select('id'))
+            ->whereHas('user', function ($userQuery) {
+                $userQuery->default();
+            });
+
+        $result = $query->get()
+            ->groupBy('user_id')
+            ->sortByDesc(function ($obj, $key) {
+                return $obj->sum('score');
+            });
+
+        return $result;
+    }
+
+    public static function recentlyGivenByUser($userId, $timeframeMonths = 3)
+    {
+        $query = static::with(['beatmapDiscussion', 'beatmapDiscussion.user'])->where('created_at', '>', Carbon::now()->subMonth($timeframeMonths));
+        $query->where('user_id', $userId)->whereHas('user', function ($userQuery) {
+            $userQuery->default();
+        });
+
+        $result = $query->get()
+            ->groupBy('beatmapDiscussion.user_id')
+            ->sortByDesc(function ($obj, $key) {
+                return $obj->sum('score');
+            });
+
+        return $result;
+    }
+
+    public static function search($rawParams = [])
+    {
+        $params = [
+            'limit' => clamp(get_int($rawParams['limit'] ?? null) ?? 20, 5, 50),
+            'page' => max(get_int($rawParams['page'] ?? null) ?? 1, 1),
+        ];
+
+        $query = static::limit($params['limit'])->offset(($params['page'] - 1) * $params['limit']);
+
+        if (isset($rawParams['user'])) {
+            $params['user'] = $rawParams['user'];
+            $user = User::lookup($params['user']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->where('user_id', $user->getKey());
+            }
+        }
+
+        if (isset($rawParams['receiver'])) {
+            $params['receiver'] = $rawParams['receiver'];
+            $user = User::lookup($params['receiver']);
+
+            if ($user === null) {
+                $query->none();
+            } else {
+                $query->whereIn('beatmap_discussion_id', BeatmapDiscussion::where('user_id', '=', $user->getKey())->select('id'));
+            }
+        }
+
+        if (isset($rawParams['sort'])) {
+            $sort = explode('-', strtolower($rawParams['sort']));
+
+            if (in_array($sort[0] ?? null, ['id'], true)) {
+                $sortField = $sort[0];
+            }
+
+            if (in_array($sort[1] ?? null, ['asc', 'desc'], true)) {
+                $sortOrder = $sort[1];
+            }
+        }
+
+        $sortField ?? ($sortField = 'id');
+        $sortOrder ?? ($sortOrder = 'desc');
+
+        $params['sort'] = "{$sortField}-{$sortOrder}";
+        $query->orderBy($sortField, $sortOrder);
+
+        if (isset($rawParams['score'])) {
+            $params['score'] = get_int($rawParams['score']);
+            if ($params['score'] !== null) {
+                $query->where('score', '=', $params['score']);
+            }
+        }
+
+        // TODO: readd this when content becomes public
+        // $query->whereHas('user', function ($userQuery) {
+        //     $userQuery->default();
+        // });
+
+        return ['query' => $query, 'params' => $params];
+    }
 
     public function beatmapDiscussion()
     {
@@ -45,5 +144,13 @@ class BeatmapDiscussionVote extends Model
         }
 
         $this->attributes['score'] = $value;
+    }
+
+    public function forEvent()
+    {
+        return [
+            'user_id' => $this->user_id,
+            'score' => $this->score,
+        ];
     }
 }

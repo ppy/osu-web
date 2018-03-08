@@ -40,6 +40,7 @@ return [
         'edited' => '最后由 :editor 编辑于 :update_time 。',
         'kudosu_denied' => 'kudosu 被收回',
         'message_placeholder' => '在此处输入您的内容',
+        'message_placeholder_deleted_beatmap' => '该难度已被删除，无法继续讨论',
         'message_type_select' => '选择回复类型',
         'reply_notice' => '按下回车以提交',
         'reply_placeholder' => '在此处输入您的回复',
@@ -64,6 +65,7 @@ return [
         ],
 
         'message_type' => [
+            'hype' => '推荐！',
             'mapper_note' => '备注',
             'praise' => '赞',
             'problem' => '问题',
@@ -87,6 +89,13 @@ return [
             'title' => '由 :mapper 制作的 :title',
         ],
 
+        'sort' => [
+            '_' => '排序：',
+            'created_at' => '创建时间',
+            'timeline' => '时间轴',
+            'updated_at' => '最后更新时间',
+        ],
+
         'stats' => [
             'deleted' => '已删除',
             'mapper_notes' => '备注',
@@ -107,27 +116,35 @@ return [
 
     ],
 
-    'hype' => [ //暂定 Hype => 推荐
-        'button' => '推荐这张谱面',
-        'button-done' => '已经推荐！',
-        'explanation' => '为谱面点赞 ❤ 会增加推荐进度，这会让这张谱面更容易被提名和 Ranked',
-        'section-title' => '推荐进度',
-        'title' => 'Hype',
+    'hype' => [
+        'button' => '推荐谱面！',
+        'button_done' => '已经推荐！',
+        'confirm' => '你确定吗？这将会使用你剩下的 :n 次推荐次数并且无法撤销。',
+        'explanation' => '推荐这张谱面让它更容易被提名然后 ranked ！',
+        'explanation_guest' => '登录并推荐这张谱面让它更容易被提名然后 ranked ！',
+        'new_time' => '你将在 :new_time 后获得新的推荐次数。',
+        'remaining' => '你还可以推荐 :remaining 次。',
+        'required_text' => '推荐进度： :current/:required',
+        'section_title' => '推荐进度',
+        'title' => '推荐',
     ],
 
     'nominations' => [
-        'disqualifed-at' => '于 :time_ago 被 DQ (:reason)', //disqualifed现在好像没有很合适的翻译，姑且先写作DQ了
-        'disqualifed_no_reason' => '没有指定原因',
-        'disqualification-prompt' => 'DQ 的理由？',
+        'disqualification_prompt' => 'DQ 的理由？',
+        'disqualified_at' => '于 :time_ago 被 DQ （:reason）。', //disqualified现在好像没有很合适的翻译，姑且先写作DQ了
+        'disqualified_no_reason' => '没有指定原因',
         'disqualify' => 'Disqualify',
-        'incorrect-state' => '操作出错了，请刷新页面。',
+        'incorrect_state' => '操作出错了，请刷新页面。',
         'nominate' => '提名',
-        'nominated-by' => '被 :users 提名',
-        'nominate-confirm' => '提名这张谱面？',
-        'qualified' => '如果没有问题，预计将于 :date 被 Ranked',
-        'qualified-soon' => '如果没有问题，预计不久将被 Ranked',
-        'required-text' => '提名数: :current/:required',
+        'nominate_confirm' => '提名这张谱面？',
+        'nominated_by' => '被 :users 提名',
+        'qualified' => '如果没有问题，预计将于 :date 被 Ranked 。',
+        'qualified_soon' => '如果没有问题，预计不久将被 Ranked 。',
+        'required_text' => '提名数: :current/:required',
+        'reset_at' => '提名于 :time_ago 被新问题 :discussion 重置。',
+        'reset_confirm' => '你确定吗？提出新的问题会重置提名。',
         'title' => '提名状态',
+        'unresolved_issues' => '仍然有需解决的问题 。',
     ],
 
     'listing' => [

@@ -127,7 +127,7 @@ class @Menu
       if currentTree.indexOf(menuId) == -1
         Fade.out menu
         @$menuLink(menuId).removeClass('js-menu--active')
-
       else
         Fade.in menu
         @$menuLink(menuId).addClass('js-menu--active')
+        $(menu).trigger 'menu:showing'

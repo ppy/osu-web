@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => 'Paramètres de compte <strong>Compte</strong>',
+        'title' => 'Paramètres de <strong>Compte</strong>',
         'title_compact' => 'paramètres',
 
         'avatar' => [
@@ -46,7 +46,6 @@ return [
 
             'user' => [
                 'user_from' => 'localisation actuelle',
-                'user_interests' => 'intérêts',
                 'user_msnm' => 'skype',
                 'user_occ' => 'occupation',
                 'user_twitter' => 'twitter',
@@ -63,13 +62,11 @@ return [
     'update_email' => [
         'email_subject' => "Confirmation du changement d'email d'osu!",
         'update' => 'mettre à jour',
-        'updated' => 'Email modifié',
     ],
 
     'update_password' => [
         'email_subject' => "Confirmation du changement de mot de passe d'osu!",
         'update' => 'mettre à jour',
-        'updated' => 'Mot de passe modifié',
     ],
 
     'playstyles' => [

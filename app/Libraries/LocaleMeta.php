@@ -23,6 +23,10 @@ namespace App\Libraries;
 class LocaleMeta
 {
     const MAPPINGS = [
+        'da' => [
+            'name' => 'Dansk',
+            'flag' => 'DK',
+        ],
         'de' => [
             'name' => 'Deutsch',
             'flag' => 'DE',
@@ -91,6 +95,10 @@ class LocaleMeta
             'name' => 'Русский',
             'flag' => 'RU',
         ],
+        'sv' => [
+            'name' => 'Svenska',
+            'flag' => 'SE',
+        ],
         'th' => [
             'name' => 'ไทย',
             'flag' => 'TH',
@@ -113,13 +121,31 @@ class LocaleMeta
         ],
     ];
 
+    const UNKNOWN = [
+        'name' => '??',
+        'flag' => '__',
+    ];
+
+    // doesn't actually return instance of this class :D
+    public static function find($locale)
+    {
+        return static::MAPPINGS[static::sanitizeCode($locale)] ?? static::UNKNOWN;
+    }
+
     public static function flagFor($locale)
     {
-        return static::MAPPINGS[strtolower($locale)]['flag'] ?? '__';
+        return static::find($locale)['flag'];
     }
 
     public static function nameFor($locale)
     {
-        return static::MAPPINGS[strtolower($locale)]['name'] ?? '??';
+        return static::find($locale)['name'];
+    }
+
+    public static function sanitizeCode($locale)
+    {
+        $ret = strtolower($locale);
+
+        return isset(static::MAPPINGS[$ret]) ? $ret : null;
     }
 }

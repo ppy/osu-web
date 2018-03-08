@@ -27,9 +27,6 @@ class ProfilePage.Beatmaps extends React.PureComponent
       unrankedBeatmapsets: @props.unrankedBeatmapsets
       graveyardBeatmapsets: @props.graveyardBeatmapsets
 
-    perPage =
-      graveyardBeatmapsets: 2
-
     div
       className: 'page-extra'
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
@@ -50,12 +47,11 @@ class ProfilePage.Beatmaps extends React.PureComponent
                   el BeatmapsetPanel, beatmap: beatmapset
 
               div
-                className: 'osu-layout__col text-center',
+                className: 'osu-layout__col',
                 el ProfilePage.ShowMoreLink,
                   collection: beatmapsets
                   propertyName: section
                   pagination: @props.pagination[section]
-                  perPage: perPage[section] ? 6
                   route: laroute.route 'users.beatmapsets',
                     user: @props.user.id
                     type: sectionSnaked

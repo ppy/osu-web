@@ -17,6 +17,8 @@
  */
 
 .profile-stats {
+  @_badge: profile-badge--level;
+
   font-size: @font-size--normal;
   display: flex;
   flex-direction: column;
@@ -39,6 +41,47 @@
     margin-right: 30px;
   }
 
+  &__playtime {
+    color: @yellow;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+
+  &__stat-box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    &--playtime {
+      .@{_badge}:hover ~ & {
+        display: none;
+      }
+    }
+
+    &--experience-bar {
+      flex: 1 0 auto;
+      padding-right: 15px;
+      display: none;
+
+      .@{_badge}:hover ~ & {
+        display: flex;
+      }
+    }
+  }
+
+  &__playtime-main {
+    font-size: 18px;
+  }
+
+  &__playtime-unit {
+    font-weight: 200;
+
+    &::after {
+      content: ' ';
+    }
+  }
+
   &__rank {
     display: inline-block;
     text-align: center;
@@ -55,6 +98,12 @@
       padding-top: 5px;
       padding-bottom: 5px;
     }
+
+    &--playtime {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__value {
@@ -63,6 +112,11 @@
     &--score-ranks {
       text-align: center;
       padding-top: 10px;
+    }
+
+    &--level-progress {
+      letter-spacing: 1px;
+      margin-left: auto;
     }
   }
 }

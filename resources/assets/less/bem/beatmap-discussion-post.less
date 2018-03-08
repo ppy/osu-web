@@ -55,6 +55,7 @@
   &--unread {
     &::before {
       .full-size();
+      content: ' ';
       background-color: @blue-darker;
       width: 5px;
     }
@@ -71,6 +72,15 @@
       margin: 0 5px;
       font-size: @font-size--small;
     }
+
+    &--cancel {
+      .reset-input();
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      width: @beatmap-discussion--reply-padding;
+      height: @beatmap-discussion--reply-padding;
+    }
   }
 
   &__actions {
@@ -82,6 +92,10 @@
 
     .@{_top}--new-reply & {
       justify-content: flex-end;
+    }
+
+    .@{_top}--editing.@{_top}--reply & {
+      margin-top: 5px;
     }
   }
 
@@ -132,6 +146,10 @@
         padding-right: @beatmap-discussion--reply-padding;
       }
     }
+
+    .@{_top}--new-reply & {
+      padding-bottom: 0;
+    }
   }
 
   &__footer {
@@ -140,6 +158,8 @@
     &--notice {
       padding-top: 0;
       padding-bottom: 0;
+      display: flex;
+      align-items: flex-end;
       font-size: @font-size--normal;
     }
 
@@ -203,11 +223,11 @@
 
     &--editor {
       .reset-input();
-      .default-border-radius();
       width: 100%;
       resize: vertical;
-      margin-bottom: 5px;
+      min-height: 3em;
 
+      // --reply part to override top modifier
       &, .@{_top}--reply & {
         font-size: @font-size--phone-input;
 

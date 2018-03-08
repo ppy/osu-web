@@ -64,6 +64,7 @@
 
     &::before {
       .full-size();
+      content: ' ';
       background-color: #000;
       opacity: 0;
       transition: all 120ms;
@@ -115,7 +116,7 @@
       font-size: @font-size--phone-input;
     }
 
-    &:focus, .@{top}.js-parent-focus--focus & {
+    &:focus {
       border-color: @yellow;
     }
 
@@ -132,6 +133,7 @@
     width: 100%;
     flex: none;
     padding-bottom: 5px;
+    order: -1;
 
     @media @desktop {
       align-self: center;
@@ -141,7 +143,7 @@
       text-align: right;
     }
 
-    .@{top}.js-parent-focus--focus & {
+    *:focus ~ & {
       color: #fff;
     }
   }

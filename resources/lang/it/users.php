@@ -48,7 +48,6 @@ return [
     'show' => [
         '404' => 'Utente non trovato! ;_;',
         'age' => ':age anni',
-        'current_location' => 'Si trova in :location',
         'first_members' => "Qui dall'inizio",
         'is_developer' => 'sviluppatore di osu!',
         'is_supporter' => 'sostenitore di osu!',
@@ -95,6 +94,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Nessuna registrazione della performance. :(', // record as "registrazione", like "we have no performance data to show you"
+                'title' => 'Storico',
+
                 'most_played' => [
                     'count' => 'volte giocata',
                     'title' => 'Beatmap più Giocate',
@@ -103,7 +104,6 @@ return [
                     'accuracy' => 'precisione: :percentage',
                     'title' => 'Partite recenti',
                 ],
-                'title' => 'Storico',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponibili',
@@ -129,7 +129,7 @@ return [
             'medals' => [
                 'title' => 'Medaglie',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Recenti',
             ],
             'top_ranks' => [

@@ -18,6 +18,14 @@
 
 class @LineChart
   constructor: (area, @options = {}) ->
+    @margins =
+      top: 20
+      right: 20
+      bottom: 50
+      left: 80
+
+    _.assign @margins, @options.margins
+
     @id = Math.floor(Math.random() * 1000)
     @options.scales ||= {}
     @options.scales.x ||= d3.scaleTime()
@@ -47,40 +55,27 @@ class @LineChart
       .on 'mousemove', @positionTooltip
       .on 'drag', @positionTooltip
 
-    @svgHoverMark = @svgWrapper.append 'circle'
-      .classed 'chart__hover-mark', true
-      .attr 'data-visibility', 'hidden'
-      .attr 'r', 5
-
     @tooltip = @area.append 'div'
       .classed 'chart__tooltip', true
       .attr 'data-visibility', 'hidden'
 
-    @tooltipContainer = @tooltip.append 'div'
-      .classed 'chart__tooltip-container', true
+    @tooltipContent = @tooltip.append 'div'
+      .classed 'chart__tooltip-content', true
 
-    @tooltipY = @tooltipContainer.append 'div'
+    @tooltipY = @tooltipContent.append 'div'
       .classed 'chart__tooltip-text chart__tooltip-text--y', true
 
-    @tooltipX = @tooltipContainer.append 'div'
+    @tooltipX = @tooltipContent.append 'div'
       .classed 'chart__tooltip-text chart__tooltip-text--x', true
 
     @xAxis = d3.axisBottom()
-      .ticks 15
       .tickSizeOuter 0
       .tickPadding 5
 
     @yAxis = d3.axisLeft().ticks(4)
 
     @line = d3.line()
-      .curve(d3.curveMonotoneX)
-
-
-  margins:
-    top: 20
-    right: 20
-    bottom: 50
-    left: 80
+      .curve(@options.curve ? d3.curveMonotoneX)
 
 
   loadData: (data) =>
@@ -130,6 +125,7 @@ class @LineChart
     @xAxis
       .scale @options.scales.x
       .tickSizeInner -@height
+      .ticks @options.ticks?.x ? 15
       .tickFormat @options.formats?.x
       .tickValues @options.tickValues?.x
 
@@ -201,12 +197,10 @@ class @LineChart
 
 
   showTooltip: =>
-    Fade.in @svgHoverMark.node()
     Fade.in @tooltip.node()
 
 
   hideTooltip: =>
-    Fade.out @svgHoverMark.node()
     Fade.out @tooltip.node()
 
 
@@ -229,20 +223,20 @@ class @LineChart
       coords[1] + @margins.top
     ].map (coord) => "#{Math.round coord}px"
 
-    @svgHoverMark
-      .attr 'transform', "translate(#{coords.join(', ')})"
-
     @tooltipX.html (@options.tooltipFormats?.x || @options.formats.x)(d.x)
     @tooltipY.html (@options.tooltipFormats?.y || @options.formats.y)(d.y)
     @tooltip
       .style 'transform', "translate(#{coordsTooltip.join(', ')})"
 
-    unless @tooltipContainer.attr('data-width-set') == '1'
-      width = @tooltipContainer.node().getBoundingClientRect().width * 1.2
-      @tooltipContainer
-        .attr 'data-width-set', '1'
-        .style 'width', "#{width}px"
-        .style 'margin-left', "-#{width / 2}px"
+
+  resetTooltip: =>
+    # Immediately hide so its position can be invisibly reset.
+    @tooltip.style 'transition', 'none'
+    @hideTooltip()
+    @tooltip.style 'transform', null
+    # Out of current loop so browser doesn't optimize out the styling
+    # and ignores previously set transition override.
+    Timeout.set 0, => @tooltip.style 'transition', null
 
 
   lookupIndexFromX: (x) =>
@@ -262,3 +256,5 @@ class @LineChart
 
     @drawAxes()
     @drawLine()
+
+    @resetTooltip()

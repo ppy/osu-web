@@ -30,59 +30,59 @@
 
     <div class="account-edit__input-groups">
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus" data-password-field="current_password">
-                <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.current') }}
-                </div>
-
+            <label class="account-edit-entry" data-password-field="current_password">
                 <input
-                    class="account-edit-entry__input js-form-clear--target"
+                    class="account-edit-entry__input"
                     name="user[current_password]"
                     type="password"
                     required
                 >
 
+                <div class="account-edit-entry__label">
+                    {{ trans('accounts.edit.password.current') }}
+                </div>
+
                 <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
         </div>
 
         <div class="account-edit__input-group">
-            <label class="account-edit-entry js-parent-focus" data-password-field="password">
-                <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.new') }}
-                </div>
-
+            <label class="account-edit-entry" data-password-field="password">
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[password]"
                     type="password"
                     required
                 >
 
+                <div class="account-edit-entry__label">
+                    {{ trans('accounts.edit.password.new') }}
+                </div>
+
                 <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
 
             <label
-                class="account-edit-entry js-parent-focus"
+                class="account-edit-entry"
                 data-password-field="password_confirmation"
             >
-                <div class="account-edit-entry__label">
-                    {{ trans('accounts.edit.password.new_confirmation') }}
-                </div>
-
                 <input
-                    class="account-edit-entry__input js-form-clear--target js-form-confirmation"
+                    class="account-edit-entry__input js-form-confirmation"
                     name="user[password_confirmation]"
                     type="password"
                     required
                 >
+
+                <div class="account-edit-entry__label">
+                    {{ trans('accounts.edit.password.new_confirmation') }}
+                </div>
 
                 <div class="account-edit-entry__error js-form-error--error"></div>
             </label>
         </div>
 
         <div class="account-edit__input-group">
-            <div class="account-edit-entry account-edit-entry--no-label js-parent-focus">
+            <div class="account-edit-entry account-edit-entry--no-label">
                 <button class="btn-osu-big btn-osu-big--account-edit" type="submit" data-disable-with="{{ trans('common.buttons.saving') }}">
                     <div class="btn-osu-big__content">
                         <div class="btn-osu-big__left">

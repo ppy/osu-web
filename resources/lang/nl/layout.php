@@ -36,7 +36,7 @@ return [
             '_' => 'hulp',
             'getWiki' => 'wiki',
             'getFaq' => 'faq',
-            'getSupport' => 'ondersteuning',
+            'getSupport' => 'ondersteuning', //obsolete
         ],
         'beatmaps' => [
             '_' => 'beatmaps',
@@ -55,18 +55,17 @@ return [
         ],
         'community' => [
             '_' => 'community',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'chat',
-            'getSupport' => 'ondersteuning',
             'getLive' => 'live',
             'profile' => 'profiel',
             'tournaments' => 'toernooien',
             'tournaments-index' => 'toernooien',
             'tournaments-show' => 'toernooi info',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'error' => [
             '_' => 'fout',
@@ -88,13 +87,13 @@ return [
 
             'messages' => 'Berichten',
             'settings' => 'Instellingen',
-            'logout' => 'Uitloggen',
+            'logout' => 'Uitloggen', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Help',
         ],
         'store' => [
             '_' => 'winkel',
             'getListing' => 'index',
-            'getCart' => 'winkelwagen',
+            'cart-show' => 'winkelwagen',
 
             'getCheckout' => 'afrekenen',
             'getInvoice' => 'factuur',

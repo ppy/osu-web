@@ -28,6 +28,19 @@ use DB;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Represents a Store Order.
+ *
+ * A user should only have 1 'active cart'.
+ * The difference between the 'incart', 'processing' and 'checkout' statuses are:
+ * - incart -> order is in cart and can be modified; adding a new item will add to the existing order.
+ * - processing -> order is in cart and should not be modified.
+ * - checkout -> cart is cleared; adding a new item should create a new cart.
+ *
+ * The contents of the cart should not be cleared until the payment request is
+ *  successfully sent to the payment provider.
+ * i.e. it should not be cleared immediately on checking out.
+ */
 class Order extends Model
 {
     use SoftDeletes;
@@ -37,6 +50,11 @@ class Order extends Model
     const PENDING_ECHECK = 'PENDING ECHECK';
 
     protected $primaryKey = 'order_id';
+
+    protected $casts = [
+        'shipping' => 'float',
+    ];
+
     protected $dates = ['deleted_at', 'shipped_at', 'paid_at'];
     public $macros = ['itemsQuantities'];
 
@@ -58,6 +76,16 @@ class Order extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeInCart($query)
+    {
+        return $query->whereIn('status', ['incart', 'processing']);
+    }
+
+    public function scopeProcessing($query)
+    {
+        return $query->where('status', 'processing');
     }
 
     public function scopeWithPayments($query)
@@ -82,7 +110,7 @@ class Order extends Model
         ]);
     }
 
-    public static function scopeWherePaymentTransactionId($query, $transactionId, $provider)
+    public function scopeWherePaymentTransactionId($query, $transactionId, $provider)
     {
         return $query
             ->whereIn('order_id', Payment::select('order_id')
@@ -128,10 +156,14 @@ class Order extends Model
         return studly_case(explode('-', $this->transaction_id)[0]);
     }
 
-    public function getSubtotal()
+    public function getSubtotal($forShipping = false)
     {
         $total = 0;
         foreach ($this->items as $i) {
+            if ($forShipping && !$i->product->requiresShipping()) {
+                continue;
+            }
+
             $total += $i->subtotal();
         }
 
@@ -193,6 +225,7 @@ class Order extends Model
             case 'cancelled':
                 return 'Cancelled';
             case 'checkout':
+            case 'processing':
                 return 'Awaiting Payment';
             case 'incart':
                 return '';
@@ -210,9 +243,30 @@ class Order extends Model
         return $this->getSubtotal() + $this->shipping;
     }
 
+    public function canCheckout()
+    {
+        return in_array($this->status, ['incart', 'processing'], true);
+    }
+
     public function isEmpty()
     {
         return !$this->items()->exists();
+    }
+
+    public function isAwaitingPayment()
+    {
+        return in_array($this->status, ['processing', 'checkout'], true);
+    }
+
+    public function isModifiable()
+    {
+        // new cart is status = null
+        return in_array($this->status, ['incart', null], true);
+    }
+
+    public function isProcessing()
+    {
+        return $this->status === 'processing';
     }
 
     public function isPaidOrDelivered()
@@ -286,7 +340,7 @@ class Order extends Model
 
     public function delete()
     {
-        if ($this->status !== 'incart') {
+        if ($this->isModifiable() === false) {
             // in most cases this would return a null key because the lookup for the cart
             // would return a new cart anyway?
             throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
@@ -324,6 +378,11 @@ class Order extends Model
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
+        if ($this->isModifiable() === false) {
+            // FIXME: better handling.
+            return [false, 'Cart cannot be updated at this time.'];
+        }
+
         $params = [
             'id' => array_get($itemForm, 'id'),
             'quantity' => array_get($itemForm, 'quantity'),
@@ -358,11 +417,49 @@ class Order extends Model
         return $result;
     }
 
+    public function releaseItems()
+    {
+        // locking bottleneck
+        DB::connection($this->connection)->transaction(function () {
+            list($items, $products) = $this->lockForReserve();
+
+            foreach ($items as $item) {
+                $item->product->release($item->quantity);
+            }
+        });
+    }
+
+    public function reserveItems()
+    {
+        // locking bottleneck
+        DB::connection($this->connection)->transaction(function () {
+            list($items, $products) = $this->lockForReserve();
+
+            foreach ($items as $item) {
+                $item->product->reserve($item->quantity);
+            }
+        });
+    }
+
+    public function switchItems($orderItem, $newProduct)
+    {
+        DB::connection($this->connection)->transaction(function () use ($orderItem, $newProduct) {
+            $this->lockForReserve([$orderItem->product_id, $newProduct->product_id]);
+
+            $quantity = $orderItem->quantity;
+            $orderItem->product->release($quantity);
+            $orderItem->product()->associate($newProduct);
+            $newProduct->reserve($quantity);
+
+            $orderItem->saveOrExplode();
+        });
+    }
+
     public static function cart($user)
     {
         $cart = static::query()
             ->where('user_id', $user->user_id)
-            ->where('status', 'incart')
+            ->inCart()
             ->with('items.product')
             ->first();
 
@@ -388,19 +485,48 @@ class Order extends Model
         return function ($query) {
             $query = clone $query;
 
-            $ordersTable = (new Order)->getTable();
-            $orderItemsTable = (new OrderItem)->getTable();
-            $productsTable = (new Product)->getTable();
+            $order = new Order();
+            $orderItem = new OrderItem();
+            $product = new Product();
 
             $query
-                ->join($orderItemsTable, "{$ordersTable}.order_id", '=', "{$orderItemsTable}.order_id")
-                ->join($productsTable, "{$orderItemsTable}.product_id", '=', "${productsTable}.product_id")
-                ->groupBy("{$orderItemsTable}.product_id")
-                ->groupBy('name')
-                ->select(DB::raw("SUM({$orderItemsTable}.quantity) AS quantity, name, {$orderItemsTable}.product_id"));
+                ->join(
+                    $orderItem->getTable(),
+                    $order->qualifyColumn('order_id'),
+                    '=',
+                    $orderItem->qualifyColumn('order_id')
+                )
+                ->join(
+                    $product->getTable(),
+                    $orderItem->qualifyColumn('product_id'),
+                    '=',
+                    $product->qualifyColumn('product_id')
+                )
+                ->whereNotNull($product->qualifyColumn('weight'))
+                ->groupBy($orderItem->qualifyColumn('product_id'))
+                ->groupBy($product->qualifyColumn('name'))
+                ->select(
+                    DB::raw("SUM({$orderItem->qualifyColumn('quantity')}) AS quantity"),
+                    $product->qualifyColumn('name'),
+                    $orderItem->qualifyColumn('product_id')
+                );
 
             return $query->get();
         };
+    }
+
+    private function lockForReserve(array $productIds = null)
+    {
+        $query = $this->items()->with('product')->lockForUpdate();
+        if ($productIds) {
+            $query->whereIn('product_id', $productIds);
+        }
+
+        $items = $query->get();
+        $productIds = array_pluck($items, 'product_id');
+        $products = Product::lockForUpdate()->whereIn('product_id', $productIds)->get();
+
+        return [$items, $products];
     }
 
     private function removeOrderItem(array $params)
@@ -487,7 +613,9 @@ class Order extends Model
         } elseif (!$product->enabled) {
             return [false, 'invalid item'];
         } elseif ($item->quantity > $product->max_quantity) {
-            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='/store/cart'>shopping cart</a> to confirm your current order"];
+            $route = route('store.cart.show');
+
+            return [false, "you can only order {$product->max_quantity} of this item per order. visit your <a href='{$route}'>shopping cart</a> to confirm your current order"];
         }
 
         return [true, ''];

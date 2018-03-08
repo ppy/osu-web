@@ -46,7 +46,6 @@ return [
 
             'user' => [
                 'user_from' => 'проживание',
-                'user_interests' => 'интересы',
                 'user_msnm' => 'скайп',
                 'user_occ' => 'профессия',
                 'user_twitter' => 'твиттер',
@@ -63,13 +62,11 @@ return [
     'update_email' => [
         'email_subject' => 'osu! подтверждение смены почты',
         'update' => 'изменить',
-        'updated' => 'Почта изменена',
     ],
 
     'update_password' => [
         'email_subject' => 'osu! подтверждение нового пароля',
         'update' => 'изменить',
-        'updated' => 'Пароль изменён',
     ],
 
     'playstyles' => [

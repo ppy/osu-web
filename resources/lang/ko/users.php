@@ -57,7 +57,6 @@ return [
     'show' => [
         '404' => '사용자를 찾을 수 없습니다! ;_;',
         'age' => ':age살',
-        'current_location' => ':location에 거주',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!개발진',
         'is_supporter' => 'osu!서포터',
@@ -108,6 +107,8 @@ return [
             ],
             'historical' => [
                 'empty' => '기록된 플레이가 없습니다. :(',
+                'title' => '기록',
+
                 'most_played' => [
                     'count' => '플레이 횟수',
                     'title' => '가장 많이 플레이한 비트맵',
@@ -116,7 +117,6 @@ return [
                     'accuracy' => '정확도: :percentage',
                     'title' => '최근 플레이 (24시간)',
                 ],
-                'title' => '기록',
             ],
             'kudosu' => [
                 'available' => '사용 가능한 Kudosu',
@@ -167,7 +167,7 @@ return [
                 'empty' => '아직 아무런 업적 메달도 받지 못했네요. ;_;',
                 'title' => '메달',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [

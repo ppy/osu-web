@@ -1,0 +1,118 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.supporter-promo {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 10px 20px;
+
+  @media @desktop {
+    flex-direction: row;
+    padding: 0 75px;
+    margin: 0 55px 20px;
+    height: 200px;
+  }
+
+  @media @mobile {
+    align-items: center;
+    padding: 20px 60px;
+  }
+
+  background-color: fade(@pink-lighter, 75%);
+
+  border-radius: @border-radius-large;
+  .default-box-shadow;
+
+  &__text-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    @media @desktop {
+     padding: 50px 0;
+     padding-right: 50px;
+     height: 100%;
+    }
+
+    @media @mobile {
+      text-align: center;
+    }
+  }
+
+  &__heading {
+    font-size: @font-size--large;
+    font-style: italic;
+    font-weight: 300;
+    color: @pink-darker;
+    margin: 0 0 20px;
+  }
+
+  &__heart {
+    .at2x-simple('/images/badges/heart.png');
+    .circle(75px);
+    background-size: 75px 75px;
+
+    margin-top: 98px;
+
+    @media @desktop {
+      margin-top: 70px;
+    }
+
+    box-shadow: 0 0 10px 3px @pink;
+  }
+
+  &__pippi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .at2x-simple('/images/layout/pippi.png');
+
+    width: 164px;
+    height: 234px;
+
+    background-size: 164px 234px;
+
+    @media @desktop {
+      flex: none;
+      order: 1;
+      height: auto;
+      background-size: 164px;
+      background-position-y: -28px;
+    }
+  }
+
+  &__text {
+    font-size: @font-size--title-small;
+    color: @pink-dark;
+
+    &--link {
+      font-weight: 700;
+
+      &:link, &:visited, &:hover, &:active {
+        color: @pink-dark;
+      }
+    }
+
+    &--small {
+      font-size: @font-size--normal;
+      margin: 0;
+    }
+  }
+}

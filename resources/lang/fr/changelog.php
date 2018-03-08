@@ -21,7 +21,7 @@
 return [
     'feed_title' => 'flux',
     'generic' => 'Corrections de bugs et améliorations mineures.',
-    'users-online' => '1 utilisateur en ligne|:users utilisateurs en ligne',
+    'users-online' => ':count utilisateur en ligne|:users utilisateurs en ligne',
 
     'prefixes' => [
         'add' => 'ajout',

@@ -21,6 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
+            'is_hype' => 'Can not undo hyping.',
             'has_reply' => 'Can not delete discussion with replies',
         ],
         'nominate' => [
@@ -32,7 +33,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Please wait a while before casting more votes',
-            'owner' => 'Can not vote own discussion!',
+            'owner' => "Can't vote on own discussion.",
+            'wrong_beatmapset_state' => 'Can only vote on discussions of pending beatmaps.',
         ],
     ],
 

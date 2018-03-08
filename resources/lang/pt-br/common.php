@@ -19,31 +19,49 @@
  */
 
 return [
-    'confirmation' => 'Tem certeza?',
+    'confirmation' => 'Você tem certeza?',
     'saved' => 'Salvo',
+
+    'array_and' => [
+        'words_connector' => ', ',
+        'two_words_connector' => ' e ',
+        'last_word_connector' => ', e ',
+    ],
 
     'buttons' => [
         'cancel' => 'Cancelar',
         'delete' => 'Excluir',
-        'permalink' => 'link permanente',
-        'post' => 'Publicar',
+        'permalink' => 'copiar link da postagem',
+        'permalink_copied' => 'link copiado',
+        'post' => 'Enviar',
         'reply' => 'Responder',
-        'reset' => 'Limpar',
+        'reply_reopen' => 'Responder e reabrir',
+        'reply_resolve' => 'Reply and resolver',
+        'reset' => 'Reiniciar',
         'save' => 'Salvar',
         'saving' => 'Salvando...',
-        'show_more' => 'exibir mais',
+        'show_more' => 'mostrar mais',
         'upload_image' => 'enviar imagem',
     ],
 
     'count' => [
         'item' => ':count unidade|:count unidades',
+        'months' => ':count mês|:count meses',
+        'years' => ':count ano|:count anos',
+    ],
+
+    'datetime' => [
+        'year_month' => [
+            'moment' => 'MMMM AAAA',
+            'php' => 'MMMM a',
+        ],
     ],
 
     'device' => [
         'keyboard' => 'Teclado',
         'mouse' => 'Mouse',
         'tablet' => 'Mesa digitalizadora',
-        'touch' => 'Touch screen',
+        'touch' => 'Touch Screen',
     ],
 
     'dropzone' => [
@@ -59,7 +77,7 @@ return [
         'count_100' => '100',
         'count_300' => '300',
         'count_50' => '50',
-        'count_geki' => 'MÁX',
+        'count_geki' => 'MAX',
         'count_katu' => '200',
         'count_miss' => 'Erro',
     ],
@@ -68,7 +86,7 @@ return [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
-        'remaining' => 'Tempo restante',
+        'remaining' => 'Tempo sobrando',
     ],
 
     'title' => [

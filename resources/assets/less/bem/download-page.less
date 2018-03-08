@@ -1,0 +1,79 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.download-page {
+  @number-width: 30px;
+  @number-margin-right: 5px;
+
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+
+  padding: 40px 20px;
+  flex-direction: column;
+  align-items: center;
+
+  @media @desktop {
+    padding: 40px 100px;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &__accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background-color: @pink;
+  }
+
+  &__link {
+    .link-pink-light();
+  }
+
+  &__step {
+    width: 220px;
+    padding-bottom: 20px;
+  }
+
+  &__step-number {
+    .circle(@number-width);
+    .center-content();
+
+    border: solid @pink 2px;
+    color: #fff;
+    font-weight: 700;
+    margin-right: @number-margin-right;
+  }
+
+  &__text {
+    color: #fff;
+    font-size: 11px;
+
+    &--description {
+      padding-left: (@number-width + @number-margin-right);
+    }
+
+    &--title {
+      .center-content();
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}

@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Закреплённые темы',
+    'slogan' => 'опасно играть в одиночестве.',
+    'subforums' => 'Подфорумы',
+    'title' => 'osu!сообщество',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,47 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Закреплённые темы',
     'post' => [
         'confirm_destroy' => 'Удалить ответ?',
         'confirm_restore' => 'Восстановить ответ?',
         'edited' => 'Последний раз отредактирован :user в :when, отредактирован :count раз.',
         'posted_at' => 'написано :when',
+
         'actions' => [
             'destroy' => 'Удалить ответ',
             'restore' => 'Восстановить ответ',
             'edit' => 'Редактировать ответ',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Перейти к ответу',
         'post_number_input' => 'введи номер ответа',
         'total_posts' => ':posts_count ответов',
     ],
-    'subforums' => 'Подфорумы',
-    'title' => 'osu!сообщество',
-    'slogan' => 'опасно играть в одиночестве.',
+
     'topic' => [
+        'go_to_latest' => 'перейти к последнему ответу',
+        'latest_post' => ':when от :user',
+        'latest_reply_by' => 'последний ответ от :user',
+        'new_topic' => 'Создать новую тему',
+        'post_reply' => 'Ответить',
+        'reply_box_placeholder' => 'Нажми тут для ответа',
+        'started_by' => 'от :user',
+
         'create' => [
-            'placeholder' => [
-                'body' => 'Содержимое',
-                'title' => 'Заголовок темы',
-            ],
             'preview' => 'Предпросмотр',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Редактирование',
             'submit' => 'Опубликовать',
+
+            'placeholder' => [
+                'body' => 'Содержимое',
+                'title' => 'Заголовок темы',
+            ],
         ],
-        'go_to_latest' => 'перейти к последнему ответу',
+
         'jump' => [
             'enter' => 'нажми для ввода определённого номера ответа',
             'first' => 'перейти к первому ответу',
@@ -83,20 +95,16 @@ return [
             'next' => 'пропустить следующие 10 ответов',
             'previous' => 'вернуться на предыдущие 10 ответов',
         ],
-        'latest_post' => ':when от :user',
-        'latest_reply_by' => 'последний ответ от :user',
-        'new_topic' => 'Создать новую тему',
+
         'post_edit' => [
             'cancel' => 'Отмена',
             'post' => 'Сохранить',
+
             'zoom' => [
                 'start' => 'Полный экран',
                 'end' => 'Выйти из полного экрана',
             ],
         ],
-        'post_reply' => 'Ответить',
-        'reply_box_placeholder' => 'Нажми тут для ответа',
-        'started_by' => 'от :user',
     ],
 
     'topic_watches' => [
@@ -127,7 +135,6 @@ return [
         '_' => 'Темы',
 
         'actions' => [
-            'reply' => 'Показать окно ответа',
             'reply_with_quote' => 'Ответить с цитированием',
         ],
 
@@ -221,16 +228,16 @@ return [
         ],
 
         'show' => [
-            'total_posts' => 'Всего ответов',
             'deleted-posts' => 'Удалено ответов',
+            'total_posts' => 'Всего ответов',
 
             'feature_vote' => [
                 'current' => 'Текущий приоритет: +:count',
                 'do' => 'Продвинуть данный запрос',
 
                 'user' => [
-                    'current' => 'У тебя осталось :votes голосов.',
                     'count' => '{0} нет голосов|{1} :count голос|[2,*] :count голосов',
+                    'current' => 'У тебя осталось :votes голосов.',
                     'not_enough' => 'У тебя больше нет голосов',
                 ],
             ],
@@ -239,9 +246,9 @@ return [
                 'vote' => 'Голосовать',
 
                 'detail' => [
-                    'total' => 'Всего голосов: :count',
-                    'ended' => 'Опрос закончен :time',
                     'end_time' => 'Опрос будет закрыт :time',
+                    'ended' => 'Опрос закончен :time',
+                    'total' => 'Всего голосов: :count',
                 ],
             ],
         ],
@@ -253,5 +260,4 @@ return [
             'watch-1' => 'Подписаться на тему',
         ],
     ],
-
 ];

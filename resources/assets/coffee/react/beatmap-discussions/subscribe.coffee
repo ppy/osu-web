@@ -32,22 +32,26 @@ class BeatmapDiscussions.Subscribe extends React.PureComponent
 
   render: =>
     el BigButton,
-      text: osu.trans "beatmapset_watches.button.action.to_#{+!@props.beatmapset.is_watched}"
-      icon: if @props.beatmapset.is_watched then 'eye-slash' else 'eye'
+      text: osu.trans "beatmapset_watches.button.action.to_#{+!@isWatching()}"
+      icon: if @isWatching() then 'eye-slash' else 'eye'
       modifiers: ['full']
       props:
         onClick: @toggleWatch
         disabled: @state.loading
 
 
+  isWatching: =>
+    @props.beatmapset.current_user_attributes?.is_watching
+
+
   toggleWatch: =>
     @setState loading: true
 
     @xhr = $.ajax laroute.route('beatmapsets.watches.update', watch: @props.beatmapset.id),
-      type: if @props.beatmapset.is_watched then 'DELETE' else 'PUT'
+      type: if @isWatching() then 'DELETE' else 'PUT'
       dataType: 'json'
     .done (data) =>
-      $.publish 'beatmapset:update', beatmapset: data
+      $.publish 'beatmapsetDiscussions:update', watching: !@isWatching()
     .fail (xhr) =>
       osu.emitAjaxError() xhr
     .always =>

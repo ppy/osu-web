@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @extends('master', [
-    'titleAppend' => $topic->topic_title,
+    'titlePrepend' => $topic->topic_title,
     "body_additional_classes" => 't-forum-'.$topic->forum->categorySlug(),
     'canonicalUrl' => route('forum.topics.show', $topic->topic_id),
     'search' => [
@@ -172,14 +172,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="forum-post__actions forum-post__actions--reply">
-                                <button type="button" class="js-forum-topic-reply--close btn-circle hidden">
-                                    <span class="btn-circle__content">
-                                        <i class="fa fa-close"></i>
-                                    </span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -365,12 +357,18 @@
                 @if (priv_check('ForumTopicReply', $topic)->can())
                     <button
                         type="button"
-                        class="btn-circle btn-circle--topic-nav js-forum-topic-reply--new"
-                        data-tooltip-float="fixed"
-                        title="{{ trans('forum.topics.actions.reply') }}"
+                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
                     >
-                        <span class="btn-circle__content">
-                            <i class="fa fa-plus"></i>
+                        <span class="btn-osu-big__content">
+                            <span class="btn-osu-big__icon">
+                                <i class="fa fa-comment"></i>
+                            </span>
+
+                            <span class="btn-osu-big__left">
+                                <span class="btn-osu-big__text-top">
+                                    {{ trans('forum.topics.actions.reply') }}
+                                </span>
+                            </span>
                         </span>
                     </button>
                 @endif

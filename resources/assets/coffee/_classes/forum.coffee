@@ -35,6 +35,8 @@ class @Forum
     @posts = document.getElementsByClassName('js-forum-post')
     @loadMoreLinks = document.getElementsByClassName('js-forum-posts-show-more')
 
+    @maxPosts = 250
+
     $(document).on 'turbolinks:load osu:page:change', @boot
 
     $(window).on 'throttled-scroll', @refreshCounter
@@ -111,7 +113,7 @@ class @Forum
       .closest('div')
       .toggleClass 'hidden', lastPostLoaded
 
-    if !(currentUser.isAdmin || currentUser.isGMT || currentUser.isQAT)
+    if !(currentUser.is_admin || currentUser.is_gmt || currentUser.is_qat)
       $('.js-post-delete-toggle').hide()
 
     if lastPostLoaded
@@ -239,26 +241,32 @@ class @Forum
 
     $.get(window.canonicalUrl, options)
     .done (data) =>
+      scrollReference = $refPost[0]
+      scrollReferenceTop = scrollReference.getBoundingClientRect().top
+
       if mode == 'previous'
-        scrollReference = $refPost[0]
-        scrollReferenceTop = scrollReference.getBoundingClientRect().top
-
         $linkDiv.after data
-
-        # Restore scroll position after prepending the page.
-        # Called after refreshLoadMoreLinks to allow header changes
-        # to be included in calculation.
-        restoreScrollPosition = =>
-          x = window.pageXOffset
-          currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
-          currentDocumentScrollTop = window.pageYOffset
-          targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
-          window.scrollTo x, targetDocumentScrollTop
+        toRemoveStart = @maxPosts
+        toRemoveEnd = @posts.length
       else
         $linkDiv.before data
+        toRemoveStart = 0
+        toRemoveEnd = @posts.length - @maxPosts
+
+      if toRemoveStart < toRemoveEnd
+        parent = @posts[0].parentNode
+        parent.removeChild(post) for post in _.slice(@posts, toRemoveStart, toRemoveEnd)
 
       @refreshLoadMoreLinks()
-      restoreScrollPosition?()
+
+      # Restore scroll position after adding/removing posts.
+      # Called after refreshLoadMoreLinks to allow header changes
+      # to be included in calculation.
+      x = window.pageXOffset
+      currentScrollReferenceTop = scrollReference.getBoundingClientRect().top
+      currentDocumentScrollTop = window.pageYOffset
+      targetDocumentScrollTop = currentDocumentScrollTop + currentScrollReferenceTop - scrollReferenceTop
+      window.scrollTo x, targetDocumentScrollTop
 
       osu.pageChange()
       $link.attr 'data-failed', '0'

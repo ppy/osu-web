@@ -51,7 +51,7 @@ class TopicVote
             $this->validationErrors()->reset();
 
             if (!isset($this->params['option_ids']) || count($this->params['option_ids']) < 1) {
-                $this->validationErrors()->add('option_ids', 'required');
+                $this->validationErrors()->add('option_ids', '.required');
             }
 
             if (count($this->params['option_ids'] ?? []) > $this->topic->poll_max_options) {

@@ -17,6 +17,20 @@
 ###
 
 class @BeatmapDiscussionHelper
+  @DEFAULT_BEATMAP_ID: '-'
+  @DEFAULT_MODE: 'timeline'
+  @DEFAULT_FILTER: 'total'
+
+  @discussionMode: (discussion) ->
+    if discussion.beatmap_id?
+      if discussion.timestamp?
+        'timeline'
+      else
+        'general'
+    else
+      'generalAll'
+
+
   @formatTimestamp: (value) =>
     return unless value?
 
@@ -28,49 +42,18 @@ class @BeatmapDiscussionHelper
     "#{_.padStart m, 2, 0}:#{_.padStart s, 2, 0}.#{_.padStart ms, 3, 0}"
 
 
-  # don't forget to update BeatmapDiscussionsController@show
-  # when changing this.
-  @hash: ({beatmapId, discussionId, isEvents} = {}) =>
-    if discussionId?
-      "#/#{discussionId}"
-    else if beatmapId?
-      "#:#{beatmapId}"
-    else if isEvents
-      '#events'
-    else
-      ''
-
-
-  # see @hash
-  @hashParse: (url = document.location.href) ->
-    hashStart = url.indexOf('#')
-
-    hash =
-      if hashStart == -1
-        ''
-      else
-        url.substr(hashStart + 1)
-
-    id = parseInt(hash[1..], 10)
-
-    if hash[0] == '/'
-      discussionId: id
-    else if hash[0] == ':'
-      beatmapId: id
-    else if hash == 'events'
-      mode: 'events'
-    else
-      {}
-
-
   @linkTimestamp: (text, classNames = []) =>
     text
-      .replace /(^|\s|\()((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\))?)(?=$|\s|\)|\.|,)/g, (_, prefix, text, m, s, ms, range) =>
-        "#{prefix}#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+      .replace /\b((\d{2}):(\d{2})[:.](\d{3})( \([\d,|]+\)|\b))/g, (_, text, m, s, ms, range) =>
+        "#{osu.link(Url.openBeatmapEditor("#{m}:#{s}:#{ms}#{range ? ''}"), text, classNames: classNames)}"
+
+
+  @maxlength: 750
 
 
   @messageType:
     icon:
+      hype: 'bullhorn'
       mapperNote: 'sticky-note-o'
       praise: 'heart'
       problem: 'exclamation-circle'
@@ -90,6 +73,103 @@ class @BeatmapDiscussionHelper
       _.intersection(user.groups, ['admin', 'qat', 'bng'])[0]
     else
       switch
-        when user.isAdmin then 'admin'
-        when user.isQAT then 'qat'
-        when user.isBNG then 'bng'
+        when user.is_admin then 'admin'
+        when user.is_qat then 'qat'
+        when user.is_bng then 'bng'
+
+
+  @stateFromDiscussion: (discussion) =>
+    return {} if !discussion?
+
+    discussionId: discussion.id
+    beatmapsetId: discussion.beatmapset_id
+    beatmapId: discussion.beatmap_id ? @DEFAULT_BEATMAP_ID
+    mode: @discussionMode(discussion)
+
+
+  # Don't forget to update BeatmapDiscussionsController@show when changing this.
+  @url: (options = {}) =>
+    {
+      beatmapsetId
+      beatmapId
+      beatmap
+      mode
+      filter
+      discussionId
+      discussions # for validating discussionId and getting relevant params
+      discussion
+    } = options
+
+    params = {}
+
+    if beatmap?
+      beatmapsetId = beatmap.beatmapset_id
+      beatmapId = beatmap.id
+
+    params.beatmapset = beatmapsetId
+    params.mode = mode ? @DEFAULT_MODE
+
+    params.beatmap =
+      if !beatmapId? || params.mode in ['events', 'generalAll']
+        @DEFAULT_BEATMAP_ID
+      else
+        beatmapId
+
+    if filter? && filter != @DEFAULT_FILTER && params.mode != 'events'
+      params.filter = filter
+
+    if discussion?
+      discussionId = discussion.id
+
+    if discussionId?
+      if !discussion? && discussions?
+        discussion = _.find discussions, id: discussionId
+
+      if discussion?
+        discussionState = @stateFromDiscussion(discussion) if discussion?
+        params.beatmapset = discussionState.beatmapsetId
+        params.beatmap = discussionState.beatmapId
+        params.mode = discussionState.mode
+
+    url = new URL(document.location)
+    url.pathname = laroute.route 'beatmapsets.discussion', params
+    url.hash = if discussionId? then url.hash = "/#{discussionId}" else ''
+
+    url.toString()
+
+
+  # see @url
+  @urlParse: (urlString, discussions, options = {}) ->
+    options.forceDiscussionId ?= false
+
+    url = new URL(urlString ? document.location.href)
+    params = url.searchParams
+    [__, pathBeatmapsets, beatmapsetId, pathDiscussions, beatmapId, mode, filter] = url.pathname.split '/'
+
+    return if pathBeatmapsets != 'beatmapsets' || pathDiscussions != 'discussion'
+
+    beatmapsetId = parseInt(beatmapsetId, 10)
+    beatmapId = parseInt(beatmapId, 10)
+
+    ret =
+      beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
+      beatmapId: if isFinite(beatmapId) then beatmapId
+      mode: mode ? @DEFAULT_MODE
+      filter: filter ? @DEFAULT_FILTER
+
+    if url.hash[1] == '/'
+      discussionId = parseInt(url.hash[2..], 10)
+
+      if isFinite(discussionId)
+        if discussions?
+          discussion = _.find discussions, id: discussionId
+
+          _.assign ret, @stateFromDiscussion(discussion)
+        else if options.forceDiscussionId
+          ret.discussionId = discussionId
+
+    ret
+
+
+  @validMessageLength: (message) =>
+    message.length > 0 && message.length <= @maxlength

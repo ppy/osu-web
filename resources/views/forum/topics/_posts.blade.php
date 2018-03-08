@@ -32,12 +32,18 @@
         if ($post->trashed() && $postPosition > 0) {
             $postPosition--;
         }
+
+        // sync with:
+        // - Post#isBeatmapsetPost (position check)
+        // - Post#edit (option below)
+        // - Post#delete (option below)
+        $isBeatmapsetPost = $postPosition === 1 && $post->isBeatmapsetPost();
     @endphp
     @include('forum.topics._post', [
         'post' => $post,
         'options' => [
-            'deleteLink' => $withDeleteLink,
-            'editLink' => priv_check('ForumPostEdit', $post)->can(),
+            'deleteLink' => !$isBeatmapsetPost && $withDeleteLink,
+            'editLink' => !$isBeatmapsetPost && priv_check('ForumPostEdit', $post)->can(),
             'postPosition' => $postPosition,
             'replyLink' => priv_check('ForumTopicReply', $topic)->can(),
             'signature' => $topic->forum->enable_sigs,

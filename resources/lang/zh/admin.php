@@ -19,9 +19,15 @@
  */
 
 return [
-
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => '重新生成',
+            'regenerating' => '重新生成中。。。',
+            'remove' => '移除',
+            'removing' => '移除中。。。',
+        ],
         'show' => [
+            'covers' => '管理谱面封面',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '启用',

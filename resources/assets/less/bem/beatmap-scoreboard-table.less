@@ -1,0 +1,172 @@
+/**
+ *    Copyright 2015-2017 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.beatmap-scoreboard-table {
+  @_top: beatmap-scoreboard-table;
+  @row-height: 1.8em;
+
+  width: 100%;
+  overflow-x: auto;
+
+  .row-colour(@colour) {
+    > td {
+      background-color: lighten(@colour, 20%);
+    }
+
+    &:nth-child(odd) {
+      > td {
+        background-color: lighten(@colour, 20%);
+      }
+    }
+
+    &:hover {
+      > td {
+        background-color: @colour;
+      }
+    }
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 800px;
+    font-size: 12px;
+  }
+
+  &__grade {
+    width: 100%;
+    height: @row-height;
+    .center-content();
+  }
+
+  &__header {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+
+    // in order of columns
+    &--rank {
+      width: 40px;
+      text-align: right;
+    }
+
+    &--grade {
+      width: 70px;
+    }
+
+    &--score {
+      width: 70px;
+    }
+
+    &--accuracy {
+      width: 70px;
+    }
+
+    &--flag {
+      width: 25px;
+    }
+
+    &--maxcombo {
+      width: 100px;
+    }
+
+    &--hitstat {
+      max-width: 45px;
+      min-width: 30px;
+    }
+
+    &--miss {
+      width: 70px;
+    }
+
+    &--pp {
+      width: 30px;
+    }
+
+    &--mods {
+      min-width: 50px;
+      padding-left: 5px;
+    }
+  }
+
+  &__body-row {
+    height: @row-height;
+
+    > td:first-child {
+      // rounded corners for left side
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+    > td:last-child {
+      // ...and right side
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      padding-right: 10px;
+    }
+
+    // styles applied to td instead of tr 'cuz firefox is a poop (can't do rounded corners on tr)
+    &:nth-child(odd) {
+      > td {
+        background-color: #eee;
+      }
+    }
+
+    &:hover {
+      > td {
+        background-color: #ccc;
+      }
+    }
+
+    &--friend {
+      .row-colour(@yellow-light);
+    }
+
+    &--self {
+      .row-colour(@green-light);
+    }
+  }
+
+  &__mods {
+    width: 1%; // don't let the column expand unless required
+  }
+
+  &__perfect {
+    color: @green;
+  }
+
+  &__rank {
+    font-weight: 700;
+    text-align: right;
+  }
+
+  &__score {
+    padding-right: 10px;
+
+    .@{_top}__body-row--first & {
+      font-weight: 700;
+    }
+  }
+
+  &__user-link {
+    color: #555;
+  }
+
+  &__zero {
+    color: #aaa;
+  }
+}

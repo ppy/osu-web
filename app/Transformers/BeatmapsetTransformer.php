@@ -25,6 +25,7 @@ use App\Models\Beatmapset;
 use App\Models\BeatmapsetEvent;
 use App\Models\BeatmapsetWatch;
 use App\Models\DeletedUser;
+use App\Models\User;
 use Auth;
 use League\Fractal;
 
@@ -34,10 +35,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         'availability',
         'beatmaps',
         'converts',
+        'current_user_attributes',
         'description',
-        'recentFavourites',
+        'discussions',
+        'events',
+        'genre',
+        'language',
         'nominations',
         'ratings',
+        'recent_favourites',
+        'related_users',
         'user',
     ];
 
@@ -70,7 +77,16 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
             'status' => $beatmapset->status(),
             'has_scores' => $beatmapset->hasScores(),
             'discussion_enabled' => $beatmapset->discussion_enabled,
-            'is_watched' => BeatmapsetWatch::check($beatmapset, Auth::user()),
+            'can_be_hyped' => $beatmapset->canBeHyped(),
+            'hype' => [
+                'current' => $beatmapset->hype,
+                'required' => $beatmapset->requiredHype(),
+            ],
+            'nominations' => [
+                'current' => $beatmapset->nominations,
+                'required' => $beatmapset->requiredNominationCount(),
+            ],
+            'legacy_thread_url' => $beatmapset->thread_id !== 0 ? osu_url('legacy-forum-thread-prefix').$beatmapset->thread_id : null,
         ];
     }
 
@@ -88,6 +104,47 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeCurrentUserAttributes(Beatmapset $beatmapset)
+    {
+        $currentUser = Auth::user();
+
+        if ($currentUser === null) {
+            return;
+        }
+
+        $hypeValidation = $beatmapset->validateHypeBy($currentUser);
+
+        $ret = [
+            'can_hype' => $hypeValidation['result'],
+            'can_hype_reason' => $hypeValidation['message'] ?? null,
+            'is_watching' => BeatmapsetWatch::check($beatmapset, Auth::user()),
+            'new_hype_time' => json_time($currentUser->newHypeTime()),
+            'remaining_hype' => $currentUser->remainingHype(),
+        ];
+
+        return $this->item($beatmapset, function () use ($ret) {
+            return $ret;
+        });
+    }
+
+    public function includeEvents(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->events->all(),
+            new BeatmapsetEventTransformer()
+        );
+    }
+
+    public function includeGenre(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset->genre, new GenreTransformer);
+    }
+
+    public function includeLanguage(Beatmapset $beatmapset)
+    {
+        return $this->item($beatmapset->language, new LanguageTransformer);
+    }
+
     public function includeNominations(Beatmapset $beatmapset)
     {
         if (!in_array($beatmapset->status(), ['wip', 'pending', 'qualified'], true)) {
@@ -102,29 +159,17 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
 
         if ($beatmapset->isPending()) {
             $currentUser = Auth::user();
+            $disqualificationEvent = $beatmapset->disqualificationEvent();
+            $resetEvent = $beatmapset->resetEvent();
 
-            $nominations = $beatmapset->recentEvents()->get();
-
-            foreach ($nominations as $nomination) {
-                if ($nomination->type === BeatmapsetEvent::DISQUALIFY) {
-                    $disqualifyEvent = $nomination;
-                }
-
-                if ($currentUser !== null &&
-                    $nomination->user_id === $currentUser->user_id &&
-                    $nomination->type === BeatmapsetEvent::NOMINATE) {
-                    $alreadyNominated = true;
-                }
+            if ($resetEvent !== null && $resetEvent->type === BeatmapsetEvent::NOMINATION_RESET) {
+                $result['nomination_reset'] = json_item($resetEvent, 'BeatmapsetEvent');
             }
-
-            if (isset($disqualifyEvent)) {
-                $result['disqualification'] = [
-                    'reason' => $disqualifyEvent->comment,
-                    'created_at' => json_time($disqualifyEvent->created_at),
-                ];
+            if ($disqualificationEvent !== null) {
+                $result['disqualification'] = json_item($disqualificationEvent, 'BeatmapsetEvent');
             }
             if ($currentUser !== null) {
-                $result['nominated'] = $alreadyNominated ?? false;
+                $result['nominated'] = $beatmapset->nominationsSinceReset()->where('user_id', $currentUser->user_id)->exists();
             }
         } elseif ($beatmapset->qualified()) {
             $eta = $beatmapset->rankingETA();
@@ -147,6 +192,14 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         });
     }
 
+    public function includeDiscussions(Beatmapset $beatmapset)
+    {
+        return $this->collection(
+            $beatmapset->beatmapDiscussions,
+            new BeatmapDiscussionTransformer()
+        );
+    }
+
     public function includeUser(Beatmapset $beatmapset)
     {
         return $this->item(
@@ -155,32 +208,36 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
         );
     }
 
-    public function includeBeatmaps(Beatmapset $beatmapset)
+    public function includeBeatmaps(Beatmapset $beatmapset, Fractal\ParamBag $params)
     {
-        return $this->collection(
-            $beatmapset->beatmaps,
-            new BeatmapTransformer()
-        );
+        $rel = $params->get('with_trashed') ? 'allBeatmaps' : 'beatmaps';
+
+        return $this->collection($beatmapset->$rel, new BeatmapTransformer);
     }
 
     public function includeConverts(Beatmapset $beatmapset)
     {
         $converts = [];
 
-        foreach (Beatmap::MODES as $modeStr => $modeInt) {
-            if ($modeStr === 'osu') {
+        foreach ($beatmapset->beatmaps as $beatmap) {
+            if ($beatmap->mode !== 'osu') {
                 continue;
             }
 
-            foreach ($beatmapset->beatmaps as $beatmap) {
-                if ($beatmap->mode !== 'osu') {
+            $difficulties = $beatmap->difficulty;
+
+            foreach (Beatmap::MODES as $modeStr => $modeInt) {
+                if ($modeStr === 'osu') {
                     continue;
                 }
+
+                $difficulty = $difficulties->where('mode', $modeInt)->where('mods', 0)->first();
 
                 $beatmap = clone $beatmap;
 
                 $beatmap->playmode = $modeInt;
                 $beatmap->convert = true;
+                $beatmap->difficultyrating = $difficulty ? $difficulty->diff_unified : 0;
 
                 array_push($converts, $beatmap);
             }
@@ -200,7 +257,42 @@ class BeatmapsetTransformer extends Fractal\TransformerAbstract
     {
         return $this->collection(
             $beatmapset->recentFavourites(),
-            new \App\Transformers\UserCompactTransformer()
+            new UserCompactTransformer
         );
+    }
+
+    public function includeRelatedUsers(Beatmapset $beatmapset)
+    {
+        $userIds = [$beatmapset->user_id];
+
+        foreach ($beatmapset->beatmapDiscussions as $discussion) {
+            if (!priv_check('BeatmapDiscussionShow', $discussion)->can()) {
+                continue;
+            }
+
+            $userIds[] = $discussion->user_id;
+            $userIds[] = $discussion->deleted_by_id;
+
+            foreach ($discussion->beatmapDiscussionPosts as $post) {
+                if (!priv_check('BeatmapDiscussionPostShow', $post)->can()) {
+                    continue;
+                }
+
+                $userIds[] = $post->user_id;
+                $userIds[] = $post->last_editor_id;
+                $userIds[] = $post->deleted_by_id;
+            }
+        }
+
+        foreach ($beatmapset->events as $event) {
+            if (priv_check('BeatmapsetEventViewUserId', $event)->can()) {
+                $userIds[] = $event->user_id;
+            }
+        }
+
+        $userIds = array_unique($userIds);
+        $users = User::with('userGroups')->whereIn('user_id', $userIds)->get();
+
+        return $this->collection($users, new UserCompactTransformer);
     }
 }

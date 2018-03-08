@@ -82,7 +82,7 @@
   &__body {
     flex: none;
     @media @desktop {
-      flex: 1;
+      flex: 1 1 auto;
     }
 
     display: flex;
@@ -93,7 +93,7 @@
     min-width: 0;
 
     &--reply-form {
-      flex: 1;
+      flex: 1 1 auto;
     }
   }
 
@@ -260,10 +260,6 @@
     }
   }
 
-  &__overlay {
-    .full-size();
-  }
-
   &__reply-body {
     .default-box-shadow();
     background-color: #fff;
@@ -277,7 +273,7 @@
     background-color: fade(#333, 90%);
     width: 100%;
     height: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     padding-top: @_reply-xs-top-margin;
 
     @media @desktop {
@@ -288,6 +284,13 @@
   &__reply-content {
     display: flex;
     height: 100%;
+  }
+
+  &__reply-stick {
+    flex: 1 0 auto;
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
   }
 
   &__stripe {
