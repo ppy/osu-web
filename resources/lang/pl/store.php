@@ -34,7 +34,7 @@ return [
             'line_2' => 'Wznów proces poprzez wybór metody płatności lub :link, aby przerwać składanie zamówienia.',
             'link_text' => 'kliknij tutaj',
         ],
-        'delayed_shipping' => 'Jesteśmy obecnie przeciążeni zamówieniami! Możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia 1-2 tygodni** dopóki nie uporamy się z obecnymi zamówieniami.',
+        'delayed_shipping' => 'Obecnie jesteśmy przytłoczeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
     ],
 
     'discount' => 'zaoszczędź :percent%',
