@@ -94,6 +94,22 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
+    public function innerHitsRecords(string $name)
+    {
+        if ($this->recordType === null) {
+            return;
+        }
+
+        $key = (new $this->recordType)->getKeyName();
+        $ids = array_map(function ($hit) use ($name) {
+            return $hit->innerHits($name)->ids($this->idField);
+        }, iterator_to_array($this));
+
+        $ids = array_flatten($ids);
+
+        return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
+    }
+
     public function raw()
     {
         return $this->raw;
