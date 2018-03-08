@@ -94,6 +94,15 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
+    public function innerHitsIds(string $name, string $field = null)
+    {
+        $ids = array_map(function ($hit) use ($name, $field) {
+            return $hit->innerHits($name)->ids($field ?? $this->idField);
+        }, iterator_to_array($this));
+
+        return array_flatten($ids);
+    }
+
     public function innerHitsRecords(string $name)
     {
         if ($this->recordType === null) {
@@ -101,11 +110,7 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
 
         $key = (new $this->recordType)->getKeyName();
-        $ids = array_map(function ($hit) use ($name) {
-            return $hit->innerHits($name)->ids($this->idField);
-        }, iterator_to_array($this));
-
-        $ids = array_flatten($ids);
+        $ids = $this->innerHitsIds($name, $this->idField);
 
         return $this->recordType::whereIn($key, $ids)->orderByField($key, $ids);
     }
