@@ -29,6 +29,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 
 // FIXME: remove ArrayAccess after refactored
 class ForumSearch extends Search implements \ArrayAccess
@@ -157,6 +158,26 @@ class ForumSearch extends Search implements \ArrayAccess
     public function params()
     {
         return $this->getPaginationParams();
+    }
+
+    /**
+     * Returns a collection of all the users that appeared in this query.
+     *
+     * @return Collection
+     */
+    public function users() : Collection
+    {
+        $ids = array_merge(
+            $this->response()->ids('poster_id'),
+            $this->response()->innerHitsIds('posts', 'poster_id')
+        );
+
+        $users = User::whereIn('user_id', $ids)->get();
+
+        // reset
+        parent::response()->recordType(Topic::class)->idField('topic_id');
+
+        return $users;
     }
 
     //================

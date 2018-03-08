@@ -27,7 +27,7 @@
     }, iterator_to_array($firstPost)));
 
     // FIXME: this is obviously a terrible idea.
-    $user = App\Models\User::lookup($entry->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
+    $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? App\Models\UserNotFound::instance();
 @endphp
 <div class="search-entry-thread">
     <div class="search-entry">
@@ -44,7 +44,7 @@
         @php
             $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
             // FIXME: this is obviously a terrible idea.
-            $user = App\Models\User::lookup($innerHit->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
+            $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? App\Models\UserNotFound::instance();
             $highlights = implode(
                 ' ... ',
                 $innerHit->highlights(
