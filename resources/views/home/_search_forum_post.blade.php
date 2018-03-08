@@ -26,10 +26,10 @@
     $user = App\Models\User::lookup($entry->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
 @endphp
 <div class="search-entry-thread">
-    <div class="search-entry">
-        <a class="search-forum-post" href="{{ $firstPostUrl }}">
+    <a class="search-entry" href="{{ $firstPostUrl }}">
+        <div class="search-forum-post">
             <div class="search-forum-post__avatar">
-                <img src="{{ $user->user_avatar }}">
+                <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
             </div>
             <div class="search-forum-post__content">
                 <h1 class="search-entry__row search-entry__row--title">
@@ -41,14 +41,19 @@
                     @endforeach
                 </div>
                 <div class="search-entry__row search-entry__row--footer">
-                    <span>posted by </span>
-                    <span class="search-forum-post__username">{{ $user->username }}</span>
-                    <span class="search-forum-post__link">{{ $firstPostUrl }}</span>
-                    <span class="search-forum-post__time">{{ $entry->source('post_time') }}</span>
+                    <div class="search-forum-post__poster">posted by
+                        <span class="search-forum-post__username">{{ $user->username }}</span>
+                    </div>
+                    <div class="search-forum-post__link">
+                        {{ $firstPostUrl }}
+                    </div>
+                    <time class="search-forum-post__time">
+                        {{ i18n_time(parse_time_to_carbon($entry->source('post_time'))) }}
+                    </time>
                 </div>
             </div>
-        </a>
-    </div>
+        </div>
+    </a>
 
     @foreach ($innerHits as $innerHit)
         @php
@@ -58,29 +63,36 @@
         @endphp
 
         <div class="search-entry-thread__sub-item">
-            <a class="search-forum-post" href="{{ $postUrl }}">
-                <div class="search-forum-post__avatar">
-                    <img src="{{ $user->user_avatar }}">
-                </div>
-                <div class="search-forum-post__content">
-                    <div class="search-entry__row search-entry__row--excerpt">
-                        <span class="search-entry__highlight">
-                            {!!
-                                implode(
-                                    ' ... ',
-                                    $innerHit->highlights(
-                                        'search_content',
-                                        App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
-                                    )
-                                )
-                            !!}
-                        </span>
+            <a class="search-entry" href="{{ $postUrl }}">
+                <div class="search-forum-post">
+                    <div class="search-forum-post__avatar">
+                        <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
                     </div>
-                    <div class="search-entry__row search-entry__row--footer">
-                        <span>posted by </span>
-                        <span class="search-forum-post__username">{{ $user->username }}</span>
-                        <span class="search-forum-post__link">{{ $postUrl }}</span>
-                        <span class="search-forum-post__time">{{ $innerHit->source('post_time') }}</span>
+                    <div class="search-forum-post__content">
+                        <div class="search-entry__row search-entry__row--excerpt">
+                            <span class="search-entry__highlight">
+                                {!!
+                                    implode(
+                                        ' ... ',
+                                        $innerHit->highlights(
+                                            'search_content',
+                                            App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                                        )
+                                    )
+                                !!}
+                            </span>
+                        </div>
+                        <div class="search-entry__row search-entry__row--footer">
+                            <div class="search-forum-post__poster">posted by
+                                <span class="search-forum-post__username">{{ $user->username }}</span>
+                            </div>
+                            <div class="search-forum-post__link">
+                                {{ $postUrl }}
+                            </div>
+                            <time class="search-forum-post__time">
+                                {{ i18n_time(parse_time_to_carbon($innerHit->source('post_time'))) }}
+                            </time>
+                        </div>
                     </div>
                 </div>
             </a>
