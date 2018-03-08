@@ -190,18 +190,14 @@ function html_excerpt($body, $limit = 300)
     return e($body);
 }
 
-function json_date(?DateTime $date)
+function json_date(?DateTime $date) : ?string
 {
-    if ($date !== null) {
-        return $date->format('Y-m-d');
-    }
+    return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time(?DateTime $time)
+function json_time(?DateTime $time) : ?string
 {
-    if ($time !== null) {
-        return $time->format(DateTime::ATOM);
-    }
+    return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
 function locale_flag($locale)
