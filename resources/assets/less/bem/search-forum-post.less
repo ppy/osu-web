@@ -17,14 +17,24 @@
  */
 
 .search-forum-post {
+  @avatar-size: 50px;
+
+  @margin: 5px;
+
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 
   &__avatar {
-    width: 80px;
-    img {
-      width: 100%;
-    }
+    flex: none;
+    width: @avatar-size;
+    height: @avatar-size;
+    margin: @margin;
+  }
+
+  &__avatar-image {
+    .full-size();
+    border-radius: 50%;
   }
 
   &__content {
@@ -32,16 +42,32 @@
   }
 
   &__link {
+    display: inline-block;
     margin-right: 1em;
+
+    @media @mobile {
+      display: none;
+    }
+  }
+
+  &__poster {
+    display: inline-block;
+    margin-right: 1em;
+
+    @media @mobile {
+      display: block;
+    }
   }
 
   &__time {
+    display: inline-block;
 
+    @media @mobile {
+      display: block;
+    }
   }
 
   &__username {
     font-weight: bold;
-    margin-right: 1em;
   }
-
 }
