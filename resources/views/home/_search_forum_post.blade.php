@@ -52,6 +52,11 @@
                     </time>
                 </div>
             </div>
+            <div class="search-forum-post__more">
+                <div class="search-result__more-button">
+                    <span class="fa fa-angle-right"></span>
+                </div>
+            </div>
         </div>
     </a>
 
@@ -92,6 +97,11 @@
                             <time class="search-forum-post__time">
                                 {{ i18n_time(parse_time_to_carbon($innerHit->source('post_time'))) }}
                             </time>
+                        </div>
+                    </div>
+                    <div class="search-forum-post__more">
+                        <div class="search-result__more-button">
+                            <span class="fa fa-angle-right"></span>
                         </div>
                     </div>
                 </div>
