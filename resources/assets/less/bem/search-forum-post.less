@@ -21,18 +21,23 @@
 
   @margin: 5px;
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  word-break: break-word;
-  word-wrap: break-word;
-  line-height: 1.5;
+  &__actual {
+    // the actual content of the element.
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    word-break: break-word;
+    word-wrap: break-word;
+    line-height: 1.5;
+    pointer-events: none;
+  }
 
   &__avatar {
     flex: none;
     width: @avatar-size;
     height: @avatar-size;
     margin: @margin;
+    pointer-events: auto;
   }
 
   &__avatar-image {
@@ -46,12 +51,12 @@
   }
 
   &__link {
-    display: inline-block;
-    margin-right: 1em;
-
-    @media @mobile {
-      display: none;
-    }
+    // make link element take the full size of the element.
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
   }
 
   &__more {
@@ -61,6 +66,8 @@
   &__poster {
     display: inline-block;
     margin-right: 1em;
+    color: #999;
+    pointer-events: auto;
 
     @media @mobile {
       display: block;
@@ -90,6 +97,15 @@
 
     @media @mobile {
       display: block;
+    }
+  }
+
+  &__url {
+    display: inline-block;
+    margin-right: 1em;
+
+    @media @mobile {
+      display: none;
     }
   }
 

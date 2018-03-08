@@ -30,13 +30,15 @@
     $user = App\Models\User::lookup($entry->source('poster_id'), 'id') ?? App\Models\UserNotFound::instance();
 @endphp
 <div class="search-entry-thread">
-    @include('objects.search._forum_post', [
-        'user' => $user,
-        'title' => $entry->source('search_content'),
-        'highlights' => $excerpt,
-        'link' => $firstPostUrl,
-        'time' => i18n_time(parse_time_to_carbon($entry->source('post_time'))),
-    ])
+    <div class="search-entry">
+        @include('objects.search._forum_post', [
+            'user' => $user,
+            'title' => $entry->source('search_content'),
+            'highlights' => $excerpt,
+            'link' => $firstPostUrl,
+            'time' => i18n_time(parse_time_to_carbon($entry->source('post_time'))),
+        ])
+    </div>
 
     @foreach ($innerHits as $innerHit)
         @php
@@ -53,13 +55,15 @@
         @endphp
 
         <div class="search-entry-thread__sub-item">
-            @include('objects.search._forum_post', [
-                'user' => $user,
-                'title' => null,
-                'highlights' => $highlights,
-                'link' => $postUrl,
-                'time' => i18n_time(parse_time_to_carbon($innerHit->source('post_time'))),
-            ])
+            <div class="search-entry">
+                @include('objects.search._forum_post', [
+                    'user' => $user,
+                    'title' => null,
+                    'highlights' => $highlights,
+                    'link' => $postUrl,
+                    'time' => i18n_time(parse_time_to_carbon($innerHit->source('post_time'))),
+                ])
+            </div>
         </div>
     @endforeach
 </div>

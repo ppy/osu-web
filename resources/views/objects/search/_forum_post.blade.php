@@ -15,11 +15,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a class="search-entry" href="{{ $link }}">
-    <div class="search-forum-post">
-        <div class="search-forum-post__avatar">
+@php
+    $userLink = route('users.show', $user);
+@endphp
+
+<div class="search-forum-post">
+    <a class="search-forum-post__link" href="{{ $link }}"></a>
+    <div class="search-forum-post__actual">
+        <a class="search-forum-post__avatar js-usercard"
+           href="{{ $userLink }}"
+           data-user-id="{{ $user->user_id }}"
+        >
             <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
-        </div>
+        </a>
         <div class="search-forum-post__content">
             <div class="search-forum-post__text search-forum-post__text--title">
                 {{ $title }}
@@ -30,10 +38,14 @@
                 </span>
             </div>
             <div class="search-forum-post__text search-forum-post__text--footer">
-                <div class="search-forum-post__poster">posted by
+                <a class="search-forum-post__poster js-usercard"
+                   href="{{ $userLink }}"
+                   data-user-id="{{ $user->user_id }}"
+                >
+                    posted by
                     <span class="search-forum-post__username">{{ $user->username }}</span>
-                </div>
-                <div class="search-forum-post__link">
+                </a>
+                <div class="search-forum-post__url">
                     {{ $link }}
                 </div>
                 <time class="search-forum-post__time">
@@ -47,4 +59,4 @@
             </div>
         </div>
     </div>
-</a>
+</div>
