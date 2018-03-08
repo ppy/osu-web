@@ -190,16 +190,16 @@ function html_excerpt($body, $limit = 300)
     return e($body);
 }
 
-function json_date($date)
+function json_date(?DateTime $date)
 {
-    if ($date instanceof DateTime) {
+    if ($date !== null) {
         return $date->format('Y-m-d');
     }
 }
 
-function json_time($time)
+function json_time(?DateTime $time)
 {
-    if ($time instanceof DateTime) {
+    if ($time !== null) {
         return $time->format(DateTime::ATOM);
     }
 }
