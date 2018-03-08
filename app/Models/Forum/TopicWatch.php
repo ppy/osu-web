@@ -28,6 +28,9 @@ class TopicWatch extends Model
 {
     protected $table = 'phpbb_topics_watch';
     protected $guarded = [];
+    protected $casts = [
+        'notify_status' => 'boolean',
+    ];
 
     public $timestamps = false;
 
