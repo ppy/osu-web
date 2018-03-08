@@ -60,7 +60,13 @@ class @LineChart
       .attr 'data-visibility', 'hidden'
 
     @tooltipContent = @tooltip.append 'div'
-      .classed 'chart__tooltip-content', true
+      .classed 'chart__tooltip-component chart__tooltip-component--content', true
+
+    @tooltip.append 'div'
+      .classed 'chart__tooltip-component chart__tooltip-component--arrow', true
+
+    @tooltip.append 'div'
+      .classed 'chart__tooltip-component chart__tooltip-component--circle', true
 
     @tooltipY = @tooltipContent.append 'div'
       .classed 'chart__tooltip-text chart__tooltip-text--y', true
