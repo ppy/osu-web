@@ -71,7 +71,7 @@ return [
             'general' => 'Geral',
             'general_all' => 'Geral (todas as dificuldades)',
             'timeline' => 'Linha do Tempo',
-        ],
+        ], //Original strings changed, please check!
 
         'new' => [
             'timestamp' => 'Timestamp',

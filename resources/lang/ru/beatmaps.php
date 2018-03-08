@@ -71,7 +71,7 @@ return [
             'general' => 'Главная',
             'general_all' => 'Главная (все сложности)',
             'timeline' => 'График',
-        ],
+        ], //Original strings changed, please check!
 
         'new' => [
             'timestamp' => 'Временная отметка',

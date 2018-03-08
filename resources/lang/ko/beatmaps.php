@@ -73,7 +73,7 @@ return [
             'general' => '일반',
             'general_all' => '일반 (모든 난이도)',
             'timeline' => '타임라인',
-        ],
+        ], //Original strings changed, please check!
 
         'new' => [
             'timestamp' => '타임스탬프',

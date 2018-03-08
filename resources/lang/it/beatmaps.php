@@ -62,7 +62,7 @@ return [
         'mode' => [
             'general' => 'Generale',
             'timeline' => 'Linea Temporale',
-        ],
+        ], //Original strings changed, please check!
 
         'require-login' => 'Per favore effettua il login per postare o rispondere',
         'resolved' => 'Risolto',

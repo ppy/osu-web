@@ -71,7 +71,7 @@ return [
             'general' => 'Général',
             'general_all' => 'Général (toutes difficultées)',
             'timeline' => 'Chronologie',
-        ],
+        ], //Original strings changed, please check!
 
         'new' => [
             'timestamp' => 'Horodatage',

@@ -62,7 +62,7 @@ return [
         'mode' => [
             'general' => 'Algemeen',
             'timeline' => 'Tijdlijn',
-        ],
+        ], //Original strings changed, please check!
 
         'require-login' => 'Log in om te posten of te antwoorden',
         'resolved' => 'Opgelost',
