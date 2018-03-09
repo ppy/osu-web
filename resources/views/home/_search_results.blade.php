@@ -33,9 +33,10 @@
                 <div class="search-result__row search-result__row--entries-container">
                     <div class="search-result__entries">
                         @php
-                            // FIXME: do something about this in cleanup branch
+                            // FIXME: Users for forum search; do something about this in cleanup branch
+                            // $result enumeration should probably be done according to each blade.
                             if ($result instanceof App\Libraries\ForumSearch) {
-                                $users = $result->users()->get();
+                                $users = $result->users()->select('user_id', 'username', 'user_avatar')->get();
                             }
                         @endphp
                         @foreach ($result['data'] as $entry)
