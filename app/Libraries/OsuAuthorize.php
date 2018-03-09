@@ -808,6 +808,11 @@ class OsuAuthorize
         }
     }
 
+    public function checkUserSilenceShowExtendedInfo($user)
+    {
+        // admin only, i guess =D
+    }
+
     public function checkWikiPageRefresh($user)
     {
         $this->ensureLoggedIn($user);
