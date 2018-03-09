@@ -209,6 +209,7 @@ class BeatmapsetPage.Info extends React.Component
 
             div
               className: 'beatmap-success-rate__percentage'
+              title: "#{@props.beatmap.passcount} / #{@props.beatmap.playcount}"
               style:
                 marginLeft: "#{percentage}%"
               div null, "#{percentage}%"
