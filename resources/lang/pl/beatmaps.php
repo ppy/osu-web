@@ -72,7 +72,7 @@ return [
             'general' => 'Główne',
             'general_all' => 'Główne (wszystkie poziomy trudności)',
             'timeline' => 'Oś czasu',
-        ],
+        ], //Original strings changed, please check!
 
         'new' => [
             'timestamp' => 'Znacznik czasu',

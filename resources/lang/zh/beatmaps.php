@@ -77,7 +77,7 @@ return [
             'general' => '常规',
             'general_all' => '常规（全难度）',
             'timeline' => '时间线',
-        ],
+        ], //Original strings changed, please check!
 
         'new' => [
             'timestamp' => '时间戳',
