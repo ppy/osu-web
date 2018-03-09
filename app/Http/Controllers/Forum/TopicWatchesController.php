@@ -37,6 +37,14 @@ class TopicWatchesController extends Controller
         $this->middleware('auth');
     }
 
+    public function destroy($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+        TopicWatch::lookup($topic, Auth::user())->delete();
+
+        return $this->returnAction($topic, false);
+    }
+
     public function index()
     {
         $topics = Topic::watchedByUser(Auth::user())->paginate(50);
@@ -51,5 +59,36 @@ class TopicWatchesController extends Controller
             'forum.topic_watches.index',
             compact('topics', 'topicReadStatus', 'counts')
         );
+    }
+
+    public function update($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+        $watch = TopicWatch::lookup($topic, Auth::user());
+
+        priv_check('ForumTopicWatch', $topic)->ensureCan();
+
+        try {
+            $watch->save();
+        } catch (Exception $e) {
+            if (!is_sql_unique_exception($e)) {
+                throw $e;
+            }
+        }
+
+        return $this->returnAction($topic, true);
+    }
+
+    private function returnAction($topic, $state)
+    {
+        switch (request('return')) {
+            case 'index':
+
+                return response([], 204);
+            default:
+                $type = 'watch';
+
+                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+        }
     }
 }

@@ -32,14 +32,14 @@
     type="button"
     class="btn-circle btn-circle--topic-entry"
     title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
-    data-url="{{ route('forum.topics.watch', [
+    data-url="{{ route('forum.topic-watches.update', [
         $topic,
         'watch' => false,
         'return' => 'index'
     ]) }}"
     data-remote="1"
     data-reload-on-success="1"
-    data-method="POST"
+    data-method="DELETE"
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
     <span class="btn-circle__content">

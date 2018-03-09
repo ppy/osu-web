@@ -35,7 +35,6 @@ use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
 use Carbon\Carbon;
 use DB;
-use Exception;
 use Illuminate\Http\Request as HttpRequest;
 use Request;
 
@@ -399,37 +398,6 @@ class TopicsController extends Controller
             return ujs_redirect(route('forum.topics.show', $topicId));
         } else {
             return error_popup($star->validationErrors()->toSentence());
-        }
-    }
-
-    public function watch($id)
-    {
-        $topic = Topic::findOrFail($id);
-        $state = get_bool(Request::input('watch'));
-        $watch = TopicWatch::lookup($topic, Auth::user());
-        $type = 'watch';
-
-        if ($state) {
-            priv_check('ForumTopicWatch', $topic)->ensureCan();
-
-            try {
-                $watch->save();
-            } catch (Exception $e) {
-                if (!is_sql_unique_exception($e)) {
-                    throw $e;
-                }
-            }
-        } else {
-            $watch->delete();
-        }
-
-        switch (request('return')) {
-            case 'index':
-
-                return response([], 204);
-            default:
-
-                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
         }
     }
 }
