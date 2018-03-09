@@ -16,14 +16,14 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $userLink = $user->user_id !== null ? route('users.show', $user) : '#';
+    $userLink = $user->user_id !== null ? route('users.show', $user) : null;
 @endphp
 
 <div class="search-forum-post">
     <a class="search-forum-post__link" href="{{ $link }}"></a>
     <div class="search-forum-post__actual">
         <a class="search-forum-post__avatar js-usercard"
-           href="{{ $userLink }}"
+           @if ($userLink !== null) href="{{ $userLink }}" @endif
            data-user-id="{{ $user->user_id }}"
         >
             <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
@@ -41,7 +41,7 @@
             </div>
             <div class="search-forum-post__text search-forum-post__text--footer">
                 <a class="search-forum-post__poster js-usercard"
-                   href="{{ $userLink }}"
+                   @if ($userLink !== null) href="{{ $userLink }}" @endif
                    data-user-id="{{ $user->user_id }}"
                 >
                     posted by
