@@ -35,7 +35,7 @@
                 </div>
             @endif
             <div class="search-forum-post__text search-forum-post__text--excerpt">
-                <span class="search-entry__highlight">
+                <span class="search-highlight">
                     {!! $highlights !!}
                 </span>
             </div>
