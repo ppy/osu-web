@@ -29,9 +29,11 @@
             <img class="search-forum-post__avatar-image" src="{{ $user->user_avatar }}">
         </a>
         <div class="search-forum-post__content">
-            <div class="search-forum-post__text search-forum-post__text--title">
-                {{ $title }}
-            </div>
+            @if (isset($title))
+                <div class="search-forum-post__text search-forum-post__text--title">
+                    {{ $title }}
+                </div>
+            @endif
             <div class="search-forum-post__text search-forum-post__text--excerpt">
                 <span class="search-entry__highlight">
                     {!! $highlights !!}
