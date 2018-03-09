@@ -20,7 +20,9 @@
 
 namespace App\Models;
 
-class UserBanHistory extends Model
+use Carbon\Carbon;
+
+class UserAccountHistory extends Model
 {
     protected $table = 'osu_user_banhistory';
     protected $primaryKey = 'ban_id';
@@ -28,9 +30,20 @@ class UserBanHistory extends Model
     protected $dates = ['timestamp'];
     public $timestamps = false;
 
+    const TYPES = [
+        0 => 'note',
+        1 => 'restriction',
+        2 => 'silence',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
+    }
+
+    public function actor()
+    {
+        return $this->belongsTo(User::class, 'banner_id', 'user_id');
     }
 
     public function endTime()
@@ -38,8 +51,25 @@ class UserBanHistory extends Model
         return $this->timestamp->addSeconds($this->period);
     }
 
+    public function getTypeAttribute()
+    {
+        return static::TYPES[$this->ban_status] ?? null;
+    }
+
     public function scopeBans($query)
     {
         return $query->where('ban_status', '>', 0)->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeRecent($query)
+    {
+        return $query
+            ->where('timestamp', '>', Carbon::now()->subDays(config('osu.user.ban_persist_days')))
+            ->orderBy('timestamp', 'desc');
+    }
+
+    public function scopeDefault($query)
+    {
+        return $query->where('ban_status', 2);
     }
 }

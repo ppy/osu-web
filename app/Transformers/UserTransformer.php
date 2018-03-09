@@ -34,6 +34,7 @@ class UserTransformer extends Fractal\TransformerAbstract
         'graveyard_beatmapset_count',
         'monthly_playcounts',
         'page',
+        'account_history',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
         'unranked_beatmapset_count',
@@ -146,6 +147,22 @@ class UserTransformer extends Fractal\TransformerAbstract
         return $this->collection(
             $user->userAchievements()->orderBy('date', 'desc')->get(),
             new UserAchievementTransformer()
+        );
+    }
+
+    public function includeAccountHistory(User $user)
+    {
+        $histories = $user->accountHistories()->recent();
+
+        if (!priv_check('UserSilenceShowExtendedInfo')->can()) {
+            $histories->default();
+        } else {
+            $histories->with('actor');
+        }
+
+        return $this->collection(
+            $histories->get(),
+            new UserAccountHistoryTransformer()
         );
     }
 
