@@ -29,7 +29,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 // FIXME: remove ArrayAccess after refactored
 class ForumSearch extends Search implements \ArrayAccess
@@ -161,24 +161,18 @@ class ForumSearch extends Search implements \ArrayAccess
     }
 
     /**
-     * Returns a collection of all the users that appeared in this query.
+     * Returns a Builder for a Collection of all the users that appeared in this query.
      *
-     * @return Collection
+     * @return Builder
      */
-    public function users() : Collection
+    public function users() : Builder
     {
         $ids = array_merge(
             $this->response()->ids('poster_id'),
             $this->response()->innerHitsIds('posts', 'poster_id')
         );
 
-        $users = User::whereIn('user_id', $ids)->get();
-
-        // reset
-        // TODO: will probably be moving recordType and idField to optional parameters on records() instead.
-        parent::response()->recordType(Topic::class)->idField('topic_id');
-
-        return $users;
+        return User::whereIn('user_id', $ids);
     }
 
     //================

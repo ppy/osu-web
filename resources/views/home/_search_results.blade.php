@@ -35,7 +35,7 @@
                         @php
                             // FIXME: do something about this in cleanup branch
                             if ($result instanceof App\Libraries\ForumSearch) {
-                                $users = $result->users();
+                                $users = $result->users()->get();
                             }
                         @endphp
                         @foreach ($result['data'] as $entry)
