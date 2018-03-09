@@ -30,7 +30,6 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
-use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
@@ -424,16 +423,10 @@ class TopicsController extends Controller
             $watch->delete();
         }
 
-        switch (Request::input('return')) {
+        switch (request('return')) {
             case 'index':
-                $topics = Topic::watchedByUser(Auth::user())->get();
-                $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
 
-                // there's currently only destroy action from watch index
-                return js_view(
-                    'forum.topic_watches.destroy',
-                    compact('topic', 'topics', 'topicReadStatus')
-                );
+                return response([], 204);
             default:
 
                 return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));

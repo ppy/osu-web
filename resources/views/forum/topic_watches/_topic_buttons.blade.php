@@ -38,6 +38,7 @@
         'return' => 'index'
     ]) }}"
     data-remote="1"
+    data-reload-on-success="1"
     data-method="POST"
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
