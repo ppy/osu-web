@@ -70,9 +70,9 @@ return [
             'no_scores' => 'Nierankingowa beatmapa',
             'points-of-failure' => 'Wykres porażek',
             'success-rate' => 'Wskaźnik sukcesu',
-
+            'genre' => 'Gatunek',
+            'language' => 'Język',
             'description' => 'Opis',
-
             'source' => 'Źródło',
             'tags' => 'Tagi',
         ],

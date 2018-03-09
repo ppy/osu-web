@@ -84,7 +84,7 @@ return [
 
             'placeholder' => [
                 'body' => 'Tutaj wpisz zawartość wątku',
-                'title' => 'Naciśnij, aby wprowadzić tytuł',
+                'title' => 'Kliknij, aby wprowadzić tytuł',
             ],
         ],
 
