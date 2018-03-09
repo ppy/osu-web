@@ -175,6 +175,7 @@ class ForumSearch extends Search implements \ArrayAccess
         $users = User::whereIn('user_id', $ids)->get();
 
         // reset
+        // TODO: will probably be moving recordType and idField to optional parameters on records() instead.
         parent::response()->recordType(Topic::class)->idField('topic_id');
 
         return $users;
