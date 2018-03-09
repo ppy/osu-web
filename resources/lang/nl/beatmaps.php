@@ -60,7 +60,6 @@ return [
         'message_type_select' => 'Selecteer Commentaartype',
 
         'mode' => [
-            'general' => 'Algemeen',
             'timeline' => 'Tijdlijn',
         ],
 

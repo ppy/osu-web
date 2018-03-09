@@ -72,8 +72,6 @@ return [
 
         'mode' => [
             'events' => 'Historia',
-            'general' => 'Allmänt',
-            'general_all' => 'Allmänt (alla svårighetsgrader)',
             'timeline' => 'Tidslinje',
         ],
 
