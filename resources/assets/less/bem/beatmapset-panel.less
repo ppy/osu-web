@@ -149,14 +149,8 @@
     display: flex;
   }
 
-  &__status-container {
-    display: flex;
-    position: absolute;
-    margin: 5px;
-  }
-
   &__status {
-    background: rgba(0, 0, 0, 0.5);
+    background: fade(black, 50%);
     padding: 0 15px;
     border-radius: 14px;
     font-size: 12px;
@@ -169,6 +163,12 @@
     .@{top}:hover & {
       opacity: 0;
     }
+  }
+
+  &__status-container {
+    display: flex;
+    position: absolute;
+    margin: 5px;
   }
 
   &__shadow {
