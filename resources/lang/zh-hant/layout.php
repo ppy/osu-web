@@ -122,11 +122,11 @@ return [
         ],
         'store' => [
             '_' => '商店',
-            'checkout-show' => '結賬',
+            'checkout-show' => '結帳',
             'getListing' => '列表',
             'cart-show' => '購物車',
 
-            'getCheckout' => '結賬',
+            'getCheckout' => '結帳',
             'getInvoice' => '發票',
             'products-show' => '商品',
 

@@ -27,7 +27,7 @@ return [
         'cart_problems' => '啊哦，你的購物車中存在問題！',
         'cart_problems_edit' => '點擊此處以編輯。',
         'declined' => '支付被取消。',
-        'error' => '結賬時出現錯誤 :(',
+        'error' => '結帳時出現錯誤 :(',
         'pay' => '使用 Paypal 支付',
         'pending_checkout' => [
             'line_1' => '先前的訂單未完成',

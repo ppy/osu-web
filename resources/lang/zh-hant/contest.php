@@ -33,7 +33,7 @@ return [
     'entry' => [
         '_' => '參加',
         'login_required' => '請登錄後再參加評選。',
-        'silenced_or_restricted' => '賬戶受限時無法參加評選。',
+        'silenced_or_restricted' => '帳戶受限時無法參加評選。',
         'preparation' => '我們正在準備這場評選，請耐心等待！',
         'over' => '感謝參與！提交已經關閉，投票即將開始。',
         'limit_reached' => '您提交的參賽文件大小超出限制',

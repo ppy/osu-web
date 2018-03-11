@@ -21,7 +21,7 @@
 return [
     'box' => [
         'sent' => '一封包含驗證碼的郵件已經發送到 :mail ，請輸入該驗證碼。',
-        'title' => '賬戶認證',
+        'title' => '帳戶認證',
         'verifying' => '認證中',
         'issuing' => '正在生成新的驗證碼',
 
@@ -36,7 +36,7 @@ return [
     ],
 
     'email' => [
-        'subject' => 'osu! 賬戶認證',
+        'subject' => 'osu! 帳戶認證',
     ],
 
     'errors' => [

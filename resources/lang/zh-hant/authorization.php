@@ -59,7 +59,7 @@ return [
                     'not_lazer' => '當前只能在 #lazer 聊天。',
                 ],
 
-                'not_allowed' => '賬戶處於限制模式，無法發言。',
+                'not_allowed' => '帳戶處於限制模式，無法發言。',
             ],
         ],
     ],
@@ -95,8 +95,8 @@ return [
 
                 'user' => [
                     'require_login' => '回覆前請先登錄。',
-                    'restricted' => '賬戶處於限制模式，無法回覆。',
-                    'silenced' => '賬戶被禁言，無法回覆。',
+                    'restricted' => '帳戶處於限制模式，無法回覆。',
+                    'silenced' => '帳戶被禁言，無法回覆。',
                 ],
             ],
 
@@ -113,8 +113,8 @@ return [
 
                 'user' => [
                     'require_login' => '投票前請先登錄。',
-                    'restricted' => '賬戶處於限制模式，無法投票。',
-                    'silenced' => '賬戶被禁言，無法投票。',
+                    'restricted' => '帳戶處於限制模式，無法投票。',
+                    'silenced' => '帳戶被禁言，無法投票。',
                 ],
             ],
 
@@ -139,9 +139,9 @@ return [
 
     'unauthorized' => '沒有權限。',
 
-    'silenced' => '賬戶被禁言，無法進行該操作。',
+    'silenced' => '帳戶被禁言，無法進行該操作。',
 
-    'restricted' => '賬戶處於限制模式，無法進行該操作。',
+    'restricted' => '帳戶處於限制模式，無法進行該操作。',
 
     'user' => [
         'page' => [
