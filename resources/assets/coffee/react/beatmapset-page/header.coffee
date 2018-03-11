@@ -174,7 +174,7 @@ class BeatmapsetPage.Header extends React.Component
                 else
                   @downloadButton
                     key: 'default'
-                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
+                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
 
                 @downloadButton
                   key: 'direct'
