@@ -53,7 +53,7 @@ return [
         'remember' => '記住此電腦',
         'title' => '登錄以繼續',
         'failed' => '登錄失敗',
-        'register' => '沒有 osu! 賬戶？現在就註冊一個！',
+        'register' => '沒有 osu! 帳戶？現在就註冊一個！',
         'forgot' => '忘記密碼？',
         'beta' => [ //已棄用(?)
             'main' => 'Beta 僅限於特定用戶訪問',
@@ -73,7 +73,7 @@ return [
     ],
     'logout_confirm' => '確定要退出嗎？o(TヘTo)',
     'restricted_banner' => [
-        'title' => '賬戶進入限制模式！',
+        'title' => '帳戶進入限制模式！',
         'message' => '在被限制時，無法與其他玩家互動，分數只有自己可見。該限制通常由系統自動給予，並將在24小時內解除。需要申訴？請<a href="mailto:accounts@ppy.sh">聯繫支持團隊</a>.',
     ],
     'show' => [
@@ -245,9 +245,9 @@ return [
         'offline' => '離線',
     ],
     'store' => [
-        'saved' => '賬戶已創建',
+        'saved' => '帳戶已創建',
     ],
     'verify' => [
-        'title' => '賬戶認證',
+        'title' => '帳戶認證',
     ],
 ];
