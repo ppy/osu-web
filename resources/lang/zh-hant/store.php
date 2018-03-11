@@ -32,7 +32,7 @@ return [
         'pending_checkout' => [
             'line_1' => '先前的訂單未完成',
             'line_2' => '通過選擇支付方式以恢復訂單，或者 :link 取消訂單。',
-            'link_text' => '點擊這裏',
+            'link_text' => '點擊這裡',
         ],
         'delayed_shipping' => '歡迎購買，但是我們正在處理大量的訂單，所以訂單**可能會有 1-2 周的延遲**。',
     ],
@@ -60,7 +60,7 @@ return [
         'notify' => '當可以購買時提醒我！',
 
         'notification_success' => '當商品有貨時會收到提醒，點擊 :link 以取消該提醒',
-        'notification_remove_text' => '這裏',
+        'notification_remove_text' => '這裡',
 
         'notification_in_stock' => '新貨到，快來買買買！',
     ],

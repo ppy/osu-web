@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => '這裏是你關注的譜面，你會在它們更新或者有新討論的時候收到通知。',
+        'description' => '這裡是你關注的譜面，你會在它們更新或者有新討論的時候收到通知。',
         'title_compact' => '摸圖',
         'title_main' => '摸圖',
 

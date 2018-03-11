@@ -19,7 +19,7 @@
  */
 
 return [
-    'not_negative' => ':attribute 不能爲負數。',
+    'not_negative' => ':attribute 不能為負數。',
     'required' => '需要 :attribute 。',
     'too_long' => ':attribute 超出最大長度——最多允許 :limit 個字符。',
     'wrong_confirmation' => '確認信息不匹配。',
@@ -93,6 +93,6 @@ return [
         'wrong_current_password' => '當前密碼錯誤。',
         'wrong_email_confirmation' => '重複新郵箱與新郵箱不一致。',
         'wrong_password_confirmation' => '重複新密碼與新密碼不一致。',
-        'too_long' => '超出長度限制——最多爲 :limit 個字符。',
+        'too_long' => '超出長度限制——最多為 :limit 個字符。',
     ],
 ];

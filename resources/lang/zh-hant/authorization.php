@@ -28,12 +28,12 @@ return [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
         ],
         'resolve' => [
-            'not_owner' => '只有樓主和譜面所有者才能標記爲已解決。',
+            'not_owner' => '只有樓主和譜面所有者才能標記為已解決。',
         ],
 
         'vote' => [
             'limit_exceeded' => '在投更多票之前請稍等一會',
-            'owner' => '不能爲自己的討論投票。',
+            'owner' => '不能為自己的討論投票。',
             'wrong_beatmapset_state' => '只能對等待中的譜面討論進行投票。',
         ],
     ],
@@ -148,7 +148,7 @@ return [
             'edit' => [
                 'locked' => '個人頁面被鎖定。',
                 'not_owner' => '只能編輯自己的個人頁面。',
-                'require_supporter_tag' => '需要成爲支持者。',
+                'require_supporter_tag' => '需要成為支持者。',
             ],
         ],
     ],

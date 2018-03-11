@@ -37,7 +37,7 @@ return [
         'too-many-favourites' => '譜面收藏數超出限制，請刪除一個後再試。',
     ],
     'logged_out' => '你已退出，請登錄後再試。',
-    'supporter_only' => '要使用此功能，請先成爲 osu!支持者 。',
+    'supporter_only' => '要使用此功能，請先成為 osu!支持者 。',
     'no_restricted_access' => '賬戶處於限制模式，無法執行該操作。',
     'unknown' => '發生了未知的錯誤。',
 ];

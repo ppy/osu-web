@@ -175,7 +175,7 @@ return [
         ],
         'support' => [
             '_' => '支持 osu!',
-            'tags' => '成爲支持者',
+            'tags' => '成為支持者',
             'merchandise' => '商店',
         ],
         'legal' => [
@@ -200,7 +200,7 @@ return [
         ],
         '401' => [
             'error' => '沒有權限',
-            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因爲沒登錄）',
+            'description' => '沒有權限訪問該頁面，建議檢查一下再試，或者返回到上一個頁面（說不定因為沒登錄）',
             'link' => false,
         ],
         '405' => [
@@ -227,7 +227,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '以防萬一，你可以將這裏的代碼發給我們！',
+        'reference' => '以防萬一，你可以將這裡的代碼發給我們！',
     ],
 
     'popup_login' => [
@@ -244,7 +244,7 @@ return [
         ],
 
         'register' => [
-            'info' => '點擊下方的註冊按鈕以成爲 osu! 大家庭中的一員！',
+            'info' => '點擊下方的註冊按鈕以成為 osu! 大家庭中的一員！',
             'title' => '沒有帳號？',
         ],
     ],

@@ -36,7 +36,7 @@ return [
         'post' => '發送',
         'reply' => '回覆',
         'reply_reopen' => '回覆並重新打開',
-        'reply_resolve' => '回覆並標記爲已解決',
+        'reply_resolve' => '回覆並標記為已解決',
         'reset' => '重置',
         'save' => '保存',
         'saving' => '保存中...',

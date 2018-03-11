@@ -49,7 +49,7 @@ return [
     'started' => [
         'password' => '新密碼',
         'password_confirmation' => '確認新密碼',
-        'title' => '爲 <strong>:username</strong> 重置密碼',
+        'title' => '為 <strong>:username</strong> 重置密碼',
         'verification_key' => '驗證碼',
     ],
 

@@ -31,7 +31,7 @@ return [
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => '啟用',
-                'activate_confirm' => '確認要爲這個譜面啟用 Modding v2 嗎?',
+                'activate_confirm' => '確認要為這個譜面啟用 Modding v2 嗎?',
                 'active' => '已啟用',
                 'inactive' => '未啟用',
             ],

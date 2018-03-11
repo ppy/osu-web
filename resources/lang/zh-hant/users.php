@@ -60,7 +60,7 @@ return [
             'small' => '（捐贈玩家將在不久開放）',
         ],
 
-        'here' => '這裏', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
+        'here' => '這裡', // this is substituted in when generating a link above. change it to suit the language. //TODO 需要上下文
     ],
     'signup' => [
         '_' => '註冊',
@@ -102,9 +102,9 @@ return [
                     'broken_file' => '上傳失敗.請檢查上傳的圖片然後重試.',
                     'button' => '上傳圖片',
                     'dropzone' => '拖拽到此處',
-                    'dropzone_info' => '將圖片拖動到這裏也可以上傳',
+                    'dropzone_info' => '將圖片拖動到這裡也可以上傳',
                     'restriction_info' => "自定義皮膚只有 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 可用",
-                    'size_info' => '圖片尺寸應爲2000x500',
+                    'size_info' => '圖片尺寸應為2000x500',
                     'too_large' => '上傳的圖片過大.',
                     'unsupported_format' => '不支持的格式.',
                 ],
@@ -126,7 +126,7 @@ return [
                     'title' => '收藏的譜面 (:count)',
                 ],
                 'graveyard' => [
-                    'title' => '墳場裏的譜面 (:count)',
+                    'title' => '墳場裡的譜面 (:count)',
                 ],
                 'ranked_and_approved' => [
                     'title' => 'Ranked 並且得到讚的譜面 (:count)',
@@ -149,7 +149,7 @@ return [
             ],
             'kudosu' => [
                 'available' => '可用 kudosu',
-                'available_info' => 'kudosu 可以兌換爲 kudosu 星,它可以讓你的譜面更引人注意。這是你還沒有兌換的 kudosu 數。',
+                'available_info' => 'kudosu 可以兌換為 kudosu 星,它可以讓你的譜面更引人注意。這是你還沒有兌換的 kudosu 數。',
                 'recent_entries' => '最近 Kudosu 記錄',
                 'title' => 'Kudosu!',
                 'total' => '總共獲得 kudosu',
@@ -220,8 +220,8 @@ return [
         'page' => [
             'description' => '<strong>個人介紹</strong> 是您可以自定義的展示區.',
             'edit_big' => '編輯',
-            'placeholder' => '在這裏編輯',
-            'restriction_info' => "需要成爲 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 以解鎖該特性.",
+            'placeholder' => '在這裡編輯',
+            'restriction_info' => "需要成為 <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!支持者</a> 以解鎖該特性.",
         ],
         'rank' => [
             'country' => ':mode 模式的國內排名',

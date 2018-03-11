@@ -66,8 +66,8 @@ return [
 
     'system' => [
         'resolved' => [
-            'true' => '被 :user 標記爲 “已解決”',
-            'false' => '被 :user 標記爲 “未解決”',
+            'true' => '被 :user 標記為 “已解決”',
+            'false' => '被 :user 標記為 “未解決”',
         ],
     ],
 

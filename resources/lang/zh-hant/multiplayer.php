@@ -33,7 +33,7 @@ return [
             'player-kicked' => ':user 被踢出房間',
             'match-created' => ':user 創建了一個房間',
             'match-disbanded' => '房間關閉',
-            'host-changed' => ':user 成爲房主',
+            'host-changed' => ':user 成為房主',
 
             'player-left-no-user' => '有玩家離開了房間',
             'player-joined-no-user' => '有玩家加入了房間',

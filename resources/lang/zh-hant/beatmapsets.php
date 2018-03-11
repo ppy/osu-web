@@ -22,7 +22,7 @@ return [
     'availability' => [
         'disabled' => '該譜面現在無法下載。',
         'parts-removed' => '應作者/第三方版權持有者的要求，這張譜面已經下架。',
-        'more-info' => '點擊這裏查看更多信息。',
+        'more-info' => '點擊這裡查看更多信息。',
     ],
 
     'index' => [
@@ -82,8 +82,8 @@ return [
             'friend' => '好友排名',
             'global' => '全球排名',
             'miss_count' => ':count miss', //上下文
-            'supporter-link' => '點擊 <a href=":link">這裏</a> 來查看你可以得到的精彩功能！',
-            'supporter-only' => '你需要成爲支持者才能查看國內/好友排名！',
+            'supporter-link' => '點擊 <a href=":link">這裡</a> 來查看你可以得到的精彩功能！',
+            'supporter-only' => '你需要成為支持者才能查看國內/好友排名！',
             'title' => '排行榜',
 
             'headers' => [

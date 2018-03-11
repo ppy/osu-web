@@ -111,7 +111,7 @@ return [
             'graveyard' => '這張譜面自 :date 就未更新了，或許它已經被作者拋棄了 ;w;',
             'loved' => '這張譜面於 :date 被 Loved !',
             'ranked' => '這張譜面於 :date 被 Ranked !',
-            'wip' => '注意：這張譜面被作者標記爲 WIP（work-in-progress）',
+            'wip' => '注意：這張譜面被作者標記為 WIP（work-in-progress）',
         ],
 
     ],
