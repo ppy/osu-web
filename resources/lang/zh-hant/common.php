@@ -62,9 +62,9 @@ return [
 
     'device' => [
         'keyboard' => '鍵盤',
-        'mouse' => '鼠標',
-        'tablet' => '數位板',
-        'touch' => '觸摸屏',
+        'mouse' => '滑鼠',
+        'tablet' => '繪圖板',
+        'touch' => '觸控螢幕',
     ],
 
     'dropzone' => [
