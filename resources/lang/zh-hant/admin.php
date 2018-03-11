@@ -22,18 +22,18 @@ return [
     'beatmapsets' => [
         'covers' => [
             'regenerate' => '重新生成',
-            'regenerating' => '重新生成中。。。',
+            'regenerating' => '重新生成中⋯⋯',
             'remove' => '移除',
-            'removing' => '移除中。。。',
+            'removing' => '移除中⋯⋯',
         ],
         'show' => [
             'covers' => '管理譜面封面',
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => '啓用',
-                'activate_confirm' => '確認要爲這個譜面啓用 Modding v2 嗎?',
-                'active' => '已啓用',
-                'inactive' => '未啓用',
+                'activate' => '啟用',
+                'activate_confirm' => '確認要爲這個譜面啟用 Modding v2 嗎?',
+                'active' => '已啟用',
+                'inactive' => '未啟用',
             ],
         ],
     ],
@@ -55,7 +55,7 @@ return [
                 'title' => '論壇封面列表',
 
                 'type-title' => [
-                    'default-topic' => '默認板塊封面',
+                    'default-topic' => '預設板塊封面',
                     'main' => '論壇封面',
                 ],
             ],
@@ -70,11 +70,11 @@ return [
 
     'pages' => [
         'root' => [
-            'title' => '管理員控制檯',
+            'title' => '管理員控制台',
 
             'sections' => [
                 'forum' => '論壇',
-                'general' => '常規',
+                'general' => '一般',
                 'store' => '商店',
             ],
         ],
@@ -90,7 +90,7 @@ return [
 
     'users' => [
         'restricted_banner' => [
-            'title' => '該賬戶當前處於限制模式',
+            'title' => '該帳戶當前處於限制模式',
             'message' => '（只有管理員能看見這條信息）',
         ],
     ],

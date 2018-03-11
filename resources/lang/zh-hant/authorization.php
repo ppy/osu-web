@@ -21,8 +21,8 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => '無法撤銷推薦',
-            'has_reply' => '無法刪除有回覆的討論。',
+            'is_hype' => '無法撤銷推薦。',
+            'has_reply' => '無法刪除有回覆的討論',
         ],
         'nominate' => [
             'exhausted' => '你今天的提名次數已達上限，請明天再試。',
@@ -32,8 +32,9 @@ return [
         ],
 
         'vote' => [
-            'limit_exceeded' => '在投更多票之前請稍等一會。',
-            'owner' => '不能爲自己的討論投票！',
+            'limit_exceeded' => '在投更多票之前請稍等一會',
+            'owner' => '不能爲自己的討論投票。',
+            'wrong_beatmapset_state' => '只能對等待中的譜面討論進行投票。',
         ],
     ],
 

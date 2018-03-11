@@ -28,7 +28,7 @@ return [
     ],
 
     'events' => [
-        'empty' => '還沒有事件。。。',
+        'empty' => '還沒有事件⋯⋯',
     ],
 
     'index' => [

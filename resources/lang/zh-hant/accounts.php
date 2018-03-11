@@ -20,7 +20,7 @@
 
 return [
     'edit' => [
-        'title' => '賬戶設置',
+        'title' => '帳戶設置',
         'title_compact' => '設置',
 
         'avatar' => [
@@ -47,7 +47,7 @@ return [
             'user' => [
                 'user_from' => '當前位置',
                 'user_interests' => '興趣愛好',
-                'user_msnm' => 'Skype',
+                'user_msnm' => 'skype',
                 'user_occ' => '職業',
                 'user_twitter' => '推特',
                 'user_website' => '個人主頁',
@@ -72,9 +72,9 @@ return [
 
     'playstyles' => [
         'title' => '遊戲方式',
-        'mouse' => '鼠標',
+        'mouse' => '滑鼠',
         'keyboard' => '鍵盤',
-        'tablet' => '數位板',
-        'touch' => '觸摸屏',
+        'tablet' => '繪圖板',
+        'touch' => '觸控螢幕',
     ],
 ];
