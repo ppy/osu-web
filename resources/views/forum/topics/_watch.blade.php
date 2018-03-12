@@ -23,10 +23,7 @@
         {{ $state ? 'btn-circle--activated' : '' }}
         js-forum-topic-watch
     "
-    data-url="{{ route('forum.topic-watches.update', [
-        $topic,
-        'watch' => !$state,
-    ]) }}"
+    data-url="{{ route('forum.topic-watches.update', $topic) }}"
     data-remote="1"
     data-method="{{ $state ? 'DELETE' : 'PUT' }}"
     data-topic-id="{{ $topic->topic_id }}"
