@@ -33,10 +33,12 @@ BeatmapsetPage.ScoreTop = (props) ->
           div className: "badge-rank badge-rank--tiny badge-rank--#{props.score.rank}"
 
         div className: "#{bn}__avatar",
-          div
-            className: "avatar avatar--full"
-            style:
-              backgroundImage: "url(#{props.score.user.avatar_url})"
+          a
+            href: laroute.route 'users.show', user: props.score.user.id
+            div
+              className: "avatar avatar--full"
+              style:
+                backgroundImage: "url(#{props.score.user.avatar_url})"
 
         div className: "#{bn}__user-box",
           a
@@ -45,9 +47,14 @@ BeatmapsetPage.ScoreTop = (props) ->
             href: laroute.route 'users.show', user: props.score.user.id
             props.score.user.username
 
-          el FlagCountry,
-            country: props.countries[props.score.user.country_code]
-            classModifiers: ['scoreboard', 'small-box']
+          a
+            href: laroute.route 'rankings',
+              mode: props.playmode
+              country: props.score.user.country_code
+              type: 'performance'
+            el FlagCountry,
+              country: props.countries[props.score.user.country_code]
+              classModifiers: ['scoreboard', 'small-box']
 
       div className: "#{bn}__wrapping-container #{bn}__wrapping-container--right",
         div className: "#{bn}__stats",
