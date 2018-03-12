@@ -67,7 +67,7 @@ return [
         'message_type' => [
             'hype' => '推薦！',
             'mapper_note' => '備註',
-            'praise' => '贊',
+            'praise' => '讚',
             'problem' => '問題',
             'suggestion' => '建議',
         ],
@@ -101,7 +101,7 @@ return [
             'mapper_notes' => '備註',
             'mine' => '我的',
             'pending' => 'Pending',
-            'praises' => '贊',
+            'praises' => '讚',
             'resolved' => '已解決',
             'total' => '所有',
         ],

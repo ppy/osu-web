@@ -99,8 +99,8 @@ return [
         'pt-br',
         'ru',
         'sv',
-        'zh-hans',
-        'zh-hant',
+        'zh',
+        'zh-tw',
     ],
 
     /*
