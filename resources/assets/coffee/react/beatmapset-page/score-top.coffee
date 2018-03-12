@@ -35,7 +35,7 @@ BeatmapsetPage.ScoreTop = (props) ->
         div className: "#{bn}__avatar",
           a
             href: laroute.route 'users.show', user: props.score.user.id
-            className: "avatar avatar--beatmapset-scoreboard"
+            className: "avatar"
             style:
               backgroundImage: "url(#{props.score.user.avatar_url})"
 
