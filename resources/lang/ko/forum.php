@@ -260,9 +260,7 @@ return [
         ],
 
         'watch' => [
-            'to_0' => '주제 구독 해제하기',
             'to_0_done' => 'Unsubscribed from topic',
-            'to_1' => '주제 ',
             'to_1_done' => 'Subscribed to topic',
         ],
     ],

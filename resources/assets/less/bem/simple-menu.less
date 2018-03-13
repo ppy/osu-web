@@ -1,0 +1,78 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.simple-menu {
+  @_item-padding-vertical: 6px;
+
+  .default-box-shadow();
+  border-radius: @border-radius-large;
+  background-color: #333;
+  color: #999;
+  padding: 10px 5px;
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  font-size: @font-size--title-small;
+  white-space: nowrap;
+  z-index: @zindex-navbar;
+
+  &--beatmapset-watch {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+  }
+
+  &--forum-topic-watch {
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 10px;
+  }
+
+  &__item {
+    .reset-input();
+    .link-white();
+    .link-plain();
+    .default-border-radius();
+    padding: @_item-padding-vertical 10px @_item-padding-vertical 25px;
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover {
+      background-color: #111;
+
+      &::before {
+        content: '';
+        border-radius: 10px;
+        position: absolute;
+        top: (@_item-padding-vertical + 2px);
+        left: 10px;
+        width: 3px;
+        height: calc(100% ~'-' (@_item-padding-vertical * 2 + 4px));
+        background-color: @yellow;
+      }
+    }
+
+    &[disabled], &--disabled {
+      color: #999;
+      // disable hover
+      pointer-events: none;
+    }
+  }
+}

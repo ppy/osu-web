@@ -257,9 +257,7 @@ return [
         ],
 
         'watch' => [
-            'to_0' => 'Cancelar inscrição no tópico',
             'to_0_done' => 'Inscrição cancelada',
-            'to_1' => 'Inscrever-se no tópico',
             'to_1_done' => 'Inscrito no tópico',
         ],
     ],

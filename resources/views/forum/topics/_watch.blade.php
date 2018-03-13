@@ -15,21 +15,58 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<button
-    type="button"
-    class="
-        btn-circle
-        btn-circle--topic-nav
-        {{ $state ? 'btn-circle--activated' : '' }}
-        js-forum-topic-watch
-    "
-    data-url="{{ route('forum.topic-watches.update', $topic) }}"
-    data-remote="1"
-    data-method="{{ $state ? 'DELETE' : 'PUT' }}"
+@php
+    $_menuId = 'topic-watch-'.$topic->topic_id.'#'.rand();
+    $_menuOpen = $_menuOpen ?? false;
+@endphp
+<div
+    class="js-forum-topic-watch"
     data-topic-id="{{ $topic->topic_id }}"
-    title="{{ trans('forum.topics.watch.to_'.(int) !$state) }}"
 >
-    <span class="btn-circle__content">
-        <i class="fa fa-eye"></i>
-    </span>
-</button>
+    <button
+        type="button"
+        class="
+            btn-circle
+            btn-circle--topic-nav
+            {{ $state ? 'btn-circle--activated' : '' }}
+            js-menu
+        "
+        data-menu-target="{{ $_menuId }}"
+        data-url="{{ route('forum.topic-watches.update', [
+            $topic,
+        ]) }}"
+        data-remote="1"
+        data-method="{{ $state ? 'DELETE' : 'PUT' }}"
+    >
+        <span class="btn-circle__content">
+            <i class="fa fa-eye"></i>
+        </span>
+    </button>
+    <div
+        class="js-menu simple-menu simple-menu--forum-topic-watch"
+        data-menu-id="{{ $_menuId }}"
+        data-visibility="{{ $_menuOpen ? '' : 'hidden' }}"
+        style="position: absolute;"
+    >
+        <button
+            type="button"
+            class="simple-menu__item js-menu"
+            data-url="{{ route('forum.topic-watches.update', $topic) }}"
+            data-remote="1"
+            data-method="PUT"
+            {{ $state ? 'disabled' : '' }}
+        >
+            {{ trans('forum.topics.watch.to_1') }}
+        </button>
+        <button
+            type="button"
+            class="simple-menu__item js-menu"
+            data-url="{{ route('forum.topic-watches.update', $topic) }}"
+            data-remote="1"
+            data-method="DELETE"
+            {{ $state ? '' : 'disabled' }}
+        >
+            {{ trans('forum.topics.watch.to_0') }}
+        </button>
+    </div>
+</div>

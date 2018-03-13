@@ -259,9 +259,9 @@ return [
         ],
 
         'watch' => [
-            'to_0' => 'Unsubscribe topic',
+            'to_0' => 'Unsubscribe',
             'to_0_done' => 'Unsubscribed from topic',
-            'to_1' => 'Subscribe topic',
+            'to_1' => 'Bookmark',
             'to_1_done' => 'Subscribed to topic',
         ],
     ],

@@ -254,9 +254,7 @@ return [
         ],
 
         'watch' => [
-            'to_0' => 'Se désabonner du sujet',
             'to_0_done' => 'Vous ne suivez pas ce sujet',
-            'to_1' => "S'abonner au sujet",
             'to_1_done' => 'Vous suivez ce sujet',
         ],
     ],

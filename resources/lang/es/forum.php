@@ -259,9 +259,7 @@ return [
         ],
 
         'watch' => [
-            'to_0' => 'Desuscribirse del tema',
             'to_0_done' => 'Desuscrito del tema',
-            'to_1' => 'Suscribirse al tema',
             'to_1_done' => 'Suscrito al tema',
         ],
     ],

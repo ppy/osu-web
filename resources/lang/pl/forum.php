@@ -254,9 +254,7 @@ return [
         ],
 
         'watch' => [
-            'to_0' => 'Usuń subskrybcję tego wątku',
             'to_0_done' => 'Usunięto subskrybcję tego wątku',
-            'to_1' => 'Subskrybuj ten wątek',
             'to_1_done' => 'Zasubskrybowano ten wątek',
         ],
     ],
