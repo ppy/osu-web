@@ -43,7 +43,12 @@ class MPHistory.Score extends React.Component
             if !@props.score.multiplayer.pass
               span className: 'mp-history-player-score__failed', osu.trans 'multiplayer.match.failed'
 
-          el FlagCountry, country: user.country
+          a
+            href: laroute.route 'rankings',
+              mode: @props.mode
+              country: user.country.code
+              type: 'performance'
+            el FlagCountry, country: user.country
 
         div className: 'mp-history-player-score__info-box mp-history-player-score__info-box--stats',
           div className: 'mp-history-player-score__stat-row mp-history-player-score__stat-row--first',

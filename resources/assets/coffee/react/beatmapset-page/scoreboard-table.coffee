@@ -69,9 +69,14 @@ BeatmapsetPage.ScoreboardTable = (props) ->
 
             td {},
               if score.user.country_code
-                el FlagCountry,
-                  country: props.countries[score.user.country_code]
-                  classModifiers: ['scoreboard', 'small-box']
+                a
+                  href: laroute.route 'rankings',
+                    mode: props.beatmap.mode
+                    country: score.user.country_code
+                    type: 'performance'
+                  el FlagCountry,
+                    country: props.countries[score.user.country_code]
+                    classModifiers: ['scoreboard', 'small-box']
             td {},
               a
                 className: "#{bn}__user-link js-usercard"

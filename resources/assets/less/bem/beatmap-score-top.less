@@ -18,8 +18,6 @@
 
 .beatmap-score-top {
   @_top: beatmap-score-top;
-  @avatar-size: 70px;
-
 
   display: flex;
   flex-direction: column;
@@ -28,30 +26,9 @@
     background-color: #eee;
   }
 
-  &__achieved {
-    font-size: @font-size--small-2;
-    color: #777;
-    font-style: normal;
-    font-weight: normal;
-  }
-
   &__avatar {
-    .default-border-radius();
-    .default-box-shadow();
-
     flex: none;
-    width: @avatar-size;
-    height: @avatar-size;
     margin: 0px 10px;
-
-    // clip avatar div following border radius
-    overflow: hidden;
-    .own-layer();
-  }
-
-  &__mods {
-    margin-top: 10px;
-    margin-left: (@avatar-size + 10px);
   }
 
   &__position {
@@ -63,15 +40,6 @@
 
   &__position-number {
     padding-bottom: 5px;
-  }
-
-  &__rank {
-    flex: none;
-    width: @avatar-size;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
   }
 
   &__section {
