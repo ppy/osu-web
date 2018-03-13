@@ -55,7 +55,7 @@
     title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
     data-url="{{ route('forum.topic-watches.update', [
         $topic,
-        'status' => 'not_watching',
+        'state' => 'not_watching',
         'return' => 'index'
     ]) }}"
     data-remote="1"
