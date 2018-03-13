@@ -259,10 +259,13 @@ return [
         ],
 
         'watch' => [
-            'to_0' => 'Unsubscribe',
-            'to_0_done' => 'Unsubscribed from topic',
-            'to_1' => 'Bookmark',
-            'to_1_done' => 'Subscribed to topic',
+            'to_not_watching' => 'Unsubscribe',
+            'to_not_watching_done' => 'Unsubscribed from topic',
+            'to_watching' => 'Bookmark',
+            'to_watching_done' => 'Bookmarked topic',
+            'to_watching_mail' => 'Enable mail notification',
+            'to_watching_mail_done' => 'Mail will be sent on new replies',
+            'mail_disable' => 'Disable mail notification',
         ],
     ],
 ];

@@ -257,8 +257,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => '已取消订阅！',
-            'to_1_done' => '订阅成功！',
+            'to_not_watching_done' => '已取消订阅！',
+            'to_watching_done' => '订阅成功！',
         ],
     ],
 ];

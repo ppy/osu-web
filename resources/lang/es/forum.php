@@ -259,8 +259,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => 'Desuscrito del tema',
-            'to_1_done' => 'Suscrito al tema',
+            'to_not_watching_done' => 'Desuscrito del tema',
+            'to_watching_done' => 'Suscrito al tema',
         ],
     ],
 ];

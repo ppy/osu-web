@@ -57,6 +57,10 @@ class NotifyEmail implements ShouldQueue
         foreach ($watches as $watch) {
             $user = $watch->user;
 
+            if (!$watch->mail) {
+                continue;
+            }
+
             if ($user === null || !present($user->user_email)) {
                 continue;
             }

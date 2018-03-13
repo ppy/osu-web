@@ -254,8 +254,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => 'Vous ne suivez pas ce sujet',
-            'to_1_done' => 'Vous suivez ce sujet',
+            'to_not_watching_done' => 'Vous ne suivez pas ce sujet',
+            'to_watching_done' => 'Vous suivez ce sujet',
         ],
     ],
 ];

@@ -121,7 +121,7 @@ Route::group(['prefix' => 'community'], function () {
 
             Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-            Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update', 'destroy']]);
+            Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');

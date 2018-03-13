@@ -42,6 +42,17 @@
     position: absolute;
     bottom: 100%;
     margin-bottom: 10px;
+
+    // extends mouse hover area to cover margin-bottom
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 10px;
+    }
   }
 
   &__item {

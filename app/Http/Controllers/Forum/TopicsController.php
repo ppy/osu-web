@@ -281,13 +281,13 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        $isWatching = TopicWatch::check($topic, Auth::user());
+        $watch = TopicWatch::lookup($topic, Auth::user());
 
         return view(
             "forum.topics.{$template}",
             compact(
                 'cover',
-                'isWatching',
+                'watch',
                 'jumpTo',
                 'pollSummary',
                 'posts',

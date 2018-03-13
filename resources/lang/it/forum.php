@@ -203,8 +203,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => 'Disiscritto dal topic',
-            'to_1_done' => 'Iscritto al topic',
+            'to_not_watching_done' => 'Disiscritto dal topic',
+            'to_watching_done' => 'Iscritto al topic',
         ],
     ],
 ];

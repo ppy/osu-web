@@ -16,8 +16,15 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $_menuId = 'topic-watch-'.$topic->topic_id.'#'.rand();
-    $_menuOpen = $_menuOpen ?? false;
+    $menuId = 'topic-watch-'.$topic->topic_id.'#'.rand();
+    $menuOpen = $menuOpen ?? false;
+    $stateText = $state->stateText();
+
+    $icons = [
+        'not_watching' => 'eye-slash',
+        'watching' => 'eye',
+        'watching_mail' => 'envelope',
+    ];
 @endphp
 <div
     class="js-forum-topic-watch"
@@ -28,45 +35,32 @@
         class="
             btn-circle
             btn-circle--topic-nav
-            {{ $state ? 'btn-circle--activated' : '' }}
+            {{ $state->exists ? 'btn-circle--activated' : '' }}
             js-menu
         "
-        data-menu-target="{{ $_menuId }}"
-        data-url="{{ route('forum.topic-watches.update', [
-            $topic,
-        ]) }}"
-        data-remote="1"
-        data-method="{{ $state ? 'DELETE' : 'PUT' }}"
+        data-menu-target="{{ $menuId }}"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-eye"></i>
+            <i class="fa fa-{{ $icons[$stateText] }}"></i>
         </span>
     </button>
     <div
         class="js-menu simple-menu simple-menu--forum-topic-watch"
-        data-menu-id="{{ $_menuId }}"
-        data-visibility="{{ $_menuOpen ? '' : 'hidden' }}"
+        data-menu-id="{{ $menuId }}"
+        data-visibility="{{ $menuOpen ? '' : 'hidden' }}"
         style="position: absolute;"
     >
-        <button
-            type="button"
-            class="simple-menu__item js-menu"
-            data-url="{{ route('forum.topic-watches.update', $topic) }}"
-            data-remote="1"
-            data-method="PUT"
-            {{ $state ? 'disabled' : '' }}
-        >
-            {{ trans('forum.topics.watch.to_1') }}
-        </button>
-        <button
-            type="button"
-            class="simple-menu__item js-menu"
-            data-url="{{ route('forum.topic-watches.update', $topic) }}"
-            data-remote="1"
-            data-method="DELETE"
-            {{ $state ? '' : 'disabled' }}
-        >
-            {{ trans('forum.topics.watch.to_0') }}
-        </button>
+        @foreach (['watching', 'watching_mail', 'not_watching'] as $newState)
+            <button
+                type="button"
+                class="simple-menu__item"
+                data-url="{{ route('forum.topic-watches.update', [$topic, 'state' => $newState]) }}"
+                data-remote="1"
+                data-method="PUT"
+                {{ $stateText === $newState ? 'disabled' : '' }}
+            >
+                {{ trans("forum.topics.watch.to_{$newState}") }}
+            </button>
+        @endforeach
     </div>
 </div>

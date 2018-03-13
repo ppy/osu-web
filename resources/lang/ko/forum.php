@@ -260,8 +260,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => 'Unsubscribed from topic',
-            'to_1_done' => 'Subscribed to topic',
+            'to_not_watching_done' => 'Unsubscribed from topic',
+            'to_watching_done' => 'Subscribed to topic',
         ],
     ],
 ];

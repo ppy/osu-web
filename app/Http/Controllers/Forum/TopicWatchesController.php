@@ -37,18 +37,11 @@ class TopicWatchesController extends Controller
         $this->middleware('auth');
     }
 
-    public function destroy($topicId)
-    {
-        $topic = Topic::findOrFail($topicId);
-        TopicWatch::lookup($topic, Auth::user())->delete();
-
-        return $this->returnAction($topic, false);
-    }
-
     public function index()
     {
         $topics = Topic::watchedByUser(Auth::user())->paginate(50);
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
+        $topicWatchStatus = TopicWatch::watchStatus(Auth::user(), $topics);
 
         $counts = [
             'total' => $topics->total(),
@@ -57,38 +50,29 @@ class TopicWatchesController extends Controller
 
         return view(
             'forum.topic_watches.index',
-            compact('topics', 'topicReadStatus', 'counts')
+            compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
         );
     }
 
     public function update($topicId)
     {
         $topic = Topic::findOrFail($topicId);
-        $watch = TopicWatch::lookup($topic, Auth::user());
 
         priv_check('ForumTopicWatch', $topic)->ensureCan();
 
-        try {
-            $watch->save();
-        } catch (Exception $e) {
-            if (!is_sql_unique_exception($e)) {
-                throw $e;
-            }
-        }
+        $watch = TopicWatch::setState($topic, Auth::user(), request('state'));
 
-        return $this->returnAction($topic, true);
-    }
-
-    private function returnAction($topic, $state)
-    {
         switch (request('return')) {
             case 'index':
 
                 return response([], 204);
             default:
-                $type = 'watch';
 
-                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
+                return js_view('forum.topics.replace_button', [
+                    'topic' => $topic,
+                    'state' => $watch,
+                    'type' => 'watch',
+                ]);
         }
     }
 }

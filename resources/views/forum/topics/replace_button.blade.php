@@ -15,14 +15,25 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    if (!isset($stateText)) {
+        if (method_exists($state, 'stateText')) {
+            $stateText = $state->stateText();
+        } elseif (is_bool($state)) {
+            $stateText = $state ? '1' : '0';
+        } else {
+            $stateText = (string) $state;
+        }
+    }
+@endphp
 Timeout.set(0, function() {
     $('.js-forum-topic-{{ $type }}--extra[data-topic-id={{ $topic->topic_id }}]').remove();
     $('.js-forum-topic-{{ $type }}[data-topic-id={{ $topic->topic_id }}]')
         .replaceWith({!! json_encode(render_to_string('forum.topics._'.$type, [
             'topic' => $topic,
             'state' => $state,
-            '_menuOpen' => true,
+            'menuOpen' => true,
         ])) !!});
 
-    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.(int) $state.'_done')) !!}, 'success');
+    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

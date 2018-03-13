@@ -250,8 +250,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => 'Opsagde abonnement for emnet',
-            'to_1_done' => 'Abonnerede på emnet',
+            'to_not_watching_done' => 'Opsagde abonnement for emnet',
+            'to_watching_done' => 'Abonnerede på emnet',
         ],
     ],
 

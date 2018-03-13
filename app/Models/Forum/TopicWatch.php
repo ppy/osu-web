@@ -29,6 +29,7 @@ class TopicWatch extends Model
     protected $guarded = [];
     protected $casts = [
         'notify_status' => 'boolean',
+        'mail' => 'boolean',
     ];
 
     public $timestamps = false;
@@ -68,6 +69,14 @@ class TopicWatch extends Model
         return static::lookupQuery($topic, $user)->exists();
     }
 
+    public static function watchStatus($user, $topics)
+    {
+        return static::where('user_id', '=', $user->getKey())
+            ->whereIn('topic_id', $topics->pluck('topic_id'))
+            ->get()
+            ->keyBy('topic_id');
+    }
+
     public static function lookup($topic, $user)
     {
         if ($user === null) {
@@ -77,6 +86,33 @@ class TopicWatch extends Model
                 'topic_id' => $topic->getKey(),
                 'user_id' => $user->getKey(),
             ]);
+        }
+    }
+
+    public static function setState($topic, $user, $state)
+    {
+        $tries = 0;
+
+        while ($tries < 2) {
+            $watch = static::lookup($topic, $user);
+
+            try {
+                if ($state === 'not_watching') {
+                    $watch->delete();
+                } else {
+                    $mail = $state === 'watching_mail';
+
+                    $watch->fill(['mail' => $mail])->saveOrExplode();
+                }
+
+                return $watch;
+            } catch (Exception $e) {
+                if (is_sql_unique_exception($e)) {
+                    $tries++;
+                } else {
+                    throw $e;
+                }
+            }
         }
     }
 
@@ -112,6 +148,15 @@ class TopicWatch extends Model
             'topic_id' => $topicId,
             'user_id' => $userId,
         ]);
+    }
+
+    public function stateText()
+    {
+        if ($this->exists) {
+            return $this->mail ? 'watching_mail' : 'watching';
+        } else {
+            return 'not_watching';
+        }
     }
 
     // Allows save/update/delete to work with composite primary keys.

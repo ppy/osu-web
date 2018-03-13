@@ -258,8 +258,8 @@ return [
         ],
 
         'watch' => [
-            'to_0_done' => 'Prenumeration sades upp från ämne',
-            'to_1_done' => 'Prenumererade på ämne',
+            'to_not_watching_done' => 'Prenumeration sades upp från ämne',
+            'to_watching_done' => 'Prenumererade på ämne',
         ],
     ],
 ];
