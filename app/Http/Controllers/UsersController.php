@@ -294,7 +294,7 @@ class UsersController extends Controller
             ->where('mode', Beatmap::modeInt($currentMode))
             ->first();
 
-        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : [];
+        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
 
         if (Request::is('api/*')) {
             $userArray['statistics'] = $statistics;
