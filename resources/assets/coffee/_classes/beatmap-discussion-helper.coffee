@@ -154,8 +154,9 @@ class @BeatmapDiscussionHelper
     ret =
       beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
       beatmapId: if isFinite(beatmapId) then beatmapId
-      mode: mode ? @DEFAULT_MODE
-      filter: filter ? @DEFAULT_FILTER
+      # empty path segments are ''
+      mode: mode || @DEFAULT_MODE
+      filter: filter || @DEFAULT_FILTER
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)
