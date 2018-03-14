@@ -21,6 +21,7 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
 use App\Libraries\ImageProcessorService;
@@ -830,6 +831,32 @@ class Beatmapset extends Model implements AfterCommit
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
     }
 
+    public function allCoverImagesPresent()
+    {
+        $allGood = true;
+        try {
+            foreach ($this->allCoverURLs() as $size => $url) {
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_HEADER, true);
+                curl_setopt($ch, CURLOPT_NOBODY, true);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+                curl_exec($ch);
+                $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                curl_close($ch);
+
+                if ($responseCode !== 200) {
+                    $allGood = false;
+                    break;
+                }
+            }
+        } catch (\Exception $e) {
+            $allGood = false;
+        }
+
+        return $allGood;
+    }
+
     public function setApproved($state, $user)
     {
         $this->approved = static::STATES[$state];
@@ -882,6 +909,10 @@ class Beatmapset extends Model implements AfterCommit
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
+
+            // enqueue a cover check job to ensure cover images are all present
+            $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
+            dispatch($job);
         });
 
         return true;
