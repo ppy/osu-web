@@ -93,7 +93,7 @@ class TopicWatch extends Model
     {
         $tries = 0;
 
-        while ($tries < 2) {
+        while (true) {
             $watch = static::lookup($topic, $user);
 
             try {
@@ -107,7 +107,7 @@ class TopicWatch extends Model
 
                 return $watch;
             } catch (Exception $e) {
-                if (is_sql_unique_exception($e)) {
+                if (is_sql_unique_exception($e) && $tries < 2) {
                     $tries++;
                 } else {
                     throw $e;
