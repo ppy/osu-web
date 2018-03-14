@@ -65,6 +65,8 @@ return [
             'count_sliders' => 'Slider Count',
             'user-rating' => 'User Rating',
             'rating-spread' => 'Rating Spread',
+            'nominations' => 'Nominations',
+            'playcount' => 'Playcount',
         ],
         'info' => [
             'description' => 'Description',
