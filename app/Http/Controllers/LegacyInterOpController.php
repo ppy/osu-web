@@ -33,7 +33,7 @@ class LegacyInterOpController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_default');
         $this->dispatch($job);
 
         return ['success' => true];
