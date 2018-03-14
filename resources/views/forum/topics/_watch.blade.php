@@ -21,7 +21,7 @@
     $stateText = $state->stateText();
 
     $icons = [
-        'not_watching' => 'eye-slash',
+        'not_watching' => 'eye',
         'watching' => 'eye',
         'watching_mail' => 'envelope',
     ];
