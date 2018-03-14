@@ -21,7 +21,7 @@ class @BeatmapDiscussionHelper
   @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
 
-  @MODES = ['timeline', 'general', 'generalAll']
+  @MODES = ['timeline', 'general', 'generalAll', 'events']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
   @discussionMode: (discussion) ->
