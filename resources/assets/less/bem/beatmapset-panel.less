@@ -149,6 +149,28 @@
     display: flex;
   }
 
+  &__status {
+    background: fade(black, 50%);
+    padding: 0 15px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 28px;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    .fade-element(@hover-transition-duration);
+    .@{top}:hover & {
+      opacity: 0;
+    }
+  }
+
+  &__status-container {
+    display: flex;
+    position: absolute;
+    margin: 5px;
+  }
+
   &__shadow {
     .default-border-radius();
     .own-layer();
@@ -188,7 +210,13 @@
   }
 
   &__video-icon {
-    padding: @padding;
+    font-size: 14px;
+    line-height: 28px;
+    background: fade(black, 50%);
+    padding: 0px 5px;
+    margin-right: 5px;
+    border-radius: 14px;
+
     .fade-element(@hover-transition-duration);
 
     .@{top}:hover & {
