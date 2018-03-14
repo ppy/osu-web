@@ -52,16 +52,16 @@ class NotifyEmail implements ShouldQueue
     public function notifyReply($event)
     {
         $topic = $event->topic->fresh();
-        $watches = $topic->watches()->with('user', 'topic')->get();
+        $watches = $topic->watches()
+            ->where('mail', '=', true)
+            ->has('user')
+            ->with('user', 'topic')
+            ->get();
 
         foreach ($watches as $watch) {
             $user = $watch->user;
 
-            if (!$watch->mail) {
-                continue;
-            }
-
-            if ($user === null || !present($user->user_email)) {
+            if (!present($user->user_email)) {
                 continue;
             }
 
