@@ -60,15 +60,6 @@ class TopicWatch extends Model
             ->count();
     }
 
-    public static function check($topic, $user)
-    {
-        if ($topic === null || $user === null) {
-            return false;
-        }
-
-        return static::lookupQuery($topic, $user)->exists();
-    }
-
     public static function watchStatus($user, $topics)
     {
         return static::where('user_id', '=', $user->getKey())
