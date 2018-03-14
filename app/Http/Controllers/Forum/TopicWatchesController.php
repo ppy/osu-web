@@ -57,10 +57,13 @@ class TopicWatchesController extends Controller
     public function update($topicId)
     {
         $topic = Topic::findOrFail($topicId);
+        $state = request('state');
 
-        priv_check('ForumTopicWatch', $topic)->ensureCan();
+        if ($state !== 'not_watching') {
+            priv_check('ForumTopicWatch', $topic)->ensureCan();
+        }
 
-        $watch = TopicWatch::setState($topic, Auth::user(), request('state'));
+        $watch = TopicWatch::setState($topic, Auth::user(), $state);
 
         switch (request('return')) {
             case 'index':
