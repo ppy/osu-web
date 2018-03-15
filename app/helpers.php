@@ -190,16 +190,14 @@ function html_excerpt($body, $limit = 300)
     return e($body);
 }
 
-function json_date($date)
+function json_date(?DateTime $date) : ?string
 {
-    return json_time($date->startOfDay());
+    return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time($time)
+function json_time(?DateTime $time) : ?string
 {
-    if ($time !== null) {
-        return $time->toIso8601String();
-    }
+    return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
 function locale_flag($locale)
