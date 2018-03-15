@@ -18,7 +18,7 @@
 
 class @NavSearch
   constructor: ->
-    @debouncedRun = _.debounce @run, 250
+    @debouncedRun = _.debounce @run, 500
 
     # weird metric otherwise
     $(document).on 'turbolinks:load', =>
