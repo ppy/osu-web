@@ -833,28 +833,13 @@ class Beatmapset extends Model implements AfterCommit
 
     public function allCoverImagesPresent()
     {
-        $allGood = true;
-        try {
-            foreach ($this->allCoverURLs() as $size => $url) {
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_HEADER, true);
-                curl_setopt($ch, CURLOPT_NOBODY, true);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-                curl_exec($ch);
-                $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                curl_close($ch);
-
-                if ($responseCode !== 200) {
-                    $allGood = false;
-                    break;
-                }
+        foreach ($this->allCoverURLs() as $_size => $url) {
+            if (!check_url($url)) {
+                return false;
             }
-        } catch (\Exception $e) {
-            $allGood = false;
         }
 
-        return $allGood;
+        return true;
     }
 
     public function setApproved($state, $user)
