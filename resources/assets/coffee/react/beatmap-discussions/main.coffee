@@ -32,8 +32,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @timeouts = {}
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
+    @restoredState = @state?
 
-    if !@state?
+    if !@restoredState
       beatmapset = props.initial.beatmapset
 
       readPostIds = []
@@ -61,7 +62,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
     $(document).on 'turbolinks:before-cache', @saveStateToContainer
 
-    @jumpToDiscussionByHash()
+    @jumpToDiscussionByHash() if !@restoredState
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
