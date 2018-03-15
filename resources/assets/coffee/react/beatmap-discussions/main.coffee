@@ -362,7 +362,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     if filter?
       if @state.currentMode == 'events'
-        mode = @lastMode ? BeatmapDiscussionHelper.DEFAULT_MODE
+        newState.currentMode = @lastMode ? BeatmapDiscussionHelper.DEFAULT_MODE
 
       if filter != @state.currentFilter
         newState.currentFilter = filter
