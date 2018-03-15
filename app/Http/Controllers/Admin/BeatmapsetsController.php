@@ -41,7 +41,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RemoveBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $job = (new RemoveBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
         $this->dispatch($job);
 
         return response([], 204);
@@ -51,7 +51,7 @@ class BeatmapsetsController extends Controller
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
         $this->dispatch($job);
 
         return response([], 204);
