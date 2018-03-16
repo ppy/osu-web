@@ -23,6 +23,7 @@ namespace App\Libraries\Search;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
+use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Search\HasCompatibility;
@@ -50,6 +51,18 @@ class ForumSearch extends Search
         $this->username = presence($options['username'] ?? null);
         $this->forumId = get_int($options['forumId'] ?? null);
         $this->topicId = get_int($options['topicId'] ?? null);
+    }
+
+    // TODO: maybe move to a response/view helper?
+    public function highlightsForHit(Hit $hit)
+    {
+        return implode(
+            ' ... ',
+            $hit->highlights(
+                'search_content',
+                static::HIGHLIGHT_FRAGMENT_SIZE * 2
+            )
+        );
     }
 
     /**
