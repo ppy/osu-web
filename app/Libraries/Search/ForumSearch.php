@@ -36,8 +36,6 @@ class ForumSearch extends Search
 {
     use HasCompatibility;
 
-    const HIGHLIGHT_FRAGMENT_SIZE = 50;
-
     protected $includeSubforums;
     protected $queryString;
     protected $username;
