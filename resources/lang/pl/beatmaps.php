@@ -108,6 +108,14 @@ return [
             'resolved' => 'Rozwiązane',
             'total' => 'Wszystkie',
         ],
+
+        'status-messages' => [
+            'approved' => 'Ta beatmapa została zatwierdzona :date!',
+            'graveyard' => "Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez twórcę...",
+            'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
+            'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
+            'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
+        ],
     ],
 
     'hype' => [
@@ -135,6 +143,7 @@ return [
         'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'nominate' => 'Nominuj',
         'nominate_confirm' => 'Nominować tę beatmapę?',
+        'nominated_by' => 'nominowana przez :users',
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną odnalezione żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną odnalezione żadne błędy.',
         'required_text' => 'Nominacje: :current/:required',
@@ -151,6 +160,7 @@ return [
             'not-found' => 'brak wyników',
             'not-found-quote' => '... niczego nie znaleziono.',
             'filters' => [
+                'general' => 'Główne',
                 'mode' => 'Tryb gry',
                 'status' => 'Status beatmapy',
                 'genre' => 'Gatunek',
