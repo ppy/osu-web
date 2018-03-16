@@ -100,7 +100,6 @@ return [
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',
-            ],
         ],
     ],
 
