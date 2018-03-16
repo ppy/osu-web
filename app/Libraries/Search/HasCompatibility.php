@@ -24,7 +24,7 @@ use BadMethodCallException;
 use ReflectionObject;
 
 /**
- * Compatibility trait for Search classes during cleanup
+ * Compatibility trait for Search classes during cleanup.
  */
 trait HasCompatibility
 {

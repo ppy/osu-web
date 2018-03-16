@@ -20,8 +20,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\UserRegistration;
 use App\Libraries\PostSearch;
+use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
 use App\Models\BeatmapDiscussion;
