@@ -79,6 +79,7 @@ return [
             'scopes' => [
                 'general' => 'Ten poziom trudności',
                 'generalAll' => 'Wszystkie poziomy trudności',
+            ],
         ],
 
         'new' => [
