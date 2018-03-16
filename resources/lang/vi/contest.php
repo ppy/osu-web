@@ -20,49 +20,49 @@
 
 return [
     'header' => [
-        'small' => 'Compete in more ways than just clicking circles.',
-        'large' => 'osu! Community Contests',
+        'small' => 'Cạnh tranh bằng nhiều cách khác nhau hơn là chỉ bấm vòng tròn.',
+        'large' => 'Các Cuộc Thi Của Cộng Đồng osu!',
     ],
     'voting' => [
-        'over' => 'Voting for this contest has ended',
-        'login_required' => 'Please login to vote.',
+        'over' => 'Bình chọn đã kết thúc cho cuộc thi này',
+        'login_required' => 'Hãy đăng nhập để bình chọn.',
         'best_of' => [
-            'none_played' => "It doesn't look like you played any beatmaps that qualify for this contest!",
+            'none_played' => 'Bạn không hẳn đã chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!',
         ],
     ],
     'entry' => [
         '_' => 'entry',
-        'login_required' => 'Please login to enter the contest.',
-        'silenced_or_restricted' => 'You cannot enter contests while restricted or silenced.',
-        'preparation' => 'We are currently preparing this contest. Please wait patiently!',
-        'over' => 'Thank you for your entries! Submissions have closed for this contest and voting will open soon.',
-        'limit_reached' => 'You have reached the entry limit for this contest',
-        'drop_here' => 'Drop your entry here',
+        'login_required' => 'Hãy đăng nhập để tham gia cuộc thi.',
+        'silenced_or_restricted' => 'Bạn không thể tham gia cuộc thi trong khi bị hạn chế hoặc bị im lặng.',
+        'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
+        'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và bỏ phiếu sẽ sớm được mở.',
+        'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
+        'drop_here' => 'Thả bài dự thi của bạn vào đây',
         'wrong_type' => [
-            'art' => 'Only .jpg and .png files are accepted for this contest.',
-            'beatmap' => 'Only .osu files are accepted for this contest.',
-            'music' => 'Only .mp3 files are accepted for this contest.',
+            'art' => 'Chỉ những file .jpg và .png được chấp nhận cho cuộc thi này.',
+            'beatmap' => 'Chỉ những file .osu được chấp nhận cho cuộc thi này.',
+            'music' => 'Chỉ những file .mp3 được chấp nhận cho cuộc thi này.',
         ],
-        'too_big' => 'Entries for this contest can only be up to :limit.',
+        'too_big' => 'Bài dự thi cho cuộc thi này có thể lên đến :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Download Entry',
+        'download' => 'Tải Xuống Bài Dự Thi',
     ],
     'vote' => [
-        'list' => 'votes',
-        'count' => '1 vote|:count votes',
+        'list' => 'phiếu',
+        'count' => ':count phiếu',
     ],
     'dates' => [
-        'ended' => 'Ended :date',
+        'ended' => 'Đã kết thúc :date',
 
         'starts' => [
-            '_' => 'Starts :date',
+            '_' => 'Bắt đầu :date',
             'soon' => 'soon™',
         ],
     ],
     'states' => [
-        'entry' => 'Entry Open',
-        'voting' => 'Voting Started',
-        'results' => 'Results Out',
+        'entry' => 'Nhận Bài Dự Thi',
+        'voting' => 'Bắt Đầu Bình Chọn',
+        'results' => 'Có Kết Quả',
     ],
 ];
