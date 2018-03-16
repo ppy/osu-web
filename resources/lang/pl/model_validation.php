@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Określony znacznik czasu sięga ponad długość beatmapy.',
-            'negative' => "Znacznik czasu nie może być ujemny.",
+            'negative' => 'Znacznik czasu nie może być ujemny.',
         ],
     ],
 
