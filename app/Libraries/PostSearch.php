@@ -25,15 +25,17 @@ use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
+use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
-
 // FIXME: remove ArrayAccess after refactored
 class PostSearch extends Search implements \ArrayAccess
 {
+    use HasCompatibility;
+
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
     protected $forumId;
@@ -103,11 +105,6 @@ class PostSearch extends Search implements \ArrayAccess
         return min($this->response()->total(), static::MAX_RESULTS);
     }
 
-    public function params()
-    {
-        return $this->getPaginationParams();
-    }
-
     /**
      * Returns a Builder for a Collection of all the users that appeared in this query.
      *
@@ -118,34 +115,5 @@ class PostSearch extends Search implements \ArrayAccess
         $ids = $this->response()->ids('poster_id');
 
         return User::whereIn('user_id', $ids);
-    }
-
-    //================
-    // ArrayAccess
-    //================
-
-    public function offsetExists($key)
-    {
-        return in_array($key, ['data', 'total', 'params'], true);
-    }
-
-    public function offsetGet($key)
-    {
-        if ($this->offsetExists($key) === false) {
-            return;
-        }
-
-        // reroute to method
-        return (new \ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
-    }
-
-    public function offsetSet($key, $value)
-    {
-        throw new \BadMethodCallException('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new \BadMethodCallException('not supported');
     }
 }
