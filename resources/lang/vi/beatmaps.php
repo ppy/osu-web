@@ -40,7 +40,7 @@ return [
         'edited' => 'Sửa đổi lần cuối bởi :editor :update_time.',
         'kudosu_denied' => 'Đã từ chối nhận kudosu.',
         'message_placeholder' => 'Nhập vào đây để đăng',
-        'message_placeholder_deleted_beatmap' => 'This difficulty has been deleted so it may no longer be discussed.',
+        'message_placeholder_deleted_beatmap' => 'Difficulty này đã bị xóa nên nó có thể sẽ không còn được thảo luận nữa.',
         'message_type_select' => 'Chọn Loại Nhận Xét',
         'reply_notice' => 'Bấm enter để trả lời.',
         'reply_placeholder' => 'Nhập câu trả lời của bạn tại đây',
@@ -130,7 +130,7 @@ return [
     ],
 
     'feedback' => [
-        'button' => 'Leave Feedback',
+        'button' => 'Để Lại Phản Hồi',
     ],
 
     'nominations' => [
@@ -179,8 +179,8 @@ return [
         'load-more' => 'Tải thêm...',
     ],
     'general' => [
-        'recommended' => 'Recommended difficulty',
-        'converts' => 'Include converted beatmaps',
+        'recommended' => 'Độ khó đề nghị',
+        'converts' => 'Bao gồm beatmap được chuyển đổi',
     ],
     'mode' => [
         'any' => 'Bất Kì',
