@@ -21,7 +21,14 @@
 return [
 
     'beatmapsets' => [
+        'covers' => [
+            'regenerate' => 'Wygeneruj ponownie',
+            'regenerating' => 'Ponowne generowanie...',
+            'remove' => 'Usuń',
+            'removing' => 'Usuwanie...',
+        ],
         'show' => [
+            'covers' => 'Zarządzaj tłami beatmapy',
             'discussion' => [
                 '_' => 'Modowanie v2',
                 'activate' => 'aktywuj',

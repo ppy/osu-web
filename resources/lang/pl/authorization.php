@@ -75,10 +75,10 @@ return [
                 'locked' => 'Nie możesz odpowiadać w zablokowanym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'not_owner' => 'Tylko autor wątka może go usunąć.',
-                'topic_locked' => 'Nie możesz edytować posta w zablokowanym wątku.',
             ],
 
             'edit' => [
+                'deleted' => 'Nie możesz edytować usuniętego posta.',
                 'locked' => 'Ten wątek jest chroniony przed edycją.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'not_owner' => 'Tylko autor może edytować wątek.',
