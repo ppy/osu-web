@@ -67,7 +67,6 @@ return [
             'rating-spread' => 'Wykres ocen',
         ],
         'info' => [
-            'no_scores' => 'Nierankingowa beatmapa',
             'points-of-failure' => 'Wykres porażek',
             'success-rate' => 'Wskaźnik sukcesu',
             'genre' => 'Gatunek',
@@ -75,6 +74,7 @@ return [
             'description' => 'Opis',
             'source' => 'Źródło',
             'tags' => 'Tagi',
+            'unranked' => 'Nierankingowa beatmapa',
         ],
         'scoreboard' => [
             'achieved' => 'osiągnięte :when',
