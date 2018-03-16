@@ -18,10 +18,31 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-return [
-    'months' => 'ilość miesięcy',
-    'user_search' => [
-        'searching' => 'wyszukiwanie...',
-        'not_found' => 'Nie znaleziono użytkownika',
-    ],
-];
+namespace App\Transformers;
+
+use App\Models\UserAccountHistory;
+use League\Fractal;
+
+class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
+{
+    protected $availableIncludes = [
+        'actor',
+    ];
+
+    public function transform(UserAccountHistory $h)
+    {
+        return [
+            'description' => $h->reason,
+            'type' => $h->type,
+            'timestamp' => json_time($h->timestamp),
+            'length' => $h->period,
+        ];
+    }
+
+    public function includeActor(UserAccountHistory $h)
+    {
+        if ($h->actor !== null) {
+            return $this->item($h->actor, new UserCompactTransformer);
+        }
+    }
+}

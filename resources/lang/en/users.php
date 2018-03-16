@@ -232,6 +232,27 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
+            'account_standing' => [
+                'title' => 'Account Standing',
+                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
+                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Recent Infringements',
+                    'date' => 'date',
+                    'action' => 'action',
+                    'length' => 'length',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'description',
+                    'actor' => 'by :username',
+
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Silence',
+                        'note' => 'Note',
+                    ],
+                ],
+            ],
         ],
         'info' => [
             'interests' => 'Interests',

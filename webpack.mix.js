@@ -26,9 +26,10 @@ require('dotenv').config();
 // .js doesn't support globbing by itself, so we need to glob
 // and spread the values in.
 const glob = require('glob');
-let min = '';
+let min = '', reactMin = 'development';
 if (mix.inProduction()) {
   min = '.min';
+  reactMin = 'production.min'
 }
 
 const paymentSandbox = !(process.env.PAYMENT_SANDBOX == 0
@@ -58,9 +59,9 @@ const vendor = [
   path.join(node_root, 'bootstrap/dist/js/bootstrap.js'),
   path.join(node_root, 'lodash/lodash.js'),
   path.join(node_root, 'layzr.js/dist/layzr.js'),
-  path.join(node_root, `react/dist/react${min}.js`),
+  path.join(node_root, `react/umd/react.${reactMin}.js`),
   path.join(node_root, 'react-dom-factories/index.js'),
-  path.join(node_root, `react-dom/dist/react-dom${min}.js`),
+  path.join(node_root, `react-dom/umd/react-dom.${reactMin}.js`),
   path.join(node_root, `prop-types/prop-types${min}.js`),
   path.join(node_root, 'photoswipe/dist/photoswipe.js'),
   path.join(node_root, 'photoswipe/dist/photoswipe-ui-default.js'),

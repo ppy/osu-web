@@ -85,9 +85,11 @@ class @BeatmapsetPanel extends React.PureComponent
             style:
               backgroundImage: "url(#{beatmapset.covers.card})"
 
-            if beatmapset.video or beatmapset.storyboard
-              div className: 'beatmapset-panel__video-icon',
-                el Icon, name: 'film', modifiers: ['fw']
+            div className: 'beatmapset-panel__status-container',
+              if beatmapset.video or beatmapset.storyboard
+                div className: 'beatmapset-panel__video-icon',
+                  el Icon, name: 'film', modifiers: ['fw']
+              div className: 'beatmapset-panel__status', beatmapset.status
 
             div className: 'beatmapset-panel__title-artist-box',
               div className: 'u-ellipsis-overflow beatmapset-panel__header-text beatmapset-panel__header-text--title',

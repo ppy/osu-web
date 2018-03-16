@@ -21,6 +21,9 @@ class @BeatmapDiscussionHelper
   @DEFAULT_MODE: 'timeline'
   @DEFAULT_FILTER: 'total'
 
+  @MODES = ['events', 'general', 'generalAll', 'timeline']
+  @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
+
   @discussionMode: (discussion) ->
     if discussion.beatmap_id?
       if discussion.timestamp?
@@ -154,8 +157,9 @@ class @BeatmapDiscussionHelper
     ret =
       beatmapsetId: if isFinite(beatmapsetId) then beatmapsetId
       beatmapId: if isFinite(beatmapId) then beatmapId
-      mode: mode ? @DEFAULT_MODE
-      filter: filter ? @DEFAULT_FILTER
+      # empty path segments are ''
+      mode: if _.includes(@MODES, mode) then mode else @DEFAULT_MODE
+      filter: if _.includes(@FILTERS, filter) then filter else @DEFAULT_FILTER
 
     if url.hash[1] == '/'
       discussionId = parseInt(url.hash[2..], 10)

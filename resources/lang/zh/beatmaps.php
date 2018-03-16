@@ -74,8 +74,6 @@ return [
 
         'mode' => [
             'events' => '历史',
-            'general' => '常规',
-            'general_all' => '常规（全难度）',
             'timeline' => '时间线',
         ],
 

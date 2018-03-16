@@ -190,16 +190,14 @@ function html_excerpt($body, $limit = 300)
     return e($body);
 }
 
-function json_date($date)
+function json_date(?DateTime $date) : ?string
 {
-    return json_time($date->startOfDay());
+    return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time($time)
+function json_time(?DateTime $time) : ?string
 {
-    if ($time !== null) {
-        return $time->toIso8601String();
-    }
+    return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
 function locale_flag($locale)
@@ -1170,4 +1168,23 @@ function get_stream_filename($handle)
     $meta = stream_get_meta_data($handle);
 
     return $meta['uri'];
+}
+
+// Performs a HEAD request to the given url and checks the http status code.
+// Returns true on status 200, otherwise false (note: doesn't support redirects/etc)
+function check_url(string $url): bool
+{
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+    ]);
+    curl_exec($ch);
+
+    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
+    curl_close($ch);
+
+    return !$errored;
 }

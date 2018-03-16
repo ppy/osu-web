@@ -29,6 +29,7 @@ use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class ForumSearch extends Search
 {
@@ -105,7 +106,7 @@ class ForumSearch extends Search
         return (new HasChildQuery('posts', 'posts'))
             ->size(3)
             ->scoreMode('max')
-            ->source(['topic_id', 'post_id', 'search_content'])
+            ->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content'])
             ->highlight(
                 (new Highlight)
                     ->field('search_content')
@@ -151,5 +152,54 @@ class ForumSearch extends Search
     public function total()
     {
         return min($this->response()->total(), static::MAX_RESULTS);
+    }
+
+    public function params()
+    {
+        return $this->getPaginationParams();
+    }
+
+    /**
+     * Returns a Builder for a Collection of all the users that appeared in this query.
+     *
+     * @return Builder
+     */
+    public function users() : Builder
+    {
+        $ids = array_merge(
+            $this->response()->ids('poster_id'),
+            $this->response()->innerHitsIds('posts', 'poster_id')
+        );
+
+        return User::whereIn('user_id', $ids);
+    }
+
+    //================
+    // ArrayAccess
+    //================
+
+    public function offsetExists($key)
+    {
+        return in_array($key, ['data', 'total', 'params'], true);
+    }
+
+    public function offsetGet($key)
+    {
+        if ($this->offsetExists($key) === false) {
+            return;
+        }
+
+        // reroute to method
+        return (new \ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
+    }
+
+    public function offsetSet($key, $value)
+    {
+        throw new \BadMethodCallException('not supported');
+    }
+
+    public function offsetUnset($key)
+    {
+        throw new \BadMethodCallException('not supported');
     }
 }

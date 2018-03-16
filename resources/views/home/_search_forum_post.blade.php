@@ -16,52 +16,52 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 
+{{-- more code than template in this view :best: --}}
 @php
     // $entry should be of type App\Libraries\Elasticsearch\Hit
     $innerHits = $entry->innerHits('posts');
-    $firstPost = $entry->innerHits('first_post');
+    $firstPost = $entry->innerHits('first_post'); // instance of App\Libraries\Elasticsearch\SearchResponse
     $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
+    $excerpt = implode('', array_map(function ($post) {
+        return html_excerpt($post->source('search_content'));
+    }, iterator_to_array($firstPost)));
+
+    $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? new App\Models\DeletedUser();
 @endphp
 <div class="search-entry-thread">
-    <a class="search-entry" href="{{ $firstPostUrl }}">
-        <h1 class="search-entry__row search-entry__row--title">
-            {{ $entry->source('search_content') }}
-        </h1>
-        <div class="search-entry__row search-entry__row--excerpt">
-            @foreach ($firstPost as $post)
-                <span>{!! html_excerpt($post->source('search_content')) !!}</span>
-            @endforeach
-        </div>
-        <p class="search-entry__row search-entry__row--footer">
-            {{ $firstPostUrl }}
-        </p>
-    </a>
-
+    <div class="search-entry">
+        @include('objects.search._forum_post', [
+            'user' => $user,
+            'title' => $entry->source('search_content'),
+            'highlights' => $excerpt,
+            'link' => $firstPostUrl,
+            'time' => $entry->source('post_time'),
+        ])
+    </div>
 
     @foreach ($innerHits as $innerHit)
         @php
             $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
+            $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? new App\Models\DeletedUser;
+            $highlights = implode(
+                ' ... ',
+                $innerHit->highlights(
+                    'search_content',
+                    App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                )
+            )
         @endphp
 
         <div class="search-entry-thread__sub-item">
-            <a class="search-entry" href="{{ $postUrl }}">
-                <div class="search-entry__row search-entry__row--excerpt">
-                    <span class="search-entry__highlight">
-                        {!!
-                            implode(
-                                ' ... ',
-                                $innerHit->highlights(
-                                    'search_content',
-                                    App\Libraries\Search\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
-                                )
-                            )
-                        !!}
-                    </span>
-                </div>
-                <p class="search-entry__row search-entry__row--footer">
-                    {{ $postUrl }}
-                </p>
-            </a>
+            <div class="search-entry">
+                @include('objects.search._forum_post', [
+                    'user' => $user,
+                    'title' => null,
+                    'highlights' => $highlights,
+                    'link' => $postUrl,
+                    'time' => $innerHit->source('post_time'),
+                ])
+            </div>
         </div>
     @endforeach
 </div>

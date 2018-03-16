@@ -78,7 +78,7 @@ return [
         'community' => [
             '_' => 'community',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forums',
             'getChat' => 'chat',
             'getLive' => 'live',
             'contests' => 'contests',
@@ -87,10 +87,10 @@ return [
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
             'forum-topic-watches-index' => 'subscriptions',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forums',
+            'forum-topics-show' => 'forums',
+            'forum-forums-index' => 'forums',
+            'forum-forums-show' => 'forums',
         ],
         'multiplayer' => [
             '_' => 'multiplayer',

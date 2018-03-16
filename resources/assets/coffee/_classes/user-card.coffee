@@ -26,6 +26,7 @@ class @UserCard
   onMouseOver: (event) =>
     el = event.currentTarget
     userId = el.getAttribute('data-user-id')
+    return unless userId
 
     # when qtip has already been init for current element
     if el._tooltip?

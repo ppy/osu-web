@@ -73,8 +73,6 @@ return [
 
         'mode' => [
             'events' => 'Historie',
-            'general' => 'Generelt',
-            'general_all' => 'Generelt (alle sværhedsgrader)',
             'timeline' => 'Tidslinje',
         ],
 

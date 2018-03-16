@@ -38,6 +38,13 @@ class RegenerateBeatmapsetCover implements ShouldQueue
     protected $sizesToRegenerate;
 
     /**
+     * The number of seconds the job can run before timing out.
+     *
+     * @var int
+     */
+    public $timeout = 300;
+
+    /**
      * Create a new job instance.
      *
      * @return void

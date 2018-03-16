@@ -90,7 +90,7 @@ return [
             ],
             'download' => [
                 'title' => 'pobierz grę',
-                'description' => 'naciśnij przycisk powyżej, aby pobrać instalator, a następnie uruchom go!',
+                'description' => 'kliknij przycisk powyżej, aby pobrać instalator, a następnie uruchom go!',
             ],
             'beatmaps' => [
                 'title' => 'pobierz beatmapy',
@@ -138,7 +138,7 @@ return [
             'part-1' => 'Czy wiesz, że osu! nie zawiera reklam i jest utrzymywane dzięki wsparciu graczy?',
             'part-2' => 'Czy wiesz, że wspierając osu! otrzymasz wiele przydatnych funkcji takich jak <strong>automatyczne pobieranie beatmap</strong> podczas gier wieloosobowych, oraz oglądania innych graczy?',
         ],
-        'find-out-more' => 'Naciśnij tutaj, aby dowiedzieć się więcej!',
+        'find-out-more' => 'Kliknij tutaj, aby dowiedzieć się więcej!',
         'download-starting' => 'A, i nie martw się - pobieranie już się rozpoczęło ;)',
     ],
 ];
