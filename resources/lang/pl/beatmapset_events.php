@@ -20,7 +20,7 @@
 
 return [
     'event' => [
-        'approve' => 'Zablokowane.',
+        'approve' => 'Zatwierdzona.',
         'discussion_delete' => 'Moderator usunął dyskusję :discussion.',
         'discussion_post_delete' => 'Moderator usunął odpowiedź z dyskusji :discussion.',
         'discussion_post_restore' => 'Moderator przywrócił odpowiedź z dyskusji :discussion.',
@@ -32,8 +32,19 @@ return [
         'kudosu_deny' => 'Dyskusja :discussion nie dostanie kudosu.',
         'kudosu_gain' => 'Dyskusja :discussion otrzymała wystarczająco dużo głosów na kudosu.',
         'kudosu_lost' => 'Dyskusja :discussion straciła głosy, a przyznane kudosu zostało odebrane.',
-        'nominate' => 'Nominowane.',
-        'qualify' => 'Zakwalifikowane.',
-        'rank' => 'Rankingowe.',
+        'kudosu_recalculate' => 'Kudosu w dyskusji :discussion zostało przekalkulowane.',
+        'nominate' => 'Nominowana przez :user.',
+        'nomination_reset' => 'Nowy problem :discussion spowodował zresetowanie nominacji.',
+        'qualify' => 'Zakwalifikowana.',
+        'rank' => 'Rankingowa.',
+    ],
+
+    'index' => [
+        'title' => 'Historia zdarzeń beatmapy',
+    ],
+
+    'item' => [
+        'content' => 'Content',
+        'type' => 'Type',
     ],
 ];
