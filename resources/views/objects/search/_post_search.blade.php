@@ -17,13 +17,7 @@
 --}}
 @php
     $link = post_url($hit->source('topic_id'), $hit->source('post_id'));
-    $highlights = implode(
-                    ' ... ',
-                    $hit->highlights(
-                        'search_content',
-                        App\Libraries\PostSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
-                    )
-                );
+    $highlights = $search->highlightsForHit($hit);
     $time = $hit->source('post_time');
     $user = $users->where('user_id', $hit->source('poster_id'))->first() ?? new App\Models\DeletedUser();
 @endphp

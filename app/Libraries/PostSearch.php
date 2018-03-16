@@ -22,6 +22,7 @@ namespace App\Libraries;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\Highlight;
+use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
@@ -51,6 +52,18 @@ class PostSearch extends Search implements \ArrayAccess
 
         $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
         $this->forumId = get_int($options['forumId'] ?? null);
+    }
+
+    // TODO: maybe move to a response/view helper?
+    public function highlightsForHit(Hit $hit)
+    {
+        return implode(
+            ' ... ',
+            $hit->highlights(
+                'search_content',
+                static::HIGHLIGHT_FRAGMENT_SIZE * 2
+            )
+        );
     }
 
     /**
