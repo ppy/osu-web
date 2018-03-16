@@ -113,10 +113,10 @@ return [
     'hype' => [
         'button' => 'Nadaj priorytet beatmapie!',
         'button_done' => 'Priorytet został nadany!',
-        'confirm' => "Na pewno? Liczba możliwych do nadania priorytetów zmniejszy się bez możliwości cofnięcia priorytetu.",
+        'confirm' => 'Na pewno? Liczba możliwych do nadania priorytetów zmniejszy się bez możliwości cofnięcia priorytetu.',
         'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
         'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
-        'new_time' => "Liczba możliwych do nadania priorytetów zwiększy się za :new_time.",
+        'new_time' => 'Liczba możliwych do nadania priorytetów zwiększy się za :new_time.',
         'remaining' => 'Liczba możliwych do nadania priorytetów: :remaining.',
         'required_text' => 'Priorytet: :current/:required',
         'section_title' => 'Priorytet',
