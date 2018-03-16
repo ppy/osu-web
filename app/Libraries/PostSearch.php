@@ -28,6 +28,8 @@ use App\Libraries\Elasticsearch\SearchResponse;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
+
 
 // FIXME: remove ArrayAccess after refactored
 class PostSearch extends Search implements \ArrayAccess
@@ -104,6 +106,18 @@ class PostSearch extends Search implements \ArrayAccess
     public function params()
     {
         return $this->getPaginationParams();
+    }
+
+    /**
+     * Returns a Builder for a Collection of all the users that appeared in this query.
+     *
+     * @return Builder
+     */
+    public function users() : Builder
+    {
+        $ids = $this->response()->ids('poster_id');
+
+        return User::whereIn('user_id', $ids);
     }
 
     //================

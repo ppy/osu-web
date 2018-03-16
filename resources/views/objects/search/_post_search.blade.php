@@ -16,24 +16,18 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $postUrl = post_url($hit->source('topic_id'), $hit->source('post_id'));
-@endphp
-
-<a class="search-entry" href="{{ $postUrl }}">
-    <div class="search-entry__row search-entry__row--excerpt">
-        <span class="search-entry__highlight">
-            {!!
-                implode(
+    $link = post_url($hit->source('topic_id'), $hit->source('post_id'));
+    $highlights = implode(
                     ' ... ',
                     $hit->highlights(
                         'search_content',
                         App\Libraries\PostSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
                     )
-                )
-            !!}
-        </span>
-    </div>
-    <p class="search-entry__row search-entry__row--footer">
-        {{ $postUrl }}
-    </p>
-</a>
+                );
+    $time = $hit->source('post_time');
+    $user = $users->where('user_id', $hit->source('poster_id'))->first() ?? new App\Models\DeletedUser();
+@endphp
+
+<div class="search-entry">
+    @include('objects.search._forum_post', compact('highlights', 'link', 'time', 'user'))
+</div>

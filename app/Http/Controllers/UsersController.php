@@ -223,11 +223,10 @@ class UsersController extends Controller
             'includeSubforums' => get_bool(request('forum_children')),
         ];
 
-        $search = (new PostSearch($options))
-            ->paginate(50)
-            ->appends(request()->query());
+        $search = new PostSearch($options);
+        $page = $search->paginate(50)->appends(request()->query());
 
-        return view('users.posts', compact('search', 'user'));
+        return view('users.posts', compact('search', 'page', 'user'));
     }
 
     public function kudosu($_userId)

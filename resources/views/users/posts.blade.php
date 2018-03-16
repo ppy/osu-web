@@ -50,9 +50,12 @@
                 <div class="search-result search-result--forum_post">
                     <div class="search-result__row search-result__row--entries-container">
                         <div class="search-result__entries">
-                            @foreach ($search as $hit)
+                            @php
+                                $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
+                            @endphp
+                            @foreach ($search->response() as $hit)
                                 <div class="search-result__entry">
-                                    @include('objects.search._post_search', compact('hit'))
+                                    @include('objects.search._post_search', compact('hit', 'users'))
                                 </div>
                             @endforeach
                         </div>
@@ -62,7 +65,7 @@
                     </div>
 
                     <div class="search-result__row search-result__row--paginator">
-                        @include('objects._pagination', ['object' => $search, 'modifier' => 'search'])
+                        @include('objects._pagination', ['object' => $page, 'modifier' => 'search'])
                     </div>
                 </div>
             </div>
