@@ -42,9 +42,6 @@
 
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
-                <div class="page-mode page-mode--search">
-                </div>
-
                 @include('objects.search._forum_options', ['fields' => ['user' => false]])
 
                 <div class="search-result search-result--forum_post">
