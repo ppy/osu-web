@@ -87,7 +87,7 @@ class BeatmapsetPage.Info extends React.Component
 
 
   renderChart: ->
-    return if !@props.beatmapset.has_scores
+    return if !@props.beatmapset.has_scores || @props.beatmap.playcount < 1
 
     unless @_failurePointsChart?
       options =
