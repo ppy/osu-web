@@ -130,8 +130,8 @@ return [
     ],
 
     'nominations' => [
-        'disqualification_prompt' => 'DQ 的理由？',
-        'disqualified_at' => '於 :time_ago 被 DQ （:reason）。', //disqualified現在好像沒有很合適的翻譯，姑且先寫作DQ了
+        'disqualification_prompt' => 'Disqualified 的理由？',
+        'disqualified_at' => '於 :time_ago 被 Disqualified（:reason）。',
         'disqualified_no_reason' => '沒有指定原因',
         'disqualify' => 'Disqualify',
         'incorrect_state' => '操作出錯了，請刷新頁面。',
