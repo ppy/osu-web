@@ -67,6 +67,7 @@ return [
     ],
 
     'topic' => [
+        'deleted' => 'usunięty wątek',
         'go_to_latest' => 'pokaż najnowszą odpowiedź',
         'latest_post' => ':when przez :user',
         'latest_reply_by' => 'ostatnia odpowiedź od :user',
@@ -99,9 +100,6 @@ return [
         'post_edit' => [
             'cancel' => 'Anuluj',
             'post' => 'Zapisz',
-            'zoom' => [
-                'start' => 'Tryb pełnoekranowy',
-                'end' => 'Wyjdź z trybu pełnoekranowego',
             ],
         ],
     ],
@@ -134,6 +132,7 @@ return [
         '_' => 'Wątki',
 
         'actions' => [
+            'reply' => 'Odpowiedz',
             'reply_with_quote' => 'Zacytuj we własnej odpowiedzi',
             'search' => 'Wyszukaj',
         ],
@@ -159,6 +158,10 @@ return [
                 'vote_change' => 'Zezwól na zmianę głosów.',
                 'vote_change_info' => 'Jeżeli ta opcja będzie zaznaczona, użytkownicy będą mogli zmieniać swoje głosy.',
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Edytuj tytuł',
         ],
 
         'index' => [
@@ -223,8 +226,10 @@ return [
         'moderate_pin' => [
             'pin-0' => 'Odepnij ten wątek',
             'pin-1' => 'Przypnij ten wątek',
+            'pin-2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
             'state-0' => 'Wątek został odpięty',
             'state-1' => 'Wątek został przypięty',
+            'state-2' => 'Wątek został przypięty i oznaczony jako ogłosznie',
         ],
 
         'show' => [

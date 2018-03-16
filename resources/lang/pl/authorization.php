@@ -21,7 +21,8 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'has_reply' => 'Nie można zamknąć dyskusji z odpowiedziami',
+            'is_hype' => 'Nie możesz cofnąć nadania priorytetu.',
+            'has_reply' => 'Nie możesz zamknąć dyskusji z odpowiedziami',
         ],
         'nominate' => [
             'exhausted' => 'Dzienny limit nominacji został osiągnięty, spróbuj ponownie jutro.',
@@ -32,7 +33,8 @@ return [
 
         'vote' => [
             'limit_exceeded' => 'Zaczekaj, zanim zagłosujesz ponownie',
-            'owner' => 'Nie można głosować we własnej dyskusji!',
+            'owner' => 'Nie możesz głosować we własnej dyskusji!',
+            'wrong_beatmapset_state' => 'Możesz głosować tylko na oczekujących beatmapach.',
         ],
     ],
 
@@ -52,7 +54,7 @@ return [
         'message' => [
             'send' => [
                 'channel' => [
-                    'no_access' => ' Nie posiadasz dostępu do tego kanału.',
+                    'no_access' => 'Nie posiadasz dostępu do tego kanału.',
                     'moderated' => 'Kanał jest obecnie w trybie tylko dla moderatorów.',
                     'not_lazer' => 'Obecnie możesz pisać tylko na kanale #lazer.',
                 ],
@@ -73,6 +75,7 @@ return [
                 'locked' => 'Nie możesz odpowiadać w zablokowanym wątku.',
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'not_owner' => 'Tylko autor wątka może go usunąć.',
+                'topic_locked' => 'Nie możesz edytować posta w zablokowanym wątku.',
             ],
 
             'edit' => [
@@ -92,26 +95,26 @@ return [
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby odpowiedzieć.',
-                    'restricted' => 'Nie można odpowiadać podczas blokady konta.',
-                    'silenced' => 'Nie można odpowiadać podczas uciszenia.',
+                    'restricted' => 'Nie możesz odpowiadać podczas blokady konta.',
+                    'silenced' => 'Nie możesz odpowiadać podczas uciszenia.',
                 ],
             ],
 
             'store' => [
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
                 'no_permission' => 'Nie posiadasz uprawnień do stworzenia nowego wątku.',
-                'forum_closed' => 'Forum jest zamknięte i nie można w nim odpowiadać.',
+                'forum_closed' => 'Forum jest zamknięte i nie możesz w nim odpowiadać.',
             ],
 
             'vote' => [
                 'no_forum_access' => 'Nie posiadasz dostępu do tego forum.',
-                'over' => 'Ankieta została zakończona i nie można już w niej głosować.',
+                'over' => 'Ankieta została zakończona i nie możesz już w niej głosować.',
                 'voted' => 'Zmiana głosów jest niemożliwa.',
 
                 'user' => [
                     'require_login' => 'Zaloguj się, aby zagłosować.',
-                    'restricted' => 'Nie można głosować podczas blokady konta.',
-                    'silenced' => 'Nie można głosować podczas uciszenia.',
+                    'restricted' => 'Nie możesz głosować podczas blokady konta.',
+                    'silenced' => 'Nie możesz głosować podczas uciszenia.',
                 ],
             ],
 
@@ -144,7 +147,7 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'Strona użytkownika jest zablokowana.',
-                'not_owner' => 'Można edytować tylko własną stronę użytkownika.',
+                'not_owner' => 'możesz edytować tylko własną stronę użytkownika.',
                 'require_supporter_tag' => 'Status donatora jest wymagany.',
             ],
         ],
