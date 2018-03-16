@@ -122,6 +122,7 @@ return [
         ],
         'store' => [
             '_' => 'sklep',
+            'checkout-show' => 'kasa',
             'getListing' => 'przedmioty',
             'cart-show' => 'koszyk',
 
