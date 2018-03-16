@@ -1181,3 +1181,22 @@ function get_stream_filename($handle)
 
     return $meta['uri'];
 }
+
+// Performs a HEAD request to the given url and checks the http status code.
+// Returns true on status 200, otherwise false (note: doesn't support redirects/etc)
+function check_url(string $url): bool
+{
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+    ]);
+    curl_exec($ch);
+
+    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
+    curl_close($ch);
+
+    return !$errored;
+}
