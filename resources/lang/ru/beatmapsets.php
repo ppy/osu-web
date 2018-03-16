@@ -66,14 +66,12 @@ return [
             'rating-spread' => 'Шкала рейтинга',
         ],
         'info' => [
-            'no_scores' => 'Рейтинг недоступен.',
             'points-of-failure' => 'Количество провалов',
             'success-rate' => 'Шанс успеха',
-
             'description' => 'Описание',
-
             'source' => 'Источник',
             'tags' => 'Теги',
+            'unranked' => 'Рейтинг недоступен.',
         ],
         'scoreboard' => [
             'achieved' => 'достигнут :when',

@@ -66,14 +66,12 @@ return [
             'rating-spread' => '평점 분포도',
         ],
         'info' => [
-            'no_scores' => 'Unranked 비트맵',
             'points-of-failure' => '실패 점수',
             'success-rate' => '성공률',
-
             'description' => '설명',
-
             'source' => '원 작품', // Source
             'tags' => '태그',
+            'unranked' => 'Unranked 비트맵',
         ],
         'scoreboard' => [
             'achieved' => ':when에 달성됨',

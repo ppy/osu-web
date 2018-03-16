@@ -67,14 +67,12 @@ return [
             'rating-spread' => 'Gráfico de avaliações',
         ],
         'info' => [
-            'no_scores' => 'Mapa não ranqueado',
             'points-of-failure' => 'Taxa de falha',
             'success-rate' => 'Taxa de sucesso',
-
             'description' => 'Descrição',
-
             'source' => 'Fonte',
             'tags' => 'Marcadores',
+            'unranked' => 'Mapa não ranqueado',
         ],
         'scoreboard' => [
             'achieved' => 'conquistado em :when',

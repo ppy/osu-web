@@ -72,11 +72,12 @@ return [
             'description' => 'Description',
             'genre' => 'Genre',
             'language' => 'Language',
-            'no_scores' => 'Unranked beatmap',
+            'no_scores' => 'Data still being calculated...',
             'points-of-failure' => 'Points of Failure',
             'source' => 'Source',
             'success-rate' => 'Success Rate',
             'tags' => 'Tags',
+            'unranked' => 'Unranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'achieved :when',
