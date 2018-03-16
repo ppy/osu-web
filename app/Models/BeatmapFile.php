@@ -27,6 +27,9 @@ class BeatmapFile
 
     public static function parse(string $content)
     {
+        // strip utf8 bom
+        $content = strip_utf8_bom($content);
+
         // check file 'header'
         if (!starts_with($content, 'osu file format v')) {
             return false;
