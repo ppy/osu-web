@@ -36,8 +36,6 @@ class PostSearch extends Search implements \ArrayAccess
 {
     use HasCompatibility;
 
-    const HIGHLIGHT_FRAGMENT_SIZE = 50;
-
     protected $forumId;
     protected $topicId;
     protected $includeSubforums;
