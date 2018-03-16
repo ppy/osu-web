@@ -232,6 +232,27 @@ return [
                 'title' => 'Wyniki',
                 'weighted_pp' => 'ważone: :pp (:percentage)',
             ],
+            'account_standing' => [
+                'title' => 'Stan konta',
+                'bad_standing' => "Konto użytkownika <strong>:username's</strong> nie jest w dobrym stanie :(",
+                'remaining_silence' => 'Użytkownik <strong>:username</strong> nie będzie mógł pisać na czacie przez następne :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Ostatnie przewinienia',
+                    'date' => 'data',
+                    'action' => 'typ',
+                    'length' => 'długość',
+                    'length_permanent' => 'Na zawsze',
+                    'description' => 'opis',
+                    'actor' => 'przez :username',
+
+                    'actions' => [
+                        'restriction' => 'Blokada',
+                        'silence' => 'Uciszenie',
+                        'note' => 'Adnotacja',
+                    ],
+                ],
+            ],
         ],
         'info' => [
             'interests' => 'Zainteresowania',
@@ -277,7 +298,7 @@ return [
         'saved' => 'Użytkownik utworzony', //no context
     ],
     'verify' => [
-        'title' => 'Weryfikacja Konta',
+        'title' => 'Weryfikacja konta',
     ],
 
 ];
