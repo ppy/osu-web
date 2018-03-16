@@ -50,3 +50,8 @@ Turbolinks.Controller.prototype.advanceHistory = (url) ->
   @cacheSnapshot()
   @lastRenderedLocation = Turbolinks.Location.wrap(url)
   @pushHistoryWithLocationAndRestorationIdentifier url, Turbolinks.uuid()
+
+
+# Ignore anchor check on loading snapshot to prevent repeating requesting page
+# when the target doesn't exist.
+Turbolinks.Snapshot.prototype.hasAnchor = -> true

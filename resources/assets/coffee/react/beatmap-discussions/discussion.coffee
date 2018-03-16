@@ -58,7 +58,6 @@ class BeatmapDiscussions.Discussion extends React.PureComponent
     div
       className: topClasses
       'data-id': @props.discussion.id
-      id: "/#{@props.discussion.id}"
       onClick: @emitSetHighlight
 
       div className: "#{bn}__timestamp hidden-xs",
