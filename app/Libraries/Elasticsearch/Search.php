@@ -131,6 +131,11 @@ abstract class Search implements Queryable
         return $json;
     }
 
+    public function total()
+    {
+        return min($this->response()->total(), static::MAX_RESULTS);
+    }
+
     private function fetch()
     {
         try {
