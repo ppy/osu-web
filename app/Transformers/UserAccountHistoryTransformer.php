@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2018 ppy Pty. Ltd.
+ *    Copyright 2015-2017 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,16 +20,29 @@
 
 namespace App\Transformers;
 
-use App\Models\UserMonthlyPlaycount;
+use App\Models\UserAccountHistory;
 use League\Fractal;
 
-class UserMonthlyPlaycountTransformer extends Fractal\TransformerAbstract
+class UserAccountHistoryTransformer extends Fractal\TransformerAbstract
 {
-    public function transform(UserMonthlyPlaycount $playcount)
+    protected $availableIncludes = [
+        'actor',
+    ];
+
+    public function transform(UserAccountHistory $h)
     {
         return [
-            'start_date' => json_date($playcount->startDate()),
-            'count' => $playcount->playcount,
+            'description' => $h->reason,
+            'type' => $h->type,
+            'timestamp' => json_time($h->timestamp),
+            'length' => $h->period,
         ];
+    }
+
+    public function includeActor(UserAccountHistory $h)
+    {
+        if ($h->actor !== null) {
+            return $this->item($h->actor, new UserCompactTransformer);
+        }
     }
 }

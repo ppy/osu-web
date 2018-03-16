@@ -69,8 +69,6 @@ return [
 
         'mode' => [
             'events' => 'Historia',
-            'general' => 'Główne',
-            'general_all' => 'Główne (wszystkie poziomy trudności)',
             'timeline' => 'Oś czasu',
         ],
 

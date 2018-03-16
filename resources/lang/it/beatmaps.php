@@ -60,7 +60,6 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
 
         'mode' => [
-            'general' => 'Generale',
             'timeline' => 'Linea Temporale',
         ],
 

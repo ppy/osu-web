@@ -18,7 +18,8 @@
 
 class @BeatmapHelper
   @default: ({group, items, mode}) =>
-    return _.last(items) if items?
+    if items?
+      return _.findLast items, (i) -> !i.deleted_at?
 
     return unless group?
 

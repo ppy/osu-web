@@ -113,8 +113,6 @@ class BeatmapsetPage.Info extends React.Component
 
 
   render: ->
-    percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
-
     tags = _(@props.beatmapset.tags)
       .split(' ')
       .filter((t) -> t? && t != '')
@@ -196,7 +194,8 @@ class BeatmapsetPage.Info extends React.Component
               '...' if tagsOverload
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        if @props.beatmapset.has_scores
+        if @props.beatmapset.has_scores && @props.beatmap.playcount > 0
+          percentage = _.round((@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1)
           div className: 'beatmap-success-rate',
             h3
               className: 'beatmap-success-rate__header'
@@ -210,9 +209,11 @@ class BeatmapsetPage.Info extends React.Component
 
             div
               className: 'beatmap-success-rate__percentage'
+              title: "#{@props.beatmap.passcount.toLocaleString()} / #{@props.beatmap.playcount.toLocaleString()}"
+              'data-tooltip-position': 'bottom center'
               style:
-                paddingLeft: "#{percentage}%"
-              div null, "#{percentage}%"
+                marginLeft: "#{percentage}%"
+              "#{percentage}%"
 
             h3
               className: 'beatmap-success-rate__header'
