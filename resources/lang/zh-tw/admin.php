@@ -22,9 +22,9 @@ return [
     'beatmapsets' => [
         'covers' => [
             'regenerate' => '重新生成',
-            'regenerating' => '重新生成中⋯⋯',
+            'regenerating' => '重新生成中...',
             'remove' => '移除',
-            'removing' => '移除中⋯⋯',
+            'removing' => '移除中...',
         ],
         'show' => [
             'covers' => '管理譜面封面',
