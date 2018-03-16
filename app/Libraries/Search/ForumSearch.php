@@ -25,6 +25,7 @@ use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
+use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -33,6 +34,8 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ForumSearch extends Search
 {
+    use HasCompatibility;
+
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
 
     protected $includeSubforums;
@@ -154,11 +157,6 @@ class ForumSearch extends Search
         return min($this->response()->total(), static::MAX_RESULTS);
     }
 
-    public function params()
-    {
-        return $this->getPaginationParams();
-    }
-
     /**
      * Returns a Builder for a Collection of all the users that appeared in this query.
      *
@@ -172,34 +170,5 @@ class ForumSearch extends Search
         );
 
         return User::whereIn('user_id', $ids);
-    }
-
-    //================
-    // ArrayAccess
-    //================
-
-    public function offsetExists($key)
-    {
-        return in_array($key, ['data', 'total', 'params'], true);
-    }
-
-    public function offsetGet($key)
-    {
-        if ($this->offsetExists($key) === false) {
-            return;
-        }
-
-        // reroute to method
-        return (new \ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
-    }
-
-    public function offsetSet($key, $value)
-    {
-        throw new \BadMethodCallException('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new \BadMethodCallException('not supported');
     }
 }
