@@ -45,14 +45,14 @@
                 <div class="page-mode page-mode--search">
                 </div>
 
-                @include('search._forum_options', ['fields' => ['user' => false]])
+                @include('objects.search._forum_options', ['fields' => ['user' => false]])
 
                 <div class="search-result search-result--forum_post">
                     <div class="search-result__row search-result__row--entries-container">
                         <div class="search-result__entries">
                             @foreach ($search as $hit)
                                 <div class="search-result__entry">
-                                    @include('search._post_search', compact('hit'))
+                                    @include('objects.search._post_search', compact('hit'))
                                 </div>
                             @endforeach
                         </div>
