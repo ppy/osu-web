@@ -152,11 +152,6 @@ class ForumSearch extends Search
         return parent::response()->recordType(Topic::class)->idField('topic_id');
     }
 
-    public function total()
-    {
-        return min($this->response()->total(), static::MAX_RESULTS);
-    }
-
     /**
      * Returns a Builder for a Collection of all the users that appeared in this query.
      *
