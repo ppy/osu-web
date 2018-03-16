@@ -40,6 +40,7 @@ $(document).on 'turbolinks:load', ->
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
+@clickMenu ?= new ClickMenu
 @currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
@@ -55,8 +56,7 @@ $(document).on 'turbolinks:load', ->
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
 @menu ?= new Menu
-@nav ?= new Nav
-@navSearch ?= new NavSearch
+@nav2 ?= new Nav2
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
 @postPreview ?= new PostPreview

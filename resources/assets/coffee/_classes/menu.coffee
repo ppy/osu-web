@@ -70,14 +70,17 @@ class @Menu
 
 
   onTouchStart: (e) =>
-    target = e.currentTarget.getAttribute('data-menu-target')
-    return unless target
+    link = e.currentTarget
+    target = link.dataset.menuTarget
 
-    $target = $(e.currentTarget)
+    return unless target?
+
+    $target = $(target)
     e.preventDefault()
+    timeout = parseInt(link.dataset.menuShowDelay ? @menuTimeout, 10)
 
     Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set @menuTimeout, =>
+    @refreshTimeout = Timeout.set timeout, =>
       @currentMenu =
         if @currentMenu == target
           @closestMenuId $target
@@ -89,9 +92,10 @@ class @Menu
 
   onMouseEnter: (e) =>
     link = e.currentTarget
+    timeout = parseInt(link.dataset.menuShowDelay ? @menuTimeout, 10)
 
     Timeout.clear @refreshTimeout
-    @refreshTimeout = Timeout.set @menuTimeout, =>
+    @refreshTimeout = Timeout.set timeout, =>
       @currentMenu = link.dataset.menuTarget
       @currentMenu ?= @closestMenuId $(link)
       @refresh()

@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="{{ request('query') }}" />
+                    <input class="search-header__input" name="query" value="{{ request('query') }}" autofocus />
 
                     <button class="search-header__icon">
                         <i class="fa fa-search"></i>
