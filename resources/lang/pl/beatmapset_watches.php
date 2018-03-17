@@ -27,13 +27,13 @@ return [
     ],
 
     'index' => [
-        'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Powiadomimy cię, kiedy pojawią się w nich nowe posty bądź aktualizacje.',
+        'description' => 'Poniżej znajdują się dyskuje, które obserwujesz. Powiadomimy cię, kiedy pojawią się nowe posty bądź aktualizacje.',
         'title_compact' => 'obserwowane dyskusje',
         'title_main' => 'Obserwowane dyskusje',
 
         'table' => [
             'empty' => 'Brak obserwowanych dyskusji.',
-            'open_issues' => 'Otwarte problemy',
+            'open_issues' => 'Nierozwiązane problemy',
             'state' => 'Status',
             'title' => 'Tytuł',
         ],

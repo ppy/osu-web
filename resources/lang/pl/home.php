@@ -126,7 +126,7 @@ return [
         ],
         'buttons' => [
             'download' => 'Pobierz osu!',
-            'support' => 'Wesprzyj osu!',
+            'support' => 'Wspomóż osu!',
             'store' => 'Sklep osu!',
         ],
     ],

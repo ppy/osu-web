@@ -234,7 +234,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Stan konta',
-                'bad_standing' => "Konto użytkownika <strong>:username's</strong> nie jest w dobrym stanie :(",
+                'bad_standing' => "Konto użytkownika <strong>:username</strong> nie jest w dobrym stanie :(",
                 'remaining_silence' => 'Użytkownik <strong>:username</strong> będzie mógł pisać na czacie :duration.',
 
                 'recent_infringements' => [

@@ -105,7 +105,7 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Subskrybcje wątków',
+            'title' => 'Zasubskrybowane wątki',
             'title_compact' => 'subskrybcje',
             'title_main' => '<strong>Subskrybcje</strong> wątków',
 
@@ -114,8 +114,8 @@ return [
                 'unread' => 'Wątki z nowymi odpowiedziami',
             ],
             'info' => [
-                'total' => 'Łącznie zasubskrybowano do :total wątków.',
-                'unread' => 'Masz :unread nieprzeczytanych odpowiedzi w zasubskrybowanych wątkach.',
+                'total' => 'Liczba zasubskrybowanych wątków: :total.',
+                'unread' => 'Liczba zasubskrybowanych wątków z nowymi odpowiedziami: :unread.',
             ],
         ],
 
