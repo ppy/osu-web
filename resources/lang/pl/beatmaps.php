@@ -38,8 +38,11 @@ return [
         'deny_kudosu' => 'zablokuj kudosu',
         'edit' => 'edytuj',
         'edited' => 'Ostatnio edytowane przez :editor :update_time',
+        'kudosu_denied' => 'Odmówiono uzyskania kudosu.',
         'message_placeholder' => 'Pisz tutaj',
+        'message_placeholder_deleted_beatmap' => 'Ten poziom trudności został usunięty, więc nie można umieszczać w nim postów.',
         'message_type_select' => 'Wybierz typ komentarza',
+        'reply_notice' => 'Naciśnij Enter, aby odpowiedzieć.',
         'reply_placeholder' => 'Tutaj napisz swoją odpowiedź',
         'require-login' => 'Zaloguj się, aby odpowiedzieć bądź opublikować uwagę',
         'resolved' => 'Rozwiązane',
@@ -62,6 +65,8 @@ return [
         ],
 
         'message_type' => [
+            'hype' => 'Priorytet',
+            'mapper_note' => 'Adnotacja',
             'praise' => 'Pochwała',
             'problem' => 'Problem',
             'suggestion' => 'Sugestia',
@@ -69,7 +74,12 @@ return [
 
         'mode' => [
             'events' => 'Historia',
+            'general' => 'Główne :scope',
             'timeline' => 'Oś czasu',
+            'scopes' => [
+                'general' => 'Ten poziom trudności',
+                'generalAll' => 'Wszystkie poziomy trudności',
+            ],
         ],
 
         'new' => [
@@ -82,14 +92,47 @@ return [
             'title' => ':title zmapowana przez :mapper',
         ],
 
+        'sort' => [
+            '_' => 'Sortowane według:',
+            'created_at' => 'czas utworzenia',
+            'timeline' => 'oś czasu',
+            'updated_at' => 'ostatnie aktualizacje',
+        ],
+
         'stats' => [
             'deleted' => 'Usunięte',
+            'mapper_notes' => 'Adnotacje',
             'mine' => 'Moje',
             'pending' => 'Oczekujące',
             'praises' => 'Pochwały',
             'resolved' => 'Rozwiązane',
             'total' => 'Wszystkie',
         ],
+
+        'status-messages' => [
+            'approved' => 'Ta beatmapa została zatwierdzona :date!',
+            'graveyard' => 'Ta beatmapa nie była aktualizowana od :date i najprawdopodobniej została porzucona przez twórcę...',
+            'loved' => 'Ta beatmapa otrzymała status ulubionej społeczności :date!',
+            'ranked' => 'Ta beatmapa otrzymała status rankingowy :date!',
+            'wip' => 'Ważne: Ta beatmapa została oznaczona przez twórcę jako aktualnie rozwijana.',
+        ],
+    ],
+
+    'hype' => [
+        'button' => 'Nadaj priorytet beatmapie!',
+        'button_done' => 'Priorytet został nadany!',
+        'confirm' => 'Na pewno? Liczba możliwych do nadania priorytetów zmniejszy się bez możliwości cofnięcia priorytetu.',
+        'explanation' => 'Nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'explanation_guest' => 'Zaloguj się i nadaj tej beatmapie priorytet, aby stała się bardziej widoczna dla nominatorów i osób modujących!',
+        'new_time' => 'Liczba możliwych do nadania priorytetów zwiększy się za :new_time.',
+        'remaining' => 'Liczba możliwych do nadania priorytetów: :remaining.',
+        'required_text' => 'Priorytet: :current/:required',
+        'section_title' => 'Priorytet',
+        'title' => 'Priorytet',
+    ],
+
+    'feedback' => [
+        'button' => 'Zostaw ocenę',
     ],
 
     'nominations' => [
@@ -100,10 +143,14 @@ return [
         'incorrect_state' => 'Wystąpił błąd podczas wykonywania tej akcji, spróbuj odświeżyć stronę.',
         'nominate' => 'Nominuj',
         'nominate_confirm' => 'Nominować tę beatmapę?',
+        'nominated_by' => 'nominowana przez :users',
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną odnalezione żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną odnalezione żadne błędy.',
-        'required_text' => 'Nominacjes: :current/:required',
+        'required_text' => 'Nominacje: :current/:required',
+        'reset_at' => 'Liczba nominacji została zresetowana :time_ago, ponieważ pojawił się nowy problem :discussion.',
+        'reset_confirm' => 'Na pewno? Utworzenie nowego problemu zresetuje liczbę nominacji.',
         'title' => 'Status nominacji',
+        'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',
     ],
 
     'listing' => [
@@ -113,6 +160,7 @@ return [
             'not-found' => 'brak wyników',
             'not-found-quote' => '... niczego nie znaleziono.',
             'filters' => [
+                'general' => 'Główne',
                 'mode' => 'Tryb gry',
                 'status' => 'Status beatmapy',
                 'genre' => 'Gatunek',
@@ -127,6 +175,10 @@ return [
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
     ],
+    'general' => [
+        'recommended' => 'Polecany poziom trudności',
+        'converts' => 'Uwzględnij przekonwertowane beatmapy',
+    ],
     'mode' => [
         'any' => 'Jakikolwiek',
         'osu' => 'osu!',
@@ -136,8 +188,9 @@ return [
     ],
     'status' => [
         'any' => 'Jakikolwiek',
-        'ranked-approved' => 'Rankingowe & Zatwierdzone',
+        'ranked-approved' => 'Rankingowe lub zatwierdzone',
         'approved' => 'Zatwierdzone',
+        'qualified' => 'Zakwalifikowane',
         'loved' => 'Ulubione społeczności',
         'faves' => 'Ulubione',
         'pending' => 'Oczekujące',
@@ -177,7 +230,7 @@ return [
         '8K' => '8K',
         'FI' => 'Fade In',
         '9K' => '9K',
-        'NM' => 'Brak modyfikacji',
+        'NM' => 'Brak modyfikatorów',
     ],
     'language' => [
         'any' => 'Jakikolwiek',

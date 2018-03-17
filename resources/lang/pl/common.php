@@ -32,6 +32,7 @@ return [
         'cancel' => 'Anuluj',
         'delete' => 'Usuń',
         'permalink' => 'odnośnik bezpośredni',
+        'permalink_copied' => 'odnośnik skopiowany',
         'post' => 'Opublikuj',
         'reply' => 'Odpowiedz',
         'reply_reopen' => 'Odpowiedz i otwórz ponownie',
@@ -57,6 +58,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 
