@@ -40,7 +40,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Historia zdarzeń beatmapy',
+        'title' => 'Historia zdarzeń beatmap',
     ],
 
     'item' => [
