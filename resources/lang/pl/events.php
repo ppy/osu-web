@@ -20,6 +20,8 @@
 
 return [
     'achievement' => '<strong><em>:user</em></strong> odblokował osiągnięcie "<strong>:achievement</strong>"!',
+    'beatmap_playcount' => ':beatmap została zagrana :count razy!',
+    'beatmapset_approve' => ':beatmapset użytkownika <strong>:user</strong> została :approval!',
     'beatmapset_delete' => ':beatmapset zostało usunięte.',
     'beatmapset_revive' => ':beatmapset zostało ożywione z wiecznego snu przez <strong>:user</strong>.',
     'beatmapset_update' => '<strong><em>:user</em></strong> zaktualizował "<em>:beatmapset</em>"',
