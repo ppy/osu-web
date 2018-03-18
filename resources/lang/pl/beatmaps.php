@@ -188,7 +188,7 @@ return [
     ],
     'status' => [
         'any' => 'Jakikolwiek',
-        'ranked-approved' => 'Rankingowe lub zatwierdzone',
+        'ranked-approved' => 'Rankingowe i zatwierdzone',
         'approved' => 'Zatwierdzone',
         'qualified' => 'Zakwalifikowane',
         'loved' => 'Ulubione społeczności',
@@ -205,7 +205,7 @@ return [
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Inny',
-        'novelty' => 'Nowy',
+        'novelty' => 'Oryginalny',
         'hip-hop' => 'Hip Hop',
         'electronic' => 'Muzyka elektroniczna',
     ],
@@ -244,7 +244,7 @@ return [
         'spanish' => 'Hiszpański',
         'swedish' => 'Szwedzki',
         'instrumental' => 'Instrumentalny',
-        'other' => 'Inne',
+        'other' => 'Inny',
     ],
     'extra' => [
         'video' => 'Posiada wideo',

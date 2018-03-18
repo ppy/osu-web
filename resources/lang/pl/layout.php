@@ -40,7 +40,7 @@ return [
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
-            'team' => 'załoga',
+            'team' => 'zespół',
         ],
         'help' => [
             '_' => 'pomoc',
