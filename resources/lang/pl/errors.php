@@ -30,7 +30,7 @@ return [
         ],
     ],
     'beatmaps' => [
-        'invalid_mode' => 'Wybrano nieprawidłowy tryb..',
+        'invalid_mode' => 'Wybrano nieprawidłowy tryb.',
         'standard_converts_only' => 'Brak wyników dla wybranego trybu na tym poziomie trudności.',
     ],
     'beatmapsets' => [
