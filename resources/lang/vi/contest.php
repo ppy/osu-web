@@ -27,7 +27,7 @@ return [
         'over' => 'Bình chọn đã kết thúc cho cuộc thi này',
         'login_required' => 'Hãy đăng nhập để bình chọn.',
         'best_of' => [
-            'none_played' => 'Bạn không hẳn đã chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!',
+            'none_played' => 'Dường như bạn chưa chơi bất kì beatmap nào đủ điều kiện cho cuộc thi này!',
         ],
     ],
     'entry' => [
@@ -35,7 +35,7 @@ return [
         'login_required' => 'Hãy đăng nhập để tham gia cuộc thi.',
         'silenced_or_restricted' => 'Bạn không thể tham gia cuộc thi trong khi bị hạn chế hoặc bị im lặng.',
         'preparation' => 'Chúng tôi đang chuẩn bị cho cuộc thi này. Xin hãy kiên nhẫn chờ đợi!',
-        'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và bỏ phiếu sẽ sớm được mở.',
+        'over' => 'Cảm ơn về bài dự thi của bạn! Cuộc thi đã không còn nhận thêm mục nào nữa và sẽ sớm mở bình chọn.',
         'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
         'wrong_type' => [
