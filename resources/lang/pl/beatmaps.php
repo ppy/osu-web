@@ -89,7 +89,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title mapa autorstwa :mapper',
+            'title' => ':title autorstwa :mapper',
         ],
 
         'sort' => [
@@ -171,7 +171,7 @@ return [
         ],
         'mode' => 'Tryb gry',
         'status' => 'Status beatmapy',
-        'mapped-by' => 'mapa autorstwa :mapper',
+        'mapped-by' => 'autorstwa :mapper',
         'source' => 'pochodzi z :source',
         'load-more' => 'Załaduj więcej...',
     ],
