@@ -39,11 +39,11 @@ return [
         'limit_reached' => 'Bạn đã đạt giới hạn bài dự thi cho cuộc thi này',
         'drop_here' => 'Thả bài dự thi của bạn vào đây',
         'wrong_type' => [
-            'art' => 'Chỉ những file .jpg và .png được chấp nhận cho cuộc thi này.',
-            'beatmap' => 'Chỉ những file .osu được chấp nhận cho cuộc thi này.',
-            'music' => 'Chỉ những file .mp3 được chấp nhận cho cuộc thi này.',
+            'art' => 'Chỉ những file .jpg và .png mới được chấp nhận cho cuộc thi này.',
+            'beatmap' => 'Chỉ những file .osu mới được chấp nhận cho cuộc thi này.',
+            'music' => 'Chỉ những file .mp3 mới được chấp nhận cho cuộc thi này.',
         ],
-        'too_big' => 'Bài dự thi cho cuộc thi này có thể lên đến :limit.',
+        'too_big' => 'Bài dự thi cho cuộc thi này tối đa là :limit.',
     ],
     'beatmaps' => [
         'download' => 'Tải Xuống Bài Dự Thi',
@@ -63,6 +63,6 @@ return [
     'states' => [
         'entry' => 'Nhận Bài Dự Thi',
         'voting' => 'Bắt Đầu Bình Chọn',
-        'results' => 'Có Kết Quả',
+        'results' => 'Đã Có Kết Quả',
     ],
 ];
