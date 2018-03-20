@@ -18,7 +18,7 @@
 
 preventUsernameSubmission = ->
   StoreCart.setEnabled(false)
-  $('#username-check-price').html ''
+  $('#username-check-price').text ''
 
 checkUsernameValidity = ->
   $status = $('#username-check-status')
@@ -30,13 +30,13 @@ checkUsernameValidity = ->
 
     if data.available
       $('.js-store-add-to-cart').attr 'disabled', false
-      $('#username-check-price').html data.costString
+      $('#username-check-price').text data.costString
       $('#username-form-price').val data.cost
       $('#product-form').data('disabled', false)
     else
       preventUsernameSubmission()
 
-    $status.html data.message
+    $status.text data.message
     $status.toggleClass 'green-dark', data.available
     $status.toggleClass 'pink-dark', !data.available
   .fail (xhr) ->
