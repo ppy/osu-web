@@ -49,6 +49,25 @@ abstract class Search implements Queryable
     // for paginator
     abstract public function data();
 
+    /**
+     * Gets the numner of matches for the query.
+     *
+     * @return int the number of matches.
+     */
+    public function count() : int
+    {
+        $query = $this->toArray();
+        // some arguments need to be stripped from the body as they're not supported by count.
+        $body = $query['body'];
+        foreach (['from', 'size', 'sort'] as $key) {
+            unset($body[$key]);
+        }
+
+        $query['body'] = $body;
+
+        return Es::count($query)['count'];
+    }
+
     public function getError()
     {
         return $this->error;
