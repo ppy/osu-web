@@ -54,9 +54,9 @@ $(document).on 'input', '.js-username-change #username.form-control', ->
   preventUsernameSubmission()
 
   if requestedUsername.length == 0
-    $status.html 'Enter a username to check availability!'
+    $status.text 'Enter a username to check availability!'
   else
-    $status.html "Checking availability of #{requestedUsername}..."
+    $status.text "Checking availability of #{requestedUsername}..."
     debouncedCheckUsernameValidity()
 
 $(document).on 'turbolinks:load', ->
