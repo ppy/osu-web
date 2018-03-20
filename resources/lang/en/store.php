@@ -74,6 +74,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Enter a username to check availability!',
+        'checking' => 'Checking availability of :username...',
         'require_login' => [
             '_' => 'You need to be :link to change your name!',
             'link_text' => 'logged in',
