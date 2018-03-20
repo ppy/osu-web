@@ -43,7 +43,7 @@ return [
             'beatmap' => 'Chỉ những file .osu mới được chấp nhận cho cuộc thi này.',
             'music' => 'Chỉ những file .mp3 mới được chấp nhận cho cuộc thi này.',
         ],
-        'too_big' => 'Bài dự thi cho cuộc thi này tối đa là :limit.',
+        'too_big' => 'Số bài dự thi cho cuộc thi này tối đa là :limit.',
     ],
     'beatmaps' => [
         'download' => 'Tải Xuống Bài Dự Thi',
