@@ -161,14 +161,14 @@ class BeatmapsetSearch extends RecordSearch
     public static function search(array $params = []) : self
     {
         $startTime = microtime(true);
-        $params = static::searchParams($params);
+        $params = static::normalizeParams($params);
 
         $search = static::searchES($params);
 
         return $search;
     }
 
-    public static function searchParams(array $params = [])
+    public static function normalizeParams(array $params = [])
     {
         // simple stuff
         $params['query'] = presence($params['query'] ?? null);

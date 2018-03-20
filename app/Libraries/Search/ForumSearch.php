@@ -138,15 +138,20 @@ class ForumSearch extends Search
             ->source('search_content');
     }
 
-    public static function search(array $params)
+    public static function normalizeParams(array $params = [])
     {
-        $options = [
+        return [
             'query' => $params['query'],
             'forumId' => $params['forum_id'] ?? null,
             'topicId' => $params['topic_id'] ?? null,
             'includeSubforums' => $params['forum_children'] ?? false,
             'username' => $params['username'] ?? null,
         ];
+    }
+
+    public static function search(array $params)
+    {
+        $options = $this->normalizeParams($params);
 
         return (new static($options))
             ->page($params['page'] ?? 1)

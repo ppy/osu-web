@@ -32,21 +32,34 @@ class UserSearch extends RecordSearch
         'page' => 1,
     ];
 
+    public function __construct(array $options = [])
+    {
+        parent::__construct(User::esIndexName(), User::class, $options);
+
+        $this->queryString = $options['query'];
+    }
+
+    public static function normalizeParams(array $params = [])
+    {
+        return [
+            'query' => presence($params['query'] ?? null),
+            'limit' => clamp(get_int($params['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50),
+            'page' => max(1, get_int($params['page'] ?? 1)),
+        ];
+    }
+
     public static function search($rawParams)
     {
         $max = config('osu.search.max.user');
 
-        $params = [];
-        $params['query'] = presence($rawParams['query'] ?? null);
-        $params['limit'] = clamp(get_int($rawParams['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50);
-        $params['page'] = max(1, get_int($rawParams['page'] ?? 1));
+        $params = $this->normalizeParams($rawParams);
 
         return static::searchUsername($params['query'], $params['page'], $params['limit']);
     }
 
     public static function searchUsername(string $username, $page, $size) : self
     {
-        return (new static(User::esIndexName(), User::class))
+        return (new static)
             ->query(static::usernameSearchQuery($username ?? ''))
             ->page($page)
             ->size($size);

@@ -42,10 +42,20 @@ class WikiSearch extends RecordSearch
         return $pages;
     }
 
+    public static function normalizeParams(array $params = [])
+    {
+        $params['query'] = presence($params['query'] ?? null);
+        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
+        $params['page'] = max(1, $params['page'] ?? 1);
+        $params['locale'] = $params['locale'] ?? null;
+
+        return $params;
+    }
+
     public static function search($rawParams, $locale = null)
     {
         $locale ?? ($locale = config('app.fallback_locale'));
-        $params = static::searchParams($rawParams);
+        $params = static::normalizeParams($rawParams);
         $matchParams = [];
 
         if (!present($params['query'])) {
@@ -101,15 +111,5 @@ class WikiSearch extends RecordSearch
             ->query($query);
 
         return $search;
-    }
-
-    public static function searchParams($params)
-    {
-        $params['query'] = presence($params['query'] ?? null);
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
-        $params['locale'] = $params['locale'] ?? null;
-
-        return $params;
     }
 }
