@@ -70,6 +70,18 @@ class AllSearch
         return $this->query;
     }
 
+    public function visibleSearches()
+    {
+        $visible = [];
+        foreach ($this->searches() as $mode => $search) {
+            if ($search !== null && ($this->getMode() === $mode || $this->getMode() === 'all')) {
+                $visible[$mode] = $search;
+            }
+        }
+
+        return $visible;
+    }
+
     public function searches()
     {
         if (!isset($this->searches)) {

@@ -42,17 +42,15 @@
                 <div class="page-mode page-mode--search">
                     @foreach ($allSearch->searches() as $mode => $search)
                         @php
-                            $active = $mode === request('mode');
+                            $active = $mode === $allSearch->getMode();
                         @endphp
                         @include('home._search_page_tab', compact('active', 'mode', 'search'))
                     @endforeach
                 </div>
 
                 @if ($allSearch->hasQuery())
-                    @foreach ($allSearch->searches() as $mode => $search)
-                        @if ($search !== null && ($mode === request('mode') || request('mode') === 'all'))
-                            @include('home._search_results', compact('mode', 'search'))
-                        @endif
+                    @foreach ($allSearch->visibleSearches() as $mode => $search)
+                        @include('home._search_results', compact('mode', 'search'))
                     @endforeach
                 @else
                     <div class="search-result">
