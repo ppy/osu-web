@@ -43,7 +43,7 @@
         @php
             $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
             $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? new App\Models\DeletedUser;
-            $highlights = $search->highlightsForHit($hit);
+            $highlights = $search->highlightsForHit($innerHit);
         @endphp
 
         <div class="search-entry-thread__sub-item">
