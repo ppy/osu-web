@@ -21,10 +21,6 @@
             @lang('home.search.empty_result')
         </div>
     @else
-        @php
-            // FIXME: what to do...
-            $page = $search->paginate(6, null, ['path' => route('search')])->appends(request()->query());
-        @endphp
         <div class="search-result__row search-result__row--entries-container">
             <div class="search-result__entries">
                 @include("home._search_{$mode}", compact('search'))
@@ -47,7 +43,10 @@
             </a>
         @else
             <div class="search-result__row search-result__row--paginator">
-                @include('objects._pagination', ['object' => $page, 'modifier' => 'search'])
+                @php
+                    $paginator = $search->getPaginator(['path' => route('search')])->appends(request()->query());
+                @endphp
+                @include('objects._pagination', ['object' => $paginator, 'modifier' => 'search'])
             </div>
         @endif
     @endif

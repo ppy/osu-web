@@ -69,9 +69,19 @@ class AllSearch
                 }
 
                 $options = $class::normalizeParams(['query' => $this->query]);
-                $this->searches[$mode] = new $class(
+                $search = new $class(
                     array_merge($options, ['query' => $this->query])
                 );
+
+                if ($this->getMode() === 'all') {
+                    $search->paginate(6, 1, ['path' => route('search')])
+                        ->appends(request()->query());
+                } else {
+                    $search->paginate(10, null, ['path' => route('search')])
+                        ->appends(request()->query());
+                }
+
+                $this->searches[$mode] = $search;
             }
         }
 
