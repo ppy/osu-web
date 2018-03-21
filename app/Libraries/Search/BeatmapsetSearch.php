@@ -43,6 +43,16 @@ class BeatmapsetSearch extends RecordSearch
     /**
      * {@inheritdoc}
      */
+    public function size(?int $size)
+    {
+        $size = clamp($size ?? config('osu.beatmaps.max'), 1, config('osu.beatmaps.max'));
+
+        return parent::size($size);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function sort(array $sort)
     {
         $this->sort[] = static::normalizeSort($sort);
@@ -158,16 +168,6 @@ class BeatmapsetSearch extends RecordSearch
         return parent::toArray();
     }
 
-    public static function search(array $params = []) : self
-    {
-        $startTime = microtime(true);
-        $params = static::normalizeParams($params);
-
-        $search = static::searchES($params);
-
-        return $search;
-    }
-
     public static function normalizeParams(array $params = [])
     {
         // simple stuff
@@ -176,8 +176,6 @@ class BeatmapsetSearch extends RecordSearch
         $params['genre'] = get_int($params['genre'] ?? null);
         $params['language'] = get_int($params['language'] ?? null);
         $params['extra'] = explode('.', $params['extra'] ?? null);
-        $params['limit'] = clamp(get_int($params['limit'] ?? config('osu.beatmaps.max')), 1, config('osu.beatmaps.max'));
-        $params['page'] = max(1, get_int($params['page'] ?? 1));
 
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
@@ -227,21 +225,6 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         return $params;
-    }
-
-    public static function searchES(array $params = [])
-    {
-        // extract sort-related keys
-        $sort = [
-            'sort_field' => $params['sort_field'],
-            'sort_order' => $params['sort_order'],
-        ];
-
-        return (new static($params))
-            ->size($params['limit'])
-            ->page($params['page'])
-            ->sort($sort)
-            ->source('_id');
     }
 
     /**

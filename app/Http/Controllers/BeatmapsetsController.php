@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
+use App\Libraries\Search\BeatmapsetSearch;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -43,11 +44,8 @@ class BeatmapsetsController extends Controller
     {
         $languages = Language::listing();
         $genres = Genre::listing();
-        $beatmaps = json_collection(
-            Beatmapset::search($this->searchParams())->records(),
-            new BeatmapsetTransformer,
-            'beatmaps'
-        );
+
+        $beatmaps = $this->search();
 
         // temporarily put filters here
         $general = [
@@ -133,13 +131,21 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $user = Auth::user();
+        $params = BeatmapsetSearch::normalizeParams($this->searchParams());
+        // extract sort-related keys
+        $sort = [
+            'sort_field' => $params['sort_field'],
+            'sort_order' => $params['sort_order'],
+        ];
 
-        $params = $this->searchParams();
-        $beatmaps = Beatmapset::search($params)->records();
+        $search = (new BeatmapsetSearch($params))
+            ->sort($sort)
+            ->source('_id');
+
+        $pagination = $search->paginate();
 
         return json_collection(
-            $beatmaps,
+            $pagination,
             new BeatmapsetTransformer,
             'beatmaps'
         );
