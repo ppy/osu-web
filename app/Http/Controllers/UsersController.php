@@ -294,7 +294,7 @@ class UsersController extends Controller
             ->where('mode', Beatmap::modeInt($currentMode))
             ->first();
 
-        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : [];
+        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
 
         if (Request::is('api/*')) {
             $userArray['statistics'] = $statistics;
@@ -408,26 +408,26 @@ class UsersController extends Controller
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
                 break;
 
-            // BeatmapsetCompact
+            // Beatmapset
             case 'favouriteBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsFavourite();
                 break;
             case 'graveyardBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
             case 'rankedAndApprovedBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsRankedAndApproved()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'unrankedBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsUnranked()
                     ->orderBy('last_update', 'desc');

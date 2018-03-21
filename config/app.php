@@ -101,6 +101,7 @@ return [
         'sv',
         'vi',
         'zh',
+        'zh-tw',
     ],
 
     /*

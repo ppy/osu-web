@@ -89,9 +89,14 @@ class BeatmapsetPage.Header extends React.Component
               "#{osu.trans 'beatmapsets.show.stats.stars'} #{if @props.hoveredBeatmap then @props.hoveredBeatmap.difficulty_rating.toFixed 2 else ''}"
 
             div {},
-              span className: 'beatmapset-header__value',
+              span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.playcount'),
                 span className: 'beatmapset-header__value-icon', el Icon, name: 'play-circle'
                 span className: 'beatmapset-header__value-name', @props.beatmapset.play_count.toLocaleString()
+
+              if @props.beatmapset.status == 'pending'
+                span className: 'beatmapset-header__value', title: osu.trans('beatmapsets.show.stats.nominations'),
+                  span className: 'beatmapset-header__value-icon', el Icon, name: 'thumbs-up'
+                  span className: 'beatmapset-header__value-name', @props.beatmapset.nominations.current
 
               span
                 className: "beatmapset-header__value#{if @props.favcount > 0 then ' beatmapset-header__value--has-favourites' else ''}"
@@ -118,6 +123,7 @@ class BeatmapsetPage.Header extends React.Component
               if @props.favcount > @favouritesToShow
                 div className: 'beatmapset-favourites__remainder-count',
                   osu.transChoice 'beatmapsets.show.details.favourited_count', (@props.favcount - @favouritesToShow).toLocaleString()
+
           a
             className: 'beatmapset-header__details-text beatmapset-header__details-text--title u-ellipsis-overflow'
             href: laroute.route 'beatmapsets.index', q: encodeURIComponent(@props.beatmapset.title)
@@ -174,7 +180,7 @@ class BeatmapsetPage.Header extends React.Component
                 else
                   @downloadButton
                     key: 'default'
-                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id, noVideo: 1
+                    href: laroute.route 'beatmapsets.download', beatmapset: @props.beatmapset.id
 
                 @downloadButton
                   key: 'direct'
@@ -205,6 +211,7 @@ class BeatmapsetPage.Header extends React.Component
                   href: @props.beatmapset.legacy_thread_url
 
         div className: 'beatmapset-header__box beatmapset-header__box--stats',
+          div className: 'beatmapset-header__status', @props.beatmapset.status
           el BeatmapsetPage.Stats,
             beatmapset: @props.beatmapset
             beatmap: @props.currentBeatmap

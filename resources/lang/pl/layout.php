@@ -40,7 +40,7 @@ return [
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
-            'team' => 'załoga',
+            'team' => 'zespół',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -118,11 +118,12 @@ return [
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Pomoc',
+            'beatmapset_activities' => 'aktualizacje na beatmapach użytkownika',
         ],
         'store' => [
             '_' => 'sklep',
+            'checkout-show' => 'kasa',
             'getListing' => 'przedmioty',
-            'cart-show' => 'koszyk',
             'cart-show' => 'koszyk',
 
             'getCheckout' => 'zapłać',
@@ -145,6 +146,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => 'tło beatmapy',
             'root' => 'strona główna',
             'logs-index' => 'logi',
             'beatmapsets' => [

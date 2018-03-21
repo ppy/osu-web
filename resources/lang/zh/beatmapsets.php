@@ -70,11 +70,11 @@ return [
             'description' => '介绍',
             'genre' => '流派',
             'language' => '语言',
-            'no_scores' => 'Unranked 谱面',
             'points-of-failure' => '失败位置',
             'source' => '来源',
             'success-rate' => '成功率',
             'tags' => '标签',
+            'unranked' => 'Unranked 谱面',
         ],
         'scoreboard' => [
             'achieved' => '在 :when 达成',

@@ -112,15 +112,15 @@ class LocaleMeta
             'flag' => 'VN',
         ],
         'zh' => [
-            'name' => '中文',
+            'name' => '简体中文',
             'flag' => 'CN',
         ],
         'zh-hk' => [
-            'name' => '粤语',
+            'name' => '繁體中文（香港）',
             'flag' => 'HK',
         ],
         'zh-tw' => [
-            'name' => '繁體中文',
+            'name' => '繁體中文（台灣）',
             'flag' => 'TW',
         ],
     ];
