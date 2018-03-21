@@ -27,10 +27,22 @@ class AllSearch
 {
     const MODES = [
         'all' => null,
-        'user' => UserSearch::class,
-        'beatmapset' => BeatmapsetSearch::class,
-        'forum_post' => ForumSearch::class,
-        'wiki_page' => WikiSearch::class,
+        'user' => [
+            'type' => UserSearch::class,
+            'size' => 6,
+        ],
+        'beatmapset' => [
+            'type' => BeatmapsetSearch::class,
+            'size' => 8,
+        ],
+        'forum_post' => [
+            'type' => ForumSearch::class,
+            'size' => 8,
+        ],
+        'wiki_page' => [
+            'type' => WikiSearch::class,
+            'size' => 8,
+        ],
     ];
 
     public $params;
@@ -62,22 +74,21 @@ class AllSearch
     {
         if (!isset($this->searches)) {
             $this->searches = [];
-            foreach (static::MODES as $mode => $class) {
-                if ($class === null) {
+            foreach (static::MODES as $mode => $settings) {
+                if ($settings === null) {
                     $this->searches[$mode] = null;
                     continue;
                 }
 
+                $class = $settings['type'];
                 $options = $class::normalizeParams(['query' => $this->query]);
-                $search = new $class(
-                    array_merge($options, ['query' => $this->query])
-                );
+                $search = new $class($options);
 
                 if ($this->getMode() === 'all') {
-                    $search->paginate(6, 1, ['path' => route('search')])
+                    $search->paginate($settings['size'], 1, ['path' => route('search')])
                         ->appends(request()->query());
                 } else {
-                    $search->paginate(10, null, ['path' => route('search')])
+                    $search->paginate(null, null, ['path' => route('search')])
                         ->appends(request()->query());
                 }
 
@@ -96,14 +107,17 @@ class AllSearch
     public static function counts($query)
     {
         $searches = [];
-        foreach (static::MODES as $mode => $class) {
-            if ($class === null) {
+        foreach (static::MODES as $mode => $settings) {
+            if ($settings === null) {
                 $searches[$mode] = 0;
                 continue;
             }
 
+            $class = $settings['type'];
             $options = $class::normalizeParams(['query' => $query]);
-            $searches[$mode] = (new $class($options))->count();
+            $search = new $class($options);
+
+            $searches[$mode] = $search->count();
         }
 
         return $searches;
