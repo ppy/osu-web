@@ -17,7 +17,7 @@
 --}}
 @php
 // input field name mappings for view recycling.
-// pass in $fields to set; set a field to false to remove it.
+// pass in $fields to set; set a field to null to remove it.
 // TODO: hopefully this can be temporary ಠ_ಠ.
 $fieldDefaults = [
     'forumId' => 'forum_id',
@@ -34,7 +34,7 @@ if (isset($fields)) {
 @endphp
 
 <div class="search-forum-options">
-    @if ($fields['user'] !== false)
+    @if ($fields['user'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.username') }}
@@ -49,7 +49,7 @@ if (isset($fields)) {
     @endif
 
     {{-- FIXME: remove querystring check? --}}
-    @if ($fields['topicId'] !== false && present(request($fields['topicId'])))
+    @if ($fields['topicId'] !== null && present(request($fields['topicId'])))
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
@@ -61,7 +61,7 @@ if (isset($fields)) {
                 class="search-forum-options__input search-forum-options__input--text"
             >
         </label>
-    @elseif ($fields['forumId'] !== false)
+    @elseif ($fields['forumId'] !== null)
         <label class="search-forum-options__input-group">
             <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.forum') }}

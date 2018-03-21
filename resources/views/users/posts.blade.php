@@ -42,7 +42,7 @@
 
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
-                @include('objects.search._forum_options', ['fields' => ['user' => false]])
+                @include('objects.search._forum_options', ['fields' => ['user' => null]])
 
                 <div class="search-result search-result--forum_post">
                     @if ($search->total() === 0)
