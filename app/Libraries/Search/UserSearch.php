@@ -37,6 +37,7 @@ class UserSearch extends RecordSearch
         parent::__construct(User::esIndexName(), User::class, $options);
 
         $this->queryString = $options['query'];
+        $this->query(static::usernameSearchQuery($this->queryString ?? ''));
     }
 
     public static function normalizeParams(array $params = [])
@@ -54,15 +55,9 @@ class UserSearch extends RecordSearch
 
         $params = $this->normalizeParams($rawParams);
 
-        return static::searchUsername($params['query'], $params['page'], $params['limit']);
-    }
-
-    public static function searchUsername(string $username, $page, $size) : self
-    {
-        return (new static)
-            ->query(static::usernameSearchQuery($username ?? ''))
-            ->page($page)
-            ->size($size);
+        return (new static($params))
+            ->page($params['page'])
+            ->size($params['limit']);
     }
 
     public static function usernameSearchQuery(string $username)
