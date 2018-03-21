@@ -28,7 +28,6 @@ class BeatmapsetPage.Main extends React.Component
 
     @state = JSON.parse(@props.container.dataset.state ? 'null')
     @restoredState = @state?
-    console.log 'restored state?', @restoredState
 
     if !@restoredState
       optionsHash = BeatmapsetPageHash.parse location.hash
