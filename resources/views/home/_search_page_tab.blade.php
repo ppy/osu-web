@@ -24,10 +24,10 @@
             {{ trans("home.search.mode.{$mode}") }}
         </span>
 
-        @if ($counts[$mode] ?? null !== null)
+        @if ($search !== null)
             <span class="page-mode-link__badge">
-                @if ($counts[$mode] < 100)
-                    {{ $counts[$mode] }}
+                @if ($search->count() < 100)
+                    {{ $search->count() }}
                 @else
                     99+
                 @endif

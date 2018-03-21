@@ -37,6 +37,7 @@ abstract class Search implements Queryable
     protected $index;
     protected $options;
 
+    private $count;
     private $error;
     private $response;
 
@@ -56,16 +57,25 @@ abstract class Search implements Queryable
      */
     public function count() : int
     {
-        $query = $this->toArray();
-        // some arguments need to be stripped from the body as they're not supported by count.
-        $body = $query['body'];
-        foreach (['from', 'size', 'sort'] as $key) {
-            unset($body[$key]);
+        // use total from response if response was already fetched.
+        if (isset($this->response)) {
+            return $this->response->total();
         }
 
-        $query['body'] = $body;
+        if (!isset($this->count)) {
+            $query = $this->toArray();
+            // some arguments need to be stripped from the body as they're not supported by count.
+            $body = $query['body'];
+            foreach (['from', 'size', 'sort'] as $key) {
+                unset($body[$key]);
+            }
 
-        return Es::count($query)['count'];
+            $query['body'] = $body;
+
+            $this->count = Es::count($query)['count'];
+        }
+
+        return $this->count;
     }
 
     public function getError()

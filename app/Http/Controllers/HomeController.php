@@ -139,10 +139,9 @@ class HomeController extends Controller
             'user' => Auth::user(), // FIXME: rename to currentUser
         ]);
 
-        $counts = AllSearch::counts($query);
         $allSearch = new AllSearch($query, request()->input());
 
-        return view('home.search', compact('allSearch', 'counts'));
+        return view('home.search', compact('allSearch'));
     }
 
     public function setLocale()

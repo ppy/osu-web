@@ -113,23 +113,4 @@ class AllSearch
     {
         return mb_strlen($this->query) >= config('osu.search.minimum_length');
     }
-
-    public static function counts($query)
-    {
-        $searches = [];
-        foreach (static::MODES as $mode => $settings) {
-            if ($settings === null) {
-                $searches[$mode] = 0;
-                continue;
-            }
-
-            $class = $settings['type'];
-            $options = $class::normalizeParams(['query' => $query]);
-            $search = new $class($options);
-
-            $searches[$mode] = $search->count();
-        }
-
-        return $searches;
-    }
 }
