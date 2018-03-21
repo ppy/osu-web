@@ -27,6 +27,14 @@ use App\Models\Wiki\Page;
 
 class WikiSearch extends RecordSearch
 {
+    public function __construct(array $options = [])
+    {
+        parent::__construct(config('osu.elasticsearch.index.wiki_pages'), Page::class, $options);
+
+        $this->queryString = $options['query'];
+        $this->locale = $options['locale'] ?? config('app.fallback_locale');
+    }
+
     public function records()
     {
         $response = $this->response();
@@ -42,33 +50,18 @@ class WikiSearch extends RecordSearch
         return $pages;
     }
 
-    public static function normalizeParams(array $params = [])
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray() : array
     {
-        $params['query'] = presence($params['query'] ?? null);
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
-        $params['locale'] = $params['locale'] ?? null;
-
-        return $params;
-    }
-
-    public static function search($rawParams, $locale = null)
-    {
-        $locale ?? ($locale = config('app.fallback_locale'));
-        $params = static::normalizeParams($rawParams);
-        $matchParams = [];
-
-        if (!present($params['query'])) {
-            return [];
-        }
-
         $langQuery = (new BoolQuery())
             ->shouldMatch(1)
             ->should(['constant_score' => [
                 'boost' => 1000,
                 'filter' => [
                     'match' => [
-                        'locale' => $params['locale'] ?? App::getLocale(),
+                        'locale' => $this->locale ?? App::getLocale(),
                     ],
                 ],
             ]])
@@ -84,32 +77,50 @@ class WikiSearch extends RecordSearch
             ->shouldMatch(1)
             ->should(['match' => [
                 'tags' => [
-                    'query' => $params['query'],
+                    'query' => $this->queryString,
                     'boost' => 10,
                 ],
             ]])
             ->should(['match' => [
                 'title' => [
-                    'query' => $params['query'],
+                    'query' => $this->queryString,
                     'boost' => 10,
                 ],
             ]])
             ->should(['match' => [
                 'path_clean' => [
-                    'query' => $params['query'],
+                    'query' => $this->queryString,
                     'boost' => 9,
                 ],
             ]])
             ->should(['match' => [
-                'page_text' => $params['query'],
+                'page_text' => $this->queryString,
             ]]);
 
-        $query = (new BoolQuery)->must($langQuery)->must($matchQuery);
-        $search = (new static(config('osu.elasticsearch.index.wiki_pages'), Page::class))
-            ->size($params['limit'])
-            ->page($params['page'])
-            ->query($query);
+        $this->query = (new BoolQuery)
+            ->must($langQuery)
+            ->must($matchQuery);
 
-        return $search;
+        return parent::toArray();
+    }
+
+    public static function normalizeParams(array $params = [])
+    {
+        $params['query'] = presence($params['query'] ?? null);
+        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
+        $params['page'] = max(1, $params['page'] ?? 1);
+        $params['locale'] = $params['locale'] ?? null;
+
+        return $params;
+    }
+
+    public static function search($rawParams, $locale = null)
+    {
+        $rawParams['locale'] = $locale;
+        $params = static::normalizeParams($rawParams);
+
+        return (new static($params))
+            ->size($params['limit'])
+            ->page($params['page']);
     }
 }
