@@ -61,7 +61,6 @@ class Page
     {
         $searchPath = static::cleanupPath($path);
 
-<<<<<<< HEAD
         $localeQuery = [
             ['constant_score' => [
                 'boost' => 1000,
@@ -80,8 +79,6 @@ class Page
             ]],
         ];
 
-=======
->>>>>>> is called BoolQuery now
         $query = (new BoolQuery())
             ->must(['match' => ['path_clean' => es_query_and_words($searchPath)]])
             ->should($localeQuery)
