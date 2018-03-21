@@ -390,11 +390,6 @@ class Beatmapset extends Model implements AfterCommit
         });
     }
 
-    public static function listing()
-    {
-        return BeatmapsetSearch::search()->records();
-    }
-
     public static function coverSizes()
     {
         $shapes = ['cover', 'card', 'list', 'slimcover'];
