@@ -21,19 +21,23 @@
             @lang('home.search.empty_result')
         </div>
     @else
+        @php
+            // FIXME: what to do...
+            $page = $search->paginate(6, null, ['path' => route('search')])->appends(request()->query());
+        @endphp
         <div class="search-result__row search-result__row--entries-container">
             <div class="search-result__entries">
-                @php
-                    // FIXME: Users for forum search; do something about this in cleanup branch
-                    // $result enumeration should probably be done according to each blade.
-                    if ($search instanceof App\Libraries\Search\ForumSearch) {
-                        $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
-                    }
-
-                    $params = array_merge(compact('entry', 'users'), ['search' => $search]);
-                @endphp
                 @foreach ($search->data() as $entry)
-                    <div class="search-result__entry">
+                    @php
+                        // FIXME: Users for forum search; do something about this in cleanup branch
+                        // $result enumeration should probably be done according to each blade.
+                        if ($search instanceof App\Libraries\Search\ForumSearch) {
+                            $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
+                        }
+
+                        $params = array_merge(compact('entry', 'users'), ['search' => $search]);
+                    @endphp
+                        <div class="search-result__entry">
                         @include("home._search_{$mode}", $params)
                     </div>
                 @endforeach
@@ -47,25 +51,17 @@
             </a>
         </div>
 
-{{--
-        @if ($search->getMode() === $mode)
-            @if (!$page->hasMorePages())
-                <div class="search-result__row search-result__row--notice">
-                    {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
-                </div>
-            @endif
-
-            <div class="search-result__row search-result__row--paginator">
-                @include('objects._pagination', ['object' => $page, 'modifier' => 'search'])
-            </div>
-        @else
+        @if (request('mode') === 'all')
             <a
                 class="search-result__row search-result__row--more"
                 href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
             >
                 @lang("home.search.{$mode}.more_simple")
             </a>
+        @else
+            <div class="search-result__row search-result__row--paginator">
+                @include('objects._pagination', ['object' => $page, 'modifier' => 'search'])
+            </div>
         @endif
---}}
     @endif
 </div>
