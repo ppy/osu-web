@@ -85,11 +85,9 @@ class AllSearch
                 $search = new $class($options);
 
                 if ($this->getMode() === 'all') {
-                    $search->paginate($settings['size'], 1, ['path' => route('search')])
-                        ->appends(request()->query());
+                    $search->paginate($settings['size'], 1, ['path' => route('search')]);
                 } else {
-                    $search->paginate(null, null, ['path' => route('search')])
-                        ->appends(request()->query());
+                    $search->paginate(null, null, ['path' => route('search')]);
                 }
 
                 $this->searches[$mode] = $search;
