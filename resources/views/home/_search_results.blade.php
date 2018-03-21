@@ -27,20 +27,7 @@
         @endphp
         <div class="search-result__row search-result__row--entries-container">
             <div class="search-result__entries">
-                @foreach ($search->data() as $entry)
-                    @php
-                        // FIXME: Users for forum search; do something about this in cleanup branch
-                        // $result enumeration should probably be done according to each blade.
-                        if ($search instanceof App\Libraries\Search\ForumSearch) {
-                            $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
-                        }
-
-                        $params = array_merge(compact('entry', 'users'), ['search' => $search]);
-                    @endphp
-                        <div class="search-result__entry">
-                        @include("home._search_{$mode}", $params)
-                    </div>
-                @endforeach
+                @include("home._search_{$mode}", compact('search'))
             </div>
 
             <a
