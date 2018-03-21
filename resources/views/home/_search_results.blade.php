@@ -16,15 +16,8 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div>
-    @foreach ($search->all() as $mode => $page)
         <div class="search-result search-result--{{ $mode }}">
-            @if (request('mode') !== $mode)
-                <h2 class="search-result__row search-result__row--title">
-                    @lang("home.search.{$mode}.title")
-                </h2>
-            @endif
-
-            @if ($page->total() === 0)
+            @if ($search->total() === 0)
                 <div class="search-result__row search-result__row--notice">
                     @lang('home.search.empty_result')
                 </div>
@@ -34,30 +27,29 @@
                         @php
                             // FIXME: Users for forum search; do something about this in cleanup branch
                             // $result enumeration should probably be done according to each blade.
-                            if ($result instanceof App\Libraries\ForumSearch) {
-                                $users = $result->users()->select('user_id', 'username', 'user_avatar')->get();
+                            if ($search instanceof App\Libraries\Search\ForumSearch) {
+                                $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
                             }
+
+                            $params = array_merge(compact('entry', 'users'), ['search' => $search]);
                         @endphp
-                        @foreach ($page as $entry)
+                        @foreach ($search->data() as $entry)
                             <div class="search-result__entry">
-                                @include("home._search_{$mode}", compact('entry', 'users'))
+                                @include("home._search_{$mode}", $params)
                             </div>
                         @endforeach
                     </div>
 
                     <a
-                        class="
-                            search-result__more-button
-                            {{ $search->mode === $mode ? 'search-result__more-button--hidden' : '' }}
-                        "
-                        href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
+                        class="search-result__more-button"
+                        href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
                     >
                         <span class="fa fa-angle-right"></span>
                     </a>
                 </div>
 
-                @if ($search->mode === $mode)
-                    {{-- overLimit call needs fixing --}}
+{{--
+                @if ($search->getMode() === $mode)
                     @if (!$page->hasMorePages())
                         <div class="search-result__row search-result__row--notice">
                             {{ trans("home.search.{$mode}.more_hidden", ['max' => config("osu.search.max.{$mode}")]) }}
@@ -70,12 +62,12 @@
                 @else
                     <a
                         class="search-result__row search-result__row--more"
-                        href="{{ route('search', ['mode' => $mode, 'query' => $search->params['query']]) }}"
+                        href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
                     >
                         @lang("home.search.{$mode}.more_simple")
                     </a>
                 @endif
+--}}
             @endif
         </div>
-    @endforeach
 </div>

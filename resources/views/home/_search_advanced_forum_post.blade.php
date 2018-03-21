@@ -23,12 +23,12 @@
 
         <input
             name="username"
-            value="{{ $search->urlParams()['username'] ?? '' }}"
+            value="{{ request('username') }}"
             class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
         >
     </label>
 
-    @if (present($search->urlParams()['topic_id'] ?? null))
+    @if (present(request('topic_id')))
         <label class="search-advanced-forum-post__input-group">
             <div class="search-advanced-forum-post__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
@@ -36,7 +36,7 @@
 
             <input
                 name="topic_id"
-                value="{{ $search->urlParams()['topic_id'] ?? '' }}"
+                value="{{ request('topic_id') }}"
                 class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
             >
         </label>
@@ -59,7 +59,7 @@
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === get_int($search->urlParams()['forum_id'] ?? null) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int(request('forum_id')) ? 'selected' : '' }}
                             >
                                 {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
@@ -79,7 +79,7 @@
                 <input
                     type="checkbox"
                     name="forum_children"
-                    {{ ($search->urlParams()['forum_children'] ?? false) ? 'checked' : '' }}
+                    {{ (request('forum_children') ?? false) ? 'checked' : '' }}
                     class="osu-checkbox__input"
                 >
                 <span class="osu-checkbox__box"></span>

@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2018 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -19,7 +19,7 @@
 
 @section('content')
     <form action="{{ route('search') }}">
-        <input type="hidden" name="mode" value="{{ $search->mode }}">
+        <input type="hidden" name="mode" value="{{ request('mode') }}">
 
         <div class="osu-page">
             <div class="search-header">
@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="{{ $search->currentQuery() }}" />
+                    <input class="search-header__input" name="query" value="{{ request('query') }}" />
 
                     <button class="search-header__icon">
                         <i class="fa fa-search"></i>
@@ -40,38 +40,20 @@
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
                 <div class="page-mode page-mode--search">
-                    @foreach ($search::MODES as $mode => $_class)
-                        <div class="page-mode__item">
-                            <a
-                                href="{{ route('search', ['mode' => $mode, 'query' => $search->currentQuery()]) }}"
-                                class="page-mode-link {{ $mode === $search->mode ? 'page-mode-link--is-active' : '' }}"
-                            >
-                                <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
-                                    {{ trans("home.search.mode.{$mode}") }}
-                                </span>
-
-                                @if ($search->hasQuery() && $search->total($mode))
-                                    <span class="page-mode-link__badge">
-                                        @if ($search->total($mode) < 100)
-                                            {{ $search->total($mode) }}
-                                        @else
-                                            99+
-                                        @endif
-                                    </span>
-                                @endif
-
-                                <span class="page-mode-link__stripe u-forum--bg">
-                                </span>
-                            </a>
-                        </div>
+                    @foreach ($allSearch->searches() as $mode => $search)
+                        @php
+                            $active = $mode === request('mode');
+                        @endphp
+                        @include('home._search_page_tab', compact('active', 'mode', 'search'))
                     @endforeach
                 </div>
-                @if ($search->mode === 'forum_post')
-                    @include('home._search_advanced_forum_post')
-                @endif
 
-                @if ($search->hasQuery())
-                    @include('home._search_results')
+                @if ($allSearch->hasQuery())
+                    @foreach ($allSearch->searches() as $mode => $search)
+                        @if ($search !== null && ($mode === request('mode') || request('mode') === 'all'))
+                            @include('home._search_results', compact('mode', 'search'))
+                        @endif
+                    @endforeach
                 @else
                     <div class="search-result">
                         <div class="search-result__row search-result__row--notice">

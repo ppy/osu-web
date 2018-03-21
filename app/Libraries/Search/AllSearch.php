@@ -27,15 +27,11 @@ class AllSearch
 {
     const MODES = [
         'all' => null,
-
-        // also display order
         'user' => UserSearch::class,
         'beatmapset' => BeatmapsetSearch::class,
         'forum_post' => ForumSearch::class,
         'wiki_page' => WikiSearch::class,
     ];
-
-    const DEFAULT_MODE = 'all';
 
     public $params;
     public $user;
@@ -43,87 +39,63 @@ class AllSearch
 
     private $cache = [];
 
-    public function __construct($params)
+    private $options = [];
+    private $searches;
+
+    public function __construct(?string $query = null, array $options = [])
     {
-        $this->mode = array_pull($params, 'mode');
-        if (!array_key_exists($this->mode, static::MODES)) {
-            $this->mode = static::DEFAULT_MODE;
-        }
-
-        $this->user = array_pull($params, 'user');
-        $this->params = $params;
-
-        if ($this->mode === static::DEFAULT_MODE) {
-            $this->params['limit'] = 8;
-        }
+        $this->query = trim($query);
+        $this->options = $options;
     }
 
-    public function all()
+    public function getMode()
     {
-        $all = [];
-
-        foreach (static::MODES as $mode => $_class) {
-            $result = $this->search($mode);
-
-            if ($result !== null) {
-                $all[$mode] = $result;
-            }
-        }
-
-        return $all;
+        return $this->options['mode'] ?? 'all';
     }
 
     public function currentQuery()
     {
-        return trim($this->params['query'] ?? '');
+        return $this->query;
+    }
+
+    public function searches()
+    {
+        if (!isset($this->searches)) {
+            $this->searches = [];
+            foreach (static::MODES as $mode => $class) {
+                if ($class === null) {
+                    $this->searches[$mode] = null;
+                    continue;
+                }
+
+                $options = $class::normalizeParams(['query' => $this->query]);
+                $this->searches[$mode] = new $class(
+                    array_merge($options, ['query' => $this->query])
+                );
+            }
+        }
+
+        return $this->searches;
     }
 
     public function hasQuery()
     {
-        return mb_strlen($this->currentQuery()) >= config('osu.search.minimum_length');
+        return mb_strlen($this->query) >= config('osu.search.minimum_length');
     }
 
-    public function search($mode)
+    public static function counts($query)
     {
-        $class = static::MODES[$mode];
+        $searches = [];
+        foreach (static::MODES as $mode => $class) {
+            if ($class === null) {
+                $searches[$mode] = 0;
+                continue;
+            }
 
-        if ($class === null) {
-            return;
+            $options = $class::normalizeParams(['query' => $query]);
+            $searches[$mode] = (new $class($options))->count();
         }
 
-        if ($this->mode !== static::DEFAULT_MODE && $this->mode !== $mode) {
-            return;
-        }
-
-        $key = __FUNCTION__.':'.$mode;
-
-        if (!array_key_exists($key, $this->cache)) {
-            $startTime = microtime(true);
-
-            $this->cache[$key] = $class::search($this->params)
-                ->paginate($this->params['limit'] ?? null, null, ['path' => route('search')])
-                ->appends($this->urlParams());
-        }
-
-        return $this->cache[$key];
-    }
-
-    public function total($mode)
-    {
-        if ($this->search($mode)) {
-            return $this->search($mode)->total();
-        }
-    }
-
-    public function urlParams($newParams = [])
-    {
-        $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
-
-        if ($newParams['mode'] === static::DEFAULT_MODE) {
-            $newParams['mode'] = null;
-            $newParams['limit'] = null;
-        }
-
-        return array_merge($this->params, $newParams);
+        return $searches;
     }
 }
