@@ -35,12 +35,12 @@ class AllSearch
             'type' => BeatmapsetSearch::class,
             'size' => 8,
         ],
-        'forum_post' => [
-            'type' => ForumSearch::class,
-            'size' => 8,
-        ],
         'wiki_page' => [
             'type' => WikiSearch::class,
+            'size' => 8,
+        ],
+        'forum_post' => [
+            'type' => ForumSearch::class,
             'size' => 8,
         ],
     ];
