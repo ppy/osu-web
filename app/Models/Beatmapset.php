@@ -1014,9 +1014,4 @@ class Beatmapset extends Model implements AfterCommit
 
         return preg_replace($pattern, '', $text);
     }
-
-    public static function search($params) : BeatmapsetSearch
-    {
-        return BeatmapsetSearch::search($params);
-    }
 }

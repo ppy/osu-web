@@ -45,12 +45,6 @@ class AllSearch
         ],
     ];
 
-    public $params;
-    public $user;
-    public $requestedLocale;
-
-    private $cache = [];
-
     private $options = [];
     private $searches;
 

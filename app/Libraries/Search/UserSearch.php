@@ -26,11 +26,6 @@ use App\Models\User;
 
 class UserSearch extends RecordSearch
 {
-    const SEARCH_DEFAULTS = [
-        'query' => null,
-        'page' => 1,
-    ];
-
     public function __construct(array $options = [])
     {
         parent::__construct(User::esIndexName(), User::class, $options);
@@ -45,17 +40,6 @@ class UserSearch extends RecordSearch
             'query' => presence($params['query'] ?? null),
             'page' => max(1, get_int($params['page'] ?? 1)),
         ];
-    }
-
-    public static function search($rawParams)
-    {
-        $max = config('osu.search.max.user');
-
-        $params = $this->normalizeParams($rawParams);
-
-        return (new static($params))
-            ->page($params['page'])
-            ->size($params['limit']);
     }
 
     public static function usernameSearchQuery(string $username)

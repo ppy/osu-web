@@ -149,15 +149,6 @@ class ForumSearch extends Search
         ];
     }
 
-    public static function search(array $params)
-    {
-        $options = $this->normalizeParams($params);
-
-        return (new static($options))
-            ->page($params['page'] ?? 1)
-            ->size($params['size'] ?? $params['limit'] ?? 50);
-    }
-
     public function data()
     {
         return $this->response();
