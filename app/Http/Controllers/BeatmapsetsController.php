@@ -139,13 +139,12 @@ class BeatmapsetsController extends Controller
         ];
 
         $search = (new BeatmapsetSearch($params))
+            ->page($params['page'])
             ->sort($sort)
             ->source('_id');
 
-        $pagination = $search->paginate();
-
         return json_collection(
-            $pagination,
+            $search->records(),
             new BeatmapsetTransformer,
             'beatmaps'
         );

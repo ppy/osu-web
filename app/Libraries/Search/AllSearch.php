@@ -97,12 +97,9 @@ class AllSearch
                 $search = new $class($options);
 
                 if ($this->getMode() === 'all') {
-                    $search->paginate($settings['size'], 1, ['path' => route('search')]);
+                    $search->page(1)->size($settings['size']);
                 } elseif ($this->getMode() === $mode) {
-                    // Don't call paginate if the search isn't for the current mode.
-                    // The search is needed for the counts, but we don't need the full response.
-                    // Calling paginate will get the full response.
-                    $search->paginate(null, null, ['path' => route('search')]);
+                    $search->page($this->options['page'] ?? 1);
                 }
 
                 $this->searches[$mode] = $search;
