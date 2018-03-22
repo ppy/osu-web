@@ -147,7 +147,6 @@ return [
         'qualified' => 'Otrzyma status rankingowy :date, jeżeli nie zostaną wykryte żadne błędy.',
         'qualified_soon' => 'Wkrótce otrzyma status rankingowy, jeżeli nie zostaną wykryte żadne błędy.',
         'required_text' => 'Nominacje: :current/:required',
-        'reset_at' => 'Liczba nominacji została zresetowana :time_ago, ponieważ pojawił się nowy problem :discussion.',
         'reset_confirm' => 'Na pewno? Utworzenie nowego problemu zresetuje liczbę nominacji.',
         'title' => 'Status nominacji',
         'unresolved_issues' => 'Nadal występują nierozwiązane problemy, do których musisz się odnieść.',

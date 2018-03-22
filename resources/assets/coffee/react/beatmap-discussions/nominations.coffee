@@ -105,9 +105,20 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         nominators.unshift @props.users[event.user_id]
 
     if nominationReset?
-      nominationResetDiscussionId = nominationReset.comment.beatmap_discussion_id
-      url = BeatmapDiscussionHelper.url discussion: @props.discussions[nominationResetDiscussionId]
-      nominationResetDiscussionLink = osu.link url, "##{nominationResetDiscussionId}", classNames: ['js-beatmap-discussion--jump']
+      reset =
+        user: @props.users[nominationReset.user_id]
+        discussion: @props.discussions[nominationReset.comment.beatmap_discussion_id]
+
+      if reset.discussion?
+        url = BeatmapDiscussionHelper.url discussion: reset.discussion
+        message = _.truncate(reset.discussion.posts[0].message, 100)
+        message = BeatmapDiscussionHelper.format message, newlines: false
+
+        reset.link = osu.link url, "##{reset.discussion.id}", classNames: ['js-beatmap-discussion--jump']
+        reset.message = message
+      else
+        reset.link = "##{nominationReset.comment.beatmap_discussion_id}"
+        reset.message = osu.trans('beatmaps.nominations.reset_message_deleted')
 
 
     div className: bn,
@@ -221,14 +232,22 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                         dangerouslySetInnerHTML:
                           __html: osu.trans 'beatmaps.nominations.disqualified_at',
                             time_ago: osu.timeago(disqualification.created_at)
-                            reason: disqualification.comment ? osu.trans('beatmaps.nominations.disqualified_no_reason')
+                            reason:
+                              if disqualification.comment?
+                                BeatmapDiscussionHelper.format disqualification.comment,
+                                  newlines: false
+                                  modifiers: ['white']
+                              else
+                                osu.trans('beatmaps.nominations.disqualified_no_reason')
                       ' ' # spacer
-                  if nominationResetDiscussionLink?
+                  if nominationReset?
                     span
                       dangerouslySetInnerHTML:
                         __html: osu.trans 'beatmaps.nominations.reset_at',
                           time_ago: osu.timeago(nominationReset.created_at)
-                          discussion: nominationResetDiscussionLink
+                          discussion: reset.link
+                          message: reset.message
+                          user: osu.link laroute.route('users.show', user: reset.user.id), reset.user.username
             if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
