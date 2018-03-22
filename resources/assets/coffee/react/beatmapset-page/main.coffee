@@ -166,7 +166,9 @@ class BeatmapsetPage.Main extends React.Component
     $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
 
     @setHash()
-    @setCurrentScoreboard(null, scoreboardType: 'global', resetMods: true) if !@restoredState
+
+    if !@restoredState || @state.loading
+      @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
   componentWillUnmount: ->
