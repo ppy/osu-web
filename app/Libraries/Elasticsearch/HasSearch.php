@@ -25,7 +25,7 @@ trait HasSearch
     protected $from;
     protected $highlight;
     protected $query;
-    protected $size = 10;
+    protected $size;
     protected $sort = [];
     protected $source;
     protected $type;
@@ -53,7 +53,7 @@ trait HasSearch
      */
     public function size(?int $size)
     {
-        $this->size = clamp($size ?? 50, 1, 50);
+        $this->size = $size;
 
         return $this;
     }
@@ -66,27 +66,6 @@ trait HasSearch
         $this->page = $page;
 
         return $this;
-    }
-
-    /**
-     * page is not returned if using offset query.
-     *
-     * @return array
-     */
-    protected function getPaginationParams()
-    {
-        // TODO: remove limit after everything migrated from creating own paginator with params['limit'].
-        $params = ['size' => $this->size, 'limit' => $this->size];
-
-        // from overrides page.
-        if (isset($this->from)) {
-            $params['from'] = $this->from;
-        } else {
-            $params['page'] = max(1, $this->page ?? 1);
-            $params['from'] = ($params['page'] - 1) * $this->size;
-        }
-
-        return $params;
     }
 
     /**
@@ -144,5 +123,43 @@ trait HasSearch
         $this->type = $type;
 
         return $this;
+    }
+
+    protected function getDefaultSize() : int
+    {
+        return 10;
+    }
+
+    /**
+     * page is not returned if using offset query.
+     *
+     * @return array
+     */
+    protected function getPaginationParams()
+    {
+        $size = $this->getSize();
+
+        // TODO: remove limit after everything migrated from creating own paginator with params['limit'].
+        $params = ['size' => $size, 'limit' => $size];
+
+        // from overrides page.
+        if (isset($this->from)) {
+            $params['from'] = $this->from;
+        } else {
+            $params['page'] = max(1, $this->page ?? 1);
+            $params['from'] = ($params['page'] - 1) * $size;
+        }
+
+        return $params;
+    }
+
+    /**
+     *  Gets the actual size to use in queries.
+     *
+     * @return int actual size to use.
+     */
+    protected function getSize() : int
+    {
+        return $this->size ?? $this->getDefaultSize();
     }
 }

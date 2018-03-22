@@ -174,4 +174,9 @@ abstract class Search implements Queryable
 
         return SearchResponse::failed();
     }
+
+    protected function getDefaultSize() : int
+    {
+        return static::DEFAULT_PAGE_SIZE;
+    }
 }

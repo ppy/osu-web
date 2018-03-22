@@ -35,19 +35,14 @@ class BeatmapsetSearch extends RecordSearch
         $this->queryString = $options['query'];
     }
 
+    public function getDefaultSize() : int
+    {
+        return config('osu.beatmaps.max');
+    }
+
     public function records()
     {
         return $this->response()->records()->with('beatmaps')->get();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function size(?int $size)
-    {
-        $size = clamp($size ?? config('osu.beatmaps.max'), 1, config('osu.beatmaps.max'));
-
-        return parent::size($size);
     }
 
     /**

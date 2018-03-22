@@ -107,20 +107,13 @@ class WikiSearch extends RecordSearch
     public static function normalizeParams(array $params = [])
     {
         $params['query'] = presence($params['query'] ?? null);
-        $params['limit'] = clamp($params['limit'] ?? 50, 1, 50);
-        $params['page'] = max(1, $params['page'] ?? 1);
         $params['locale'] = $params['locale'] ?? null;
 
         return $params;
     }
 
-    public static function search($rawParams, $locale = null)
+    protected function getDefaultSize(): int
     {
-        $rawParams['locale'] = $locale;
-        $params = static::normalizeParams($rawParams);
-
-        return (new static($params))
-            ->size($params['limit'])
-            ->page($params['page']);
+        return 50;
     }
 }

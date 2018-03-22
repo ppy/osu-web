@@ -28,7 +28,6 @@ class UserSearch extends RecordSearch
 {
     const SEARCH_DEFAULTS = [
         'query' => null,
-        'limit' => 20,
         'page' => 1,
     ];
 
@@ -44,7 +43,6 @@ class UserSearch extends RecordSearch
     {
         return [
             'query' => presence($params['query'] ?? null),
-            'limit' => clamp(get_int($params['limit'] ?? null) ?? static::SEARCH_DEFAULTS['limit'], 1, 50),
             'page' => max(1, get_int($params['page'] ?? 1)),
         ];
     }
@@ -83,5 +81,10 @@ class UserSearch extends RecordSearch
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
+    }
+
+    protected function getDefaultSize() : int
+    {
+        return 20;
     }
 }
