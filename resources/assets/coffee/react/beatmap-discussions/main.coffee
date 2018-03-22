@@ -32,8 +32,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     @timeouts = {}
     @xhr = {}
     @state = JSON.parse(props.container.dataset.beatmapsetDiscussionState ? null)
+    @restoredState = @state?
 
-    if !@state?
+    if !@restoredState
       beatmapset = props.initial.beatmapset
 
       readPostIds = []
@@ -59,9 +60,9 @@ class BeatmapDiscussions.Main extends React.PureComponent
     $.subscribe 'beatmapDiscussionPost:markRead.beatmapDiscussions', @markPostRead
     $(document).on 'ajax:success.beatmapDiscussions', '.js-beatmapset-discussion-update', @ujsDiscussionUpdate
     $(document).on 'click.beatmapDiscussions', '.js-beatmap-discussion--jump', @jumpToClick
-    $(document).on 'turbolinks:before-cache', @saveStateToContainer
+    $(document).on 'turbolinks:before-cache.beatmapDiscussions', @saveStateToContainer
 
-    @jumpToDiscussionByHash()
+    @jumpToDiscussionByHash() if !@restoredState
     @timeouts.checkNew = Timeout.set @checkNewTimeoutDefault, @checkNew
 
 
@@ -205,16 +206,19 @@ class BeatmapDiscussions.Main extends React.PureComponent
       continue if _.isEmpty(d)
 
       if !d.deleted_at? && d.can_be_resolved && !d.resolved
-        if !d.beatmap_id? || !@beatmaps()[d.beatmap_id]?.deleted_at?
+        beatmap = @beatmaps()[d.beatmap_id]
+
+        if !d.beatmap_id? || (beatmap? && !beatmap.deleted_at?)
           unresolvedIssues++
 
-        if d.beatmap_id?
-          countsByBeatmap[d.beatmap_id] ?= 0
-          countsByBeatmap[d.beatmap_id]++
+        if beatmap?
+          countsByBeatmap[beatmap.id] ?= 0
+          countsByBeatmap[beatmap.id]++
 
-          mode = @beatmaps()[d.beatmap_id]?.mode
-          countsByPlaymode[mode] ?= 0
-          countsByPlaymode[mode]++
+          if !beatmap.deleted_at?
+            countsByPlaymode[beatmap.mode] ?= 0
+            countsByPlaymode[beatmap.mode]++
+
 
       mode =
         if d.beatmap_id?
@@ -359,7 +363,7 @@ class BeatmapDiscussions.Main extends React.PureComponent
 
     if filter?
       if @state.currentMode == 'events'
-        mode = @lastMode ? BeatmapDiscussionHelper.DEFAULT_MODE
+        newState.currentMode = @lastMode ? BeatmapDiscussionHelper.DEFAULT_MODE
 
       if filter != @state.currentFilter
         newState.currentFilter = filter

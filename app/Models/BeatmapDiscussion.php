@@ -181,9 +181,7 @@ class BeatmapDiscussion extends Model
             $value = false;
         }
 
-        // Ensure isDirty works as expected.
-        // Reference: https://github.com/laravel/internals/issues/349
-        $this->attributes['resolved'] = $value ? 1 : 0;
+        $this->attributes['resolved'] = $value;
     }
 
     public function canBeResolved()

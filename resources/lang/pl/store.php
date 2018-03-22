@@ -74,8 +74,10 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Wprowadź nazwę użytkownika, aby sprawdzić, czy jest dostępna!',
+        'checking' => 'Sprawdzanie możliwości zmiany na :username...',
         'require_login' => [
-            '_' => 'Aby zmienić swój pseudonim, musisz się :link!',
+            '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',
             'link_text' => 'zalogować',
         ],
     ],
