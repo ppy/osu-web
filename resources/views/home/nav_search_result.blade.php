@@ -16,75 +16,39 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="nav-search-result">
-    @php
-        $users = $search->search('user');
-    @endphp
-    @if (count($users) > 0)
-        <div class="nav-search-result__results-container">
-            <div class="nav-search-result__results nav-search-result__results--horizontal">
-                <div class="nav-search-result__title">
-                    {{ trans('home.search.user.title') }}
+    @foreach ($quickSearch->searches() as $mode => $search)
+        @if ($search->total() > 0)
+            <div class="nav-search-result__results-container">
+                <div class="nav-search-result__results">
+                    <div class="nav-search-result__title">
+                        {{ trans("home.search.{$mode}.title") }}
+                    </div>
+                    {{-- FIXME: make horizontal --}}
+                    @foreach ($search->data() as $entry)
+                        <div class="nav-search-result__result">
+                            @include("home._search_{$mode}_quick", compact('entry'))
+                        </div>
+                    @endforeach
                 </div>
 
-                @foreach ($users as $entry)
-                    <div class="nav-search-result__result">
-                        @include('home._search_user_quick', compact('entry'))
-                    </div>
-                @endforeach
+                @if (count($search->data()) < $search->total())
+                    <a
+                        href="{{ route('search', ['query' => request('query'), 'mode' => $mode]) }}"
+                        class="nav-search-result__more"
+                    >
+                        {!! trans("home.search.{$mode}.more", [
+                            'count' =>
+                                '<em class="nav-search-result__count">'.($search->total() - count($search->data())).'</em>'
+                        ]) !!}
+                    </a>
+                @endif
             </div>
-
-            @if (count($users) < $users->total())
-                <a
-                    href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'user']) }}"
-                    class="nav-search-result__more"
-                >
-                    {!! trans('home.search.user.more', [
-                        'count' =>
-                            '<em class="nav-search-result__count">'.($users->total() - count($users)).'</em>'
-                    ]) !!}
-                </a>
-            @endif
-        </div>
-    @endif
-
-    @php
-        $beatmapsets = $search->search('beatmapset');
-    @endphp
-    @if (count($beatmapsets) > 0)
-        <div class="nav-search-result__results-container">
-            <div class="nav-search-result__results">
-                <div class="nav-search-result__title">
-                    {{ trans('home.search.beatmapset.title') }}
-                </div>
-
-                @foreach ($beatmapsets as $beatmapset)
-                    <div class="nav-search-result__result">
-                        @include('home._nav_search_entry', [
-                            'url' => route('beatmapsets.show', $beatmapset->getKey()),
-                            'title' => $beatmapset->title,
-                            'modifier' => 'beatmapset',
-                        ])
-                    </div>
-                @endforeach
-            </div>
-
-            @if (count($beatmapsets) < $beatmapsets->total())
-                <a
-                    href="{{ route('search', ['query' => Request::input('query'), 'mode' => 'beatmapset']) }}"
-                    class="nav-search-result__more"
-                >
-                    {!! trans('home.search.beatmapset.more', [
-                        'count' =>
-                            '<em class="nav-search-result__count">'.($beatmapsets->total() - count($beatmapsets)).'</em>'
-                    ]) !!}
-                </a>
-            @endif
-        </div>
-    @endif
+        @endif
+    @endforeach
 
     <div class="nav-search-result__results-container">
         @include('home._nav_search_entry', [
-            'url' => route('search', ['query' => Request::input('query'), 'mode' => 'wiki_page']),
+            'url' => route('search', ['query' => request('query'), 'mode' => 'wiki_page']),
             'title' => trans('home.search.wiki_page.link'),
             'modifier' => 'extra',
         ])
@@ -92,7 +56,7 @@
 
     <div class="nav-search-result__results-container">
         @include('home._nav_search_entry', [
-            'url' => route('search', ['query' => Request::input('query'), 'mode' => 'forum_post']),
+            'url' => route('search', ['query' => request('query'), 'mode' => 'forum_post']),
             'title' => trans('home.search.forum_post.link'),
             'modifier' => 'extra',
         ])
@@ -100,7 +64,7 @@
 
     <div class="nav-search-result__results-container">
         @include('home._nav_search_entry', [
-            'url' => route('search', ['query' => Request::input('query')]),
+            'url' => route('search', ['query' => request('query')]),
             'title' => trans('home.search.advanced_link'),
             'modifier' => 'extra',
         ])

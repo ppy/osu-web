@@ -20,50 +20,8 @@
 
 namespace App\Libraries\Search;
 
-use App\Models\Beatmapset;
-use App\Models\User;
-
-class AllSearch
+class AllSearch extends MultiSearch
 {
-    const MODES = [
-        'all' => null,
-        'user' => [
-            'type' => UserSearch::class,
-            'size' => 6,
-        ],
-        'beatmapset' => [
-            'type' => BeatmapsetSearch::class,
-            'size' => 8,
-        ],
-        'wiki_page' => [
-            'type' => WikiSearch::class,
-            'size' => 8,
-        ],
-        'forum_post' => [
-            'type' => ForumSearch::class,
-            'size' => 8,
-        ],
-    ];
-
-    private $options = [];
-    private $searches;
-
-    public function __construct(?string $query = null, array $options = [])
-    {
-        $this->query = trim($query);
-        $this->options = $options;
-    }
-
-    public function getMode()
-    {
-        return $this->options['mode'] ?? 'all';
-    }
-
-    public function currentQuery()
-    {
-        return $this->query;
-    }
-
     public function visibleSearches()
     {
         $visible = [];
@@ -74,37 +32,5 @@ class AllSearch
         }
 
         return $visible;
-    }
-
-    public function searches()
-    {
-        if (!isset($this->searches)) {
-            $this->searches = [];
-            foreach (static::MODES as $mode => $settings) {
-                if ($settings === null) {
-                    $this->searches[$mode] = null;
-                    continue;
-                }
-
-                $class = $settings['type'];
-                $options = $class::normalizeParams(['query' => $this->query]);
-                $search = new $class($options);
-
-                if ($this->getMode() === 'all') {
-                    $search->page(1)->size($settings['size']);
-                } elseif ($this->getMode() === $mode) {
-                    $search->page($this->options['page'] ?? 1);
-                }
-
-                $this->searches[$mode] = $search;
-            }
-        }
-
-        return $this->searches;
-    }
-
-    public function hasQuery()
-    {
-        return mb_strlen($this->query) >= config('osu.search.minimum_length');
     }
 }

@@ -20,43 +20,16 @@
 
 namespace App\Libraries\Search;
 
-use App\Models\Beatmapset;
-use App\Models\User;
-use App\Models\Wiki\Page as WikiPage;
-use Datadog;
-
-class QuickSearch
+class QuickSearch extends MultiSearch
 {
     const MODES = [
-        'user' => UserSearch::class,
-        'beatmapset' => BeatmapsetSearch::class
+        'user' => [
+            'type' => UserSearch::class,
+            'size' => 5,
+        ],
+        'beatmapset' => [
+            'type' => BeatmapsetSearch::class,
+            'size' => 5,
+        ],
     ];
-
-    private $pageSize;
-    private $query;
-
-    public function __construct($query, int $pageSize = 5)
-    {
-        $this->pageSize = $pageSize;
-        $this->query = trim($query);
-    }
-
-    public function currentQuery()
-    {
-        return $this->query;
-    }
-
-    public function hasQuery()
-    {
-        return mb_strlen($this->query) >= config('osu.search.minimum_length');
-    }
-
-    public function search($mode)
-    {
-        // TODO: force class name to be passed in? but it's kind of shit from the blades...
-        $class = static::MODES[$mode];
-
-        return $class::search(['query' => $this->query])
-            ->paginate($this->pageSize, 1, ['path' => route('search')]);
-    }
 }

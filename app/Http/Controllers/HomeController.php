@@ -118,12 +118,12 @@ class HomeController extends Controller
 
     public function quickSearch()
     {
-        $search = new QuickSearch(request('query'));
-        if (!$search->hasQuery()) {
+        $quickSearch = new QuickSearch(request('query'));
+        if (!$quickSearch->hasQuery()) {
             return response([], 204);
         }
 
-        return view('home.nav_search_result', compact('search'));
+        return view('home.nav_search_result', compact('quickSearch'));
     }
 
     public function search()
