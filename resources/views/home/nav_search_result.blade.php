@@ -23,7 +23,7 @@
                     {{ trans("home.search.{$mode}.title") }}
                 </div>
 
-                @include("home._search_{$mode}_quick", compact('search'))
+                @include("home._nav_search_result_{$mode}", compact('search'))
 
                 @if (count($search->data()) < $search->total())
                     <a

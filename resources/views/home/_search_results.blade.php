@@ -23,7 +23,7 @@
     @else
         <div class="search-result__row search-result__row--entries-container">
             <div class="search-result__entries">
-                @include("home._search_{$mode}", compact('search'))
+                @include("home._search_result_{$mode}", compact('search'))
             </div>
 
             <a
