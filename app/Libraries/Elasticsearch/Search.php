@@ -23,7 +23,6 @@ namespace App\Libraries\Elasticsearch;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class Search implements Queryable
 {
@@ -91,9 +90,8 @@ abstract class Search implements Queryable
             return;
         }
 
-        return new LengthAwarePaginator(
-            $this->data(),
-            $this->total(),
+        return new SearchPaginator(
+            $this,
             $page['size'],
             $page['page'],
             $options
@@ -118,7 +116,7 @@ abstract class Search implements Queryable
     {
         // TODO: default should be based to search type.
         $this->size($pageSize ?? static::DEFAULT_PAGE_SIZE)
-            ->page($page ?? LengthAwarePaginator::resolveCurrentPage());
+            ->page($page ?? SearchPaginator::resolveCurrentPage());
 
         return $this->getPaginator($options);
     }
