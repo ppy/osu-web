@@ -48,6 +48,10 @@
                     @endforeach
                 </div>
 
+                @if ($allSearch->getMode() === 'forum_post')
+                    @include('home._search_advanced_forum_post')
+                @endif
+
                 @if ($allSearch->hasQuery())
                     @foreach ($allSearch->visibleSearches() as $mode => $search)
                         @include('home._search_results', compact('mode', 'search'))
