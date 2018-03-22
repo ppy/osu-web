@@ -50,6 +50,7 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumTopicTitle ?= new ForumTopicTitle
+@forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph

@@ -75,6 +75,7 @@ class TopicWatchesController extends Controller
                     'topic' => $topic,
                     'state' => $watch,
                     'type' => 'watch',
+                    'popup' => false,
                 ]);
         }
     }

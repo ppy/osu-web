@@ -50,16 +50,26 @@
         data-visibility="{{ $menuOpen ? '' : 'hidden' }}"
         style="position: absolute;"
     >
-        @foreach (['watching', 'watching_mail', 'not_watching'] as $newState)
+        @foreach (['watching_mail', 'watching', 'not_watching'] as $newState)
+            @php
+                $isActive = $stateText === $newState;
+            @endphp
             <button
                 type="button"
-                class="simple-menu__item"
+                class="
+                    simple-menu__item
+                    {{ $isActive ? 'simple-menu__item--active' : '' }}
+                    js-forum-topic-watch-ajax
+                "
                 data-url="{{ route('forum.topic-watches.update', [$topic, 'state' => $newState]) }}"
+                data-forum-topic-watch-ajax-is-active="{{ $isActive ? '1' : '' }}"
                 data-remote="1"
                 data-method="PUT"
-                {{ $stateText === $newState ? 'disabled' : '' }}
             >
                 {{ trans("forum.topics.watch.to_{$newState}") }}
+                <span class="simple-menu__item-loading-spinner">
+                    <i class="fa fa-spinner fa-pulse"></i>
+                </span>
             </button>
         @endforeach
     </div>
