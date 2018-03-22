@@ -22,6 +22,11 @@ namespace App\Libraries\Search;
 
 class AllSearch extends MultiSearch
 {
+    public function showMore()
+    {
+        return $this->getMode() !== 'all';
+    }
+
     public function visibleSearches()
     {
         $visible = [];

@@ -53,8 +53,11 @@
                 @endif
 
                 @if ($allSearch->hasQuery())
+                    @php
+                        $showMore = $allSearch->showMore();
+                    @endphp
                     @foreach ($allSearch->visibleSearches() as $mode => $search)
-                        @include('home._search_results', compact('mode', 'search'))
+                        @include('home._search_results', compact('mode', 'search', 'showMore'))
                     @endforeach
                 @else
                     <div class="search-result">
