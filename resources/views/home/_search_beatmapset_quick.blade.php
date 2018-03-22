@@ -15,10 +15,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="nav-search-result__result">
-    @include('home._nav_search_entry', [
-        'url' => route('beatmapsets.show', $entry->getKey()),
-        'title' => $entry->title,
-        'modifier' => 'beatmapset',
-    ])
+<div class="nav-search-result__results">
+    @foreach ($search->data() as $entry)
+        <div class="nav-search-result__result">
+            @include('home._nav_search_entry', [
+                'url' => route('beatmapsets.show', $entry->getKey()),
+                'title' => $entry->title,
+                'modifier' => 'beatmapset',
+            ])
+        </div>
+    @endforeach
 </div>

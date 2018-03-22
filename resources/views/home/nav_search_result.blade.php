@@ -19,17 +19,11 @@
     @foreach ($quickSearch->searches() as $mode => $search)
         @if ($search->total() > 0)
             <div class="nav-search-result__results-container">
-                <div class="nav-search-result__results">
-                    <div class="nav-search-result__title">
-                        {{ trans("home.search.{$mode}.title") }}
-                    </div>
-                    {{-- FIXME: make horizontal --}}
-                    @foreach ($search->data() as $entry)
-                        <div class="nav-search-result__result">
-                            @include("home._search_{$mode}_quick", compact('entry'))
-                        </div>
-                    @endforeach
+                <div class="nav-search-result__title">
+                    {{ trans("home.search.{$mode}.title") }}
                 </div>
+
+                @include("home._search_{$mode}_quick", compact('search'))
 
                 @if (count($search->data()) < $search->total())
                     <a

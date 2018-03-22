@@ -15,13 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a class="user-quick" href="{{ route('users.show', $entry->getKey()) }}">
-    <div class="user-quick__avatar">
-        <div class="avatar avatar--full" {!! background_image($entry->user_avatar, false) !!}>
-        </div>
-    </div>
+<div class="nav-search-result__results nav-search-result__results--horizontal">
+    @foreach ($search->data() as $entry)
+        <div class="nav-search-result__result">
+            <a class="user-quick" href="{{ route('users.show', $entry->getKey()) }}">
+                <div class="user-quick__avatar">
+                    <div class="avatar avatar--full" {!! background_image($entry->user_avatar, false) !!}>
+                    </div>
+                </div>
 
-    <div class="user-quick__name u-ellipsis-overflow">
-        {{ $entry->username }}
-    </div>
-</a>
+                <div class="user-quick__name u-ellipsis-overflow">
+                    {{ $entry->username }}
+                </div>
+            </a>
+        </div>
+    @endforeach
+</div>
+
