@@ -72,8 +72,7 @@ class MultiSearch
                 }
 
                 $class = $settings['type'];
-                $options = $class::normalizeParams(['query' => $this->query]);
-                $search = new $class($options);
+                $search = new $class(['query' => $this->query]);
 
                 if ($this->getMode() === 'all') {
                     $search->page(1)->size($settings['size']);

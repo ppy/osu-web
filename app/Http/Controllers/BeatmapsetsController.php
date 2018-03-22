@@ -131,7 +131,7 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = BeatmapsetSearch::normalizeParams($this->searchParams());
+        $params = $this->searchParams();
         // extract sort-related keys
         $sort = [
             'sort_field' => $params['sort_field'],

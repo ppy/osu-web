@@ -28,9 +28,13 @@ class UserSearch extends RecordSearch
 {
     public function __construct(array $options = [])
     {
-        parent::__construct(User::esIndexName(), User::class, $options);
+        parent::__construct(
+            User::esIndexName(),
+            User::class,
+            static::normalizeParams($options)
+        );
 
-        $this->queryString = $options['query'];
+        $this->queryString = $this->options['query'];
         $this->query(static::usernameSearchQuery($this->queryString ?? ''));
     }
 

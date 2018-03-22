@@ -29,10 +29,14 @@ class WikiSearch extends RecordSearch
 {
     public function __construct(array $options = [])
     {
-        parent::__construct(config('osu.elasticsearch.index.wiki_pages'), Page::class, $options);
+        parent::__construct(
+            config('osu.elasticsearch.index.wiki_pages'),
+            Page::class,
+            static::normalizeParams($options)
+        );
 
-        $this->queryString = $options['query'];
-        $this->locale = $options['locale'] ?? config('app.fallback_locale');
+        $this->queryString = $this->$options['query'];
+        $this->locale = $this->$options['locale'] ?? config('app.fallback_locale');
     }
 
     public function records()

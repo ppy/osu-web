@@ -30,7 +30,11 @@ class BeatmapsetSearch extends RecordSearch
 {
     public function __construct(array $options = [])
     {
-        parent::__construct(Beatmapset::esIndexName(), Beatmapset::class, $options);
+        parent::__construct(
+            Beatmapset::esIndexName(),
+            Beatmapset::class,
+            static::normalizeParams($options)
+        );
 
         $this->queryString = $options['query'];
     }
