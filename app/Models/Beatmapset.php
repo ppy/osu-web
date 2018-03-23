@@ -1073,7 +1073,17 @@ class Beatmapset extends Model implements AfterCommit
             return;
         }
 
-        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
+        $modes = $this->beatmaps->pluck('playmode')->unique()->toArray();
+
+        $queueSize = static::qualified()
+            ->whereHas('beatmaps', function ($query) use ($modes) {
+                $query->whereIn('playmode', $modes);
+            })
+            ->whereDoesntHave('beatmaps', function ($query) use ($modes) {
+                $query->where('playmode', '<', min($modes));
+            })
+            ->where('approved_date', '<', $this->approved_date)
+            ->count();
         $days = ceil($queueSize / static::RANKED_PER_DAY);
 
         $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
