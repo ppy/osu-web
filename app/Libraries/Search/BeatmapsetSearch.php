@@ -61,6 +61,40 @@ class BeatmapsetSearch extends RecordSearch
         return parent::sort($sort);
     }
 
+    private function addRankFilter($query)
+    {
+        $params = $this->options;
+        if (empty($params['rank'])) {
+            return;
+        }
+
+        if ($params['mode'] !== null) {
+            $modes = [$params['mode']];
+        } else {
+            $modes = array_values(Beatmap::MODES);
+        }
+
+        $unionQuery = null;
+        foreach ($modes as $mode) {
+            $newQuery =
+                Score\Best\Model::getClass($mode)
+                ->forUser($params['user'])
+                ->whereIn('rank', $params['rank'])
+                ->select('beatmap_id');
+
+            if ($unionQuery === null) {
+                $unionQuery = $newQuery;
+            } else {
+                $unionQuery->union($newQuery);
+            }
+        }
+
+        $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
+        $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
+
+        $query->filter(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
+    }
+
     public function toArray() : array
     {
         $params = $this->options;
@@ -91,35 +125,7 @@ class BeatmapsetSearch extends RecordSearch
             }
         }
 
-        if (!empty($params['rank'])) {
-            if ($params['mode'] !== null) {
-                $modes = [$params['mode']];
-            } else {
-                $modes = array_values(Beatmap::MODES);
-            }
-
-            $unionQuery = null;
-            foreach ($modes as $mode) {
-                $newQuery =
-                    Score\Best\Model::getClass($mode)
-                    ->forUser($params['user'])
-                    ->whereIn('rank', $params['rank'])
-                    ->select('beatmap_id');
-
-                if ($unionQuery === null) {
-                    $unionQuery = $newQuery;
-                } else {
-                    $unionQuery->union($newQuery);
-                }
-            }
-
-            $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
-            $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
-
-            $query->must(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
-        }
-
-        // statuses are non scoring for the query context.
+        $this->addRankFilter($query);
         $query->filter($this->statusFilterQuery($this->options));
 
         if ($params['mode'] !== null) {
