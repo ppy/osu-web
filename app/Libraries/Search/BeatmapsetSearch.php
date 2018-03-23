@@ -55,9 +55,9 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function sort(Sort $sort)
     {
-        $this->sort[] = static::normalizeSort($sort);
+        static::remapSortField($sort);
 
-        return $this;
+        return parent::sort($sort);
     }
 
     public function toArray() : array
@@ -163,6 +163,8 @@ class BeatmapsetSearch extends RecordSearch
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
         }
 
+        $this->sorts = $this->normalizeSort();
+
         $this->query($query);
 
         return parent::toArray();
@@ -187,57 +189,45 @@ class BeatmapsetSearch extends RecordSearch
         $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
         $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
 
-        // sort_order, sort_field (and clear up sort)
-        $sort = explode('_', array_pull($params, 'sort'));
+        return $params;
+    }
 
-        $validSortFields = [
-            'artist' => 'artist',
-            'creator' => 'creator',
+    public static function remapSortField(Sort $sort)
+    {
+        static $fields = [
+            'artist' => 'artist.raw',
+            'creator' => 'creator.raw',
             'difficulty' => 'difficulties.difficultyrating',
             'nominations' => 'nominations',
             'plays' => 'play_count',
             'ranked' => 'approved_date',
             'rating' => 'rating',
             'relevance' => '_score',
-            'title' => 'title',
+            'title' => 'title.raw',
             'updated' => 'last_update',
         ];
-        $params['sort_field'] = $validSortFields[$sort[0] ?? null] ?? null;
 
-        $params['sort_order'] = $sort[1] ?? null;
-        if (!in_array($params['sort_order'], ['asc', 'desc'], true)) {
-            $params['sort_order'] = 'desc';
-        }
-
-        if ($params['sort_field'] === null) {
-            if (present($params['query'])) {
-                $params['sort_field'] = '_score';
-                $params['sort_order'] = 'desc';
-            } else {
-                if (in_array($params['status'], [4, 5, 6], true)) {
-                    $params['sort_field'] = 'last_update';
-                    $params['sort_order'] = 'desc';
-                } else {
-                    $params['sort_field'] = 'approved_date';
-                    $params['sort_order'] = 'desc';
-                }
-            }
-        }
-
-        return $params;
+        $sort->field = $fields[$sort->field] ?? null;
     }
 
-    /**
+    private function defaultSort()
+    {
+        if (present($this->queryString)) {
+            return new Sort('_score', 'desc');
+        }
+
+        if (in_array($this->options['status'], [4, 5, 6], true)) {
+            return new Sort('last_update', 'desc');
+        }
+
+        return new Sort('approved_date', 'desc');
+    }
+
+        /**
      * Generate sort parameters for the elasticsearch query.
      */
-    public static function normalizeSort(array $params)
+    private function normalizeSort()
     {
-        static $fields = [
-            'artist' => 'artist.raw',
-            'creator' => 'creator.raw',
-            'title' => 'title.raw',
-        ];
-
         // additional options
         static $orderOptions = [
             'difficulties.difficultyrating' => [
@@ -246,24 +236,24 @@ class BeatmapsetSearch extends RecordSearch
             ],
         ];
 
-        $sortField = $params['sort_field'];
-        $sortOrder = $params['sort_order'];
-
-        $field = $fields[$sortField] ?? $sortField;
-        $options = ($orderOptions[$sortField] ?? [])[$sortOrder] ?? [];
-
-        $sortFields = [
-            $field => array_merge(
-                ['order' => $sortOrder],
-                $options
-            ),
-        ];
-
-        // sub-sorting
-        if ($params['sort_field'] === 'nominations') {
-            $sortFields['hype'] = ['order' => $params['sort_order']];
+        if ($this->sorts === []) {
+            return [$this->defaultSort()];
         }
 
-        return $sortFields;
+        $newSort = [];
+        foreach ($this->sorts as $sort) {
+            $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+            if ($options !== []) {
+                $sort->mode = $options['mode'];
+            }
+
+            $newSort[] = $sort;
+
+            if ($sort->field === 'nominations') {
+                $newSort[] = new Sort('hype', $sort->order);
+            }
+        }
+
+        return $newSort;
     }
 }

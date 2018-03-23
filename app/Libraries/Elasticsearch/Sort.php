@@ -33,6 +33,11 @@ class Sort implements Queryable
         $this->mode = $mode;
     }
 
+    public function isBlank()
+    {
+        return $this->field === null;
+    }
+
     /**
      * {@inheritdoc}
      */

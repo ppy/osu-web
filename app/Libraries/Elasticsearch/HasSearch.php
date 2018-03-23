@@ -112,7 +112,9 @@ trait HasSearch
      */
     public function sort(Sort $sort)
     {
-        $this->sorts[] = $sort;
+        if (!$sort->isBlank()) {
+            $this->sorts[] = $sort;
+        }
 
         return $this;
     }

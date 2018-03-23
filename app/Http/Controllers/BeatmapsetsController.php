@@ -22,6 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\Search\BeatmapsetSearch;
+use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -132,15 +133,10 @@ class BeatmapsetsController extends Controller
     public function search()
     {
         $params = $this->searchParams();
-        // extract sort-related keys
-        $sort = [
-            'sort_field' => $params['sort_field'],
-            'sort_order' => $params['sort_order'],
-        ];
 
         $search = (new BeatmapsetSearch($params))
             ->page($params['page'])
-            ->sort($sort)
+            ->sort($this->searchSortParams())
             ->source('_id');
 
         return json_collection(
@@ -313,7 +309,6 @@ class BeatmapsetsController extends Controller
                 'language' => Request::input('l'),
                 'extra' => Request::input('e'),
                 'page' => Request::input('page'),
-                'sort' => Request::input('sort'),
                 'user' => $user,
             ];
 
@@ -323,5 +318,13 @@ class BeatmapsetsController extends Controller
         }
 
         return $params;
+    }
+
+    private function searchSortParams()
+    {
+        // TODO: maybe some kind of search params parser class instead?
+        $sort = explode('_', request('sort'));
+
+        return new Sort($sort[0] ?? null, $sort[1] ?? null);
     }
 }
