@@ -69,7 +69,6 @@ return [
 
     'posts' => [
         'title' => ':username\'s posts',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
     ],
 
     'signup' => [

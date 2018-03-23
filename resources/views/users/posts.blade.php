@@ -19,7 +19,6 @@
     'current_section' => 'community',
     'current_action' => 'profile',
     'title' => trans('users.posts.title', ['username' => $user->username]),
-    'pageDescription' => trans('users.posts.page_description', ['username' => $user->username]),
 ])
 
 @section('content')
