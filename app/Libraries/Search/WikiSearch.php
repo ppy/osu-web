@@ -35,8 +35,8 @@ class WikiSearch extends RecordSearch
             static::normalizeParams($options)
         );
 
-        $this->queryString = $this->$options['query'];
-        $this->locale = $this->$options['locale'] ?? config('app.fallback_locale');
+        $this->queryString = $this->options['query'];
+        $this->locale = $this->options['locale'] ?? config('app.fallback_locale');
     }
 
     public function records()
