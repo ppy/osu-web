@@ -28,7 +28,6 @@ abstract class Search implements Queryable
 {
     use HasSearch;
 
-    const DEFAULT_PAGE_SIZE = 50;
     const HIGHLIGHT_FRAGMENT_SIZE = 50;
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
@@ -179,6 +178,6 @@ abstract class Search implements Queryable
 
     protected function getDefaultSize() : int
     {
-        return static::DEFAULT_PAGE_SIZE;
+        return 50;
     }
 }
