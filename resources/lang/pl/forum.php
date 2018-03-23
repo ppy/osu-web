@@ -169,53 +169,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Usuń tag "dodane"',
-            'action-1' => 'Dodaj tag "dodane"',
-            'state-0' => 'Usunięto tag "dodane"',
-            'state-1' => 'Dodano tag "dodane"',
+            'to_0' => 'Usuń tag "dodane"',
+            'to_0_done' => 'Usunięto tag "dodane"',
+            'to_1' => 'Dodaj tag "dodane"',
+            'to_1_done' => 'Dodano tag "dodane"',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Usuń tag "przypisane"',
-            'action-1' => 'Dodaj tag "przypisane"',
-            'state-0' => 'Usunięto tag "przypisane"',
-            'state-1' => 'Dodano tag "przypisane"',
+            'to_0' => 'Usuń tag "przypisane"',
+            'to_0_done' => 'Usunięto tag "przypisane"',
+            'to_1' => 'Dodaj tag "przypisane"',
+            'to_1_done' => 'Dodano tag "przypisane"',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Usuń tag "potwierdzone"',
-            'action-1' => 'Dodaj tag "potwierdzone"',
-            'state-0' => 'Usunięto tag "potwierdzone"',
-            'state-1' => 'Dodano tag "potwierdzone"',
+            'to_0' => 'Usuń tag "potwierdzone"',
+            'to_0_done' => 'Usunięto tag "potwierdzone"',
+            'to_1' => 'Dodaj tag "potwierdzone"',
+            'to_1_done' => 'Dodano tag "potwierdzone"',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Usuń tag "duplikat"',
-            'action-1' => 'Dodaj tag "duplikat"',
-            'state-0' => 'Usunięto tag "duplikat"',
-            'state-1' => 'Dodano tag "duplikat"',
+            'to_0' => 'Usuń tag "duplikat"',
+            'to_0_done' => 'Usunięto tag "duplikat"',
+            'to_1' => 'Dodaj tag "duplikat"',
+            'to_1_done' => 'Dodano tag "duplikat"',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Usuń tag "nieprawidłowe"',
-            'action-1' => 'Dodaj tag "nieprawidłowe"',
-            'state-0' => 'Usunięto tag "nieprawidłowe"',
-            'state-1' => 'Dodano tag "nieprawidłowe"',
+            'to_0' => 'Usuń tag "nieprawidłowe"',
+            'to_0_done' => 'Usunięto tag "nieprawidłowe"',
+            'to_1' => 'Dodaj tag "nieprawidłowe"',
+            'to_1_done' => 'Dodano tag "nieprawidłowe"',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Usuń tag "rozwiązane"',
-            'action-1' => 'Dodaj tag "rozwiązane"',
-            'state-0' => 'Usunięto tag "rozwiązane"',
-            'state-1' => 'Dodano tag "rozwiązane"',
+            'to_0' => 'Usuń tag "rozwiązane"',
+            'to_0_done' => 'Usunięto tag "rozwiązane"',
+            'to_1' => 'Dodaj tag "rozwiązane"',
+            'to_1_done' => 'Dodano tag "rozwiązane"',
         ],
 
         'lock' => [
             'is_locked' => 'Ten wątek jest został zablokowany nie można w nim odpowiadać',
-            'lock-0' => 'Odblokuj wątek',
-            'lock-1' => 'Zablokuj wątek',
-            'state-0' => 'Wątek został odblokowany',
-            'state-1' => 'Wątek został zablokowany',
+            'to_0' => 'Odblokuj wątek',
+            'to_0_done' => 'Wątek został odblokowany',
+            'to_1' => 'Zablokuj wątek',
+            'to_1_done' => 'Wątek został zablokowany',
         ],
 
         'moderate_move' => [
@@ -223,12 +223,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Odepnij ten wątek',
-            'pin-1' => 'Przypnij ten wątek',
-            'pin-2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
-            'state-0' => 'Wątek został odpięty',
-            'state-1' => 'Wątek został przypięty',
-            'state-2' => 'Wątek został przypięty i oznaczony jako ogłosznie',
+            'to_0' => 'Odepnij ten wątek',
+            'to_0_done' => 'Wątek został odpięty',
+            'to_1' => 'Przypnij ten wątek',
+            'to_1_done' => 'Wątek został przypięty',
+            'to_2' => 'Przypnij ten wątek i oznacz jako ogłoszenie',
+            'to_2_done' => 'Wątek został przypięty i oznaczony jako ogłosznie',
         ],
 
         'show' => [
@@ -258,10 +258,8 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Usunięto subskrybcję tego wątku',
-            'state-1' => 'Zasubskrybowano ten wątek',
-            'watch-0' => 'Usuń subskrybcję tego wątku',
-            'watch-1' => 'Subskrybuj ten wątek',
+            'to_not_watching_done' => 'Usunięto subskrybcję tego wątku',
+            'to_watching_done' => 'Zasubskrybowano ten wątek',
         ],
     ],
 ];

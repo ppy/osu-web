@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2018 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -16,18 +16,15 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 Timeout.set(0, function() {
-    var $el = $('.js-forum-topic-entry[data-topic-id={{ $topic->topic_id }}]');
+    var $new = $({!! json_encode(render_to_string('forum.topics._watch', [
+        'topic' => $topic,
+        'state' => $state,
+    ])) !!});
+    var $current = $('.js-forum-topic-watch[data-topic-id={{ $topic->topic_id }}]');
 
-    $el.slideUp(null, function() {
-        $el.remove();
+    var $newButton = $new.find('.js-forum-topic-watch--button');
+    $current.find('.js-forum-topic-watch--button').replaceWith($newButton);
 
-        $('.js-forum-topic-watch--total').text({{ count($topics) }});
-        $('.js-forum-topic-watch--unread').text({{ count($topics) - count($topicReadStatus) }});
-
-        if ($('.js-forum-topic-entry').length === 0) {
-            $('.js-forum-topic-entries').append(
-                {!! json_encode(render_to_string('forum.forums._topic_empty')) !!}
-            );
-        }
-    });
+    var $newMenu = $new.find('.js-forum-topic-watch--menu');
+    $current.find('.js-forum-topic-watch--menu').html($newMenu.html());
 });

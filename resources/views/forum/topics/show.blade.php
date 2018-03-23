@@ -211,7 +211,7 @@
                     @endforeach
                 @endif
 
-                @include('forum.topics._watch', ['topic' => $topic, 'state' => $isWatching])
+                @include('forum.topics._watch', ['topic' => $topic, 'state' => $watch])
             </div>
 
             <div class="forum-topic-nav__group forum-topic-nav__group--main">
