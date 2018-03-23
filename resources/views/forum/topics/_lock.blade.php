@@ -26,7 +26,7 @@
             {{ $topic->isLocked() ? 'btn-circle--activated' : '' }}
         "
         data-topic-id="{{ $topic->topic_id }}"
-        title="{{ trans('forum.topics.lock.lock-'.(int) !$topic->isLocked()) }}"
+        title="{{ trans('forum.topics.lock.to_'.(int) !$topic->isLocked()) }}"
         data-remote="1"
         data-url="{{ route('forum.topics.lock', [
             $topic,

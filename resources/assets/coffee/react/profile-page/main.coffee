@@ -30,48 +30,46 @@ class ProfilePage.Main extends React.PureComponent
   constructor: (props) ->
     super props
 
-    savedStateString = document.body.dataset.profilePageState
+    @state = JSON.parse(props.container.dataset.profilePageState ? null)
+    @restoredState = @state?
 
-    if savedStateString?
-      @state = JSON.parse(savedStateString)
-      delete document.body.dataset.profilePageState
-      return
+    if !@restoredState
+      page = location.hash.slice(1)
+      @initialPage = page if page?
 
-    page = location.hash.slice(1)
-    @initialPage = page if page?
+      @state =
+        currentMode: props.currentMode
+        user: props.user
+        userPage:
+          html: props.userPage.html
+          initialRaw: props.userPage.raw
+          raw: props.userPage.raw
+          editing: false
+          selection: [0, 0]
+        tabsSticky: false
+        profileOrder: props.user.profile_order[..]
+        recentActivity: @props.extras.recentActivity
+        scoresBest: @props.extras.scoresBest
+        scoresFirsts: @props.extras.scoresFirsts
+        scoresRecent: @props.extras.scoresRecent
+        beatmapPlaycounts: @props.extras.beatmapPlaycounts
+        favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
+        rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
+        unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
+        graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
+        recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
+        showMorePagination: {}
 
-    @state =
-      currentMode: props.currentMode
-      user: props.user
-      userPage:
-        html: props.userPage.html
-        initialRaw: props.userPage.raw
-        raw: props.userPage.raw
-        editing: false
-        selection: [0, 0]
-      tabsSticky: false
-      profileOrder: props.user.profile_order[..]
-      recentActivity: @props.extras.recentActivity
-      scoresBest: @props.extras.scoresBest
-      scoresFirsts: @props.extras.scoresFirsts
-      scoresRecent: @props.extras.scoresRecent
-      beatmapPlaycounts: @props.extras.beatmapPlaycounts
-      favouriteBeatmapsets: @props.extras.favouriteBeatmapsets
-      rankedAndApprovedBeatmapsets: @props.extras.rankedAndApprovedBeatmapsets
-      unrankedBeatmapsets: @props.extras.unrankedBeatmapsets
-      graveyardBeatmapsets: @props.extras.graveyardBeatmapsets
-      recentlyReceivedKudosu: @props.extras.recentlyReceivedKudosu
-      showMorePagination: {}
+      if @props.user.is_bot
+        @state.profileOrder = ['me']
 
-    if @props.user.is_bot
-      @state.profileOrder = ['me']
+      for own elem, perPage of @props.perPage
+        @state.showMorePagination[elem] ?= {}
+        @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
 
-    for own elem, perPage of @props.perPage
-      @state.showMorePagination[elem] ?= {}
-      @state.showMorePagination[elem].hasMore = @state[elem].length > perPage
+        if @state.showMorePagination[elem].hasMore
+          @state[elem].pop()
 
-      if @state.showMorePagination[elem].hasMore
-        @state[elem].pop()
 
   componentDidMount: =>
     $.subscribe 'user:update.profilePage', @userUpdate
@@ -80,6 +78,7 @@ class ProfilePage.Main extends React.PureComponent
     $.subscribe 'profile:page:jump.profilePage', @pageJump
     $.subscribe 'stickyHeader.profilePage', @_tabsStick
     $(window).on 'throttled-scroll.profilePage', @pageScan
+    $(document).on 'turbolinks:before-cache.profilePage', @saveStateToContainer
 
     $(@pages).sortable
       cursor: 'move'
@@ -109,8 +108,8 @@ class ProfilePage.Main extends React.PureComponent
 
     @modeScrollUrl = currentLocation()
 
-    Timeout.set 0, =>
-      @pageJump null, @initialPage
+    if !@restoredState
+      Timeout.set 0, => @pageJump null, @initialPage
 
 
   componentWillUnmount: =>
@@ -119,8 +118,6 @@ class ProfilePage.Main extends React.PureComponent
 
     for sortable in [@pages, @tabs]
       $(sortable).sortable 'destroy'
-
-    document.body.dataset.profilePageState = JSON.stringify(@state)
 
     $(window).stop()
     Timeout.clear @modeScrollTimeout
@@ -351,6 +348,9 @@ class ProfilePage.Main extends React.PureComponent
 
     @setCurrentPage null, page.dataset.pageId
 
+
+  saveStateToContainer: =>
+    @props.container.dataset.profilePageState = JSON.stringify(@state)
 
   setCurrentPage: (_e, page, extraCallback) =>
     callback = =>

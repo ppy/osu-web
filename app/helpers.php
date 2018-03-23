@@ -220,6 +220,14 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
+    if ($locale === 'zh-hk') {
+        return 'zh-hk';
+    }
+
+    if ($locale === 'zh-tw') {
+        return 'zh-tw';
+    }
+
     return $locale;
 }
 
@@ -227,6 +235,10 @@ function locale_for_timeago($locale)
 {
     if ($locale === 'zh') {
         return 'zh-CN';
+    }
+
+    if ($locale === 'zh-tw') {
+        return 'zh-TW';
     }
 
     return $locale;

@@ -84,7 +84,6 @@ return [
             'country' => 'Country Ranking',
             'friend' => 'Friend Ranking',
             'global' => 'Global Ranking',
-            'miss_count' => ':count miss',
             'supporter-link' => 'Click <a href=":link">here</a> to see all the fancy features that you get!',
             'supporter-only' => 'You need to be a supporter to access the friend and country rankings!',
             'title' => 'Scoreboard',

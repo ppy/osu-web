@@ -168,53 +168,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remover marcador "adicionado"',
-            'action-1' => 'Adicionar marcador "adicionado"',
-            'state-0' => 'Marcador "adicionado" removido',
-            'state-1' => 'Marcador "adicionado" adicionado',
+            'to_0' => 'Remover marcador "adicionado"',
+            'to_0_done' => 'Marcador "adicionado" removido',
+            'to_1' => 'Adicionar marcador "adicionado"',
+            'to_1_done' => 'Marcador "adicionado" adicionado',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remover marcador "nomeado"',
-            'action-1' => 'Adicionar marcador "nomeado"',
-            'state-0' => 'Marcador "nomeado" removido',
-            'state-1' => 'Marcador "nomeado" adicionado',
+            'to_0' => 'Remover marcador "nomeado"',
+            'to_0_done' => 'Marcador "nomeado" removido',
+            'to_1' => 'Adicionar marcador "nomeado"',
+            'to_1_done' => 'Marcador "nomeado" adicionado',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remover marcador "confirmado"',
-            'action-1' => 'Adicionar marcador "confirmado"',
-            'state-0' => 'Marcador "confirmado" removido',
-            'state-1' => 'Marcador "confirmado" adicionado',
+            'to_0' => 'Remover marcador "confirmado"',
+            'to_0_done' => 'Marcador "confirmado" removido',
+            'to_1' => 'Adicionar marcador "confirmado"',
+            'to_1_done' => 'Marcador "confirmado" adicionado',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remover marcador "duplicado"',
-            'action-1' => 'Adicionar marcador "duplicado"',
-            'state-0' => 'Marcador "duplicado" removido',
-            'state-1' => 'Marcador "duplicado" adicionado',
+            'to_0' => 'Remover marcador "duplicado"',
+            'to_0_done' => 'Marcador "duplicado" removido',
+            'to_1' => 'Adicionar marcador "duplicado"',
+            'to_1_done' => 'Marcador "duplicado" adicionado',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remover marcador "inválido"',
-            'action-1' => 'Adicionar marcador "inválido"',
-            'state-0' => 'Marcador "inválido" removido',
-            'state-1' => 'Marcador "inválido" adicionado',
+            'to_0' => 'Remover marcador "inválido"',
+            'to_0_done' => 'Marcador "inválido" removido',
+            'to_1' => 'Adicionar marcador "inválido"',
+            'to_1_done' => 'Marcador "inválido" adicionado',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remover marcador "resolvido"',
-            'action-1' => 'Adicionar marcador "resolvido"',
-            'state-0' => 'Marcador "resolvido" removido',
-            'state-1' => 'Marcador "resolvido" adicionado',
+            'to_0' => 'Remover marcador "resolvido"',
+            'to_0_done' => 'Marcador "resolvido" removido',
+            'to_1' => 'Adicionar marcador "resolvido"',
+            'to_1_done' => 'Marcador "resolvido" adicionado',
         ],
 
         'lock' => [
             'is_locked' => 'Este tópico está trancado e não pode mais ser respondido',
-            'lock-0' => 'Destrancar tópico',
-            'lock-1' => 'Trancar tópico',
-            'state-0' => 'Tópico destrancado',
-            'state-1' => 'Tópico trancado',
+            'to_0' => 'Destrancar tópico',
+            'to_0_done' => 'Tópico destrancado',
+            'to_1' => 'Trancar tópico',
+            'to_1_done' => 'Tópico trancado',
         ],
 
         'moderate_move' => [
@@ -222,12 +222,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Desafixar tópico',
-            'pin-1' => 'Fixar tópico',
-            'pin-2' => 'Fixar tópico e marcar como anúncio',
-            'state-0' => 'Tópico desafixado',
-            'state-1' => 'Tópico fixado',
-            'state-2' => 'Tópico fixado e marcado como anúncio',
+            'to_0' => 'Desafixar tópico',
+            'to_0_done' => 'Tópico desafixado',
+            'to_1' => 'Fixar tópico',
+            'to_1_done' => 'Tópico fixado',
+            'to_2' => 'Fixar tópico e marcar como anúncio',
+            'to_2_done' => 'Tópico fixado e marcado como anúncio',
         ],
 
         'show' => [
@@ -257,10 +257,8 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Inscrição cancelada',
-            'state-1' => 'Inscrito no tópico',
-            'watch-0' => 'Cancelar inscrição no tópico',
-            'watch-1' => 'Inscrever-se no tópico',
+            'to_not_watching_done' => 'Inscrição cancelada',
+            'to_watching_done' => 'Inscrito no tópico',
         ],
     ],
 ];

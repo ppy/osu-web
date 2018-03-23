@@ -159,7 +159,9 @@ class BeatmapsetPage.Info extends React.Component
               className: 'beatmapset-info__header'
               osu.trans 'beatmapsets.show.info.source'
 
-            div null, @props.beatmapset.source
+            a
+              href: laroute.route('beatmapsets.index', q: @props.beatmapset.source)
+              @props.beatmapset.source
 
         div className: 'beatmapset-info__half-box',
           div className: 'beatmapset-info__half-entry',

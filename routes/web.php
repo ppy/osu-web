@@ -117,12 +117,11 @@ Route::group(['prefix' => 'community'], function () {
             Route::post('topics/{topic}/reply', 'TopicsController@reply')->name('topics.reply');
             Route::post('topics/{topic}/vote', 'TopicsController@vote')->name('topics.vote');
             Route::post('topics/{topic}/vote-feature', 'TopicsController@voteFeature')->name('topics.vote-feature');
-            Route::post('topics/{topic}/watch', 'TopicsController@watch')->name('topics.watch');
             Route::resource('topics', 'TopicsController', ['only' => ['create', 'show', 'store', 'update']]);
 
             Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-            Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index']]);
+            Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
