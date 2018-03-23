@@ -61,40 +61,6 @@ class BeatmapsetSearch extends RecordSearch
         return parent::sort($sort);
     }
 
-    private function addRankFilter($query)
-    {
-        $params = $this->options;
-        if (empty($params['rank'])) {
-            return;
-        }
-
-        if ($params['mode'] !== null) {
-            $modes = [$params['mode']];
-        } else {
-            $modes = array_values(Beatmap::MODES);
-        }
-
-        $unionQuery = null;
-        foreach ($modes as $mode) {
-            $newQuery =
-                Score\Best\Model::getClass($mode)
-                ->forUser($params['user'])
-                ->whereIn('rank', $params['rank'])
-                ->select('beatmap_id');
-
-            if ($unionQuery === null) {
-                $unionQuery = $newQuery;
-            } else {
-                $unionQuery->union($newQuery);
-            }
-        }
-
-        $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
-        $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
-
-        $query->filter(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
-    }
-
     public function toArray() : array
     {
         $params = $this->options;
@@ -126,7 +92,7 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         $this->addRankFilter($query);
-        $query->filter($this->statusFilterQuery($this->options));
+        $this->addStatusFilter($query);
 
         if ($params['mode'] !== null) {
             $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
@@ -179,57 +145,47 @@ class BeatmapsetSearch extends RecordSearch
         $sort->field = $fields[$sort->field] ?? null;
     }
 
-    private function defaultSort()
+
+    private function addRankFilter($query)
     {
-        if (present($this->queryString)) {
-            return new Sort('_score', 'desc');
+        $params = $this->options;
+        if (empty($params['rank'])) {
+            return;
         }
 
-        if (in_array($this->options['status'], [4, 5, 6], true)) {
-            return new Sort('last_update', 'desc');
+        if ($params['mode'] !== null) {
+            $modes = [$params['mode']];
+        } else {
+            $modes = array_values(Beatmap::MODES);
         }
 
-        return new Sort('approved_date', 'desc');
-    }
+        $unionQuery = null;
+        foreach ($modes as $mode) {
+            $newQuery =
+                Score\Best\Model::getClass($mode)
+                ->forUser($params['user'])
+                ->whereIn('rank', $params['rank'])
+                ->select('beatmap_id');
 
-        /**
-     * Generate sort parameters for the elasticsearch query.
-     */
-    private function normalizeSort()
-    {
-        // additional options
-        static $orderOptions = [
-            'difficulties.difficultyrating' => [
-                'asc' => ['mode' => 'min'],
-                'desc' => ['mode' => 'max'],
-            ],
-        ];
-
-        if ($this->sorts === []) {
-            return [$this->defaultSort()];
-        }
-
-        $newSort = [];
-        foreach ($this->sorts as $sort) {
-            $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
-            if ($options !== []) {
-                $sort->mode = $options['mode'];
-            }
-
-            $newSort[] = $sort;
-
-            if ($sort->field === 'nominations') {
-                $newSort[] = new Sort('hype', $sort->order);
+            if ($unionQuery === null) {
+                $unionQuery = $newQuery;
+            } else {
+                $unionQuery->union($newQuery);
             }
         }
 
-        return $newSort;
+        $beatmapIds = model_pluck($unionQuery, 'beatmap_id');
+        $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
+
+        $query->filter(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
     }
 
     // statuses are non scoring for the query context.
-    private static function statusFilterQuery(array $params)
+    private function addStatusFilter($mainQuery)
     {
+        $params = $this->options;
         $query = new BoolQuery;
+
         switch ($params['status']) {
             case 0: // Ranked & Approved
                 $query->should([
@@ -271,6 +227,53 @@ class BeatmapsetSearch extends RecordSearch
                 break;
         }
 
-        return $query;
+        $mainQuery->filter($query);
+    }
+
+    private function defaultSort()
+    {
+        if (present($this->queryString)) {
+            return new Sort('_score', 'desc');
+        }
+
+        if (in_array($this->options['status'], [4, 5, 6], true)) {
+            return new Sort('last_update', 'desc');
+        }
+
+        return new Sort('approved_date', 'desc');
+    }
+
+    /**
+     * Generate sort parameters for the elasticsearch query.
+     */
+    private function normalizeSort()
+    {
+        // additional options
+        static $orderOptions = [
+            'difficulties.difficultyrating' => [
+                'asc' => ['mode' => 'min'],
+                'desc' => ['mode' => 'max'],
+            ],
+        ];
+
+        if ($this->sorts === []) {
+            return [$this->defaultSort()];
+        }
+
+        $newSort = [];
+        foreach ($this->sorts as $sort) {
+            $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
+            if ($options !== []) {
+                $sort->mode = $options['mode'];
+            }
+
+            $newSort[] = $sort;
+
+            if ($sort->field === 'nominations') {
+                $newSort[] = new Sort('hype', $sort->order);
+            }
+        }
+
+        return $newSort;
     }
 }
