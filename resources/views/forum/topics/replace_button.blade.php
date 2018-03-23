@@ -32,7 +32,6 @@ Timeout.set(0, function() {
         .replaceWith({!! json_encode(render_to_string('forum.topics._'.$type, [
             'topic' => $topic,
             'state' => $state,
-            'menuOpen' => true,
         ])) !!});
 
     @if ($popup ?? true)

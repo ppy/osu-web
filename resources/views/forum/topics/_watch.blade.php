@@ -16,8 +16,6 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @php
-    $menuId = 'topic-watch-'.$topic->topic_id.'#'.rand();
-    $menuOpen = $menuOpen ?? false;
     $stateText = $state->stateText();
 
     $icons = [
@@ -38,7 +36,7 @@
             {{ $state->exists ? 'btn-circle--activated' : '' }}
             js-menu
         "
-        data-menu-target="{{ $menuId }}"
+        data-menu-target="topic-watch"
     >
         <span class="btn-circle__content">
             <i class="fa fa-{{ $icons[$stateText] }}"></i>
@@ -46,9 +44,8 @@
     </button>
     <div
         class="js-menu simple-menu simple-menu--forum-topic-watch"
-        data-menu-id="{{ $menuId }}"
-        data-visibility="{{ $menuOpen ? '' : 'hidden' }}"
-        style="position: absolute;"
+        data-menu-id="topic-watch"
+        data-visibility="hidden"
     >
         @foreach (['watching_mail', 'watching', 'not_watching'] as $newState)
             @php
