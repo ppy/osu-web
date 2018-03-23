@@ -21,6 +21,7 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
+use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\RecordSearch;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
@@ -37,7 +38,7 @@ class BeatmapsetSearch extends RecordSearch
             static::normalizeParams($options)
         );
 
-        $this->queryString = $options['query'];
+        $this->queryString = es_query_escape_with_caveats($options['query']);
     }
 
     public function getDefaultSize() : int
@@ -65,6 +66,10 @@ class BeatmapsetSearch extends RecordSearch
         $params = $this->options;
         $query = (new BoolQuery());
 
+        if (present($this->queryString)) {
+            $query->must(QueryHelper::queryString($this->queryString));
+        }
+
         if ($params['genre'] !== null) {
             $query->must(['match' => ['genre_id' => $params['genre']]]);
         }
@@ -84,10 +89,6 @@ class BeatmapsetSearch extends RecordSearch
                         break;
                 }
             }
-        }
-
-        if (present($params['query'])) {
-            $query->must(['query_string' => ['query' => es_query_escape_with_caveats($params['query'])]]);
         }
 
         if (!empty($params['rank'])) {
@@ -128,7 +129,6 @@ class BeatmapsetSearch extends RecordSearch
         $this->sorts = $this->normalizeSort();
 
         $this->query($query);
-        \Log::debug($query->toArray());
 
         return parent::toArray();
     }

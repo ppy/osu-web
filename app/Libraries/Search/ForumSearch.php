@@ -24,6 +24,7 @@ use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Hit;
+use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Elasticsearch\Sort;
@@ -71,10 +72,7 @@ class ForumSearch extends Search
      */
     public function toArray() : array
     {
-        $match = ['query_string' => [
-            'fields' => ['search_content'],
-            'query' => $this->queryString,
-        ]];
+        $match = QueryHelper::queryString($this->queryString, ['search_content']);
 
         $query = (new BoolQuery())
             ->must(static::firstPostQuery()->toArray())
@@ -108,10 +106,7 @@ class ForumSearch extends Search
     private function childQuery() : HasChildQuery
     {
         $query = (new BoolQuery())
-            ->must(['query_string' => [
-                'fields' => ['search_content'],
-                'query' => $this->queryString,
-            ]]);
+            ->must(QueryHelper::queryString($this->queryString, ['search_content']));
 
         if (isset($this->username)) {
             $user = User::lookup($this->username);
