@@ -31,22 +31,19 @@ class UserSearch extends RecordSearch
         parent::__construct(
             User::esIndexName(),
             User::class,
-            static::normalizeParams($options)
+            $options
         );
 
-        $this->queryString = $this->options['query'];
-        $this->query(static::usernameSearchQuery($this->queryString ?? ''));
+        $this->queryString = $this->options['query'] ?? '';
+        $this->query(static::usernameSearchQuery($this->queryString));
     }
 
-    public static function normalizeParams(array $params = [])
+    protected function getDefaultSize() : int
     {
-        return [
-            'query' => presence($params['query'] ?? null),
-            'page' => max(1, get_int($params['page'] ?? 1)),
-        ];
+        return 20;
     }
 
-    public static function usernameSearchQuery(string $username)
+    private static function usernameSearchQuery(string $username)
     {
         static $lowercase_stick = [
             'analyzer' => 'username_lower',
@@ -69,10 +66,5 @@ class UserSearch extends RecordSearch
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
-    }
-
-    protected function getDefaultSize() : int
-    {
-        return 20;
     }
 }

@@ -35,10 +35,24 @@ class BeatmapsetSearch extends RecordSearch
         parent::__construct(
             Beatmapset::esIndexName(),
             Beatmapset::class,
-            static::normalizeParams($options)
+            $options
         );
 
+        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        static $validExtras = ['video', 'storyboard'];
+
         $this->queryString = es_query_escape_with_caveats($options['query']);
+        $this->status = get_int($options['status'] ?? null) ?? 0;
+        $this->genre = get_int($options['genre'] ?? null);
+        $this->language = get_int($options['language'] ?? null);
+        $this->extra = array_intersect($options['extra'] ?? [], $validExtras);
+        $this->rank = array_intersect($options['rank'] ?? [], $validRanks);
+        $this->user = $options['user'] ?? null;
+
+        $this->mode = get_int($options['mode'] ?? null);
+        if (!in_array($this->mode, Beatmap::MODES, true)) {
+            $this->mode = null;
+        }
     }
 
     public function getDefaultSize() : int
@@ -63,7 +77,6 @@ class BeatmapsetSearch extends RecordSearch
 
     public function toArray() : array
     {
-        $params = $this->options;
         $query = (new BoolQuery());
 
         if (present($this->queryString)) {
@@ -76,8 +89,8 @@ class BeatmapsetSearch extends RecordSearch
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
 
-        if ($params['mode'] !== null) {
-            $query->must(['match' => ['difficulties.playmode' => $params['mode']]]);
+        if ($this->mode !== null) {
+            $query->must(['match' => ['difficulties.playmode' => $this->mode]]);
         }
 
         $this->sorts = $this->normalizeSort();
@@ -87,74 +100,35 @@ class BeatmapsetSearch extends RecordSearch
         return parent::toArray();
     }
 
-    public static function normalizeParams(array $params = [])
-    {
-        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        static $validExtras = ['video', 'storyboard'];
-
-        $params['query'] = presence($params['query'] ?? null);
-        $params['status'] = get_int($params['status'] ?? null) ?? 0;
-        $params['genre'] = get_int($params['genre'] ?? null);
-        $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] =  array_intersect($params['extra'] ?? [], $validExtras);
-        $params['rank'] = array_intersect($params['rank'] ?? [], $validRanks);
-
-        $params['mode'] = get_int($params['mode'] ?? null);
-        if (!in_array($params['mode'], Beatmap::MODES, true)) {
-            $params['mode'] = null;
-        }
-
-        return $params;
-    }
-
-    public static function remapSortField(Sort $sort)
-    {
-        static $fields = [
-            'artist' => 'artist.raw',
-            'creator' => 'creator.raw',
-            'difficulty' => 'difficulties.difficultyrating',
-            'nominations' => 'nominations',
-            'plays' => 'play_count',
-            'ranked' => 'approved_date',
-            'rating' => 'rating',
-            'relevance' => '_score',
-            'title' => 'title.raw',
-            'updated' => 'last_update',
-        ];
-
-        $sort->field = $fields[$sort->field] ?? null;
-    }
-
     private function addExtraFilter($query)
     {
-        foreach ($this->options['extra'] as $val) {
+        foreach ($this->extra as $val) {
             $query->filter(['term' => [$val => true]]);
         }
     }
 
     private function addGenreFilter($query)
     {
-        if ($this->options['genre'] !== null) {
-            $query->filter(['term' => ['genre_id' => $this->options['genre']]]);
+        if ($this->genre !== null) {
+            $query->filter(['term' => ['genre_id' => $this->genre]]);
         }
     }
 
     private function addLanguageFilter($query)
     {
-        if ($this->options['language'] !== null) {
-            $query->filter(['term' => ['language_id' => $this->options['language']]]);
+        if ($this->language !== null) {
+            $query->filter(['term' => ['language_id' => $this->language]]);
         }
     }
 
     private function addRankFilter($query)
     {
-        $params = $this->options;
-        if (empty($params['rank'])) {
+        if (empty($this->rank)) {
             return;
         }
 
-        if ($params['mode'] !== null) {
-            $modes = [$params['mode']];
+        if ($this->mode !== null) {
+            $modes = [$this->mode];
         } else {
             $modes = array_values(Beatmap::MODES);
         }
@@ -163,8 +137,8 @@ class BeatmapsetSearch extends RecordSearch
         foreach ($modes as $mode) {
             $newQuery =
                 Score\Best\Model::getClass($mode)
-                ->forUser($params['user'])
-                ->whereIn('rank', $params['rank'])
+                ->forUser($this->user)
+                ->whereIn('rank', $this->rank)
                 ->select('beatmap_id');
 
             if ($unionQuery === null) {
@@ -183,10 +157,9 @@ class BeatmapsetSearch extends RecordSearch
     // statuses are non scoring for the query context.
     private function addStatusFilter($mainQuery)
     {
-        $params = $this->options;
         $query = new BoolQuery;
 
-        switch ($params['status']) {
+        switch ($this->status) {
             case 0: // Ranked & Approved
                 $query->should([
                     ['match' => ['approved' => Beatmapset::STATES['ranked']]],
@@ -200,7 +173,7 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['approved' => Beatmapset::STATES['loved']]]);
                 break;
             case 2: // Favourites
-                $favs = model_pluck($params['user']->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
+                $favs = model_pluck($this->user->favouriteBeatmapsets(), 'beatmapset_id', Beatmapset::class);
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $favs]]);
                 break;
             case 3: // Qualified
@@ -218,7 +191,7 @@ class BeatmapsetSearch extends RecordSearch
                 $query->must(['match' => ['approved' => Beatmapset::STATES['graveyard']]]);
                 break;
             case 6: // My Maps
-                $maps = model_pluck($params['user']->beatmapsets(), 'beatmapset_id');
+                $maps = model_pluck($this->user->beatmapsets(), 'beatmapset_id');
                 $query->must(['ids' => ['type' => 'beatmaps', 'values' => $maps]]);
                 break;
             case 7: // Explicit Any
@@ -236,7 +209,7 @@ class BeatmapsetSearch extends RecordSearch
             return new Sort('_score', 'desc');
         }
 
-        if (in_array($this->options['status'], [4, 5, 6], true)) {
+        if (in_array($this->status, [4, 5, 6], true)) {
             return new Sort('last_update', 'desc');
         }
 
@@ -275,5 +248,23 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         return $newSort;
+    }
+
+    private static function remapSortField(Sort $sort)
+    {
+        static $fields = [
+            'artist' => 'artist.raw',
+            'creator' => 'creator.raw',
+            'difficulty' => 'difficulties.difficultyrating',
+            'nominations' => 'nominations',
+            'plays' => 'play_count',
+            'ranked' => 'approved_date',
+            'rating' => 'rating',
+            'relevance' => '_score',
+            'title' => 'title.raw',
+            'updated' => 'last_update',
+        ];
+
+        $sort->field = $fields[$sort->field] ?? null;
     }
 }

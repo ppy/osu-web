@@ -32,10 +32,10 @@ class WikiSearch extends RecordSearch
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),
             Page::class,
-            static::normalizeParams($options)
+            $options
         );
 
-        $this->queryString = $this->options['query'];
+        $this->queryString = $this->options['query'] ?? '';
         $this->locale = $this->options['locale'] ?? config('app.fallback_locale');
     }
 
@@ -106,14 +106,6 @@ class WikiSearch extends RecordSearch
             ->must($matchQuery);
 
         return parent::toArray();
-    }
-
-    public static function normalizeParams(array $params = [])
-    {
-        $params['query'] = presence($params['query'] ?? null);
-        $params['locale'] = $params['locale'] ?? null;
-
-        return $params;
     }
 
     protected function getDefaultSize(): int
