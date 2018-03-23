@@ -29,7 +29,7 @@ $(document).on 'click', 'a[href^="#"]', (e) ->
   return if !target?
 
   e.preventDefault()
-  $.scrollTo target
+  target.scrollIntoView()
 
 
 # Monkey patch Turbolinks to render 403, 404, and 500 normally
