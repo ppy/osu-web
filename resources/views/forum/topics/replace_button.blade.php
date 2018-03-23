@@ -34,7 +34,5 @@ Timeout.set(0, function() {
             'state' => $state,
         ])) !!});
 
-    @if ($popup ?? true)
-        osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
-    @endif
+    osu.popup({!! json_encode(trans('forum.topics.'.$type.'.to_'.$stateText.'_done')) !!}, 'success');
 });

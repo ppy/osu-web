@@ -35,6 +35,7 @@
             btn-circle--topic-nav
             {{ $state->exists ? 'btn-circle--activated' : '' }}
             js-menu
+            js-forum-topic-watch--button
         "
         data-menu-target="topic-watch"
     >
@@ -43,7 +44,7 @@
         </span>
     </button>
     <div
-        class="js-menu simple-menu simple-menu--forum-topic-watch"
+        class="js-menu js-forum-topic-watch--menu simple-menu simple-menu--forum-topic-watch"
         data-menu-id="topic-watch"
         data-visibility="hidden"
     >
