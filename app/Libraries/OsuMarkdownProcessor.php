@@ -197,7 +197,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        $src = $this->node->getUrl();
+        $src = urldecode($this->node->getUrl());
 
         if (preg_match(',^(#|/|https?://|mailto:),', $src) !== 1) {
             $this->node->setUrl($this->config->getConfig('path').'/'.$src);
@@ -283,7 +283,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        $url = $this->node->getUrl();
+        $url = urldecode($this->node->getUrl());
 
         if (starts_with($url, '/wiki/')) {
             $this->node->setUrl('/help'.$url);
@@ -329,7 +329,7 @@ class OsuMarkdownProcessor implements DocumentProcessorInterface, ConfigurationA
             return;
         }
 
-        if (preg_match('#^(\w{2}(?:-\w{2})?):(.+)$#', $this->node->getUrl(), $matches) !== 1) {
+        if (preg_match('#^(\w{2}(?:-\w{2})?):(.+)$#', urldecode($this->node->getUrl()), $matches) !== 1) {
             return;
         }
 
