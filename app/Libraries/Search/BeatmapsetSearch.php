@@ -94,7 +94,7 @@ class BeatmapsetSearch extends RecordSearch
         $params['status'] = get_int($params['status'] ?? null) ?? 0;
         $params['genre'] = get_int($params['genre'] ?? null);
         $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] = explode('.', $params['extra'] ?? null);
+        $params['extra'] =  array_intersect($params['extra'] ?? [], ['video', 'storyboard']);
 
         // mode
         $params['mode'] = get_int($params['mode'] ?? null);
@@ -129,17 +129,8 @@ class BeatmapsetSearch extends RecordSearch
 
     private function addExtraFilter($query)
     {
-        if (is_array($this->options['extra'])) {
-            foreach ($this->options['extra'] as $val) {
-                switch ($val) {
-                    case 'video':
-                        $query->filter(['match' => ['video' => true]]);
-                        break;
-                    case 'storyboard':
-                        $query->filter(['match' => ['storyboard' => true]]);
-                        break;
-                }
-            }
+        foreach ($this->options['extra'] as $val) {
+            $query->filter(['term' => [$val => true]]);
         }
     }
 

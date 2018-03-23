@@ -307,7 +307,7 @@ class BeatmapsetsController extends Controller
                 'status' => Request::input('s'),
                 'genre' => Request::input('g'),
                 'language' => Request::input('l'),
-                'extra' => Request::input('e'),
+                'extra' => explode('.', Request::input('e') ?? null),
                 'page' => Request::input('page'),
                 'user' => $user,
             ];
