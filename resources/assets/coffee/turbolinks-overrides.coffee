@@ -23,8 +23,9 @@ Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
 # Anchor navigation with turbolinks. Works around [1].
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->
-  targetId = e.currentTarget.getAttribute('href')[1..]
-  target = document.getElementById decodeURIComponent(targetId)
+  href = e.currentTarget.href
+  targetId = decodeURIComponent href[href.indexOf('#') + 1..]
+  target = document.getElementById targetId
 
   return if !target?
 
