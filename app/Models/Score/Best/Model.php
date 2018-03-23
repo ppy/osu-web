@@ -279,6 +279,7 @@ abstract class Model extends BaseModel
     public function scopeDefault($query)
     {
         return $query
+            ->whereHas('beatmap')
             ->whereHas('user', function ($userQuery) {
                 $userQuery->default();
             });
