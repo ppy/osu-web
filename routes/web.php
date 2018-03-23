@@ -185,6 +185,7 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
+Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
 

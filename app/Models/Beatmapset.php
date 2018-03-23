@@ -24,6 +24,7 @@ use App\Exceptions\BeatmapProcessorException;
 use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
@@ -460,7 +461,7 @@ class Beatmapset extends Model implements AfterCommit
 
         if (present($params['query'])) {
             $query = es_query_escape_with_caveats($params['query']);
-            $matchParams[] = ['query_string' => ['query' => $query]];
+            $matchParams[] = QueryHelper::queryString($query);
         }
 
         if (!empty($params['rank'])) {
