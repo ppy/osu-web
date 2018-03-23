@@ -70,27 +70,9 @@ class BeatmapsetSearch extends RecordSearch
             $query->must(QueryHelper::queryString($this->queryString));
         }
 
-        if ($params['genre'] !== null) {
-            $query->must(['match' => ['genre_id' => $params['genre']]]);
-        }
-
-        if ($params['language'] !== null) {
-            $query->must(['match' => ['language_id' => $params['language']]]);
-        }
-
-        if (is_array($params['extra'])) {
-            foreach ($params['extra'] as $val) {
-                switch ($val) {
-                    case 'video':
-                        $query->must(['match' => ['video' => true]]);
-                        break;
-                    case 'storyboard':
-                        $query->must(['match' => ['storyboard' => true]]);
-                        break;
-                }
-            }
-        }
-
+        $this->addGenreFilter($query);
+        $this->addLanguageFilter($query);
+        $this->addExtraFilter($query);
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
 
@@ -145,6 +127,35 @@ class BeatmapsetSearch extends RecordSearch
         $sort->field = $fields[$sort->field] ?? null;
     }
 
+    private function addExtraFilter($query)
+    {
+        if (is_array($this->options['extra'])) {
+            foreach ($this->options['extra'] as $val) {
+                switch ($val) {
+                    case 'video':
+                        $query->filter(['match' => ['video' => true]]);
+                        break;
+                    case 'storyboard':
+                        $query->filter(['match' => ['storyboard' => true]]);
+                        break;
+                }
+            }
+        }
+    }
+
+    private function addGenreFilter($query)
+    {
+        if ($this->options['genre'] !== null) {
+            $query->filter(['term' => ['genre_id' => $this->options['genre']]]);
+        }
+    }
+
+    private function addLanguageFilter($query)
+    {
+        if ($this->options['language'] !== null) {
+            $query->filter(['term' => ['language_id' => $this->options['language']]]);
+        }
+    }
 
     private function addRankFilter($query)
     {
