@@ -71,7 +71,7 @@
 <script src="{{ mix("js/app-deps.js") }}" data-turbolinks-track="reload"></script>
 <script src="{{ mix("js/app.js") }}" data-turbolinks-track="reload"></script>
 <script src="/vendor/js/timeago-locales/jquery.timeago.{{ locale_for_timeago(Lang::getLocale()) }}.js" data-turbolinks-track="reload"></script>
-<script src="//assets.ppy.sh/js/site-switcher.min.js?{{ENV('SITE_SWITCHER_JS_HASH', '6a1de058')}}" async></script>
+<script src="//assets.ppy.sh/js/site-switcher.min.js?{{config('osu.site-switcher-js-hash')}}" async></script>
 
 @if (($momentLocale = locale_for_moment(Lang::getLocale())) !== null)
     <script src="/vendor/js/moment-locales/{{ $momentLocale }}.js" data-turbolinks-track="reload"></script>
