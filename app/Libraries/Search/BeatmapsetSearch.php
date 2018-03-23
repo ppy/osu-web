@@ -89,22 +89,20 @@ class BeatmapsetSearch extends RecordSearch
 
     public static function normalizeParams(array $params = [])
     {
-        // simple stuff
+        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+        static $validExtras = ['video', 'storyboard'];
+
         $params['query'] = presence($params['query'] ?? null);
         $params['status'] = get_int($params['status'] ?? null) ?? 0;
         $params['genre'] = get_int($params['genre'] ?? null);
         $params['language'] = get_int($params['language'] ?? null);
-        $params['extra'] =  array_intersect($params['extra'] ?? [], ['video', 'storyboard']);
+        $params['extra'] =  array_intersect($params['extra'] ?? [], $validExtras);
+        $params['rank'] = array_intersect($params['rank'] ?? [], $validRanks);
 
-        // mode
         $params['mode'] = get_int($params['mode'] ?? null);
         if (!in_array($params['mode'], Beatmap::MODES, true)) {
             $params['mode'] = null;
         }
-
-        // rank
-        $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect($params['rank'] ?? [], $validRanks);
 
         return $params;
     }
