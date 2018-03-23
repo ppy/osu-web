@@ -313,7 +313,7 @@ class BeatmapsetsController extends Controller
             ];
 
             if ($user->isSupporter()) {
-                $params['rank'] = Request::input('r');
+                $params['rank'] = explode('.', Request::input('r') ?? null);
             }
         }
 

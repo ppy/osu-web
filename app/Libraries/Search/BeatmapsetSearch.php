@@ -150,7 +150,7 @@ class BeatmapsetSearch extends RecordSearch
 
         // rank
         $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-        $params['rank'] = array_intersect(explode('.', $params['rank'] ?? null), $validRanks);
+        $params['rank'] = array_intersect($params['rank'] ?? [], $validRanks);
 
         return $params;
     }
