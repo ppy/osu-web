@@ -54,6 +54,7 @@ class NotifyEmail implements ShouldQueue
         $topic = $event->topic->fresh();
         $watches = $topic->watches()
             ->where('mail', '=', true)
+            ->where('notify_status', '=', false)
             ->has('user')
             ->with('user', 'topic')
             ->get();
