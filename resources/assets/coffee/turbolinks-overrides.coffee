@@ -24,7 +24,7 @@ Turbolinks.BrowserAdapter::showProgressBarAfterDelay = ->
 # [1] https://github.com/turbolinks/turbolinks/issues/75
 $(document).on 'click', 'a[href^="#"]', (e) ->
   targetId = e.currentTarget.getAttribute('href')[1..]
-  target = document.getElementById targetId
+  target = document.getElementById decodeURIComponent(targetId)
 
   return if !target?
 
