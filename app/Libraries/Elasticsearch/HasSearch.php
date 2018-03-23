@@ -26,7 +26,7 @@ trait HasSearch
     protected $highlight;
     protected $query;
     protected $size;
-    protected $sort = [];
+    protected $sorts = [];
     protected $source;
     protected $type;
 
@@ -106,11 +106,13 @@ trait HasSearch
     }
 
     /**
+     * @param Sort $sort
+     *
      * @return $this
      */
-    public function sort(array $sort)
+    public function sort(Sort $sort)
     {
-        $this->sort[] = $sort;
+        $this->sorts[] = $sort;
 
         return $this;
     }

@@ -130,7 +130,9 @@ abstract class Search implements Queryable
         $body = [
             'from' => $pageParams['from'],
             'size' => $pageParams['size'],
-            'sort' => $this->sort,
+            'sort' => array_map(function ($sort) {
+                return $sort->toArray();
+            }, $this->sorts),
         ];
 
         if (isset($this->highlight)) {

@@ -22,6 +22,7 @@ namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\RecordSearch;
+use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
 use App\Models\Beatmapset;
 use App\Models\Score;
@@ -52,7 +53,7 @@ class BeatmapsetSearch extends RecordSearch
     /**
      * {@inheritdoc}
      */
-    public function sort(array $sort)
+    public function sort(Sort $sort)
     {
         $this->sort[] = static::normalizeSort($sort);
 

@@ -26,6 +26,7 @@ use App\Libraries\Elasticsearch\Highlight;
 use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
+use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
@@ -133,7 +134,7 @@ class ForumSearch extends Search
     {
         return (new HasChildQuery('posts', 'first_post'))
             ->size(1)
-            ->sort(['post_id' => ['order' => 'asc']])
+            ->sort(new Sort('post_id', 'asc'))
             ->query(['match_all' => new \stdClass()])
             ->source('search_content');
     }
