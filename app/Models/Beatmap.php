@@ -106,7 +106,7 @@ class Beatmap extends Model
                 } elseif ($percentSliderOrSpinner > 0.6) {
                     return $accuracy > 4 ? 5 : 4;
                 } else {
-                    return clamp($accuracy + 1, 1, 7);
+                    return clamp($accuracy + 1, 4, 7);
                 }
             } else {
                 return (int) max(1, round($value));
