@@ -128,8 +128,10 @@ class HomeController extends Controller
 
     public function search()
     {
+        $query = request('query');
+
         if (request('mode') === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => request('query')]));
+            return ujs_redirect(route('beatmapsets.index', ['q' => $query]));
         }
 
         $params = array_merge(Request::all(), [
