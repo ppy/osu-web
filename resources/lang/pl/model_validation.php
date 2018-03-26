@@ -93,7 +93,7 @@ return [
         'username_invalid_characters' => 'Ta nazwa użytkownika zawiera nieprawidłowe znaki.',
         'username_in_use' => 'Ta nazwa użytkownika jest już w użyciu!',
         'username_no_space_userscore_mix' => 'Użyj spacji albo znaków podkreślenia, nie obu naraz!',
-        'username_no_spaces' => "Nazwa użytkownika nie może zaczynać się lub kończyć spacjami!",
+        'username_no_spaces' => 'Nazwa użytkownika nie może zaczynać się lub kończyć spacjami!',
         'username_not_allowed' => 'Ta nazwa użytkownika nie jest dozwolona.',
         'username_too_short' => 'Ta nazwa użytkownika jest zbyt krótka.',
         'username_too_long' => 'Ta nazwa użytkownika jest zbyt długa.',
@@ -102,7 +102,7 @@ return [
         'wrong_email_confirmation' => 'Email potwierdzający się nie zgadza.',
         'wrong_password_confirmation' => 'Hasło potwierdzające się nie zgadza.',
         'too_long' => 'Przekroczono maksymalną liczbę znaków - możliwe jest użycie tylko :limit znaków.',
-   
+
         'change_username' => [
             'supporter_required' => [
                 '_' => 'Musisz posiadać :link, aby zmienić nazwę użytkownika!',
