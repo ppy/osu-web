@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> joueurs inscrits',
 
         'slogan' => [
-            'main' => 'jeu de rythme free-to-play',
+            'main' => 'jeu de rythme free-to-win',
             'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
