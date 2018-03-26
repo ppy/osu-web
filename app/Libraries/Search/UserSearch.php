@@ -35,15 +35,12 @@ class UserSearch extends RecordSearch
         );
 
         $this->queryString = $this->options['query'] ?? '';
-        $this->query(static::usernameSearchQuery($this->queryString));
     }
 
-    protected function getDefaultSize() : int
-    {
-        return 20;
-    }
-
-    private static function usernameSearchQuery(string $username)
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray() : array
     {
         static $lowercase_stick = [
             'analyzer' => 'username_lower',
@@ -57,14 +54,23 @@ class UserSearch extends RecordSearch
             'fields' => ['username', 'username._*'],
         ];
 
-        return (new BoolQuery())
+        $query = (new BoolQuery())
             ->shouldMatch(1)
-            ->should(['match' => ['username.raw' => ['query' => $username, 'boost' => 5]]])
-            ->should(['multi_match' => array_merge(['query' => $username], $lowercase_stick)])
-            ->should(['multi_match' => array_merge(['query' => $username], $whitespace_stick)])
-            ->should(['match_phrase' => ['username._slop' => $username]])
+            ->should(['match' => ['username.raw' => ['query' => $this->queryString, 'boost' => 5]]])
+            ->should(['multi_match' => array_merge(['query' => $this->queryString], $lowercase_stick)])
+            ->should(['multi_match' => array_merge(['query' => $this->queryString], $whitespace_stick)])
+            ->should(['match_phrase' => ['username._slop' => $this->queryString]])
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
+
+        $this->query($query);
+
+        return parent::toArray();
+    }
+
+    protected function getDefaultSize() : int
+    {
+        return 20;
     }
 }
