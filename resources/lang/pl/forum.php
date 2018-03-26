@@ -258,8 +258,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Usunięto subskrybcję tego wątku',
-            'to_watching_done' => 'Zasubskrybowano ten wątek',
+            'to_not_watching' => 'Nie subskrybuj',
+            'to_watching' => 'Zasubskrybuj',
+            'to_watching_mail' => 'Zasubskrybuj z powiadomieniami',
+            'mail_disable' => 'Wyłącz powiadomienia',
         ],
     ],
 ];
