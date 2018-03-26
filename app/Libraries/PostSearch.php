@@ -73,7 +73,7 @@ class PostSearch extends Search implements \ArrayAccess
     public function toArray() : array
     {
         $query = (new BoolQuery())
-            ->must(['term' => ['poster_id' => $this->userId]])
+            ->filter(['term' => ['poster_id' => $this->userId]])
             ->filter(['term' => ['type' => 'posts']]);
 
         if (isset($this->queryString)) {
