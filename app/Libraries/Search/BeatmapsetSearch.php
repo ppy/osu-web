@@ -70,9 +70,7 @@ class BeatmapsetSearch extends RecordSearch
      */
     public function sort(Sort $sort)
     {
-        static::remapSortField($sort);
-
-        return parent::sort($sort);
+        return parent::sort(static::remapSortField($sort));
     }
 
     public function toArray() : array
@@ -265,6 +263,6 @@ class BeatmapsetSearch extends RecordSearch
             'updated' => 'last_update',
         ];
 
-        $sort->field = $fields[$sort->field] ?? null;
+        return new Sort($fields[$sort->field] ?? null, $sort->order, $sort->mode);
     }
 }
