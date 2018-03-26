@@ -66,7 +66,10 @@
                         </div>
 
                         <div class="search-result__row search-result__row--paginator">
-                            @include('objects._pagination', ['object' => $page, 'modifier' => 'search'])
+                        @php
+                            $paginator = $search->getPaginator()->appends(request()->query());
+                        @endphp
+                            @include('objects._pagination', ['object' => $paginator, 'modifier' => 'search'])
                         </div>
                     @endif
                 </div>

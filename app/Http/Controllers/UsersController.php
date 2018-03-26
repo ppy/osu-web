@@ -34,6 +34,7 @@ use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
 
 class UsersController extends Controller
@@ -223,10 +224,9 @@ class UsersController extends Controller
             'includeSubforums' => get_bool(request('forum_children')),
         ];
 
-        $search = new PostSearch($options);
-        $page = $search->paginate(50)->appends(request()->query());
+        $search = (new PostSearch($options))->size(50)->page(LengthAwarePaginator::resolveCurrentPage());
 
-        return view('users.posts', compact('search', 'page', 'user'));
+        return view('users.posts', compact('search', 'user'));
     }
 
     public function kudosu($_userId)

@@ -26,6 +26,7 @@ use App\Libraries\Elasticsearch\Hit;
 use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
+use App\Libraries\Elasticsearch\Sort;
 use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
@@ -96,7 +97,7 @@ class PostSearch extends Search implements \ArrayAccess
         $this->query($query);
 
         // default sort
-        $this->sort(['post_time' => 'desc']);
+        $this->sort(new Sort('post_time', 'desc'));
 
         return parent::toArray();
     }
