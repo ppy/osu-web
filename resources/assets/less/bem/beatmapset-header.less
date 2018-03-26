@@ -29,7 +29,6 @@
 
     &--main {
       align-self: stretch;
-      align-items: flex-start;
       min-width: 0;
 
       @media @desktop {
@@ -87,6 +86,8 @@
     .default-text-shadow();
     color: #fff;
     font-style: italic;
+    align-self: flex-start;
+    max-width: 100%;
 
     &:hover, &:visited, &:active {
       color: #fff;
