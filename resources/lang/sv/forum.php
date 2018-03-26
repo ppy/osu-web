@@ -169,53 +169,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Ta bort "tillagd" tagg',
-            'action-1' => 'Lägg till "tillagd" tagg',
-            'state-0' => 'Tog bort "tillagd" tagg',
-            'state-1' => 'La till "tillagd" tagg',
+            'to_0' => 'Ta bort "tillagd" tagg',
+            'to_0_done' => 'Tog bort "tillagd" tagg',
+            'to_1' => 'Lägg till "tillagd" tagg',
+            'to_1_done' => 'La till "tillagd" tagg',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Ta bort "tilldelad" tagg',
-            'action-1' => 'Lägg till "tilldelad" tagg',
-            'state-0' => 'Tog bort "tilldelad" tagg',
-            'state-1' => 'La till "tilldelad" tagg',
+            'to_0' => 'Ta bort "tilldelad" tagg',
+            'to_0_done' => 'Tog bort "tilldelad" tagg',
+            'to_1' => 'Lägg till "tilldelad" tagg',
+            'to_1_done' => 'La till "tilldelad" tagg',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Ta bort "bekräftad" tagg',
-            'action-1' => 'Lägg till "bekräftad" tagg',
-            'state-0' => 'Tog bort "bekräftad" tagg',
-            'state-1' => 'La till "bekräftad" tagg',
+            'to_0' => 'Ta bort "bekräftad" tagg',
+            'to_0_done' => 'Tog bort "bekräftad" tagg',
+            'to_1' => 'Lägg till "bekräftad" tagg',
+            'to_1_done' => 'La till "bekräftad" tagg',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Ta bort "duplikat" tagg',
-            'action-1' => 'Lägg till "duplikat" tagg',
-            'state-0' => 'Tog bort "duplikat" tagg',
-            'state-1' => 'La till "duplikat" tagg',
+            'to_0' => 'Ta bort "duplikat" tagg',
+            'to_0_done' => 'Tog bort "duplikat" tagg',
+            'to_1' => 'Lägg till "duplikat" tagg',
+            'to_1_done' => 'La till "duplikat" tagg',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Ta bort "ogiltlig" tagg',
-            'action-1' => 'Lägg till "ogiltlig" tagg',
-            'state-0' => 'Tog bort "ogiltlig" tagg',
-            'state-1' => 'La till "ogiltlig" tagg',
+            'to_0' => 'Ta bort "ogiltlig" tagg',
+            'to_0_done' => 'Tog bort "ogiltlig" tagg',
+            'to_1' => 'Lägg till "ogiltlig" tagg',
+            'to_1_done' => 'La till "ogiltlig" tagg',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Ta bort "löst" tagg',
-            'action-1' => 'Lägg till "löst" tagg',
-            'state-0' => 'Tog bort "löst" tagg',
-            'state-1' => 'La till "löst" tagg',
+            'to_0' => 'Ta bort "löst" tagg',
+            'to_0_done' => 'Tog bort "löst" tagg',
+            'to_1' => 'Lägg till "löst" tagg',
+            'to_1_done' => 'La till "löst" tagg',
         ],
 
         'lock' => [
             'is_locked' => 'Detta ämne är låst och kan ej svaras på',
-            'lock-0' => 'Lås upp ämne',
-            'lock-1' => 'Lås ämne',
-            'state-0' => 'Ämne har blivit upplåst',
-            'state-1' => 'Ämne har blivit låst',
+            'to_0' => 'Lås upp ämne',
+            'to_0_done' => 'Ämne har blivit upplåst',
+            'to_1' => 'Lås ämne',
+            'to_1_done' => 'Ämne har blivit låst',
         ],
 
         'moderate_move' => [
@@ -223,12 +223,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Ta bort nålat ämne',
-            'pin-1' => 'Nåla ämne',
-            'pin-2' => 'Nåla ämne och markera som meddelande',
-            'state-0' => 'Nål på ämne har tagits bort',
-            'state-1' => 'Ämne har blivit nålat',
-            'state-2' => 'Ämne har blivit nålat och markerat som meddelande',
+            'to_0' => 'Ta bort nålat ämne',
+            'to_0_done' => 'Nål på ämne har tagits bort',
+            'to_1' => 'Nåla ämne',
+            'to_1_done' => 'Ämne har blivit nålat',
+            'to_2' => 'Nåla ämne och markera som meddelande',
+            'to_2_done' => 'Ämne har blivit nålat och markerat som meddelande',
         ],
 
         'show' => [
@@ -258,10 +258,8 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Prenumeration sades upp från ämne',
-            'state-1' => 'Prenumererade på ämne',
-            'watch-0' => 'Säg upp prenumeration från ämne',
-            'watch-1' => 'Prenumerera på ämne',
+            'to_not_watching_done' => 'Prenumeration sades upp från ämne',
+            'to_watching_done' => 'Prenumererade på ämne',
         ],
     ],
 ];

@@ -100,6 +100,7 @@ return [
         'ru',
         'sv',
         'zh',
+        'zh-tw',
     ],
 
     /*

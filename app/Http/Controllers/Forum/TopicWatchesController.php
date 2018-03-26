@@ -41,6 +41,7 @@ class TopicWatchesController extends Controller
     {
         $topics = Topic::watchedByUser(Auth::user())->paginate(50);
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
+        $topicWatchStatus = TopicWatch::watchStatus(Auth::user(), $topics);
 
         $counts = [
             'total' => $topics->total(),
@@ -49,7 +50,31 @@ class TopicWatchesController extends Controller
 
         return view(
             'forum.topic_watches.index',
-            compact('topics', 'topicReadStatus', 'counts')
+            compact('topics', 'topicReadStatus', 'topicWatchStatus', 'counts')
         );
+    }
+
+    public function update($topicId)
+    {
+        $topic = Topic::findOrFail($topicId);
+        $state = request('state');
+
+        if ($state !== 'not_watching') {
+            priv_check('ForumTopicWatch', $topic)->ensureCan();
+        }
+
+        $watch = TopicWatch::setState($topic, Auth::user(), $state);
+
+        switch (request('return')) {
+            case 'index':
+
+                return response([], 204);
+            default:
+
+                return js_view('forum.topics.replace_watch_button', [
+                    'topic' => $topic,
+                    'state' => $watch,
+                ]);
+        }
     }
 }

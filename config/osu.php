@@ -73,6 +73,7 @@ return [
             'user' => 100,
         ],
     ],
+    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],

@@ -23,6 +23,7 @@ namespace App\Libraries\Elasticsearch;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class Search implements Queryable
 {

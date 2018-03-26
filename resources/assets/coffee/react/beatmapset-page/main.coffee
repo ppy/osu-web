@@ -23,40 +23,38 @@ class BeatmapsetPage.Main extends React.Component
   constructor: (props) ->
     super props
 
-    optionsHash = BeatmapsetPageHash.parse location.hash
-    @initialPage = optionsHash.page
-
-    beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
-    beatmaps = BeatmapHelper.group beatmaps
-
-    currentBeatmap = BeatmapHelper.find
-      group: beatmaps
-      id: optionsHash.beatmapId
-      mode: optionsHash.playmode
-
-    # fall back to the first mode that has beatmaps in this mapset
-    currentBeatmap ?= BeatmapHelper.default items: beatmaps[optionsHash.playmode]
-    currentBeatmap ?= BeatmapHelper.default group: beatmaps
-
     @scoreboardXhr = null
     @favouriteXhr = null
 
-    @state =
-      beatmaps: beatmaps
-      currentBeatmap: currentBeatmap
-      favcount: props.beatmapset.favourite_count
-      hasFavourited: props.beatmapset.has_favourited
-      loading: false
-      currentScoreboardType: 'global'
-      enabledMods: []
-      scores: []
-      userScore: null
-      userScorePosition: -1
+    @state = JSON.parse(@props.container.dataset.state ? 'null')
+    @restoredState = @state?
 
+    if !@restoredState
+      optionsHash = BeatmapsetPageHash.parse location.hash
 
-  setHash: =>
-    osu.setHash BeatmapsetPageHash.generate
-      beatmap: @state.currentBeatmap
+      beatmaps = _.concat props.beatmapset.beatmaps, props.beatmapset.converts
+      beatmaps = BeatmapHelper.group beatmaps
+
+      currentBeatmap = BeatmapHelper.find
+        group: beatmaps
+        id: optionsHash.beatmapId
+        mode: optionsHash.playmode
+
+      # fall back to the first mode that has beatmaps in this mapset
+      currentBeatmap ?= BeatmapHelper.default items: beatmaps[optionsHash.playmode]
+      currentBeatmap ?= BeatmapHelper.default group: beatmaps
+
+      @state =
+        beatmaps: beatmaps
+        currentBeatmap: currentBeatmap
+        favcount: props.beatmapset.favourite_count
+        hasFavourited: props.beatmapset.has_favourited
+        loading: false
+        currentScoreboardType: 'global'
+        enabledMods: []
+        scores: []
+        userScore: null
+        userScorePosition: -1
 
 
   setCurrentScoreboard: (_e, {
@@ -165,9 +163,12 @@ class BeatmapsetPage.Main extends React.Component
     $.subscribe 'beatmapset:hoveredbeatmap:set.beatmapsetPage', @setHoveredBeatmap
     $.subscribe 'beatmapset:favourite:toggle.beatmapsetPage', @toggleFavourite
     $.publish 'turbolinksDisqusReload'
+    $(document).on 'turbolinks:before-cache.beatmapsetPage', @saveStateToContainer
 
     @setHash()
-    @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
+
+    if !@restoredState || @state.loading
+      @setCurrentScoreboard null, scoreboardType: 'global', resetMods: true
 
 
   componentWillUnmount: ->
@@ -210,3 +211,12 @@ class BeatmapsetPage.Main extends React.Component
             'data-turbolinks-disqus': JSON.stringify
               identifier: "beatmapset_#{@props.beatmapset.id}"
               title: "#{@props.beatmapset.artist} - #{@props.beatmapset.title} (mapped by #{@props.beatmapset.creator})"
+
+
+  saveStateToContainer: =>
+    @props.container.dataset.state = JSON.stringify(@state)
+
+
+  setHash: =>
+    osu.setHash BeatmapsetPageHash.generate
+      beatmap: @state.currentBeatmap

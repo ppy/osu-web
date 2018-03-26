@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\PostSearch;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -206,6 +207,26 @@ class UsersController extends Controller
         $page = $mapping[$type] ?? abort(404);
 
         return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
+    }
+
+    public function posts($id)
+    {
+        $user = User::lookup($id);
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
+        $options = [
+            'query' => trim(request('query')),
+            'userId' => $user->getKey(),
+            'forumId' => request('forum_id'),
+            'includeSubforums' => get_bool(request('forum_children')),
+        ];
+
+        $search = new PostSearch($options);
+        $page = $search->paginate(50)->appends(request()->query());
+
+        return view('users.posts', compact('search', 'page', 'user'));
     }
 
     public function kudosu($_userId)
@@ -408,26 +429,26 @@ class UsersController extends Controller
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
                 break;
 
-            // BeatmapsetCompact
+            // Beatmapset
             case 'favouriteBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsFavourite();
                 break;
             case 'graveyardBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
             case 'rankedAndApprovedBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsRankedAndApproved()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'unrankedBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsUnranked()
                     ->orderBy('last_update', 'desc');

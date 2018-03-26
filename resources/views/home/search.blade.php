@@ -49,7 +49,7 @@
                 </div>
 
                 @if ($allSearch->getMode() === 'forum_post')
-                    @include('home._search_advanced_forum_post')
+                    @include('objects.search._forum_options')
                 @endif
 
                 @if ($allSearch->hasQuery())

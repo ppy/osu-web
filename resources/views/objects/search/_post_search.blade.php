@@ -1,5 +1,5 @@
 {{--
-    Copyright 2015-2017 ppy Pty. Ltd.
+    Copyright 2015-2018 ppy Pty. Ltd.
 
     This file is part of osu!web. osu!web is distributed with the hope of
     attracting more community contributions to the core ecosystem of osu!.
@@ -15,19 +15,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-Timeout.set(0, function() {
-    var $el = $('.js-forum-topic-entry[data-topic-id={{ $topic->topic_id }}]');
+@php
+    $link = post_url($hit->source('topic_id'), $hit->source('post_id'));
+    $highlights = $search->highlightsForHit($hit);
+    $time = $hit->source('post_time');
+    $user = $users->where('user_id', $hit->source('poster_id'))->first() ?? new App\Models\DeletedUser();
+@endphp
 
-    $el.slideUp(null, function() {
-        $el.remove();
-
-        $('.js-forum-topic-watch--total').text({{ count($topics) }});
-        $('.js-forum-topic-watch--unread').text({{ count($topics) - count($topicReadStatus) }});
-
-        if ($('.js-forum-topic-entry').length === 0) {
-            $('.js-forum-topic-entries').append(
-                {!! json_encode(render_to_string('forum.forums._topic_empty')) !!}
-            );
-        }
-    });
-});
+<div class="search-entry">
+    @include('objects.search._forum_post', compact('highlights', 'link', 'time', 'user'))
+</div>

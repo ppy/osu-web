@@ -117,12 +117,11 @@ Route::group(['prefix' => 'community'], function () {
             Route::post('topics/{topic}/reply', 'TopicsController@reply')->name('topics.reply');
             Route::post('topics/{topic}/vote', 'TopicsController@vote')->name('topics.vote');
             Route::post('topics/{topic}/vote-feature', 'TopicsController@voteFeature')->name('topics.vote-feature');
-            Route::post('topics/{topic}/watch', 'TopicsController@watch')->name('topics.watch');
             Route::resource('topics', 'TopicsController', ['only' => ['create', 'show', 'store', 'update']]);
 
             Route::resource('topic-covers', 'TopicCoversController', ['only' => ['store', 'update', 'destroy']]);
 
-            Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index']]);
+            Route::resource('topic-watches', 'TopicWatchesController', ['only' => ['index', 'update']]);
         });
 
         Route::get('forums/search', 'ForumsController@search')->name('forums.search');
@@ -186,6 +185,7 @@ Route::get('users/{user}/scores/{type}', 'UsersController@scores')->name('users.
 Route::get('users/{user}/beatmapsets/{type}', 'UsersController@beatmapsets')->name('users.beatmapsets');
 
 Route::get('users/{user}/beatmapset-activities', 'UsersController@beatmapsetActivities')->name('users.beatmapset-activities');
+Route::get('users/{user}/posts', 'UsersController@posts')->name('users.posts');
 Route::get('users/{user}/{mode?}', 'UsersController@show')->name('users.show');
 // Route::resource('users', 'UsersController', ['only' => 'store']);
 

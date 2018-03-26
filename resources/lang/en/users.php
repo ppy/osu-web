@@ -66,6 +66,11 @@ return [
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s posts',
+    ],
+
     'signup' => [
         '_' => 'Register',
     ],
@@ -270,7 +275,7 @@ return [
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'post_count' => [
-            '_' => 'Contributed :count',
+            '_' => 'Contributed :link',
             'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [

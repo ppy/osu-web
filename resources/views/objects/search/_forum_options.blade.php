@@ -15,41 +15,62 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="search-advanced-forum-post">
-    <label class="search-advanced-forum-post__input-group">
-        <div class="search-advanced-forum-post__label">
-            {{ trans('home.search.forum_post.label.username') }}
-        </div>
+@php
+// input field name mappings for view recycling.
+// pass in $fields to set; set a field to null to remove it.
+// TODO: hopefully this can be temporary ಠ_ಠ.
+$fieldDefaults = [
+    'forumId' => 'forum_id',
+    'topicId' => 'topic_id',
+    'user' => 'username',
+    'includeSubforums' => 'forum_children',
+];
 
-        <input
-            name="username"
-            value="{{ request('username') }}"
-            class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
-        >
-    </label>
+if (isset($fields)) {
+    $fields = array_merge($fieldDefaults, $fields);
+} else {
+    $fields = $fieldDefaults;
+}
+@endphp
 
-    @if (present(request('topic_id')))
-        <label class="search-advanced-forum-post__input-group">
-            <div class="search-advanced-forum-post__label">
+<div class="search-forum-options">
+    @if ($fields['user'] !== null)
+        <label class="search-forum-options__input-group">
+            <div class="search-forum-options__label">
+                {{ trans('home.search.forum_post.label.username') }}
+            </div>
+
+            <input
+                name="{{ $fields['user'] }}"
+                value="{{ request($fields['user']) }}"
+                class="search-forum-options__input search-forum-options__input--text"
+            >
+        </label>
+    @endif
+
+    {{-- FIXME: remove querystring check? --}}
+    @if ($fields['topicId'] !== null && present(request($fields['topicId'])))
+        <label class="search-forum-options__input-group">
+            <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.topic_id') }}
             </div>
 
             <input
-                name="topic_id"
-                value="{{ request('topic_id') }}"
-                class="search-advanced-forum-post__input search-advanced-forum-post__input--text"
+                name="{{ $fields['topicId'] }}"
+                value="{{ request($fields['topicId']) }}"
+                class="search-forum-options__input search-forum-options__input--text"
             >
         </label>
-    @else
-        <label class="search-advanced-forum-post__input-group">
-            <div class="search-advanced-forum-post__label">
+    @elseif ($fields['forumId'] !== null)
+        <label class="search-forum-options__input-group">
+            <div class="search-forum-options__label">
                 {{ trans('home.search.forum_post.label.forum') }}
             </div>
 
-            <div class="search-advanced-forum-post__input-container">
+            <div class="search-forum-options__input-container">
                 <select
-                    name="forum_id"
-                    class="search-advanced-forum-post__input"
+                    name="{{ $fields['forumId'] }}"
+                    class="search-forum-options__input"
                 >
                     <option value="">
                         {{ trans('home.search.forum_post.all') }}
@@ -59,7 +80,7 @@
                         @if (priv_check('ForumView', $forum)->can())
                             <option
                                 value="{{ $forum->getKey() }}"
-                                {{ $forum->getKey() === get_int(request('forum_id')) ? 'selected' : '' }}
+                                {{ $forum->getKey() === get_int(request($fields['forumId'])) ? 'selected' : '' }}
                             >
                                 {{ str_repeat('–', $forum->currentDepth()) }}
                                 {{ $forum->forum_name }}
@@ -68,18 +89,18 @@
                     @endforeach
                 </select>
 
-                <div class="search-advanced-forum-post__dropdown-arrow">
+                <div class="search-forum-options__dropdown-arrow">
                     <span class="fa fa-chevron-down"></span>
                 </div>
             </div>
         </label>
 
-        <label class="search-advanced-forum-post__input-group">
+        <label class="search-forum-options__input-group">
             <div class="osu-checkbox">
                 <input
                     type="checkbox"
-                    name="forum_children"
-                    {{ (request('forum_children') ?? false) ? 'checked' : '' }}
+                    name="{{ $fields['includeSubforums'] }}"
+                    {{ request($fields['includeSubforums']) ? 'checked' : '' }}
                     class="osu-checkbox__input"
                 >
                 <span class="osu-checkbox__box"></span>
@@ -93,7 +114,7 @@
         </label>
     @endif
 
-    <div class="search-advanced-forum-post__input-group search-advanced-forum-post__input-group--buttons">
+    <div class="search-forum-options__input-group search-forum-options__input-group--buttons">
         <button class="btn-osu-big btn-osu-big--search-advanced">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
@@ -106,7 +127,7 @@
             </div>
         </button>
 
-        <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--advanced-forum-post-reset">
+        <button type="button" class="btn-osu-big btn-osu-big--search-advanced js-search--forum-options-reset">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left">
                     {{ trans('common.buttons.reset') }}

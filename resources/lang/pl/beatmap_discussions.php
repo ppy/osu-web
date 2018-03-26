@@ -21,15 +21,47 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Musisz się zalogować, aby edytować wątek.',
-            'system_generated' => 'Automatycznie generowane wątki nie mogą być edytowane.',
-            'wrong_user' => 'Tylko autor może edytować ten wątek.',
+            'null_user' => 'Musisz się zalogować, aby zedytować post.',
+            'system_generated' => 'Automatycznie generowane posty nie mogą być edytowane.',
+            'wrong_user' => 'Tylko autor może edytować ten post.',
         ],
+    ],
+
+    'events' => [
+        'empty' => 'Nic się nie wydarzyło... jeszcze.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'usunięte',
+        'title' => 'Dyskusje',
+
+        'form' => [
+            'deleted' => 'Uwzględnij usunięte dyskusje',
+
+            'user' => [
+                'label' => 'Użytkownik',
+                'overview' => 'Całokształt aktywności',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Data utworzenia',
+        'deleted_at' => 'Data usunięcia',
+        'message_type' => 'Typ',
+        'permalink' => 'Odnośnik bezpośredni',
     ],
 
     'nearby_posts' => [
         'confirm' => 'Żadna z tych odpowiedzi nie jest istotna',
         'notice' => 'Istnieją odpowiedzi dotyczące :timestamp (:existing_timestamps). Sprawdź je przed opublikowaniem.',
+    ],
+
+    'reply' => [
+        'open' => [
+            'guest' => 'Zaloguj się, aby odpowiedzieć',
+            'user' => 'Odpowiedz',
+        ],
     ],
 
     'system' => [

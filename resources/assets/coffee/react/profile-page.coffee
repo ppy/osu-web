@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
+reactTurbolinks.registerPersistent 'profile-page', ProfilePage.Main, true, (target) ->
   user = osu.parseJson('json-user')
 
   user: user
@@ -29,3 +29,4 @@ reactTurbolinks.register 'profile-page', ProfilePage.Main, ->
   achievements: _.keyBy osu.parseJson('json-achievements'), 'id'
   perPage: osu.parseJson('json-perPage')
   extras: osu.parseJson('json-extras')
+  container: target

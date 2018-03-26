@@ -289,6 +289,11 @@ class Topic extends Model
         return $this->hasMany(PollVote::class, 'topic_id');
     }
 
+    public function watches()
+    {
+        return $this->hasMany(TopicWatch::class, 'topic_id');
+    }
+
     public function getPollLastVoteAttribute($value)
     {
         return get_time_or_null($value);
