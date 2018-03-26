@@ -71,18 +71,14 @@ class ProfilePage.HeaderMain extends React.Component
           div className: 'spinner__cube'
           div className: 'spinner__cube spinner__cube--2'
 
-      # to allow space-between to work properly in firefox
-      # reference: https://github.com/philipwalton/flexbugs/issues/111
       div
-        className: 'profile-header__container'
+        className: 'profile-header__column profile-header__column--info'
+        el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
+
+      if !@props.user.is_bot
         div
           className: 'profile-header__column'
-          el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
-
-        if !@props.user.is_bot
-          div
-            className: 'profile-header__column'
-            el ProfilePage.Stats, stats: @props.stats
+          el ProfilePage.Stats, stats: @props.stats
 
       if @props.withEdit && @props.user.playmode != @props.currentMode
         button
