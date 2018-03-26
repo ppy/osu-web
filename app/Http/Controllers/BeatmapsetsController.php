@@ -301,7 +301,7 @@ class BeatmapsetsController extends Controller
             ];
         } else {
             $params = [
-                'general' => Request::input('c'),
+                'general' => explode('.', Request::input('c') ?? null),
                 'query' => Request::input('q'),
                 'mode' => Request::input('m'),
                 'status' => Request::input('s'),
