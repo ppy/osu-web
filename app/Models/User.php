@@ -304,7 +304,7 @@ class User extends Model implements AuthenticatableContract, Messageable
             } elseif ($remaining->days > 0) {
                 return [trans_choice('model_validation.user.username_available_in_days', $remaining->days)];
             } elseif ($remaining->h > 0) {
-                return [trans_choice('model_validation.user.username_available_in_hours', $remaining->hours)];
+                return [trans_choice('model_validation.user.username_available_in_hours', $remaining->h)];
             } else {
                 return [trans('model_validation.user.username_available_soon')];
             }
