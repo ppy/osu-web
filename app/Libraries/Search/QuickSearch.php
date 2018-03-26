@@ -26,6 +26,7 @@ class QuickSearch extends MultiSearch
         'user' => [
             'type' => UserSearch::class,
             'size' => 5,
+            'options' => ['recentOnly' => true],
         ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,

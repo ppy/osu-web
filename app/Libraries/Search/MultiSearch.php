@@ -71,8 +71,9 @@ class MultiSearch
                     continue;
                 }
 
+                $options = array_merge(['query' => $this->query], $settings['options'] ?? []);
                 $class = $settings['type'];
-                $search = new $class(['query' => $this->query]);
+                $search = new $class($options);
 
                 if ($this->getMode() === 'all') {
                     $search->page(1)->size($settings['size']);
