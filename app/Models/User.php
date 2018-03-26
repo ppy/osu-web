@@ -736,18 +736,6 @@ class User extends Model implements AuthenticatableContract, Messageable
         return in_array($group, $this->groupIds(), true);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Entity relationship definitions
-    |--------------------------------------------------------------------------
-    |
-    | These let you do magic. Example:
-    | foreach ($user->mods as $mod) {
-    |     $response[] = $mod->toArray();
-    | }
-    | return $response;
-    */
-
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
