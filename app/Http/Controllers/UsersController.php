@@ -20,7 +20,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Libraries\PostSearch;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -33,6 +32,7 @@ use App\Models\IpBan;
 use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
+use App\Libraries\Search\PostSearch;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
