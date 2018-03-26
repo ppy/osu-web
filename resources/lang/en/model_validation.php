@@ -105,7 +105,10 @@ return [
         'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
 
         'change_username' => [
-            'supporter_required' => "You must have <a href='https://osu.ppy.sh/p/support'>supported osu!</a> to change your name!",
+            'supporter_required' => [
+                '_' => 'You must have :link to change your name!',
+                'link_text' => 'supported osu!',
+            ],
             'username_is_same' => 'This is already your username, silly!',
         ],
     ],

@@ -352,7 +352,12 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function validateUsernameChangeTo($username)
     {
         if (!$this->hasSupported()) {
-            return [trans('model_validation.user.change_username.supporter_required')];
+            $link = \Html::link(
+                route('support-the-game'),
+                trans('model_validation.user.change_username.supporter_required.link_text')
+            );
+
+            return [trans('model_validation.user.change_username.supporter_required._', ['link' => $link])];
         }
 
         if ($username === $this->username) {
