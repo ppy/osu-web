@@ -28,6 +28,9 @@ class SearchPaginator extends LengthAwarePaginator
 
     public function __construct(Search $search, $perPage, $currentPage = null, array $options = [])
     {
+        if (!isset($options['path'])) {
+            $options['path'] = LengthAwarePaginator::resolveCurrentPath();
+        }
 
         parent::__construct(
             $search->data(),
