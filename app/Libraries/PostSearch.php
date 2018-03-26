@@ -34,7 +34,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 // FIXME: remove ArrayAccess after refactored
-class PostSearch extends Search implements \ArrayAccess
+class PostSearch extends Search
 {
     use HasCompatibility;
 
