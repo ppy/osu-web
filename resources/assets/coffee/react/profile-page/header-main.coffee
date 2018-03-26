@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span} = ReactDOMFactories
+{button, div, img, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.HeaderMain extends React.Component
@@ -73,6 +73,7 @@ class ProfilePage.HeaderMain extends React.Component
 
       div
         className: 'profile-header__column profile-header__column--info'
+        el ProfilePage.Badges, badges: @props.user.badges
         el ProfilePage.HeaderInfo, user: @props.user, currentMode: @props.currentMode
 
       if !@props.user.is_bot

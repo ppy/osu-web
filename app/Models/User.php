@@ -736,6 +736,11 @@ class User extends Model implements AuthenticatableContract, Messageable
         return in_array($group, $this->groupIds(), true);
     }
 
+    public function badges()
+    {
+        return $this->hasMany(UserBadge::class, 'user_id');
+    }
+
     public function monthlyPlaycounts()
     {
         return $this->hasMany(UserMonthlyPlaycount::class, 'user_id');
