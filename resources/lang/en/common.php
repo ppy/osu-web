@@ -46,7 +46,9 @@ return [
     ],
 
     'count' => [
+        'days' => '{1} :count day|[2,*] :count days',
         'hour_short_unit' => 'hr|hrs',
+        'hours' => '{1} :count hour|[2,*] :count hours',
         'item' => ':count unit|:count units',
         'minute_short_unit' => 'min|mins',
         'months' => ':count month|:count months',

@@ -302,9 +302,15 @@ class User extends Model implements AuthenticatableContract, Messageable
                 //no need to mention the inactivity period of the account is actively in use.
                 return [trans('model_validation.user.username_in_use')];
             } elseif ($remaining->days > 0) {
-                return [trans_choice('model_validation.user.username_available_in_days', $remaining->days)];
+                return [trans(
+                    'model_validation.user.username_available_in',
+                    ['duration' => trans_choice('common.count.days', $remaining->days)]
+                )];
             } elseif ($remaining->h > 0) {
-                return [trans_choice('model_validation.user.username_available_in_hours', $remaining->h)];
+                return [trans(
+                    'model_validation.user.username_available_in',
+                    ['duration' => trans_choice('common.count.hours', $remaining->h)]
+                )];
             } else {
                 return [trans('model_validation.user.username_available_soon')];
             }
