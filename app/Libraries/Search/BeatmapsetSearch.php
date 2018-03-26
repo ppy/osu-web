@@ -38,8 +38,8 @@ class BeatmapsetSearch extends RecordSearch
             $options
         );
 
-        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
         static $validExtras = ['video', 'storyboard'];
+        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
         $this->queryString = es_query_escape_with_caveats($options['query']);
         $this->status = get_int($options['status'] ?? null) ?? 0;
@@ -53,6 +53,11 @@ class BeatmapsetSearch extends RecordSearch
         if (!in_array($this->mode, Beatmap::MODES, true)) {
             $this->mode = null;
         }
+
+        // FIXME: should probably not be an array by the time it this class is called.
+        $generals = $options['general'] ?? [];
+        $this->includeConverts = in_array('converts', $generals, true);
+        $this->showRecommended = in_array('recommended', $generals, true);
     }
 
     public function getDefaultSize() : int
@@ -81,15 +86,13 @@ class BeatmapsetSearch extends RecordSearch
             $query->must(QueryHelper::queryString($this->queryString));
         }
 
+        $this->addModeFilter($query);
+        $this->addRecommendedFilter($query);
         $this->addGenreFilter($query);
         $this->addLanguageFilter($query);
         $this->addExtraFilter($query);
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
-
-        if ($this->mode !== null) {
-            $query->must(['match' => ['difficulties.playmode' => $this->mode]]);
-        }
 
         $this->sorts = $this->normalizeSort();
 
@@ -116,6 +119,18 @@ class BeatmapsetSearch extends RecordSearch
     {
         if ($this->language !== null) {
             $query->filter(['term' => ['language_id' => $this->language]]);
+        }
+    }
+
+    private function addModeFilter($query)
+    {
+        if ($this->mode !== null) {
+            $modes = [$this->mode];
+            if ($this->includeConverts && $this->mode !== Beatmap::MODES['osu']) {
+                $modes[] = Beatmap::MODES['osu'];
+            }
+
+            $query->filter(['terms' => ['difficulties.playmode' => $modes]]);
         }
     }
 
@@ -150,6 +165,23 @@ class BeatmapsetSearch extends RecordSearch
         $beatmapsetIds = model_pluck(Beatmap::whereIn('beatmap_id', $beatmapIds), 'beatmapset_id');
 
         $query->filter(['ids' => ['type' => 'beatmaps', 'values' => $beatmapsetIds]]);
+    }
+
+    private function addRecommendedFilter($query)
+    {
+        if ($this->showRecommended && $this->user !== null) {
+            // TODO: index convert difficulties and handle them.
+            $mode = Beatmap::modeStr($this->mode ?? Beatmap::MODES['osu']);
+            $difficulty = $this->user->recommendedStarDifficulty($mode);
+            $query->filter([
+                'range' => [
+                    'difficulties.difficultyrating' => [
+                        'gte' => $difficulty - 0.5,
+                        'lte' => $difficulty + 0.5,
+                    ],
+                ],
+            ]);
+        }
     }
 
     // statuses are non scoring for the query context.
