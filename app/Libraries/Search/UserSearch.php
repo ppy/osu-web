@@ -35,6 +35,7 @@ class UserSearch extends RecordSearch
         );
 
         $this->queryString = $this->options['query'] ?? '';
+        $this->recentOnly = $this->options['recentOnly'] ?? false;
     }
 
     /**
@@ -63,6 +64,16 @@ class UserSearch extends RecordSearch
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
+
+        if ($this->recentOnly) {
+            $query->filter([
+                'range' => [
+                    'user_lastvisit' => [
+                        'gte' => 'now-90d'
+                    ],
+                ],
+            ]);
+        }
 
         $this->query($query);
 
