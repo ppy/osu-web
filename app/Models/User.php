@@ -270,7 +270,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         if (($username ?? '') !== trim($username)) {
-            return ["Username can't start or end with spaces!"];
+            return [trans('model_validation.user.username_no_spaces')];
         }
 
         if (strlen($username) < 3) {
@@ -278,20 +278,20 @@ class User extends Model implements AuthenticatableContract, Messageable
         }
 
         if (strlen($username) > 15) {
-            return ['The requested username is too long.'];
+            return [trans('model_validation.user.username_too_long')];
         }
 
         if (strpos($username, '  ') !== false || !preg_match('#^[A-Za-z0-9-\[\]_ ]+$#u', $username)) {
-            return ['The requested username contains invalid characters.'];
+            return [trans('model_validation.user.username_invalid_characters')];
         }
 
         if (strpos($username, '_') !== false && strpos($username, ' ') !== false) {
-            return ['Please use either underscores or spaces, not both!'];
+            return [trans('model_validation.user.username_no_space_userscore_mix')];
         }
 
         foreach (model_pluck(DB::table('phpbb_disallow'), 'disallow_username') as $check) {
             if (preg_match('#^'.str_replace('%', '.*?', preg_quote($check, '#')).'$#i', $username)) {
-                return ['This username choice is not allowed.'];
+                return [trans('model_validation.user.username_not_allowed')];
             }
         }
 
@@ -300,13 +300,19 @@ class User extends Model implements AuthenticatableContract, Messageable
 
             if ($remaining->days > 365 * 2) {
                 //no need to mention the inactivity period of the account is actively in use.
-                return ['Username is already in use!'];
+                return [trans('model_validation.user.username_in_use')];
             } elseif ($remaining->days > 0) {
-                return ["This username will be available for use in <strong>{$remaining->days}</strong> days."];
+                return [trans(
+                    'model_validation.user.username_available_in',
+                    ['duration' => trans_choice('common.count.days', $remaining->days)]
+                )];
             } elseif ($remaining->h > 0) {
-                return ["This username will be available for use in <strong>{$remaining->h}</strong> hours."];
+                return [trans(
+                    'model_validation.user.username_available_in',
+                    ['duration' => trans_choice('common.count.hours', $remaining->h)]
+                )];
             } else {
-                return ['This username will be available for use any minute now!'];
+                return [trans('model_validation.user.username_available_soon')];
             }
         }
 
@@ -352,11 +358,16 @@ class User extends Model implements AuthenticatableContract, Messageable
     public function validateUsernameChangeTo($username)
     {
         if (!$this->hasSupported()) {
-            return ["You must have <a href='http://osu.ppy.sh/p/support'>supported osu!</a> to change your name!"];
+            $link = \Html::link(
+                route('support-the-game'),
+                trans('model_validation.user.change_username.supporter_required.link_text')
+            );
+
+            return [trans('model_validation.user.change_username.supporter_required._', ['link' => $link])];
         }
 
         if ($username === $this->username) {
-            return ['This is already your username, silly!'];
+            return [trans('model_validation.user.change_username.username_is_same')];
         }
 
         return self::validateUsername($username);

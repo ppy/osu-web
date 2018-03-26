@@ -36,7 +36,7 @@ checkUsernameValidity = ->
     else
       preventUsernameSubmission()
 
-    $status.text data.message
+    $status.html data.message
     $status.toggleClass 'green-dark', data.available
     $status.toggleClass 'pink-dark', !data.available
   .fail (xhr) ->
