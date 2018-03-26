@@ -25,7 +25,6 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    word-break: break-word;
     word-wrap: break-word;
     line-height: 1.5;
     pointer-events: none;
@@ -47,6 +46,7 @@
   &__content {
     flex: 1;
     margin-left: @margin;
+    min-width: 0;
   }
 
   &__link {
