@@ -259,8 +259,8 @@ return [
 
         'watch' => [
             'to_not_watching' => 'Nie subskrybuj',
-            'to_watching' => 'Zasubskrybuj',
-            'to_watching_mail' => 'Zasubskrybuj z powiadomieniami',
+            'to_watching' => 'Subskrybuj',
+            'to_watching_mail' => 'Subskrybuj z powiadomieniami',
             'mail_disable' => 'Wyłącz powiadomienia',
         ],
     ],
