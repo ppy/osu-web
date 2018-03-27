@@ -215,7 +215,7 @@ class Forum extends Model
             $this->setPostsCountCache();
             $this->setLastPostCache();
 
-            $this->save();
+            $this->saveOrExplode();
         });
     }
 
