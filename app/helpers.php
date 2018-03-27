@@ -141,7 +141,13 @@ function es_search($params)
         $error = $e;
     }
 
-    Log::debug($error);
+    if (isset($error) && config('datadog-helper.enabled')) {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.search.errors',
+            1,
+            ['class' => get_class($error)]
+        );
+    }
 
     // default return on failure
     return [
