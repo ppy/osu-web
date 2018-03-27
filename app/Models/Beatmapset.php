@@ -587,7 +587,9 @@ class Beatmapset extends Model implements AfterCommit
         $params = static::searchParams($params);
 
         if (static::shouldCacheSearch($params)) {
-            $result = static::searchES($params);
+            $result = Cache::remember(static::searchCacheKey($params), 2, function () use ($params) {
+                return static::searchES($params);
+            });
         } else {
             $result = static::searchES($params);
         }
@@ -1323,6 +1325,14 @@ class Beatmapset extends Model implements AfterCommit
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    private static function searchCacheKey(array $params)
+    {
+        ksort($params);
+        unset($params['user']);
+
+        return 'beatmapset-search:'.serialize($params);
     }
 
     private static function shouldCacheSearch(array $params)
