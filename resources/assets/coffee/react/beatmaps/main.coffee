@@ -91,7 +91,8 @@ class Beatmaps.Main extends React.PureComponent
                   src: '/images/layout/beatmaps/not-found.png'
                   alt: osu.trans("beatmaps.listing.search.not-found")
                   title: osu.trans("beatmaps.listing.search.not-found")
-                osu.trans("beatmaps.listing.search.not-found-quote")
+                div className: 'beatmapsets__empty--message',
+                  osu.trans("beatmaps.listing.search.not-found-quote")
 
           el(Beatmaps.Paginator, paging: @state.paging)
 
