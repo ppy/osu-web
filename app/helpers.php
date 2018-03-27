@@ -141,7 +141,7 @@ function es_search($params)
         $error = $e;
     }
 
-    if (isset($error) && config('datadog-helper.enabled')) {
+    if (config('datadog-helper.enabled')) {
         Datadog::increment(
             config('datadog-helper.prefix_web').'.search.errors',
             1,
@@ -155,7 +155,7 @@ function es_search($params)
             'hits' => [],
             'total' => 0,
         ],
-        'exception' => $error ?? null,
+        'exception' => $error,
     ];
 }
 

@@ -153,7 +153,7 @@ abstract class Search implements Queryable
             $this->error = $e;
         }
 
-        if (isset($this->error) && config('datadog-helper.enabled')) {
+        if (config('datadog-helper.enabled')) {
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
                 1,
