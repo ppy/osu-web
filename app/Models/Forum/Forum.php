@@ -118,7 +118,7 @@ class Forum extends Model
 
     public function setForumParentsAttribute($value)
     {
-        $this->attributes['forum_parents'] = presence($value) === null ? '' : serialize($value);
+        $this->attributes['forum_parents'] = ($value === null || count($value) === 0) ? '' : serialize($value);
     }
 
     /**
@@ -140,7 +140,7 @@ class Forum extends Model
             return [];
         }
 
-        if (presence($value) === null && $this->parentForum !== null) {
+        if (!present($value) && $this->parentForum !== null) {
             $parentsArray = $this->parentForum->forum_parents;
             $parentsArray[$this->parentForum->forum_id] = [
                 $this->parentForum->forum_name,
