@@ -37,7 +37,7 @@ trait EsIndexable
     abstract public function toEsJson();
 
     /**
-     * The value for _routing.
+     * The value for routing.
      * Override to provide a routing value; null by default.
      *
      * @return string|null
@@ -140,7 +140,7 @@ trait EsIndexable
                 // bulk API am speshul.
                 $metadata = [
                     '_id' => $model->getEsId(),
-                    '_routing' => $model->esRouting(),
+                    'routing' => $model->esRouting(),
                 ];
 
                 if ($isSoftDeleting && $model->trashed()) {
