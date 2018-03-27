@@ -34,6 +34,7 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
+        'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
