@@ -32,28 +32,47 @@ class Forum extends Model
     protected $dateFormat = 'U';
     public $timestamps = false;
 
-    private $_lastTopic = [];
-
     protected $casts = [
         'enable_sigs' => 'boolean',
     ];
 
+    public static function lastTopics($forum = null)
+    {
+        $forumForLastTopic = static
+            ::select('forum_id', 'parent_id', 'forum_parents', 'forum_last_post_id')
+            ->with('lastPost.topic');
+
+        if ($forum !== null) {
+            $forumForLastTopic->whereIn('forum_id', $forum->allSubforums());
+        }
+
+        foreach ($forumForLastTopic->get() as $forum) {
+            if ($forum->lastPost === null) {
+                continue;
+            }
+
+            $topic = $forum->lastPost->topic;
+
+            if ($topic === null) {
+                continue;
+            }
+
+            $forumIds = array_keys($forum->forum_parents);
+            $forumIds[] = $forum->getKey();
+
+            foreach ($forumIds as $forumId) {
+                if (!isset($lastTopics[$forumId]) || $topic->topic_last_post_time > $lastTopics[$forumId]->topic_last_post_time) {
+                    $lastTopics[$forumId] = $topic;
+                }
+            }
+        }
+
+        return $lastTopics ?? [];
+    }
+
     public function categorySlug()
     {
         return 'category-'.str_slug($this->category());
-    }
-
-    public function lastTopic($recursive = true)
-    {
-        $key = $recursive === true ? 'recursive' : 'current';
-        if (isset($this->_lastTopic[$key]) === false) {
-            $this->_lastTopic[$key] =
-                Topic::whereIn('forum_id', ($recursive ? $this->allSubforums() : [$this->forum_id]))
-                ->orderBy('topic_last_post_time', 'desc')
-                ->first();
-        }
-
-        return $this->_lastTopic[$key];
     }
 
     public function allSubforums($forum_ids = null, $new_forum_ids = null)
@@ -104,6 +123,11 @@ class Forum extends Model
     public function subforums()
     {
         return $this->hasMany(static::class, 'parent_id')->orderBy('left_id');
+    }
+
+    public function lastPost()
+    {
+        return $this->belongsTo(Post::class, 'forum_last_post_id', 'post_id');
     }
 
     public function cover()
@@ -216,7 +240,10 @@ class Forum extends Model
 
     public function setLastPostCache()
     {
-        $lastTopic = $this->lastTopic(false);
+        $lastTopic = Topic
+            ::whereIn('forum_id', $this->allSubforums())
+            ->orderBy('topic_last_post_time', 'DESC')
+            ->first();
 
         if ($lastTopic === null) {
             $this->forum_last_post_id = 0;
