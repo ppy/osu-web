@@ -1337,6 +1337,10 @@ class Beatmapset extends Model implements AfterCommit
 
     private static function shouldCacheSearch(array $params)
     {
-        return !(present($params['query']) || $params['recommended']);
+        return !(
+            present($params['query'])
+            || in_array($params['status'], [2, 6], true) // favourites, ranked.
+            || $params['recommended']
+        );
     }
 }
