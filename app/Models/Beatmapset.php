@@ -425,11 +425,6 @@ class Beatmapset extends Model implements AfterCommit
         return $params;
     }
 
-    private static function shouldCacheSearch(array $params)
-    {
-        return !(present($params['query']) || $params['recommended']);
-    }
-
     public static function searchES(array $params = [])
     {
         $searchParams = [
@@ -592,10 +587,8 @@ class Beatmapset extends Model implements AfterCommit
         $params = static::searchParams($params);
 
         if (static::shouldCacheSearch($params)) {
-            \Log::debug('should cache');
             $result = static::searchES($params);
         } else {
-            \Log::debug('should not cache');
             $result = static::searchES($params);
         }
 
@@ -1330,5 +1323,10 @@ class Beatmapset extends Model implements AfterCommit
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    private static function shouldCacheSearch(array $params)
+    {
+        return !(present($params['query']) || $params['recommended']);
     }
 }
