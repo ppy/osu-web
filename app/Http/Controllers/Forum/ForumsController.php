@@ -39,7 +39,11 @@ class ForumsController extends Controller
 
     public function index()
     {
-        $forums = Forum::where('parent_id', 0)->with('subforums')->orderBy('left_id')->get();
+        $forums = Forum
+            ::where('parent_id', 0)
+            ->with('subforums.subforums')
+            ->orderBy('left_id')
+            ->get();
 
         $forums = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
@@ -65,7 +69,7 @@ class ForumsController extends Controller
 
     public function show($id)
     {
-        $forum = Forum::with('subforums')->findOrFail($id);
+        $forum = Forum::with('subforums.subforums')->findOrFail($id);
 
         $sort = explode('_', Request::input('sort'));
         $withReplies = Request::input('with_replies', '');
