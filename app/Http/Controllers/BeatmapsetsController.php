@@ -134,13 +134,17 @@ class BeatmapsetsController extends Controller
     {
         $params = $this->searchParams();
 
-        $search = (new BeatmapsetSearch($params))
-            ->page($params['page'])
-            ->sort($this->searchSortParams())
-            ->source('_id');
+        $records = datadog_timing(function () use ($params) {
+            $search = (new BeatmapsetSearch($params))
+                ->page($params['page'])
+                ->sort($this->searchSortParams())
+                ->source('_id');
+
+            return $search->records();
+        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
 
         return json_collection(
-            $search->records(),
+            $records,
             new BeatmapsetTransformer,
             'beatmaps'
         );
