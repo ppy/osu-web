@@ -170,11 +170,11 @@ return [
             ],
             'kudosu' => [
                 'available' => 'Kudosu Disponível',
-                'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu mapa a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.',
+                'available_info' => 'Kudosu pode ser trocado por estrelas de kudosu, que podem ajudar seu beatmap a ter um pouco mais de atenção. Este é o número de kudosu que você tem disponível.',
                 'recent_entries' => 'Histórico de kudosu recente',
                 'title' => 'Kudosu!',
                 'total' => 'Total de Kudosu Adquirido',
-                'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um mapa. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
+                'total_info' => 'Baseado na contribuição que um usuário fez na moderação de um beatmap. Veja <a href="'.osu_url('user.kudosu').'">esta página</a> para mais informações.',
 
                 'entry' => [
                     'amount' => ':amount kudosu',

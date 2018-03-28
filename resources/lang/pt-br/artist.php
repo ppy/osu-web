@@ -28,8 +28,8 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Baixar modelo de mapa',
-        'download-na' => 'Modelo de mapa indisponível',
+        'download' => 'Baixar modelo de beatmap',
+        'download-na' => 'Modelo de beatmap indisponível',
     ],
 
     'index' => [

@@ -20,7 +20,7 @@
 
 return [
     'index' => [
-        'title' => 'Postagens de Discussão do Mapa',
+        'title' => 'Postagens de Discussão do Beatmap',
     ],
 
     'item' => [

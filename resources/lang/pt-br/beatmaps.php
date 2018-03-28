@@ -60,7 +60,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Esta postagem vai para a discussão geral do mapa. Para fazer uma sugestão neste mapa, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
+            'in_general' => 'Esta postagem vai para a discussão geral do beatmap. Para fazer uma sugestão neste beatmap, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
             'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma postagem por marcação de tempo).',
         ],
 
@@ -110,11 +110,11 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Esse mapa foi aprovado em :date!',
-            'graveyard' => 'Esse mapa não foi atualizado desde :date e provavelmente já foi abandonado pelo seu criador...',
-            'loved' => 'Esse mapa foi adicionado ao loved em :date!',
-            'ranked' => 'Esse mapa foi ranqueado em :date!',
-            'wip' => 'Nota: Esse mapa ainda não finalizado pelo seu criador.',
+            'approved' => 'Esse beatmap foi aprovado em :date!',
+            'graveyard' => 'Esse beatmap não foi atualizado desde :date e provavelmente já foi abandonado pelo seu criador...',
+            'loved' => 'Esse beatmap foi adicionado ao loved em :date!',
+            'ranked' => 'Esse beatmap foi ranqueado em :date!',
+            'wip' => 'Nota: Esse beatmap ainda não finalizado pelo seu criador.',
         ],
 
     ],
@@ -123,8 +123,8 @@ return [
         'button' => 'Dar um Hype!',
         'button_done' => 'Já tem um Hype!',
         'confirm' => 'Você tem certeza? Isso irá consumir um dos seus :n hypes e não poderá ser desfeito.',
-        'explanation' => 'Adicione um Hype nesse mapa e torne-o mais visível para que um Beatmap Nominator possa ranqueá-lo!',
-        'explanation_guest' => 'Conecte-se e adicione um Hype nesse mapa e torne-o mais visível para que um Beatmap Nominator possa ranqueá-lo!',
+        'explanation' => 'Adicione um Hype nesse beatmap e torne-o mais visível para que um Beatmap Nominator possa ranqueá-lo!',
+        'explanation_guest' => 'Conecte-se e adicione um Hype nesse beatmap e torne-o mais visível para que um Beatmap Nominator possa ranqueá-lo!',
         'new_time' => 'Você ganhará um novo hype em :new_time.',
         'remaining' => 'Você ainda tem :remaining hypes sobrando.',
         'required_text' => 'Hype: :current/:required',
@@ -143,9 +143,9 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página',
         'nominate' => 'Nomear',
-        'nominate_confirm' => 'Nomear este mapa?',
+        'nominate_confirm' => 'Nomear este beatmap?',
         'nominated_by' => 'nomeado por :users',
-        'qualified' => 'Esse mapa será ranqueado em :date, caso nenhum problema seja encontrado.',
+        'qualified' => 'Esse beatmap será ranqueado em :date, caso nenhum problema seja encontrado.',
         'qualified_soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
         'required_text' => 'Nomeações: :current/:required',
         'reset_at' => 'Nomeações reiniciadas :time_ago por causa de um novo problema :discussion.',
@@ -196,7 +196,7 @@ return [
         'faves' => 'Favoritos',
         'pending' => 'Pendente',
         'graveyard' => 'Desatualizado',
-        'my-maps' => 'Meus mapas',
+        'my-maps' => 'Meus beatmaps',
     ],
     'genre' => [
         'any' => 'Todos',
