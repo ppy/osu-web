@@ -954,7 +954,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         if ($returnQuery === true) {
             $suffix = $mode === 'osu' ? '' : "_{$mode}";
 
-            return $this->belongsToMany("App\Models\Score\Best\\{$casedMode}", "osu_leaders{$suffix}", 'user_id', 'score_id');
+            return $this->belongsToMany("App\Models\Score\Best\\{$casedMode}", "osu_leaders{$suffix}", 'user_id', 'score_id')->default();
         } else {
             $relation = "scoresFirst{$casedMode}";
 
