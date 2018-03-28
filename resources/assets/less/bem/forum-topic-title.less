@@ -19,19 +19,24 @@
 .forum-topic-title {
   @_line-height: 1.4;
   @_buttons-margin-left: 20px;
+  @_button-edit-width: 35px;
   // actual font takes more than the 1.1 default line height.
   line-height: @_line-height;
 
   /* force line-breaking and hide overflow */
-  word-break: break-all;
+  word-wrap: break-word;
   max-height: unit(@_line-height * 3, em);
   overflow: hidden;
 
   &__button {
     flex: none;
     display: flex;
-    margin-left: 5px;
+    padding-left: 5px;
     pointer-events: auto;
+
+    &--edit {
+      width: @_button-edit-width;
+    }
   }
 
   &__buttons {
@@ -71,7 +76,10 @@
   &__title {
     .link-white();
     .link-plain();
-    margin-right: @_buttons-margin-left;
+    flex: none;
+    padding-right: @_buttons-margin-left;
+    min-width: 0;
+    max-width: calc(100% ~'-' @_button-edit-width);
 
     /* magic line-clamping on webkit browsers (safari, chrome, etc) */
     /* (other browsers won't show ellipses) */
