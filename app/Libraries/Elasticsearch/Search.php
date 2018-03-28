@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Datadog;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
@@ -163,7 +164,13 @@ abstract class Search implements Queryable
     private function fetch()
     {
         try {
-            return new SearchResponse(Es::search($this->toArray()));
+            return datadog_timing(
+                function () {
+                    return new SearchResponse(Es::search($this->toArray()));
+                },
+                config('datadog-helper.prefix_web').'.search.fetch',
+                ['type' => get_called_class()]
+            );
         } catch (NoNodesAvailableException $e) {
             // all servers down
             $this->error = $e;

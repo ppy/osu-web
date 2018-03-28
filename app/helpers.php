@@ -52,6 +52,20 @@ function beatmap_timestamp_format($ms)
     return sprintf('%02d:%02d.%03d', $m, $s, $ms);
 }
 
+function datadog_timing(callable $callable, $stat, array $tag = null)
+{
+    $start = microtime(true);
+
+    $result = $callable();
+
+    if (config('datadog-helper.enabled')) {
+        $duration = microtime(true) - $start;
+        Datadog::microtiming($stat, $duration, 1, $tag);
+    }
+
+    return $result;
+}
+
 function es_query_and_words($words)
 {
     $parts = preg_split("/\s+/", $words, null, PREG_SPLIT_NO_EMPTY);
