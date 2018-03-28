@@ -585,7 +585,18 @@ class Beatmapset extends Model implements AfterCommit
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-        $result = static::searchES($params);
+
+        if (static::shouldCacheSearch($params)) {
+            $result = Cache::remember(
+                static::searchCacheKey($params),
+                config('osu.beatmapset.es_cache_duration'),
+                function () use ($params) {
+                    return static::searchES($params);
+                }
+            );
+        } else {
+            $result = static::searchES($params);
+        }
 
         $data = count($result['ids']) > 0
             ? static
@@ -1318,5 +1329,23 @@ class Beatmapset extends Model implements AfterCommit
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    private static function searchCacheKey(array $params)
+    {
+        ksort($params);
+        unset($params['user']);
+
+        return 'beatmapset-search:'.serialize($params);
+    }
+
+    private static function shouldCacheSearch(array $params)
+    {
+        return !(
+            present($params['query'])
+            || !empty($params['rank'])
+            || in_array($params['status'], [2, 6], true) // favourites, my maps.
+            || $params['recommended']
+        );
     }
 }
