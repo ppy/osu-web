@@ -23,7 +23,7 @@ namespace App\Models\Wiki;
 use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Elasticsearch\Search;
+use App\Libraries\Search\BasicSearch;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\OsuMarkdownProcessor;
@@ -85,7 +85,7 @@ class Page
             ->shouldMatch(1);
 
 
-        $search = (new Search(config('osu.elasticsearch.index.wiki_pages')))
+        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
             ->source('path')
             ->query($query);
 
@@ -178,24 +178,21 @@ class Page
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $config = static::searchIndexConfig([
-                    '_source' => ['page', 'indexed_at', 'version'],
-                    'body' => [
-                        'query' => [
-                            'term' => [
-                                '_id' => $this->pagePath(),
-                            ],
+                $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+                    ->source(['page', 'indexed_at', 'version'])
+                    ->query([
+                        'term' => [
+                            '_id' => $this->pagePath(),
                         ],
-                    ],
-                ]);
+                    ]);
 
-                $search = es_search($config)['hits']['hits'];
+                $hits = $search->response()->hits();
 
                 $page = null;
                 $fetch = true;
 
-                if (count($search) > 0) {
-                    $result = $search[0]['_source'];
+                if (count($hits) > 0) {
+                    $result = $hits[0]['_source'];
                     $expired = Carbon
                         ::parse($result['indexed_at'])
                         ->addMinutes(static::REINDEX_AFTER)
@@ -204,7 +201,7 @@ class Page
                     $fetch = $expired || $wrongVersion;
 
                     if (!$fetch) {
-                        $pageString = $search[0]['_source']['page'] ?? null;
+                        $pageString = $hits[0]['_source']['page'] ?? null;
                         $page = json_decode($pageString, true);
                     }
                 }
