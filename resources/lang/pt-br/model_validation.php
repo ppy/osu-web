@@ -19,16 +19,42 @@
  */
 
 return [
-    'required' => ':attribute é obrigatório.',
-    'wrong_confirmation' => 'A confirmação não é igual.',
+    'not_negative' => ':attribute não pode ser negativo.',
+    'required' => ':attribute é necessário.',
+    'too_long' => ':attribute ultrapassou tamanho máximo - deve ser até :limit caracteres.',
+    'wrong_confirmation' => 'Confirmação não confere.',
 
     'beatmap_discussion_post' => [
-        'first_post' => 'Não é possível excluir a publicação inicial.',
+        'discussion_locked' => 'Discussão está trancada.',
+        'first_post' => 'Não é possível deletar a postagem inicial.',
+    ],
+
+    'beatmapset_discussion' => [
+        'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
+        'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
+        'hype_requires_null_beatmap' => 'Hype deve ser feito na seção Geral (todas as dificuldades).',
+        'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
+        'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
+        'locked' => 'Discussão está trancada.',
+        'mapper_note_wrong_user' => 'Apenas o dono do beatmap pode postar notas de mapper.',
+
+        'hype' => [
+            'guest' => 'Precisa estar conectado para hypar.',
+            'hyped' => 'Você já hypou este beatmap.',
+            'limit_exceeded' => 'Você usou todo seu hype.',
+            'not_hypeable' => 'Este beatmap não pode ser hypado',
+            'owner' => 'Não é possível hypar seu próprio beatmap.',
+        ],
+
+        'timestamp' => [
+            'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do beatmap.',
+            'negative' => "Marcação de tempo não pode ser negativa.",
+        ],
     ],
 
     'forum' => [
         'feature_vote' => [
-            'not_feature_topic' => 'Só é possível votar em uma solicitação de recurso.',
+            'not_feature_topic' => 'Só pode votar um pedido de recurso.',
             'not_enough_feature_votes' => 'Sem votos suficientes.',
         ],
 
@@ -36,27 +62,53 @@ return [
             'invalid' => 'Opção inválida especificada.',
         ],
 
+        'post' => [
+            'beatmapset_post_no_delete' => 'Deletar postagem de metadados de um beatmap não é permitido.',
+            'beatmapset_post_no_edit' => 'Editar postagem de metadados de um beatmap não é permitido.',
+        ],
+
         'topic_poll' => [
             'duplicate_options' => 'Opção duplicada não é permitida.',
-            'invalid_max_options' => 'Opção por usuário não pode exceder o número de opções disponíveis.',
-            'minimum_one_selection' => 'Um mínimo de uma opção por usuário é necessária.',
-            'minimum_two_options' => 'Precisa de pelo menos duas opções.',
-            'too_many_options' => 'Excedeu o número máximo de opções permitidas.',
+            'invalid_max_options' => 'Opção por usuário não deve exceder o número de opções disponíveis.',
+            'minimum_one_selection' => 'É necessário no mínimo uma opção por usuário.',
+            'minimum_two_options' => 'É necessário no mínimo duas opções.',
+            'too_many_options' => 'Número máximo de opções permitidas excedido.',
         ],
 
         'topic_vote' => [
-            'too_many' => 'Selecionou mais opções do que o permitido.',
+            'required' => 'Selecione uma opção quando votar.',
+            'too_many' => 'Mais opções selecionadas do que permitidas.',
         ],
     ],
 
     'user' => [
-        'contains_username' => 'A senha não pode conter o nome de usuário.',
-        'email_already_used' => 'Endereço de e-mail já usado.',
-        'invalid_email' => 'Não parece ser um endereço de e-mail.',
-        'too_short' => 'A nova senha é muito curta.',
-        'weak' => 'Senha na lista negra.',
+        'contains_username' => 'Senha não deve conter seu username.',
+        'email_already_used' => 'Email já utilizado.',
+        'invalid_country' => 'País não presente no banco de dados.',
+        'invalid_email' => "Não parece ser um email válido.",
+        'too_short' => 'Nova senha curta demais.',
+        'unknown_duplicate' => 'Username ou email já utilizado.',
+        'username_available_in' => 'Este username estará disponível em :duration.',
+        'username_available_soon' => 'Este username estará disponível a qualquer momento!',
+        'username_invalid_characters' => 'O username contém caracteres inválidos.',
+        'username_in_use' => 'Username já está em uso!',
+        'username_no_space_userscore_mix' => 'Por favor use underscores ou espaços, não os dois!',
+        'username_no_spaces' => "Username não pode comeaçr ou terminar com espaços!",
+        'username_not_allowed' => 'Esta escolha de username não é permitida.',
+        'username_too_short' => 'O username é muito curto.',
+        'username_too_long' => 'O username é muito longo.',
+        'weak' => 'Senha proibida.',
         'wrong_current_password' => 'Senha atual incorreta.',
-        'wrong_email_confirmation' => 'A confirmação de e-mail não corresponde.',
-        'wrong_password_confirmation' => 'A confirmação de senha não corresponde.',
+        'wrong_email_confirmation' => 'Confirmação de email não confere.',
+        'wrong_password_confirmation' => 'Confirmação de senha não confere.',
+        'too_long' => 'ultrapassou tamanho máximo - deve ser até :limit caracteres.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => 'Você precisa ser :link para mudar seu username!',
+                'link_text' => 'supporter',
+            ],
+            'username_is_same' => 'Este já é seu username, bobinho!',
+        ],
     ],
 ];

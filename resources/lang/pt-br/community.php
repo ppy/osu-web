@@ -22,18 +22,18 @@ return [
     'support' => [
         'header' => [
             // size in font-size
-            'big_description' => 'Ama osu!?<br/>
-                                Ajude o desenvolvedor do osu! :D',
+            'big_description' => 'Ama o osu!?<br/>
+                                Ajude o desenvolvimento do osu! :D',
             'small_description' => '',
             'support_button' => 'Quero ajudar o osu!',
         ],
 
-        'dev_quote' => 'O osu! é um jogo totalmente grátis para jogar, mas mantê-lo definitivamente não é de graça. Dentre o custo de alugar servidores e banda internacional de alta qualidade, o tempo gasto mantendo o sistema e a comunidade, disponibilizamdo prêmios para torneios, respondendo perguntas no suporte e de maneira geral mantendo pessoas felizes, o osu! acaba custando bastante dinheiro! Ah, e não se esqueça de que fazemos tudo isso sem qualquer tipo de anúncios ou contratos com barras de ferramentas e tudo mais!
-            <br/><br/>O osu! é no fim das contas principalmente desenvolvido por mim, que você pode conhecer por "peppy".
+        'dev_quote' => 'O osu! é um jogo totalmente grátis para jogar, mas mantê-lo definitivamente não é de graça. Dentre o custo de alugar servidores e banda internacional de alta qualidade, o tempo gasto mantendo o sistema e a comunidade, disponibilizando prêmios para torneios, respondendo perguntas no suporte e, de maneira geral mantendo pessoas felizes, o osu! acaba custando bastante dinheiro! Ah, e não se esqueça de que fazemos tudo isso sem qualquer tipo de anúncios ou contratos com barras de ferramentas e tudo mais!
+            <br/><br/>O osu! é, no fim das contas principalmente desenvolvido por mim, que você talvez conheça por "peppy".
             Tive que deixar meu trabalho normal para manter o osu!,
-            e às vezes é difícil manter os padrões ao qual desejo ter.
+            e às vezes é difícil manter os padrões que desejo.
             Gostaria de agradecer pessoalmente a todos que ajudaram o osu! até agora,
-            e também à aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
+            e também a aqueles que continuarem a ajudar esse jogo e comunidade maravilhosas no futuro :).',
 
         'why_support' => [
             'title' => 'Por que devo ajudar o osu!?',
@@ -50,21 +50,21 @@ return [
             'title' => 'Hã? O que eu ganho?!',
             'osu_direct' => [
                 'title' => 'osu!direct',
-                'description' => 'acesso fácil e rápido a beatmaps dentro do jogo.',
+                'description' => 'acesso fácil e rápido a beatmaps sem sair do jogo.',
             ],
 
             'auto_downloads' => [
-                'title' => 'Downloads automáticos',
-                'description' => 'Downloads automáticos quando jogando no multijogador, assistindo outros ou clicando em links no chat!',
+                'title' => 'Downloads Automáticos',
+                'description' => 'Downloads automáticos quando jogando no multijogador, assistindo outros jogadores ou clicando em links no chat!',
             ],
 
             'upload_more' => [
-                'title' => 'Envie mais',
-                'description' => 'Compartimentos adicionais para beatmaps pendentes (por beatmap ranqueado) até um máximo de 10.',
+                'title' => 'Envie Mais',
+                'description' => 'Espaços adicionais para beatmaps pendentes (por beatmap ranqueado) até um máximo de 10.',
             ],
 
             'early_access' => [
-                'title' => 'Acesso antecipado',
+                'title' => 'Acesso Antecipado',
                 'description' => 'Acesso a lançamentos mais cedo, onde você pode testar novas funcionalidades antes de irem ao público!',
             ],
 
@@ -74,22 +74,22 @@ return [
             ],
 
             'beatmap_filters' => [
-                'title' => 'Filtros de beatmaps',
+                'title' => 'Filtros de Beatmaps',
                 'description' => 'Filtre buscas de beatmaps por mapas jogados ou não jogados e ranks alcançados (se tiver).',
             ],
 
             'yellow_fellow' => [
-                'title' => 'Camarada amarelo',
+                'title' => 'Camarada Amarelo',
                 'description' => 'Seja reconhecido dentro do jogo com a sua nova cor de nome de usuário amarela.',
             ],
 
             'speedy_downloads' => [
-                'title' => 'Downloads mais rápidos',
+                'title' => 'Downloads Mais Rápidos',
                 'description' => 'Restrições de download mais leves, especialmente quando usando osu!direct.',
             ],
 
             'change_username' => [
-                'title' => 'Alteração de nome de usuário',
+                'title' => 'Alteração de Nome de Usuário',
                 'description' => 'A capacidade de alterar seu nome de usuário sem custos adicionais. (uma vez)',
             ],
 
@@ -99,17 +99,17 @@ return [
             ],
 
             'feature_votes' => [
-                'title' => 'Votos para solicitar recursos',
+                'title' => 'Votos para Solicitar Recursos',
                 'description' => 'Votos para solicitações de recursos. (2 por mês)',
             ],
 
             'sort_options' => [
-                'title' => 'Opções de organização',
-                'description' => 'A capacidade de ver rankings de país/amigos/certas mods dentro do jogo.',
+                'title' => 'Opções de Organização',
+                'description' => 'A capacidade de ver rankings de país/amigos/certas modificações dentro do jogo.',
             ],
 
             'feel_special' => [
-                'title' => 'Sinta-se especial',
+                'title' => 'Sinta-se Especial',
                 'description' => 'Aquela sensação quentinha e gostosa por ter feito sua parte em manter o osu! rodando tranquilo!',
             ],
 

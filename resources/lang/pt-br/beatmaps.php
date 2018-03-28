@@ -40,11 +40,11 @@ return [
         'edited' => 'Última vez editado por :editor às :update_time.',
         'kudosu_denied' => 'Impossibilitado de receber kudosu',
         'message_placeholder' => 'Digite aqui para postar',
-        'message_placeholder_deleted_beatmap' => 'Essa dificuldade foi deletada e uma dicussão não poderá ser aberta.',
-        'message_type_select' => 'Selecione o tipo de comentário',
+        'message_placeholder_deleted_beatmap' => 'Esta dificuldade foi deletada e uma dicussão não poderá ser aberta.',
+        'message_type_select' => 'Selecione o Tipo de Comentário',
         'reply_notice' => 'Pressione enter para responder.',
         'reply_placeholder' => 'Digite sua resposta aqui',
-        'require-login' => 'Por favor, conecte-se para responder',
+        'require-login' => 'Por favor, conecte-se para postar ou responder',
         'resolved' => 'Resolvido',
         'restore' => 'restaurar',
         'title' => 'Discussões',
@@ -60,7 +60,7 @@ return [
         ],
 
         'message_hint' => [
-            'in_general' => 'Essa postagem vai para a discussão geral do mapa. Para fazer uma sugestão nesse mapa, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
+            'in_general' => 'Esta postagem vai para a discussão geral do mapa. Para fazer uma sugestão neste mapa, inicie a mensagem com uma marcação de tempo (ex.: 00:12:345).',
             'in_timeline' => 'Para fazer várias sugestões ao mesmo tempo, poste várias marcações (uma postagem por marcação de tempo).',
         ],
 
@@ -74,13 +74,18 @@ return [
 
         'mode' => [
             'events' => 'Histórico',
+            'general' => 'Geral :scope',
             'timeline' => 'Linha do tempo',
+            'scopes' => [
+                'general' => 'Esta dificuldade',
+                'generalAll' => 'Todas as dificuldades',
+            ],
         ],
 
         'new' => [
             'timestamp' => 'Timestamp',
             'timestamp_missing' => 'ctrl-c in edit mode and paste in your message to add a timestamp!',
-            'title' => 'Nova discussão',
+            'title' => 'Nova Discussão',
         ],
 
         'show' => [
@@ -88,7 +93,7 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Filtrar by:',
+            '_' => 'Ordenado por:',
             'created_at' => 'data de criação',
             'timeline' => 'linha do tempo',
             'updated_at' => 'última atualização',
@@ -120,11 +125,15 @@ return [
         'confirm' => 'Você tem certeza? Isso irá consumir um dos seus :n hypes e não poderá ser desfeito.',
         'explanation' => 'Adicione um Hype nesse mapa e torne-o mais visível para que um Beatmap Nominator possa ranqueá-lo!',
         'explanation_guest' => 'Conecte-se e adicione um Hype nesse mapa e torne-o mais visível para que um Beatmap Nominator possa ranqueá-lo!',
-        'new_time' => 'Você terá um novo hype em :new_time.',
+        'new_time' => 'Você ganhará um novo hype em :new_time.',
         'remaining' => 'Você ainda tem :remaining hypes sobrando.',
         'required_text' => 'Hype: :current/:required',
         'section_title' => 'Trenzinho do Hype',
         'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Deixar Feedback',
     ],
 
     'nominations' => [
@@ -134,7 +143,7 @@ return [
         'disqualify' => 'Desqualificar',
         'incorrect_state' => 'Erro ao realizar essa ação, tente atualizar a página',
         'nominate' => 'Nomear',
-        'nominate_confirm' => 'Nomear esse mapa?',
+        'nominate_confirm' => 'Nomear este mapa?',
         'nominated_by' => 'nomeado por :users',
         'qualified' => 'Esse mapa será ranqueado em :date, caso nenhum problema seja encontrado.',
         'qualified_soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
@@ -147,24 +156,29 @@ return [
 
     'listing' => [
         'search' => [
-            'prompt' => 'digite palavra-chave...',
-            'options' => 'Mais opções de busca',
+            'prompt' => 'digite palavras-chave...',
+            'options' => 'Mais Opções de Busca',
             'not-found' => 'nenhum resultado',
             'not-found-quote' => '... não, nada encontrado.',
             'filters' => [
+                'general' => 'Geral',
                 'mode' => 'Modo',
-                'status' => 'Estado de ranqueamento',
+                'status' => 'Estado de Ranqueamento',
                 'genre' => 'Gênero',
                 'language' => 'Idioma',
                 'extra' => 'extra',
-                'rank' => 'Ranque conquistado',
+                'rank' => 'Ranque Conquistado',
             ],
         ],
         'mode' => 'Modo',
-        'status' => 'Estado de ranqueamento',
+        'status' => 'Estado de Ranqueamento',
         'mapped-by' => 'mapeado por :mapper',
         'source' => 'de :source',
         'load-more' => 'Carregar mais...',
+    ],
+    'general' => [
+        'recommended' => 'Dificuldade recomendada',
+        'converts' => 'Incluir beatmaps convertidos',
     ],
     'mode' => [
         'any' => 'Todos',
@@ -186,15 +200,15 @@ return [
     ],
     'genre' => [
         'any' => 'Todos',
-        'unspecified' => 'Não específico',
-        'video-game' => 'Video Game',
+        'unspecified' => 'Não Especificado',
+        'video-game' => 'Vídeo Game',
         'anime' => 'Anime',
         'rock' => 'Rock',
         'pop' => 'Pop',
         'other' => 'Outro',
         'novelty' => 'Atual',
         'hip-hop' => 'Hip Hop',
-        'electronic' => 'Electrônica',
+        'electronic' => 'Eletrônica',
     ],
     'mods' => [
         'NF' => 'No Fail',
@@ -234,7 +248,7 @@ return [
         'other' => 'Outro',
     ],
     'extra' => [
-        'video' => 'Possui vídeo',
+        'video' => 'Possui Vídeo',
         'storyboard' => 'Possui Storyboard',
     ],
     'rank' => [
