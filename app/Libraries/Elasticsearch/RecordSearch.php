@@ -35,11 +35,6 @@ class RecordSearch extends Search
         return $this->records();
     }
 
-    public function overLimit()
-    {
-        return $this->response()->total() > static::MAX_RESULTS;
-    }
-
     public function records()
     {
         return $this->response()->records()->get();
@@ -48,10 +43,5 @@ class RecordSearch extends Search
     public function response() : SearchResponse
     {
         return parent::response()->recordType($this->recordType);
-    }
-
-    public function total()
-    {
-        return min($this->response()->total(), static::MAX_RESULTS);
     }
 }

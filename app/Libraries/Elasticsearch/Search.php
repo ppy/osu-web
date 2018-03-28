@@ -110,6 +110,16 @@ abstract class Search implements Queryable
     }
 
     /**
+     * Returns if the total number of results found is greater than the allowed limit.
+     *
+     * @return bool
+     */
+    public function overLimit()
+    {
+        return $this->response()->total() > static::MAX_RESULTS;
+    }
+
+    /**
      * @return SearchResponse
      */
     public function response() : SearchResponse
@@ -155,6 +165,11 @@ abstract class Search implements Queryable
         return $json;
     }
 
+    /**
+     * Returns the user-visible total which can be less than the total number of matching documents.
+     *
+     * @return int
+     */
     public function total()
     {
         return min($this->response()->total(), static::MAX_RESULTS);

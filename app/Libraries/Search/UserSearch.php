@@ -41,6 +41,22 @@ class UserSearch extends RecordSearch
     /**
      * {@inheritdoc}
      */
+    public function overLimit()
+    {
+        return min($this->response()->total(), config('osu.search.max.user'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function total()
+    {
+        return min($this->response()->total(), config('osu.search.max.user'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function toArray() : array
     {
         static $lowercase_stick = [

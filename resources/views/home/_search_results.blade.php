@@ -42,6 +42,11 @@
                 @lang("home.search.{$mode}.more_simple")
             </a>
         @else
+            @if (request('mode') === 'user' && $search->overLimit())
+                <div class="search-result__row search-result__row--notice">
+                    {{ trans("home.search.user.more_hidden", ['max' => config("osu.search.max.user")]) }}
+                </div>
+            @endif
             <div class="search-result__row search-result__row--paginator">
                 @php
                     $paginator = $search->getPaginator(['path' => route('search')])->appends(request()->query());
