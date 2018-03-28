@@ -1343,7 +1343,7 @@ class Beatmapset extends Model implements AfterCommit
     {
         return !(
             present($params['query'])
-            || in_array($params['status'], [2, 6], true) // favourites, ranked.
+            || in_array($params['status'], [2, 6], true) // favourites, my maps.
             || $params['recommended']
         );
     }
