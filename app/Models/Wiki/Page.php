@@ -178,21 +178,20 @@ class Page
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
                     ->source(['page', 'indexed_at', 'version'])
                     ->query([
                         'term' => [
                             '_id' => $this->pagePath(),
                         ],
-                    ]);
-
-                $hits = $search->response()->hits();
+                    ])
+                    ->response();
 
                 $page = null;
                 $fetch = true;
 
-                if (count($hits) > 0) {
-                    $result = $hits[0]['_source'];
+                if ($response->total() > 0) {
+                    $result = $response[0]->source();
                     $expired = Carbon
                         ::parse($result['indexed_at'])
                         ->addMinutes(static::REINDEX_AFTER)
@@ -201,7 +200,7 @@ class Page
                     $fetch = $expired || $wrongVersion;
 
                     if (!$fetch) {
-                        $pageString = $hits[0]['_source']['page'] ?? null;
+                        $pageString = $result['page'] ?? null;
                         $page = json_decode($pageString, true);
                     }
                 }
