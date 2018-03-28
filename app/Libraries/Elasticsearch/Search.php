@@ -175,6 +175,11 @@ abstract class Search implements Queryable
         return min($this->response()->total(), static::MAX_RESULTS);
     }
 
+    protected function getDefaultSize() : int
+    {
+        return 50;
+    }
+
     private function fetch()
     {
         try {
@@ -197,10 +202,5 @@ abstract class Search implements Queryable
         }
 
         return SearchResponse::failed();
-    }
-
-    protected function getDefaultSize() : int
-    {
-        return 50;
     }
 }
