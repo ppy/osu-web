@@ -19,7 +19,7 @@
 el = React.createElement
 {button, div, span} = ReactDOMFactories
 
-bn = 'friend-button'
+bn = 'user-action-button'
 
 class @FriendButton extends React.PureComponent
   constructor: (props) ->
