@@ -84,7 +84,6 @@ class Page
             ->should($localeQuery)
             ->shouldMatch(1);
 
-
         $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
             ->source('path')
             ->query($query);
@@ -95,11 +94,11 @@ class Page
             return;
         }
 
-        foreach ($response->hits() as $result) {
-            $resultPath = static::cleanupPath($result['_source']['path']);
+        foreach ($response as $hit) {
+            $resultPath = static::cleanupPath($hit->source('path'));
 
             if ($resultPath === $searchPath) {
-                return $result['_source']['path'];
+                return $hit->source('path');
             }
         }
     }
