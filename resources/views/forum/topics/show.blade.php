@@ -97,7 +97,7 @@
                 'data-force-reload' => Auth::check() === false ? '1' : '0',
             ]) !!}
                 <div class="forum-post__reply-container">
-                    <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
+                    <div class="osu-page osu-page--small-desktop osu-page--full-height">
                         <div class="forum-post__reply-content">
                             <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
                                 @if (Auth::check() === true)
@@ -157,7 +157,7 @@
 
         <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
     @else
-        <div class="osu-layout__row osu-layout__row--sm2-desktop">
+        <div class="osu-page osu-page--small-desktop">
             <div class="warning-box">
                 <div class="warning-box__icon">
                     <i class="fa fa-warning"></i>
