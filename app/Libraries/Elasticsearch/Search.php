@@ -35,6 +35,7 @@ abstract class Search implements Queryable
 
     protected $index;
     protected $options;
+    protected $queryString;
 
     private $count;
     private $error;

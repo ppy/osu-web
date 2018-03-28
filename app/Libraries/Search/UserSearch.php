@@ -34,7 +34,7 @@ class UserSearch extends RecordSearch
             $options
         );
 
-        $this->queryString = $this->options['query'] ?? '';
+        $this->queryString = $this->options['query'] ?? null;
         $this->recentOnly = $this->options['recentOnly'] ?? false;
     }
 

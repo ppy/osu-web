@@ -48,7 +48,7 @@ class ForumSearch extends Search
     {
         parent::__construct(Post::esIndexName(), $options);
 
-        $this->queryString = $options['query'];
+        $this->queryString = $options['query'] ?? null;
         $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
         $this->username = presence($options['username'] ?? null);
         $this->forumId = get_int($options['forumId'] ?? null);

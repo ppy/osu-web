@@ -41,7 +41,7 @@ class BeatmapsetSearch extends RecordSearch
         static $validExtras = ['video', 'storyboard'];
         static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
 
-        $this->queryString = es_query_escape_with_caveats($options['query']);
+        $this->queryString = es_query_escape_with_caveats($options['query'] ?? null);
         $this->status = get_int($options['status'] ?? null) ?? 0;
         $this->genre = get_int($options['genre'] ?? null);
         $this->language = get_int($options['language'] ?? null);

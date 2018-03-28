@@ -49,7 +49,7 @@ class PostSearch extends Search
         parent::__construct(Post::esIndexName(), $options);
 
         $this->userId = get_int($options['userId'] ?? -1);
-        $this->queryString = presence($options['query'] ?? '');
+        $this->queryString = $options['query'] ?? null;
 
         $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
         $this->forumId = get_int($options['forumId'] ?? null);
