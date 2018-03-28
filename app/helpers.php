@@ -126,33 +126,6 @@ function es_records($results, $class)
     return $records;
 }
 
-function es_search($params)
-{
-    try {
-        return Es::search($params);
-    } catch (Elasticsearch\Common\Exceptions\NoNodesAvailableException $e) {
-        // all servers down
-        $error = $e;
-    } catch (Elasticsearch\Common\Exceptions\BadRequest400Exception $e) {
-        // invalid query
-        $error = $e;
-    } catch (Elasticsearch\Common\Exceptions\Missing404Exception $e) {
-        // index is missing ?_?
-        $error = $e;
-    }
-
-    Log::debug($error);
-
-    // default return on failure
-    return [
-        'hits' => [
-            'hits' => [],
-            'total' => 0,
-        ],
-        'exception' => $error ?? null,
-    ];
-}
-
 function flag_path($country)
 {
     return '/images/flags/'.$country.'.png';
