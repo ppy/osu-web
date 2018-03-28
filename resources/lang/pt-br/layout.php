@@ -253,7 +253,7 @@ return [
         'links' => [
             'account-edit' => 'Configurações',
             'friends' => 'Amigos',
-            'logout' => 'Desconectar'
+            'logout' => 'Desconectar',
             'profile' => 'Meu Perfil',
         ],
     ],

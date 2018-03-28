@@ -31,7 +31,7 @@ return [
 
     'beatmapset_discussion' => [
         'beatmap_missing' => 'Marcação de tempo é especificada mas beatmap está faltando.',
-        'beatmapset_no_hype' => "Beatmap não pode ser hypado.",
+        'beatmapset_no_hype' => 'Beatmap não pode ser hypado.',
         'hype_requires_null_beatmap' => 'Hype deve ser feito na seção Geral (todas as dificuldades).',
         'invalid_beatmap_id' => 'Dificuldade inválida especificada.',
         'invalid_beatmapset_id' => 'Beatmap inválido especificado.',
@@ -48,7 +48,7 @@ return [
 
         'timestamp' => [
             'exceeds_beatmapset_length' => 'Marcação de tempo especificada ultrapassa a duração do beatmap.',
-            'negative' => "Marcação de tempo não pode ser negativa.",
+            'negative' => 'Marcação de tempo não pode ser negativa.',
         ],
     ],
 
@@ -85,7 +85,7 @@ return [
         'contains_username' => 'Senha não deve conter seu username.',
         'email_already_used' => 'Email já utilizado.',
         'invalid_country' => 'País não presente no banco de dados.',
-        'invalid_email' => "Não parece ser um email válido.",
+        'invalid_email' => 'Não parece ser um email válido.',
         'too_short' => 'Nova senha curta demais.',
         'unknown_duplicate' => 'Username ou email já utilizado.',
         'username_available_in' => 'Este username estará disponível em :duration.',
@@ -93,7 +93,7 @@ return [
         'username_invalid_characters' => 'O username contém caracteres inválidos.',
         'username_in_use' => 'Username já está em uso!',
         'username_no_space_userscore_mix' => 'Por favor use underscores ou espaços, não os dois!',
-        'username_no_spaces' => "Username não pode comeaçr ou terminar com espaços!",
+        'username_no_spaces' => 'Username não pode comeaçr ou terminar com espaços!',
         'username_not_allowed' => 'Esta escolha de username não é permitida.',
         'username_too_short' => 'O username é muito curto.',
         'username_too_long' => 'O username é muito longo.',

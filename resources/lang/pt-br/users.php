@@ -80,7 +80,7 @@ return [
         'username' => 'Convidado',
         'error' => 'Você precisa estar conectado para fazer isso.',
     ],
-    'logout_confirm' => 'Tem certeza que deseja sair? :(',
+    'logout_confirm' => 'Tem certeza de que deseja sair? :(',
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',
@@ -237,7 +237,6 @@ return [
                 'title' => 'Ranques',
                 'weighted_pp' => 'ponderados: :pp (:percentage)',
             ],
-        ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
                 'bad_standing' => "A conta de <strong>:username</strong> não está num estado muito bom :(",
