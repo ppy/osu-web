@@ -17,7 +17,7 @@
  */
 
 .forum-post {
-  @_reply-xs-top-margin: 4px;
+  @_top: forum-post;
 
   .default-box-shadow();
   background-color: #fff;
@@ -74,7 +74,7 @@
   &__body {
     flex: none;
     @media @desktop {
-      flex: 1 1 auto;
+      flex: 1;
     }
 
     display: flex;
@@ -84,8 +84,10 @@
     // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
     min-width: 0;
 
-    &--reply-form {
-      flex: 1 1 auto;
+    .@{_top}--reply & {
+      @media @desktop {
+        flex: none;
+      }
     }
   }
 
@@ -98,7 +100,7 @@
     &--edit-bar {
       background-color: @gray-lighter;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding-top: 10px;
       padding-bottom: 10px;
     }
@@ -255,10 +257,14 @@
   &__reply-body {
     .default-box-shadow();
     background-color: #fff;
-    flex: 1 0 auto;
+    flex: none;
     display: flex;
     flex-direction: column;
     min-width: 0;
+
+    @media @desktop {
+      flex: 1;
+    }
   }
 
   &__reply-stick {

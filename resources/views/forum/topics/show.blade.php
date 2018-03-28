@@ -126,7 +126,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="js-forum-reply-write forum-post__body forum-post__body--reply-form">
+                            <div class="js-forum-reply-write forum-post__body">
                                 <div class="forum-post__content forum-post__content--edit-body">
                                     @include('forum.posts._form_body', ['postBody' => [
                                         'focus' => false,
