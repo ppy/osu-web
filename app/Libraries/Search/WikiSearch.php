@@ -36,7 +36,7 @@ class WikiSearch extends RecordSearch
         );
 
         $this->queryString = $this->options['query'] ?? null;
-        $this->locale = $this->options['locale'] ?? config('app.fallback_locale');
+        $this->locale = $this->options['locale'] ?? null;
     }
 
     public function records()
