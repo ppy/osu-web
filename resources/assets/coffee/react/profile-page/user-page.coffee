@@ -22,7 +22,7 @@ el = React.createElement
 class ProfilePage.UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
-    div className: 'page-extra',
+    div className: 'page-extra page-extra--me-section',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if !@props.userPage.editing && @props.withEdit && !isBlank
@@ -39,7 +39,7 @@ class ProfilePage.UserPage extends React.Component
       else if @props.withEdit && isBlank
         @pageNew()
       else
-        @pageShow()
+        div className: 'page-extra__content-overflow-wrapper', @pageShow()
 
 
   editStart: ->

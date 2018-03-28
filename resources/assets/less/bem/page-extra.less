@@ -35,6 +35,11 @@
     padding: 0;
   }
 
+  &--me-section {
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
+
   &__actions {
     display: flex;
     flex-direction: column;
@@ -78,6 +83,12 @@
   &__chart {
     height: 250px;
     width: 100%;
+  }
+
+  &__content-overflow-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   &__title {
