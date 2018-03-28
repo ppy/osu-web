@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Elasticsearch;
 
-use Datadog;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;

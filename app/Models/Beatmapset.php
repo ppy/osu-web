@@ -31,7 +31,6 @@ use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
 use Cache;
 use Carbon\Carbon;
-use Datadog;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
