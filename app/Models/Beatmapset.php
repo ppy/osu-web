@@ -587,9 +587,13 @@ class Beatmapset extends Model implements AfterCommit
         $params = static::searchParams($params);
 
         if (static::shouldCacheSearch($params)) {
-            $result = Cache::remember(static::searchCacheKey($params), 2, function () use ($params) {
-                return static::searchES($params);
-            });
+            $result = Cache::remember(
+                static::searchCacheKey($params),
+                config('osu.beatmapset.es_cache_duration'),
+                function () use ($params) {
+                    return static::searchES($params);
+                }
+            );
         } else {
             $result = static::searchES($params);
         }
