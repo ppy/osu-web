@@ -239,7 +239,7 @@ return [
             ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
-                'bad_standing' => "A conta de <strong>:username</strong> não está num estado muito bom :(",
+                'bad_standing' => 'A conta de <strong>:username</strong> não está num estado muito bom :(',
                 'remaining_silence' => '<strong>:username</strong> vai poder falar novamente em :duration.',
 
                 'recent_infringements' => [
