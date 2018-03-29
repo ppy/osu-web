@@ -34,7 +34,6 @@ use App\Models\Language;
 use App\Transformers\BeatmapsetTransformer;
 use App\Transformers\CountryTransformer;
 use Auth;
-use Cache;
 use Carbon\Carbon;
 use Request;
 
@@ -134,18 +133,23 @@ class BeatmapsetsController extends Controller
     public function search()
     {
         $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
-        if ($params->isCacheable()) {
-            $cacheKey = "output-cache:{$params->getCacheKey()}";
-            return Cache::remember(
-                $cacheKey,
-                config('osu.beatmapset.es_cache_duration'),
-                function () use ($params) {
-                    return $this->getSearchOutput($params);
-                }
-            );
-        }
+        return $params->fetchCacheable(
+            "output-cache:{$params->getCacheKey()}",
+            config('osu.beatmapset.es_cache_duration'),
+            function () use ($params) {
+                $records = datadog_timing(function () use ($params) {
+                    $search = (new BeatmapsetSearch($params))->source('_id');
 
-        return $this->getSearchOutput($params);
+                    return $search->records();
+                }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+
+                return json_collection(
+                    $records,
+                    new BeatmapsetTransformer,
+                    'beatmaps'
+                );
+            }
+        );
     }
 
     public function discussion($id)
@@ -291,20 +295,5 @@ class BeatmapsetsController extends Controller
           'favcount' => $beatmapset->fresh()->favourite_count,
           'favourited' => $user->fresh()->hasFavourited($beatmapset),
         ];
-    }
-
-    private function getSearchOutput(BeatmapsetSearchRequestParams $params)
-    {
-        $records = datadog_timing(function () use ($params) {
-            $search = (new BeatmapsetSearch($params))->source('_id');
-
-            return $search->records();
-        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
-
-        return json_collection(
-            $records,
-            new BeatmapsetTransformer,
-            'beatmaps'
-        );
     }
 }

@@ -21,6 +21,7 @@
 namespace App\Libraries\Search;
 
 use Auth;
+use Cache;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
 use App\Models\User;
@@ -94,6 +95,21 @@ class BeatmapsetSearchRequestParams
 
         $sort = explode('_', $request['sort']);
         $this->sort = new Sort($sort[0] ?? null, $sort[1] ?? null);
+    }
+
+    /**
+     * Magic execute and cache if isCacheable() function.
+     * This does not seem like the best place for it but it will do for now.
+     */
+    public function fetchCacheable(string $cacheKey, float $duration, callable $callable)
+    {
+        if ($this->isCacheable()) {
+            return Cache::remember($cacheKey, $duration, function () use ($callable) {
+                return $callable();
+            });
+        }
+
+        return $callable();
     }
 
     public function getCacheKey()
