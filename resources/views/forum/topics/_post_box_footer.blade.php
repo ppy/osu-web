@@ -18,7 +18,7 @@
 <?php
     if (!isset($editing)) { $editing = false; }
 ?>
-<div class="post-box__toolbar hidden-xs">
+<div class="post-editor__toolbar hidden-xs">
     @include("forum._post_toolbar")
 </div>
 

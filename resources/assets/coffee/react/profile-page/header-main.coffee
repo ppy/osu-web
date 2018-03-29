@@ -115,6 +115,7 @@ class ProfilePage.HeaderMain extends React.Component
     return unless @state.editing
 
     if e?
+      return if e.button != 0
       return if $(e.target).closest(@coverSelector).length
 
     return if $('#overlay').is(':visible')

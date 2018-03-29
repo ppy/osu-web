@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Datadog;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
@@ -150,6 +151,14 @@ abstract class Search implements Queryable
         } catch (Missing404Exception $e) {
             // index is missing ?_?
             $this->error = $e;
+        }
+
+        if (config('datadog-helper.enabled')) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.search.errors',
+                1,
+                ['class' => get_class($error)]
+            );
         }
 
         return SearchResponse::failed();
