@@ -29,7 +29,7 @@ class ProfilePage.Badges extends React.Component
     @intervals = {}
 
     @state =
-      currentBadge: @props.badges.length
+      currentBadge: @props.badges.length - 1
       looping: true
       initial: true
 
