@@ -30,7 +30,7 @@ return [
         'email' => [
             'current' => 'Aktuelle E-Mail-Adresse',
             'new' => 'Neue E-Mail-Adresse',
-            'new_confirmation' =>'E-Mail-Adresse bestätigen',
+            'new_confirmation' => 'E-Mail-Adresse bestätigen',
             'title' => 'E-Mail-Adresse',
         ],
 
