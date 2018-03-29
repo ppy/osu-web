@@ -26,16 +26,16 @@ use App\Models\User;
 
 class UserSearch extends RecordSearch
 {
-    public function __construct(array $options = [])
+    private $params;
+
+    public function __construct(UserSearchRequestParams $params)
     {
         parent::__construct(
             User::esIndexName(),
-            User::class,
-            $options
+            User::class
         );
 
-        $this->queryString = $this->options['query'] ?? null;
-        $this->recentOnly = $this->options['recentOnly'] ?? false;
+        $this->params = $params;
     }
 
     /**
@@ -73,15 +73,15 @@ class UserSearch extends RecordSearch
 
         $query = (new BoolQuery())
             ->shouldMatch(1)
-            ->should(['match' => ['username.raw' => ['query' => $this->queryString, 'boost' => 5]]])
-            ->should(['multi_match' => array_merge(['query' => $this->queryString], $lowercase_stick)])
-            ->should(['multi_match' => array_merge(['query' => $this->queryString], $whitespace_stick)])
-            ->should(['match_phrase' => ['username._slop' => $this->queryString]])
+            ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
+            ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
+            ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
+            ->should(['match_phrase' => ['username._slop' => $this->params->queryString]])
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
 
-        if ($this->recentOnly) {
+        if ($this->params->recentOnly) {
             $query->filter([
                 'range' => [
                     'user_lastvisit' => [
