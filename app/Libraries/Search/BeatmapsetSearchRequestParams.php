@@ -95,4 +95,23 @@ class BeatmapsetSearchRequestParams
         $sort = explode('_', $request['sort']);
         $this->sort = new Sort($sort[0] ?? null, $sort[1] ?? null);
     }
+
+    public function getCacheKey()
+    {
+        $vars = get_object_vars($this);
+        unset($vars['user']);
+        ksort($vars);
+
+        return 'beatmapset-search:'.serialize($vars);
+    }
+
+    public function isCacheable()
+    {
+        return !(
+            present($this->queryString)
+            || !empty($this->rank)
+            || in_array($this->status, [2, 6], true) // favourites, my maps.
+            || $this->showRecommended
+        );
+    }
 }
