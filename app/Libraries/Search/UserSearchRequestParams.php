@@ -20,8 +20,6 @@
 
 namespace App\Libraries\Search;
 
-use Auth;
-use App\Libraries\Elasticsearch\Sort;
 use Illuminate\Http\Request;
 
 class UserSearchRequestParams extends SearchRequestParams

@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Search;
 
-use Auth;
 use App\Libraries\Elasticsearch\Sort;
 use App\Models\Beatmap;
 use App\Models\User;

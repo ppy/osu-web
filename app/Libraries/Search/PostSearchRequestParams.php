@@ -20,7 +20,6 @@
 
 namespace App\Libraries\Search;
 
-use App\Libraries\Elasticsearch\Sort;
 use App\Models\User;
 use Illuminate\Http\Request;
 
