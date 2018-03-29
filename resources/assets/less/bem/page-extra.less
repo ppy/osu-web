@@ -57,12 +57,6 @@
       opacity: 0;
     }
 
-    .@{top}--userpage & {
-      @media @mobile {
-        margin-right: 30px;
-      }
-    }
-
     .@{top}:hover & {
       opacity: 1;
     }
@@ -121,7 +115,10 @@
     cursor: move;
 
     .@{top}--userpage & {
-      margin-right: 30px;
+      margin-right: @page-extra-side-padding--large;
+      @media @mobile {
+        margin-right: @page-extra-side-padding--small;
+      }
     }
   }
 }
