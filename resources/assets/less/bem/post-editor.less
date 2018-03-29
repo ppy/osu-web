@@ -30,12 +30,13 @@
 
   &__actions {
     display: flex;
-    justify-content: flex-end;
-    flex: 1 0 auto;
+    flex: none;
+    justify-content: center;
+    width: 100%; // force container to wrap.
 
-    @media @mobile {
-      justify-content: center;
-      width: 100%; // force container to wrap.
+    @media @desktop {
+      margin-left: 5px;
+      width: auto;
     }
   }
 
@@ -43,7 +44,7 @@
     display: flex;
     flex: 1 0 auto;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     padding: @padding--small;
 
@@ -83,7 +84,7 @@
 
   &__toolbar {
     display: flex;
-    flex: 1 0 auto;
+    flex: 1;
     justify-content: flex-start;
     margin-bottom: @padding--small;
 
