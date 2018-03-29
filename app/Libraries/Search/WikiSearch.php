@@ -27,16 +27,14 @@ use App\Models\Wiki\Page;
 
 class WikiSearch extends RecordSearch
 {
-    public function __construct(array $options = [])
+    public function __construct(WikiSearchRequestParams $params)
     {
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),
-            Page::class,
-            $options
+            Page::class
         );
 
-        $this->queryString = $this->options['query'] ?? null;
-        $this->locale = $this->options['locale'] ?? null;
+        $this->params = $params;
     }
 
     public function records()
@@ -65,7 +63,7 @@ class WikiSearch extends RecordSearch
                 'boost' => 1000,
                 'filter' => [
                     'match' => [
-                        'locale' => $this->locale ?? App::getLocale(),
+                        'locale' => $this->params->locale ?? App::getLocale(),
                     ],
                 ],
             ]])
@@ -81,24 +79,24 @@ class WikiSearch extends RecordSearch
             ->shouldMatch(1)
             ->should(['match' => [
                 'tags' => [
-                    'query' => $this->queryString,
+                    'query' => $this->params->queryString,
                     'boost' => 10,
                 ],
             ]])
             ->should(['match' => [
                 'title' => [
-                    'query' => $this->queryString,
+                    'query' => $this->params->queryString,
                     'boost' => 10,
                 ],
             ]])
             ->should(['match' => [
                 'path_clean' => [
-                    'query' => $this->queryString,
+                    'query' => $this->params->queryString,
                     'boost' => 9,
                 ],
             ]])
             ->should(['match' => [
-                'page_text' => $this->queryString,
+                'page_text' => $this->params->queryString,
             ]]);
 
         $this->query = (new BoolQuery)
