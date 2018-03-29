@@ -41,7 +41,7 @@ class ForumSearch extends Search
 
     private $params;
 
-    public function __construct(ForumSearchRequestParams $params)
+    public function __construct(ForumSearchParams $params)
     {
         parent::__construct(Post::esIndexName());
         $this->params = $params;

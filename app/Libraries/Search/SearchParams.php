@@ -22,7 +22,7 @@ namespace App\Libraries\Search;
 
 use Cache;
 
-abstract class SearchRequestParams
+abstract class SearchParams
 {
     /**
      * Magic execute and cache if isCacheable() function.

@@ -22,7 +22,7 @@ namespace App\Libraries\Search;
 
 use Illuminate\Http\Request;
 
-class UserSearchRequestParams extends SearchRequestParams
+class UserSearchParams extends SearchParams
 {
     // all public because lazy.
 

@@ -73,7 +73,7 @@ class MultiSearch
 
                 $options = array_merge(['query' => $this->query], $settings['options'] ?? []);
                 $class = $settings['type'];
-                $paramsClass = "{$class}RequestParams";
+                $paramsClass = "{$class}Params";
 
                 // FIXME: quick hack to make everything work while changing
                 if (class_exists($paramsClass)) {

@@ -25,7 +25,7 @@ use App\Models\Beatmap;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class BeatmapsetSearchRequestParams extends SearchRequestParams
+class BeatmapsetSearchParams extends SearchParams
 {
     // all public because lazy.
 

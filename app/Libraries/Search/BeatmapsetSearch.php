@@ -30,11 +30,11 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    /** @var BeatmapSearchRequestParams */
+    /** @var BeatmapSearchParams */
     private $params;
 
     /**
-     * @param BeatmapsetSearchRequestParams $params
+     * @param BeatmapsetSearchParams $params
      */
     public function __construct($params)
     {

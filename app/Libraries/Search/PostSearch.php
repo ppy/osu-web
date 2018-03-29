@@ -40,7 +40,7 @@ class PostSearch extends Search
 
     private $params;
 
-    public function __construct(PostSearchRequestParams $params)
+    public function __construct(PostSearchParams $params)
     {
         parent::__construct(Post::esIndexName());
 

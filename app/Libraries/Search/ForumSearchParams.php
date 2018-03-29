@@ -20,18 +20,14 @@
 
 namespace App\Libraries\Search;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class PostSearchRequestParams extends SearchRequestParams
+class ForumSearchParams extends SearchParams
 {
     // all public because lazy.
 
     /** @var int|null */
     public $forumId = null;
-
-    /** @var int|null */
-    public $topicId = null;
 
     /** @var bool */
     public $includeSubforums = false;
@@ -39,15 +35,18 @@ class PostSearchRequestParams extends SearchRequestParams
     /** @var string|null */
     public $queryString = null;
 
-    /** @var int */
-    public $userId = -1;
+    /** @var int|null */
+    public $topicId = null;
+
+    /** @var int|null */
+    public $username = null;
 
     public function getCacheKey()
     {
         $vars = get_object_vars($this);
         ksort($vars);
 
-        return 'post-search:'.json_encode($vars);
+        return 'forum-search:'.json_encode($vars);
     }
 
     public function isCacheable()
@@ -59,22 +58,18 @@ class PostSearchRequestParams extends SearchRequestParams
     {
         $params = new static;
 
-        $params->userId = get_int($array['userId'] ?? -1);
-        $params->queryString = presence($array['query'] ?? null);
-
+        $params->queryString = $array['query'] ?? null;
         $params->includeSubforums = get_bool($array['includeSubforums'] ?? false);
+        $params->username = presence($array['username'] ?? null);
         $params->forumId = get_int($array['forumId'] ?? null);
+        $params->topicId = get_int($array['topicId'] ?? null);
 
         return $params;
     }
 
-    public static function fromRequest(Request $request, User $user)
+    public static function fromRequest(Request $request)
     {
-        return static::fromArray([
-            'query' => trim($request['query']),
-            'userId' => $user->getKey(),
-            'forumId' => $request['forum_id'],
-            'includeSubforums' => get_bool($request['forum_children']),
-        ]);
+        // TODO
+        return static::fromArray([]);
     }
 }

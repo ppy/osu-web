@@ -27,7 +27,7 @@ use App\Models\Wiki\Page;
 
 class WikiSearch extends RecordSearch
 {
-    public function __construct(WikiSearchRequestParams $params)
+    public function __construct(WikiSearchParams $params)
     {
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),

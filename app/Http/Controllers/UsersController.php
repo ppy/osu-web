@@ -33,7 +33,7 @@ use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use App\Libraries\Search\PostSearch;
-use App\Libraries\Search\PostSearchRequestParams;
+use App\Libraries\Search\PostSearchParams;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
@@ -218,7 +218,7 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $search = (new PostSearch(PostSearchRequestParams::fromRequest(request(), $user)))
+        $search = (new PostSearch(PostSearchParams::fromRequest(request(), $user)))
             ->size(50)
             ->page(LengthAwarePaginator::resolveCurrentPage());
 

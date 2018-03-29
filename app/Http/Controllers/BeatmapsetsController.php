@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\Search\BeatmapsetSearch;
-use App\Libraries\Search\BeatmapsetSearchRequestParams;
+use App\Libraries\Search\BeatmapsetSearchParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -132,7 +132,7 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = BeatmapsetSearchRequestParams::fromRequest(request(), Auth::user());
+        $params = BeatmapsetSearchParams::fromRequest(request(), Auth::user());
         return $params->fetchCacheable(
             "output-cache:{$params->getCacheKey()}",
             config('osu.beatmapset.es_cache_duration'),
