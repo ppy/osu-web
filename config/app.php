@@ -90,6 +90,7 @@ return [
 
         // sort by name
         'da',
+        'de',
         'es',
         'fr',
         'it',
