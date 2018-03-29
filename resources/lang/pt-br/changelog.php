@@ -32,7 +32,7 @@ return [
     'support' => [
         'heading' => 'Amou esta atualização?',
         'text_1' => 'Ajude o desenvolvimento do osu! e :link hoje!',
-        'text_1_link' => 'torne-se um supporter',
+        'text_1_link' => 'torne-se um osu!supporter',
         'text_2' => 'Além de você ajudar a agilizar o desenvolvimento, você também ganha umas coisinhas especiais!',
     ],
 ];

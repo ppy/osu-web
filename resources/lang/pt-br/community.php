@@ -75,7 +75,7 @@ return [
 
             'beatmap_filters' => [
                 'title' => 'Filtros de Beatmaps',
-                'description' => 'Filtre buscas de beatmaps por beatmaps jogados ou não jogados e ranks alcançados (se tiver).',
+                'description' => 'Filtre buscas de beatmaps por beatmaps jogados ou não jogados e ranques alcançados (se tiver).',
             ],
 
             'yellow_fellow' => [

@@ -105,8 +105,8 @@ return [
 
         'change_username' => [
             'supporter_required' => [
-                '_' => 'Você precisa ser :link para mudar seu username!',
-                'link_text' => 'supporter',
+                '_' => 'Você precisa ser um :link para mudar seu username!',
+                'link_text' => 'osu!supporter',
             ],
             'username_is_same' => 'Este já é seu username, bobinho!',
         ],

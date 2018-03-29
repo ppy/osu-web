@@ -20,7 +20,7 @@
 
 return [
     'availability' => [
-        'disabled' => 'Este beatmap não está mais disponível para download.',
+        'disabled' => 'Este beatmap não está mais disponível para baixar.',
         'parts-removed' => 'Partes deste beatmap foram removidas a pedido do criador ou de um detentor de direitos de terceiros.',
         'more-info' => 'Clique aqui para mais informações.',
     ],
@@ -86,7 +86,7 @@ return [
             'global' => 'Ranking Global',
             'miss_count' => ':count erros',
             'supporter-link' => 'Clique <a href=":link">aqui</a> para ver todas as novas funções às quais você ganha acesso!',
-            'supporter-only' => 'Você precisa ser um supporter para acessar rankings de amigos e de países!',
+            'supporter-only' => 'Você precisa ser um osu!supporter para acessar rankings de amigos e de países!',
             'title' => 'Placar',
 
             'headers' => [

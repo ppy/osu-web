@@ -61,7 +61,7 @@ return [
         'forgot' => 'Esqueceu sua senha?',
         'beta' => [
             'main' => 'Acesso Beta está restrito apenas para usuários privilegiados.',
-            'small' => '(supporters terão acesso em breve)',
+            'small' => '(osu!supporters terão acesso em breve)',
         ],
 
         'here' => 'aqui', // this is substituted in when generating a link above. change it to suit the language.
@@ -93,7 +93,7 @@ return [
         'is_developer' => 'osu!developer',
         'is_supporter' => 'osu!supporter',
         'joined_at' => 'Entrou em :date',
-        'lastvisit' => 'Visto por último em :date',
+        'lastvisit' => 'Visto por último :date',
         'missingtext' => 'Talvez você tenha feito um erro de digitação! (ou o usuário está banido)',
         'origin_age' => ':age',
         'origin_country_age' => ':age morando em :country',
@@ -235,7 +235,7 @@ return [
                 ],
                 'pp' => ':amountpp',
                 'title' => 'Ranques',
-                'weighted_pp' => 'ponderados: :pp (:percentage)',
+                'weighted_pp' => 'ponderado: :pp (:percentage)',
             ],
             'account_standing' => [
                 'title' => 'Estado da Conta',
