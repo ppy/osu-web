@@ -35,8 +35,8 @@ $(document).on 'turbolinks:load', ->
   StoreCheckout.initialize()
 
 @accountEdit ?= new AccountEdit
-@accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
+@accountEditPlaystyle ?= new AccountEditPlaystyle
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
@@ -50,6 +50,7 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumTopicTitle ?= new ForumTopicTitle
+@forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
@@ -72,8 +73,8 @@ $(document).on 'turbolinks:load', ->
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
-@wiki ?= new Wiki
 @userCard ?= new UserCard
+@wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)

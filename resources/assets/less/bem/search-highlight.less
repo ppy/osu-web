@@ -1,5 +1,3 @@
-<?php
-
 /**
  *    Copyright 2015-2017 ppy Pty. Ltd.
  *
@@ -18,28 +16,10 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Models;
-
-class UserBanHistory extends Model
-{
-    protected $table = 'osu_user_banhistory';
-    protected $primaryKey = 'ban_id';
-
-    protected $dates = ['timestamp'];
-    public $timestamps = false;
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'user_id');
-    }
-
-    public function endTime()
-    {
-        return $this->timestamp->addSeconds($this->period);
-    }
-
-    public function scopeBans($query)
-    {
-        return $query->where('ban_status', '>', 0)->orderBy('timestamp', 'desc');
-    }
+.search-highlight {
+  em {
+    color: @yellow-dark;
+    font-style: normal;
+    font-weight: bold;
+  }
 }

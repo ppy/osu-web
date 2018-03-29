@@ -68,8 +68,6 @@ return [
         ],
 
         'mode' => [
-            'general' => 'Général',
-            'general_all' => 'Général (toutes difficultées)',
             'timeline' => 'Chronologie',
         ],
 

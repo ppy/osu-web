@@ -70,11 +70,11 @@ return [
             'description' => 'Descripción',
             'genre' => 'Género',
             'language' => 'Idioma',
-            'no_scores' => 'Beatmap no rankeado',
             'points-of-failure' => 'Puntos de Fracaso',
             'success-rate' => 'Tasa de éxito',
             'source' => 'Fuente',
             'tags' => 'Etiquetas',
+            'unranked' => 'Beatmap no rankeado',
         ],
         'scoreboard' => [
             'achieved' => 'logrado :when',

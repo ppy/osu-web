@@ -74,8 +74,6 @@ return [
 
         'mode' => [
             'events' => 'Historial',
-            'general' => 'General',
-            'general_all' => 'General (todas las dificultades)',
             'timeline' => 'Línea de tiempo',
         ],
 

@@ -66,14 +66,12 @@ return [
             'rating-spread' => 'Propagation note',
         ],
         'info' => [
-            'no_scores' => 'Beatmap non classifiée',
             'points-of-failure' => 'Points de ratés',
             'success-rate' => 'Taux de réussite',
-
             'description' => 'Description',
-
             'source' => 'Source',
             'tags' => 'Tags',
+            'unranked' => 'Beatmap non classifiée',
         ],
         'scoreboard' => [
             'achieved' => 'atteint :when',

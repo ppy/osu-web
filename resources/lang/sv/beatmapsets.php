@@ -67,14 +67,12 @@ return [
             'rating-spread' => 'Betyg Spridning',
         ],
         'info' => [
-            'no_scores' => 'Ej rankad beatmap',
             'points-of-failure' => 'Punkter av Misslyckande',
             'success-rate' => 'Genomsnittig Succe',
-
             'description' => 'Beskrivning',
-
             'source' => 'Källa',
             'tags' => 'Taggar',
+            'unranked' => 'Ej rankad beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'uppnått :when',

@@ -19,8 +19,9 @@
  */
 
 return [
+    'months' => 'ilość miesięcy',
     'user_search' => [
-        'searching' => 'szukanie...',
-        'not_found' => 'Ten użytkownik nie istnieje',
+        'searching' => 'wyszukiwanie...',
+        'not_found' => 'Nie znaleziono użytkownika',
     ],
 ];

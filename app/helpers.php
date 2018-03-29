@@ -141,7 +141,13 @@ function es_search($params)
         $error = $e;
     }
 
-    Log::debug($error);
+    if (config('datadog-helper.enabled')) {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.search.errors',
+            1,
+            ['class' => get_class($error)]
+        );
+    }
 
     // default return on failure
     return [
@@ -149,7 +155,7 @@ function es_search($params)
             'hits' => [],
             'total' => 0,
         ],
-        'exception' => $error ?? null,
+        'exception' => $error,
     ];
 }
 
@@ -190,16 +196,14 @@ function html_excerpt($body, $limit = 300)
     return e($body);
 }
 
-function json_date($date)
+function json_date(?DateTime $date) : ?string
 {
-    return json_time($date->startOfDay());
+    return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time($time)
+function json_time(?DateTime $time) : ?string
 {
-    if ($time !== null) {
-        return $time->toIso8601String();
-    }
+    return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
 function locale_flag($locale)
@@ -222,6 +226,14 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
+    if ($locale === 'zh-hk') {
+        return 'zh-hk';
+    }
+
+    if ($locale === 'zh-tw') {
+        return 'zh-tw';
+    }
+
     return $locale;
 }
 
@@ -229,6 +241,10 @@ function locale_for_timeago($locale)
 {
     if ($locale === 'zh') {
         return 'zh-CN';
+    }
+
+    if ($locale === 'zh-tw') {
+        return 'zh-TW';
     }
 
     return $locale;
@@ -1162,4 +1178,31 @@ function group_users_by_online_state($users)
         'online' => $online,
         'offline' => $offline,
     ];
+}
+
+// shorthand to return the filename of an open stream/handle
+function get_stream_filename($handle)
+{
+    $meta = stream_get_meta_data($handle);
+
+    return $meta['uri'];
+}
+
+// Performs a HEAD request to the given url and checks the http status code.
+// Returns true on status 200, otherwise false (note: doesn't support redirects/etc)
+function check_url(string $url): bool
+{
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+    ]);
+    curl_exec($ch);
+
+    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
+    curl_close($ch);
+
+    return !$errored;
 }

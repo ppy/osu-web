@@ -33,6 +33,6 @@ return [
         'normal' => 'Normal',
         'large' => 'Grande',
     ],
-    'spoilerbox' => 'Caixa de spoiler',
+    'spoilerbox' => 'Caixa de Spoiler',
     'strikethrough' => 'Riscado',
 ];

@@ -41,4 +41,22 @@ class QueryHelper
 
         throw new Exception('$clause should be array or Queryable.');
     }
+
+    /**
+     * Helper method that creates the query_string query.
+     *
+     * @param string $query The query string.
+     * @param array $fields The fields to search; Use an empty array to search all fields.
+     *
+     * @return array
+     */
+    public static function queryString(string $query, array $fields = []) : array
+    {
+        return [
+            'query_string' => [
+                'query' => $query,
+                'fields' => $fields,
+            ],
+        ];
+    }
 }

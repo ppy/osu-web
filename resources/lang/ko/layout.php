@@ -72,7 +72,7 @@ return [
         'community' => [
             '_' => '커뮤니티',
             'dev' => 'osu!개발진',
-            'getForum' => '포럼',
+            'getForum' => '포럼', // Base text changed to plural, please check.
             'getChat' => '채팅',
             'getLive' => '라이브 스트림',
             'contests' => '콘테스트',
@@ -81,10 +81,10 @@ return [
             'tournaments-index' => '대회',
             'tournaments-show' => '대회 정보',
             'forum-topic-watches-index' => '구독',
-            'forum-topics-create' => '포럼',
-            'forum-topics-show' => '포럼',
-            'forum-forums-index' => '포럼',
-            'forum-forums-show' => '포럼',
+            'forum-topics-create' => '포럼', // Base text changed to plural, please check.
+            'forum-topics-show' => '포럼', // Base text changed to plural, please check.
+            'forum-forums-index' => '포럼', // Base text changed to plural, please check.
+            'forum-forums-show' => '포럼', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => '멀티플레이어', // 'multiplayer'

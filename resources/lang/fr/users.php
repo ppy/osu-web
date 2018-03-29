@@ -106,6 +106,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Aucun enregistrement de performance. :(',
+                'title' => 'Historique',
+
                 'most_played' => [
                     'count' => 'Nombre de fois jouée',
                     'title' => 'Beatmaps les plus jouées',
@@ -114,7 +116,6 @@ return [
                     'accuracy' => 'Précision: :percentage',
                     'title' => 'Parties récentes',
                 ],
-                'title' => 'Historique',
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',

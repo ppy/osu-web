@@ -113,6 +113,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Ingen præstationsrekorder endnu. :(',
+                'title' => 'Historisk',
+
                 'most_played' => [
                     'count' => 'gange spillet',
                     'title' => 'Mest Spillede Beatmaps',
@@ -121,7 +123,6 @@ return [
                     'accuracy' => 'præcision: :percentage',
                     'title' => 'Seneste spil (24 timer)',
                 ],
-                'title' => 'Historisk',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tilgængelig',

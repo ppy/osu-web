@@ -35,6 +35,11 @@
     padding: 0;
   }
 
+  &--userpage {
+    padding-right: 0px;
+    padding-bottom: 0px;
+  }
+
   &__actions {
     display: flex;
     flex-direction: column;
@@ -57,6 +62,40 @@
     }
   }
 
+  &__alert {
+    width: 100%;
+    min-height: 30px;
+    border-radius: 40px;
+
+    margin-bottom: 5px;
+    padding: 5px 20px;
+
+    &--info {
+      background-color: #ccc;
+    }
+
+    &--warning {
+      background-color: @red-dark;
+      color: #fff;
+    }
+  }
+
+  &__chart {
+    height: 250px;
+    width: 100%;
+  }
+
+  &__content-overflow-wrapper-inner {
+    padding-right: 30px;
+    padding-bottom: 20px;
+  }
+
+  &__content-overflow-wrapper-outer {
+    max-height: 400px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   &__title {
     font-size: 18px;
     font-weight: 500;
@@ -74,5 +113,12 @@
     right: 0;
     top: 0;
     cursor: move;
+
+    .@{top}--userpage & {
+      margin-right: @page-extra-side-padding--large;
+      @media @mobile {
+        margin-right: @page-extra-side-padding--small;
+      }
+    }
   }
 }

@@ -46,7 +46,9 @@ return [
     ],
 
     'count' => [
+        'days' => ':count day|:count days',
         'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hour|:count hours',
         'item' => ':count unit|:count units',
         'minute_short_unit' => 'min|mins',
         'months' => ':count month|:count months',
@@ -58,6 +60,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

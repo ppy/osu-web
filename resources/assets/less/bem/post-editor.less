@@ -30,12 +30,13 @@
 
   &__actions {
     display: flex;
-    justify-content: flex-end;
-    flex: 1 0 auto;
+    flex: none;
+    justify-content: center;
+    width: 100%; // force container to wrap.
 
-    @media @mobile {
-      justify-content: center;
-      width: 100%; // force container to wrap.
+    @media @desktop {
+      margin-left: 5px;
+      width: auto;
     }
   }
 
@@ -43,7 +44,7 @@
     display: flex;
     flex: 1 0 auto;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
 
     padding: @padding--small;
 
@@ -52,16 +53,14 @@
 
     // not part of bbcode-editor
     &--profile-page {
+      margin-left: -@page-extra-side-padding--large;
       padding: @page-extra-side-padding--small;
-      margin: 0 -@page-extra-side-padding--small -(2 * @page-extra-side-padding--small);
 
       .beatmapset-description-editor__container & {
         padding: @padding--small @padding--large @padding--large;
       }
 
       @media @desktop {
-        margin-left: -@page-extra-side-padding--large;
-        margin-right: -@page-extra-side-padding--large;
         padding-left: @page-extra-side-padding--large;
         padding-right: @page-extra-side-padding--large;
       }
@@ -83,7 +82,7 @@
 
   &__toolbar {
     display: flex;
-    flex: 1 0 auto;
+    flex: 1;
     justify-content: flex-start;
     margin-bottom: @padding--small;
 

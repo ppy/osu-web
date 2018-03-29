@@ -30,7 +30,6 @@ use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\Forum\TopicCover;
 use App\Models\Forum\TopicPoll;
-use App\Models\Forum\TopicTrack;
 use App\Models\Forum\TopicWatch;
 use App\Transformers\Forum\TopicCoverTransformer;
 use Auth;
@@ -282,13 +281,13 @@ class TopicsController extends Controller
             new TopicCoverTransformer()
         );
 
-        $isWatching = TopicWatch::check($topic, Auth::user());
+        $watch = TopicWatch::lookup($topic, Auth::user());
 
         return view(
             "forum.topics.{$template}",
             compact(
                 'cover',
-                'isWatching',
+                'watch',
                 'jumpTo',
                 'pollSummary',
                 'posts',
@@ -399,33 +398,6 @@ class TopicsController extends Controller
             return ujs_redirect(route('forum.topics.show', $topicId));
         } else {
             return error_popup($star->validationErrors()->toSentence());
-        }
-    }
-
-    public function watch($id)
-    {
-        $topic = Topic::findOrFail($id);
-        $state = get_bool(Request::input('watch'));
-        $privName = 'ForumTopicWatch'.($state ? 'Add' : 'Remove');
-        $type = 'watch';
-
-        priv_check($privName, $topic)->ensureCan();
-
-        TopicWatch::toggle($topic, Auth::user(), $state);
-
-        switch (Request::input('return')) {
-            case 'index':
-                $topics = Topic::watchedByUser(Auth::user())->get();
-                $topicReadStatus = TopicTrack::readStatus(Auth::user(), $topics);
-
-                // there's currently only destroy action from watch index
-                return js_view(
-                    'forum.topic_watches.destroy',
-                    compact('topic', 'topics', 'topicReadStatus')
-                );
-            default:
-
-                return js_view('forum.topics.replace_button', compact('topic', 'type', 'state'));
         }
     }
 }

@@ -74,9 +74,12 @@ return [
 
         'mode' => [
             'events' => 'History',
-            'general' => 'General',
-            'general_all' => 'General (all difficulties)',
+            'general' => 'General :scope',
             'timeline' => 'Timeline',
+            'scopes' => [
+                'general' => 'This difficulty',
+                'generalAll' => 'All difficulties',
+            ],
         ],
 
         'new' => [

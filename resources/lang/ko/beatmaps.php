@@ -70,8 +70,6 @@ return [
 
         'mode' => [
             'events' => '기록',
-            'general' => '일반',
-            'general_all' => '일반 (모든 난이도)',
             'timeline' => '타임라인',
         ],
 

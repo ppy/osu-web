@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Precisa conectar-se para editar.', // Base text changed from "log" to "sign"
+            'null_user' => 'Precisa estar conectado para editar.', // Base text changed from "log" to "sign"
             'system_generated' => 'Postagens geradas pelo sistema não podem ser editadas.',
             'wrong_user' => 'Precisa ser dono da postagem para editá-la.',
         ],
@@ -33,7 +33,7 @@ return [
 
     'index' => [
         'deleted_beatmap' => 'excluído',
-        'title' => 'Discussão do mapa',
+        'title' => 'Discussão do Beatmap',
 
         'form' => [
             'deleted' => 'Incluir discussões excluídas',
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Conecte-se para responder', // Base text changed from "log" to "sign"
+            'guest' => 'Conecte-se para Responder', // Base text changed from "log" to "sign"
             'user' => 'Responder',
         ],
     ],

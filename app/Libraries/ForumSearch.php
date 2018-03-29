@@ -23,17 +23,20 @@ namespace App\Libraries;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Elasticsearch\HasChildQuery;
 use App\Libraries\Elasticsearch\Highlight;
+use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
+use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 // FIXME: remove ArrayAccess after refactored
 class ForumSearch extends Search implements \ArrayAccess
 {
-    const HIGHLIGHT_FRAGMENT_SIZE = 50;
+    use HasCompatibility;
 
     protected $includeSubforums;
     protected $queryString;
@@ -56,10 +59,7 @@ class ForumSearch extends Search implements \ArrayAccess
      */
     public function toArray() : array
     {
-        $match = ['query_string' => [
-            'fields' => ['search_content'],
-            'query' => $this->queryString,
-        ]];
+        $match = QueryHelper::queryString($this->queryString, ['search_content']);
 
         $query = (new BoolQuery())
             ->must(static::firstPostQuery()->toArray())
@@ -93,10 +93,7 @@ class ForumSearch extends Search implements \ArrayAccess
     private function childQuery() : HasChildQuery
     {
         $query = (new BoolQuery())
-            ->must(['query_string' => [
-                'fields' => ['search_content'],
-                'query' => $this->queryString,
-            ]]);
+            ->must(QueryHelper::queryString($this->queryString, ['search_content']));
 
         if (isset($this->username)) {
             $user = User::lookup($this->username);
@@ -106,7 +103,7 @@ class ForumSearch extends Search implements \ArrayAccess
         return (new HasChildQuery('posts', 'posts'))
             ->size(3)
             ->scoreMode('max')
-            ->source(['topic_id', 'post_id', 'search_content'])
+            ->source(['topic_id', 'post_id', 'post_time', 'poster_id', 'search_content'])
             ->highlight(
                 (new Highlight)
                     ->field('search_content')
@@ -149,42 +146,18 @@ class ForumSearch extends Search implements \ArrayAccess
         return parent::response()->recordType(Topic::class)->idField('topic_id');
     }
 
-    public function total()
+    /**
+     * Returns a Builder for a Collection of all the users that appeared in this query.
+     *
+     * @return Builder
+     */
+    public function users() : Builder
     {
-        return min($this->response()->total(), static::MAX_RESULTS);
-    }
+        $ids = array_merge(
+            $this->response()->ids('poster_id'),
+            $this->response()->innerHitsIds('posts', 'poster_id')
+        );
 
-    public function params()
-    {
-        return $this->getPaginationParams();
-    }
-
-    //================
-    // ArrayAccess
-    //================
-
-    public function offsetExists($key)
-    {
-        return in_array($key, ['data', 'total', 'params'], true);
-    }
-
-    public function offsetGet($key)
-    {
-        if ($this->offsetExists($key) === false) {
-            return;
-        }
-
-        // reroute to method
-        return (new \ReflectionObject($this))->getMethod(camel_case($key))->invoke($this);
-    }
-
-    public function offsetSet($key, $value)
-    {
-        throw new \BadMethodCallException('not supported');
-    }
-
-    public function offsetUnset($key)
-    {
-        throw new \BadMethodCallException('not supported');
+        return User::whereIn('user_id', $ids);
     }
 }
