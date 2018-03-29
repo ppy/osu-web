@@ -31,12 +31,6 @@ class UserSearchRequestParams extends SearchRequestParams
     public $queryString = null;
     public $recentOnly = false;
 
-    public function __construct(Request $request)
-    {
-        $this->queryString = $request['query'] ?? null;
-        $this->recentOnly = $request['recentOnly'] ?? false;
-    }
-
     public function getCacheKey()
     {
         $vars = get_object_vars($this);
@@ -48,5 +42,23 @@ class UserSearchRequestParams extends SearchRequestParams
     public function isCacheable()
     {
         return false;
+    }
+
+    public static function fromArray(array $array)
+    {
+        $params = new static;
+        $params->queryString = $array['query'] ?? null;
+        $params->recentOnly = $array['recentOnly'] ?? false;
+
+        return $params;
+    }
+
+    // implemented for completeness.
+    public static function fromRequest(Request $request)
+    {
+        return static::fromArray([
+            'query' => request('query'),
+            'recentOnly' => get_bool(request('recent_only'))
+        ]);
     }
 }

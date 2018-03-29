@@ -132,7 +132,7 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
+        $params = BeatmapsetSearchRequestParams::fromRequest(request(), Auth::user());
         return $params->fetchCacheable(
             "output-cache:{$params->getCacheKey()}",
             config('osu.beatmapset.es_cache_duration'),

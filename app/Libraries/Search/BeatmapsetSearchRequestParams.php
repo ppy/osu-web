@@ -57,45 +57,6 @@ class BeatmapsetSearchRequestParams extends SearchRequestParams
     /** @var User */
     public $user = null;
 
-    public function __construct(Request $request, User $user = null)
-    {
-        static $validExtras = ['video', 'storyboard'];
-        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
-
-        $this->user = $user;
-        $this->page = get_int($request['page']) ?? 1;
-
-        if ($this->user !== null) {
-            $this->queryString = es_query_escape_with_caveats($request['q'] ?? null);
-            $this->status = get_int($request['s'] ?? null) ?? 0;
-            $this->genre = get_int($request['g'] ?? null);
-            $this->language = get_int($request['l'] ?? null);
-            $this->extra = array_intersect(
-                explode('.', $request['e'] ?? null),
-                $validExtras
-            );
-
-            $this->mode = get_int($request['m']);
-            if (!in_array($this->mode, Beatmap::MODES, true)) {
-                $this->mode = null;
-            }
-
-            $generals = explode('.', $request['c'] ?? null) ?? [];
-            $this->includeConverts = in_array('converts', $generals, true);
-            $this->showRecommended = in_array('recommended', $generals, true);
-
-            if ($this->user->isSupporter()) {
-                $this->rank = array_intersect(
-                    explode('.', $request['r'] ?? null),
-                    $validRanks
-                );
-            }
-        }
-
-        $sort = explode('_', $request['sort']);
-        $this->sort = new Sort($sort[0] ?? null, $sort[1] ?? null);
-    }
-
     public function getCacheKey()
     {
         $vars = get_object_vars($this);
@@ -118,5 +79,56 @@ class BeatmapsetSearchRequestParams extends SearchRequestParams
             || in_array($this->status, [2, 6], true) // favourites, my maps.
             || $this->showRecommended
         );
+    }
+
+    public static function fromArray(array $array)
+    {
+        $params = new static;
+        $params->queryString = $array['query'] ?? null;
+
+        return $params;
+    }
+
+    public static function fromRequest(Request $request, ?User $user = null)
+    {
+        static $validExtras = ['video', 'storyboard'];
+        static $validRanks = ['A', 'B', 'C', 'D', 'S', 'SH', 'X', 'XH'];
+
+        $params = new static;
+
+        $params->user = $user;
+        $params->page = get_int($request['page'] ?? null) ?? 1;
+
+        if ($params->user !== null) {
+            $params->queryString = es_query_escape_with_caveats($request['q'] ?? null);
+            $params->status = get_int($request['s'] ?? null) ?? 0;
+            $params->genre = get_int($request['g'] ?? null);
+            $params->language = get_int($request['l'] ?? null);
+            $params->extra = array_intersect(
+                explode('.', $request['e'] ?? null),
+                $validExtras
+            );
+
+            $params->mode = get_int($request['m']);
+            if (!in_array($params->mode, Beatmap::MODES, true)) {
+                $params->mode = null;
+            }
+
+            $generals = explode('.', $request['c'] ?? null) ?? [];
+            $params->includeConverts = in_array('converts', $generals, true);
+            $params->showRecommended = in_array('recommended', $generals, true);
+
+            if ($params->user->isSupporter()) {
+                $params->rank = array_intersect(
+                    explode('.', $request['r'] ?? null),
+                    $validRanks
+                );
+            }
+        }
+
+        $sort = explode('_', $request['sort'] ?? null);
+        $params->sort = new Sort($sort[0] ?? null, $sort[1] ?? null);
+
+        return $params;
     }
 }

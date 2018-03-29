@@ -73,7 +73,14 @@ class MultiSearch
 
                 $options = array_merge(['query' => $this->query], $settings['options'] ?? []);
                 $class = $settings['type'];
-                $search = new $class($options);
+                $paramsClass = "{$class}RequestParams";
+
+                // FIXME: quick hack to make everything work while changing
+                if (class_exists($paramsClass)) {
+                    $search = new $class($paramsClass::fromArray($options));
+                } else {
+                    $search = new $class($options);
+                }
 
                 if ($this->getMode() === 'all') {
                     $search->page(1)->size($settings['size']);
