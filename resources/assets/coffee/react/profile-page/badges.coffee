@@ -24,7 +24,7 @@ class ProfilePage.Badges extends React.Component
     super props
 
     @slideTimer = 5000
-    @initialSlide = Math.max(2000, @props.badges.length * 500)
+    @initialSlide = Math.min(2000, @props.badges.length * 500)
     @timeouts = {}
     @intervals = {}
 
