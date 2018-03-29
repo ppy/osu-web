@@ -22,7 +22,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\Search\BeatmapsetSearch;
-use App\Libraries\Elasticsearch\Sort;
+use App\Libraries\Search\BeatmapsetSearchRequestParams;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -132,12 +132,11 @@ class BeatmapsetsController extends Controller
 
     public function search()
     {
-        $params = $this->searchParams();
-
-        $records = datadog_timing(function () use ($params) {
+        $records = datadog_timing(function () {
+            $params = new BeatmapsetSearchRequestParams(request(), Auth::user());
             $search = (new BeatmapsetSearch($params))
-                ->page($params['page'])
-                ->sort($this->searchSortParams())
+                // ->page($params['page'])
+                // ->sort($this->searchSortParams())
                 ->source('_id');
 
             return $search->records();
@@ -293,42 +292,5 @@ class BeatmapsetsController extends Controller
           'favcount' => $beatmapset->fresh()->favourite_count,
           'favourited' => $user->fresh()->hasFavourited($beatmapset),
         ];
-    }
-
-    private function searchParams()
-    {
-        $user = Auth::user();
-
-        if ($user === null) {
-            $params = [
-                'page' => Request::input('page'),
-            ];
-        } else {
-            $params = [
-                'general' => explode('.', Request::input('c') ?? null),
-                'query' => Request::input('q'),
-                'mode' => Request::input('m'),
-                'status' => Request::input('s'),
-                'genre' => Request::input('g'),
-                'language' => Request::input('l'),
-                'extra' => explode('.', Request::input('e') ?? null),
-                'page' => Request::input('page'),
-                'user' => $user,
-            ];
-
-            if ($user->isSupporter()) {
-                $params['rank'] = explode('.', Request::input('r') ?? null);
-            }
-        }
-
-        return $params;
-    }
-
-    private function searchSortParams()
-    {
-        // TODO: maybe some kind of search params parser class instead?
-        $sort = explode('_', request('sort'));
-
-        return new Sort($sort[0] ?? null, $sort[1] ?? null);
     }
 }
