@@ -57,6 +57,12 @@
       opacity: 0;
     }
 
+    .@{top}--me-section & {
+      @media @mobile {
+        margin-right: 30px;
+      }
+    }
+
     .@{top}:hover & {
       opacity: 1;
     }
@@ -85,7 +91,11 @@
     width: 100%;
   }
 
-  &__content-overflow-wrapper {
+  &__content-overflow-wrapper-inner {
+    padding-bottom: 20px;
+  }
+
+  &__content-overflow-wrapper-outer {
     max-height: 400px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -108,5 +118,9 @@
     right: 0;
     top: 0;
     cursor: move;
+
+    .@{top}--me-section & {
+      margin-right: 30px;
+    }
   }
 }

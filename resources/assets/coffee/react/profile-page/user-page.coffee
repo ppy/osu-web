@@ -36,10 +36,13 @@ class ProfilePage.UserPage extends React.Component
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
-      else if @props.withEdit && isBlank
-        @pageNew()
       else
-        div className: 'page-extra__content-overflow-wrapper', @pageShow()
+        div className: 'page-extra__content-overflow-wrapper-outer',
+          if @props.withEdit && isBlank
+            @pageNew()
+          else
+            div className: 'page-extra__content-overflow-wrapper-inner',
+              @pageShow()
 
 
   editStart: ->
