@@ -77,7 +77,7 @@ class ProfilePage.Badges extends React.Component
   currentBadgeTransform: =>
     return "" if !@state.looping && !osu.isMobile()
 
-    "translateX(calc(-100% * (#{@state.currentBadge} / #{@props.badges.length})))"
+    "translateX(#{-100 * @state.currentBadge / @props.badges.length}%)"
 
 
   nextBadge: (callback) =>
