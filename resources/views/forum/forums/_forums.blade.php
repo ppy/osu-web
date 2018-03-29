@@ -41,18 +41,18 @@
 
                 <div class="right hidden-xs">
                     <div class="right-content">
-                        @if ($forum->lastTopic())
+                        @if (($lastTopic = $lastTopics[$forum->getKey()] ?? null) !== null)
                             <a
                                 class="forums__forum-topic-link u-forum--link u-ellipsis-overflow"
-                                href="{{ post_url($forum->lastTopic()->topic_id, "unread", false) }}"
+                                href="{{ post_url($lastTopic->topic_id, "unread", false) }}"
                             >
-                                {{ $forum->lastTopic()->topic_title }}
+                                {{ $lastTopic->topic_title }}
                             </a>
 
                             <div>
                                 {!! trans("forum.topic.latest_post", [
-                                    "when" => timeago($forum->lastTopic()->topic_last_post_time),
-                                    "user" => link_to_user($forum->lastTopic()->topic_last_poster_id, $forum->lastTopic()->topic_last_poster_name, $forum->lastTopic()->topic_last_poster_colour)
+                                    "when" => timeago($lastTopic->topic_last_post_time),
+                                    "user" => link_to_user($lastTopic->topic_last_poster_id, $lastTopic->topic_last_poster_name, $lastTopic->topic_last_poster_colour)
                                 ]) !!}
                             </div>
                         @endif

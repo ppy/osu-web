@@ -80,6 +80,16 @@ trait EsIndexable
 
     public static function esCreateIndex(string $name = null)
     {
+        $settings = [
+            'index' => [
+                'number_of_shards' => config('osu.elasticsearch.number_of_shards'),
+            ],
+        ];
+
+        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
+            $settings['analysis'] = static::esAnalysisSettings();
+        }
+
         $type = static::esType();
         $body = [
             'mappings' => [
@@ -87,17 +97,8 @@ trait EsIndexable
                     'properties' => static::esMappings(),
                 ],
             ],
+            'settings' => $settings,
         ];
-
-        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
-            $settings = [
-                'settings' => [
-                    'analysis' => static::esAnalysisSettings(),
-                ],
-            ];
-
-            $body = array_merge($body, $settings);
-        }
 
         $params = [
             'index' => $name ?? static::esIndexName(),
