@@ -22,7 +22,7 @@ return [
     'signature' => [
         'not_match' => 'Assinaturas não conferem',
     ],
-    'notification_type' => 'notification_type invalida :type',
+    'notification_type' => 'notification_type é inválido :type',
     'order' => [
         'invalid' => 'O pedido é inválido',
         'items' => [
@@ -46,7 +46,7 @@ return [
         ],
     ],
     'order_number' => [
-        'malformed' => 'Não obteve êxito na criação do número de transação',
-        'user_id_mismatch' => 'external_id contêm número de usuário inválido',
+        'malformed' => 'ID de transação recebido é inválido',
+        'user_id_mismatch' => 'external_id contém número de usuário inválido',
     ],
 ];

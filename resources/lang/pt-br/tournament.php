@@ -22,7 +22,7 @@ return [
     'index' => [
         'header' => [
             'subtitle' => 'Uma lista de torneios ativos e oficialmente reconhecidos',
-            'title' => 'Torneios da comunidade',
+            'title' => 'Torneios da Comunidade',
         ],
         'none_running' => 'Não há nenhum torneio acontecendo no momento, volte mais tarde!',
         'registration_period' => 'Período de inscrições: :start até :end',
@@ -30,9 +30,9 @@ return [
     'show' => [
         'button' => [
             'register' => 'Inscreva-me!',
-            'cancel' => 'Cancelar inscrição',
+            'cancel' => 'Cancelar Inscrição',
         ],
-        'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email quando estiver próximo da data do torneio, então, por favor, certifique-se de que seu entereço de email/conta do osu! são válidos!',
+        'entered' => 'Você se registrou nesse torneio.<br><br>Note que isso não significa que você foi adicionado em um time.<br><br>Intruções adicionais serão enviadas via email mais próximo da data do torneio, então, por favor, certifique-se de que seu entereço de email e conta do osu! são válidos!',
         'login_to_register' => 'Por favor :login para visualizar os detalhes de inscrição!',
         'not_yet_entered' => 'Você não está registrado nesse torneio.',
         'rank_too_low' => 'Desculpa, você não tem os requisitos mínimos necessários para esse torneio!',

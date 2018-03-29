@@ -19,7 +19,7 @@
  */
 
 return [
-    'title' => 'Redefinir senha',
+    'title' => 'Redefinir Senha',
 
     'button' => [
         'cancel' => 'Cancelar',
@@ -29,12 +29,12 @@ return [
     ],
 
     'email' => [
-        'subject' => 'Recuperação da conta no osu!',
+        'subject' => 'Recuperação da conta do osu!',
     ],
 
     'error' => [
         'contact_support' => 'Por favor, entre em contato com o suporte para recuperar a sua conta.',
-        'is_privileged' => 'Fala com o peppy lul.',
+        'is_privileged' => 'Fala com o peppy, lul.',
         'missing_key' => 'Necessário.',
         'too_many_tries' => 'Número de tentativas excedido.',
         'user_not_found' => 'O usuário selecionado não existe.',

@@ -21,20 +21,20 @@
 return [
     'header' => [
         'small' => 'Compita de outras formas além de clicar em círculos.',
-        'large' => 'Concursos comunitários osu!',
+        'large' => 'Concursos da Comunidade osu!',
     ],
     'voting' => [
         'over' => 'A votação deste concurso já foi encerrada',
-        'login_required' => 'Por favor, inicie a sessão para votar.',
+        'login_required' => 'Por favor, conecte-se para votar.',
         'best_of' => [
             'none_played' => 'Parece que você não jogou nenhum dos beatmaps qualificados para este concurso!',
         ],
     ],
     'entry' => [
         '_' => 'inscrição',
-        'login_required' => 'Por favor, inicie a sessão para participar deste concurso.',
+        'login_required' => 'Por favor, conecte-se para participar deste concurso.',
         'silenced_or_restricted' => 'Você não pode participar de concursos enquanto restrito ou silenciado.',
-        'preparation' => 'Estamos preparando este concurso. Aguarde pacientemente!',
+        'preparation' => 'Estamos preparando este concurso. Por favor, aguarde pacientemente!',
         'over' => 'Agradecemos a sua participação! As inscrições para este concurso foram encerradas e a votação abrirá em breve.',
         'limit_reached' => 'Você atingiu o limite de inscrições para este concurso',
         'drop_here' => 'Solte a sua inscrição aqui',
@@ -46,7 +46,7 @@ return [
         'too_big' => 'Inscrições não podem exceder :limit.',
     ],
     'beatmaps' => [
-        'download' => 'Baixar inscrição',
+        'download' => 'Baixar Inscrição',
     ],
     'vote' => [
         'list' => 'votos',
@@ -61,8 +61,8 @@ return [
         ],
     ],
     'states' => [
-        'entry' => 'Entrada aberta',
-        'voting' => 'Votação iniciada',
+        'entry' => 'Entrada Aberta',
+        'voting' => 'Votação Iniciada',
         'results' => 'Resultados',
     ],
 ];
