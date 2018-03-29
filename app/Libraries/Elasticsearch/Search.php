@@ -20,6 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use App\Libraries\Search\SearchParams;
 use Datadog;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
@@ -35,17 +36,17 @@ abstract class Search implements Queryable
     const MAX_RESULTS = 10000;
 
     protected $index;
-    protected $options;
+    protected $params;
     protected $queryString;
 
     private $count;
     private $error;
     private $response;
 
-    public function __construct(string $index, array $options = [])
+    public function __construct(string $index, SearchParams $params)
     {
         $this->index = $index;
-        $this->options = $options;
+        $this->params = $params;
     }
 
     // for paginator

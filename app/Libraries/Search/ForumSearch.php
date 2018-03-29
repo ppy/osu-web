@@ -39,12 +39,9 @@ class ForumSearch extends Search
 {
     use HasCompatibility;
 
-    private $params;
-
     public function __construct(ForumSearchParams $params)
     {
-        parent::__construct(Post::esIndexName());
-        $this->params = $params;
+        parent::__construct(Post::esIndexName(), $params);
     }
 
     // TODO: maybe move to a response/view helper?

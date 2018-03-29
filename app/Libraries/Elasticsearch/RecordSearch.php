@@ -20,13 +20,15 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use App\Libraries\Search\SearchParams;
+
 class RecordSearch extends Search
 {
     protected $recordType;
 
-    public function __construct(string $index, $type, array $options = [])
+    public function __construct(string $index, $type, SearchParams $params)
     {
-        parent::__construct($index, $options);
+        parent::__construct($index, $params);
         $this->recordType = $type;
     }
 

@@ -26,16 +26,13 @@ use App\Models\User;
 
 class UserSearch extends RecordSearch
 {
-    private $params;
-
     public function __construct(UserSearchParams $params)
     {
         parent::__construct(
             User::esIndexName(),
-            User::class
+            User::class,
+            $params
         );
-
-        $this->params = $params;
     }
 
     /**

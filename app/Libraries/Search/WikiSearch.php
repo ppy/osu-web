@@ -31,10 +31,9 @@ class WikiSearch extends RecordSearch
     {
         parent::__construct(
             config('osu.elasticsearch.index.wiki_pages'),
-            Page::class
+            Page::class,
+            $params
         );
-
-        $this->params = $params;
     }
 
     public function records()

@@ -30,9 +30,6 @@ use App\Models\Score;
 
 class BeatmapsetSearch extends RecordSearch
 {
-    /** @var BeatmapSearchParams */
-    private $params;
-
     /**
      * @param BeatmapsetSearchParams $params
      */
@@ -40,10 +37,9 @@ class BeatmapsetSearch extends RecordSearch
     {
         parent::__construct(
             Beatmapset::esIndexName(),
-            Beatmapset::class
+            Beatmapset::class,
+            $params
         );
-
-        $this->params = $params;
 
         if ($params->page !== null) {
             $this->page($params->page);
