@@ -99,10 +99,15 @@ class BeatmapsetSearchRequestParams
     public function getCacheKey()
     {
         $vars = get_object_vars($this);
+        $vars['sort'] = [
+            'field' => $this->sort->field,
+            'order' => $this->sort->order,
+            'mode' => $this->sort->mode,
+        ];
         unset($vars['user']);
         ksort($vars);
 
-        return 'beatmapset-search:'.serialize($vars);
+        return 'beatmapset-search:'.json_encode($vars);
     }
 
     public function isCacheable()
