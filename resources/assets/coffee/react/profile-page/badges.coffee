@@ -24,17 +24,21 @@ class ProfilePage.Badges extends React.Component
     super props
 
     @slideTimer = 5000
+    @initialSlide = Math.max(2000, @props.badges.length * 500)
     @timeouts = {}
     @intervals = {}
 
     @state =
       currentBadge: @props.badges.length
       looping: true
+      initial: true
 
 
   componentDidMount: =>
     @timeouts.first = Timeout.set 0, @nextBadge
-    @intervals.slider = setInterval @nextBadge, @slideTimer
+    @timeouts.slider = Timeout.set @initialSlide, =>
+      @setState initial: false
+      @intervals.slider = setInterval @nextBadge, @slideTimer
 
 
   componentWillUnmount: =>
@@ -63,7 +67,7 @@ class ProfilePage.Badges extends React.Component
           className: 'profile-badges__stripe'
           style:
             transform: @currentBadgeTransform()
-            transitionDuration: if @state.looping then '' else '250ms'
+            transitionDuration: @currentBadgeTransitionDuration()
           for badge in @props.badges
             div
               key: badge.image_url
@@ -80,10 +84,19 @@ class ProfilePage.Badges extends React.Component
     "translateX(#{-100 * @state.currentBadge / @props.badges.length}%)"
 
 
+  currentBadgeTransitionDuration: =>
+    if @state.initial
+      "#{@initialSlide}ms"
+    else if @state.looping
+      ''
+    else
+      '250ms'
+
   nextBadge: (callback) =>
     return if !@state.looping
 
-    @setState currentBadge: (@state.currentBadge + 1) % @props.badges.length, callback
+    @setState
+      currentBadge: (@state.currentBadge + 1) % @props.badges.length, callback
 
 
   pause: =>
