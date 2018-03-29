@@ -39,20 +39,12 @@ class ForumSearch extends Search
 {
     use HasCompatibility;
 
-    protected $includeSubforums;
-    protected $queryString;
-    protected $username;
-    protected $forumId;
+    private $params;
 
-    public function __construct(array $options = [])
+    public function __construct(ForumSearchRequestParams $params)
     {
-        parent::__construct(Post::esIndexName(), $options);
-
-        $this->queryString = $options['query'] ?? null;
-        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
-        $this->username = presence($options['username'] ?? null);
-        $this->forumId = get_int($options['forumId'] ?? null);
-        $this->topicId = get_int($options['topicId'] ?? null);
+        parent::__construct(Post::esIndexName());
+        $this->params = $params;
     }
 
     // TODO: maybe move to a response/view helper?
@@ -72,7 +64,7 @@ class ForumSearch extends Search
      */
     public function toArray() : array
     {
-        $match = QueryHelper::queryString($this->queryString, ['search_content']);
+        $match = QueryHelper::queryString($this->params->queryString, ['search_content']);
 
         $query = (new BoolQuery())
             ->must(static::firstPostQuery()->toArray())
@@ -82,20 +74,14 @@ class ForumSearch extends Search
 
         // skip the topic search if doing a username; needs a more complicated
         // query to accurately filter the results which isn't implemented yet.
-        if (!isset($this->username)) {
+        if (!isset($this->params->username)) {
             $query->should($match);
         }
 
-        if (isset($this->forumId)) {
-            $forumIds = $this->includeSubforums
-                ? Forum::findOrFail($this->forumId)->allSubForums()
-                : [$this->forumId];
-
-            $query->filter(['terms' => ['forum_id' => $forumIds]]);
-        }
-
-        if (isset($this->topicId)) {
-            $query->filter(['term' => ['topic_id' => $this->topicId]]);
+        if (isset($this->params->forumId)) {
+            $forumIds = $this->params->includeSubforums
+                ? Forum::findOrFail($this->params->forumId)->allSubForums()
+                : [$this->params->forumId];
         }
 
         $this->query($query);
@@ -106,10 +92,10 @@ class ForumSearch extends Search
     private function childQuery() : HasChildQuery
     {
         $query = (new BoolQuery())
-            ->must(QueryHelper::queryString($this->queryString, ['search_content']));
+            ->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
 
-        if (isset($this->username)) {
-            $user = User::lookup($this->username);
+        if (isset($this->params->username)) {
+            $user = User::lookup($this->params->username);
             $query->filter(['term' => ['poster_id' => $user ? $user->user_id : -1]]);
         }
 
