@@ -71,7 +71,7 @@ return [
     ],
 
     'playstyles' => [
-        'title' => 'Spielstile', 
+        'title' => 'Spielstile',
         'mouse' => 'Maus',
         'keyboard' => 'Tastatur',
         'tablet' => 'Tablet',
