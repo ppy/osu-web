@@ -21,8 +21,10 @@
 namespace App\Models;
 
 use App\Exceptions\BeatmapProcessorException;
+use App\Jobs\CheckBeatmapsetCovers;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\ImageProcessorService;
 use App\Libraries\StorageWithUrl;
 use App\Libraries\Transactions\AfterCommit;
@@ -459,7 +461,7 @@ class Beatmapset extends Model implements AfterCommit
 
         if (present($params['query'])) {
             $query = es_query_escape_with_caveats($params['query']);
-            $matchParams[] = ['query_string' => ['query' => $query]];
+            $matchParams[] = QueryHelper::queryString($query);
         }
 
         if (!empty($params['rank'])) {
@@ -583,7 +585,18 @@ class Beatmapset extends Model implements AfterCommit
     {
         $startTime = microtime(true);
         $params = static::searchParams($params);
-        $result = static::searchES($params);
+
+        if (static::shouldCacheSearch($params)) {
+            $result = Cache::remember(
+                static::searchCacheKey($params),
+                config('osu.beatmapset.es_cache_duration'),
+                function () use ($params) {
+                    return static::searchES($params);
+                }
+            );
+        } else {
+            $result = static::searchES($params);
+        }
 
         $data = count($result['ids']) > 0
             ? static
@@ -830,6 +843,17 @@ class Beatmapset extends Model implements AfterCommit
         $this->update(['cover_updated_at' => $this->freshTimestamp()]);
     }
 
+    public function allCoverImagesPresent()
+    {
+        foreach ($this->allCoverURLs() as $_size => $url) {
+            if (!check_url($url)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public function setApproved($state, $user)
     {
         $this->approved = static::STATES[$state];
@@ -882,6 +906,10 @@ class Beatmapset extends Model implements AfterCommit
 
             // global event
             Event::generate('beatmapsetApprove', ['beatmapset' => $this]);
+
+            // enqueue a cover check job to ensure cover images are all present
+            $job = (new CheckBeatmapsetCovers($this))->onQueue('beatmap_high');
+            dispatch($job);
         });
 
         return true;
@@ -1056,7 +1084,17 @@ class Beatmapset extends Model implements AfterCommit
             return;
         }
 
-        $queueSize = static::qualified()->where('approved_date', '<', $this->approved_date)->count();
+        $modes = $this->beatmaps->pluck('playmode')->unique()->toArray();
+
+        $queueSize = static::qualified()
+            ->whereHas('beatmaps', function ($query) use ($modes) {
+                $query->whereIn('playmode', $modes);
+            })
+            ->whereDoesntHave('beatmaps', function ($query) use ($modes) {
+                $query->where('playmode', '<', min($modes));
+            })
+            ->where('approved_date', '<', $this->approved_date)
+            ->count();
         $days = ceil($queueSize / static::RANKED_PER_DAY);
 
         $minDays = static::MINIMUM_DAYS_FOR_RANKING - $this->approved_date->diffInDays();
@@ -1291,5 +1329,23 @@ class Beatmapset extends Model implements AfterCommit
         static $pattern = '/^(.*?)-{15}/s';
 
         return preg_replace($pattern, '', $text);
+    }
+
+    private static function searchCacheKey(array $params)
+    {
+        ksort($params);
+        unset($params['user']);
+
+        return 'beatmapset-search:'.serialize($params);
+    }
+
+    private static function shouldCacheSearch(array $params)
+    {
+        return !(
+            present($params['query'])
+            || !empty($params['rank'])
+            || in_array($params['status'], [2, 6], true) // favourites, my maps.
+            || $params['recommended']
+        );
     }
 }

@@ -41,7 +41,7 @@ class SessionsController extends Controller
     {
         $ip = Request::getClientIp();
         $username = trim(Request::input('username'));
-        $password = trim(Request::input('password'));
+        $password = Request::input('password');
         $remember = Request::input('remember') === 'yes';
 
         if (!present($username) || !present($password)) {

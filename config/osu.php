@@ -22,6 +22,7 @@ return [
         'sentry' => env('BM_PROCESSOR_SENTRY'),
     ],
     'beatmapset' => [
+        'es_cache_duration' => get_float(env('BEATMAPSET_ES_CACHE_DURATION')) ?? 1.0,
         'required_hype' => get_int(env('BEATMAPSET_REQUIRED_HYPE')) ?? 5,
         'user_daily_nominations' => get_int(env('BEATMAPSET_USER_DAILY_NOMINATIONS', 10)) ?? 10,
         'user_weekly_hype' => get_int(env('BEATMAPSET_USER_WEEKLY_HYPE')) ?? 3,
@@ -34,6 +35,7 @@ return [
         'user_agent' => env('CLIENT_USER_AGENT', 'osu!'),
     ],
     'elasticsearch' => [
+        'number_of_shards' => env('ES_DEFAULT_SHARDS', 1),
         'prefix' => env('ES_INDEX_PREFIX'),
         'index' => [
             'wiki_pages' => env('ES_INDEX_PREFIX').'osu:wiki_pages_20171130',
@@ -73,6 +75,7 @@ return [
             'user' => 100,
         ],
     ],
+    'site-switcher-js-hash' => env('SITE_SWITCHER_JS_HASH', ''),
     'support' => [
         'video_url' => env('SUPPORT_OSU_VIDEO_URL', 'https://assets.ppy.sh/media/osu-direct-demo.mp4'),
     ],
@@ -133,6 +136,7 @@ return [
             'tries' => 8,
         ],
         'super_friendly' => array_map('intval', explode(' ', env('SUPER_FRIENDLY', '3'))),
+        'ban_persist_days' => intval(env('BAN_PERSIST_DAYS', 14)),
     ],
     'changelog' => [
         'update_streams' => array_map('intval', explode(' ', env('UPDATE_STREAMS', '5 1'))),

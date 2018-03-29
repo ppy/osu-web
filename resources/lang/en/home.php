@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> registered players',
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
+            'main' => 'the bestest free-to-win rhythm game',
             'sub' => 'rhythm is just a click away',
         ],
     ],

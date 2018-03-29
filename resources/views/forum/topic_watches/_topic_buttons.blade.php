@@ -28,17 +28,39 @@
 </a>
 --}}
 
+@php
+    $watch = $topicWatchStatus[$topic->getKey()];
+@endphp
+<button
+    type="button"
+    class="btn-circle btn-circle--topic-entry {{ $watch->mail ? 'btn-circle--activated' : '' }}"
+    title="{{ trans('forum.topics.watch.'.($watch->mail ? 'mail_disable' : 'to_watching_mail')) }}"
+    data-url="{{ route('forum.topic-watches.update', [
+        $topic,
+        'state' => $watch->mail ? 'watching' : 'watching_mail',
+        'return' => 'index'
+    ]) }}"
+    data-remote="1"
+    data-reload-on-success="1"
+    data-method="PUT"
+>
+    <span class="btn-circle__content">
+        <i class="fa fa-envelope"></i>
+    </span>
+</button>
+
 <button
     type="button"
     class="btn-circle btn-circle--topic-entry"
     title="{{ trans('forum.topic_watches.topic_buttons.remove.title') }}"
-    data-url="{{ route('forum.topics.watch', [
+    data-url="{{ route('forum.topic-watches.update', [
         $topic,
-        'watch' => false,
+        'state' => 'not_watching',
         'return' => 'index'
     ]) }}"
     data-remote="1"
-    data-method="POST"
+    data-reload-on-success="1"
+    data-method="PUT"
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
     <span class="btn-circle__content">

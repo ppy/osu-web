@@ -40,7 +40,7 @@ return [
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
-            'team' => 'załoga',
+            'team' => 'zespół',
         ],
         'help' => [
             '_' => 'pomoc',
@@ -78,7 +78,7 @@ return [
         'community' => [
             '_' => 'społeczność',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'czat',
             'getLive' => 'na żywo',
             'contests' => 'konkursy',
@@ -87,10 +87,10 @@ return [
             'tournaments-index' => 'turnieje',
             'tournaments-show' => 'informacje o turnieju',
             'forum-topic-watches-index' => 'subskrybcje',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'tryb wieloosobowy',
@@ -118,11 +118,12 @@ return [
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Pomoc',
+            'beatmapset_activities' => 'aktualizacje na beatmapach użytkownika',
         ],
         'store' => [
             '_' => 'sklep',
+            'checkout-show' => 'kasa',
             'getListing' => 'przedmioty',
-            'cart-show' => 'koszyk',
             'cart-show' => 'koszyk',
 
             'getCheckout' => 'zapłać',
@@ -145,6 +146,7 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => 'tło beatmapy',
             'root' => 'strona główna',
             'logs-index' => 'logi',
             'beatmapsets' => [
@@ -256,6 +258,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Napisz, aby wyszukać!',
-        'retry' => 'Wyszukiwanie nieudane. Naciśnij tutaj, aby spróbować ponownie.',
+        'retry' => 'Wyszukiwanie nieudane. Kliknij tutaj, aby spróbować ponownie.',
     ],
 ];

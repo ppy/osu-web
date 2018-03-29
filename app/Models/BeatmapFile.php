@@ -27,6 +27,9 @@ class BeatmapFile
 
     public static function parse(string $content)
     {
+        // strip utf8 bom
+        $content = strip_utf8_bom($content);
+
         // check file 'header'
         if (!starts_with($content, 'osu file format v')) {
             return false;
@@ -40,8 +43,17 @@ class BeatmapFile
 
             if ($matching) {
                 $parts = explode(',', $line);
+                // Background Image, e.g.:
+                // 0,0,"bg.jpg",0,0
                 if (count($parts) > 2 && $parts[0] === '0') {
                     $imageFilename = str_replace('"', '', $parts[2]);
+                    break;
+                }
+                // Storyboard Layer (for when BG isn't defined, e.g. old beatmap)
+                // This *should* appear after the above BG in a valid .osu file, e.g.:
+                // 4,0,0,"evangelion_20_640.jpg",0,0
+                if (count($parts) > 2 && ($parts[0] === '4' || $parts[0] === 'Sprite')) {
+                    $imageFilename = str_replace('"', '', $parts[3]);
                     break;
                 }
             }
@@ -51,6 +63,7 @@ class BeatmapFile
             }
 
             if ($line === '[HitObjects]') {
+                // Too far, give up
                 break;
             }
         }

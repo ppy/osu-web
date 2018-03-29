@@ -20,6 +20,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\PostSearch;
 use App\Libraries\UserRegistration;
 use App\Models\Achievement;
 use App\Models\Beatmap;
@@ -208,6 +209,26 @@ class UsersController extends Controller
         return $this->getExtra($this->user, $page, [], $this->perPage, $this->offset);
     }
 
+    public function posts($id)
+    {
+        $user = User::lookup($id);
+        if ($user === null || !priv_check('UserShow', $user)->can()) {
+            abort(404);
+        }
+
+        $options = [
+            'query' => trim(request('query')),
+            'userId' => $user->getKey(),
+            'forumId' => request('forum_id'),
+            'includeSubforums' => get_bool(request('forum_children')),
+        ];
+
+        $search = new PostSearch($options);
+        $page = $search->paginate(50)->appends(request()->query());
+
+        return view('users.posts', compact('search', 'page', 'user'));
+    }
+
     public function kudosu($_userId)
     {
         return $this->getExtra($this->user, 'recentlyReceivedKudosu', [], $this->perPage, $this->offset);
@@ -261,17 +282,28 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $userArray = json_item($user, 'User', [
+        $userIncludes = [
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
             'monthly_playcounts',
             'page',
+            'account_history',
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'unranked_beatmapset_count',
             'user_achievements',
-        ]);
+        ];
+
+        if (priv_check('UserSilenceShowExtendedInfo')->can()) {
+            $userIncludes[] = 'account_history.actor';
+        }
+
+        $userArray = json_item(
+            $user,
+            'User',
+            $userIncludes
+        );
 
         $statistics = json_item(
             $user->statistics($currentMode),
@@ -283,7 +315,7 @@ class UsersController extends Controller
             ->where('mode', Beatmap::modeInt($currentMode))
             ->first();
 
-        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : [];
+        $rankHistory = $rankHistoryData ? json_item($rankHistoryData, 'RankHistory') : null;
 
         if (Request::is('api/*')) {
             $userArray['statistics'] = $statistics;
@@ -397,26 +429,26 @@ class UsersController extends Controller
                     ->orderBy('beatmap_id', 'desc'); // for consistent sorting
                 break;
 
-            // BeatmapsetCompact
+            // Beatmapset
             case 'favouriteBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsFavourite();
                 break;
             case 'graveyardBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsGraveyard()
                     ->orderBy('last_update', 'desc');
                 break;
             case 'rankedAndApprovedBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsRankedAndApproved()
                     ->orderBy('approved_date', 'desc');
                 break;
             case 'unrankedBeatmapsets':
-                $transformer = 'BeatmapsetCompact';
+                $transformer = 'Beatmapset';
                 $includes = ['beatmaps'];
                 $query = $user->profileBeatmapsetsUnranked()
                     ->orderBy('last_update', 'desc');

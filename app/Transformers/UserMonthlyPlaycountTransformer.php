@@ -28,7 +28,7 @@ class UserMonthlyPlaycountTransformer extends Fractal\TransformerAbstract
     public function transform(UserMonthlyPlaycount $playcount)
     {
         return [
-            'start_date' => json_time($playcount->startDate()),
+            'start_date' => json_date($playcount->startDate()),
             'count' => $playcount->playcount,
         ];
     }

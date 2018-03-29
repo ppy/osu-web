@@ -18,7 +18,7 @@
 
 class @Search
   constructor: ->
-    $(document).on 'click', '.js-search--advanced-forum-post-reset', @forumPostReset
+    $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
 
 
   forumPostReset: =>

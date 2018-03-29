@@ -66,6 +66,11 @@ return [
 
         'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s posts',
+    ],
+
     'signup' => [
         '_' => 'Register',
     ],
@@ -232,6 +237,27 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
+            'account_standing' => [
+                'title' => 'Account Standing',
+                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
+                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+
+                'recent_infringements' => [
+                    'title' => 'Recent Infringements',
+                    'date' => 'date',
+                    'action' => 'action',
+                    'length' => 'length',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'description',
+                    'actor' => 'by :username',
+
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Silence',
+                        'note' => 'Note',
+                    ],
+                ],
+            ],
         ],
         'info' => [
             'interests' => 'Interests',
@@ -249,7 +275,7 @@ return [
             'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
         ],
         'post_count' => [
-            '_' => 'Contributed :count',
+            '_' => 'Contributed :link',
             'count' => ':count forum post|:count forum posts',
         ],
         'rank' => [

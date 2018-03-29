@@ -23,8 +23,7 @@
   background-color: #444;
   display: flex;
   flex-direction: column;
-  padding: 5px 10px;
-  padding-bottom: 15px;
+  padding: 10px 10px 15px 10px;
 
   &::after, &::before {
     .full-size();
@@ -51,14 +50,6 @@
     opacity: 0;
   }
 
-  &__highlight {
-    em {
-      color: @yellow-dark;
-      font-style: normal;
-      font-weight: bold;
-    }
-  }
-
   &__row {
     margin: 5px 0;
     padding: 0;
@@ -66,6 +57,7 @@
     word-wrap: break-word;
 
     &--title {
+      margin-top: 0;
       color: #fff;
       font-size: @font-size--title-small-2;
     }

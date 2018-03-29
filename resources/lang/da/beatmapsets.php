@@ -67,14 +67,12 @@ return [
             'rating-spread' => 'Rating Fordeling',
         ],
         'info' => [
-            'no_scores' => 'Ikke-ranked beatmap',
             'points-of-failure' => 'Fejlpoints',
             'success-rate' => 'Succes Rate',
-
             'description' => 'Beskrivelse',
-
             'source' => 'Kilde',
             'tags' => 'Tags',
+            'unranked' => 'Ikke-ranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'opnået :when',

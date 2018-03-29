@@ -28,7 +28,7 @@ class UserReplaysWatchedCountTransformer extends Fractal\TransformerAbstract
     public function transform(UserReplaysWatchedCount $count)
     {
         return [
-            'start_date' => json_time($count->startDate()),
+            'start_date' => json_date($count->startDate()),
             'count' => $count->count,
         ];
     }
