@@ -56,8 +56,11 @@ return [
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM de YYYY',
-            'php' => 'MMMM de y',
+            'moment' => 'MMMM [de] YYYY',
+            'php' => 'MMMM \d\e y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 
