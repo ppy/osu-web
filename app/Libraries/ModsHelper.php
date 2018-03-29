@@ -67,10 +67,7 @@ class ModsHelper
             return !in_array($modId, $impliedIds, true);
         }, ARRAY_FILTER_USE_KEY);
 
-        $mods = array_values($mods);
-        sort($mods);
-
-        return $mods;
+        return array_values($mods);
     }
 
     public static function toBitset($mods)
