@@ -33,6 +33,7 @@ use App\Models\Score\Best\Model as ScoreBestModel;
 use App\Models\User;
 use App\Models\UserNotFound;
 use App\Libraries\Search\PostSearch;
+use App\Libraries\Search\PostSearchRequestParams;
 use Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Request;
@@ -217,14 +218,9 @@ class UsersController extends Controller
             abort(404);
         }
 
-        $options = [
-            'query' => trim(request('query')),
-            'userId' => $user->getKey(),
-            'forumId' => request('forum_id'),
-            'includeSubforums' => get_bool(request('forum_children')),
-        ];
-
-        $search = (new PostSearch($options))->size(50)->page(LengthAwarePaginator::resolveCurrentPage());
+        $search = (new PostSearch(PostSearchRequestParams::fromRequest(request(), $user)))
+            ->size(50)
+            ->page(LengthAwarePaginator::resolveCurrentPage());
 
         return view('users.posts', compact('search', 'user'));
     }

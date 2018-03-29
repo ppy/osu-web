@@ -20,8 +20,8 @@
 
 namespace App\Libraries\Search;
 
-use Auth;
 use App\Libraries\Elasticsearch\Sort;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostSearchRequestParams extends SearchRequestParams
@@ -61,7 +61,7 @@ class PostSearchRequestParams extends SearchRequestParams
         $params = new static;
 
         $params->userId = get_int($array['userId'] ?? -1);
-        $params->queryString = $array['query'] ?? null;
+        $params->queryString = presence($array['query'] ?? null);
 
         $params->includeSubforums = get_bool($array['includeSubforums'] ?? false);
         $params->forumId = get_int($array['forumId'] ?? null);
@@ -69,9 +69,13 @@ class PostSearchRequestParams extends SearchRequestParams
         return $params;
     }
 
-    public static function fromRequest(Request $request)
+    public static function fromRequest(Request $request, User $user)
     {
-        // TODO
-        return static::fromArray([]);
+        return static::fromArray([
+            'query' => trim($request['query']),
+            'userId' => $user->getKey(),
+            'forumId' => $request['forum_id'],
+            'includeSubforums' => get_bool($request['forum_children']),
+        ]);
     }
 }
