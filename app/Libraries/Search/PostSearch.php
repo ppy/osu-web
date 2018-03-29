@@ -38,21 +38,13 @@ class PostSearch extends Search
 {
     use HasCompatibility;
 
-    protected $forumId;
-    protected $topicId;
-    protected $includeSubforums;
-    protected $queryString;
-    protected $userId;
+    private $params;
 
-    public function __construct(array $options = [])
+    public function __construct(PostSearchRequestParams $params)
     {
-        parent::__construct(Post::esIndexName(), $options);
+        parent::__construct(Post::esIndexName());
 
-        $this->userId = get_int($options['userId'] ?? -1);
-        $this->queryString = $options['query'] ?? null;
-
-        $this->includeSubforums = get_bool($options['includeSubforums'] ?? false);
-        $this->forumId = get_int($options['forumId'] ?? null);
+        $this->params = $params;
     }
 
     // TODO: maybe move to a response/view helper?
@@ -73,11 +65,11 @@ class PostSearch extends Search
     public function toArray() : array
     {
         $query = (new BoolQuery())
-            ->filter(['term' => ['poster_id' => $this->userId]])
+            ->filter(['term' => ['poster_id' => $this->params->userId]])
             ->filter(['term' => ['type' => 'posts']]);
 
-        if (isset($this->queryString)) {
-            $query->must(QueryHelper::queryString($this->queryString, ['search_content']));
+        if (isset($this->params->queryString)) {
+            $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
             $this->highlight(
                 (new Highlight)
                     ->field('search_content')
@@ -86,10 +78,10 @@ class PostSearch extends Search
             );
         }
 
-        if (isset($this->forumId)) {
-            $forumIds = $this->includeSubforums
-                ? Forum::findOrFail($this->forumId)->allSubForums()
-                : [$this->forumId];
+        if (isset($this->params->forumId)) {
+            $forumIds = $this->params->includeSubforums
+                ? Forum::findOrFail($this->params->forumId)->allSubForums()
+                : [$this->params->forumId];
 
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
