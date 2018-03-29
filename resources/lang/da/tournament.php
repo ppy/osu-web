@@ -33,7 +33,7 @@ return [
             'cancel' => 'Annullér tilmelding',
         ],
         'entered' => 'Du er nu tilmeldt turneringen.<br><br>Vær opmærksom på, at dette ikke betyder, at du skal være tilmeldt et hold..<br><br>Mere info vil blive sendt til dig på din email-adresse, så vær venligst sikker på, at din kontos email-adresse er gyldig!',
-        'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!', // Base text changed from "log" to "sign"
+        'login_to_register' => 'Vær venlig at :login for at se tilmeldingsinformation!',
         'not_yet_entered' => 'Du er ikke tilmeldt denne turnering.',
         'rank_too_low' => 'Beklager, du opfylder ikke kravene for rang til denne turnering!',
         'registration_ends' => 'Tilmelding lukker på :date',
