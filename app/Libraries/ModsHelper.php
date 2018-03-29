@@ -28,21 +28,25 @@ class ModsHelper
         [3, 'HD'],
         [4, 'HR'],
         [5, 'SD'],
+        [14, 'PF', [5]],
         [6, 'DT'],
-        [7, 'Relax'],
-        [8, 'HT'],
         [9, 'NC', [6]],
+        [8, 'HT'],
+        [20, 'FI'],
         [10, 'FL'],
         [12, 'SO'],
-        [13, 'AP'],
-        [14, 'PF', [5]],
+
+        // mania keys (converts)
         [15, '4K'],
         [16, '5K'],
         [17, '6K'],
         [18, '7K'],
         [19, '8K'],
-        [20, 'FI'],
         [24, '9K'],
+
+        // unranked
+        [7, 'Relax'],
+        [13, 'AP'],
     ];
 
     public static function toArray($bitset)
