@@ -69,14 +69,17 @@ class UserSearch extends RecordSearch
         ];
 
         $query = (new BoolQuery())
-            ->shouldMatch(1)
-            ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
-            ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
-            ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
-            ->should(['match_phrase' => ['username._slop' => $this->params->queryString]])
             ->mustNot(['term' => ['is_old' => true]])
             ->filter(['term' => ['user_warnings' => 0]])
             ->filter(['term' => ['user_type' => 0]]);
+
+        if ($this->params->queryString !== null) {
+            $query->shouldMatch(1)
+                ->should(['match' => ['username.raw' => ['query' => $this->params->queryString, 'boost' => 5]]])
+                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $lowercase_stick)])
+                ->should(['multi_match' => array_merge(['query' => $this->params->queryString], $whitespace_stick)])
+                ->should(['match_phrase' => ['username._slop' => $this->params->queryString]]);
+        }
 
         if ($this->params->recentOnly) {
             $query->filter([

@@ -74,29 +74,31 @@ class WikiSearch extends RecordSearch
                 ],
             ]]);
 
-        $matchQuery = (new BoolQuery())
-            ->shouldMatch(1)
-            ->should(['match' => [
-                'tags' => [
-                    'query' => $this->params->queryString,
-                    'boost' => 10,
-                ],
-            ]])
-            ->should(['match' => [
-                'title' => [
-                    'query' => $this->params->queryString,
-                    'boost' => 10,
-                ],
-            ]])
-            ->should(['match' => [
-                'path_clean' => [
-                    'query' => $this->params->queryString,
-                    'boost' => 9,
-                ],
-            ]])
-            ->should(['match' => [
-                'page_text' => $this->params->queryString,
-            ]]);
+        $matchQuery = new BoolQuery();
+        if ($this->params->queryString !== null) {
+            $matchQuery->shouldMatch(1)
+                ->should(['match' => [
+                    'tags' => [
+                        'query' => $this->params->queryString,
+                        'boost' => 10,
+                    ],
+                ]])
+                ->should(['match' => [
+                    'title' => [
+                        'query' => $this->params->queryString,
+                        'boost' => 10,
+                    ],
+                ]])
+                ->should(['match' => [
+                    'path_clean' => [
+                        'query' => $this->params->queryString,
+                        'boost' => 9,
+                    ],
+                ]])
+                ->should(['match' => [
+                    'page_text' => $this->params->queryString,
+                ]]);
+        }
 
         $this->query = (new BoolQuery)
             ->must($langQuery)

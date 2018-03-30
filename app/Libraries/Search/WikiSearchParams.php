@@ -55,7 +55,7 @@ class WikiSearchParams extends SearchParams
     public static function fromArray(array $array)
     {
         $params = new static;
-        $params->queryString = presence($array['query'] ?? null);
+        $params->queryString = $array['query'] ?? null;
         $params->locale = $array['locale'] ?? null;
 
         return $params;

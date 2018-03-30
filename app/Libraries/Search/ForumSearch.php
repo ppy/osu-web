@@ -61,8 +61,6 @@ class ForumSearch extends Search
      */
     public function toArray() : array
     {
-        $match = QueryHelper::queryString($this->params->queryString, ['search_content']);
-
         $query = (new BoolQuery())
             ->must(static::firstPostQuery()->toArray())
             ->should($this->childQuery()->toArray())
@@ -71,8 +69,8 @@ class ForumSearch extends Search
 
         // skip the topic search if doing a username; needs a more complicated
         // query to accurately filter the results which isn't implemented yet.
-        if (!isset($this->params->username)) {
-            $query->should($match);
+        if (!isset($this->params->username) && $this->params->queryString !== null) {
+            $query->should(QueryHelper::queryString($this->params->queryString, ['search_content']));
         }
 
         if (isset($this->params->forumId)) {
@@ -88,8 +86,11 @@ class ForumSearch extends Search
 
     private function childQuery() : HasChildQuery
     {
-        $query = (new BoolQuery())
-            ->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
+        $query = new BoolQuery();
+
+        if ($this->params->queryString !== null) {
+            $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
+        }
 
         if (isset($this->params->username)) {
             $user = User::lookup($this->params->username);
