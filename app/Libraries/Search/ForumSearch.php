@@ -118,17 +118,6 @@ class ForumSearch extends Search
             ->source('search_content');
     }
 
-    public static function normalizeParams(array $params = [])
-    {
-        return [
-            'query' => $params['query'],
-            'forumId' => $params['forum_id'] ?? null,
-            'topicId' => $params['topic_id'] ?? null,
-            'includeSubforums' => $params['forum_children'] ?? false,
-            'username' => $params['username'] ?? null,
-        ];
-    }
-
     public function data()
     {
         return $this->response();
