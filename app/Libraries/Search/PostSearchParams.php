@@ -67,7 +67,7 @@ class PostSearchParams extends SearchParams
         $params = new static;
 
         $params->userId = get_int($array['userId'] ?? -1);
-        $params->queryString = presence($array['query'] ?? null);
+        $params->queryString = $array['query'] ?? null;
 
         $params->includeSubforums = get_bool($array['includeSubforums'] ?? false);
         $params->forumId = get_int($array['forumId'] ?? null);
