@@ -40,7 +40,7 @@ class UserSearch extends RecordSearch
      */
     public function overLimit()
     {
-        return min($this->response()->total(), config('osu.search.max.user'));
+        return $this->response()->total() > config('osu.search.max.user');
     }
 
     /**
