@@ -42,7 +42,10 @@ class PostSearchParams extends SearchParams
     /** @var int */
     public $userId = -1;
 
-    public function getCacheKey()
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheKey() : string
     {
         $vars = get_object_vars($this);
         ksort($vars);
@@ -50,7 +53,10 @@ class PostSearchParams extends SearchParams
         return 'post-search:'.json_encode($vars);
     }
 
-    public function isCacheable()
+    /**
+     * {@inheritdoc}
+     */
+    public function isCacheable() : bool
     {
         return false;
     }

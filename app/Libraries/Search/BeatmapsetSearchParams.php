@@ -31,32 +31,47 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var array */
     public $extra = [];
+
     /** @var int|null */
     public $genre = null;
+
     /** @var bool */
     public $includeConverts = false;
+
     /** @var int|null */
     public $language = null;
+
     /** @var int|null */
     public $mode = null;
+
     /** @var int|null */
     public $page = null;
+
     /** @var string|null */
     public $queryString = null;
+
     /** @var array */
     public $rank = [];
+
     /** @var bool */
     public $showRecommended = false;
+
     /** @var int */
     public $status = 0;
+
     /** @var int|null */
     public $size = null;
+
     /** @var Sort */
     public $sort = null;
+
     /** @var User */
     public $user = null;
 
-    public function getCacheKey()
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheKey() : string
     {
         $vars = get_object_vars($this);
         $vars['sort'] = [
@@ -70,7 +85,10 @@ class BeatmapsetSearchParams extends SearchParams
         return 'beatmapset-search:'.json_encode($vars);
     }
 
-    public function isCacheable()
+    /**
+     * {@inheritdoc}
+     */
+    public function isCacheable() : bool
     {
         return !(
             present($this->queryString)

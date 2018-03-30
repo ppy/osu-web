@@ -39,6 +39,17 @@ abstract class SearchParams
         return $callable();
     }
 
-    abstract public function getCacheKey();
-    abstract public function isCacheable();
+    /**
+     * Gets the key useable as a cache key.
+     *
+     * @return string the cache key.
+     */
+    abstract public function getCacheKey() : string;
+
+    /**
+     * Checks if the current set of parameters is eligible for caching.
+     *
+     * @return bool true if the parameters are eligible for caching; false, otherwise.
+     */
+    abstract public function isCacheable() : bool;
 }

@@ -32,7 +32,10 @@ class WikiSearchParams extends SearchParams
     /** @var string|null */
     public $locale = null;
 
-    public function getCacheKey()
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheKey() : string
     {
         $vars = get_object_vars($this);
         ksort($vars);
@@ -40,7 +43,10 @@ class WikiSearchParams extends SearchParams
         return 'wiki-search:'.json_encode($vars);
     }
 
-    public function isCacheable()
+    /**
+     * {@inheritdoc}
+     */
+    public function isCacheable() : bool
     {
         return false;
     }

@@ -29,7 +29,10 @@ class UserSearchParams extends SearchParams
     public $queryString = null;
     public $recentOnly = false;
 
-    public function getCacheKey()
+    /**
+     * {@inheritdoc}
+     */
+    public function getCacheKey() : string
     {
         $vars = get_object_vars($this);
         ksort($vars);
@@ -37,7 +40,10 @@ class UserSearchParams extends SearchParams
         return 'user-search:'.json_encode($vars);
     }
 
-    public function isCacheable()
+    /**
+     * {@inheritdoc}
+     */
+    public function isCacheable() : bool
     {
         return false;
     }
