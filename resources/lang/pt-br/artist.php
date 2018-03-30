@@ -28,12 +28,12 @@ return [
 
     'beatmaps' => [
         '_' => 'Beatmaps',
-        'download' => 'Baixar modelo de mapa',
-        'download-na' => 'Modelo de mapa indisponível',
+        'download' => 'Baixar modelo de beatmap',
+        'download-na' => 'Modelo de beatmap indisponível',
     ],
 
     'index' => [
-        'description' => 'Os artistas em destaque são pessoas com quem estamos trabalhando em conjunto para trazer novas ideias musicais para o osu!. Estes artistas possuem uma seleção variada de músicas inéditas escolhidas pela própria equipe do osu! por serem incrivelmente incríveis e adequadas para mapeamento. Alguns destes artistas criaram músicas exclusivas para o osu!.<br><br>Todas as músicas desta seção têm o BPM e Offset pré-disponibilizados e foram oficialmente licencializadas para utilização no osu! e qualquer conteúdo relacionado.',
+        'description' => 'Os artistas em destaque são pessoas com quem estamos trabalhando em conjunto para trazer novas ideias musicais para o osu!. Estes artistas possuem uma seleção variada de músicas inéditas escolhidas pela própria equipe do osu! por serem incrivelmente incríveis e adequadas para mapeamento. Alguns destes artistas criaram músicas exclusivas para o osu!.<br><br>Todas as músicas desta seção têm o BPM e Offset pré-disponibilizados e foram oficialmente licenciadas para utilização no osu! e em qualquer conteúdo relacionado.',
     ],
 
     'links' => [

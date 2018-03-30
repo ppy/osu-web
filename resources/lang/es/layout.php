@@ -39,11 +39,13 @@ return [
             'password-reset-index' => 'reestablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
+            'team' => 'equipo',
         ],
         'help' => [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
-            'getSupport' => 'soporte', //obsolete
+            'getRules' => 'reglas',
+            'getSupport' => 'no, de veras, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -98,7 +100,7 @@ return [
             '404' => 'no encontrado',
             '403' => 'prohibido',
             '401' => 'no autorizado',
-            '405' => 'falta algo',
+            '405' => 'página faltante',
             '500' => 'algo va mal',
             '503' => 'mantenimiento',
         ],
@@ -113,7 +115,7 @@ return [
 
             'messages' => 'Mensajes',
             'settings' => 'Opciones',
-            'logout' => 'Salir', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
             'beatmapset_activities' => 'actividades del usuario en el beatmap',
         ],
@@ -223,7 +225,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar al soporte técnico!',
+        'reference' => '¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!',
     ],
 
     'popup_login' => [
@@ -249,7 +251,7 @@ return [
         'links' => [
             'account-edit' => 'Ajustes',
             'friends' => 'Amigos',
-            'logout' => 'Cerrar sesión', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',
         ],
     ],
