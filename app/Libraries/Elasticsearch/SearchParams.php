@@ -18,7 +18,7 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Libraries\Search;
+namespace App\Libraries\Elasticsearch;
 
 use Cache;
 
