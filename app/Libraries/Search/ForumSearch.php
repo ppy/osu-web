@@ -139,4 +139,9 @@ class ForumSearch extends Search
 
         return User::whereIn('user_id', $ids);
     }
+
+    protected function getDefaultSize() : int
+    {
+        return 20;
+    }
 }
