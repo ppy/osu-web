@@ -32,7 +32,7 @@ class EmptySearchParams extends SearchParams
         return '';
     }
 
-     /**
+    /**
      * {@inheritdoc}
      */
     public function isCacheable() : bool

@@ -58,7 +58,6 @@ class UserSearchParams extends SearchParams
         $params->sort = $array['sort'] ?? null;
         $params->recentOnly = $array['recentOnly'] ?? false;
 
-
         return $params;
     }
 

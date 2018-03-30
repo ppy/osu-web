@@ -85,7 +85,7 @@ class UserSearch extends RecordSearch
             $query->filter([
                 'range' => [
                     'user_lastvisit' => [
-                        'gte' => 'now-90d'
+                        'gte' => 'now-90d',
                     ],
                 ],
             ]);

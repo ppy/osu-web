@@ -53,10 +53,8 @@ class MultiSearch
     private $searches;
     private $request;
 
-
     public function __construct(Request $request, array $options = [])
     {
-
         $this->query = trim($request['query']);
         $this->options = $options;
         $this->request = $request;

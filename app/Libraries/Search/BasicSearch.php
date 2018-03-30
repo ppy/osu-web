@@ -21,7 +21,6 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\Search;
-use App\Models\Wiki\Page;
 
 class BasicSearch extends Search
 {

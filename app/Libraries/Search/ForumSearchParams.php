@@ -54,7 +54,7 @@ class ForumSearchParams extends SearchParams
         return 'forum-search:'.json_encode($vars);
     }
 
-     /**
+    /**
      * {@inheritdoc}
      */
     public function isCacheable() : bool

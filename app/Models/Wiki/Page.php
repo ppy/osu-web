@@ -22,13 +22,13 @@ namespace App\Models\Wiki;
 
 use App;
 use App\Exceptions\GitHubNotFoundException;
-use App\Libraries\Elasticsearch\BoolQuery;
-use App\Libraries\Search\BasicSearch;
-use App\Libraries\Search\EmptySearchParams;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
+use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\OsuMarkdownProcessor;
 use App\Libraries\OsuWiki;
+use App\Libraries\Search\BasicSearch;
+use App\Libraries\Search\EmptySearchParams;
 use Carbon\Carbon;
 use Es;
 
