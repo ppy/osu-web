@@ -55,6 +55,6 @@ return [
 
     'require_login' => [
         '_' => 'Você precisa estar :link para baixar',
-        'link_text' => 'conectado',
+        'link_text' => 'conectado', // Base text changed from "log" to "sign"
     ],
 ];

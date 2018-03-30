@@ -99,7 +99,7 @@ return [
         ],
         'user' => [
             '_' => 'utilisateur',
-            'getLogin' => 'se connecter',
+            'getLogin' => 'se connecter', // Base text changed from "log" to "sign"
             'disabled' => 'désactivé',
 
             'register' => "s'inscrire",
@@ -188,7 +188,7 @@ return [
             'link' => false,
         ],
         '401' => [
-            'error' => 'Vous ne devriez pas être ici',
+            'error' => 'Vous ne devriez pas être ici', // Base text changed from "log" to "sign"
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
             'link' => false,
         ],

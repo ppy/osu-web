@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Inicia sesión para continuar.',
+        'http-401' => 'Inicia sesión para continuar.', // Base text changed from "log" to "sign"
         'http-403' => 'Acceso denegado.',
         'http-429' => 'Demasiados intentos. Inténtalo de nuevo más tarde.',
     ],
@@ -36,7 +36,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
     ],
-    'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.',
+    'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.', // Base text changed from "log" to "sign"
     'supporter_only' => 'Debes ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
     'unknown' => 'Ha ocurrido un error desconocido.',

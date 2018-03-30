@@ -101,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => 'användare',
-            'getLogin' => 'logga in',
+            'getLogin' => 'logga in', // Base text changed from "log" to "sign"
             'disabled' => 'inaktiverad',
 
             'register' => 'registrera',
@@ -192,7 +192,7 @@ return [
         ],
         '401' => [
             'error' => 'Du bör inte vara här',
-            'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.',
+            'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

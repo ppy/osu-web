@@ -41,7 +41,7 @@ return [
             'approved' => 'approuvée le ',
             'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !',
+            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',

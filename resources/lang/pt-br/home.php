@@ -93,7 +93,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crie uma conta',
-                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta',
+                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta', // Base text changed from "log" to "sign"
             ],
             'download' => [
                 'title' => 'baixar o jogo',

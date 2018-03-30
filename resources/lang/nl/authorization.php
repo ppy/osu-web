@@ -94,7 +94,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Log in om verder te gaan.',
+    'require_login' => 'Log in om verder te gaan.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Toegang geweigerd.',
 

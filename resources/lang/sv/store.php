@@ -64,14 +64,14 @@ return [
         'gift' => 'present till spelare',
         'require_login' => [
             '_' => 'Du behöver vara :link för att få en supporter tagg!',
-            'link_text' => 'inloggad',
+            'link_text' => 'inloggad', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'Du behöver var :link för att ändra ditt namn!',
-            'link_text' => 'inloggad',
+            'link_text' => 'inloggad', // Base text changed from "log" to "sign"
         ],
     ],
 ];

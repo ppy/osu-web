@@ -69,14 +69,14 @@ return [
         'gift' => 'regalar al jugador',
         'require_login' => [
             '_' => '¡Tienes que :link para obtener un título de supporter!',
-            'link_text' => 'iniciar sesión',
+            'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => '¡Tienes que :link para cambiar tu nombre de usuario!',
-            'link_text' => 'iniciar sesión',
+            'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
         ],
     ],
 ];

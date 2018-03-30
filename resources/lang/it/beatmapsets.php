@@ -24,7 +24,7 @@ return [
             'made-by' => 'creata da ',
             'submitted' => 'inviata il ',
             'ranked' => 'rankata il ',
-            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!',
+            'logged-out' => 'Devi avere effettuato il login prima di scaricare qualsiasi beatmap!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Scarica',
                 'video' => 'con Video',

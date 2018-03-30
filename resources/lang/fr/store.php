@@ -59,14 +59,14 @@ return [
     'supporter_tag' => [
         'require_login' => [
             '_' => 'Vous devez être un :link pour obtenir a tag supporter !',
-            'link_text' => 'connecté',
+            'link_text' => 'connecté', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'Vous devez être :link pour changer votre nom !',
-            'link_text' => 'connecté',
+            'link_text' => 'connecté', // Base text changed from "log" to "sign"
         ],
     ],
 ];

@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Du skal være logget ind for at kunne redigere.',
+            'null_user' => 'Du skal være logget ind for at kunne redigere.', // Base text changed from "log" to "sign"
             'system_generated' => 'System-genererede opslag kan ikke redigeres.',
             'wrong_user' => 'Du skal være ejer af dette opslag for at kunne redigere.',
         ],
@@ -38,7 +38,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Log ind for at svare',
+            'guest' => 'Log ind for at svare', // Base text changed from "log" to "sign"
             'user' => 'Svar',
         ],
     ],

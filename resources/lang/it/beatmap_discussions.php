@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Devi avere effettuato il login per modificare.',
+            'null_user' => 'Devi avere effettuato il login per modificare.', // Base text changed from "log" to "sign"
             'system_generated' => 'I post generati dal sistema non possono essere modificati.',
             'wrong_user' => 'Devi essere l\'autore del post per modificarlo.',
         ],

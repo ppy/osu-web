@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Vous devez être connecté pour éditer.',
+            'null_user' => 'Vous devez être connecté pour éditer.', // Base text changed from "log" to "sign"
             'system_generated' => 'Un post système ne peut être édité.',
             'wrong_user' => "Vous devez être le créateur du post pour l'éditer.",
         ],

@@ -55,8 +55,8 @@ return [
         'button' => 'Conectar',
         'button_posting' => 'Conectando...',
         'remember' => 'Lembrar deste computador',
-        'title' => 'Por favor, conecte-se para prosseguir',
-        'failed' => 'Login incorreto',
+        'title' => 'Por favor, conecte-se para prosseguir', // Base text changed from "log" to "sign"
+        'failed' => 'Login incorreto', // Base text changed from "log" to "sign"
         'register' => 'Você não tem uma conta no osu!? Faça uma!',
         'forgot' => 'Esqueceu sua senha?',
         'beta' => [
@@ -75,12 +75,12 @@ return [
         '_' => 'Registrar',
     ],
     'anonymous' => [
-        'login_link' => 'clique para conectar-se',
-        'login_text' => 'conectar',
+        'login_link' => 'clique para conectar-se', // Base text changed from "log" to "sign"
+        'login_text' => 'conectar', // Base text changed from "log" to "sign"
         'username' => 'Convidado',
-        'error' => 'Você precisa estar conectado para fazer isso.',
+        'error' => 'Você precisa estar conectado para fazer isso.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Tem certeza de que deseja sair? :(',
+    'logout_confirm' => 'Tem certeza de que deseja sair? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => 'Sua conta foi restrita!',
         'message' => 'Enquanto restrito, você será impossibilitado de interagir com outros jogadores e suas pontuações serão visíveis apenas para você. Isso é geralmente causado por um processo automático e provavelmente será resolvido em até 24 horas. Caso tenha interesse em pedir por sua restrição, por favor, <a href="mailto:accounts@ppy.sh">entre em contato com o suporte</a>.',

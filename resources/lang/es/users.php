@@ -48,8 +48,8 @@ return [
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
         'remember' => 'Recordarme',
-        'title' => 'Inicia sesión para continuar',
-        'failed' => 'Nombre de usuario o contraseña incorrectos',
+        'title' => 'Inicia sesión para continuar', // Base text changed from "log" to "sign"
+        'failed' => 'Nombre de usuario o contraseña incorrectos', // Base text changed from "log" to "sign"
         'register' => '¿No tienes una cuenta de osu!? Crea una',
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
@@ -63,12 +63,12 @@ return [
         '_' => 'Registrarse',
     ],
     'anonymous' => [
-        'login_link' => 'clic para iniciar sesión',
-        'login_text' => 'iniciar sesión',
+        'login_link' => 'clic para iniciar sesión', // Base text changed from "log" to "sign"
+        'login_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
         'username' => 'Invitado',
-        'error' => 'Necesitas haber iniciado sesión para hacer esto.',
+        'error' => 'Necesitas haber iniciado sesión para hacer esto.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => '¿Estás seguro que quieres salir? :(',
+    'logout_confirm' => '¿Estás seguro que quieres salir? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => '¡Tu cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros juadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',

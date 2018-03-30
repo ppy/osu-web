@@ -64,14 +64,14 @@ return [
         'gift' => 'giv gave',
         'require_login' => [
             '_' => 'Du skal være :link for at få et supporter tag!',
-            'link_text' => 'logget ind',
+            'link_text' => 'logget ind', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'Du skal være :link for at ændre dit brugernavn!',
-            'link_text' => 'logget ind',
+            'link_text' => 'logget ind', // Base text changed from "log" to "sign"
         ],
     ],
 ];

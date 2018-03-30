@@ -107,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'usuário',
-            'getLogin' => 'iniciar sessão',
+            'getLogin' => 'iniciar sessão', // Base text changed from "log" to "sign"
             'disabled' => 'desativado',
 
             'register' => 'registrar',
@@ -200,7 +200,7 @@ return [
         ],
         '401' => [
             'error' => 'Você não deveria estar aqui.',
-            'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.',
+            'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

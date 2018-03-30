@@ -41,7 +41,7 @@ return [
         'message_placeholder' => 'Нажмите сюда для публикации',
         'message_type_select' => 'Выбрать тип комментария',
         'reply_placeholder' => 'Введи тут ответ',
-        'require-login' => 'Войди для публикации или ответа',
+        'require-login' => 'Войди для публикации или ответа', // Base text changed from "log" to "sign"
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'title' => 'Обсуждения',
