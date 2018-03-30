@@ -34,6 +34,17 @@ abstract class SearchParams
     public $sort = null;
 
     /**
+     * This function only exists for MultiSearch to apply additional params.
+     * It should probably be replaced in favour of having different SearchParams subclasses.
+     */
+    public function applyParams(array $params)
+    {
+        foreach ($params as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
+    /**
      * Magic execute and cache if isCacheable() function.
      * This does not seem like the best place for it but it will do for now.
      */

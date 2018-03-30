@@ -62,12 +62,13 @@ class UserSearchParams extends SearchParams
         return $params;
     }
 
-    // implemented for completeness.
     public static function fromRequest(Request $request)
     {
-        return static::fromArray([
-            'query' => request('query'),
-            'recentOnly' => get_bool(request('recent_only'))
-        ]);
+        $params = new static;
+        $params->queryString = presence(trim($request['query']));
+        $params->page = get_int($request['page']);
+        $params->recentOnly = get_bool($request['recent_only']);
+
+        return $params;
     }
 }

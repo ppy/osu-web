@@ -112,7 +112,7 @@ class BeatmapsetSearchParams extends SearchParams
         $params->page = get_int($request['page'] ?? null) ?? 1;
 
         if ($params->user !== null) {
-            $params->queryString = es_query_escape_with_caveats($request['q'] ?? null);
+            $params->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
             $params->status = get_int($request['s'] ?? null) ?? 0;
             $params->genre = get_int($request['g'] ?? null);
             $params->language = get_int($request['l'] ?? null);

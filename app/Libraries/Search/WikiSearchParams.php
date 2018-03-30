@@ -64,12 +64,12 @@ class WikiSearchParams extends SearchParams
         return $params;
     }
 
-    // implemented for completeness.
     public static function fromRequest(Request $request)
     {
         return static::fromArray([
-            'query' => trim(request('query')),
-            'locale' => request('locale')
+            'query' => trim($request['query']),
+            'locale' => $request['locale'],
+            'page' => get_int($request['page']),
         ]);
     }
 }

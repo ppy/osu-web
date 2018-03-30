@@ -80,6 +80,7 @@ class PostSearchParams extends SearchParams
     {
         return static::fromArray([
             'query' => presence(trim($request['query'])),
+            'page' => $request['page'],
             'userId' => $user->getKey(),
             'forumId' => $request['forum_id'],
             'includeSubforums' => get_bool($request['forum_children']),

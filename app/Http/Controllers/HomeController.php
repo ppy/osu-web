@@ -118,7 +118,7 @@ class HomeController extends Controller
 
     public function quickSearch()
     {
-        $quickSearch = new QuickSearch(request('query'));
+        $quickSearch = new QuickSearch(request('query'), ['user' => Auth::user()]);
         if (!$quickSearch->hasQuery()) {
             return response([], 204);
         }
@@ -128,13 +128,11 @@ class HomeController extends Controller
 
     public function search()
     {
-        $query = request('query');
-
         if (request('mode') === 'beatmapset') {
-            return ujs_redirect(route('beatmapsets.index', ['q' => $query]));
+            return ujs_redirect(route('beatmapsets.index', ['q' => request('query')]));
         }
 
-        $allSearch = new AllSearch($query, request()->input());
+        $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
 
         return view('home.search', compact('allSearch'));
     }

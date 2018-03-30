@@ -20,6 +20,8 @@
 
 namespace App\Libraries\Search;
 
+use Illuminate\Http\Request;
+
 class MultiSearch
 {
     const MODES = [
@@ -46,18 +48,23 @@ class MultiSearch
         ],
     ];
 
-    private $options = [];
+    private $options;
+    private $query;
     private $searches;
+    private $request;
 
-    public function __construct(?string $query = null, array $options = [])
+
+    public function __construct(Request $request, array $options = [])
     {
-        $this->query = trim($query);
+
+        $this->query = trim($request['query']);
         $this->options = $options;
+        $this->request = $request;
     }
 
     public function getMode()
     {
-        return $this->options['mode'] ?? 'all';
+        return $this->request['mode'] ?? 'all';
     }
 
     public function hasQuery()
@@ -75,15 +82,15 @@ class MultiSearch
                     continue;
                 }
 
-                $options = array_merge(['query' => $this->query], $settings['options'] ?? []);
                 $class = $settings['type'];
                 $paramsClass = $settings['paramsType'];
-                $search = new $class($paramsClass::fromArray($options));
+
+                $params = $paramsClass::fromRequest($this->request, $this->options['user']);
+                $params->applyParams($settings['options'] ?? []);
+                $search = new $class($params);
 
                 if ($this->getMode() === 'all') {
                     $search->page(1)->size($settings['size']);
-                } elseif ($this->getMode() === $mode) {
-                    $search->page($this->options['page'] ?? 1);
                 }
 
                 $this->searches[$mode] = $search;
