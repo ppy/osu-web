@@ -142,9 +142,7 @@ trait HasSearch
     protected function getPaginationParams()
     {
         $size = $this->getSize();
-
-        // TODO: remove limit after everything migrated from creating own paginator with params['limit'].
-        $params = ['size' => $size, 'limit' => $size];
+        $params = ['size' => $size];
 
         // from overrides page.
         if (isset($this->from)) {
