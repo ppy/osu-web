@@ -26,18 +26,22 @@ class MultiSearch
         'all' => null,
         'user' => [
             'type' => UserSearch::class,
+            'paramsType' => UserSearchParams::class,
             'size' => 6,
         ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,
+            'paramsType' => BeatmapsetSearchParams::class,
             'size' => 8,
         ],
         'wiki_page' => [
             'type' => WikiSearch::class,
+            'paramsType' => WikiSearchParams::class,
             'size' => 8,
         ],
         'forum_post' => [
             'type' => ForumSearch::class,
+            'paramsType' => ForumSearchParams::class,
             'size' => 8,
         ],
     ];
@@ -73,14 +77,8 @@ class MultiSearch
 
                 $options = array_merge(['query' => $this->query], $settings['options'] ?? []);
                 $class = $settings['type'];
-                $paramsClass = "{$class}Params";
-
-                // FIXME: quick hack to make everything work while changing
-                if (class_exists($paramsClass)) {
-                    $search = new $class($paramsClass::fromArray($options));
-                } else {
-                    $search = new $class($options);
-                }
+                $paramsClass = $settings['paramsType'];
+                $search = new $class($paramsClass::fromArray($options));
 
                 if ($this->getMode() === 'all') {
                     $search->page(1)->size($settings['size']);

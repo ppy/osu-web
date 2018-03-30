@@ -25,11 +25,13 @@ class QuickSearch extends MultiSearch
     const MODES = [
         'user' => [
             'type' => UserSearch::class,
+            'paramsType' => UserSearchParams::class,
             'size' => 5,
             'options' => ['recentOnly' => true],
         ],
         'beatmapset' => [
             'type' => BeatmapsetSearch::class,
+            'paramsType' => BeatmapsetSearchParams::class,
             'size' => 5,
         ],
     ];
