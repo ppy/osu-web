@@ -56,9 +56,9 @@ class MultiSearch
         return $this->options['mode'] ?? 'all';
     }
 
-    public function currentQuery()
+    public function hasQuery()
     {
-        return $this->query;
+        return mb_strlen($this->query) >= config('osu.search.minimum_length');
     }
 
     public function searches()
@@ -93,10 +93,5 @@ class MultiSearch
         }
 
         return $this->searches;
-    }
-
-    public function hasQuery()
-    {
-        return mb_strlen($this->query) >= config('osu.search.minimum_length');
     }
 }
