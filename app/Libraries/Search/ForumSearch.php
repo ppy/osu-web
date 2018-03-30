@@ -28,7 +28,6 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Elasticsearch\Sort;
-use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\Forum\Topic;
@@ -37,8 +36,6 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ForumSearch extends Search
 {
-    use HasCompatibility;
-
     public function __construct(ForumSearchParams $params)
     {
         parent::__construct(Post::esIndexName(), $params);

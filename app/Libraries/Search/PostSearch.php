@@ -27,7 +27,6 @@ use App\Libraries\Elasticsearch\QueryHelper;
 use App\Libraries\Elasticsearch\Search;
 use App\Libraries\Elasticsearch\SearchResponse;
 use App\Libraries\Elasticsearch\Sort;
-use App\Libraries\Search\HasCompatibility;
 use App\Models\Forum\Forum;
 use App\Models\Forum\Post;
 use App\Models\User;
@@ -36,8 +35,6 @@ use Illuminate\Database\Eloquent\Builder;
 // FIXME: remove ArrayAccess after refactored
 class PostSearch extends Search
 {
-    use HasCompatibility;
-
     public function __construct(PostSearchParams $params)
     {
         parent::__construct(Post::esIndexName(), $params);
