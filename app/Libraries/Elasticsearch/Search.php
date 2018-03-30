@@ -210,6 +210,6 @@ abstract class Search implements Queryable
             );
         }
 
-        return SearchResponse::failed();
+        return SearchResponse::failed($this->error);
     }
 }

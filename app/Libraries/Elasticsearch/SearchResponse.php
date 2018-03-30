@@ -200,13 +200,14 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         return $this->offsetExists($this->index);
     }
 
-    public static function failed()
+    public static function failed($exception)
     {
         return new static([
             'hits' => [
                 'hits' => [],
                 'total' => 0,
             ],
+            'exception' => $exception,
         ]);
     }
 }
