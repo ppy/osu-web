@@ -46,6 +46,7 @@ return [
     ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
         'days' => ':count day|:count days',
         'hour_short_unit' => 'hr|hrs',
         'hours' => ':count hour|:count hours',

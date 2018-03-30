@@ -26,6 +26,8 @@ use League\Fractal;
 class UserTransformer extends Fractal\TransformerAbstract
 {
     protected $availableIncludes = [
+        'account_history',
+        'badges',
         'defaultStatistics',
         'disqus_auth',
         'favourite_beatmapset_count',
@@ -34,7 +36,6 @@ class UserTransformer extends Fractal\TransformerAbstract
         'graveyard_beatmapset_count',
         'monthly_playcounts',
         'page',
-        'account_history',
         'ranked_and_approved_beatmapset_count',
         'replays_watched_counts',
         'unranked_beatmapset_count',
@@ -88,6 +89,14 @@ class UserTransformer extends Fractal\TransformerAbstract
             ],
             'max_friends' => $user->maxFriends(),
         ];
+    }
+
+    public function includeBadges(User $user)
+    {
+        return $this->collection(
+            $user->badges()->orderBy('awarded', 'DESC')->get(),
+            new UserBadgeTransformer
+        );
     }
 
     public function includeDefaultStatistics(User $user)
