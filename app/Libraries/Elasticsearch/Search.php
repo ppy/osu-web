@@ -113,16 +113,6 @@ abstract class Search implements Queryable
     }
 
     /**
-     * Returns if the query string is considered valid. Does not account for query errors.
-     *
-     * @return bool true if the query string is valid; false, otherwise.
-     */
-    public function isValidQueryString() : bool
-    {
-        return true;
-    }
-
-    /**
      * Returns if the total number of results found is greater than the allowed limit.
      *
      * @return bool
