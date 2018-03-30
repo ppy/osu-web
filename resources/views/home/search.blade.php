@@ -40,12 +40,7 @@
         <div class="osu-page osu-page--small-desktop">
             <div class="search">
                 <div class="page-mode page-mode--search">
-                    @foreach ($allSearch->searches() as $mode => $search)
-                        @php
-                            $active = $mode === $allSearch->getMode();
-                        @endphp
-                        @include('home._search_page_tab', compact('active', 'mode', 'search'))
-                    @endforeach
+                    @include('home._search_page_tabs', compact('allSearch'))
                 </div>
 
                 @if ($allSearch->getMode() === 'forum_post')
