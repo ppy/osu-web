@@ -19,16 +19,14 @@
 .profile-badges {
   @_top: profile-badges;
 
-  @_width: @_badge-natural-width;
+  @_width: @_badge-width + ((@_padding + @_badge-margin) * 2);
   @_padding: 3px;
 
   @_border-radius: @border-radius--extra;
 
   @_badge-margin: 3px;
-  @_badge-natural-width: 86px;
-  @_badge-natural-height: 40px;
-  @_badge-width: @_width - ((@_padding + @_badge-margin) * 2);
-  @_badge-height: @_badge-natural-height / @_badge-natural-width * @_badge-width;
+  @_badge-width: 86px;
+  @_badge-height: 40px;
 
   .own-layer();
   background-color: #333;
