@@ -55,7 +55,7 @@
                                     $users = $search->users()->select('user_id', 'username', 'user_avatar')->get();
                                 @endphp
                                 @foreach ($search->response() as $hit)
-                                    <div class="search-result__entry">
+                                    <div class="search-result-entry">
                                         @include('objects.search._post_search', compact('hit', 'users'))
                                     </div>
                                 @endforeach

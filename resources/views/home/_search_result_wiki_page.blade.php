@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @foreach ($search->data() as $entry)
-    <div class="search-result__entry">
+    <div class="search-result-entry">
         <a
             class="search-entry"
             href="{{ wiki_url($entry->path, $entry->locale) }}"

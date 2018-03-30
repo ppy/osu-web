@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @foreach ($search->data() as $entry)
-    <div class="search-result__entry">
+    <div class="search-result-entry">
         @include('objects._usercard', ['user' => $entry, '_modifiers' => ['search']])
     </div>
 @endforeach

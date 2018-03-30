@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 @foreach ($search->data() as $entry)
-    <div class="search-result__entry">
+    <div class="search-result-entry">
         <div
             class="js-react--beatmapset-panel"
             data-beatmapset-panel="{{ json_encode(['beatmap' => json_item($entry, 'Beatmapset', ['beatmaps'])]) }}"

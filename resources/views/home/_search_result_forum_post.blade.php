@@ -32,7 +32,7 @@
 
         $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? new App\Models\DeletedUser();
     @endphp
-    <div class="search-entry-thread">
+    <div class="search-result-entry search-result-entry--threaded">
         <div class="search-entry">
             @include('objects.search._forum_post', [
                 'user' => $user,
@@ -50,7 +50,7 @@
                 $highlights = $search->highlightsForHit($innerHit);
             @endphp
 
-            <div class="search-entry-thread__sub-item">
+            <div class="search-result-entry__sub-item">
                 <div class="search-entry">
                     @include('objects.search._forum_post', [
                         'user' => $user,
