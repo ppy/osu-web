@@ -45,9 +45,6 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var int|null */
     public $mode = null;
 
-    /** @var int|null */
-    public $page = null;
-
     /** @var string|null */
     public $queryString = null;
 
@@ -59,12 +56,6 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var int */
     public $status = 0;
-
-    /** @var int|null */
-    public $size = null;
-
-    /** @var Sort */
-    public $sort = null;
 
     /** @var User */
     public $user = null;
@@ -103,6 +94,9 @@ class BeatmapsetSearchParams extends SearchParams
     {
         $params = new static;
         $params->queryString = $array['query'] ?? null;
+        $params->page = $array['page'] ?? null;
+        $params->size = $array['size'] ?? null;
+        $params->sort = $array['sort'] ?? null;
 
         return $params;
     }

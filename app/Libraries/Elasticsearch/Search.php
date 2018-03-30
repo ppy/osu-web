@@ -46,6 +46,18 @@ abstract class Search implements Queryable
     {
         $this->index = $index;
         $this->params = $params;
+
+        if ($this->params->page !== null) {
+            $this->page($this->params->page);
+        }
+
+        if ($this->params->size !== null) {
+            $this->size($this->params->size);
+        }
+
+        if ($this->params->sort !== null) {
+            $this->sort($this->params->sort);
+        }
     }
 
     // for paginator

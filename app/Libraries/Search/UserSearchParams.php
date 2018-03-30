@@ -53,7 +53,11 @@ class UserSearchParams extends SearchParams
     {
         $params = new static;
         $params->queryString = $array['query'] ?? null;
+        $params->page = $array['page'] ?? null;
+        $params->size = $array['size'] ?? null;
+        $params->sort = $array['sort'] ?? null;
         $params->recentOnly = $array['recentOnly'] ?? false;
+
 
         return $params;
     }

@@ -24,6 +24,15 @@ use Cache;
 
 abstract class SearchParams
 {
+    /** @var int|null */
+    public $page = null;
+
+    /** @var int|null */
+    public $size = null;
+
+    /** @var Sort */
+    public $sort = null;
+
     /**
      * Magic execute and cache if isCacheable() function.
      * This does not seem like the best place for it but it will do for now.

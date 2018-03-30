@@ -33,25 +33,13 @@ class BeatmapsetSearch extends RecordSearch
     /**
      * @param BeatmapsetSearchParams $params
      */
-    public function __construct($params)
+    public function __construct(BeatmapsetSearchParams $params)
     {
         parent::__construct(
             Beatmapset::esIndexName(),
             Beatmapset::class,
             $params
         );
-
-        if ($params->page !== null) {
-            $this->page($params->page);
-        }
-
-        if ($params->size !== null) {
-            $this->size($params->size);
-        }
-
-        if ($params->sort !== null) {
-            $this->sort($params->sort);
-        }
     }
 
     public function getDefaultSize() : int

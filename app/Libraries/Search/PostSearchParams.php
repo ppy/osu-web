@@ -65,10 +65,11 @@ class PostSearchParams extends SearchParams
     public static function fromArray(array $array)
     {
         $params = new static;
-
-        $params->userId = get_int($array['userId'] ?? -1);
         $params->queryString = $array['query'] ?? null;
-
+        $params->page = $array['page'] ?? null;
+        $params->size = $array['size'] ?? null;
+        $params->sort = $array['sort'] ?? null;
+        $params->userId = get_int($array['userId'] ?? -1);
         $params->includeSubforums = get_bool($array['includeSubforums'] ?? false);
         $params->forumId = get_int($array['forumId'] ?? null);
 
