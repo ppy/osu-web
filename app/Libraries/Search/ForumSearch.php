@@ -74,6 +74,8 @@ class ForumSearch extends Search
             $forumIds = $this->params->includeSubforums
                 ? Forum::findOrFail($this->params->forumId)->allSubForums()
                 : [$this->params->forumId];
+
+            $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
         $this->query($query);
