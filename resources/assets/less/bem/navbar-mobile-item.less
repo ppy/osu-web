@@ -17,15 +17,14 @@
  */
 
 .navbar-mobile-item {
-  &:not(.navbar-mobile-item--user){
-    text-transform: lowercase;
-  }
+  text-transform: lowercase;
 
   &--user {
     && {
       display: flex;
       align-items: center;
       background-color: #333;
+      text-transform: unset;
     }
   }
 
