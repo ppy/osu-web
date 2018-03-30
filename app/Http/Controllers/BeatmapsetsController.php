@@ -134,7 +134,7 @@ class BeatmapsetsController extends Controller
     {
         $params = BeatmapsetSearchParams::fromRequest(request(), Auth::user());
         return $params->fetchCacheable(
-            "output-cache:{$params->getCacheKey()}",
+            'output-cache:',
             config('osu.beatmapset.es_cache_duration'),
             function () use ($params) {
                 $records = datadog_timing(function () use ($params) {
