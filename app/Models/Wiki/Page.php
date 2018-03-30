@@ -24,6 +24,7 @@ use App;
 use App\Exceptions\GitHubNotFoundException;
 use App\Libraries\Elasticsearch\BoolQuery;
 use App\Libraries\Search\BasicSearch;
+use App\Libraries\Search\EmptySearchParams;
 use App\Jobs\EsDeleteDocument;
 use App\Jobs\EsIndexDocument;
 use App\Libraries\OsuMarkdownProcessor;
@@ -84,7 +85,7 @@ class Page
             ->should($localeQuery)
             ->shouldMatch(1);
 
-        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+        $search = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), new EmptySearchParams))
             ->source('path')
             ->query($query);
 
@@ -177,7 +178,7 @@ class Page
             foreach (array_unique([$this->requestedLocale, config('app.fallback_locale')]) as $locale) {
                 $this->locale = $locale;
 
-                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages')))
+                $response = (new BasicSearch(config('osu.elasticsearch.index.wiki_pages'), new EmptySearchParams))
                     ->source(['page', 'indexed_at', 'version'])
                     ->query([
                         'term' => [
