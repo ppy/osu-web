@@ -17,7 +17,10 @@
  */
 
 .navbar-mobile-item {
-  text-transform: lowercase;
+  &:not(.navbar-mobile-item--user){
+    text-transform: lowercase;
+  }
+
   &--user {
     && {
       display: flex;
