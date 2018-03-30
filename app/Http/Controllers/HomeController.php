@@ -134,10 +134,6 @@ class HomeController extends Controller
             return ujs_redirect(route('beatmapsets.index', ['q' => $query]));
         }
 
-        $params = array_merge(Request::all(), [
-            'user' => Auth::user(), // FIXME: rename to currentUser
-        ]);
-
         $allSearch = new AllSearch($query, request()->input());
 
         return view('home.search', compact('allSearch'));
