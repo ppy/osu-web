@@ -46,6 +46,7 @@ return [
     ],
 
     'count' => [
+        'badges' => ':count odznaka|:count odznaki|:count odznak',
         'days' => ':count dzień|:count dni|:count dni',
         'hour_short_unit' => 'godz.|godz.|godz.',
         'hours' => ':count godzina|:count godziny|:count godzin',
