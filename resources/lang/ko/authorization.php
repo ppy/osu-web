@@ -92,7 +92,7 @@ return [
                 'no_permission' => '답변할 권한이 없습니다.',
 
                 'user' => [
-                    'require_login' => '답글을 게시하려면 로그인해 주세요.',
+                    'require_login' => '답글을 게시하려면 로그인해 주세요.', // Base text changed from "log" to "sign"
                     'restricted' => '제한된 상태의 계정은 답글을 게시할 수 없습니다.',
                     'silenced' => '침묵 상태의 계정은 답글을 게시할 수 없습니다.',
                 ],
@@ -110,7 +110,7 @@ return [
                 'voted' => '투표 변경이 허용되지 않았습니다.',
 
                 'user' => [
-                    'require_login' => '투표하려면 로그인해 주세요.',
+                    'require_login' => '투표하려면 로그인해 주세요.', // Base text changed from "log" to "sign"
                     'restricted' => '제한된 상태의 계정은 투표할 수 없습니다.',
                     'silenced' => '침묵 상태의 계정은 투표할 수 없습니다.',
                 ],
@@ -133,7 +133,7 @@ return [
         ],
     ],
 
-    'require_login' => '계속하려면 로그인해 주세요.',
+    'require_login' => '계속하려면 로그인해 주세요.', // Base text changed from "log" to "sign"
 
     'unauthorized' => '접근이 제한되었습니다.',
 

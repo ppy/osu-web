@@ -35,25 +35,34 @@ return [
         'permalink_copied' => 'link copiado',
         'post' => 'Enviar',
         'reply' => 'Responder',
-        'reply_reopen' => 'Responder e reabrir',
-        'reply_resolve' => 'Reply and resolver',
+        'reply_reopen' => 'Responder e Reabrir',
+        'reply_resolve' => 'Responder e Resolver',
         'reset' => 'Reiniciar',
         'save' => 'Salvar',
         'saving' => 'Salvando...',
+        'see_more' => 'ver mais',
         'show_more' => 'mostrar mais',
         'upload_image' => 'enviar imagem',
     ],
 
     'count' => [
+        'days' => ':count dia|:count dias',
+        'hour_short_unit' => 'hr|hrs',
+        'hours' => ':count hora|:count horas',
         'item' => ':count unidade|:count unidades',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count mês|:count meses',
+        'second_short_unit' => 'seg|segs',
         'years' => ':count ano|:count anos',
     ],
 
     'datetime' => [
         'year_month' => [
-            'moment' => 'MMMM AAAA',
-            'php' => 'MMMM a',
+            'moment' => 'MMMM YYYY',
+            'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 
@@ -86,7 +95,7 @@ return [
         'days_ago' => ':count dia atrás|:count dias atrás',
         'hours_ago' => ':count hora atrás|:count horas atrás',
         'now' => 'agora',
-        'remaining' => 'Tempo sobrando',
+        'remaining' => 'Tempo Sobrando',
     ],
 
     'title' => [

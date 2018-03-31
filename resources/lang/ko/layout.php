@@ -101,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => '유저',
-            'getLogin' => '로그인',
+            'getLogin' => '로그인', // Base text changed from "log" to "sign"
             'disabled' => '비활성 상태', // disabled
 
             'register' => '회원 가입',
@@ -191,7 +191,7 @@ return [
         ],
         '401' => [
             'error' => '여기 계시면 안됩니다.',
-            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...',
+            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

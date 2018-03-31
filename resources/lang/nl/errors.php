@@ -20,15 +20,15 @@
 
 return [
     'codes' => [
+        'http-401' => 'Log in om verder te gaan.', // Base text changed from "log" to "sign"
         'http-403' => 'Toegang geweigerd.',
-        'http-401' => 'Log in om verder te gaan.',
     ],
     'account' => [
         'profile-order' => [
             'generic' => 'Iets ging fout. Probeer de pagina te vernieuwen.',
         ],
     ],
-    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.',
+    'logged_out' => 'Je bent uitgelogd. Log in en probeer opnieuw.', // Base text changed from "log" to "sign"
     'supporter_only' => 'Je moet een supporter zijn om dit te gebruiken.',
     'no_restricted_access' => 'Je mag dit niet doen terwijl je account de restricted status heeft.',
     'unknown' => 'Een onbekende fout trad op.',

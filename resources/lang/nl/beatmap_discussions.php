@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Moet ingelogd zijn om te bewerken.',
+            'null_user' => 'Moet ingelogd zijn om te bewerken.', // Base text changed from "log" to "sign"
             'system_generated' => 'Systeemgegenereerde posts kunnen niet worden bewerkt.',
             'wrong_user' => 'Je moet de eigenaar zijn om te kunnen bewerken.',
         ],

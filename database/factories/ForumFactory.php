@@ -18,7 +18,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'parent', function (Faker\Gene
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
         'forum_type' => 0,
-        'forum_parents' => '',
+        'forum_parents' => [],
         'forum_rules' => '',
     ];
 });
@@ -28,7 +28,7 @@ $factory->defineAs(App\Models\Forum\Forum::class, 'child', function (Faker\Gener
         'forum_name' => $faker->catchPhrase,
         'forum_desc' => $faker->realtext(80),
         'forum_type' => 1,
-        'forum_parents' => '',
+        'forum_parents' => [],
         'forum_rules' => '',
     ];
 });

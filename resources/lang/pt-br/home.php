@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> jogadores registrados',
 
         'slogan' => [
-            'main' => 'jogo de ritmo gratuito',
+            'main' => 'o melhor jogo de ritmo gratuito',
             'sub' => 'o ritmo está a um clique de distância',
         ],
     ],
@@ -36,12 +36,12 @@ return [
         'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
         'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
-        'title' => 'Resultados de busca',
+        'title' => 'Resultados de Busca',
 
         'beatmapset' => [
-            'more' => ':count mais resultados de mapas',
-            'more_simple' => 'Veja mais resultados de busca de mapas',
-            'title' => 'Mapas',
+            'more' => ':count mais resultados de beatmaps',
+            'more_simple' => 'Veja mais resultados de busca de beatmaps',
+            'title' => 'Beatmaps',
         ],
 
         'forum_post' => [
@@ -60,7 +60,7 @@ return [
 
         'mode' => [
             'all' => 'todos',
-            'beatmapset' => 'mapa',
+            'beatmapset' => 'beatmap',
             'forum_post' => 'fórum',
             'user' => 'jogador',
             'wiki_page' => 'wiki',
@@ -69,7 +69,7 @@ return [
         'user' => [
             'more' => ':count mais resultados de busca por usuários',
             'more_simple' => 'Veja mais resultados de busca por usuários',
-            'more_hidden' => 'O limite de busca por jogaodr é limitado em :max. Tente aprofundar mais a sua pesquisa.',
+            'more_hidden' => 'O limite de busca por jogador é limitado em :max. Tente refinar mais a sua pesquisa.',
             'title' => 'Jogadores',
         ],
 
@@ -93,17 +93,17 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crie uma conta',
-                'description' => 'siga os comandos quando iniciar o jogo para conectar-se ou criar uma nova conta',
+                'description' => 'siga as instruções quando iniciar o jogo para conectar-se ou criar uma nova conta', // Base text changed from "log" to "sign"
             ],
             'download' => [
                 'title' => 'baixar o jogo',
                 'description' => 'clique no botão acima para baixar o instalador, depois execute-o!',
             ],
             'beatmaps' => [
-                'title' => 'baixar mapas',
+                'title' => 'baixar beatmaps',
                 'description' => [
-                    '_' => ':browse a vasta coleção de mapas criados por usuários e comece a jogar!',
-                    'browse' => 'procure',
+                    '_' => ':browse pela vasta coleção de beatmaps criados por usuários e comece a jogar!',
+                    'browse' => 'navegue',
                 ],
             ],
         ],
@@ -111,6 +111,7 @@ return [
     ],
 
     'user' => [
+        'title' => 'dashboard',
         'news' => [
             'title' => 'Notícias',
             'error' => 'Erro ao carregar as notícias, tente atualizar a página?...',
@@ -119,14 +120,14 @@ return [
             'welcome' => 'Bem-vindo(a), <strong>:username</strong>!',
             'messages' => 'Você tem 1 nova mensagem|Você tem :count novas mensagens',
             'stats' => [
-                'friends' => 'Amigos online',
-                'games' => 'Jogos',
-                'online' => 'Usuários online',
+                'friends' => 'Amigos Online',
+                'games' => 'Partidas',
+                'online' => 'Usuários Online',
             ],
         ],
         'beatmaps' => [
-            'new' => 'Novos mapas aprovados',
-            'popular' => 'Mapas populares',
+            'new' => 'Novos Beatmaps Aprovados',
+            'popular' => 'Beatmaps Populares',
             'by' => 'por',
             'plays' => ':count vezes jogadas',
         ],
@@ -139,12 +140,12 @@ return [
 
     'support-osu' => [
         'title' => 'Nossa!',
-        'subtitle' => 'Parece que você está muito bem! :D',
+        'subtitle' => 'Parece que você está se divertindo bastante! :D',
         'body' => [
             'part-1' => 'Você sabia que o osu! não tem nenhum anúncio e depende do apoio dos jogadores para cobrir custos de estabilidade e desenvolvimento?',
-            'part-2' => 'Você também sabia que apoiar o osu! te dá um monte de coisas úteis, como <strong>download dentro do jogo</strong> que é automaticamente ativado no modo espectador ou em jogos multiplayers?',
+            'part-2' => 'Você também sabia que apoiar o osu! te dá um monte de coisas úteis, como <strong>download dentro do jogo</strong> que é automaticamente ativado no modo espectador ou em partidas multijogadores?',
         ],
         'find-out-more' => 'Clique aqui para saber mais!',
-        'download-starting' => 'Ah, e não se preocupe - seu download já começou por você ;)',
+        'download-starting' => 'Ah, e não se preocupe - seu download já começou ;)',
     ],
 ];

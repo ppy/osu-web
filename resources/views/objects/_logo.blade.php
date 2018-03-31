@@ -15,9 +15,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div href="#" class="logo">
-    <span class="logo__main logo__main--glow"></span>
-    <span class="logo__main logo__main--glow logo__main--delayed"></span>
-    <span class="logo__main logo__main--bounce"></span>
-    <span class="logo__main logo__main--overlay"></span>
+<div class="logo">
+    <span class="logo__main"></span>
 </div>

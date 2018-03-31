@@ -20,6 +20,7 @@ class @ForumTopicReply
   constructor: (@forum, @stickyFooter) ->
     @container = document.getElementsByClassName('js-forum-topic-reply--container')
     @box = document.getElementsByClassName('js-forum-topic-reply')
+    @block = document.getElementsByClassName('js-forum-topic-reply--block')
     @input = document.getElementsByClassName('js-forum-topic-reply--input')
     @stickButtons = document.getElementsByClassName('js-forum-topic-reply--stick')
     @fixedBar = document.getElementsByClassName('js-sticky-footer--fixed-bar')
@@ -49,7 +50,7 @@ class @ForumTopicReply
     @activate() if @getState('active') == '1'
 
 
-  available: => @box.length
+  available: => @block.length
 
 
   deleteState: (key) =>

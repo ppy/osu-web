@@ -63,7 +63,7 @@ return [
             'timeline' => 'Tijdlijn',
         ],
 
-        'require-login' => 'Log in om te posten of te antwoorden',
+        'require-login' => 'Log in om te posten of te antwoorden', // Base text changed from "log" to "sign"
         'resolved' => 'Opgelost',
 
         'show' => [

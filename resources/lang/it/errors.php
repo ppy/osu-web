@@ -20,8 +20,8 @@
 
 return [
     'codes' => [
+        'http-401' => 'Per favore effettua il login per poter continuare.', // Base text changed from "log" to "sign"
         'http-403' => 'Accesso Negato.',
-        'http-401' => 'Per favore effettua il login per poter continuare.',
     ],
     'account' => [
         'profile-order' => [
@@ -31,7 +31,7 @@ return [
     'beatmaps' => [
         'standard_converts_only' => 'Solo la modalità osu! può avere punteggi in altre modalità.',
     ],
-    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.',
+    'logged_out' => 'Sei stato disconesso. Per favore effettua di nuovo il login e riprova.', // Base text changed from "log" to "sign"
     'supporter_only' => 'Devi essere un supporter per poter usare questa funzionalità.',
     'no_restricted_access' => 'Non puoi fare questa azione mentre il tuo account è nello stato di ristretto.',
     'unknown' => 'Si è verificato un errore sconosciuto.',

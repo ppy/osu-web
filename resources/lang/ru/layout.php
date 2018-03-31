@@ -103,7 +103,7 @@ return [
         ],
         'user' => [
             '_' => 'пользователь',
-            'getLogin' => 'логин',
+            'getLogin' => 'логин', // Base text changed from "log" to "sign"
             'disabled' => 'недоступно',
 
             'register' => 'зарегистрироваться',

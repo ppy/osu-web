@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Måste vara inloggad för att redigera.',
+            'null_user' => 'Måste vara inloggad för att redigera.', // Base text changed from "log" to "sign"
             'system_generated' => 'System-genererade inlägg kan inte redigeras.',
             'wrong_user' => 'Måste vara ägare av inlägget för att redigera.',
         ],
@@ -38,7 +38,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Logga in för att svara',
+            'guest' => 'Logga in för att svara', // Base text changed from "log" to "sign"
             'user' => 'Svara',
         ],
     ],

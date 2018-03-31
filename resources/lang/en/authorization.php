@@ -94,7 +94,7 @@ return [
                 'no_permission' => 'No permission to reply.',
 
                 'user' => [
-                    'require_login' => 'Please login to reply.',
+                    'require_login' => 'Please sign in to reply.',
                     'restricted' => "Can't reply while restricted.",
                     'silenced' => "Can't reply while silenced.",
                 ],
@@ -112,7 +112,7 @@ return [
                 'voted' => 'Changing vote is not allowed.',
 
                 'user' => [
-                    'require_login' => 'Please login to vote.',
+                    'require_login' => 'Please sign in to vote.',
                     'restricted' => "Can't vote while restricted.",
                     'silenced' => "Can't vote while silenced.",
                 ],
@@ -135,7 +135,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Please login to proceed.',
+    'require_login' => 'Please sign in to proceed.',
 
     'unauthorized' => 'Access denied.',
 
