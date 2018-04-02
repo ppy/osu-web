@@ -240,7 +240,7 @@ return [
             'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta función.",
         ],
         'post_count' => [
-            '_' => 'Contribuyó con :count',
+            '_' => 'Contribuyó con :link',
             'count' => ':count post en el foro|:count posts en el foro',
         ],
         'rank' => [
