@@ -21,7 +21,6 @@
 namespace App\Libraries\Search;
 
 use App\Libraries\Elasticsearch\SearchParams;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ForumSearchParams extends SearchParams
