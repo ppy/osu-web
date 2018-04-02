@@ -77,6 +77,10 @@ return [
             'general' => 'Allgemein',
             'general_all' => 'Allgemein (alle Schwierigkeitsstufen)',
             'timeline' => 'Timeline',
+            'scopes' => [
+                'general' => 'Diese Schwierigkeitsstufe',
+                'generalAll' => 'Alle Schwierigkeitsstufen',
+            ],
         ],
 
         'new' => [

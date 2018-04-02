@@ -74,6 +74,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Gib einen Nutzernamen ein, um die Verfügbarkeit zu prüfen!',
+        'checking' => 'Prüfe Verfügbarkeit von :username...',
         'require_login' => [
             '_' => 'Um deinen Namen zu ändern, musst du :link sein!',
             'link_text' => 'eingeloggt',

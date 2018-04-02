@@ -66,6 +66,11 @@ return [
 
         'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
     ],
+
+    'posts' => [
+        'title' => ':username\'s Posts',
+    ],
+
     'signup' => [
         '_' => 'Registrieren',
     ],
@@ -146,6 +151,11 @@ return [
             ],
             'historical' => [
                 'empty' => 'Keine Performance-Einträge. :(',
+                'title' => 'Historisch',
+
+                'monthly_playcounts' => [
+                    'title' => '<Play> <History>',
+                ],
                 'most_played' => [
                     'count' => 'mal gespielt',
                     'title' => 'Meist gespielte Beatmaps',
@@ -154,7 +164,9 @@ return [
                     'accuracy' => 'genauigkeit: :percentage',
                     'title' => 'Neuliche <Plays> (24h)',
                 ],
-                'title' => 'Historisch',
+                'replays_watched_counts' => [
+                    'title' => 'Angeschaute Wiederholungen <History>',
+                ],
             ],
             'kudosu' => [
                 'available' => 'Verfügbares Kudosu',
@@ -225,6 +237,27 @@ return [
                 'title' => 'Ränge',
                 'weighted_pp' => 'gewichtet: :pp (:percentage)',
             ],
+            'account_standing' => [
+                'title' => 'Accountstatus',
+                'bad_standing' => '<strong>:usernames</strong> Account ist zurzeit',
+                'remaining_silence' => '<strong>:username</strong> kann in :duration wieder sprechen',
+
+                'recent_infringements' => [
+                    'title' => 'Neuliche Verstöße',
+                    'date' => 'datum',
+                    'action' => 'verstoß',
+                    'length' => 'länge',
+                    'length_permanent' => 'Permanent',
+                    'description' => 'beschreibung',
+                    'actor' => 'von :username',
+
+                    'actions' => [
+                        'restriction' => 'Bann',
+                        'silence' => 'Stummschaltung',
+                        'note' => 'Warnung', //?
+                    ],
+                ],
+            ],
         ],
         'info' => [
             'interests' => 'Interessen',
@@ -240,6 +273,10 @@ return [
             'edit_big' => 'me! bearbeiten',
             'placeholder' => 'Seiteninhalt hier eingeben',
             'restriction_info' => "Für dieses Feature musst du ein <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!-Supporter</a> sein.",
+        ],
+        'post_count' => [
+            '_' => ':link beigetragen',
+            'count' => ':count forenpost|:count forenposts',
         ],
         'rank' => [
             'country' => 'Länderrang im Modus :mode',

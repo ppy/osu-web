@@ -171,53 +171,53 @@ return [
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Tag "added" entfernen',
-            'action-1' => 'Tag "added" hinzufügen',
-            'state-0' => 'Tag "added" entfernt',
-            'state-1' => 'Tag "added" hinzugefügt',
+            'to_0' => 'Tag "added" entfernen',
+            'to_0_done' => 'Tag "added" entfernt',
+            'to_1' => 'Tag "added" hinzufügen',
+            'to_1_done' => 'Tag "added" hinzugefügt',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Tag "assigned" entfernen',
-            'action-1' => 'Tag "assigned" hinzufügen',
-            'state-0' => 'Tag "assigned" entfernt',
-            'state-1' => 'Tag "assigned" hinzugefügt',
+            'to_0' => 'Tag "assigned" entfernen',
+            'to_0_done' => 'Tag "assigned" entfernt',
+            'to_1' => 'Tag "assigned" hinzufügen',
+            'to_1_done' => 'Tag "assigned" hinzugefügt',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Tag "confirmed" entfernen',
-            'action-1' => 'Tag "confirmed" hinzufügen',
-            'state-0' => 'Tag "confirmed" entfernt',
-            'state-1' => 'Tag "confirmed" hinzugefügt',
+            'to_0' => 'Tag "confirmed" entfernen',
+            'to_0_done' => 'Tag "confirmed" entfernt',
+            'to_1' => 'Tag "confirmed" hinzufügen',
+            'to_1_done' => 'Tag "confirmed" hinzugefügt',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Tag "duplicate" entfernen',
-            'action-1' => 'Tag "duplicate" hinzufügen',
-            'state-0' => 'Tag "duplicate" entfernt',
-            'state-1' => 'Tag "duplicate" hinzugefügt',
+            'to_0' => 'Tag "duplicate" entfernen',
+            'to_0_done' => 'Tag "duplicate" entfernt',
+            'to_1' => 'Tag "duplicate" hinzufügen',
+            'to_1_done' => 'Tag "duplicate" hinzugefügt',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Tag "invalid" entfernen',
-            'action-1' => 'Tag "invalid" hinzufügen',
-            'state-0' => 'Tag "invalid" entfernt',
-            'state-1' => 'Tag "invalid" hinzugefügt',
+            'to_0' => 'Tag "invalid" entfernen',
+            'to_0_done' => 'Tag "invalid" entfernt',
+            'to_1' => 'Tag "invalid" hinzufügen',
+            'to_1_done' => 'Tag "invalid" hinzugefügt',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Tag "resolved" entfernen',
-            'action-1' => 'Tag "resolved" hinzufügen',
-            'state-0' => 'Tag "resolved" entfernt',
-            'state-1' => 'Tag "resolved" hinzugefügt',
+            'to_0' => 'Tag "resolved" entfernen',
+            'to_0_done' => 'Tag "resolved" entfernt',
+            'to_1' => 'Tag "resolved" hinzufügen',
+            'to_1_done' => 'Tag "resolved" hinzugefügt',
         ],
 
         'lock' => [
             'is_locked' => 'Dieser Thread ist gesperrt und erlaubt keine weiteren Antworten',
-            'lock-0' => 'Thread entsperren',
-            'lock-1' => 'Thread sperren',
-            'state-0' => 'Thread wurde entsperrt',
-            'state-1' => 'Thread wurde gesperrt',
+            'to_0' => 'Thread entsperren',
+            'to_0_done' => 'Thread wurde entsperrt',
+            'to_1' => 'Thread sperren',
+            'to_1_done' => 'Thread wurde gesperrt',
         ],
 
         'moderate_move' => [
@@ -225,12 +225,12 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Thread von den angepinnten Threads entfernen',
-            'pin-1' => 'Thread anpinnen',
-            'pin-2' => 'Thread anpinnen und als Ankündigung markieren',
-            'state-0' => 'Thread wurde von den angepinnten Threads entfernt',
-            'state-1' => 'Thread wurde angepinnt',
-            'state-2' => 'Thread wurde angepinnt und als Ankündigung markiert',
+            'to_0' => 'Thread von den angepinnten Threads entfernen',
+            'to_0_done' => 'Thread wurde von den angepinnten Threads entfernt',
+            'to_1' => 'Thread anpinnen',
+            'to_1_done' => 'Thread wurde angepinnt',
+            'to_2' => 'Thread anpinnen und als Ankündigung markieren',
+            'to_2_done' => 'Thread wurde angepinnt und als Ankündigung markiert',
         ],
 
         'show' => [
@@ -260,10 +260,10 @@ return [
         ],
 
         'watch' => [
-            'state-0' => 'Thread deabonniert',
-            'state-1' => 'Thread abonniert',
-            'watch-0' => 'Thread deabonnieren',
-            'watch-1' => 'Thread abonnieren',
+            'to_not_watching' => 'Kein Lesezeichen gesetzt',
+            'to_watching' => 'Lesezeichen setzen',
+            'to_warning_mail' => 'Lesezeichen setzen und Benachrichtigungen aktivieren',
+            'mail_disable' => 'Benachrichtigungen deaktivieren',
         ],
     ],
 ];

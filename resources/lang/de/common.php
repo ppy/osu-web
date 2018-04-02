@@ -46,7 +46,10 @@ return [
     ],
 
     'count' => [
+        'badges' => ':count abzeichen|:count abzeichen',
+        'days' => ':count tag|:count tage',
         'hour_short_unit' => 'std.|std.',
+        'hours' => ':count stunde|:count stunden',
         'item' => ':count einheit|:count einheiten',
         'minute_short_unit' => 'min.|min.',
         'months' => ':count monat|:count monate',
@@ -58,6 +61,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

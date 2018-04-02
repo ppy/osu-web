@@ -92,11 +92,27 @@ return [
         'invalid_email' => 'Scheint keine gültige E-Mail-Adresse zu sein.',
         'too_short' => 'Das neue Passwort ist zu kurz.',
         'unknown_duplicate' => 'Nutzername oder E-Mail-Adresse wird bereits verwendet.',
+        'username_available_in' => 'Dieser Nutzername wird in :duration verfügbar sein.',
+        'username_available_soon' => 'Dieser Nutzername wird sofort verfügbar sein!',
+        'username_invalid_characters' => 'Der angeforderte Nutzername enthält ungültige Zeichen.',
+        'username_in_use' => 'Dieser Nutzername wird bereits verwendet!',
+        'username_no_space_userscore_mix' => 'Bitte verwende nur Unterstricht ODER Leerzeichen, und nicht beides zusammen!',
+        'username_no_spaces' => 'Nutzernamen können nicht mit Leerzeichen beginnen oder enden.',
+        'username_not_allowed' => 'Dieser Nutzername ist nicht erlaubt.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',
+        'username_too_long' => "Der angeforderte Nutzername ist zu lang.",
         'weak' => 'Das Passwort ist auf einer Blacklist.',
         'wrong_current_password' => 'Das aktuelle Passwort ist falsch.',
         'wrong_email_confirmation' => 'E-Mail-Bestätigung stimmt nicht überein.',
         'wrong_password_confirmation' => 'Passwortbestätigung stimmt nicht überein.',
         'too_long' => 'Maximale Länge überschritten - höchstens :limit Zeichen.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => 'Du musst :link haben, um deinen Nutzernamen zu ändern!',
+                'link_text' => 'osu! unterstützt',
+            ],
+            'username_is_same' => 'Das ist doch schon dein Name, Dummerchen!',
+        ],
     ],
 ];
