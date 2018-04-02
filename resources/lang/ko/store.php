@@ -59,14 +59,14 @@ return [
     'supporter_tag' => [
         'require_login' => [
             '_' => '서포터 권한을 구매하려면 :link하셔야 합니다!',
-            'link_text' => '로그인',
+            'link_text' => '로그인', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => '유저이름을 바꾸려면 :link하셔야 합니다!',
-            'link_text' => '로그인',
+            'link_text' => '로그인', // Base text changed from "log" to "sign"
         ],
     ],
 ];

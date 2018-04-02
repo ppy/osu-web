@@ -25,8 +25,8 @@ return [
         'password' => 'Wachtwoord',
         'button' => 'Inloggen',
         'remember' => 'Onthoud deze computer',
-        'title' => 'Log in om verder te gaan',
-        'failed' => 'Verkeerde login',
+        'title' => 'Log in om verder te gaan', // Base text changed from "log" to "sign"
+        'failed' => 'Verkeerde login', // Base text changed from "log" to "sign"
         'register' => 'Heb je geen osu! account? Maak een nieuwe',
         'forgot' => 'Wachtwoord vergeten?',
         'beta' => [
@@ -37,11 +37,11 @@ return [
         'here' => 'hier', // this is substituted in when generating a link above. change it to suit the language.
     ],
     'anonymous' => [
-        'login_link' => 'klik om in te loggen',
+        'login_link' => 'klik om in te loggen', // Base text changed from "log" to "sign"
         'username' => 'Gast',
-        'error' => 'Je moet ingelogd zijn om dit te doen.',
+        'error' => 'Je moet ingelogd zijn om dit te doen.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(',
+    'logout_confirm' => 'Weet je zeker dat je wilt uitloggen? :(', // Base text changed from "log" to "sign"
     'show' => [
         '404' => 'Gebruiker niet gevonden! ;_;',
         'age' => ':age jaar oud',

@@ -19,9 +19,7 @@
 
 <nav class="osu-layout__section osu-layout__section--minimum no-print js-header--main hidden-xs">
     <div class="bg u-section-bg">
-        <div class="bg__triangles bg__triangles--1"></div>
-        <div class="bg__triangles bg__triangles--2"></div>
-        <div class="bg__triangles bg__triangles--3"></div>
+        <div class="bg__triangles"></div>
         <div class="bg__gradient-overlay u-section--gradient-down"></div>
     </div>
 

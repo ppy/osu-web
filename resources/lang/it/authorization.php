@@ -82,7 +82,7 @@ return [
                 'no_permission' => 'Non hai i permessi per rispondere.',
 
                 'user' => [
-                    'require_login' => 'Per favore effettua il login per rispondere.',
+                    'require_login' => 'Per favore effettua il login per rispondere.', // Base text changed from "log" to "sign"
                     'restricted' => 'Non è possibile rispondere mentre sei ristretto.',
                     'silenced' => 'Non è possibile rispondere mentre sei silenziato.',
                 ],
@@ -100,7 +100,7 @@ return [
                 'voted' => 'Non è permesso cambiare voti.',
 
                 'user' => [
-                    'require_login' => 'Per favore effettua il login per votare.',
+                    'require_login' => 'Per favore effettua il login per votare.', // Base text changed from "log" to "sign"
                     'restricted' => 'Non puoi votare mentre sei ristretto.',
                     'silenced' => 'Non puoi votare mentre sei silenziato.',
                 ],
@@ -123,7 +123,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Per favore effettua il login per poter procedere.',
+    'require_login' => 'Per favore effettua il login per poter procedere.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Accesso Negato.',
 

@@ -87,86 +87,84 @@
         <span><i class="fa fa-refresh fa-spin"></i></span>
     </div>
 
-    @if (priv_check('ForumTopicReply', $topic)->can())
-        <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
-            {!! Form::open([
-                "url" => route("forum.topics.reply", $topic->topic_id),
-                "class" => "forum-post forum-post--reply js-forum-topic-reply js-sync-height--reference js-fixed-element",
-                "data-remote" => true,
-                "data-sync-height-target" => "forum-topic-reply",
-                'data-force-reload' => Auth::check() === false ? '1' : '0',
-            ]) !!}
-                <div class="forum-post__reply-container">
-                    <div class="osu-layout__row osu-layout__row--sm2-desktop osu-layout__row--full-height">
-                        <div class="forum-post__reply-content">
-                            <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
-                                @if (Auth::check() === true)
-                                    <div
-                                        class="avatar avatar--forum-reply"
-                                        style="background-image: url('{{ Auth::user()->user_avatar }}');"
-                                    ></div>
-                                @else
-                                    <div class="avatar avatar--forum-reply avatar--guest"></div>
-                                @endif
+    <div class="js-forum-topic-reply--container js-sync-height--target forum-topic-reply" data-sync-height-id="forum-topic-reply">
+        {!! Form::open([
+            "url" => route("forum.topics.reply", $topic->topic_id),
+            "class" => "forum-topic-reply__form js-forum-topic-reply js-sync-height--reference js-fixed-element",
+            "data-remote" => true,
+            "data-sync-height-target" => "forum-topic-reply",
+            'data-force-reload' => Auth::check() === false ? '1' : '0',
+        ]) !!}
+            @if (priv_check('ForumTopicReply', $topic)->can())
+                <div class="osu-page osu-page--small-desktop">
+                    <div class="forum-post forum-post--reply js-forum-topic-reply--block">
+                        <div class="forum-post__info-panel forum-post__info-panel--reply hidden-xs">
+                            @if (Auth::check() === true)
+                                <div
+                                    class="avatar avatar--forum-reply"
+                                    style="background-image: url('{{ Auth::user()->user_avatar }}');"
+                                ></div>
+                            @else
+                                <div class="avatar avatar--forum-reply avatar--guest"></div>
+                            @endif
+                        </div>
+
+                        <div class="forum-post__reply-body">
+                            <div class="forum-post__content forum-post__content--reply-tabs">
+                                <ul class="page-mode page-mode--post-reply">
+                                    <li class="page-mode__item">
+                                        <a href="#" class="js-forum-reply-preview--hide page-mode-link page-mode-link--post-reply js-is-active">
+                                            {{ trans('forum.topic.create.preview_hide') }}
+                                            <span class="page-mode-link__stripe"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-mode__item">
+                                        <a href="#" class="js-forum-reply-preview--show page-mode-link page-mode-link--post-reply">
+                                            {{ trans('forum.topic.create.preview') }}
+                                            <span class="page-mode-link__stripe"></span>
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
-
-                            <div class="forum-post__reply-body">
-                                <div class="forum-post__content forum-post__content--reply-tabs">
-                                    <ul class="page-mode page-mode--post-reply">
-                                        <li class="page-mode__item">
-                                            <a href="#" class="js-forum-reply-preview--hide page-mode-link page-mode-link--post-reply js-is-active">
-                                                {{ trans('forum.topic.create.preview_hide') }}
-                                                <span class="page-mode-link__stripe"></span>
-                                            </a>
-                                        </li>
-                                        <li class="page-mode__item">
-                                            <a href="#" class="js-forum-reply-preview--show page-mode-link page-mode-link--post-reply">
-                                                {{ trans('forum.topic.create.preview') }}
-                                                <span class="page-mode-link__stripe"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
+                            <div class="js-forum-reply-write forum-post__body">
+                                <div class="forum-post__content forum-post__content--edit-body">
+                                    @include('forum.posts._form_body', ['postBody' => [
+                                        'focus' => false,
+                                        'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
+                                    ]])
                                 </div>
-                                <div class="js-forum-reply-write forum-post__body forum-post__body--reply-form">
-                                    <div class="forum-post__content forum-post__content--edit-body">
-                                        @include('forum.posts._form_body', ['postBody' => [
-                                            'focus' => false,
-                                            'extraClasses' => 'forum-post-content--reply js-forum-topic-reply--input',
-                                        ]])
-                                    </div>
 
-                                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
-                                    </div>
-
-                                    <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
-                                        @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
-                                    </div>
+                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar hidden">
                                 </div>
-                                <div class="js-forum-reply-preview hidden forum-post__body">
-                                    <div class="forum-post__content forum-post__content--main">
-                                        <div class="forum-post-content forum-post-content--reply-preview js-forum-reply-preview--content">
-                                        </div>
+
+                                <div class="forum-post__content forum-post__content forum-post__content--edit-bar">
+                                    @include("forum.topics._post_box_footer", ["submitText" => trans("forum.topic.post_reply")])
+                                </div>
+                            </div>
+                            <div class="js-forum-reply-preview hidden forum-post__body">
+                                <div class="forum-post__content forum-post__content--main">
+                                    <div class="forum-post-content forum-post-content--reply-preview js-forum-reply-preview--content">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            {!! Form::close() !!}
-        </div>
+            @else
+                <div class="osu-page osu-page--small">
+                    <div class="warning-box">
+                        <div class="warning-box__icon">
+                            <i class="fa fa-warning"></i>
+                        </div>
 
-        <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
-    @else
-        <div class="osu-layout__row osu-layout__row--sm2-desktop">
-            <div class="warning-box">
-                <div class="warning-box__icon">
-                    <i class="fa fa-warning"></i>
+                        {{ priv_check('ForumTopicReply', $topic)->message() }}
+                    </div>
                 </div>
+            @endif
+        {!! Form::close() !!}
+    </div>
 
-                {{ priv_check('ForumTopicReply', $topic)->message() }}
-            </div>
-        </div>
-    @endif
+    <div class="js-sticky-footer" data-sticky-footer-disabled="1" data-sticky-footer-target="forum-topic-reply"></div>
 @endsection
 
 @section('permanent-fixed-footer')
@@ -330,24 +328,22 @@
                     </span>
                 </a>
 
-                @if (priv_check('ForumTopicReply', $topic)->can())
-                    <button
-                        type="button"
-                        class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
-                    >
-                        <span class="btn-osu-big__content">
-                            <span class="btn-osu-big__icon">
-                                <i class="fa fa-comment"></i>
-                            </span>
+                <button
+                    type="button"
+                    class="btn-osu-big btn-osu-big--forum-reply js-forum-topic-reply--stick"
+                >
+                    <span class="btn-osu-big__content">
+                        <span class="btn-osu-big__icon">
+                            <i class="fa fa-comment"></i>
+                        </span>
 
-                            <span class="btn-osu-big__left">
-                                <span class="btn-osu-big__text-top">
-                                    {{ trans('forum.topics.actions.reply') }}
-                                </span>
+                        <span class="btn-osu-big__left">
+                            <span class="btn-osu-big__text-top">
+                                {{ trans('forum.topics.actions.reply') }}
                             </span>
                         </span>
-                    </button>
-                @endif
+                    </span>
+                </button>
             </div>
         </div>
     </div>

@@ -31,7 +31,7 @@ return [
             'recover_link' => 'процесс восстановления тут',
             'reissue' => 'Ты также можешь :reissue_link или :logout_link.',
             'reissue_link' => 'запросить другой код',
-            'logout_link' => 'выйти',
+            'logout_link' => 'выйти', // Base text changed from "log" to "sign"
         ],
     ],
 

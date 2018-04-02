@@ -19,7 +19,7 @@
  */
 
 return [
-    'pinned_topics' => 'Tópicos fixados',
+    'pinned_topics' => 'Tópicos Fixados',
     'slogan' => 'é perigoso jogar sozinho.',
     'subforums' => 'Subfóruns',
     'title' => 'comunidade osu!',
@@ -48,30 +48,31 @@ return [
     ],
 
     'post' => [
-        'confirm_destroy' => 'Excluir mesmo a publicação?',
-        'confirm_restore' => 'Restaurar mesmo a publicação?',
+        'confirm_destroy' => 'Excluir mesmo a postagem?',
+        'confirm_restore' => 'Restaurar mesmo a postagem?',
         'edited' => 'Última edição por :user :when, editado :count vezes no total.',
-        'posted_at' => 'publicado :when',
+        'posted_at' => 'postado :when',
 
         'actions' => [
-            'destroy' => 'Excluir publicação',
-            'restore' => 'Restaurar publicação',
-            'edit' => 'Editar publicação',
+            'destroy' => 'Excluir postagem',
+            'restore' => 'Restaurar postagem',
+            'edit' => 'Editar postagem',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Ir para a publicação',
-        'post_number_input' => 'insira o número da publicação',
-        'total_posts' => ':posts_count publicações no total',
+        'go_to_post' => 'Ir para a postagem',
+        'post_number_input' => 'insira o número da postagem',
+        'total_posts' => ':posts_count postagens no total',
     ],
 
     'topic' => [
-        'go_to_latest' => 'ver a última publicação',
+        'deleted' => 'tópico excluído',
+        'go_to_latest' => 'ver a última postagem',
         'latest_post' => ':when por :user',
         'latest_reply_by' => 'última resposta por :user',
         'new_topic' => 'Criar novo tópico',
-        'post_reply' => 'Publicar',
+        'post_reply' => 'Postar',
         'reply_box_placeholder' => 'Escreva aqui para responder',
         'started_by' => 'por :user',
 
@@ -80,20 +81,20 @@ return [
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
             'preview_hide' => 'Escrever',
-            'submit' => 'Publicar',
+            'submit' => 'Postar',
 
             'placeholder' => [
-                'body' => 'Escreva o conteúdo da publicação aqui',
+                'body' => 'Escreva o conteúdo da postagem aqui',
                 'title' => 'Clique aqui para definir o título',
             ],
         ],
 
         'jump' => [
-            'enter' => 'clique para inserir um número de publicação específico',
-            'first' => 'ir para a primeira publicação',
-            'last' => 'ir para a última publicação',
-            'next' => 'pular as próximas 10 publicações',
-            'previous' => 'voltar 10 publicações',
+            'enter' => 'clique para inserir um número de postagem específico',
+            'first' => 'ir para a primeira postagem',
+            'last' => 'ir para a última postagem',
+            'next' => 'pular as próximas 10 postagens',
+            'previous' => 'voltar 10 postagens',
         ],
 
         'post_edit' => [
@@ -104,14 +105,15 @@ return [
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Inscrições de tópico',
-            'title_compact' => 'inscrições',
-            'title_main' => '<strong>Inscrições</strong> de tópico',
+            'title' => 'Inscrições de Fórum',
+            'title_compact' => 'inscrições de fórum',
+            'title_main' => '<strong>Inscrições</strong> de Fórum',
 
             'box' => [
                 'total' => 'Tópicos inscritos',
                 'unread' => 'Tópicos com novas respostas',
             ],
+
             'info' => [
                 'total' => 'Você se inscreveu em :total tópicos.',
                 'unread' => 'Você tem :unread respostas não lidas de tópicos inscritos.',
@@ -121,7 +123,7 @@ return [
         'topic_buttons' => [
             'remove' => [
                 'confirmation' => 'Cancelar inscrição no tópico?',
-                'title' => 'Cancelar inscrição',
+                'title' => 'Cancelar Inscrição',
             ],
         ],
     ],
@@ -132,11 +134,11 @@ return [
         'actions' => [
             'reply' => 'Responder',
             'reply_with_quote' => 'Citar postagem na resposta',
-            'search' => 'Procurar',
+            'search' => 'Pesquisar',
         ],
 
         'create' => [
-            'create_poll' => 'Criação de enquete',
+            'create_poll' => 'Criação de Enquete',
 
             'create_poll_button' => [
                 'add' => 'Criar enquete',
@@ -231,11 +233,11 @@ return [
         ],
 
         'show' => [
-            'deleted-posts' => 'Publicações excluídas',
-            'total_posts' => 'Total de publicações',
+            'deleted-posts' => 'Publicações Excluídas',
+            'total_posts' => 'Total de Postagens',
 
             'feature_vote' => [
-                'current' => 'Prioridade atual: +:count',
+                'current' => 'Prioridade Atual: +:count',
                 'do' => 'Promover este pedido',
 
                 'user' => [
@@ -257,8 +259,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Inscrição cancelada',
-            'to_watching_done' => 'Inscrito no tópico',
+            'to_not_watching' => 'Não marcada',
+            'to_watching' => 'Marcar',
+            'to_watching_mail' => 'Marcar com notificação',
+            'mail_disable' => 'Desabilitar notificação',
         ],
     ],
 ];

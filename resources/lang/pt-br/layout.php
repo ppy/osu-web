@@ -28,33 +28,36 @@ return [
             '_' => 'início',
             'account-edit' => 'configurações',
             'friends-index' => 'amigos',
-            'changelog-index' => 'registro de mudanças',
+            'changelog-index' => 'registro de alterações',
             'changelog-show' => 'build',
             'getDownload' => 'baixar',
             'getIcons' => 'ícones',
             'groups-show' => 'grupos',
+            'index' => 'dashboard',
             'legal-show' => 'informação',
             'news-index' => 'notícias',
             'news-show' => 'notícias',
             'password-reset-index' => 'redefinir senha',
             'search' => 'busca',
             'supportTheGame' => 'apoie o jogo',
+            'team' => 'time',
         ],
         'help' => [
             '_' => 'ajuda',
             'getFaq' => 'perguntas frequentes',
-            'getSupport' => 'suporte', //obsolete
+            'getRules' => 'regras',
+            'getSupport' => 'não, sério, preciso de ajuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
-            '_' => 'mapas',
+            '_' => 'beatmaps',
             'artists' => 'artistas em destaque',
-            'beatmap_discussion_posts-index' => 'postagens de discussão de mapas',
-            'beatmap_discussions-index' => 'discussões de mapas',
+            'beatmap_discussion_posts-index' => 'postagens de discussão de beatmaps',
+            'beatmap_discussions-index' => 'discussões de beatmaps',
             'beatmapset-watches-index' => 'supervisão de modding',
-            'beatmapset_discussion_votes-index' => 'votos na discussão de mapas',
-            'beatmapset_events-index' => 'eventos do mapa',
+            'beatmapset_discussion_votes-index' => 'votos na discussão de beatmaps',
+            'beatmapset_events-index' => 'eventos do beatmap',
             'index' => 'listagem',
             'packs' => 'pacotes',
             'show' => 'informação',
@@ -75,8 +78,8 @@ return [
         'community' => [
             '_' => 'comunidade',
             'dev' => 'osu!dev',
-            'getForum' => 'fórum', // Base text changed to plural, please check.
-            'getChat' => 'conversa',
+            'getForum' => 'fóruns',
+            'getChat' => 'chat',
             'getLive' => 'transmissões',
             'contests' => 'concursos',
             'profile' => 'perfil',
@@ -84,10 +87,10 @@ return [
             'tournaments-index' => 'torneios',
             'tournaments-show' => 'informações de torneios',
             'forum-topic-watches-index' => 'inscrições de tópico',
-            'forum-topics-create' => 'fórum', // Base text changed to plural, please check.
-            'forum-topics-show' => 'fórum', // Base text changed to plural, please check.
-            'forum-forums-index' => 'fórum', // Base text changed to plural, please check.
-            'forum-forums-show' => 'fórum', // Base text changed to plural, please check.
+            'forum-topics-create' => 'fóruns',
+            'forum-topics-show' => 'fóruns',
+            'forum-forums-index' => 'fóruns',
+            'forum-forums-show' => 'fóruns',
         ],
         'multiplayer' => [
             '_' => 'multijogador',
@@ -104,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'usuário',
-            'getLogin' => 'iniciar sessão',
+            'getLogin' => 'iniciar sessão', // Base text changed from "log" to "sign"
             'disabled' => 'desativado',
 
             'register' => 'registrar',
@@ -113,17 +116,17 @@ return [
 
             'messages' => 'Mensagens',
             'settings' => 'Configurações',
-            'logout' => 'Finalizar sessão', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Desconectar',
             'help' => 'Ajuda',
-            'beatmapset_activities' => 'atividades de mapa de usuário',
+            'beatmapset_activities' => 'atividades de beatmap de usuário',
         ],
         'store' => [
             '_' => 'loja',
-            'checkout-show' => 'compra',
+            'checkout-show' => 'comprar',
             'getListing' => 'catálogo',
             'cart-show' => 'carrinho',
 
-            'getCheckout' => 'pagar',
+            'getCheckout' => 'comprar',
             'getInvoice' => 'fatura',
             'products-show' => 'produto',
 
@@ -143,12 +146,12 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
-            'beatmapsets-covers' => 'capas do mapa',
+            'beatmapsets-covers' => 'capas de beatmap',
             'logs-index' => 'registro',
             'root' => 'índice',
 
             'beatmapsets' => [
-                '_' => 'mapas',
+                '_' => 'beatmaps',
                 'show' => 'detalhes',
             ],
         ],
@@ -158,17 +161,17 @@ return [
         'general' => [
             '_' => 'Geral',
             'home' => 'Início',
-            'changelog-index' => 'Registro de alterações',
-            'beatmaps' => 'Lista de mapas',
+            'changelog-index' => 'Registro de Alterações',
+            'beatmaps' => 'Lista de Beatmaps',
             'download' => 'Baixar osu!',
             'wiki' => 'Wiki',
         ],
         'help' => [
-            '_' => 'Ajuda e comunidade',
-            'faq' => 'Perguntas frequentes',
-            'forum' => 'Fóruns da comunidade',
-            'livestreams' => 'Transmissões ao vivo',
-            'report' => 'Relatar um problemar',
+            '_' => 'Ajuda & Comunidade',
+            'faq' => 'Perguntas Frequentes',
+            'forum' => 'Fóruns da Comunidade',
+            'livestreams' => 'Transmissões Ao Vivo',
+            'report' => 'Relatar um Problema',
         ],
         'support' => [
             '_' => 'Apoiar osu!',
@@ -176,17 +179,17 @@ return [
             'merchandise' => 'Mercadorias',
         ],
         'legal' => [
-            '_' => 'Informações legais e estado',
+            '_' => 'Informações Legais & Estado',
             'copyright' => 'Copyright (DMCA)',
             'osu_status' => '@osustatus',
-            'server_status' => 'Estado dos servidores',
+            'server_status' => 'Estado dos Servidores',
             'terms' => 'Termos de Serviço',
         ],
     ],
 
     'errors' => [
         '404' => [
-            'error' => 'Página não encontrada',
+            'error' => 'Página Não Encontrada',
             'description' => 'Lamentamos, mas a página que você procura não está aqui!',
             'link' => false,
         ],
@@ -197,11 +200,11 @@ return [
         ],
         '401' => [
             'error' => 'Você não deveria estar aqui.',
-            'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.',
+            'description' => 'Mas você pode tentar voltar. Ou iniciar a sessão.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [
-            'error' => 'Página não encontrada',
+            'error' => 'Página Não Encontrada',
             'description' => 'Lamentamos, mas a página que você procura não está aqui!',
             'link' => false,
         ],
@@ -232,16 +235,16 @@ return [
             'email' => 'endereço de e-mail',
             'forgot' => 'Esqueci as minhas credenciais',
             'password' => 'senha',
-            'title' => 'Inicie a sessão para continuar',
+            'title' => 'Inicie a Sessão Para Continuar',
 
             'error' => [
-                'email' => 'O nome de usuário ou o endereço de e-mail não existem',
+                'email' => 'O nome de usuário ou o endereço de e-mail não existe',
                 'password' => 'Senha incorreta',
             ],
         ],
 
         'register' => [
-            'info' => 'Você precisa de uma conta, senhor. Por que você já não tem uma?',
+            'info' => 'Você precisa de uma conta, senhor. Por que você ainda não tem uma?',
             'title' => 'Não tem uma conta?',
         ],
     ],
@@ -250,8 +253,8 @@ return [
         'links' => [
             'account-edit' => 'Configurações',
             'friends' => 'Amigos',
-            'logout' => 'Finalizar sessão', // Base text changed from "Log Out" to "Sign Out", please check.
-            'profile' => 'Perfil',
+            'logout' => 'Desconectar',
+            'profile' => 'Meu Perfil',
         ],
     ],
 

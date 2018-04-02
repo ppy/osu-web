@@ -91,7 +91,7 @@ return [
                 'no_permission' => 'Нет прав для ответа.',
 
                 'user' => [
-                    'require_login' => 'Войди для ответа.',
+                    'require_login' => 'Войди для ответа.', // Base text changed from "log" to "sign"
                     'restricted' => 'Нельзя ответить пока аккаунт ограничен',
                     'silenced' => 'Нельзя ответить пока заткнут.',
                 ],
@@ -109,7 +109,7 @@ return [
                 'voted' => 'Менять свой ответ запрещено.',
 
                 'user' => [
-                    'require_login' => 'Войди для ответа.',
+                    'require_login' => 'Войди для ответа.', // Base text changed from "log" to "sign"
                     'restricted' => 'Нельзя ответить пока аккаунт ограничен',
                     'silenced' => 'Нельзя ответить пока заткнут.',
                 ],
@@ -132,7 +132,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Войди для продолжения.',
+    'require_login' => 'Войди для продолжения.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Доступ запрещён.',
 
