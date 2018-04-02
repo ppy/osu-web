@@ -26,22 +26,24 @@ class ModsHelper
         [0, 'NF'],
         [1, 'EZ'],
         [3, 'HD'],
+        [20, 'FI'],
         [4, 'HR'],
-        [5, 'SD'],
+        [9, 'NC', [6]],
         [6, 'DT'],
         [7, 'Relax'],
         [8, 'HT'],
-        [9, 'NC', [6]],
         [10, 'FL'],
         [12, 'SO'],
         [13, 'AP'],
         [14, 'PF', [5]],
+        [5, 'SD'],
+
+        // mania keys (converts)
         [15, '4K'],
         [16, '5K'],
         [17, '6K'],
         [18, '7K'],
         [19, '8K'],
-        [20, 'FI'],
         [24, '9K'],
     ];
 
@@ -67,10 +69,7 @@ class ModsHelper
             return !in_array($modId, $impliedIds, true);
         }, ARRAY_FILTER_USE_KEY);
 
-        $mods = array_values($mods);
-        sort($mods);
-
-        return $mods;
+        return array_values($mods);
     }
 
     public static function toBitset($mods)
