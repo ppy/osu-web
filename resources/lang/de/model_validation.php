@@ -100,7 +100,7 @@ return [
         'username_no_spaces' => 'Nutzernamen können nicht mit Leerzeichen beginnen oder enden.',
         'username_not_allowed' => 'Dieser Nutzername ist nicht erlaubt.',
         'username_too_short' => 'Der angeforderte Nutzername ist zu kurz.',
-        'username_too_long' => "Der angeforderte Nutzername ist zu lang.",
+        'username_too_long' => 'Der angeforderte Nutzername ist zu lang.',
         'weak' => 'Das Passwort ist auf einer Blacklist.',
         'wrong_current_password' => 'Das aktuelle Passwort ist falsch.',
         'wrong_email_confirmation' => 'E-Mail-Bestätigung stimmt nicht überein.',

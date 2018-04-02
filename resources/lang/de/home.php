@@ -81,7 +81,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "lass uns<br>loslegen!",
+        'tagline' => 'lass uns<br>loslegen!',
         'action' => 'osu! herunterladen',
         'os' => [
             'windows' => 'für Windows',
