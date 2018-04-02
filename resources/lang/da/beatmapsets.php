@@ -41,7 +41,7 @@ return [
             'approved' => 'godkendt på ',
             'qualified' => 'kvalificeret på ',
             'loved' => 'loved på ',
-            'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!',
+            'logged-out' => 'Du skal være logget ind for at kunne downloade beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Download',
                 'video' => 'med Video',
@@ -67,14 +67,12 @@ return [
             'rating-spread' => 'Rating Fordeling',
         ],
         'info' => [
-            'no_scores' => 'Ikke-ranked beatmap',
             'points-of-failure' => 'Fejlpoints',
             'success-rate' => 'Succes Rate',
-
             'description' => 'Beskrivelse',
-
             'source' => 'Kilde',
             'tags' => 'Tags',
+            'unranked' => 'Ikke-ranked beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'opnået :when',

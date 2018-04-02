@@ -44,7 +44,7 @@ return [
         'message_type_select' => 'Seleccionar Tipo de Comentario',
         'reply_notice' => 'Presiona Enter para responder.',
         'reply_placeholder' => 'Escribe tu respuesta aquí',
-        'require-login' => 'Inicia sesión para publicar o responder',
+        'require-login' => 'Inicia sesión para publicar o responder', // Base text changed from "log" to "sign"
         'resolved' => 'Resuelto',
         'restore' => 'restaurar',
         'title' => 'Discusiones',
@@ -74,8 +74,6 @@ return [
 
         'mode' => [
             'events' => 'Historial',
-            'general' => 'General',
-            'general_all' => 'General (todas las dificultades)',
             'timeline' => 'Línea de tiempo',
         ],
 
@@ -121,7 +119,7 @@ return [
         'button_done' => '¡Hypeado!',
         'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacerlo.',
         'explanation' => '¡Hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
-        'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
+        'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!', // Base text changed from "log" to "sign"
         'new_time' => 'Obtendrás otro hype :new_time.',
         'remaining' => 'Te quedan :remaining hypes.',
         'required_text' => 'Hype: :current/:required',

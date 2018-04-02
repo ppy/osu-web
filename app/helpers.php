@@ -141,7 +141,13 @@ function es_search($params)
         $error = $e;
     }
 
-    Log::debug($error);
+    if (config('datadog-helper.enabled')) {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.search.errors',
+            1,
+            ['class' => get_class($error)]
+        );
+    }
 
     // default return on failure
     return [
@@ -149,7 +155,7 @@ function es_search($params)
             'hits' => [],
             'total' => 0,
         ],
-        'exception' => $error ?? null,
+        'exception' => $error,
     ];
 }
 
@@ -173,9 +179,15 @@ function get_valid_locale($requestedLocale)
     );
 }
 
+function html_entity_decode_better($string)
+{
+    // ENT_HTML5 to handle more named entities (&apos;, etc?).
+    return html_entity_decode($string, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+}
+
 function html_excerpt($body, $limit = 300)
 {
-    $body = htmlspecialchars_decode(replace_tags_with_spaces($body));
+    $body = html_entity_decode_better(replace_tags_with_spaces($body));
 
     if (strlen($body) >= $limit) {
         $body = mb_substr($body, 0, $limit).'...';
@@ -184,16 +196,14 @@ function html_excerpt($body, $limit = 300)
     return e($body);
 }
 
-function json_date($date)
+function json_date(?DateTime $date) : ?string
 {
-    return json_time($date->startOfDay());
+    return $date === null ? null : $date->format('Y-m-d');
 }
 
-function json_time($time)
+function json_time(?DateTime $time) : ?string
 {
-    if ($time !== null) {
-        return $time->toIso8601String();
-    }
+    return $time === null ? null : $time->format(DateTime::ATOM);
 }
 
 function locale_flag($locale)
@@ -216,6 +226,14 @@ function locale_for_moment($locale)
         return 'zh-cn';
     }
 
+    if ($locale === 'zh-hk') {
+        return 'zh-hk';
+    }
+
+    if ($locale === 'zh-tw') {
+        return 'zh-tw';
+    }
+
     return $locale;
 }
 
@@ -223,6 +241,10 @@ function locale_for_timeago($locale)
 {
     if ($locale === 'zh') {
         return 'zh-CN';
+    }
+
+    if ($locale === 'zh-tw') {
+        return 'zh-TW';
     }
 
     return $locale;
@@ -535,7 +557,7 @@ function proxy_image($url)
         $url = config('app.url').$url;
     }
 
-    $decoded = urldecode(html_entity_decode($url));
+    $decoded = urldecode(html_entity_decode_better($url));
 
     if (config('osu.camo.key') === '') {
         return $decoded;
@@ -566,15 +588,15 @@ function nav_links()
     $links['home'] = [
         '_' => route('home'),
         'news-index' => route('news.index'),
-        'friends' => route('friends.index'),
+        'team' => wiki_url('Team'),
         'changelog-index' => route('changelog.index'),
         'getDownload' => route('download'),
         'search' => route('search'),
     ];
-    $links['help'] = [
-        'getWiki' => wiki_url('Welcome'),
-        'getFaq' => wiki_url('FAQ'),
-        'getSupport' => wiki_url('Help_Center'),
+    $links['beatmaps'] = [
+        'index' => route('beatmapsets.index'),
+        'artists' => route('artists.index'),
+        'packs' => route('packs.index'),
     ];
     $links['rankings'] = [
         'index' => route('rankings', ['mode' => 'osu', 'type' => 'performance']),
@@ -582,11 +604,6 @@ function nav_links()
         'score' => route('rankings', ['mode' => 'osu', 'type' => 'score']),
         'country' => route('rankings', ['mode' => 'osu', 'type' => 'country']),
         'kudosu' => osu_url('rankings.kudosu'),
-    ];
-    $links['beatmaps'] = [
-        'index' => route('beatmapsets.index'),
-        'artists' => route('artists.index'),
-        'packs' => route('packs.index'),
     ];
     $links['community'] = [
         'forum-forums-index' => route('forum.forums.index'),
@@ -598,6 +615,12 @@ function nav_links()
     $links['store'] = [
         'getListing' => action('StoreController@getListing'),
         'cart-show' => route('store.cart.show'),
+    ];
+    $links['help'] = [
+        'getWiki' => wiki_url('Welcome'),
+        'getFaq' => wiki_url('FAQ'),
+        'getRules' => wiki_url('Rules'),
+        'getSupport' => wiki_url('Help_Center'),
     ];
 
     return $links;
@@ -1155,4 +1178,31 @@ function group_users_by_online_state($users)
         'online' => $online,
         'offline' => $offline,
     ];
+}
+
+// shorthand to return the filename of an open stream/handle
+function get_stream_filename($handle)
+{
+    $meta = stream_get_meta_data($handle);
+
+    return $meta['uri'];
+}
+
+// Performs a HEAD request to the given url and checks the http status code.
+// Returns true on status 200, otherwise false (note: doesn't support redirects/etc)
+function check_url(string $url): bool
+{
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 10,
+    ]);
+    curl_exec($ch);
+
+    $errored = curl_errno($ch) > 0 || curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200;
+    curl_close($ch);
+
+    return !$errored;
 }

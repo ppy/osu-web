@@ -50,6 +50,6 @@ return [
     ],
     'require_login' => [
         '_' => 'Necesitas :link para descargar',
-        'link_text' => 'iniciar sesión',
+        'link_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
     ],
 ];

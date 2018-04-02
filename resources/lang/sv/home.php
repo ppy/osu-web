@@ -93,7 +93,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
-                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
+                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto', // Base text changed from "log" to "sign"
             ],
             'download' => [
                 'title' => 'ladda ner spelet',

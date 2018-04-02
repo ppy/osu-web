@@ -1,0 +1,87 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-badges {
+  @_top: profile-badges;
+
+  @_width: @_badge-width + ((@_padding + @_badge-margin) * 2);
+  @_padding: 3px;
+
+  @_border-radius: @border-radius--extra;
+
+  @_badge-margin: 3px;
+  @_badge-width: 86px;
+  @_badge-height: 40px;
+
+  .own-layer();
+  background-color: #333;
+  margin-bottom: 5px;
+  border-radius: @_border-radius;
+  min-width: @_width;
+  max-width: @_width;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: @_padding;
+
+  @media @desktop {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+  }
+
+  &:hover {
+    @media @desktop {
+      max-width: 100%;
+    }
+  }
+
+  &__badge {
+    flex: none;
+    width: @_badge-width;
+    height: @_badge-height;
+    border-radius: (@_border-radius - @_padding - @_badge-margin);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: @_badge-margin;
+  }
+
+  &__counter {
+    color: #fff;
+    font-size: @font-size--small;
+    padding-top: @_padding;
+    text-align: center;
+    margin: 0 @_padding;
+  }
+
+  &__stripe {
+    display: flex;
+    align-self: flex-start;
+    transition: transform 500ms ease-in-out;
+    will-change: transform;
+
+    .@{_top}:hover & {
+      @media @desktop {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 100%;
+      }
+    }
+  }
+}

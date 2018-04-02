@@ -39,37 +39,13 @@ return [
             'driver' => 'database',
             'table' => 'jobs',
             'queue' => 'default',
-            'retry_after' => 90,
-        ],
-
-        'beanstalkd' => [
-            'driver' => 'beanstalkd',
-            'host' => 'localhost',
-            'queue' => 'default',
-            'retry_after' => 90,
-        ],
-
-        'sqs' => [
-            'driver' => 'sqs',
-            'key' => 'your-public-key',
-            'secret' => 'your-secret-key',
-            'queue' => 'your-queue-url',
-            'region' => 'us-east-1',
-        ],
-
-        'iron' => [
-            'driver' => 'iron',
-            'host' => 'mq-aws-us-east-1.iron.io',
-            'token' => 'your-token',
-            'project' => 'your-project-id',
-            'queue' => 'your-queue-name',
-            'encrypt' => true,
+            'retry_after' => 305,
         ],
 
         'redis' => [
             'driver' => 'redis',
             'queue' => 'default',
-            'retry_after' => 90,
+            'retry_after' => 305, // our longest job timeout is 5m, plus 5s to allow time for workers to be killed
         ],
 
     ],
@@ -86,7 +62,8 @@ return [
     */
 
     'failed' => [
-        'database' => 'mysql', 'table' => 'failed_jobs',
+        'database' => 'mysql',
+        'table' => 'failed_jobs',
     ],
 
 ];

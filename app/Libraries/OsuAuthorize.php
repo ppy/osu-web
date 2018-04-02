@@ -659,7 +659,7 @@ class OsuAuthorize
         return 'ok';
     }
 
-    public function checkForumTopicWatchAdd($user, $topic)
+    public function checkForumTopicWatch($user, $topic)
     {
         $this->ensureLoggedIn($user);
         $this->ensureCleanRecord($user);
@@ -667,13 +667,6 @@ class OsuAuthorize
         if (!$this->doCheckUser($user, 'ForumView', $topic->forum)->can()) {
             return 'forum.topic.watch.no_forum_access';
         }
-
-        return 'ok';
-    }
-
-    public function checkForumTopicWatchRemove($user, $topic)
-    {
-        $this->ensureLoggedIn($user);
 
         return 'ok';
     }
@@ -806,6 +799,11 @@ class OsuAuthorize
         } else {
             return $prefix.'no_access';
         }
+    }
+
+    public function checkUserSilenceShowExtendedInfo($user)
+    {
+        // admin only, i guess =D
     }
 
     public function checkWikiPageRefresh($user)

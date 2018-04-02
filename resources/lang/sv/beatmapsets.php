@@ -41,7 +41,7 @@ return [
             'approved' => 'godkänd den ',
             'qualified' => 'kvalificerad den ',
             'loved' => 'älskad den ',
-            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!',
+            'logged-out' => 'Du behöver logga in innan du laddar ner beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Ladda Ner',
                 'video' => 'med Video',
@@ -67,14 +67,12 @@ return [
             'rating-spread' => 'Betyg Spridning',
         ],
         'info' => [
-            'no_scores' => 'Ej rankad beatmap',
             'points-of-failure' => 'Punkter av Misslyckande',
             'success-rate' => 'Genomsnittig Succe',
-
             'description' => 'Beskrivning',
-
             'source' => 'Källa',
             'tags' => 'Taggar',
+            'unranked' => 'Ej rankad beatmap',
         ],
         'scoreboard' => [
             'achieved' => 'uppnått :when',

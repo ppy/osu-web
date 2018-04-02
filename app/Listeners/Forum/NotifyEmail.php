@@ -44,45 +44,44 @@ class NotifyEmail implements ShouldQueue
             return;
         }
 
-        TopicWatch::where([
-            'topic_id' => $topic->topic_id,
-            'user_id' => $user->user_id,
-        ])->update(['notify_status' => false]);
+        // Immediately update the status without actually fetching it.
+        TopicWatch::lookupQuery($topic, $user)
+            ->update(['notify_status' => false]);
     }
 
     public function notifyReply($event)
     {
         $topic = $event->topic->fresh();
+        $watches = $topic->watches()
+            ->where('mail', '=', true)
+            ->where('notify_status', '=', false)
+            ->has('user')
+            ->with('user', 'topic')
+            ->get();
 
-        $userIds = model_pluck(TopicWatch::where([
-            'topic_id' => $topic->topic_id,
-            'notify_status' => false,
-        ]), 'user_id');
+        foreach ($watches as $watch) {
+            $user = $watch->user;
 
-        foreach (User::whereIn('user_id', $userIds)->get() as $user) {
             if (!present($user->user_email)) {
                 continue;
             }
 
-            if ($event->user !== null && $event->user->getKey() === $user->user_id) {
+            if ($event->user !== null && $event->user->getKey() === $user->getKey()) {
                 continue;
             }
 
-            if ($user->user_id === $topic->topic_last_poster_id) {
+            if ($user->getKey() === $topic->topic_last_poster_id) {
                 continue;
             }
 
-            if (!priv_check_user($user, 'ForumTopicWatchAdd', $topic)->can()) {
+            if (!priv_check_user($user, 'ForumTopicWatch', $topic)->can()) {
                 continue;
             }
 
             Mail::to($user->user_email)
                 ->queue(new ForumNewReply(compact('topic', 'user')));
 
-            TopicWatch::where([
-                'topic_id' => $topic->topic_id,
-                'user_id' => $user->user_id,
-            ])->update(['notify_status' => true]);
+            $watch->update(['notify_status' => true]);
         }
     }
 

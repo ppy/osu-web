@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'strona główna',
             'account-edit' => 'ustawienia',
-            'friends' => 'znajomi',
             'friends-index' => 'znajomi',
             'changelog-index' => 'zmiany',
             'changelog-show' => 'kompilacja',
@@ -41,24 +40,30 @@ return [
             'password-reset-index' => 'zresetuj hasło',
             'search' => 'wyszukiwarka',
             'supportTheGame' => 'wspomóż grę',
+            'team' => 'zespół',
         ],
         'help' => [
             '_' => 'pomoc',
-            'getWiki' => 'wiki',
             'getFaq' => 'faq',
+            'getRules' => 'zasady',
             'getSupport' => 'pomoc techniczna',
+            'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
         'beatmaps' => [
             '_' => 'beatmapy',
-            'show' => 'informacje',
-            'index' => 'lista',
             'artists' => 'wyróżnieni artyści',
+            'beatmap_discussion_posts-index' => 'posty w dyskusji',
+            'beatmap_discussions-index' => 'dyskusje',
+            'beatmapset-watches-index' => 'obserwowane dyskusje',
+            'beatmapset_discussion_votes-index' => 'głosy w dyskusji',
+            'beatmapset_events-index' => 'zdarzenia',
+            'index' => 'lista',
             'packs' => 'paczki',
-            // 'getCharts' => 'wyróżnione',
+            'show' => 'informacje',
         ],
         'beatmapsets' => [
-            '_' => 'mapsety',
+            '_' => 'beatmapy',
             'discussion' => 'modowanie',
         ],
         'rankings' => [
@@ -73,9 +78,8 @@ return [
         'community' => [
             '_' => 'społeczność',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'czat',
-            'getSupport' => 'pomoc techniczna',
             'getLive' => 'na żywo',
             'contests' => 'konkursy',
             'profile' => 'profil',
@@ -83,10 +87,10 @@ return [
             'tournaments-index' => 'turnieje',
             'tournaments-show' => 'informacje o turnieju',
             'forum-topic-watches-index' => 'subskrybcje',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'tryb wieloosobowy',
@@ -104,7 +108,7 @@ return [
         'user' => [
             '_' => 'użytkownik',
             'getLogin' => 'zaloguj się',
-            'disabled' => 'wyłączono',
+            'disabled' => 'wyłączone',
 
             'register' => 'zarejestruj się',
             'reset' => 'odzyskaj dostęp',
@@ -114,9 +118,11 @@ return [
             'settings' => 'Ustawienia',
             'logout' => 'Wyloguj się', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Pomoc',
+            'beatmapset_activities' => 'aktualizacje na beatmapach użytkownika',
         ],
         'store' => [
             '_' => 'sklep',
+            'checkout-show' => 'kasa',
             'getListing' => 'przedmioty',
             'cart-show' => 'koszyk',
 
@@ -140,11 +146,11 @@ return [
         ],
         'admin' => [
             '_' => 'admin',
+            'beatmapsets-covers' => 'tło beatmapy',
             'root' => 'strona główna',
             'logs-index' => 'logi',
             'beatmapsets' => [
-                '_' => 'mapsety',
-                'covers' => 'nagłówki',
+                '_' => 'beatmapy',
                 'show' => 'szczegóły',
             ],
         ],
@@ -252,6 +258,6 @@ return [
 
     'popup_search' => [
         'initial' => 'Napisz, aby wyszukać!',
-        'retry' => 'Wyszukiwanie nieudane. Naciśnij tutaj, aby spróbować ponownie.',
+        'retry' => 'Wyszukiwanie nieudane. Kliknij tutaj, aby spróbować ponownie.',
     ],
 ];

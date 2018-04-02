@@ -121,14 +121,15 @@ class ProfilePage.HeaderExtra extends React.Component
                   osu.trans 'users.show.lastvisit',
                     date: rowValue osu.timeago(@props.user.lastvisit)
 
-          if @props.user.playstyle?
-            div className: "#{bn}__rows",
+          div className: "#{bn}__rows",
+            if @props.user.playstyle?
               div
                 className: "#{bn}__row"
                 dangerouslySetInnerHTML:
                   __html:
                     osu.trans 'users.show.plays_with',
                       devices: rowValue playsWith
+            @renderPostCount()
 
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
@@ -202,6 +203,19 @@ class ProfilePage.HeaderExtra extends React.Component
               "#{Math.round(@props.stats.pp).toLocaleString()}pp"
             else
               osu.trans('users.show.extra.unranked')
+
+  renderPostCount: =>
+    count = osu.transChoice 'users.show.post_count.count', @props.user.post_count.toLocaleString()
+    url = laroute.route('users.posts', user: @props.user.id)
+    link = "<a href=\"#{url}\">#{rowValue count}</a>" # wtb better way of doing this :|.
+
+    div
+      className: "#{bn}__row"
+      dangerouslySetInnerHTML:
+        __html:
+          osu.trans 'users.show.post_count._',
+            link: link
+
 
   fancyLink: ({key, url, icon, text, title}) =>
     return if !@props.user[key]?

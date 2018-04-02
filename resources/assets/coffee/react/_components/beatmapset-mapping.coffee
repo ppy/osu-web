@@ -25,9 +25,11 @@ dateFormat = 'LL'
 class @BeatmapsetMapping extends React.PureComponent
   render: =>
     user = @props.user ? @props.beatmapset.user
+    userURL = laroute.route 'users.show', user: user.id
 
     div className: bn,
-      div
+      a
+        href: userURL
         className: 'avatar avatar--beatmapset'
         style:
           backgroundImage: "url(#{user.avatar_url})"
@@ -36,8 +38,9 @@ class @BeatmapsetMapping extends React.PureComponent
         div className: "#{bn}__mapper",
           osu.trans 'beatmapsets.show.details.made-by'
           a
-            className: "#{bn}__user"
-            href: laroute.route 'users.show', user: user.id
+            className: "#{bn}__user js-usercard"
+            'data-user-id': user.id
+            href: userURL
             user.username
 
         @renderDate 'submitted', 'submitted_date'

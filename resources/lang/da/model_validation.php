@@ -25,7 +25,7 @@ return [
 
     'beatmap_discussion' => [
         'hype' => [
-            'guest' => 'Du skal være logget ind for at hype.',
+            'guest' => 'Du skal være logget ind for at hype.', // Base text changed from "log" to "sign"
             'hyped' => 'Du har allerede hypet dette beatmap.',
             'limit_exceeded' => 'Du har opbrugt alt dit hype.',
             'not_hypeable' => 'Dette beatmap kan ikke blive hypet',

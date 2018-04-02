@@ -29,8 +29,8 @@ return [
         'button' => 'Log Ind',
         'button_posting' => 'Logger ind...',
         'remember' => 'Husk denne computer',
-        'title' => 'Log venligst ind for at fortsætte',
-        'failed' => 'Ugyldigt login',
+        'title' => 'Log venligst ind for at fortsætte', // Base text changed from "log" to "sign"
+        'failed' => 'Ugyldigt login', // Base text changed from "log" to "sign"
         'register' => 'Har du ikke en osu! konto? Lav en ny én!',
         'forgot' => 'Glemt din adgangskode?',
         'beta' => [
@@ -44,12 +44,12 @@ return [
         '_' => 'Registrér',
     ],
     'anonymous' => [
-        'login_link' => 'klik for at logge ind',
-        'login_text' => 'log ind',
+        'login_link' => 'klik for at logge ind', // Base text changed from "log" to "sign"
+        'login_text' => 'log ind', // Base text changed from "log" to "sign"
         'username' => 'Gæst',
-        'error' => 'Du skal være logget ind for at gøre dette.',
+        'error' => 'Du skal være logget ind for at gøre dette.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Er du sikker på, at du vil logge ud? :(',
+    'logout_confirm' => 'Er du sikker på, at du vil logge ud? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => 'Du konto er blevet begrænset!',
         'message' => 'Når du er begrænset, kan du ikke interagere med andre spillere, og dine scores vil kun være synlige for dig. Dette er som regel en automatisk proces, og begrænsningen vil blive fjernet indenfor 24 timer. Hvis du ønsker at appellere din begrænsning, <a href="mailto:accounts@ppy.sh">kontakt supporten</a>.',
@@ -113,6 +113,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Ingen præstationsrekorder endnu. :(',
+                'title' => 'Historisk',
+
                 'most_played' => [
                     'count' => 'gange spillet',
                     'title' => 'Mest Spillede Beatmaps',
@@ -121,7 +123,6 @@ return [
                     'accuracy' => 'præcision: :percentage',
                     'title' => 'Seneste spil (24 timer)',
                 ],
-                'title' => 'Historisk',
             ],
             'kudosu' => [
                 'available' => 'Kudosu Tilgængelig',

@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
-            'friends' => 'amis',
             'friends-index' => 'amis',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
@@ -43,7 +42,7 @@ return [
         'help' => [
             '_' => 'aide',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -71,9 +70,8 @@ return [
         'community' => [
             '_' => 'communauté',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'chat',
-            'getSupport' => 'support',
             'getLive' => 'direct',
             'contests' => 'concours',
             'profile' => 'profil',
@@ -81,10 +79,10 @@ return [
             'tournaments-index' => 'tournois',
             'tournaments-show' => 'infos des tournois',
             'forum-topic-watches-index' => 'Abonnements aux sujets',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multijoueur',
@@ -101,7 +99,7 @@ return [
         ],
         'user' => [
             '_' => 'utilisateur',
-            'getLogin' => 'se connecter',
+            'getLogin' => 'se connecter', // Base text changed from "log" to "sign"
             'disabled' => 'désactivé',
 
             'register' => "s'inscrire",
@@ -190,7 +188,7 @@ return [
             'link' => false,
         ],
         '401' => [
-            'error' => 'Vous ne devriez pas être ici',
+            'error' => 'Vous ne devriez pas être ici', // Base text changed from "log" to "sign"
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
             'link' => false,
         ],

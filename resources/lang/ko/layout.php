@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => '메인',
             'account-edit' => '설정',
-            'friends' => '친구',
             'friends-index' => '친구',
             'changelog-index' => '변경 사항',
             'changelog-show' => '빌드 버전',
@@ -44,7 +43,7 @@ return [
         'help' => [
             '_' => '도움말',
             'getFaq' => 'FAQ',
-            'getSupport' => '지원 센터', // osu!support와 혼동될까봐 "센터"를 추가
+            'getSupport' => '지원 센터', // osu!support와 혼동될까봐 "센터"를 추가 (obsolete)
             'getWiki' => '위키',
             'wiki-show' => '위키',
         ],
@@ -73,9 +72,8 @@ return [
         'community' => [
             '_' => '커뮤니티',
             'dev' => 'osu!개발진',
-            'getForum' => '포럼',
+            'getForum' => '포럼', // Base text changed to plural, please check.
             'getChat' => '채팅',
-            'getSupport' => '지원',
             'getLive' => '라이브 스트림',
             'contests' => '콘테스트',
             'profile' => '프로필',
@@ -83,10 +81,10 @@ return [
             'tournaments-index' => '대회',
             'tournaments-show' => '대회 정보',
             'forum-topic-watches-index' => '구독',
-            'forum-topics-create' => '포럼',
-            'forum-topics-show' => '포럼',
-            'forum-forums-index' => '포럼',
-            'forum-forums-show' => '포럼',
+            'forum-topics-create' => '포럼', // Base text changed to plural, please check.
+            'forum-topics-show' => '포럼', // Base text changed to plural, please check.
+            'forum-forums-index' => '포럼', // Base text changed to plural, please check.
+            'forum-forums-show' => '포럼', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => '멀티플레이어', // 'multiplayer'
@@ -103,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => '유저',
-            'getLogin' => '로그인',
+            'getLogin' => '로그인', // Base text changed from "log" to "sign"
             'disabled' => '비활성 상태', // disabled
 
             'register' => '회원 가입',
@@ -193,7 +191,7 @@ return [
         ],
         '401' => [
             'error' => '여기 계시면 안됩니다.',
-            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...',
+            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

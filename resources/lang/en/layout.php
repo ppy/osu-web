@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'home',
             'account-edit' => 'settings',
-            'friends' => 'friends',
             'friends-index' => 'friends',
             'changelog-index' => 'changelog',
             'changelog-show' => 'build',
@@ -41,11 +40,13 @@ return [
             'password-reset-index' => 'reset password',
             'search' => 'search',
             'supportTheGame' => 'support the game',
+            'team' => 'team',
         ],
         'help' => [
             '_' => 'help',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getRules' => 'rules',
+            'getSupport' => 'no, really, i need help!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -77,9 +78,8 @@ return [
         'community' => [
             '_' => 'community',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forums',
             'getChat' => 'chat',
-            'getSupport' => 'support',
             'getLive' => 'live',
             'contests' => 'contests',
             'profile' => 'profile',
@@ -87,10 +87,10 @@ return [
             'tournaments-index' => 'tournaments',
             'tournaments-show' => 'tournament info',
             'forum-topic-watches-index' => 'subscriptions',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forums',
+            'forum-topics-show' => 'forums',
+            'forum-forums-index' => 'forums',
+            'forum-forums-show' => 'forums',
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
@@ -107,7 +107,7 @@ return [
         ],
         'user' => [
             '_' => 'user',
-            'getLogin' => 'login',
+            'getLogin' => 'sign in',
             'disabled' => 'disabled',
 
             'register' => 'register',
@@ -200,7 +200,7 @@ return [
         ],
         '401' => [
             'error' => "You shouldn't be here.",
-            'description' => 'You could try going back, though. Or maybe logging in.',
+            'description' => 'You could try going back, though. Or maybe signing in.',
             'link' => false,
         ],
         '405' => [

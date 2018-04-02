@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'inicio',
             'account-edit' => 'ajustes',
-            'friends' => 'amigos',
             'friends-index' => 'amigos',
             'changelog-index' => 'listado de cambios',
             'changelog-show' => 'compilación',
@@ -40,11 +39,13 @@ return [
             'password-reset-index' => 'reestablecer contraseña',
             'search' => 'buscar',
             'supportTheGame' => 'apoya el juego',
+            'team' => 'equipo',
         ],
         'help' => [
             '_' => 'ayuda',
             'getFaq' => 'preguntas frecuentes',
-            'getSupport' => 'soporte',
+            'getRules' => 'reglas',
+            'getSupport' => 'no, de veras, ¡necesito ayuda!',
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -76,9 +77,8 @@ return [
         'community' => [
             '_' => 'comunidad',
             'dev' => 'osu!dev',
-            'getForum' => 'foro',
+            'getForum' => 'foro', // Base text changed to plural, please check.
             'getChat' => 'chat',
-            'getSupport' => 'soporte',
             'getLive' => 'en vivo',
             'contests' => 'concursos',
             'profile' => 'perfil',
@@ -86,10 +86,10 @@ return [
             'tournaments-index' => 'torneos',
             'tournaments-show' => 'información de torneos',
             'forum-topic-watches-index' => 'suscripciones',
-            'forum-topics-create' => 'foro',
-            'forum-topics-show' => 'foro',
-            'forum-forums-index' => 'foro',
-            'forum-forums-show' => 'foro',
+            'forum-topics-create' => 'foro', // Base text changed to plural, please check.
+            'forum-topics-show' => 'foro', // Base text changed to plural, please check.
+            'forum-forums-index' => 'foro', // Base text changed to plural, please check.
+            'forum-forums-show' => 'foro', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multijugador',
@@ -100,13 +100,13 @@ return [
             '404' => 'no encontrado',
             '403' => 'prohibido',
             '401' => 'no autorizado',
-            '405' => 'falta algo',
+            '405' => 'página faltante',
             '500' => 'algo va mal',
             '503' => 'mantenimiento',
         ],
         'user' => [
             '_' => 'usuario',
-            'getLogin' => 'iniciar sesión',
+            'getLogin' => 'iniciar sesión', // Base text changed from "log" to "sign"
             'disabled' => 'desactivado',
 
             'register' => 'registrarse',
@@ -115,7 +115,7 @@ return [
 
             'messages' => 'Mensajes',
             'settings' => 'Opciones',
-            'logout' => 'Salir', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Cerrar sesión',
             'help' => 'Ayuda',
             'beatmapset_activities' => 'actividades del usuario en el beatmap',
         ],
@@ -198,7 +198,7 @@ return [
         ],
         '401' => [
             'error' => 'No deberías estar aquí.',
-            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.',
+            'description' => 'Aunque podrías intentar volver atrás. O quizá iniciar sesión.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [
@@ -225,7 +225,7 @@ return [
             ],
         ],
         // used by sentry if it returns an error
-        'reference' => '¡Por si acaso, aquí tienes un código que puedes dar al soporte técnico!',
+        'reference' => '¡Por si acaso, aquí tienes un código que le puedes dar al soporte técnico!',
     ],
 
     'popup_login' => [
@@ -251,7 +251,7 @@ return [
         'links' => [
             'account-edit' => 'Ajustes',
             'friends' => 'Amigos',
-            'logout' => 'Cerrar sesión', // Base text changed from "Log Out" to "Sign Out", please check.
+            'logout' => 'Cerrar sesión',
             'profile' => 'Mi perfil',
         ],
     ],

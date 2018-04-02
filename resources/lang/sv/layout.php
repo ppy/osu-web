@@ -27,7 +27,6 @@ return [
         'home' => [
             '_' => 'hem',
             'account-edit' => 'inställningar',
-            'friends' => 'vänner',
             'friends-index' => 'vänner',
             'changelog-index' => 'ändringslogg',
             'changelog-show' => 'build',
@@ -44,7 +43,7 @@ return [
         'help' => [
             '_' => 'hjälp',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -73,9 +72,8 @@ return [
         'community' => [
             '_' => 'gemenskap',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'chatt',
-            'getSupport' => 'support',
             'getLive' => 'live',
             'contests' => 'tävlingar',
             'profile' => 'profil',
@@ -83,10 +81,10 @@ return [
             'tournaments-index' => 'turneringar',
             'tournaments-show' => 'turnering info',
             'forum-topic-watches-index' => 'prenumerationer',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multiplayer',
@@ -103,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => 'användare',
-            'getLogin' => 'logga in',
+            'getLogin' => 'logga in', // Base text changed from "log" to "sign"
             'disabled' => 'inaktiverad',
 
             'register' => 'registrera',
@@ -194,7 +192,7 @@ return [
         ],
         '401' => [
             'error' => 'Du bör inte vara här',
-            'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.',
+            'description' => 'Du kan däremot försöka gå tillbaka. Eller kanske logga in.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

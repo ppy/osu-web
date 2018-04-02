@@ -60,11 +60,10 @@ return [
         'message_type_select' => 'Selecteer Commentaartype',
 
         'mode' => [
-            'general' => 'Algemeen',
             'timeline' => 'Tijdlijn',
         ],
 
-        'require-login' => 'Log in om te posten of te antwoorden',
+        'require-login' => 'Log in om te posten of te antwoorden', // Base text changed from "log" to "sign"
         'resolved' => 'Opgelost',
 
         'show' => [

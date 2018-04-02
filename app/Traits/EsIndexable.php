@@ -36,6 +36,17 @@ trait EsIndexable
 
     abstract public function toEsJson();
 
+    /**
+     * The value for routing.
+     * Override to provide a routing value; null by default.
+     *
+     * @return string|null
+     */
+    public function esRouting()
+    {
+        // null will be omitted when used as routing.
+    }
+
     public function getEsId()
     {
         return $this->getKey();
@@ -46,6 +57,7 @@ trait EsIndexable
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
+            'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'client' => ['ignore' => 404],
         ], $options);
@@ -58,6 +70,7 @@ trait EsIndexable
         $document = array_merge([
             'index' => static::esIndexName(),
             'type' => static::esType(),
+            'routing' => $this->esRouting(),
             'id' => $this->getEsId(),
             'body' => $this->toEsJson(),
         ], $options);
@@ -67,6 +80,16 @@ trait EsIndexable
 
     public static function esCreateIndex(string $name = null)
     {
+        $settings = [
+            'index' => [
+                'number_of_shards' => config('osu.elasticsearch.number_of_shards'),
+            ],
+        ];
+
+        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
+            $settings['analysis'] = static::esAnalysisSettings();
+        }
+
         $type = static::esType();
         $body = [
             'mappings' => [
@@ -74,17 +97,8 @@ trait EsIndexable
                     'properties' => static::esMappings(),
                 ],
             ],
+            'settings' => $settings,
         ];
-
-        if (method_exists(get_called_class(), 'esAnalysisSettings')) {
-            $settings = [
-                'settings' => [
-                    'analysis' => static::esAnalysisSettings(),
-                ],
-            ];
-
-            $body = array_merge($body, $settings);
-        }
 
         $params = [
             'index' => $name ?? static::esIndexName(),
@@ -125,7 +139,10 @@ trait EsIndexable
             foreach ($models as $model) {
                 $next = $model;
                 // bulk API am speshul.
-                $metadata = ['_id' => $model->getEsId()];
+                $metadata = [
+                    '_id' => $model->getEsId(),
+                    'routing' => $model->esRouting(),
+                ];
 
                 if ($isSoftDeleting && $model->trashed()) {
                     $actions[] = ['delete' => $metadata];

@@ -32,18 +32,28 @@ return [
         'cancel' => 'Anuluj',
         'delete' => 'Usuń',
         'permalink' => 'odnośnik bezpośredni',
+        'permalink_copied' => 'odnośnik skopiowany',
         'post' => 'Opublikuj',
         'reply' => 'Odpowiedz',
+        'reply_reopen' => 'Odpowiedz i otwórz ponownie',
+        'reply_resolve' => 'Odpowiedz i rozwiąż',
         'reset' => 'Zresetuj',
         'save' => 'Zapisz',
         'saving' => 'Zapisywanie...',
+        'see_more' => 'zobacz więcej',
         'show_more' => 'pokaż więcej',
         'upload_image' => 'prześlij zdjęcie',
     ],
 
     'count' => [
+        'badges' => ':count odznaka|:count odznaki|:count odznak',
+        'days' => ':count dzień|:count dni|:count dni',
+        'hour_short_unit' => 'godz.|godz.|godz.',
+        'hours' => ':count godzina|:count godziny|:count godzin',
         'item' => ':count sztuka|:count sztuki|:count sztuk',
+        'minute_short_unit' => 'min|min|min',
         'months' => ':count miesiąc|:count miesiące|:count miesięcy',
+        'second_short_unit' => 's|s|s',
         'years' => ':count rok|:count lata|:count lat',
     ],
 
@@ -51,6 +61,9 @@ return [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

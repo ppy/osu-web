@@ -41,7 +41,7 @@ return [
             'approved' => 'aprobado el ',
             'qualified' => 'calificado el ',
             'loved' => 'amado el ',
-            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!',
+            'logged-out' => '¡Necesitas iniciar sesión para descargar beatmaps!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'Descargar',
                 'video' => 'con Video',
@@ -70,11 +70,11 @@ return [
             'description' => 'Descripción',
             'genre' => 'Género',
             'language' => 'Idioma',
-            'no_scores' => 'Beatmap no rankeado',
             'points-of-failure' => 'Puntos de Fracaso',
             'success-rate' => 'Tasa de éxito',
             'source' => 'Fuente',
             'tags' => 'Etiquetas',
+            'unranked' => 'Beatmap no rankeado',
         ],
         'scoreboard' => [
             'achieved' => 'logrado :when',

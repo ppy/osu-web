@@ -60,11 +60,10 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
 
         'mode' => [
-            'general' => 'Generale',
             'timeline' => 'Linea Temporale',
         ],
 
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
+        'require-login' => 'Per favore effettua il login per postare o rispondere', // Base text changed from "log" to "sign"
         'resolved' => 'Risolto',
 
         'show' => [

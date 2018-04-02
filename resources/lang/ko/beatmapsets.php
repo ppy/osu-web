@@ -41,7 +41,7 @@ return [
             'approved' => 'approved된 날짜: ',
             'qualified' => 'qualified된 날짜: ',
             'loved' => 'loved된 날짜: ',
-            'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!',
+            'logged-out' => '비트맵을 받으려면 먼저 로그인하셔야 합니다!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => '다운로드',
                 'video' => '영상 포함',
@@ -66,14 +66,12 @@ return [
             'rating-spread' => '평점 분포도',
         ],
         'info' => [
-            'no_scores' => 'Unranked 비트맵',
             'points-of-failure' => '실패 점수',
             'success-rate' => '성공률',
-
             'description' => '설명',
-
             'source' => '원 작품', // Source
             'tags' => '태그',
+            'unranked' => 'Unranked 비트맵',
         ],
         'scoreboard' => [
             'achieved' => ':when에 달성됨',

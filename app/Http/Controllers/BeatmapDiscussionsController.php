@@ -44,11 +44,11 @@ class BeatmapDiscussionsController extends Controller
 
         try {
             $discussion->allowKudosu(Auth::user());
-
-            return $discussion->beatmapset->defaultDiscussionJson();
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function denyKudosu($id)
@@ -58,11 +58,11 @@ class BeatmapDiscussionsController extends Controller
 
         try {
             $discussion->denyKudosu(Auth::user());
-
-            return $discussion->beatmapset->defaultDiscussionJson();
         } catch (ModelNotSavedException $e) {
             return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function destroy($id)
@@ -70,13 +70,13 @@ class BeatmapDiscussionsController extends Controller
         $discussion = BeatmapDiscussion::whereNull('deleted_at')->findOrFail($id);
         priv_check('BeatmapDiscussionDestroy', $discussion)->ensureCan();
 
-        $error = $discussion->softDelete(Auth::user());
-
-        if ($error === null) {
-            return $discussion->beatmapset->defaultDiscussionJson();
-        } else {
-            return error_popup($error);
+        try {
+            $discussion->softDeleteOrExplode(Auth::user());
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
+
+        return $discussion->beatmapset->defaultDiscussionJson();
     }
 
     public function index()

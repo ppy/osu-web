@@ -25,14 +25,14 @@ return [
     ],
     'voting' => [
         'over' => 'Möjligheten att rösta i denna tävlingen har avslutas.',
-        'login_required' => 'Var vänlig logga in för att rösta.',
+        'login_required' => 'Var vänlig logga in för att rösta.', // Base text changed from "log" to "sign"
         'best_of' => [
             'none_played' => 'Det ser inte ut som att du har spelat någon av beatmapsen som kvalificerar för denna tävling!',
         ],
     ],
     'entry' => [
         '_' => 'bidrag',
-        'login_required' => 'Var vänlig logga in för att gå med i tävlingen.',
+        'login_required' => 'Var vänlig logga in för att gå med i tävlingen.', // Base text changed from "log" to "sign"
         'silenced_or_restricted' => 'Du kan inte gå med i en tävling när du är begränsad eller tystad.',
         'preparation' => 'Vi håller på att förbereda denna tävling. Var god vänta med tålamod!',
         'over' => 'Tack för era bidrag! Möjligheten att lägga till bidrag har stängt och röstning kommer öppnas snart.',

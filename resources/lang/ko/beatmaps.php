@@ -42,7 +42,7 @@ return [
         'message_type_select' => '게시할 답글의 형식을 선택하세요',
         'reply_notice' => '답변을 보내려면 엔터를 누르세요.',
         'reply_placeholder' => '보내실 답변의 내용을 입력하세요.',
-        'require-login' => '답글을 올리려면 로그인해 주세요',
+        'require-login' => '답글을 올리려면 로그인해 주세요', // Base text changed from "log" to "sign"
         'resolved' => '결정됨', // Resolved, 해결됨이 적절할 수 있으나, 비트맵 토론에 관련된 내용이므로 결정으로 표현
         'restore' => '복구됨',
         'title' => '토론',
@@ -70,8 +70,6 @@ return [
 
         'mode' => [
             'events' => '기록',
-            'general' => '일반',
-            'general_all' => '일반 (모든 난이도)',
             'timeline' => '타임라인',
         ],
 

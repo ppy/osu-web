@@ -32,9 +32,16 @@
             @else
                 <div class="search-result__row search-result__row--entries-container">
                     <div class="search-result__entries">
+                        @php
+                            // FIXME: Users for forum search; do something about this in cleanup branch
+                            // $result enumeration should probably be done according to each blade.
+                            if ($result instanceof App\Libraries\ForumSearch) {
+                                $users = $result->users()->select('user_id', 'username', 'user_avatar')->get();
+                            }
+                        @endphp
                         @foreach ($result['data'] as $entry)
                             <div class="search-result__entry">
-                                @include("home._search_{$mode}", compact('entry'))
+                                @include("home._search_{$mode}", compact('entry', 'users'))
                             </div>
                         @endforeach
                     </div>
@@ -52,7 +59,7 @@
 
                 @if ($search->mode === $mode)
                     @php
-                        $pagination = $search->paginate($mode)->appends($search->urlParams());
+                        $pagination = $search->paginate($mode)->appends(request()->query());
                     @endphp
 
                     @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))
