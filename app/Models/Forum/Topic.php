@@ -21,7 +21,10 @@
 namespace App\Models\Forum;
 
 use App\Exceptions\ModelNotSavedException;
+use App\Jobs\EsDeleteDocument;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
+use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\Elasticsearch;
 use App\Models\Log;
@@ -32,7 +35,7 @@ use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\QueryException;
 
-class Topic extends Model
+class Topic extends Model implements AfterCommit
 {
     use Elasticsearch\TopicTrait, SoftDeletes, Validatable;
 
@@ -801,5 +804,14 @@ class Topic extends Model
     public function toMetaDescription()
     {
         return "{$this->forum->toMetaDescription()} » {$this->topic_title}";
+    }
+
+    public function afterCommit()
+    {
+        if ($this->trashed()) {
+            dispatch(new EsDeleteDocument($this));
+        } else {
+            dispatch(new EsIndexDocument($this));
+        }
     }
 }
