@@ -78,6 +78,10 @@ class ForumSearch extends Search
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
+        if (isset($this->params->topicId)) {
+            $query->filter(['term' => ['topic_id' => $this->params->topicId]]);
+        }
+
         $this->query($query);
 
         return parent::toArray();
