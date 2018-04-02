@@ -214,12 +214,12 @@ return [
             'link' => false,
         ],
         'fatal' => [
-            'error' => 'Oh no! Irgendwas ist extrem schief gelaufen! ;_;',
+            'error' => 'Oh nein! Irgendwas ist extrem schief gelaufen! ;_;',
             'description' => 'Wir werden automatisch über jeden Fehler benachrichtigt.',
             'link' => false,
         ],
         '503' => [
-            'error' => 'Wegen Wartung nicht erreichbar !',
+            'error' => 'Wegen Wartung nicht erreichbar!',
             'description' => 'Wartungen können von 5 Sekunden bis zu 10 Minuten dauern. Sollten wir länger nicht erreichbar sein, schau bei :link für mehr Informationen.',
             'link' => [
                 'text' => '@osustatus',

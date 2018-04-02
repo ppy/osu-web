@@ -89,8 +89,8 @@ return [
         'en',
 
         // sort by name
-        'de',
         'da',
+        'de',
         'es',
         'fr',
         'it',

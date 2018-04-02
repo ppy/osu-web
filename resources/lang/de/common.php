@@ -38,7 +38,7 @@ return [
         'reply_reopen' => 'Antworten und wiedereröffnen',
         'reply_resolve' => 'Antworten und lösen',
         'reset' => 'Zurücksetzen',
-        'save' => 'Speichernn',
+        'save' => 'Speichern',
         'saving' => 'Speichert...',
         'see_more' => 'mehr sehen (?)',
         'show_more' => 'mehr zeigen',

@@ -53,7 +53,7 @@ return [
 
     'nearby_posts' => [
         'confirm' => 'Keiner dieser Beiträge behandelt mein Anliegen.',
-        'notice' => 'There are posts around :timestamp (:existing_timestamps). Please check them before posting.',
+        'notice' => 'Es gibt bereits Beiträge in der Nähe von :timestamp (:existing_timestamps). Bitte überprüfe diese, bevor du diesen absendest.',
     ],
 
     'reply' => [

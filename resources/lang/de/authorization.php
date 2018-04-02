@@ -78,7 +78,7 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Can not edit deleted post.',
+                'deleted' => 'Gelöschte Beiträge können nicht bearbeitet werden.',
                 'locked' => 'Dieser Beitrag ist gesperrt und kann nicht bearbeitet werden.',
                 'no_forum_access' => 'Zugang zum angeforderten Forum wurde verwehrt.',
                 'not_owner' => 'Nur der Autor des Beitrages kann den Beitrag bearbeiten.',
