@@ -19,6 +19,6 @@
  */
 
 return [
-    'mixture' => ':attribute is missing number or letter',
-    'required' => ':attribute is required',
+    'mixture' => ':attributeは数字か文字が抜けています',
+    'required' => ':attributeは必須です',
 ];

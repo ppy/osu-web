@@ -21,19 +21,19 @@
 return [
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regenerate',
-            'regenerating' => 'Regenerating...',
-            'remove' => 'Remove',
-            'removing' => 'Removing...',
+            'regenerate' => '生成',
+            'regenerating' => '生成中・・・',
+            'remove' => '削除',
+            'removing' => '削除中・・・',
         ],
         'show' => [
-            'covers' => 'Manage Beatmapset Covers',
+            'covers' => '譜面のカバーを管理する',
             'discussion' => [
                 '_' => 'Modding v2',
-                'activate' => 'activate',
-                'activate_confirm' => 'activate modding v2 for this beatmap?',
-                'active' => 'active',
-                'inactive' => 'inactive',
+                'activate' => '適用',
+                'activate_confirm' => 'modding v2をこの譜面に適用しますか？',
+                'active' => '適用済',
+                'inactive' => '未適用',
             ],
         ],
     ],
@@ -41,22 +41,22 @@ return [
     'forum' => [
         'forum-covers' => [
             'index' => [
-                'delete' => 'Delete',
+                'delete' => '削除',
 
-                'forum-name' => 'Forum #:id: :name',
+                'forum-name' => 'フォーラム #:id: :name',
 
-                'no-cover' => 'No cover set',
+                'no-cover' => 'カバー無し',
 
                 'submit' => [
-                    'save' => 'Save',
-                    'update' => 'Update',
+                    'save' => '保存',
+                    'update' => '更新',
                 ],
 
-                'title' => 'Forum Covers List',
+                'title' => 'フォーラムカバーのリスト',
 
                 'type-title' => [
-                    'default-topic' => 'Default Topic Cover',
-                    'main' => 'Forum Cover',
+                    'default-topic' => '規定のトピックカバー',
+                    'main' => 'フォーラムカバー',
                 ],
             ],
         ],
@@ -64,18 +64,18 @@ return [
 
     'logs' => [
         'index' => [
-            'title' => 'Log Viewer',
+            'title' => 'ログビューワー',
         ],
     ],
 
     'pages' => [
         'root' => [
-            'title' => 'Admin Console Thingy',
+            'title' => 'アドミンのコンソールっぽいの',
 
             'sections' => [
-                'forum' => 'Forum',
-                'general' => 'General',
-                'store' => 'Store',
+                'forum' => 'フォーラム',
+                'general' => '全般',
+                'store' => 'ストア',
             ],
         ],
     ],
@@ -83,15 +83,15 @@ return [
     'store' => [
         'orders' => [
             'index' => [
-                'title' => 'Order Listing',
+                'title' => '注文の一覧',
             ],
         ],
     ],
 
     'users' => [
         'restricted_banner' => [
-            'title' => 'This user is currently restricted.',
-            'message' => '(only admins can see this)',
+            'title' => 'このユーザーは現在制限中です。',
+            'message' => '（アドミンのみにこれが見えます）',
         ],
     ],
 

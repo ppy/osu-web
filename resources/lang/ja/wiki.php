@@ -20,22 +20,22 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'Requested page is not yet translated to the selected language (:language). Showing English version.',
-        'languages' => 'Languages',
-        'missing' => 'Requested page ":keyword" could not be found.',
+        'fallback_translation' => 'ご希望のページはまだ現在選択している言語に翻訳されていません。 (:language). 英語版を表示します。',
+        'languages' => '言語',
+        'missing' => 'ご希望のページ":keyword"は見つかりませんでした。',
         'missing_title' => 'Not Found',
-        'missing_translation' => 'Requested page could not be found for currently selected language.',
-        'search' => 'Search existing pages for :link.',
-        'toc' => 'Contents',
+        'missing_translation' => 'ご希望のページはまだ現在選択している言語に翻訳されていません。',
+        'search' => ':linkの既存のページを検索する',
+        'toc' => '目次',
 
         'edit' => [
-            'link' => 'Show on GitHub',
-            'refresh' => 'Refresh',
+            'link' => 'GitHubで表示する',
+            'refresh' => '更新する',
         ],
 
         'outdated' => [
-            '_' => 'This page contains an outdated translation of the original content. Please check the :default for the most accurate information (and consider updating the translation if you are able to help out)!',
-            'default' => 'English version',
+            '_' => 'このページは最新ではない情報の翻訳を含みます。 最新の情報を確認するには:defaultを参照してください。（可能であれば更新にご協力ください）',
+            'default' => '英語版のページ',
         ],
     ],
 ];

@@ -19,30 +19,30 @@
  */
 
 return [
-    'page_description' => 'Featured artists on osu!',
-    'title' => 'Featured Artists',
+    'page_description' => 'osu!推奨アーティスト',
+    'title' => '推奨アーティスト',
 
     'admin' => [
         'hidden' => 'ARTIST IS CURRENTLY HIDDEN',
     ],
 
     'beatmaps' => [
-        '_' => 'Beatmaps',
-        'download' => 'Download Beatmap Template',
-        'download-na' => 'Beatmap Template not yet available',
+        '_' => '譜面',
+        'download' => '譜面のテンプレートをダウンロード ',
+        'download-na' => '譜面のテンプレートはまだ用意されていません',
     ],
 
     'index' => [
-        'description' => 'Featured artists are artists that we are working in collaboration with in order to bring new and original music to osu!. These artists and a selection of their tracks have been hand-picked by the osu! team as being awesomesauce and suitable for mapping. Some of these featured artists have also created exclusive new tracks for use in osu!.<br><br>All tracks in this section are provided as pre-timed .osz files and have been officially licensed for use in osu! and osu!-related content.',
+        'description' => 'osu!推奨アーティストはosu!との協力でゲームにさまざまな楽曲を提供しているアーティストたちです。このアーティストたちはosu!チームに楽曲の譜面化への適性を見込まれて選ばれました。中にはosu!限定の楽曲を提供しているアーティストも存在します。<br><br>このセクションの楽曲は譜面としてタイミングは既に設定してあり、osu!内のみでの使用が認可されています。',
     ],
 
     'links' => [
-        'site' => 'Official Website',
+        'site' => '公式サイト',
     ],
 
     'songs' => [
-        '_' => 'Songs',
-        'count' => '1 song|:count songs',
-        'exclusive' => 'osu! exclusive',
+        '_' => '楽曲',
+        'count' => '1 曲|:count 曲',
+        'exclusive' => 'osu!限定',
     ],
 ];

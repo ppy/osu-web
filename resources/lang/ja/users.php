@@ -19,199 +19,199 @@
  */
 
 return [
-    'deleted' => '[deleted user]',
+    'deleted' => '[削除されたユーザーです]',
 
     'beatmapset_activities' => [
         'discussions' => [
-            'title_recent' => 'Recently started discussions',
+            'title_recent' => '最近のディスカッション',
         ],
 
         'events' => [
-            'title_recent' => 'Recent events',
+            'title_recent' => '最近の出来事',
         ],
 
         'posts' => [
-            'title_recent' => 'Recent posts',
+            'title_recent' => '最近の投稿',
         ],
 
         'votes_received' => [
-            'title_most' => 'Most upvoted by (last 3 months)',
+            'title_most' => '最も評価の高い（3ヶ月以内）',
         ],
 
         'votes_made' => [
-            'title_most' => 'Most upvoted (last 3 months)',
+            'title_most' => '最も評価した（3ヶ月以内）',
         ],
     ],
 
     'card' => [
-        'loading' => 'Loading...',
+        'loading' => '読み込み中・・・',
     ],
 
     'login' => [
-        '_' => 'Sign in',
-        'locked_ip' => 'your IP address is locked. Please wait a few minutes.',
-        'username' => 'Username',
-        'password' => 'Password',
-        'button' => 'Sign in',
-        'button_posting' => 'Signing in...',
-        'remember' => 'Remember this computer',
-        'title' => 'Please sign in to proceed',
-        'failed' => 'Incorrect sign in',
-        'register' => "Don't have an osu! account? Make a new one",
-        'forgot' => 'Forgotten your password?',
+        '_' => 'ログイン',
+        'locked_ip' => 'あなたのIPアドレスは規制されています。数分後もう一度お試しください。',
+        'username' => 'ユーザー名',
+        'password' => 'パスワード',
+        'button' => 'ログイン',
+        'button_posting' => 'ログイン中・・・',
+        'remember' => 'ログイン状態を保存する',
+        'title' => '続行するにはログインが必要です',
+        'failed' => '認証に失敗しました',
+        'register' => "osu!アカウントがない方はこちらから",
+        'forgot' => 'パスワードを紛失？',
         'beta' => [
-            'main' => 'Beta access is currently restricted to privileged users.',
-            'small' => '(supporters will get in soon)',
+            'main' => 'ベータアクセスは権限があるユーザーのみに付与されます',
+            'small' => '（サポーターのユーザーは近いうちに貰えます）',
         ],
 
-        'here' => 'here', // this is substituted in when generating a link above. change it to suit the language.
+        'here' => 'こちら', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
     'posts' => [
-        'title' => ':username\'s posts',
+        'title' => ':username\の投稿',
     ],
 
     'signup' => [
-        '_' => 'Register',
+        '_' => '新規登録',
     ],
     'anonymous' => [
-        'login_link' => 'click to sign in',
-        'login_text' => 'sign in',
-        'username' => 'Guest',
-        'error' => 'You need to be signed in to do this.',
+        'login_link' => 'クリックしてログイン',
+        'login_text' => 'ログイン',
+        'username' => 'ゲスト',
+        'error' => 'ログインが必要です。',
     ],
-    'logout_confirm' => 'Are you sure you want to sign out? :(',
+    'logout_confirm' => 'ログアウトしてもよろしいですか？',
     'restricted_banner' => [
-        'title' => 'Your account has been restricted!',
-        'message' => 'While restricted, you will be unable to interact with other players and your scores will only be visible to you. This is usually the result of an automated process and will usually be lifted within 24 hours. If you wish to appeal your restriction, please <a href="mailto:accounts@ppy.sh">contact support</a>.',
+        'title' => 'あなたのアカウントは制限されました。',
+        'message' => '制限中は他のプレイヤーとの干渉ができなくなり、自分のスコアも他人には表示されなくなります。制限のほとんどは自動的な処理で、２４時間以内に解決します。制限が不当な物だと感じた場合、<a href="mailto:accounts@ppy.sh">サポートにお問い合わせください</a>。',
     ],
     'show' => [
-        '404' => 'User not found! ;_;',
-        'age' => ':age years old',
-        'change_avatar' => 'change your avatar!',
-        'first_members' => 'Here since the beginning',
-        'is_developer' => 'osu!developer',
-        'is_supporter' => 'osu!supporter',
-        'joined_at' => 'Joined :date',
-        'lastvisit' => 'Last seen :date',
-        'missingtext' => 'You might have made a typo! (or the user may have been banned)',
+        '404' => 'ユーザーが見つかりませんでした。',
+        'age' => ':age歳',
+        'change_avatar' => 'アバター画像の変更',
+        'first_members' => '創設時からメンバー',
+        'is_developer' => 'osu!デベロッパー',
+        'is_supporter' => 'osu!サポーター',
+        'joined_at' => '登録日時 :date',
+        'lastvisit' => '最終ログイン :date',
+        'missingtext' => '内容を再度確認してください。（ユーザーが削除されている可能性もあります）',
         'origin_age' => ':age',
-        'origin_country_age' => ':age from :country',
-        'origin_country' => 'From :country',
-        'page_description' => 'osu! - Everything you ever wanted to know about :username!',
-        'plays_with' => 'Plays with :devices',
-        'title' => ":username's profile",
+        'origin_country_age' => ':countryの:age歳',
+        'origin_country' => '出身地 :country',
+        'page_description' => 'osu! - :usernameについていろいろ！',
+        'plays_with' => '使用デバイス :devices',
+        'title' => ":usernameのプロフィール",
 
         'edit' => [
             'cover' => [
-                'button' => 'Change Profile Cover',
-                'defaults_info' => 'More cover options will be available in the future',
+                'button' => 'カバー画像の変更',
+                'defaults_info' => 'カバーの選択肢は増える予定です',
                 'upload' => [
-                    'broken_file' => 'Failed processing image. Verify uploaded image and try again.',
-                    'button' => 'Upload image',
-                    'dropzone' => 'Drop here to upload',
-                    'dropzone_info' => 'You can also drop your image here to upload',
-                    'restriction_info' => "Upload available for <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporters</a> only",
-                    'size_info' => 'Cover size should be 2000x700',
-                    'too_large' => 'Uploaded file is too large.',
-                    'unsupported_format' => 'Unsupported format.',
+                    'broken_file' => '画像の処理に失敗しました。ファイルの破損か形式が合っているかを確認してください。',
+                    'button' => '画像のアップロード',
+                    'dropzone' => 'ここにドロップでアップロード',
+                    'dropzone_info' => 'ここにドラッグ＆ドロップでアップロードが可能です。',
+                    'restriction_info' => "<a href='".osu_url('support-the-game')."' target='_blank'>osu!サポーター</a>のみアップロードできます",
+                    'size_info' => '推奨の画像サイズは2000x700です',
+                    'too_large' => '画像ファイルの容量が大きすぎます。',
+                    'unsupported_format' => '対応している画像形式ではありません。',
                 ],
             ],
 
             'default_playmode' => [
-                'is_default_tooltip' => 'default game mode',
-                'set' => 'set :mode as profile default game mode',
+                'is_default_tooltip' => 'メインのゲームモード',
+                'set' => ':modeをメインのゲームモードに設定しました',
             ],
         ],
 
         'extra' => [
-            'followers' => '1 follower|:count followers',
-            'unranked' => 'No recent plays',
+            'followers' => '1 フォロワー|:count フォロワー',
+            'unranked' => '最近のスコアはありません',
 
             'achievements' => [
-                'title' => 'Achievements',
-                'achieved-on' => 'Achieved on :date',
+                'title' => '実績',
+                'achieved-on' => '取得日時 :date',
             ],
             'beatmaps' => [
-                'none' => 'None... yet.',
-                'title' => 'Beatmaps',
+                'none' => 'まだ、空っぽ。',
+                'title' => '譜面',
 
                 'favourite' => [
-                    'title' => 'Favourite Beatmaps (:count)',
+                    'title' => 'お気に入りの譜面 (:count)',
                 ],
                 'graveyard' => [
-                    'title' => 'Graveyarded Beatmaps (:count)',
+                    'title' => 'Graveyardの譜面 (:count)',
                 ],
                 'ranked_and_approved' => [
-                    'title' => 'Ranked & Approved Beatmaps (:count)',
+                    'title' => 'RankedかApprovedの譜面 (:count)',
                 ],
                 'unranked' => [
-                    'title' => 'Pending Beatmaps (:count)',
+                    'title' => 'Pendingの譜面 (:count)',
                 ],
             ],
             'historical' => [
-                'empty' => 'No performance records. :(',
-                'title' => 'Historical',
+                'empty' => 'パフォーマンス測定可能の記録がまだありません。',
+                'title' => 'プレイの記録',
 
                 'monthly_playcounts' => [
-                    'title' => 'Play History',
+                    'title' => 'プレイ回数の履歴',
                 ],
                 'most_played' => [
                     'count' => 'times played',
-                    'title' => 'Most Played Beatmaps',
+                    'title' => '最もプレイ回数の多い譜面順',
                 ],
                 'recent_plays' => [
                     'accuracy' => 'accuracy: :percentage',
-                    'title' => 'Recent Plays (24h)',
+                    'title' => '最近のプレイ（24時間以内）',
                 ],
                 'replays_watched_counts' => [
-                    'title' => 'Replays Watched History',
+                    'title' => 'リプレイの再生回数',
                 ],
             ],
             'kudosu' => [
-                'available' => 'Kudosu Available',
-                'available_info' => "Kudosu can be traded for kudosu stars, which will help your beatmap get more attention. This is the number of kudosu you haven't traded in yet.",
-                'recent_entries' => 'Recent Kudosu History',
+                'available' => '使用可能のKudosu',
+                'available_info' => "Kudosuは譜面の優先順位に関わるKudosu starと交換できます。これは未交換のKudosuの数です。",
+                'recent_entries' => '最近のKudosu履歴',
                 'title' => 'Kudosu!',
-                'total' => 'Total Kudosu Earned',
-                'total_info' => 'Based on how much of a contribution the user has made to beatmap moderation. See <a href="'.osu_url('user.kudosu').'">this page</a> for more information.',
+                'total' => '累計Kudosu取得数',
+                'total_info' => '譜面制作のModdingなどの貢献度を表す数値です。詳細は<a href="'.osu_url('user.kudosu').'">Kudosu!</a> wikiを参照。',
 
                 'entry' => [
                     'amount' => ':amount kudosu',
-                    'empty' => "This user hasn't received any kudosu!",
+                    'empty' => "このユーザーはまだkudosu!を取得していません。",
 
                     'beatmap_discussion' => [
                         'allow_kudosu' => [
-                            'give' => 'Received :amount from kudosu deny repeal of modding post :post',
+                            'give' => ':postのkudosu取得拒否の取り消しにより:amount取得',
                         ],
 
                         'deny_kudosu' => [
-                            'reset' => 'Denied :amount from modding post :post',
+                            'reset' => ':postの:amount取得を拒否',
                         ],
 
                         'delete' => [
-                            'reset' => 'Lost :amount from modding post deletion of :post',
+                            'reset' => 'postの削除により:amount取り消し',
                         ],
 
                         'restore' => [
-                            'give' => 'Received :amount from modding post restoration of :post',
+                            'give' => ':postの復元により:amount取得',
                         ],
 
                         'vote' => [
-                            'give' => 'Received :amount from obtaining votes in modding post of :post',
-                            'reset' => 'Lost :amount from losing votes in modding post of :post',
+                            'give' => ':postのvoteにより:amount取得',
+                            'reset' => ':postのvote減少により:amount取り消し',
                         ],
 
                         'recalculate' => [
-                            'give' => 'Received :amount from votes recalculation in modding post of :post',
-                            'reset' => 'Lost :amount from votes recalculation in modding post of :post',
+                            'give' => ':postのvotes再計算により:amount取得',
+                            'reset' => ':postびvotes再計算により:amount取り消し',
                         ],
                     ],
 
                     'forum_post' => [
-                        'give' => 'Received :amount from :giver for a post at :post',
-                        'reset' => 'Kudosu reset by :giver for the post :post',
-                        'revoke' => 'Denied kudosu by :giver for the post :post',
+                        'give' => ':postの投稿で:amount取得',
+                        'reset' => ':postの:giverによるkudosuリセット',
+                        'revoke' => ':postの:giverによるkudosu拒否',
                     ],
                 ],
             ],
@@ -219,90 +219,90 @@ return [
                 'title' => 'me!',
             ],
             'medals' => [
-                'empty' => "This user hasn't gotten any yet. ;_;",
-                'title' => 'Medals',
+                'empty' => "このユーザーはまだメダルを取得していません。",
+                'title' => 'メダル',
             ],
             'recent_activity' => [
-                'title' => 'Recent',
+                'title' => '最近の活動',
             ],
             'top_ranks' => [
                 'best' => [
-                    'title' => 'Best Performance',
+                    'title' => 'ベストパフォーマンス',
                 ],
-                'empty' => 'No awesome performance records yet. :(',
+                'empty' => 'まだ記録を作ってません！',
                 'first' => [
-                    'title' => 'First Place Ranks',
+                    'title' => '1位の記録',
                 ],
                 'pp' => ':amountpp',
-                'title' => 'Ranks',
+                'title' => 'ランク',
                 'weighted_pp' => 'weighted: :pp (:percentage)',
             ],
             'account_standing' => [
-                'title' => 'Account Standing',
-                'bad_standing' => "<strong>:username's</strong> account is not in a good standing :(",
-                'remaining_silence' => '<strong>:username</strong> will be able to speak again in :duration.',
+                'title' => 'アカウントの状態',
+                'bad_standing' => "<strong>:username</strong>のアカウントはルール違反の記録があります。",
+                'remaining_silence' => '<strong>:username</strong>:durationで発言禁止が解かれます。',
 
                 'recent_infringements' => [
-                    'title' => 'Recent Infringements',
-                    'date' => 'date',
-                    'action' => 'action',
-                    'length' => 'length',
-                    'length_permanent' => 'Permanent',
-                    'description' => 'description',
+                    'title' => '最近の違反',
+                    'date' => '日付',
+                    'action' => '行為',
+                    'length' => '期間',
+                    'length_permanent' => '永久',
+                    'description' => '詳細',
                     'actor' => 'by :username',
 
                     'actions' => [
-                        'restriction' => 'Ban',
-                        'silence' => 'Silence',
-                        'note' => 'Note',
+                        'restriction' => 'BAN',
+                        'silence' => 'サイレンス',
+                        'note' => 'メモ',
                     ],
                 ],
             ],
         ],
         'info' => [
-            'interests' => 'Interests',
+            'interests' => '趣味',
             'lastfm' => 'Last.fm',
-            'location' => 'Current Location',
-            'occupation' => 'Occupation',
+            'location' => '現在地',
+            'occupation' => '職業',
             'skype' => 'Skype',
             'twitter' => 'Twitter',
-            'website' => 'Website',
+            'website' => 'サイト',
         ],
         'page' => [
-            'description' => '<strong>me!</strong> is a personal customisable area in your profile page.',
-            'edit_big' => 'Edit me!',
-            'placeholder' => 'Type page content here',
-            'restriction_info' => "You need to be an <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> to unlock this feature.",
+            'description' => '<strong>me!</strong>はプロフィール上で自由に編集できる領域です。',
+            'edit_big' => 'me!を編集',
+            'placeholder' => '内容はここ',
+            'restriction_info' => "<a href='".osu_url('support-the-game')."' target='_blank'>osu!サポーター</a>限定の機能です。",
         ],
         'post_count' => [
-            '_' => 'Contributed :link',
-            'count' => ':count forum post|:count forum posts',
+            '_' => 'フォーラム投稿 :link',
+            'count' => ':count個|:count個',
         ],
         'rank' => [
-            'country' => 'Country rank for :mode',
-            'global' => 'Global rank for :mode',
+            'country' => ':modeの国内ランク',
+            'global' => ':modeの世界ランク',
         ],
         'stats' => [
-            'hit_accuracy' => 'Hit Accuracy',
-            'level' => 'Level :level',
-            'maximum_combo' => 'Maximum Combo',
-            'play_count' => 'Play Count',
-            'play_time' => 'Total Play Time',
-            'ranked_score' => 'Ranked Score',
-            'replays_watched_by_others' => 'Replays Watched by Others',
-            'score_ranks' => 'Score Ranks',
-            'total_hits' => 'Total Hits',
-            'total_score' => 'Total Score',
+            'hit_accuracy' => '精度（Accuracy）',
+            'level' => 'レベル :level',
+            'maximum_combo' => '最大コンボ',
+            'play_count' => 'プレイ回数',
+            'play_time' => 'プレイ時間',
+            'ranked_score' => '合計Rankedスコア',
+            'replays_watched_by_others' => 'リプレイの再生回数',
+            'score_ranks' => 'スコアランク',
+            'total_hits' => '合計ヒット数',
+            'total_score' => '合計スコア',
         ],
     ],
     'status' => [
-        'online' => 'Online',
-        'offline' => 'Offline',
+        'online' => 'オンライン',
+        'offline' => 'オフライン',
     ],
     'store' => [
-        'saved' => 'User created',
+        'saved' => 'ユーザー作成',
     ],
     'verify' => [
-        'title' => 'Account Verification',
+        'title' => 'アカウントの認証',
     ],
 ];

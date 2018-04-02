@@ -20,30 +20,30 @@
 
 return [
     'box' => [
-        'sent' => 'An email has been sent to :mail with a verification code. Enter the code.',
-        'title' => 'Account Verification',
-        'verifying' => 'Verifying...',
-        'issuing' => 'Issuing new code...',
+        'sent' => ':mailに認証コードが含まれるEメールが送られました。続行するにはコードを入力してください。',
+        'title' => 'アカウント認証',
+        'verifying' => '認証中・・・',
+        'issuing' => 'コードの生成中・・・',
 
         'info' => [
-            'check_spam' => "Make sure to check your spam folder if you can't find the email.",
-            'recover' => "If you can't access your email or have forgotten what you used, please follow the :link.",
-            'recover_link' => 'email recovery process here',
-            'reissue' => 'You can also :reissue_link or :logout_link.',
-            'reissue_link' => 'request another code',
-            'logout_link' => 'sign out',
+            'check_spam' => "スパムフォルダーに入っていないか確認をお願いいたします。",
+            'recover' => "Eメールアカウントにアクセスできない場合はこちらから復元を試みてください。:link.",
+            'recover_link' => 'Eメールの復元',
+            'reissue' => 'コードの:reissue_linkや:logout_linkもできます。',
+            'reissue_link' => '再生成',
+            'logout_link' => 'ログアウト',
         ],
     ],
 
     'email' => [
-        'subject' => 'osu! account verification',
+        'subject' => 'osu!アカウントの認証',
     ],
 
     'errors' => [
-        'expired' => 'Verification code expired, new verification email sent.',
-        'incorrect_key' => 'Incorrect verification code.',
-        'retries_exceeded' => 'Incorrect verification code. Retry limit exceeded, new verification email sent.',
-        'reissued' => 'Verification code reissued, new verification email sent.',
-        'unknown' => 'Unknown problem occurred, new verification email sent.',
+        'expired' => '認証コードの期限が切れています。再度認証コードのメールが送られます。',
+        'incorrect_key' => '認証コードが正しくありません。',
+        'retries_exceeded' => '認証コードが正しくありません。試行回数の制限を超えてしまったので、再度認証コードのメールが送られます。',
+        'reissued' => '認証コードが再生成されました。再度認証コードのメールが送られます。',
+        'unknown' => '予期せぬ問題が発生しました。再度認証コードのメールが送られます。',
     ],
 ];

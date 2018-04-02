@@ -20,132 +20,132 @@
 
 return [
     'landing' => [
-        'download' => 'Download now',
-        'online' => '<strong>:players</strong> currently online in <strong>:games</strong> games',
-        'peak' => 'Peak, :count online users',
-        'players' => '<strong>:count</strong> registered players',
+        'download' => '今すぐダウンロード',
+        'online' => '現在<strong>:players</strong>人オンラインでマルチ部屋数<strong>:games</strong>',
+        'peak' => '最高オンライン数:count',
+        'players' => '累計登録者数<strong>:count</strong>人',
 
         'slogan' => [
-            'main' => 'the bestest free-to-win rhythm game',
-            'sub' => 'rhythm is just a click away',
+            'main' => '基本無料で最高のリズムゲーム',
+            'sub' => 'リズムはもう、その指先に',
         ],
     ],
 
     'search' => [
-        'advanced_link' => 'Advanced search',
-        'button' => 'Search',
-        'empty_result' => 'Nothing found!',
-        'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'advanced_link' => '高度な検索',
+        'button' => '検索',
+        'empty_result' => '何も見つかりませんでした！',
+        'missing_query' => '検索には最低:n文字必要です',
+        'title' => '検索結果',
 
         'beatmapset' => [
-            'more' => ':count more beatmap search results',
-            'more_simple' => 'See more beatmap search results',
-            'title' => 'Beatmaps',
+            'more' => '他:count件の譜面検索結果',
+            'more_simple' => '他の譜面検索結果を見る',
+            'title' => '譜面',
         ],
 
         'forum_post' => [
-            'all' => 'All forums',
-            'link' => 'Search the forum',
-            'more_simple' => 'See more forum search results',
-            'title' => 'Forum',
+            'all' => '全てのフォーラム',
+            'link' => 'フォーラムを検索',
+            'more_simple' => '他のフォーラム検索結果を見る',
+            'title' => 'フォーラム',
 
             'label' => [
-                'forum' => 'search in forums',
-                'forum_children' => 'include subforums',
-                'topic_id' => 'topic #',
-                'username' => 'author',
+                'forum' => 'フォーラム内を検索',
+                'forum_children' => 'サブフォーラムを含む',
+                'topic_id' => 'トピック #',
+                'username' => '投稿者',
             ],
         ],
 
         'mode' => [
-            'all' => 'all',
-            'beatmapset' => 'beatmap',
-            'forum_post' => 'forum',
-            'user' => 'player',
+            'all' => '全て',
+            'beatmapset' => '譜面',
+            'forum_post' => 'フォーラム',
+            'user' => 'プレイヤー',
             'wiki_page' => 'wiki',
         ],
 
         'user' => [
-            'more' => ':count more player search results',
-            'more_simple' => 'See more player search results',
-            'more_hidden' => 'Player search is limited to :max players. Try refining search query.',
-            'title' => 'Players',
+            'more' => '他:count件のプレイヤー検索結果',
+            'more_simple' => '他のプレイヤー検索結果を見る',
+            'more_hidden' => 'プレイヤー検索は最大:max件までです。絞り込む事をおすすめします。',
+            'title' => 'プレイヤー',
         ],
 
         'wiki_page' => [
-            'link' => 'Search the wiki',
-            'more_simple' => 'See more wiki search results',
+            'link' => 'wikiを検索',
+            'more_simple' => '他のwiki検索結果を見る',
             'title' => 'Wiki',
         ],
     ],
 
     'download' => [
-        'tagline' => "let's get<br>you started!",
-        'action' => 'Download osu!',
+        'tagline' => "さぁ、<br>始めよう！",
+        'action' => 'osu!をダウンロード',
         'os' => [
             'windows' => 'for Windows',
             'macos' => 'for macOS',
             'linux' => 'for Linux',
         ],
-        'mirror' => 'mirror',
-        'macos-fallback' => 'macOS users',
+        'mirror' => 'ミラー',
+        'macos-fallback' => 'macOSユーザー',
         'steps' => [
             'register' => [
-                'title' => 'get an account',
-                'description' => 'follow the prompts when starting the game to sign in or make a new account',
+                'title' => 'アカウントを作る',
+                'description' => 'ゲーム起動後に表示される手順に沿ってアカウントを作成、そしてログインしよう',
             ],
             'download' => [
-                'title' => 'download the game',
-                'description' => 'click the button above to download the installer, then run it!',
+                'title' => 'ゲームをダウンロードする',
+                'description' => '上のボタンからインストーラーをダウンロードして、実行しよう！',
             ],
             'beatmaps' => [
-                'title' => 'get beatmaps',
+                'title' => '譜面を取得する',
                 'description' => [
-                    '_' => ':browse the vast library of user-created beatmaps and start playing!',
-                    'browse' => 'browse',
+                    '_' => ':browseから好きな譜面をユーザーたちが作成した膨大な数の譜面から見つけよう！',
+                    'browse' => 'ここ',
                 ],
             ],
         ],
-        'video-guide' => 'video guide',
+        'video-guide' => '説明動画',
     ],
 
     'user' => [
-        'title' => 'dashboard',
+        'title' => 'ダッシュボード',
         'news' => [
-            'title' => 'News',
-            'error' => 'Error loading news, try refreshing the page?...',
+            'title' => 'お知らせ',
+            'error' => '読み込みに失敗しました。ページの更新をしてみると直るかも・・・？',
         ],
         'header' => [
-            'welcome' => 'Hello, <strong>:username</strong>!',
-            'messages' => 'You have 1 new message|You have :count new messages',
+            'welcome' => 'こんにちは、<strong>:username</strong>さん！',
+            'messages' => '1件の未読メッセージがあります|:count件の未読メッセージがあります',
             'stats' => [
-                'friends' => 'Online Friends',
-                'games' => 'Games',
-                'online' => 'Online Users',
+                'friends' => 'オンラインのフレンド',
+                'games' => '部屋数',
+                'online' => 'オンライン',
             ],
         ],
         'beatmaps' => [
-            'new' => 'New Approved Beatmaps',
-            'popular' => 'Popular Beatmaps',
+            'new' => '最新の公認譜面',
+            'popular' => '人気の譜面',
             'by' => 'by',
             'plays' => ':count plays',
         ],
         'buttons' => [
-            'download' => 'Download osu!',
-            'support' => 'Support osu!',
-            'store' => 'osu!store',
+            'download' => 'osu!をダウンロード',
+            'support' => 'osu!を支援する',
+            'store' => 'osu!ストア',
         ],
     ],
 
     'support-osu' => [
-        'title' => 'Wow!',
-        'subtitle' => 'You seem to be having a good time! :D',
+        'title' => 'ねえねえ、君！',
+        'subtitle' => 'osu!の事、気に入って貰えたかな？',
         'body' => [
-            'part-1' => 'Did you know that osu! runs with no advertising, and relies on players to support its development and running costs?',
-            'part-2' => 'Did you also know that by supporting osu! you get a heap of useful features, such as <strong>in-game downloading</strong> which automatically triggers in spectator and multiplayer games?',
+            'part-1' => 'osu!のサービス維持は広告に頼らず、全てプレイヤーたちの支援によって実現されています。',
+            'part-2' => 'osu!を支援する事によってさまざまな機能が追加で利用できるようになります。　<strong>ゲーム内ダウンロード</strong>はその内のひとつで、プレイヤーのスペクト中やマルチプレイ中に簡単に譜面を入れられる様になります！',
         ],
-        'find-out-more' => 'Click here to find out more!',
-        'download-starting' => "Oh, and don't worry - your download has already been started for you already ;)",
+        'find-out-more' => 'もっと知りたい人はクリック！',
+        'download-starting' => "あ、君のダウンロードはもう始まってるよ！",
     ],
 ];
