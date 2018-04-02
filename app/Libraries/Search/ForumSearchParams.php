@@ -78,7 +78,7 @@ class ForumSearchParams extends SearchParams
         return $params;
     }
 
-    public static function fromRequest(Request $request, ?User $user = null)
+    public static function fromRequest(Request $request)
     {
         $params = new static;
 
