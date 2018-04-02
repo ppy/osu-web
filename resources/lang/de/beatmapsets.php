@@ -71,7 +71,7 @@ return [
             'genre' => 'Genre',
             'language' => 'Sprache',
             'no_scores' => 'Unranked beatmap',
-            'points-of-failure' => 'Points of Failure',
+            'points-of-failure' => 'Stellen, an denen Spieler gescheitert sind',
             'source' => 'Quelle',
             'success-rate' => 'Erfolgsrate',
             'tags' => 'Tags',

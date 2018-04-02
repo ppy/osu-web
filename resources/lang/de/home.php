@@ -81,7 +81,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "let's get<br>you started!",
+        'tagline' => "lass uns<br>loslegen!",
         'action' => 'osu! herunterladen',
         'os' => [
             'windows' => 'für Windows',
@@ -121,7 +121,7 @@ return [
             'messages' => 'Du hast 1 neue Nachricht|Du hast :count neue Nachrichten',
             'stats' => [
                 'friends' => 'Freunde online',
-                'games' => 'Spiele',
+                'games' => 'Mehrspielerräume',
                 'online' => 'Benutzer online',
             ],
         ],

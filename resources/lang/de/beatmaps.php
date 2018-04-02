@@ -86,7 +86,7 @@ return [
         ],
 
         'show' => [
-            'title' => ':title, gemappt von :mapper',
+            'title' => ':title, erstellt von :mapper',
         ],
 
         'sort' => [
@@ -111,7 +111,7 @@ return [
             'graveyard' => 'Diese Beatmap wurde seit dem :date nicht mehr aktualisiert und wurde wahrscheinlich vom Schöpfer verlassen...',
             'loved' => 'Diese Beatmap wurde am :date zu <loved> hinzugefügt!',
             'ranked' => 'Diese Beatmap wurde am :date zu <ranked> hinzugefügt!',
-            'wip' => 'Anmerkung: Diese Beatmap ist vom Mapper als \'Work-In-Progress\' gekennzeichnet',
+            'wip' => 'Anmerkung: Diese Beatmap ist vom Ersteller als \'Work-In-Progress\' gekennzeichnet',
         ],
 
     ],
@@ -169,7 +169,7 @@ return [
         ],
         'mode' => 'Modus',
         'status' => 'Rank Status',
-        'mapped-by' => 'Von :mapper gemappt',
+        'mapped-by' => 'Von :mapper erstellt',
         'source' => 'von/aus :source',
         'load-more' => 'Mehr laden...',
     ],
