@@ -118,7 +118,7 @@ class HomeController extends Controller
 
     public function quickSearch()
     {
-        $quickSearch = new QuickSearch(request('query'), ['user' => Auth::user()]);
+        $quickSearch = new QuickSearch(request(), ['user' => Auth::user()]);
         if (!$quickSearch->hasQuery()) {
             return response([], 204);
         }
