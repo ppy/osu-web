@@ -19,250 +19,250 @@
  */
 
 return [
-    'pinned_topics' => 'Pinned Topics',
-    'slogan' => "it's dangerous to play alone.",
+    'pinned_topics' => 'Chủ Đề Đã Ghim',
+    'slogan' => 'Chơi một mình khá là nguy hiểm đấy.',
     'subforums' => 'Subforums',
-    'title' => 'osu!community',
+    'title' => 'Cộng Đồng osu!',
 
     'covers' => [
         'create' => [
-            '_' => 'Set cover image',
-            'button' => 'Upload image',
-            'info' => 'Cover size should be at :dimensions. You can also drop your image here to upload.',
+            '_' => 'Đặt ảnh bìa',
+            'button' => 'Tải lên ảnh',
+            'info' => 'Kích cỡ ảnh bìa nên ở :dimensions. Bạn cũng có thể kéo ảnh vào đây để tải lên.',
         ],
 
         'destroy' => [
-            '_' => 'Remove cover image',
-            'confirm' => 'Are you sure you want to remove the cover image?',
+            '_' => 'Gỡ bỏ ảnh bìa',
+            'confirm' => 'Bạn chắc là mình muốn gỡ bỏ ảnh bìa?',
         ],
     ],
 
     'email' => [
-        'new_reply' => '[osu!] New reply for topic ":title"',
+        'new_reply' => '[osu!] Có trả lời mới cho topic ":title"',
     ],
 
     'forums' => [
         'topics' => [
-            'empty' => 'No topics!',
+            'empty' => 'Không có chủ đề nào cả!',
         ],
     ],
 
     'post' => [
-        'confirm_destroy' => 'Really delete post?',
-        'confirm_restore' => 'Really restore post?',
-        'edited' => 'Last edited by :user on :when, edited :count times in total.',
-        'posted_at' => 'posted :when',
+        'confirm_destroy' => 'Bạn muốn xóa bài viết?',
+        'confirm_restore' => 'Bạn muốn phục hồi bài viết?',
+        'edited' => 'Chỉnh sửa lần cuối bởi :user vào :when, đã chỉnh sửa tổng cộng :count lần.',
+        'posted_at' => 'đăng vào :when',
 
         'actions' => [
-            'destroy' => 'Delete post',
-            'restore' => 'Restore post',
-            'edit' => 'Edit post',
+            'destroy' => 'Xóa bài viết',
+            'restore' => 'Phục hồi bài viết',
+            'edit' => 'Chỉnh sửa bài viết',
         ],
     ],
 
     'search' => [
-        'go_to_post' => 'Go to post',
-        'post_number_input' => 'enter post number',
-        'total_posts' => ':posts_count posts total',
+        'go_to_post' => 'Đi đến bài viết',
+        'post_number_input' => 'nhập số thứ tự',
+        'total_posts' => 'tổng cộng :posts_count bài viết',
     ],
 
     'topic' => [
-        'deleted' => 'deleted topic',
-        'go_to_latest' => 'view latest post',
-        'latest_post' => ':when by :user',
-        'latest_reply_by' => 'latest reply by :user',
-        'new_topic' => 'Post new topic',
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Type here to reply',
-        'started_by' => 'by :user',
+        'deleted' => 'chủ đề đã xóa',
+        'go_to_latest' => 'xem bài viết mới nhất',
+        'latest_post' => ':when bởi :user',
+        'latest_reply_by' => 'trả lời cuối bởi :user',
+        'new_topic' => 'Đăng một chủ đề mới',
+        'post_reply' => 'Đăng',
+        'reply_box_placeholder' => 'Nhập vào đây để trả lời',
+        'started_by' => 'bởi :user',
 
         'create' => [
-            'preview' => 'Preview',
+            'preview' => 'Xem trước',
             // TL note: this is used in the topic reply preview, when
             // the user goes back from previewing to editing the reply
-            'preview_hide' => 'Write',
-            'submit' => 'Post',
+            'preview_hide' => 'Viết',
+            'submit' => 'Đăng',
 
             'placeholder' => [
-                'body' => 'Type post content here',
-                'title' => 'Click here to set title',
+                'body' => 'Nhập nội dung bài viết vào đây',
+                'title' => 'Click vào đây để nhập tiêu đề',
             ],
         ],
 
         'jump' => [
-            'enter' => 'click to enter specific post number',
-            'first' => 'go to first post',
-            'last' => 'go to last post',
-            'next' => 'skip next 10 posts',
-            'previous' => 'go back 10 posts',
+            'enter' => 'click để nhập số thứ tự cụ thể',
+            'first' => 'đi đến bài đăng đầu tiên',
+            'last' => 'đi đến bài đăng cuối cùng',
+            'next' => 'bỏ qua 10 bài đăng',
+            'previous' => 'trở lại 10 bài đăng',
         ],
 
         'post_edit' => [
-            'cancel' => 'Cancel',
-            'post' => 'Save',
+            'cancel' => 'Hủy',
+            'post' => 'Lưu',
         ],
     ],
 
     'topic_watches' => [
         'index' => [
-            'title' => 'Forum Subscriptions',
-            'title_compact' => 'forum subscriptions',
-            'title_main' => 'Forum <strong>Subscriptions</strong>',
+            'title' => 'Diễn Đàn Đã Đăng Kí',
+            'title_compact' => 'diễn đàn đã đăng kí',
+            'title_main' => 'Diễn Đàn đã <strong>Đăng Kí</strong>',
 
             'box' => [
-                'total' => 'Topics subscribed',
-                'unread' => 'Topics with new replies',
+                'total' => 'Chủ đề đã đăng kí',
+                'unread' => 'Chủ đề có trả lời mới',
             ],
 
             'info' => [
-                'total' => 'You subscribed to :total topics.',
-                'unread' => 'You have :unread unread replies to subscribed topics.',
+                'total' => 'Bạn đã đăng kí :total topics.',
+                'unread' => 'Bạn chưa đọc :unread trả lời của những chủ đề đã đăng kí.',
             ],
         ],
 
         'topic_buttons' => [
             'remove' => [
-                'confirmation' => 'Unsubscribe from topic?',
-                'title' => 'Unsubscribe',
+                'confirmation' => 'Hủy đăng kí chủ đề?',
+                'title' => 'Hủy đăng kí',
             ],
         ],
     ],
 
     'topics' => [
-        '_' => 'Topics',
+        '_' => 'Chủ đề',
 
         'actions' => [
-            'reply' => 'Reply',
-            'reply_with_quote' => 'Quote post for reply',
-            'search' => 'Search',
+            'reply' => 'Trả lời',
+            'reply_with_quote' => 'Trích dẫn bài viết để trả lời',
+            'search' => 'Tìm kiếm',
         ],
 
         'create' => [
-            'create_poll' => 'Poll Creation',
+            'create_poll' => 'Tạo Thăm Dò Ý Kiến',
 
             'create_poll_button' => [
-                'add' => 'Create a poll',
-                'remove' => 'Cancel creating a poll',
+                'add' => 'Tạo một cuộc thăm dò',
+                'remove' => 'Hủy bỏ',
             ],
 
             'poll' => [
-                'length' => 'Run poll for',
+                'length' => 'Thời gian thăm dò',
                 'length_days_prefix' => '',
-                'length_days_suffix' => 'days',
-                'length_info' => 'Leave blank for a never ending poll',
-                'max_options' => 'Options per user',
-                'max_options_info' => 'This is the number of options each user may select when voting.',
-                'options' => 'Options',
-                'options_info' => 'Place each options on a new line. You may enter up to 10 options.',
-                'title' => 'Question',
-                'vote_change' => 'Allow re-voting.',
-                'vote_change_info' => 'If enabled, users are able to change their vote.',
+                'length_days_suffix' => 'ngày',
+                'length_info' => 'Để trống nếu nó không bao giờ kết thúc',
+                'max_options' => 'Số lựa chọn cho một người',
+                'max_options_info' => 'Đây là số lượng các lựa chọn mà người dùng được chọn trong khi thăm dò.',
+                'options' => 'Các lựa chọn',
+                'options_info' => 'Đặt mỗi lựa chọn trên một dòng. Bạn có thể nhập cao nhất 10 lựa chọn.',
+                'title' => 'Câu hỏi',
+                'vote_change' => 'Cho phép bỏ phiếu lại.',
+                'vote_change_info' => 'Nếu được cho phép, người dùng có thể đổi phiếu của họ.',
             ],
         ],
 
         'edit_title' => [
-            'start' => 'Edit title',
+            'start' => 'Chỉnh sửa tiêu đề',
         ],
 
         'index' => [
-            'views' => 'views',
-            'replies' => 'replies',
+            'views' => 'lượt xem',
+            'replies' => 'câu trả lời',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Remove "added" tag',
-            'action-1' => 'Add "added" tag',
-            'state-0' => 'Removed "added" tag',
-            'state-1' => 'Added "added" tag',
+            'action-0' => 'Loại bỏ tag "added"',
+            'action-1' => 'Thêm tag "added"',
+            'state-0' => 'Đã loại bỏ tag "added"',
+            'state-1' => 'Đã thêm tag "added"',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Remove "assigned" tag',
-            'action-1' => 'Add "assigned" tag',
-            'state-0' => 'Removed "assigned" tag',
-            'state-1' => 'Added "assigned" tag',
+            'action-0' => 'Loại bỏ tag "assigned"',
+            'action-1' => 'Thêm tag "assigned"',
+            'state-0' => 'Đã loại bỏ tag "assigned"',
+            'state-1' => 'Đã thêm tag "assigned"',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Remove "confirmed" tag',
-            'action-1' => 'Add "confirmed" tag',
-            'state-0' => 'Removed "confirmed" tag',
-            'state-1' => 'Added "confirmed" tag',
+            'action-0' => 'Loại bỏ tag "confirmed"',
+            'action-1' => 'Thêm tag "confirmed"',
+            'state-0' => 'Đã loại bỏ tag "confirmed"',
+            'state-1' => 'Đã thêm tag "confirmed"',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Remove "duplicate" tag',
-            'action-1' => 'Add "duplicate" tag',
-            'state-0' => 'Removed "duplicate" tag',
-            'state-1' => 'Added "duplicate" tag',
+            'action-0' => 'Loại bỏ tag "duplicate"',
+            'action-1' => 'Thêm tag "duplicate"',
+            'state-0' => 'Đã loại bỏ tag "duplicate"',
+            'state-1' => 'Đã thêm tag "duplicate"',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Remove "invalid" tag',
-            'action-1' => 'Add "invalid" tag',
-            'state-0' => 'Removed "invalid" tag',
-            'state-1' => 'Added "invalid" tag',
+            'action-0' => 'Loại bỏ tag "invalid"',
+            'action-1' => 'Thêm tag "invalid"',
+            'state-0' => 'Đã loại bỏ tag "invalid"',
+            'state-1' => 'Đã thêm tag "invalid"',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Remove "resolved" tag',
-            'action-1' => 'Add "resolved" tag',
-            'state-0' => 'Removed "resolved" tag',
-            'state-1' => 'Added "resolved" tag',
+            'action-0' => 'Loại bỏ tag "resolved"',
+            'action-1' => 'Thêm tag "resolved"',
+            'state-0' => 'Đã loại bỏ tag "resolved"',
+            'state-1' => 'Đã thêm tag "resolved"',
         ],
 
         'lock' => [
-            'is_locked' => 'This topic is locked and can not be replied to',
-            'lock-0' => 'Unlock topic',
-            'lock-1' => 'Lock topic',
-            'state-0' => 'Topic has been unlocked',
-            'state-1' => 'Topic has been locked',
+            'is_locked' => 'Chủ đề này đã bị khóa và không thể trả lời',
+            'lock-0' => 'Mở khóa chủ đề',
+            'lock-1' => 'Khóa chủ đề',
+            'state-0' => 'Đã mở khóa chủ đề',
+            'state-1' => 'Đã khóa chủ đề',
         ],
 
         'moderate_move' => [
-            'title' => 'Move to another forum',
+            'title' => 'Chuyển sang diễn đàn khác',
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Unpin topic',
-            'pin-1' => 'Pin topic',
-            'pin-2' => 'Pin topic and mark as announcement',
-            'state-0' => 'Topic has been unpinned',
-            'state-1' => 'Topic has been pinned',
-            'state-2' => 'Topic has been pinned and marked as announcement',
+            'pin-0' => 'Bỏ ghim chủ đề',
+            'pin-1' => 'Ghim chủ đề',
+            'pin-2' => 'Ghim chủ đề và đánh dấu là thông báo',
+            'state-0' => 'Đã bỏ ghim chủ đề',
+            'state-1' => 'Đã ghim chủ đề',
+            'state-2' => 'Đã ghim và đánh dấu chủ đề là thông báo',
         ],
 
         'show' => [
-            'deleted-posts' => 'Deleted Posts',
-            'total_posts' => 'Total Posts',
+            'deleted-posts' => 'Bài Đăng Đã Bị Xóa',
+            'total_posts' => 'Tổng Bài Đăng',
 
             'feature_vote' => [
-                'current' => 'Current Priority: +:count',
-                'do' => 'Promote this request',
+                'current' => 'Độ Ưu Tiên: +:count',
+                'do' => 'Thúc đẩy yêu cầu này',
 
                 'user' => [
-                    'count' => '{0} no vote|{1} :count vote|[2,*] :count votes',
-                    'current' => 'You have :votes remaining.',
-                    'not_enough' => "You don't have any more votes remaining",
+                    'count' => '{0} không có bình chọn|[1,*] :count phiếu',
+                    'current' => 'Bạn còn :votes.',
+                    'not_enough' => 'Bạn không còn lượt bình chọn nào hết',
                 ],
             ],
 
             'poll' => [
-                'vote' => 'Vote',
+                'vote' => 'Bỏ phiếu',
 
                 'detail' => [
-                    'end_time' => 'Polling will end at :time',
-                    'ended' => 'Polling ended :time',
-                    'total' => 'Total votes: :count',
+                    'end_time' => 'Cuộc thăm dò sẽ kết thúc vào :time',
+                    'ended' => 'Cuộc thăm dò đã kết thúc vào :time',
+                    'total' => 'Tổng số phiếu: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Unsubscribed from topic',
-            'state-1' => 'Subscribed to topic',
-            'watch-0' => 'Unsubscribe topic',
-            'watch-1' => 'Subscribe topic',
+            'state-0' => 'Đã hủy đăng kí chủ đề',
+            'state-1' => 'Đã đăng khỉ chủ đề',
+            'watch-0' => 'Hủy đăng kí chủ đề',
+            'watch-1' => 'Đăng kí chủ đề',
         ],
     ],
 ];
