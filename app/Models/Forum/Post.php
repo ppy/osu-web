@@ -20,8 +20,11 @@
 
 namespace App\Models\Forum;
 
+use App\Jobs\EsDeleteDocument;
+use App\Jobs\EsIndexDocument;
 use App\Libraries\BBCodeForDB;
 use App\Libraries\BBCodeFromDB;
+use App\Libraries\Transactions\AfterCommit;
 use App\Models\Beatmapset;
 use App\Models\DeletedUser;
 use App\Models\Elasticsearch;
@@ -31,7 +34,7 @@ use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model
+class Post extends Model implements AfterCommit
 {
     use Elasticsearch\PostTrait, SoftDeletes, Validatable;
 
@@ -306,6 +309,15 @@ class Post extends Model
     {
         if ($showDeleted) {
             $query->withTrashed();
+        }
+    }
+
+    public function afterCommit()
+    {
+        if ($this->trashed()) {
+            dispatch(new EsDeleteDocument($this));
+        } else {
+            dispatch(new EsIndexDocument($this));
         }
     }
 }
