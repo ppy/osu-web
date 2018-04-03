@@ -38,7 +38,7 @@ return [
     ],
 
     'email' => [
-        'new_reply' => '[osu!] Có trả lời mới cho topic ":title"',
+        'new_reply' => '[osu!] Có trả lời mới cho chủ đề ":title"',
     ],
 
     'forums' => [
@@ -115,7 +115,7 @@ return [
             ],
 
             'info' => [
-                'total' => 'Bạn đã đăng kí :total topics.',
+                'total' => 'Bạn đã đăng kí :total chủ đề.',
                 'unread' => 'Bạn chưa đọc :unread trả lời của những chủ đề đã đăng kí.',
             ],
         ],
