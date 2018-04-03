@@ -67,6 +67,11 @@ class NotifyForumUpdateSlack implements ShouldQueue
             return;
         }
 
+        // FIXME: travis explodes without this
+        if (app()->runningUnitTests()) {
+            return;
+        }
+
         return Slack::to('dev')
             ->attach([
                 'color' => $this->notifyColour(),
