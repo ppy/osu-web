@@ -154,7 +154,6 @@ return [
         'legal' => [
             '_' => 'Legale e Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Stato del Server',
             'terms' => 'Termini di Servizio',
         ],
