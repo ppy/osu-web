@@ -71,7 +71,7 @@
                     @if ($supporterStatus['tags'] > 0)
                     <div class="stg-status__text stg-status__text--first">
                         {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
-                            'date' => '<strong>'.i18n_date($supporterStatus['expiration']).'</strong>'
+                            'date' => '<strong>'.timeago($supporterStatus['expiration']).'</strong>'
                         ]) !!}
                     </div>
                     <div class="stg-status__text">
