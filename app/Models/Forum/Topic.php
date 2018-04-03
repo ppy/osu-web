@@ -569,8 +569,12 @@ class Topic extends Model implements AfterCommit
 
         DB::beginTransaction();
 
-        $statusQuery = TopicTrack::where(['user_id' => $user->user_id, 'topic_id' => $this->topic_id]);
-        $status = $statusQuery->first();
+        $status = TopicTrack
+            ::where([
+                'user_id' => $user->user_id,
+                'topic_id' => $this->topic_id,
+            ])
+            ->first();
 
         if ($status === null) {
             // first time seeing the topic, create tracking entry
@@ -596,9 +600,7 @@ class Topic extends Model implements AfterCommit
 
             $this->increment('topic_views');
         } elseif ($status->mark_time < $markTime) {
-            // laravel doesn't like composite key ;_;
-            // and the setMarkTimeAttribute doesn't work here
-            $statusQuery->update(['mark_time' => $markTime->getTimeStamp()]);
+            $status->update(['mark_time' => $markTime]);
         }
 
         if ($this->topic_last_view_time < $markTime) {
