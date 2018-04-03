@@ -18,20 +18,34 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Forum;
+namespace App\Jobs;
 
-use App\Events\Forum\TopicWasReplied;
 use App\Mail\ForumNewReply;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 use Mail;
 
-class NotifyEmail implements ShouldQueue
+class NotifyForumUpdateMail implements ShouldQueue
 {
-    public function notifyReply($event)
+    use SerializesModels;
+
+    public $topic;
+    public $user;
+
+    public function __construct($data)
     {
-        $topic = $event->topic->fresh();
-        $watches = $topic->watches()
+        $this->topic = $data['topic'];
+        $this->user = $data['user'];
+    }
+
+    public function handle()
+    {
+        if ($this->topic === null) {
+            return;
+        }
+
+        $watches = $this->topic->watches()
             ->where('mail', '=', true)
             ->where('notify_status', '=', false)
             ->has('user')
@@ -45,30 +59,24 @@ class NotifyEmail implements ShouldQueue
                 continue;
             }
 
-            if ($event->user !== null && $event->user->getKey() === $user->getKey()) {
+            if ($this->user !== null && $this->user->getKey() === $user->getKey()) {
                 continue;
             }
 
-            if ($user->getKey() === $topic->topic_last_poster_id) {
+            if ($user->getKey() === $this->topic->topic_last_poster_id) {
                 continue;
             }
 
-            if (!priv_check_user($user, 'ForumTopicWatch', $topic)->can()) {
+            if (!priv_check_user($user, 'ForumTopicWatch', $this->topic)->can()) {
                 continue;
             }
 
-            Mail::to($user->user_email)
-                ->queue(new ForumNewReply(compact('topic', 'user')));
+            Mail::to($user->user_email)->queue(new ForumNewReply([
+                'topic' => $this->topic,
+                'user' => $user,
+            ]));
 
             $watch->update(['notify_status' => true]);
         }
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            TopicWasReplied::class,
-            static::class.'@notifyReply'
-        );
     }
 }

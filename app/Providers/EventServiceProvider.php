@@ -34,8 +34,6 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     protected $subscribe = [
-        Listeners\Forum\NotifyEmail::class,
-        Listeners\Forum\NotifySlack::class,
         Listeners\Fulfillments\GenericSubscribers::class,
         Listeners\Fulfillments\PaymentSubscribers::class,
         Listeners\Fulfillments\ValidationSubscribers::class,

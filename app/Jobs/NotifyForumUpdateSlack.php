@@ -18,53 +18,54 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Forum;
+namespace App\Jobs;
 
-use App\Events\Forum\TopicWasCreated;
-use App\Events\Forum\TopicWasReplied;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Queue\SerializesModels;
 use Slack;
 
-class NotifySlack implements ShouldQueue
+class NotifyForumUpdateSlack implements ShouldQueue
 {
-    public $post;
+    use SerializesModels;
+
     public $topic;
+    public $post;
     public $user;
     public $prefix;
     public $message;
 
-    public function notifyNew($event)
+    public function __construct($data, $type)
     {
-        if (!in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+        $this->topic = $data['topic'];
+        $this->post = $data['post'];
+        $this->user = $data['user'];
+
+        switch ($type) {
+            case 'new':
+                $this->message = 'A new topic has been created at watched forum';
+                $this->prefix = 'New topic';
+                break;
+            case 'reply':
+                $this->message = 'A watched topic has been replied to';
+                $this->prefix = 'Reply';
+                break;
+        }
+    }
+
+    public function dispatchIfNeeded()
+    {
+        if (!$this->shouldNotify()) {
             return;
         }
 
-        return $this->notify($event, [
-            'message' => 'A new topic has been created at watched forum',
-            'prefix' => 'New topic',
-        ]);
+        return dispatch($this);
     }
 
-    public function notifyReply($event)
+    public function handle()
     {
-        if (!in_array($event->topic->topic_id, config('osu.forum.slack_watch.topic_ids'), true) &&
-            !in_array($event->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true)) {
+        if ($this->topic === null || $this->post === null || $this->user === null) {
             return;
         }
-
-        return $this->notify($event, [
-            'message' => 'A watched topic has been replied to',
-            'prefix' => 'Reply',
-        ]);
-    }
-
-    public function notify($event, $options)
-    {
-        $this->post = $event->post;
-        $this->topic = $event->topic;
-        $this->user = $event->user;
-        $this->prefix = $options['prefix'];
-        $this->message = html_entity_decode_better($options['message']);
 
         return Slack::to('dev')
             ->attach([
@@ -75,17 +76,10 @@ class NotifySlack implements ShouldQueue
             ->send($this->mainMessage());
     }
 
-    public function subscribe($events)
+    private function shouldNotify()
     {
-        $events->listen(
-            TopicWasCreated::class,
-            static::class.'@notifyNew'
-        );
-
-        $events->listen(
-            TopicWasReplied::class,
-            static::class.'@notifyReply'
-        );
+        return in_array($this->topic->getKey(), config('osu.forum.slack_watch.topic_ids'), true) ||
+            in_array($this->topic->forum_id, config('osu.forum.slack_watch.forum_ids'), true);
     }
 
     private function replyCommand()
