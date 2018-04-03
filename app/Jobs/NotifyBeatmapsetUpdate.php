@@ -36,15 +36,15 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
     private $beatmapset;
     private $user;
 
-    public static function dispatch($attributes)
-    {
-        return dispatch((new static($attributes))->delay(Carbon::now()->addMinutes(5)));
-    }
-
     public function __construct($attributes)
     {
         $this->beatmapset = $attributes['beatmapset'];
         $this->user = $attributes['user'];
+    }
+
+    public function delayedDispatch()
+    {
+        return dispatch($this)->delay(Carbon::now()->addMinutes(5));
     }
 
     public function handle()
