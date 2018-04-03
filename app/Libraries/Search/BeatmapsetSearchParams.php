@@ -24,7 +24,9 @@ use App\Libraries\Elasticsearch\SearchParams;
 
 class BeatmapsetSearchParams extends SearchParams
 {
-    // all public because lazy.
+    const PLAYED_STATE_ALL = 0;
+    const PLAYED_STATE_UNPLAYED = 1;
+    const PLAYED_STATE_PLAYED = 2;
 
     /** @var array */
     public $extra = [];
@@ -34,6 +36,12 @@ class BeatmapsetSearchParams extends SearchParams
 
     /** @var bool */
     public $includeConverts = false;
+
+    /**
+     * @see PlayedState
+     * @var int
+     */
+    public $playedState = PlayedState::ALL;
 
     /** @var int|null */
     public $language = null;
