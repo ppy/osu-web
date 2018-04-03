@@ -26,8 +26,8 @@ return [
         'issuing' => 'コードの生成中・・・',
 
         'info' => [
-            'check_spam' => "スパムフォルダーに入っていないか確認をお願いいたします。",
-            'recover' => "Eメールアカウントにアクセスできない場合はこちらから復元を試みてください。:link.",
+            'check_spam' => 'スパムフォルダーに入っていないか確認をお願いいたします。',
+            'recover' => 'Eメールアカウントにアクセスできない場合はこちらから復元を試みてください。:link.',
             'recover_link' => 'Eメールの復元',
             'reissue' => 'コードの:reissue_linkや:logout_linkもできます。',
             'reissue_link' => '再生成',

@@ -81,7 +81,7 @@ return [
     ],
 
     'download' => [
-        'tagline' => "さぁ、<br>始めよう！",
+        'tagline' => 'さぁ、<br>始めよう！',
         'action' => 'osu!をダウンロード',
         'os' => [
             'windows' => 'for Windows',
@@ -146,6 +146,6 @@ return [
             'part-2' => 'osu!を支援する事によってさまざまな機能が追加で利用できるようになります。　<strong>ゲーム内ダウンロード</strong>はその内のひとつで、プレイヤーのスペクト中やマルチプレイ中に簡単に譜面を入れられる様になります！',
         ],
         'find-out-more' => 'もっと知りたい人はクリック！',
-        'download-starting' => "あ、君のダウンロードはもう始まってるよ！",
+        'download-starting' => 'あ、君のダウンロードはもう始まってるよ！',
     ],
 ];
