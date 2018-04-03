@@ -1082,12 +1082,12 @@ class User extends Model implements AuthenticatableContract, Messageable
         return $this->hasMany(KudosuHistory::class, 'receiver_id');
     }
 
-    public function supports()
+    public function supporterTags()
     {
         return $this->hasMany(UserDonation::class, 'target_user_id');
     }
 
-    public function givenSupports()
+    public function supporterTagPurchases()
     {
         return $this->hasMany(UserDonation::class, 'user_id');
     }
@@ -1232,7 +1232,7 @@ class User extends Model implements AuthenticatableContract, Messageable
         if (!array_key_exists(__FUNCTION__, $this->memoized)) {
             $supportLength = 0;
 
-            foreach ($this->supports as $support) {
+            foreach ($this->supporterTags as $support) {
                 if ($support->cancel === true) {
                     $supportLength -= $support->length;
                 } else {
