@@ -21,34 +21,13 @@
 namespace App\Listeners\Forum;
 
 use App\Events\Forum\TopicWasReplied;
-use App\Events\Forum\TopicWasViewed;
 use App\Mail\ForumNewReply;
-use App\Models\Forum\TopicWatch;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 
 class NotifyEmail implements ShouldQueue
 {
-    public function markViewed($event)
-    {
-        if ($event->user === null) {
-            return;
-        }
-
-        $user = $event->user->fresh();
-        $topic = $event->topic->fresh();
-        $post = $event->post->fresh();
-
-        if ($topic->topic_last_post_time > $post->post_time) {
-            return;
-        }
-
-        // Immediately update the status without actually fetching it.
-        TopicWatch::lookupQuery($topic, $user)
-            ->update(['notify_status' => false]);
-    }
-
     public function notifyReply($event)
     {
         $topic = $event->topic->fresh();
@@ -87,11 +66,6 @@ class NotifyEmail implements ShouldQueue
 
     public function subscribe($events)
     {
-        $events->listen(
-            TopicWasViewed::class,
-            static::class.'@markViewed'
-        );
-
         $events->listen(
             TopicWasReplied::class,
             static::class.'@notifyReply'
