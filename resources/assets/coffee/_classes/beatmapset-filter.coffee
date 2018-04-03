@@ -28,7 +28,7 @@ class @BeatmapsetFilter
     status: parseInt10
     genre: parseInt10
     language: parseInt10
-
+    played: parseInt10
 
   @charToKey:
     c: 'general'
@@ -38,6 +38,7 @@ class @BeatmapsetFilter
     l: 'language'
     e: 'extra'
     r: 'rank'
+    p: 'played'
     q: 'query'
     sort: 'sort'
 
@@ -48,12 +49,13 @@ class @BeatmapsetFilter
     genre: null
     language: null
     mode: null
+    played: 0
     query: ''
     rank: ''
     status: 0
 
 
-  @expand: ['genre', 'language', 'extra', 'rank']
+  @expand: ['genre', 'language', 'extra', 'rank', 'played']
 
   @fillDefaults: (filters) =>
     ret = {}
@@ -92,6 +94,7 @@ class @BeatmapsetFilter
     'genre'
     'language'
     'mode'
+    'played'
     'query'
     'rank'
     'sort'

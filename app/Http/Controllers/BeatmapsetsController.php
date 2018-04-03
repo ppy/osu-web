@@ -23,6 +23,7 @@ namespace App\Http\Controllers;
 use App\Jobs\NotifyBeatmapsetUpdate;
 use App\Libraries\Search\BeatmapsetSearch;
 use App\Libraries\Search\BeatmapsetSearchRequestParams;
+use App\Libraries\Search\PlayedState;
 use App\Models\Beatmap;
 use App\Models\BeatmapDownload;
 use App\Models\BeatmapMirror;
@@ -81,7 +82,13 @@ class BeatmapsetsController extends Controller
             $ranks[] = ['id' => $rank, 'name' => trans("beatmaps.rank.{$rank}")];
         }
 
-        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'extras', 'ranks');
+        $played = [
+            ['id' => PlayedState::ALL, 'name' => trans('beatmaps.played.any')],
+            ['id' => PlayedState::PLAYED, 'name' => trans('beatmaps.played.played')],
+            ['id' => PlayedState::UNPLAYED, 'name' => trans('beatmaps.played.unplayed')],
+        ];
+
+        $filters = compact('general', 'modes', 'statuses', 'genres', 'languages', 'played', 'extras', 'ranks');
 
         return view('beatmaps.index', compact('filters', 'beatmaps'));
     }
