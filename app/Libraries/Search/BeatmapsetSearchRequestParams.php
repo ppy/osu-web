@@ -59,6 +59,8 @@ class BeatmapsetSearchRequestParams extends BeatmapsetSearchParams
                     explode('.', $request['r'] ?? null),
                     $validRanks
                 );
+
+                $this->playedState = get_int($request['p']);
             }
         }
 
