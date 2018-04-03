@@ -109,15 +109,15 @@ class BeatmapsetSearchParams extends SearchParams
         $params = new static;
 
         $params->user = $user;
-        $params->page = get_int($request['page'] ?? null) ?? 1;
+        $params->page = get_int($request['page']) ?? 1;
 
         if ($params->user !== null) {
             $params->queryString = es_query_escape_with_caveats($request['q'] ?? $request['query']);
-            $params->status = get_int($request['s'] ?? null) ?? 0;
-            $params->genre = get_int($request['g'] ?? null);
-            $params->language = get_int($request['l'] ?? null);
+            $params->status = get_int($request['s']) ?? 0;
+            $params->genre = get_int($request['g']);
+            $params->language = get_int($request['l']);
             $params->extra = array_intersect(
-                explode('.', $request['e'] ?? null),
+                explode('.', $request['e']),
                 $validExtras
             );
 
@@ -126,7 +126,7 @@ class BeatmapsetSearchParams extends SearchParams
                 $params->mode = null;
             }
 
-            $generals = explode('.', $request['c'] ?? null) ?? [];
+            $generals = explode('.', $request['c']) ?? [];
             $params->includeConverts = in_array('converts', $generals, true);
             $params->showRecommended = in_array('recommended', $generals, true);
 
@@ -138,7 +138,7 @@ class BeatmapsetSearchParams extends SearchParams
             }
         }
 
-        $sort = explode('_', $request['sort'] ?? null);
+        $sort = explode('_', $request['sort']);
         $params->sort = new Sort($sort[0] ?? null, $sort[1] ?? null);
 
         return $params;
