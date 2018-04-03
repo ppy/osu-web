@@ -22,13 +22,14 @@ namespace App\Jobs;
 
 use App\Mail\ForumNewReply;
 use App\Models\User;
+use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\SerializesModels;
 use Mail;
 
 class NotifyForumUpdateMail implements ShouldQueue
 {
-    use SerializesModels;
+    use Queueable, SerializesModels;
 
     public $topic;
     public $user;
