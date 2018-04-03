@@ -1031,7 +1031,7 @@ class User extends Model implements AuthenticatableContract, Messageable
 
     public function maxFriends()
     {
-        return $this->osu_subscriber ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
+        return $this->isSupporter() ? config('osu.user.max_friends_supporter') : config('osu.user.max_friends');
     }
 
     public function uncachedFollowerCount()
