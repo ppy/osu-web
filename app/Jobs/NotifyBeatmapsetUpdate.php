@@ -36,10 +36,10 @@ class NotifyBeatmapsetUpdate implements ShouldQueue
     private $beatmapset;
     private $user;
 
-    public function __construct($attributes)
+    public function __construct($data)
     {
-        $this->beatmapset = $attributes['beatmapset'];
-        $this->user = $attributes['user'];
+        $this->beatmapset = $data['beatmapset'];
+        $this->user = $data['user'];
     }
 
     public function delayedDispatch()
