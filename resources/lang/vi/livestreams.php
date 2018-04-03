@@ -21,9 +21,9 @@
 return [
     'top-headers' => [
         'headline' => 'Live Streams',
-        'description' => 'Data is fetched from twitch.tv every five minutes based on the directory listing. Feel free to start streaming and get yourself listed! For more information on how to get setup, please check out the wiki page on live streaming.',
+        'description' => 'Dữ liệu được lấy từ twitch.tv mỗi năm phút dựa trên dánh sách danh mục. Đừng ngại bắt đầu live stream để bạn được liệt kê! Để biết thêm thông tin về cách thiết lập, vui lòng xem trang wiki về live stream.',
     ],
     'headers' => [
-        'regular' => 'Currently Streaming',
+        'regular' => 'Hiện Tại Đang Stream',
     ],
 ];
