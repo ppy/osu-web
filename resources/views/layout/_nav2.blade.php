@@ -65,10 +65,7 @@
         @endforeach
 
         <div class="nav2__col nav2__col--menu">
-            <a
-                href="{{ route('search') }}"
-                class="nav2__menu-link-main"
-            >
+            <a href="{{ route('search') }}" class="nav2__menu-link-main">
                 <span class="fa fa-search"></span>
             </a>
         </div>
