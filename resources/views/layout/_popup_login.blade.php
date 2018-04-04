@@ -31,32 +31,6 @@
         data-click-menu-id="nav2-login-box"
         data-visibility="hidden"
     >
-        @if ($withRegister ?? true)
-            <div class="login-box__section login-box__section--register">
-                <h2 class="login-box__row login-box__row--title">
-                    {{ trans('layout.popup_login.register.title') }}
-                </h2>
-
-                <div class="login-box__row">
-                    {{ trans('layout.popup_login.register.info') }}
-                </div>
-
-                <div class="login-box__row login-box__row--actions">
-                    <div class="login-box__action">
-                        <a href="{{ osu_url('user.signup') }}" class="btn-osu-big btn-osu-big--nav-popup">
-                            <div class="btn-osu-big__content">
-                                <span class="btn-osu-big__left">
-                                    {{ trans('users.signup._') }}
-                                </span>
-
-                                <span class="fa fa-pencil-square-o"></span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        @endif
-
         {!! Form::open([
             'url' => route('login'),
             'class' => '
@@ -110,5 +84,31 @@
                 </div>
             </div>
         {!! Form::close() !!}
+
+        @if ($withRegister ?? true)
+            <div class="login-box__section login-box__section--register">
+                <h2 class="login-box__row login-box__row--title">
+                    {{ trans('layout.popup_login.register.title') }}
+                </h2>
+
+                <div class="login-box__row">
+                    {{ trans('layout.popup_login.register.info') }}
+                </div>
+
+                <div class="login-box__row login-box__row--actions">
+                    <div class="login-box__action">
+                        <a href="{{ osu_url('user.signup') }}" class="btn-osu-big btn-osu-big--nav-popup">
+                            <div class="btn-osu-big__content">
+                                <span class="btn-osu-big__left">
+                                    {{ trans('users.signup._') }}
+                                </span>
+
+                                <span class="fa fa-pencil-square-o"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
