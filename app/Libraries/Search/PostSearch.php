@@ -79,10 +79,6 @@ class PostSearch extends Search
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
-        // FIXME: should probably not be here.
-        // default sort
-        $this->sort(new Sort('post_time', 'desc'));
-
         return $query;
     }
 
@@ -106,5 +102,13 @@ class PostSearch extends Search
         $ids = $this->response()->ids('poster_id');
 
         return User::whereIn('user_id', $ids);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultSort() : array
+    {
+        return [new Sort('post_time', 'desc')];
     }
 }

@@ -40,6 +40,8 @@ class BeatmapsetSearch extends RecordSearch
             Beatmapset::class,
             $params
         );
+
+        $this->sorts = $this->normalizeSort();
     }
 
     public function getDefaultSize() : int
@@ -66,9 +68,6 @@ class BeatmapsetSearch extends RecordSearch
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
 
-        // FIXME: probably shouldn't be here
-        $this->sorts = $this->normalizeSort();
-
         return $query;
     }
 
@@ -83,6 +82,22 @@ class BeatmapsetSearch extends RecordSearch
     public function sort(Sort $sort)
     {
         return parent::sort(static::remapSortField($sort));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultSort() : array
+    {
+        if (present($this->params->queryString)) {
+            return [new Sort('_score', 'desc')];
+        }
+
+        if (in_array($this->params->status, [4, 5, 6], true)) {
+            return [new Sort('last_update', 'desc')];
+        }
+
+        return [new Sort('approved_date', 'desc')];
     }
 
     private function addExtraFilter($query)
@@ -217,19 +232,6 @@ class BeatmapsetSearch extends RecordSearch
         $mainQuery->filter($query);
     }
 
-    private function defaultSort()
-    {
-        if (present($this->params->queryString)) {
-            return new Sort('_score', 'desc');
-        }
-
-        if (in_array($this->params->status, [4, 5, 6], true)) {
-            return new Sort('last_update', 'desc');
-        }
-
-        return new Sort('approved_date', 'desc');
-    }
-
     /**
      * Generate sort parameters for the elasticsearch query.
      */
@@ -244,7 +246,7 @@ class BeatmapsetSearch extends RecordSearch
         ];
 
         if ($this->sorts === []) {
-            return [$this->defaultSort()];
+            return [];
         }
 
         $newSort = [];

@@ -67,7 +67,6 @@ abstract class Search implements Queryable
      */
     abstract public function getQuery();
 
-
     /**
      * Gets the numner of matches for the query.
      *
@@ -151,7 +150,7 @@ abstract class Search implements Queryable
             'size' => $pageParams['size'],
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
-            }, $this->sorts),
+            }, $this->sorts === [] ? $this->getDefaultSort() : $this->sorts),
         ];
 
         if (isset($this->highlight)) {
@@ -162,8 +161,7 @@ abstract class Search implements Queryable
             $body['_source'] = $this->source;
         }
 
-        $query = $this->query ?? $this->getQuery();
-        $body['query'] = QueryHelper::clauseToArray($query);
+        $body['query'] = QueryHelper::clauseToArray($this->query ?? $this->getQuery());
 
         $json = ['body' => $body, 'index' => $this->index];
 
@@ -187,6 +185,17 @@ abstract class Search implements Queryable
     protected function getDefaultSize() : int
     {
         return 50;
+    }
+
+    /**
+     * The default sort(s) to use for the query is none was specified.
+     * Return [] to use elasticsearch's default
+     *
+     * @return array
+     */
+    protected function getDefaultSort() : array
+    {
+        return [];
     }
 
     private function fetch()
