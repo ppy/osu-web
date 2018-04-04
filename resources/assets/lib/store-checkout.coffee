@@ -66,7 +66,7 @@ export class StoreCheckout
         window.location = params.url
 
       when 'free'
-        $.post laroute.route('store.checkout.store', completed: '1')
+        $.post laroute.route('store.checkout.store', orderId: params.orderId, completed: '1')
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
