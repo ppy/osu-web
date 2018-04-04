@@ -16,7 +16,7 @@
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
 <div class="login-box-container">
-    <div class="js-sticky-header" data-sticky-header-target="nav2-login-box"></div>
+    <div class="js-nav2--login-box-reference"></div>
 
     <div
         class="

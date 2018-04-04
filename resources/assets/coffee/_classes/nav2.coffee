@@ -18,8 +18,9 @@
 
 class @Nav2
   constructor: ->
+    addEventListener 'turbolinks:load', @setLoginBoxElements
     $.subscribe 'click-menu:current', @autoCenterPopup
-    $.subscribe 'stickyHeader', @stickLogin
+    $(window).on 'throttled-resize, throttled-scroll', @stickLogin
 
 
   autoCenterPopup: (_e, currentMenu) =>
@@ -79,10 +80,13 @@ class @Nav2
   stickLogin: (_e, target) =>
     return unless @loginBoxVisible()
 
-    loginBox = document.querySelector('.js-nav2--login-box')
-
-    loginBox.style.position =
-      if target == 'nav2-login-box'
+    @loginBox.style.position =
+      if @loginPopupReference.getBoundingClientRect().top < 0
         'fixed'
       else
         ''
+
+
+  setLoginBoxElements: =>
+    @loginPopupReference = document.querySelector('.js-nav2--login-box-reference')
+    @loginBox = document.querySelector('.js-nav2--login-box')
