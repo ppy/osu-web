@@ -21,6 +21,8 @@ class @Search
     $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
 
 
-  forumPostReset: =>
-    $('[name=username], [name=forum_id]').val ''
-    $('[name=forum_children]').prop 'checked', false
+  forumPostReset: (e) =>
+    $form = $(e.currentTarget).closest('form')
+
+    $form.find('[name=username], [name=forum_id]').val ''
+    $form.find('[name=forum_children]').prop 'checked', false
