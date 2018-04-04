@@ -57,7 +57,7 @@ class BeatmapsetSearchParams extends SearchParams
     /** @var int */
     public $status = 0;
 
-    /** @var User */
+    /** @var User|null */
     public $user = null;
 
     /**
