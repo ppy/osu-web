@@ -45,12 +45,12 @@
                     </span>
                 </a>
 
-                <div
-                    class="nav2__menu-popup js-menu"
-                    data-menu-id="nav2-menu-popup-{{ $section }}"
-                    data-visibility="hidden"
-                >
-                    <div class="simple-menu simple-menu--nav2 simple-menu--nav2-left-aligned">
+                <div class="nav2__menu-popup">
+                    <div
+                        class="simple-menu simple-menu--nav2 simple-menu--nav2-left-aligned js-menu"
+                        data-menu-id="nav2-menu-popup-{{ $section }}"
+                        data-visibility="hidden"
+                    >
                         @foreach ($links as $action => $link)
                             @if ($action === '_')
                                 @continue
@@ -86,12 +86,11 @@
                 >
             </button>
 
-            <div class="nav2__click-popup js-click-menu js-nav2--centered-popup"
-                data-click-menu-id="nav2-locale-popup"
-                data-visibility="hidden"
-            >
+            <div class="nav2__click-popup">
                 <div
-                    class="simple-menu simple-menu--nav2"
+                    class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
+                    data-click-menu-id="nav2-locale-popup"
+                    data-visibility="hidden"
                 >
                     @foreach (config('app.available_locales') as $locale)
                         <button
@@ -156,17 +155,7 @@
         <div class="nav2__col nav2__col--avatar">
             @include('layout._header_user')
 
-            <div
-                class="
-                    nav2__click-popup
-                    nav2__click-popup--user
-                    js-click-menu
-                    js-nav2--centered-popup
-                    js-user-header-popup
-                "
-                data-click-menu-id="nav2-user-popup"
-                data-visibility="hidden"
-            >
+            <div class="nav2__click-popup nav2__click-popup--user js-user-header-popup">
                 @if (Auth::user() !== null)
                     @include('layout._popup_user')
                 @endif

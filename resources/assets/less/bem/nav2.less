@@ -68,13 +68,9 @@
   &__click-popup {
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0; // avoid overflow before repositioned
     margin-top: -20px;
-    transition: none;
     z-index: @z-index--nav2-click-popup;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
 
     &--user {
       margin-top: 5px;

@@ -46,14 +46,13 @@ class @Nav2
 
   centerPopup: (popup, reference) ->
     popupRect = popup.getBoundingClientRect()
+    popupContainerRect = popup.parentElement.getBoundingClientRect()
     referenceRect = reference.getBoundingClientRect()
     bodyRect = document.body.getBoundingClientRect()
 
     referenceHalfWidth = referenceRect.width / 2
     popupHalfWidth = popupRect.width / 2
-    popupLeft = popupRect.left
-    if popup.style.left != ''
-      popupLeft = popupLeft - parseInt(popup.style.left.replace(/px$/, ''), 10)
+    popupLeft = popupContainerRect.left
 
     popupLeftForCentered = referenceRect.left + referenceHalfWidth - popupLeft - popupHalfWidth
     popupLeftWhenCentered = popupLeft + popupLeftForCentered
@@ -70,7 +69,7 @@ class @Nav2
         else
           popupLeftForCentered
 
-    popup.style.left = "#{finalLeft}px"
+    popup.style.transform = "translateX(#{finalLeft}px)"
 
 
   loginBoxVisible: =>

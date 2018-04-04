@@ -15,7 +15,11 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div class="simple-menu simple-menu--nav2">
+<div
+    class="simple-menu simple-menu--nav2 js-click-menu js-nav2--centered-popup"
+    data-click-menu-id="nav2-user-popup"
+    data-visibility="hidden"
+>
     <div
         class="simple-menu__header js-current-user-cover"
         {!! background_image(Auth::user()->cover(), false) !!}
