@@ -17,6 +17,7 @@
  */
 
 .search-header {
+  @_top: search-header;
   @_search-icon-width: 40px;
 
   .default-header-overlay();
@@ -47,6 +48,20 @@
 
     *:-webkit-autofill ~ & {
       color: #000;
+    }
+
+    &--normal {
+      .@{_top}.js-search--searching & {
+        display: none;
+      }
+    }
+
+    &--searching {
+      display: none;
+
+      .@{_top}.js-search--searching & {
+        display: inline-flex;
+      }
     }
   }
 

@@ -18,7 +18,10 @@
 
 class @Search
   constructor: ->
+    @debouncedSubmit = _.debounce @submit, 500
+
     $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
+    $(document).on 'input', '.js-search--input', @debouncedSubmit
 
 
   forumPostReset: (e) =>
@@ -26,3 +29,29 @@ class @Search
 
     $form.find('[name=username], [name=forum_id]').val ''
     $form.find('[name=forum_children]').prop 'checked', false
+
+
+  submit: (e) =>
+    input = e.currentTarget
+    value = input.value.trim()
+
+    return if value in ['', input.dataset.searchCurrent?.trim()]
+
+    @searchingStart()
+    $(document).one 'turbolinks:before-cache', @searchingEnd
+    params = $(e.currentTarget).closest('form').serialize()
+    input.dataset.searchCurrent = value
+
+    Turbolinks.visit("?#{params}")
+
+
+  searchingStart: =>
+    @searchingToggle(true)
+
+
+  searchingEnd: =>
+    @searchingToggle(false)
+
+
+  searchingToggle: (state) =>
+    $('.js-search--header').toggleClass('js-search--searching', state)
