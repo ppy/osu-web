@@ -59,8 +59,8 @@ class ForumSearch extends Search
     public function getQuery()
     {
         $query = (new BoolQuery())
-            ->must(static::firstPostQuery()->toArray())
-            ->should($this->childQuery()->toArray())
+            ->must(static::firstPostQuery())
+            ->should($this->childQuery())
             ->shouldMatch(1)
             ->filter(['term' => ['type' => 'topics']]);
 
