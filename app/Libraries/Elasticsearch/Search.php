@@ -189,7 +189,7 @@ abstract class Search implements Queryable
 
     /**
      * The default sort(s) to use for the query is none was specified.
-     * Return [] to use elasticsearch's default
+     * Return [] to use elasticsearch's default.
      *
      * @return array
      */
