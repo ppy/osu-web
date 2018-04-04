@@ -45,6 +45,7 @@ return [
 
     'card' => [
         'loading' => 'Loading...',
+        'send_message' => 'send message',
     ],
 
     'login' => [
