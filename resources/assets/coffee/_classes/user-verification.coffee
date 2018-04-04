@@ -18,6 +18,7 @@
 
 class @UserVerification
   constructor: (@nav) ->
+    addEventListener 'turbolinks:load', @setModal
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
     $(document).on 'input', '.js-user-verification--input', @autoSubmit
@@ -32,7 +33,6 @@ class @UserVerification
     @message = document.getElementsByClassName('js-user-verification--message')
     @messageSpinner = document.getElementsByClassName('js-user-verification--message-spinner')
     @messageText = document.getElementsByClassName('js-user-verification--message-text')
-    @modal = document.getElementsByClassName('js-user-verification')
     @reference = document.getElementsByClassName('js-user-verification--reference')
 
 
@@ -66,7 +66,7 @@ class @UserVerification
     @setMessage osu.xhrErrorMessage(xhr)
 
 
-  float: (float, modal = @modal[0], referenceBottom) =>
+  float: (float, modal = @modal, referenceBottom) =>
     if float
       modal.classList.add 'js-user-verification--center'
       modal.style.paddingTop = null
@@ -93,16 +93,14 @@ class @UserVerification
 
 
   reposition: =>
-    modal = @modal[0]
-
-    return unless modal?.classList.contains('js-user-verification--active')
+    return unless @modal?.classList.contains('js-user-verification--active')
 
     if osu.isMobile()
-      @float(true, modal)
+      @float(true, @modal)
     else
       referenceBottom = @reference[0]?.getBoundingClientRect().bottom
 
-      @float(referenceBottom < 0, modal, referenceBottom)
+      @float(referenceBottom < 0, @modal, referenceBottom)
 
 
   setMessage: (text, withSpinner = false) =>
@@ -115,9 +113,13 @@ class @UserVerification
     Fade.in @message[0]
 
 
+  setModal: =>
+    @modal = document.querySelector('.js-user-verification')
+
+
   success: =>
     @$modal().modal 'hide'
-    @modal[0].classList.remove('js-user-verification--active')
+    @modal.classList.remove('js-user-verification--active')
 
     toClick = @clickAfterVerification
     @clickAfterVerification = null
