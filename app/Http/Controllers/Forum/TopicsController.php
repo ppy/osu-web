@@ -20,9 +20,7 @@
 
 namespace App\Http\Controllers\Forum;
 
-use App\Events\Forum\TopicWasCreated;
-use App\Events\Forum\TopicWasReplied;
-use App\Events\Forum\TopicWasViewed;
+use App\Libraries\ForumUpdateNotifier;
 use App\Models\Forum\FeatureVote;
 use App\Models\Forum\Forum;
 use App\Models\Forum\PollOption;
@@ -167,8 +165,12 @@ class TopicsController extends Controller
             $posts = collect([$post]);
             $firstPostPosition = $topic->postPosition($post->post_id);
 
-            event(new TopicWasReplied($topic, $post, Auth::user()));
-            event(new TopicWasViewed($topic, $post, Auth::user()));
+            $post->markRead(Auth::user());
+            ForumUpdateNotifier::onReply([
+                'topic' => $topic,
+                'post' => $post,
+                'user' => Auth::user(),
+            ]);
 
             return view('forum.topics._posts', compact('posts', 'firstPostPosition', 'topic'));
         }
@@ -268,11 +270,7 @@ class TopicsController extends Controller
 
         $pollSummary = PollOption::summary($topic, Auth::user());
 
-        event(new TopicWasViewed(
-            $topic,
-            $posts->last(),
-            Auth::user()
-        ));
+        $posts->last()->markRead(Auth::user());
 
         $template = $skipLayout ? '_posts' : 'show';
 
@@ -338,9 +336,11 @@ class TopicsController extends Controller
             return error_popup($e->getMessage());
         }
 
-        if (!app()->runningUnitTests()) {
-            event(new TopicWasCreated($topic, $topic->posts->last(), Auth::user()));
-        }
+        ForumUpdateNotifier::onNew([
+            'topic' => $topic,
+            'post' => $topic->posts->last(),
+            'user' => Auth::user(),
+        ]);
 
         return ujs_redirect(route('forum.topics.show', $topic));
     }
