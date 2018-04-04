@@ -36,7 +36,6 @@ return [
         'button' => 'rechercher',
         'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
-        'title' => 'Résultats de la Recherche',
 
         'beatmapset' => [
             'more' => ':count résultats de recherche de beatmap en plus',

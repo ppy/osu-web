@@ -36,7 +36,6 @@ return [
         'button' => 'Procurar',
         'empty_result' => 'Nada encontrado!',
         'missing_query' => 'Procure por palavras que tenham no mínimo :n caracteres',
-        'title' => 'Resultados de Busca',
 
         'beatmapset' => [
             'more' => ':count mais resultados de beatmaps',

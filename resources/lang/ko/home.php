@@ -36,7 +36,6 @@ return [
         'button' => '검색',
         'empty_result' => '아무것도 찾지 못했습니다!',
         'missing_query' => '검색하려면 적어도 :n글자는 적어주셔야 합니다.',
-        'title' => '검색 결과',
 
         'beatmapset' => [
             'more' => ':count개의 비트맵 검색 결과 더 보기',
