@@ -38,6 +38,13 @@ class PostSearch extends Search
     public function __construct(PostSearchParams $params)
     {
         parent::__construct(Post::esIndexName(), $params);
+
+        $this->highlight(
+            (new Highlight)
+                ->field('search_content')
+                ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
+                ->numberOfFragments(3)
+        );
     }
 
     // TODO: maybe move to a response/view helper?
@@ -63,12 +70,6 @@ class PostSearch extends Search
 
         if (isset($this->params->queryString)) {
             $query->must(QueryHelper::queryString($this->params->queryString, ['search_content']));
-            $this->highlight(
-                (new Highlight)
-                    ->field('search_content')
-                    ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
-                    ->numberOfFragments(3)
-            );
         }
 
         if (isset($this->params->forumId)) {
