@@ -100,10 +100,7 @@ return [
             'facebook' => 'https://facebook.com/osugame',
             'twitter' => '/p/twitter',
         ],
-        'status' => [
-            'osustatus' => 'https://twitter.com/osustatus',
-            'server' => 'http://stat.ppy.sh/',
-        ],
+        'server_status' => 'https://twitter.com/osustatus',
         'user' => [
             'kudosu' => '/wiki/Kudosu',
             'recover' => '/p/forgot-email',
