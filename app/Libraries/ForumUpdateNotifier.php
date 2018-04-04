@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,25 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Forum;
+namespace App\Libraries;
 
-use App\Events\Forum\TopicWasViewed;
+use App\Jobs\NotifyForumUpdateMail;
+use App\Jobs\NotifyForumUpdateSlack;
 
-class MarkTopicRead
+class ForumUpdateNotifier
 {
-    public function markTopicRead($event)
+    public static function onNew($data)
     {
-        $event->topic->markRead(
-            $event->user,
-            $event->post->post_time
-        );
+        (new NotifyForumUpdateSlack($data, 'new'))->dispatchIfNeeded();
     }
 
-    public function subscribe($events)
+    public static function onReply($data)
     {
-        $events->listen(
-            TopicWasViewed::class,
-            static::class.'@markTopicRead'
-        );
+        dispatch(new NotifyForumUpdateMail($data));
+
+        (new NotifyForumUpdateSlack($data, 'reply'))->dispatchIfNeeded();
     }
 }
