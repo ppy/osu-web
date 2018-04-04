@@ -94,11 +94,6 @@ class CheckoutController extends Controller
             return ujs_redirect(route('store.cart.show'));
         }
 
-        if (empty($orderId)) {
-            // old version that didn't set order id on the page, so force a reload of the page.
-            return ujs_redirect(route('store.checkout.show'));
-        }
-
         // check that we aren't checking out using some ancient cart;
         // otherwise the Xsolla client will use the stale cart.
         if ($order->order_id !== $orderId) {
