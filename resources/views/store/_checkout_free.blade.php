@@ -19,6 +19,7 @@
     <button type="button"
             class="js-store-checkout-button btn-osu btn-osu-danger"
             data-provider="free"
+            data-order-id="{{ $order->order_id }}"
             data-order-number="{{ $order->getOrderNumber() }}"
     >
         Complete Order

@@ -37,13 +37,14 @@ export class StoreCheckout
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       provider = event.target.dataset.provider
+      orderId = event.target.dataset.orderId
       # sanity
       return unless provider?
       LoadingOverlay.show()
       LoadingOverlay.show.flush()
 
       init[provider]?.then =>
-        $.post laroute.route('store.checkout.store'), provider: provider
+        $.post laroute.route('store.checkout.store'), { provider, orderId }
         .done =>
           @startPayment(event.target.dataset)
 
