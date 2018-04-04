@@ -41,22 +41,20 @@ class @ClickMenu
 
 
   show: (target) =>
-    found = false
+    @current = null
 
     for menu in document.querySelectorAll('.js-click-menu[data-click-menu-id]')
       if menu.dataset.clickMenuId == target
-        found = true
+        @current = target
         Fade.in menu
       else
         Fade.out menu
 
     for link in document.querySelectorAll('.js-click-menu[data-click-menu-target]')
-      if found && link.dataset.clickMenuTarget == target
+      if @current? && link.dataset.clickMenuTarget == @current
         link.classList.add 'js-click-menu--active'
       else
         link.classList.remove 'js-click-menu--active'
-
-    @current = if found then target
 
     $.publish 'click-menu:current', @current
 
