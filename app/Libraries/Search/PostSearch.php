@@ -55,7 +55,7 @@ class PostSearch extends Search
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function getQuery()
     {
         $query = (new BoolQuery())
             ->filter(['term' => ['poster_id' => $this->params->userId]])
@@ -79,12 +79,11 @@ class PostSearch extends Search
             $query->filter(['terms' => ['forum_id' => $forumIds]]);
         }
 
-        $this->query($query);
-
+        // FIXME: should probably not be here.
         // default sort
         $this->sort(new Sort('post_time', 'desc'));
 
-        return parent::toArray();
+        return $query;
     }
 
     public function data()

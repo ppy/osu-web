@@ -20,7 +20,7 @@
 
 namespace App\Libraries\Elasticsearch;
 
-class RecordSearch extends Search
+abstract class RecordSearch extends Search
 {
     protected $recordType;
 

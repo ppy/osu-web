@@ -54,7 +54,7 @@ class WikiSearch extends RecordSearch
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function getQuery()
     {
         $langQuery = (new BoolQuery())
             ->shouldMatch(1)
@@ -100,11 +100,9 @@ class WikiSearch extends RecordSearch
                 ]]);
         }
 
-        $this->query = (new BoolQuery)
+        return (new BoolQuery)
             ->must($langQuery)
             ->must($matchQuery);
-
-        return parent::toArray();
     }
 
     protected function getDefaultSize(): int

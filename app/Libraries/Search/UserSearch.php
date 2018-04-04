@@ -54,7 +54,7 @@ class UserSearch extends RecordSearch
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function getQuery()
     {
         static $lowercase_stick = [
             'analyzer' => 'username_lower',
@@ -91,9 +91,7 @@ class UserSearch extends RecordSearch
             ]);
         }
 
-        $this->query($query);
-
-        return parent::toArray();
+        return $query;
     }
 
     protected function getDefaultSize() : int

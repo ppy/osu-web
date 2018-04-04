@@ -63,6 +63,12 @@ abstract class Search implements Queryable
     abstract public function data();
 
     /**
+     * @return array|Queryable
+     */
+    abstract public function getQuery();
+
+
+    /**
      * Gets the numner of matches for the query.
      *
      * @return int the number of matches.
@@ -156,7 +162,8 @@ abstract class Search implements Queryable
             $body['_source'] = $this->source;
         }
 
-        $body['query'] = QueryHelper::clauseToArray($this->query);
+        $query = $this->query ?? $this->getQuery();
+        $body['query'] = QueryHelper::clauseToArray($query);
 
         $json = ['body' => $body, 'index' => $this->index];
 

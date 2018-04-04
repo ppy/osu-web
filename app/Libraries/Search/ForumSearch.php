@@ -56,7 +56,7 @@ class ForumSearch extends Search
     /**
      * {@inheritdoc}
      */
-    public function toArray() : array
+    public function getQuery()
     {
         $query = (new BoolQuery())
             ->must(static::firstPostQuery()->toArray())
@@ -82,9 +82,7 @@ class ForumSearch extends Search
             $query->filter(['term' => ['topic_id' => $this->params->topicId]]);
         }
 
-        $this->query($query);
-
-        return parent::toArray();
+        return $query;
     }
 
     private function childQuery() : HasChildQuery

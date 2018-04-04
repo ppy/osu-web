@@ -47,20 +47,10 @@ class BeatmapsetSearch extends RecordSearch
         return config('osu.beatmaps.max');
     }
 
-    public function records()
-    {
-        return $this->response()->records()->with('beatmaps')->get();
-    }
-
     /**
      * {@inheritdoc}
      */
-    public function sort(Sort $sort)
-    {
-        return parent::sort(static::remapSortField($sort));
-    }
-
-    public function toArray() : array
+    public function getQuery()
     {
         $query = (new BoolQuery());
 
@@ -76,11 +66,23 @@ class BeatmapsetSearch extends RecordSearch
         $this->addRankFilter($query);
         $this->addStatusFilter($query);
 
+        // FIXME: probably shouldn't be here
         $this->sorts = $this->normalizeSort();
 
-        $this->query($query);
+        return $query;
+    }
 
-        return parent::toArray();
+    public function records()
+    {
+        return $this->response()->records()->with('beatmaps')->get();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function sort(Sort $sort)
+    {
+        return parent::sort(static::remapSortField($sort));
     }
 
     private function addExtraFilter($query)
