@@ -70,13 +70,12 @@ class @UserLogin
   show: (target) =>
     @clickAfterLogin = target
 
-    $('.js-user-login--menu')[0].click()
+    Timeout.set 0, -> $('.js-user-login--menu')[0].click()
 
 
   showOnClick: (e) =>
     e.preventDefault()
-    e.stopPropagation()
-    $('.js-user-login--menu')[0].click()
+    @show()
 
 
   showOnError: (e, xhr) =>
