@@ -36,6 +36,7 @@ return [
         'button' => 'Search',
         'empty_result' => 'Nothing found!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
+        'placeholder' => 'type to search',
         'title' => 'Search',
 
         'beatmapset' => [

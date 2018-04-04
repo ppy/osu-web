@@ -32,6 +32,7 @@
                         class="search-header__input js-search--input"
                         name="query"
                         value="{{ request('query') }}"
+                        placeholder="{{ trans('home.search.placeholder') }}"
                         data-search-current="{{ request('query') }}"
                         data-turbolinks-permanent
                         id="search-input"
