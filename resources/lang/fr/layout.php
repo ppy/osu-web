@@ -170,7 +170,6 @@ return [
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Statut du serveur',
             'terms' => 'Conditions du service',
         ],
