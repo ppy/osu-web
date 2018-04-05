@@ -32,7 +32,7 @@ class @Nav2
       continue if popup.dataset.clickMenuId != @currentMenu
 
       currentPopup = popup
-      link = document.querySelector(".js-click-menu[data-click-menu-target='#{@currentMenu}'")
+      link = document.querySelector(".js-click-menu[data-click-menu-target='#{@currentMenu}']")
 
     return if !currentPopup?
 
