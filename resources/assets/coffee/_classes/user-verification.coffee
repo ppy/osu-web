@@ -17,7 +17,7 @@
 ###
 
 class @UserVerification
-  constructor: (@nav) ->
+  constructor: ->
     addEventListener 'turbolinks:load', @setModal
     $(document).on 'ajax:error', @showOnError
     $(document).on 'turbolinks:load', @showOnLoad
@@ -131,8 +131,6 @@ class @UserVerification
 
 
   show: (target, html) =>
-    Timeout.set 0, => @nav.hidePopup()
-
     @clickAfterVerification = target
 
     if html?

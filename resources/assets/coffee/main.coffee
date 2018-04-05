@@ -74,6 +74,8 @@ $(document).on 'turbolinks:load', ->
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
 @userCard ?= new UserCard
+@userLogin ?= new UserLogin
+@userVerification ?= new UserVerification
 @wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
@@ -83,8 +85,6 @@ $(document).on 'turbolinks:load', ->
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
 @turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
-@userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification(@nav)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

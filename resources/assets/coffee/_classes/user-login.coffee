@@ -19,7 +19,7 @@
 class @UserLogin
 
 
-  constructor: (@nav) ->
+  constructor: ->
     # Used as callback on original action (where login was required)
     @clickAfterLogin = null
 
