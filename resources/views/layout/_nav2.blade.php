@@ -27,11 +27,7 @@
         @foreach (nav_links() as $section => $links)
             <div class="nav2__col nav2__col--menu">
                 <a
-                    class="
-                        nav2__menu-link-main
-                        js-menu
-                        {{ $section === $current_section ? 'nav2__menu-link-main--active' : '' }}
-                    "
+                    class="nav2__menu-link-main js-menu"
                     href="{{ $links['_'] ?? array_first($links) }}"
                     data-menu-target="nav2-menu-popup-{{ $section }}"
                     data-menu-show-delay="0"
