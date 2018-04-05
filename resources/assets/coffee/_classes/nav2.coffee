@@ -49,7 +49,7 @@ class @Nav2
     popupRect = popup.getBoundingClientRect()
     popupContainerRect = popup.parentElement.getBoundingClientRect()
     referenceRect = reference.getBoundingClientRect()
-    bodyWidth = document.body.getBoundingClientRect().width - 10 # some right margin
+    bodyWidth = document.body.getBoundingClientRect().width - 5 # some right margin
 
     referenceHalfWidth = referenceRect.width / 2
     popupHalfWidth = popupRect.width / 2
