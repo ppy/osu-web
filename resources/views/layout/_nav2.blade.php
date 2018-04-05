@@ -35,7 +35,7 @@
                     <span class="nav2__menu-link-main-text">
                         {{ trans("layout.menu.{$section}._") }}
 
-                        @if ($section === $current_section)
+                        @if ($section === $current_section && !($isSearchPage ?? false))
                             <span class="nav2__menu-link-bar u-section--bg-normal"></span>
                         @endif
                     </span>
@@ -61,7 +61,14 @@
         @endforeach
 
         <div class="nav2__col nav2__col--menu">
-            <a href="{{ route('search') }}" class="nav2__menu-link-main">
+            <a
+                href="{{ route('search') }}"
+                class="
+                    nav2__menu-link-main
+                    nav2__menu-link-main--search
+                    {{ isset($isSearchPage) ? 'u-section--bg-normal' : '' }}
+                "
+            >
                 <span class="fa fa-search"></span>
             </a>
         </div>
