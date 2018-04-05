@@ -22,6 +22,7 @@ class @Search
 
     $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
     $(document).on 'input', '.js-search--input', @debouncedSubmit
+    $(document).on 'keydown', '.js-search--input', @maybeSubmit
 
 
   forumPostReset: (e) =>
@@ -29,6 +30,13 @@ class @Search
 
     $form.find('[name=username], [name=forum_id]').val ''
     $form.find('[name=forum_children]').prop 'checked', false
+
+
+  maybeSubmit: (e) =>
+    return if e.keyCode != 13
+
+    e.preventDefault()
+    @submit()
 
 
   submit: (e) =>
