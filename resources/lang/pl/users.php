@@ -67,6 +67,10 @@ return [
         'here' => 'tutaj', // this is substituted in when generating a link above. change it to suit the language.
     ],
 
+    'posts' => [
+        'title' => 'Posty użytkownika :username',
+    ],
+
     'signup' => [
         '_' => 'Zarejestruj się',
     ],
@@ -270,7 +274,7 @@ return [
             'restriction_info' => "Musisz posiadać <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>status donatora</a>, aby odblokować tę funkcję.",
         ],
         'post_count' => [
-            '_' => ':count',
+            '_' => ':link',
             'count' => ':count post na forum|:count posty na forum|:count postów na forum',
         ],
         'rank' => [

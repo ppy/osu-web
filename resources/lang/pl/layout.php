@@ -180,7 +180,6 @@ return [
         'legal' => [
             '_' => 'Prawne i status',
             'copyright' => 'Prawa Autorskie (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Status serwera',
             'terms' => 'Warunki świadczenia usług',
         ],

@@ -31,7 +31,7 @@ return [
             'recover_link' => 'email återställning processen här',
             'reissue' => 'Du kan också :reissue_link eller :logout_link.',
             'reissue_link' => 'begära annan kod',
-            'logout_link' => 'logga ut',
+            'logout_link' => 'logga ut', // Base text changed from "log" to "sign"
         ],
     ],
 

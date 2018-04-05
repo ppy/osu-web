@@ -21,7 +21,7 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
+            'null_user' => 'Must be signed in to edit.',
             'system_generated' => 'System-generated post can not be edited.',
             'wrong_user' => 'Must be owner of the post to edit.',
         ],
@@ -59,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
+            'guest' => 'Sign in to Respond',
             'user' => 'Respond',
         ],
     ],

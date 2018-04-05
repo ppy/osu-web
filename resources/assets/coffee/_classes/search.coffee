@@ -18,9 +18,48 @@
 
 class @Search
   constructor: ->
-    $(document).on 'click', '.js-search--advanced-forum-post-reset', @forumPostReset
+    @debouncedSubmit = _.debounce @submit, 500
+
+    $(document).on 'click', '.js-search--forum-options-reset', @forumPostReset
+    $(document).on 'input', '.js-search--input', @debouncedSubmit
+    $(document).on 'keydown', '.js-search--input', @maybeSubmit
 
 
-  forumPostReset: =>
-    $('[name=username], [name=forum_id]').val ''
-    $('[name=forum_children]').prop 'checked', false
+  forumPostReset: (e) =>
+    $form = $(e.currentTarget).closest('form')
+
+    $form.find('[name=username], [name=forum_id]').val ''
+    $form.find('[name=forum_children]').prop 'checked', false
+
+
+  maybeSubmit: (e) =>
+    return if e.keyCode != 13
+
+    e.preventDefault()
+    @submit()
+
+
+  submit: (e) =>
+    input = e.currentTarget
+    value = input.value.trim()
+
+    return if value in ['', input.dataset.searchCurrent?.trim()]
+
+    @searchingStart()
+    $(document).one 'turbolinks:before-cache', @searchingEnd
+    params = $(e.currentTarget).closest('form').serialize()
+    input.dataset.searchCurrent = value
+
+    Turbolinks.visit("?#{params}")
+
+
+  searchingStart: =>
+    @searchingToggle(true)
+
+
+  searchingEnd: =>
+    @searchingToggle(false)
+
+
+  searchingToggle: (state) =>
+    $('.js-search--header').toggleClass('js-search--searching', state)

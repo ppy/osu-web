@@ -55,6 +55,6 @@ return [
 
     'require_login' => [
         '_' => '다운로드하려면 :link하셔야 합니다',
-        'link_text' => '로그인',
+        'link_text' => '로그인', // Base text changed from "log" to "sign"
     ],
 ];

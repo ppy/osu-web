@@ -20,7 +20,7 @@
 
 return [
     'codes' => [
-        'http-401' => 'Please login to proceed.',
+        'http-401' => 'Please sign in to proceed.',
         'http-403' => 'Access denied.',
         'http-429' => 'Too many attempts. Try again later.',
     ],
@@ -36,7 +36,7 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => 'You have to many favourited beatmaps! Please unfavourite one before continuing.',
     ],
-    'logged_out' => 'You have been logged out. Please login and retry.',
+    'logged_out' => 'You have been signed out. Please sign in and retry.',
     'supporter_only' => 'You must be a supporter to use this feature.',
     'no_restricted_access' => 'You are not able to perform this action while your account is in a restricted state.',
     'unknown' => 'Unknown error occurred.',

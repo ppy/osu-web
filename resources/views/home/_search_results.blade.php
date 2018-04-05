@@ -59,7 +59,7 @@
 
                 @if ($search->mode === $mode)
                     @php
-                        $pagination = $search->paginate($mode)->appends($search->urlParams());
+                        $pagination = $search->paginate($mode)->appends(request()->query());
                     @endphp
 
                     @if (!$pagination->hasMorePages() && ($result['over_limit'] ?? false))

@@ -18,20 +18,33 @@
 @extends('master')
 
 @section('content')
-    <form action="{{ route('search') }}">
+    <form action="{{ route('search') }}" data-loading-overlay="0">
         <input type="hidden" name="mode" value="{{ $search->mode }}">
 
         <div class="osu-page">
-            <div class="search-header">
+            <div class="search-header js-search--header">
                 <div class="search-header__title">
                     {{ trans('home.search.title') }}
                 </div>
 
                 <div class="search-header__box">
-                    <input class="search-header__input" name="query" value="{{ $search->urlParams()['query'] ?? '' }}" />
+                    <input
+                        class="search-header__input js-search--input"
+                        name="query"
+                        value="{{ request('query') }}"
+                        placeholder="{{ trans('home.search.placeholder') }}"
+                        data-search-current="{{ request('query') }}"
+                        data-turbolinks-permanent
+                        id="search-input"
+                        autofocus
+                    />
 
-                    <button class="search-header__icon">
+                    <button class="search-header__icon search-header__icon--normal">
                         <i class="fa fa-search"></i>
+                    </button>
+
+                    <button class="search-header__icon search-header__icon--searching">
+                        <i class="fa fa-spinner fa-pulse"></i>
                     </button>
                 </div>
             </div>
@@ -43,7 +56,7 @@
                     @foreach ($search::MODES as $mode => $_class)
                         <div class="page-mode__item">
                             <a
-                                href="{{ route('search', ['mode' => $mode, 'query' => $search->urlParams()['query'] ?? '']) }}"
+                                href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
                                 class="page-mode-link {{ $mode === $search->mode ? 'page-mode-link--is-active' : '' }}"
                             >
                                 <span class="fake-bold" data-content="{{ trans("home.search.mode.{$mode}") }}">
@@ -67,7 +80,7 @@
                     @endforeach
                 </div>
                 @if ($search->mode === 'forum_post')
-                    @include('home._search_advanced_forum_post')
+                    @include('objects.search._forum_options')
                 @endif
 
                 @if ($search->hasQuery())

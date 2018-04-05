@@ -36,7 +36,6 @@ return [
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
         'missing_query' => 'Du skal søge efter nøgleord med mindst :n karakterer!',
-        'title' => 'Søgeresultater',
 
         'beatmapset' => [
             'more' => ':count flere beatmap søgeresultater',
@@ -93,7 +92,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'opret en bruger',
-                'description' => 'følg instrukserne når spillet startes for at logge ind eller lave en ny konto',
+                'description' => 'følg instrukserne når spillet startes for at logge ind eller lave en ny konto', // Base text changed from "log" to "sign"
             ],
             'download' => [
                 'title' => 'hent spillet',

@@ -39,7 +39,7 @@ return [
         'mapper_note_wrong_user' => 'Only beatmap owner can post mapper notes.',
 
         'hype' => [
-            'guest' => 'Must be logged in to hype.',
+            'guest' => 'Must be signed in to hype.',
             'hyped' => 'You have already hyped this beatmap.',
             'limit_exceeded' => 'You have used all your hype.',
             'not_hypeable' => 'This beatmap can not be hyped',
@@ -88,11 +88,27 @@ return [
         'invalid_email' => "Doesn't seem to be a valid email address.",
         'too_short' => 'New password is too short.',
         'unknown_duplicate' => 'Username or email address already used.',
+        'username_available_in' => 'This username will be available for use in :duration.',
+        'username_available_soon' => 'This username will be available for use any minute now!',
+        'username_invalid_characters' => 'The requested username contains invalid characters.',
+        'username_in_use' => 'Username is already in use!',
+        'username_no_space_userscore_mix' => 'Please use either underscores or spaces, not both!',
+        'username_no_spaces' => "Username can't start or end with spaces!",
+        'username_not_allowed' => 'This username choice is not allowed.',
         'username_too_short' => 'The requested username is too short.',
+        'username_too_long' => 'The requested username is too long.',
         'weak' => 'Blacklisted password.',
         'wrong_current_password' => 'Current password is incorrect.',
         'wrong_email_confirmation' => 'Email confirmation does not match.',
         'wrong_password_confirmation' => 'Password confirmation does not match.',
         'too_long' => 'Exceeded maximum length - can only be up to :limit characters.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => 'You must have :link to change your name!',
+                'link_text' => 'supported osu!',
+            ],
+            'username_is_same' => 'This is already your username, silly!',
+        ],
     ],
 ];

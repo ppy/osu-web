@@ -101,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => '유저',
-            'getLogin' => '로그인',
+            'getLogin' => '로그인', // Base text changed from "log" to "sign"
             'disabled' => '비활성 상태', // disabled
 
             'register' => '회원 가입',
@@ -172,7 +172,6 @@ return [
         'legal' => [
             '_' => '법률 & 상태',
             'copyright' => '저작권 (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => '서버 상태 확인',
             'terms' => '서비스 이용약관',
         ],
@@ -191,7 +190,7 @@ return [
         ],
         '401' => [
             'error' => '여기 계시면 안됩니다.',
-            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...',
+            'description' => '다시 돌아가보세요. 로그인하시면 해결될지도요...', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

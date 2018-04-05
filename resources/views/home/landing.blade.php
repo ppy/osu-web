@@ -80,10 +80,9 @@
             <div class="landing-nav__section">
                 <a
                     href="#"
-                    class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user"
-                    data-nav-sub-mode="login"
+                    class="landing-nav__link js-nav-toggle js-click-menu js-user-login--menu"
                     title="{{ trans("users.anonymous.login_link") }}"
+                    data-click-menu-target="nav2-login-box"
                 >
                     {{ trans("users.login._") }}
                 </a>
@@ -91,8 +90,6 @@
                 <a
                     href="{{ osu_url('user.signup') }}"
                     class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user"
-                    data-nav-sub-mode="signup"
                 >
                     {{ trans("users.signup._") }}
                 </a>
@@ -102,7 +99,7 @@
     </nav>
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
-    @include('layout._popup')
+    @include('layout._popup_login', ['modifiers' => ['landing']])
 
     <div class="osu-page">
         <div class="landing-hero">

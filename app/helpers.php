@@ -141,7 +141,13 @@ function es_search($params)
         $error = $e;
     }
 
-    Log::debug($error);
+    if (config('datadog-helper.enabled')) {
+        Datadog::increment(
+            config('datadog-helper.prefix_web').'.search.errors',
+            1,
+            ['class' => get_class($error)]
+        );
+    }
 
     // default return on failure
     return [
@@ -149,7 +155,7 @@ function es_search($params)
             'hits' => [],
             'total' => 0,
         ],
-        'exception' => $error ?? null,
+        'exception' => $error,
     ];
 }
 
@@ -649,8 +655,7 @@ function footer_legal_links()
     return [
         'terms' => route('legal', 'terms'),
         'copyright' => route('legal', 'copyright'),
-        'server_status' => osu_url('status.server'),
-        'osu_status' => osu_url('status.osustatus'),
+        'server_status' => osu_url('server_status'),
     ];
 }
 

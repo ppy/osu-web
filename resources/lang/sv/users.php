@@ -29,8 +29,8 @@ return [
         'button' => 'Logga in',
         'button_posting' => 'Loggar in...',
         'remember' => 'Kom ihåg denna dator',
-        'title' => 'Var vänlig logga in för att fortsätta',
-        'failed' => 'Felaktig inloggning',
+        'title' => 'Var vänlig logga in för att fortsätta', // Base text changed from "log" to "sign"
+        'failed' => 'Felaktig inloggning', // Base text changed from "log" to "sign"
         'register' => 'Har inget osu! konto? Skapa en ny',
         'forgot' => 'Glömt ditt lösenord?',
         'beta' => [
@@ -44,12 +44,12 @@ return [
         '_' => 'Registrera',
     ],
     'anonymous' => [
-        'login_link' => 'klicka för att logga in',
-        'login_text' => 'logga in',
+        'login_link' => 'klicka för att logga in', // Base text changed from "log" to "sign"
+        'login_text' => 'logga in', // Base text changed from "log" to "sign"
         'username' => 'Gäst',
-        'error' => 'Du behöver vara inloggad för att göra detta.',
+        'error' => 'Du behöver vara inloggad för att göra detta.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Är du säker på att du vill logga ut? :(',
+    'logout_confirm' => 'Är du säker på att du vill logga ut? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => 'Ditt konto har blivit begränsat!',
         'message' => 'När du är begränsad, kommer du inte kunna interagera med andra spelare och dina poäng kommer endast vara synliga för dig. Detta är oftast ett resultat av en automatiserad process och kommer troligen lyftas inom 24 timmar. Om du vill överklaga din begränsning, var vänlig <a href="mailto:accounts@ppy.sh">kontakta support</a>.',

@@ -29,8 +29,8 @@ return [
         'button' => 'Se connecter',
         'button_posting' => 'Connexion...',
         'remember' => 'Se souvenir de moi sur cet ordinateur',
-        'title' => 'Merci de vous connecter pour continuer',
-        'failed' => 'Identifiants incorrects',
+        'title' => 'Merci de vous connecter pour continuer', // Base text changed from "log" to "sign"
+        'failed' => 'Identifiants incorrects', // Base text changed from "log" to "sign"
         'register' => "Vous n'avez pas de compte osu! ? Inscrivez-vous maintenant ici",
         'forgot' => 'Mot de passe oublié?',
         'beta' => [
@@ -44,11 +44,11 @@ return [
         '_' => "S'inscrire",
     ],
     'anonymous' => [
-        'login_link' => 'Cliquez pour vous connecter',
+        'login_link' => 'Cliquez pour vous connecter', // Base text changed from "log" to "sign"
         'username' => 'Invité',
-        'error' => 'Vous devez être connecté pour faire ça.',
+        'error' => 'Vous devez être connecté pour faire ça.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(',
+    'logout_confirm' => 'Êtes-vous sûr de vouloir vous déconnecter? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => 'Votre compte a été restreint !',
         'message' => "Quand vous êtes restreint, vous ne pouvez pas interagir avec les autres joueur et vos scores ne seront visibles qu'à vous. Cette restriction est souvent le résultat d'un processus automatique et sera levée en général dans les 24 heures. Si vous souhaitez faire appel de votre restriction, merci de <a href=\"mailto:accounts@ppy.sh\">contacter le support</a>.",

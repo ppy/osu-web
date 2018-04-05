@@ -78,6 +78,16 @@
                                 </div>
                             @endif
                             <div class="usercard__icon js-react--friendButton" data-target="{{$user->user_id}}"></div>
+
+                            <div class="usercard__icon">
+                                <a
+                                    class="user-action-button user-action-button--message"
+                                    href="{{ route('messages.users.show', $user->getKey()) }}"
+                                    title="{{ trans('users.card.send_message') }}"
+                                >
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                            </div>
                         @endif
                     </div>
                 </div>

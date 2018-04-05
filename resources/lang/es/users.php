@@ -37,6 +37,9 @@ return [
             'title_most' => 'Más votados (últimos 3 meses)',
         ],
     ],
+    'card' => [
+        'loading' => 'Cargando...',
+    ],
     'login' => [
         '_' => 'Iniciar sesión',
         'locked_ip' => 'Tu dirección IP está bloqueada. Espera unos minutos.',
@@ -45,8 +48,8 @@ return [
         'button' => 'Iniciar sesión',
         'button_posting' => 'Iniciando sesión...',
         'remember' => 'Recordarme',
-        'title' => 'Inicia sesión para continuar',
-        'failed' => 'Nombre de usuario o contraseña incorrectos',
+        'title' => 'Inicia sesión para continuar', // Base text changed from "log" to "sign"
+        'failed' => 'Nombre de usuario o contraseña incorrectos', // Base text changed from "log" to "sign"
         'register' => '¿No tienes una cuenta de osu!? Crea una',
         'forgot' => '¿Olvidaste tu contraseña?',
         'beta' => [
@@ -60,12 +63,12 @@ return [
         '_' => 'Registrarse',
     ],
     'anonymous' => [
-        'login_link' => 'clic para iniciar sesión',
-        'login_text' => 'iniciar sesión',
+        'login_link' => 'clic para iniciar sesión', // Base text changed from "log" to "sign"
+        'login_text' => 'iniciar sesión', // Base text changed from "log" to "sign"
         'username' => 'Invitado',
-        'error' => 'Necesitas haber iniciado sesión para hacer esto.',
+        'error' => 'Necesitas haber iniciado sesión para hacer esto.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => '¿Estás seguro que quieres salir? :(',
+    'logout_confirm' => '¿Estás seguro que quieres salir? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => '¡Tu cuenta ha sido restringida!',
         'message' => 'Mientras estás restringido, no podrás interactuar con otros juadores y tus puntuaciones solo las podrás ver tú. Esto es, normalmente, el resultado de un proceso automatizado y se levantará en 24 horas. Si deseas apelar tu restricción, por favor <a href="mailto:accounts@ppy.sh">contacta con el soporte</a>.',
@@ -134,6 +137,10 @@ return [
             ],
             'historical' => [
                 'empty' => 'Sin récords de rendimiento. :(',
+                'monthly_playcounts' => [
+                    'title' => 'Historial de de juego',
+                ],
+
                 'title' => 'Historial',
 
                 'most_played' => [
@@ -144,6 +151,12 @@ return [
                     'accuracy' => 'precisión: :percentage',
                     'title' => 'Jugadas Recientes (24h)',
                 ],
+
+                'replays_watched_counts' => [
+                    'title' => 'Historial de repeticiones vistas',
+                ],
+                'title' => 'Historial',
+
             ],
             'kudosu' => [
                 'available' => 'Kudosu disponible',
@@ -225,6 +238,10 @@ return [
             'edit_big' => '¡Editar sobre mi!',
             'placeholder' => 'Escribe el contenido aquí',
             'restriction_info' => "Necesitas ser un <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!supporter</a> para desbloquear esta función.",
+        ],
+        'post_count' => [
+            '_' => 'Contribuyó con :link',
+            'count' => ':count post en el foro|:count posts en el foro',
         ],
         'rank' => [
             'country' => 'Rank nacional para :mode',

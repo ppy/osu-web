@@ -21,18 +21,18 @@
 return [
     'button' => [
         'action' => [
-            'to_0' => 'Remover supervisão',
+            'to_0' => 'Remover Supervisão',
             'to_1' => 'Supervisionar',
         ],
     ],
 
     'index' => [
-        'description' => 'Estas são as discussões de mapa que você está acompanhando. Você será notificado quando o mapa receber atualizações ou postagens novas.',
+        'description' => 'Estas são as discussões de beatmap que você está acompanhando. Você será notificado quando o beatmap receber atualizações ou postagens novas.',
         'title_compact' => 'supervisão de modding',
-        'title_main' => 'Lista de supervisão de modding',
+        'title_main' => 'Lista de Supervisão de Modding',
 
         'table' => [
-            'empty' => 'Nenhuma discussão de mapa supervisionada.',
+            'empty' => 'Nenhuma discussão de beatmap supervisionada.',
             'open_issues' => 'Problemas em aberto',
             'state' => 'Estado',
             'title' => 'Título',
@@ -40,11 +40,11 @@ return [
     ],
 
     'mail' => [
-        'update' => 'Nova atualização no mapa ":title"',
+        'update' => 'Nova atualização no beatmap ":title"',
     ],
 
     'status' => [
         'read' => 'Lido',
-        'unread' => 'Marcar como não lido',
+        'unread' => 'Não lido',
     ],
 ];

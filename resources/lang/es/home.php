@@ -36,7 +36,6 @@ return [
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
         'missing_query' => 'Cada palabra clave requiere de al menos :n carácteres',
-        'title' => 'Resultados de la búsqueda',
 
         'beatmapset' => [
             'more' => 'Hay :count beatmaps más en los resultados',
@@ -93,16 +92,16 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'crea una cuenta',
-                'description' => 'sigue las instrucciones cuando empiezes el juego para iniciar sesión o crear una cuenta',
+                'description' => 'sigue las instrucciones cuando abras el juego para iniciar sesión o crear una cuenta', // Base text changed from "log" to "sign"
             ],
             'download' => [
                 'title' => 'descarga el juego',
                 'description' => 'haz clic en el botón de arriba para descargar el instalador, luego ¡ejecútalo!',
             ],
             'beatmaps' => [
-                'title' => 'obtén beatmaps',
+                'title' => 'descarga beatmaps',
                 'description' => [
-                    '_' => ':browse a la gran librería de beatmaps creados por otros usuarios y ¡empieza a jugar!',
+                    '_' => ':browse a la gran biblioteca de beatmaps creados por otros usuarios y ¡empieza a jugar!',
                     'browse' => 'echa un vistazo',
                 ],
             ],

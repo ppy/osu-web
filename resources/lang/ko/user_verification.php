@@ -31,7 +31,7 @@ return [
             'recover_link' => '이메일 복구 과정',
             'reissue' => ':reissue_link받거나, :logout_link하실 수도 있습니다.',
             'reissue_link' => '새 코드를 발급',
-            'logout_link' => '로그아웃',
+            'logout_link' => '로그아웃', // Base text changed from "log" to "sign"
         ],
     ],
 

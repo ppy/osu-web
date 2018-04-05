@@ -59,14 +59,14 @@ return [
     'supporter_tag' => [
         'require_login' => [
             '_' => 'Ты должен :link для покупки тега саппортера!',
-            'link_text' => 'войти',
+            'link_text' => 'войти', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
         'require_login' => [
             '_' => 'Ты должен :link для смены ника!',
-            'link_text' => 'войти',
+            'link_text' => 'войти', // Base text changed from "log" to "sign"
         ],
     ],
 ];

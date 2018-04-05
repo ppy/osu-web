@@ -21,7 +21,7 @@
 return [
     'breadcrumbs' => [
         'news-index' => 'listagem',
-        'news-show' => 'post',
+        'news-show' => 'postagem',
     ],
 
     'index' => [
@@ -37,8 +37,8 @@ return [
         'posted' => 'postado :time',
 
         'nav' => [
-            'newer' => 'Post novo',
-            'older' => 'Post antigo',
+            'newer' => 'Postagem nova',
+            'older' => 'Postagem antiga',
         ],
     ],
 
@@ -49,6 +49,6 @@ return [
 
     'update' => [
         'button' => 'Atualizar',
-        'ok' => 'Post atualizado.',
+        'ok' => 'Postagem atualizada.',
     ],
 ];
