@@ -93,7 +93,7 @@ return [
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
 
                 'user' => [
-                    'require_login' => 'Log venligst ind for at svare.',
+                    'require_login' => 'Log venligst ind for at svare.', // Base text changed from "log" to "sign"
                     'restricted' => 'Du kan ikke svare, når du er begrænset.',
                     'silenced' => 'Du kan ikke svare, når dui er mutet.',
                 ],
@@ -111,7 +111,7 @@ return [
                 'voted' => 'Det er ikke tilladt at ændre stemme.',
 
                 'user' => [
-                    'require_login' => 'Log venligst ind for at stemme.',
+                    'require_login' => 'Log venligst ind for at stemme.', // Base text changed from "log" to "sign"
                     'restricted' => 'Du kan ikke stemme, når du er begrænset.',
                     'silenced' => 'Du kan ikke stemme, når du er mutet.',
                 ],
@@ -134,7 +134,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Log venligst ind for at fortsætte.',
+    'require_login' => 'Log venligst ind for at fortsætte.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Adgang nægtet.',
 

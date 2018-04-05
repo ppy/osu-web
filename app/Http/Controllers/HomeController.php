@@ -111,6 +111,11 @@ class HomeController extends Controller
         }
     }
 
+    public function messageUser($user)
+    {
+        return ujs_redirect("https://osu.ppy.sh/forum/ucp.php?i=pm&mode=compose&u={$user}");
+    }
+
     public function osuSupportPopup()
     {
         return view('objects._popup_support_osu');
@@ -133,8 +138,9 @@ class HomeController extends Controller
         }
 
         $allSearch = new AllSearch(request(), ['user' => Auth::user()]);
+        $isSearchPage = true;
 
-        return view('home.search', compact('allSearch'));
+        return view('home.search', compact('allSearch', 'isSearchPage'));
     }
 
     public function setLocale()

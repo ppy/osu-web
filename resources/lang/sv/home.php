@@ -36,7 +36,6 @@ return [
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
         'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
-        'title' => 'Sök Resultat',
 
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',
@@ -93,7 +92,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'skaffa ett konto',
-                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto',
+                'description' => 'följ anvisningarna när du startar spelet för att logga in eller skapa ett nytt konto', // Base text changed from "log" to "sign"
             ],
             'download' => [
                 'title' => 'ladda ner spelet',

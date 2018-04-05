@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,25 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Listeners\Forum;
+namespace App\Transformers;
 
-use App\Events\Forum\TopicWasViewed;
+use App\Models\UserBadge;
+use League\Fractal;
 
-class MarkTopicRead
+class UserBadgeTransformer extends Fractal\TransformerAbstract
 {
-    public function markTopicRead($event)
+    public function transform(UserBadge $badge)
     {
-        $event->topic->markRead(
-            $event->user,
-            $event->post->post_time
-        );
-    }
-
-    public function subscribe($events)
-    {
-        $events->listen(
-            TopicWasViewed::class,
-            static::class.'@markTopicRead'
-        );
+        return [
+            'awarded_at' => json_time($badge->awarded),
+            'description' => $badge->description,
+            'image_url' => $badge->imageUrl(),
+        ];
     }
 }

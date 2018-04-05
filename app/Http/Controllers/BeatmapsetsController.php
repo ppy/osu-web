@@ -228,10 +228,10 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        NotifyBeatmapsetUpdate::dispatch([
+        (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,
-        ]);
+        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }
@@ -247,10 +247,10 @@ class BeatmapsetsController extends Controller
         }
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        NotifyBeatmapsetUpdate::dispatch([
+        (new NotifyBeatmapsetUpdate([
             'user' => Auth::user(),
             'beatmapset' => $beatmapset,
-        ]);
+        ]))->delayedDispatch();
 
         return $beatmapset->defaultDiscussionJson();
     }

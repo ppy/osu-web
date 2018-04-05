@@ -279,12 +279,13 @@ class UsersController extends Controller
         }
 
         $userIncludes = [
+            'account_history',
+            'badges',
             'favourite_beatmapset_count',
             'follower_count',
             'graveyard_beatmapset_count',
             'monthly_playcounts',
             'page',
-            'account_history',
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'unranked_beatmapset_count',

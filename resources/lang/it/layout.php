@@ -84,7 +84,7 @@ return [
         ],
         'user' => [
             '_' => 'utente',
-            'getLogin' => 'login',
+            'getLogin' => 'login', // Base text changed from "log" to "sign"
             'disabled' => 'disabilitato',
 
             'register' => 'registra',
@@ -154,7 +154,6 @@ return [
         'legal' => [
             '_' => 'Legale e Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Stato del Server',
             'terms' => 'Termini di Servizio',
         ],
@@ -172,7 +171,7 @@ return [
             'link' => false,
         ],
         '401' => [
-            'error' => 'Non dovresti essere qui.',
+            'error' => 'Non dovresti essere qui.', // Base text changed from "log" to "sign"
             'description' => 'Potresti comunque provare tornando indietro. O forse effettuando il login.',
             'link' => false,
         ],

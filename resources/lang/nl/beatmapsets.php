@@ -24,7 +24,7 @@ return [
             'made-by' => 'gemaakt door ',
             'submitted' => 'ingezonden op ',
             'ranked' => 'gerankt op ',
-            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!',
+            'logged-out' => 'Je moet ingelogd zijn voordat je beatmaps kan downloaden!', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'downloaden',
                 'no-video' => 'zonder video',

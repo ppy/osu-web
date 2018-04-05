@@ -83,7 +83,11 @@
 
 
   pageChange: ->
-    Timeout.set 0, -> $(document).trigger('osu:page:change')
+    Timeout.set 0, osu.pageChangeImmediate
+
+
+  pageChangeImmediate: ->
+    $(document).trigger('osu:page:change')
 
 
   parseJson: (id) ->
@@ -213,6 +217,10 @@
 
     document.activeElement.blur?()
     $alert.appendTo($popup).fadeIn()
+
+
+  popupShowing: ->
+    $('#overlay').is(':visible')
 
 
   trans: (key, replacements) ->

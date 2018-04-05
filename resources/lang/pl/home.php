@@ -35,7 +35,7 @@ return [
         'button' => 'Szukaj',
         'empty_result' => 'Nie znaleziono!',
         'missing_query' => 'Wyszukiwane hasło musi mieć minimalnie :n znaki',
-        'title' => 'Wyniki wyszukiwania',
+
         'beatmapset' => [
             'more' => 'Zobacz więcej wyszukanych beatmap: :count',
             'more_simple' => 'Zobacz więcej wyszukanych beatmap',

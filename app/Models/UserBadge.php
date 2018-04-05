@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -18,9 +18,19 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace App\Events\Forum;
+namespace App\Models;
 
-class TopicWasReplied extends TopicUpdate
+class UserBadge extends Model
 {
-    //
+    protected $table = 'osu_badges';
+    protected $primaryKey = 'user_id';
+    protected $guarded = [];
+
+    protected $dates = ['awarded'];
+    public $timestamps = false;
+
+    public function imageUrl()
+    {
+        return "https://assets.ppy.sh/profile-badges/{$this->image}";
+    }
 }

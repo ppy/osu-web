@@ -19,40 +19,58 @@
 // main: compiled.less
 @import "app";
 
-.fn-section(admin, @gray-darker, @gray-text);
-.fn-section(admin-forum, @gray-darker, @gray-text);
-.fn-section(admin-store, @gray-darker, @gray-text);
-.fn-section(beatmaps, @pink-darker, @pink-text);
-.fn-section(beatmapsets, @pink-darker, @pink-text);
-.fn-section(community, @pink-darker, @pink-text);
-.fn-section(error, @pink-darker, @pink-text);
-.fn-section(help, @yellow-darker, @yellow-text);
-.fn-section(home, @purple-darker, @purple-text);
-.fn-section(multiplayer, @pink-darker, @pink-text);
-.fn-section(rankings, @green-darker, @green-text);
-.fn-section(store, @pink-darker, @pink-text);
-.fn-section(user, @blue-darker, @blue-text);
+.fn-section(admin, gray);
+.fn-section(admin-forum, gray);
+.fn-section(admin-store, gray);
+.fn-section(beatmaps, pink);
+.fn-section(beatmapsets, pink);
+.fn-section(community, pink);
+.fn-section(error, pink);
+.fn-section(help, yellow);
+.fn-section(home, purple);
+.fn-section(multiplayer, pink);
+.fn-section(rankings, green);
+.fn-section(store, pink);
+.fn-section(user, blue);
 
-.fn-section(@section, @bg-color, @text-color) {
+.fn-section(@section, @color-name) {
+  @_lighter: "@{color-name}-lighter";
+  @_light: "@{color-name}-light";
+  @_dark: "@{color-name}-dark";
+  @_darker: "@{color-name}-darker";
+  @_text: "@{color-name}-text";
+
+  @_bg: @@_darker;
+
   .t-section-@{section} {
     .u-section--bg {
-      background-color: @bg-color !important;
+      background-color: @_bg !important;
+    }
+
+    .u-section--bg-normal {
+      background-color: @@color-name !important;
     }
 
     .u-section--color-hover {
       &:focus,
       &:hover,
       &:active {
-        color: @text-color !important;
+        color: @_text !important;
       }
     }
 
     .u-section--gradient-down {
-      background-image: linear-gradient(fade(@bg-color, 90%) 0%, @bg-color 75%, @bg-color 100%) !important;
+      background-image: linear-gradient(fade(@_bg, 90%) 0%, @_bg 75%, @_bg 100%) !important;
     }
   }
 
   .u-section-@{section}--bg {
-    background-color: @bg-color !important;
+    background-color: @_bg !important;
+  }
+
+  .u-section-@{section}--before-bg-normal {
+    &::before {
+      background-color: @@color-name !important;
+    }
   }
 }

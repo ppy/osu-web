@@ -178,7 +178,6 @@ return [
         'legal' => [
             '_' => '法律 & 状态',
             'copyright' => '版权（DMCA）',
-            'osu_status' => '@osustatus',
             'server_status' => '服务器状态',
             'terms' => '服务条款',
         ],

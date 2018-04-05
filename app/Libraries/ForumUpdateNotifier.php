@@ -1,5 +1,7 @@
+<?php
+
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -16,13 +18,22 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-.profile-extra-user-page-editor {
-  flex: 1 0 auto;
+namespace App\Libraries;
 
-  width: 100%;
-  resize: vertical;
-  border: none;
-  outline: none;
-  min-height: 200px;
-  font-family: @font-family-monospace;
+use App\Jobs\NotifyForumUpdateMail;
+use App\Jobs\NotifyForumUpdateSlack;
+
+class ForumUpdateNotifier
+{
+    public static function onNew($data)
+    {
+        (new NotifyForumUpdateSlack($data, 'new'))->dispatchIfNeeded();
+    }
+
+    public static function onReply($data)
+    {
+        dispatch(new NotifyForumUpdateMail($data));
+
+        (new NotifyForumUpdateSlack($data, 'reply'))->dispatchIfNeeded();
+    }
 }

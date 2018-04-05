@@ -131,6 +131,14 @@ class ProfilePage.HeaderExtra extends React.Component
                       devices: rowValue playsWith
             @renderPostCount()
 
+          if !currentUser.id? || currentUser.id != @props.user.id
+            div className: "#{bn}__rows #{bn}__rows--actions",
+              a
+                className: 'user-action-button user-action-button--message'
+                href: laroute.route 'messages.users.show', user: @props.user.id
+                title: osu.trans('users.card.send_message')
+                el Icon, name: 'envelope'
+
         div className: "#{bn}__column #{bn}__column--text #{bn}__column--shrink",
           div className: "#{bn}__rows",
             @fancyLink

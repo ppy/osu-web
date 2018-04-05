@@ -133,6 +133,7 @@ class BeatmapsetPage.Info extends React.Component
 
             div className: 'beatmapset-description-editor__container osu-page',
               el BBCodeEditor,
+                modifiers: ['beatmapset-description-editor']
                 disabled: @state.isBusy
                 onChange: @onEditorChange
                 onSelectionUpdate: @onSelectionUpdate

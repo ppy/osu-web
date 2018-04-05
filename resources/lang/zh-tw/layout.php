@@ -181,7 +181,6 @@ return [
         'legal' => [
             '_' => '法律 & 狀態',
             'copyright' => '版權（DMCA）',
-            'osu_status' => '@osustatus',
             'server_status' => '服務器狀態',
             'terms' => '服務條款',
         ],

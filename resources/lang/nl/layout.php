@@ -78,7 +78,7 @@ return [
         ],
         'user' => [
             '_' => 'gebruiker',
-            'getLogin' => 'inloggen',
+            'getLogin' => 'inloggen', // Base text changed from "log" to "sign"
             'disabled' => 'inactief',
 
             'register' => 'registreren',
@@ -136,7 +136,7 @@ return [
         ],
         '401' => [
             'error' => 'Jij hoort hier niet.',
-            'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.',
+            'description' => 'Je zou kunnen proberen terug te gaan. Of misschien zou je kunnen inloggen.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [
