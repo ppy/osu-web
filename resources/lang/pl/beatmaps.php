@@ -231,6 +231,7 @@ return [
         'FI' => 'Fade In',
         '9K' => '9K',
         'NM' => 'Brak modyfikatorów',
+        'TD' => 'Touch Device',
     ],
     'language' => [
         'any' => 'Jakikolwiek',
