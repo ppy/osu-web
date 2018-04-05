@@ -212,6 +212,7 @@ return [
     ],
     'mods' => [
         'NF' => 'No Fail',
+        'TD' => 'Touch Device',
         'EZ' => 'Easy Mode',
         'HD' => 'Hidden',
         'HR' => 'Hard Rock',
