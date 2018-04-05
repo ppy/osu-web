@@ -95,28 +95,7 @@ class BeatmapDiscussionPostsController extends Controller
 
     public function store()
     {
-        $discussion = BeatmapDiscussion::findOrNew(Request::input('beatmap_discussion_id'));
-        $beatmapset = null;
-
-        if ($discussion->exists) {
-            $discussionFilters = ['resolved:bool'];
-        } else {
-            $beatmapset = Beatmapset
-                ::where('discussion_enabled', true)
-                ->findOrFail(Request::input('beatmapset_id'));
-
-            $discussion->beatmapset_id = $beatmapset->getKey();
-            $discussion->user_id = Auth::user()->user_id;
-            $discussion->resolved = false;
-            $discussionFilters = [
-                'beatmap_id:int',
-                'message_type',
-                'timestamp:int',
-            ];
-        }
-
-        $discussionParams = get_params(Request::all(), 'beatmap_discussion', $discussionFilters);
-        $discussion->fill($discussionParams);
+        $discussion = $this->prepareDiscussion(request());
 
         priv_check('BeatmapDiscussionPostStore', $discussion)->ensureCan();
 
@@ -126,10 +105,10 @@ class BeatmapDiscussionPostsController extends Controller
         $events = [];
 
         $resetNominations = !$discussion->exists &&
-            $beatmapset->isPending() &&
-            $beatmapset->hasNominations() &&
+            $discussion->beatmapset->isPending() &&
+            $discussion->beatmapset->hasNominations() &&
             $discussion->message_type === 'problem' &&
-            priv_check('BeatmapsetResetNominations', $beatmapset)->can();
+            priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
 
         if ($resetNominations) {
             $events[] = BeatmapsetEvent::NOMINATION_RESET;
@@ -198,5 +177,36 @@ class BeatmapDiscussionPostsController extends Controller
 
             return error_popup(presence($message, trans('beatmaps.discussion-posts.store.error')));
         }
+    }
+
+    private function prepareDiscussion($request)
+    {
+        $discussionId = get_int($request['beatmap_discussion_id']);
+
+        if ($discussionId === null) {
+            $beatmapset = Beatmapset
+                ::where('discussion_enabled', true)
+                ->findOrFail($request['beatmapset_id']);
+
+            $discussion = new BeatmapDiscussion([
+                'beatmapset_id' => $beatmapset->getKey(),
+                'user_id' => Auth::user()->getKey(),
+                'resolved' => false,
+            ]);
+
+            $discussionFilters = [
+                'beatmap_id:int',
+                'message_type',
+                'timestamp:int',
+            ];
+        } else {
+            $discussion = BeatmapDiscussion::findOrFail($discussionId);
+            $discussionFilters = ['resolved:bool'];
+        }
+
+        $discussionParams = get_params($request, 'beatmap_discussion', $discussionFilters);
+        $discussion->fill($discussionParams);
+
+        return $discussion;
     }
 }
