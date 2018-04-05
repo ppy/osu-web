@@ -17,7 +17,7 @@
 --}}
 @include('layout._header_mobile')
 <div class="nav2-header">
-    <div class="bg">
+    <div class="bg hidden-xs">
         <div class="bg__triangles"></div>
         <div class="bg__gradient-overlay u-section--gradient-down"></div>
     </div>
@@ -25,14 +25,14 @@
     <div class="hidden-xs no-print osu-page">
         @include('layout._nav2')
     </div>
+
+    @if (Auth::user() === null)
+        @include('layout._popup_login')
+    @endif
 </div>
 
 <div class="js-user-verification--reference"></div>
 @include('layout._user_verification_popup')
-
-@if (Auth::user() === null)
-    @include('layout._popup_login')
-@endif
 
 @if (Auth::user() && Auth::user()->isRestricted())
     <div class="osu-page">

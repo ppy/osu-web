@@ -49,7 +49,7 @@ class @Nav2
     popupRect = popup.getBoundingClientRect()
     popupContainerRect = popup.parentElement.getBoundingClientRect()
     referenceRect = reference.getBoundingClientRect()
-    bodyRect = document.body.getBoundingClientRect()
+    bodyWidth = document.body.getBoundingClientRect().width - 5 # some right margin, sync with .login-box@desktop
 
     referenceHalfWidth = referenceRect.width / 2
     popupHalfWidth = popupRect.width / 2
@@ -62,7 +62,7 @@ class @Nav2
       finalLeft = Math.floor(referenceRect.left) * -1
     else
       popupRightWhenCentered = popupLeftWhenCentered + popupRect.width
-      popupRightOverflow = Math.round(popupRightWhenCentered - bodyRect.width)
+      popupRightOverflow = Math.round(popupRightWhenCentered - bodyWidth)
 
       finalLeft =
         if popupRightOverflow > 0

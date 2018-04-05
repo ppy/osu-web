@@ -20,13 +20,14 @@
     data-click-menu-id="nav2-user-popup"
     data-visibility="hidden"
 >
-    <div
-        class="simple-menu__header js-current-user-cover"
+    <a
+        href="{{ route('users.show', Auth::user()) }}"
+        class="simple-menu__header simple-menu__header--link js-current-user-cover"
         {!! background_image(Auth::user()->cover(), false) !!}
     >
         <img class="simple-menu__header-icon" src="/images/icons/profile.svg" alt="">
         <div>{{ Auth::user()->username }}</div>
-    </div>
+    </a>
 
     <a
         class="simple-menu__item"

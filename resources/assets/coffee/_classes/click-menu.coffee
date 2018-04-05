@@ -25,6 +25,7 @@ class @ClickMenu
 
 
   hide: (e) =>
+    return if e.button != 0
     return if osu.popupShowing()
     return if !@current?
     return if $(e.target).closest('.js-click-menu').length > 0
