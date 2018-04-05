@@ -27,14 +27,14 @@
             </div>
 
             <a
-                class="search-result__more-button {{ $showMore ? 'search-result__more-button--hidden' : '' }}"
+                class="search-result__more-button {{ $showMore ? '' : 'search-result__more-button--hidden' }}"
                 href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
             >
                 <span class="fa fa-angle-right"></span>
             </a>
         </div>
 
-        @if (request('mode') === 'all')
+        @if ($showMore)
             <a
                 class="search-result__row search-result__row--more"
                 href="{{ route('search', ['mode' => $mode, 'query' => request('query')]) }}"
