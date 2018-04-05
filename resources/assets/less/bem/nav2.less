@@ -108,13 +108,34 @@
   }
 
   &__logo {
+    .full-size();
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 100ms ease-in-out;
+    will-change: opacity, transform;
+
+    background-image: url('/images/layout/osu-logo-white.svg');
+
+    .@{_top}__logo-link:hover & {
+      transform: scale(1.1);
+    }
+
+    &--bg {
+      background-image: url('/images/layout/osu-logo-triangles.svg');
+      opacity: 0;
+
+      .@{_top}__logo-link:hover & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__logo-link {
     @__logo-whitespace: 6px;
     @_logo-size: (@nav2-menu-height + @__logo-whitespace * 2);
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
-    background-image: url('/images/layout/osu-logo-white.svg');
-    background-size: contain;
   }
 
   &__menu-link {
