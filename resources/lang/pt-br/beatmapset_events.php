@@ -40,7 +40,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Eventos ocorridos no mapa',
+        'title' => 'Eventos ocorridos no beatmap',
     ],
 
     'item' => [

@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> registered players',
 
         'slogan' => [
-            'main' => 'free-to-play rhythm game',
+            'main' => 'the bestest free-to-win rhythm game',
             'sub' => 'rhythm is just a click away',
         ],
     ],
@@ -36,7 +36,8 @@ return [
         'button' => 'Search',
         'empty_result' => 'Nothing found!',
         'missing_query' => 'Search keyword of minimum :n characters is required',
-        'title' => 'Search Results',
+        'placeholder' => 'type to search',
+        'title' => 'Search',
 
         'beatmapset' => [
             'more' => ':count more beatmap search results',
@@ -93,7 +94,7 @@ return [
         'steps' => [
             'register' => [
                 'title' => 'get an account',
-                'description' => 'follow the prompts when starting the game to login or make a new account',
+                'description' => 'follow the prompts when starting the game to sign in or make a new account',
             ],
             'download' => [
                 'title' => 'download the game',

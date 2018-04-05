@@ -101,7 +101,7 @@ return [
         ],
         'user' => [
             '_' => 'bruger',
-            'getLogin' => 'log ind',
+            'getLogin' => 'log ind', // Base text changed from "log" to "sign"
             'disabled' => 'deaktiveret',
 
             'register' => 'registrer',
@@ -173,7 +173,6 @@ return [
         'legal' => [
             '_' => 'Legal & Status',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Server Status',
             'terms' => 'Betingelser for Brug',
         ],
@@ -192,7 +191,7 @@ return [
         ],
         '401' => [
             'error' => 'Du burde ikke være her.',
-            'description' => 'Du kunne prøve at gå tilbage igen, okay? Eller bare logge ind måske.',
+            'description' => 'Du kunne prøve at gå tilbage igen, okay? Eller bare logge ind måske.', // Base text changed from "log" to "sign"
             'link' => false,
         ],
         '405' => [

@@ -20,14 +20,18 @@
 
 namespace App\Libraries\Elasticsearch;
 
+use Datadog;
 use Elasticsearch\Common\Exceptions\BadRequest400Exception;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use Elasticsearch\Common\Exceptions\NoNodesAvailableException;
+use Illuminate\Pagination\LengthAwarePaginator;
 
-class Search implements Queryable
+abstract class Search implements Queryable
 {
     use HasSearch;
 
+    const DEFAULT_PAGE_SIZE = 50;
+    const HIGHLIGHT_FRAGMENT_SIZE = 50;
     // maximum number of total results allowed when not using the scroll API.
     const MAX_RESULTS = 10000;
 
@@ -43,9 +47,46 @@ class Search implements Queryable
         $this->options = $options;
     }
 
+    // for paginator
+    abstract public function data();
+
     public function getError()
     {
         return $this->error;
+    }
+
+    public function getPaginator(array $options = [])
+    {
+        $page = $this->getPaginationParams();
+        if (!isset($page['page'])) {
+            // no laravel paginator if offset-only paging is used
+            return;
+        }
+
+        return new LengthAwarePaginator(
+            $this->data(),
+            $this->total(),
+            $page['size'],
+            $page['page'],
+            $options
+        );
+    }
+
+    /**
+     * Not the same as paginate on laravel's query builder; this one can actually pass options to
+     * the paginator.
+     */
+    public function paginate(?int $pageSize = null, ?int $page = null, ?array $options = null)
+    {
+        // TODO: default should be based to search type.
+        $this->size($pageSize ?? static::DEFAULT_PAGE_SIZE)
+            ->page($page ?? LengthAwarePaginator::resolveCurrentPage());
+
+        if ($options === null) {
+            $options = ['path' => request()->url()];
+        }
+
+        return $this->getPaginator($options);
     }
 
     /**
@@ -92,6 +133,11 @@ class Search implements Queryable
         return $json;
     }
 
+    public function total()
+    {
+        return min($this->response()->total(), static::MAX_RESULTS);
+    }
+
     private function fetch()
     {
         try {
@@ -105,6 +151,14 @@ class Search implements Queryable
         } catch (Missing404Exception $e) {
             // index is missing ?_?
             $this->error = $e;
+        }
+
+        if (config('datadog-helper.enabled')) {
+            Datadog::increment(
+                config('datadog-helper.prefix_web').'.search.errors',
+                1,
+                ['class' => get_class($error)]
+            );
         }
 
         return SearchResponse::failed();

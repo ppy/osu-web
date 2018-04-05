@@ -19,7 +19,7 @@
  */
 
 return [
-    'confirmation' => 'Ты уверен?',
+    'confirmation' => 'Вы уверены?',
     'saved' => 'Сохранено',
 
     'array_and' => [
@@ -37,6 +37,7 @@ return [
         'reset' => 'Сбросить',
         'save' => 'Сохранить',
         'saving' => 'Сохранение...',
+        'see_more' => 'показать ещё',
         'show_more' => 'показать больше',
         'upload_image' => 'выбрать файл',
     ],

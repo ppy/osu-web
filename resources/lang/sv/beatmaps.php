@@ -43,7 +43,7 @@ return [
         'message_type_select' => 'Välj Kommentar Typ',
         'reply_notice' => 'Tryck enter för att svara.',
         'reply_placeholder' => 'Skriv ditt svar här',
-        'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara',
+        'require-login' => 'Var vänlig logga in för att lägga upp inlägg eller svara', // Base text changed from "log" to "sign"
         'resolved' => 'Löst',
         'restore' => 'återställ',
         'title' => 'Diskussioner',

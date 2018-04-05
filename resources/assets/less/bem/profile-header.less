@@ -24,6 +24,19 @@
   background-position: center;
   transition: background-image 120ms;
 
+  min-height: @profile-header-height;
+  padding: 70px 40px 0; // padding-top also avoids collision with default mode button
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  @media @desktop {
+    padding-top: 30px;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
   &__actions {
     position: absolute;
     right: 20px;
@@ -52,21 +65,13 @@
 
   &__column {
     margin: 0 10px;
-  }
 
-  &__container {
-    min-height: @profile-header-height;
-    padding: 70px 40px 0; // padding-top also avoids collision with default mode button
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-
-    @media @desktop {
-      padding-top: 30px;
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
+    &--info {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      min-width: 0;
     }
   }
 

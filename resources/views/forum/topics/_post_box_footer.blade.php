@@ -15,40 +15,37 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<?php
-    if (!isset($editing)) { $editing = false; }
-?>
-<div class="post-box__toolbar hidden-xs">
-    @include("forum._post_toolbar")
-</div>
+<div class="post-editor-footer">
+    <div class="post-editor-footer__col post-editor-footer__col--toolbar">
+        @include("forum._post_toolbar")
+    </div>
 
-<div class="post-editor__actions">
-    @if ($editing)
+    <div class="post-editor-footer__col post-editor-footer__col--actions">
+        @if ($editing ?? false)
+            <button
+                class="
+                    js-ujs-submit-disable
+                    js-edit-post-cancel
+                    btn-osu
+                    btn-osu--post-editor
+                    btn-osu-default
+                "
+                type="button"
+            >
+                {{ trans("forum.topic.post_edit.cancel") }}
+            </button>
+        @endif
+
         <button
             class="
-                js-ujs-submit-disable
-                js-edit-post-cancel
                 btn-osu
-                btn-osu--small
+                btn-osu--post-editor
                 btn-osu-default
-                post-editor__action
             "
-            type="button"
+            type="submit"
+            data-disable-with="{{ trans('common.buttons.saving') }}"
         >
-            {{ trans("forum.topic.post_edit.cancel") }}
+            {{ $submitText }}
         </button>
-    @endif
-
-    <button
-        class="
-            btn-osu
-            btn-osu--small
-            btn-osu-default
-            post-editor__action
-        "
-        type="submit"
-        data-disable-with="{{ trans('common.buttons.saving') }}"
-    >
-        {{ $submitText }}
-    </button>
+    </div>
 </div>

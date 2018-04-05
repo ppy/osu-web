@@ -41,7 +41,7 @@ return [
         'message_placeholder' => 'Écrivez ici pour poster',
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_placeholder' => 'Écrivez votre réponse ici',
-        'require-login' => 'Veuillez vous connecter pour poster ou répondre',
+        'require-login' => 'Veuillez vous connecter pour poster ou répondre', // Base text changed from "log" to "sign"
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'title' => 'Discussions',

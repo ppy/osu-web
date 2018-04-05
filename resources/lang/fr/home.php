@@ -26,7 +26,7 @@ return [
         'players' => '<strong>:count</strong> joueurs inscrits',
 
         'slogan' => [
-            'main' => 'jeu de rythme free-to-play',
+            'main' => 'jeu de rythme free-to-win',
             'sub' => 'Le rythme est juste à un seul clic',
         ],
     ],
@@ -36,7 +36,6 @@ return [
         'button' => 'rechercher',
         'empty_result' => 'Aucun Résultat !',
         'missing_query' => 'Les mots clés doivent être de :n caractères minimum',
-        'title' => 'Résultats de la Recherche',
 
         'beatmapset' => [
             'more' => ':count résultats de recherche de beatmap en plus',

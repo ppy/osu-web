@@ -27,14 +27,14 @@ return [
         'cart_problems' => 'Ops, seu carrinho parece ter alguns problemas!',
         'cart_problems_edit' => 'Clique aqui para editá-lo.',
         'declined' => 'O pagamento foi cancelado.',
-        'error' => 'Tem um problema com a sua compra :(',
+        'error' => 'Houve um problema com a sua compra :(',
         'pay' => 'Pagar com o Paypal',
         'pending_checkout' => [
-            'line_1' => 'Uma compra antiga foi atualizado, mas não foi finalizado.',
+            'line_1' => 'Uma compra antiga foi atualizada mas não foi finalizada.',
             'line_2' => 'Continue a sua compra selecionando um método de pagamento, ou :link para cancelar.',
             'link_text' => 'clique aqui',
         ],
-        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode requisitar seu pedido, mas espere um atraso adicional de **1-2 semanas** enquaanto nós tentamos alcançar os pedidos mais recentes.',
+        'delayed_shipping' => 'Nós estamos sobrecarregados com pedidos! Você pode fazer seu pedido, mas por favor espere um **atraso adicional de 1-2 semanas** enquaanto nós realizamos os pedidos mais recentes.',
     ],
 
     'discount' => 'economize :percent%',
@@ -52,31 +52,33 @@ return [
         'name' => 'Nome',
 
         'stock' => [
-            'out' => 'Esse item está fora de estoque. Volte mais tarde!',
-            'out_with_alternative' => 'Infelizmente esse item está fora de estoque. Por favor, selecione outro ou tente novamente mais tarde!',
+            'out' => 'Este item está fora de estoque. Volte mais tarde!',
+            'out_with_alternative' => 'Infelizmente este item está fora de estoque. Por favor, selecione outro ou tente novamente mais tarde!',
         ],
 
-        'add_to_cart' => 'Adicionar ao carrinho',
+        'add_to_cart' => 'Adicionar ao Carrinho',
         'notify' => 'Me notifique quando estiver disponível!',
 
-        'notification_success' => 'você será notificado quando tivermos um novo estoque. clique :link para cancelar',
+        'notification_success' => 'você será notificado quando tivermos o produto em estoque. clique :link para cancelar',
         'notification_remove_text' => 'aqui',
 
-        'notification_in_stock' => 'Esse produto já está no estoque!',
+        'notification_in_stock' => 'Este produto já está no estoque!',
     ],
 
     'supporter_tag' => [
         'gift' => 'dar de presente',
         'require_login' => [
             '_' => 'Você precisa estar :link para comprar uma supporter tag!',
-            'link_text' => 'conectado',
+            'link_text' => 'conectado', // Base text changed from "log" to "sign"
         ],
     ],
 
     'username_change' => [
+        'check' => 'Entre com um username para checar disponibilidade!',
+        'checking' => 'Checando disponibilidade de :username...',
         'require_login' => [
             '_' => 'Você precisa estar :link para mudar o seu nome!',
-            'link_text' => 'conectado',
+            'link_text' => 'conectado', // Base text changed from "log" to "sign"
         ],
     ],
 ];

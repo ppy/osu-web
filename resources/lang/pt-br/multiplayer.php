@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Partidas multiplayer',
+        'header' => 'Partidas Multiplayer',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -59,13 +59,13 @@ return [
         'difference' => 'por :difference',
         'loading-events' => 'Carregando eventos...',
         'more-events' => 'ver tudo...',
-        'beatmap-deleted' => 'mapa excluído',
+        'beatmap-deleted' => 'beatmap excluído',
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Maior pontuação',
-            'accuracy' => 'Maior precisão',
-            'combo' => 'Maior combo',
+            'score' => 'Maior Pontuação',
+            'accuracy' => 'Maior Precisão',
+            'combo' => 'Maior Combo',
             'scorev2' => 'Pontuação V2',
         ],
     ],

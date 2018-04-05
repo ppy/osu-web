@@ -31,7 +31,7 @@ return [
             'recover_link' => 'proceso de recuperación de correo electrónico aquí',
             'reissue' => 'También puedes :reissue_link o :logout_link.',
             'reissue_link' => 'solicitar otro código',
-            'logout_link' => 'cerrar sesión',
+            'logout_link' => 'cerrar sesión', // Base text changed from "log" to "sign"
         ],
     ],
 

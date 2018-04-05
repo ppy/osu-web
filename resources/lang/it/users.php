@@ -25,8 +25,8 @@ return [
         'password' => 'Password',
         'button' => 'Accedi',
         'remember' => 'Ricorda questo computer',
-        'title' => 'Per favore accedi per procedere',
-        'failed' => 'Login non corretto',
+        'title' => 'Per favore accedi per procedere', // Base text changed from "log" to "sign"
+        'failed' => 'Login non corretto', // Base text changed from "log" to "sign"
         'register' => 'Non hai un account di osu! ? Fanne uno nuovo',
         'forgot' => 'Hai dimenticato la tua password?',
         'beta' => [
@@ -40,11 +40,11 @@ return [
         '_' => 'Registrati',
     ],
     'anonymous' => [
-        'login_link' => 'clicca per accedere',
+        'login_link' => 'clicca per accedere', // Base text changed from "log" to "sign"
         'username' => 'Ospite',
-        'error' => 'Devi accedere per poterlo fare.',
+        'error' => 'Devi accedere per poterlo fare.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(',
+    'logout_confirm' => 'Sei sicuro di volerti disconnettere? :(', // Base text changed from "log" to "sign"
     'show' => [
         '404' => 'Utente non trovato! ;_;',
         'age' => ':age anni',
