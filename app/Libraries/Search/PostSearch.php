@@ -45,6 +45,8 @@ class PostSearch extends Search
                 ->fragmentSize(static::HIGHLIGHT_FRAGMENT_SIZE)
                 ->numberOfFragments(3)
         );
+
+        $this->sort(new Sort('post_time', 'desc'));
     }
 
     // TODO: maybe move to a response/view helper?
@@ -103,13 +105,5 @@ class PostSearch extends Search
         $ids = $this->response()->ids('poster_id');
 
         return User::whereIn('user_id', $ids);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getDefaultSort() : array
-    {
-        return [new Sort('post_time', 'desc')];
     }
 }

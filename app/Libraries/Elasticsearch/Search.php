@@ -150,7 +150,7 @@ abstract class Search implements Queryable
             'size' => $pageParams['size'],
             'sort' => array_map(function ($sort) {
                 return $sort->toArray();
-            }, $this->sorts === [] ? $this->getDefaultSort() : $this->sorts),
+            }, $this->sorts),
         ];
 
         if (isset($this->highlight)) {
@@ -185,17 +185,6 @@ abstract class Search implements Queryable
     protected function getDefaultSize() : int
     {
         return 50;
-    }
-
-    /**
-     * The default sort(s) to use for the query is none was specified.
-     * Return [] to use elasticsearch's default.
-     *
-     * @return array
-     */
-    protected function getDefaultSort() : array
-    {
-        return [];
     }
 
     private function fetch()
