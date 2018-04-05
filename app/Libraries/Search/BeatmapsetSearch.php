@@ -41,8 +41,7 @@ class BeatmapsetSearch extends RecordSearch
             $params
         );
 
-        $this->sorts = $this->normalizeSort();
-        if ($this->sorts === []) {
+        if (empty($this->sorts)) {
             $this->sorts = $this->getDefaultSort();
         }
     }
@@ -77,14 +76,6 @@ class BeatmapsetSearch extends RecordSearch
     public function records()
     {
         return $this->response()->records()->with('beatmaps')->get();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function sort(Sort $sort)
-    {
-        return parent::sort(static::remapSortField($sort));
     }
 
     private function addExtraFilter($query)
@@ -230,57 +221,5 @@ class BeatmapsetSearch extends RecordSearch
         }
 
         return [new Sort('approved_date', 'desc')];
-    }
-
-    /**
-     * Generate sort parameters for the elasticsearch query.
-     */
-    private function normalizeSort()
-    {
-        // additional options
-        static $orderOptions = [
-            'difficulties.difficultyrating' => [
-                'asc' => ['mode' => 'min'],
-                'desc' => ['mode' => 'max'],
-            ],
-        ];
-
-        if ($this->sorts === []) {
-            return [];
-        }
-
-        $newSort = [];
-        foreach ($this->sorts as $sort) {
-            $options = ($orderOptions[$sort->field] ?? [])[$sort->order] ?? [];
-            if ($options !== []) {
-                $sort->mode = $options['mode'];
-            }
-
-            $newSort[] = $sort;
-
-            if ($sort->field === 'nominations') {
-                $newSort[] = new Sort('hype', $sort->order);
-            }
-        }
-
-        return $newSort;
-    }
-
-    private static function remapSortField(Sort $sort)
-    {
-        static $fields = [
-            'artist' => 'artist.raw',
-            'creator' => 'creator.raw',
-            'difficulty' => 'difficulties.difficultyrating',
-            'nominations' => 'nominations',
-            'plays' => 'play_count',
-            'ranked' => 'approved_date',
-            'rating' => 'rating',
-            'relevance' => '_score',
-            'title' => 'title.raw',
-            'updated' => 'last_update',
-        ];
-
-        return new Sort($fields[$sort->field] ?? null, $sort->order, $sort->mode);
     }
 }
