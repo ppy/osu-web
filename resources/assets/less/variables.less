@@ -22,6 +22,10 @@
 @desktop: ~"(min-width: @{screen-sm-min})";
 @mobile: ~"(max-width: @{screen-mobile-max})";
 
+@nav2-menu-height: 70px;
+@nav2-overlap: 5px;
+@nav2-header-height: 360px;
+
 @bar-size: 3px;
 @logo-size: 100px;
 // header left margin (20) + logo (100) + menu left margin (10)
@@ -42,20 +46,17 @@
 @z-index--body-background: 0;
 @z-index--beatmaps-panel: 4;
 @z-index--page-extra-tabs: 5;
-@zindex-navbar: 500; // bootstrap
-@zindex-dropdown: 500; // bootstrap
+@z-index--nav2: 100;
+@z-index--simple-menu: 101;
 @z-index--forum-topic-headernav: 501;
 @z-index--fixed-bar: 501;
 @z-index--blackout: 510;
 @z-index--blackout-visible: 511;
-@zindex-navbar-fixed: 530; // bootstrap
-@zindex-modal-background: 540; // bootstrap
-@zindex-modal: 550; // bootstrap
-@zindex-popover: 560; // bootstrap
-@zindex-tooltip: 570; // bootstrap
-@z-index--nav-popup: 998;
 @z-index--nav-float: 999;
 // Xsolla overlay: 1000
+// navbar-static-top: 1000 (bootstrap nav for mobile)
+// modal-backdrop: 1040
+// modal: 1050
 @z-index--overlay: 9990;
 
 @z-index--beatmapset-header: 1;

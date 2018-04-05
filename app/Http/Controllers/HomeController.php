@@ -145,12 +145,13 @@ class HomeController extends Controller
         ]);
 
         $search = new Search($params);
+        $isSearchPage = true;
 
         if ($search->mode === Search::DEFAULT_MODE) {
             $search->params['limit'] = 8;
         }
 
-        return view('home.search', compact('search'));
+        return view('home.search', compact('search', 'isSearchPage'));
     }
 
     public function setLocale()

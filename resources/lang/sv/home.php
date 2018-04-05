@@ -36,7 +36,6 @@ return [
         'button' => 'Sök',
         'empty_result' => 'Ingenting hittades!',
         'missing_query' => 'Sökning på nyckelord behöver vara på minst :n karaktärer',
-        'title' => 'Sök Resultat',
 
         'beatmapset' => [
             'more' => ':count fler sök resultat på beatmaps',

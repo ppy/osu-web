@@ -36,7 +36,6 @@ return [
         'button' => 'Buscar',
         'empty_result' => '¡No se ha encontrado nada!',
         'missing_query' => 'Cada palabra clave requiere de al menos :n carácteres',
-        'title' => 'Resultados de la búsqueda',
 
         'beatmapset' => [
             'more' => 'Hay :count beatmaps más en los resultados',
