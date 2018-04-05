@@ -62,7 +62,7 @@ class MultiSearch
 
     public function getMode()
     {
-        return $this->request['mode'] ?? 'all';
+        return presence($this->request['mode']) ?? 'all';
     }
 
     public function hasQuery()
