@@ -64,13 +64,9 @@
                     </div>
 
                     <div class="forum-post__content forum-post__content--edit-bar forum-post__content--edit-bar-create">
-                        @include("forum._post_toolbar")
-
-                        <div class="post-box__actions">
-                            <button tabindex="1" class="btn-osu btn-osu--small btn-osu-default post-editor__action" type="submit">
-                                {{ trans("forum.topic.create.submit") }}
-                            </button>
-                        </div>
+                        @include('forum.topics._post_box_footer', [
+                            'submitText' => trans('forum.topic.create.submit'),
+                        ])
                     </div>
                 </div>
             </div>
