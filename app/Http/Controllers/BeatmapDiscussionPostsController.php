@@ -143,7 +143,6 @@ class BeatmapDiscussionPostsController extends Controller
             return error_popup(trans('beatmaps.discussion-posts.store.error'));
         }
 
-        $postIds = array_pluck($posts, 'id');
         $beatmapset = $discussion->beatmapset;
 
         BeatmapsetWatch::markRead($beatmapset, Auth::user());
@@ -153,8 +152,8 @@ class BeatmapDiscussionPostsController extends Controller
         ]))->delayedDispatch();
 
         return [
-            'beatmapset' => $posts[0]->beatmapset->defaultDiscussionJson(),
-            'beatmap_discussion_post_ids' => $postIds,
+            'beatmapset' => $beatmapset->defaultDiscussionJson(),
+            'beatmap_discussion_post_ids' => array_pluck($posts, 'id'),
             'beatmap_discussion_id' => $discussion->id,
         ];
     }
