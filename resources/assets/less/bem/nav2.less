@@ -23,7 +23,7 @@
   @_menu-gutter: 10px;
   @_link-padding-vertical: 6px;
   @_link-highlight-margin-vertical: 2px;
-  @_padding-vertical: 10px;
+  @_padding-vertical: 15px;
   @_padded-height: @nav2-menu-height + (@_padding-vertical * 2);
 
   .own-layer();
@@ -69,10 +69,10 @@
     top: 100%;
     right: 0; // avoid overflow before repositioned
     height: 0; // avoid covering page when the content is hidden
-    margin-top: -20px;
+    margin-top: -5px;
 
     &--user {
-      margin-top: 5px;
+      margin-top: 20px;
     }
   }
 
@@ -117,7 +117,8 @@
     background-image: url('/images/layout/osu-logo-white.svg');
 
     .@{_top}__logo-link:hover & {
-      transform: scale(1.1);
+      // be careful of weird snapping at the end of animation on Firefox (with 1.1, ~60px).
+      transform: scale(1.11);
     }
 
     &--bg {
@@ -131,7 +132,7 @@
   }
 
   &__logo-link {
-    @__logo-whitespace: 6px;
+    @__logo-whitespace: 5px;
     @_logo-size: (@nav2-menu-height + @__logo-whitespace * 2);
     width: @_logo-size;
     height: @_logo-size;
@@ -210,7 +211,7 @@
     position: absolute;
     top: 100%;
     height: 0; // avoid covering page when the content is hidden
-    margin-top: -20px;
+    margin-top: -5px;
     left: @_menu-gutter;
     white-space: nowrap;
     display: flex;
