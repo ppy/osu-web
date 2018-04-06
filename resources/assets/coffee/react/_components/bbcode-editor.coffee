@@ -100,20 +100,25 @@ class @BBCodeEditor extends React.Component
     e.keyCode == 27 && @_cancel()
 
 
-  _cancel: =>
+  _cancel: (event) =>
     @body.value = @props.rawValue
-    @props.onChange?(type: 'cancel', value: @props.rawValue)
+    @sendOnChange(event: event, type: 'cancel')
 
 
-  _reset: =>
+  _reset: (event) =>
     @body.value = @props.rawValue
-    @props.onChange?(type: 'reset', value: @props.rawValue)
+    @sendOnChange(event: event, type: 'reset')
     @body.focus()
 
 
-  _save: =>
+  _save: (event) =>
+    @sendOnChange(event: event, type: 'save')
+
+
+  sendOnChange: ({event, type}) =>
     @props.onChange?(
-      type: 'save'
+      event: event
+      type: type
       value: @body.value
       hasChanged: @body.value != @props.rawValue
     )
