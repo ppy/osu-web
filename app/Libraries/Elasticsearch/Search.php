@@ -157,7 +157,7 @@ abstract class Search implements Queryable
             Datadog::increment(
                 config('datadog-helper.prefix_web').'.search.errors',
                 1,
-                ['class' => get_class($error)]
+                ['class' => get_class($this->error)]
             );
         }
 
