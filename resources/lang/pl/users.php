@@ -45,6 +45,7 @@ return [
 
     'card' => [
         'loading' => 'Ładowanie...',
+        'send_message' => 'wyślij wiadomość',
     ],
 
     'login' => [

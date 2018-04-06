@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować',
         'declined' => 'Płatność została anulowana.',
         'error' => 'Wystąpił problem z zatwierdzaniem twojego zamówienia :(',
+        'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
         'pending_checkout' => [
             'line_1' => 'Poprzednio podjęta próba złożenia zamówienia nie została zakończona.',
