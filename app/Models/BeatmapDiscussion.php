@@ -193,7 +193,7 @@ class BeatmapDiscussion extends Model
     {
         return
             in_array($this->attributes['message_type'] ?? null, static::KUDOSUABLE_TYPES, true) &&
-            $this->user_id !== $this->beatmapset->user_id &&
+            $this->user_id !== $this->beatmapset()->withTrashed()->first()->user_id &&
             !$this->isDeleted() &&
             !$this->kudosu_denied;
     }
