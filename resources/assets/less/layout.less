@@ -34,7 +34,9 @@ html, body {
 }
 
 body {
+  // no overlap between rightmost side and scrollbar
   -ms-overflow-style: scrollbar;
+  // prevent moving navbar
   overflow-y: scroll;
   // fix tooltip positioning on edge when combined with overflow-y scroll above
   position: static;
