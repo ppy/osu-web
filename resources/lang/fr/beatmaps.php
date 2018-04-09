@@ -106,7 +106,7 @@ return [
     'hype' => [
         'button' => 'Hyper la Beatmap !',
         'button-done' => 'Déjà hypée !',
-        'explanation' => "Ajouter des hommages ❤ va augmenter sa hype, la rendant plus visible pour sa nomination et son classement !",
+        'explanation' => 'Ajouter des hommages ❤ va augmenter sa hype, la rendant plus visible pour sa nomination et son classement !',
         'section-title' => 'Train de la hype',
         'title' => 'Hype',
     ],

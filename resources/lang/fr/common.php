@@ -40,7 +40,7 @@ return [
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
         'show_more' => 'Plus de résultats',
-        'upload_image' => "mettre en ligne une image",
+        'upload_image' => 'mettre en ligne une image',
     ],
 
     'count' => [
