@@ -20,20 +20,23 @@
 el = React.createElement
 VirtualList = window.VirtualList
 
+ITEM_HEIGHT = 205 # needs to be known in advance to calculate size of virtual scrolling area.
+
 ListRender = ({ virtual, itemHeight }) ->
-  console.log virtual.style
   style = _.extend {}, virtual.style
   div
     style: style
     div
       className: 'beatmapsets__items'
-      virtual.items.map (item) ->
+      virtual.items.map (row) ->
         div
-          className: 'beatmapsets__item'
-          style:
-            height: 205
-          key: item.id
-          el BeatmapsetPanel, beatmap: item
+          className: 'beatmapsets__items-row'
+          key: (beatmap.id for beatmap in row).join('-')
+          for beatmap in row
+            div
+              className: 'beatmapsets__item'
+              key: beatmap.id
+              el BeatmapsetPanel, beatmap: beatmap
 
 BeatmapList = VirtualList()(ListRender)
 
@@ -50,6 +53,7 @@ class Beatmaps.Main extends React.PureComponent
     @state = prevState.state if prevState.url == location.href
     @state ?= _.extend
       beatmaps: @props.beatmaps
+      columnCount: @columnCount()
       paging:
         page: 1
         url: laroute.route('beatmapsets.search')
@@ -61,6 +65,20 @@ class Beatmaps.Main extends React.PureComponent
       @stateFromUrl()
 
 
+  columnCount: () ->
+    # see @screen-sm-min
+    if window.innerWidth < 900 then 1 else 2
+
+
+  updateColumnCount: () =>
+    @setState (prevState) =>
+      count = @columnCount()
+      # The list component has to be recreated for correct sizing.
+      BeatmapList = VirtualList()(ListRender) if prevState.columnCount != count
+
+      columnCount: count
+
+
   componentDidMount: =>
     $(document).on 'beatmap:load_more.beatmaps', @loadMore
     $(document).on 'beatmap:search:start.beatmaps', @search
@@ -68,6 +86,7 @@ class Beatmaps.Main extends React.PureComponent
     $(document).on 'beatmap:search:filtered.beatmaps', @updateFilters
     $(document).on 'turbolinks:before-visit.beatmaps', @recordUrl
     $(document).on 'turbolinks:before-cache.beatmaps', @saveState
+    $(window).on 'resize.beatmaps', @updateColumnCount
 
 
   componentWillUnmount: =>
@@ -97,9 +116,9 @@ class Beatmaps.Main extends React.PureComponent
             className: 'beatmapsets__content'
             if @state.beatmaps.length > 0
               el BeatmapList,
-                items: @state.beatmaps
-                itemBuffer: 0
-                itemHeight: 205
+                items: _.chunk(@state.beatmaps, @state.columnCount)
+                itemBuffer: 5
+                itemHeight: ITEM_HEIGHT
 
             else
               div className: 'beatmapsets__empty',
