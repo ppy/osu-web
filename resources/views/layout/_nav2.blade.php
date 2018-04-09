@@ -18,7 +18,9 @@
 <div class="nav2">
     <div class="nav2__colgroup">
         <div class="nav2__col nav2__col--logo">
-            <a href="{{ route('home') }}" class="nav2__logo">
+            <a href="{{ route('home') }}" class="nav2__logo-link">
+                <div class="nav2__logo nav2__logo--bg"></div>
+                <div class="nav2__logo"></div>
             </a>
         </div>
     </div>

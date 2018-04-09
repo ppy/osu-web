@@ -27,12 +27,12 @@ class ProfilePage.UserPageEditor extends React.PureComponent
       onChange: @onChange
 
 
-  onChange: ({type, value}) =>
+  onChange: ({event, type, value}) =>
     switch type
       when 'cancel'
         @cancel()
       when 'save'
-        @save(value)
+        @save({event, value})
 
 
   cancel: =>
@@ -40,7 +40,7 @@ class ProfilePage.UserPageEditor extends React.PureComponent
       editing: false
 
 
-  save: (value) =>
+  save: ({event, value}) =>
     return @cancel() if value == @props.userPage.raw
 
     LoadingOverlay.show()
@@ -56,5 +56,5 @@ class ProfilePage.UserPageEditor extends React.PureComponent
         editing: false
         raw: value
         initialRaw: value
-    .fail osu.emitAjaxError(e.target)
+    .fail osu.emitAjaxError(event.target)
     .always LoadingOverlay.hide

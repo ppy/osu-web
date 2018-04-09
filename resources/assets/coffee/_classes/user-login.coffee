@@ -51,6 +51,7 @@ class @UserLogin
     # To allow other ajax:* events attached to header menu
     # to be triggered before the element is removed.
     Timeout.set 0, =>
+      $('.js-user-login--menu')[0].click()
       $('.js-user-header').replaceWith data.header
       $('.js-user-header-popup').html data.header_popup
 

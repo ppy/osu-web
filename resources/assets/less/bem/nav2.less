@@ -23,11 +23,11 @@
   @_menu-gutter: 10px;
   @_link-padding-vertical: 6px;
   @_link-highlight-margin-vertical: 2px;
-  @_padding-vertical: 10px;
+  @_padding-vertical: 15px;
   @_padded-height: @nav2-menu-height + (@_padding-vertical * 2);
 
   .own-layer();
-  padding: 0 @_padding-vertical;
+  padding: @_padding-vertical 0;
   width: 100%;
   height: @_padded-height;
   display: flex;
@@ -69,10 +69,10 @@
     top: 100%;
     right: 0; // avoid overflow before repositioned
     height: 0; // avoid covering page when the content is hidden
-    margin-top: -20px;
+    margin-top: -5px;
 
     &--user {
-      margin-top: 5px;
+      margin-top: 20px;
     }
   }
 
@@ -108,13 +108,35 @@
   }
 
   &__logo {
-    @__logo-whitespace: 6px;
+    .full-size();
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 100ms ease-in-out;
+    will-change: opacity, transform;
+
+    background-image: url('/images/layout/osu-logo-white.svg');
+
+    .@{_top}__logo-link:hover & {
+      // be careful of weird snapping at the end of animation on Firefox (with 1.1, ~60px).
+      transform: scale(1.11);
+    }
+
+    &--bg {
+      background-image: url('/images/layout/osu-logo-triangles.svg');
+      opacity: 0;
+
+      .@{_top}__logo-link:hover & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__logo-link {
+    @__logo-whitespace: 5px;
     @_logo-size: (@nav2-menu-height + @__logo-whitespace * 2);
     width: @_logo-size;
     height: @_logo-size;
     margin: -@__logo-whitespace;
-    background-image: url('/images/layout/osu-logo-white.svg');
-    background-size: contain;
   }
 
   &__menu-link {
@@ -171,7 +193,6 @@
       .circle(40px);
       align-self: center;
       padding: 0;
-      margin: 0 @_menu-gutter;
     }
   }
 
@@ -189,7 +210,7 @@
     position: absolute;
     top: 100%;
     height: 0; // avoid covering page when the content is hidden
-    margin-top: -20px;
+    margin-top: -5px;
     left: @_menu-gutter;
     white-space: nowrap;
     display: flex;
