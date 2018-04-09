@@ -19,6 +19,7 @@
  */
 
 return [
+    'not_negative' => ':attribute ne peut être négatif.',
     'required' => ':attribute est requis.',
     'wrong_confirmation' => 'La confirmation ne correspond pas.',
 
@@ -54,9 +55,12 @@ return [
         'email_already_used' => 'Adresse email déjà utilisée.',
         'invalid_email' => 'Ça ne semble pas être une adresse email.',
         'too_short' => 'Le nouveau mot de passe est trop court.',
+        'unknown_duplicate' => 'Nom d\'utilisateur ou adresse e-mail déjà utilisée.',
+        'username_too_short' => 'Le nom d\'utilisateur est trop court.',
         'weak' => 'Mot de passe interdits.',
         'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
         'wrong_email_confirmation' => "La confirmation de l'email ne correspond pas.",
         'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',
+        'too_long' => 'Longeur maximale atteinte - elle est de :limit caractères.',
     ],
 ];

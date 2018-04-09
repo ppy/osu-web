@@ -62,7 +62,7 @@ return [
     ],
     'subforums' => 'Sous-forums',
     'title' => 'osu!community',
-    'slogan' => 'Il est dangereux de jouer seul.',
+    'slogan' => "it's dangerous to play alone.",
     'topic' => [
         'create' => [
             'placeholder' => [
@@ -89,10 +89,6 @@ return [
         'post_edit' => [
             'cancel' => 'Annuler',
             'post' => 'Sauvegarder',
-            'zoom' => [
-                'start' => 'Plein écran',
-                'end' => 'Sortir du plein écran',
-            ],
         ],
         'post_reply' => 'Poster',
         'reply_box_placeholder' => 'Tapez ici pour répondre',
@@ -152,6 +148,10 @@ return [
                 'vote_change' => 'Autoriser le changement de vote.',
                 'vote_change_info' => "Si c'est activé, vous permettez aux utilisateurs de changer leur vote.",
             ],
+        ],
+
+        'edit_title' => [
+            'start' => 'Modifier le titre',
         ],
 
         'index' => [

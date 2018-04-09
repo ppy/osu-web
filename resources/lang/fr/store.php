@@ -20,10 +20,14 @@
 
 return [
     'admin' => [
-        'warehouse' => 'Stock',
+        'warehouse' => 'Magasin',
     ],
 
     'checkout' => [
+        'cart_problems' => 'Uh oh, il y a des problèmes avec votre panier !',
+        'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
+        'declined' => 'Le paiement a été annulé.',
+        'error' => 'Il y a eu un problème lors de votre commande :(',
         'pay' => 'Payer avec PayPal',
         'delayed_shipping' => 'Nous sommes surchargés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
     ],
@@ -57,6 +61,7 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => 'offrir à un joueur',
         'require_login' => [
             '_' => 'Vous devez être un :link pour obtenir a tag supporter !',
             'link_text' => 'connecté',

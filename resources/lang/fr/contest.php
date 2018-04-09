@@ -46,7 +46,7 @@ return [
         'too_big' => 'Les entrées pour le concours sont limitées à :limit.',
     ],
     'beatmaps' => [
-        'download' => "Télécharger l'inscription",
+        'download' => "Télécharger l'entrée",
     ],
     'vote' => [
         'list' => 'votes',

@@ -54,6 +54,7 @@ return [
             'index' => 'liste',
             'artists' => 'artistes plébiscités',
             'packs' => 'collections',
+            'beatmapset-watches-index' => 'abonnements modding',
             // 'getCharts' => 'graphiques',
         ],
         'beatmapsets' => [
@@ -97,7 +98,7 @@ return [
             '403' => 'interdit',
             '401' => 'non autorisé',
             '405' => 'manquant',
-            '500' => 'quelquechose est cassé',
+            '500' => 'quelque chose est cassé',
             '503' => 'maintenance',
         ],
         'user' => [
@@ -116,6 +117,7 @@ return [
         ],
         'store' => [
             '_' => 'magasin',
+            'checkout-index' => 'acheter',
             'getListing' => 'liste',
             'getCart' => 'panier',
 

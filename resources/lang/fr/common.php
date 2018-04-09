@@ -34,11 +34,13 @@ return [
         'permalink' => 'permalien',
         'post' => 'Poster',
         'reply' => 'Répondre',
+        'reply_reopen' => 'Répondre et rouvrir',
+        'reply_resolve' => 'Répondre et fermer',
         'reset' => 'Réinitialiser',
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
         'show_more' => 'Plus de résultats',
-        'upload_image' => "mettre en ligne l'image",
+        'upload_image' => "mettre en ligne une image",
     ],
 
     'count' => [

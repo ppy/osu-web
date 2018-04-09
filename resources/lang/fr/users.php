@@ -45,6 +45,7 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'Cliquez pour vous connecter',
+        'login_text' => 'connecter',
         'username' => 'Invité',
         'error' => 'Vous devez être connecté pour faire ça.',
     ],
@@ -101,8 +102,14 @@ return [
                 'favourite' => [
                     'title' => 'Beatmaps favorites (:count)',
                 ],
+                'graveyard' => [
+                    'title' => 'Beatmaps dans le cimetière (:count)',
+                ],
                 'ranked_and_approved' => [
                     'title' => 'Beatmaps classées et approuvées (:count)',
+                ],
+                'unranked' => [
+                    'title' => 'Beatmaps en attente (:count)',
                 ],
             ],
             'historical' => [
@@ -149,6 +156,11 @@ return [
                         'vote' => [
                             'give' => 'Réception de :amount kudosu suite aux votes reçus dans le post :post',
                             'reset' => 'Perte de :amount kudosu suite aux votes perdus dans le post :post',
+                        ],
+
+                        'recalculate' => [
+                            'give' => 'Réception de :amount du vote de recalcul du post :post',
+                            'reset' => 'Perte de :amount du vote de recalcul du post :post',
                         ],
                     ],
 
@@ -207,6 +219,9 @@ return [
     'status' => [
         'online' => 'En ligne',
         'offline' => 'Hors-ligne',
+    ],
+    'store' => [
+        'saved' => 'Utilisateur créé',
     ],
     'verify' => [
         'title' => 'Vérification de compte',

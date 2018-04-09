@@ -38,8 +38,10 @@ return [
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
         'edited' => 'Dernière modification par :editor :update_time',
+        'kudosu_denied' => 'Le kudosu a été refusé pour ceci.',
         'message_placeholder' => 'Écrivez ici pour poster',
         'message_type_select' => 'Sélectionnez un type de commentaire',
+        'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
         'require-login' => 'Veuillez vous connecter pour poster ou répondre',
         'resolved' => 'Résolu',
@@ -62,12 +64,14 @@ return [
         ],
 
         'message_type' => [
+            'mapper_note' => 'Note',
             'praise' => 'Hommage',
             'problem' => 'Problème',
             'suggestion' => 'Suggestion',
         ],
 
         'mode' => [
+            'events' => 'Historique',
             'general' => 'Général',
             'general_all' => 'Général (toutes difficultées)',
             'timeline' => 'Chronologie',
@@ -85,11 +89,29 @@ return [
 
         'stats' => [
             'deleted' => 'Supprimé',
+            'mapper_notes' => 'Notes',
             'mine' => 'Moi',
             'pending' => 'En attente',
             'praises' => 'Hommages',
             'resolved' => 'Résolu',
         ],
+
+        'status-messages' => [
+            'approved' => 'Cette beatmap a été approuvée le :date!',
+            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a été sûrement abandonée par son créateur...",
+            'loved' => 'Cette beatmap a été ajoutée pour être loved le :date!',
+            'ranked' => 'Cette beatmap a été clasée le :date!',
+            'wip' => 'Note: Cette beatmap a été marquée comme en cours par son créateur.',
+        ],
+
+    ],
+
+    'hype' => [
+        'button' => 'Hyper la Beatmap !',
+        'button-done' => 'Déjà hypée !',
+        'explanation' => "Ajouter des hommages ❤ va augmenter sa hype, la rendant plus visible pour sa nomination et son classement !",
+        'section-title' => 'Train de la hype',
+        'title' => 'Hype',
     ],
 
     'nominations' => [

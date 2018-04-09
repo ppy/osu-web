@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,13 +19,12 @@
  */
 
 return [
-    'user_search' => [
-        'searching' => 'recherche en cours...',
-        'not_found' => "Cet utilisateur n'existe pas",
+    'username_change' => [
+        'only_one' => 'seulement 1 changement de nom d\'utilisateur par commande.',
+        'insufficient_paid' => 'Le prix du changement de nom d\'utilisateur a dépassé le prix payé (:expected > :actual)',
+        'reverting_username_mismatch' => 'Le nom d\'utilisateur actuel (:current) n\'est pas le même que le changement à révoquer (:username)',
     ],
-    'duration' => [
-        'months' => ':length mois|:length mois|{0}',
-        'years' => ':length année|:length années|{0}',
+    'supporter_tag' => [
+        'insufficient_paid' => 'Le don est inférieur que ce qui est requis pour le cadeau du tag supporter (:actual > :expected)',
     ],
-    'months' => 'mois',
 ];

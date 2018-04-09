@@ -32,6 +32,13 @@ return [
         'notice' => 'Il y a des posts :timestamp (:existing_timestamps). Merci de les vérifier avant de poster.',
     ],
 
+    'reply' => [
+        'open' => [
+            'guest' => 'Se connecter pour répondre',
+            'user' => 'Répondre',
+        ],
+    ],
+
     'system' => [
         'resolved' => [
             'true' => 'Marqué comme résolu par :user',

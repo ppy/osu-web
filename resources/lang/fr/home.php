@@ -135,4 +135,15 @@ return [
             'store' => 'osu!store',
         ],
     ],
+
+    'support-osu' => [
+        'title' => 'Wow!',
+        'subtitle' => 'Vous semblez passer du bon temps! :D',
+        'body' => [
+            'part-1' => 'Saviez-vous que osu! fonctionne sans publicité et compte sur les joueurs pour supporter son développement et ses côuts ?',
+            'part-2' => 'Saviez-vous aussi que supporter osu! permet d\'obtenir une poignée de fonctions utiles, comme le <strong>téléchargement en jeu</strong> qui est automatique en mode spectateur et dans les parties multijoueur?',
+        ],
+        'find-out-more' => 'Cliquez ici pour en savoir plus !',
+        'download-starting' => "Oh, et ne vous inquiétez pas - votre téléchargement a déjà commencé pour vous ;)",
+    ],
 ];
