@@ -18,6 +18,25 @@
 
 {div} = ReactDOMFactories
 el = React.createElement
+VirtualList = window.VirtualList
+
+ListRender = ({ virtual, itemHeight }) ->
+  console.log virtual.style
+  style = _.extend {}, virtual.style
+  div
+    style: style
+    div
+      className: 'beatmapsets__items'
+      virtual.items.map (item) ->
+        div
+          className: 'beatmapsets__item'
+          style:
+            height: 205
+          key: item.id
+          el BeatmapsetPanel, beatmap: item
+
+BeatmapList = VirtualList()(ListRender)
+
 
 class Beatmaps.Main extends React.PureComponent
   constructor: (props) ->
@@ -77,13 +96,10 @@ class Beatmaps.Main extends React.PureComponent
           div
             className: 'beatmapsets__content'
             if @state.beatmaps.length > 0
-              div
-                className: 'beatmapsets__items'
-                for beatmap in @state.beatmaps
-                  div
-                    className: 'beatmapsets__item'
-                    key: beatmap.id
-                    el BeatmapsetPanel, beatmap: beatmap
+              el BeatmapList,
+                items: @state.beatmaps
+                itemBuffer: 0
+                itemHeight: 205
 
             else
               div className: 'beatmapsets__empty',
