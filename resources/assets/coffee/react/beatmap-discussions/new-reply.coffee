@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, form, input, label, span, textarea} = ReactDOMFactories
+{button, div, form, input, label, span} = ReactDOMFactories
 el = React.createElement
 
 bn = 'beatmap-discussion-post'
@@ -54,21 +54,22 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         div className: "#{bn}__avatar",
           el UserAvatar, user: @props.currentUser, modifiers: ['full-rounded']
 
+        @renderCancelButton()
+
         div className: "#{bn}__message-container",
-          textarea
+          el TextareaAutosize,
+            disabled: @state.posting?
             className: "#{bn}__message #{bn}__message--editor"
-            ref: (el) => @box = el
-            type: 'text'
-            rows: 2
             value: @state.message
             onChange: @setMessage
-            onKeyDown: @submitIfEnter
+            onKeyDown: @handleKeyDown
             placeholder: osu.trans 'beatmaps.discussions.reply_placeholder'
-            disabled: @state.posting?
+            innerRef: (el) => @box = el
 
       div
         className: "#{bn}__footer #{bn}__footer--notice"
         osu.trans 'beatmaps.discussions.reply_notice'
+        el BeatmapDiscussions.MessageLengthCounter, message: @state.message
 
       div
         className: "#{bn}__footer"
@@ -91,6 +92,14 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
             @renderReplyButton
               text: osu.trans('common.buttons.reply')
               icon: 'reply'
+
+
+  renderCancelButton: =>
+    button
+      className: "#{bn}__action #{bn}__action--cancel"
+      disabled: @state.posting?
+      onClick: => @setState editing: false
+      el Icon, name: 'times'
 
 
   renderPlaceholder: =>
@@ -137,6 +146,14 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
       @box?.focus()
 
 
+  handleKeyDown: (e) =>
+    if e.keyCode == 27
+      @setState editing: false
+    else if e.keyCode == 13 && !e.shiftKey
+      e.preventDefault()
+      @throttledPost(e)
+
+
   post: (event) =>
     return if !@validPost()
     LoadingOverlay.show()
@@ -163,7 +180,7 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
         message: ''
         editing: false
       $.publish 'beatmapDiscussionPost:markRead', id: data.beatmap_discussion_post_ids
-      $.publish 'beatmapsetDiscussion:update', beatmapsetDiscussion: data.beatmapset_discussion
+      $.publish 'beatmapsetDiscussions:update', beatmapset: data.beatmapset
 
     .fail osu.ajaxError
 
@@ -173,15 +190,8 @@ class BeatmapDiscussions.NewReply extends React.PureComponent
 
 
   setMessage: (e) =>
-    @setState message: e.target.value.replace /\n/g, ' '
-
-
-  submitIfEnter: (e) =>
-    return if e.keyCode != 13
-
-    e.preventDefault()
-    @throttledPost(e)
+    @setState message: e.target.value
 
 
   validPost: =>
-    @state.message.length != 0
+    BeatmapDiscussionHelper.validMessageLength(@state.message)

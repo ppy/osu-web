@@ -50,15 +50,19 @@
                         #{{ $scores->firstItem() + $index }}
                     </td>
                     <td class="ranking-page-table__column">
-                        <a class="ranking-page-table__user-link" href="{{route('users.show', $score->user_id)}}">
-                            @include('objects._country_flag', [
-                                'country_name' => $score->user->country->name,
-                                'country_code' => $score->user->country->acronym,
-                            ])
-                            <span class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
-                                {{ $score->user->username }}
-                            </span>
-                        </a>
+                        <div class="ranking-page-table__user-link">
+                            <a href="{{route('rankings', ['mode' => 'osu', 'type' => 'performance', 'country' => $score->user->country->acronym])}}">
+                                @include('objects._country_flag', [
+                                    'country_name' => $score->user->country->name,
+                                    'country_code' => $score->user->country->acronym,
+                                ])
+                            </a>
+                            <a href="{{route('users.show', $score->user_id)}}">
+                                <span class="ranking-page-table__user-link-text js-usercard" data-user-id="{{$score->user_id}}" data-tooltip-position="right center">
+                                    {{ $score->user->username }}
+                                </span>
+                            </a>
+                        </div>
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ format_percentage($score->accuracy_new) }}
@@ -70,10 +74,10 @@
                         {{ number_format(round($score->rank_score)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->x_rank_count)) }}
+                        {{ number_format(max(0, $score->x_rank_count + $score->xh_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
-                        {{ number_format(max(0, $score->s_rank_count)) }}
+                        {{ number_format(max(0, $score->s_rank_count + $score->sh_rank_count)) }}
                     </td>
                     <td class="ranking-page-table__column ranking-page-table__column--dimmed">
                         {{ number_format(max(0, $score->a_rank_count)) }}

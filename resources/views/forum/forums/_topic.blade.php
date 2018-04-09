@@ -15,8 +15,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
+@php
+    $isRead = $topicReadStatus[$topic->topic_id] ?? false;
+@endphp
 <li
-    class="u-forum--hover-area forum-topic-entry clickable-row js-forum-topic-entry"
+    class="
+        u-forum--hover-area
+        forum-topic-entry
+        {{ $topic->trashed() ? 'forum-topic-entry--deleted' : '' }}
+        clickable-row
+        js-forum-topic-entry
+    "
     data-topic-id="{{ $topic->topic_id }}"
 >
     <div class="forum-topic-entry__bg"></div>
@@ -31,13 +40,17 @@
         class="
             forum-topic-entry__col
             forum-topic-entry__col--icon
-            {{ ($topicReadStatus[$topic->topic_id] ?? null) ? '' : 'u-forum--bg-link' }}
+            {{ $isRead ? '' : 'u-forum--bg-link' }}
         "
         href="{{ route("forum.topics.show", $topic->topic_id) }}"
     >
         <i class="
             fa
-            fa-{{ $topic->topic_type === 2 ? 'exclamation-triangle' : 'comment-o' }}
+            fa-{{
+                $topic->topic_type === 2 ?
+                    'exclamation-triangle' :
+                    ($isRead ? 'comment-o' : 'comment')
+            }}
         "></i>
     </a>
 

@@ -15,19 +15,53 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<a
-    class="search-entry"
-    href="{{ post_url($entry->topic_id, $entry->getKey()) }}"
->
-    <h1 class="search-entry__row search-entry__row--title">
-        {{ $entry->topic->topic_title }}
-    </h1>
 
-    <p class="search-entry__row search-entry__row--excerpt">
-        {{ html_excerpt($entry->body_html) }}
-    </p>
+{{-- more code than template in this view :best: --}}
+@php
+    // $entry should be of type App\Libraries\Elasticsearch\Hit
+    $innerHits = $entry->innerHits('posts');
+    $firstPost = $entry->innerHits('first_post'); // instance of App\Libraries\Elasticsearch\SearchResponse
+    $firstPostUrl = route('forum.topics.show', $entry->source('topic_id'));
+    $excerpt = implode('', array_map(function ($post) {
+        return html_excerpt($post->source('search_content'));
+    }, iterator_to_array($firstPost)));
 
-    <p class="search-entry__row search-entry__row--footer">
-        {{ post_url($entry->topic_id, $entry->getKey()) }}
-    </p>
-</a>
+    $user = $users->where('user_id', $entry->source('poster_id'))->first() ?? new App\Models\DeletedUser();
+@endphp
+<div class="search-entry-thread">
+    <div class="search-entry">
+        @include('objects.search._forum_post', [
+            'user' => $user,
+            'title' => $entry->source('search_content'),
+            'highlights' => $excerpt,
+            'link' => $firstPostUrl,
+            'time' => $entry->source('post_time'),
+        ])
+    </div>
+
+    @foreach ($innerHits as $innerHit)
+        @php
+            $postUrl = post_url($innerHit->source('topic_id'), $innerHit->source('post_id'));
+            $user = $users->where('user_id', $innerHit->source('poster_id'))->first() ?? new App\Models\DeletedUser;
+            $highlights = implode(
+                ' ... ',
+                $innerHit->highlights(
+                    'search_content',
+                    App\Libraries\ForumSearch::HIGHLIGHT_FRAGMENT_SIZE * 2
+                )
+            )
+        @endphp
+
+        <div class="search-entry-thread__sub-item">
+            <div class="search-entry">
+                @include('objects.search._forum_post', [
+                    'user' => $user,
+                    'title' => null,
+                    'highlights' => $highlights,
+                    'link' => $postUrl,
+                    'time' => $innerHit->source('post_time'),
+                ])
+            </div>
+        </div>
+    @endforeach
+</div>

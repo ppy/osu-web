@@ -31,7 +31,7 @@ class ProfilePage.TopRanks extends React.PureComponent
           div className: 'profile-extra-entries',
             @props.scoresBest.map (score, i) =>
               el PlayDetail, key: i, score: score
-            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+            li className: 'profile-extra-entries__item',
               el ProfilePage.ShowMoreLink,
                 collection: @props.scoresBest
                 propertyName: 'scoresBest'
@@ -49,7 +49,7 @@ class ProfilePage.TopRanks extends React.PureComponent
           div className: 'profile-extra-entries',
             @props.scoresFirsts.map (score, i) =>
               el PlayDetail, key: i, score: score
-            li className: 'profile-extra-entries__item profile-extra-entries__item--show-more',
+            li className: 'profile-extra-entries__item',
               el ProfilePage.ShowMoreLink,
                 collection: @props.scoresFirsts
                 propertyName: 'scoresFirsts'

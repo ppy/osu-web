@@ -23,16 +23,18 @@
   .center-content();
   display: flex;
 
-  padding-bottom: 10px;
+  &--mobile {
+    padding-bottom: 10px;
+  }
 
   &__count {
     font-size: @font-size--normal;
     font-weight: 500;
-    margin-right: 5px;
+    margin-left: 5px;
 
     .@{top}--mobile & {
       font-size: @font-size--small;
-      margin-right: 0;
+      margin-left: 0;
     }
   }
 

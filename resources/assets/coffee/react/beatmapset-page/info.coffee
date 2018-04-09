@@ -87,7 +87,7 @@ class BeatmapsetPage.Info extends React.Component
 
 
   renderChart: ->
-    return if !@props.beatmapset.has_scores
+    return if !@props.beatmapset.has_scores || @props.beatmap.playcount < 1
 
     unless @_failurePointsChart?
       options =
@@ -113,7 +113,15 @@ class BeatmapsetPage.Info extends React.Component
 
 
   render: ->
-    percentage = _.round (@props.beatmap.passcount / (@props.beatmap.playcount + @props.beatmap.passcount)) * 100
+    tags = _(@props.beatmapset.tags)
+      .split(' ')
+      .filter((t) -> t? && t != '')
+      .slice(0, 21)
+      .value()
+
+    if tags.length == 21
+      tags.pop()
+      tagsOverload = true
 
     div className: 'beatmapset-info',
       if @state.isEditing
@@ -125,6 +133,7 @@ class BeatmapsetPage.Info extends React.Component
 
             div className: 'beatmapset-description-editor__container osu-page',
               el BBCodeEditor,
+                modifiers: ['beatmapset-description-editor']
                 disabled: @state.isBusy
                 onChange: @onEditorChange
                 onSelectionUpdate: @onSelectionUpdate
@@ -138,10 +147,11 @@ class BeatmapsetPage.Info extends React.Component
           className: 'beatmapset-info__header'
           osu.trans 'beatmapsets.show.info.description'
 
-        div
-          className: 'beatmapset-info__description'
-          dangerouslySetInnerHTML:
-            __html: @state.description?.description ? @props.beatmapset.description.description
+        div className: 'beatmapset-info__description-container',
+          div
+            className: 'beatmapset-info__description'
+            dangerouslySetInnerHTML:
+              __html: @state.description?.description ? @props.beatmapset.description.description
 
       div className: 'beatmapset-info__box beatmapset-info__box--meta',
         if @props.beatmapset.source
@@ -150,55 +160,79 @@ class BeatmapsetPage.Info extends React.Component
               className: 'beatmapset-info__header'
               osu.trans 'beatmapsets.show.info.source'
 
-            div null, @props.beatmapset.source
+            a
+              href: laroute.route('beatmapsets.index', q: @props.beatmapset.source)
+              @props.beatmapset.source
 
-        if @props.beatmapset.tags
+        div className: 'beatmapset-info__half-box',
+          div className: 'beatmapset-info__half-entry',
+            h3 className: 'beatmapset-info__header',
+              osu.trans 'beatmapsets.show.info.genre'
+            a
+              href: laroute.route('beatmapsets.index', g: @props.beatmapset.genre.id)
+              @props.beatmapset.genre.name
+
+          div className: 'beatmapset-info__half-entry',
+            h3 className: 'beatmapset-info__header',
+              osu.trans 'beatmapsets.show.info.language'
+            a
+              href: laroute.route('beatmapsets.index', l: @props.beatmapset.language.id)
+              @props.beatmapset.language.name
+
+        if tags.length > 0
           div null,
             h3
               className: 'beatmapset-info__header'
               osu.trans 'beatmapsets.show.info.tags'
 
             div null,
-              @props.beatmapset.tags.split(' ').map (tag) =>
-                return if tag.length == 0
-
+              for tag in tags
                 [
                   a
                     key: tag
                     href: laroute.route('beatmapsets.index', q: tag)
                     tag
-
                   span key: "#{tag}-space", ' '
                 ]
+              '...' if tagsOverload
 
       div className: 'beatmapset-info__box beatmapset-info__box--success-rate',
-        if @props.beatmapset.has_scores
-          div className: 'beatmap-success-rate',
-            h3
-              className: 'beatmap-success-rate__header'
-              osu.trans 'beatmapsets.show.info.success-rate'
-
-            div className: 'bar bar--beatmap-success-rate',
-              div
-                className: 'bar__fill'
-                style:
-                  width: "#{percentage}%"
-
-            div
-              className: 'beatmap-success-rate__percentage'
-              style:
-                paddingLeft: "#{percentage}%"
-              div null, "#{percentage}%"
-
-            h3
-              className: 'beatmap-success-rate__header'
-              osu.trans 'beatmapsets.show.info.points-of-failure'
-
-            div
-              className: 'beatmap-success-rate__chart'
-              ref: 'chartArea'
-        else
+        if !@props.beatmapset.has_scores
           div className: 'beatmap-success-rate',
             div
               className: 'beatmap-success-rate__empty'
-              osu.trans 'beatmapsets.show.info.no_scores'
+              osu.trans 'beatmapsets.show.info.unranked'
+        else
+          if @props.beatmap.playcount > 0
+            percentage = _.round((@props.beatmap.passcount / @props.beatmap.playcount) * 100, 1)
+            div className: 'beatmap-success-rate',
+              h3
+                className: 'beatmap-success-rate__header'
+                osu.trans 'beatmapsets.show.info.success-rate'
+
+              div className: 'bar bar--beatmap-success-rate',
+                div
+                  className: 'bar__fill'
+                  style:
+                    width: "#{percentage}%"
+
+              div
+                className: 'beatmap-success-rate__percentage'
+                title: "#{@props.beatmap.passcount.toLocaleString()} / #{@props.beatmap.playcount.toLocaleString()}"
+                'data-tooltip-position': 'bottom center'
+                style:
+                  marginLeft: "#{percentage}%"
+                "#{percentage}%"
+
+              h3
+                className: 'beatmap-success-rate__header'
+                osu.trans 'beatmapsets.show.info.points-of-failure'
+
+              div
+                className: 'beatmap-success-rate__chart'
+                ref: 'chartArea'
+          else
+            div className: 'beatmap-success-rate',
+              div
+                className: 'beatmap-success-rate__empty'
+                osu.trans 'beatmapsets.show.info.no_scores'

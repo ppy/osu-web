@@ -47,7 +47,16 @@ class AccountController extends Controller
             }
 
             return $next($request);
-        });
+        }, [
+            'except' => [
+                'edit',
+                'reissueCode',
+                'updateEmail',
+                'updatePage',
+                'updatePassword',
+                'verify',
+            ],
+        ]);
 
         $this->middleware('verify-user');
         $this->middleware('throttle:60,10', [
@@ -107,42 +116,36 @@ class AccountController extends Controller
             Request::all(),
             'user',
             [
+                'osu_playstyle:string[]',
+                'playmode:string',
                 'user_from:string',
                 'user_interests:string',
                 'user_msnm:string',
                 'user_occ:string',
+                'user_sig:string',
                 'user_twitter:string',
                 'user_website:string',
-                'user_sig:string',
-                'osu_playstyle:string[]',
             ]
         );
 
         try {
-            $ok = DB::transaction(function () use ($customizationParams, $userParams) {
+            DB::transaction(function () use ($customizationParams, $userParams) {
                 if (count($customizationParams) > 0) {
-                    if (!Auth::user()->profileCustomization()->update($customizationParams)) {
-                        throw new ModelNotSavedException('failed saving model');
-                    }
+                    Auth::user()
+                        ->profileCustomization()
+                        ->fill($customizationParams)
+                        ->saveOrExplode();
                 }
 
                 if (count($userParams) > 0) {
-                    if (!Auth::user()->update($userParams)) {
-                        throw new ModelNotSavedException('failed saving model');
-                    }
+                    Auth::user()->fill($userParams)->saveOrExplode();
                 }
-
-                return true;
             });
-        } catch (ModelNotSavedException $_e) {
-            $ok = false;
+        } catch (ModelNotSavedException $e) {
+            return error_popup($e->getMessage());
         }
 
-        if ($ok) {
-            return Auth::user()->defaultJson();
-        } else {
-            return error_popup(implode("\n", Auth::user()->validationErrors()->allMessages()));
-        }
+        return Auth::user()->defaultJson();
     }
 
     public function updateEmail()
@@ -160,7 +163,7 @@ class AccountController extends Controller
                 Mail::to($address)->send(new UserEmailUpdated($user));
             }
 
-            return ['message' => trans('accounts.update_email.updated')];
+            return response([], 204);
         } else {
             return response(['form_error' => [
                 'user' => $user->validationErrors()->all(),
@@ -189,7 +192,7 @@ class AccountController extends Controller
                 Mail::to($user->user_email)->send(new UserPasswordUpdated($user));
             }
 
-            return ['message' => trans('accounts.update_password.updated')];
+            return response([], 204);
         } else {
             return response(['form_error' => [
                 'user' => $user->validationErrors()->all(),

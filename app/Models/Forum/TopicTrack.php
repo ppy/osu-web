@@ -20,6 +20,8 @@
 
 namespace App\Models\Forum;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class TopicTrack extends Model
 {
     protected $table = 'phpbb_topics_track';
@@ -54,5 +56,14 @@ class TopicTrack extends Model
         }
 
         return $result;
+    }
+
+    // Allows save/update/delete to work with composite primary keys.
+    protected function setKeysForSaveQuery(Builder $query)
+    {
+        return $query->where([
+            'topic_id' => $this->topic_id,
+            'user_id' => $this->user_id,
+        ]);
     }
 }

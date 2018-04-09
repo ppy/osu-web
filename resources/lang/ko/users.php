@@ -29,8 +29,8 @@ return [
         'button' => '로그인',
         'button_posting' => '로그인 중...',
         'remember' => '이 컴퓨터에서 계정 정보 기억하기',
-        'title' => '계속하려면 로그인해 주세요',
-        'failed' => '계정 정보가 올바르지 않습니다',
+        'title' => '계속하려면 로그인해 주세요', // Base text changed from "log" to "sign"
+        'failed' => '계정 정보가 올바르지 않습니다', // Base text changed from "log" to "sign"
         'register' => 'osu!계정이 없으신가요? 새로 하나 만들어보세요',
         'forgot' => '비밀번호를 잊어버리셨나요?',
         'beta' => [
@@ -44,12 +44,12 @@ return [
         '_' => '회원가입',
     ],
     'anonymous' => [
-        'login_link' => '클릭하여 로그인',
-        'login_text' => '로그인',
+        'login_link' => '클릭하여 로그인', // Base text changed from "log" to "sign"
+        'login_text' => '로그인', // Base text changed from "log" to "sign"
         'username' => '손님',
-        'error' => '계속하려면 로그인하셔야 합니다.',
+        'error' => '계속하려면 로그인하셔야 합니다.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => '정말 로그아웃 하실건가요? :(',
+    'logout_confirm' => '정말 로그아웃 하실건가요? :(', // Base text changed from "log" to "sign"
     'restricted_banner' => [
         'title' => '계정이 제한되어 있습니다!',
         'message' => '계정이 제한되어있으면, 다른 플레이어와 소통할 수 없으며 점수가 본인에게만 표시됩니다. 계정 제한은 보통 자동적으로 처리되며, 24시간 이내에 철회될 수 있습니다. 제한에 대한 항소를 원하시면, <a href="mailto:accounts@ppy.sh">지원팀에 연락</a>해주시기 바랍니다.',
@@ -57,7 +57,6 @@ return [
     'show' => [
         '404' => '사용자를 찾을 수 없습니다! ;_;',
         'age' => ':age살',
-        'current_location' => ':location에 거주',
         'first_members' => 'osu!의 초창기부터 함께한 유저',
         'is_developer' => 'osu!개발진',
         'is_supporter' => 'osu!서포터',
@@ -108,6 +107,8 @@ return [
             ],
             'historical' => [
                 'empty' => '기록된 플레이가 없습니다. :(',
+                'title' => '기록',
+
                 'most_played' => [
                     'count' => '플레이 횟수',
                     'title' => '가장 많이 플레이한 비트맵',
@@ -116,7 +117,6 @@ return [
                     'accuracy' => '정확도: :percentage',
                     'title' => '최근 플레이 (24시간)',
                 ],
-                'title' => '기록',
             ],
             'kudosu' => [
                 'available' => '사용 가능한 Kudosu',
@@ -167,7 +167,7 @@ return [
                 'empty' => '아직 아무런 업적 메달도 받지 못했네요. ;_;',
                 'title' => '메달',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => '최근 활동',
             ],
             'top_ranks' => [

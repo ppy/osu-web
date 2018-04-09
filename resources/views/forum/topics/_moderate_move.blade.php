@@ -46,7 +46,7 @@
                                         {{ $dstForum->isOpen() ? '' : 'disabled' }}
                                         {{ $dstForum->getKey() === $topic->forum_id ? 'selected' : '' }}
                                     >
-                                        {{ str_repeat('&ndash;', $dstForum->currentDepth()) }}
+                                        {{ str_repeat('–', $dstForum->currentDepth()) }}
                                         {{ $dstForum->forum_name }}
                                     </option>
                                 @endforeach

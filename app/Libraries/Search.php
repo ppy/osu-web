@@ -21,7 +21,6 @@
 namespace App\Libraries;
 
 use App\Models\Beatmapset;
-use App\Models\Forum\Post as ForumPost;
 use App\Models\User;
 use App\Models\Wiki\Page as WikiPage;
 use Datadog;
@@ -35,7 +34,7 @@ class Search
         // also display order
         'user' => User::class,
         'beatmapset' => Beatmapset::class,
-        'forum_post' => ForumPost::class,
+        'forum_post' => ForumSearch::class,
         'wiki_page' => WikiPage::class,
     ];
 
@@ -79,6 +78,7 @@ class Search
 
     public function paginate($mode)
     {
+        // TODO: update this later.
         return new LengthAwarePaginator(
             $this->search($mode)['data'],
             $this->search($mode)['total'],
@@ -109,27 +109,10 @@ class Search
 
             if (config('datadog-helper.enabled') && $mode !== 'beatmapset') {
                 $searchDuration = microtime(true) - $startTime;
-                Datadog::microtiming(config('datadog-helper.prefix').'.search', $searchDuration, 1, ['type' => $mode]);
+                Datadog::microtiming(config('datadog-helper.prefix_web').'.search', $searchDuration, 1, ['type' => $mode]);
             }
         }
 
         return $this->cache[$key];
-    }
-
-    public function urlParams($newParams = [])
-    {
-        $newParams['mode'] ?? ($newParams['mode'] = $this->mode);
-
-        if ($newParams['mode'] === static::DEFAULT_MODE) {
-            $newParams['mode'] = null;
-            $newParams['limit'] = null;
-        }
-
-        return array_merge($this->params, $newParams);
-    }
-
-    public function url($newParams = [])
-    {
-        return route('search', $this->urlParams($newParams));
     }
 }

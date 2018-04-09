@@ -20,19 +20,20 @@
     <head>
         @include("layout.metadata")
         <title>
-            @if (isset($titleAppend))
-                {{
-                    trans("layout.menu.$current_section._").
-                    ' › '.
-                    trans("layout.menu.$current_section.$current_action").
-                    ': '.
-                    $titleAppend
-                }}
-            @elseif (isset($title))
+            @if (isset($title))
                 {{ $title }}
+            @elseif (isset($titlePrepend))
+                {{
+                    $titlePrepend.
+                    ' · '.
+                    trans("layout.menu.$current_section.$current_action").
+                    ' · '.
+                    trans("layout.menu.$current_section._")
+                }}
             @else
-                {{ trans("layout.menu.$current_section._") }} / {{ trans("layout.menu.$current_section.$current_action") }}
+                {{ trans("layout.menu.$current_section.$current_action") }} · {{ trans("layout.menu.$current_section._") }}
             @endif
+            | osu!
         </title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1">

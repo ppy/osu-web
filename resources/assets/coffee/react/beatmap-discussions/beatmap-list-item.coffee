@@ -25,10 +25,11 @@ BeatmapDiscussions.BeatmapListItem = (props) ->
   topClasses = bn
   topClasses += " #{bn}--large" if props.large
 
-  version = if props.beatmap.mode == 'mania'
-    "[#{props.beatmap.difficulty_size}k] #{props.beatmap.version}"
-  else
-    props.beatmap.version
+  version = props.beatmap.version
+
+  if props.beatmap.deleted_at?
+    topClasses += " #{bn}--deleted"
+    version += " [#{osu.trans 'beatmap_discussions.index.deleted_beatmap'}]"
 
   div
     className: topClasses
@@ -45,3 +46,7 @@ BeatmapDiscussions.BeatmapListItem = (props) ->
     if props.withButton?
       div className: "#{bn}__col",
         el Icon, name: "chevron-#{props.withButton}"
+
+    if props.count?
+      div className: "#{bn}__col",
+        div className: "#{bn}__counter", props.count

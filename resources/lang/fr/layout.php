@@ -27,13 +27,11 @@ return [
         'home' => [
             '_' => 'accueil',
             'account-edit' => 'paramètres',
-            'friends' => 'amis',
             'friends-index' => 'amis',
             'getChangelog' => 'notes de MàJ',
             'getDownload' => 'télécharger',
             'getIcons' => 'icônes',
             'groups-show' => 'groupes',
-            'index' => 'osu!',
             'legal-show' => 'information',
             'news-index' => 'actualités',
             'news-show' => 'actualités',
@@ -44,7 +42,7 @@ return [
         'help' => [
             '_' => 'aide',
             'getFaq' => 'faq',
-            'getSupport' => 'support',
+            'getSupport' => 'support', //obsolete
             'getWiki' => 'wiki',
             'wiki-show' => 'wiki',
         ],
@@ -73,9 +71,8 @@ return [
         'community' => [
             '_' => 'communauté',
             'dev' => 'osu!dev',
-            'getForum' => 'forum',
+            'getForum' => 'forum', // Base text changed to plural, please check.
             'getChat' => 'chat',
-            'getSupport' => 'support',
             'getLive' => 'direct',
             'contests' => 'concours',
             'profile' => 'profil',
@@ -83,10 +80,10 @@ return [
             'tournaments-index' => 'tournois',
             'tournaments-show' => 'infos des tournois',
             'forum-topic-watches-index' => 'Abonnements aux sujets',
-            'forum-topics-create' => 'forum',
-            'forum-topics-show' => 'forum',
-            'forum-forums-index' => 'forum',
-            'forum-forums-show' => 'forum',
+            'forum-topics-create' => 'forum', // Base text changed to plural, please check.
+            'forum-topics-show' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-index' => 'forum', // Base text changed to plural, please check.
+            'forum-forums-show' => 'forum', // Base text changed to plural, please check.
         ],
         'multiplayer' => [
             '_' => 'multijoueur',
@@ -103,7 +100,7 @@ return [
         ],
         'user' => [
             '_' => 'utilisateur',
-            'getLogin' => 'se connecter',
+            'getLogin' => 'se connecter', // Base text changed from "log" to "sign"
             'disabled' => 'désactivé',
 
             'register' => "s'inscrire",
@@ -112,14 +109,14 @@ return [
 
             'messages' => 'Messages',
             'settings' => 'Paramètres',
-            'logout' => 'Se déconnecter',
+            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check.
             'help' => 'Aide',
         ],
         'store' => [
             '_' => 'magasin',
             'checkout-index' => 'acheter',
             'getListing' => 'liste',
-            'getCart' => 'panier',
+            'cart-show' => 'panier',
 
             'getCheckout' => 'acheter',
             'getInvoice' => 'facture',
@@ -175,7 +172,6 @@ return [
         'legal' => [
             '_' => 'Statut & Légal',
             'copyright' => 'Copyright (DMCA)',
-            'osu_status' => '@osustatus',
             'server_status' => 'Statut du serveur',
             'terms' => 'Conditions du service',
         ],
@@ -193,7 +189,7 @@ return [
             'link' => false,
         ],
         '401' => [
-            'error' => 'Vous ne devriez pas être ici',
+            'error' => 'Vous ne devriez pas être ici', // Base text changed from "log" to "sign"
             'description' => 'Vous pouvez essayer de revenir en arrière. Ou peut-être vous connecter.',
             'link' => false,
         ],
@@ -247,7 +243,7 @@ return [
         'links' => [
             'account-edit' => 'Paramètres',
             'friends' => 'Amis',
-            'logout' => 'Se déconnecter',
+            'logout' => 'Se déconnecter', // Base text changed from "Log Out" to "Sign Out", please check.
             'profile' => 'Mon profil',
         ],
     ],

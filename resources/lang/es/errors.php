@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,13 +20,13 @@
 
 return [
     'codes' => [
-        'http-401' => 'Inicia sesión para continuar.',
+        'http-401' => 'Inicia sesión para continuar.', // Base text changed from "log" to "sign"
         'http-403' => 'Acceso denegado.',
         'http-429' => 'Demasiados intentos. Inténtalo de nuevo más tarde.',
     ],
     'account' => [
         'profile-order' => [
-            'generic' => 'Ha ocurrido un error. Intenta recargando la página.',
+            'generic' => 'Ha ocurrido un error. Intenta refrescando la página.',
         ],
     ],
     'beatmaps' => [
@@ -36,8 +36,8 @@ return [
     'beatmapsets' => [
         'too-many-favourites' => '¡Tienes demasiados mapas en favoritos! Desmarca algunos antes de continuar.',
     ],
-    'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.',
-    'supporter_only' => 'Debes de ser supporter para usar esta característica.',
+    'logged_out' => 'Tu sesión ha expirado. Inicia sesión y vuelve a intentarlo.', // Base text changed from "log" to "sign"
+    'supporter_only' => 'Debes ser supporter para usar esta característica.',
     'no_restricted_access' => 'No puedes realizar esta acción mientras tu cuenta esté en estado restringido.',
     'unknown' => 'Ha ocurrido un error desconocido.',
 ];

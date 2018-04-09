@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -19,6 +19,10 @@
  */
 
 return [
+    'pinned_topics' => 'Temas Fijados',
+    'slogan' => 'es peligroso jugar solo.',
+    'subforums' => 'Subforos',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -43,39 +47,48 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Temas Fijos',
     'post' => [
         'confirm_destroy' => '¿Eliminar publicación?',
         'confirm_restore' => '¿Restaurar publicación?',
         'edited' => 'Última edición por :user el :when, editado :count veces en total.',
         'posted_at' => 'publicado :when',
+
         'actions' => [
             'destroy' => 'Eliminar publicación',
             'restore' => 'Restaurar publicación',
             'edit' => 'Editar publicación',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Ir a la publicación',
         'post_number_input' => 'introducir número de publicación',
         'total_posts' => ':posts_count publicaciones totales',
     ],
-    'subforums' => 'Subforos',
-    'title' => 'osu!community',
-    'slogan' => 'es peligroso jugar solo.',
+
     'topic' => [
+        'deleted' => 'tema eliminado',
+        'go_to_latest' => 'ver la última publicación',
+        'latest_post' => ':when por :user',
+        'latest_reply_by' => 'última respuesta por :user',
+        'new_topic' => 'Escribir nuevo tema',
+        'post_reply' => 'Publicar',
+        'reply_box_placeholder' => 'Escribe aquí para responder',
+        'started_by' => 'por :user',
+
         'create' => [
+            'preview' => 'Previsualizar',
+            // TL note: this is used in the topic reply preview, when
+            // the user goes back from previewing to editing the reply
+            'preview_hide' => 'Escribir',
+            'submit' => 'Publicar',
+
             'placeholder' => [
                 'body' => 'Escribe el contenido de la publicación aquí',
                 'title' => 'Clic aquí para definir un título',
             ],
-            'preview' => 'Previsualizar',
-            //
-            //
-            'preview_hide' => 'Escribir',
-            'submit' => 'Publicar',
         ],
-        'go_to_latest' => 'ver la última publicación',
+
         'jump' => [
             'enter' => 'clic para introducir un número de publicación',
             'first' => 'ir a la primera publicación',
@@ -83,20 +96,11 @@ return [
             'next' => 'saltarse las siguientes 10 publicaciones',
             'previous' => 'ir 10 publicaciones atrás',
         ],
-        'latest_post' => ':when por :user',
-        'latest_reply_by' => 'última respuesta por :user',
-        'new_topic' => 'Escribir nuevo tema',
+
         'post_edit' => [
             'cancel' => 'Cancelar',
             'post' => 'Guardar',
-            'zoom' => [
-                'start' => 'Pantalla Completa',
-                'end' => 'Salir de Pantalla Completa',
-            ],
         ],
-        'post_reply' => 'Publicar',
-        'reply_box_placeholder' => 'Escribe aquí para responder',
-        'started_by' => 'por :user',
     ],
 
     'topic_watches' => [
@@ -109,6 +113,7 @@ return [
                 'total' => 'Temas suscritos',
                 'unread' => 'Temas con nuevas respuestas',
             ],
+
             'info' => [
                 'total' => 'Te has suscrito a :total temas.',
                 'unread' => 'Tienes :unread respuestas sin leer a temas suscritos.',
@@ -127,8 +132,9 @@ return [
         '_' => 'Temas',
 
         'actions' => [
-            'reply' => 'Mostrar caja de respuesta',
-            'reply_with_quote' => 'Citar y responder publicación',
+            'reply' => 'Responder',
+            'reply_with_quote' => 'Citar y responder',
+            'search' => 'Buscar',
         ],
 
         'create' => [
@@ -154,59 +160,63 @@ return [
             ],
         ],
 
+        'edit_title' => [
+            'start' => 'Editar título',
+        ],
+
         'index' => [
             'views' => 'vistas',
             'replies' => 'respuestas',
         ],
 
         'issue_tag_added' => [
-            'action-0' => 'Eliminar etiqueta "agregado"',
-            'action-1' => 'Agregar etiqueta "agregado"',
-            'state-0' => 'Etiqueta "agregado" eliminada',
-            'state-1' => 'Etiqueta "agregado" agregada',
+            'to_0' => 'Eliminar etiqueta "agregado"',
+            'to_0_done' => 'Etiqueta "agregado" eliminada',
+            'to_1' => 'Agregar etiqueta "agregado"',
+            'to_1_done' => 'Etiqueta "agregado" agregada',
         ],
 
         'issue_tag_assigned' => [
-            'action-0' => 'Eliminar etiqueta "asignado"',
-            'action-1' => 'Agregar etiqueta "asignado"',
-            'state-0' => 'Etiqueta "asignado" eliminada',
-            'state-1' => 'Etiqueta "asignado" agregada',
+            'to_0' => 'Eliminar etiqueta "asignado"',
+            'to_0_done' => 'Etiqueta "asignado" eliminada',
+            'to_1' => 'Agregar etiqueta "asignado"',
+            'to_1_done' => 'Etiqueta "asignado" agregada',
         ],
 
         'issue_tag_confirmed' => [
-            'action-0' => 'Eliminar etiqueta "confirmado"',
-            'action-1' => 'Agregar etiqueta "confirmado"',
-            'state-0' => 'Etiqueta "confirmado" eliminada',
-            'state-1' => 'Etiqueta "confirmado" agregada',
+            'to_0' => 'Eliminar etiqueta "confirmado"',
+            'to_0_done' => 'Etiqueta "confirmado" eliminada',
+            'to_1' => 'Agregar etiqueta "confirmado"',
+            'to_1_done' => 'Etiqueta "confirmado" agregada',
         ],
 
         'issue_tag_duplicate' => [
-            'action-0' => 'Eliminar etiqueta "duplicado"',
-            'action-1' => 'Agregar etiqueta "duplicado"',
-            'state-0' => 'Etiqueta "duplicado" eliminada',
-            'state-1' => 'Etiqueta "duplicado" agregada',
+            'to_0' => 'Eliminar etiqueta "duplicado"',
+            'to_0_done' => 'Etiqueta "duplicado" eliminada',
+            'to_1' => 'Agregar etiqueta "duplicado"',
+            'to_1_done' => 'Etiqueta "duplicado" agregada',
         ],
 
         'issue_tag_invalid' => [
-            'action-0' => 'Eliminar etiqueta "inválido"',
-            'action-1' => 'Agregar etiqueta "inválido"',
-            'state-0' => 'Etiqueta "inválido" eliminada',
-            'state-1' => 'Etiqueta "inválido" agregada',
+            'to_0' => 'Eliminar etiqueta "inválido"',
+            'to_0_done' => 'Etiqueta "inválido" eliminada',
+            'to_1' => 'Agregar etiqueta "inválido"',
+            'to_1_done' => 'Etiqueta "inválido" agregada',
         ],
 
         'issue_tag_resolved' => [
-            'action-0' => 'Eliminar etiqueta "resuelto"',
-            'action-1' => 'Agregar etiqueta "resuelto"',
-            'state-0' => 'Etiqueta "resuelto" eliminada',
-            'state-1' => 'Etiqueta "resuelto" agregada',
+            'to_0' => 'Eliminar etiqueta "resuelto"',
+            'to_0_done' => 'Etiqueta "resuelto" eliminada',
+            'to_1' => 'Agregar etiqueta "resuelto"',
+            'to_1_done' => 'Etiqueta "resuelto" agregada',
         ],
 
         'lock' => [
             'is_locked' => 'Este tema está bloqueado y no se puede responder',
-            'lock-0' => 'Abrir tema',
-            'lock-1' => 'Cerrar tema',
-            'state-0' => 'El tema ha sido abierto',
-            'state-1' => 'El tema ha sido cerrado',
+            'to_0' => 'Abrir tema',
+            'to_0_done' => 'El tema ha sido abierto',
+            'to_1' => 'Cerrar tema',
+            'to_1_done' => 'El tema ha sido cerrado',
         ],
 
         'moderate_move' => [
@@ -214,23 +224,25 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
-            'pin-1' => 'Fijar tema',
-            'state-0' => 'El tema ya no está fijado',
-            'state-1' => 'El tema ha sido fijado',
+            'to_0' => 'No fijar tema', // Spanish doesn't have a word that works as un- for "pin", so I'm using this for now
+            'to_0_done' => 'El tema ya no está fijado',
+            'to_1' => 'Fijar tema',
+            'to_1_done' => 'El tema ya ha sido fijado',
+            'to_2' => 'Fijar tema y marcar como anuncio',
+            'to_2_done' => 'El tema ya ha sido fijado y marcado como anuncio',
         ],
 
         'show' => [
-            'total_posts' => 'Publicaciones totales',
             'deleted-posts' => 'Publicaciones eliminadas',
+            'total_posts' => 'Publicaciones totales',
 
             'feature_vote' => [
                 'current' => 'Prioridad actual: +:count',
                 'do' => 'Apoyar esta solicitud',
 
                 'user' => [
-                    'current' => 'Tienes :votes restantes.',
                     'count' => '{0} cero votos|{1} :count voto|[2,*] :count votos',
+                    'current' => 'Tienes :votes restantes.',
                     'not_enough' => 'No te quedan más votos',
                 ],
             ],
@@ -239,19 +251,16 @@ return [
                 'vote' => 'Votar',
 
                 'detail' => [
-                    'total' => 'Votos totales: :count',
-                    'ended' => 'Encuesta terminada el :time',
                     'end_time' => 'La encuesta terminará el :time',
+                    'ended' => 'Encuesta terminada el :time',
+                    'total' => 'Votos totales: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Desuscrito del tema',
-            'state-1' => 'Suscrito al tema',
-            'watch-0' => 'Desuscribirse del tema',
-            'watch-1' => 'Suscribirse al tema',
+            'to_not_watching_done' => 'Desuscrito del tema',
+            'to_watching_done' => 'Suscrito al tema',
         ],
     ],
-
 ];

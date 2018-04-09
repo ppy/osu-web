@@ -1,0 +1,90 @@
+/**
+ *    Copyright 2015-2018 ppy Pty. Ltd.
+ *
+ *    This file is part of osu!web. osu!web is distributed with the hope of
+ *    attracting more community contributions to the core ecosystem of osu!.
+ *
+ *    osu!web is free software: you can redistribute it and/or modify
+ *    it under the terms of the Affero GNU General Public License version 3
+ *    as published by the Free Software Foundation.
+ *
+ *    osu!web is distributed WITHOUT ANY WARRANTY; without even the implied
+ *    warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *    See the GNU Affero General Public License for more details.
+ *
+ *    You should have received a copy of the GNU Affero General Public License
+ *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+.profile-extra-recent-infringements {
+  @_top: profile-extra-recent-infringements;
+
+  overflow-x: auto;
+
+  &__action {
+    width: 100%;
+    border-radius: 20px;
+
+    margin-left: -10px;
+    padding: 2px 10px;
+
+    &--note {
+      background-color: @blue;
+    }
+
+    &--restriction {
+      background-color: @red;
+      color: #fff;
+    }
+
+    &--silence {
+      background-color: @yellow;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    min-width: 800px;
+
+    margin: 0 -5px;
+  }
+
+  &__table-cell {
+    padding: 0 5px;
+    padding-bottom: 7px;
+
+    &--header {
+      font-size: @font-size--small;
+      font-weight: 900;
+      text-transform: uppercase;
+
+      padding-bottom: 10px;
+    }
+
+    &--action {
+      width: 115px;
+    }
+
+    &--date {
+      width: 160px;
+      padding-right: 20px;
+    }
+
+    &--length {
+      width: 145px;
+      padding-right: 40px;
+    }
+  }
+
+  &__actor {
+    color: #999;
+
+    a, a:hover, a:active, a:link, a:visited {
+      color: #999;
+    }
+
+    &::before {
+      content: ' ';
+    }
+  }
+}

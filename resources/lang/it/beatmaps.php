@@ -60,11 +60,10 @@ return [
         'message_type_select' => 'Seleziona il tipo di commento',
 
         'mode' => [
-            'general' => 'Generale',
             'timeline' => 'Linea Temporale',
         ],
 
-        'require-login' => 'Per favore effettua il login per postare o rispondere',
+        'require-login' => 'Per favore effettua il login per postare o rispondere', // Base text changed from "log" to "sign"
         'resolved' => 'Risolto',
 
         'show' => [
@@ -80,14 +79,14 @@ return [
     ],
 
     'nominations' => [
+        'disqualification_prompt' => 'Ragioni della squalifica?',
+        'disqualified_at' => 'squalificata :time_ago',
         'disqualify' => 'Squalifica',
+        'incorrect_state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
         'nominate' => 'Nomina',
-        'required-text' => 'Nominazioni: :current/:required',
-        'disqualifed-at' => 'squalificata :time_ago',
-        'disqualification-prompt' => 'Ragioni della squalifica?',
         'qualified' => 'Data stimata essere rankata :date, se non viene trovato alcun problema.',
-        'qualified-soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
-        'incorrect-state' => 'Errore nel eseguire quell\'azione, prova a ricaricare la pagina.',
+        'qualified_soon' => 'Previsto il rank a breve, se non viene trovato alcun problema.',
+        'required_text' => 'Nominazioni: :current/:required',
     ],
 
     'listing' => [

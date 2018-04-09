@@ -22,16 +22,16 @@ return [
     'deleted' => '[удалённый пользователь]',
 
     'login' => [
-        '_' => 'Войти',
-        'locked_ip' => 'Твой IP адрес заблокирован. Попробуйте ещё раз через несколько минут.',
+        '_' => 'Вход',
+        'locked_ip' => 'Ваш IP адрес заблокирован. Попробуйте через несколько минут.',
         'username' => 'Никнейм',
         'password' => 'Пароль',
         'button' => 'Войти',
         'button_posting' => 'Входим...',
-        'remember' => 'Запомнить этот браузер',
-        'title' => 'Пожалуйста войди для продолжения',
-        'failed' => 'Неверный никнейм',
-        'register' => 'У тебя нет аккаунта в osu!? Создай один',
+        'remember' => 'Запомнить этот компьютер',
+        'title' => 'Войдите для продолжения',
+        'failed' => 'Неверный вход',
+        'register' => 'У Вас всё ещё нет аккаунта в osu!? Создайте новую',
         'forgot' => 'Забыли свой пароль?',
         'beta' => [
             'main' => 'Доступ к бета-версии ограничен.',
@@ -45,24 +45,25 @@ return [
     ],
     'anonymous' => [
         'login_link' => 'нажмите для входа',
+        'login_text' => 'войти',
         'username' => 'Гость',
-        'error' => 'Ты должен быть авторизированным, чтобы сделать это.',
+        'error' => 'Ты должен быть авторизированным, чтобы сделать это.', // Base text changed from "log" to "sign"
     ],
-    'logout_confirm' => 'Ты действительно хочешь выйти? :(',
+    'logout_confirm' => 'Вы точно хотите выйти? :(',
     'show' => [
-        '404' => 'Пользователь не найден! ;_;',
+        '404' => 'Игрок не найден! ;_;',
         'age' => ':age лет',
-        'current_location' => 'Проживает в :location',
-        'first_members' => 'Зарегистрирован тут с самого начала',
-        'is_developer' => 'osu!разработчик',
-        'is_supporter' => 'osu!саппортер',
-        'joined_at' => 'Зарегистрирован :date',
-        'lastvisit' => 'Был в сети :date',
-        'missingtext' => 'Возможно, ты сделал опечатку! (или пользователь забанен)',
+        'change_avatar' => 'сменить аватар!',
+        'first_members' => 'Здесь с самого начала',
+        'is_developer' => 'osu!developer',
+        'is_supporter' => 'osu!supporter',
+        'joined_at' => 'Присоединился :date',
+        'lastvisit' => 'Заходил :date',
+        'missingtext' => 'Возможно Вы сделали опечатку! (или игрок  заблокирован)',
         'origin_age' => ':age',
-        'origin_country' => 'Из страны :country',
-        'origin_country_age' => ':age из :country',
-        'page_description' => 'osu! - Всё, что вы хотели знать про :username!',
+        'origin_country_age' => ':age лет, из :country',
+        'origin_country' => 'Из :country',
+        'page_description' => 'osu! - Всё, что Вы хотели знать о :username!',
         'plays_with' => 'Играет с :devices',
         'title' => 'Профиль :username',
 
@@ -103,6 +104,8 @@ return [
             ],
             'historical' => [
                 'empty' => 'Нет каких-либо записей. :(',
+                'title' => 'Хронология',
+
                 'most_played' => [
                     'count' => 'количество игр',
                     'title' => 'Наибольше сыгранные карты',
@@ -111,7 +114,6 @@ return [
                     'accuracy' => 'точность: :percentage',
                     'title' => 'Последние игры',
                 ],
-                'title' => 'Хронология',
             ],
             'kudosu' => [
                 'available' => 'Кудосу доступно',
@@ -119,7 +121,7 @@ return [
                 'recent_entries' => 'Последние обмены',
                 'title' => 'Кудосу!',
                 'total' => 'Всего Кудосу накоплено',
-                'total_info' => 'Исходя из того, сколько правок внёс пользователь во время модерации карт. Загляните <a href="'.osu_url('user.kudosu').'">this сюда</a> для дополнительной информации.',
+                'total_info' => 'Исходя из того, сколько правок внёс пользователь во время модерации карт. Загляните <a href="'.osu_url('user.kudosu').'">сюда</a> для дополнительной информации.',
 
                 'entry' => [
                     'amount' => ':amount Кудосу',
@@ -161,7 +163,7 @@ return [
                 'empty' => 'Этот пользователь ничего не получил. ;_;',
                 'title' => 'Медали',
             ],
-            'recent_activities' => [
+            'recent_activity' => [
                 'title' => 'Последняя активность',
             ],
             'top_ranks' => [
@@ -183,8 +185,12 @@ return [
             'placeholder' => 'Введи контент этой страницы',
             'restriction_info' => "Ты должен иметь тег <a href='".route('store.products.show', 'supporter-tag')."' target='_blank'>osu!саппортера</a> для разблокировки данной особенности.",
         ],
+        'post_count' => [
+            '_' => 'Написал :link',
+            'count' => ':count постов|:count постов',
+        ],
         'rank' => [
-            'country' => 'Рейтинг страны для :mode',
+            'country' => 'Рейтинг стран для :mode',
             'global' => 'Глобальный рейтинг для :mode',
         ],
         'stats' => [
@@ -192,16 +198,20 @@ return [
             'level' => 'Уровень :level',
             'maximum_combo' => 'Максимальное комбо',
             'play_count' => 'Количество игр',
+            'play_time' => 'Всего времени в игре',
             'ranked_score' => 'Рейтинговые очки',
             'replays_watched_by_others' => 'Реплеев просмотрено другими',
-            'score_ranks' => 'Очко рейтинга',
+            'score_ranks' => 'Score Ranks',
             'total_hits' => 'Всего попаданий',
             'total_score' => 'Всего очков',
         ],
     ],
     'status' => [
         'online' => 'В сети',
-        'offline' => 'Вне сети',
+        'offline' => 'Не в сети',
+    ],
+    'store' => [
+        'saved' => 'Пользователь создан',
     ],
     'verify' => [
         'title' => 'Подтверждения аккаунта',

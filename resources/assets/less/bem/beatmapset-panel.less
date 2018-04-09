@@ -24,7 +24,7 @@
   color: @text-color;
 
   &__content {
-    height: 70px;
+    height: 75px;
     padding: @padding;
   }
 
@@ -149,6 +149,28 @@
     display: flex;
   }
 
+  &__status {
+    background: fade(black, 50%);
+    padding: 0 15px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 28px;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    .fade-element(@hover-transition-duration);
+    .@{top}:hover & {
+      opacity: 0;
+    }
+  }
+
+  &__status-container {
+    display: flex;
+    position: absolute;
+    margin: 5px;
+  }
+
   &__shadow {
     .default-border-radius();
     .own-layer();
@@ -171,10 +193,11 @@
     border-radius: @border-radius-base @border-radius-base 0 0;
     background-position: center;
     background-size: cover;
-    height: 130px;
+    height: 120px;
 
     &::before {
       .full-size();
+      content: ' ';
       background-image: linear-gradient(to bottom, fade(#000, 10%), fade(#000, 70%));
     }
   }
@@ -187,7 +210,13 @@
   }
 
   &__video-icon {
-    padding: @padding;
+    font-size: 14px;
+    line-height: 28px;
+    background: fade(black, 50%);
+    padding: 0px 5px;
+    margin-right: 5px;
+    border-radius: 14px;
+
     .fade-element(@hover-transition-duration);
 
     .@{top}:hover & {

@@ -21,10 +21,35 @@
 return [
     'authorizations' => [
         'update' => [
-            'null_user' => 'Must be logged in to edit.',
+            'null_user' => 'Must be signed in to edit.',
             'system_generated' => 'System-generated post can not be edited.',
             'wrong_user' => 'Must be owner of the post to edit.',
         ],
+    ],
+
+    'events' => [
+        'empty' => 'Nothing has happened... yet.',
+    ],
+
+    'index' => [
+        'deleted_beatmap' => 'deleted',
+        'title' => 'Beatmap Discussions',
+
+        'form' => [
+            'deleted' => 'Include deleted discussions',
+
+            'user' => [
+                'label' => 'User',
+                'overview' => 'Activities overview',
+            ],
+        ],
+    ],
+
+    'item' => [
+        'created_at' => 'Post date',
+        'deleted_at' => 'Deletion date',
+        'message_type' => 'Type',
+        'permalink' => 'Permalink',
     ],
 
     'nearby_posts' => [
@@ -34,7 +59,7 @@ return [
 
     'reply' => [
         'open' => [
-            'guest' => 'Login to Respond',
+            'guest' => 'Sign in to Respond',
             'user' => 'Respond',
         ],
     ],

@@ -20,16 +20,22 @@
 
 return [
     'show' => [
-        'fallback_translation' => 'A página selecionada ainda não foi traduzida no idioma selecionado (:language). Exibindo a versão em inglês.',
+        'fallback_translation' => 'A página selecionada ainda não foi traduzida no idioma selecionado (:language). Exibindo a versão em Inglês.',
         'languages' => 'Idiomas',
         'missing' => 'A página solicitada não pôde ser encontrada.',
-        'missing_title' => 'Não encontrado',
+        'missing_title' => 'Não Encontrado',
         'missing_translation' => 'A página solicitada não foi encontrada no idioma selecionado atualmente.',
+        'search' => 'Procurar por :link em páginas existentes.',
         'toc' => 'Índice',
 
         'edit' => [
             'link' => 'Exibir no GitHub',
             'refresh' => 'Atualizar',
+        ],
+
+        'outdated' => [
+            '_' => 'Esta página contêm uma tradução desatualizada do seu conteúdo original. Por favor, olhe a :default para uma informação mais precisa (e considere atualizar a tradução caso tenha interesse em ajudar)!',
+            'default' => 'versão em Inglês',
         ],
     ],
 ];

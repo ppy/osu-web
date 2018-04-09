@@ -22,4 +22,4 @@ class @FormClear
 
 
   clear: (e) ->
-    $(e.currentTarget).find('.js-form-clear--target').val('')
+    e.currentTarget.reset()

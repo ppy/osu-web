@@ -31,7 +31,7 @@
             <div class="landing-nav__section">
                 @foreach (nav_links() as $section => $links)
                     <a
-                        href="{{ array_values($links)[0] }}"
+                        href="{{ $links['_'] ?? array_values($links)[0] }}"
                         class="landing-nav__link {{ ($section == "home") ? "landing-nav__link--bold" : "" }}"
                     >
                         {{ trans("layout.menu.$section._") }}
@@ -80,10 +80,9 @@
             <div class="landing-nav__section">
                 <a
                     href="#"
-                    class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user"
-                    data-nav-sub-mode="login"
+                    class="landing-nav__link js-nav-toggle js-click-menu js-user-login--menu"
                     title="{{ trans("users.anonymous.login_link") }}"
+                    data-click-menu-target="nav2-login-box"
                 >
                     {{ trans("users.login._") }}
                 </a>
@@ -91,8 +90,6 @@
                 <a
                     href="{{ osu_url('user.signup') }}"
                     class="landing-nav__link js-nav-toggle"
-                    data-nav-mode="user"
-                    data-nav-sub-mode="signup"
                 >
                     {{ trans("users.signup._") }}
                 </a>
@@ -102,7 +99,7 @@
     </nav>
 
     <div class="js-nav-data" id="nav-data-landing" data-turbolinks-permanent></div>
-    @include('layout._popup')
+    @include('layout._popup_login', ['modifiers' => ['landing']])
 
     <div class="osu-page">
         <div class="landing-hero">
@@ -154,14 +151,12 @@
 
                 <div class="landing-hero__message-extra-container">
                     <div class="landing-hero__message-extra landing-hero__message-extra--bottom">
-                        <a href="{{ config('osu.urls.installer') }}" class="btn-osu-big btn-osu-big--download">
+                        <a href="{{ route('download') }}" class="btn-osu-big btn-osu-big--download-landing">
                             <span class="btn-osu-big__content">
                                 <span class="btn-osu-big__left">
                                     <span class="btn-osu-big__text-top">
-                                        {{ trans("home.landing.download._") }}
+                                        {{ trans("home.landing.download") }}
                                     </span>
-
-                                    <span class="btn-osu-big__text-bottom">{{ trans('home.landing.download.for', ['os' => 'Windows'])}}</span>
                                 </span>
 
                                 <span class="btn-osu-big__icon">
@@ -169,10 +164,6 @@
                                 </span>
                             </span>
                         </a>
-
-                        <span class="landing-hero__download-other">
-                            {{ trans('home.landing.download.soon') }}
-                        </span>
                     </div>
                 </div>
             </div>
@@ -234,7 +225,7 @@
             </a>
         </div>
 
-        @include('layout.footer', ['modifiers' => ['landing']])
+        @include('layout.footer', ['modifiers' => ['landing'], 'withLinks' => false])
     </footer>
 
     @include('layout.popup-container')

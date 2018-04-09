@@ -15,24 +15,20 @@
     You should have received a copy of the GNU Affero General Public License
     along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 --}}
-<div>
-    <div class="osu-nav__title">
-        {{ Auth::user()->username ?? trans("users.anonymous.username")}}
-    </div>
-
-    <div class="osu-nav__highlight-bar">
-        <span class="bar"></span>
-    </div>
-</div>
-
-<div class="osu-nav__avatar">
-    <div
-        class="
-            avatar
-            avatar--full-rounded
-            {{ Auth::user() === null ? 'avatar--guest' : '' }}
-            js-nav-avatar
-            js-current-user-avatar
-        "
-    ></div>
-</div>
+<button
+    class="
+        avatar
+        avatar--nav2
+        {{ Auth::user() === null ? 'avatar--guest' : '' }}
+        js-current-user-avatar
+        js-click-menu
+        js-user-login--menu
+        js-user-header
+    "
+    @if (Auth::user() === null)
+        title="{{ trans('users.anonymous.login_link') }}"
+    @else
+        {!! background_image(Auth::user()->user_avatar, false) !!}
+    @endif
+    data-click-menu-target="{{ Auth::user() === null ? 'nav2-login-box' : 'nav2-user-popup' }}"
+></button>

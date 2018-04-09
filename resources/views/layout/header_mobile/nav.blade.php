@@ -20,7 +20,7 @@
         <a
             data-toggle="dropdown"
             class="navbar-mobile-item__main dropdown-toggle"
-            href="{{ array_values($links)[0] }}"
+            href="{{ $links['_'] ?? array_values($links)[0] }}"
         >
             <span class="navbar-mobile-item__icon navbar-mobile-item__icon--main navbar-mobile-item__icon--closed">
                 <i class="fa fa-chevron-right"></i>
@@ -35,6 +35,9 @@
 
         <ul class="dropdown-menu" role="menu" aria-labelledby="expand-{{ $section }}">
             @foreach ($links as $action => $link)
+                @if ($action === '_')
+                    @continue
+                @endif
                 <li>
                     <a
                         class="navbar-mobile-item__submenu"

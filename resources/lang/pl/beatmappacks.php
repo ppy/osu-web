@@ -22,7 +22,7 @@ return [
         'blurb' => [
             'important' => 'WAŻNE',
             'instruction' => [
-                '_' => 'Instalacja: Gdy paczka zostanie pobrana, 
+                '_' => 'Instalacja: Gdy paczka zostanie pobrana,
                 wypakuj plik .rar w folderze z beatmapami (Songs).
                 Wszystkie beatmapy w paczce będą nadal miały
                 rozszerzenie .zip czy .osz, dlatego osu! rozpakuje je

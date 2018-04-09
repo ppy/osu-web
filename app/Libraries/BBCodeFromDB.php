@@ -39,6 +39,7 @@ class BBCodeFromDB
             'withGallery' => false,
             'ignoreLineHeight' => false,
             'withoutImageDimensions' => false,
+            'extraClasses' => '',
         ];
 
         $this->text = $text;
@@ -52,7 +53,7 @@ class BBCodeFromDB
 
     public function clearSpacesBetweenTags($text)
     {
-        return preg_replace("/>\s*</", '><', $text);
+        return preg_replace("/([^-][^-]>)\s*</", '\1<', $text);
     }
 
     public function parseAudio($text)
@@ -84,7 +85,7 @@ class BBCodeFromDB
 
     public function parseBoxHelperPrefix($linkText)
     {
-        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-down bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
+        return "<div class='js-spoilerbox bbcode-spoilerbox'><a class='js-spoilerbox__link bbcode-spoilerbox__link' href='#'><i class='fa fa-chevron-right bbcode-spoilerbox__arrow'></i>{$linkText}</a><div class='bbcode-spoilerbox__body'>";
     }
 
     public function parseBoxHelperSuffix()
@@ -152,7 +153,7 @@ class BBCodeFromDB
         $index = 0;
 
         foreach ($images as $i) {
-            $proxiedSrc = proxy_image(html_entity_decode($i['url']));
+            $proxiedSrc = proxy_image(html_entity_decode_better($i['url']));
 
             $imageTag = $galleryAttributes = '';
 
@@ -217,11 +218,14 @@ class BBCodeFromDB
 
     public function parseProfile($text)
     {
-        return preg_replace(
-            "#\[profile:{$this->uid}\](.+?)\[/profile:{$this->uid}\]#",
-            "<a href='/u/\\1'>\\1</a>",
-            $text
-        );
+        preg_match_all("#\[profile:{$this->uid}\](?<id>.*?)\[/profile:{$this->uid}\]#", $text, $users, PREG_SET_ORDER);
+
+        foreach ($users as $user) {
+            $userLink = link_to_user($user['id'], $user['id'], null);
+            $text = str_replace($user[0], $userLink, $text);
+        }
+
+        return $text;
     }
 
     public function parseQuote($text)
@@ -326,6 +330,10 @@ class BBCodeFromDB
 
         $className = 'bbcode';
 
+        if (present($this->options['extraClasses'])) {
+            $className .= " {$this->options['extraClasses']}";
+        }
+
         if ($this->options['ignoreLineHeight']) {
             $className .= ' bbcode--normal-line-height';
         }
@@ -355,6 +363,53 @@ class BBCodeFromDB
         // strip smilies
         $text = preg_replace('#<!-- (s(.*?)) -->.*?<!-- \\1 -->#', '\\2', $text);
 
-        return html_entity_decode($text, ENT_QUOTES);
+        return html_entity_decode_better($text);
+    }
+
+    public static function removeBBCodeTags($text)
+    {
+        // Don't care if too many characters are stripped;
+        // just don't want tags to go into index because they mess up the highlighting.
+
+        static $pattern = '#\[/?(\*|\*:m|audio|b|box|color|spoilerbox|centre|code|email|heading|i|img|list|list:o|list:u|notice|profile|quote|s|strike|u|spoiler|size|url|youtube)(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\]#';
+
+        return preg_replace($pattern, '', $text);
+    }
+
+    public static function removeBlockQuotes($text)
+    {
+        $level = 0;
+        $marker = 0;
+
+        while ($marker >= 0 && $marker < mb_strlen($text) && $level >= 0) {
+            $match = static::scanForNextQuoteTag($text, $marker);
+            if ($match === null) {
+                return $text;
+            }
+
+            if (present($match['start'][0])) {
+                $marker = $match['start'][1] + mb_strlen($match['start'][0]);
+                $level++;
+            } elseif (present($match['end'][0])) {
+                $level--;
+                $marker = $match['end'][1] + mb_strlen($match['end'][0]);
+                if ($level === 0) {
+                    $text = mb_substr($text, $marker, mb_strlen($text) - $marker);
+                }
+            } else {
+                $marker = -1;
+            }
+        }
+
+        return $text;
+    }
+
+    private static function scanForNextQuoteTag(string $text, $from = 0)
+    {
+        static $pattern = '#(?<start>\[quote(=.*?(?=:))?(:[a-zA-Z0-9]{1,5})?\])|(?<end>\[/quote(:[a-zA-Z0-9]{1,5})?\])#';
+
+        if (preg_match($pattern, $text, $matches, PREG_OFFSET_CAPTURE, $from) === 1) {
+            return $matches;
+        }
     }
 }

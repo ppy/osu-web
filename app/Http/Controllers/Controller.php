@@ -21,6 +21,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Libraries\LocaleMeta;
 use App\Models\Log;
 use Auth;
 use Carbon\Carbon;
@@ -68,6 +69,6 @@ abstract class Controller extends BaseController
 
     protected function locale()
     {
-        return Request::input('locale', App::getLocale());
+        return LocaleMeta::sanitizeCode(request('locale')) ?? App::getLocale();
     }
 }

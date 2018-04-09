@@ -20,11 +20,17 @@
   font-size: @font-size--normal;
   display: flex;
   margin: 2px 0;
-  align-items: center;
+  align-items: baseline;
+
+  &__content {
+    word-wrap: break-word;
+    min-width: 0;
+  }
 
   &__icon {
     border-radius: 3px;
     width: 8px;
+    flex: none;
     align-self: stretch;
 
     .type(@name, @bg-color) {
@@ -34,24 +40,27 @@
     }
 
     .type(approve, @blue);
-    .type(discussion_delete, @yellow);
-    .type(discussion_post_delete, @yellow);
-    .type(discussion_post_restore, @blue);
-    .type(discussion_restore, @blue);
+    .type(discussion-delete, @yellow);
+    .type(discussion-post-delete, @yellow);
+    .type(discussion-post-restore, @blue);
+    .type(discussion-restore, @blue);
     .type(disqualify, @red);
-    .type(issue_reopen, @yellow);
-    .type(issue_resolve, @green);
-    .type(kudosu_allow, @blue);
-    .type(kudosu_deny, @red);
-    .type(kudosu_gain, @blue);
-    .type(kudosu_lost, @red);
+    .type(issue-reopen, @yellow);
+    .type(issue-resolve, @green);
+    .type(kudosu-allow, @blue);
+    .type(kudosu-deny, @red);
+    .type(kudosu-gain, @blue);
+    .type(kudosu-lost, @red);
+    .type(kudosu-recalculate, #ccc);
     .type(nominate, @blue);
+    .type(nomination-reset, @red);
     .type(qualify, @blue);
     .type(rank, @green);
   }
 
   &__time {
     width: 80px;
+    flex: none;
     padding: 0 10px;
   }
 }

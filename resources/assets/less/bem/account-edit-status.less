@@ -23,6 +23,7 @@
 
   &__content {
     opacity: 0;
+    .fade-element(120ms);
 
     &--saved {
       color: @green;
@@ -30,7 +31,6 @@
 
       [data-account-edit-state=saved] & {
         opacity: 1;
-        .fade-element(120ms);
       }
     }
 

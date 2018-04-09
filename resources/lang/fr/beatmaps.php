@@ -43,7 +43,7 @@ return [
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
-        'require-login' => 'Veuillez vous connecter pour poster ou répondre',
+        'require-login' => 'Veuillez vous connecter pour poster ou répondre', // Base text changed from "log" to "sign"
         'resolved' => 'Résolu',
         'restore' => 'restaurer',
         'title' => 'Discussions',
@@ -71,9 +71,6 @@ return [
         ],
 
         'mode' => [
-            'events' => 'Historique',
-            'general' => 'Général',
-            'general_all' => 'Général (toutes difficultées)',
             'timeline' => 'Chronologie',
         ],
 
@@ -115,16 +112,16 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'disqualifiée :time_ago (:reason).',
-        'disqualifed_no_reason' => 'aucune raison spécifiée',
-        'disqualification-prompt' => 'Raison de la disqualification?',
+        'disqualification_prompt' => 'Raison de la disqualification?',
+        'disqualified_at' => 'disqualifiée :time_ago (:reason).',
+        'disqualified_no_reason' => 'aucune raison spécifiée',
         'disqualify' => 'Disqualifier',
-        'incorrect-state' => "Erreur lors de l'action, merci de réesayer.",
+        'incorrect_state' => "Erreur lors de l'action, merci de réesayer.",
         'nominate' => 'Nominer',
-        'nominate-confirm' => 'Nominer cette beatmap?',
+        'nominate_confirm' => 'Nominer cette beatmap?',
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
-        'qualified-soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
-        'required-text' => 'Nominations: :current/:required',
+        'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
+        'required_text' => 'Nominations: :current/:required',
         'title' => 'Statut de Nomination',
     ],
 

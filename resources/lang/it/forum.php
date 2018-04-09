@@ -19,6 +19,9 @@
  */
 
 return [
+    'pinned_topics' => 'Topic Fissati',
+    'subforums' => 'Subforum',
+    'title' => 'comunità osu!',
 
     'covers' => [
         'create' => [
@@ -43,33 +46,42 @@ return [
         ],
     ],
 
-    'pinned_topics' => 'Topic Fissati',
     'post' => [
         'confirm_delete' => 'Vuoi veramente eliminare il post?',
         'edited' => 'Ultima modifica di :user di :when, modificato :count volte in totale.',
         'posted_at' => 'postato :when',
+
         'actions' => [
             'delete' => 'Elimina post',
             'edit' => 'Modifica post',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Vai al post',
         'post_number_input' => 'inserisci numero post',
         'total_posts' => ':posts_count post in totale',
     ],
-    'subforums' => 'Subforum',
-    'title' => 'comunità osu!',
+
     'topic' => [
+        'go_to_latest' => 'guarda gli ultimi post',
+        'latest_post' => ':when da :user',
+        'latest_reply_by' => 'ultima risposta di :user',
+        'new_topic' => 'Scrivi nuovo topic',
+        'post_reply' => 'Invia',
+        'reply_box_placeholder' => 'Scrivi qui per rispondere',
+        'started_by' => 'da :user',
+
         'create' => [
+            'preview' => 'Anteprima',
+            'submit' => 'Invia',
+
             'placeholder' => [
                 'body' => 'Scrivi il contenuto del post qui',
                 'title' => 'Clicca qui per impostare il titolo',
             ],
-            'preview' => 'Anteprima',
-            'submit' => 'Invia',
         ],
-        'go_to_latest' => 'guarda gli ultimi post',
+
         'jump' => [
             'enter' => 'clicca per inserire un numero del post specifico',
             'first' => 'vai al primo post',
@@ -77,20 +89,16 @@ return [
             'next' => 'salta i prossimi 10 post',
             'previous' => 'vai indietro di 10 post',
         ],
-        'latest_post' => ':when da :user',
-        'latest_reply_by' => 'ultima risposta di :user',
-        'new_topic' => 'Scrivi nuovo topic',
+
         'post_edit' => [
             'cancel' => 'Cancella',
             'post' => 'Salva',
+
             'zoom' => [
                 'start' => 'Schermo intero',
                 'end' => 'Esci da Schermo Intero',
             ],
         ],
-        'post_reply' => 'Invia',
-        'reply_box_placeholder' => 'Scrivi qui per rispondere',
-        'started_by' => 'da :user',
     ],
 
     'topic_watches' => [
@@ -102,6 +110,7 @@ return [
                 'total' => 'Topic a cui sei iscritto',
                 'unread' => 'Topic con nuove risposte',
             ],
+
             'info' => [
                 'total' => 'Sei iscritto a :total topic.',
                 'unread' => 'Hai :unread risposte non lette nei topic a cui sei iscritto.',
@@ -120,7 +129,6 @@ return [
         '_' => 'Topic',
 
         'actions' => [
-            'reply' => 'Mostra box per rispondere',
             'reply_with_quote' => 'Quota il post per rispondere',
         ],
 
@@ -154,10 +162,10 @@ return [
 
         'lock' => [
             'is_locked' => 'Questo topic è bloccato e non può essere risposto',
-            'lock-0' => 'Sblocca topic',
-            'lock-1' => 'Blocca topic',
-            'state-0' => 'Il topic è stato sbloccato',
-            'state-1' => 'Il topic è stato bloccato',
+            'to_0' => 'Sblocca topic',
+            'to_0_done' => 'Il topic è stato sbloccato',
+            'to_1' => 'Blocca topic',
+            'to_1_done' => 'Il topic è stato bloccato',
         ],
 
         'moderate_move' => [
@@ -165,10 +173,10 @@ return [
         ],
 
         'moderate_pin' => [
-            'pin-0' => 'Togli dai topic fissati',
-            'pin-1' => 'Fissa topic',
-            'state-0' => 'Il topic è stato tolto dai topic fissati',
-            'state-1' => 'Il topic è stato fissato',
+            'to_0' => 'Togli dai topic fissati',
+            'to_0_done' => 'Il topic è stato tolto dai topic fissati',
+            'to_1' => 'Fissa topic',
+            'to_1_done' => 'Il topic è stato fissato',
         ],
 
         'show' => [
@@ -177,8 +185,8 @@ return [
                 'do' => 'Promuovi questa richiesta',
 
                 'user' => [
-                    'current' => 'Hai :votes rimanenti.',
                     'count' => '{0} nessun voto|{1} :count voto|[2,*] :count voti',
+                    'current' => 'Hai :votes rimanenti.',
                     'not_enough' => 'Non hai altri voti rimanenti',
                 ],
             ],
@@ -187,19 +195,16 @@ return [
                 'vote' => 'Vota',
 
                 'detail' => [
-                    'total' => 'Voti totali: :count',
-                    'ended' => 'Il sondaggio è finito :time',
                     'end_time' => 'Il sondaggio scade tra :time',
+                    'ended' => 'Il sondaggio è finito :time',
+                    'total' => 'Voti totali: :count',
                 ],
             ],
         ],
 
         'watch' => [
-            'state-0' => 'Disiscritto dal topic',
-            'state-1' => 'Iscritto al topic',
-            'watch-0' => 'Disiscriviti dal topic',
-            'watch-1' => 'Iscriviti al topic',
+            'to_not_watching_done' => 'Disiscritto dal topic',
+            'to_watching_done' => 'Iscritto al topic',
         ],
     ],
-
 ];

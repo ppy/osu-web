@@ -35,11 +35,12 @@ $(document).on 'turbolinks:load', ->
   StoreCheckout.initialize()
 
 @accountEdit ?= new AccountEdit
-@accountEditPlaystyle ?= new AccountEditPlaystyle
 @accountEditAvatar ?= new AccountEditAvatar
+@accountEditPlaystyle ?= new AccountEditPlaystyle
 @beatmapsetDownloadObserver ?= new BeatmapsetDownloadObserver
 @changelogChartLoader ?= new ChangelogChartLoader
 @checkboxValidation ?= new CheckboxValidation
+@clickMenu ?= new ClickMenu
 @currentUserObserver ?= new CurrentUserObserver
 @fancyGraph ?= new FancyGraph
 @formClear ?= new FormClear
@@ -50,16 +51,14 @@ $(document).on 'turbolinks:load', ->
 @forumAutoClick ?= new ForumAutoClick
 @forumCover ?= new ForumCover
 @forumTopicTitle ?= new ForumTopicTitle
+@forumTopicWatchAjax ?= new ForumTopicWatchAjax
 @gallery ?= new Gallery
 @globalDrag ?= new GlobalDrag
 @landingGraph ?= new LandingGraph
-@landingHero ?= new LandingHero
 @menu ?= new Menu
-@nav ?= new Nav
-@navSearch ?= new NavSearch
+@nav2 ?= new Nav2
 @osuAudio ?= new OsuAudio
 @osuLayzr ?= new OsuLayzr
-@parentFocus ?= new ParentFocus
 @postPreview ?= new PostPreview
 @reactTurbolinks ?= new ReactTurbolinks
 @replyPreview ?= new ReplyPreview
@@ -70,11 +69,14 @@ $(document).on 'turbolinks:load', ->
 @syncHeight ?= new SyncHeight
 @throttledWindowEvents ?= new ThrottledWindowEvents
 @timeago ?= new Timeago
+@tooltipBeatmap ?= new TooltipBeatmap
 @tooltipDefault ?= new TooltipDefault
 @turbolinksReload ?= new TurbolinksReload
 @twitchPlayer ?= new TwitchPlayer
-@wiki ?= new Wiki
 @userCard ?= new UserCard
+@userLogin ?= new UserLogin
+@userVerification ?= new UserVerification
+@wiki ?= new Wiki
 
 @formConfirmation ?= new FormConfirmation(@formError)
 @forumPostsSeek ?= new ForumPostsSeek(@forum)
@@ -83,8 +85,6 @@ $(document).on 'turbolinks:load', ->
 @forumTopicReply ?= new ForumTopicReply(@forum, @stickyFooter)
 @turbolinksDisable ?= new TurbolinksDisable(@turbolinksReload)
 @turbolinksDisqus ?= new TurbolinksDisqus(@turbolinksReload)
-@userLogin ?= new UserLogin(@nav)
-@userVerification ?= new UserVerification(@nav)
 
 
 $(document).on 'change', '.js-url-selector', (e) ->

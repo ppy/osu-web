@@ -19,6 +19,9 @@
  */
 
 return [
+    'pinned_topics' => 'Gepinde Onderwerpen',
+    'subforums' => 'Subfora',
+    'title' => 'osu!community',
 
     'covers' => [
         'create' => [
@@ -32,33 +35,43 @@ return [
             'confirm' => 'Weet je zeker dat je de cover afbeelding wilt verwijderen?',
         ],
     ],
-    'pinned_topics' => 'Gepinde Onderwerpen',
+
     'post' => [
         'confirm_delete' => 'Echt deze post verwijderen?',
         'edited' => 'Laatst bewerkt door :user op :when. :count keer bewerkt.',
         'posted_at' => 'gepost op :when',
+
         'actions' => [
             'delete' => 'Verwijder post',
             'edit' => 'Bewerk post',
         ],
     ],
+
     'search' => [
         'go_to_post' => 'Ga naar post',
         'post_number_input' => 'geef post nummer',
         'total_posts' => ':posts_count posts',
     ],
-    'subforums' => 'Subfora',
-    'title' => 'osu!community',
+
     'topic' => [
+        'go_to_latest' => 'bekijk nieuwste post',
+        'latest_post' => ':when door :user',
+        'latest_reply_by' => 'laatste bericht door :user',
+        'new_topic' => 'Maak nieuw onderwerp',
+        'post_reply' => 'Post',
+        'reply_box_placeholder' => 'Typ hier om te antwoorden',
+        'started_by' => 'door :user',
+
         'create' => [
+            'preview' => 'Voorbeeld',
+            'submit' => 'Post',
+
             'placeholder' => [
                 'body' => 'Typ post inhoud hier',
                 'title' => 'Klik hier om een titel in te stellen',
             ],
-            'preview' => 'Voorbeeld',
-            'submit' => 'Post',
         ],
-        'go_to_latest' => 'bekijk nieuwste post',
+
         'jump' => [
             'enter' => 'klik hier om een specifiek postnummer op te geven',
             'first' => 'ga naar eerste post',
@@ -66,9 +79,7 @@ return [
             'next' => 'sla 10 posts over',
             'previous' => 'ga 10 posts terug',
         ],
-        'latest_post' => ':when door :user',
-        'latest_reply_by' => 'laatste bericht door :user',
-        'new_topic' => 'Maak nieuw onderwerp',
+
         'post_edit' => [
             'cancel' => 'Annuleren',
             'post' => 'Opslaan',
@@ -77,15 +88,12 @@ return [
                 'end' => 'Volledig Scherm Afsluiten',
             ],
         ],
-        'post_reply' => 'Post',
-        'reply_box_placeholder' => 'Typ hier om te antwoorden',
-        'started_by' => 'door :user',
     ],
+
     'topics' => [
         '_' => 'Onderwerpen',
 
         'actions' => [
-            'reply' => 'Toon antwoordbox',
             'reply_with_quote' => 'Citeer post voor antwoord',
         ],
 
@@ -110,12 +118,11 @@ return [
                 'do' => 'Promoot dit verzoek',
 
                 'user' => [
-                    'current' => 'Je hebt :votes stemmen over.',
                     'count' => '{0} geen stemmen|{1} :count stem|[2,*] :count stemmen',
+                    'current' => 'Je hebt :votes stemmen over.',
                     'not_enough' => 'Je hebt geen stemmen meer over',
                 ],
             ],
         ],
     ],
-
 ];

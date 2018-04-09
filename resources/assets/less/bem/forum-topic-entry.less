@@ -26,6 +26,10 @@
   border-bottom: 1px solid #ccc;
   margin: 0 @main-margin;
 
+  &--deleted {
+    opacity: 0.5;
+  }
+
   &--empty {
     padding: 10px 0 5px;
   }
@@ -52,16 +56,6 @@
 
     &--buttons {
       margin: -2.5px;
-
-      @media @desktop {
-        opacity: 0;
-      }
-
-      .@{_top}:hover & {
-        @media @desktop {
-          opacity: 1;
-        }
-      }
     }
 
     &--icon {

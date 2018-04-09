@@ -21,22 +21,30 @@ el = React.createElement
 
 ProfilePage.Header = (props) ->
   div null,
-    div className: 'osu-page osu-page--users-show-header',
-      ul className: 'page-mode',
-        for mode in BeatmapHelper.modes
-          linkClass = 'page-mode-link'
-          linkClass += ' page-mode-link--is-active' if mode == props.currentMode
+    div
+      className: 'osu-page osu-page--users-show-header'
+      if !props.user.is_bot
+        ul className: 'page-mode',
+          for mode in BeatmapHelper.modes
+            linkClass = 'page-mode-link'
+            linkClass += ' page-mode-link--is-active' if mode == props.currentMode
 
-          li
-            className: 'page-mode__item'
-            key: mode
-            a
-              className: linkClass
-              href: laroute.route 'users.show',
-                user: props.user.id
-                mode: mode
-              osu.trans "beatmaps.mode.#{mode}"
-              span className: 'page-mode-link__stripe'
+            li
+              className: 'page-mode__item'
+              key: mode
+              a
+                className: linkClass
+                href: laroute.route 'users.show',
+                  user: props.user.id
+                  mode: mode
+                osu.trans "beatmaps.mode.#{mode}"
+                if props.user.playmode == mode
+                  span className: 'page-mode__item-icon',
+                    '\u00A0'
+                    el Icon,
+                      name: 'star'
+                      title: osu.trans('users.show.edit.default_playmode.is_default_tooltip')
+                span className: 'page-mode-link__stripe'
 
       el ProfilePage.HeaderMain, props
     el ProfilePage.HeaderExtra, props

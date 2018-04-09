@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, div, h1, h2, p} = ReactDOMFactories
+{a, div, h1, h2, p} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapDiscussions.Header extends React.PureComponent
@@ -58,10 +58,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
       div className: "#{bn}__content #{bn}__content--nomination",
         el BeatmapDiscussions.Nominations,
           beatmapset: @props.beatmapset
-          events: @props.beatmapsetDiscussion.beatmapset_events
-          users: @props.users
-          currentUser: @props.currentUser
           currentDiscussions: @props.currentDiscussions
+          currentUser: @props.currentUser
+          discussions: @props.discussions
+          events: @props.events
+          users: @props.users
 
 
   headerTop: =>
@@ -73,6 +74,7 @@ class BeatmapDiscussions.Header extends React.PureComponent
       el PlaymodeTabs,
         currentMode: @props.currentBeatmap.mode
         beatmaps: @props.beatmaps
+        counts: @props.currentDiscussions.countsByPlaymode
 
       div
         className: "#{bn}__content"
@@ -93,7 +95,9 @@ class BeatmapDiscussions.Header extends React.PureComponent
           className: "#{bn}__filters"
 
           el BeatmapDiscussions.BeatmapList,
+            beatmapset: @props.beatmapset
             currentBeatmap: @props.currentBeatmap
+            currentDiscussions: @props.currentDiscussions
             beatmaps: @props.beatmaps[@props.currentBeatmap.mode]
 
           div
@@ -111,14 +115,14 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
   setFilter: (e) =>
     e.preventDefault()
-    $.publish 'beatmapDiscussion:filter', filter: e.currentTarget.dataset.type
+    $.publish 'beatmapsetDiscussions:update', filter: e.currentTarget.dataset.type
 
 
   stats: =>
     bn = 'counter-box'
 
     for type in ['mine', 'mapperNotes', 'resolved', 'pending', 'praises', 'deleted', 'total']
-      continue if type == 'deleted' && !@props.currentUser.isAdmin
+      continue if type == 'deleted' && !@props.currentUser.is_admin
 
       topClasses = "#{bn} #{bn}--beatmap-discussions #{bn}--#{_.kebabCase(type)}"
       topClasses += ' js-active' if @props.mode != 'events' && @props.currentFilter == type
@@ -129,7 +133,11 @@ class BeatmapDiscussions.Header extends React.PureComponent
 
       a
         key: type
-        href: '#'
+        href: BeatmapDiscussionHelper.url
+          filter: type
+          beatmapsetId: @props.beatmapset.id
+          beatmapId: @props.currentBeatmap.id
+          mode: @props.mode
         className: topClasses
         'data-type': type
         onClick: @setFilter

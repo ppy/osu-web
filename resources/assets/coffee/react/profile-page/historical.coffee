@@ -20,11 +20,44 @@
 el = React.createElement
 
 class ProfilePage.Historical extends React.PureComponent
+  constructor: (props) ->
+    super props
+
+    @id = "users-show-historical-#{osu.uuid()}"
+    @charts = {}
+
+
+  componentDidMount: =>
+    $(window).on "throttled-resize.#{@id}", @resizeCharts
+    @monthlyPlaycountsChartUpdate()
+    @replaysWatchedCountsChartUpdate()
+
+
+  componentDidUpdate: =>
+    @monthlyPlaycountsChartUpdate()
+    @replaysWatchedCountsChartUpdate()
+
+
+  componentWillUnmount: =>
+    $(window).off ".#{@id}"
+
+
   render: =>
     div
       className: 'page-extra'
 
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
+
+      if @hasMonthlyPlaycounts()
+        div null,
+          h3
+            className: 'page-extra__title page-extra__title--small'
+            osu.trans('users.show.extra.historical.monthly_playcounts.title')
+
+          div
+            className: 'page-extra__chart'
+            ref: @setMonthlyPlaycountsChartArea
+
 
       h3
         className: 'page-extra__title page-extra__title--small'
@@ -85,6 +118,16 @@ class ProfilePage.Historical extends React.PureComponent
       else
         p null, osu.trans('users.show.extra.historical.empty')
 
+      if @hasReplaysWatchedCounts()
+        div null,
+          h3
+            className: 'page-extra__title page-extra__title--small'
+            osu.trans('users.show.extra.historical.replays_watched_counts.title')
+
+          div
+            className: 'page-extra__chart'
+            ref: @setReplaysWatchedCountsChartArea
+
 
   _beatmapRow: (bm, bmset, key, details = []) =>
     div
@@ -120,7 +163,101 @@ class ProfilePage.Historical extends React.PureComponent
                   mapper: laroute.link_to_route 'users.show',
                     bmset.creator
                     { user: bmset.user_id }
-                    class: 'beatmapset-row__title-small'
+                    class: 'beatmapset-row__title-small js-usercard'
+                    'data-user-id': bmset.user_id
           div
             className: 'beatmapset-row__detail-column'
             details[1]
+
+
+  chartUpdate: (attribute, area) =>
+    dataPadder = (padded, entry) ->
+      if padded.length > 0
+        lastEntry = _.last(padded)
+        missingMonths = entry.x.diff(lastEntry.x, 'months') - 1
+
+        _.times missingMonths, (i) ->
+          padded.push
+            x: lastEntry.x.clone().add(i + 1, 'months')
+            y: 0
+
+      padded.push entry
+      padded
+
+    data = _(@props.user[attribute])
+      .sortBy 'start_date'
+      .map (count) ->
+        x: moment(count.start_date)
+        y: count.count
+      .reduce dataPadder, []
+
+    if data.length == 1
+      data.unshift
+        x: data[0].x.clone().subtract(1, 'month')
+        y: 0
+
+    if !@charts[attribute]?
+      options =
+        curve: d3.curveLinear
+        formats:
+          x: (d) -> moment(d).format(osu.trans('common.datetime.year_month_short.moment'))
+          y: (d) -> d.toLocaleString()
+        margins: right: 80 # more spacing for x axis label
+        tooltipFormats:
+          x: (d) -> moment(d).format(osu.trans('common.datetime.year_month.moment'))
+        tickValues: {}
+        ticks: {}
+
+      @charts[attribute] = new LineChart(area, options)
+
+    @updateTicks @charts[attribute], data
+    @charts[attribute].loadData data
+
+
+  hasMonthlyPlaycounts: =>
+    @props.user.monthly_playcounts.length > 0
+
+
+  hasReplaysWatchedCounts: =>
+    @props.user.replays_watched_counts.length > 0
+
+
+  monthlyPlaycountsChartUpdate: =>
+    return if !@hasMonthlyPlaycounts()
+
+    @chartUpdate 'monthly_playcounts', @monthlyPlaycountsChartArea
+
+
+  replaysWatchedCountsChartUpdate: =>
+    return if !@hasReplaysWatchedCounts()
+
+    @chartUpdate 'replays_watched_counts', @replaysWatchedCountsChartArea
+
+
+  updateTicks: (chart, data) =>
+    if osu.isDesktop()
+      chart.options.ticks.x = null
+
+      data ?= chart.data
+      chart.options.tickValues.x =
+        if data.length < 10
+          data.map (d) -> d.x
+        else
+          null
+    else
+      chart.options.ticks.x = 6
+      chart.options.tickValues.x = null
+
+
+  resizeCharts: =>
+    for own _name, chart of @charts
+      @updateTicks chart
+      chart.resize()
+
+
+  setMonthlyPlaycountsChartArea: (ref) =>
+    @monthlyPlaycountsChartArea = ref
+
+
+  setReplaysWatchedCountsChartArea: (ref) =>
+    @replaysWatchedCountsChartArea = ref

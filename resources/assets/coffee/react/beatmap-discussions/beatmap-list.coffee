@@ -41,7 +41,7 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
     div
       className: "#{bn} #{"#{bn}--selecting" if @state.showingSelector}"
       a
-        href: BeatmapDiscussionHelper.hash beatmapId: @props.currentBeatmap.id
+        href: BeatmapDiscussionHelper.url beatmap: @props.currentBeatmap
         className: "#{bn}__item #{bn}__item--selected #{bn}__item--large js-beatmap-list-selector"
         onClick: @toggleSelector
         el BeatmapDiscussions.BeatmapListItem, beatmap: @props.currentBeatmap, large: true, withButton: 'down'
@@ -55,16 +55,22 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
     menuItemClasses = "#{bn}__item"
     menuItemClasses += " #{bn}__item--current" if beatmap.id == @props.currentBeatmap.id
 
+    count = if beatmap.deleted_at? then null else @props.currentDiscussions.countsByBeatmap[beatmap.id]
+
     a
-      href: BeatmapDiscussionHelper.hash beatmapId: beatmap.id
+      href: BeatmapDiscussionHelper.url beatmap: beatmap
       className: menuItemClasses
       key: beatmap.id
       'data-id': beatmap.id
       onClick: @selectBeatmap
-      el BeatmapDiscussions.BeatmapListItem, beatmap: beatmap, mode: 'version'
+      el BeatmapDiscussions.BeatmapListItem,
+        beatmap: beatmap
+        mode: 'version'
+        count: count
 
 
   hideSelector: (e) =>
+    return if e.button != 0
     return unless @state.showingSelector
     return if $(e.target).closest('.js-beatmap-list-selector').length
 
@@ -80,12 +86,14 @@ class BeatmapDiscussions.BeatmapList extends React.PureComponent
 
 
   selectBeatmap: (e) =>
+    return if e.button != 0
     e.preventDefault()
 
-    $.publish 'beatmap:select', id: parseInt(e.currentTarget.dataset.id, 10)
+    $.publish 'beatmapsetDiscussions:update', beatmapId: parseInt(e.currentTarget.dataset.id, 10)
 
 
   toggleSelector: (e) =>
+    return if e.button != 0
     e.preventDefault()
 
     @setSelector !@state.showingSelector

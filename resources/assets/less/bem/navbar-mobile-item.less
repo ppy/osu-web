@@ -17,11 +17,14 @@
  */
 
 .navbar-mobile-item {
+  text-transform: lowercase;
+
   &--user {
     && {
       display: flex;
       align-items: center;
       background-color: #333;
+      text-transform: unset;
     }
   }
 
@@ -81,6 +84,7 @@
       }
 
       &--logout {
+        .reset-input();
         .default-border-radius();
         width: @navbar-mobile--content-height;
         height: @navbar-mobile--content-height;

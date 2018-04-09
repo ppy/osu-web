@@ -41,7 +41,7 @@ return [
         'message_placeholder' => 'Нажмите сюда для публикации',
         'message_type_select' => 'Выбрать тип комментария',
         'reply_placeholder' => 'Введи тут ответ',
-        'require-login' => 'Войди для публикации или ответа',
+        'require-login' => 'Войди для публикации или ответа', // Base text changed from "log" to "sign"
         'resolved' => 'Решено',
         'restore' => 'восстановить',
         'title' => 'Обсуждения',
@@ -68,8 +68,6 @@ return [
         ],
 
         'mode' => [
-            'general' => 'Главная',
-            'general_all' => 'Главная (все сложности)',
             'timeline' => 'График',
         ],
 
@@ -93,16 +91,16 @@ return [
     ],
 
     'nominations' => [
-        'disqualifed-at' => 'дисквалифицирован :time_ago (:reason).',
-        'disqualifed_no_reason' => 'причина не указана',
-        'disqualification-prompt' => 'Причина для дисквалификации?',
+        'disqualification_prompt' => 'Причина для дисквалификации?',
+        'disqualified_at' => 'дисквалифицирован :time_ago (:reason).',
+        'disqualified_no_reason' => 'причина не указана',
         'disqualify' => 'Дисквалифицировать',
-        'incorrect-state' => 'Не удалось выполнить данную задачу, пробовал перезагрузить страницу?',
+        'incorrect_state' => 'Не удалось выполнить данную задачу, пробовал перезагрузить страницу?',
         'nominate' => 'Номинировать',
-        'nominate-confirm' => 'Номинировать эту карту?',
+        'nominate_confirm' => 'Номинировать эту карту?',
         'qualified' => 'Если больше не будет выявлено каких-либо проблем, карта получит рейтинговый статус примерно в :date.',
-        'qualified-soon' => 'Если больше не будет выявлено каких-либо проблем, карта получит рейтинговый статус очень скоро.',
-        'required-text' => 'Номинации: :current/:required',
+        'qualified_soon' => 'Если больше не будет выявлено каких-либо проблем, карта получит рейтинговый статус очень скоро.',
+        'required_text' => 'Номинации: :current/:required',
         'title' => 'Статус номинации',
     ],
 

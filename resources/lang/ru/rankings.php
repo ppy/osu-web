@@ -19,23 +19,23 @@
  */
 
 return [
-    'header' => 'Рейтинг :type',
+    'header' => 'Рейтинг по :type',
     'type' => [
-        'performance' => 'Производительности',
-        'charts' => 'Графики',
-        'score' => 'Очков',
-        'country' => 'Стран',
+        'performance' => 'производительности',
+        'charts' => 'графикам',
+        'score' => 'очкам',
+        'country' => 'странам',
     ],
     'stat' => [
         'accuracy' => 'Точность',
-        'active_users' => 'Активные пользователи',
+        'active_users' => 'Активные игроки',
         'country' => 'Страна',
         'play_count' => 'Количество игр',
         'performance' => 'Производительность',
         'total_score' => 'Всего очков',
         'ranked_score' => 'Рейтинговых очков',
-        'average_score' => 'Ср. очки',
-        'average_performance' => 'Ср. произ.',
+        'average_score' => 'Сред. очки',
+        'average_performance' => 'Сред. произ.',
         'ss' => 'SS',
         's' => 'S',
         'a' => 'A',

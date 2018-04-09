@@ -24,8 +24,18 @@ return [
     ],
 
     'checkout' => [
+        'cart_problems' => 'O nie, wystąpił problem z twoim koszykiem!',
+        'cart_problems_edit' => 'Kliknij tutaj, aby go zedytować',
+        'declined' => 'Płatność została anulowana.',
+        'error' => 'Wystąpił problem z zatwierdzaniem twojego zamówienia :(',
+        'old_cart' => 'Zawartość twojego koszyka była przestarzała i została odświeżona, spróbuj ponownie.',
         'pay' => 'Zapłać przez PayPal',
-        'delayed_shipping' => 'Jesteśmy obecnie przeciążeni zamówieniami! Możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia 1-2 tygodni** dopóki nie uporamy się z obecnymi zamówieniami.',
+        'pending_checkout' => [
+            'line_1' => 'Poprzednio podjęta próba złożenia zamówienia nie została zakończona.',
+            'line_2' => 'Wznów proces poprzez wybór metody płatności lub :link, aby przerwać składanie zamówienia.',
+            'link_text' => 'kliknij tutaj',
+        ],
+        'delayed_shipping' => 'Obecnie jesteśmy przytłoczeni zamówieniami! Wciąż możesz złożyć swoje zamówienie, ale spodziewaj się **dodatkowego opóźnienia w postaci 1-2 tygodni**, dopóki te już istniejące nie zostaną zakończone.',
     ],
 
     'discount' => 'zaoszczędź :percent%',
@@ -57,6 +67,7 @@ return [
     ],
 
     'supporter_tag' => [
+        'gift' => 'podaruj innemu użytkownikowi',
         'require_login' => [
             '_' => 'Aby zdobyć status donatora, musisz się :link!',
             'link_text' => 'zalogować',
@@ -64,8 +75,10 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Wprowadź nazwę użytkownika, aby sprawdzić, czy jest dostępna!',
+        'checking' => 'Sprawdzanie możliwości zmiany na :username...',
         'require_login' => [
-            '_' => 'Aby zmienić swój pseudonim, musisz się :link!',
+            '_' => 'Aby zmienić swoją nazwę użytkownika, musisz się :link!',
             'link_text' => 'zalogować',
         ],
     ],

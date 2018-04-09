@@ -38,7 +38,7 @@ class BeatmapPacksController extends Controller
         }
 
         return view('packs.index')
-            ->with('packs', $packs->get())
+            ->with('packs', $packs->paginate(20)->appends(['type' => $type]))
             ->with('type', $type);
     }
 

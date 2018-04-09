@@ -16,8 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-propsFunction = =>
+reactTurbolinks.registerPersistent 'beatmapset-page', BeatmapsetPage.Main, true, (target) ->
   beatmapset: osu.parseJson('json-beatmapset')
   countries: _.keyBy osu.parseJson('json-countries'), 'code'
-
-reactTurbolinks.register 'beatmapset-page', BeatmapsetPage.Main, propsFunction
+  container: target

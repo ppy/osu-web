@@ -22,7 +22,7 @@ el = React.createElement
 class ProfilePage.UserPage extends React.Component
   render: =>
     isBlank = @props.userPage.initialRaw.trim() == ''
-    div className: 'page-extra',
+    div className: 'page-extra page-extra--userpage',
       el ProfilePage.ExtraHeader, name: @props.name, withEdit: @props.withEdit
 
       if !@props.userPage.editing && @props.withEdit && !isBlank
@@ -36,10 +36,13 @@ class ProfilePage.UserPage extends React.Component
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
-      else if @props.withEdit && isBlank
-        @pageNew()
       else
-        @pageShow()
+        div className: 'page-extra__content-overflow-wrapper-outer',
+          if @props.withEdit && isBlank
+            @pageNew()
+          else
+            div className: 'page-extra__content-overflow-wrapper-inner',
+              @pageShow()
 
 
   editStart: ->
@@ -51,7 +54,7 @@ class ProfilePage.UserPage extends React.Component
       button
         className: 'profile-extra-user-page__new-content   btn-osu btn-osu--lite btn-osu--profile-page-edit'
         onClick: @editStart
-        disabled: !@props.user.isSupporter
+        disabled: !@props.user.is_supporter
         osu.trans 'users.show.page.edit_big'
 
       p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
@@ -62,7 +65,7 @@ class ProfilePage.UserPage extends React.Component
         dangerouslySetInnerHTML:
           __html: osu.trans 'users.show.page.description'
 
-      if !@props.user.isSupporter
+      if !@props.user.is_supporter
         p
           className: 'profile-extra-user-page__new-content'
           dangerouslySetInnerHTML:

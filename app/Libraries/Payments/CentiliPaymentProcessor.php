@@ -92,7 +92,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
 
         // order should be in the correct state
         if ($this->getNotificationType() === NotificationType::PAYMENT
-            && !in_array($order->status, ['incart', 'checkout'], true)) {
+            && $order->isAwaitingPayment() === false) {
             $this->validationErrors()->add('order.status', '.order.status.not_checkout', ['state' => $order->status]);
         }
 
@@ -109,7 +109,7 @@ class CentiliPaymentProcessor extends PaymentProcessor
             $this->validationErrors()->add('country', '.param.invalid', ['param' => 'country']);
         }
 
-        if ($this->getPaymentAmount() !== $order->getTotal()) {
+        if (compare_currency($this->getPaymentAmount(), $order->getTotal()) !== 0) {
             $this->validationErrors()->add(
                 'purchase.checkout.amount',
                 '.purchase.checkout.amount',

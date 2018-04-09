@@ -17,7 +17,7 @@
  */
 
 .forum-post {
-  @_reply-xs-top-margin: 4px;
+  @_top: forum-post;
 
   .default-box-shadow();
   background-color: #fff;
@@ -33,11 +33,9 @@
   }
 
   &--reply {
-    backface-visibility: hidden;
-    transition: opacity 120ms;
+    height: 100%;
+    background-color: transparent;
     box-shadow: none;
-    width: 100%;
-    margin-bottom: 0;
   }
 
   .js-forum-post--hidden & {
@@ -71,12 +69,6 @@
     right: 30px;
     bottom: 20px;
     .desktop-position();
-
-    &--reply {
-      top: (-@_reply-xs-top-margin);
-      height: 0;
-      .desktop-position();
-    }
   }
 
   &__body {
@@ -92,8 +84,10 @@
     // reference: https://bugzilla.mozilla.org/show_bug.cgi?id=1108514#c2
     min-width: 0;
 
-    &--reply-form {
-      flex: 1;
+    .@{_top}--reply & {
+      @media @desktop {
+        flex: none;
+      }
     }
   }
 
@@ -106,7 +100,7 @@
     &--edit-bar {
       background-color: @gray-lighter;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding-top: 10px;
       padding-bottom: 10px;
     }
@@ -260,34 +254,24 @@
     }
   }
 
-  &__overlay {
-    .full-size();
-  }
-
   &__reply-body {
     .default-box-shadow();
     background-color: #fff;
-    flex: 1;
+    flex: none;
     display: flex;
     flex-direction: column;
     min-width: 0;
-  }
-
-  &__reply-container {
-    background-color: fade(#333, 90%);
-    width: 100%;
-    height: 100%;
-    padding-bottom: 10px;
-    padding-top: @_reply-xs-top-margin;
 
     @media @desktop {
-      padding-top: 10px;
+      flex: 1;
     }
   }
 
-  &__reply-content {
+  &__reply-stick {
+    flex: 1 0 auto;
     display: flex;
-    height: 100%;
+    align-self: center;
+    justify-content: flex-end;
   }
 
   &__stripe {

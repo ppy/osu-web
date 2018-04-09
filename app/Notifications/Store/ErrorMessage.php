@@ -25,6 +25,8 @@ use PayPal\Exception\PayPalConnectionException;
 
 class ErrorMessage extends Message
 {
+    private $context;
+    private $eventName;
     private $exceptionClass;
     private $exceptionData;
     private $exceptionMessage;
@@ -35,9 +37,11 @@ class ErrorMessage extends Message
      *
      * @return void
      */
-    public function __construct($exception, $order)
+    public function __construct($eventName, $exception, $order, $context = [])
     {
         parent::__construct();
+        $this->context = $context;
+        $this->eventName = $eventName;
         $this->exceptionClass = get_class($exception);
 
         if ($exception instanceof PayPalConnectionException) {
@@ -50,7 +54,7 @@ class ErrorMessage extends Message
 
     public function toSlack($notifiable)
     {
-        $content = "ERROR `{$this->notified_at}`";
+        $content = "ERROR `{$this->notified_at}` | `{$this->eventName}`";
         if ($this->order) {
             $content .= " | Order `{$this->order->getOrderNumber()}`";
         }
@@ -63,13 +67,13 @@ class ErrorMessage extends Message
             ->error()
             ->content($content)
             ->attachment(function ($attachment) {
-                $attachment->content($this->exceptionMessage);
-
+                $fields = $this->context;
                 if (isset($this->exceptionData)) {
-                    $attachment->fields([
-                        'data' => $this->exceptionData,
-                    ]);
+                    $fields = array_merge($fields, ['data' => $this->exceptionData]);
                 }
+
+                $attachment->content($this->exceptionMessage);
+                $attachment->fields($fields);
             });
     }
 

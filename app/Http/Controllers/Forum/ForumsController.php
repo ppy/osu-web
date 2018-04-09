@@ -39,13 +39,19 @@ class ForumsController extends Controller
 
     public function index()
     {
-        $forums = Forum::where('parent_id', 0)->with('subForums')->orderBy('left_id')->get();
+        $forums = Forum
+            ::where('parent_id', 0)
+            ->with('subforums.subforums')
+            ->orderBy('left_id')
+            ->get();
+
+        $lastTopics = Forum::lastTopics();
 
         $forums = $forums->filter(function ($forum) {
             return priv_check('ForumView', $forum)->can();
         });
 
-        return view('forum.forums.index', compact('forums'));
+        return view('forum.forums.index', compact('forums', 'lastTopics'));
     }
 
     public function search()
@@ -65,7 +71,8 @@ class ForumsController extends Controller
 
     public function show($id)
     {
-        $forum = Forum::with('subForums')->findOrFail($id);
+        $forum = Forum::with('subforums.subforums')->findOrFail($id);
+        $lastTopics = Forum::lastTopics($forum);
 
         $sort = explode('_', Request::input('sort'));
         $withReplies = Request::input('with_replies', '');
@@ -80,10 +87,10 @@ class ForumsController extends Controller
         $showDeleted = priv_check('ForumTopicModerate')->can();
 
         $pinnedTopics = $forum->topics()->pinned()->showDeleted($showDeleted)->orderBy('topic_type', 'desc')->recent()->get();
-        $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(15);
+        $topics = $forum->topics()->normal()->showDeleted($showDeleted)->recent(compact('sort', 'withReplies'))->paginate(30);
 
         $topicReadStatus = TopicTrack::readStatus(Auth::user(), $pinnedTopics, $topics);
 
-        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover'));
+        return view('forum.forums.show', compact('forum', 'topics', 'pinnedTopics', 'topicReadStatus', 'cover', 'lastTopics'));
     }
 }

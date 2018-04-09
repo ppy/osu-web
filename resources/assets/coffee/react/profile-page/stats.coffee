@@ -38,10 +38,34 @@ ProfilePage.Stats = ({stats}) ->
         className: "badge-rank badge-rank--small badge-rank--#{name}"
       div null, rankCount.toLocaleString()
 
+  playtime = moment.duration stats.play_time, 'seconds'
+
   div className: 'profile-stats',
-    div className: 'profile-stats__row profile-stats__row--compact',
+    div className: 'profile-stats__row profile-stats__row--compact profile-stats__row--playtime',
       div className: 'profile-badge profile-badge--level',
         span className: 'profile-badge__number', stats.level.current
+      div className: 'profile-stats__stat-box profile-stats__stat-box--playtime',
+        div className: 'profile-stats__key', osu.trans 'users.show.stats.play_time'
+        div className: 'profile-stats__playtime',
+          span className: 'profile-stats__playtime-main',
+            Math.floor playtime.asHours()
+            span className: 'profile-stats__playtime-unit',
+              osu.transChoice 'common.count.hour_short_unit', Math.floor playtime.asHours()
+
+          playtime.minutes()
+          span className: 'profile-stats__playtime-unit',
+            osu.transChoice 'common.count.minute_short_unit', playtime.minutes()
+
+          playtime.seconds()
+          span className: 'profile-stats__playtime-unit',
+            osu.transChoice 'common.count.second_short_unit', playtime.seconds()
+      div className: 'profile-stats__stat-box profile-stats__stat-box--experience-bar',
+        div className: 'bar bar--user-profile',
+          div
+            className: 'bar__fill'
+            style:
+              width: "#{stats.level.progress}%"
+        div className: 'profile-stats__value profile-stats__value--level-progress', "#{stats.level.progress}%"
 
     div className: 'profile-stats__row',
       simpleEntry

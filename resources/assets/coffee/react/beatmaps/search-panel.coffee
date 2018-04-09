@@ -83,6 +83,14 @@ class Beatmaps.SearchPanel extends React.PureComponent
           el Icon, name: 'search'
 
       el Beatmaps.SearchFilter,
+        name: 'general'
+        title: osu.trans('beatmaps.listing.search.filters.general')
+        options: filters.general
+        default: @props.filterDefaults.general
+        multiselect: true
+        selected: @props.filters.general
+
+      el Beatmaps.SearchFilter,
         name: 'mode'
         title: osu.trans('beatmaps.listing.search.filters.mode')
         options: filters.modes
@@ -90,7 +98,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         selected: @props.filters.mode
 
       el Beatmaps.SearchFilter,
-        name:'status'
+        name: 'status'
         title: osu.trans('beatmaps.listing.search.filters.status')
         options: filters.statuses
         default: @props.filterDefaults.status
@@ -98,10 +106,10 @@ class Beatmaps.SearchPanel extends React.PureComponent
 
       a
         className: 'beatmapsets-search__expand-link'
-        href:'#'
+        href: '#'
         onClick: @props.expand
         div {}, osu.trans('beatmaps.listing.search.options')
-        div {}, i className:'fa fa-angle-down'
+        div {}, i className: 'fa fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
         el Beatmaps.SearchFilter,
@@ -125,7 +133,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           multiselect: true
           selected: @props.filters.extra
 
-        if currentUser.isSupporter
+        if currentUser.is_supporter
           el Beatmaps.SearchFilter,
             name: 'rank'
             title: osu.trans('beatmaps.listing.search.filters.rank')

@@ -17,6 +17,8 @@
  */
 
 .beatmap-icon {
+  @top: beatmap-icon;
+
   color: #fff;
   font-size: 22px;
   display: flex;
@@ -25,6 +27,7 @@
     .full-size();
     .icon-bg();
 
+    content: ' ';
     @margin: 2px;
     @size: calc(100% ~'-' (@margin * 2));
     height: auto;
@@ -46,43 +49,48 @@
 
   &--easy {
     &::before {
-      background-color: @green;
+      background-color: @diff-easy;
     }
   }
 
   &--normal {
     &::before {
-      background-color: @blue;
+      background-color: @diff-normal;
     }
   }
 
   &--hard {
     &::before {
-      background-color: @yellow;
+      background-color: @diff-hard;
     }
   }
 
   &--insane {
     &::before {
-      background-color: @pink;
+      background-color: @diff-insane;
     }
   }
 
   &--expert {
     &::before {
-      background-color: @purple;
+      background-color: @diff-expert;
     }
   }
 
   &--expert-plus {
     &::before {
-      background-color: #000;
+      background-color: @diff-expert-plus;
     }
   }
 
   &__shadow {
     .default-box-shadow();
     .full-size();
+
+    .@{top}--with-hover:hover & {
+      .thicker-box-shadow();
+      transition: all 90ms ease-in-out; // 90ms to be in line with the tooltip (qtip2 default)
+    }
 
     @margin: 1px;
     @size: calc(100% ~'-' (@margin * 2));

@@ -20,7 +20,7 @@
 
 return [
     'match' => [
-        'header' => 'Partidas multijogadores',
+        'header' => 'Partidas Multiplayer',
         'team-types' => [
             'head-to-head' => 'Head-to-head',
             'tag-coop' => 'Tag Co-op',
@@ -63,9 +63,9 @@ return [
     ],
     'game' => [
         'scoring-type' => [
-            'score' => 'Maior pontuação',
-            'accuracy' => 'Maior precisão',
-            'combo' => 'Maior combo',
+            'score' => 'Maior Pontuação',
+            'accuracy' => 'Maior Precisão',
+            'combo' => 'Maior Combo',
             'scorev2' => 'Pontuação V2',
         ],
     ],

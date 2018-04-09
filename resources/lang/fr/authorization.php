@@ -91,7 +91,7 @@ return [
                 'no_permission' => 'Pas de permission de répondre.',
 
                 'user' => [
-                    'require_login' => 'Merci de vous connecter pour répondre.',
+                    'require_login' => 'Merci de vous connecter pour répondre.', // Base text changed from "log" to "sign"
                     'restricted' => 'Impossible de répondre : Vous êtes restreint.',
                     'silenced' => 'Impossible de répondre : Vous êtes réduit au silence.',
                 ],
@@ -109,7 +109,7 @@ return [
                 'voted' => "Le changement de vote n'est pas permis.",
 
                 'user' => [
-                    'require_login' => 'Connectez-vous pour voter.',
+                    'require_login' => 'Connectez-vous pour voter.', // Base text changed from "log" to "sign"
                     'restricted' => 'Impossible de voter : vous êtes restreint.',
                     'silenced' => 'Impossible de voter : vous êtes réduit au silence.',
                 ],
@@ -132,7 +132,7 @@ return [
         ],
     ],
 
-    'require_login' => 'Merci de vous connecter pour continuer.',
+    'require_login' => 'Merci de vous connecter pour continuer.', // Base text changed from "log" to "sign"
 
     'unauthorized' => 'Accès refusé.',
 

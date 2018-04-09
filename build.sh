@@ -31,9 +31,12 @@ fi
 
 php artisan lang:js resources/assets/js/messages.js
 php artisan laroute:generate
-php artisan config:cache
-php artisan route:cache
-php artisan optimize
+
+if [ ! "${APP_DEBUG:-false}" = "true" ]
+then
+  php artisan config:cache
+  php artisan route:cache
+fi
 
 command -v yarn || npm install -g yarn
 yarn

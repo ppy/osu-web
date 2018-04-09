@@ -20,8 +20,10 @@
 
 import { StoreCheckout } from 'store-checkout'
 import Promise from 'promise-polyfill'
+import TextareaAutosize from 'react-autosize-textarea'
 
 # polyfill non-Edge IE
 window.Promise ?= Promise
 
 window.StoreCheckout = StoreCheckout
+window.TextareaAutosize = TextareaAutosize

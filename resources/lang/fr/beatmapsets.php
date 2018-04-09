@@ -41,7 +41,7 @@ return [
             'approved' => 'approuvée le ',
             'qualified' => 'qualifiée le ',
             'loved' => 'loved le ',
-            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !',
+            'logged-out' => 'Vous devez vous connecter avant de télécharger des beatmaps !', // Base text changed from "log" to "sign"
             'download' => [
                 '_' => 'télécharger',
                 'video' => 'avec Vidéo',
@@ -66,14 +66,12 @@ return [
             'rating-spread' => 'Propagation note',
         ],
         'info' => [
-            'no_scores' => 'Beatmap non classifiée',
             'points-of-failure' => 'Points de ratés',
             'success-rate' => 'Taux de réussite',
-
             'description' => 'Description',
-
             'source' => 'Source',
             'tags' => 'Tags',
+            'unranked' => 'Beatmap non classifiée',
         ],
         'scoreboard' => [
             'achieved' => 'atteint :when',
@@ -100,10 +98,6 @@ return [
             'score' => [
                 'first' => 'En Tête',
                 'own' => 'Votre meilleur',
-            ],
-            'stats' => [
-                'accuracy' => 'Précision',
-                'score' => 'Score',
             ],
         ],
     ],

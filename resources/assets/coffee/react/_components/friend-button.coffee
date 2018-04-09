@@ -17,9 +17,9 @@
 ###
 
 el = React.createElement
-{a,button,div,span} = ReactDOMFactories
+{button, div, span} = ReactDOMFactories
 
-bn = 'friend-button'
+bn = 'user-action-button'
 
 class @FriendButton extends React.PureComponent
   constructor: (props) ->
@@ -27,18 +27,7 @@ class @FriendButton extends React.PureComponent
 
     @eventId = "friendButton-#{@props.user_id}-#{osu.uuid()}"
     @state =
-      hover: false
       friend: _.find(currentUser.friends, (o) -> o.target_id == props.user_id)
-
-
-  hover: =>
-    @setState
-      hover: true
-
-
-  unhover: =>
-    @setState
-      hover: false
 
 
   requestDone: =>
@@ -53,26 +42,23 @@ class @FriendButton extends React.PureComponent
 
 
   clicked: (e) =>
-    e.preventDefault()
-
     @setState loading: true
 
     if @state.friend
       #un-friending
-      $.ajax
+      @xhr = $.ajax
         type: "DELETE"
         url: laroute.route 'friends.destroy', friend: @props.user_id
-        success: @updateFriends
-        error: osu.emitAjaxError(@button)
-        complete: @requestDone
     else
       #friending
-      $.ajax
+      @xhr = $.ajax
         type: "POST"
         url: laroute.route 'friends.store', target: @props.user_id
-        success: @updateFriends
-        error: osu.emitAjaxError(@button)
-        complete: @requestDone
+
+    @xhr
+    .done @updateFriends
+    .fail osu.emitAjaxError(@button)
+    .always @requestDone
 
 
   refresh: (e) =>
@@ -87,6 +73,7 @@ class @FriendButton extends React.PureComponent
 
   componentWillUnmount: =>
     $.unsubscribe ".#{@eventId}"
+    @xhr?.abort()
 
 
   render: =>
@@ -105,11 +92,9 @@ class @FriendButton extends React.PureComponent
       else
         blockClass += " #{bn}--friend"
 
-    a
+    button
+      type: 'button'
       className: blockClass
-      href: '#'
-      onMouseEnter: @hover
-      onMouseLeave: @unhover
       onClick: @clicked
       ref: (el) => @button = el
       title: if @state.friend then osu.trans('friends.buttons.remove') else osu.trans('friends.buttons.add')
@@ -118,16 +103,23 @@ class @FriendButton extends React.PureComponent
         el Icon, name: 'refresh', modifiers: ['spin']
       else
         if @state.friend
-          if @state.hover
-            el Icon, name: 'user-times'
-          else
+          [
+            span
+              key: 'hover'
+              className: "#{bn}__icon #{bn}__icon--hover-visible"
+              el Icon, name: 'user-times'
             if @state.friend.mutual
-              [
-                el Icon, name: 'user', key: 1
-                el Icon, name: 'user', key: 2
-              ]
+              span
+                key: 'normal-mutual'
+                className: "#{bn}__icon #{bn}__icon--hover-hidden"
+                el Icon, name: 'user'
+                el Icon, name: 'user'
             else
-              el Icon, name: 'user'
+              span
+                key: 'normal'
+                className: "#{bn}__icon #{bn}__icon--hover-hidden"
+                el Icon, name: 'user'
+          ]
         else
           el Icon, name: 'user-plus'
 

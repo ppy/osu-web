@@ -21,12 +21,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Jobs\RegenerateBeatmapsetCover;
+use App\Jobs\RemoveBeatmapsetCover;
 use App\Models\Beatmapset;
 use Request;
 
 class BeatmapsetsController extends Controller
 {
-    protected $section = 'admin.beatmapsets';
+    protected $section = 'admin';
+    protected $actionPrefix = 'beatmapsets-';
 
     public function covers($id)
     {
@@ -35,14 +37,24 @@ class BeatmapsetsController extends Controller
         return view('admin.beatmapsets.cover', compact('beatmapset'));
     }
 
+    public function removeCovers($id)
+    {
+        $beatmapset = Beatmapset::findOrFail($id);
+
+        $job = (new RemoveBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
+        $this->dispatch($job);
+
+        return response([], 204);
+    }
+
     public function regenerateCovers($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);
 
-        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_processor');
+        $job = (new RegenerateBeatmapsetCover($beatmapset))->onQueue('beatmap_high');
         $this->dispatch($job);
 
-        return back();
+        return response([], 204);
     }
 
     public function show($id)
