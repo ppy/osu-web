@@ -36,6 +36,8 @@ html, body {
 body {
   -ms-overflow-style: scrollbar;
   overflow-y: scroll;
+  // fix tooltip positioning on edge when combined with overflow-y scroll above
+  position: static;
 }
 
 .content {
