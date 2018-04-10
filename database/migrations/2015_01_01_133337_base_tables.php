@@ -65,6 +65,18 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_apikeys', 'DYNAMIC');
 
+        Schema::create('osu_badges', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedMediumInteger('user_id');
+            $table->string('image', 255);
+            $table->string('description', 255);
+            $table->timestamp('awarded')->nullable()->useCurrent();
+            $table->primary(['user_id', 'image']);
+        });
+        $this->setRowFormat('osu_badges', 'DYNAMIC');
+
         Schema::create('osu_beatmap_difficulty', function (Blueprint $table) {
             $table->charset = 'utf8mb4';
 
@@ -1435,6 +1447,7 @@ class BaseTables extends Migration
     {
         Schema::drop('osu_achievements');
         Schema::drop('osu_apikeys');
+        Schema::drop('osu_badges');
         Schema::drop('osu_beatmap_difficulty');
         Schema::drop('osu_beatmap_difficulty_attribs');
         Schema::drop('osu_beatmaps');
