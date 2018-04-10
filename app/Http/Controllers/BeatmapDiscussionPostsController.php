@@ -104,14 +104,24 @@ class BeatmapDiscussionPostsController extends Controller
         $posts = [new BeatmapDiscussionPost($postParams)];
         $events = [];
 
-        $resetNominations = !$discussion->exists &&
-            $discussion->beatmapset->isPending() &&
-            $discussion->beatmapset->hasNominations() &&
-            $discussion->message_type === 'problem' &&
-            priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
+        $resetNominations = false;
+        $disqualify = false;
 
-        if ($resetNominations) {
-            $events[] = BeatmapsetEvent::NOMINATION_RESET;
+        if (!$discussion->exists && $discussion->message_type === 'problem') {
+            $resetNominations = $discussion->beatmapset->isPending() &&
+                $discussion->beatmapset->hasNominations() &&
+                priv_check('BeatmapsetResetNominations', $discussion->beatmapset)->can();
+
+            if ($resetNominations) {
+                $events[] = BeatmapsetEvent::NOMINATION_RESET;
+            } else {
+                $disqualify = $discussion->beatmapset->isQualified() &&
+                    priv_check('BeatmapsetDisqualify', $discussion->beatmapset)->can();
+
+                if ($disqualify) {
+                    $events[] = BeatmapsetEvent::DISQUALIFY;
+                }
+            }
         }
 
         if ($discussion->exists && $discussion->isDirty('resolved')) {
@@ -121,7 +131,7 @@ class BeatmapDiscussionPostsController extends Controller
         }
 
         try {
-            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations) {
+            DB::transaction(function () use ($posts, $discussion, $events, $resetNominations, $disqualify) {
                 $discussion->saveOrExplode();
 
                 foreach ($posts as $post) {
@@ -134,8 +144,12 @@ class BeatmapDiscussionPostsController extends Controller
                     BeatmapsetEvent::log($event, Auth::user(), $posts[0])->saveOrExplode();
                 }
 
+                if ($disqualify) {
+                    $discussion->beatmapset->setApproved('pending', Auth::user());
+                }
+
                 // feels like a controller shouldn't be calling refreshCache on a model?
-                if ($resetNominations) {
+                if ($resetNominations || $disqualify) {
                     $discussion->beatmapset->refreshCache();
                 }
             });

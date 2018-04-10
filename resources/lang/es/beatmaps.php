@@ -139,9 +139,12 @@ return [
         'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
         'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema',
         'required_text' => 'Nominaciones: :current/:required',
-        'reset_confirm' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
         'title' => 'Estado de Nominación',
         'unresolved_issues' => 'Todavía hay problemas sin resolver que deben ser resueltos primero.',
+
+        'reset_confirm' => [
+            'nomination_reset' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
+        ],
     ],
 
     'feedback' => [

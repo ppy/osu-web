@@ -35,34 +35,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
     osu.pageChange()
 
 
-  focusHypeInput: =>
-    hypeMessage = $('.js-hype--explanation')
-    flashClass = 'js-flash-border--on'
-
-    # switch to generalAll tab, set current filter to praises
-    $.publish 'beatmapsetDiscussions:update',
-      mode: 'generalAll'
-      filter: 'praises'
-
-    @focusNewDiscussion ->
-      # flash border of hype description to emphasize input is required
-      $(hypeMessage).addClass(flashClass)
-      @hypeFocusTimeout = Timeout.set 1000, ->
-        $(hypeMessage).removeClass(flashClass)
-
-
-  focusNewDiscussion: (callback) ->
-    inputBox = $('.js-hype--input')
-
-    osu.focus(inputBox)
-
-    # ensure input box is in view and focus it
-    $.scrollTo inputBox, 200,
-      interrupt: true
-      offset: -100
-      onAfter: -> callback?()
-
-
   nominationButton: (disabled = false) =>
     el BigButton,
       modifiers: ['full']
@@ -103,23 +75,6 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
         break
       else if event.type == 'nominate'
         nominators.unshift @props.users[event.user_id]
-
-    if nominationReset?
-      reset =
-        user: @props.users[nominationReset.user_id]
-        discussion: @props.discussions[nominationReset.comment.beatmap_discussion_id]
-
-      if reset.discussion?
-        url = BeatmapDiscussionHelper.url discussion: reset.discussion
-        message = _.truncate(reset.discussion.posts[0].message, 100)
-        message = BeatmapDiscussionHelper.format message, newlines: false
-
-        reset.link = osu.link url, "##{reset.discussion.id}", classNames: ['js-beatmap-discussion--jump']
-        reset.message = message
-      else
-        reset.link = "##{nominationReset.comment.beatmap_discussion_id}"
-        reset.message = osu.trans('beatmaps.nominations.reset_message_deleted')
-
 
     div className: bn,
       # hide hype meter and nominations when beatmapset is: ranked, approved, loved or graveyarded
@@ -202,7 +157,7 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                       text: osu.trans 'beatmaps.nominations.disqualify'
                       icon: 'thumbs-down'
                       props:
-                        onClick: @disqualify
+                        onClick: @focusNewDiscussionForDisqualification
                   else if userCanNominate && mapCanBeNominated
                     if @props.currentDiscussions.unresolvedIssues > 0
                       # wrapper 'cuz putting a title/tooltip on a disabled button is no worky...
@@ -230,24 +185,12 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
                     span null,
                       span
                         dangerouslySetInnerHTML:
-                          __html: osu.trans 'beatmaps.nominations.disqualified_at',
-                            time_ago: osu.timeago(disqualification.created_at)
-                            reason:
-                              if disqualification.comment?
-                                BeatmapDiscussionHelper.format disqualification.comment,
-                                  newlines: false
-                                  modifiers: ['white']
-                              else
-                                osu.trans('beatmaps.nominations.disqualified_no_reason')
+                          __html: @resetReason(disqualification)
                       ' ' # spacer
                   if nominationReset?
                     span
                       dangerouslySetInnerHTML:
-                        __html: osu.trans 'beatmaps.nominations.reset_at',
-                          time_ago: osu.timeago(nominationReset.created_at)
-                          discussion: reset.link
-                          message: reset.message
-                          user: osu.link laroute.route('users.show', user: reset.user.id), reset.user.username
+                        __html: @resetReason(nominationReset)
             if nominators.length > 0
               div
                 className: "#{bn}__note #{bn}__note--nominators"
@@ -276,35 +219,96 @@ class BeatmapDiscussions.Nominations extends React.PureComponent
           className: 'bar bar--beatmapset-nomination bar--beatmapset-nomination-off'
 
 
-  disqualify: =>
-    reason = prompt osu.trans('beatmaps.nominations.disqualification_prompt')
-    return unless reason
-
-    @doAjax 'disqualify', reason
-
-
-  doAjax: (action, comment) =>
-    LoadingOverlay.show()
-
-    params =
-      method: 'PUT'
-
-    if comment
-      params.data =
-        comment: comment
-
-    @xhr?.abort()
-
-    @xhr = $.ajax laroute.route("beatmapsets.#{action}", beatmapset: @props.beatmapset.id), params
-
-    .done (response) =>
-      $.publish 'beatmapsetDiscussions:update', beatmapset: response
-
-    .fail osu.ajaxError
-    .always LoadingOverlay.hide
-
-
   nominate: =>
     return unless confirm(osu.trans('beatmaps.nominations.nominate_confirm'))
 
-    @doAjax 'nominate'
+    LoadingOverlay.show()
+
+    @xhr?.abort()
+
+    url = laroute.route('beatmapsets.nominate', beatmapset: @props.beatmapset.id)
+    params = method: 'PUT'
+
+    @xhr = $.ajax(url, params)
+      .done (response) =>
+        $.publish 'beatmapsetDiscussions:update', beatmapset: response
+      .fail osu.ajaxError
+      .always LoadingOverlay.hide
+
+
+  focusHypeInput: =>
+    hypeMessage = $('.js-hype--explanation')
+    flashClass = 'js-flash-border--on'
+
+    # switch to generalAll tab, set current filter to praises
+    $.publish 'beatmapsetDiscussions:update',
+      mode: 'generalAll'
+      filter: 'praises'
+
+    @focusNewDiscussion ->
+      # flash border of hype description to emphasize input is required
+      $(hypeMessage).addClass(flashClass)
+      @hypeFocusTimeout = Timeout.set 1000, ->
+        $(hypeMessage).removeClass(flashClass)
+
+
+  focusNewDiscussion: (callback) ->
+    inputBox = $('.js-hype--input')
+
+    osu.focus(inputBox)
+
+    # ensure input box is in view and focus it
+    $.scrollTo inputBox, 200,
+      interrupt: true
+      offset: -100
+      onAfter: callback
+
+
+  focusNewDiscussionForDisqualification: =>
+    # Switch to generalAll tab just in case currently in event tab
+    # and thus new discussion box isn't visible.
+    $.publish 'beatmapsetDiscussions:update',
+      mode: 'generalAll'
+      modeIf: 'events'
+      callback: @focusNewDiscussion
+
+
+  parseEventData: (event) =>
+    user = @props.users[event.user_id]
+    discussion = @props.discussions[event.comment.beatmap_discussion_id]
+
+    if discussion?
+      url = BeatmapDiscussionHelper.url discussion: discussion
+      message = _.truncate(discussion.posts[0].message, 100)
+      message = BeatmapDiscussionHelper.format message, newlines: false
+
+      link = osu.link url, "##{discussion.id}", classNames: ['js-beatmap-discussion--jump']
+      message = message
+    else
+      link = "##{event.comment.beatmap_discussion_id}"
+      message = osu.trans('beatmaps.nominations.reset_message_deleted')
+
+    {user, discussion, link, message}
+
+
+  resetReason: (event) =>
+    if event.type == 'disqualify' && typeof event.comment != 'object'
+      reason =
+        if event.comment?
+          BeatmapDiscussionHelper.format event.comment,
+            newlines: false
+            modifiers: ['white']
+        else
+          osu.trans('beatmaps.nominations.disqualified_no_reason')
+
+      return osu.trans 'beatmaps.nominations.disqualified_at',
+        time_ago: osu.timeago(event.created_at)
+        reason: reason
+
+    parsedEvent = @parseEventData(event)
+
+    osu.trans "beatmaps.nominations.reset_at.#{event.type}",
+      time_ago: osu.timeago(event.created_at)
+      discussion: parsedEvent.link
+      message: parsedEvent.message
+      user: osu.link laroute.route('users.show', user: parsedEvent.user.id), parsedEvent.user.username
