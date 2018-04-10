@@ -72,7 +72,7 @@ class BaseTables extends Migration
             $table->unsignedMediumInteger('user_id');
             $table->string('image', 255);
             $table->string('description', 255);
-            $table->timestamp('awarded')->nullable()->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+            $table->timestamp('awarded')->nullable()->useCurrent();
             $table->primary(['user_id', 'image']);
         });
         $this->setRowFormat('osu_badges', 'DYNAMIC');
