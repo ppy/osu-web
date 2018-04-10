@@ -48,6 +48,8 @@ class PaymentSubscribers
                 foreach ($fulfillers as $fulfiller) {
                     $fulfiller->run();
                 }
+
+                $event->order->dispatchMail();
             } catch (Exception $exception) {
                 $this->notifyError($exception, $event->order, $eventName);
                 throw $exception;
