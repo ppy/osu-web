@@ -1242,6 +1242,20 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('phpbb_topics', 'DYNAMIC');
 
+        Schema::create('phpbb_topics_stars', function (Blueprint $table) {
+            $table->charset = 'utf8';
+
+            $table->mediumIncrements('star_id');
+            $table->unsignedMediumInteger('topic_id');
+            $table->unsignedMediumInteger('user_id');
+            $table->enum('type', ['user', 'supporter']);
+            $table->timestamp('date')->useCurrent();
+
+            $table->index(['user_id'], 'user_id');
+            $table->index(['topic_id', 'user_id'], 'topic_id');
+        });
+        $this->setRowFormat('phpbb_topic_stars', 'DYNAMIC');
+
         Schema::create('phpbb_topics_track', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_bin';
@@ -1518,6 +1532,7 @@ class BaseTables extends Migration
         Schema::drop('phpbb_ranks');
         Schema::drop('phpbb_smilies');
         Schema::drop('phpbb_topics');
+        Schema::drop('phpbb_topics_stars');
         Schema::drop('phpbb_topics_track');
         Schema::drop('phpbb_user_group');
         Schema::drop('phpbb_users');
