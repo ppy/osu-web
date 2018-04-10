@@ -20,6 +20,7 @@
 
 namespace App\Console\Commands;
 
+use File;
 use Illuminate\Console\Command;
 
 class LocaleCheck extends Command
@@ -149,33 +150,12 @@ class LocaleCheck extends Command
         return $entries;
     }
 
-    public function files($locale, $path = null)
+    public function files($locale)
     {
-        if ($path === null) {
-            $path = $this->basePath($locale);
-        }
-
-        $entries = scandir($path);
         $files = [];
 
-        foreach ($entries as $entry) {
-            if ($entry === '.' || $entry === '..') {
-                continue;
-            }
-
-            $entryPath = $path.'/'.$entry;
-
-            if (is_link($entryPath)) {
-                continue;
-            }
-
-            if (is_dir($entryPath)) {
-                $files = array_merge($files, $this->files($locale, $entryPath));
-            }
-
-            if (is_file($entryPath) && ends_with($entryPath, '.php')) {
-                $files[] = $entryPath;
-            }
+        foreach (File::allFiles($this->basePath($locale)) as $entry) {
+            $files[] = $entry->getPathname();
         }
 
         return $files;
