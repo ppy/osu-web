@@ -1244,6 +1244,7 @@ class BaseTables extends Migration
 
         Schema::create('phpbb_topics_stars', function (Blueprint $table) {
             $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
 
             $table->mediumIncrements('star_id');
             $table->unsignedMediumInteger('topic_id');
