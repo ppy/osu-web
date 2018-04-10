@@ -24,7 +24,10 @@ class TableTest extends TestCase
     public function testTableExistence()
     {
         $this->modelsPath = app_path().'/Models';
-        $this->checkDir($this->modelsPath);
+        $errors = $this->checkDir($this->modelsPath);
+
+        // prints a diff with the classes that errored.
+        $this->assertEquals([], $errors);
     }
 
     private function checkFile(string $path, string $namespace = '')
@@ -36,14 +39,18 @@ class TableTest extends TestCase
             return;
         }
 
-        $class::first();
-
-        $this->assertTrue(true);
+        try {
+            $class::first();
+        } catch (Exception $e) {
+            return $class;
+        }
     }
 
     private function checkDir(string $basePath, string $namespace = '')
     {
+        $errors = [];
         $entries = scandir($basePath);
+
         foreach ($entries as $entry) {
             $entryPath = $basePath.'/'.$entry;
             if ($entry === '.' || $entry === '..') {
@@ -51,10 +58,18 @@ class TableTest extends TestCase
             }
 
             if (is_dir($entryPath)) {
-                $this->checkDir($entryPath, $namespace.'\\'.$entry);
+                $dirErrors = $this->checkDir($entryPath, $namespace.'\\'.$entry);
+                if ($dirErrors !== []) {
+                    $errors = array_merge($errors, $dirErrors);
+                }
             } elseif (is_file($entryPath)) {
-                $this->checkFile($entryPath, $namespace);
+                $fileError = $this->checkFile($entryPath, $namespace);
+                if ($fileError !== null) {
+                    $errors[] = $fileError;
+                }
             }
         }
+
+        return $errors;
     }
 }
