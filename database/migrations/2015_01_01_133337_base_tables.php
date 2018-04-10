@@ -267,6 +267,20 @@ class BaseTables extends Migration
         });
         $this->setRowFormat('osu_counts', 'DYNAMIC');
 
+        Schema::create('osu_downloads', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->unsignedMediumInteger('user_id');
+            $table->integer('timestamp');
+            $table->mediumInteger('beatmapset_id');
+            $table->tinyInteger('fulfilled')->default(0);
+            $table->unsignedTinyInteger('mirror_id')->default(0);
+
+            $table->index(['user_id', 'timestamp', 'beatmapset_id'], 'user_id');
+        });
+        $this->setRowFormat('osu_downloads', 'DYNAMIC');
+
         Schema::create('osu_events', function (Blueprint $table) {
             $table->charset = 'utf8';
             $table->collation = 'utf8_general_ci';
@@ -422,6 +436,25 @@ class BaseTables extends Migration
         DB::statement('ALTER TABLE `osu_scores_fruits` ADD KEY (`scorechecksum`)');
         DB::statement('ALTER TABLE `osu_scores_fruits` ADD KEY `user_id` (`user_id`, `date`)');
         DB::statement('ALTER TABLE `osu_scores_fruits` MODIFY COLUMN `score_id` INT UNSIGNED AUTO_INCREMENT');
+
+        Schema::create('osu_mirrors', function (Blueprint $table) {
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->tinyIncrements('mirror_id');
+            $table->string('base_url', 255);
+            $table->bigInteger('traffic_used')->default(0);
+            $table->bigInteger('traffic_limit')->default(0);
+            $table->string('secret_key', 50)->default('');
+            $table->integer('provider_user_id');
+            $table->tinyInteger('enabled')->default(1);
+            $table->decimal('version', 4, 2)->nullable();
+            $table->string('pending_purge', 8192)->default('');
+            $table->tinyInteger('pending_updates')->default(1);
+            $table->string('regions', 8192)->nullable();
+            $table->bigInteger('disk_space_free')->nullable();
+        });
+        $this->setRowFormat('osu_mirrors', 'DYNAMIC');
 
         Schema::create('osu_scores_fruits_high', function (Blueprint $table) {
             $table->charset = 'utf8';
@@ -1444,6 +1477,7 @@ class BaseTables extends Migration
         Schema::drop('osu_builds');
         Schema::drop('osu_countries');
         Schema::drop('osu_counts');
+        Schema::drop('osu_downloads');
         Schema::drop('osu_events');
         Schema::drop('osu_favouritemaps');
         Schema::drop('osu_genres');
@@ -1454,6 +1488,7 @@ class BaseTables extends Migration
         Schema::drop('osu_leaders');
         Schema::drop('osu_leaders_taiko');
         Schema::drop('osu_login_attempts');
+        Schema::drop('osu_mirrors');
         Schema::drop('osu_scores_fruits_high');
         Schema::drop('osu_scores_fruits');
         Schema::drop('osu_scores_high');
