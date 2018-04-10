@@ -1255,7 +1255,7 @@ class BaseTables extends Migration
             $table->index(['user_id'], 'user_id');
             $table->index(['topic_id', 'user_id'], 'topic_id');
         });
-        $this->setRowFormat('phpbb_topic_stars', 'DYNAMIC');
+        $this->setRowFormat('phpbb_topics_stars', 'DYNAMIC');
 
         Schema::create('phpbb_topics_track', function (Blueprint $table) {
             $table->charset = 'utf8';
