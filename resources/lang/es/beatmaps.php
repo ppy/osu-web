@@ -74,7 +74,12 @@ return [
 
         'mode' => [
             'events' => 'Historial',
+            'general' => 'General :scope',
             'timeline' => 'Línea de tiempo',
+            'scopes' => [
+                'general' => 'Esta dificultad',
+                'generalAll' => 'Todas las dificultades',
+            ],
         ],
 
         'new' => [
@@ -227,6 +232,7 @@ return [
         'FI' => 'Fade In',
         '9K' => '9K',
         'NM' => 'Sin mods',
+        'TD' => 'Dispositivo touch',
     ],
     'language' => [
         'any' => 'Cualquiera',
