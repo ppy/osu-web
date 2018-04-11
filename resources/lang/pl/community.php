@@ -34,6 +34,15 @@ return [
             Chciałbym zaoferować osobiste podziękowania dla każdego, który wspomógł osu! do tej pory,
             tak samo jak tych, którzy ciągle wspierają tę wspaniałą grę i społeczność :).',
 
+        'supporter_status' => [
+            'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Otrzymaliśmy od ciebie łącznie :dollars pochodzących z :tags zakupionych statusów donatora!',
+            'gifted' => 'Ze wszystkich zakupionych statusów donatora, :giftedTags podarowano innym użytkownikom (za łączną wartość :giftedDollars). Wspaniała szczodrość!',
+            'not_yet' => 'Nie posiadasz jeszcze statusu donatora :(',
+            'title' => 'Status donatora',
+            'valid_until' => 'Twój status donatora jest aktywny do :date!',
+            'was_valid_until' => 'Twój status donatora był aktywny do :date.',
+        ],
+
         'why_support' => [
             'title' => 'Dlaczego mam wspomóc osu!?',
             'blocks' => [
