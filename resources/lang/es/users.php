@@ -223,6 +223,25 @@ return [
                 'title' => 'Rangos',
                 'weighted_pp' => 'valorado en: :pp (:percentage)',
             ],
+            'account_standing' => [
+                'title' => 'Estado de la cuenta',
+                'bad_standing' => "La cuenta de <strong>:username</strong> no está en regla :(",
+                'remaining_silence' => '<strong>:username</strong> podrá hablar otra vez dentro de :duration.',
+                'recent_infringements' => [
+                    'title' => 'Infracciones recientes',
+                    'date' => 'fecha',
+                    'action' => 'acción',
+                    'length' => 'duración',
+                    'length_permanent' => 'Permanente',
+                    'description' => 'descripción',
+                    'actor' => 'por :username',
+                    'actions' => [
+                        'restriction' => 'Ban',
+                        'silence' => 'Silenciado',
+                        'note' => 'Nota',
+                    ],
+                ],
+            ],
         ],
         'info' => [
             'interests' => 'Intereses',
