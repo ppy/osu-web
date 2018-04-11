@@ -196,10 +196,10 @@ class HomeController extends Controller
                 'current' => $current,
                 'expiration' => $expiration,
                 // purchased
-                'dollars' => '$'.number_format($dollars),
+                'dollars' => currency($dollars, 2, false),
                 'tags' => number_format($tags),
                 // gifted
-                'giftedDollars' => '$'.number_format($giftedDollars),
+                'giftedDollars' => currency($giftedDollars, 2, false),
                 'giftedTags' => number_format($giftedTags),
             ];
 
