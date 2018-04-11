@@ -27,7 +27,7 @@ return [
     ],
 
     'index' => [
-        'description' => 'Disse beatmap diskussioner følger du. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
+        'description' => 'Dette er de beatmap diskussioner følger du. Du vil modtage opdateringer når der er nye opslag eller opdateringer.',
         'title_compact' => 'modding watchlist',
         'title_main' => 'Modding Watchlist',
 

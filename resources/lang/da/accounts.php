@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Ændr Profil',
+            'title' => 'Redigere Profil',
 
             'user' => [
                 'user_from' => 'nuværende placering',
@@ -50,6 +50,7 @@ return [
                 'user_occ' => 'stilling',
                 'user_twitter' => 'twitter',
                 'user_website' => 'hjemmeside',
+                'user_interests' => 'interesse',
             ],
         ],
 

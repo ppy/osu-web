@@ -28,19 +28,20 @@ return [
             'exhausted' => 'Du har nået dit maksimale antal nomineringer i dag, prøv igen i morgen!',
         ],
         'resolve' => [
-            'not_owner' => 'Kun trådens person af oprindelse og beatmap ejer kan løse en diskussion.',
+            'not_owner' => 'Kun den oprindlige ejer af tråden og beatmap ejeren kan løse en diskussion.',
         ],
 
         'vote' => [
             'limit_exceeded' => 'Vent venligst et stykke tid med at stemme igen.',
             'owner' => 'Du kan ikke stemme på din egen diskussion!',
+            'wrong_beatmapset_state' => 'Kan kun stemme på diskussioner hvis beatmappen er i Afventende.',
         ],
     ],
 
     'beatmap_discussion_post' => [
         'edit' => [
-            'system_generated' => 'Automatisk genererede opslag kan ikke slettes.',
-            'not_owner' => 'Kun ejeren af dette opslag kan ændre det.',
+            'system_generated' => 'Automatisk genererede opslag kan ikke redigeres.',
+            'not_owner' => 'Kun ejeren af dette opslag kan redigere det.',
         ],
     ],
 
@@ -58,7 +59,7 @@ return [
                     'not_lazer' => 'Du kan i øjeblikket kun tale i #lazer.',
                 ],
 
-                'not_allowed' => 'Kan ikke sende besked når bannet/begrænset/mutet.',
+                'not_allowed' => 'Kan ikke sende besked imens du er bannet/begrænset/mutet.',
             ],
         ],
     ],
@@ -77,25 +78,25 @@ return [
             ],
 
             'edit' => [
-                'deleted' => 'Kan ikke ændre slettet opslag',
+                'deleted' => 'Kan ikke redigere slettede opslag',
                 'locked' => 'Dette opslag er låst fra at blive redigeret.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
-                'not_owner' => 'Kun ejeren af dette opslag kan slette opslaget.',
-                'topic_locked' => 'Kan ikke slette opslag fra låste emner.',
+                'not_owner' => 'Kun ejeren af dette opslaget kan redigere opslaget.',
+                'topic_locked' => 'Kan ikke redigere opslag fra låste emner.',
             ],
         ],
 
         'topic' => [
             'reply' => [
-                'double_post' => 'Du har lige slået dette op! Vent et stykke tid, eller rediger dit seneste opslag.',
-                'locked' => 'Kan ikke svare til en låst tråd.',
+                'double_post' => 'Du har lige lavet et opslag! Vent et stykke tid, eller rediger dit seneste opslag.',
+                'locked' => 'Kan ikke svare en låst tråd.',
                 'no_forum_access' => 'Adgang til det anmodede forum er nødvendig.',
                 'no_permission' => 'Du har ikke tilladelse til at svare.',
 
                 'user' => [
                     'require_login' => 'Log venligst ind for at svare.', // Base text changed from "log" to "sign"
                     'restricted' => 'Du kan ikke svare, når du er begrænset.',
-                    'silenced' => 'Du kan ikke svare, når dui er mutet.',
+                    'silenced' => 'Du kan ikke svare, når du er mutet.',
                 ],
             ],
 
@@ -146,7 +147,7 @@ return [
         'page' => [
             'edit' => [
                 'locked' => 'Brugerside er låst.',
-                'not_owner' => 'Du kan kun ændre din egen brugerside.',
+                'not_owner' => 'Du kan kun redigere din egen brugerside.',
                 'require_supporter_tag' => 'Supporter tag er nødvendigt.',
             ],
         ],

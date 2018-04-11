@@ -36,20 +36,20 @@ return [
         'delete' => 'slet',
         'deleted' => 'Slettet af :editor :delete_time.',
         'deny_kudosu' => 'nægt kudosu',
-        'edit' => 'ændr',
+        'edit' => 'rediger',
         'edited' => 'Sidst redigeret af :editor :update_time.',
         'kudosu_denied' => 'Nægtet fra at kunne modtage kudosu.',
-        'message_placeholder' => 'Skriv here for at slå op',
+        'message_placeholder' => 'Skriv her for at slå op',
         'message_type_select' => 'Vælg kommentar-type',
         'reply_notice' => 'Tryk enter for at svare.',
         'reply_placeholder' => 'Skriv dit svar her',
-        'require-login' => 'Log ind for at slå op eller svare', // Base text changed from "log" to "sign"
+        'require-login' => 'Log ind for at lave et opslag eller svare', // Base text changed from "log" to "sign"
         'resolved' => 'Løst',
         'restore' => 'gendan',
         'title' => 'Diskussioner',
 
         'collapse' => [
-            'all-collapse' => 'Kollaps alle',
+            'all-collapse' => 'Skjul alle',
             'all-expand' => 'Udvid alle',
         ],
 
@@ -60,7 +60,7 @@ return [
 
         'message_hint' => [
             'in_general' => 'Dette opslag vil lande i general beatmapset diskussionen. For at modde dette beatmap, start beskeden med et tidsstempel (f.eks. 00:12:345).',
-            'in_timeline' => 'For at modde flere tidsstempler, slå flere tidsstempler op (kun et opslag pr. tidsstempel).',
+            'in_timeline' => 'For at modde flere tidsstempler, lav flere opslag (kun et opslag pr. tidsstempel).',
         ],
 
         'message_type' => [
@@ -74,6 +74,10 @@ return [
         'mode' => [
             'events' => 'Historie',
             'timeline' => 'Tidslinje',
+            'scopes' => [
+                'general' => 'Den her sværhedgrad',
+                'generalAll' => 'Alle sværhedgrader',
+            ],
         ],
 
         'new' => [
@@ -97,10 +101,10 @@ return [
         ],
 
         'status-messages' => [
-            'approved' => 'Dette beatmap blev godkendt på :date!',
-            'graveyard' => 'Dette beatmap er ikke blevet opdateret siden :date og er højst sandsynligt blevet droppet af skaberen...',
-            'loved' => 'Dette beatmap blev tilføjet til "Loved" på :date!',
-            'ranked' => 'Dette beatmap blev ranked på :date!',
+            'approved' => 'Dette beatmap blev godkendt den :date!',
+            'graveyard' => 'Dette beatmap er ikke blevet opdateret siden den :date og er højst sandsynligt blevet efterladt af skaberen...',
+            'loved' => 'Denne beatmap blev tilføjet til "Loved" den :date!',
+            'ranked' => 'Denne beatmap blev ranked den :date!',
             'wip' => 'Notat: Dette beatmap er blevet markeret som "Under konstruktion" af skaberen.',
         ],
 
@@ -109,10 +113,10 @@ return [
     'hype' => [
         'button' => 'Hype Beatmap!',
         'button_done' => 'Allerede Hypet!',
-        'confirm' => 'Er du sikker? Dette vil benytte 1 af dine resterende :n hypes og kan ikke fortrydes.',
+        'confirm' => 'Er du sikker? Dette vil bruge 1 af dine resterende :n hypes og kan ikke fortrydes.',
         'explanation' => 'Hype denne beatmap for at gøre det mere synligt for nominering og ranking!',
         'explanation_guest' => 'Log ind og hype denne beatmap for at gøre det mere synligt for nominering og ranking!', // Base text changed from "log" to "sign"
-        'new_time' => 'Du får en ny hype ved :new_time.',
+        'new_time' => 'Du får en ny hype om :new_time.',
         'remaining' => 'Du har :remaining hypes tilbage.',
         'section_title' => 'Hype Tog',
         'title' => 'Hype',
@@ -127,11 +131,16 @@ return [
         'nominate' => 'Nominér',
         'nominate_confirm' => 'Nominér dette beatmap?',
         'nominated_by' => 'nomineret af :users',
-        'qualified' => 'Forventet at blive ranked på :date, hvis ingen problemer bliver fundet.',
+        'qualified' => 'Forventet at blive ranked den :date, hvis ingen problemer bliver fundet.',
         'qualified_soon' => 'Forventet at blive ranked snart, hvis ingen problemer bliver fundet.',
         'required_text' => 'Nomineringer: :current/:required',
+                'reset_at' => 'Nomineringer er blevet nullstillet :time_ago af et nyt problem :discussion.',
         'reset_confirm' => 'Er du sikker? Ved at slå et problem op, nulstiller du nomineringer.',
         'title' => 'Nomineringsstatus',
+    ],
+
+    'feedback' => [
+        'button' => 'Efterlad Feedback',
     ],
 
     'listing' => [
@@ -141,8 +150,9 @@ return [
             'not-found' => 'ingen resultater',
             'not-found-quote' => '... desværre, intet fundet.',
             'filters' => [
+                'general' => 'Generalt',
                 'mode' => 'Mode',
-                'status' => 'Rank Status',
+                'status' => 'Ranked Status',
                 'genre' => 'Genre',
                 'language' => 'Sprog',
                 'extra' => 'extra',
@@ -150,20 +160,26 @@ return [
             ],
         ],
         'mode' => 'Mode',
-        'status' => 'Rank Status',
+        'status' => 'Ranked Status',
         'mapped-by' => 'mappet af :mapper',
         'source' => 'fra :source',
         'load-more' => 'Indlæs mere...',
     ],
+
+    'general' => [
+        'recommended' => 'Recommenderet sværhedgrad',
+        'converts' => 'Inkluder konverterede beatmaps',
+    ],
+
     'mode' => [
-        'any' => 'Vilkårlig',
+        'any' => 'Alle',
         'osu' => 'osu!',
         'taiko' => 'osu!taiko',
         'fruits' => 'osu!catch',
         'mania' => 'osu!mania',
     ],
     'status' => [
-        'any' => 'Vilkårlig',
+        'any' => 'Alle',
         'ranked-approved' => 'Ranked & Godkendt',
         'approved' => 'Godkendt',
         'qualified' => 'Kvalificeret',
@@ -174,7 +190,7 @@ return [
         'my-maps' => 'Mine Maps',
     ],
     'genre' => [
-        'any' => 'Vilkårlig',
+        'any' => 'Alle',
         'unspecified' => 'Uspecificeret',
         'video-game' => 'Computerspil',
         'anime' => 'Anime',
@@ -209,7 +225,7 @@ return [
         'NM' => 'No mods',
     ],
     'language' => [
-        'any' => 'Vilkårlig',
+        'any' => 'Alle',
         'english' => 'Engelsk',
         'chinese' => 'Kinesisk',
         'french' => 'Fransk',
@@ -227,7 +243,7 @@ return [
         'storyboard' => 'Har Storyboard',
     ],
     'rank' => [
-        'any' => 'Vilkårlig',
+        'any' => 'Alle',
         'XH' => 'Silver SS',
         'X' => 'SS',
         'SH' => 'Silver S',
