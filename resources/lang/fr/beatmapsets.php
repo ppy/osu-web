@@ -50,6 +50,7 @@ return [
             ],
             'favourite' => 'Ajouter ce beatmapset aux favoris',
             'unfavourite' => 'Retirer ce beatmapset des favoris',
+            'favourited_count' => '+ 1 autre!|+ :count autres!',
         ],
         'stats' => [
             'cs' => 'Taille des Cercles',
@@ -64,12 +65,17 @@ return [
             'count_sliders' => 'Nombre de Sliders',
             'user-rating' => 'Évaluation des joueurs',
             'rating-spread' => 'Propagation note',
+            'nominations' => 'Nominations',
+            'playcount' => 'Nombre de joueurs',
         ],
         'info' => [
-            'points-of-failure' => 'Points de ratés',
-            'success-rate' => 'Taux de réussite',
             'description' => 'Description',
+            'genre' => 'Genre',
+            'language' => 'Langue',
+            'no_scores' => 'Les données sont encore en cours de calcul...',
+            'points-of-failure' => 'Points de ratés',
             'source' => 'Source',
+            'success-rate' => 'Taux de réussite',
             'tags' => 'Tags',
             'unranked' => 'Beatmap non classifiée',
         ],
@@ -82,12 +88,18 @@ return [
             'supporter-only' => 'Vous devez être osu!supporter pour accéder à cette fonctionnalité !',
             'title' => 'Tableaux des scores',
 
-            'list' => [
+            'headers' => [
                 'accuracy' => 'Précision',
-                'player-header' => 'Joueur',
-                'rank-header' => 'Rang',
+                'combo' => 'Combo max',
+                'miss' => 'Raté',
+                'mods' => 'Mods',
+                'player' => 'Joueur',
+                'pp' => 'pp',
+                'rank' => 'Rang',
+                'score_total' => 'Score total',
                 'score' => 'Score',
             ],
+            
             'no_scores' => [
                 'country' => "Personne de votre pays n'a encore fait un score !",
                 'friend' => "Personnne de vos amis n'a encore fait un score !",

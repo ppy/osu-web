@@ -40,6 +40,7 @@ return [
         'edited' => 'Dernière modification par :editor :update_time',
         'kudosu_denied' => 'Le kudosu a été refusé pour ceci.',
         'message_placeholder' => 'Écrivez ici pour poster',
+        'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, impossible de discuter de celle-ci.',
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
@@ -64,6 +65,7 @@ return [
         ],
 
         'message_type' => [
+            'hype' => 'Hype!',
             'mapper_note' => 'Note',
             'praise' => 'Hommage',
             'problem' => 'Problème',
@@ -71,7 +73,13 @@ return [
         ],
 
         'mode' => [
+            'events' => 'Historique',
+            'general' => 'General :scope',
             'timeline' => 'Chronologie',
+            'scopes' => [
+                'general' => 'Cette difficulté',
+                'generalAll' => 'Toutes les difficultés',
+            ],
         ],
 
         'new' => [
@@ -84,6 +92,13 @@ return [
             'title' => 'Discussion de la beatmap',
         ],
 
+        'sort' => [
+            '_' => 'Trié par:',
+            'created_at' => 'Date de création',
+            'timeline' => 'chronologie',
+            'updated_at' => 'Dernière mise à jour',
+        ],
+
         'stats' => [
             'deleted' => 'Supprimé',
             'mapper_notes' => 'Notes',
@@ -91,6 +106,7 @@ return [
             'pending' => 'En attente',
             'praises' => 'Hommages',
             'resolved' => 'Résolu',
+            'total' => 'Tout',
         ],
 
         'status-messages' => [
@@ -105,10 +121,19 @@ return [
 
     'hype' => [
         'button' => 'Hyper la Beatmap !',
-        'button-done' => 'Déjà hypée !',
-        'explanation' => 'Ajouter des hommages ❤ va augmenter sa hype, la rendant plus visible pour sa nomination et son classement !',
-        'section-title' => 'Train de la hype',
+        'button_done' => 'Déjà hypée !',
+        'confirm' => "Vous êtes sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulé.",
+        'explanation' => 'Hyper cette beatmap sert à la rendre plus visible pour sa nomination et son classement !',
+        'explanation_guest' => 'Connectez-vous et hypez cette beatmap pour la rendre plus visible pour sa nomination et son classement !',
+        'new_time' => "Vous obtiendrez un point de hype :new_time.",
+        'remaining' => 'Vous avez :remaining hypes restants.',
+        'required_text' => 'Hype: :current/:required',
+        'section_title' => 'Train de la hype',
         'title' => 'Hype',
+    ],
+
+    'feedback' => [
+        'button' => 'Laisser un avis',
     ],
 
     'nominations' => [
@@ -119,10 +144,14 @@ return [
         'incorrect_state' => "Erreur lors de l'action, merci de réesayer.",
         'nominate' => 'Nominer',
         'nominate_confirm' => 'Nominer cette beatmap?',
+        'nominated_by' => 'nominé par :users',
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
         'required_text' => 'Nominations: :current/:required',
-        'title' => 'Statut de Nomination',
+        'reset_at' => 'Les nominations sont réinitialisés :time_ago par le nouveau problème :discussion.',
+        'reset_confirm' => 'Vous êtes sûr ? Poster un nouveau problème va réinitialiser les nominations.',
+        'title' => 'Statut de la nomination',
+        'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
     ],
 
     'listing' => [
@@ -132,6 +161,7 @@ return [
             'not-found' => 'Aucun résultat',
             'not-found-quote' => '... non, rien trouvé.',
             'filters' => [
+                'general' => 'Géneral',
                 'mode' => 'Mode',
                 'status' => 'Statut du Classement',
                 'genre' => 'Genre',
@@ -146,6 +176,10 @@ return [
         'source' => 'de :source',
         'load-more' => 'Charger plus',
     ],
+    'general' => [
+        'recommended' => 'Difficulté recommandée',
+        'converts' => 'Inclure les beatmaps converties',
+    ],
     'mode' => [
         'any' => 'Tous',
         'osu' => 'osu!',
@@ -157,6 +191,7 @@ return [
         'any' => 'Tous',
         'ranked-approved' => 'Classifiée & approuvée',
         'approved' => 'Approuvée',
+        'qualified' => 'Qualifiée',
         'loved' => 'Loved',
         'faves' => 'Favoris',
         'pending' => 'En attente',
@@ -176,27 +211,28 @@ return [
         'electronic' => 'Electronic',
     ],
     'mods' => [
-        'NF' => 'No Fail',
-        'EZ' => 'Easy Mode',
-        'HD' => 'Hidden',
-        'HR' => 'Hard Rock',
-        'SD' => 'Sudden Death',
-        'DT' => 'Double Time',
-        'Relax' => 'Relax',
-        'HT' => 'Half Time',
-        'NC' => 'Nightcore',
-        'FL' => 'Flashlight',
-        'SO' => 'Spun Out',
-        'AP' => 'Auto Pilot',
-        'PF' => 'Perfect',
         '4K' => '4K',
         '5K' => '5K',
         '6K' => '6K',
         '7K' => '7K',
         '8K' => '8K',
-        'FI' => 'Fade In',
         '9K' => '9K',
+        'AP' => 'Auto Pilot',
+        'DT' => 'Double Time',
+        'EZ' => 'Easy Mode',
+        'FI' => 'Fade In',
+        'FL' => 'Flashlight',
+        'HD' => 'Hidden',
+        'HR' => 'Hard Rock',
+        'HT' => 'Half Time',
+        'NC' => 'Nightcore',
+        'NF' => 'No Fail',
         'NM' => 'Sans mods',
+        'PF' => 'Perfect',
+        'Relax' => 'Relax',
+        'SD' => 'Sudden Death',
+        'SO' => 'Spun Out',
+        'TD' => 'Appareil tactile',
     ],
     'language' => [
         'any' => 'Tous',

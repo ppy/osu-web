@@ -38,4 +38,13 @@ return [
         'qualify' => 'Qualifié.',
         'rank' => 'Classé.',
     ],
+
+    'index' => [
+        'title' => 'Évenements du set de beatmap',
+    ],
+
+    'item' => [
+        'content' => 'Contenu',
+        'type' => 'Type',
+    ],
 ];

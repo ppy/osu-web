@@ -32,6 +32,7 @@ return [
         'cancel' => 'Annuler',
         'delete' => 'Supprimer',
         'permalink' => 'permalien',
+        'permalink_copied' => 'lien copié',
         'post' => 'Poster',
         'reply' => 'Répondre',
         'reply_reopen' => 'Répondre et rouvrir',
@@ -39,20 +40,30 @@ return [
         'reset' => 'Réinitialiser',
         'save' => 'Sauvegarder',
         'saving' => 'Sauvegarde...',
+        'see_more' => 'voir plus',
         'show_more' => 'Plus de résultats',
         'upload_image' => 'mettre en ligne une image',
     ],
 
     'count' => [
+        'badges' => ':count badge|:count badges',
+        'days' => ':count jour|:count jours',
+        'hour_short_unit' => 'h|h',
+        'hours' => ':count heure|:count heures',
         'item' => ':count objet|:count objets',
+        'minute_short_unit' => 'min|mins',
         'months' => ':count mois|:count mois',
-        'years' => ':count année|:count années',
+        'second_short_unit' => 'sec|secs',
+        'years' => ':count an|:count ans',
     ],
 
     'datetime' => [
         'year_month' => [
             'moment' => 'MMMM YYYY',
             'php' => 'MMMM y',
+        ],
+        'year_month_short' => [
+            'moment' => 'MMM YYYY',
         ],
     ],
 

@@ -28,7 +28,13 @@ return [
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
         'error' => 'Il y a eu un problème lors de votre commande :(',
+        'old_cart' => 'Votre panier semble être obselète et il a été ',
         'pay' => 'Payer avec PayPal',
+        'pending_checkout' => [
+            'line_1' => 'Une commande précédente a été commencée mais non finalisée.',
+            'line_2' => 'Reprenez votre commande en sélectionnant un mode de paiement, ou :link pour annuler la commande.',
+            'link_text' => 'cliquez ici',
+        ],
         'delayed_shipping' => 'Nous sommes surchargés de commandes, si vous commandez, merci de patienter **une à deux semaines** le temps que nous traitons toutes ces commandes.',
     ],
 
@@ -69,6 +75,8 @@ return [
     ],
 
     'username_change' => [
+        'check' => 'Entrez un nom d\'utilisateur pour vérifier sa disponibilité !',
+        'checking' => 'Vérification de la disponibilité de :username...',
         'require_login' => [
             '_' => 'Vous devez être :link pour changer votre nom !',
             'link_text' => 'connecté', // Base text changed from "log" to "sign"
