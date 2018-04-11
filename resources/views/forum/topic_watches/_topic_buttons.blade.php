@@ -24,7 +24,7 @@
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.mark_read.confirmation') }}"
     title="{{ trans('forum.topic_watches.topic_buttons.mark_read.title') }}"
 >
-    <i class="fa fa-check"></i>
+    <i class="fas fa-check"></i>
 </a>
 --}}
 
@@ -45,7 +45,7 @@
     data-method="PUT"
 >
     <span class="btn-circle__content">
-        <i class="fa fa-envelope"></i>
+        <i class="fas fa-envelope"></i>
     </span>
 </button>
 
@@ -64,6 +64,6 @@
     data-confirm="{{ trans('forum.topic_watches.topic_buttons.remove.confirmation') }}"
 >
     <span class="btn-circle__content">
-        <i class="fa fa-trash"></i>
+        <i class="fas fa-trash-alt"></i>
     </span>
 </button>

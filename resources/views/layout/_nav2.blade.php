@@ -71,7 +71,7 @@
                     {{ isset($isSearchPage) ? 'u-section--bg-normal' : '' }}
                 "
             >
-                <span class="fa fa-search"></span>
+                <span class="fas fa-search"></span>
             </a>
         </div>
     </div>
@@ -128,7 +128,7 @@
                 class="nav2__button nav2__button--support"
                 title="{{ trans('layout.menu.home.supportTheGame') }}"
             >
-                <span class="fa fa-heart"></span>
+                <span class="fas fa-heart"></span>
             </a>
         </div>
 
@@ -144,7 +144,7 @@
                             {{ Auth::user()->notificationCount() > 0 ? 'notification-icon--glow' : '' }}
                         "
                     >
-                        <i class="fa fa-inbox"></i>
+                        <i class="fas fa-inbox"></i>
 
                         <span class="notification-icon__count">
                             {{ number_format(Auth::user()->notificationCount()) }}

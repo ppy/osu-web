@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="btn-osu-big__icon">
-                            <i class="fa fa-check"></i>
+                            <i class="fas fa-check"></i>
                         </div>
                     </div>
                 </button>

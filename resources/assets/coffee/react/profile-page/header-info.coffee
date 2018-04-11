@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h1, span, a} = ReactDOMFactories
+{div, h1, span, a, i} = ReactDOMFactories
 el = React.createElement
 
 ProfilePage.HeaderInfo = ({user, currentMode}) ->
@@ -32,10 +32,13 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
       avatar
     div className: 'profile-info__details',
       if user.is_supporter
-        el Icon,
-          name: 'heart'
-          parentClass: 'profile-info__supporter-icon'
+        span
+          className: 'profile-info__supporter-icon'
           title: osu.trans('users.show.is_supporter')
+          div className: 'fa-stack',
+            i className: 'far fa-circle fa-stack-2x'
+            i className: 'fas fa-heart fa-stack-1x', style: { fontSize: '11px' }
+
       h1 className: 'profile-info__name', user.username
       # hard space if no title
       span className: 'profile-info__title', user.title ? '\u00A0'

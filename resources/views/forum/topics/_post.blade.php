@@ -85,7 +85,7 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-edit"></i>
+                                <i class="fas fa-edit"></i>
                             </span>
                         </button>
                     </div>
@@ -108,7 +108,7 @@
                             data-remote="1"
                         >
                             <span class="btn-circle__content">
-                                <i class="fa fa-reply"></i>
+                                <i class="fas fa-reply"></i>
                             </span>
                         </button>
                     </div>

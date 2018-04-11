@@ -22,7 +22,7 @@
         $method = 'post';
     } else {
         $deleteString = 'destroy';
-        $iconClass = 'fa-trash';
+        $iconClass = 'fa-trash-alt';
         $method = 'delete';
     }
 @endphp
@@ -37,6 +37,6 @@
     data-confirm="{{ trans("forum.post.confirm_".$deleteString) }}"
 >
     <span class="btn-circle__content">
-        <i class="fa {{ $iconClass }}"></i>
+        <i class="fas {{ $iconClass }}"></i>
     </span>
 </button>

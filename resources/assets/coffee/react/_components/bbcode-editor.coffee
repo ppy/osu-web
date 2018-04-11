@@ -57,7 +57,7 @@ class @BBCodeEditor extends React.Component
                 title: osu.trans('bbcode.size._')
 
                 span className: "bbcode-size-select__label", osu.trans('bbcode.size._')
-                i className: "fa fa-chevron-down"
+                i className: "fas fa-chevron-down"
                 select
                   className: 'bbcode-size-select__select js-bbcode-btn--size'
                   disabled: @props.disabled

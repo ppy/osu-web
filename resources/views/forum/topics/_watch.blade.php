@@ -40,7 +40,7 @@
         data-menu-target="topic-watch"
     >
         <span class="btn-circle__content">
-            <i class="fa fa-{{ $icons[$stateText] }}"></i>
+            <i class="fas fa-{{ $icons[$stateText] }}"></i>
         </span>
     </button>
     <div
@@ -66,7 +66,7 @@
             >
                 {{ trans("forum.topics.watch.to_{$newState}") }}
                 <span class="simple-menu__item-loading-spinner">
-                    <i class="fa fa-spinner fa-pulse"></i>
+                    <i class="fas fa-spinner fa-pulse"></i>
                 </span>
             </button>
         @endforeach

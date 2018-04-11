@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, span, p} = ReactDOMFactories
+{button, div, i, span, p} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.UserPage extends React.Component
@@ -32,7 +32,7 @@ class ProfilePage.UserPage extends React.Component
             className: 'btn-circle'
             onClick: @editStart
             span className: 'btn-circle__content',
-              el Icon, name: 'edit'
+              i className: 'fas fa-edit'
 
       if @props.userPage.editing
         el ProfilePage.UserPageEditor, userPage: @props.userPage
@@ -58,7 +58,7 @@ class ProfilePage.UserPage extends React.Component
         osu.trans 'users.show.page.edit_big'
 
       p className: 'profile-extra-user-page__new-content profile-extra-user-page__new-content--icon',
-        el Icon, name: 'pencil-square-o'
+        i className: 'fas fa-edit'
 
       p
         className: 'profile-extra-user-page__new-content'

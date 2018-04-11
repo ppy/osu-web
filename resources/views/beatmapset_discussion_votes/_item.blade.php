@@ -27,9 +27,9 @@
 
     <div class="beatmapset-activities__vote-icon-spacer">
         @if ($vote->score > 0)
-            <i class="fa fa-fw fa-thumbs-up beatmap-discussion-vote--up"></i>
+            <i class="fas fa-fw fa-thumbs-up beatmap-discussion-vote--up"></i>
         @else
-            <i class="fa fa-fw fa-thumbs-down beatmap-discussion-vote--down"></i>
+            <i class="fas fa-fw fa-thumbs-down beatmap-discussion-vote--down"></i>
         @endif
     </div>
 

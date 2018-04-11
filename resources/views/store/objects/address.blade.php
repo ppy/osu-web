@@ -45,8 +45,8 @@
         @if((isset($modifiable) && $modifiable))
             {!! Form::hidden('id', $data->address_id) !!}
 
-            <button type="submit" class="address-delete-button" name="action" value="remove"><i class="fa fa-trash-o"></i></button>
-            <button type="submit" class="clickable-row-link address-select-button" name="action" value="use"><i class="fa fa-check"></i> Use</button>
+            <button type="submit" class="address-delete-button" name="action" value="remove"><i class="far fa-trash-alt"></i></button>
+            <button type="submit" class="clickable-row-link address-select-button" name="action" value="use"><i class="fas fa-check"></i> Use</button>
         @endif
 
         @if((isset($modifiable) && $modifiable))
