@@ -48,10 +48,10 @@
                 </div>
             @endif
             <div class="search-result__row search-result__row--paginator">
-                @php
-                    $paginator = $search->getPaginator(['path' => route('search')])->appends(request()->query());
-                @endphp
-                @include('objects._pagination', ['object' => $paginator, 'modifier' => 'search'])
+                @include('objects._pagination', [
+                    'object' => $search->getPaginator(['path' => route('search')])->appends(request()->query()),
+                    'modifier' => 'search'
+                ])
             </div>
         @endif
     @endif
