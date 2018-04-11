@@ -124,7 +124,7 @@
     background: @link-gray-light;
     opacity: 0.5;
     overflow: hidden;
-    -webkit-mask-image: -webkit-radial-gradient(white, black); // this fixes child content overflowing beyond a parent's rounded corners in safari
+    .own-layer();
 
     .@{top}--active & {
       opacity: 1;

@@ -182,13 +182,13 @@ class HomeController extends Controller
             // purchased
             $tagPurchases = $user->supporterTagPurchases()->get();
             $dollars = $tagPurchases->sum('amount');
-            $cancelledTags = $tagPurchases->sum('cancel') * 2; // 1 for purchase transaction and 1 for cancel transaction
+            $cancelledTags = $tagPurchases->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
             $tags = $tagPurchases->count() - $cancelledTags;
 
             // gifted
             $gifted = $tagPurchases->where('target_user_id', '<>', $user->user_id);
             $giftedDollars = $gifted->sum('amount');
-            $canceledGifts = $gifted->sum('cancel') * 2; // 1 for purchase transaction and 1 for cancel transaction
+            $canceledGifts = $gifted->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
             $giftedTags = $gifted->count() - $canceledGifts;
 
             $supporterStatus = [
@@ -196,10 +196,10 @@ class HomeController extends Controller
                 'current' => $current,
                 'expiration' => $expiration,
                 // purchased
-                'dollars' => number_format($dollars),
+                'dollars' => '$'.number_format($dollars),
                 'tags' => number_format($tags),
                 // gifted
-                'giftedDollars' => number_format($giftedDollars),
+                'giftedDollars' => '$'.number_format($giftedDollars),
                 'giftedTags' => number_format($giftedTags),
             ];
 

@@ -56,7 +56,7 @@
     <div class="osu-page osu-page--small osu-page--stg-block">
         @if (!empty($supporterStatus))
         <!-- supporter status  -->
-        <div class="stg-status{{ $supporterStatus['current'] ? ' stg-status--active' : '' }} stg-block__top">
+        <div class="stg-status{{ $supporterStatus['current'] ? ' stg-status--active' : '' }} stg-block--top">
             <div class="stg-status__title">
                 {{ trans('community.support.supporter_status.title') }}
             </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="stg-status__text">
                         {!! trans('community.support.supporter_status.contribution', [
-                            'dollars' => "<strong>\${$supporterStatus['dollars']}</strong>",
+                            'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
                             'tags' => "<strong>{$supporterStatus['tags']}</strong>"
                         ]) !!}
                     </div>
@@ -88,7 +88,7 @@
                     @if ($supporterStatus['giftedTags'] > 0)
                     <div class="stg-status__text">
                         {!! trans('community.support.supporter_status.gifted', [
-                            'giftedDollars' => "<strong>\${$supporterStatus['giftedDollars']}</strong>",
+                            'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
                             'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
                         ]) !!}
                     </div>
@@ -101,7 +101,7 @@
 
 
         <!-- why support  -->
-        <div class="stg-block{{ empty($supporterStatus) ? ' stg-block__top' : ''}}">
+        <div class="stg-block{{ empty($supporterStatus) ? ' stg-block--top' : ''}}">
             <h3 class="stg-block__title">
                 {{ trans('community.support.why_support.title') }}
             </h3>
