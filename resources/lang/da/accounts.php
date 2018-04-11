@@ -42,7 +42,7 @@ return [
         ],
 
         'profile' => [
-            'title' => 'Redigere Profil',
+            'title' => 'Rediger Profil',
 
             'user' => [
                 'user_from' => 'nuværende placering',
