@@ -259,8 +259,10 @@ return [
         ],
 
         'watch' => [
-            'to_not_watching_done' => 'Desuscrito del tema',
-            'to_watching_done' => 'Suscrito al tema',
+            'to_not_watching' => 'No marcado',
+            'to_watching' => 'Marcado',
+            'to_watching_mail' => 'Marcado con aviso de notificaciones',
+            'mail_disable' => 'Deshabilitar aviso de notificaciones',
         ],
     ],
 ];
