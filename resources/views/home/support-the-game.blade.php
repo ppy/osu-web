@@ -54,8 +54,54 @@
     </div>
 
     <div class="osu-page osu-page--small osu-page--stg-block">
+        @if (!empty($supporterStatus))
+        <!-- supporter status  -->
+        <div class="stg-status{{ $supporterStatus['current'] ? ' stg-status--active' : '' }}">
+            <div class="stg-status__title">
+                {{ trans('community.support.supporter_status.title') }}
+            </div>
+            <div class="stg-status__flex-container">
+                <div class="stg-status__heart-container">
+                    <span class="fa fa-heart stg-status__heart"></span>
+                </div>
+                <div class="stg-status__flex-container-inner">
+                    <div class="stg-status__progress-bar">
+                        <div class="stg-status__progress-bar-fill" style="width: {{$supporterStatus['usedRatio'] ?? 0}}%;"></div>
+                    </div>
+                    @if ($supporterStatus['tags'] > 0)
+                    <div class="stg-status__text stg-status__text--first">
+                        {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
+                            'date' => '<strong>'.timeago($supporterStatus['expiration']).'</strong>'
+                        ]) !!}
+                    </div>
+                    <div class="stg-status__text">
+                        {!! trans('community.support.supporter_status.contribution', [
+                            'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
+                            'tags' => "<strong>{$supporterStatus['tags']}</strong>"
+                        ]) !!}
+                    </div>
+                    @else
+                    <div class="stg-status__text">
+                        {!! trans('community.support.supporter_status.not_yet') !!}
+                    </div>
+                    @endif
+                    @if ($supporterStatus['giftedTags'] > 0)
+                    <div class="stg-status__text">
+                        {!! trans('community.support.supporter_status.gifted', [
+                            'giftedDollars' => "<strong>{$supporterStatus['giftedDollars']}</strong>",
+                            'giftedTags' => "<strong>{$supporterStatus['giftedTags']}</strong>"
+                        ]) !!}
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <!-- end: supporter status -->
+        @endif
+
+
         <!-- why support  -->
-        <div class="stg-block">
+        <div class="stg-block{{ empty($supporterStatus) ? ' stg-block--top' : ''}}">
             <h3 class="stg-block__title">
                 {{ trans('community.support.why_support.title') }}
             </h3>
