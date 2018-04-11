@@ -39,6 +39,7 @@ return [
     ],
     'card' => [
         'loading' => 'Cargando...',
+        'send_message' => 'enviar mensaje',
     ],
     'login' => [
         '_' => 'Iniciar sesión',
@@ -58,6 +59,9 @@ return [
         ],
 
         'here' => 'aquí', // this is substituted in when generating a link above. change it to suit the language.
+    ],
+    'posts' => [
+        'title' => 'Posts de :username',
     ],
     'signup' => [
         '_' => 'Registrarse',
