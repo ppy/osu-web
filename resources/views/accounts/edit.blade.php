@@ -43,6 +43,10 @@
                 <div class="account-edit__input-group">
                     @include('accounts._edit_entry_simple', ['field' => 'user_interests'])
                 </div>
+
+                <div class="account-edit__input-group">
+                    @include('accounts._edit_entry_date', ['field' => 'user_birthday'])
+                </div>
             </div>
         </div>
     </div>

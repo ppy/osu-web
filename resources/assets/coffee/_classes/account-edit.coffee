@@ -73,6 +73,7 @@ class @AccountEdit
     value = input.value
     prevValue = form.dataset.lastValue
 
+    return if !input.checkValidity()
     return if value == prevValue
 
     form.dataset.lastValue = value

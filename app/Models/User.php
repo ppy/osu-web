@@ -502,6 +502,16 @@ class User extends Model implements AuthenticatableContract, Messageable
         return Carbon::create($date[2], $date[1], $date[0]);
     }
 
+    public function setUserBirthdayAttribute($value)
+    {
+        try {
+            $date = new Carbon($value);
+            $this->attributes['user_birthday'] = $date->format('d-m-Y');
+        } catch (Exception $e) {
+            throw new Exception(trans('errors.invalid-date-format'));
+        }
+    }
+
     public function age()
     {
         return $this->user_birthday->age ?? null;

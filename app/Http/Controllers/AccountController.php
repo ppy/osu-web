@@ -125,6 +125,7 @@ class AccountController extends Controller
                 'user_sig:string',
                 'user_twitter:string',
                 'user_website:string',
+                'user_birthday:string',
             ]
         );
 
