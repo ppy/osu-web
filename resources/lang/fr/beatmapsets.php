@@ -99,7 +99,7 @@ return [
                 'score_total' => 'Score total',
                 'score' => 'Score',
             ],
-            
+
             'no_scores' => [
                 'country' => "Personne de votre pays n'a encore fait un score !",
                 'friend' => "Personnne de vos amis n'a encore fait un score !",

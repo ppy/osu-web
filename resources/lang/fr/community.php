@@ -43,7 +43,7 @@ return [
             'valid_until' => 'Votre tag supporter expire :date!',
             'was_valid_until' => 'Votre tag supporter a expiré :date.',
         ],
-            
+
         'why_support' => [
             'title' => 'Pourquoi je supporterais osu!?',
             'blocks' => [

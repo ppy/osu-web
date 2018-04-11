@@ -52,7 +52,7 @@ return [
         'standard' => 'Standard',
         'theme' => 'Thème',
     ],
-    
+
     'require_login' => [
         '_' => 'Vous devez être :link pour télécharger',
         'link_text' => 'connecté', // Base text changed from "log" to "sign"
