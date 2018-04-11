@@ -21,14 +21,14 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Không thể hoản lại hype.',
+            'is_hype' => 'Không thể hoàn lại hype.',
             'has_reply' => 'Không thể xóa cuộc thảo luận cùng trả lời',
         ],
         'nominate' => [
             'exhausted' => 'Bạn đã đạt mốc giới hạn đề cử (nominate) của hôm nay, hảy thử lại vào ngày mai.',
         ],
         'resolve' => [
-            'not_owner' => 'Chỉ có người bắt đầu thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
+            'not_owner' => 'Chỉ có người mở thread và chủ beatmap mới có thể giải quyết cuộc thảo luận.',
         ],
 
         'vote' => [
@@ -55,7 +55,7 @@ return [
             'send' => [
                 'channel' => [
                     'no_access' => 'Bắt buộc truy cập vào kênh được chỉ định.',
-                    'moderated' => 'Kênh hiện đang bị kiểm duyệt.',
+                    'moderated' => 'Kênh hiện đang được kiểm duyệt.',
                     'not_lazer' => 'Bạn chỉ có thể nói trên #lazer tại thời điểm này.',
                 ],
 
