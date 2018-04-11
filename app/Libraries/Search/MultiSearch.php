@@ -35,6 +35,7 @@ class MultiSearch
             'type' => BeatmapsetSearch::class,
             'paramsType' => BeatmapsetSearchParams::class,
             'size' => 8,
+            'options' => ['source' => 'id'],
         ],
         'wiki_page' => [
             'type' => WikiSearch::class,

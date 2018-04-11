@@ -33,6 +33,9 @@ abstract class SearchParams
     /** @var array|Sort|null */
     public $sort = null;
 
+    /** @var array|string|null */
+    public $source = null;
+
     /**
      * This function only exists for MultiSearch to apply additional params.
      * It should probably be replaced in favour of having different SearchParams subclasses.

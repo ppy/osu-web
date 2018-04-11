@@ -63,6 +63,10 @@ abstract class Search implements Queryable
                 $this->sort($this->params->sort);
             }
         }
+
+        if ($this->params->source !== null) {
+            $this->source($this->params->source);
+        }
     }
 
     // for paginator
@@ -89,7 +93,7 @@ abstract class Search implements Queryable
             $query = $this->toArray();
             // some arguments need to be stripped from the body as they're not supported by count.
             $body = $query['body'];
-            foreach (['from', 'size', 'sort'] as $key) {
+            foreach (['from', 'size', 'sort', '_source'] as $key) {
                 unset($body[$key]);
             }
 
