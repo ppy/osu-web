@@ -340,7 +340,7 @@ class Order extends Model
 
     public function delete()
     {
-        DB::connection($this->connection)->transaction(function () {
+        $this->getConnection()->transaction(function () {
             // wait for any pending status update to be committed, otherwise
             // it'll be checking against the old value and deleting once other transactions
             // release the lock.
@@ -382,7 +382,7 @@ class Order extends Model
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
-        DB::connection($this->connection)->transaction(function () {
+        $this->getConnection()->transaction(function () {
             $locked = $this->lockSelf();
             if ($locked->isModifiable() === false) {
                 // FIXME: better handling.
