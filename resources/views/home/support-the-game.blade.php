@@ -56,7 +56,7 @@
     <div class="osu-page osu-page--small osu-page--stg-block">
         @if (!empty($supporterStatus))
         <!-- supporter status  -->
-        <div class="stg-status{{ $supporterStatus['current'] ? ' stg-status--active' : '' }} stg-block--top">
+        <div class="stg-status{{ $supporterStatus['current'] ? ' stg-status--active' : '' }}">
             <div class="stg-status__title">
                 {{ trans('community.support.supporter_status.title') }}
             </div>
