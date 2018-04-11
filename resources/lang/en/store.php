@@ -28,6 +28,7 @@ return [
         'cart_problems_edit' => 'Click here to go edit it.',
         'declined' => 'The payment was cancelled.',
         'error' => 'There was a problem completing your checkout :(',
+        'old_cart' => 'Your cart appears to be out of date and has been reloaded, please try again.',
         'pay' => 'Checkout with Paypal',
         'pending_checkout' => [
             'line_1' => 'A previous checkout was started but did not finish.',

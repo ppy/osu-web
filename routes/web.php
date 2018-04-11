@@ -164,6 +164,8 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::resource('friends', 'FriendsController', ['only' => ['index', 'store', 'destroy']]);
     Route::resource('news', 'NewsController', ['except' => ['destroy']]);
+
+    Route::get('messages/users/{user}', 'HomeController@messageUser')->name('messages.users.show');
 });
 
 Route::get('legal/{page}', 'LegalController@show')->name('legal');

@@ -36,7 +36,6 @@ return [
         'button' => 'Søg',
         'empty_result' => 'Intet fundet!',
         'missing_query' => 'Du skal søge efter nøgleord med mindst :n karakterer!',
-        'title' => 'Søgeresultater',
 
         'beatmapset' => [
             'more' => ':count flere beatmap søgeresultater',

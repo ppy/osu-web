@@ -37,13 +37,14 @@ export class StoreCheckout
 
     $(@CHECKOUT_SELECTOR).on 'click.checkout', (event) =>
       provider = event.target.dataset.provider
+      orderId = event.target.dataset.orderId
       # sanity
       return unless provider?
       LoadingOverlay.show()
       LoadingOverlay.show.flush()
 
       init[provider]?.then =>
-        $.post laroute.route('store.checkout.store'), provider: provider
+        $.post laroute.route('store.checkout.store'), { provider, orderId }
         .done =>
           @startPayment(event.target.dataset)
 
@@ -65,7 +66,7 @@ export class StoreCheckout
         window.location = params.url
 
       when 'free'
-        $.post laroute.route('store.checkout.store', completed: '1')
+        $.post laroute.route('store.checkout.store', orderId: params.orderId, completed: '1')
 
       when 'paypal'
         StorePaypal.fetchApprovalLink(params.orderId).then (link) ->
