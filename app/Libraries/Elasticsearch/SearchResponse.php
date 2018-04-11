@@ -84,16 +84,6 @@ class SearchResponse implements \ArrayAccess, \Countable, \Iterator
         }
     }
 
-    public function innerHits($index, string $name)
-    {
-        $results = $this->hits()[$index] ?? null;
-        $results = $results['inner_hits'][$name];
-
-        if ($results) {
-            return new static($results, $name);
-        }
-    }
-
     public function innerHitsIds(string $name, string $field = null)
     {
         $ids = array_map(function ($hit) use ($name, $field) {
