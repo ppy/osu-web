@@ -37,7 +37,7 @@ return [
         'supporter_status' => [
             'contribution' => 'Dziękujemy za twoje dotychczasowe wsparcie! Przekazano łącznie :dollars na :tags statusów donatora!',
             'gifted' => ':giftedTags ze wszystkich zakupionych statusów donatora zostało podarowanych innym użytkownikom (za łączne :giftedDollars), wspaniała szczodrość!',
-            'not_yet' => "Nie posiadasz jeszcze statusu donatora :(",
+            'not_yet' => 'Nie posiadasz jeszcze statusu donatora :(',
             'title' => 'Status donatora',
             'valid_until' => 'Twój status donatora jest aktywny do :date!',
             'was_valid_until' => 'Twój status donatora był aktywny do :date.',
