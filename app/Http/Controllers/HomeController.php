@@ -180,7 +180,7 @@ class HomeController extends Controller
             $current = $expiration !== null ? $expiration->isFuture() : false;
 
             // purchased
-            $tagPurchases = $user->supporterTagPurchases()->get();
+            $tagPurchases = $user->supporterTagPurchases;
             $dollars = $tagPurchases->sum('amount');
             $cancelledTags = $tagPurchases->where('cancel', true)->count() * 2; // 1 for purchase transaction and 1 for cancel transaction
             $tags = $tagPurchases->count() - $cancelledTags;
