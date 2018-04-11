@@ -23,7 +23,6 @@ namespace App\Http\Controllers;
 use App;
 use App\Libraries\CurrentStats;
 use App\Libraries\Search\AllSearch;
-use App\Libraries\Search\QuickSearch;
 use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
@@ -43,7 +42,6 @@ class HomeController extends Controller
             'only' => [
                 'downloadQuotaCheck',
                 'search',
-                'quickSearch',
             ],
         ]);
 
@@ -119,16 +117,6 @@ class HomeController extends Controller
     public function osuSupportPopup()
     {
         return view('objects._popup_support_osu');
-    }
-
-    public function quickSearch()
-    {
-        $quickSearch = new QuickSearch(request(), ['user' => Auth::user()]);
-        if (!$quickSearch->hasQuery()) {
-            return response([], 204);
-        }
-
-        return view('home.nav_search_result', compact('quickSearch'));
     }
 
     public function search()

@@ -146,7 +146,6 @@ Route::group(['prefix' => 'home'], function () {
     Route::put('account', 'AccountController@update')->name('account.update');
 
     Route::get('search', 'HomeController@search')->name('search');
-    Route::get('quick-search', 'HomeController@quickSearch')->name('quick-search');
     Route::post('bbcode-preview', 'HomeController@bbcodePreview')->name('bbcode-preview');
     Route::resource('changelog', 'ChangelogController', ['only' => ['index', 'show']]);
     Route::get('download', 'HomeController@getDownload')->name('download');
