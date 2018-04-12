@@ -18,7 +18,7 @@
 
 <div class="changelog-change">
     <div class="changelog-change__left">
-        <span class="changelog-change__icon fa fa-{{ build_icon($log->prefix) }}" title={{ trans('changelog.prefixes.'.$log->prefix) }}></span>
+        <span class="changelog-change__icon fas fa-{{ build_icon($log->prefix) }}" title={{ trans('changelog.prefixes.'.$log->prefix) }}></span>
         <a
             href="{{route('users.show', ['user' => $log->user_id])}}"
             class="changelog-change__username js-usercard"

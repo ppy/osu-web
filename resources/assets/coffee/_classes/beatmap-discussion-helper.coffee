@@ -24,6 +24,35 @@ class @BeatmapDiscussionHelper
   @MODES = ['events', 'general', 'generalAll', 'timeline']
   @FILTERS = ['deleted', 'hype', 'mapperNotes', 'mine', 'pending', 'praises', 'resolved', 'total']
 
+
+  @discussionLinkify: (text) =>
+    matches = text.match osu.urlRegex
+    currentUrl = new URL(window.location)
+    currentBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse(currentUrl.href)
+
+    _.each matches, (url) ->
+      targetUrl = new URL(url)
+
+      if targetUrl.host == currentUrl.host
+        targetBeatmapsetDiscussions = BeatmapDiscussionHelper.urlParse targetUrl.href, null, forceDiscussionId: true
+        if targetBeatmapsetDiscussions?
+          if currentBeatmapsetDiscussions? &&
+              currentBeatmapsetDiscussions.beatmapsetId == targetBeatmapsetDiscussions.beatmapsetId
+            # same beatmapset, format: #123
+            linkText = "##{targetBeatmapsetDiscussions.discussionId}"
+            text = text.replace(url, "<a class='js-beatmap-discussion--jump' href='#{url}' rel='nofollow'>#{linkText}</a>")
+          else
+            # different beatmapset, format: 1234#567
+            linkText = "#{targetBeatmapsetDiscussions.beatmapsetId}##{targetBeatmapsetDiscussions.discussionId}"
+            text = text.replace(url, "<a href='#{url}' rel='nofollow'>#{linkText}</a>")
+          return
+
+      # otherwise just linkify url as normal
+      text = text.replace url, osu.linkify(url)
+
+    text
+
+
   @discussionMode: (discussion) ->
     if discussion.beatmap_id?
       if discussion.timestamp?
@@ -32,6 +61,30 @@ class @BeatmapDiscussionHelper
         'general'
     else
       'generalAll'
+
+
+  @format: (text, options = {}) =>
+    blockName = 'beatmapset-discussion-message'
+    text = _.escape text
+    text = text.trim()
+    text = @discussionLinkify text
+    text = @linkTimestamp text, ["#{blockName}__timestamp"]
+
+    if options.newlines ? true
+      # replace newlines with <br>
+      # - trim trailing spaces
+      # - then join with <br>
+      # - limit to 2 consecutive <br>s
+      text = text
+        .split '\n'
+        .map (x) -> x.trim()
+        .join '<br>'
+        .replace /(?:<br>){2,}/g, '<br><br>'
+
+    blockClass = blockName
+    blockClass += " #{blockName}--#{modifier}" for modifier in options.modifiers ? []
+
+    "<div class='#{blockClass}'>#{text}</div>"
 
 
   @formatTimestamp: (value) =>
@@ -56,19 +109,19 @@ class @BeatmapDiscussionHelper
 
   @messageType:
     icon:
-      hype: 'bullhorn'
-      mapperNote: 'sticky-note-o'
-      praise: 'heart'
-      problem: 'exclamation-circle'
-      suggestion: 'circle-o'
+      hype: 'fas fa-bullhorn'
+      mapperNote: 'far fa-sticky-note'
+      praise: 'fas fa-heart'
+      problem: 'fas fa-exclamation-circle'
+      suggestion: 'far fa-circle'
 
     # used for svg since it doesn't seem to have ::before pseudo-element
     iconText:
-      mapperNote: '&#xf24a;'
-      praise: '&#xf004;'
-      problem: '&#xf06a;'
-      resolved: '&#xf05d;'
-      suggestion: '&#xf10c;'
+      mapperNote: ['far', '&#xf249;']
+      praise: ['fas', '&#xf004;']
+      problem: ['fas', '&#xf06a;']
+      resolved: ['far', '&#xf058;']
+      suggestion: ['far', '&#xf111;']
 
 
   @moderationGroup: (user) =>

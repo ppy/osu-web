@@ -70,7 +70,7 @@
                 <input class="osu-checkbox__input" name="forum_topic_poll[vote_change]" type="checkbox" />
                 <span class="osu-checkbox__box"></span>
                 <span class="osu-checkbox__tick">
-                    <i class="fa fa-check"></i>
+                    <i class="fas fa-check"></i>
                 </span>
             </div>
 

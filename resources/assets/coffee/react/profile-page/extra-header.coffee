@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{div, h2, span} = ReactDOMFactories
+{div, h2, i, span} = ReactDOMFactories
 el = React.createElement
 
 ProfilePage.ExtraHeader = (props) ->
@@ -25,4 +25,4 @@ ProfilePage.ExtraHeader = (props) ->
     h2 className: 'page-extra__title', osu.trans("users.show.extra.#{props.name}.title")
     if props.withEdit
       span className: 'page-extra__dragdrop-toggle js-profile-page-extra--sortable-handle',
-        el Icon, name: 'bars'
+        i className: 'fas fa-bars'

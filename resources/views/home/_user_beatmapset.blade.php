@@ -39,5 +39,5 @@
             </span>
         </div>
     </div>
-    <div class='user-home-beatmapset__chevron'><i class='fa fa-chevron-right'></i></div>
+    <div class='user-home-beatmapset__chevron'><i class='fas fa-chevron-right'></i></div>
 </a>

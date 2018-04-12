@@ -40,11 +40,11 @@
                     />
 
                     <button class="search-header__icon search-header__icon--normal">
-                        <i class="fa fa-search"></i>
+                        <i class="fas fa-search"></i>
                     </button>
 
                     <button class="search-header__icon search-header__icon--searching">
-                        <i class="fa fa-spinner fa-pulse"></i>
+                        <i class="fas fa-spinner fa-pulse"></i>
                     </button>
                 </div>
             </div>

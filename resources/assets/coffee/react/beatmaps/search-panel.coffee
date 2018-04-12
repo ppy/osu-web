@@ -80,7 +80,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
           onInput: @onInput
           defaultValue: @props.filters.query
         div className: 'fancy-search__icon',
-          el Icon, name: 'search'
+          i className: 'fas fa-search'
 
       el Beatmaps.SearchFilter,
         name: 'general'
@@ -109,7 +109,7 @@ class Beatmaps.SearchPanel extends React.PureComponent
         href: '#'
         onClick: @props.expand
         div {}, osu.trans('beatmaps.listing.search.options')
-        div {}, i className: 'fa fa-angle-down'
+        div {}, i className: 'fas fa-angle-down'
 
       div className: 'beatmapsets-search__advanced',
         el Beatmaps.SearchFilter,

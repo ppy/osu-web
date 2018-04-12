@@ -27,7 +27,7 @@
                 </a>
                 <div class="beatmap-discussion-timestamp__icon beatmapset-activities__timeline-icon-margin">
                     <span class="beatmap-discussion-message-type">
-                        <span class="fa fa-reply"></span>
+                        <span class="fas fa-reply"></span>
                     </span>
                 </div>
             </div>

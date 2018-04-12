@@ -27,7 +27,7 @@
         </p>
 
         <p class="livestream-item__text livestream-item__text--detail">
-            {{ $stream['viewers'] }} <i class="fa fa-eye"></i>
+            {{ $stream['viewers'] }} <i class="fas fa-eye"></i>
         </p>
     </a>
 
@@ -41,7 +41,7 @@
                 data-url="{{ route('livestreams.promote', ['id' => $stream['_id']]) }}"
             >
                 <span class="btn-circle__content">
-                    <i class="fa fa-thumbs-up"></i>
+                    <i class="fas fa-thumbs-up"></i>
                 </span>
             </button>
         </div>
