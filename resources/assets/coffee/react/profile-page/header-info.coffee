@@ -37,7 +37,7 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
         className: 'profile-info__name'
         title:
           if user.previous_usernames.length > 0
-            osu.trans('users.show.previous_names', names: osu.transArray(user.previous_usernames))
+            osu.trans('users.show.previous_usernames', names: osu.transArray(user.previous_usernames))
         user.username
       # hard space if no title
       span className: 'profile-info__title', user.title ? '\u00A0'
