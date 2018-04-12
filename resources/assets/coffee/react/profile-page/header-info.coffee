@@ -33,7 +33,12 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
     div className: 'profile-info__details',
       if user.is_supporter
         el SupporterIcon
-      h1 className: 'profile-info__name', user.username
+      h1
+        className: 'profile-info__name'
+        title:
+          if user.username_history.length > 0
+            osu.trans('users.show.previous_names', names: osu.transArray(user.username_history))
+        user.username
       # hard space if no title
       span className: 'profile-info__title', user.title ? '\u00A0'
       div className: 'profile-info__flags',

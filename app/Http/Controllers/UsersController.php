@@ -294,6 +294,7 @@ class UsersController extends Controller
             'replays_watched_counts',
             'unranked_beatmapset_count',
             'user_achievements',
+            'username_history',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {
