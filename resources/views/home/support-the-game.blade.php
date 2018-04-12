@@ -66,23 +66,25 @@
                 </div>
                 <div class="stg-status__flex-container-inner">
                     <div class="stg-status__progress-bar">
-                        <div class="stg-status__progress-bar-fill" style="width: {{$supporterStatus['usedRatio'] ?? 0}}%;"></div>
+                        <div class="stg-status__progress-bar-fill" style="width: {{$supporterStatus['remainingRatio'] ?? 0}}%;"></div>
                     </div>
-                    @if ($supporterStatus['tags'] > 0)
+                    @if ($supporterStatus['expiration'] !== null)
                     <div class="stg-status__text stg-status__text--first">
                         {!! trans('community.support.supporter_status.'.($supporterStatus['current'] ? 'valid_until' : 'was_valid_until'), [
                             'date' => '<strong>'.timeago($supporterStatus['expiration']).'</strong>'
                         ]) !!}
                     </div>
+                    @else
+                    <div class="stg-status__text">
+                        {!! trans('community.support.supporter_status.not_yet') !!}
+                    </div>
+                    @endif
+                    @if ($supporterStatus['tags'] > 0)
                     <div class="stg-status__text">
                         {!! trans('community.support.supporter_status.contribution', [
                             'dollars' => "<strong>{$supporterStatus['dollars']}</strong>",
                             'tags' => "<strong>{$supporterStatus['tags']}</strong>"
                         ]) !!}
-                    </div>
-                    @else
-                    <div class="stg-status__text">
-                        {!! trans('community.support.supporter_status.not_yet') !!}
                     </div>
                     @endif
                     @if ($supporterStatus['giftedTags'] > 0)
