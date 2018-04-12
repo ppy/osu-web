@@ -18,7 +18,6 @@
  *    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
  */
 use App\Models\Model;
-use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
 class TableTest extends TestCase
@@ -29,7 +28,7 @@ class TableTest extends TestCase
     {
         $errors = [];
 
-        $files = (new Finder)->in(app_path().'/Models')->files();
+        $files = File::allFiles(app_path().'/Models');
         foreach ($files as $file) {
             $error = $this->checkFile($file);
             if ($error !== null) {
