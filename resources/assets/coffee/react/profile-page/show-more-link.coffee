@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
-{a, div} = ReactDOMFactories
+{a, div, i} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.ShowMoreLink extends React.PureComponent
