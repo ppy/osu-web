@@ -290,11 +290,11 @@ class UsersController extends Controller
             'graveyard_beatmapset_count',
             'monthly_playcounts',
             'page',
+            'previous_usernames',
             'ranked_and_approved_beatmapset_count',
             'replays_watched_counts',
             'unranked_beatmapset_count',
             'user_achievements',
-            'username_history',
         ];
 
         if (priv_check('UserSilenceShowExtendedInfo')->can()) {
