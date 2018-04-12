@@ -340,11 +340,15 @@ class Order extends Model
 
     public function delete()
     {
-        if ($this->isModifiable() === false) {
-            // in most cases this would return a null key because the lookup for the cart
-            // would return a new cart anyway?
-            throw new Exception("Delete not allowed on Order ({$this->getKey()}).");
-        }
+        $this->getConnection()->transaction(function () {
+            // wait for any pending status update to be committed, otherwise
+            // it'll be checking against the old value and deleting once other transactions
+            // release the lock.
+            $locked = $this->lockSelf();
+            if ($locked->isModifiable() === false) {
+                throw new Exception("Delete not allowed on Order ({$locked->getKey()}).");
+            }
+        });
 
         parent::delete();
     }
@@ -378,10 +382,13 @@ class Order extends Model
      **/
     public function updateItem(array $itemForm, $addToExisting = false)
     {
-        if ($this->isModifiable() === false) {
-            // FIXME: better handling.
-            return [false, 'Cart cannot be updated at this time.'];
-        }
+        $this->getConnection()->transaction(function () {
+            $locked = $this->lockSelf();
+            if ($locked->isModifiable() === false) {
+                // FIXME: better handling.
+                return [false, 'Cart cannot be updated at this time.'];
+            }
+        });
 
         $params = [
             'id' => array_get($itemForm, 'id'),
@@ -409,7 +416,7 @@ class Order extends Model
 
             $result = $this->validateBeforeSave($params['product'], $item);
             if ($result[0]) {
-                $this->save();
+                $this->saveOrExplode();
                 $this->items()->save($item);
             }
         }
@@ -420,7 +427,7 @@ class Order extends Model
     public function releaseItems()
     {
         // locking bottleneck
-        DB::connection($this->connection)->transaction(function () {
+        $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
 
             foreach ($items as $item) {
@@ -432,7 +439,7 @@ class Order extends Model
     public function reserveItems()
     {
         // locking bottleneck
-        DB::connection($this->connection)->transaction(function () {
+        $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
 
             foreach ($items as $item) {
@@ -443,7 +450,7 @@ class Order extends Model
 
     public function switchItems($orderItem, $newProduct)
     {
-        DB::connection($this->connection)->transaction(function () use ($orderItem, $newProduct) {
+        $this->getConnection()->transaction(function () use ($orderItem, $newProduct) {
             $this->lockForReserve([$orderItem->product_id, $newProduct->product_id]);
 
             $quantity = $orderItem->quantity;
