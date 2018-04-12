@@ -30,12 +30,12 @@ return [
     ],
 
     'beatmapset_discussion' => [
-        'beatmap_missing' => 'L\'horodatage',
+        'beatmap_missing' => 'L\'horodatage est correct, mais la beatmap est introuvable.',
         'beatmapset_no_hype' => 'Cette beatmap ne peut pas être hypée.',
         'hype_requires_null_beatmap' => 'La hype doit être réalisée dans la section Général (toutes les difficultés).',
         'invalid_beatmap_id' => 'Difficulté spécifiée invalide.',
         'invalid_beatmapset_id' => 'Beatmap spécifiée invalide',
-        'locked' => 'La discussion est verouillée.',
+        'locked' => 'La discussion est verrouillée.',
         'mapper_note_wrong_user' => 'Uniquement le créateur de la beatmap peut poster de notes de mappeur.',
 
         'hype' => [
@@ -43,7 +43,7 @@ return [
             'hyped' => 'Vous avez déjà hypé cette beatmap.',
             'limit_exceeded' => 'Vous avez utilisé toute votre hype.',
             'not_hypeable' => 'Cette beatmap ne peut pas être hypée',
-            'owner' => 'Ne hypez votre propre beatmap.',
+            'owner' => 'Vous ne pouvez pas hyper votre propre beatmap.',
         ],
 
         'timestamp' => [
@@ -92,12 +92,12 @@ return [
         'username_available_soon' => 'Ce nom d\'utilisateur sera disponible dans quelques instants !',
         'username_invalid_characters' => 'Le nom d\'utilisateur contient des caractères invalides.',
         'username_in_use' => 'Le nom d\'utilisateur est déjà utilisé !',
-        'username_no_space_userscore_mix' => 'Merci d\'utiliser soit des underscores ou des espaces, pas les deux ensembles !',
+        'username_no_space_userscore_mix' => 'Merci d\'utiliser soit des underscores ou des espaces, pas les deux ensemble !',
         'username_no_spaces' => 'Le nom d\'utilisateur ne peut pas commencer ou terminer avec des espaces',
         'username_not_allowed' => 'Ce nom d\'utilisateur n\'est pas autorisé.',
         'username_too_short' => 'Le nom d\'utilisateur est trop court.',
         'username_too_long' => 'Le nom d\'utilisateur est trop long.',
-        'weak' => 'Mot de passe interdits.',
+        'weak' => 'Mot de passe interdit.',
         'wrong_current_password' => 'Le mot de passe actuel est incorrect.',
         'wrong_email_confirmation' => "La confirmation de l'email ne correspond pas.",
         'wrong_password_confirmation' => 'La confirmation du mot de passe ne correspond pas.',

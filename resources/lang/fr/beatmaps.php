@@ -38,9 +38,9 @@ return [
         'deny_kudosu' => 'refuser le kudosu',
         'edit' => 'éditer',
         'edited' => 'Dernière modification par :editor :update_time',
-        'kudosu_denied' => 'Le kudosu a été refusé pour ceci.',
+        'kudosu_denied' => 'Le kudosu a été refusé pour ce post.',
         'message_placeholder' => 'Écrivez ici pour poster',
-        'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, impossible de discuter de celle-ci.',
+        'message_placeholder_deleted_beatmap' => 'Cette difficulté a été supprimée, il n\'est plus possible d\'en discuter.',
         'message_type_select' => 'Sélectionnez un type de commentaire',
         'reply_notice' => 'Appuyez sur Entrée pour répondre.',
         'reply_placeholder' => 'Écrivez votre réponse ici',
@@ -93,9 +93,9 @@ return [
         ],
 
         'sort' => [
-            '_' => 'Trié par:',
+            '_' => 'Trier par:',
             'created_at' => 'Date de création',
-            'timeline' => 'chronologie',
+            'timeline' => 'Chronologie',
             'updated_at' => 'Dernière mise à jour',
         ],
 
@@ -111,10 +111,10 @@ return [
 
         'status-messages' => [
             'approved' => 'Cette beatmap a été approuvée le :date!',
-            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a été sûrement abandonée par son créateur...",
+            'graveyard' => "Cette beatmap n'a pas été modifiée depuis :date et a sûrement été abandonée par son créateur...",
             'loved' => 'Cette beatmap a été ajoutée pour être loved le :date!',
             'ranked' => 'Cette beatmap a été clasée le :date!',
-            'wip' => 'Note: Cette beatmap a été marquée comme en cours par son créateur.',
+            'wip' => 'Note: Cette beatmap a été marquée comme en création par son créateur.',
         ],
 
     ],
@@ -122,7 +122,7 @@ return [
     'hype' => [
         'button' => 'Hyper la Beatmap !',
         'button_done' => 'Déjà hypée !',
-        'confirm' => "Vous êtes sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulé.",
+        'confirm' => "Vous êtes sûr ? Ceci va utiliser un de vos :n hypes restants et l'action ne peut être annulée.",
         'explanation' => 'Hyper cette beatmap sert à la rendre plus visible pour sa nomination et son classement !',
         'explanation_guest' => 'Connectez-vous et hypez cette beatmap pour la rendre plus visible pour sa nomination et son classement !',
         'new_time' => 'Vous obtiendrez un point de hype :new_time.',
@@ -148,10 +148,10 @@ return [
         'qualified' => "Map classée environ le :date, si aucun problème n'est trouvé.",
         'qualified_soon' => "Beatmap bientôt classée, si aucun problème n'est trouvé.",
         'required_text' => 'Nominations: :current/:required',
-        'reset_at' => 'Les nominations sont réinitialisés :time_ago par le nouveau problème :discussion.',
-        'reset_confirm' => 'Vous êtes sûr ? Poster un nouveau problème va réinitialiser les nominations.',
+        'reset_at' => 'Les nominations ont été réinitialisés :time_ago à cause du commentaire :discussion.',
+        'reset_confirm' => 'Vous êtes sûr ? Poster un nouveau problème va réinitialiser la nomination.',
         'title' => 'Statut de la nomination',
-        'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
+        'unresolved_issues' => 'Il reste encore des problèmes à résoudre.',
     ],
 
     'listing' => [

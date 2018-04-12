@@ -28,7 +28,7 @@ return [
         'cart_problems_edit' => 'Cliquez ici pour l\'éditer.',
         'declined' => 'Le paiement a été annulé.',
         'error' => 'Il y a eu un problème lors de votre commande :(',
-        'old_cart' => 'Votre panier semble être obselète et il a été ',
+        'old_cart' => 'Votre panier semble être obsolète et il a été actualisé, merci de réesayer.',
         'pay' => 'Payer avec PayPal',
         'pending_checkout' => [
             'line_1' => 'Une commande précédente a été commencée mais non finalisée.',

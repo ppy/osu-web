@@ -26,8 +26,8 @@ return [
         'discussion_post_restore' => 'Un modérateur a restauré le post de la discussion :discussion.',
         'discussion_restore' => 'Un modérateur a restauré la discussion :discussion.',
         'disqualify' => 'Disqualifié par :user. Raison: :text.',
-        'issue_reopen' => 'Le ticket résolu :discussion a été rouvert.',
-        'issue_resolve' => 'Le ticket :discussion marqué comme résolu.',
+        'issue_reopen' => 'Le problème résolu :discussion a été rouvert.',
+        'issue_resolve' => 'Le problème :discussion a été marqué comme résolu.',
         'kudosu_allow' => 'Le refus de Kudosu pour la discussion :discussion a été supprimé.',
         'kudosu_deny' => 'La discussion :discussion a été refusée pour le kudosu.',
         'kudosu_gain' => 'La discussion :discussion par :user a obtenu assez de votes pour le kudosu.',
@@ -40,7 +40,7 @@ return [
     ],
 
     'index' => [
-        'title' => 'Évenements du set de beatmap',
+        'title' => 'Événements du set de beatmap',
     ],
 
     'item' => [

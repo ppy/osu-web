@@ -21,7 +21,7 @@
 return [
     'beatmap_discussion' => [
         'destroy' => [
-            'is_hype' => 'Impossible d\'annuler la hype.',
+            'is_hype' => 'Vous ne pouvez pas retirer votre hype.',
             'has_reply' => 'Impossible de supprimer un sujet avec des réponses',
         ],
         'nominate' => [

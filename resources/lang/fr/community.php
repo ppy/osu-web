@@ -119,7 +119,7 @@ return [
 
             'feel_special' => [
                 'title' => 'Sentiment spécial',
-                'description' => 'Le sentiment spécial de faire votre part pour aider osu! à fonctionner correctement !',
+                'description' => 'Le sentiment spécial de participer au fonctionnement d\'osu! !',
             ],
 
             'more_to_come' => [

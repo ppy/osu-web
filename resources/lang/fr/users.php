@@ -241,7 +241,7 @@ return [
             'account_standing' => [
                 'title' => 'Statut du compte',
                 'bad_standing' => "Le compte de <strong>:username</strong> n'est pas dans un bon statut :(",
-                'remaining_silence' => '<strong>:username</strong> pourra pareler à nouveau dans :duration.',
+                'remaining_silence' => '<strong>:username</strong> pourra parler à nouveau dans :duration.',
 
                 'recent_infringements' => [
                     'title' => 'Sanctions récentes',
@@ -253,7 +253,7 @@ return [
                     'actor' => 'par :username',
 
                     'actions' => [
-                        'restriction' => 'Ban',
+                        'restriction' => 'Restriction',
                         'silence' => 'Silence',
                         'note' => 'Avertissement',
                     ],

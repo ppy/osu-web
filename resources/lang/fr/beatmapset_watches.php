@@ -27,13 +27,13 @@ return [
     ],
 
     'index' => [
-        'description' => 'Ce sont les discussions de beatmap que vous suivez. Vous serez notifié quand il y aura de nouveaux posts ou des changements.',
+        'description' => 'Voici les discussions de beatmap que vous suivez. Vous serez notifié quand il y aura de nouveaux posts ou des changements.',
         'title_compact' => 'liste d\'abonnement des modifications',
         'title_main' => 'Liste d\'abonnement des modifications',
 
         'table' => [
             'empty' => 'Aucune discussion de beatmap suivie.',
-            'open_issues' => 'Tickets ouverts',
+            'open_issues' => 'Problèmes ouverts',
             'state' => 'Statut',
             'title' => 'Titre',
         ],

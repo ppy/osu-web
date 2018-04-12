@@ -22,13 +22,13 @@ return [
 
     'beatmapsets' => [
         'covers' => [
-            'regenerate' => 'Regénérer',
-            'regenerating' => 'Regénération...',
+            'regenerate' => 'Restaurer',
+            'regenerating' => 'Restauration...',
             'remove' => 'Supprimer',
             'removing' => 'Suppression...',
         ],
         'show' => [
-            'covers' => 'Gérer les couvertures de set de beatmaps',
+            'covers' => 'Gérer les couvertures de beatmapset',
             'discussion' => [
                 '_' => 'Modding v2',
                 'activate' => 'activer',
