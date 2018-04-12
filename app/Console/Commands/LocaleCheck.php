@@ -25,6 +25,8 @@ use Illuminate\Console\Command;
 
 class LocaleCheck extends Command
 {
+    const FILE_EXTENSION = 'php';
+
     /**
      * The name and signature of the console command.
      *
@@ -59,9 +61,8 @@ class LocaleCheck extends Command
             }
         }
 
-        $fallbackFiles = $this->files($fallbackLocale);
-        $fallbackHeads = $this->heads($fallbackLocale, $fallbackFiles);
-        $fallbackAll = $this->everything($fallbackLocale, $fallbackHeads);
+        $fallbackNamespaces = $this->namespaces($fallbackLocale);
+        $fallbackAll = $this->everything($fallbackLocale, $fallbackNamespaces);
 
         foreach ($locales as $locale) {
             if ($locale === $fallbackLocale) {
@@ -71,11 +72,10 @@ class LocaleCheck extends Command
             $this->info("Checking locale {$locale}");
             $this->info('');
 
-            $files = $this->files($locale);
-            $heads = $this->heads($locale, $files);
-            $all = $this->everything($locale, $heads);
+            $namespaces = $this->namespaces($locale);
+            $all = $this->everything($locale, $namespaces);
 
-            $this->checkExtraHeads($locale, $fallbackHeads, $heads);
+            $this->checkExtraFiles($locale, $fallbackNamespaces, $namespaces);
             $this->info('');
 
             $this->checkKeys($locale, $fallbackAll, $all);
@@ -91,14 +91,15 @@ class LocaleCheck extends Command
         return resource_path("lang/{$locale}");
     }
 
-    public function checkExtraHeads($locale, $baseHeads, $targetHeads)
+    public function checkExtraFiles($locale, $baseNamespaces, $targetNamespaces)
     {
-        $extras = array_diff($targetHeads, $baseHeads);
+        $extras = array_diff($targetNamespaces, $baseNamespaces);
 
         if (count($extras) > 0) {
             $this->warn('Extraneous files:');
             foreach ($extras as $extra) {
-                $this->warn("- {$locale}/{$extra}.php");
+                $message = sprintf('- %s/%s.%s', $locale, $extra, static::FILE_EXTENSION);
+                $this->warn($message);
             }
         } else {
             $this->info("There's no extraneous files in {$locale}.");
@@ -133,15 +134,15 @@ class LocaleCheck extends Command
         }
     }
 
-    public function everything($locale, $heads)
+    public function everything($locale, $namespaces)
     {
         $entries = [];
 
-        foreach ($heads as $head) {
-            $baseEntries = trans($head, [], $locale);
+        foreach ($namespaces as $namespace) {
+            $baseEntries = trans($namespace, [], $locale);
             // trans returns plain string if the file is empty.
             if (is_array($baseEntries)) {
-                $entries = array_merge($entries, array_dot([$head => $baseEntries]));
+                $entries = array_merge($entries, array_dot([$namespace => $baseEntries]));
             }
         }
 
@@ -150,29 +151,20 @@ class LocaleCheck extends Command
         return $entries;
     }
 
-    public function files($locale)
+    public function namespaces($locale)
     {
-        $files = [];
+        $namespaces = [];
+        $trimEnd = -(1 + strlen(static::FILE_EXTENSION));
 
-        foreach (File::allFiles($this->basePath($locale)) as $entry) {
-            $files[] = $entry->getPathname();
+        foreach (File::allFiles($this->basePath($locale)) as $file) {
+            if ($file->getExtension() !== static::FILE_EXTENSION) {
+                continue;
+            }
+
+            $relativePath = $file->getRelativePathname();
+            $namespaces[] = substr($relativePath, 0, $trimEnd);
         }
 
-        return $files;
-    }
-
-    public function heads($locale, $files)
-    {
-        $basePath = $this->basePath($locale);
-        $trimStart = strlen($basePath) + 1; // +1 is trailing slash
-        $trimEnd = -strlen('.php');
-
-        $heads = [];
-
-        foreach ($files as $file) {
-            $heads[] = substr($file, $trimStart, $trimEnd);
-        }
-
-        return $heads;
+        return $namespaces;
     }
 }
