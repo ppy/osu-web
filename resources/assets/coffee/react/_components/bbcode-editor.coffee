@@ -42,15 +42,15 @@ class @BBCodeEditor extends React.Component
         div className: 'post-editor-footer',
           div className: 'post-editor-footer__col post-editor-footer__col--toolbar',
             div className: 'post-box-toolbar',
-              @toolbarButton 'bold', strong(null, 'B')
-              @toolbarButton 'italic', em(null, 'I')
-              @toolbarButton 'strikethrough', el(Icon, name: 'strikethrough')
-              @toolbarButton 'heading', span(null, 'H')
-              @toolbarButton 'link', el(Icon, name: 'link')
-              @toolbarButton 'spoilerbox', el(Icon, name: 'barcode')
-              @toolbarButton 'list-numbered', el(Icon, name: 'list-ol')
-              @toolbarButton 'list', el(Icon, name: 'list')
-              @toolbarButton 'image', el(Icon, name: 'image')
+              @toolbarButton 'bold', i(className: 'fas fa-bold')
+              @toolbarButton 'italic', i(className: 'fas fa-italic')
+              @toolbarButton 'strikethrough', i(className: 'fas fa-strikethrough')
+              @toolbarButton 'heading', i(className: 'fas fa-heading')
+              @toolbarButton 'link', i(className: 'fas fa-link')
+              @toolbarButton 'spoilerbox', i(className: 'fas fa-barcode')
+              @toolbarButton 'list-numbered', i(className: 'fas fa-list-ol')
+              @toolbarButton 'list', i(className: 'fas fa-list')
+              @toolbarButton 'image', i(className: 'fas fa-image')
 
               label
                 className: 'bbcode-size-select'
