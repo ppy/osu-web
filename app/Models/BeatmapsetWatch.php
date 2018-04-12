@@ -71,6 +71,13 @@ class BeatmapsetWatch extends Model
         });
     }
 
+    public function scopeVisible($query)
+    {
+        $query->whereHas('beatmapset', function ($q) {
+            $q->active();
+        });
+    }
+
     public function isRead()
     {
         return $this->last_read >= $this->last_notified;
