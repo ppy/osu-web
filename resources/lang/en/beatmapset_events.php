@@ -25,7 +25,8 @@ return [
         'discussion_post_delete' => 'Moderator deleted post from discussion :discussion.',
         'discussion_post_restore' => 'Moderator restored post from discussion :discussion.',
         'discussion_restore' => 'Moderator restored discussion :discussion.',
-        'disqualify' => 'Disqualified by :user. Reason: :text.',
+        'disqualify' => 'Disqualified by :user. Reason: :discussion (:text).',
+        'disqualify_legacy' => 'Disqualified by :user. Reason: :text.',
         'issue_reopen' => 'Resolved issue :discussion reopened.',
         'issue_resolve' => 'Issue :discussion marked as resolved.',
         'kudosu_allow' => 'Kudosu denial for discussion :discussion has been removed.',
@@ -34,7 +35,7 @@ return [
         'kudosu_lost' => 'Discussion :discussion by :user lost votes and granted kudosu has been removed.',
         'kudosu_recalculate' => 'Discussion :discussion has had its kudosu grants recalculated.',
         'nominate' => 'Nominated by :user.',
-        'nomination_reset' => 'New problem :discussion triggered a nomination reset.',
+        'nomination_reset' => 'New problem :discussion (:text) triggered a nomination reset.',
         'qualify' => 'Qualified.',
         'rank' => 'Ranked.',
     ],
@@ -45,6 +46,7 @@ return [
 
     'item' => [
         'content' => 'Content',
+        'discussion_deleted' => '[deleted]',
         'type' => 'Type',
     ],
 ];
