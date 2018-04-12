@@ -32,12 +32,7 @@ ProfilePage.HeaderInfo = ({user, currentMode}) ->
       avatar
     div className: 'profile-info__details',
       if user.is_supporter
-        span
-          className: 'profile-info__supporter-icon fa-stack'
-          title: osu.trans('users.show.is_supporter')
-          i className: 'far fa-circle fa-stack-2x'
-          i className: 'fas fa-heart fa-stack-1x profile-info__supporter-heart'
-
+        el SupporterIcon
       h1 className: 'profile-info__name', user.username
       # hard space if no title
       span className: 'profile-info__title', user.title ? '\u00A0'

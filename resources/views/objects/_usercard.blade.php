@@ -71,9 +71,10 @@
                             @if ($user->isSupporter())
                                 <div class="usercard__icon">
                                     <a class="usercard__link-wrapper" href="{{route('support-the-game')}}">
-                                        <span class="usercard__supporter" title="{{ trans('users.show.is_supporter') }}">
-                                            <span class="fas fa-fw fa-heart"></span>
-                                        </span>
+                                        @include('objects._supporter_icon', [
+                                            'background' => true,
+                                            'smaller' => true,
+                                        ])
                                     </a>
                                 </div>
                             @endif
