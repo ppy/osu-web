@@ -232,7 +232,6 @@ return [
                 'title' => 'Ranks',
                 'weighted_pp' => 'vejede: :pp (:percentage)',
             ],
-        ],
             'account_standing' => [
                 'title' => 'Account Status',
                 'bad_standing' => "<strong>:username's</strong> account er ikke i en god position :(",
@@ -286,6 +285,7 @@ return [
             'total_score' => 'Samlet Score',
         ],
     ],
+
     'status' => [
         'online' => 'Online',
         'offline' => 'Offline',
