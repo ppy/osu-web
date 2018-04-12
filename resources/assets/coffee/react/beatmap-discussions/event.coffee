@@ -55,7 +55,7 @@ class BeatmapDiscussions.Event extends React.PureComponent
       # TODO: get discussion starter to show more detail.
       discussion = osu.link(url, "##{discussionId}", classNames: ['js-beatmap-discussion--jump'])
     else
-      text = @props.event.comment
+      text = BeatmapDiscussionHelper.format @props.event.comment, newlines: false
 
     if @props.event.user_id?
       user = osu.link(laroute.route('users.show', user: @props.event.user_id), @props.users[@props.event.user_id].username)

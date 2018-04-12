@@ -1,7 +1,7 @@
 <?php
 
 /**
- *    Copyright 2015-2017 ppy Pty. Ltd.
+ *    Copyright 2015-2018 ppy Pty. Ltd.
  *
  *    This file is part of osu!web. osu!web is distributed with the hope of
  *    attracting more community contributions to the core ecosystem of osu!.
@@ -20,33 +20,27 @@
 
 namespace App\Mail;
 
-use App\Models\SupporterTag;
+use App\Models\Store\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DonationThanks extends Mailable implements ShouldQueue
+class StorePaymentCompleted extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    public $tries = 5;
-
-    private $params = [];
+    private $params;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($donor, $length, $amount, $isGift)
+    public function __construct(Order $order)
     {
         $this->params = [
-            'donor' => $donor,
-            'duration' => SupporterTag::getDurationText($length),
-            'amount' => $amount,
-            'isGift' => $isGift,
-            'minutes' => round($amount / config('payments.running_cost') * 525949, 1), // 365.2425 days
+            'order' => $order,
         ];
     }
 
@@ -57,12 +51,9 @@ class DonationThanks extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->text(i18n_view('emails.store.donation_thanks'))
+        return $this->text(i18n_view('emails.store.payment_completed'))
             ->with($this->params)
-            ->from(
-                config('store.mail.donation_thanks.sender_address'),
-                config('store.mail.donation_thanks.sender_name')
-            )
-            ->subject(trans('fulfillments.mail.donation_thanks.subject'));
+            ->from('osustore@ppy.sh', 'osu!store team')
+            ->subject(trans('store.mail.payment_completed.subject'));
     }
 }

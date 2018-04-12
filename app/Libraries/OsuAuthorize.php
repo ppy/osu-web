@@ -385,6 +385,7 @@ class OsuAuthorize
         static $publicEvents = [
             BeatmapsetEvent::NOMINATE,
             BeatmapsetEvent::QUALIFY,
+            BeatmapsetEvent::NOMINATION_RESET,
             BeatmapsetEvent::DISQUALIFY,
             BeatmapsetEvent::APPROVE,
             BeatmapsetEvent::RANK,
