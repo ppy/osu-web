@@ -24,7 +24,7 @@ Thanks for your osu!store order!
 {{ $item->quantity }} x {{ $item->getDisplayName() }} ({{ currency($item->subtotal()) }})
 @endforeach
 
-@if ($order->shipping)
+@if ($order->shipping > 0)
 Shipping ({{ currency($order->shipping) }})
 @endif
 Total ({{ currency($order->getTotal()) }})
