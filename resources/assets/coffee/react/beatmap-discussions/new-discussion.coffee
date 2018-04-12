@@ -255,8 +255,11 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
 
     userCanResetNominations = currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
 
-    if @props.beatmapset.status == 'pending' && type == 'problem' && @props.beatmapset.nominations.current > 0 && userCanResetNominations
-      return unless confirm(osu.trans('beatmaps.nominations.reset_confirm'))
+    if type == 'problem'
+      problemType = @problemType()
+
+      if problemType != 'problem'
+        return unless confirm(osu.trans("beatmaps.nominations.reset_confirm.#{problemType}"))
 
     if type == 'hype'
       return unless confirm(osu.trans('beatmaps.hype.confirm', n: @props.beatmapset.current_user_attributes.remaining_hype))
@@ -293,6 +296,17 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       @setState posting: null
 
 
+  problemType: =>
+    if currentUser.is_admin || currentUser.is_qat || currentUser.is_bng
+      if @props.beatmapset.status == 'qualified'
+        return 'disqualify'
+
+      if @props.beatmapset.status == 'pending' && @props.beatmapset.nominations.current > 0
+        return 'nomination_reset'
+
+    'problem'
+
+
   setMessage: (e) =>
     message = e.currentTarget.value
     timestamp = @parseTimestamp(message) if @props.mode == 'timeline'
@@ -316,10 +330,12 @@ class BeatmapDiscussions.NewDiscussion extends React.PureComponent
       else
         BeatmapDiscussionHelper.messageType.icon[_.camelCase(type)]
 
+    typeText = if type == 'problem' then @problemType() else type
+
     el BigButton,
       modifiers: ['beatmap-discussion']
       icon: icon
-      text: osu.trans("beatmaps.discussions.message_type.#{type}")
+      text: osu.trans("beatmaps.discussions.message_type.#{typeText}")
       key: type
       props: _.merge
           disabled: !@validPost() || @state.posting?

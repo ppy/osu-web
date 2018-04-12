@@ -32,13 +32,18 @@ return [
     ],
 
     'discussions' => [
+        'edit' => 'modifica',
+        'edited' => 'Ultima modifica di :editor :update_time',
+        'message_placeholder' => 'Scrivi qui per postare',
+        'message_type_select' => 'Seleziona il tipo di commento',
+        'require-login' => 'Per favore effettua il login per postare o rispondere', // Base text changed from "log" to "sign"
+        'resolved' => 'Risolto',
+
         'collapse' => [
             'all-collapse' => 'Comprimi tutto',
             'all-expand' => 'Espandi tutto',
         ],
 
-        'edit' => 'modifica',
-        'edited' => 'Ultima modifica di :editor :update_time',
         'empty' => [
             'empty' => 'Ancora nessuna discussione!',
             'filtered' => 'Nessuna discussione corrisponde ai filtri selezionati.',
@@ -49,22 +54,15 @@ return [
             'in_timeline' => 'per moddare più timestamp, posta più volte (un post per timestamp).',
         ],
 
-        'message_placeholder' => 'Scrivi qui per postare',
-
         'message_type' => [
             'praise' => 'Elogio',
             'problem' => 'Problema',
             'suggestion' => 'Suggerimento',
         ],
 
-        'message_type_select' => 'Seleziona il tipo di commento',
-
         'mode' => [
             'timeline' => 'Linea Temporale',
         ],
-
-        'require-login' => 'Per favore effettua il login per postare o rispondere', // Base text changed from "log" to "sign"
-        'resolved' => 'Risolto',
 
         'show' => [
             'title' => 'Discussione Beatmap',
