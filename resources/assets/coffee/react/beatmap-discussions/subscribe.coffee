@@ -33,7 +33,7 @@ class BeatmapDiscussions.Subscribe extends React.PureComponent
   render: =>
     el BigButton,
       text: osu.trans "beatmapset_watches.button.action.to_#{+!@isWatching()}"
-      icon: if @isWatching() then 'eye-slash' else 'eye'
+      icon: if @isWatching() then 'fas fa-eye-slash' else 'fas fa-eye'
       modifiers: ['full']
       props:
         onClick: @toggleWatch

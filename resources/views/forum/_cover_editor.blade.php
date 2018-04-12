@@ -25,7 +25,7 @@
                 data-tooltip-position="left center"
             >
                 <span class="btn-circle__content">
-                    <i class="fa fa-pencil"></i>
+                    <i class="fas fa-pencil-alt"></i>
                 </span>
             </button>
         </div>
@@ -68,7 +68,7 @@
             data-tooltip-position="left center"
         >
             <span class="btn-circle__content">
-                <i class="fa fa-trash"></i>
+                <i class="fas fa-trash"></i>
             </span>
         </button>
     </div>

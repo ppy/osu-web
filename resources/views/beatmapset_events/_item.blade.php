@@ -32,10 +32,10 @@
         <div class="beatmapset-event__icon beatmapset-event__icon--{{str_replace('_', '-', $event->type)}} beatmapset-activities__event-icon-spacer"></div>
         <div>
             <div class="beatmapset-event__content">
-                {!! trans('beatmapset_events.event.'.$event->type, [
+                {!! trans('beatmapset_events.event.'.$event->typeForTranslation(), [
                     'user' => link_to_user($event->user),
                     'discussion' => $discussionId ? "<a href='$discussionLink'>#$discussionId</a>" : '',
-                    'text' => !$event->hasArrayComment() ? $event->comment : null,
+                    'text' => is_string($event->comment) ? $event->comment : '[no preview]',
                 ]) !!}
             </div>
             <div>{!! timeago($event->created_at) !!}</div>

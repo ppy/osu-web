@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, div, span, table, tbody, td, th, tr} = ReactDOMFactories
+{a, div, span, table, tbody, td, th, tr, i} = ReactDOMFactories
 el = React.createElement
 
 class BeatmapsetPage.Stats extends React.Component
@@ -60,9 +60,8 @@ class BeatmapsetPage.Stats extends React.Component
         href: '#'
         className: "beatmapset-stats__row beatmapsets-stats__row beatmapset-stats__row--preview js-audio--play"
         'data-audio-url': @props.beatmapset.preview_url
-        el Icon,
-          name: if @state.preview == 'ended' then 'play' else 'stop'
-          parentClass: 'beatmapset-stats__preview-icon'
+        span className: 'beatmapset-stats__preview-icon',
+          i className: "fas fa-#{if @state.preview == 'ended' then 'play' else 'stop'}"
 
         div
           className: 'beatmapset-stats__elapsed-bar'

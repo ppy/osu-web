@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{button, div, img, span} = ReactDOMFactories
+{button, div, i, img, span} = ReactDOMFactories
 el = React.createElement
 
 class ProfilePage.HeaderMain extends React.Component
@@ -101,7 +101,7 @@ class ProfilePage.HeaderMain extends React.Component
               className: 'btn-circle'
               onClick: @toggleEdit
               span className: 'btn-circle__content',
-                el Icon, name: 'pencil'
+                i className: 'fas fa-pencil-alt'
             if @state.editing
               el ProfilePage.CoverSelector,
                 canUpload: @props.user.is_supporter

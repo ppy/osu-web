@@ -12,7 +12,7 @@
         <a class="btn-osu-big btn-osu-big--contest-download" href="{{$contest->extra_options['beatmapset_dl']}}">
             <div class="btn-osu-big__content">
                 <div class="btn-osu-big__left"><span class="btn-osu-big__text-top">Download .osz</span></div>
-                <span class="fa fa-download"></span>
+                <span class="fas fa-cloud-download-alt"></span>
             </div>
         </a>
     </div>

@@ -35,7 +35,7 @@
       <a href='{{route('support-the-game')}}' class='btn-osu-big btn-osu-big--mega'>
         <div>
           {{trans('home.support-osu.find-out-more')}}
-          <span class='fa fa-chevron-circle-right'></span>
+          <span class='fas fa-chevron-circle-right'></span>
         </div>
       </a>
       <div>{{trans('home.support-osu.download-starting')}}</div>
@@ -43,5 +43,5 @@
   <div class='support-osu-popup__pippi'>
     <a href="{{route('support-the-game')}}" class='support-osu-popup__heart'></a>
   </div>
-  <a href='#' class='support-osu-popup__close-button'><i class='fa fa-fw fa-remove'></i></a>
+  <a href='#' class='support-osu-popup__close-button'><i class='fas fa-fw fa-times'></i></a>
 </div>

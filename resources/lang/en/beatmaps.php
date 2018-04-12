@@ -65,8 +65,10 @@ return [
         ],
 
         'message_type' => [
+            'disqualify' => 'Disqualify',
             'hype' => 'Hype!',
             'mapper_note' => 'Note',
+            'nomination_reset' => 'Reset Nomination',
             'praise' => 'Praise',
             'problem' => 'Problem',
             'suggestion' => 'Suggestion',
@@ -148,10 +150,18 @@ return [
         'qualified' => 'Estimated to be ranked :date, if no issues are found.',
         'qualified_soon' => 'Estimated to be ranked soon, if no issues are found.',
         'required_text' => 'Nominations: :current/:required',
-        'reset_at' => 'Nominations reset :time_ago by new problem :discussion.',
-        'reset_confirm' => 'Are you sure? Posting a new problem will reset nominations.',
+        'reset_message_deleted' => 'deleted',
         'title' => 'Nomination Status',
         'unresolved_issues' => 'There are still unresolved issues that must be addressed first.',
+
+        'reset_at' => [
+            'nomination_reset' => 'Nomination process reset :time_ago by :user with new problem :discussion (:message).',
+            'disqualify' => 'Disqualified :time_ago by :user with new problem :discussion (:message).',
+        ],
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Are you sure? Posting a new problem will reset nomination process.',
+        ],
     ],
 
     'listing' => [

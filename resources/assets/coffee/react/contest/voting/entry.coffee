@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a,i,div} = ReactDOMFactories
+{a,i,div,span} = ReactDOMFactories
 el = React.createElement
 
 class Contest.Voting.Entry extends React.Component
@@ -31,10 +31,8 @@ class Contest.Voting.Entry extends React.Component
       if @props.contest.show_votes
         div className: 'contest-voting-list__rank',
           if @props.rank < 4
-            el Icon,
-              name: 'trophy',
-              modifiers: ['fw'],
-              parentClass: "contest-voting-list__trophy contest-voting-list__trophy--#{@props.rank}"
+            span className: "contest-voting-list__trophy contest-voting-list__trophy--#{@props.rank}",
+              i className: 'fas fa-fw fa-trophy'
           else
             "##{@props.rank}"
       if @props.options.showPreview
@@ -43,14 +41,12 @@ class Contest.Voting.Entry extends React.Component
       if @props.options.showLink && @props.entry.preview
         if @props.contest.best_of
           a href: laroute.route('beatmapsets.show', beatmapset: @props.entry.preview), className: 'contest-voting-list__icon contest-voting-list__icon--best-of', style: { background: "url(https://b.ppy.sh/thumb/#{@props.entry.preview}.jpg)" },
-            el Icon,
-              name: @props.contest.link_icon,
-              modifiers: ['fw', 'lg'],
-              parentClass: 'tracklist__link tracklist__link--shadowed'
+            span className: 'tracklist__link tracklist__link--shadowed',
+              i className: "fal fa-fw fa-lg fa-#{@props.contest.link_icon}"
         else
           div className: 'contest-voting-list__icon contest-voting-list__icon--bg',
             a className: 'tracklist__link', href: @props.entry.preview,
-              el Icon, name: @props.contest.link_icon, modifiers: ['fw', 'lg']
+              i className: 'fas fa-fw fa-lg fa-cloud-download-alt'
       if @props.contest.show_votes
         div className: 'contest-voting-list__title contest-voting-list__title--show-votes',
           div className: 'contest-voting-list__votes-bar', style: { width: "#{relativeVotePercentage}%" }

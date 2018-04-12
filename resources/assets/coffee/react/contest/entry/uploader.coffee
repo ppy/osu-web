@@ -114,7 +114,7 @@ class Contest.Entry.Uploader extends React.Component
         el 'label',
           className: labelClass.join(' ')
           ref: (el) => @uploadButtonContainer = el
-          i className: 'fa fa-plus contest-userentry__icon'
+          i className: 'fas fa-plus contest-userentry__icon'
           div {}, osu.trans('contest.entry.drop_here')
 
 

@@ -35,7 +35,7 @@
                 user-verification__message-spinner
                 js-user-verification--message-spinner
             ">
-                <i class="fa fa-spinner fa-pulse"></i>
+                <i class="fas fa-spinner fa-pulse"></i>
             </span>
 
             <span class="js-user-verification--message-text"></span>

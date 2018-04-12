@@ -106,8 +106,35 @@
     .button-theme(@bandcamp-colour);
   }
 
+  &--osu {
+    background-color: @pink-darker;
+
+    .@{_top}__lightbar {
+      background: black;
+    }
+    .@{_top}__chevron {
+      color: black;
+    }
+
+    &:hover {
+      background: lighten(@pink-darker, 5%);
+      .@{_top}__lightbar {
+        background: white;
+        box-shadow: 0 0 5px fade(lighten(white, 15%), 100%);
+      }
+      .@{_top}__chevron {
+        color: lighten(white, 10%);
+        text-shadow: 0 0 10px fade(lighten(white, 15%), 100%);
+      }
+    }
+  }
+
   &--patreon {
     .button-theme(@patreon-colour);
+  }
+
+  &--spotify {
+    .button-theme(@spotify-colour);
   }
 
   &--youtube {
