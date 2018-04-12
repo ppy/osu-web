@@ -209,10 +209,14 @@ class HomeController extends Controller
                     ->pluck('timestamp')
                     ->first();
 
+                if ($lastTagPurchaseDate === null) {
+                    $lastTagPurchaseDate = $expiration->copy()->subMonths(1);
+                }
+
                 $total = $expiration->diffInDays($lastTagPurchaseDate);
                 $used = $lastTagPurchaseDate->diffInDays();
 
-                $supporterStatus['usedRatio'] = 100 - round(($used / $total) * 100, 2);
+                $supporterStatus['remainingRatio'] = 100 - round(($used / $total) * 100, 2);
             }
         }
 
