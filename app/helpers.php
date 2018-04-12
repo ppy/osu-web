@@ -393,13 +393,14 @@ function countries_array_for_select()
     return $out;
 }
 
-function currency($price)
+function currency($price, $precision = 2, $zeroShowFree = true)
 {
-    if ($price === 0) {
+    $price = round($price, $precision);
+    if ($price === 0.00 && $zeroShowFree) {
         return 'free!';
     }
 
-    return sprintf('US$%.2f', $price);
+    return 'US$'.number_format($price, $precision);
 }
 
 /**

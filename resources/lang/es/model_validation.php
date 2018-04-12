@@ -86,11 +86,27 @@ return [
         'invalid_email' => 'No parece que haya un correo electrónico.',
         'too_short' => 'La nueva contraseña es muy corta.',
         'unknown_duplicate' => 'El nombre de usuario o correo electrónico ya está siendo utilizado.',
+        'username_available_in' => 'Este nombre de usuario estará disponible para su uso en :duration.',
+        'username_available_soon' => '¡Este nombre de usuario estará disponible para su uso en cualquier momento!',
+        'username_invalid_characters' => 'El nombre de usuario solicitado tiene carácteres inválidos.',
+        'username_in_use' => '¡El nombre de usuario ya está en uso!',
+        'username_no_space_userscore_mix' => 'Por favor utiliza guiones bajos o espacios, ¡no ambas!',
+        'username_no_spaces' => '¡El nombre no puede iniciar o finalizar con espacios!',
+        'username_not_allowed' => 'Esta elección de nombre de usuario no está permitida.',
         'username_too_short' => 'El nombre de usuario solicitado es muy corto.',
+        'username_too_long' => 'El nombre de usuario solicitado es muy largo.',
         'weak' => 'Contraseña no permitida.',
         'wrong_current_password' => 'La contraseña actual es incorrecta.',
         'wrong_email_confirmation' => 'La confirmación de correo electrónico no coincide.',
         'wrong_password_confirmation' => 'La confirmación de contraseña no coincide.',
         'too_long' => 'Se excedió el límite máximo - puedes usar hasta :limit caracteres.',
+
+        'change_username' => [
+            'supporter_required' => [
+                '_' => '¡Debes :link para cambiar tu nombre!',
+                'link_text' => 'apoyar osu!',
+            ],
+            'username_is_same' => '¡Ese ya es tu nombre de usuario, tonto!',
+        ],
     ],
 ];
