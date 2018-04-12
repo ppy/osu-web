@@ -427,7 +427,7 @@ class Order extends Model
     public function releaseItems()
     {
         // locking bottleneck
-        DB::connection($this->connection)->transaction(function () {
+        $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
 
             foreach ($items as $item) {
@@ -439,7 +439,7 @@ class Order extends Model
     public function reserveItems()
     {
         // locking bottleneck
-        DB::connection($this->connection)->transaction(function () {
+        $this->getConnection()->transaction(function () {
             list($items, $products) = $this->lockForReserve();
 
             foreach ($items as $item) {
@@ -450,7 +450,7 @@ class Order extends Model
 
     public function switchItems($orderItem, $newProduct)
     {
-        DB::connection($this->connection)->transaction(function () use ($orderItem, $newProduct) {
+        $this->getConnection()->transaction(function () use ($orderItem, $newProduct) {
             $this->lockForReserve([$orderItem->product_id, $newProduct->product_id]);
 
             $quantity = $orderItem->quantity;
