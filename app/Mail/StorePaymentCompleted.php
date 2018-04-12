@@ -54,6 +54,6 @@ class StorePaymentCompleted extends Mailable implements ShouldQueue
         return $this->text(i18n_view('emails.store.payment_completed'))
             ->with($this->params)
             ->from('osustore@ppy.sh', 'osu!store team')
-            ->subject('We received your osu!store order!');
+            ->subject(trans('store.mail.payment_completed.subject'));
     }
 }
