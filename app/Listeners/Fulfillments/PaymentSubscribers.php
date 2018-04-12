@@ -21,9 +21,13 @@
 namespace App\Listeners\Fulfillments;
 
 use App\Libraries\Fulfillments\FulfillmentFactory;
+use App\Mail\StorePaymentCompleted;
+use App\Models\Store\Order;
 use App\Traits\StoreNotifiable;
 use DB;
 use Exception;
+use Log;
+use Mail;
 
 /**
  * store.payments event dispatcher.
@@ -49,7 +53,7 @@ class PaymentSubscribers
                     $fulfiller->run();
                 }
 
-                $event->order->dispatchMail();
+                static::sendPaymentCompletedMail($event->order);
             } catch (Exception $exception) {
                 $this->notifyError($exception, $event->order, $eventName);
                 throw $exception;
@@ -126,5 +130,16 @@ class PaymentSubscribers
             'store.payments.rejected.*',
             static::class.'@onPaymentRejected'
         );
+    }
+
+    private static function sendPaymentCompletedMail(Order $order)
+    {
+        if (!$order->isPaidOrDelivered()) {
+            Log::warning("Trying to send mail for unpaid order ({$order->order_id}), aborted.");
+
+            return;
+        }
+
+        Mail::to($order->user->user_email)->queue(new StorePaymentCompleted($order));
     }
 }

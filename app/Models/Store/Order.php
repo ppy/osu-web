@@ -20,16 +20,13 @@
 
 namespace App\Models\Store;
 
-use App\Mail\StorePaymentCompleted;
 use App\Models\Country;
 use App\Models\SupporterTag;
 use App\Models\User;
 use Carbon\Carbon;
 use DB;
 use Exception;
-use Mail;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Log;
 
 /**
  * Represents a Store Order.
@@ -120,17 +117,6 @@ class Order extends Model
                 ->where('provider', $provider)
                 ->where('transaction_id', $transactionId)
                 ->where('cancelled', false));
-    }
-
-    public function dispatchMail()
-    {
-        if (!$this->isPaidOrDelivered()) {
-            Log::warning("Trying to send mail for unpaid order ({$this->order_id}), aborted.");
-
-            return;
-        }
-
-        Mail::to($this->user->user_email)->queue(new StorePaymentCompleted($this));
     }
 
     public function trackingCodes()
