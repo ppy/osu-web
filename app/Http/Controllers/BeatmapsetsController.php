@@ -134,22 +134,24 @@ class BeatmapsetsController extends Controller
     {
         $params = BeatmapsetSearchParams::fromRequest(request(), Auth::user());
 
-        return $params->fetchCacheable(
-            'output-cache:',
-            config('osu.beatmapset.es_cache_duration'),
-            function () use ($params) {
-                $records = datadog_timing(function () use ($params) {
+        $records = datadog_timing(function () use ($params) {
+            $ids = $params->fetchCacheable(
+                'search-cache:',
+                config('osu.beatmapset.es_cache_duration'),
+                function () use ($params) {
                     $search = (new BeatmapsetSearch($params))->source('_id');
 
-                    return $search->records();
-                }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+                    return $search->response()->ids();
+                }
+            );
 
-                return json_collection(
-                    $records,
-                    new BeatmapsetTransformer,
-                    'beatmaps'
-                );
-            }
+            return Beatmapset::whereIn('beatmapset_id', $ids)->orderByField('beatmapset_id', $ids)->get();
+        }, config('datadog-helper.prefix_web').'.search', ['type' => 'beatmapset']);
+
+        return json_collection(
+            $records,
+            new BeatmapsetTransformer,
+            'beatmaps'
         );
     }
 
