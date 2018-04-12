@@ -25,7 +25,7 @@ class AddIndexToAchievementsName extends Migration
     public function down()
     {
         Schema::table('osu_achievements', function ($table) {
-            $table->dropIndex('osu_achievements_name_index');
+            $table->dropIndex(['name']);
         });
     }
 }
