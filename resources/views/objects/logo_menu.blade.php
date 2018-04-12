@@ -44,7 +44,7 @@
                         data-confirm="{{ trans('users.logout_confirm') }}"
                         data-remote="1"
                     >
-                        <i class="fa fa-sign-out"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                     </button>
                 </div>
             @else
@@ -58,7 +58,7 @@
                     </div>
 
                     <span class="logo-menu__user-slice logo-menu__user-slice--session">
-                        <i class="fa fa-sign-in"></i>
+                        <i class="fas fa-sign-in-alt"></i>
                     </span>
                 </a>
             @endif
@@ -77,7 +77,7 @@
                     <span class="logo-menu__menu-text logo-menu__menu-text--main">
                         {{ trans("layout.menu.{$section}._") }}
 
-                        <i class="fa fa-angle-right logo-menu__menu-link-icon"></i>
+                        <i class="fas fa-angle-right logo-menu__menu-link-icon"></i>
                     </span>
                 </a>
 

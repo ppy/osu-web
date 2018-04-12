@@ -22,7 +22,7 @@
                 <div class="forums__hover-bar hidden-xs">
                     <div class="forums__colour-stripe u-forum--bg"></div>
                     <div class="forums__hover-bar-icon">
-                        <i class="fa fa-angle-right"></i>
+                        <i class="fas fa-angle-right"></i>
                     </div>
                 </div>
                 <div class="left">
@@ -32,7 +32,7 @@
                         @foreach($forum->subforums as $subforum)
                             <li>
                                 <a class="name u-forum--link" href="{{ route("forum.forums.show", $subforum->forum_id) }}" title="{{ $subforum->forum_desc }}">
-                                    <i class="fa fa-bars"></i>{{ $subforum->forum_name }}
+                                    <i class="fas fa-bars"></i>{{ $subforum->forum_name }}
                                 </a>
                             </li>
                         @endforeach
@@ -62,7 +62,7 @@
                 <div class="forums__hover-bar hidden-xs">
                     <div class="forums__colour-stripe u-forum--bg"></div>
                     <div class="forums__hover-bar-icon">
-                        <i class="fa fa-link"></i>
+                        <i class="fas fa-link"></i>
                     </div>
                 </div>
                 <div class="left">

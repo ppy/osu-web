@@ -44,7 +44,7 @@
                             'country_code' => $country['acronym'],
                             'country_name' => $country['name'],
                         ])
-                        <div class='ranking-page-header__flag-overlay'><i class="fa fa-fw fa-times"></i></div>
+                        <div class='ranking-page-header__flag-overlay'><i class="fas fa-fw fa-times"></i></div>
                     </a>
                 @endif
                 {!! trans('rankings.header', [

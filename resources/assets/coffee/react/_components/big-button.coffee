@@ -16,7 +16,7 @@
 #    along with osu!web.  If not, see <http://www.gnu.org/licenses/>.
 ###
 
-{a, button, span} = ReactDOMFactories
+{a, button, span, i} = ReactDOMFactories
 el = React.createElement
 
 @BigButton = ({modifiers = [], text, icon, props = {}, extraClasses = []}) ->
@@ -36,4 +36,4 @@ el = React.createElement
       if icon?
         span className: 'btn-osu-big__icon',
           # ensure no random width change when changing icon
-          el Icon, name: icon, modifiers: ['fw']
+          i className: "fa-fw #{icon}"

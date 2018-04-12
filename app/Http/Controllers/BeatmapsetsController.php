@@ -236,25 +236,6 @@ class BeatmapsetsController extends Controller
         return $beatmapset->defaultDiscussionJson();
     }
 
-    public function disqualify($id)
-    {
-        $beatmapset = Beatmapset::findOrFail($id);
-
-        priv_check('BeatmapsetDisqualify', $beatmapset)->ensureCan();
-
-        if (!$beatmapset->disqualify(Auth::user(), Request::input('comment'))) {
-            return error_popup(trans('beatmaps.nominations.incorrect_state'));
-        }
-
-        BeatmapsetWatch::markRead($beatmapset, Auth::user());
-        (new NotifyBeatmapsetUpdate([
-            'user' => Auth::user(),
-            'beatmapset' => $beatmapset,
-        ]))->delayedDispatch();
-
-        return $beatmapset->defaultDiscussionJson();
-    }
-
     public function update($id)
     {
         $beatmapset = Beatmapset::findOrFail($id);

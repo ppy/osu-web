@@ -148,10 +148,12 @@ return [
         'qualified' => 'Esse beatmap será ranqueado em :date, caso nenhum problema seja encontrado.',
         'qualified_soon' => 'Estimado para ser ranqueado em breve, caso nenhum problema for encontrado.',
         'required_text' => 'Nomeações: :current/:required',
-        'reset_at' => 'Nomeações reiniciadas :time_ago por causa de um novo problema :discussion.',
-        'reset_confirm' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
         'title' => 'Estado de nomeação',
         'unresolved_issues' => 'Ainda há problemas não resolvidos que precisam de uma resposta.',
+
+        'reset_confirm' => [
+            'nomination_reset' => 'Você tem certeza? Postar um novo problema reiniciará as nomeações.',
+        ],
     ],
 
     'listing' => [

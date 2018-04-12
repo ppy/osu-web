@@ -38,6 +38,6 @@
     data-method="post"
 >
     <span class="btn-circle__content">
-        <i class="fa {{ issue_icon($issueTag) }}"></i>
+        <i class="{{ issue_icon($issueTag) }}"></i>
     </span>
 </button>

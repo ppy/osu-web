@@ -175,26 +175,11 @@ class BeatmapsetEvent extends Model
 
     public function getCommentAttribute($value)
     {
-        return $this->hasArrayComment() ? json_decode($value, true) : $value;
+        return json_decode($value, true) ?? $value;
     }
 
     public function setCommentAttribute($value)
     {
-        if ($this->hasArrayComment()) {
-            $value = json_encode($value);
-        }
-
-        $this->attributes['comment'] = $value;
-    }
-
-    public function hasArrayComment()
-    {
-        return !in_array($this->type, [
-            static::NOMINATE,
-            static::QUALIFY,
-            static::DISQUALIFY,
-            static::APPROVE,
-            static::RANK,
-        ], true);
+        $this->attributes['comment'] = is_array($value) ? json_encode($value) : $value;
     }
 }
