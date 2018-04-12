@@ -71,7 +71,7 @@ class ArtistsController extends Controller
             $links[] = [
                 'title' => trans('artist.links.osu'),
                 'url' => route('users.show', $artist->user_id),
-                'icon' => 'user',
+                'icon' => 'fas fa-user',
                 'class' => 'osu',
             ];
         }
@@ -80,7 +80,7 @@ class ArtistsController extends Controller
             $links[] = [
                 'title' => trans('artist.links.site'),
                 'url' => $artist->website,
-                'icon' => 'globe',
+                'icon' => 'fas fa-link',
                 'class' => 'website',
             ];
         }
@@ -90,7 +90,7 @@ class ArtistsController extends Controller
                 $links[] = [
                     'title' => $service === 'youtube' ? 'YouTube' : ucwords($service),
                     'url' => $artist->$service,
-                    'icon' => $service,
+                    'icon' => "fab fa-{$service}",
                     'class' => $service,
                 ];
             }
