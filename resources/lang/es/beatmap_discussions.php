@@ -28,7 +28,7 @@ return [
     ],
 
     'events' => [
-        'empty' => 'Aún... no ha ocurrido nada.',
+        'empty' => 'No ha ocurrido nada... aún.',
     ],
 
     'index' => [

@@ -74,7 +74,12 @@ return [
 
         'mode' => [
             'events' => 'Historial',
+            'general' => 'General :scope',
             'timeline' => 'Línea de tiempo',
+            'scopes' => [
+                'general' => 'Esta dificultad',
+                'generalAll' => 'Todas las dificultades',
+            ],
         ],
 
         'new' => [
@@ -117,7 +122,7 @@ return [
    'hype' => [
         'button' => '¡Hypear este beatmap!',
         'button_done' => '¡Hypeado!',
-        'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacerlo.',
+        'confirm' => '¿Estás seguro? Esto utilizará uno de tus :n hypes restantes y no podrás deshacer esta acción.',
         'explanation' => '¡Hypea este beatmap para hacerlo más visible para la nominación y el ranking!',
         'explanation_guest' => '¡Inicia sesión y hypea este beatmap para hacerlo más visible para la nominación y el ranking!', // Base text changed from "log" to "sign"
         'new_time' => 'Obtendrás otro hype :new_time.',
@@ -137,7 +142,7 @@ return [
         'nominate_confirm' => '¿Nominar este beatmap?',
         'nominated_by' => 'nominado por :users',
         'qualified' => 'Se estima que será rankeado el :date, si no se encuentra ningún problema.',
-        'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema',
+        'qualified_soon' => 'Se estima que será rankeado pronto, si no se encuentra ningún problema.',
         'required_text' => 'Nominaciones: :current/:required',
         'reset_at' => 'Las nominaciones se reiniciaron :time_ago por el nuevo problema :discussion.',
         'reset_confirm' => '¿Estás seguro? Publicar un nuevo problema reiniciará todas las nominaciones.',
@@ -227,6 +232,7 @@ return [
         'FI' => 'Fade In',
         '9K' => '9K',
         'NM' => 'Sin mods',
+        'TD' => 'Dispositivo touch',
     ],
     'language' => [
         'any' => 'Cualquiera',
